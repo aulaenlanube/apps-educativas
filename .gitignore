@@ -105,7 +105,7 @@ public/build/
 # End of storybook specific ignores
 
 # Gatsby specific
-public
+
 
 # Mac specific
 .DS_Store
