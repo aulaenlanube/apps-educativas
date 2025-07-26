@@ -36,13 +36,13 @@ Si quieres ejecutar este proyecto en tu propio ordenador, sigue estos pasos:
 1.  **Clona el repositorio:**
 
     ```bash
-    git clone https://github.com/tu-usuario/tu-repositorio.git
+    git clone https://github.com/aulaenlanube/apps-educativas.git
     ```
 
 2.  **Navega a la carpeta del proyecto:**
 
     ```bash
-    cd tu-repositorio
+    cd apps-educativas
     ```
 
 3.  **Instala las dependencias:**
@@ -70,4 +70,4 @@ En el archivo `package.json`, encontrarás los siguientes scripts:
 
 -----
 
-> Hecho con ❤️ para la educación.
+> Hecho con ❤️ por Edu Torregrosa con la ayuda de la IA.
