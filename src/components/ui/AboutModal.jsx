@@ -36,7 +36,7 @@ const AboutModal = ({ open, onOpenChange }) => {
               Soy Edu Torregrosa, profesor de Informática con más de 15 años de experiencia. Tengo varios canales de YouTube orientados a la educación. 
             </p>
             <p className="text-gray-600 leading-relaxed">
-              Mi proposito en la vida lo tengo claro: aportar mi granito de arena para mejorar la educación.
+              Mi propósito en la vida lo tengo claro: aportar mi granito de arena para mejorar la educación.
             </p>
             <div className="flex justify-center space-x-6 my-6">
               {/* Reemplaza '#' con los enlaces a tus perfiles */}
