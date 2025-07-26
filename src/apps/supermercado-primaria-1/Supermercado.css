@@ -1,0 +1,122 @@
+/* src/apps/supermercado-primaria-1/Supermercado.css (MODIFICADO) */
+
+#supermercado-app-container .supermercado-title {
+    font-family: 'Fredoka One', cursive;
+}
+
+#supermercado-app-container {
+    font-family: 'Roboto', sans-serif;
+    background: transparent;
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 85, 148, 0.15);
+    text-align: center;
+    margin: 0 auto; /* Para centrarlo en la página */
+}
+
+#supermercado-app-container #panel-productos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin: 25px 0;
+    padding-bottom: 25px;
+    border-bottom: 2px dashed #d4eaf7;
+}
+
+#supermercado-app-container .producto {
+    background: #e6f4ff;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #005594;
+    min-width: 100px;
+}
+
+#supermercado-app-container .producto .emoji {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#supermercado-app-container .mision {
+    background: #fffbe6;
+    border: 2px solid #ffecb3;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+#supermercado-app-container .mision h2 {
+    font-family: 'Fredoka One', cursive;
+    color: #f57c00;
+    margin-top: 0;
+}
+
+#supermercado-app-container .respuesta-usuario {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#supermercado-app-container label {
+    font-weight: bold;
+    color: #333;
+}
+
+#supermercado-app-container input[type="number"] {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100px;
+    text-align: center;
+}
+
+#supermercado-app-container button {
+    background: #0077cc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+#supermercado-app-container button:hover {
+    background: #005594;
+}
+
+#supermercado-app-container #btnNuevaMision {
+    background: #f57c00;
+    margin-top: 20px;
+}
+
+#supermercado-app-container #btnNuevaMision:hover {
+    background: #e65100;
+}
+
+#supermercado-app-container #feedback {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#supermercado-app-container .correcta {
+    color: #2e7d32;
+    background: #e8f5e9;
+}
+
+#supermercado-app-container .incorrecta {
+    color: #c62828;
+    background: #ffebee;
+}

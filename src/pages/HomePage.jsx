@@ -1,12 +1,15 @@
-import React from 'react';
+// src/pages/HomePage.jsx (MODIFICADO)
+
+import React, { useState } from 'react'; // <-- 1. Importa useState
 import { motion } from 'framer-motion';
 import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import { toast } from '@/components/ui/use-toast';
+import AboutModal from '@/components/ui/AboutModal'; // <-- 2. Importa el nuevo componente
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false); // <-- 3. Añade el estado para controlar el modal
 
   const primaryGrades = [
     { grade: '1', title: '1º Primaria', color: 'from-red-400 to-pink-500', icon: '🌟' },
@@ -28,37 +31,22 @@ const HomePage = () => {
     navigate(`/curso/${level}/${grade}`);
   };
 
-  const handleFeatureNotImplemented = () => {
-    toast({
-      title: "🚧 Característica no implementada aún",
-      description: "¡Pero no te preocupes! ¡Puedes solicitarla en tu próximo mensaje! 🚀",
-    });
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
   };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+    // La clase `bg-gradient-to-br...` se movió al MainLayout, así que la quitamos de aquí si la tenías
+    <div> 
+      {/* 4. Renderiza el componente del modal */}
+      <AboutModal open={isModalOpen} onOpenChange={setIsModalOpen} />
+
       {/* Header */}
       <motion.header 
         initial={{ y: -100, opacity: 0 }}
@@ -78,22 +66,19 @@ const HomePage = () => {
               </div>
             </div>
             <nav className="hidden md:flex items-center space-x-6">
-              {/* <Button variant="ghost" className="text-gray-700 hover:text-purple-600" onClick={() => navigate('/')}>
-                Inicio
-              </Button> */}
-              <Button variant="ghost" className="text-gray-700 hover:text-purple-600" onClick={handleFeatureNotImplemented}>
-                Sobre Nosotros
+              {/* --- 5. MODIFICAMOS EL BOTÓN --- */}
+              <Button variant="ghost" className="text-gray-700 hover:text-purple-600" onClick={() => setIsModalOpen(true)}>
+                Quién soy
               </Button>
-              {/* <Button variant="ghost" className="text-gray-700 hover:text-purple-600">
-                Contacto
-              </Button> */}
             </nav>
           </div>
         </div>
       </motion.header>
 
-      {/* Hero Section */}
-      <motion.section 
+      {/* El resto de la página (Hero, Primary, ESO, Features) se queda exactamente igual */}
+      {/* ... Pega aquí todo el contenido desde <motion.section> hasta el final ... */}
+       {/* Hero Section */}
+       <motion.section 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
@@ -108,7 +93,7 @@ const HomePage = () => {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="mb-8"
           >
-            <h1 className="text-5xl md:text-7xl font-bold gradient-text mb-6 leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold gradient-text mb-6 leading-normal">
               ¡Aprende Jugando!
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
@@ -143,7 +128,7 @@ const HomePage = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.8 }}
           >
-            <img  class="w-64 h-64 mx-auto rounded-3xl shadow-2xl pulse-glow" alt="Niños aprendiendo con tablets y apps educativas" src="https://images.unsplash.com/photo-1694532409273-b26e2ce266ea" />
+            <img  className="w-96 h-64 mx-auto rounded-3xl shadow-2xl pulse-glow object-cover" alt="Niños aprendiendo con tablets y apps educativas" src="/images/portada.webp" />
           </motion.div>
         </div>
       </motion.section>
@@ -280,7 +265,7 @@ const HomePage = () => {
               <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <BookOpen className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">Contenido Curado</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">Contenido de calidad</h3>
               <p className="text-gray-600">
                 Todas nuestras apps están cuidadosamente seleccionadas y organizadas por expertos en educación
               </p>
@@ -308,32 +293,6 @@ const HomePage = () => {
           </motion.div>
         </div>
       </motion.section>
-
-      {/* Footer */}
-      <motion.footer 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="bg-gradient-to-r from-gray-900 to-purple-900 text-white py-12 px-6"
-      >
-        <div className="container mx-auto text-center">
-          <div className="flex items-center justify-center space-x-3 mb-6 cursor-pointer" onClick={() => navigate('/')}>
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-              <GraduationCap className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold">EduApps</span>
-          </div>
-          <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-            Transformando la educación a través de la tecnología. 
-            Hacemos que aprender sea una aventura emocionante para todos los estudiantes.
-          </p>
-          <div className="border-t border-gray-700 pt-6">
-            <p className="text-gray-400">
-              © 2025 EduApps. Todos los derechos reservados. Hecho con ❤️ para la educación.
-            </p>
-          </div>
-        </div>
-      </motion.footer>
     </div>
   );
 };
