@@ -44,7 +44,7 @@ const Footer = () => {
                 <div className="border-t border-gray-700 pt-6">
                     {/* --- 3. ACTUALIZAMOS EL TEXTO Y AÑADIMOS EL ENLACE --- */}
                     <p className="text-gray-400">
-                        © 2025 EduApps. Hecho con ❤️ por <a href="https://edutorregrosa.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:underline">Edu Torregrosa</a> con la ayuda de la IA.
+                        Hecho con ❤️ por <a href="https://edutorregrosa.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:underline">Edu Torregrosa</a> con la ayuda de la IA.
                     </p>
                 </div>
             </div>
