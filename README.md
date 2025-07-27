@@ -36,7 +36,7 @@ Si quieres ejecutar este proyecto en tu propio ordenador, sigue estos pasos:
 1.  **Clona el repositorio:**
 
     ```bash
-    git clone https://github.com/aulaenlanube/apps-educativas.git
+    git clone [https://github.com/aulaenlanube/apps-educativas.git](https://github.com/aulaenlanube/apps-educativas.git)
     ```
 
 2.  **Navega a la carpeta del proyecto:**
@@ -67,6 +67,42 @@ En el archivo `package.json`, encontrarás los siguientes scripts:
   * `npm run dev`: Inicia el servidor de desarrollo con Vite.
   * `npm run build`: Compila y empaqueta la aplicación para producción en la carpeta `dist`.
   * `npm run preview`: Sirve la carpeta `dist` para previsualizar la versión de producción.
+
+-----
+
+## 🤝 ¿Quieres Contribuir?
+
+¡Este proyecto está abierto a la comunidad! Si eres desarrollador y te gustaría añadir tu propia aplicación educativa, ¡tu ayuda es bienvenida!
+
+El objetivo es crear un ecosistema de mini-apps de calidad. Todas las propuestas serán revisadas para asegurar que cumplen con los estándares del proyecto antes de ser aceptadas.
+
+### Procedimiento para Añadir una App
+
+1.  **Haz un Fork:** Crea un "fork" de este repositorio en tu propia cuenta de GitHub.
+
+2.  **Crea tu App:**
+    * Dentro de la carpeta `src/apps/`, crea un nuevo directorio para tu aplicación. Usa un nombre descriptivo, como por ejemplo: `nombre-app-nivel-curso` (ej: `mapas-interactivos-primaria-4`).
+    * Dentro de esta nueva carpeta, desarrolla tu aplicación como un componente de React (ej: `MapasInteractivos.jsx`) y añade los estilos CSS que necesites.
+
+3.  **Registra la App:**
+    * Abre el archivo `src/apps/appList.js`.
+    * Importa el componente principal de tu app.
+    * Añade un nuevo objeto al array del curso y nivel correspondiente dentro de la constante `courseApps`. El objeto debe tener la siguiente estructura:
+        ```javascript
+        {
+          id: 'un-id-unico-para-tu-app',
+          name: 'Nombre de tu App',
+          description: 'Una descripción breve y atractiva.',
+          component: TuComponenteImportado
+        }
+        ```
+
+4.  **Envía tu Pull Request (PR):**
+    * Una vez que hayas probado tu app y funcione correctamente, sube los cambios a tu fork.
+    * Crea un Pull Request desde tu repositorio hacia la rama principal de `aulaenlanube/apps-educativas`.
+    * En la descripción del PR, explica brevemente en qué consiste tu app y para qué curso está pensada.
+
+¡Muchas gracias por considerar contribuir!
 
 -----
 

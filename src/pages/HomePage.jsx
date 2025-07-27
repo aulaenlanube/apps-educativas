@@ -267,7 +267,7 @@ const HomePage = () => {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Contenido de calidad</h3>
               <p className="text-gray-600">
-                Todas nuestras apps están cuidadosamente seleccionadas y organizadas por expertos en educación
+                Todas nuestras apps están cuidadosamente verificadas y organizadas por niveles educativos 
               </p>
             </motion.div>
 
