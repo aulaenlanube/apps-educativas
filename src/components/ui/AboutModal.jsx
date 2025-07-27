@@ -1,10 +1,11 @@
-// src/components/ui/AboutModal.jsx (MODIFICADO)
+// src/components/ui/AboutModal.jsx (ACTUALIZADO)
 
 import React from 'react';
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
-// 1. Importamos el icono de la "X" para el botón de cerrar
-import { Instagram, Youtube, Linkedin, X } from 'lucide-react';
+// 1. Importamos el icono de Twitter
+import { Instagram, Youtube, Linkedin, X, Twitter } from 'lucide-react';
+import IconXSocial from '../icons/IconXSocial';
 
 const Dialog = DialogPrimitive.Root;
 const DialogContent = DialogPrimitive.Content;
@@ -16,8 +17,6 @@ const AboutModal = ({ open, onOpenChange }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogPrimitive.Portal>
-        {/* --- 2. FONDO OSCURO (OVERLAY) --- */}
-        {/* Esta capa se pondrá por encima de la web y por debajo de la ventana */}
         <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/60" />
         
         <DialogContent 
@@ -33,13 +32,16 @@ const AboutModal = ({ open, onOpenChange }) => {
               className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-purple-200"
             />
             <p className="text-gray-600 leading-relaxed">
-              Profesor de Informática con más de 15 años de experiencia. Tengo varios canales de YouTube orientados a la educación. 
+              Profesor de Informática con más de 15 años de experiencia. Tengo varios canales de YouTube, uno de videotutoriales y cursos gratuitos (Aula en la nube), y otro donde enseño a docentes a usar la IA en el aula (IA para docentes).
             </p>
             <p className="text-gray-600 leading-relaxed">
-              Mi propósito en la vida lo tengo claro: mejorar la educación.
+              Mi propósito: mejorar la educación.
             </p>
             <div className="flex justify-center space-x-6 my-6">
-              {/* Reemplaza '#' con los enlaces a tus perfiles */}
+              {/* 2. Añadimos el nuevo enlace a X.com */}
+              <a href="https://x.com/_edu_torregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 transition-colors">
+                <IconXSocial size={24} />
+              </a>
               <a href="https://instagram.com/edutorregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-pink-600 transition-colors">
                 <Instagram size={28} />
               </a>
@@ -59,7 +61,6 @@ const AboutModal = ({ open, onOpenChange }) => {
             </a>
           </DialogFooter>
 
-          {/* --- 3. BOTÓN DE CERRAR (X) --- */}
           <DialogPrimitive.Close className="absolute top-4 right-4 rounded-full p-1 opacity-70 hover:opacity-100 transition-opacity">
             <X className="h-5 w-5" />
           </DialogPrimitive.Close>

@@ -1,9 +1,9 @@
-// src/components/layout/Footer.jsx (MODIFICADO)
+// src/components/layout/Footer.jsx (ACTUALIZADO)
 
 import React from 'react';
 import { motion } from 'framer-motion';
-// 1. IMPORTAMOS LOS ICONOS QUE NECESITAMOS
-import { GraduationCap, Instagram, Youtube, Linkedin } from 'lucide-react';
+// 1. Importamos el icono de Twitter
+import { GraduationCap, Instagram, Youtube, Linkedin, Twitter } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
@@ -27,9 +27,11 @@ const Footer = () => {
                     Transformando la educación a través de la tecnología.
                 </p>
 
-                {/* --- 2. AÑADIMOS LOS ICONOS DE REDES SOCIALES --- */}
                 <div className="flex justify-center space-x-6 mb-8">
-                    
+                    {/* 2. Añadimos el nuevo enlace a X.com */}
+                    <a href="https://x.com/_edu_torregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                        <Twitter size={24} />
+                    </a>
                     <a href="https://www.instagram.com/edutorregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                         <Instagram size={24} />
                     </a>
@@ -42,7 +44,6 @@ const Footer = () => {
                 </div>
 
                 <div className="border-t border-gray-700 pt-6">
-                    {/* --- 3. ACTUALIZAMOS EL TEXTO Y AÑADIMOS EL ENLACE --- */}
                     <p className="text-gray-400">
                         Hecho con ❤️ por <a href="https://edutorregrosa.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:underline">Edu Torregrosa</a> con la ayuda de la IA.
                     </p>
