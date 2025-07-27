@@ -65,7 +65,7 @@ const HomePage = () => {
                 <p className="text-sm text-gray-600">Apps Educativas</p>
               </div>
             </div>
-            <nav className="hidden md:flex items-center space-x-6">
+            <nav className="flex items-center">
               {/* --- 5. MODIFICAMOS EL BOTÓN --- */}
               <Button variant="ghost" className="text-gray-700 hover:text-purple-600" onClick={() => setIsModalOpen(true)}>
                 Quién soy

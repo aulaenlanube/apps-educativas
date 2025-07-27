@@ -24,7 +24,7 @@ const AboutModal = ({ open, onOpenChange }) => {
             className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90vw] max-w-[425px] bg-white rounded-2xl p-6 shadow-lg"
         >
           <DialogHeader>
-            
+            <DialogTitle className="text-3xl font-bold gradient-text">Soy Edu Torregrosa</DialogTitle>
           </DialogHeader>
           <div className="py-4 text-center">
             <img
@@ -33,10 +33,10 @@ const AboutModal = ({ open, onOpenChange }) => {
               className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-purple-200"
             />
             <p className="text-gray-600 leading-relaxed">
-              Soy Edu Torregrosa, profesor de Informática con más de 15 años de experiencia. Tengo varios canales de YouTube orientados a la educación. 
+              Profesor de Informática con más de 15 años de experiencia. Tengo varios canales de YouTube orientados a la educación. 
             </p>
             <p className="text-gray-600 leading-relaxed">
-              Mi propósito en la vida lo tengo claro: aportar mi granito de arena para mejorar la educación.
+              Mi propósito en la vida lo tengo claro: mejorar la educación.
             </p>
             <div className="flex justify-center space-x-6 my-6">
               {/* Reemplaza '#' con los enlaces a tus perfiles */}
