@@ -1,9 +1,10 @@
-// src/components/layout/Footer.jsx (ACTUALIZADO)
+// src/components/layout/Footer.jsx (CORREGIDO)
 
 import React from 'react';
 import { motion } from 'framer-motion';
-// 1. Importamos el icono de Twitter
-import { GraduationCap, Instagram, Youtube, Linkedin, Twitter } from 'lucide-react';
+// 1. Eliminamos 'Twitter' e importamos nuestro icono personalizado 'IconXSocial'
+import { GraduationCap, Instagram, Youtube, Linkedin } from 'lucide-react';
+import IconXSocial from '../icons/IconXSocial';
 import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
@@ -27,16 +28,18 @@ const Footer = () => {
                     Transformando la educación a través de la tecnología.
                 </p>
 
-                <div className="flex justify-center space-x-6 mb-8">
-                    {/* 2. Añadimos el nuevo enlace a X.com */}
-                    <a href="https://x.com/_edu_torregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                        <Twitter size={24} />
-                    </a>
+                {/* --- 2. AÑADIMOS 'items-center' PARA ALINEAR VERTICALMENTE LOS ICONOS --- */}
+                <div className="flex justify-center items-center space-x-6 mb-8">
+                    
                     <a href="https://www.instagram.com/edutorregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                         <Instagram size={24} />
                     </a>
-                    <a href="https://www.youtube.com/@ia-para-docentes" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                        <Youtube size={24} />
+                    <a href="https://youtube.com/c/aulaenlanube" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                        <Youtube size={28} />
+                    </a>
+                    <a href="https://x.com/_edu_torregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                        {/* 3. Usamos el nuevo icono y ajustamos el tamaño para que se vea equilibrado */}
+                        <IconXSocial size={20} />
                     </a>
                     <a href="https://www.linkedin.com/in/edu-torregrosa-llacer/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                         <Linkedin size={24} />

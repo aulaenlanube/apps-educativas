@@ -7,15 +7,42 @@ import SupermercadoMatematico3 from '@/apps/supermercado-primaria-3/Supermercado
 import SupermercadoMatematico4 from '@/apps/supermercado-primaria-4/SupermercadoMatematico4';
 import SupermercadoMatematico5 from '@/apps/supermercado-primaria-5/SupermercadoMatematico5';
 import SupermercadoMatematico6 from '@/apps/supermercado-primaria-6/SupermercadoMatematico6';
+import IslaDeLaCalma from '@/apps/isla-de-la-calma/IslaDeLaCalma'; // <-- 1. IMPORTAMOS LA NUEVA APP
+
+// --- Creamos un objeto para la nueva app para no repetir código ---
+const appIslaDeLaCalma = {
+  id: 'isla-de-la-calma',
+  name: 'Isla de la Calma',
+  description: 'Un ejercicio de respiración guiada para encontrar la calma.',
+  component: IslaDeLaCalma
+};
 
 export const courseApps = {
   primaria: {
-    '1': [{ id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', description: 'Resuelve sumas sencillas con productos del súper.', component: SupermercadoMatematico1 }],
-    '2': [{ id: 'supermercado-matematico-2', name: 'Supermercado Matemático (Sumas llevando)', description: 'Suma los precios de varios productos, ¡a veces tendrás que llevar!', component: SupermercadoMatematico2 }],
-    '3': [{ id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', description: 'Calcula el coste de comprar varias unidades del mismo producto.', component: SupermercadoMatematico3 }],
-    '4': [{ id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 }],
-    '5': [{ id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 }],
-    '6': [{ id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 }],
+    '1': [
+      appIslaDeLaCalma, // <-- 2. AÑADIMOS LA APP
+      { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', description: 'Resuelve sumas sencillas con productos del súper.', component: SupermercadoMatematico1 }
+    ],
+    '2': [
+      appIslaDeLaCalma, // <-- 2. AÑADIMOS LA APP
+      { id: 'supermercado-matematico-2', name: 'Supermercado Matemático (Sumas llevando)', description: 'Suma los precios de varios productos, ¡a veces tendrás que llevar!', component: SupermercadoMatematico2 }
+    ],
+    '3': [
+      appIslaDeLaCalma, // <-- 2. AÑADIMOS LA APP
+      { id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', description: 'Calcula el coste de comprar varias unidades del mismo producto.', component: SupermercadoMatematico3 }
+    ],
+    '4': [
+      appIslaDeLaCalma, // <-- 2. AÑADIMOS LA APP
+      { id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 }
+    ],
+    '5': [
+      appIslaDeLaCalma, // <-- 2. AÑADIMOS LA APP
+      { id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 }
+    ],
+    '6': [
+      appIslaDeLaCalma, // <-- 2. AÑADIMOS LA APP
+      { id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 }
+    ],
   },
   eso: {}
 };

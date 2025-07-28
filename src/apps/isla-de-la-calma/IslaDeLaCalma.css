@@ -1,0 +1,129 @@
+/* src/apps/isla-de-la-calma/IslaDeLaCalma.css (CORREGIDO) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+/* Variables de color específicas para esta app para evitar conflictos */
+:root {
+    --calma-fondo: #f0f7f8;
+    --calma-principal: #008080;
+    --calma-secundario: #a2d5c6;
+    --calma-texto: #4a4a4a;
+}
+
+/* Contenedor principal que envuelve toda la app */
+.calma-app-wrapper {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--calma-fondo);
+    color: var(--calma-texto);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 20px; /* Añadimos bordes redondeados al contenedor principal */
+}
+
+/* Contenedor para cada pantalla (inicio, respiración, final) */
+.calma-container {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 128, 128, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.calma-container h1 {
+    color: var(--calma-principal);
+    margin-top: 0;
+}
+
+.calma-container p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.calma-container .configuracion-ciclos {
+    margin: 30px 0;
+}
+
+.calma-container .configuracion-ciclos label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.calma-container .configuracion-ciclos input {
+    width: 80px;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+.calma-container button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    background-color: var(--calma-principal);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.calma-container button:hover {
+    background-color: #005959;
+}
+
+.calma-container .visualizador {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.calma-container .circulo {
+    width: 150px;
+    height: 150px;
+    background-color: var(--calma-secundario);
+    border-radius: 50%;
+    transition: transform 4s ease-in-out;
+}
+
+.calma-container #instruccion {
+    position: absolute;
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+}
+
+.calma-container #contadorCiclos {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #888;
+}
+
+.calma-app-wrapper .control-audio {
+    position: absolute;
+    bottom: 40px; /* Ajustado para estar dentro del wrapper */
+    right: 40px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    color: #aaa;
+    cursor: pointer;
+}

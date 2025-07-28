@@ -1,10 +1,9 @@
-// src/components/ui/AboutModal.jsx (ACTUALIZADO)
+// src/components/ui/AboutModal.jsx (CORREGIDO)
 
 import React from 'react';
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
-// 1. Importamos el icono de Twitter
-import { Instagram, Youtube, Linkedin, X, Twitter } from 'lucide-react';
+import { Instagram, Youtube, Linkedin, X } from 'lucide-react';
 import IconXSocial from '../icons/IconXSocial';
 
 const Dialog = DialogPrimitive.Root;
@@ -37,16 +36,18 @@ const AboutModal = ({ open, onOpenChange }) => {
             <p className="text-gray-600 leading-relaxed">
               Mi propósito: mejorar la educación.
             </p>
-            <div className="flex justify-center space-x-6 my-6">
-              {/* 2. Añadimos el nuevo enlace a X.com */}
-              <a href="https://x.com/_edu_torregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 transition-colors">
-                <IconXSocial size={24} />
-              </a>
+            {/* --- 1. AÑADIMOS 'items-center' Y UNIFICAMOS TAMAÑOS --- */}
+            <div className="flex justify-center items-center space-x-6 my-6">
+              
               <a href="https://instagram.com/edutorregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-pink-600 transition-colors">
                 <Instagram size={28} />
               </a>
-              <a href="https://www.youtube.com/@ia-para-docentes" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-red-600 transition-colors">
-                <Youtube size={28} />
+              {/* 2. URL de YouTube Corregida */}
+              <a href="https://youtube.com/c/aulaenlanube" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-red-600 transition-colors">
+                <Youtube size={32} />
+              </a>
+              <a href="https://x.com/_edu_torregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 transition-colors">
+                <IconXSocial size={24} />
               </a>
               <a href="https://www.linkedin.com/in/edu-torregrosa-llacer/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-700 transition-colors">
                 <Linkedin size={28} />
