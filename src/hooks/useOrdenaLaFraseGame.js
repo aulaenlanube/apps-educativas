@@ -142,42 +142,46 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         }
         draggedItem.current = null;
     };
+
+    const getDragAfterElement = (container, x, y) => {
+        const draggableElements = [...container.querySelectorAll('.palabra:not(.dragging)')];
+    
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offsetY = y - (box.top + box.height / 2);
+
+            // Solo consideramos elementos que están cerca verticalmente
+            if (Math.abs(offsetY) < box.height) { 
+                const offsetX = x - (box.left + box.width / 2);
+                // Buscamos el elemento a la derecha más cercano
+                if (offsetX < 0 && offsetX > closest.offset) {
+                    return { offset: offsetX, element: child };
+                }
+            }
+            return closest;
+
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    };
     
     const handleDrop = (e, targetZone) => {
         e.preventDefault();
         if (!draggedItem.current) return;
     
         const draggedWord = draggedItem.current;
-        let fromZone = palabrasOrigen.some(p => p.id === draggedWord.id) ? 'origen' : 'destino';
+        
+        // Determina de qué zona viene la palabra
+        const isFromOrigin = palabrasOrigen.some(p => p.id === draggedWord.id);
     
-        // Si se suelta en la misma zona, solo reordenamos
-        if (targetZone === fromZone) {
-            if (targetZone === 'destino') {
-                let newDestino = palabrasDestino.filter(p => p.id !== draggedWord.id);
-                const afterElement = getDragAfterElement(e.currentTarget, e.clientX);
-                if (afterElement == null) {
-                    newDestino.push(draggedWord);
-                } else {
-                    const insertIndex = newDestino.findIndex(p => p.id === afterElement.id);
-                    newDestino.splice(insertIndex, 0, draggedWord);
-                }
-                setPalabrasDestino(newDestino);
-            }
-            // No es necesario reordenar en la zona de origen
-            return;
-        }
-    
-        // Si se mueve entre zonas
-        let newOrigen = [...palabrasOrigen];
-        let newDestino = [...palabrasDestino];
+        // Quita la palabra de su lista original
+        let newOrigen = palabrasOrigen.filter(p => p.id !== draggedWord.id);
+        let newDestino = palabrasDestino.filter(p => p.id !== draggedWord.id);
     
         if (targetZone === 'origen') {
-            newDestino = newDestino.filter(p => p.id !== draggedWord.id);
             newOrigen.push(draggedWord);
-            newOrigen.sort((a,b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
+            newOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
         } else { // targetZone === 'destino'
-            newOrigen = newOrigen.filter(p => p.id !== draggedWord.id);
-            const afterElement = getDragAfterElement(e.currentTarget, e.clientX);
+            const container = e.currentTarget;
+            const afterElement = getDragAfterElement(container, e.clientX, e.clientY);
             if (afterElement == null) {
                 newDestino.push(draggedWord);
             } else {
@@ -185,23 +189,10 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
                 newDestino.splice(insertIndex, 0, draggedWord);
             }
         }
+        
         setPalabrasOrigen(newOrigen);
         setPalabrasDestino(newDestino);
     };
-    
-    function getDragAfterElement(container, x) {
-        const draggableElements = [...container.querySelectorAll('.palabra:not(.dragging)')];
-    
-        return draggableElements.reduce((closest, child) => {
-            const box = child.getBoundingClientRect();
-            const offset = x - box.left - box.width / 2;
-            if (offset < 0 && offset > closest.offset) {
-                return { offset: offset, element: child };
-            } else {
-                return closest;
-            }
-        }, { offset: Number.NEGATIVE_INFINITY }).element;
-    }
 
     const handleDragOver = (e) => e.preventDefault();
 

@@ -9,8 +9,12 @@ const OrdenaLaFraseTestScreen = ({ game }) => {
 
         return (
             <div className="ordena-frase-container test-results">
-                <h1 className="supermercado-title">¡Test Completado!</h1>
+                {/* Título con nuevo estilo */}
+                <h1 className="ordena-frase-main-title gradient-text text-5xl">¡Test Completado!</h1>
+                
+                {/* Puntuación con nuevo estilo */}
                 <div className="score">Tu puntuación: <span>{game.score}</span></div>
+                
                 <p>Has acertado {correctAnswers} de {game.TOTAL_TEST_QUESTIONS} frases.</p>
                 {game.elapsedTime > 0 && <p>Tiempo total: {game.elapsedTime} segundos.</p>}
                 
@@ -38,7 +42,9 @@ const OrdenaLaFraseTestScreen = ({ game }) => {
 
     return (
         <div className="ordena-frase-container">
-            <h1 className="supermercado-title gradient-text text-4xl font-bold mb-4">📝 Test de Frases</h1>
+            {/* Título con nuevo estilo */}
+            <h1 className="ordena-frase-main-title gradient-text text-4xl font-bold mb-4">📝 Test de Frases</h1>
+            
             <div className="test-header">
                 <div className="question-counter">Frase {game.currentQuestionIndex + 1} / {game.TOTAL_TEST_QUESTIONS}</div>
                 {game.elapsedTime > 0 && <div className="timer">Tiempo: {game.elapsedTime}s</div>}

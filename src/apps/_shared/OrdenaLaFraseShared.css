@@ -1,7 +1,12 @@
-/* Contenido completo para OrdenaLaFrase.css */
+/* src/apps/_shared/OrdenaLaFraseShared.css (CÓDIGO COMPLETO Y CORREGIDO) */
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap');
 
-/* Contenedor principal para la app de ordenar frases */
+/* --- CLASE PARA TÍTULOS --- */
+.ordena-frase-container .ordena-frase-main-title {
+    font-family: 'Fredoka One', cursive;
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
 .ordena-frase-container {
     font-family: 'Lexend', sans-serif;
     width: 100%;
@@ -11,7 +16,7 @@
     border-radius: 15px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin: 0 auto; /* Asegura que esté centrado */
+    margin: 0 auto;
 }
 
 .ordena-frase-container h1 {
@@ -24,6 +29,7 @@
     margin-bottom: 25px;
 }
 
+/* --- ZONAS DE ARRASTRE --- */
 .ordena-frase-container .zona-destino, 
 .ordena-frase-container .zona-origen {
     width: 100%;
@@ -54,6 +60,7 @@
 .ordena-frase-container .zona-destino.drag-over { background-color: #d4f0df; }
 .ordena-frase-container .zona-origen.drag-over { background-color: #fcecdb; }
 
+/* --- PALABRAS --- */
 .ordena-frase-container .palabra {
     background-color: #fff;
     padding: 10px 20px;
@@ -71,6 +78,7 @@
     transform: scale(0.95);
 }
 
+/* --- BOTONES (ESTILO SUPERMERCADO) --- */
 .ordena-frase-container .controles {
     margin: 25px 0;
 }
@@ -80,34 +88,121 @@
     font-size: 16px;
     font-weight: 600;
     padding: 12px 25px;
-    border-radius: 25px;
+    border-radius: 8px; /* Redondeo reducido */
     border: none;
     cursor: pointer;
     background-color: #4a90e2;
     color: white;
     margin: 0 10px;
+    transition: background-color 0.2s;
 }
 
 .ordena-frase-container button:hover {
     background-color: #357ABD;
 }
 
-.ordena-frase-container #feedback {
+/* --- BOTONES DE MODO --- */
+.ordena-frase-container .mode-selection {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px; /* Mayor separación */
+}
+
+.ordena-frase-container .btn-mode {
+    background: #f0f4f8;
+    color: #4a5568;
+    border: 1px solid #dcdfe6;
+}
+
+.ordena-frase-container .btn-mode:hover,
+.ordena-frase-container .btn-mode.active {
+    background-color: #673de6; /* Color más oscuro */
+    color: white;
+    border-color: #673de6;
+}
+
+/* --- BOTÓN SALTAR --- */
+.ordena-frase-container .btn-saltar {
+    background-color: #d97706;
+}
+
+.ordena-frase-container .btn-saltar:hover {
+    background-color: #935106;
+}
+
+/* --- FEEDBACK --- */
+#feedback {
     font-size: 18px;
     font-weight: bold;
     min-height: 25px;
 }
 
-.ordena-frase-container #feedback.correcta { color: #2e7d32; }
-.ordena-frase-container #feedback.incorrecta { color: #c62828; }
+#feedback.correcta { color: #2e7d32; }
+#feedback.incorrecta { color: #c62828; }
 
-.ordena-frase-container .hidden { display: none; }
+.hidden { display: none; }
 
-/* --- Estilos para el nuevo botón 'Saltar' --- */
-.ordena-frase-container .btn-saltar {
-    background-color: #d97706; /* Un color anaranjado */
+/* --- PANTALLA DE RESULTADOS DEL TEST --- */
+.test-results .score {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem; /* 32px */
+    margin: 20px 0;
+    color: #333;
+}
+.test-results .score span {
+    font-size: 2.5rem; /* 40px */
+    background-image: linear-gradient(to right, #4a90e2, #357ABD);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }
 
-.ordena-frase-container .btn-saltar:hover {
-    background-color: #9a5709; /* Un anaranjado más oscuro al pasar el ratón */
+.test-results .results-summary {
+    margin-top: 20px;
+    text-align: left;
+}
+.test-results .result-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+.test-results .result-item p {
+    margin: 4px 0;
+}
+.test-results .test-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* --- Barra de progreso y cabecera del Test --- */
+.test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #4a5568;
+}
+.progress-bar-container {
+    width: 100%;
+    background: #e0e0e0;
+    border-radius: 10px;
+    height: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.progress-bar {
+    height: 100%;
+    background: #4a90e2;
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+}
+.btn-test {
+    background: #2e7d32;
+}
+.btn-test:hover {
+    background: #1b5e20;
 }

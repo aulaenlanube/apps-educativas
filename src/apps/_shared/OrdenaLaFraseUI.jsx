@@ -8,14 +8,17 @@ const OrdenaLaFraseUI = ({
 }) => {
     return (
         <div className="ordena-frase-container">
-            <h1>📝 Ordena la Frase</h1>
+            {/* Título con nuevo estilo */}
+            <h1 className="ordena-frase-main-title gradient-text text-5xl mb-4">📝 Ordena la Frase</h1>
             <p className="instrucciones">Arrastra las palabras para formar una frase con sentido.</p>
 
+            {/* Botones con nuevo estilo */}
             <div className="mode-selection">
                 <button className="btn-mode active">Práctica Libre</button>
                 <button onClick={startTest} className="btn-mode">Iniciar Test</button>
             </div>
 
+            {/* El resto del componente no cambia */}
             <div id="zona-frase" className="zona-destino" 
                  onDragOver={handleDragOver} onDrop={(e) => handleDrop(e, 'destino')}>
                 {palabrasDestino.map(p => (
