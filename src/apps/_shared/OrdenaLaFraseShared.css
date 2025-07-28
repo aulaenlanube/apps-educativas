@@ -1,0 +1,113 @@
+/* Contenido completo para OrdenaLaFrase.css */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap');
+
+/* Contenedor principal para la app de ordenar frases */
+.ordena-frase-container {
+    font-family: 'Lexend', sans-serif;
+    width: 100%;
+    max-width: 800px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 auto; /* Asegura que esté centrado */
+}
+
+.ordena-frase-container h1 {
+    margin-top: 0;
+}
+
+.ordena-frase-container .instrucciones {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.ordena-frase-container .zona-destino, 
+.ordena-frase-container .zona-origen {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+    transition: background-color 0.3s;
+}
+
+.ordena-frase-container .zona-destino {
+    background-color: #e9f7ef;
+    border: 2px dashed #a3d9b8;
+    justify-content: flex-start;
+}
+
+.ordena-frase-container .zona-origen {
+    background-color: #fef4e8;
+    border: 2px dashed #f8c99b;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.ordena-frase-container .zona-destino.drag-over { background-color: #d4f0df; }
+.ordena-frase-container .zona-origen.drag-over { background-color: #fcecdb; }
+
+.ordena-frase-container .palabra {
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: grab;
+    user-select: none;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.ordena-frase-container .palabra.dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+}
+
+.ordena-frase-container .controles {
+    margin: 25px 0;
+}
+
+.ordena-frase-container button {
+    font-family: 'Lexend', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    background-color: #4a90e2;
+    color: white;
+    margin: 0 10px;
+}
+
+.ordena-frase-container button:hover {
+    background-color: #357ABD;
+}
+
+.ordena-frase-container #feedback {
+    font-size: 18px;
+    font-weight: bold;
+    min-height: 25px;
+}
+
+.ordena-frase-container #feedback.correcta { color: #2e7d32; }
+.ordena-frase-container #feedback.incorrecta { color: #c62828; }
+
+.ordena-frase-container .hidden { display: none; }
+
+/* --- Estilos para el nuevo botón 'Saltar' --- */
+.ordena-frase-container .btn-saltar {
+    background-color: #d97706; /* Un color anaranjado */
+}
+
+.ordena-frase-container .btn-saltar:hover {
+    background-color: #9a5709; /* Un anaranjado más oscuro al pasar el ratón */
+}

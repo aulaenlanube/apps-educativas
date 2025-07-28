@@ -34,7 +34,7 @@ const AboutModal = ({ open, onOpenChange }) => {
               Profesor de Informática con más de 15 años de experiencia. Tengo varios canales de YouTube, uno de videotutoriales y cursos gratuitos (Aula en la nube), y otro donde enseño a docentes a usar la IA en el aula (IA para docentes).
             </p>
             <p className="text-gray-600 leading-relaxed">
-              Mi propósito: mejorar la educación.
+              Mi propósito: mejorar la educación, y de paso... monetizar todo este tinglado 🤣🤣
             </p>
             {/* --- 1. AÑADIMOS 'items-center' Y UNIFICAMOS TAMAÑOS --- */}
             <div className="flex justify-center items-center space-x-6 my-6">
