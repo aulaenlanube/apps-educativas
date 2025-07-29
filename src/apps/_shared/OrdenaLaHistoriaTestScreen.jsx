@@ -36,8 +36,29 @@ const OrdenaLaHistoriaTestScreen = ({ game }) => {
     }
 
     return (
-        <div className="ordena-historia-container">
+        // --- AÑADIMOS LOS EVENTOS TÁCTILES AL CONTENEDOR ---
+        <div className={`ordena-historia-container font-${game.fontStyle}`} onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd}>
             <h1 className="main-title gradient-text text-4xl font-bold mb-4">📝 Test de Historias</h1>
+            
+            {/* --- AÑADIMOS EL SLIDER TAMBIÉN AL MODO TEST --- */}
+            <div className="font-slider-container">
+                <div className="font-slider-labels">
+                    <span>Normal</span>
+                    <span>Ligada</span>
+                    <span>Mayúsculas</span>
+                </div>
+                <input
+                    type="range"
+                    min="0"
+                    max="2"
+                    step="1"
+                    value={game.fontStyleIndex}
+                    onChange={game.handleFontStyleChange}
+                    className="font-slider"
+                    aria-label="Selector de tipografía"
+                />
+            </div>
+
             <div className="test-header">
                 <div>Historia {game.currentStoryIndex + 1} / {game.TOTAL_TEST_STORIES}</div>
                 {game.elapsedTime > 0 && <div className="timer">Tiempo: {game.elapsedTime}s</div>}
@@ -45,7 +66,8 @@ const OrdenaLaHistoriaTestScreen = ({ game }) => {
             <div className="progress-bar-container">
                 <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
             </div>
-            <div className="zona-frases" onDrop={game.handleDrop} onDragOver={game.handleDragOver}>
+            {/* --- AÑADIMOS LA REFERENCIA Y LOS EVENTOS DE ARRASTRE --- */}
+            <div className="zona-frases" ref={game.dropZoneRef} onDrop={game.handleDrop} onDragOver={game.handleDragOver}>
                 {game.frasesDesordenadas.map((frase) => (
                     <div
                         key={frase.id}
@@ -54,6 +76,8 @@ const OrdenaLaHistoriaTestScreen = ({ game }) => {
                         draggable
                         onDragStart={(e) => game.handleDragStart(e, frase)}
                         onDragEnd={game.handleDragEnd}
+                        // --- AÑADIMOS EL INICIO DEL EVENTO TÁCTIL ---
+                        onTouchStart={(e) => game.handleTouchStart(e, frase)}
                     >
                         {frase.texto}
                     </div>
