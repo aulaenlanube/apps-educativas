@@ -1,19 +1,18 @@
+// src/hooks/useOrdenaLaHistoriaGame.js
 import { useState, useEffect, useCallback, useRef } from 'react';
 
 const TOTAL_TEST_STORIES = 5;
-
-// Función para añadir IDs únicos a cada frase
-const mapToUniqueItems = (frasesArray) =>
-    frasesArray.map((frase, index) => ({
-        id: `frase-${Date.now()}-${index}`,
-        texto: frase
-    }));
+const FONT_STYLES = ['default', 'cursive', 'uppercase']; // Opciones de tipografía
 
 export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     const [historiaCorrecta, setHistoriaCorrecta] = useState([]);
     const [frasesDesordenadas, setFrasesDesordenadas] = useState([]);
     const [feedback, setFeedback] = useState({ texto: '', clase: '' });
+    const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]); // Estado para la tipografía
     const draggedItem = useRef(null);
+    const dropZoneRef = useRef(null);
+    const draggedCloneRef = useRef(null);
+
     const [isTestMode, setIsTestMode] = useState(false);
     const [testQuestions, setTestQuestions] = useState([]);
     const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
@@ -22,36 +21,39 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [score, setScore] = useState(0);
     const [showResults, setShowResults] = useState(false);
-    const dropZoneRef = useRef(null);
-    const draggedCloneRef = useRef(null);
 
-    // --- FUNCIÓN CORREGIDA PARA EVITAR BUCLES ---
+    const mapToUniqueItems = (frasesArray) =>
+        frasesArray.map((frase, index) => ({
+            id: `frase-${Date.now()}-${index}`,
+            texto: fontStyle === 'uppercase' ? frase.toUpperCase() : frase
+        }));
+
+    const handleFontStyleChange = (event) => {
+        const newIndex = parseInt(event.target.value, 10);
+        setFontStyle(FONT_STYLES[newIndex]);
+    };
+
     const cargarSiguienteHistoria = useCallback(() => {
         setFeedback({ texto: '', clase: '' });
-
         setHistoriaCorrecta(prevHistoriaCorrecta => {
             let nuevaHistoria;
-            const prevHistoriaText = prevHistoriaCorrecta.map(f => f.texto);
-
+            const prevHistoriaText = prevHistoriaCorrecta.map(f => f.texto.toLowerCase());
             do {
                 nuevaHistoria = historias[Math.floor(Math.random() * historias.length)];
-            } while (historias.length > 1 && JSON.stringify(nuevaHistoria) === JSON.stringify(prevHistoriaText));
+            } while (historias.length > 1 && JSON.stringify(nuevaHistoria.map(f => f.toLowerCase())) === JSON.stringify(prevHistoriaText));
             
             const historiaMapeada = mapToUniqueItems(nuevaHistoria);
-            // Actualizamos las frases desordenadas al mismo tiempo para evitar renders extra
             setFrasesDesordenadas([...historiaMapeada].sort(() => Math.random() - 0.5));
             return historiaMapeada;
         });
-
-    }, [historias]); // Ahora solo depende de `historias`, que no cambia.
+    }, [historias, fontStyle]);
 
     useEffect(() => {
         if (!isTestMode) {
             cargarSiguienteHistoria();
         }
-    }, [isTestMode, cargarSiguienteHistoria]);
-    
-    // El resto del código se mantiene igual, ya que era correcto.
+    }, [isTestMode, fontStyle, cargarSiguienteHistoria]);
+
     const startTest = () => {
         const selected = [...new Set(historias.map(h => JSON.stringify(h)))].map(s => JSON.parse(s));
         const questions = selected.sort(() => 0.5 - Math.random()).slice(0, TOTAL_TEST_STORIES);
@@ -224,13 +226,14 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
         if (touch.clientX >= dropZoneRect.left && touch.clientX <= dropZoneRect.right &&
             touch.clientY >= dropZoneRect.top && touch.clientY <= dropZoneRect.bottom) {
             
-            // Reutilizamos la lógica de drop de escritorio
             const fakeEvent = { preventDefault: () => {}, currentTarget: dropZone, clientY: touch.clientY };
             handleDrop(fakeEvent);
         }
 
         draggedItem.current = null;
     };
+
+    const fontStyleIndex = FONT_STYLES.indexOf(fontStyle);
 
     return {
         isTestMode, startTest, exitTestMode,
@@ -240,6 +243,7 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
         handleTouchStart, handleTouchMove, handleTouchEnd, dropZoneRef,
         currentStoryIndex, TOTAL_TEST_STORIES, elapsedTime,
         showResults, score, testQuestions, userAnswers,
-        handleNextStory, historiaCorrecta
+        handleNextStory, historiaCorrecta,
+        fontStyle, fontStyleIndex, handleFontStyleChange
     };
 };
