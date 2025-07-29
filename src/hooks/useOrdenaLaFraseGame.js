@@ -137,19 +137,18 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
             setFeedback({ texto: "Casi... Revisa el orden de las palabras.", clase: 'incorrecta' });
         }
     };
-
-    const getDragAfterElement = (container, x) => {
-        const draggableElements = [...container.querySelectorAll('.palabra:not(.dragging)')];
     
-        return draggableElements.reduce((closest, child) => {
-            const box = child.getBoundingClientRect();
-            const offset = x - box.left - box.width / 2;
-            if (offset < 0 && offset > closest.offset) {
-                return { offset: offset, element: child };
-            } else {
-                return closest;
+    // --- CAMBIO: Lógica mejorada para encontrar la palabra debajo del cursor ---
+    const getDropTarget = (container, x, y) => {
+        const draggableElements = [...container.querySelectorAll('.palabra:not(.dragging)')];
+        
+        for (const element of draggableElements) {
+            const box = element.getBoundingClientRect();
+            if (x >= box.left && x <= box.right && y >= box.top && y <= box.bottom) {
+                return element;
             }
-        }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+        return null;
     };
 
     const handleDragStart = (e, palabra) => {
@@ -158,7 +157,6 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     };
 
     const handleDragEnd = () => {
-        // --- CAMBIO AQUÍ: Limpia cualquier palabra que se haya quedado "pillada" ---
         document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
         draggedItem.current = null;
     };
@@ -175,12 +173,13 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
             nuevasPalabrasOrigen.push(palabraArrastrada);
             nuevasPalabrasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
         } else {
-            const afterElement = getDragAfterElement(e.currentTarget, e.clientX);
-            if (afterElement == null) {
-                nuevasPalabrasDestino.push(palabraArrastrada);
-            } else {
-                const index = nuevasPalabrasDestino.findIndex(p => p.id === afterElement.dataset.id);
+            // --- CAMBIO: Usamos la nueva lógica de inserción ---
+            const dropTarget = getDropTarget(e.currentTarget, e.clientX, e.clientY);
+            if (dropTarget) {
+                const index = nuevasPalabrasDestino.findIndex(p => p.id === dropTarget.dataset.id);
                 nuevasPalabrasDestino.splice(index, 0, palabraArrastrada);
+            } else {
+                nuevasPalabrasDestino.push(palabraArrastrada);
             }
         }
         
@@ -209,18 +208,16 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     };
 
     const handleTouchMove = (e) => {
-        if (!draggedCloneRef.current) return;              
+        if (!draggedCloneRef.current) return;
         
         const touch = e.touches[0];
         const clone = draggedCloneRef.current;
-        // Centramos el clon en el dedo
         clone.style.transform = `translate(${touch.clientX - parseFloat(clone.style.left) - clone.offsetWidth / 2}px, ${touch.clientY - parseFloat(clone.style.top) - clone.offsetHeight / 2}px)`;
     };
 
     const handleTouchEnd = (e) => {
         if (!draggedItem.current) return;
-        
-        // --- CAMBIO AQUÍ: Limpieza más robusta ---
+
         if (draggedCloneRef.current) {
             document.body.removeChild(draggedCloneRef.current);
             draggedCloneRef.current = null;
@@ -240,12 +237,13 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         if (touch.clientX >= dropZoneRect.left && touch.clientX <= dropZoneRect.right &&
             touch.clientY >= dropZoneRect.top && touch.clientY <= dropZoneRect.bottom) {
             
-            const afterElement = getDragAfterElement(dropZone, touch.clientX);
-            if (afterElement == null) {
-                nuevasPalabrasDestino.push(palabraArrastrada);
-            } else {
-                const index = nuevasPalabrasDestino.findIndex(p => p.id === afterElement.dataset.id);
+            // --- CAMBIO: Usamos la nueva lógica de inserción también para táctil ---
+            const dropTarget = getDropTarget(dropZone, touch.clientX, touch.clientY);
+            if (dropTarget) {
+                const index = nuevasPalabrasDestino.findIndex(p => p.id === dropTarget.dataset.id);
                 nuevasPalabrasDestino.splice(index, 0, palabraArrastrada);
+            } else {
+                nuevasPalabrasDestino.push(palabraArrastrada);
             }
         } else {
             nuevasPalabrasOrigen.push(palabraArrastrada);
