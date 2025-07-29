@@ -18,8 +18,9 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     const [showResults, setShowResults] = useState(false);
     const dropZoneRef = useRef(null);
     const originZoneRef = useRef(null);
+    const draggedCloneRef = useRef(null);
 
-    // --- CAMBIO CLAVE: Lógica para cargar frase rediseñada para evitar bucles ---
+
     const cargarSiguienteFrase = useCallback(() => {
         setFeedback({ texto: '', clase: '' });
         setMision(prevMision => {
@@ -156,8 +157,9 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         e.target.classList.add('dragging');
     };
 
-    const handleDragEnd = (e) => {
-        e.target.classList.remove('dragging');
+    const handleDragEnd = () => {
+        // --- CAMBIO AQUÍ: Limpia cualquier palabra que se haya quedado "pillada" ---
+        document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
         draggedItem.current = null;
     };
 
@@ -190,18 +192,46 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     
     const handleTouchStart = (e, palabra) => {
         draggedItem.current = palabra;
-        e.currentTarget.classList.add('dragging');
+        const touchElement = e.currentTarget;
+        const rect = touchElement.getBoundingClientRect();
+
+        const clone = touchElement.cloneNode(true);
+        clone.classList.add('palabra-clone');
+        clone.style.width = `${rect.width}px`;
+        clone.style.height = `${rect.height}px`;
+        clone.style.top = `${rect.top}px`;
+        clone.style.left = `${rect.left}px`;
+        document.body.appendChild(clone);
+        draggedCloneRef.current = clone;
+
+        touchElement.classList.add('dragging');
+        document.body.classList.add('no-scroll');
+    };
+
+    const handleTouchMove = (e) => {
+        if (!draggedCloneRef.current) return;              
+        
+        const touch = e.touches[0];
+        const clone = draggedCloneRef.current;
+        // Centramos el clon en el dedo
+        clone.style.transform = `translate(${touch.clientX - parseFloat(clone.style.left) - clone.offsetWidth / 2}px, ${touch.clientY - parseFloat(clone.style.top) - clone.offsetHeight / 2}px)`;
     };
 
     const handleTouchEnd = (e) => {
         if (!draggedItem.current) return;
         
-        e.currentTarget.classList.remove('dragging');
+        // --- CAMBIO AQUÍ: Limpieza más robusta ---
+        if (draggedCloneRef.current) {
+            document.body.removeChild(draggedCloneRef.current);
+            draggedCloneRef.current = null;
+        }
+        document.body.classList.remove('no-scroll');
+        document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
         
         const touch = e.changedTouches[0];
         const dropZone = dropZoneRef.current;
-        
         const palabraArrastrada = draggedItem.current;
+
         let nuevasPalabrasOrigen = palabrasOrigen.filter(p => p.id !== palabraArrastrada.id);
         let nuevasPalabrasDestino = palabrasDestino.filter(p => p.id !== palabraArrastrada.id);
         
@@ -233,7 +263,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         mision, palabrasOrigen, palabrasDestino, feedback,
         checkPracticeAnswer, startPracticeMission,
         handleDragStart, handleDragEnd, handleDragOver, handleDrop,
-        handleTouchStart, handleTouchEnd,
+        handleTouchStart, handleTouchMove, handleTouchEnd,
         dropZoneRef, originZoneRef,
         currentQuestionIndex, TOTAL_TEST_QUESTIONS, elapsedTime,
         showResults, score, testQuestions, userAnswers,

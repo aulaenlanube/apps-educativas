@@ -1,6 +1,11 @@
 /* src/apps/_shared/OrdenaLaFraseShared.css (CÓDIGO COMPLETO Y CORREGIDO) */
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap');
 
+/* --- NUEVA CLASE PARA BLOQUEAR SCROLL --- */
+body.no-scroll {
+    overflow: hidden;
+}
+
 /* --- CLASE PARA TÍTULOS --- */
 .ordena-frase-container .ordena-frase-main-title {
     font-family: 'Fredoka One', cursive;
@@ -57,9 +62,6 @@
     justify-content: center;
 }
 
-.ordena-frase-container .zona-destino.drag-over { background-color: #d4f0df; }
-.ordena-frase-container .zona-origen.drag-over { background-color: #fcecdb; }
-
 /* --- PALABRAS --- */
 .ordena-frase-container .palabra {
     background-color: #fff;
@@ -71,11 +73,29 @@
     user-select: none;
     font-size: 18px;
     font-weight: 600;
+    transition: opacity 0.2s, transform 0.2s;
+    touch-action: none; 
 }
 
+/* --- CAMBIO: La palabra original se queda como fantasma --- */
 .ordena-frase-container .palabra.dragging {
-    opacity: 0.5;
-    transform: scale(0.95);
+    opacity: 0.3;
+    background-color: #f0f4f8;
+}
+
+/* --- NUEVO: Estilo para el clon que sigue al dedo --- */
+.palabra-clone {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: scale(1.05); /* Un poco más grande para que destaque */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 /* --- BOTONES (ESTILO SUPERMERCADO) --- */
@@ -88,7 +108,7 @@
     font-size: 16px;
     font-weight: 600;
     padding: 12px 25px;
-    border-radius: 8px; /* Redondeo reducido */
+    border-radius: 8px;
     border: none;
     cursor: pointer;
     background-color: #4a90e2;
@@ -101,12 +121,11 @@
     background-color: #357ABD;
 }
 
-/* --- BOTONES DE MODO --- */
 .ordena-frase-container .mode-selection {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 30px; /* Mayor separación */
+    margin-bottom: 30px;
 }
 
 .ordena-frase-container .btn-mode {
@@ -117,12 +136,11 @@
 
 .ordena-frase-container .btn-mode:hover,
 .ordena-frase-container .btn-mode.active {
-    background-color: #673de6; /* Color más oscuro */
+    background-color: #673de6;
     color: white;
     border-color: #673de6;
 }
 
-/* --- BOTÓN SALTAR --- */
 .ordena-frase-container .btn-saltar {
     background-color: #d97706;
 }
@@ -131,7 +149,6 @@
     background-color: #935106;
 }
 
-/* --- FEEDBACK --- */
 #feedback {
     font-size: 18px;
     font-weight: bold;
@@ -146,12 +163,12 @@
 /* --- PANTALLA DE RESULTADOS DEL TEST --- */
 .test-results .score {
     font-family: 'Fredoka One', cursive;
-    font-size: 2rem; /* 32px */
+    font-size: 2rem;
     margin: 20px 0;
     color: #333;
 }
 .test-results .score span {
-    font-size: 2.5rem; /* 40px */
+    font-size: 2.5rem;
     background-image: linear-gradient(to right, #4a90e2, #357ABD);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
