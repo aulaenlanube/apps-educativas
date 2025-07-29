@@ -5,16 +5,13 @@ const OrdenaLaFraseTestScreen = ({ game }) => {
     const progressPercentage = ((game.currentQuestionIndex + 1) / game.TOTAL_TEST_QUESTIONS) * 100;
 
     if (game.showResults) {
+        // ... (el código de la pantalla de resultados no necesita cambios)
         const correctAnswers = game.testQuestions.filter((q, i) => q.solucion === game.userAnswers[i]).length;
 
         return (
             <div className="ordena-frase-container test-results">
-                {/* Título con nuevo estilo */}
                 <h1 className="ordena-frase-main-title gradient-text text-5xl">¡Test Completado!</h1>
-                
-                {/* Puntuación con nuevo estilo */}
                 <div className="score">Tu puntuación: <span>{game.score}</span></div>
-                
                 <p>Has acertado {correctAnswers} de {game.TOTAL_TEST_QUESTIONS} frases.</p>
                 {game.elapsedTime > 0 && <p>Tiempo total: {game.elapsedTime} segundos.</p>}
                 
@@ -41,8 +38,7 @@ const OrdenaLaFraseTestScreen = ({ game }) => {
     }
 
     return (
-        <div className="ordena-frase-container">
-            {/* Título con nuevo estilo */}
+        <div className="ordena-frase-container" onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd}>
             <h1 className="ordena-frase-main-title gradient-text text-4xl font-bold mb-4">📝 Test de Frases</h1>
             
             <div className="test-header">
@@ -53,14 +49,22 @@ const OrdenaLaFraseTestScreen = ({ game }) => {
                 <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
             </div>
             
-            <div className="zona-destino" onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'destino')}>
+            <div className="zona-destino" ref={game.dropZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'destino')}>
                 {game.palabrasDestino.map(p => (
-                    <div key={p.id} id={p.id} className="palabra" draggable onDragStart={(e) => game.handleDragStart(e, p)} onDragEnd={game.handleDragEnd}>{p.texto}</div>
+                    <div key={p.id} data-id={p.id} className="palabra" draggable 
+                         onDragStart={(e) => game.handleDragStart(e, p)} onDragEnd={game.handleDragEnd}
+                         onTouchStart={(e) => game.handleTouchStart(e, p)}>
+                        {p.texto}
+                    </div>
                 ))}
             </div>
-            <div className="zona-origen" onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'origen')}>
+            <div className="zona-origen" ref={game.originZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'origen')}>
                 {game.palabrasOrigen.map(p => (
-                    <div key={p.id} id={p.id} className="palabra" draggable onDragStart={(e) => game.handleDragStart(e, p)} onDragEnd={game.handleDragEnd}>{p.texto}</div>
+                    <div key={p.id} data-id={p.id} className="palabra" draggable 
+                         onDragStart={(e) => game.handleDragStart(e, p)} onDragEnd={game.handleDragEnd}
+                         onTouchStart={(e) => game.handleTouchStart(e, p)}>
+                        {p.texto}
+                    </div>
                 ))}
             </div>
 

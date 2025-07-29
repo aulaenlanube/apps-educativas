@@ -16,30 +16,36 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [score, setScore] = useState(0);
     const [showResults, setShowResults] = useState(false);
+    const dropZoneRef = useRef(null);
+    const originZoneRef = useRef(null);
 
+    // --- CAMBIO CLAVE: Lógica para cargar frase rediseñada para evitar bucles ---
     const cargarSiguienteFrase = useCallback(() => {
         setFeedback({ texto: '', clase: '' });
-        let nuevaFrase;
-        do {
-            nuevaFrase = frases[Math.floor(Math.random() * frases.length)];
-        } while (nuevaFrase === mision.solucion && frases.length > 1);
-        
-        const palabras = nuevaFrase.split(' ').sort(() => Math.random() - 0.5);
-        setMision({ texto: `Forma la frase:`, solucion: nuevaFrase });
-        setPalabrasOrigen(palabras.map((p, i) => ({ id: `p-${Date.now()}-${i}`, texto: p })));
-        setPalabrasDestino([]);
-    }, [frases, mision.solucion]);
+        setMision(prevMision => {
+            let nuevaFrase;
+            do {
+                nuevaFrase = frases[Math.floor(Math.random() * frases.length)];
+            } while (nuevaFrase === prevMision.solucion && frases.length > 1);
 
+            const palabras = nuevaFrase.split(' ').sort(() => Math.random() - 0.5);
+            setPalabrasOrigen(palabras.map((p, i) => ({ id: `p-${Date.now()}-${i}`, texto: p })));
+            setPalabrasDestino([]);
+            
+            return { texto: `Forma la frase:`, solucion: nuevaFrase };
+        });
+    }, [frases]);
+
+    const startPracticeMission = useCallback(() => {
+        cargarSiguienteFrase();
+    }, [cargarSiguienteFrase]);
+    
     useEffect(() => {
         if (!isTestMode) {
             startPracticeMission();
         }
-    }, [isTestMode]);
-    
-    const startPracticeMission = () => {
-        setFeedback({ texto: '', clase: '' });
-        cargarSiguienteFrase();
-    };
+    }, [isTestMode, startPracticeMission]);
+
 
     const startTest = () => {
         const selectedFrases = new Set();
@@ -131,76 +137,104 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         }
     };
 
+    const getDragAfterElement = (container, x) => {
+        const draggableElements = [...container.querySelectorAll('.palabra:not(.dragging)')];
+    
+        return draggableElements.reduce((closest, child) => {
+            const box = child.getBoundingClientRect();
+            const offset = x - box.left - box.width / 2;
+            if (offset < 0 && offset > closest.offset) {
+                return { offset: offset, element: child };
+            } else {
+                return closest;
+            }
+        }, { offset: Number.NEGATIVE_INFINITY }).element;
+    };
+
     const handleDragStart = (e, palabra) => {
         draggedItem.current = palabra;
         e.target.classList.add('dragging');
     };
 
     const handleDragEnd = (e) => {
-        if (e.target.classList) {
-            e.target.classList.remove('dragging');
-        }
+        e.target.classList.remove('dragging');
         draggedItem.current = null;
     };
 
-    const getDragAfterElement = (container, x, y) => {
-        const draggableElements = [...container.querySelectorAll('.palabra:not(.dragging)')];
-    
-        return draggableElements.reduce((closest, child) => {
-            const box = child.getBoundingClientRect();
-            const offsetY = y - (box.top + box.height / 2);
-
-            // Solo consideramos elementos que están cerca verticalmente
-            if (Math.abs(offsetY) < box.height) { 
-                const offsetX = x - (box.left + box.width / 2);
-                // Buscamos el elemento a la derecha más cercano
-                if (offsetX < 0 && offsetX > closest.offset) {
-                    return { offset: offsetX, element: child };
-                }
-            }
-            return closest;
-
-        }, { offset: Number.NEGATIVE_INFINITY }).element;
-    };
-    
-    const handleDrop = (e, targetZone) => {
+    const handleDrop = (e, targetZoneId) => {
         e.preventDefault();
         if (!draggedItem.current) return;
-    
-        const draggedWord = draggedItem.current;
         
-        // Determina de qué zona viene la palabra
-        const isFromOrigin = palabrasOrigen.some(p => p.id === draggedWord.id);
-    
-        // Quita la palabra de su lista original
-        let newOrigen = palabrasOrigen.filter(p => p.id !== draggedWord.id);
-        let newDestino = palabrasDestino.filter(p => p.id !== draggedWord.id);
-    
-        if (targetZone === 'origen') {
-            newOrigen.push(draggedWord);
-            newOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
-        } else { // targetZone === 'destino'
-            const container = e.currentTarget;
-            const afterElement = getDragAfterElement(container, e.clientX, e.clientY);
+        const palabraArrastrada = draggedItem.current;
+        let nuevasPalabrasOrigen = palabrasOrigen.filter(p => p.id !== palabraArrastrada.id);
+        let nuevasPalabrasDestino = palabrasDestino.filter(p => p.id !== palabraArrastrada.id);
+
+        if (targetZoneId === 'origen') {
+            nuevasPalabrasOrigen.push(palabraArrastrada);
+            nuevasPalabrasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
+        } else {
+            const afterElement = getDragAfterElement(e.currentTarget, e.clientX);
             if (afterElement == null) {
-                newDestino.push(draggedWord);
+                nuevasPalabrasDestino.push(palabraArrastrada);
             } else {
-                const insertIndex = newDestino.findIndex(p => p.id === afterElement.id);
-                newDestino.splice(insertIndex, 0, draggedWord);
+                const index = nuevasPalabrasDestino.findIndex(p => p.id === afterElement.dataset.id);
+                nuevasPalabrasDestino.splice(index, 0, palabraArrastrada);
             }
         }
         
-        setPalabrasOrigen(newOrigen);
-        setPalabrasDestino(newDestino);
+        setPalabrasOrigen(nuevasPalabrasOrigen);
+        setPalabrasDestino(nuevasPalabrasDestino);
     };
 
     const handleDragOver = (e) => e.preventDefault();
+    
+    const handleTouchStart = (e, palabra) => {
+        draggedItem.current = palabra;
+        e.currentTarget.classList.add('dragging');
+    };
+
+    const handleTouchEnd = (e) => {
+        if (!draggedItem.current) return;
+        
+        e.currentTarget.classList.remove('dragging');
+        
+        const touch = e.changedTouches[0];
+        const dropZone = dropZoneRef.current;
+        
+        const palabraArrastrada = draggedItem.current;
+        let nuevasPalabrasOrigen = palabrasOrigen.filter(p => p.id !== palabraArrastrada.id);
+        let nuevasPalabrasDestino = palabrasDestino.filter(p => p.id !== palabraArrastrada.id);
+        
+        const dropZoneRect = dropZone.getBoundingClientRect();
+        
+        if (touch.clientX >= dropZoneRect.left && touch.clientX <= dropZoneRect.right &&
+            touch.clientY >= dropZoneRect.top && touch.clientY <= dropZoneRect.bottom) {
+            
+            const afterElement = getDragAfterElement(dropZone, touch.clientX);
+            if (afterElement == null) {
+                nuevasPalabrasDestino.push(palabraArrastrada);
+            } else {
+                const index = nuevasPalabrasDestino.findIndex(p => p.id === afterElement.dataset.id);
+                nuevasPalabrasDestino.splice(index, 0, palabraArrastrada);
+            }
+        } else {
+            nuevasPalabrasOrigen.push(palabraArrastrada);
+            nuevasPalabrasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
+        }
+
+        setPalabrasOrigen(nuevasPalabrasOrigen);
+        setPalabrasDestino(nuevasPalabrasDestino);
+
+        draggedItem.current = null;
+    };
 
     return {
         isTestMode, startTest, exitTestMode,
         mision, palabrasOrigen, palabrasDestino, feedback,
         checkPracticeAnswer, startPracticeMission,
         handleDragStart, handleDragEnd, handleDragOver, handleDrop,
+        handleTouchStart, handleTouchEnd,
+        dropZoneRef, originZoneRef,
         currentQuestionIndex, TOTAL_TEST_QUESTIONS, elapsedTime,
         showResults, score, testQuestions, userAnswers,
         handleNextQuestion
