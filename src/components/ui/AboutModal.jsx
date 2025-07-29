@@ -8,8 +8,12 @@ import IconXSocial from '../icons/IconXSocial';
 
 const Dialog = DialogPrimitive.Root;
 const DialogContent = DialogPrimitive.Content;
+
+// CAMBIO: Importamos los componentes específicos para Título y Descripción
+const DialogTitle = DialogPrimitive.Title;
+const DialogDescription = DialogPrimitive.Description;
+
 const DialogHeader = ({ className, ...props }) => <div className={`text-center ${className}`} {...props} />;
-const DialogTitle = ({ className, ...props }) => <h2 className={`text-2xl font-bold text-gray-800 ${className}`} {...props} />;
 const DialogFooter = ({ className, ...props }) => <div className={` ${className}`} {...props} />;
 
 const AboutModal = ({ open, onOpenChange }) => {
@@ -22,38 +26,41 @@ const AboutModal = ({ open, onOpenChange }) => {
             className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90vw] max-w-[425px] bg-white rounded-2xl p-6 shadow-lg"
         >
           <DialogHeader>
+            {/* CAMBIO: Envolvemos el título con el componente DialogTitle de Radix */}
             <DialogTitle className="text-3xl font-bold gradient-text">Soy Edu Torregrosa</DialogTitle>
           </DialogHeader>
-          <div className="py-4 text-center">
-            <img
-              src="/images/edu.webp"
-              alt="Edu Torregrosa"
-              className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-purple-200"
-            />
-            <p className="text-gray-600 leading-relaxed">
-              Profesor de Informática con más de 15 años de experiencia. Tengo varios canales de YouTube, uno de videotutoriales y cursos gratuitos (Aula en la nube), y otro donde enseño a docentes a usar la IA en el aula (IA para docentes).
-            </p>
-            <p className="text-gray-600 leading-relaxed">
-              Mi propósito: mejorar la educación, y de paso... monetizar todo este tinglado 🤣🤣
-            </p>
-            {/* --- 1. AÑADIMOS 'items-center' Y UNIFICAMOS TAMAÑOS --- */}
-            <div className="flex justify-center items-center space-x-6 my-6">
-              
-              <a href="https://instagram.com/edutorregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-pink-600 transition-colors">
-                <Instagram size={28} />
-              </a>
-              {/* 2. URL de YouTube Corregida */}
-              <a href="https://youtube.com/c/aulaenlanube" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-red-600 transition-colors">
-                <Youtube size={32} />
-              </a>
-              <a href="https://x.com/_edu_torregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 transition-colors">
-                <IconXSocial size={24} />
-              </a>
-              <a href="https://www.linkedin.com/in/edu-torregrosa-llacer/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-700 transition-colors">
-                <Linkedin size={28} />
-              </a>
+
+          {/* CAMBIO: Envolvemos la descripción principal con el componente DialogDescription de Radix */}
+          <DialogDescription asChild>
+            <div className="py-4 text-center">
+              <img
+                src="/images/edu.webp"
+                alt="Edu Torregrosa"
+                className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-purple-200"
+              />
+              <p className="text-gray-600 leading-relaxed">
+                Profesor de Informática con más de 15 años de experiencia. Tengo varios canales de YouTube, uno de videotutoriales y cursos gratuitos (Aula en la nube), y otro donde enseño a docentes a usar la IA en el aula (IA para docentes).
+              </p>
+              <p className="text-gray-600 leading-relaxed">
+                Mi propósito: mejorar la educación, y de paso... monetizar todo este tinglado 🤣🤣
+              </p>
+              <div className="flex justify-center items-center space-x-6 my-6">
+                <a href="https://instagram.com/edutorregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-pink-600 transition-colors">
+                  <Instagram size={28} />
+                </a>
+                <a href="https://youtube.com/c/aulaenlanube" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-red-600 transition-colors">
+                  <Youtube size={32} />
+                </a>
+                <a href="https://x.com/_edu_torregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 transition-colors">
+                  <IconXSocial size={24} />
+                </a>
+                <a href="https://www.linkedin.com/in/edu-torregrosa-llacer/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-700 transition-colors">
+                  <Linkedin size={28} />
+                </a>
+              </div>
             </div>
-          </div>
+          </DialogDescription>
+
           <DialogFooter>
             <a href="https://edutorregrosa.com/" target="_blank" rel="noopener noreferrer" className="w-full">
               <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white">
