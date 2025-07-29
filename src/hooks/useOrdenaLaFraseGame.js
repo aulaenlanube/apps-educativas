@@ -1,13 +1,20 @@
+// src/hooks/useOrdenaLaFraseGame.js
 import { useState, useEffect, useCallback, useRef } from 'react';
 
 const TOTAL_TEST_QUESTIONS = 5;
+const FONT_STYLES = ['default', 'cursive', 'uppercase'];
 
 export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     const [mision, setMision] = useState({ texto: '', solucion: '' });
     const [palabrasOrigen, setPalabrasOrigen] = useState([]);
     const [palabrasDestino, setPalabrasDestino] = useState([]);
     const [feedback, setFeedback] = useState({ texto: '', clase: '' });
+    const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
     const draggedItem = useRef(null);
+    const dropZoneRef = useRef(null);
+    const originZoneRef = useRef(null);
+    const draggedCloneRef = useRef(null);
+
     const [isTestMode, setIsTestMode] = useState(false);
     const [testQuestions, setTestQuestions] = useState([]);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -16,37 +23,35 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     const [elapsedTime, setElapsedTime] = useState(0);
     const [score, setScore] = useState(0);
     const [showResults, setShowResults] = useState(false);
-    const dropZoneRef = useRef(null);
-    const originZoneRef = useRef(null);
-    const draggedCloneRef = useRef(null);
 
+    const handleFontStyleChange = (event) => {
+        const newIndex = parseInt(event.target.value, 10);
+        setFontStyle(FONT_STYLES[newIndex]);
+    };
 
-    const cargarSiguienteFrase = useCallback(() => {
+    const startPracticeMission = useCallback(() => {
         setFeedback({ texto: '', clase: '' });
         setMision(prevMision => {
             let nuevaFrase;
             do {
                 nuevaFrase = frases[Math.floor(Math.random() * frases.length)];
-            } while (nuevaFrase === prevMision.solucion && frases.length > 1);
+            } while (frases.length > 1 && nuevaFrase === prevMision.solucion);
 
-            const palabras = nuevaFrase.split(' ').sort(() => Math.random() - 0.5);
+            const fraseFinal = fontStyle === 'uppercase' ? nuevaFrase.toUpperCase() : nuevaFrase;
+            const palabras = fraseFinal.split(' ').sort(() => Math.random() - 0.5);
+            
             setPalabrasOrigen(palabras.map((p, i) => ({ id: `p-${Date.now()}-${i}`, texto: p })));
             setPalabrasDestino([]);
             
-            return { texto: `Forma la frase:`, solucion: nuevaFrase };
+            return { texto: 'Forma la frase:', solucion: fraseFinal };
         });
-    }, [frases]);
+    }, [frases, fontStyle]);
 
-    const startPracticeMission = useCallback(() => {
-        cargarSiguienteFrase();
-    }, [cargarSiguienteFrase]);
-    
     useEffect(() => {
         if (!isTestMode) {
             startPracticeMission();
         }
-    }, [isTestMode, startPracticeMission]);
-
+    }, [isTestMode, fontStyle, startPracticeMission]);
 
     const startTest = () => {
         const selectedFrases = new Set();
@@ -56,7 +61,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         }
         const questions = Array.from(selectedFrases).map(frase => ({
             texto: 'Forma la frase:',
-            solucion: frase
+            solucion: fontStyle === 'uppercase' ? frase.toUpperCase() : frase
         }));
 
         setTestQuestions(questions);
@@ -138,7 +143,6 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         }
     };
     
-    // --- CAMBIO: Lógica mejorada para encontrar la palabra debajo del cursor ---
     const getDropTarget = (container, x, y) => {
         const draggableElements = [...container.querySelectorAll('.palabra:not(.dragging)')];
         
@@ -173,7 +177,6 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
             nuevasPalabrasOrigen.push(palabraArrastrada);
             nuevasPalabrasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
         } else {
-            // --- CAMBIO: Usamos la nueva lógica de inserción ---
             const dropTarget = getDropTarget(e.currentTarget, e.clientX, e.clientY);
             if (dropTarget) {
                 const index = nuevasPalabrasDestino.findIndex(p => p.id === dropTarget.dataset.id);
@@ -208,7 +211,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     };
 
     const handleTouchMove = (e) => {
-        if (!draggedCloneRef.current) return;
+        if (!draggedCloneRef.current || !e.touches[0]) return;
         
         const touch = e.touches[0];
         const clone = draggedCloneRef.current;
@@ -237,7 +240,6 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         if (touch.clientX >= dropZoneRect.left && touch.clientX <= dropZoneRect.right &&
             touch.clientY >= dropZoneRect.top && touch.clientY <= dropZoneRect.bottom) {
             
-            // --- CAMBIO: Usamos la nueva lógica de inserción también para táctil ---
             const dropTarget = getDropTarget(dropZone, touch.clientX, touch.clientY);
             if (dropTarget) {
                 const index = nuevasPalabrasDestino.findIndex(p => p.id === dropTarget.dataset.id);
@@ -256,6 +258,8 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         draggedItem.current = null;
     };
 
+    const fontStyleIndex = FONT_STYLES.indexOf(fontStyle);
+
     return {
         isTestMode, startTest, exitTestMode,
         mision, palabrasOrigen, palabrasDestino, feedback,
@@ -265,6 +269,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         dropZoneRef, originZoneRef,
         currentQuestionIndex, TOTAL_TEST_QUESTIONS, elapsedTime,
         showResults, score, testQuestions, userAnswers,
-        handleNextQuestion
+        handleNextQuestion,
+        fontStyle, fontStyleIndex, handleFontStyleChange
     };
 };

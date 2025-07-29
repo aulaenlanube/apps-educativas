@@ -1,4 +1,26 @@
+/* src/apps/_shared/OrdenaLaHistoriaShared.css */
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+/* --- CLASES PARA SOPORTE TÁCTIL --- */
+body.no-scroll {
+    overflow: hidden;
+}
+
+.frase-clone {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 17px;
+    text-align: left;
+}
+/* ------------------------------------ */
 
 .ordena-historia-container {
     font-family: 'Lexend', sans-serif;
@@ -46,18 +68,13 @@
     user-select: none;
     font-size: 17px;
     text-align: left;
+    transition: opacity 0.2s, background-color 0.2s;
+    touch-action: none;
 }
 
 .ordena-historia-container .frase.dragging {
-    opacity: 0.5;
+    opacity: 0.3;
     background: #e9f7ef;
-}
-
-.ordena-historia-container .drop-indicator {
-    height: 10px;
-    background-color: #673de6;
-    border-radius: 5px;
-    margin: -5px 0;
 }
 
 .ordena-historia-container .controles {
@@ -86,10 +103,19 @@
     font-size: 18px;
     font-weight: bold;
     min-height: 25px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 15px;
 }
 
-.ordena-historia-container #feedback.correcta { color: #2e7d32; }
-.ordena-historia-container #feedback.incorrecta { color: #c62828; }
+.ordena-historia-container #feedback.correcta { 
+    color: #2e7d32; 
+    background-color: #e8f5e9;
+}
+.ordena-historia-container #feedback.incorrecta { 
+    color: #c62828; 
+    background-color: #ffebee;
+}
 
 .ordena-historia-container .btn-saltar {
     background-color: #f59e0b;

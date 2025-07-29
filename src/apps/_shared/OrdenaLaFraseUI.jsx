@@ -1,3 +1,4 @@
+// src/apps/_shared/OrdenaLaFraseUI.jsx
 import React from 'react';
 import './OrdenaLaFraseShared.css';
 
@@ -5,12 +6,14 @@ const OrdenaLaFraseUI = ({
     palabrasOrigen, palabrasDestino, feedback,
     checkPracticeAnswer, startPracticeMission, startTest,
     handleDragStart, handleDragEnd, handleDragOver, handleDrop,
-    // --- IMPORTAMOS LOS NUEVOS PROPS ---
     handleTouchStart, handleTouchMove, handleTouchEnd,
-    dropZoneRef, originZoneRef
+    dropZoneRef, originZoneRef,
+    fontStyle, fontStyleIndex, handleFontStyleChange
 }) => {
+
     return (
-        <div className="ordena-frase-container" onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
+        <div className={`ordena-frase-container font-${fontStyle}`} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
+            
             <h1 className="ordena-frase-main-title gradient-text text-5xl mb-4">📝 Ordena la Frase</h1>
             <p className="instrucciones">Arrastra las palabras para formar una frase con sentido.</p>
 
@@ -19,7 +22,25 @@ const OrdenaLaFraseUI = ({
                 <button onClick={startTest} className="btn-mode">Iniciar Test</button>
             </div>
 
-            {/* --- AÑADIMOS EL REF A LA ZONA DE DESTINO --- */}
+            {/* --- SLIDER DE TIPOGRAFÍA --- */}
+            <div className="font-slider-container">
+                <div className="font-slider-labels">
+                    <span>Imprenta</span>
+                    <span>Ligada</span>
+                    <span>Mayúsculas</span>
+                </div>
+                <input
+                    type="range"
+                    min="0"
+                    max="2"
+                    step="1"
+                    value={fontStyleIndex}
+                    onChange={handleFontStyleChange}
+                    className="font-slider"
+                    aria-label="Selector de tipografía"
+                />
+            </div>
+
             <div id="zona-frase" className="zona-destino" 
                  ref={dropZoneRef}
                  onDragOver={handleDragOver} onDrop={(e) => handleDrop(e, 'destino')}>
@@ -31,7 +52,7 @@ const OrdenaLaFraseUI = ({
                     </div>
                 ))}
             </div>
-            {/* --- AÑADIMOS EL REF A LA ZONA DE ORIGEN --- */}
+            
             <div id="zona-palabras" className="zona-origen"
                  ref={originZoneRef}
                  onDragOver={handleDragOver} onDrop={(e) => handleDrop(e, 'origen')}>
