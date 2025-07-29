@@ -14,6 +14,8 @@ import OrdenaLaFrase3 from '@/apps/ordena-la-frase-primaria-3/OrdenaLaFrase3';
 import OrdenaLaFrase4 from '@/apps/ordena-la-frase-primaria-4/OrdenaLaFrase4';
 import OrdenaLaFrase5 from '@/apps/ordena-la-frase-primaria-5/OrdenaLaFrase5';
 import OrdenaLaFrase6 from '@/apps/ordena-la-frase-primaria-6/OrdenaLaFrase6';
+import OrdenaLaHistoria1 from '@/apps/ordena-la-historia-primaria-1/OrdenaLaHistoria1';
+
 
 // --- Creamos un objeto para la app de relajación para no repetir código ---
 const appIslaDeLaCalma = {
@@ -27,6 +29,7 @@ export const courseApps = {
   primaria: {
     '1': [
       appIslaDeLaCalma,
+      { id: 'ordena-la-historia-1', name: 'Ordena la Historia (Nivel 1)', description: 'Arrastra las frases para crear una pequeña historia con sentido.', component: OrdenaLaHistoria1 },
       { id: 'ordena-la-frase-1', name: 'Ordena la Frase (Nivel 1)', description: 'Arrastra y ordena las palabras para formar frases sencillas.', component: OrdenaLaFrase1 },
       { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', description: 'Resuelve sumas sencillas con productos del súper.', component: SupermercadoMatematico1 }
     ],
