@@ -1,4 +1,4 @@
-// src/apps/appList.js (ACTUALIZADO Y COMPLETO)
+// src/apps/appList.js (RESTABLECIDO)
 
 // --- Importamos los componentes de cada App ---
 import SupermercadoMatematico1 from '@/apps/supermercado-primaria-1/SupermercadoMatematico1';
@@ -14,10 +14,7 @@ import OrdenaLaFrase3 from '@/apps/ordena-la-frase-primaria-3/OrdenaLaFrase3';
 import OrdenaLaFrase4 from '@/apps/ordena-la-frase-primaria-4/OrdenaLaFrase4';
 import OrdenaLaFrase5 from '@/apps/ordena-la-frase-primaria-5/OrdenaLaFrase5';
 import OrdenaLaFrase6 from '@/apps/ordena-la-frase-primaria-6/OrdenaLaFrase6';
-import OrdenaLaHistoria1 from '@/apps/ordena-la-historia-primaria-1/OrdenaLaHistoria1';
 
-
-// --- Creamos un objeto para la app de relajación para no repetir código ---
 const appIslaDeLaCalma = {
   id: 'isla-de-la-calma',
   name: 'Isla de la Calma',
@@ -29,7 +26,6 @@ export const courseApps = {
   primaria: {
     '1': [
       appIslaDeLaCalma,
-      { id: 'ordena-la-historia-1', name: 'Ordena la Historia (Nivel 1)', description: 'Arrastra las frases para crear una pequeña historia con sentido.', component: OrdenaLaHistoria1 },
       { id: 'ordena-la-frase-1', name: 'Ordena la Frase (Nivel 1)', description: 'Arrastra y ordena las palabras para formar frases sencillas.', component: OrdenaLaFrase1 },
       { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', description: 'Resuelve sumas sencillas con productos del súper.', component: SupermercadoMatematico1 }
     ],
@@ -62,7 +58,6 @@ export const courseApps = {
   eso: {}
 };
 
-// --- La función findAppById se queda igual ---
 export const findAppById = (id) => {
     for (const level of Object.values(courseApps)) {
         for (const grade of Object.values(level)) {
