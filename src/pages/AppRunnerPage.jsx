@@ -1,5 +1,4 @@
-// src/pages/AppRunnerPage.jsx (MODIFICADO)
-
+// src/pages/AppRunnerPage.jsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -8,30 +7,40 @@ import { Button } from '@/components/ui/button';
 import { findAppById } from '@/apps/appList';
 
 const AppRunnerPage = () => {
-    const { level, grade, appId } = useParams();
+    // Solo necesitamos el appId de la URL
+    const { appId } = useParams();
     const navigate = useNavigate();
 
-    const app = findAppById(appId);
+    // Buscamos la app y toda su información de contexto
+    const result = findAppById(appId);
 
-    if (!app) {
+    if (!result) {
         return <div>App no encontrada</div>;
     }
 
+    // Desestructuramos el resultado para obtener todo lo que necesitamos
+    const { app, level, grade, subjectId } = result;
     const AppToRender = app.component;
+
+    // Construimos la ruta de "vuelta" según si es de Primaria o de ESO
+    const backPath = level === 'eso' 
+        ? `/curso/${level}/${grade}/${subjectId}` 
+        : `/curso/${level}/${grade}`;
+    
+    const backButtonText = level === 'eso' ? 'Volver a Asignaturas' : 'Volver a la lista';
 
     return (
         <>
             <Helmet>
                 <title>{`${app.name} - EduApps`}</title>
             </Helmet>
-            {/* --- CAMBIOS AQUÍ --- */}
             <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex flex-col items-center justify-center p-4">
-                <div className="w-full max-w-2xl flex justify-start mb-4">
-                    <Button onClick={() => navigate(`/curso/${level}/${grade}`)}>
-                        <ArrowLeft className="mr-2 h-4 w-4" /> Volver a la lista
+                <div className="w-full max-w-4xl flex justify-start mb-4">
+                    <Button onClick={() => navigate(backPath)}>
+                        <ArrowLeft className="mr-2 h-4 w-4" /> {backButtonText}
                     </Button>
                 </div>
-                <div className="w-full max-w-2xl">
+                <div className="w-full max-w-4xl">
                     <AppToRender />
                 </div>
             </div>
