@@ -34,8 +34,11 @@ body {
   font-family: 'Fredoka', sans-serif;
 }
 
+/* Después del cambio */
 .gradient-text {
   @apply bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent;
+  padding-bottom: 0.25em;
+  margin-bottom: -0.1em;
 }
 
 .card-hover {

@@ -80,7 +80,7 @@ const HomePage = () => {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="mb-8"
           >
-            <h1 className="text-5xl md:text-7xl font-bold gradient-text mb-6 leading-normal">
+            <h1 className="text-5xl md:text-7xl font-bold gradient-text mb-16 leading-normal">
               ¡Aprende Jugando!
             </h1>
             <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
