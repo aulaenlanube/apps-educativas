@@ -28,13 +28,19 @@ const AppRunnerPage = () => {
         : `/curso/${level}/${grade}`;
     
     const backButtonText = level === 'eso' ? 'Volver a Asignaturas' : 'Volver a la lista';
+    
+    // CORRECCIÓN: Se define la clase del fondo dinámicamente
+    const backgroundClass = appId === 'isla-de-la-calma'
+        ? 'bg-[#f0f7f8]' // Color de fondo específico para la app
+        : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'; // Gradiente por defecto
 
     return (
         <>
             <Helmet>
                 <title>{`${app.name} - EduApps`}</title>
             </Helmet>
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 flex flex-col items-center justify-center p-4">
+            {/* CORRECCIÓN: Se aplica la clase de fondo dinámica al div principal */}
+            <div className={`min-h-screen flex flex-col items-center justify-center p-4 ${backgroundClass}`}>
                 <div className="w-full max-w-4xl flex justify-start mb-4">
                     <Button onClick={() => navigate(backPath)}>
                         <ArrowLeft className="mr-2 h-4 w-4" /> {backButtonText}

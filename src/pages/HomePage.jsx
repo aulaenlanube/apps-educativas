@@ -117,7 +117,7 @@ const HomePage = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1, duration: 0.8 }}
           >
-            <img  className="w-96 h-64 mx-auto rounded-3xl shadow-2xl pulse-glow object-cover" alt="Niños aprendiendo con tablets y apps educativas" src="/images/portada.webp" />
+            <img  className="w-100 h-80 mx-auto rounded-3xl shadow-2xl pulse-glow object-cover" alt="Niños aprendiendo con tablets y apps educativas" src="/images/portada.webp" />
           </motion.div>
         </div>
       </motion.section>

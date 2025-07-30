@@ -18,11 +18,88 @@ import OrdenaLaHistoria4 from '@/apps/ordena-la-historia-primaria-4/OrdenaLaHist
 import OrdenaLaHistoria5 from '@/apps/ordena-la-historia-primaria-5/OrdenaLaHistoria5';
 import OrdenaLaHistoria6 from '@/apps/ordena-la-historia-primaria-6/OrdenaLaHistoria6';
 import IslaDeLaCalma from '@/apps/isla-de-la-calma/IslaDeLaCalma';
+import OrdenaLaFraseEso1Castellano from '@/apps/ordena-la-frase-eso-1-castellano/OrdenaLaFraseEso1Castellano';
+import OrdenaLaFraseEso1Historia from '@/apps/ordena-la-frase-eso-1-historia/OrdenaLaFraseEso1Historia';
+import OrdenaLaFraseEso1Ingles from '@/apps/ordena-la-frase-eso-1-ingles/OrdenaLaFraseEso1Ingles';
+import OrdenaLaFraseEso1Biologia from '@/apps/ordena-la-frase-eso-1-biologia/OrdenaLaFraseEso1Biologia';
+import OrdenaLaFraseEso1Fisica from '@/apps/ordena-la-frase-eso-1-fisica/OrdenaLaFraseEso1Fisica';
+import OrdenaLaFraseEso1Mates from '@/apps/ordena-la-frase-eso-1-mates/OrdenaLaFraseEso1Mates';
+import OrdenaLaFraseEso1Musica from '@/apps/ordena-la-frase-eso-1-musica/OrdenaLaFraseEso1Musica';
+import OrdenaLaFraseEso1Plastica from '@/apps/ordena-la-frase-eso-1-plastica/OrdenaLaFraseEso1Plastica';
+import OrdenaLaFraseEso1Tecnologia from '@/apps/ordena-la-frase-eso-1-tecnologia/OrdenaLaFraseEso1Tecnologia';
+import OrdenaLaFraseEso1EF from '@/apps/ordena-la-frase-eso-1-ef/OrdenaLaFraseEso1EF';
+import OrdenaLaFraseEso1Tutoria from '@/apps/ordena-la-frase-eso-1-tutoria/OrdenaLaFraseEso1Tutoria';
 
 const appIslaDeLaCalma = {
   id: 'isla-de-la-calma', name: 'Isla de la Calma',
   description: 'Un ejercicio de respiración guiada para encontrar la calma.',
   component: IslaDeLaCalma
+};
+
+const appOrdenaLaFraseEso1Castellano = {
+  id: 'ordena-la-frase-eso-1-castellano', name: 'Ordena la Frase (Lengua)',
+  description: 'Construye frases sobre conceptos de Lengua Castellana y Literatura.',
+  component: OrdenaLaFraseEso1Castellano
+};
+
+const appOrdenaLaFraseEso1Historia = {
+  id: 'ordena-la-frase-eso-1-historia', name: 'Ordena la Frase (Historia)',
+  description: 'Construye frases sobre conceptos de Geografía e Historia.',
+  component: OrdenaLaFraseEso1Historia
+};
+
+const appOrdenaLaFraseEso1Ingles = {
+  id: 'ordena-la-frase-eso-1-ingles', name: 'Order the Sentence (English)',
+  description: 'Build sentences to practice English grammar and vocabulary.',
+  component: OrdenaLaFraseEso1Ingles
+};
+
+const appOrdenaLaFraseEso1Biologia = {
+  id: 'ordena-la-frase-eso-1-biologia', name: 'Ordena la Frase (Biología)',
+  description: 'Construye frases sobre conceptos de Biología y Geología.',
+  component: OrdenaLaFraseEso1Biologia
+};
+
+const appOrdenaLaFraseEso1Fisica = {
+  id: 'ordena-la-frase-eso-1-fisica', name: 'Ordena la Frase (Física)',
+  description: 'Construye frases sobre conceptos de Física y Química.',
+  component: OrdenaLaFraseEso1Fisica
+};
+
+const appOrdenaLaFraseEso1Mates = {
+  id: 'ordena-la-frase-eso-1-mates', name: 'Ordena la Frase (Mates)',
+  description: 'Construye frases sobre conceptos de Matemáticas.',
+  component: OrdenaLaFraseEso1Mates
+};
+
+const appOrdenaLaFraseEso1Musica = {
+  id: 'ordena-la-frase-eso-1-musica', name: 'Ordena la Frase (Música)',
+  description: 'Construye frases sobre conceptos de Música.',
+  component: OrdenaLaFraseEso1Musica
+};
+
+const appOrdenaLaFraseEso1Plastica = {
+  id: 'ordena-la-frase-eso-1-plastica', name: 'Ordena la Frase (Plástica)',
+  description: 'Construye frases sobre conceptos de Educación Plástica.',
+  component: OrdenaLaFraseEso1Plastica
+};
+
+const appOrdenaLaFraseEso1Tecnologia = {
+  id: 'ordena-la-frase-eso-1-tecnologia', name: 'Ordena la Frase (Tecnología)',
+  description: 'Construye frases sobre conceptos de Tecnología.',
+  component: OrdenaLaFraseEso1Tecnologia
+};
+
+const appOrdenaLaFraseEso1EF = {
+  id: 'ordena-la-frase-eso-1-ef', name: 'Ordena la Frase (Ed. Física)',
+  description: 'Construye frases sobre conceptos de Educación Física.',
+  component: OrdenaLaFraseEso1EF
+};
+
+const appOrdenaLaFraseEso1Tutoria = {
+  id: 'ordena-la-frase-eso-1-tutoria', name: 'Ordena la Frase (Tutoría)',
+  description: 'Construye frases sobre convivencia y desarrollo personal.',
+  component: OrdenaLaFraseEso1Tutoria
 };
 
 export const primariaApps = {
@@ -46,6 +123,7 @@ export const esoSubjects = {
         { id: 'plastica', name: 'Educación Plástica y Visual', icon: '🎨' },
         { id: 'tecnologia', name: 'Tecnología y Digitalización', icon: '💻' },
         { id: 'ed-fisica', name: 'Educación Física', icon: '🤸' },
+        { id: 'tutoria', name: 'Tutoría', icon: '🤝' },
     ],
     '2': [
         { id: 'lengua', name: 'Lengua Castellana y Literatura', icon: '✍️' },
@@ -56,6 +134,7 @@ export const esoSubjects = {
         { id: 'musica', name: 'Música', icon: '🎵' },
         { id: 'tecnologia', name: 'Tecnología y Digitalización', icon: '💻' },
         { id: 'ed-fisica', name: 'Educación Física', icon: '🤸' },
+        { id: 'tutoria', name: 'Tutoría', icon: '🤝' },
     ],
     '3': [
         { id: 'lengua', name: 'Lengua Castellana y Literatura', icon: '✍️' },
@@ -66,6 +145,7 @@ export const esoSubjects = {
         { id: 'fisica', name: 'Física y Química', icon: '🧪' },
         { id: 'tecnologia', name: 'Tecnología y Digitalización', icon: '💻' },
         { id: 'ed-fisica', name: 'Educación Física', icon: '🤸' },
+        { id: 'tutoria', name: 'Tutoría', icon: '🤝' },
     ],
     '4': [
         { id: 'lengua', name: 'Lengua Castellana y Literatura', icon: '✍️' },
@@ -78,14 +158,27 @@ export const esoSubjects = {
         { id: 'latin', name: 'Latín', icon: '🏛️' },
         { id: 'economia', name: 'Economía y Emprendimiento', icon: '📈' },
         { id: 'tecnologia', name: 'Tecnología', icon: '🤖' },
+        { id: 'tutoria', name: 'Tutoría', icon: '🤝' },
     ]
 };
 
 export const esoApps = {
-    '1': { 'lengua': [], 'matematicas': [], 'historia': [], 'ingles': [], 'biologia': [], 'fisica': [], 'musica': [], 'plastica': [], 'tecnologia': [], 'ed-fisica': [] },
-    '2': { 'lengua': [], 'matematicas': [], 'historia': [], 'ingles': [], 'fisica': [], 'musica': [], 'tecnologia': [], 'ed-fisica': [] },
-    '3': { 'lengua': [], 'matematicas': [], 'historia': [], 'ingles': [], 'biologia': [], 'fisica': [], 'tecnologia': [], 'ed-fisica': [] },
-    '4': { 'lengua': [], 'matematicas': [], 'historia': [], 'ingles': [], 'ed-fisica': [], 'biologia': [], 'fisica': [], 'latin': [], 'economia': [], 'tecnologia': [] }
+    '1': { 
+        'lengua': [appOrdenaLaFraseEso1Castellano], 
+        'matematicas': [appOrdenaLaFraseEso1Mates], 
+        'historia': [appOrdenaLaFraseEso1Historia], 
+        'ingles': [appOrdenaLaFraseEso1Ingles], 
+        'biologia': [appOrdenaLaFraseEso1Biologia], 
+        'fisica': [appOrdenaLaFraseEso1Fisica], 
+        'musica': [appOrdenaLaFraseEso1Musica], 
+        'plastica': [appOrdenaLaFraseEso1Plastica], 
+        'tecnologia': [appOrdenaLaFraseEso1Tecnologia], 
+        'ed-fisica': [appOrdenaLaFraseEso1EF], 
+        'tutoria': [appIslaDeLaCalma, appOrdenaLaFraseEso1Tutoria] 
+    },
+    '2': { 'lengua': [], 'matematicas': [], 'historia': [], 'ingles': [], 'fisica': [], 'musica': [], 'tecnologia': [], 'ed-fisica': [], 'tutoria': [appIslaDeLaCalma] },
+    '3': { 'lengua': [], 'matematicas': [], 'historia': [], 'ingles': [], 'biologia': [], 'fisica': [], 'tecnologia': [], 'ed-fisica': [], 'tutoria': [appIslaDeLaCalma] },
+    '4': { 'lengua': [], 'matematicas': [], 'historia': [], 'ingles': [], 'ed-fisica': [], 'biologia': [], 'fisica': [], 'latin': [], 'economia': [], 'tecnologia': [], 'tutoria': [appIslaDeLaCalma] }
 };
 
 export const findAppById = (id) => {

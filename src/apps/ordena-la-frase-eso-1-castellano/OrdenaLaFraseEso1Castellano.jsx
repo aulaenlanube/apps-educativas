@@ -1,0 +1,58 @@
+// src/apps/ordena-la-frase-eso-1-castellano/OrdenaLaFraseEso1Castellano.jsx
+import React from 'react';
+import { useOrdenaLaFraseGame } from '@/hooks/useOrdenaLaFraseGame';
+import OrdenaLaFraseUI from '@/apps/_shared/OrdenaLaFraseUI';
+import OrdenaLaFraseTestScreen from '@/apps/_shared/OrdenaLaFraseTestScreen';
+
+const frases = [
+    "El sustantivo nombra a personas, animales, cosas o ideas.",
+    "Los adjetivos calificativos expresan cualidades del nombre al que acompañan.",
+    "El verbo es el núcleo del predicado e indica una acción o estado.",
+    "Una oración simple tiene un solo verbo en forma personal.",
+    "Los determinantes artículos preceden al sustantivo para presentarlo.",
+    "La comunicación es el proceso de transmitir información entre un emisor y un receptor.",
+    "Los pronombres personales sustituyen al nombre en la oración.",
+    "Las palabras agudas llevan tilde si acaban en vocal, 'n' o 's'.",
+    "El sujeto de la oración concuerda en número y persona con el verbo.",
+    "Los sinónimos son palabras que tienen un significado muy parecido.",
+    "Los antónimos son palabras que expresan ideas completamente opuestas.",
+    "El género narrativo cuenta una historia con personajes en un tiempo y lugar.",
+    "La lírica es el género literario que expresa los sentimientos del autor.",
+    "El teatro está escrito para ser representado por actores en un escenario.",
+    "Una novela es una narración literaria extensa en prosa.",
+    "El cuento es un relato breve de hechos imaginarios.",
+    "La leyenda mezcla hechos reales con elementos fantásticos.",
+    "Una fábula es una narración corta que termina con una moraleja.",
+    "El punto y seguido separa oraciones dentro de un mismo párrafo.",
+    "La coma indica una pausa breve en la lectura de un enunciado.",
+    "Los dos puntos se utilizan antes de una enumeración o una cita textual.",
+    "Las palabras llanas se acentúan cuando no terminan en vocal, 'n' o 's'.",
+    "Todas las palabras esdrújulas llevan tilde en la antepenúltima sílaba.",
+    "El emisor es quien transmite el mensaje en un acto de comunicación.",
+    "El receptor es la persona que recibe e interpreta el mensaje.",
+    "El predicado es lo que se dice del sujeto en una oración.",
+    "Los adverbios modifican el significado de verbos, adjetivos u otros adverbios.",
+    "Las preposiciones son palabras que sirven para unir o relacionar otras palabras.",
+    "Una estrofa es un conjunto de versos en un poema.",
+    "La rima es la repetición de sonidos al final de los versos.",
+    "El narrador es la voz que cuenta la historia en un texto literario.",
+    "Los personajes principales son los protagonistas de la historia.",
+    "El diálogo es la conversación entre dos o más personajes.",
+    "La descripción sirve para explicar cómo es una persona, un lugar o un objeto.",
+    "Un campo semántico agrupa palabras que comparten un rasgo de significado.",
+    "Las palabras polisémicas son aquellas que tienen varios significados.",
+    "El hiato se produce cuando dos vocales juntas se pronuncian en sílabas distintas.",
+    "Un diptongo es la unión de dos vocales en una misma sílaba.",
+    "La metáfora es una figura literaria que identifica dos términos reales.",
+    "La personificación atribuye cualidades humanas a animales u objetos."
+];
+
+const OrdenaLaFraseEso1Castellano = () => {
+    const game = useOrdenaLaFraseGame(frases, true); // true = con temporizador
+    if (game.isTestMode) {
+        return <OrdenaLaFraseTestScreen game={game} />;
+    }
+    return <OrdenaLaFraseUI {...game} />;
+};
+
+export default OrdenaLaFraseEso1Castellano;

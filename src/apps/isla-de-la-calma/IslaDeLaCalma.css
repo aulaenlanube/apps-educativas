@@ -13,15 +13,12 @@
 /* Contenedor principal que envuelve toda la app */
 .calma-app-wrapper {
     font-family: 'Montserrat', sans-serif;
-    background-color: var(--calma-fondo);
     color: var(--calma-texto);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 20px;
     box-sizing: border-box;
-    border-radius: 20px;
 }
 
 /* Contenedor para cada pantalla (inicio, respiración, final) */
