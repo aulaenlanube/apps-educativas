@@ -96,16 +96,18 @@ const HomePage = () => {
             className="flex justify-center space-x-4 mb-12"
           >
             <div className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-              <Star className="w-5 h-5 text-yellow-500" />
-              <span className="text-gray-700 font-medium">+100 Apps</span>
-            </div>
-            <div className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
               <Users className="w-5 h-5 text-blue-500" />
-              <span className="text-gray-700 font-medium">Miles de Estudiantes</span>
+              <span className="text-gray-700 font-medium">Apps por niveles</span>
             </div>
+            
+            <div className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
+              <Star className="w-5 h-5 text-yellow-500" />
+              <span className="text-gray-700 font-medium">100% gratis</span>
+            </div>
+            
             <div className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
               <Trophy className="w-5 h-5 text-purple-500" />
-              <span className="text-gray-700 font-medium">Aprendizaje Garantizado</span>
+              <span className="text-gray-700 font-medium">Progreso medible</span>
             </div>
           </motion.div>
 
@@ -237,7 +239,7 @@ const HomePage = () => {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-4xl font-bold gradient-text mb-4">¿Por qué elegir EduApps?</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Nuestra plataforma está diseñada para hacer el aprendizaje más efectivo y divertido
+              Es una plataforma diseñada para hacer el aprendizaje más efectivo y divertido
             </p>
           </motion.div>
 
@@ -251,7 +253,7 @@ const HomePage = () => {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Contenido de calidad</h3>
               <p className="text-gray-600">
-                Todas nuestras apps están cuidadosamente verificadas y organizadas por niveles educativos 
+                Todas las apps están cuidadosamente verificadas y organizadas por niveles educativos 
               </p>
             </motion.div>
 
@@ -271,7 +273,7 @@ const HomePage = () => {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Progreso Medible</h3>
               <p className="text-gray-600">
-                Seguimiento del progreso y logros para motivar el aprendizaje continuo y celebrar los éxitos
+                Seguimiento del progreso a través de distintos modos: modo práctica y modo test de evaluación
               </p>
             </motion.div>
           </motion.div>
