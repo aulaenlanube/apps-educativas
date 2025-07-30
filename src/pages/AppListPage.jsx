@@ -5,7 +5,8 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { GraduationCap, ArrowLeft, Sparkles, Folder } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { esoApps } from '@/apps/appList'; // <-- CAMBIO IMPORTANTE
+// --- CORRECCIÓN: Importamos tanto las apps como las asignaturas ---
+import { esoApps, esoSubjects } from '@/apps/appList';
 
 const AppList = ({ apps, level, grade, subjectId }) => {
     const navigate = useNavigate();
@@ -34,8 +35,10 @@ const AppListPage = () => {
     const { level, grade, subjectId } = useParams();
     const navigate = useNavigate();
 
-    const subjectName = subjectId.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-    // --- CAMBIO IMPORTANTE: Ahora busca en esoApps ---
+    // --- CORRECCIÓN: Buscamos el nombre correcto de la asignatura en la lista ---
+    const subjectInfo = esoSubjects[grade]?.find(s => s.id === subjectId);
+    const subjectName = subjectInfo ? subjectInfo.name : subjectId; // Usamos el nombre correcto o el id como fallback
+
     const appsForSubject = esoApps[grade]?.[subjectId] || [];
     const fullTitle = `${subjectName} - ${grade}º ${level.toUpperCase()}`;
 
@@ -45,12 +48,7 @@ const AppListPage = () => {
                 <title>{`Apps de ${fullTitle} - EduApps`}</title>
             </Helmet>
             <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-                <motion.header 
-                  initial={{ y: -100, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8 }}
-                  className="bg-white/80 backdrop-blur-md shadow-lg border-b border-purple-100 sticky top-0 z-50"
-                >
+                <header className="bg-white/80 backdrop-blur-md shadow-lg border-b border-purple-100 sticky top-0 z-50">
                   <div className="container mx-auto px-6 py-4">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
@@ -67,7 +65,7 @@ const AppListPage = () => {
                        </Button>
                      </div>
                    </div>
-                </motion.header>
+                </header>
 
                 <main className="container mx-auto px-6 py-16">
                     <motion.div

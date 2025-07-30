@@ -30,13 +30,11 @@ const AppList = ({ apps, level, grade }) => {
 };
 
 const CoursePage = () => {
-  // --- CORRECCIÓN ---
-  // Ahora solo necesitamos 'grade' de la URL, porque esta página siempre es para 'primaria'.
   const { grade } = useParams();
   const navigate = useNavigate();
 
-  const level = 'primaria'; // Nivel hardcodeado a 'primaria'
-  const levelName = 'Primaria'; // Nombre a mostrar siempre es 'Primaria'
+  const level = 'primaria';
+  const levelName = 'Primaria';
   const fullTitle = `${grade}º ${levelName}`;
   
   const appsForCourse = primariaApps[grade] || [];
@@ -47,12 +45,7 @@ const CoursePage = () => {
         <title>{`Apps para ${fullTitle} - EduApps`}</title>
       </Helmet>
       <div className="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 min-h-screen">
-        <motion.header 
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="bg-white/80 backdrop-blur-md shadow-lg border-b border-purple-100 sticky top-0 z-50"
-        >
+        <header className="bg-white/80 backdrop-blur-md shadow-lg border-b border-purple-100 sticky top-0 z-50">
           <div className="container mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
@@ -69,7 +62,7 @@ const CoursePage = () => {
               </Button>
             </div>
           </div>
-        </motion.header>
+        </header>
 
         <main className="container mx-auto px-6 py-16">
           <motion.div

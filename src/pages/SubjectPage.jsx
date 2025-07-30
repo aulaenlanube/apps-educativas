@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { GraduationCap, ArrowLeft, Folder, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-// --- CORRECCIÓN: Importamos la lista de asignaturas desde el archivo central ---
 import { esoSubjects } from '@/apps/appList';
 
 const SubjectList = ({ subjects, level, grade }) => {
@@ -42,7 +41,6 @@ const SubjectPage = () => {
 
   const fullTitle = `${grade}º ESO`;
   
-  // --- CORRECCIÓN: Ahora usa la lista importada ---
   const subjectsForCourse = esoSubjects[grade] || [];
 
   return (
@@ -51,12 +49,7 @@ const SubjectPage = () => {
         <title>{`Asignaturas para ${fullTitle} - EduApps`}</title>
       </Helmet>
       <div className="bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50 min-h-screen">
-        <motion.header 
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="bg-white/80 backdrop-blur-md shadow-lg border-b border-purple-100 sticky top-0 z-50"
-        >
+        <header className="bg-white/80 backdrop-blur-md shadow-lg border-b border-purple-100 sticky top-0 z-50">
           <div className="container mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
@@ -73,7 +66,7 @@ const SubjectPage = () => {
               </Button>
             </div>
           </div>
-        </motion.header>
+        </header>
 
         <main className="container mx-auto px-6 py-16">
           <motion.div

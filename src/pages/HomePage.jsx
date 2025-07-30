@@ -1,15 +1,14 @@
-// src/pages/HomePage.jsx (MODIFICADO)
-
-import React, { useState } from 'react'; // <-- 1. Importa useState
+// src/pages/HomePage.jsx
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import AboutModal from '@/components/ui/AboutModal'; // <-- 2. Importa el nuevo componente
+import AboutModal from '@/components/ui/AboutModal';
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false); // <-- 3. Añade el estado para controlar el modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const primaryGrades = [
     { grade: '1', title: '1º Primaria', color: 'from-red-400 to-pink-500', icon: '🌟' },
@@ -42,18 +41,10 @@ const HomePage = () => {
   };
 
   return (
-    // La clase `bg-gradient-to-br...` se movió al MainLayout, así que la quitamos de aquí si la tenías
     <div> 
-      {/* 4. Renderiza el componente del modal */}
       <AboutModal open={isModalOpen} onOpenChange={setIsModalOpen} />
 
-      {/* Header */}
-      <motion.header 
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="bg-white/80 backdrop-blur-md shadow-lg border-b border-purple-100 sticky top-0 z-50"
-      >
+      <header className="bg-white/80 backdrop-blur-md shadow-lg border-b border-purple-100 sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
@@ -66,18 +57,14 @@ const HomePage = () => {
               </div>
             </div>
             <nav className="flex items-center">
-              {/* --- 5. MODIFICAMOS EL BOTÓN --- */}
               <Button variant="ghost" className="text-gray-700 hover:text-purple-600" onClick={() => setIsModalOpen(true)}>
                 Quién soy
               </Button>
             </nav>
           </div>
         </div>
-      </motion.header>
+      </header>
 
-      {/* El resto de la página (Hero, Primary, ESO, Features) se queda exactamente igual */}
-      {/* ... Pega aquí todo el contenido desde <motion.section> hasta el final ... */}
-       {/* Hero Section */}
        <motion.section 
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -109,17 +96,16 @@ const HomePage = () => {
             className="flex justify-center space-x-4 mb-12"
           >
             <div className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-              <Users className="w-5 h-5 text-blue-500" />
-              <span className="text-gray-700 font-medium">Apps por niveles</span>
+              <Star className="w-5 h-5 text-yellow-500" />
+              <span className="text-gray-700 font-medium">+100 Apps</span>
             </div>
             <div className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-              <Star className="w-5 h-5 text-yellow-500" />
-              <span className="text-gray-700 font-medium">100% gratis</span>
+              <Users className="w-5 h-5 text-blue-500" />
+              <span className="text-gray-700 font-medium">Miles de Estudiantes</span>
             </div>
-            
             <div className="flex items-center space-x-2 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
               <Trophy className="w-5 h-5 text-purple-500" />
-              <span className="text-gray-700 font-medium">Progreso medible</span>
+              <span className="text-gray-700 font-medium">Aprendizaje Garantizado</span>
             </div>
           </motion.div>
 
@@ -134,7 +120,6 @@ const HomePage = () => {
         </div>
       </motion.section>
 
-      {/* Primary Section */}
       <motion.section 
         variants={containerVariants}
         initial="hidden"
@@ -158,7 +143,7 @@ const HomePage = () => {
             variants={containerVariants}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {primaryGrades.map((grade, index) => (
+            {primaryGrades.map((grade) => (
               <motion.div
                 key={grade.grade}
                 variants={itemVariants}
@@ -188,7 +173,6 @@ const HomePage = () => {
         </div>
       </motion.section>
 
-      {/* ESO Section */}
       <motion.section 
         variants={containerVariants}
         initial="hidden"
@@ -212,7 +196,7 @@ const HomePage = () => {
             variants={containerVariants}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
-            {esoGrades.map((grade, index) => (
+            {esoGrades.map((grade) => (
               <motion.div
                 key={grade.grade}
                 variants={itemVariants}
@@ -232,7 +216,7 @@ const HomePage = () => {
                     <h3 className="text-2xl font-bold mb-2">{grade.grade}º</h3>
                     <p className="text-lg font-medium mb-4">ESO</p>
                     <div className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-2 inline-block">
-                      <span className="text-sm font-medium">Ver Apps</span>
+                      <span className="text-sm font-medium">Ver Asignaturas</span>
                     </div>
                   </div>
                 </div>
@@ -242,7 +226,6 @@ const HomePage = () => {
         </div>
       </motion.section>
 
-      {/* Features Section */}
       <motion.section 
         variants={containerVariants}
         initial="hidden"
@@ -254,7 +237,7 @@ const HomePage = () => {
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-4xl font-bold gradient-text mb-4">¿Por qué elegir EduApps?</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Es una plataforma diseñada para hacer el aprendizaje más efectivo y divertido
+              Nuestra plataforma está diseñada para hacer el aprendizaje más efectivo y divertido
             </p>
           </motion.div>
 
@@ -268,7 +251,7 @@ const HomePage = () => {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Contenido de calidad</h3>
               <p className="text-gray-600">
-                Todas las apps están cuidadosamente verificadas y organizadas por niveles educativos 
+                Todas nuestras apps están cuidadosamente verificadas y organizadas por niveles educativos 
               </p>
             </motion.div>
 
@@ -288,7 +271,7 @@ const HomePage = () => {
               </div>
               <h3 className="text-2xl font-bold text-gray-800 mb-4">Progreso Medible</h3>
               <p className="text-gray-600">
-                Seguimiento del progreso a través de distintos modos: modo práctica y modo test de evaluación
+                Seguimiento del progreso y logros para motivar el aprendizaje continuo y celebrar los éxitos
               </p>
             </motion.div>
           </motion.div>
