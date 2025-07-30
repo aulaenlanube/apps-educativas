@@ -1,5 +1,6 @@
-/* src/apps/isla-de-la-calma/IslaDeLaCalma.css (CORREGIDO) */
+/* src/apps/isla-de-la-calma/IslaDeLaCalma.css */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 /* Variables de color específicas para esta app para evitar conflictos */
 :root {
@@ -20,7 +21,7 @@
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
-    border-radius: 20px; /* Añadimos bordes redondeados al contenedor principal */
+    border-radius: 20px;
 }
 
 /* Contenedor para cada pantalla (inicio, respiración, final) */
@@ -35,10 +36,16 @@
     position: relative;
 }
 
-.calma-container h1 {
-    color: var(--calma-principal);
+/* --- SECCIÓN MODIFICADA --- */
+.calma-container .calma-title {
+    font-family: 'Fredoka One', cursive;
     margin-top: 0;
 }
+/* El h1 de la pantalla final también cogerá este estilo */
+.calma-container h1 {
+     font-family: 'Fredoka One', cursive;
+}
+/* ------------------------- */
 
 .calma-container p {
     font-size: 18px;
@@ -113,8 +120,8 @@
 
 .calma-app-wrapper .control-audio {
     position: absolute;
-    bottom: 40px; /* Ajustado para estar dentro del wrapper */
-    right: 40px;
+    bottom: 20px;
+    right: 20px;
     background: white;
     border: 1px solid #ccc;
     border-radius: 50%;

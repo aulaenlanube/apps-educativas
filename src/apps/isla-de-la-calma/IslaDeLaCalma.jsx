@@ -1,4 +1,4 @@
-// src/apps/isla-de-la-calma/IslaDeLaCalma.jsx (CORREGIDO)
+// src/apps/isla-de-la-calma/IslaDeLaCalma.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import './IslaDeLaCalma.css';
 
@@ -85,7 +85,7 @@ const IslaDeLaCalma = () => {
             case 'final':
                 return (
                     <div className="calma-container">
-                        <h1>¡Muy bien hecho!</h1>
+                        <h1 className="calma-title gradient-text text-5xl font-bold mb-4">¡Muy bien hecho!</h1>
                         <p>Has completado tu ejercicio de relajación. Esperamos que te sientas más tranquilo y enfocado.</p>
                         <button onClick={handleReiniciar}>Hacer otra vez</button>
                     </div>
@@ -94,7 +94,8 @@ const IslaDeLaCalma = () => {
             default:
                 return (
                     <div className="calma-container">
-                        <h1>🏝️ Isla de la Calma</h1>
+                        {/* --- LÍNEA MODIFICADA --- */}
+                        <h1 className="calma-title gradient-text text-5xl font-bold mb-4">🏝️ Isla de la Calma</h1>
                         <p>Una pausa para encontrar la calma a través de la respiración. Sigue la animación y las instrucciones para relajar tu cuerpo y tu mente.</p>
                         <div className="configuracion-ciclos">
                             <label htmlFor="numeroCiclos">Número de respiraciones:</label>
