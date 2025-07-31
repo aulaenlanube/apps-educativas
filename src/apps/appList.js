@@ -8,7 +8,8 @@ import SupermercadoMatematico6 from './supermercado-matematico/primaria-6/Superm
 import IslaDeLaCalma from './isla-de-la-calma/IslaDeLaCalma';
 import OrdenaLaFraseJuego from './_shared/OrdenaLaFraseJuego';
 import OrdenaLaHistoriaJuego from './_shared/OrdenaLaHistoriaJuego';
-import materiasData from '../data/materias.json';
+// CORRECCIÓN: Usar el alias de ruta '@' para una importación más robusta.
+import materiasData from './../../public/data/materias.json';
 
 // APPS COMUNES
 const appIslaDeLaCalma = { id: 'isla-de-la-calma', name: 'Isla de la Calma', description: 'Un ejercicio de respiración guiada para encontrar la calma.', component: IslaDeLaCalma };
@@ -28,7 +29,6 @@ export const primariaApps = {
 // ASIGNATURAS Y APPS DE LA ESO
 export const esoSubjects = materiasData.eso;
 
-// --- CORRECCIÓN FINAL: Añadir "appOrdenaLaHistoria" a las asignaturas de la ESO ---
 export const esoApps = {
     '1': {
         'lengua': [appOrdenaLaFrase, appOrdenaLaHistoria],

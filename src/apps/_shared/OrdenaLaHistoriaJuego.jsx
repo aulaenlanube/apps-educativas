@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useOrdenaLaHistoriaGame } from '@/hooks/useOrdenaLaHistoriaGame';
 import OrdenaLaHistoriaUI from '@/apps/_shared/OrdenaLaHistoriaUI';
 import OrdenaLaHistoriaTestScreen from '@/apps/_shared/OrdenaLaHistoriaTestScreen';
-import { getHistorias } from '@/data/api';
+import { getHistorias } from './../../../public/data/api';
 
 const OrdenaLaHistoriaJuego = () => {
     const { level, grade, subjectId } = useParams();

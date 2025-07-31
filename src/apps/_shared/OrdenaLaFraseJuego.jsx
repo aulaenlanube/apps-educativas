@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useOrdenaLaFraseGame } from '@/hooks/useOrdenaLaFraseGame';
 import OrdenaLaFraseUI from '@/apps/_shared/OrdenaLaFraseUI';
 import OrdenaLaFraseTestScreen from '@/apps/_shared/OrdenaLaFraseTestScreen';
-import { getFrases } from '@/data/api';
+import { getFrases } from './../../../public/data/api';
 
 const OrdenaLaFraseJuego = () => {
     const { level, grade, subjectId } = useParams();
