@@ -7,30 +7,29 @@ import OrdenaLaFraseTestScreen from '@/apps/_shared/OrdenaLaFraseTestScreen';
 import { getFrases } from '@/data/api';
 
 const OrdenaLaFraseJuego = () => {
-    const { level, grade, subjectId = 'general' } = useParams(); // 'general' por defecto para primaria
+    const { level, grade, subjectId } = useParams();
+    const [frases, setFrases] = useState(null);
 
-    // 1. Nuevo estado para guardar las frases cuando lleguen
-    const [frasesDeLaMateria, setFrasesDeLaMateria] = useState(null);
-
-    // 2. Efecto que se ejecuta solo una vez para cargar los datos
+    // Este efecto se encarga de cargar las frases necesarias desde la API
     useEffect(() => {
-        async function cargarFrases() {
-            const data = await getFrases(level, grade, subjectId);
-            setFrasesDeLaMateria(data);
-        }
-        cargarFrases();
-    }, [level, grade, subjectId]); // Se volverá a ejecutar si cambia la URL
+        const cargarContenido = async () => {
+            // Para primaria, el subjectId no está en la URL, así que lo ponemos a 'general'
+            const asignatura = level === 'primaria' ? 'general' : subjectId;
+            const frasesData = await getFrases(level, grade, asignatura);
+            setFrases(frasesData);
+        };
+        cargarContenido();
+    }, [level, grade, subjectId]);
 
-    // (Aquí podrías añadir la lógica del temporizador de forma similar)
-    const conTemporizador = grade >= 3; // Lógica simplificada
+    // Lógica para determinar si el juego lleva temporizador
+    const conTemporizador = (level === 'primaria' && grade >= 3) || level === 'eso';
 
-    // 3. Mientras los datos no hayan llegado, mostramos un mensaje de carga
-    if (!frasesDeLaMateria) {
-        return <div>Cargando juego...</div>;
+    // Mientras las frases no se hayan cargado, mostramos un mensaje
+    if (!frases) {
+        return <div className="text-center p-10">Cargando juego...</div>;
     }
 
-    // 4. Una vez tenemos las frases, inicializamos el juego
-    const game = useOrdenaLaFraseGame(frasesDeLaMateria, conTemporizador);
+    const game = useOrdenaLaFraseGame(frases, conTemporizador);
 
     if (game.isTestMode) {
         return <OrdenaLaFraseTestScreen game={game} />;

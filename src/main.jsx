@@ -36,13 +36,20 @@ const router = createBrowserRouter(
               element: <SubjectPage />,
             },
             {
-              path: 'curso/:level/:grade/:subjectId',
+              path: 'curso/eso/:grade/:subjectId',
               element: <AppListPage />,
             }
           ],
         },
+        // --- RUTAS CORREGIDAS PARA EL RUNNER ---
         {
-          path: '/curso/:level/:grade/app/:appId',
+          // Ruta para Primaria (level y grade)
+          path: '/curso/primaria/:grade/app/:appId',
+          element: <AppRunnerPage />,
+        },
+        {
+          // Ruta para ESO (level, grade y subjectId)
+          path: '/curso/eso/:grade/:subjectId/app/:appId',
           element: <AppRunnerPage />,
         },
       ],
