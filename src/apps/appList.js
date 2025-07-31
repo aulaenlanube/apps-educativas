@@ -1,15 +1,14 @@
 // src/apps/appList.js
-import SupermercadoMatematico1 from '@/apps/supermercado-primaria-1/SupermercadoMatematico1';
-import SupermercadoMatematico2 from '@/apps/supermercado-primaria-2/SupermercadoMatematico2';
-import SupermercadoMatematico3 from '@/apps/supermercado-primaria-3/SupermercadoMatematico3';
-import SupermercadoMatematico4 from '@/apps/supermercado-primaria-4/SupermercadoMatematico4';
-import SupermercadoMatematico5 from '@/apps/supermercado-primaria-5/SupermercadoMatematico5';
-import SupermercadoMatematico6 from '@/apps/supermercado-primaria-6/SupermercadoMatematico6';
-import IslaDeLaCalma from '@/apps/isla-de-la-calma/IslaDeLaCalma';
-
-// ¡IMPORTAMOS LOS NUEVOS COMPONENTES GENÉRICOS!
-import OrdenaLaFraseJuego from '@/apps/_shared/OrdenaLaFraseJuego';
-import OrdenaLaHistoriaJuego from '@/apps/_shared/OrdenaLaHistoriaJuego';
+import SupermercadoMatematico1 from './supermercado-matematico/primaria-1/SupermercadoMatematico1';
+import SupermercadoMatematico2 from './supermercado-matematico/primaria-2/SupermercadoMatematico2';
+import SupermercadoMatematico3 from './supermercado-matematico/primaria-3/SupermercadoMatematico3';
+import SupermercadoMatematico4 from './supermercado-matematico/primaria-4/SupermercadoMatematico4';
+import SupermercadoMatematico5 from './supermercado-matematico/primaria-5/SupermercadoMatematico5';
+import SupermercadoMatematico6 from './supermercado-matematico/primaria-6/SupermercadoMatematico6';
+import IslaDeLaCalma from './isla-de-la-calma/IslaDeLaCalma';
+import OrdenaLaFraseJuego from './_shared/OrdenaLaFraseJuego';
+import OrdenaLaHistoriaJuego from './_shared/OrdenaLaHistoriaJuego';
+import materiasData from '../data/materias.json';
 
 // --- APPS COMUNES ---
 const appIslaDeLaCalma = {
@@ -41,40 +40,27 @@ export const primariaApps = {
 };
 
 // --- ASIGNATURAS Y APPS DE LA ESO ---
-export { default as esoSubjects } from '@/data/materias.json';
+export const esoSubjects = materiasData.eso;
 
 export const esoApps = {
     '1': { 
-        'lengua': [appOrdenaLaFrase], 
-        'matematicas': [appOrdenaLaFrase], 
-        'historia': [appOrdenaLaFrase], 
-        'ingles': [appOrdenaLaFrase], 
-        'biologia': [appOrdenaLaFrase], 
-        'fisica': [appOrdenaLaFrase], 
-        'musica': [appOrdenaLaFrase], 
-        'plastica': [appOrdenaLaFrase], 
-        'tecnologia': [appOrdenaLaFrase], 
-        'ed-fisica': [appOrdenaLaFrase], 
-        'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase] 
+        'lengua': [appOrdenaLaFrase], 'matematicas': [appOrdenaLaFrase], 'historia': [appOrdenaLaFrase], 'ingles': [appOrdenaLaFrase], 'biologia': [appOrdenaLaFrase], 'fisica': [appOrdenaLaFrase], 'musica': [appOrdenaLaFrase], 'plastica': [appOrdenaLaFrase], 'tecnologia': [appOrdenaLaFrase], 'ed-fisica': [appOrdenaLaFrase], 'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase] 
     },
-    // Cuando tengas contenido para más cursos, solo tienes que añadirlo aquí
     '2': { 'lengua': [appOrdenaLaFrase], 'matematicas': [appOrdenaLaFrase], 'historia': [appOrdenaLaFrase], 'ingles': [appOrdenaLaFrase], 'fisica': [appOrdenaLaFrase], 'musica': [appOrdenaLaFrase], 'tecnologia': [appOrdenaLaFrase], 'ed-fisica': [appOrdenaLaFrase], 'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase] },
     '3': { 'lengua': [appOrdenaLaFrase], 'matematicas': [appOrdenaLaFrase], 'historia': [appOrdenaLaFrase], 'ingles': [appOrdenaLaFrase], 'biologia': [appOrdenaLaFrase], 'fisica': [appOrdenaLaFrase], 'tecnologia': [appOrdenaLaFrase], 'ed-fisica': [appOrdenaLaFrase], 'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase] },
     '4': { 'lengua': [appOrdenaLaFrase], 'matematicas': [appOrdenaLaFrase], 'historia': [appOrdenaLaFrase], 'ingles': [appOrdenaLaFrase], 'ed-fisica': [appOrdenaLaFrase], 'biologia': [appOrdenaLaFrase], 'fisica': [appOrdenaLaFrase], 'latin': [appOrdenaLaFrase], 'economia': [appOrdenaLaFrase], 'tecnologia': [appOrdenaLaFrase], 'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase] }
 };
 
-// --- FUNCIÓN PARA BUSCAR APPS (MODIFICADA) ---
-// --- FUNCIÓN findAppById (CORREGIDA) ---
+// --- FUNCIÓN findAppById (CORREGIDA Y SIMPLIFICADA) ---
 export const findAppById = (level, grade, subjectId, appId) => {
     let appCollection;
 
     if (level === 'primaria') {
         appCollection = primariaApps[grade] || [];
     } else if (level === 'eso') {
-        // Para la ESO, necesitamos el subjectId para encontrar el array correcto de apps
         appCollection = esoApps[grade]?.[subjectId] || [];
     } else {
-        return null; // Nivel no encontrado
+        return null;
     }
 
     const foundApp = appCollection.find(app => app.id === appId);
@@ -84,10 +70,8 @@ export const findAppById = (level, grade, subjectId, appId) => {
             app: foundApp,
             level,
             grade,
-            // Nos aseguramos de tener siempre un subjectId, 'general' para primaria
             subjectId: subjectId || 'general'
         };
     }
-
     return null;
 };
