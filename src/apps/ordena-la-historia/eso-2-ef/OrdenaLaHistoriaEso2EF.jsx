@@ -1,0 +1,28 @@
+// src/apps/ordena-la-historia/eso-2-ef/OrdenaLaHistoriaEso2EF.jsx
+import React from 'react';
+import { useOrdenaLaHistoriaGame } from '@/hooks/useOrdenaLaHistoriaGame';
+import OrdenaLaHistoriaUI from '@/apps/_shared/OrdenaLaHistoriaUI';
+import OrdenaLaHistoriaTestScreen from '@/apps/_shared/OrdenaLaHistoriaTestScreen';
+
+const historias = [
+    ["El calentamiento es la primera parte de cualquier sesión de actividad física.", "Prepara a nuestros músculos y articulaciones para el esfuerzo posterior.", "Ayuda a aumentar la temperatura corporal y el ritmo cardíaco de forma progresiva.", "Un buen calentamiento es fundamental para prevenir posibles lesiones."],
+    ["En un partido de balonmano, cada equipo intenta marcar gol en la portería contraria.", "Los jugadores solo pueden dar un máximo de tres pasos con el balón en las manos.", "Después de los tres pasos, deben botar el balón, pasarlo o lanzar a portería.", "Está prohibido pisar el área del portero, tanto para atacantes como para defensores."],
+    ["La resistencia aeróbica es la capacidad de realizar un esfuerzo de intensidad media o baja durante mucho tiempo.", "Actividades como correr a un ritmo suave, nadar o ir en bicicleta la mejoran.", "Este tipo de ejercicio fortalece el corazón y los pulmones.", "Es la base de una buena condición física general."],
+    ["En la prueba de salto de longitud, el objetivo es alcanzar la mayor distancia posible.", "El atleta realiza una carrera de aproximación para coger velocidad.", "Luego, realiza una batida sobre una tabla de madera sin sobrepasarla.", "Durante el vuelo, adopta una postura para optimizar la distancia.", "Finalmente, aterriza en un foso de arena."],
+    ["Una buena alimentación es esencial para cualquier persona que practique deporte.", "Antes del ejercicio, es bueno tomar hidratos de carbono para tener energía.", "Durante la actividad, es crucial mantenerse bien hidratado bebiendo agua.", "Después del ejercicio, las proteínas ayudan a los músculos a recuperarse.", "Una dieta variada asegura que obtenemos todos los nutrientes necesarios."],
+    ["El acrosport es una disciplina que combina acrobacias, gimnasia y coreografía.", "Los participantes forman figuras y pirámides humanas en grupo.", "Requiere una gran confianza, cooperación y trabajo en equipo.", "Existen diferentes roles en el grupo: portor, ágil y ayudante."],
+    ["La vuelta a la calma es la parte final de una sesión de entrenamiento.", "Consiste en realizar ejercicios de muy baja intensidad.", "Ayuda a que el ritmo cardíaco y la respiración vuelvan a la normalidad poco a poco.", "Se finaliza con estiramientos suaves para relajar los músculos.", "Facilita la recuperación del cuerpo después del esfuerzo."],
+    ["El sistema de ataque en baloncesto busca encontrar posiciones de tiro cómodas.", "Los jugadores se mueven constantemente para crear espacios libres.", "Utilizan pases y bloqueos para desajustar a la defensa contraria.", "El objetivo final es lanzar a canasta con la mayor probabilidad de éxito."],
+    ["La flexibilidad es una cualidad física que nos permite realizar movimientos amplios.", "Se puede mejorar con la práctica regular de ejercicios de estiramiento.", "Es importante estirar los músculos después de haber calentado.", "Una buena flexibilidad ayuda a prevenir lesiones y a mejorar la técnica deportiva."],
+    ["La orientación es un deporte en el que los participantes usan un mapa y una brújula.", "Deben encontrar una serie de puntos de control marcados en el terreno.", "El objetivo es completar el recorrido en el menor tiempo posible.", "Combina la capacidad física de correr con la habilidad de interpretar un mapa."]
+];
+
+const OrdenaLaHistoriaEso2EF = () => {
+    const game = useOrdenaLaHistoriaGame(historias, true);
+    if (game.isTestMode) {
+        return <OrdenaLaHistoriaTestScreen game={game} />;
+    }
+    return <OrdenaLaHistoriaUI {...game} />;
+};
+
+export default OrdenaLaHistoriaEso2EF;

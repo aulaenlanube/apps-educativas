@@ -1,0 +1,28 @@
+// src/apps/ordena-la-historia/eso-3-ingles/OrdenaLaHistoriaEso3Ingles.jsx
+import React from 'react';
+import { useOrdenaLaHistoriaGame } from '@/hooks/useOrdenaLaHistoriaGame';
+import OrdenaLaHistoriaUI from '@/apps/_shared/OrdenaLaHistoriaUI';
+import OrdenaLaHistoriaTestScreen from '@/apps/_shared/OrdenaLaHistoriaTestScreen';
+
+const historias = [
+    ["A group of friends were planning their summer holiday.", "They considered going to the beach, but they wanted something more adventurous.", "Finally, they decided to go hiking in the mountains for a week.", "They bought a map and planned a route with different stops.", "They knew it would be a challenging but unforgettable experience.", "They were looking forward to the amazing views from the top."],
+    ["Sarah was studying in the library when she received a mysterious note.", "It said: 'Meet me at the old oak tree at midnight'.", "She was a bit scared, but her curiosity was stronger.", "That night, she went to the tree and waited.", "Suddenly, all her friends jumped out and shouted 'Surprise!'.", "They had organized a secret birthday party for her."],
+    ["If I won the lottery, my life would change completely.", "First, I would buy a big house with a swimming pool for my family.", "Then, I would travel around the world and visit many different countries.", "I would also donate a part of the money to a charity.", "However, I would continue working because I love my job."],
+    ["A new restaurant was opened in my town last month.", "It is said to have the best Italian food in the area.", "My family and I went there for dinner last Saturday.", "I ordered a pizza, and it was absolutely delicious.", "The restaurant was very popular, and we had to book a table in advance."],
+    ["Mark was late for his job interview.", "He had set his alarm, but he didn't hear it ring.", "He got dressed as quickly as he could and ran to the bus stop.", "Unfortunately, he had just missed the bus.", "He had to take a taxi, which was very expensive.", "Despite everything, he arrived just in time for the interview."],
+    ["The city council has decided to build a new public park.", "The park will have a playground for children and a special area for dogs.", "They are also going to plant more than one hundred new trees.", "Construction will begin next month and is expected to be finished by next year.", "The citizens are very happy with this new project."],
+    ["While I was cleaning the attic, I found an old wooden box.", "I opened it and discovered a collection of my grandfather's letters.", "He had written them to my grandmother during the war.", "The letters told a beautiful story of love and hope.", "It was a very emotional and special discovery for me."],
+    ["To reduce pollution, we should all change some of our habits.", "For example, we could use public transport more often instead of the car.", "We should also remember to recycle paper, plastic, and glass.", "Saving energy at home by turning off the lights is also important.", "Every small action helps to protect our planet."],
+    ["Lucy has been practicing the piano for many years.", "She started playing when she was only five years old.", "Now, she is preparing for a very important international competition.", "She practices for at least four hours every single day.", "Her dream is to become a famous concert pianist."],
+    ["A detective was investigating a strange robbery at the museum.", "A very valuable diamond had been stolen during the night.", "There were no signs of a forced entry, which was very mysterious.", "The detective interviewed all the museum staff.", "After analyzing all the clues, he finally discovered the thief's identity.", "It was the security guard, who had made a copy of the key."]
+];
+
+const OrdenaLaHistoriaEso3Ingles = () => {
+    const game = useOrdenaLaHistoriaGame(historias, true);
+    if (game.isTestMode) {
+        return <OrdenaLaHistoriaTestScreen game={game} />;
+    }
+    return <OrdenaLaHistoriaUI {...game} />;
+};
+
+export default OrdenaLaHistoriaEso3Ingles;

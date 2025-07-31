@@ -1,0 +1,28 @@
+// src/apps/ordena-la-historia/eso-1-fisica/OrdenaLaHistoriaEso1Fisica.jsx
+import React from 'react';
+import { useOrdenaLaHistoriaGame } from '@/hooks/useOrdenaLaHistoriaGame';
+import OrdenaLaHistoriaUI from '@/apps/_shared/OrdenaLaHistoriaUI';
+import OrdenaLaHistoriaTestScreen from '@/apps/_shared/OrdenaLaHistoriaTestScreen';
+
+const historias = [
+    ["Para realizar el experimento, primero reunimos todo el material de laboratorio.", "Medimos con una probeta la cantidad exacta de líquido necesaria.", "Calentamos la mezcla con cuidado utilizando un mechero Bunsen.", "Anotamos todas las observaciones y los cambios que se produjeron.", "Finalmente, limpiamos todo el material y recogimos el laboratorio."],
+    ["La materia puede cambiar de un estado a otro por efecto de la temperatura.", "Si calentamos un sólido como el hielo, se produce la fusión y pasa a estado líquido.", "Si continuamos calentando el líquido, se evapora y se convierte en gas.", "El proceso inverso, de gas a líquido, se llama condensación."],
+    ["Una disolución es una mezcla homogénea de dos o más sustancias.", "El soluto es la sustancia que se disuelve y está en menor cantidad.", "El disolvente es la sustancia que disuelve al soluto y está en mayor proporción.", "Un ejemplo común es el agua salada, donde la sal es el soluto y el agua el disolvente."],
+    ["El método científico es un proceso ordenado para investigar.", "Comienza con la observación de un fenómeno y el planteamiento de una pregunta.", "Luego, se formula una hipótesis que intenta explicar lo observado.", "Se realizan experimentos para comprobar si la hipótesis es correcta.", "Finalmente, se analizan los resultados y se extraen conclusiones."],
+    ["La densidad es una propiedad que relaciona la masa de un cuerpo con su volumen.", "Un objeto menos denso que el agua flotará sobre ella.", "Un objeto más denso que el agua se hundirá.", "Por eso, un trozo de madera flota mientras que una piedra se hunde."],
+    ["Para construir un circuito eléctrico simple, necesitamos una pila.", "Conectamos una bombilla a la pila utilizando cables conductores.", "Añadimos un interruptor para poder abrir y cerrar el circuito.", "Cuando el interruptor está cerrado, la corriente circula y la bombilla se enciende."],
+    ["Los átomos son las partículas que forman toda la materia.", "Están compuestos por un núcleo central con protones y neutrones.", "Alrededor del núcleo giran unas partículas más pequeñas llamadas electrones.", "Los átomos se unen entre sí para formar las moléculas."],
+    ["Una reacción química es un proceso en el que las sustancias se transforman.", "Las sustancias iniciales se llaman reactivos.", "Las sustancias que se obtienen al final se llaman productos.", "Un ejemplo es la oxidación del hierro al contacto con el aire."],
+    ["La energía no se crea ni se destruye, solo se transforma.", "Por ejemplo, en una central hidroeléctrica, la energía del agua en movimiento se transforma en electricidad.", "En casa, esa electricidad se transforma en luz en una bombilla.", "Este es el principio de conservación de la energía."],
+    ["La luz viaja en línea recta desde la fuente que la emite.", "Cuando choca con un objeto opaco, produce una sombra detrás de él.", "Si el objeto es transparente, como un cristal, la luz lo atraviesa.", "Si choca con un espejo, la luz se refleja de forma ordenada."]
+];
+
+const OrdenaLaHistoriaEso1Fisica = () => {
+    const game = useOrdenaLaHistoriaGame(historias, true);
+    if (game.isTestMode) {
+        return <OrdenaLaHistoriaTestScreen game={game} />;
+    }
+    return <OrdenaLaHistoriaUI {...game} />;
+};
+
+export default OrdenaLaHistoriaEso1Fisica;

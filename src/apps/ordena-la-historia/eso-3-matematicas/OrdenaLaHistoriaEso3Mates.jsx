@@ -1,0 +1,28 @@
+// src/apps/ordena-la-historia/eso-3-matematicas/OrdenaLaHistoriaEso3Mates.jsx
+import React from 'react';
+import { useOrdenaLaHistoriaGame } from '@/hooks/useOrdenaLaHistoriaGame';
+import OrdenaLaHistoriaUI from '@/apps/_shared/OrdenaLaHistoriaUI';
+import OrdenaLaHistoriaTestScreen from '@/apps/_shared/OrdenaLaHistoriaTestScreen';
+
+const historias = [
+    ["Para resolver una ecuación de segundo grado, primero la igualamos a cero.", "Identificamos los coeficientes 'a', 'b' y 'c' de la ecuación.", "Aplicamos la fórmula general para encontrar las posibles soluciones.", "El valor del discriminante nos indicará si tiene dos, una o ninguna solución real.", "Finalmente, calculamos los valores de la incógnita 'x'."],
+    ["Un sistema de ecuaciones lineales se puede resolver gráficamente.", "Cada ecuación del sistema representa una línea recta en el plano cartesiano.", "Dibujamos ambas rectas utilizando una tabla de valores para cada una.", "El punto donde las dos rectas se cortan es la solución del sistema.", "Las coordenadas de ese punto de intersección son los valores de 'x' e 'y'."],
+    ["El teorema de Tales nos permite calcular longitudes en figuras semejantes.", "Afirma que si dos rectas son cortadas por varias rectas paralelas, los segmentos que se forman son proporcionales.", "Se aplica a menudo en triángulos en posición de Tales.", "Gracias a este teorema, podemos medir alturas inaccesibles, como la de un edificio.", "Solo necesitamos medir su sombra y la sombra de un objeto de altura conocida."],
+    ["Una función cuadrática tiene la forma 'y = ax² + bx + c'.", "Su representación gráfica es siempre una parábola.", "Si el coeficiente 'a' es positivo, la parábola se abre hacia arriba.", "Si 'a' es negativo, se abre hacia abajo.", "El vértice de la parábola es su punto más bajo o más alto."],
+    ["La estadística nos ayuda a interpretar datos sobre una población.", "A menudo, es imposible estudiar a toda la población, por lo que se elige una muestra representativa.", "Recogemos los datos de la muestra mediante encuestas o experimentos.", "Calculamos parámetros como la media o la desviación típica para resumir la información.", "Estos resultados nos permiten hacer inferencias sobre el comportamiento de toda la población."],
+    ["Una progresión aritmética es una sucesión de números con una diferencia constante.", "Cada término se obtiene sumando una cantidad fija, llamada diferencia, al término anterior.", "Podemos calcular cualquier término de la sucesión con una fórmula general.", "También existe una fórmula para sumar los 'n' primeros términos de la progresión.", "Un ejemplo es la sucesión de los números pares: 2, 4, 6, 8..."],
+    ["Para calcular el volumen de una pirámide, necesitamos el área de su base y su altura.", "La fórmula establece que el volumen es un tercio del producto del área de la base por la altura.", "Primero, calculamos el área de la base, que puede ser un cuadrado, un triángulo, etc.", "Luego, medimos la altura de la pirámide desde el vértice hasta la base.", "Finalmente, aplicamos la fórmula para obtener el volumen en unidades cúbicas."],
+    ["El interés compuesto se diferencia del interés simple en que los intereses se reinvierten.", "Al final de cada período, los intereses generados se suman al capital inicial.", "En el siguiente período, el nuevo capital, que es mayor, vuelve a generar intereses.", "Esto provoca un crecimiento exponencial del dinero a lo largo del tiempo.", "Es el principio fundamental de muchos productos de ahorro e inversión a largo plazo."],
+    ["La probabilidad de un suceso compuesto se puede calcular conociendo la de los sucesos simples.", "Si dos sucesos son independientes, la probabilidad de que ocurran ambos es el producto de sus probabilidades.", "Por ejemplo, la probabilidad de sacar dos seises al lanzar dos dados es 1/6 multiplicado por 1/6.", "Para calcular la probabilidad de que ocurra uno u otro suceso, se utiliza el principio de adición."],
+    ["La trigonometría nos permite resolver cualquier tipo de triángulo.", "El seno, el coseno y la tangente relacionan los ángulos agudos con los lados de un triángulo rectángulo.", "El teorema del seno y el teorema del coseno se aplican a triángulos que no son rectángulos.", "Estas herramientas son muy útiles en campos como la topografía o la navegación.", "Permiten calcular distancias y ángulos de forma indirecta."]
+];
+
+const OrdenaLaHistoriaEso3Mates = () => {
+    const game = useOrdenaLaHistoriaGame(historias, true);
+    if (game.isTestMode) {
+        return <OrdenaLaHistoriaTestScreen game={game} />;
+    }
+    return <OrdenaLaHistoriaUI {...game} />;
+};
+
+export default OrdenaLaHistoriaEso3Mates;

@@ -1,0 +1,28 @@
+// src/apps/ordena-la-historia/eso-1-musica/OrdenaLaHistoriaEso1Musica.jsx
+import React from 'react';
+import { useOrdenaLaHistoriaGame } from '@/hooks/useOrdenaLaHistoriaGame';
+import OrdenaLaHistoriaUI from '@/apps/_shared/OrdenaLaHistoriaUI';
+import OrdenaLaHistoriaTestScreen from '@/apps/_shared/OrdenaLaHistoriaTestScreen';
+
+const historias = [
+    ["La orquesta sinfónica se prepara para el concierto.", "Los músicos afinan sus instrumentos creando una nube de sonidos.", "El director sube al podio y se hace el silencio.", "Levanta la batuta y comienza a sonar la primera sinfonía.", "El público disfruta de la magia de la música en directo."],
+    ["Las figuras musicales representan la duración de los sonidos.", "La redonda es la de mayor duración y sirve como referencia.", "Una blanca dura la mitad que una redonda.", "Una negra dura la mitad que una blanca.", "Dos corcheas equivalen a la duración de una negra."],
+    ["La familia de cuerda frotada es el corazón de la orquesta.", "Está formada por el violín, la viola, el violonchelo y el contrabajo.", "Se tocan frotando un arco por sus cuerdas para hacerlas vibrar.", "El violín es el instrumento más agudo de esta familia."],
+    ["El compositor Mozart fue un niño prodigio.", "Empezó a componer sus propias obras musicales a los cinco años.", "Viajó por toda Europa dando conciertos y sorprendiendo a las cortes.", "A pesar de su corta vida, dejó una obra musical inmensa y genial."],
+    ["Para leer música, utilizamos el pentagrama.", "Es un conjunto de cinco líneas y cuatro espacios.", "Al principio se coloca una clave, como la clave de sol.", "Las notas musicales se escriben sobre las líneas o en los espacios.", "Su posición indica si el sonido es más agudo o más grave."],
+    ["El rock and roll nació en Estados Unidos a mediados del siglo XX.", "Combinaba ritmos de otros estilos como el blues y el country.", "Se caracterizaba por su ritmo fuerte y el protagonismo de la guitarra eléctrica.", "Artistas como Elvis Presley lo hicieron popular en todo el mundo."],
+    ["El timbre es la cualidad que nos permite distinguir un sonido de otro.", "Gracias al timbre, diferenciamos la voz de una persona de la de otra.", "También nos permite distinguir el sonido de una flauta del de un piano.", "Cada instrumento y cada voz tiene un timbre único y característico."],
+    ["Una canción suele tener una estructura con diferentes partes.", "A menudo comienza con una introducción instrumental.", "Luego se alternan las estrofas, que tienen diferente letra.", "El estribillo es la parte que se repite con la misma letra y música.", "La canción puede terminar con una coda o final."],
+    ["Los instrumentos de percusión producen sonido al ser golpeados o agitados.", "Algunos, como el xilófono, pueden producir notas musicales definidas.", "Otros, como el tambor o los platillos, tienen un sonido de altura indeterminada.", "Son los encargados de marcar el ritmo en un conjunto musical."],
+    ["La ópera es una obra de teatro en la que los personajes cantan sus diálogos.", "Está acompañada por una orquesta sinfónica completa.", "Combina música, canto, poesía, artes escénicas y a veces danza.", "Se representa en un gran teatro con decorados espectaculares."]
+];
+
+const OrdenaLaHistoriaEso1Musica = () => {
+    const game = useOrdenaLaHistoriaGame(historias, true);
+    if (game.isTestMode) {
+        return <OrdenaLaHistoriaTestScreen game={game} />;
+    }
+    return <OrdenaLaHistoriaUI {...game} />;
+};
+
+export default OrdenaLaHistoriaEso1Musica;

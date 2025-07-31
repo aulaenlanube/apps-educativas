@@ -1,0 +1,28 @@
+// src/apps/ordena-la-historia/eso-4-historia/OrdenaLaHistoriaEso4Historia.jsx
+import React from 'react';
+import { useOrdenaLaHistoriaGame } from '@/hooks/useOrdenaLaHistoriaGame';
+import OrdenaLaHistoriaUI from '@/apps/_shared/OrdenaLaHistoriaUI';
+import OrdenaLaHistoriaTestScreen from '@/apps/_shared/OrdenaLaHistoriaTestScreen';
+
+const historias = [
+    ["El período de entreguerras (1919-1939) fue una época de gran inestabilidad.", "Tras la Primera Guerra Mundial, muchos países sufrieron una grave crisis económica.", "La crisis de 1929 en Estados Unidos, o Gran Depresión, afectó a todo el mundo.", "Este descontento social favoreció el ascenso de ideologías totalitarias.", "En Italia, Mussolini instauró el fascismo, y en Alemania, Hitler llegó al poder con el nazismo.", "Estas tensiones desembocaron finalmente en la Segunda Guerra Mundial."],
+    ["La Segunda Guerra Mundial fue el conflicto más mortífero de la historia.", "Comenzó en 1939 con la invasión de Polonia por parte de la Alemania nazi.", "Enfrentó a las potencias del Eje (Alemania, Italia, Japón) contra los Aliados (Reino Unido, Francia, URSS, EEUU).", "Uno de sus episodios más oscuros fue el Holocausto, el genocidio del pueblo judío.", "El conflicto terminó en 1945 con la victoria de los Aliados.", "Como consecuencia, se creó la ONU para intentar preservar la paz mundial."],
+    ["La Guerra Fría fue un enfrentamiento ideológico, político y económico tras la Segunda Guerra Mundial.", "Enfrentó a dos superpotencias: Estados Unidos (bloque capitalista) y la Unión Soviética (bloque comunista).", "Aunque no hubo un conflicto militar directo entre ambas, libraron 'guerras subsidiarias' en otros países.", "El mundo vivió bajo la amenaza constante de una guerra nuclear.", "La construcción del Muro de Berlín se convirtió en el símbolo de esta división.", "La Guerra Fría terminó con la caída del bloque comunista a finales de los años 80."],
+    ["El proceso de descolonización se aceleró después de 1945.", "Los grandes imperios coloniales europeos se debilitaron tras la guerra.", "En Asia y África surgieron movimientos nacionalistas que luchaban por la independencia.", "La India, liderada por Gandhi, logró su independencia del Reino Unido de forma pacífica.", "En otros lugares, como Argelia, la independencia se consiguió tras una dura guerra.", "La mayoría de los nuevos países se enfrentaron a grandes dificultades políticas y económicas."],
+    ["La Transición española es el período que va desde la muerte de Franco hasta la consolidación de la democracia.", "Tras la muerte del dictador en 1975, el rey Juan Carlos I fue proclamado jefe de Estado.", "Adolfo Suárez fue el presidente que lideró las principales reformas políticas.", "Se legalizaron los partidos políticos y se celebraron las primeras elecciones democráticas en 1977.", "El proceso culminó con la aprobación de la Constitución de 1978.", "Fue un proceso complejo, no exento de tensiones y violencia terrorista."],
+    ["La globalización es un fenómeno de interconexión a escala planetaria.", "Las nuevas tecnologías de la comunicación, como internet, han sido su principal motor.", "Las empresas multinacionales producen y venden sus productos en todo el mundo.", "Se ha producido una gran difusión de pautas culturales, principalmente occidentales.", "Aunque ha generado crecimiento económico, también ha aumentado las desigualdades.", "Problemas como el cambio climático también son globales y requieren soluciones conjuntas."],
+    ["La Constitución española de 1978 define a España como un Estado social y democrático de Derecho.", "Establece que la soberanía nacional reside en el pueblo español.", "Garantiza los derechos y libertades fundamentales de todos los ciudadanos.", "Organiza el territorio en municipios, provincias y comunidades autónomas.", "Define la monarquía parlamentaria como la forma política del Estado.", "Fue aprobada en referéndum por una amplia mayoría de los españoles."],
+    ["El franquismo fue la dictadura que gobernó España desde 1939 hasta 1975.", "Tras la Guerra Civil, el general Franco concentró todos los poderes del Estado.", "Se suprimieron los partidos políticos y los sindicatos, y se anularon las libertades.", "Durante los primeros años, el régimen aplicó una política de autarquía económica.", "La represión sobre los vencidos en la guerra fue muy dura y prolongada.", "El régimen se mantuvo aislado internacionalmente hasta la década de 1950."],
+    ["El arte del siglo XX rompió radicalmente con la tradición artística anterior.", "Surgieron las vanguardias, que buscaban la experimentación y la originalidad.", "El cubismo, con Picasso, descompuso la realidad en formas geométricas.", "El surrealismo, influido por el psicoanálisis, exploró el mundo de los sueños y el inconsciente.", "El arte abstracto renunció a representar la realidad visible.", "El artista ya no buscaba imitar la naturaleza, sino expresar su mundo interior."],
+    ["La Unión Europea ha pasado por un largo proceso de construcción.", "Sus orígenes se remontan a la Comunidad Europea del Carbón y del Acero en los años 50.", "El objetivo inicial era económico: crear un mercado común para evitar futuras guerras.", "Poco a poco, se fue ampliando con la incorporación de nuevos países.", "También ha ido asumiendo más competencias políticas y sociales.", "Se enfrenta a grandes retos como la gestión de la inmigración o el cambio climático."]
+];
+
+const OrdenaLaHistoriaEso4Historia = () => {
+    const game = useOrdenaLaHistoriaGame(historias, true);
+    if (game.isTestMode) {
+        return <OrdenaLaHistoriaTestScreen game={game} />;
+    }
+    return <OrdenaLaHistoriaUI {...game} />;
+};
+
+export default OrdenaLaHistoriaEso4Historia;
