@@ -1,15 +1,17 @@
 // src/pages/AppListPage.jsx
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+// Añade 'useLocation' a los imports
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { GraduationCap, ArrowLeft, Sparkles, Folder } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-// --- CORRECCIÓN: Importamos tanto las apps como las asignaturas ---
 import { esoApps, esoSubjects } from '@/apps/appList';
 
 const AppList = ({ apps, level, grade, subjectId }) => {
     const navigate = useNavigate();
+    // Obtén la ubicación actual
+    const location = useLocation();
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
@@ -20,7 +22,8 @@ const AppList = ({ apps, level, grade, subjectId }) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     className="bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-purple-100"
-                    onClick={() => navigate(`/curso/${level}/${grade}/app/${app.id}`)}
+                    // Modifica el onClick para pasar el estado
+                    onClick={() => navigate(`/curso/${level}/${grade}/app/${app.id}`, { state: { from: location.pathname } })}
                 >
                     <h3 className="text-xl font-bold text-gray-800 mb-2">{app.name}</h3>
                     <p className="text-gray-600">{app.description}</p>
@@ -30,14 +33,13 @@ const AppList = ({ apps, level, grade, subjectId }) => {
     );
 };
 
-
+// El resto del componente AppListPage.jsx no necesita cambios...
 const AppListPage = () => {
     const { level, grade, subjectId } = useParams();
     const navigate = useNavigate();
 
-    // --- CORRECCIÓN: Buscamos el nombre correcto de la asignatura en la lista ---
     const subjectInfo = esoSubjects[grade]?.find(s => s.id === subjectId);
-    const subjectName = subjectInfo ? subjectInfo.name : subjectId; // Usamos el nombre correcto o el id como fallback
+    const subjectName = subjectInfo ? subjectInfo.name : subjectId;
 
     const appsForSubject = esoApps[grade]?.[subjectId] || [];
     const fullTitle = `${subjectName} - ${grade}º ${level.toUpperCase()}`;
