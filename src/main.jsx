@@ -28,22 +28,26 @@ const router = createBrowserRouter(
               element: <HomePage />,
             },
             {
+              // Ruta para los cursos de Primaria (no tienen asignaturas)
               path: 'curso/primaria/:grade',
               element: <CoursePage />,
             },
             {
+              // Ruta para seleccionar la asignatura en ESO
               path: 'curso/eso/:grade',
               element: <SubjectPage />,
             },
             {
+              // Ruta para ver la lista de apps de una asignatura concreta
               path: 'curso/eso/:grade/:subjectId',
               element: <AppListPage />,
             }
           ],
         },
-        // --- RUTA ÚNICA Y CORREGIDA PARA EL RUNNER ---
+        // --- CORRECCIÓN CLAVE: RUTA ÚNICA PARA MOSTRAR CUALQUIER APP ---
         {
-          // Esta ruta ahora es la única para todas las apps
+          // Esta ruta ahora gestiona todas las apps, tanto de Primaria como de ESO.
+          // Para Primaria, ':subjectId' será siempre "general".
           path: '/curso/:level/:grade/:subjectId/app/:appId',
           element: <AppRunnerPage />,
         },

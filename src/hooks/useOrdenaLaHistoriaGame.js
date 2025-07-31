@@ -2,13 +2,13 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
 const TOTAL_TEST_STORIES = 5;
-const FONT_STYLES = ['default', 'cursive', 'uppercase']; // Opciones de tipografía
+const FONT_STYLES = ['default', 'cursive', 'uppercase'];
 
 export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     const [historiaCorrecta, setHistoriaCorrecta] = useState([]);
     const [frasesDesordenadas, setFrasesDesordenadas] = useState([]);
     const [feedback, setFeedback] = useState({ texto: '', clase: '' });
-    const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]); // Estado para la tipografía
+    const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
     const draggedItem = useRef(null);
     const dropZoneRef = useRef(null);
     const draggedCloneRef = useRef(null);
@@ -35,6 +35,14 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
 
     const cargarSiguienteHistoria = useCallback(() => {
         setFeedback({ texto: '', clase: '' });
+        
+        // --- CORRECCIÓN CLAVE: Comprobar si ya hay historias cargadas ---
+        if (!historias || historias.length === 0) {
+            setHistoriaCorrecta([]);
+            setFrasesDesordenadas([]);
+            return;
+        }
+
         setHistoriaCorrecta(prevHistoriaCorrecta => {
             let nuevaHistoria;
             const prevHistoriaText = prevHistoriaCorrecta.map(f => f.texto.toLowerCase());
@@ -54,6 +62,8 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
         }
     }, [isTestMode, fontStyle, cargarSiguienteHistoria]);
 
+    // El resto del hook (startTest, handleNextStory, handleDrop, etc.) permanece igual.
+    // ... (resto del código del hook que ya te pasé anteriormente)
     const startTest = () => {
         const selected = [...new Set(historias.map(h => JSON.stringify(h)))].map(s => JSON.parse(s));
         const questions = selected.sort(() => 0.5 - Math.random()).slice(0, TOTAL_TEST_STORIES);

@@ -10,8 +10,7 @@ const AppRunnerPage = () => {
     const { level, grade, subjectId, appId } = useParams();
     const navigate = useNavigate();
 
-    // --- CORRECCIÓN FINAL Y DEFINITIVA ---
-    // Se corrige el orden de los parámetros 'appId' y 'subjectId'
+    // --- CORRECCIÓN CLAVE: El orden de los parámetros era incorrecto ---
     const result = findAppById(level, grade, appId, subjectId);
 
     if (!result) {

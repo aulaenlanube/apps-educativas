@@ -11,6 +11,12 @@ const OrdenaLaFraseJuego = () => {
     const [frases, setFrases] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    // --- CORRECCIÓN CLAVE: Mover la llamada al Hook al principio ---
+    // Así nos aseguramos de que el número de Hooks no cambie entre renders.
+    // Le pasamos un array vacío '[]' mientras carga los datos para que no falle.
+    const conTemporizador = (level === 'primaria' && grade >= 3) || level === 'eso';
+    const game = useOrdenaLaFraseGame(frases || [], conTemporizador);
+
     useEffect(() => {
         const cargarContenido = async () => {
             setIsLoading(true);
@@ -22,8 +28,8 @@ const OrdenaLaFraseJuego = () => {
         cargarContenido();
     }, [level, grade, subjectId]);
 
-    const conTemporizador = (level === 'primaria' && grade >= 3) || level === 'eso';
 
+    // Ahora estos returns condicionales ya no son un problema
     if (isLoading) {
         return <div className="text-center p-10 font-bold">Cargando juego...</div>;
     }
@@ -31,8 +37,6 @@ const OrdenaLaFraseJuego = () => {
     if (!frases || frases.length === 0) {
         return <div className="text-center p-10 font-bold text-orange-600">No hay contenido disponible para este juego todavía.</div>;
     }
-
-    const game = useOrdenaLaFraseGame(frases, conTemporizador);
 
     if (game.isTestMode) {
         return <OrdenaLaFraseTestScreen game={game} />;

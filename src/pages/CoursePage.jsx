@@ -30,7 +30,7 @@ const AppList = ({ apps, level, grade }) => {
     );
 };
 
-// El resto del componente CoursePage se queda exactamente igual
+// El resto del componente no necesita cambios
 const CoursePage = () => {
   const { grade } = useParams();
   const navigate = useNavigate();

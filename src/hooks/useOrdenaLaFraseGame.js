@@ -31,6 +31,15 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
 
     const startPracticeMission = useCallback(() => {
         setFeedback({ texto: '', clase: '' });
+        
+        // --- CORRECCIÓN CLAVE: Comprobar si ya hay frases cargadas ---
+        if (!frases || frases.length === 0) {
+            setPalabrasOrigen([]);
+            setPalabrasDestino([]);
+            setMision({ texto: '', solucion: '' });
+            return;
+        }
+
         setMision(prevMision => {
             let nuevaFrase;
             do {

@@ -19,7 +19,6 @@ const AppList = ({ apps, level, grade, subjectId }) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     className="bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-purple-100"
-                    // CORRECCIÓN: La URL para lanzar una app de ESO necesita el subjectId
                     onClick={() => navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`)}
                 >
                     <h3 className="text-xl font-bold text-gray-800 mb-2">{app.name}</h3>
@@ -32,14 +31,18 @@ const AppList = ({ apps, level, grade, subjectId }) => {
 
 
 const AppListPage = () => {
-    const { level, grade, subjectId } = useParams();
+    // --- CORRECCIÓN CLAVE ---
+    // La variable 'level' no viene de la URL en esta página.
+    // La extraemos de los parámetros y la definimos estáticamente como 'eso'.
+    const { grade, subjectId } = useParams();
+    const level = 'eso';
     const navigate = useNavigate();
 
-    // CORRECCIÓN: Usamos 'nombre' para obtener el título
     const subjectInfo = esoSubjects[grade]?.find(s => s.id === subjectId);
     const subjectName = subjectInfo ? subjectInfo.nombre : subjectId;
 
     const appsForSubject = esoApps[grade]?.[subjectId] || [];
+    // Ahora 'level.toUpperCase()' funcionará correctamente.
     const fullTitle = `${subjectName} - ${grade}º ${level.toUpperCase()}`;
 
     return (
@@ -47,7 +50,6 @@ const AppListPage = () => {
             <Helmet>
                 <title>{`Apps de ${fullTitle} - EduApps`}</title>
             </Helmet>
-            {/* El resto del componente se queda igual que lo tenías */}
             <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
                 <header className="bg-white/80 backdrop-blur-md shadow-lg border-b border-purple-100 sticky top-0 z-50">
                   <div className="container mx-auto px-6 py-4">
@@ -61,7 +63,8 @@ const AppListPage = () => {
                            <p className="text-sm text-gray-600">Apps Educativas</p>
                          </div>
                        </div>
-                       <Button onClick={() => navigate(`/curso/${level}/${grade}`)} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+                       {/* CAMBIO: La ruta de vuelta ahora incluye el nivel 'eso' */}
+                       <Button onClick={() => navigate(`/curso/eso/${grade}`)} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
                          <ArrowLeft className="mr-2 h-4 w-4" /> Volver a Asignaturas
                        </Button>
                      </div>

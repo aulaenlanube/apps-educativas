@@ -28,14 +28,61 @@ export const primariaApps = {
 // ASIGNATURAS Y APPS DE LA ESO
 export const esoSubjects = materiasData.eso;
 
+// --- CORRECCIÓN FINAL: Añadir "appOrdenaLaHistoria" a las asignaturas de la ESO ---
 export const esoApps = {
-    '1': { 'lengua': [appOrdenaLaFrase], 'matematicas': [appOrdenaLaFrase], 'historia': [appOrdenaLaFrase], 'ingles': [appOrdenaLaFrase], 'biologia': [appOrdenaLaFrase], 'fisica': [appOrdenaLaFrase], 'musica': [appOrdenaLaFrase], 'plastica': [appOrdenaLaFrase], 'tecnologia': [appOrdenaLaFrase], 'ed-fisica': [appOrdenaLaFrase], 'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase] },
-    '2': { 'lengua': [appOrdenaLaFrase], 'matematicas': [appOrdenaLaFrase], 'historia': [appOrdenaLaFrase], 'ingles': [appOrdenaLaFrase], 'fisica': [appOrdenaLaFrase], 'musica': [appOrdenaLaFrase], 'tecnologia': [appOrdenaLaFrase], 'ed-fisica': [appOrdenaLaFrase], 'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase] },
-    '3': { 'lengua': [appOrdenaLaFrase], 'matematicas': [appOrdenaLaFrase], 'historia': [appOrdenaLaFrase], 'ingles': [appOrdenaLaFrase], 'biologia': [appOrdenaLaFrase], 'fisica': [appOrdenaLaFrase], 'tecnologia': [appOrdenaLaFrase], 'ed-fisica': [appOrdenaLaFrase], 'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase] },
-    '4': { 'lengua': [appOrdenaLaFrase], 'matematicas': [appOrdenaLaFrase], 'historia': [appOrdenaLaFrase], 'ingles': [appOrdenaLaFrase], 'ed-fisica': [appOrdenaLaFrase], 'biologia': [appOrdenaLaFrase], 'fisica': [appOrdenaLaFrase], 'latin': [appOrdenaLaFrase], 'economia': [appOrdenaLaFrase], 'tecnologia': [appOrdenaLaFrase], 'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase] }
+    '1': {
+        'lengua': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'matematicas': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'historia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'ingles': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'biologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'musica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'plastica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'ed-fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
+    },
+    '2': {
+        'lengua': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'matematicas': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'historia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'ingles': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'biologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'musica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'plastica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'ed-fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
+    },
+    '3': {
+        'lengua': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'matematicas': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'historia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'ingles': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'biologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'ed-fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
+    },
+    '4': {
+        'lengua': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'matematicas': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'historia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'ingles': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'ed-fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'biologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'latin': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'economia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
+    }
 };
 
-// FUNCIÓN DE BÚSQUEDA CORREGIDA
+
 export const findAppById = (level, grade, appId, subjectId = 'general') => {
     let appCollection;
     if (level === 'primaria') {

@@ -10,6 +10,10 @@ const OrdenaLaHistoriaJuego = () => {
     const { level, grade, subjectId } = useParams();
     const [historias, setHistorias] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    
+    // --- CORRECCIÓN CLAVE: Mover la llamada al Hook al principio ---
+    const conTemporizador = grade >= 3;
+    const game = useOrdenaLaHistoriaGame(historias || [], conTemporizador);
 
     useEffect(() => {
         const cargarContenido = async () => {
@@ -22,8 +26,6 @@ const OrdenaLaHistoriaJuego = () => {
         cargarContenido();
     }, [level, grade, subjectId]);
 
-    const conTemporizador = grade >= 3;
-
     if (isLoading) {
         return <div className="text-center p-10 font-bold">Cargando juego...</div>;
     }
@@ -31,8 +33,6 @@ const OrdenaLaHistoriaJuego = () => {
     if (!historias || historias.length === 0) {
         return <div className="text-center p-10 font-bold text-orange-600">No hay contenido disponible para este juego todavía.</div>;
     }
-
-    const game = useOrdenaLaHistoriaGame(historias, conTemporizador);
 
     if (game.isTestMode) {
         return <OrdenaLaHistoriaTestScreen game={game} />;
