@@ -1,0 +1,58 @@
+// src/apps/ordena-la-frase-eso-4-tutoria/OrdenaLaFraseEso4Tutoria.jsx
+import React from 'react';
+import { useOrdenaLaFraseGame } from '@/hooks/useOrdenaLaFraseGame';
+import OrdenaLaFraseUI from '@/apps/_shared/OrdenaLaFraseUI';
+import OrdenaLaFraseTestScreen from '@/apps/_shared/OrdenaLaFraseTestScreen';
+
+const frases = [
+    "La orientación académica y profesional nos ayuda a tomar decisiones sobre nuestro futuro.",
+    "El Bachillerato y la Formación Profesional son dos itinerarios posibles tras la ESO.",
+    "Es importante conocer nuestras habilidades, intereses y valores para elegir bien.",
+    "El autoconocimiento es el primer paso para construir un proyecto de vida.",
+    "La toma de decisiones responsable implica analizar las opciones y sus consecuencias.",
+    "El mercado laboral está en constante cambio debido a la tecnología.",
+    "Las habilidades blandas, como la comunicación o el trabajo en equipo, son muy valoradas.",
+    "La inteligencia emocional es clave para el éxito personal y profesional.",
+    "La gestión del tiempo es fundamental para compaginar estudios, ocio y responsabilidades.",
+    "La prevención de riesgos en internet y redes sociales es crucial.",
+    "La identidad digital es la huella que dejamos con nuestra actividad en la red.",
+    "El pensamiento crítico nos permite evaluar la información de forma objetiva.",
+    "La resolución de conflictos de manera constructiva mejora la convivencia.",
+    "La participación ciudadana es un pilar de la sociedad democrática.",
+    "La educación para la igualdad de género busca eliminar estereotipos y discriminación.",
+    "Promover un estilo de vida saludable previene problemas de salud futuros.",
+    "La gestión de la ansiedad ante los exámenes es una habilidad que se puede aprender.",
+    "Establecer metas a corto, medio y largo plazo nos ayuda a mantener la motivación.",
+    "El voluntariado es una experiencia enriquecedora que aporta a la comunidad.",
+    "La empatía nos permite conectar con los demás y comprender sus perspectivas.",
+    "El currículum vitae es el documento que resume nuestra formación y experiencia.",
+    "La entrevista de trabajo es una oportunidad para demostrar nuestras capacidades.",
+    "El emprendimiento es la iniciativa de desarrollar un proyecto o negocio propio.",
+    "La educación financiera nos enseña a administrar nuestro dinero de forma responsable.",
+    "El consumo responsable tiene en cuenta el impacto social y medioambiental.",
+    "La asertividad es la habilidad de expresar nuestras opiniones y sentimientos con respeto.",
+    "Aprender a manejar la frustración nos hace más resilientes.",
+    "La colaboración y el trabajo en equipo son competencias esenciales.",
+    "La diversidad en el aula y en la sociedad es una fuente de riqueza.",
+    "La mediación es un proceso voluntario para que las partes en conflicto lleguen a un acuerdo.",
+    "La prevención del acoso escolar es una responsabilidad de toda la comunidad educativa.",
+    "Las técnicas de estudio eficaces pueden mejorar nuestro rendimiento académico.",
+    "La vocación es la inclinación o interés que una persona siente hacia una profesión.",
+    "El aprendizaje permanente es necesario para adaptarse a un mundo cambiante.",
+    "La solidaridad es un valor que nos impulsa a ayudar a los demás.",
+    "El debate y la argumentación nos ayudan a defender nuestras ideas con fundamento.",
+    "La protección del medio ambiente es un reto global que nos concierne a todos.",
+    "La Constitución garantiza los derechos y libertades fundamentales de los ciudadanos.",
+    "El pensamiento creativo nos permite encontrar soluciones innovadoras a los problemas.",
+    "La transición a la vida adulta implica asumir nuevas responsabilidades."
+];
+
+const OrdenaLaFraseEso4Tutoria = () => {
+    const game = useOrdenaLaFraseGame(frases, true);
+    if (game.isTestMode) {
+        return <OrdenaLaFraseTestScreen game={game} />;
+    }
+    return <OrdenaLaFraseUI {...game} />;
+};
+
+export default OrdenaLaFraseEso4Tutoria;

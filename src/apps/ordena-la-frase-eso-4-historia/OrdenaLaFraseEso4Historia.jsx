@@ -1,0 +1,58 @@
+// src/apps/ordena-la-frase-eso-4-historia/OrdenaLaFraseEso4Historia.jsx
+import React from 'react';
+import { useOrdenaLaFraseGame } from '@/hooks/useOrdenaLaFraseGame';
+import OrdenaLaFraseUI from '@/apps/_shared/OrdenaLaFraseUI';
+import OrdenaLaFraseTestScreen from '@/apps/_shared/OrdenaLaFraseTestScreen';
+
+const frases = [
+    "El imperialismo del siglo XIX llevó al reparto colonial de África y Asia.",
+    "La Primera Guerra Mundial (1914-1918) fue un conflicto de una escala sin precedentes.",
+    "La Revolución Rusa de 1917 dio lugar al primer estado comunista del mundo.",
+    "El período de entreguerras se caracterizó por la crisis económica y el ascenso de los totalitarismos.",
+    "La Segunda Guerra Mundial (1939-1945) enfrentó a las potencias del Eje y los Aliados.",
+    "El Holocausto fue el exterminio sistemático de millones de personas por el régimen nazi.",
+    "La Guerra Fría fue un enfrentamiento ideológico entre Estados Unidos y la Unión Soviética.",
+    "La descolonización fue el proceso de independencia de las antiguas colonias europeas.",
+    "La caída del Muro de Berlín en 1989 simbolizó el colapso del bloque comunista.",
+    "La globalización es un proceso de interconexión económica, política y cultural a escala mundial.",
+    "La dictadura de Franco en España duró desde 1939 hasta 1975.",
+    "La Transición española fue el proceso de paso de la dictadura a la democracia.",
+    "La Constitución de 1978 es la norma fundamental del ordenamiento jurídico español.",
+    "El Estado de las Autonomías organiza territorialmente a España en comunidades autónomas.",
+    "La Unión Europea es un proyecto de integración política y económica.",
+    "El sector terciario o de servicios es el dominante en las economías desarrolladas.",
+    "El desarrollo sostenible busca satisfacer las necesidades presentes sin comprometer el futuro.",
+    "Los desequilibrios territoriales son las diferencias de desarrollo entre unas zonas y otras.",
+    "El arte del siglo XX se caracteriza por la ruptura con la tradición y la experimentación.",
+    "Las vanguardias, como el cubismo o el surrealismo, revolucionaron el concepto de arte.",
+    "La 'paz armada' fue el período de tensiones y rearme previo a la Primera Guerra Mundial.",
+    "La crisis del petróleo de 1973 tuvo un gran impacto en la economía mundial.",
+    "La ONU fue creada tras la Segunda Guerra Mundial para mantener la paz internacional.",
+    "El Plan Marshall fue un programa de ayuda de Estados Unidos para reconstruir Europa.",
+    "La 'caza de brujas' del macartismo persiguió a sospechosos de comunismo en Estados Unidos.",
+    "La Guerra de Vietnam fue un conflicto prolongado y muy controvertido.",
+    "El Apartheid fue un sistema de segregación racial en Sudáfrica.",
+    "La autarquía fue la política económica del primer franquismo basada en el autoabastecimiento.",
+    "El terrorismo de ETA fue una grave amenaza para la democracia española.",
+    "El ingreso de España en la Comunidad Económica Europea se produjo en 1986.",
+    "La globalización es impulsada por el avance de las tecnologías de la información.",
+    "Las empresas multinacionales tienen un papel muy importante en la economía global.",
+    "El cambio climático es uno de los mayores desafíos a los que se enfrenta la humanidad.",
+    "La pirámide de población muestra la estructura por edad y sexo de una población.",
+    "El envejecimiento de la población es una característica de los países desarrollados.",
+    "Los movimientos migratorios son desplazamientos de población de larga duración.",
+    "La Declaración Universal de los Derechos Humanos fue proclamada en 1948.",
+    "La arquitectura funcionalista del siglo XX prioriza la función sobre la forma.",
+    "Picasso es uno de los artistas más influyentes de la historia del arte moderno.",
+    "La Guerra Civil Española (1936-1939) dividió al país en dos bandos."
+];
+
+const OrdenaLaFraseEso4Historia = () => {
+    const game = useOrdenaLaFraseGame(frases, true);
+    if (game.isTestMode) {
+        return <OrdenaLaFraseTestScreen game={game} />;
+    }
+    return <OrdenaLaFraseUI {...game} />;
+};
+
+export default OrdenaLaFraseEso4Historia;

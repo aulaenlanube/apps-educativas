@@ -1,0 +1,58 @@
+// src/apps/ordena-la-frase-eso-4-latin/OrdenaLaFraseEso4Latin.jsx
+import React from 'react';
+import { useOrdenaLaFraseGame } from '@/hooks/useOrdenaLaFraseGame';
+import OrdenaLaFraseUI from '@/apps/_shared/OrdenaLaFraseUI';
+import OrdenaLaFraseTestScreen from '@/apps/_shared/OrdenaLaFraseTestScreen';
+
+const frases = [
+    "El latín es la lengua de la que proceden las lenguas romances.",
+    "La primera declinación latina agrupa principalmente sustantivos femeninos.",
+    "El caso nominativo indica el sujeto de la oración.",
+    "El acusativo es el caso del complemento directo.",
+    "El verbo 'sum' es el verbo copulativo 'ser' o 'estar' en latín.",
+    "La primera conjugación verbal tiene como tema la vocal 'a'.",
+    "Julio César fue un general y político romano muy importante.",
+    "El Imperio Romano extendió su dominio por todo el mar Mediterráneo.",
+    "El Coliseo de Roma era un anfiteatro para espectáculos públicos.",
+    "Los acueductos romanos transportaban agua a las ciudades.",
+    "La mitología romana adoptó muchos dioses de la mitología griega.",
+    "Júpiter era el padre de los dioses y los hombres.",
+    "El ablativo es el caso que expresa complementos circunstanciales.",
+    "Los adjetivos en latín deben concordar en género, número y caso con el sustantivo.",
+    "El pretérito perfecto de indicativo expresa una acción pasada y terminada.",
+    "Virgilio fue el autor de la 'Eneida', el gran poema épico romano.",
+    "Las calzadas romanas eran una red de carreteras que conectaba el imperio.",
+    "El Foro era el centro de la vida pública en la antigua Roma.",
+    "Los gladiadores luchaban entre sí o contra fieras para entretener al público.",
+    "El panteón de Agripa es un templo romano famoso por su gran cúpula.",
+    "El genitivo es el caso que indica posesión o pertenencia.",
+    "El dativo funciona generalmente como complemento indirecto.",
+    "El presente de indicativo se utiliza para expresar acciones actuales.",
+    "El imperativo se usa para dar órdenes o mandatos.",
+    "Cicerón fue un célebre orador y político de la República romana.",
+    "La caída del Imperio Romano de Occidente ocurrió en el año 476.",
+    "El latín vulgar fue la variedad hablada por el pueblo y los soldados.",
+    "Las termas eran baños públicos y un lugar de reunión social.",
+    "El dios Marte era el dios de la guerra en la mitología romana.",
+    "Venus era la diosa del amor, la belleza y la fertilidad.",
+    "El vocativo es el caso que se utiliza para llamar a alguien.",
+    "La tercera declinación es la más compleja y variada del latín.",
+    "El futuro imperfecto expresa una acción que ocurrirá en el futuro.",
+    "Ovidio escribió 'Las Metamorfosis', una colección de mitos.",
+    "El teatro romano se inspiró en el teatro griego.",
+    "El derecho romano es la base de muchos sistemas legales actuales.",
+    "La expresión 'Carpe Diem' significa 'aprovecha el momento'.",
+    "El Senado era una de las instituciones políticas más importantes de Roma.",
+    "Neptuno era el dios romano de los mares y los océanos.",
+    "La expresión 'Alea iacta est' significa 'la suerte está echada'."
+];
+
+const OrdenaLaFraseEso4Latin = () => {
+    const game = useOrdenaLaFraseGame(frases, true);
+    if (game.isTestMode) {
+        return <OrdenaLaFraseTestScreen game={game} />;
+    }
+    return <OrdenaLaFraseUI {...game} />;
+};
+
+export default OrdenaLaFraseEso4Latin;

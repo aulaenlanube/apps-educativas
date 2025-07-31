@@ -1,0 +1,58 @@
+// src/apps/ordena-la-frase-eso-4-tecnologia/OrdenaLaFraseEso4Tecnologia.jsx
+import React from 'react';
+import { useOrdenaLaFraseGame } from '@/hooks/useOrdenaLaFraseGame';
+import OrdenaLaFraseUI from '@/apps/_shared/OrdenaLaFraseUI';
+import OrdenaLaFraseTestScreen from '@/apps/_shared/OrdenaLaFraseTestScreen';
+
+const frases = [
+    "La neumática utiliza aire comprimido como medio para transmitir energía.",
+    "Un cilindro es un actuador neumático que produce un movimiento lineal.",
+    "La hidráulica emplea fluidos incompresibles, como el aceite, para transmitir grandes fuerzas.",
+    "La electrónica digital se basa en el sistema de numeración binario.",
+    "Las puertas lógicas como AND, OR y NOT son los componentes básicos de los circuitos digitales.",
+    "Un microcontrolador es un circuito integrado programable capaz de ejecutar órdenes.",
+    "La plataforma Arduino es muy popular para iniciarse en la programación de microcontroladores.",
+    "La robótica es la rama de la tecnología que se ocupa del diseño y construcción de robots.",
+    "Los sensores permiten a un robot percibir e interactuar con su entorno físico.",
+    "Los actuadores, como los motores, son los elementos que generan el movimiento en un robot.",
+    "La programación de un robot consiste en escribir las instrucciones que debe seguir.",
+    "Internet es una red global descentralizada de ordenadores.",
+    "El protocolo TCP/IP es el estándar de comunicación fundamental en Internet.",
+    "Una página web se escribe utilizando el lenguaje de marcado HTML.",
+    "CSS es el lenguaje que se utiliza para definir el estilo y la presentación de una página web.",
+    "JavaScript es un lenguaje de programación que añade interactividad a las páginas web.",
+    "El diseño asistido por ordenador (CAD) permite crear modelos 2D y 3D de objetos.",
+    "La impresión 3D es una tecnología de fabricación aditiva que crea objetos capa por capa.",
+    "Un sistema de control de lazo abierto no tiene en cuenta la salida para modificar la acción.",
+    "Un sistema de control de lazo cerrado utiliza la retroalimentación para ajustar su funcionamiento.",
+    "Una válvula distribuidora dirige el flujo de aire en un circuito neumático.",
+    "El álgebra de Boole es la base matemática de la electrónica digital.",
+    "Un codificador convierte la información de un formato a otro.",
+    "La memoria de un ordenador puede ser de tipo RAM o ROM.",
+    "Un servomotor es un tipo de motor que permite controlar la posición angular.",
+    "Los lenguajes de programación de alto nivel son más cercanos al lenguaje humano.",
+    "Una red de área local (LAN) conecta dispositivos en un área geográfica limitada.",
+    "Un router es un dispositivo que conecta diferentes redes informáticas.",
+    "La dirección MAC es un identificador único para la tarjeta de red de un dispositivo.",
+    "La realidad virtual crea entornos de escenas u objetos de apariencia real.",
+    "La inteligencia artificial es el campo que busca crear máquinas con capacidades humanas.",
+    "Las energías renovables son una alternativa sostenible a los combustibles fósiles.",
+    "La energía solar térmica aprovecha el calor del sol para calentar agua.",
+    "Un aerogenerador convierte la energía cinética del viento en energía eléctrica.",
+    "La domótica es la automatización y el control inteligente de la vivienda.",
+    "Un transistor funciona como un interruptor o amplificador electrónico.",
+    "La obsolescencia programada es la planificación de la vida útil de un producto.",
+    "El dibujo técnico utiliza normas y convenciones para representar objetos de forma precisa.",
+    "La normalización establece reglas para unificar criterios en el dibujo técnico.",
+    "La propiedad intelectual protege las creaciones de la mente, como las invenciones o el software."
+];
+
+const OrdenaLaFraseEso4Tecnologia = () => {
+    const game = useOrdenaLaFraseGame(frases, true);
+    if (game.isTestMode) {
+        return <OrdenaLaFraseTestScreen game={game} />;
+    }
+    return <OrdenaLaFraseUI {...game} />;
+};
+
+export default OrdenaLaFraseEso4Tecnologia;

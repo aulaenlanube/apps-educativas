@@ -1,0 +1,58 @@
+// src/apps/ordena-la-frase-eso-2-matematicas/OrdenaLaFraseEso2Mates.jsx
+import React from 'react';
+import { useOrdenaLaFraseGame } from '@/hooks/useOrdenaLaFraseGame';
+import OrdenaLaFraseUI from '@/apps/_shared/OrdenaLaFraseUI';
+import OrdenaLaFraseTestScreen from '@/apps/_shared/OrdenaLaFraseTestScreen';
+
+const frases = [
+    "Los números enteros incluyen los positivos, los negativos y el cero.",
+    "La regla de los signos se aplica en la multiplicación de números enteros.",
+    "Una fracción representa el cociente de dos números enteros.",
+    "Para sumar fracciones, deben tener un denominador común.",
+    "La proporcionalidad directa ocurre cuando dos magnitudes aumentan juntas.",
+    "El lenguaje algebraico utiliza letras para representar números desconocidos.",
+    "Una ecuación es una igualdad que contiene una o más incógnitas.",
+    "Resolver una ecuación es encontrar el valor de la incógnita.",
+    "El teorema de Pitágoras se aplica a los triángulos rectángulos.",
+    "La suma de los ángulos de cualquier triángulo es siempre 180 grados.",
+    "El área de un círculo se calcula multiplicando pi por el radio al cuadrado.",
+    "Los polígonos se clasifican según su número de lados.",
+    "Un prisma es un cuerpo geométrico con dos bases iguales y paralelas.",
+    "El volumen de un cubo se calcula elevando la arista al cubo.",
+    "La media aritmética es la suma de los datos dividida por el total.",
+    "La moda es el valor que aparece con mayor frecuencia en un conjunto de datos.",
+    "La probabilidad de un suceso imposible es cero.",
+    "El máximo común divisor es el mayor de los divisores comunes.",
+    "Un número primo solo es divisible por uno y por sí mismo.",
+    "La raíz cuadrada de un número es otro número que, multiplicado por sí mismo, da el primero.",
+    "Las potencias de base diez se usan para expresar números muy grandes.",
+    "Un monomio es una expresión algebraica con un solo término.",
+    "El grado de un polinomio es el mayor de los grados de sus monomios.",
+    "Las bisectrices de un triángulo se cortan en un punto llamado incentro.",
+    "La longitud de la circunferencia es dos veces pi por el radio.",
+    "Los cuerpos de revolución se generan al girar una figura plana.",
+    "Un cilindro se genera al girar un rectángulo alrededor de un lado.",
+    "La frecuencia absoluta es el número de veces que se repite un dato.",
+    "Un diagrama de barras representa datos usando rectángulos.",
+    "La regla de Laplace se usa para calcular probabilidades sencillas.",
+    "Dos rectas son secantes si se cortan en un único punto.",
+    "Un ángulo complementario suma 90 grados con otro.",
+    "La mediatriz de un segmento es la recta perpendicular que pasa por su punto medio.",
+    "El sistema de coordenadas cartesianas se usa para localizar puntos.",
+    "Una función relaciona dos magnitudes numéricas.",
+    "El porcentaje es una forma de expresar una parte de un total de cien.",
+    "El interés simple se calcula sobre el capital inicial.",
+    "La notación científica simplifica la escritura de números muy grandes o pequeños.",
+    "El perímetro de un polígono es la suma de las longitudes de sus lados.",
+    "La simetría axial se produce respecto a una recta llamada eje."
+];
+
+const OrdenaLaFraseEso2Mates = () => {
+    const game = useOrdenaLaFraseGame(frases, true);
+    if (game.isTestMode) {
+        return <OrdenaLaFraseTestScreen game={game} />;
+    }
+    return <OrdenaLaFraseUI {...game} />;
+};
+
+export default OrdenaLaFraseEso2Mates;
