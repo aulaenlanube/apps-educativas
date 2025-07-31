@@ -4,24 +4,23 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { findAppById } from '@/apps/appList';
-import { esoSubjects } from '@/apps/appList'; // Importamos las asignaturas para obtener el nombre
+import { findAppById, esoSubjects } from '@/apps/appList';
 
 const AppRunnerPage = () => {
     const { level, grade, subjectId, appId } = useParams();
     const navigate = useNavigate();
 
-    // Llamamos a la nueva función con todos los parámetros de la URL
-    const result = findAppById(level, grade, subjectId, appId);
+    // --- CORRECCIÓN FINAL Y DEFINITIVA ---
+    // Se corrige el orden de los parámetros 'appId' y 'subjectId'
+    const result = findAppById(level, grade, appId, subjectId);
 
     if (!result) {
-        return <div>App no encontrada</div>;
+        return <div className="p-10 text-center font-bold text-red-600">App no encontrada. Revisa la configuración.</div>;
     }
 
     const { app } = result;
     const AppToRender = app.component;
 
-    // Lógica mejorada para el botón "Volver"
     const getBackPath = () => {
         if (level === 'eso') {
             return `/curso/eso/${grade}/${subjectId}`;
@@ -29,7 +28,6 @@ const AppRunnerPage = () => {
         return `/curso/primaria/${grade}`;
     };
     
-    // Lógica para obtener el texto del botón y el título
     const getBreadcrumbText = () => {
         if (level === 'primaria') {
             return `Volver a ${grade}º Primaria`;
@@ -38,7 +36,6 @@ const AppRunnerPage = () => {
         return `Volver a ${subjectInfo?.nombre || 'la asignatura'}`;
     }
 
-    // El fondo para la Isla de la Calma
     const backgroundClass = app.id === 'isla-de-la-calma'
         ? 'bg-[#f0f7f8]'
         : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50';

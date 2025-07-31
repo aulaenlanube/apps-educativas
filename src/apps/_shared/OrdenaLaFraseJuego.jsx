@@ -9,24 +9,27 @@ import { getFrases } from '@/data/api';
 const OrdenaLaFraseJuego = () => {
     const { level, grade, subjectId } = useParams();
     const [frases, setFrases] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Este efecto se encarga de cargar las frases necesarias desde la API
     useEffect(() => {
         const cargarContenido = async () => {
-            // Para primaria, el subjectId no está en la URL, así que lo ponemos a 'general'
+            setIsLoading(true);
             const asignatura = level === 'primaria' ? 'general' : subjectId;
             const frasesData = await getFrases(level, grade, asignatura);
             setFrases(frasesData);
+            setIsLoading(false);
         };
         cargarContenido();
     }, [level, grade, subjectId]);
 
-    // Lógica para determinar si el juego lleva temporizador
     const conTemporizador = (level === 'primaria' && grade >= 3) || level === 'eso';
 
-    // Mientras las frases no se hayan cargado, mostramos un mensaje
-    if (!frases) {
-        return <div className="text-center p-10">Cargando juego...</div>;
+    if (isLoading) {
+        return <div className="text-center p-10 font-bold">Cargando juego...</div>;
+    }
+
+    if (!frases || frases.length === 0) {
+        return <div className="text-center p-10 font-bold text-orange-600">No hay contenido disponible para este juego todavía.</div>;
     }
 
     const game = useOrdenaLaFraseGame(frases, conTemporizador);

@@ -41,15 +41,10 @@ const router = createBrowserRouter(
             }
           ],
         },
-        // --- RUTAS CORREGIDAS PARA EL RUNNER ---
+        // --- RUTA ÚNICA Y CORREGIDA PARA EL RUNNER ---
         {
-          // Ruta para Primaria (level y grade)
-          path: '/curso/primaria/:grade/app/:appId',
-          element: <AppRunnerPage />,
-        },
-        {
-          // Ruta para ESO (level, grade y subjectId)
-          path: '/curso/eso/:grade/:subjectId/app/:appId',
+          // Esta ruta ahora es la única para todas las apps
+          path: '/curso/:level/:grade/:subjectId/app/:appId',
           element: <AppRunnerPage />,
         },
       ],

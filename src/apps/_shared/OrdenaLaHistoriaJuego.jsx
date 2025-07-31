@@ -7,21 +7,29 @@ import OrdenaLaHistoriaTestScreen from '@/apps/_shared/OrdenaLaHistoriaTestScree
 import { getHistorias } from '@/data/api';
 
 const OrdenaLaHistoriaJuego = () => {
-    const { level, grade } = useParams();
+    const { level, grade, subjectId } = useParams();
     const [historias, setHistorias] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const cargarContenido = async () => {
-            const historiasData = await getHistorias(level, grade, 'general');
+            setIsLoading(true);
+            const asignatura = level === 'primaria' ? 'general' : subjectId;
+            const historiasData = await getHistorias(level, grade, asignatura);
             setHistorias(historiasData);
+            setIsLoading(false);
         };
         cargarContenido();
-    }, [level, grade]);
+    }, [level, grade, subjectId]);
 
     const conTemporizador = grade >= 3;
 
-    if (!historias) {
-        return <div className="text-center p-10">Cargando juego...</div>;
+    if (isLoading) {
+        return <div className="text-center p-10 font-bold">Cargando juego...</div>;
+    }
+
+    if (!historias || historias.length === 0) {
+        return <div className="text-center p-10 font-bold text-orange-600">No hay contenido disponible para este juego todavía.</div>;
     }
 
     const game = useOrdenaLaHistoriaGame(historias, conTemporizador);
