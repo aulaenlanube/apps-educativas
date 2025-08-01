@@ -1,12 +1,302 @@
 [
-    ["Yesterday, Sarah went to the local market.", "She wanted to buy some fresh fruit for breakfast.", "She bought some red apples and sweet strawberries.", "Then, she went back home to prepare a delicious fruit salad.", "Her family loved the healthy and tasty breakfast."],
-    ["Tom has a new puppy named Max.", "Every morning, he takes Max for a walk in the park.", "Max loves to run and play with other dogs.", "After the walk, Tom gives him food and fresh water.", "They are best friends and have a lot of fun together."],
-    ["Last summer, my family and I travelled to Italy.", "We visited the famous Colosseum in Rome.", "We also ate a lot of delicious pizza and pasta.", "It was a fantastic holiday with beautiful weather.", "I hope we can go back there again soon."],
-    ["A group of friends decided to go camping in the forest.", "They set up their tent near a clear river.", "At night, they sat around a campfire and told stories.", "The next morning, they went hiking to explore the area.", "It was an adventurous and memorable weekend."],
-    ["Maria is preparing for her final exams.", "She studies for two hours every day after school.", "Her favourite subject is science because she loves experiments.", "She wants to get good marks to become a doctor in the future."],
-    ["A brave knight lived in a big castle on a hill.", "One day, a fearsome dragon appeared in the kingdom.", "The knight decided to fight the dragon to save the people.", "After a long battle, he defeated the beast.", "The king and the people celebrated their hero."],
-    ["On Saturday, I am going to a birthday party.", "It is for my best friend, Laura, who is turning thirteen.", "I have bought her a new book by her favourite author.", "There will be music, games, and a big chocolate cake.", "I am very excited to celebrate with her."],
-    ["A little bird fell from its nest in a tall tree.", "A kind girl found the bird on the ground.", "She carefully picked it up and took it home.", "She fed it and kept it warm in a small box.", "When it was strong enough, she released it back into the wild."],
-    ["The school is organizing a sports day next week.", "There will be many competitions like running and jumping.", "I am going to participate in the 100-meter race.", "I have been training every day to be faster.", "I hope my team wins the final trophy."],
-    ["A curious cat was exploring the garden.", "It saw a colourful butterfly flying among the flowers.", "The cat tried to catch the butterfly, jumping and running.", "But the butterfly was too fast and flew away.", "The cat then decided to take a long nap in the sun."]
+    [
+        "My name is Maria and I am from Spain.",
+        "I live in a small town near the mountains.",
+        "I have a younger brother called Pablo.",
+        "We have a pet dog, and its name is Rocky."
+    ],
+    [
+        "Every morning, I wake up at seven o'clock.",
+        "First, I have a shower and then I get dressed.",
+        "After that, I have breakfast with my family.",
+        "Finally, I brush my teeth and go to school."
+    ],
+    [
+        "My favourite subject at school is English.",
+        "I like learning new words and grammar.",
+        "Our teacher is very nice and she helps us a lot.",
+        "I want to travel to London in the future."
+    ],
+    [
+        "After school, I usually do my homework.",
+        "Sometimes, I play football with my friends in the park.",
+        "On Tuesdays, I have piano lessons.",
+        "In the evening, I watch TV with my parents."
+    ],
+    [
+        "Last summer, my family and I went to the beach.",
+        "We stayed in a small hotel near the sea.",
+        "I swam in the ocean and built a big sandcastle.",
+        "It was a fantastic holiday."
+    ],
+    [
+        "My best friend's name is Laura.",
+        "She has got long brown hair and green eyes.",
+        "We like listening to music and dancing together.",
+        "She is very funny and we always have a good time."
+    ],
+    [
+        "Yesterday was my birthday.",
+        "I had a party at my house with all my friends.",
+        "My parents gave me a new bicycle as a present.",
+        "We ate a lot of cake and played many games."
+    ],
+    [
+        "My house has got two floors.",
+        "Downstairs, there is a living room, a kitchen and a small bathroom.",
+        "Upstairs, there are three bedrooms and a big bathroom.",
+        "There is also a beautiful garden behind the house."
+    ],
+    [
+        "My favourite food is pizza.",
+        "I like it with cheese, tomato and pepperoni.",
+        "However, I don't like mushrooms on my pizza.",
+        "My mother makes the best pizza in the world."
+    ],
+    [
+        "A healthy diet is very important.",
+        "You should eat a lot of fruit and vegetables every day.",
+        "You shouldn't eat too many sweets or crisps.",
+        "It is also important to drink a lot of water."
+    ],
+    [
+        "London is the capital city of the United Kingdom.",
+        "It is a very big and multicultural city.",
+        "You can see many famous landmarks there, like the Big Ben.",
+        "The river Thames flows through the city."
+    ],
+    [
+        "There are four seasons in a year.",
+        "They are spring, summer, autumn and winter.",
+        "In spring, the flowers grow and the weather is warm.",
+        "In winter, it is cold and it sometimes snows."
+    ],
+    [
+        "I have got a big family.",
+        "I live with my parents and my two sisters.",
+        "My grandparents live in another city.",
+        "We visit them every Christmas."
+    ],
+    [
+        "To make a cup of tea, you first need to boil some water.",
+        "Then, you put a teabag in a cup.",
+        "After that, you pour the hot water into the cup.",
+        "You can add milk and sugar if you like."
+    ],
+    [
+        "A lion is a wild animal.",
+        "It lives in the savanna in Africa.",
+        "It is a big cat and it is very strong.",
+        "Lions are carnivores, which means they eat meat."
+    ],
+    [
+        "The Earth is the third planet from the Sun.",
+        "It is the only planet we know that has life.",
+        "It has one moon that orbits around it.",
+        "More than 70% of the Earth's surface is covered by water."
+    ],
+    [
+        "We went on a school trip to the museum last week.",
+        "We saw skeletons of dinosaurs and ancient Egyptian mummies.",
+        "Our teacher explained many interesting things.",
+        "It was a very educational and fun day."
+    ],
+    [
+        "I can play the guitar.",
+        "I started having lessons two years ago.",
+        "I practise for half an hour every day.",
+        "My favourite song to play is 'Wonderwall' by Oasis."
+    ],
+    [
+        "Recycling is very important to protect our planet.",
+        "We should separate our rubbish into different bins.",
+        "Paper, plastic and glass can all be recycled.",
+        "This helps to save energy and natural resources."
+    ],
+    [
+        "My daily routine starts early.",
+        "The alarm clock rings at 6:30 am.",
+        "I get out of bed and go to the bathroom.",
+        "I have a quick breakfast before catching the bus."
+    ],
+    [
+        "At the weekend, I like to relax.",
+        "On Saturday morning, I often go shopping with my mum.",
+        "In the afternoon, I meet my friends.",
+        "On Sunday, we usually have a big family lunch."
+    ],
+    [
+        "The elephant is the largest land animal.",
+        "It has a long trunk, big ears and two tusks.",
+        "Elephants are herbivores, so they eat plants and leaves.",
+        "They live in Africa and Asia."
+    ],
+    [
+        "I'm not feeling very well today.",
+        "I think I have a cold.",
+        "I have a sore throat and a headache.",
+        "My mum told me to stay in bed and rest."
+    ],
+    [
+        "I love reading books.",
+        "My favourite genre is fantasy and adventure.",
+        "Right now, I am reading the Harry Potter series.",
+        "I go to the library every two weeks to get new books."
+    ],
+    [
+        "A firefighter has a very important job.",
+        "They put out fires and rescue people.",
+        "They wear a special uniform to protect themselves.",
+        "It is a very brave and dangerous profession."
+    ],
+    [
+        "A typical English breakfast is quite big.",
+        "It often includes sausages, bacon, eggs and beans.",
+        "People also have toast with butter and jam.",
+        "They usually drink tea or coffee with it."
+    ],
+    [
+        "The capital of the USA is Washington D.C.",
+        "However, the biggest city is New York.",
+        "In New York, you can see the Statue of Liberty.",
+        "The American flag has fifty stars, one for each state."
+    ],
+    [
+        "What are you wearing today?",
+        "I am wearing blue jeans and a white t-shirt.",
+        "I am also wearing my favourite pair of trainers.",
+        "Because it's a bit cold, I have a grey hoodie too."
+    ],
+    [
+        "There is a big park in my town.",
+        "It has a playground for children and a lake.",
+        "There are many tall trees and beautiful flowers.",
+        "People go there to walk, run or have a picnic."
+    ],
+    [
+        "Sharks are fish that live in the ocean.",
+        "They are very good swimmers and have sharp teeth.",
+        "The great white shark is a famous type of shark.",
+        "Most sharks are not dangerous to humans."
+    ],
+    [
+        "When I grow up, I want to be a doctor.",
+        "I want to help people who are sick.",
+        "I know I have to study very hard at school.",
+        "It is a very rewarding job."
+    ],
+    [
+        "My bedroom is my favourite room in the house.",
+        "I have a comfortable bed and a big desk.",
+        "On the wall, there are posters of my favourite bands.",
+        "I like to spend time there listening to music."
+    ],
+    [
+        "A computer has two main parts: hardware and software.",
+        "The hardware is the physical parts, like the screen and keyboard.",
+        "The software is the programs that run on the computer.",
+        "We use computers for work, study and fun."
+    ],
+    [
+        "I went to the cinema last Saturday.",
+        "I saw the new superhero movie with my best friend.",
+        "We ate popcorn and drank a large coke.",
+        "The film was very exciting and full of action."
+    ],
+    [
+        "The Amazon rainforest is in South America.",
+        "It is the largest tropical rainforest in the world.",
+        "Many different species of animals and plants live there.",
+        "It is very important for the Earth's climate."
+    ],
+    [
+        "To get to my school, I have to walk for ten minutes.",
+        "I leave my house at half past eight.",
+        "I walk past the post office and the supermarket.",
+        "I always meet my friend at the corner and we walk together."
+    ],
+    [
+        "Penguins are birds, but they cannot fly.",
+        "They are excellent swimmers and live in cold places like Antarctica.",
+        "They have black and white feathers.",
+        "They eat fish and krill from the sea."
+    ],
+    [
+        "I'm going to describe my mum.",
+        "She is tall and has short, curly hair.",
+        "She works in an office and is very clever.",
+        "She is also very kind and always helps me with my homework."
+    ],
+    [
+        "A police officer helps to keep our communities safe.",
+        "They patrol the streets and investigate crimes.",
+        "They wear a uniform and sometimes drive a police car.",
+        "It is a difficult but necessary job."
+    ],
+    [
+        "Australia is a very big country and a continent.",
+        "Kangaroos and koalas are famous Australian animals.",
+        "The capital city is Canberra, not Sydney.",
+        "The Great Barrier Reef is a beautiful coral reef there."
+    ],
+    [
+        "Our school has many facilities.",
+        "There is a big library with a lot of books.",
+        "We also have a science lab and a computer room.",
+        "Outside, there is a large sports field."
+    ],
+    [
+        "Dolphins are very intelligent marine mammals.",
+        "They live in the ocean in groups called pods.",
+        "They communicate with each other using clicks and whistles.",
+        "They are known for being friendly and playful animals."
+    ],
+    [
+        "What do you do in your free time?",
+        "I have a few hobbies.",
+        "I really enjoy drawing and painting pictures.",
+        "I also like playing video games on my console."
+    ],
+    [
+        "The weather today is lovely.",
+        "The sun is shining and the sky is blue.",
+        "There are no clouds and it is very warm.",
+        "It's a perfect day to go to the park."
+    ],
+    [
+        "I have to do some chores at home.",
+        "I must tidy my room and make my bed every day.",
+        "Once a week, I have to take out the rubbish.",
+        "I also help my dad wash the car at the weekend."
+    ],
+    [
+        "Spiders are not insects; they are arachnids.",
+        "They have eight legs, while insects have six.",
+        "Many spiders build webs to catch their food.",
+        "Most spiders are harmless to humans."
+    ],
+    [
+        "There are seven continents in the world.",
+        "They are Asia, Africa, North America, South America, Antarctica, Europe, and Australia.",
+        "Asia is the largest continent by area and population.",
+        "Antarctica is the coldest and is almost completely covered in ice."
+    ],
+    [
+        "My favourite sport is basketball.",
+        "You have to throw a ball through a hoop to score points.",
+        "There are five players on each team.",
+        "It is a very fast and exciting game."
+    ],
+    [
+        "The first step to make a sandwich is to take two slices of bread.",
+        "Then, you can put some butter or mayonnaise on them.",
+        "Next, add your favourite ingredients like ham and cheese.",
+        "Finally, put the two slices of bread together."
+    ],
+    [
+        "The moon orbits the Earth.",
+        "It does not produce its own light; it reflects light from the sun.",
+        "It has different phases, such as full moon and new moon.",
+        "Astronauts first walked on the moon in 1969."
+    ]
 ]

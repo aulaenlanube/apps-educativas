@@ -1,12 +1,302 @@
 [
-    ["Para realizar el experimento, primero reunimos todo el material de laboratorio.", "Medimos con una probeta la cantidad exacta de líquido necesaria.", "Calentamos la mezcla con cuidado utilizando un mechero Bunsen.", "Anotamos todas las observaciones y los cambios que se produjeron.", "Finalmente, limpiamos todo el material y recogimos el laboratorio."],
-    ["La materia puede cambiar de un estado a otro por efecto de la temperatura.", "Si calentamos un sólido como el hielo, se produce la fusión y pasa a estado líquido.", "Si continuamos calentando el líquido, se evapora y se convierte en gas.", "El proceso inverso, de gas a líquido, se llama condensación."],
-    ["Una disolución es una mezcla homogénea de dos o más sustancias.", "El soluto es la sustancia que se disuelve y está en menor cantidad.", "El disolvente es la sustancia que disuelve al soluto y está en mayor proporción.", "Un ejemplo común es el agua salada, donde la sal es el soluto y el agua el disolvente."],
-    ["El método científico es un proceso ordenado para investigar.", "Comienza con la observación de un fenómeno y el planteamiento de una pregunta.", "Luego, se formula una hipótesis que intenta explicar lo observado.", "Se realizan experimentos para comprobar si la hipótesis es correcta.", "Finalmente, se analizan los resultados y se extraen conclusiones."],
-    ["La densidad es una propiedad que relaciona la masa de un cuerpo con su volumen.", "Un objeto menos denso que el agua flotará sobre ella.", "Un objeto más denso que el agua se hundirá.", "Por eso, un trozo de madera flota mientras que una piedra se hunde."],
-    ["Para construir un circuito eléctrico simple, necesitamos una pila.", "Conectamos una bombilla a la pila utilizando cables conductores.", "Añadimos un interruptor para poder abrir y cerrar el circuito.", "Cuando el interruptor está cerrado, la corriente circula y la bombilla se enciende."],
-    ["Los átomos son las partículas que forman toda la materia.", "Están compuestos por un núcleo central con protones y neutrones.", "Alrededor del núcleo giran unas partículas más pequeñas llamadas electrones.", "Los átomos se unen entre sí para formar las moléculas."],
-    ["Una reacción química es un proceso en el que las sustancias se transforman.", "Las sustancias iniciales se llaman reactivos.", "Las sustancias que se obtienen al final se llaman productos.", "Un ejemplo es la oxidación del hierro al contacto con el aire."],
-    ["La energía no se crea ni se destruye, solo se transforma.", "Por ejemplo, en una central hidroeléctrica, la energía del agua en movimiento se transforma en electricidad.", "En casa, esa electricidad se transforma en luz en una bombilla.", "Este es el principio de conservación de la energía."],
-    ["La luz viaja en línea recta desde la fuente que la emite.", "Cuando choca con un objeto opaco, produce una sombra detrás de él.", "Si el objeto es transparente, como un cristal, la luz lo atraviesa.", "Si choca con un espejo, la luz se refleja de forma ordenada."]
+    [
+        "La materia es todo lo que ocupa un espacio y tiene masa.",
+        "Se puede presentar en tres estados principales: sólido, líquido y gaseoso.",
+        "El agua es un ejemplo claro que podemos encontrar en los tres estados.",
+        "Estos estados dependen de la temperatura y la presión a la que se encuentre la sustancia."
+    ],
+    [
+        "La energía es la capacidad de realizar un trabajo o producir un cambio.",
+        "Un principio fundamental es que la energía no se crea ni se destruye.",
+        "Únicamente se transforma de un tipo a otro.",
+        "Por ejemplo, la energía eléctrica se transforma en luz y calor en una bombilla."
+    ],
+    [
+        "El calor es una forma de transferencia de energía entre cuerpos a diferente temperatura.",
+        "Siempre fluye desde el cuerpo más caliente hacia el más frío.",
+        "Este proceso continúa hasta que ambos cuerpos alcanzan el equilibrio térmico.",
+        "La temperatura es la medida que indica qué tan caliente o frío está un objeto."
+    ],
+    [
+        "Una fuerza es cualquier acción capaz de cambiar el estado de movimiento o la forma de un cuerpo.",
+        "Si aplicamos una fuerza a un objeto en reposo, puede empezar a moverse.",
+        "Si el objeto ya se está moviendo, una fuerza puede cambiar su velocidad o dirección.",
+        "También puede deformarlo, como cuando apretamos una bola de plastilina."
+    ],
+    [
+        "La densidad es una propiedad que relaciona la masa de un objeto con el volumen que ocupa.",
+        "Se calcula dividiendo la masa entre el volumen.",
+        "Un objeto denso, como el hierro, tiene mucha masa en poco espacio.",
+        "Por eso, un trozo de hierro se hunde en el agua, que es menos densa."
+    ],
+    [
+        "Los cambios de estado ocurren cuando una sustancia pasa de un estado a otro.",
+        "La fusión es el paso de sólido a líquido, como el hielo derritiéndose.",
+        "La vaporización es el paso de líquido a gas, como el agua hirviendo.",
+        "El proceso inverso, de gas a líquido, se llama condensación."
+    ],
+    [
+        "Las mezclas están formadas por la unión de varias sustancias puras.",
+        "En una mezcla homogénea, como el agua con sal, no se distinguen sus componentes.",
+        "En una mezcla heterogénea, como una ensalada, sus componentes se ven a simple vista.",
+        "Existen varios métodos para separar los componentes de una mezcla."
+    ],
+    [
+        "El átomo es la partícula más pequeña de un elemento que conserva sus propiedades.",
+        "Está formado por un núcleo central con protones y neutrones.",
+        "Alrededor del núcleo giran los electrones, con carga negativa.",
+        "Los protones tienen carga positiva y los neutrones no tienen carga."
+    ],
+    [
+        "La luz viaja en línea recta y a una velocidad muy alta.",
+        "Cuando choca con un objeto opaco, produce una sombra detrás.",
+        "La reflexión ocurre cuando la luz rebota en una superficie, como en un espejo.",
+        "La refracción es el cambio de dirección de la luz al pasar de un medio a otro, como del aire al agua."
+    ],
+    [
+        "El sonido necesita un medio material para propagarse, como el aire o el agua.",
+        "Se produce por la vibración de un objeto.",
+        "Estas vibraciones viajan en forma de ondas hasta llegar a nuestros oídos.",
+        "En el vacío del espacio, al no haber materia, el sonido no puede viajar."
+    ],
+    [
+        "Un circuito eléctrico simple necesita tres elementos básicos.",
+        "Un generador, como una pila, que proporciona la energía.",
+        "Un conductor, como un cable, por donde circula la corriente.",
+        "Y un receptor, como una bombilla, que transforma la energía eléctrica."
+    ],
+    [
+        "La gravedad es la fuerza que atrae a los objetos con masa entre sí.",
+        "Es la responsable de que los planetas giren alrededor del Sol.",
+        "También es la fuerza que nos mantiene pegados a la superficie de la Tierra.",
+        "Cuanto mayor es la masa de un objeto, mayor es su fuerza de gravedad."
+    ],
+    [
+        "Las reacciones químicas son procesos en los que unas sustancias se transforman en otras.",
+        "Las sustancias iniciales se llaman reactivos.",
+        "Las sustancias que se obtienen al final se llaman productos.",
+        "La oxidación de un clavo de hierro es un ejemplo de reacción química lenta."
+    ],
+    [
+        "El laboratorio es el lugar donde se realizan los experimentos científicos.",
+        "Es fundamental seguir unas normas de seguridad para evitar accidentes.",
+        "Se utiliza material específico como probetas para medir volúmenes o balanzas para medir masas.",
+        "Cada instrumento tiene una función y debe usarse correctamente."
+    ],
+    [
+        "La tabla periódica organiza todos los elementos químicos conocidos.",
+        "Los elementos están ordenados por su número atómico.",
+        "Se agrupan en columnas, llamadas grupos, con propiedades similares.",
+        "El hidrógeno (H) y el oxígeno (O) son ejemplos de elementos químicos."
+    ],
+    [
+        "Una disolución es un tipo de mezcla homogénea.",
+        "Está compuesta por un soluto y un disolvente.",
+        "El soluto es la sustancia que se disuelve y está en menor cantidad.",
+        "El disolvente es la sustancia en la que se disuelve el soluto, como el agua en el agua salada."
+    ],
+    [
+        "Las fuentes de energía renovables son aquellas que no se agotan con su uso.",
+        "Provienen de fuentes naturales como el sol, el viento o el agua.",
+        "La energía solar se capta con paneles fotovoltaicos.",
+        "Son una alternativa más limpia a los combustibles fósiles."
+    ],
+    [
+        "El método científico es un proceso ordenado para estudiar la naturaleza.",
+        "Primero, se observa un fenómeno y se plantea una pregunta.",
+        "Luego, se formula una hipótesis para intentar explicarlo.",
+        "Finalmente, se realizan experimentos para comprobar si la hipótesis es válida."
+    ],
+    [
+        "La masa de un cuerpo es la cantidad de materia que posee.",
+        "Se mide en kilogramos (kg) utilizando una balanza.",
+        "El volumen es el espacio que ocupa ese cuerpo.",
+        "El volumen de un líquido se suele medir en litros (L) con una probeta."
+    ],
+    [
+        "La combustión es una reacción química que libera energía.",
+        "Ocurre cuando una sustancia, llamada combustible, reacciona con el oxígeno.",
+        "Este proceso produce luz y calor, como en el fuego de una vela.",
+        "Además de energía, se generan productos como el dióxido de carbono y el agua."
+    ],
+    [
+        "La flotabilidad de un objeto en un líquido depende de su densidad.",
+        "Si un objeto es menos denso que el líquido, flotará.",
+        "Si es más denso, se hundirá.",
+        "Por eso, un barco de acero puede flotar, gracias a su forma que desplaza un gran volumen de agua."
+    ],
+    [
+        "Los metales son buenos conductores de la electricidad y el calor.",
+        "Por esta razón, los cables eléctricos se fabrican con metales como el cobre.",
+        "Los plásticos, en cambio, son materiales aislantes.",
+        "Por eso, los cables se recubren de plástico para nuestra seguridad."
+    ],
+    [
+        "La presión es la fuerza que se ejerce sobre una superficie.",
+        "Se calcula dividiendo la fuerza por el área de la superficie.",
+        "Si la misma fuerza se aplica sobre una superficie más pequeña, la presión es mayor.",
+        "Por eso un cuchillo afilado corta mejor que uno sin filo."
+    ],
+    [
+        "Los imanes tienen dos polos: el polo norte y el polo sur.",
+        "Los polos opuestos se atraen, mientras que los polos iguales se repelen.",
+        "Crean a su alrededor un campo magnético invisible.",
+        "La Tierra se comporta como un imán gigante, por eso funcionan las brújulas."
+    ],
+    [
+        "La energía cinética es la energía asociada al movimiento.",
+        "Un objeto en movimiento posee energía cinética.",
+        "Depende de la masa del objeto y de su velocidad.",
+        "Cuanto más rápido se mueve un objeto, mayor es su energía cinética."
+    ],
+    [
+        "La energía potencial es la energía que un objeto tiene debido a su posición.",
+        "Una pelota en lo alto de una colina tiene energía potencial gravitatoria.",
+        "Si la pelota empieza a rodar, esa energía potencial se transforma en cinética.",
+        "Esta transformación de energía es un principio básico en física."
+    ],
+    [
+        "Las máquinas simples son dispositivos que nos facilitan el trabajo.",
+        "Permiten aplicar una fuerza menor para mover un objeto pesado.",
+        "Ejemplos de máquinas simples son la palanca, la polea y el plano inclinado.",
+        "Han sido utilizadas por la humanidad desde la antigüedad."
+    ],
+    [
+        "Una palanca es una barra rígida que gira sobre un punto de apoyo.",
+        "Nos permite levantar objetos pesados con menos esfuerzo.",
+        "Las tijeras o un balancín son ejemplos de palancas.",
+        "Existen diferentes tipos de palancas según la posición del punto de apoyo."
+    ],
+    [
+        "La dilatación es el aumento de tamaño de un cuerpo cuando aumenta su temperatura.",
+        "Los materiales se dilatan porque sus partículas vibran más y ocupan más espacio.",
+        "Este fenómeno se tiene en cuenta al construir puentes o vías de tren.",
+        "Dejan un pequeño espacio, llamado junta de dilatación, para que el material pueda expandirse."
+    ],
+    [
+        "El rozamiento es una fuerza que se opone al movimiento.",
+        "Aparece cuando dos superficies están en contacto y una se mueve respecto a la otra.",
+        "Es la razón por la que un objeto que empujamos acaba parándose.",
+        "Aunque a veces es un inconveniente, también es útil, por ejemplo, para poder caminar sin resbalar."
+    ],
+    [
+        "Las lentes son objetos transparentes que desvían la luz.",
+        "Existen lentes convergentes, que juntan los rayos de luz.",
+        "También hay lentes divergentes, que separan los rayos de luz.",
+        "Se utilizan en gafas, lupas, cámaras y telescopios."
+    ],
+    [
+        "El espectro visible es la parte de la luz que el ojo humano puede ver.",
+        "La luz blanca del sol está compuesta por todos los colores del arcoíris.",
+        "Podemos separarlos usando un prisma de cristal.",
+        "Cada color corresponde a una longitud de onda diferente."
+    ],
+    [
+        "El color de un objeto depende de la luz que refleja.",
+        "Un objeto rojo absorbe todos los colores de la luz menos el rojo.",
+        "El color rojo es el que refleja y llega a nuestros ojos.",
+        "Un objeto negro absorbe todos los colores y no refleja ninguno."
+    ],
+    [
+        "La inercia es la tendencia de un cuerpo a mantener su estado de movimiento.",
+        "Si un objeto está quieto, tiende a seguir quieto.",
+        "Si está en movimiento, tiende a seguir moviéndose en línea recta y a velocidad constante.",
+        "Por eso, cuando un coche frena bruscamente, nuestro cuerpo tiende a seguir hacia adelante."
+    ],
+    [
+        "El aire es una mezcla de diferentes gases.",
+        "El gas más abundante es el nitrógeno, seguido del oxígeno.",
+        "El oxígeno es esencial para que podamos respirar.",
+        "Aunque no lo veamos, el aire tiene masa y ocupa un volumen."
+    ],
+    [
+        "La presión atmosférica es la fuerza que ejerce el aire sobre la superficie terrestre.",
+        "Se debe al peso de la columna de aire que tenemos encima.",
+        "Disminuye con la altitud, por eso en las montañas altas hay menos presión.",
+        "Los meteorólogos la miden para predecir el tiempo."
+    ],
+    [
+        "La decantación es un método para separar mezclas heterogéneas.",
+        "Se utiliza para separar un sólido de un líquido, o dos líquidos no miscibles.",
+        "Se deja reposar la mezcla para que el componente más denso se vaya al fondo.",
+        "Luego, se vierte con cuidado el líquido menos denso."
+    ],
+    [
+        "La filtración es otro método de separación de mezclas.",
+        "Sirve para separar un sólido insoluble de un líquido.",
+        "Se utiliza un filtro, que es un material poroso.",
+        "El líquido pasa a través del filtro, pero el sólido queda retenido."
+    ],
+    [
+        "Las sustancias puras tienen una composición fija y propiedades definidas.",
+        "Se dividen en elementos y compuestos.",
+        "Los elementos, como el oxígeno, están formados por un solo tipo de átomo.",
+        "Los compuestos, como el agua (H2O), están formados por la unión de diferentes elementos."
+    ],
+    [
+        "El modelo atómico ha cambiado a lo largo de la historia.",
+        "Dalton propuso que los átomos eran esferas indivisibles.",
+        "Más tarde, Thomson descubrió el electrón, una partícula con carga negativa.",
+        "Rutherford descubrió que el átomo tenía un núcleo central muy pequeño y denso."
+    ],
+    [
+        "La electricidad estática se produce por la acumulación de carga eléctrica en un objeto.",
+        "Ocurre cuando frotamos ciertos materiales entre sí.",
+        "Por ejemplo, al frotar un globo con el pelo, el globo se carga eléctricamente.",
+        "Después, el globo puede atraer pequeños trozos de papel."
+    ],
+    [
+        "La velocidad es una magnitud que mide la rapidez con la que se mueve un objeto.",
+        "Se calcula dividiendo la distancia recorrida entre el tiempo empleado.",
+        "No solo indica la rapidez, sino también la dirección del movimiento.",
+        "Una velocidad constante significa que el objeto no acelera ni frena."
+    ],
+    [
+        "Una polea es una rueda con un surco por el que pasa una cuerda.",
+        "Es una máquina simple que se utiliza para levantar objetos pesados.",
+        "Una sola polea fija no reduce la fuerza, pero cambia su dirección.",
+        "Combinando varias poleas, se puede reducir considerablemente el esfuerzo necesario."
+    ],
+    [
+        "Los plásticos son materiales muy versátiles y utilizados en la actualidad.",
+        "Son polímeros, es decir, moléculas muy grandes formadas por la repetición de unidades más pequeñas.",
+        "Son ligeros, resistentes y malos conductores de la electricidad.",
+        "Su principal inconveniente es que tardan mucho tiempo en degradarse en la naturaleza."
+    ],
+    [
+        "Las ondas transportan energía sin transportar materia.",
+        "Una onda en el agua mueve la energía, pero el agua apenas se desplaza.",
+        "El sonido y la luz son ejemplos de fenómenos que se propagan mediante ondas.",
+        "Las ondas se caracterizan por su longitud, frecuencia y amplitud."
+    ],
+    [
+        "La evaporación es un proceso de cambio de estado de líquido a gas.",
+        "Ocurre en la superficie del líquido a cualquier temperatura.",
+        "Por ejemplo, un charco de agua se seca porque el agua se evapora.",
+        "La ebullición, en cambio, ocurre en todo el líquido a una temperatura específica."
+    ],
+    [
+        "Las soluciones acuosas son aquellas en las que el disolvente es el agua.",
+        "El agua es conocida como el 'disolvente universal' por su capacidad para disolver muchas sustancias.",
+        "El agua de mar es una solución acuosa que contiene sales disueltas.",
+        "Muchos procesos biológicos ocurren en soluciones acuosas dentro de nuestro cuerpo."
+    ],
+    [
+        "Un electrolito es una sustancia que, disuelta en agua, conduce la electricidad.",
+        "Esto se debe a que se separa en partículas con carga eléctrica llamadas iones.",
+        "La sal común (cloruro de sodio) es un ejemplo de electrolito.",
+        "Son importantes para muchas funciones de nuestro organismo."
+    ],
+    [
+        "El movimiento rectilíneo uniforme (MRU) es el movimiento más simple.",
+        "Un objeto con MRU se mueve en línea recta.",
+        "Además, recorre distancias iguales en tiempos iguales, es decir, su velocidad es constante.",
+        "Un coche que viaja por una autopista recta a 100 km/h es un ejemplo aproximado."
+    ],
+    [
+        "La aceleración es el cambio de velocidad de un objeto en el tiempo.",
+        "Si un coche aumenta su velocidad, tiene una aceleración positiva.",
+        "Si frena y disminuye su velocidad, su aceleración es negativa.",
+        "Un objeto con velocidad constante no tiene aceleración."
+    ]
 ]

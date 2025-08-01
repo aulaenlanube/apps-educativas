@@ -1,12 +1,536 @@
 [
-    ["Antes de empezar cualquier actividad física, es fundamental realizar un buen calentamiento.", "Comenzamos con movilidad articular para preparar las articulaciones.", "Luego, hacemos ejercicios suaves para aumentar la temperatura corporal.", "Terminamos con estiramientos de los principales grupos musculares.", "Así, preparamos el cuerpo para el esfuerzo y evitamos lesiones."],
-    ["El baloncesto es un deporte de equipo que se juega con las manos.", "El objetivo es introducir el balón en la canasta del equipo contrario.", "No se puede correr con el balón en las manos sin botarlo.", "Cada canasta normal vale dos puntos, y si es desde lejos, tres.", "Gana el equipo que consigue más puntos al final del partido."],
-    ["Una dieta equilibrada es clave para la salud de un deportista.", "Debe incluir hidratos de carbono para tener energía.", "Las proteínas son necesarias para construir y reparar los músculos.", "Las frutas y verduras aportan vitaminas y minerales esenciales.", "Además, es muy importante beber mucha agua para estar bien hidratado."],
-    ["El juego limpio, o 'fair play', es un valor esencial en el deporte.", "Significa respetar las reglas del juego en todo momento.", "También implica respetar a los compañeros, a los adversarios y al árbitro.", "Es más importante participar y esforzarse que ganar a cualquier precio."],
-    ["La resistencia es la capacidad de aguantar un esfuerzo durante un tiempo prolongado.", "Para mejorarla, podemos practicar actividades como correr o nadar.", "Es importante mantener un ritmo constante y controlar la respiración.", "Con el entrenamiento, nuestro corazón y pulmones se hacen más fuertes.", "Esto nos permite cansarnos menos en nuestra vida diaria."],
-    ["En una carrera de relevos, varios corredores de un mismo equipo se pasan un testigo.", "El primer corredor sale lo más rápido posible.", "Debe entregar el testigo al siguiente compañero dentro de una zona marcada.", "La coordinación en la entrega es crucial para no perder tiempo.", "El último corredor corre hasta la meta para finalizar la prueba."],
-    ["La flexibilidad es la capacidad de mover nuestras articulaciones en su máxima amplitud.", "Se mejora realizando ejercicios de estiramiento de forma regular.", "Los estiramientos deben ser suaves y mantenidos, sin sentir dolor.", "Una buena flexibilidad ayuda a prevenir lesiones y mejora la postura corporal."],
-    ["Después de una sesión de ejercicio intenso, es importante realizar la vuelta a la calma.", "Consiste en hacer ejercicios de baja intensidad, como caminar o trotar suavemente.", "Su objetivo es que la frecuencia cardíaca vuelva poco a poco a la normalidad.", "Terminamos con estiramientos suaves para relajar la musculatura."],
-    ["El voleibol se juega pasando un balón por encima de una red.", "Cada equipo tiene tres toques para devolver el balón al campo contrario.", "El balón no puede botar en el suelo de nuestro campo.", "Los jugadores van rotando sus posiciones en el sentido de las agujas del reloj."],
-    ["El atletismo incluye diferentes pruebas de saltos.", "En el salto de longitud, el atleta corre y salta para alcanzar la máxima distancia horizontal.", "En el salto de altura, el objetivo es superar un listón sin derribarlo.", "Ambas pruebas requieren una combinación de velocidad, fuerza y técnica."]
+    [
+        "El calentamiento es la primera parte de cualquier sesión de actividad física.",
+        "Prepara nuestros músculos y articulaciones para el esfuerzo que vamos a realizar.",
+        "Consiste en ejercicios suaves como trotar, mover los brazos en círculos o estirar un poco.",
+        "Hacerlo bien ayuda a prevenir lesiones y mejora nuestro rendimiento posterior."
+    ],
+    [
+        "El baloncesto es un deporte de equipo que se juega con las manos.",
+        "El objetivo es introducir el balón en la canasta del equipo contrario.",
+        "No se puede correr con el balón sin botarlo en el suelo.",
+        "El trabajo en equipo para pasarse el balón y buscar huecos es fundamental para ganar."
+    ],
+    [
+        "Una dieta equilibrada es clave para un deportista.",
+        "Nos proporciona la energía y los nutrientes necesarios para rendir al máximo.",
+        "Incluye una variedad de alimentos como frutas, verduras, proteínas y carbohidratos.",
+        "Beber suficiente agua también es parte de una buena nutrición."
+    ],
+    [
+        "El atletismo es conocido como el 'deporte rey'.",
+        "Agrupa una gran variedad de pruebas: carreras, saltos y lanzamientos.",
+        "Las carreras pueden ser de velocidad, de medio fondo o de fondo.",
+        "Los saltos incluyen longitud y altura, mientras que los lanzamientos pueden ser de peso o jabalina."
+    ],
+    [
+        "La flexibilidad es la capacidad de nuestras articulaciones para moverse en su máximo rango.",
+        "Se mejora realizando estiramientos de forma regular y controlada.",
+        "Una buena flexibilidad ayuda a prevenir lesiones y mejora la coordinación.",
+        "Los ejercicios de estiramiento se deben hacer suavemente, sin sentir dolor."
+    ],
+    [
+        "El fútbol se juega entre dos equipos de once jugadores.",
+        "El objetivo es marcar un gol en la portería del equipo contrario.",
+        "Excepto el portero, ningún jugador puede tocar el balón con las manos o los brazos.",
+        "Es el deporte más popular en muchas partes del mundo."
+    ],
+    [
+        "La resistencia cardiovascular nos permite realizar un esfuerzo durante un tiempo prolongado.",
+        "Actividades como correr, nadar o montar en bicicleta son excelentes para mejorarla.",
+        "Fortalece el corazón y los pulmones, mejorando nuestra salud general.",
+        "Con el entrenamiento, nuestro corazón se vuelve más eficiente."
+    ],
+    [
+        "El juego limpio, o 'fair play', es un valor fundamental en el deporte.",
+        "Significa respetar las reglas, a los compañeros, a los rivales y a los árbitros.",
+        "Implica saber ganar con humildad y perder con dignidad.",
+        "Jugar limpio es más importante que conseguir la victoria a cualquier precio."
+    ],
+    [
+        "La coordinación es la capacidad de mover diferentes partes del cuerpo de forma ordenada y eficaz.",
+        "Es esencial para realizar la mayoría de los gestos deportivos.",
+        "Ejercicios como saltar a la comba o hacer malabares ayudan a mejorarla.",
+        "Una buena coordinación nos hace más ágiles y precisos en nuestros movimientos."
+    ],
+    [
+        "La vuelta a la calma es la fase final de una sesión de ejercicio.",
+        "Consiste en realizar ejercicios de baja intensidad y estiramientos suaves.",
+        "Ayuda a que nuestro ritmo cardíaco y respiratorio vuelvan a la normalidad poco a poco.",
+        "También contribuye a reducir las agujetas del día siguiente."
+    ],
+    [
+        "El voleibol se juega con un balón por encima de una red.",
+        "Dos equipos intentan que el balón toque el suelo del campo contrario.",
+        "Cada equipo puede dar un máximo of three toques antes de pasar el balón.",
+        "La comunicación y la colocación en el campo son esenciales para jugar bien."
+    ],
+    [
+        "La fuerza es la capacidad de nuestros músculos para vencer una resistencia.",
+        "Se puede entrenar con nuestro propio peso corporal, con pesas o con gomas elásticas.",
+        "Tener unos músculos fuertes protege nuestras articulaciones de lesiones.",
+        "Ejercicios como las flexiones o las sentadillas ayudan a desarrollarla."
+    ],
+    [
+        "La hidratación es crucial cuando hacemos actividad física.",
+        "Al sudar, perdemos agua y sales minerales que necesitamos reponer.",
+        "Es importante beber agua antes, durante y después del ejercicio.",
+        "La deshidratación puede provocar mareos, calambres y una disminución del rendimiento."
+    ],
+    [
+        "La higiene postural se refiere a mantener una posición correcta del cuerpo.",
+        "Tanto al estar de pie, sentado o al levantar pesos, debemos cuidar nuestra espalda.",
+        "Una buena postura previene dolores de espalda y lesiones a largo plazo.",
+        "Por ejemplo, al sentarnos, la espalda debe estar recta y apoyada en el respaldo."
+    ],
+    [
+        "El bádminton es un deporte de raqueta que se juega con un volante o pluma.",
+        "Se juega en una pista dividida por una red, similar a la del tenis.",
+        "El objetivo es golpear el volante para que caiga en el campo del rival.",
+        "Es un deporte muy rápido que requiere buenos reflejos y agilidad."
+    ],
+    [
+        "El balonmano es un deporte de equipo en el que se enfrentan siete jugadores por lado.",
+        "Se juega con las manos, pasando un balón para intentar marcar gol en la portería contraria.",
+        "Un jugador no puede dar más de tres pasos con el balón sin botarlo.",
+        "Es un deporte muy dinámico con constantes ataques y defensas."
+    ],
+    [
+        "El equilibrio es la capacidad de mantener el control del cuerpo en una posición.",
+        "Puede ser estático, como al mantenernos sobre un solo pie, o dinámico, como al patinar.",
+        "Un buen equilibrio es fundamental en deportes como la gimnasia o el surf.",
+        "Se puede entrenar realizando ejercicios en superficies inestables."
+    ],
+    [
+        "Los primeros auxilios son las técnicas básicas de atención ante un accidente.",
+        "En el deporte, es útil saber cómo actuar ante una torcedura, un golpe o una herida.",
+        "Aplicar hielo en una torcedura puede reducir la inflamación.",
+        "Conocer estas técnicas puede ayudar a evitar que una lesión empeore."
+    ],
+    [
+        "La velocidad es la capacidad de realizar un movimiento en el menor tiempo posible.",
+        "Existe la velocidad de reacción, como al oír el disparo de salida en una carrera.",
+        "También está la velocidad de desplazamiento, que es la capacidad de correr rápido.",
+        "Se entrena con ejercicios cortos y de máxima intensidad, como los sprints."
+    ],
+    [
+        "El judo es un arte marcial de origen japonés que significa 'camino de la suavidad'.",
+        "No se basa en golpear, sino en utilizar la fuerza del oponente en su contra.",
+        "El objetivo es derribar al contrario y controlarlo en el suelo.",
+        "Fomenta valores como el respeto, la disciplina y el autocontrol."
+    ],
+    [
+        "La expresión corporal utiliza el cuerpo como forma de comunicación.",
+        "A través de gestos y movimientos, podemos expresar emociones e ideas sin usar palabras.",
+        "Actividades como el baile o el teatro son formas de expresión corporal.",
+        "Nos ayuda a conocer mejor nuestro cuerpo y a desinhibirnos."
+    ],
+    [
+        "La orientación es un deporte en el que los competidores visitan varios puntos de control.",
+        "Para encontrar estos puntos, utilizan un mapa y una brújula.",
+        "Gana quien completa el recorrido en el menor tiempo posible.",
+        "Combina la capacidad física de correr con la habilidad de interpretar un mapa."
+    ],
+    [
+        "La natación es considerada uno de los deportes más completos que existen.",
+        "Involucra el movimiento de casi todos los músculos del cuerpo.",
+        "Al realizarse en el agua, no tiene impacto sobre las articulaciones.",
+        "Mejora la capacidad pulmonar y la resistencia cardiovascular."
+    ],
+    [
+        "Las pulsaciones por minuto nos indican la frecuencia a la que late nuestro corazón.",
+        "En reposo, un valor normal suele estar entre 60 y 100 pulsaciones.",
+        "Durante el ejercicio, la frecuencia cardíaca aumenta para llevar más sangre a los músculos.",
+        "Tomarnos el pulso nos ayuda a controlar la intensidad del esfuerzo."
+    ],
+    [
+        "El acrosport es una disciplina que combina acrobacias, gimnasia y coreografía.",
+        "Los participantes realizan figuras y pirámides humanas en grupo.",
+        "Requiere una gran confianza, fuerza, equilibrio y trabajo en equipo.",
+        "Se valoran tanto la dificultad de las figuras como la calidad de la ejecución artística."
+    ],
+    [
+        "Los juegos populares y tradicionales forman parte de nuestra cultura.",
+        "Juegos como la comba, la petanca o el pañuelo se han transmitido de generación en generación.",
+        "Son una forma divertida de hacer actividad física y socializar.",
+        "Ayudan a mantener vivas las costumbres de nuestra región."
+    ],
+    [
+        "El descanso es una parte fundamental del entrenamiento de un deportista.",
+        "Durante el descanso, los músculos se recuperan, se reparan y se hacen más fuertes.",
+        "Dormir las horas suficientes es esencial para una buena recuperación.",
+        "No descansar lo suficiente puede llevar al sobreentrenamiento y a las lesiones."
+    ],
+    [
+        "La agilidad es la capacidad de cambiar de dirección y posición del cuerpo de forma rápida y precisa.",
+        "Es muy importante en deportes como el fútbol, el baloncesto o el tenis.",
+        "Se puede mejorar con circuitos de entrenamiento que incluyan conos, escaleras y saltos.",
+        "Combina velocidad, coordinación y equilibrio."
+    ],
+    [
+        "El sistema esquelético está formado por todos los huesos del cuerpo.",
+        "Proporciona la estructura que nos sostiene y protege nuestros órganos vitales.",
+        "Los huesos también actúan como palancas sobre las que actúan los músculos para producir el movimiento.",
+        "Mantener los huesos fuertes requiere una dieta rica en calcio y ejercicio regular."
+    ],
+    [
+        "El ciclismo es una excelente actividad aeróbica.",
+        "Fortalece los músculos de las piernas, los glúteos y el corazón.",
+        "Es un deporte de bajo impacto, ideal para las articulaciones.",
+        "Además, permite disfrutar de la naturaleza y explorar nuevos lugares."
+    ],
+    [
+        "Los estiramientos son ejercicios suaves para alargar los músculos.",
+        "Es recomendable realizarlos después de la actividad física, durante la vuelta a la calma.",
+        "Ayudan a mejorar la flexibilidad y a reducir la tensión muscular.",
+        "Cada estiramiento debe mantenerse unos 20-30 segundos sin rebotar."
+    ],
+    [
+        "La nutrición deportiva se enfoca en la alimentación para mejorar el rendimiento.",
+        "Antes de competir, se suelen tomar carbohidratos para tener energía.",
+        "Después, es importante tomar proteínas para reparar los músculos.",
+        "Un nutricionista puede ayudar a diseñar un plan de comidas adecuado."
+    ],
+    [
+        "El hockey se juega con un palo llamado 'stick' para golpear una pelota o un disco.",
+        "Existen diferentes modalidades, como el hockey sobre hierba, sobre patines o sobre hielo.",
+        "El objetivo es introducir la pelota o el disco en la portería contraria.",
+        "Requiere una gran habilidad en el manejo del stick y patinaje en algunas de sus variantes."
+    ],
+    [
+        "Una vida sedentaria, con poca actividad física, es perjudicial para la salud.",
+        "Aumenta el riesgo de sufrir enfermedades como la obesidad o la diabetes.",
+        "El cuerpo humano está diseñado para moverse de forma regular.",
+        "Se recomienda realizar al menos 60 minutos de actividad física moderada al día."
+    ],
+    [
+        "La técnica deportiva es la forma más eficiente de realizar un gesto deportivo.",
+        "Cada deporte tiene sus propias técnicas específicas, como el tiro en baloncesto o el remate en voleibol.",
+        "Una buena técnica permite ahorrar energía y ser más efectivo.",
+        "Se perfecciona con la práctica constante y la corrección de errores."
+    ],
+    [
+        "Los valores del deporte van más allá de la competición.",
+        "Nos enseña sobre el esfuerzo, la superación, el compañerismo y la disciplina.",
+        "A través del juego, aprendemos a colaborar con otros para lograr un objetivo común.",
+        "Estos valores son aplicables a muchos otros aspectos de la vida."
+    ],
+    [
+        "El cuerpo humano tiene diferentes tipos de fibras musculares.",
+        "Las fibras rápidas se contraen con fuerza y velocidad, pero se cansan pronto.",
+        "Son importantes para actividades explosivas como un sprint o un salto.",
+        "Las fibras lentas tienen más resistencia y son clave para pruebas de fondo como una maratón."
+    ],
+    [
+        "El tenis es un deporte de raqueta que se puede jugar individualmente o en parejas.",
+        "Se juega en una pista rectangular dividida por una red.",
+        "El objetivo es golpear la pelota de forma que el oponente no pueda devolverla.",
+        "Los torneos más importantes son los cuatro Grand Slams."
+    ],
+    [
+        "El calentamiento específico se realiza después del calentamiento general.",
+        "Consiste en ejercicios más parecidos a los gestos del deporte que se va a practicar.",
+        "Por ejemplo, en baloncesto, incluiría botes de balón y tiros a canasta suaves.",
+        "Ayuda a preparar de forma más concreta los músculos que más se van a utilizar."
+    ],
+    [
+        "La capacidad anaeróbica permite realizar esfuerzos de alta intensidad y corta duración.",
+        "En estos esfuerzos, los músculos no reciben suficiente oxígeno y generan energía por otras vías.",
+        "Un ejemplo sería una carrera de 100 metros lisos.",
+        "Esta vía energética produce una sustancia llamada lactato."
+    ],
+    [
+        "El rugby es un deporte de contacto y equipo, famoso por su balón ovalado.",
+        "Se juega entre dos equipos que intentan llevar el balón al final del campo contrario y apoyarlo en el suelo.",
+        "El balón solo puede pasarse hacia atrás con las manos.",
+        "Fomenta valores como el respeto, el trabajo en equipo y la dureza."
+    ],
+    [
+        "Una buena alimentación post-entrenamiento es clave para la recuperación.",
+        "Ayuda a reponer las reservas de energía gastadas.",
+        "Facilita la reparación de las pequeñas roturas fibrilares que se producen en los músculos.",
+        "Se recomienda combinar hidratos de carbono y proteínas poco después de terminar."
+    ],
+    [
+        "El pádel es un deporte de pala muy popular que se juega en parejas.",
+        "La pista es más pequeña que la de tenis y está rodeada por paredes.",
+        "Las paredes forman parte del juego, ya que la pelota puede rebotar en ellas.",
+        "Es un deporte muy social y más sencillo de aprender que el tenis."
+    ],
+    [
+        "Los deportes de aventura se practican en contacto con la naturaleza.",
+        "Incluyen actividades como la escalada, el piragüismo o el senderismo.",
+        "Suelen implicar un cierto nivel de riesgo y desafío personal.",
+        "Nos permiten disfrutar del medio ambiente de una forma activa y emocionante."
+    ],
+    [
+        "La respiración es fundamental durante el ejercicio físico.",
+        "Una respiración adecuada y rítmica ayuda a oxigenar mejor los músculos.",
+        "Generalmente, se inspira por la nariz y se espira por la boca.",
+        "Controlar la respiración puede ayudarnos a relajarnos y a dosificar el esfuerzo."
+    ],
+    [
+        "El ajedrez está considerado un deporte por el Comité Olímpico Internacional.",
+        "Aunque no requiere un gran esfuerzo físico, sí exige una enorme concentración mental.",
+        "Los jugadores deben planificar estrategias, anticipar movimientos y calcular variantes.",
+        "Es un excelente ejercicio para desarrollar la memoria y la capacidad de análisis."
+    ],
+    [
+        "El dopaje es el uso de sustancias prohibidas para aumentar el rendimiento deportivo.",
+        "Es una práctica ilegal y contraria a los valores del juego limpio.",
+        "Pone en riesgo la salud de los deportistas y crea una competición desigual.",
+        "Existen controles antidopaje para detectar y sancionar a quienes hacen trampas."
+    ],
+    [
+        "La motricidad fina se refiere a los movimientos precisos de las manos y los dedos.",
+        "Actividades como lanzar un dardo o escribir requieren una buena motricidad fina.",
+        "Se desarrolla desde la infancia con juegos de construcción o recortando.",
+        "En Educación Física se trabaja en deportes como el tenis de mesa o el tiro con arco."
+    ],
+    [
+        "El cuerpo humano se adapta al entrenamiento regular.",
+        "Si sometemos a nuestros músculos a un esfuerzo, se vuelven más fuertes para poder soportarlo.",
+        "Si entrenamos la resistencia, nuestro corazón y pulmones se vuelven más eficientes.",
+        "Este principio de adaptación es la base de la mejora en el rendimiento deportivo."
+    ],
+    [
+        "El calzado deportivo debe ser adecuado para cada actividad.",
+        "Unas zapatillas para correr no son iguales que unas para jugar al baloncesto.",
+        "El calzado correcto ayuda a proteger los pies y las articulaciones de lesiones.",
+        "Debe ser cómodo, transpirable y proporcionar una buena amortiguación."
+    ],
+    [
+        "La pirámide de actividad física nos orienta sobre qué ejercicios hacer.",
+        "En la base se encuentran las actividades diarias, como caminar o subir escaleras.",
+        "Más arriba están los deportes aeróbicos y de fuerza, que deben practicarse varias veces por semana.",
+        "En la cima están las actividades sedentarias, como ver la televisión, que debemos limitar."
+    ],
+    [
+        "El índice de masa corporal (IMC) relaciona el peso con la altura.",
+        "Se calcula dividiendo el peso en kilogramos por la altura en metros al cuadrado.",
+        "Es un indicador general para saber si nuestro peso está en un rango saludable.",
+        "Sin embargo, no distingue entre masa muscular y masa grasa."
+    ],
+    [
+        "El golf es un deporte de precisión que se practica al aire libre.",
+        "El objetivo es introducir una pequeña bola en una serie de hoyos en el menor número de golpes.",
+        "Se utilizan diferentes tipos de palos según la distancia y el terreno.",
+        "Requiere una gran concentración y una técnica de golpeo muy depurada."
+    ],
+    [
+        "Los deportes acuáticos se practican en el agua, ya sea en el mar, ríos o piscinas.",
+        "Incluyen disciplinas como el surf, el remo, la vela o el waterpolo.",
+        "Son una excelente forma de hacer ejercicio, especialmente en verano.",
+        "Es fundamental saber nadar bien y respetar las normas de seguridad."
+    ],
+    [
+        "El sistema circulatorio es el encargado de transportar la sangre por el cuerpo.",
+        "El corazón bombea la sangre, que viaja por las arterias llevando oxígeno y nutrientes.",
+        "Las venas se encargan de devolver la sangre sin oxígeno de vuelta al corazón.",
+        "Durante el ejercicio, este sistema trabaja mucho más rápido."
+    ],
+    [
+        "La agilidad mental también se entrena en Educación Física.",
+        "Deportes como la orientación o los juegos de estrategia requieren tomar decisiones rápidas.",
+        "La táctica en un deporte de equipo implica pensar y anticiparse al rival.",
+        "Un buen deportista no solo es fuerte físicamente, sino también inteligente en el juego."
+    ],
+    [
+        "Las lesiones deportivas más comunes afectan a músculos y articulaciones.",
+        "Esguinces, contracturas o tendinitis son algunos ejemplos.",
+        "Un buen calentamiento y una técnica correcta son la mejor prevención.",
+        "Si ocurre una lesión, es importante parar y consultar a un profesional."
+    ],
+    [
+        "El ritmo y la música son componentes importantes en muchas actividades físicas.",
+        "En el baile o la gimnasia rítmica, el movimiento se coordina con la música.",
+        "Incluso al correr, mucha gente utiliza música para marcar el ritmo y motivarse.",
+        "Nos ayuda a que el ejercicio sea más ameno y expresivo."
+    ],
+    [
+        "El material deportivo debe cuidarse para que dure más tiempo.",
+        "Limpiar las zapatillas, guardar bien los balones o secar las raquetas es importante.",
+        "Un material en mal estado puede ser incómodo e incluso peligroso.",
+        "Es una forma de respetar los recursos del centro educativo."
+    ],
+    [
+        "La propiocepción es el sentido que informa al cerebro de la posición de nuestro cuerpo.",
+        "Nos permite saber dónde están nuestras articulaciones y músculos sin necesidad de mirar.",
+        "Un buen equilibrio y coordinación dependen de una propiocepción eficaz.",
+        "Se entrena con ejercicios en superficies inestables o cerrando los ojos."
+    ],
+    [
+        "La táctica en un deporte de equipo es el plan de juego colectivo.",
+        "Define cómo el equipo va a atacar y cómo va a defender.",
+        "Se decide antes del partido y se ajusta durante el mismo.",
+        "Requiere que todos los jugadores conozcan su función y se comuniquen."
+    ],
+    [
+        "La potencia muscular es la capacidad de aplicar la máxima fuerza en el menor tiempo posible.",
+        "Es una combinación de fuerza y velocidad.",
+        "Es clave en gestos como un salto vertical, un lanzamiento o un golpeo.",
+        "Se entrena con ejercicios que implican movimientos rápidos y explosivos."
+    ],
+    [
+        "El atletismo adaptado permite a personas con discapacidad practicar este deporte.",
+        "Existen carreras en silla de ruedas, saltos para atletas ciegos o lanzamientos adaptados.",
+        "Los Juegos Paralímpicos son el mayor evento de deporte adaptado del mundo.",
+        "Es un ejemplo de superación e inclusión a través del deporte."
+    ],
+    [
+        "La frecuencia cardíaca máxima es el número máximo de pulsaciones que puede alcanzar nuestro corazón.",
+        "Se puede estimar con fórmulas, aunque varía mucho de una persona a otra.",
+        "Conocerla ayuda a planificar los entrenamientos a la intensidad adecuada.",
+        "Nunca debemos intentar llegar a ella sin supervisión profesional."
+    ],
+    [
+        "Los deportes de invierno se practican en la nieve o el hielo.",
+        "El esquí y el snowboard son los más populares.",
+        "Otras modalidades son el patinaje sobre hielo, el curling o el hockey hielo.",
+        "Requieren ropa de abrigo adecuada y medidas de seguridad específicas."
+    ],
+    [
+        "El umbral aeróbico es la intensidad de ejercicio a partir de la cual nuestro cuerpo empieza a utilizar más energía de la vía anaeróbica.",
+        "Es un punto importante para entrenar la resistencia.",
+        "Correr a un ritmo suave, pudiendo mantener una conversación, suele estar por debajo de este umbral.",
+        "Con el entrenamiento, conseguimos que este umbral se sitúe a una intensidad más alta."
+    ],
+    [
+        "El salvamento acuático es una disciplina deportiva y una habilidad vital.",
+        "Combina natación con técnicas de rescate y primeros auxilios.",
+        "Enseña cómo ayudar a una persona en apuros en el agua de forma segura.",
+        "Las competiciones simulan situaciones de rescate reales."
+    ],
+    [
+        "El calentamiento articular consiste en mover suavemente las articulaciones.",
+        "Se realizan movimientos circulares de tobillos, rodillas, caderas, hombros y muñecas.",
+        "Su objetivo es lubricar las articulaciones y prepararlas para el movimiento.",
+        "Es una parte esencial del calentamiento, especialmente antes de deportes con gestos amplios."
+    ],
+    [
+        "Los deportes de raqueta desarrollan la coordinación óculo-manual.",
+        "Esta es la habilidad de coordinar los movimientos de la mano con la información que nos llega por la vista.",
+        "El tenis, el pádel, el bádminton o el tenis de mesa son ejemplos.",
+        "Mejora nuestros reflejos y nuestra capacidad de reacción."
+    ],
+    [
+        "El esqueleto axial está formado por los huesos de la cabeza y el tronco.",
+        "Incluye el cráneo, la columna vertebral, las costillas y el esternón.",
+        "Su función principal es proteger los órganos vitales como el cerebro, el corazón y los pulmones.",
+        "Forma el eje central de nuestro cuerpo."
+    ],
+    [
+        "La escalada es un deporte que consiste en ascender por paredes de roca o rocódromos.",
+        "Se utiliza la fuerza de brazos y piernas, así como el equilibrio y la técnica.",
+        "Existen diferentes modalidades, como la escalada deportiva, con cuerdas de seguridad, o el búlder, a poca altura.",
+        "Fomenta la concentración y la capacidad de superación."
+    ],
+    [
+        "La biomecánica deportiva estudia cómo se aplican las leyes de la física al movimiento humano.",
+        "Analiza la técnica de los deportistas para hacerla más eficiente y prevenir lesiones.",
+        "Por ejemplo, estudia el ángulo perfecto para lanzar una jabalina o la mejor postura para correr.",
+        "Ayuda a entender por qué ciertos movimientos son más efectivos que otros."
+    ],
+    [
+        "El triatlón es un deporte que combina tres disciplinas en una sola prueba.",
+        "Los atletas deben completar un segmento de natación, seguido de uno de ciclismo y terminando con una carrera a pie.",
+        "Es una de las pruebas de resistencia más exigentes que existen.",
+        "Requiere un entrenamiento muy completo y variado."
+    ],
+    [
+        "Los reflejos son respuestas automáticas e involuntarias de nuestro cuerpo ante un estímulo.",
+        "Por ejemplo, retirar la mano rápidamente al tocar algo caliente.",
+        "En el deporte, tener buenos reflejos es crucial en disciplinas como el boxeo o el tenis de mesa.",
+        "Aunque son involuntarios, la velocidad de reacción se puede entrenar."
+    ],
+    [
+        "Los deportes urbanos son aquellos que se practican en las calles y espacios de la ciudad.",
+        "El skateboarding, el parkour o el BMX son algunos ejemplos.",
+        "Aprovechan elementos del mobiliario urbano como escaleras o barandillas.",
+        "Representan una cultura juvenil muy ligada a la creatividad y la autoexpresión."
+    ],
+    [
+        "La fatiga es la disminución de la capacidad de rendimiento debido a un esfuerzo prolongado.",
+        "Puede ser física, con sensación de cansancio muscular, o mental, con pérdida de concentración.",
+        "El descanso y una buena nutrición son clave para combatirla.",
+        "Saber gestionar la fatiga durante una prueba larga es parte del entrenamiento."
+    ],
+    [
+        "El CORE se refiere al conjunto de músculos de la zona central del cuerpo.",
+        "Incluye los abdominales, lumbares, pelvis, glúteos y la musculatura profunda de la columna.",
+        "Tener un CORE fuerte es fundamental para la estabilidad y para transmitir fuerza a las extremidades.",
+        "Ejercicios como las planchas son excelentes para fortalecerlo."
+    ],
+    [
+        "El surf es un deporte que consiste en deslizarse sobre las olas del mar de pie sobre una tabla.",
+        "Requiere un gran equilibrio, fuerza y conocimiento del mar.",
+        "Nació en las islas de la Polinesia hace cientos de años.",
+        "Es un deporte muy conectado con la naturaleza y el respeto por el océano."
+    ],
+    [
+        "La agilidad de pies o 'footwork' es crucial en muchos deportes.",
+        "Se refiere a la capacidad de mover los pies de forma rápida, ligera y coordinada.",
+        "En el boxeo, el tenis o el baloncesto, un buen juego de pies permite estar siempre en la posición correcta.",
+        "Se entrena con ejercicios en escaleras de agilidad, saltos y cambios de dirección."
+    ],
+    [
+        "El entrenamiento funcional busca preparar al cuerpo para las actividades de la vida cotidiana.",
+        "En lugar de aislar un músculo, trabaja cadenas musculares completas.",
+        "Utiliza movimientos como empujar, tirar, agacharse o levantar objetos.",
+        "Mejora la fuerza, la coordinación y la postura de forma global."
+    ],
+    [
+        "La capacidad pulmonar es la cantidad total de aire que pueden contener nuestros pulmones.",
+        "Se puede mejorar con el entrenamiento de resistencia aeróbica.",
+        "Deportes como la natación o el atletismo son excelentes para aumentarla.",
+        "Una mayor capacidad pulmonar permite que llegue más oxígeno a nuestra sangre."
+    ],
+    [
+        "El sistema nervioso autónomo regula las funciones involuntarias del cuerpo.",
+        "Se divide en el sistema simpático, que nos prepara para la acción ('lucha o huida').",
+        "Y el sistema parasimpático, que predomina en situaciones de descanso y relajación.",
+        "Durante el ejercicio, el sistema simpático se activa, aumentando el ritmo cardíaco."
+    ],
+    [
+        "El 'sprint' final en una carrera es un esfuerzo máximo al límite de nuestras fuerzas.",
+        "Requiere una gran capacidad anaeróbica y una enorme fuerza de voluntad.",
+        "Los músculos trabajan sin suficiente oxígeno, acumulando lactato.",
+        "Es el momento donde la preparación mental es tan importante como la física."
+    ],
+    [
+        "Los deportes de invierno como el esquí requieren un material específico.",
+        "Los esquís o la tabla de snowboard deben estar bien encerados para deslizarse.",
+        "Las fijaciones unen las botas a los esquís y deben saltar en caso de caída para evitar lesiones.",
+        "El uso de casco es fundamental para la seguridad."
+    ],
+    [
+        "El lanzamiento de peso es una prueba de atletismo de fuerza y técnica.",
+        "El atleta debe lanzar una bola de metal lo más lejos posible desde un círculo.",
+        "El lanzamiento se realiza desde el hombro con una sola mano.",
+        "Combina la fuerza del tronco y las piernas con una técnica de giro muy precisa."
+    ],
+    [
+        "El aparato locomotor está formado por el sistema esquelético y el sistema muscular.",
+        "Los huesos forman la estructura pasiva, el armazón del cuerpo.",
+        "Los músculos son la parte activa, los que generan el movimiento al contraerse.",
+        "Ambos sistemas trabajan coordinados para permitirnos movernos."
+    ],
+    [
+        "La táctica individual en un deporte se refiere a las decisiones que toma un jugador por sí mismo.",
+        "Por ejemplo, en fútbol, decidir si regatear a un rival o pasar el balón.",
+        "Depende de la inteligencia de juego y la capacidad de leer la situación.",
+        "Una buena táctica individual mejora el rendimiento del equipo."
+    ],
+    [
+        "El calentamiento psicológico también es importante antes de una competición.",
+        "Consiste en concentrarse, visualizar el rendimiento y controlar los nervios.",
+        "Técnicas de respiración pueden ayudar a reducir la ansiedad.",
+        "Llegar con una mentalidad positiva y confiada mejora las posibilidades de éxito."
+    ],
+    [
+        "El metabolismo es el conjunto de reacciones químicas que ocurren en nuestras células.",
+        "Incluye procesos que construyen moléculas (anabolismo) y que las destruyen (catabolismo).",
+        "El ejercicio físico acelera el metabolismo, ayudando a quemar calorías.",
+        "Un metabolismo activo es importante para mantener un peso saludable."
+    ]
 ]

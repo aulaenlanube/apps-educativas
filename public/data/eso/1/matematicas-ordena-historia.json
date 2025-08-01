@@ -1,12 +1,296 @@
 [
-    ["Para resolver el problema, primero leemos el enunciado con atención.", "Identificamos los datos que nos proporciona y lo que nos pide calcular.", "Elegimos la operación matemática adecuada para la situación.", "Realizamos los cálculos de forma ordenada y sin errores.", "Finalmente, escribimos la solución de forma clara y completa."],
-    ["Los números naturales surgieron de la necesidad de contar objetos.", "Más tarde, los números enteros se introdujeron para representar deudas o temperaturas bajo cero.", "Las fracciones aparecieron para poder expresar partes de una unidad.", "El conjunto de todos ellos forma los números racionales."],
-    ["Pitágoras fue un matemático de la antigua Grecia.", "Fundó una escuela donde se estudiaban las matemáticas y la filosofía.", "A él y a sus discípulos se les atribuye el famoso teorema sobre los triángulos rectángulos.", "Este teorema establece una relación entre los catetos y la hipotenusa."],
-    ["Para construir un pentágono regular, empezamos dibujando una circunferencia.", "Dividimos los 360 grados de la circunferencia entre cinco lados.", "Con un transportador, marcamos los ángulos de 72 grados.", "Unimos los puntos marcados en la circunferencia para formar el polígono.", "Comprobamos que todos sus lados y ángulos son iguales."],
-    ["Un comerciante compró manzanas a 1 euro el kilo.", "Las vendió en su frutería a 2 euros el kilo.", "Si compró 50 kilos, primero calculó el coste total.", "Luego, calculó el ingreso total por la venta.", "La diferencia entre ingresos y costes fue su beneficio."],
-    ["El sistema de numeración decimal utiliza diez cifras, del 0 al 9.", "La posición de cada cifra determina su valor en el número.", "Es un sistema posicional que usamos en nuestra vida diaria.", "Facilita la realización de operaciones aritméticas como sumar o restar."],
-    ["Para calcular el área de una habitación rectangular, medimos su largo y su ancho.", "Multiplicamos la medida del largo por la del ancho.", "El resultado se expresa en metros cuadrados.", "Este cálculo es útil para saber cuántas baldosas se necesitan para el suelo."],
-    ["La estadística nos ayuda a organizar y analizar datos.", "Primero, recogemos la información mediante encuestas o mediciones.", "Luego, organizamos los datos en tablas de frecuencias.", "Finalmente, representamos los datos en gráficos para visualizarlos mejor.", "Así, podemos sacar conclusiones a partir de la información."],
-    ["Una ecuación es como una balanza en equilibrio.", "Lo que hacemos en un lado de la igualdad, debemos hacerlo en el otro.", "Nuestro objetivo es despejar la incógnita para encontrar su valor.", "Para ello, pasamos los términos de un lado a otro cambiando su operación."],
-    ["La probabilidad mide la posibilidad de que ocurra un suceso.", "Se calcula dividiendo el número de casos favorables entre el número de casos posibles.", "Por ejemplo, la probabilidad de sacar un 5 al lanzar un dado es de un sexto.", "Su valor es siempre un número entre 0 y 1."]
+    [
+        "Los números naturales son los que usamos para contar.",
+        "El conjunto de estos números se representa con la letra N.",
+        "Son el 1, 2, 3, 4, y así sucesivamente.",
+        "Nos sirven para ordenar elementos o para indicar la cantidad de objetos."
+    ],
+    [
+        "Una fracción representa una parte de una unidad.",
+        "Está compuesta por un numerador y un denominador.",
+        "El denominador indica en cuántas partes iguales se divide la unidad.",
+        "El numerador indica cuántas de esas partes se toman."
+    ],
+    [
+        "El perímetro de un polígono es la suma de las longitudes de todos sus lados.",
+        "Para calcularlo, simplemente medimos cada lado y los sumamos.",
+        "Si un cuadrado tiene un lado de 5 cm, su perímetro será de 20 cm.",
+        "Se expresa en unidades de longitud, como metros o centímetros."
+    ],
+    [
+        "Un ángulo recto es aquel que mide exactamente 90 grados.",
+        "Las esquinas de un cuadrado o un rectángulo forman ángulos rectos.",
+        "Un ángulo agudo mide menos de 90 grados.",
+        "Un ángulo obtuso mide más de 90 grados."
+    ],
+    [
+        "Para resolver una ecuación, nuestro objetivo es despejar la incógnita.",
+        "La incógnita es el valor desconocido, normalmente representado por la letra 'x'.",
+        "Lo que está sumando en un lado de la igualdad, pasa restando al otro.",
+        "Lo que está multiplicando, pasa dividiendo, y viceversa."
+    ],
+    [
+        "Los números enteros incluyen los números naturales, sus opuestos negativos y el cero.",
+        "Se representan con la letra Z.",
+        "Nos sirven para expresar temperaturas bajo cero o deudas.",
+        "Se pueden representar ordenados en una recta numérica."
+    ],
+    [
+        "El área de una figura plana es la medida de la superficie que ocupa.",
+        "Para un rectángulo, se calcula multiplicando la base por la altura.",
+        "Para un cuadrado, como los lados son iguales, es lado por lado.",
+        "Se expresa en unidades cuadradas, como metros cuadrados (m²)."
+    ],
+    [
+        "Las potencias son una forma abreviada de escribir una multiplicación.",
+        "Se componen de una base y un exponente.",
+        "El exponente nos dice cuántas veces debemos multiplicar la base por sí misma.",
+        "Por ejemplo, 5 elevado a 3 significa 5 por 5 por 5."
+    ],
+    [
+        "El mínimo común múltiplo (m.c.m.) de dos números es el múltiplo más pequeño que tienen en común.",
+        "Para calcularlo, primero descomponemos los números en factores primos.",
+        "Luego, elegimos los factores comunes y no comunes con el mayor exponente.",
+        "Finalmente, multiplicamos esos factores para obtener el m.c.m."
+    ],
+    [
+        "Los triángulos se pueden clasificar según sus lados.",
+        "Si tienen los tres lados iguales, se llaman equiláteros.",
+        "Si tienen dos lados iguales y uno desigual, son isósceles.",
+        "Si los tres lados son diferentes, se llaman escalenos."
+    ],
+    [
+        "La suma de los ángulos interiores de cualquier triángulo es siempre 180 grados.",
+        "Esta es una propiedad fundamental de los triángulos.",
+        "Si conocemos dos de los ángulos, podemos calcular el tercero.",
+        "Simplemente restamos la suma de los dos conocidos a 180."
+    ],
+    [
+        "Los números primos son aquellos que solo tienen dos divisores.",
+        "Esos dos divisores son el 1 y el propio número.",
+        "Ejemplos de números primos son el 2, el 3, el 5, el 7 y el 11.",
+        "El número 1 no se considera primo."
+    ],
+    [
+        "Una circunferencia es una línea curva, cerrada y plana.",
+        "Todos sus puntos están a la misma distancia de un punto central llamado centro.",
+        "La distancia desde el centro a cualquier punto de la circunferencia se llama radio.",
+        "El diámetro es el doble del radio y pasa por el centro."
+    ],
+    [
+        "Las coordenadas cartesianas nos sirven para localizar puntos en un plano.",
+        "Se utilizan dos ejes perpendiculares: el eje X (horizontal) y el eje Y (vertical).",
+        "Cada punto se define por un par de números (x, y).",
+        "El primer número indica la posición en el eje X y el segundo en el eje Y."
+    ],
+    [
+        "Los porcentajes son una forma de expresar una parte de un total de 100.",
+        "El símbolo para representar un porcentaje es %.",
+        "Decir 'el 50% de algo' es lo mismo que decir 'la mitad de algo'.",
+        "Se utilizan mucho en descuentos, estadísticas e impuestos."
+    ],
+    [
+        "Un polígono regular es aquel que tiene todos sus lados y todos sus ángulos iguales.",
+        "Un triángulo equilátero es un polígono regular.",
+        "Un cuadrado también es un polígono regular.",
+        "Otros ejemplos son el pentágono regular o el hexágono regular."
+    ],
+    [
+        "Las rectas paralelas son aquellas que nunca se cortan, por mucho que se prolonguen.",
+        "Mantienen siempre la misma distancia entre ellas.",
+        "Las vías de un tren son un buen ejemplo de líneas paralelas.",
+        "Dos calles paralelas en una ciudad nunca se cruzarán."
+    ],
+    [
+        "Las rectas perpendiculares son las que se cortan formando cuatro ángulos rectos.",
+        "Cada uno de esos ángulos mide 90 grados.",
+        "La esquina de una ventana o un libro está formada por dos líneas perpendiculares.",
+        "La cruz es un símbolo formado por dos segmentos perpendiculares."
+    ],
+    [
+        "La media aritmética es una medida que resume un conjunto de datos.",
+        "Para calcularla, se suman todos los datos.",
+        "Después, se divide el resultado entre el número total de datos.",
+        "Se utiliza mucho para calcular la nota media de una asignatura."
+    ],
+    [
+        "El valor absoluto de un número es su distancia al cero en la recta numérica.",
+        "Se representa escribiendo el número entre dos barras verticales.",
+        "Como es una distancia, el valor absoluto es siempre positivo o cero.",
+        "Por ejemplo, el valor absoluto de -5 es 5."
+    ],
+    [
+        "Para sumar dos fracciones, primero deben tener el mismo denominador.",
+        "Si no lo tienen, buscamos un denominador común, generalmente el m.c.m.",
+        "Luego, transformamos las fracciones a sus equivalentes con ese denominador.",
+        "Finalmente, sumamos los numeradores y mantenemos el denominador común."
+    ],
+    [
+        "La probabilidad mide la posibilidad de que ocurra un suceso.",
+        "Se expresa como un número entre 0 y 1.",
+        "Un suceso con probabilidad 1 es un suceso seguro.",
+        "La probabilidad de que salga cara al lanzar una moneda es de 0,5."
+    ],
+    [
+        "Un cubo es un cuerpo geométrico con seis caras cuadradas.",
+        "Todas sus caras son iguales.",
+        "También tiene 12 aristas y 8 vértices.",
+        "Un dado es un ejemplo perfecto de un cubo."
+    ],
+    [
+        "El Teorema de Pitágoras se aplica a los triángulos rectángulos.",
+        "Un triángulo rectángulo es el que tiene un ángulo de 90 grados.",
+        "El teorema dice que el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos.",
+        "La hipotenusa es el lado más largo, opuesto al ángulo recto."
+    ],
+    [
+        "La proporcionalidad directa ocurre cuando dos magnitudes aumentan o disminuyen juntas.",
+        "Si una magnitud se duplica, la otra también se duplica.",
+        "Por ejemplo, cuantos más kilos de fruta compres, más dinero pagarás.",
+        "La regla de tres es una herramienta muy útil para resolver problemas de proporcionalidad."
+    ],
+    [
+        "Un número es divisible por 2 si termina en cero o en una cifra par.",
+        "Por ejemplo, los números 30, 44 y 156 son divisibles por 2.",
+        "Un número es divisible por 3 si la suma de sus cifras es un múltiplo de 3.",
+        "Por ejemplo, el número 123 es divisible por 3 porque 1+2+3=6."
+    ],
+    [
+        "La estadística es la parte de las matemáticas que se encarga de recoger y analizar datos.",
+        "Primero, se recogen los datos mediante encuestas o experimentos.",
+        "Luego, se organizan en tablas y se representan en gráficos.",
+        "Finalmente, se analizan para sacar conclusiones."
+    ],
+    [
+        "Los números decimales tienen una parte entera y una parte decimal.",
+        "Ambas partes están separadas por una coma.",
+        "La parte entera está a la izquierda de la coma.",
+        "La parte decimal está a la derecha."
+    ],
+    [
+        "La raíz cuadrada de un número es otro número que, multiplicado por sí mismo, da el primero.",
+        "El símbolo de la raíz cuadrada es √.",
+        "Por ejemplo, la raíz cuadrada de 25 es 5.",
+        "Esto es porque 5 por 5 es igual a 25."
+    ],
+    [
+        "Los cuadriláteros son polígonos que tienen cuatro lados.",
+        "Se clasifican en paralelogramos, trapecios y trapezoides.",
+        "Los paralelogramos tienen los lados paralelos dos a dos, como el cuadrado o el rombo.",
+        "Los trapecios solo tienen dos lados paralelos."
+    ],
+    [
+        "La simetría es una propiedad de algunas figuras geométricas.",
+        "Una figura es simétrica si podemos trazar una línea, llamada eje de simetría, que la divida en dos partes iguales.",
+        "Estas dos partes son como el reflejo de una en un espejo.",
+        "Una mariposa o un corazón son ejemplos de figuras simétricas."
+    ],
+    [
+        "Para realizar operaciones combinadas, debemos seguir un orden.",
+        "Primero, se resuelven las operaciones dentro de los paréntesis.",
+        "Después, se calculan las multiplicaciones y divisiones, de izquierda a derecha.",
+        "Finalmente, se realizan las sumas y las restas."
+    ],
+    [
+        "El sistema de numeración romano utiliza letras para representar los números.",
+        "Las letras principales son I, V, X, L, C, D y M.",
+        "Se basa en reglas de suma y resta según la posición de las letras.",
+        "Todavía se usa para nombrar siglos o en algunos relojes."
+    ],
+    [
+        "Una esfera es un cuerpo geométrico redondo.",
+        "Todos los puntos de su superficie están a la misma distancia del centro.",
+        "Una pelota o una canica son ejemplos de esferas.",
+        "No tiene caras, aristas ni vértices."
+    ],
+    [
+        "Un cilindro es un cuerpo geométrico con dos bases circulares.",
+        "Sus dos bases son paralelas e iguales.",
+        "Tiene una superficie lateral curva que une las dos bases.",
+        "Una lata de refresco es un buen ejemplo de cilindro."
+    ],
+    [
+        "El máximo común divisor (M.C.D.) es el mayor de los divisores comunes de dos o más números.",
+        "Para hallarlo, descomponemos los números en factores primos.",
+        "Luego, elegimos solo los factores comunes con el menor exponente.",
+        "Finalmente, multiplicamos esos factores para obtener el M.C.D."
+    ],
+    [
+        "La propiedad conmutativa dice que el orden de los factores no altera el resultado.",
+        "Se cumple para la suma (a + b = b + a).",
+        "También se cumple para la multiplicación (a * b = b * a).",
+        "Sin embargo, no se cumple para la resta ni para la división."
+    ],
+    [
+        "Un rombo es un paralelogramo que tiene los cuatro lados iguales.",
+        "Sus ángulos opuestos son iguales.",
+        "Tiene dos diagonales que son perpendiculares entre sí.",
+        "Las cometas suelen tener forma de rombo."
+    ],
+    [
+        "La bisectriz de un ángulo es la recta que lo divide en dos partes iguales.",
+        "Pasa por el vértice del ángulo.",
+        "Cualquier punto de la bisectriz está a la misma distancia de los dos lados del ángulo.",
+        "Se puede trazar fácilmente con un compás y una regla."
+    ],
+    [
+        "Los números racionales son los que se pueden expresar como una fracción.",
+        "Incluyen a todos los números enteros y a los decimales exactos y periódicos.",
+        "El conjunto de estos números se representa con la letra Q.",
+        "Entre dos números racionales siempre existe otro número racional."
+    ],
+    [
+        "La notación científica se utiliza para escribir números muy grandes o muy pequeños.",
+        "Se escribe como un número entre 1 y 10, multiplicado por una potencia de 10.",
+        "Por ejemplo, la distancia de la Tierra al Sol es de unos 150.000.000 km.",
+        "En notación científica, se escribiría como 1,5 x 10^8 km."
+    ],
+    [
+        "Un cono es un cuerpo geométrico con una base circular.",
+        "Tiene una superficie lateral curva que termina en un punto llamado vértice.",
+        "Un cucurucho de helado o un gorro de fiesta tienen forma de cono.",
+        "Se genera al hacer girar un triángulo rectángulo sobre uno de sus catetos."
+    ],
+    [
+        "La propiedad asociativa nos permite agrupar los números de diferentes maneras.",
+        "En una suma de tres números, podemos sumar los dos primeros y luego el tercero.",
+        "O podemos sumar los dos últimos y luego el primero, y el resultado será el mismo.",
+        "Esta propiedad también se cumple para la multiplicación."
+    ],
+    [
+        "Los diagramas de barras son un tipo de gráfico estadístico.",
+        "Se utilizan para representar datos cualitativos o cuantitativos discretos.",
+        "Cada dato se representa con una barra rectangular.",
+        "La altura de la barra indica la frecuencia o el valor de ese dato."
+    ],
+    [
+        "Un número es divisible por 5 si su última cifra es 0 o 5.",
+        "Por ejemplo, los números 45, 120 y 375 son divisibles por 5.",
+        "Un número es divisible por 10 si su última cifra es 0.",
+        "Por ejemplo, los números 80, 200 y 1540 son divisibles por 10."
+    ],
+    [
+        "La propiedad distributiva relaciona la multiplicación con la suma.",
+        "Dice que multiplicar un número por una suma es igual a sumar las multiplicaciones de ese número por cada sumando.",
+        "Es decir, a * (b + c) = (a * b) + (a * c).",
+        "Esta propiedad es muy útil para simplificar cálculos."
+    ],
+    [
+        "El volumen de un cuerpo es el espacio que ocupa en tres dimensiones.",
+        "Para un cubo, se calcula multiplicando el lado por sí mismo tres veces.",
+        "Para un ortoedro, como una caja, se multiplica el largo por el ancho por el alto.",
+        "Se mide en unidades cúbicas, como el metro cúbico (m³)."
+    ],
+    [
+        "La proporcionalidad inversa ocurre cuando al aumentar una magnitud, la otra disminuye.",
+        "Si una magnitud se duplica, la otra se reduce a la mitad.",
+        "Por ejemplo, cuantos más pintores trabajen, menos tiempo tardarán en pintar una pared.",
+        "El producto de las dos magnitudes es siempre constante."
+    ],
+    [
+        "Una ecuación de primer grado es una igualdad con una o más incógnitas.",
+        "El exponente de la incógnita es siempre uno.",
+        "Resolverla consiste en encontrar el valor de la incógnita que hace cierta la igualdad.",
+        "La ecuación 2x + 1 = 5 es un ejemplo de ecuación de primer grado."
+    ]
 ]

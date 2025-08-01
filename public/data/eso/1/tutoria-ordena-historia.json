@@ -1,12 +1,602 @@
 [
-    ["Ana se sentía abrumada con todos los deberes y exámenes.", "Decidió crear un horario de estudio para organizarse mejor.", "Asignó un tiempo cada día para cada asignatura.", "También incluyó pequeños descansos para no agotarse.", "Gracias al horario, consiguió mejorar sus notas y tener más tiempo libre."],
-    ["Durante un trabajo en grupo, surgieron ideas muy diferentes.", "En lugar de discutir, decidieron escuchar las opiniones de todos.", "Buscaron los puntos en común de cada propuesta.", "Llegaron a un acuerdo que combinaba lo mejor de cada idea.", "El trabajo final fue un éxito gracias a la cooperación de todos."],
-    ["Carlos vio que un compañero nuevo estaba solo en el patio.", "Se acercó a él y se presentó amablemente.", "Le preguntó si quería jugar al fútbol con su grupo de amigos.", "El compañero nuevo se sintió muy feliz y aceptó la invitación.", "Desde ese día, se convirtieron en buenos amigos."],
-    ["Laura tenía mucho miedo de hablar en público.", "Su profesora le animó a preparar bien su exposición.", "Ensayó varias veces en casa delante de un espejo.", "Aunque estaba nerviosa, expuso su trabajo de forma clara.", "Al terminar, se sintió muy orgullosa de haber superado su miedo."],
-    ["Un grupo de alumnos decidió organizar una campaña de reciclaje en el instituto.", "Primero, investigaron sobre la importancia de reciclar.", "Colocaron contenedores de diferentes colores en las aulas y el patio.", "Crearon carteles para informar a sus compañeros.", "Consiguieron que todo el centro se implicara en el cuidado del medio ambiente."],
-    ["Marta encontró una cartera en el pasillo del instituto.", "Vio que dentro había dinero y la tarjeta de identificación de un alumno.", "Sin dudarlo, la llevó a la secretaría del centro.", "El dueño de la cartera pudo recuperarla y le dio las gracias.", "Marta se sintió muy bien por haber actuado con honestidad."],
-    ["Para preparar un examen importante, lo primero es planificar el estudio.", "Se debe repasar la materia con antelación, sin dejarlo para el último día.", "Hacer esquemas y resúmenes ayuda a comprender y memorizar mejor.", "Dormir bien la noche anterior es fundamental para rendir al máximo."],
-    ["La empatía es la capacidad de ponerse en el lugar de otra persona.", "Si vemos a un amigo triste, podemos intentar comprender cómo se siente.", "Escucharle con atención y sin juzgarle es una gran ayuda.", "A veces, un simple gesto de apoyo puede marcar la diferencia."],
-    ["Ser asertivo significa expresar lo que piensas o sientes de forma respetuosa.", "No es necesario ser agresivo para defender tus ideas.", "Tampoco hay que quedarse callado si algo nos molesta.", "Se pueden decir las cosas con calma, claridad y firmeza."],
-    ["El acoso escolar es un problema grave que afecta a muchos estudiantes.", "Es importante no quedarse callado si lo sufres o lo presencias.", "Hablar con un profesor, tus padres o un amigo de confianza es el primer paso.", "Entre todos, podemos crear un entorno seguro y de respeto en el instituto."]
+    [
+        "La empatía es la capacidad de ponerse en el lugar de otra persona.",
+        "Implica intentar comprender sus sentimientos y emociones.",
+        "Ser empático nos ayuda a tener mejores relaciones con los demás.",
+        "Escuchar con atención es una buena forma de mostrar empatía."
+    ],
+    [
+        "La asertividad nos permite expresar nuestras ideas y sentimientos de forma clara.",
+        "Se trata de defender nuestros derechos respetando los de los demás.",
+        "Una persona asertiva habla con calma y seguridad, sin ser agresiva ni pasiva.",
+        "Decir 'no' de forma educada cuando es necesario es un ejemplo de asertividad."
+    ],
+    [
+        "Una buena planificación es clave para tener éxito en los estudios.",
+        "Conviene usar una agenda para apuntar las fechas de exámenes y entregas.",
+        "Crear un horario de estudio semanal ayuda a organizar el tiempo.",
+        "Es importante incluir también tiempos de descanso y ocio."
+    ],
+    [
+        "El trabajo en equipo nos permite alcanzar metas que serían difíciles de lograr solos.",
+        "Cada miembro del equipo aporta sus habilidades y conocimientos.",
+        "Es fundamental comunicarse bien y repartir las tareas de forma equitativa.",
+        "Saber escuchar y respetar las ideas de los compañeros es esencial."
+    ],
+    [
+        "El acoso escolar es un problema grave que debemos detener entre todos.",
+        "Nadie tiene derecho a insultar, amenazar o agredir a otra persona.",
+        "Si lo ves o lo sufres, es muy importante que pidas ayuda a un adulto.",
+        "Apoyar a la víctima y no reírse de las agresiones es fundamental."
+    ],
+    [
+        "La autoestima es la valoración que tenemos de nosotros mismos.",
+        "Una autoestima sana implica aceptarnos y querernos como somos, con nuestras virtudes y defectos.",
+        "Reconocer nuestros logros, por pequeños que sean, ayuda a mejorarla.",
+        "No debemos compararnos constantemente con los demás."
+    ],
+    [
+        "Aprender a gestionar nuestras emociones es muy importante para nuestro bienestar.",
+        "Es normal sentir alegría, tristeza, enfado o miedo en diferentes situaciones.",
+        "Lo importante es reconocer la emoción y expresarla de una forma adecuada.",
+        "Hablar de cómo nos sentimos con alguien de confianza puede ayudarnos mucho."
+    ],
+    [
+        "La resolución de conflictos es una habilidad muy útil en la vida.",
+        "Cuando surge un problema con otra persona, lo primero es mantener la calma.",
+        "Es importante escuchar el punto de vista del otro sin interrumpir.",
+        "Buscar una solución en la que ambas partes ganen es el objetivo final."
+    ],
+    [
+        "Establecer metas nos ayuda a mantenernos motivados y a dirigir nuestros esfuerzos.",
+        "Las metas deben ser específicas, medibles y realistas.",
+        "Es útil dividir una meta grande en pequeños pasos más manejables.",
+        "Celebrar cada pequeño paso conseguido nos anima a seguir adelante."
+    ],
+    [
+        "La escucha activa consiste en prestar total atención a la persona que habla.",
+        "No se trata solo de oír las palabras, sino de entender el mensaje completo.",
+        "Implica mirar a la persona, asentir y no interrumpir.",
+        "Hacer preguntas para aclarar dudas demuestra que estamos interesados."
+    ],
+    [
+        "La responsabilidad significa cumplir con nuestros compromisos y obligaciones.",
+        "Ser responsable en los estudios implica hacer los deberes y estudiar cada día.",
+        "También significa asumir las consecuencias de nuestras acciones.",
+        "La confianza de los demás se gana siendo una persona responsable."
+    ],
+    [
+        "El respeto es la base de una buena convivencia.",
+        "Significa tratar a los demás con consideración, aunque no pensemos igual.",
+        "También implica cuidar el material y las instalaciones que compartimos.",
+        "Respetar a los demás es el primer paso para que nos respeten a nosotros."
+    ],
+    [
+        "El pensamiento crítico nos ayuda a analizar la información de forma objetiva.",
+        "Consiste en no creer todo lo que leemos o escuchamos a la primera.",
+        "Es importante hacerse preguntas, buscar diferentes fuentes y formar nuestra propia opinión.",
+        "Esta habilidad nos protege de la manipulación y las noticias falsas."
+    ],
+    [
+        "La solidaridad es la capacidad de apoyar y ayudar a los demás desinteresadamente.",
+        "Se puede ser solidario compartiendo nuestro tiempo o nuestros recursos.",
+        "Ayudar a un compañero que no entiende algo es un acto de solidaridad.",
+        "Una sociedad solidaria es aquella en la que las personas se cuidan unas a otras."
+    ],
+    [
+        "Usar las redes sociales de forma segura y responsable es fundamental.",
+        "Nunca debemos compartir información personal como nuestra dirección o teléfono.",
+        "Hay que pensar bien antes de publicar una foto o un comentario.",
+        "Debemos tratar a los demás en línea con el mismo respeto que en persona."
+    ],
+    [
+        "La tolerancia es la capacidad de aceptar y respetar las diferencias de los demás.",
+        "Cada persona es única y tiene derecho a tener sus propias ideas, creencias y costumbres.",
+        "Ser tolerante no significa estar de acuerdo con todo, sino convivir en paz.",
+        "La diversidad nos enriquece como sociedad."
+    ],
+    [
+        "La perseverancia es la clave para superar las dificultades.",
+        "Cuando algo nos resulta difícil, no debemos rendirnos a la primera.",
+        "Es importante seguir intentándolo, aprender de los errores y pedir ayuda si es necesario.",
+        "El esfuerzo y la constancia nos permiten alcanzar metas que parecían imposibles."
+    ],
+    [
+        "La amistad verdadera es un tesoro que debemos cuidar.",
+        "Un buen amigo es alguien en quien puedes confiar y que te apoya.",
+        "Se basa en el respeto mutuo, la sinceridad y la lealtad.",
+        "Es importante dedicar tiempo a nuestros amigos y estar ahí cuando nos necesitan."
+    ],
+    [
+        "Un estilo de vida saludable incluye una buena alimentación, ejercicio y descanso.",
+        "Comer frutas y verduras a diario nos aporta las vitaminas que necesitamos.",
+        "Hacer deporte de forma regular fortalece nuestro cuerpo y nuestra mente.",
+        "Dormir las horas suficientes es fundamental para tener energía durante el día."
+    ],
+    [
+        "La honestidad significa decir la verdad y actuar con sinceridad.",
+        "Ser honesto genera confianza en nuestras relaciones con los demás.",
+        "Implica reconocer nuestros errores y no apropiarnos de lo que no es nuestro.",
+        "Aunque a veces sea difícil, la honestidad es un valor muy importante."
+    ],
+    [
+        "La empatía es la capacidad de ponerse en el lugar de otra persona.",
+        "Implica intentar comprender sus sentimientos y emociones.",
+        "Ser empático nos ayuda a tener mejores relaciones con los demás.",
+        "Escuchar con atención es una buena forma de mostrar empatía."
+    ],
+    [
+        "La asertividad nos permite expresar nuestras ideas y sentimientos de forma clara.",
+        "Se trata de defender nuestros derechos respetando los de los demás.",
+        "Una persona asertiva habla con calma y seguridad, sin ser agresiva ni pasiva.",
+        "Decir 'no' de forma educada cuando es necesario es un ejemplo de asertividad."
+    ],
+    [
+        "Una buena planificación es clave para tener éxito en los estudios.",
+        "Conviene usar una agenda para apuntar las fechas de exámenes y entregas.",
+        "Crear un horario de estudio semanal ayuda a organizar el tiempo.",
+        "Es importante incluir también tiempos de descanso y ocio."
+    ],
+    [
+        "El trabajo en equipo nos permite alcanzar metas que serían difíciles de lograr solos.",
+        "Cada miembro del equipo aporta sus habilidades y conocimientos.",
+        "Es fundamental comunicarse bien y repartir las tareas de forma equitativa.",
+        "Saber escuchar y respetar las ideas de los compañeros es esencial."
+    ],
+    [
+        "El acoso escolar es un problema grave que debemos detener entre todos.",
+        "Nadie tiene derecho a insultar, amenazar o agredir a otra persona.",
+        "Si lo ves o lo sufres, es muy importante que pidas ayuda a un adulto.",
+        "Apoyar a la víctima y no reírse de las agresiones es fundamental."
+    ],
+    [
+        "La autoestima es la valoración que tenemos de nosotros mismos.",
+        "Una autoestima sana implica aceptarnos y querernos como somos, con nuestras virtudes y defectos.",
+        "Reconocer nuestros logros, por pequeños que sean, ayuda a mejorarla.",
+        "No debemos compararnos constantemente con los demás."
+    ],
+    [
+        "Aprender a gestionar nuestras emociones es muy importante para nuestro bienestar.",
+        "Es normal sentir alegría, tristeza, enfado o miedo en diferentes situaciones.",
+        "Lo importante es reconocer la emoción y expresarla de una forma adecuada.",
+        "Hablar de cómo nos sentimos con alguien de confianza puede ayudarnos mucho."
+    ],
+    [
+        "La resolución de conflictos es una habilidad muy útil en la vida.",
+        "Cuando surge un problema con otra persona, lo primero es mantener la calma.",
+        "Es importante escuchar el punto de vista del otro sin interrumpir.",
+        "Buscar una solución en la que ambas partes ganen es el objetivo final."
+    ],
+    [
+        "Establecer metas nos ayuda a mantenernos motivados y a dirigir nuestros esfuerzos.",
+        "Las metas deben ser específicas, medibles y realistas.",
+        "Es útil dividir una meta grande en pequeños pasos más manejables.",
+        "Celebrar cada pequeño paso conseguido nos anima a seguir adelante."
+    ],
+    [
+        "La escucha activa consiste en prestar total atención a la persona que habla.",
+        "No se trata solo de oír las palabras, sino de entender el mensaje completo.",
+        "Implica mirar a la persona, asentir y no interrumpir.",
+        "Hacer preguntas para aclarar dudas demuestra que estamos interesados."
+    ],
+    [
+        "La responsabilidad significa cumplir con nuestros compromisos y obligaciones.",
+        "Ser responsable en los estudios implica hacer los deberes y estudiar cada día.",
+        "También significa asumir las consecuencias de nuestras acciones.",
+        "La confianza de los demás se gana siendo una persona responsable."
+    ],
+    [
+        "El respeto es la base de una buena convivencia.",
+        "Significa tratar a los demás con consideración, aunque no pensemos igual.",
+        "También implica cuidar el material y las instalaciones que compartimos.",
+        "Respetar a los demás es el primer paso para que nos respeten a nosotros."
+    ],
+    [
+        "El pensamiento crítico nos ayuda a analizar la información de forma objetiva.",
+        "Consiste en no creer todo lo que leemos o escuchamos a la primera.",
+        "Es importante hacerse preguntas, buscar diferentes fuentes y formar nuestra propia opinión.",
+        "Esta habilidad nos protege de la manipulación y las noticias falsas."
+    ],
+    [
+        "La solidaridad es la capacidad de apoyar y ayudar a los demás desinteresadamente.",
+        "Se puede ser solidario compartiendo nuestro tiempo o nuestros recursos.",
+        "Ayudar a un compañero que no entiende algo es un acto de solidaridad.",
+        "Una sociedad solidaria es aquella en la que las personas se cuidan unas a otras."
+    ],
+    [
+        "Usar las redes sociales de forma segura y responsable es fundamental.",
+        "Nunca debemos compartir información personal como nuestra dirección o teléfono.",
+        "Hay que pensar bien antes de publicar una foto o un comentario.",
+        "Debemos tratar a los demás en línea con el mismo respeto que en persona."
+    ],
+    [
+        "La tolerancia es la capacidad de aceptar y respetar las diferencias de los demás.",
+        "Cada persona es única y tiene derecho a tener sus propias ideas, creencias y costumbres.",
+        "Ser tolerante no significa estar de acuerdo con todo, sino convivir en paz.",
+        "La diversidad nos enriquece como sociedad."
+    ],
+    [
+        "La perseverancia es la clave para superar las dificultades.",
+        "Cuando algo nos resulta difícil, no debemos rendirnos a la primera.",
+        "Es importante seguir intentándolo, aprender de los errores y pedir ayuda si es necesario.",
+        "El esfuerzo y la constancia nos permiten alcanzar metas que parecían imposibles."
+    ],
+    [
+        "La amistad verdadera es un tesoro que debemos cuidar.",
+        "Un buen amigo es alguien en quien puedes confiar y que te apoya.",
+        "Se basa en el respeto mutuo, la sinceridad y la lealtad.",
+        "Es importante dedicar tiempo a nuestros amigos y estar ahí cuando nos necesitan."
+    ],
+    [
+        "Un estilo de vida saludable incluye una buena alimentación, ejercicio y descanso.",
+        "Comer frutas y verduras a diario nos aporta las vitaminas que necesitamos.",
+        "Hacer deporte de forma regular fortalece nuestro cuerpo y nuestra mente.",
+        "Dormir las horas suficientes es fundamental para tener energía durante el día."
+    ],
+    [
+        "La honestidad significa decir la verdad y actuar con sinceridad.",
+        "Ser honesto genera confianza en nuestras relaciones con los demás.",
+        "Implica reconocer nuestros errores y no apropiarnos de lo que no es nuestro.",
+        "Aunque a veces sea difícil, la honestidad es un valor muy importante."
+    ],
+    [
+        "La empatía es la capacidad de ponerse en el lugar de otra persona.",
+        "Implica intentar comprender sus sentimientos y emociones.",
+        "Ser empático nos ayuda a tener mejores relaciones con los demás.",
+        "Escuchar con atención es una buena forma de mostrar empatía."
+    ],
+    [
+        "La asertividad nos permite expresar nuestras ideas y sentimientos de forma clara.",
+        "Se trata de defender nuestros derechos respetando los de los demás.",
+        "Una persona asertiva habla con calma y seguridad, sin ser agresiva ni pasiva.",
+        "Decir 'no' de forma educada cuando es necesario es un ejemplo de asertividad."
+    ],
+    [
+        "Una buena planificación es clave para tener éxito en los estudios.",
+        "Conviene usar una agenda para apuntar las fechas de exámenes y entregas.",
+        "Crear un horario de estudio semanal ayuda a organizar el tiempo.",
+        "Es importante incluir también tiempos de descanso y ocio."
+    ],
+    [
+        "El trabajo en equipo nos permite alcanzar metas que serían difíciles de lograr solos.",
+        "Cada miembro del equipo aporta sus habilidades y conocimientos.",
+        "Es fundamental comunicarse bien y repartir las tareas de forma equitativa.",
+        "Saber escuchar y respetar las ideas de los compañeros es esencial."
+    ],
+    [
+        "El acoso escolar es un problema grave que debemos detener entre todos.",
+        "Nadie tiene derecho a insultar, amenazar o agredir a otra persona.",
+        "Si lo ves o lo sufres, es muy importante que pidas ayuda a un adulto.",
+        "Apoyar a la víctima y no reírse de las agresiones es fundamental."
+    ],
+    [
+        "La autoestima es la valoración que tenemos de nosotros mismos.",
+        "Una autoestima sana implica aceptarnos y querernos como somos, con nuestras virtudes y defectos.",
+        "Reconocer nuestros logros, por pequeños que sean, ayuda a mejorarla.",
+        "No debemos compararnos constantemente con los demás."
+    ],
+    [
+        "Aprender a gestionar nuestras emociones es muy importante para nuestro bienestar.",
+        "Es normal sentir alegría, tristeza, enfado o miedo en diferentes situaciones.",
+        "Lo importante es reconocer la emoción y expresarla de una forma adecuada.",
+        "Hablar de cómo nos sentimos con alguien de confianza puede ayudarnos mucho."
+    ],
+    [
+        "La resolución de conflictos es una habilidad muy útil en la vida.",
+        "Cuando surge un problema con otra persona, lo primero es mantener la calma.",
+        "Es importante escuchar el punto de vista del otro sin interrumpir.",
+        "Buscar una solución en la que ambas partes ganen es el objetivo final."
+    ],
+    [
+        "Establecer metas nos ayuda a mantenernos motivados y a dirigir nuestros esfuerzos.",
+        "Las metas deben ser específicas, medibles y realistas.",
+        "Es útil dividir una meta grande en pequeños pasos más manejables.",
+        "Celebrar cada pequeño paso conseguido nos anima a seguir adelante."
+    ],
+    [
+        "La escucha activa consiste en prestar total atención a la persona que habla.",
+        "No se trata solo de oír las palabras, sino de entender el mensaje completo.",
+        "Implica mirar a la persona, asentir y no interrumpir.",
+        "Hacer preguntas para aclarar dudas demuestra que estamos interesados."
+    ],
+    [
+        "La responsabilidad significa cumplir con nuestros compromisos y obligaciones.",
+        "Ser responsable en los estudios implica hacer los deberes y estudiar cada día.",
+        "También significa asumir las consecuencias de nuestras acciones.",
+        "La confianza de los demás se gana siendo una persona responsable."
+    ],
+    [
+        "El respeto es la base de una buena convivencia.",
+        "Significa tratar a los demás con consideración, aunque no pensemos igual.",
+        "También implica cuidar el material y las instalaciones que compartimos.",
+        "Respetar a los demás es el primer paso para que nos respeten a nosotros."
+    ],
+    [
+        "El pensamiento crítico nos ayuda a analizar la información de forma objetiva.",
+        "Consiste en no creer todo lo que leemos o escuchamos a la primera.",
+        "Es importante hacerse preguntas, buscar diferentes fuentes y formar nuestra propia opinión.",
+        "Esta habilidad nos protege de la manipulación y las noticias falsas."
+    ],
+    [
+        "La solidaridad es la capacidad de apoyar y ayudar a los demás desinteresadamente.",
+        "Se puede ser solidario compartiendo nuestro tiempo o nuestros recursos.",
+        "Ayudar a un compañero que no entiende algo es un acto de solidaridad.",
+        "Una sociedad solidaria es aquella en la que las personas se cuidan unas a otras."
+    ],
+    [
+        "Usar las redes sociales de forma segura y responsable es fundamental.",
+        "Nunca debemos compartir información personal como nuestra dirección o teléfono.",
+        "Hay que pensar bien antes de publicar una foto o un comentario.",
+        "Debemos tratar a los demás en línea con el mismo respeto que en persona."
+    ],
+    [
+        "La tolerancia es la capacidad de aceptar y respetar las diferencias de los demás.",
+        "Cada persona es única y tiene derecho a tener sus propias ideas, creencias y costumbres.",
+        "Ser tolerante no significa estar de acuerdo con todo, sino convivir en paz.",
+        "La diversidad nos enriquece como sociedad."
+    ],
+    [
+        "La perseverancia es la clave para superar las dificultades.",
+        "Cuando algo nos resulta difícil, no debemos rendirnos a la primera.",
+        "Es importante seguir intentándolo, aprender de los errores y pedir ayuda si es necesario.",
+        "El esfuerzo y la constancia nos permiten alcanzar metas que parecían imposibles."
+    ],
+    [
+        "La amistad verdadera es un tesoro que debemos cuidar.",
+        "Un buen amigo es alguien en quien puedes confiar y que te apoya.",
+        "Se basa en el respeto mutuo, la sinceridad y la lealtad.",
+        "Es importante dedicar tiempo a nuestros amigos y estar ahí cuando nos necesitan."
+    ],
+    [
+        "Un estilo de vida saludable incluye una buena alimentación, ejercicio y descanso.",
+        "Comer frutas y verduras a diario nos aporta las vitaminas que necesitamos.",
+        "Hacer deporte de forma regular fortalece nuestro cuerpo y nuestra mente.",
+        "Dormir las horas suficientes es fundamental para tener energía durante el día."
+    ],
+    [
+        "La honestidad significa decir la verdad y actuar con sinceridad.",
+        "Ser honesto genera confianza en nuestras relaciones con los demás.",
+        "Implica reconocer nuestros errores y no apropiarnos de lo que no es nuestro.",
+        "Aunque a veces sea difícil, la honestidad es un valor muy importante."
+    ],
+    [
+        "La empatía es la capacidad de ponerse en el lugar de otra persona.",
+        "Implica intentar comprender sus sentimientos y emociones.",
+        "Ser empático nos ayuda a tener mejores relaciones con los demás.",
+        "Escuchar con atención es una buena forma de mostrar empatía."
+    ],
+    [
+        "La asertividad nos permite expresar nuestras ideas y sentimientos de forma clara.",
+        "Se trata de defender nuestros derechos respetando los de los demás.",
+        "Una persona asertiva habla con calma y seguridad, sin ser agresiva ni pasiva.",
+        "Decir 'no' de forma educada cuando es necesario es un ejemplo de asertividad."
+    ],
+    [
+        "Una buena planificación es clave para tener éxito en los estudios.",
+        "Conviene usar una agenda para apuntar las fechas de exámenes y entregas.",
+        "Crear un horario de estudio semanal ayuda a organizar el tiempo.",
+        "Es importante incluir también tiempos de descanso y ocio."
+    ],
+    [
+        "El trabajo en equipo nos permite alcanzar metas que serían difíciles de lograr solos.",
+        "Cada miembro del equipo aporta sus habilidades y conocimientos.",
+        "Es fundamental comunicarse bien y repartir las tareas de forma equitativa.",
+        "Saber escuchar y respetar las ideas de los compañeros es esencial."
+    ],
+    [
+        "El acoso escolar es un problema grave que debemos detener entre todos.",
+        "Nadie tiene derecho a insultar, amenazar o agredir a otra persona.",
+        "Si lo ves o lo sufres, es muy importante que pidas ayuda a un adulto.",
+        "Apoyar a la víctima y no reírse de las agresiones es fundamental."
+    ],
+    [
+        "La autoestima es la valoración que tenemos de nosotros mismos.",
+        "Una autoestima sana implica aceptarnos y querernos como somos, con nuestras virtudes y defectos.",
+        "Reconocer nuestros logros, por pequeños que sean, ayuda a mejorarla.",
+        "No debemos compararnos constantemente con los demás."
+    ],
+    [
+        "Aprender a gestionar nuestras emociones es muy importante para nuestro bienestar.",
+        "Es normal sentir alegría, tristeza, enfado o miedo en diferentes situaciones.",
+        "Lo importante es reconocer la emoción y expresarla de una forma adecuada.",
+        "Hablar de cómo nos sentimos con alguien de confianza puede ayudarnos mucho."
+    ],
+    [
+        "La resolución de conflictos es una habilidad muy útil en la vida.",
+        "Cuando surge un problema con otra persona, lo primero es mantener la calma.",
+        "Es importante escuchar el punto de vista del otro sin interrumpir.",
+        "Buscar una solución en la que ambas partes ganen es el objetivo final."
+    ],
+    [
+        "Establecer metas nos ayuda a mantenernos motivados y a dirigir nuestros esfuerzos.",
+        "Las metas deben ser específicas, medibles y realistas.",
+        "Es útil dividir una meta grande en pequeños pasos más manejables.",
+        "Celebrar cada pequeño paso conseguido nos anima a seguir adelante."
+    ],
+    [
+        "La escucha activa consiste en prestar total atención a la persona que habla.",
+        "No se trata solo de oír las palabras, sino de entender el mensaje completo.",
+        "Implica mirar a la persona, asentir y no interrumpir.",
+        "Hacer preguntas para aclarar dudas demuestra que estamos interesados."
+    ],
+    [
+        "La responsabilidad significa cumplir con nuestros compromisos y obligaciones.",
+        "Ser responsable en los estudios implica hacer los deberes y estudiar cada día.",
+        "También significa asumir las consecuencias de nuestras acciones.",
+        "La confianza de los demás se gana siendo una persona responsable."
+    ],
+    [
+        "El respeto es la base de una buena convivencia.",
+        "Significa tratar a los demás con consideración, aunque no pensemos igual.",
+        "También implica cuidar el material y las instalaciones que compartimos.",
+        "Respetar a los demás es el primer paso para que nos respeten a nosotros."
+    ],
+    [
+        "El pensamiento crítico nos ayuda a analizar la información de forma objetiva.",
+        "Consiste en no creer todo lo que leemos o escuchamos a la primera.",
+        "Es importante hacerse preguntas, buscar diferentes fuentes y formar nuestra propia opinión.",
+        "Esta habilidad nos protege de la manipulación y las noticias falsas."
+    ],
+    [
+        "La solidaridad es la capacidad de apoyar y ayudar a los demás desinteresadamente.",
+        "Se puede ser solidario compartiendo nuestro tiempo o nuestros recursos.",
+        "Ayudar a un compañero que no entiende algo es un acto de solidaridad.",
+        "Una sociedad solidaria es aquella en la que las personas se cuidan unas a otras."
+    ],
+    [
+        "Usar las redes sociales de forma segura y responsable es fundamental.",
+        "Nunca debemos compartir información personal como nuestra dirección o teléfono.",
+        "Hay que pensar bien antes de publicar una foto o un comentario.",
+        "Debemos tratar a los demás en línea con el mismo respeto que en persona."
+    ],
+    [
+        "La tolerancia es la capacidad de aceptar y respetar las diferencias de los demás.",
+        "Cada persona es única y tiene derecho a tener sus propias ideas, creencias y costumbres.",
+        "Ser tolerante no significa estar de acuerdo con todo, sino convivir en paz.",
+        "La diversidad nos enriquece como sociedad."
+    ],
+    [
+        "La perseverancia es la clave para superar las dificultades.",
+        "Cuando algo nos resulta difícil, no debemos rendirnos a la primera.",
+        "Es importante seguir intentándolo, aprender de los errores y pedir ayuda si es necesario.",
+        "El esfuerzo y la constancia nos permiten alcanzar metas que parecían imposibles."
+    ],
+    [
+        "La amistad verdadera es un tesoro que debemos cuidar.",
+        "Un buen amigo es alguien en quien puedes confiar y que te apoya.",
+        "Se basa en el respeto mutuo, la sinceridad y la lealtad.",
+        "Es importante dedicar tiempo a nuestros amigos y estar ahí cuando nos necesitan."
+    ],
+    [
+        "Un estilo de vida saludable incluye una buena alimentación, ejercicio y descanso.",
+        "Comer frutas y verduras a diario nos aporta las vitaminas que necesitamos.",
+        "Hacer deporte de forma regular fortalece nuestro cuerpo y nuestra mente.",
+        "Dormir las horas suficientes es fundamental para tener energía durante el día."
+    ],
+    [
+        "La honestidad significa decir la verdad y actuar con sinceridad.",
+        "Ser honesto genera confianza en nuestras relaciones con los demás.",
+        "Implica reconocer nuestros errores y no apropiarnos de lo que no es nuestro.",
+        "Aunque a veces sea difícil, la honestidad es un valor muy importante."
+    ],
+    [
+        "La empatía es la capacidad de ponerse en el lugar de otra persona.",
+        "Implica intentar comprender sus sentimientos y emociones.",
+        "Ser empático nos ayuda a tener mejores relaciones con los demás.",
+        "Escuchar con atención es una buena forma de mostrar empatía."
+    ],
+    [
+        "La asertividad nos permite expresar nuestras ideas y sentimientos de forma clara.",
+        "Se trata de defender nuestros derechos respetando los de los demás.",
+        "Una persona asertiva habla con calma y seguridad, sin ser agresiva ni pasiva.",
+        "Decir 'no' de forma educada cuando es necesario es un ejemplo de asertividad."
+    ],
+    [
+        "Una buena planificación es clave para tener éxito en los estudios.",
+        "Conviene usar una agenda para apuntar las fechas de exámenes y entregas.",
+        "Crear un horario de estudio semanal ayuda a organizar el tiempo.",
+        "Es importante incluir también tiempos de descanso y ocio."
+    ],
+    [
+        "El trabajo en equipo nos permite alcanzar metas que serían difíciles de lograr solos.",
+        "Cada miembro del equipo aporta sus habilidades y conocimientos.",
+        "Es fundamental comunicarse bien y repartir las tareas de forma equitativa.",
+        "Saber escuchar y respetar las ideas de los compañeros es esencial."
+    ],
+    [
+        "El acoso escolar es un problema grave que debemos detener entre todos.",
+        "Nadie tiene derecho a insultar, amenazar o agredir a otra persona.",
+        "Si lo ves o lo sufres, es muy importante que pidas ayuda a un adulto.",
+        "Apoyar a la víctima y no reírse de las agresiones es fundamental."
+    ],
+    [
+        "La autoestima es la valoración que tenemos de nosotros mismos.",
+        "Una autoestima sana implica aceptarnos y querernos como somos, con nuestras virtudes y defectos.",
+        "Reconocer nuestros logros, por pequeños que sean, ayuda a mejorarla.",
+        "No debemos compararnos constantemente con los demás."
+    ],
+    [
+        "Aprender a gestionar nuestras emociones es muy importante para nuestro bienestar.",
+        "Es normal sentir alegría, tristeza, enfado o miedo en diferentes situaciones.",
+        "Lo importante es reconocer la emoción y expresarla de una forma adecuada.",
+        "Hablar de cómo nos sentimos con alguien de confianza puede ayudarnos mucho."
+    ],
+    [
+        "La resolución de conflictos es una habilidad muy útil en la vida.",
+        "Cuando surge un problema con otra persona, lo primero es mantener la calma.",
+        "Es importante escuchar el punto de vista del otro sin interrumpir.",
+        "Buscar una solución en la que ambas partes ganen es el objetivo final."
+    ],
+    [
+        "Establecer metas nos ayuda a mantenernos motivados y a dirigir nuestros esfuerzos.",
+        "Las metas deben ser específicas, medibles y realistas.",
+        "Es útil dividir una meta grande en pequeños pasos más manejables.",
+        "Celebrar cada pequeño paso conseguido nos anima a seguir adelante."
+    ],
+    [
+        "La escucha activa consiste en prestar total atención a la persona que habla.",
+        "No se trata solo de oír las palabras, sino de entender el mensaje completo.",
+        "Implica mirar a la persona, asentir y no interrumpir.",
+        "Hacer preguntas para aclarar dudas demuestra que estamos interesados."
+    ],
+    [
+        "La responsabilidad significa cumplir con nuestros compromisos y obligaciones.",
+        "Ser responsable en los estudios implica hacer los deberes y estudiar cada día.",
+        "También significa asumir las consecuencias de nuestras acciones.",
+        "La confianza de los demás se gana siendo una persona responsable."
+    ],
+    [
+        "El respeto es la base de una buena convivencia.",
+        "Significa tratar a los demás con consideración, aunque no pensemos igual.",
+        "También implica cuidar el material y las instalaciones que compartimos.",
+        "Respetar a los demás es el primer paso para que nos respeten a nosotros."
+    ],
+    [
+        "El pensamiento crítico nos ayuda a analizar la información de forma objetiva.",
+        "Consiste en no creer todo lo que leemos o escuchamos a la primera.",
+        "Es importante hacerse preguntas, buscar diferentes fuentes y formar nuestra propia opinión.",
+        "Esta habilidad nos protege de la manipulación y las noticias falsas."
+    ],
+    [
+        "La solidaridad es la capacidad de apoyar y ayudar a los demás desinteresadamente.",
+        "Se puede ser solidario compartiendo nuestro tiempo o nuestros recursos.",
+        "Ayudar a un compañero que no entiende algo es un acto de solidaridad.",
+        "Una sociedad solidaria es aquella en la que las personas se cuidan unas a otras."
+    ],
+    [
+        "Usar las redes sociales de forma segura y responsable es fundamental.",
+        "Nunca debemos compartir información personal como nuestra dirección o teléfono.",
+        "Hay que pensar bien antes de publicar una foto o un comentario.",
+        "Debemos tratar a los demás en línea con el mismo respeto que en persona."
+    ],
+    [
+        "La tolerancia es la capacidad de aceptar y respetar las diferencias de los demás.",
+        "Cada persona es única y tiene derecho a tener sus propias ideas, creencias y costumbres.",
+        "Ser tolerante no significa estar de acuerdo con todo, sino convivir en paz.",
+        "La diversidad nos enriquece como sociedad."
+    ],
+    [
+        "La perseverancia es la clave para superar las dificultades.",
+        "Cuando algo nos resulta difícil, no debemos rendirnos a la primera.",
+        "Es importante seguir intentándolo, aprender de los errores y pedir ayuda si es necesario.",
+        "El esfuerzo y la constancia nos permiten alcanzar metas que parecían imposibles."
+    ],
+    [
+        "La amistad verdadera es un tesoro que debemos cuidar.",
+        "Un buen amigo es alguien en quien puedes confiar y que te apoya.",
+        "Se basa en el respeto mutuo, la sinceridad y la lealtad.",
+        "Es importante dedicar tiempo a nuestros amigos y estar ahí cuando nos necesitan."
+    ],
+    [
+        "Un estilo de vida saludable incluye una buena alimentación, ejercicio y descanso.",
+        "Comer frutas y verduras a diario nos aporta las vitaminas que necesitamos.",
+        "Hacer deporte de forma regular fortalece nuestro cuerpo y nuestra mente.",
+        "Dormir las horas suficientes es fundamental para tener energía durante el día."
+    ],
+    [
+        "La honestidad significa decir la verdad y actuar con sinceridad.",
+        "Ser honesto genera confianza en nuestras relaciones con los demás.",
+        "Implica reconocer nuestros errores y no apropiarnos de lo que no es nuestro.",
+        "Aunque a veces sea difícil, la honestidad es un valor muy importante."
+    ]
 ]

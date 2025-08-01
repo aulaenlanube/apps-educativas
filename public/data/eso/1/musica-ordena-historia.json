@@ -1,12 +1,482 @@
 [
-    ["La orquesta sinfónica se prepara para el concierto.", "Los músicos afinan sus instrumentos creando una nube de sonidos.", "El director sube al podio y se hace el silencio.", "Levanta la batuta y comienza a sonar la primera sinfonía.", "El público disfruta de la magia de la música en directo."],
-    ["Las figuras musicales representan la duración de los sonidos.", "La redonda es la de mayor duración y sirve como referencia.", "Una blanca dura la mitad que una redonda.", "Una negra dura la mitad que una blanca.", "Dos corcheas equivalen a la duración de una negra."],
-    ["La familia de cuerda frotada es el corazón de la orquesta.", "Está formada por el violín, la viola, el violonchelo y el contrabajo.", "Se tocan frotando un arco por sus cuerdas para hacerlas vibrar.", "El violín es el instrumento más agudo de esta familia."],
-    ["El compositor Mozart fue un niño prodigio.", "Empezó a componer sus propias obras musicales a los cinco años.", "Viajó por toda Europa dando conciertos y sorprendiendo a las cortes.", "A pesar de su corta vida, dejó una obra musical inmensa y genial."],
-    ["Para leer música, utilizamos el pentagrama.", "Es un conjunto de cinco líneas y cuatro espacios.", "Al principio se coloca una clave, como la clave de sol.", "Las notas musicales se escriben sobre las líneas o en los espacios.", "Su posición indica si el sonido es más agudo o más grave."],
-    ["El rock and roll nació en Estados Unidos a mediados del siglo XX.", "Combinaba ritmos de otros estilos como el blues y el country.", "Se caracterizaba por su ritmo fuerte y el protagonismo de la guitarra eléctrica.", "Artistas como Elvis Presley lo hicieron popular en todo el mundo."],
-    ["El timbre es la cualidad que nos permite distinguir un sonido de otro.", "Gracias al timbre, diferenciamos la voz de una persona de la de otra.", "También nos permite distinguir el sonido de una flauta del de un piano.", "Cada instrumento y cada voz tiene un timbre único y característico."],
-    ["Una canción suele tener una estructura con diferentes partes.", "A menudo comienza con una introducción instrumental.", "Luego se alternan las estrofas, que tienen diferente letra.", "El estribillo es la parte que se repite con la misma letra y música.", "La canción puede terminar con una coda o final."],
-    ["Los instrumentos de percusión producen sonido al ser golpeados o agitados.", "Algunos, como el xilófono, pueden producir notas musicales definidas.", "Otros, como el tambor o los platillos, tienen un sonido de altura indeterminada.", "Son los encargados de marcar el ritmo en un conjunto musical."],
-    ["La ópera es una obra de teatro en la que los personajes cantan sus diálogos.", "Está acompañada por una orquesta sinfónica completa.", "Combina música, canto, poesía, artes escénicas y a veces danza.", "Se representa en un gran teatro con decorados espectaculares."]
+    [
+        "Las notas musicales son siete y se ordenan de grave a agudo.",
+        "Sus nombres son Do, Re, Mi, Fa, Sol, La y Si.",
+        "Se escriben en un pentagrama para poder leerlas.",
+        "Juntas, forman melodías y canciones que escuchamos cada día."
+    ],
+    [
+        "El pentagrama es el conjunto de cinco líneas y cuatro espacios donde se escribe la música.",
+        "Al principio de cada pentagrama se coloca una clave, como la clave de Sol.",
+        "Las notas se sitúan en las líneas o en los espacios para indicar su altura.",
+        "Gracias al pentagrama, los músicos pueden interpretar una obra de la misma manera."
+    ],
+    [
+        "La orquesta sinfónica es una gran agrupación de músicos.",
+        "Se divide en familias de instrumentos: cuerda, viento y percusión.",
+        "El director se sitúa al frente para guiar a todos los músicos.",
+        "Juntos, interpretan obras musicales complejas y de gran belleza."
+    ],
+    [
+        "El ritmo es la combinación de sonidos y silencios en el tiempo.",
+        "Se organiza mediante figuras musicales que indican la duración de cada nota.",
+        "El pulso es como el latido constante que nos ayuda a seguir el ritmo.",
+        "Sin ritmo, la música no tendría orden ni estructura."
+    ],
+    [
+        "La familia de cuerda frotada incluye instrumentos como el violín, la viola, el violonchelo y el contrabajo.",
+        "El sonido se produce al frotar un arco sobre las cuerdas.",
+        "El violín es el más agudo y pequeño de la familia.",
+        "El contrabajo es el más grande y produce los sonidos más graves."
+    ],
+    [
+        "La flauta travesera es un instrumento de la familia de viento madera.",
+        "Aunque hoy se fabrica en metal, su origen era de madera.",
+        "El sonido se produce al soplar a través de un agujero llamado bisel.",
+        "Es un instrumento muy ágil y con un sonido brillante."
+    ],
+    [
+        "Los instrumentos de percusión producen sonido al ser golpeados, agitados o raspados.",
+        "Se dividen en los de altura determinada, como el xilófono, que puede dar notas.",
+        "Y los de altura indeterminada, como el tambor o los platillos.",
+        "Son los encargados de marcar el ritmo y añadir efectos a la música."
+    ],
+    [
+        "El piano es un instrumento de cuerda percutida.",
+        "Al pulsar una tecla, un pequeño martillo golpea una cuerda en su interior.",
+        "Tiene un teclado muy amplio que abarca sonidos muy graves y muy agudos.",
+        "Es un instrumento muy completo que puede tocar melodía y acompañamiento a la vez."
+    ],
+    [
+        "La voz humana es el instrumento musical más antiguo y personal.",
+        "Se produce por la vibración de las cuerdas vocales al pasar el aire.",
+        "Se clasifica en diferentes tipos según su tesitura, como soprano, tenor o bajo.",
+        "Cantar en un coro es una forma de hacer música en grupo con la voz."
+    ],
+    [
+        "Wolfgang Amadeus Mozart fue un compositor genial del Clasicismo.",
+        "Empezó a componer música desde muy niño, con solo cinco años.",
+        "Escribió más de seiscientas obras, incluyendo sinfonías, óperas y conciertos.",
+        "Su música es conocida por su elegancia, claridad y belleza."
+    ],
+    [
+        "La intensidad en música se refiere al volumen del sonido, si es fuerte o suave.",
+        "Se indica con términos italianos como 'piano' (suave) y 'forte' (fuerte).",
+        "Los cambios graduales de intensidad se llaman 'crescendo' (aumentar) y 'diminuendo' (disminuir).",
+        "Jugar con la intensidad ayuda a crear expresividad y emoción en la música."
+    ],
+    [
+        "El compás sirve para organizar la música en partes de igual duración.",
+        "Se indica al principio del pentagrama con una fracción, como 4/4 o 3/4.",
+        "El numerador nos dice cuántos pulsos hay en cada compás.",
+        "Las líneas divisorias separan un compás del siguiente."
+    ],
+    [
+        "La guitarra es un instrumento de cuerda pulsada muy popular.",
+        "Sus cuerdas se hacen sonar con los dedos o con una púa.",
+        "El cuerpo de madera hueco sirve para amplificar el sonido de las cuerdas.",
+        "Es muy versátil y se utiliza en estilos de música muy diferentes, desde el flamenco hasta el rock."
+    ],
+    [
+        "Ludwig van Beethoven fue un compositor que vivió entre el Clasicismo y el Romanticismo.",
+        "Es famoso por sus nueve sinfonías, especialmente la Quinta y la Novena.",
+        "A pesar de quedarse sordo, continuó componiendo obras maestras.",
+        "Su música es muy intensa y expresa emociones muy profundas."
+    ],
+    [
+        "El timbre es la cualidad del sonido que nos permite distinguir un instrumento de otro.",
+        "Aunque un violín y una flauta toquen la misma nota, suenan diferente.",
+        "Esto se debe a los armónicos que acompañan al sonido principal.",
+        "El timbre es como el 'color' del sonido."
+    ],
+    [
+        "La escala musical es una sucesión de notas ordenadas de forma ascendente o descendente.",
+        "La escala más común en nuestra cultura es la escala mayor.",
+        "Está formada por un patrón específico de tonos y semitonos.",
+        "Practicar escalas es un ejercicio fundamental para cualquier músico."
+    ],
+    [
+        "La música medieval estaba muy ligada a la Iglesia.",
+        "El canto gregoriano era la música religiosa más importante, cantada en latín.",
+        "Los juglares y trovadores, en cambio, cantaban y tocaban música profana en los castillos.",
+        "Los instrumentos de la época eran más sencillos que los actuales."
+    ],
+    [
+        "El Renacimiento fue una época de gran esplendor para la polifonía.",
+        "La polifonía consiste en varias melodías sonando a la vez de forma armoniosa.",
+        "Compositores como Palestrina o Tomás Luis de Victoria escribieron obras maestras para coro.",
+        "La invención de la imprenta musical ayudó a difundir la música por toda Europa."
+    ],
+    [
+        "El Barroco fue un período musical de gran ornamentación y contraste.",
+        "Compositores como Bach, Vivaldi y Haendel son sus máximos exponentes.",
+        "Nació la ópera, uniendo teatro, música y escenografía.",
+        "Se desarrolló el concepto de orquesta y el bajo continuo era fundamental."
+    ],
+    [
+        "El Clasicismo musical buscaba la claridad, el equilibrio y la proporción.",
+        "Compositores como Haydn, Mozart y el primer Beethoven son los más importantes.",
+        "La sinfonía y la sonata se convirtieron en las formas musicales más relevantes.",
+        "La música era elegante y contenía melodías fáciles de recordar."
+    ],
+    [
+        "El Romanticismo en la música se centró en la expresión de los sentimientos individuales.",
+        "Los compositores como Chopin, Schubert o Wagner buscaban emocionar al público.",
+        "La orquesta creció en tamaño y se exploraron nuevas sonoridades.",
+        "Surgieron pequeñas formas para piano, como los nocturnos o los preludios."
+    ],
+    [
+        "La altura es la cualidad que nos dice si un sonido es grave o agudo.",
+        "Depende de la frecuencia de la vibración: a mayor frecuencia, sonido más agudo.",
+        "En el pentagrama, las notas más agudas se escriben más arriba.",
+        "Los instrumentos grandes suelen producir sonidos más graves que los pequeños."
+    ],
+    [
+        "La trompeta es un instrumento de la familia de viento metal.",
+        "El sonido se produce por la vibración de los labios del músico en la boquilla.",
+        "Tiene pistones que permiten cambiar la longitud del tubo y producir diferentes notas.",
+        "Su sonido es potente y brillante, destacando en la orquesta."
+    ],
+    [
+        "Una canción popular suele tener una estructura de estrofa y estribillo.",
+        "La estrofa es la parte en la que la letra va cambiando.",
+        "El estribillo es la parte que se repite varias veces con la misma letra y música.",
+        "Esta estructura hace que la canción sea fácil de recordar y cantar."
+    ],
+    [
+        "El jazz es un estilo musical que nació en Estados Unidos a principios del siglo XX.",
+        "Una de sus características principales es la improvisación.",
+        "Los músicos crean melodías en el momento sobre una base de acordes.",
+        "Instrumentos como el saxofón, la trompeta y el piano son muy importantes en el jazz."
+    ],
+    [
+        "El rock and roll surgió en la década de 1950 y revolucionó la música popular.",
+        "Se caracteriza por un ritmo fuerte y el uso de la guitarra eléctrica.",
+        "Artistas como Elvis Presley o Chuck Berry fueron sus primeros grandes iconos.",
+        "Su energía y actitud rebelde conectaron con la juventud de la época."
+    ],
+    [
+        "La música de cine es fundamental para crear la atmósfera de una película.",
+        "Puede generar tensión en una escena de suspense o emoción en un momento triste.",
+        "Compositores como John Williams o Hans Zimmer son famosos por sus bandas sonoras.",
+        "A menudo, un personaje o idea tiene su propio tema musical o 'leitmotiv'."
+    ],
+    [
+        "La clave de Fa se utiliza para escribir los sonidos graves en el pentagrama.",
+        "Se coloca en la cuarta línea, indicando que esa nota es un Fa.",
+        "Es la clave que suelen leer instrumentos como el violonchelo, el contrabajo o el fagot.",
+        "También se usa para la mano izquierda en la partitura de piano."
+    ],
+    [
+        "Las figuras musicales nos indican la duración de los sonidos.",
+        "La redonda es la de mayor valor y dura cuatro pulsos.",
+        "La blanca dura la mitad que la redonda, es decir, dos pulsos.",
+        "La negra dura un pulso, y la corchea medio pulso."
+    ],
+    [
+        "La armonía es la ciencia que estudia la combinación de sonidos simultáneos.",
+        "Cuando varias notas suenan a la vez, forman un acorde.",
+        "La sucesión de acordes crea el acompañamiento de una melodía.",
+        "Una buena armonía hace que la música suene completa y agradable."
+    ],
+    [
+        "La música tradicional o folclórica es la que se transmite de generación en generación.",
+        "Forma parte de la cultura y la identidad de un pueblo.",
+        "Se utiliza en fiestas, danzas y celebraciones populares.",
+        "Suele emplear instrumentos característicos de cada región."
+    ],
+    [
+        "El saxofón, aunque es de metal, pertenece a la familia de viento madera.",
+        "Esto se debe a que el sonido se produce por la vibración de una caña en la boquilla.",
+        "Fue inventado por Adolphe Sax en el siglo XIX.",
+        "Es un instrumento muy asociado a la música de jazz y blues."
+    ],
+    [
+        "Una partitura es el documento donde se escribe una obra musical completa.",
+        "Contiene los pentagramas para todos los instrumentos o voces que participan.",
+        "Incluye las notas, el ritmo, la intensidad y todas las indicaciones para el intérprete.",
+        "Permite que la obra pueda ser conservada y tocada en cualquier lugar del mundo."
+    ],
+    [
+        "El tempo es la velocidad a la que se debe interpretar una pieza musical.",
+        "Se indica con términos italianos como 'Adagio' (lento), 'Andante' (tranquilo) o 'Allegro' (rápido).",
+        "También se puede indicar de forma precisa con un metrónomo.",
+        "El tempo es crucial para definir el carácter de una obra."
+    ],
+    [
+        "El flamenco es un estilo musical originario de Andalucía, en España.",
+        "Sus tres pilares fundamentales son el cante, el toque (guitarra) y el baile.",
+        "Expresa emociones muy intensas y profundas, desde la alegría hasta el dolor.",
+        "El compás y el ritmo son muy complejos y característicos."
+    ],
+    [
+        "La ópera es una obra de teatro en la que los personajes cantan sus diálogos.",
+        "Está acompañada por una orquesta sinfónica.",
+        "Combina música, poesía, escenografía y, a veces, danza.",
+        "Nació en Italia durante el Barroco y se extendió por toda Europa."
+    ],
+    [
+        "El silencio es tan importante en la música como el sonido.",
+        "Se representa con figuras de silencio que tienen la misma duración que las figuras de notas.",
+        "Los silencios crean pausas, dan respiración a la melodía y generan tensión.",
+        "Una música sin silencios sería monótona y agotadora."
+    ],
+    [
+        "El clarinete es un instrumento de viento madera con una sola caña.",
+        "Tiene un sonido muy versátil, capaz de ser dulce y suave o potente y ágil.",
+        "Su cuerpo es un tubo de madera con agujeros y llaves.",
+        "Es un instrumento importante tanto en la orquesta como en las bandas de música."
+    ],
+    [
+        "La música electrónica se crea utilizando instrumentos electrónicos y tecnología digital.",
+        "Sintetizadores, ordenadores y samplers son algunas de sus herramientas.",
+        "No depende de instrumentos acústicos tradicionales.",
+        "Abarca una gran cantidad de estilos, desde el ambient hasta el techno."
+    ],
+    [
+        "Un concierto es una actuación musical en directo para un público.",
+        "Puede ser de un solista, un grupo de cámara o una gran orquesta.",
+        "La acústica de la sala es muy importante para que la música se escuche bien.",
+        "El aplauso del público es la forma de agradecer a los músicos su interpretación."
+    ],
+    [
+        "La síncopa es un recurso rítmico que rompe la regularidad del pulso.",
+        "Consiste en acentuar una nota en un tiempo débil del compás.",
+        "Crea una sensación de sorpresa y dinamismo en la música.",
+        "Es muy utilizada en estilos como el jazz, el funk o la música latina."
+    ],
+    [
+        "El violonchelo es un instrumento de cuerda frotada más grande que la viola.",
+        "Se toca sentado, sujetándolo entre las rodillas.",
+        "Su sonido es grave, cálido y muy expresivo, a menudo comparado con la voz humana.",
+        "Es un pilar fundamental en la orquesta y en la música de cámara."
+    ],
+    [
+        "La textura musical se refiere a cómo se combinan las diferentes líneas melódicas.",
+        "Una textura monofónica tiene una sola melodía, sin acompañamiento.",
+        "La textura polifónica presenta varias melodías independientes sonando a la vez.",
+        "La textura homofónica consiste en una melodía principal con un acompañamiento de acordes."
+    ],
+    [
+        "El blues es un género musical que se originó en las comunidades afroamericanas del sur de Estados Unidos.",
+        "Sus letras suelen expresar tristeza, pero también esperanza y superación.",
+        "Tiene una estructura de doce compases y utiliza una escala característica.",
+        "Ha influido enormemente en el desarrollo del jazz, el rock y otros estilos."
+    ],
+    [
+        "El fagot es el instrumento de viento madera más grave de la orquesta, junto al contrafagot.",
+        "Está formado por un largo tubo de madera doblado sobre sí mismo.",
+        "Utiliza una boquilla con doble caña para producir el sonido.",
+        "Su timbre es profundo y puede sonar tanto cómico como solemne."
+    ],
+    [
+        "Un ostinato es un motivo musical, rítmico o melódico, que se repite insistentemente.",
+        "Puede servir como base o acompañamiento para el resto de la música.",
+        "Aporta unidad y un efecto hipnótico a la pieza.",
+        "Un ejemplo famoso es el 'Bolero' de Ravel."
+    ],
+    [
+        "La música de cámara se llama así porque antiguamente se interpretaba en salones pequeños.",
+        "Está escrita para un reducido grupo de instrumentos.",
+        "Formaciones comunes son el trío de cuerda o el quinteto de viento.",
+        "Requiere una gran compenetración entre los músicos, ya que no hay director."
+    ],
+    [
+        "El arpa es uno de los instrumentos de cuerda pulsada más antiguos.",
+        "Tiene un gran número de cuerdas que se tocan directamente con los dedos.",
+        "Posee unos pedales que permiten cambiar la afinación de las cuerdas.",
+        "Su sonido es delicado y mágico, creando atmósferas de ensueño."
+    ],
+    [
+        "El contrapunto es la técnica de combinar varias líneas melódicas independientes.",
+        "Cada voz tiene su propia importancia y se entrelaza con las demás.",
+        "Johann Sebastian Bach es considerado el gran maestro del contrapunto.",
+        "El canon y la fuga son formas musicales basadas en esta técnica."
+    ],
+    [
+        "La música programática es aquella que intenta describir una historia, una idea o una escena.",
+        "Utiliza los sonidos de los instrumentos para evocar imágenes o sentimientos.",
+        "'Las cuatro estaciones' de Vivaldi es un claro ejemplo de ello.",
+        "Se opone a la música absoluta, que no tiene ninguna referencia extramusical."
+    ],
+    [
+        "El trombón es un instrumento de viento metal con un mecanismo único.",
+        "En lugar de pistones, utiliza una vara deslizante para cambiar la longitud del tubo.",
+        "Esto le permite realizar glissandos, un efecto de deslizamiento entre notas.",
+        "Su sonido es noble y potente."
+    ],
+    [
+        "La forma sonata es una estructura musical muy importante en el Clasicismo.",
+        "Consta de tres partes principales: exposición, desarrollo y reexposición.",
+        "En la exposición se presentan los dos temas musicales principales.",
+        "Esta estructura se utiliza a menudo en el primer movimiento de sinfonías y conciertos."
+    ],
+    [
+        "El oboe es un instrumento de viento madera con un sonido penetrante y nasal.",
+        "Utiliza una boquilla de doble caña, que el músico debe fabricar con precisión.",
+        "En la orquesta, es el instrumento que da la nota 'La' para que todos los demás afinen.",
+        "Su melodía a menudo evoca sentimientos de nostalgia o melancolía."
+    ],
+    [
+        "La música aleatoria o indeterminada deja algunos elementos de la obra al azar.",
+        "El compositor no lo escribe todo, sino que da pautas para que el intérprete decida.",
+        "Cada interpretación de la misma pieza puede ser completamente diferente.",
+        "John Cage fue uno de los pioneros de este tipo de música en el siglo XX."
+    ],
+    [
+        "El timbal es un gran tambor de percusión de altura determinada.",
+        "Se puede afinar para producir notas concretas, a diferencia de otros tambores.",
+        "En la orquesta suelen utilizarse en parejas o grupos de varios tamaños.",
+        "Aportan una base rítmica y una gran solemnidad al sonido orquestal."
+    ],
+    [
+        "Un leitmotiv es un tema musical recurrente asociado a un personaje, objeto o idea.",
+        "Fue una técnica muy utilizada por el compositor de óperas Richard Wagner.",
+        "En el cine, la 'Marcha Imperial' de Star Wars es el leitmotiv de Darth Vader.",
+        "Ayuda al espectador a identificar elementos de la historia de forma auditiva."
+    ],
+    [
+        "La música minimalista se basa en la repetición de pequeñas frases musicales.",
+        "Estas frases van cambiando de forma muy lenta y gradual a lo largo de la pieza.",
+        "Crea un efecto hipnótico y meditativo en el oyente.",
+        "Compositores como Philip Glass o Steve Reich son referentes de este estilo."
+    ],
+    [
+        "El corno inglés, a pesar de su nombre, no es inglés ni es un cuerno.",
+        "Es un instrumento de viento madera, de la familia del oboe, pero más grave.",
+        "Su cuerpo es ligeramente más largo y termina en una campana con forma de pera.",
+        "Tiene un timbre melancólico y evocador."
+    ],
+    [
+        "La síncopa es un efecto rítmico que consiste en acentuar un tiempo débil del compás.",
+        "Rompe la regularidad del ritmo y crea una sensación de empuje.",
+        "Es un elemento fundamental en estilos como el jazz, el funk o la música latina.",
+        "Hace que la música sea más bailable y dinámica."
+    ],
+    [
+        "La música concreta es un tipo de música electroacústica creada en el siglo XX.",
+        "No utiliza notas de instrumentos, sino sonidos grabados del mundo real.",
+        "Sonidos de trenes, gotas de agua o ruidos de la calle se manipulan en un estudio.",
+        "Estos sonidos se convierten en la materia prima para crear la composición musical."
+    ],
+    [
+        "El clavecín fue el antecesor del piano, muy popular en el Barroco.",
+        "Al pulsar la tecla, un mecanismo llamado plectro pellizca la cuerda.",
+        "Su sonido es más metálico y menos potente que el del piano.",
+        "No permite hacer cambios de intensidad, siempre suena con el mismo volumen."
+    ],
+    [
+        "Un unísono se produce cuando varios instrumentos o voces interpretan la misma melodía a la misma altura.",
+        "Aunque haya muchos músicos, se escucha como una sola línea melódica.",
+        "Refuerza la melodía y le da una mayor potencia y claridad.",
+        "Es un recurso muy utilizado en los inicios y finales de las obras."
+    ],
+    [
+        "La música dodecafónica es un sistema de composición creado por Arnold Schönberg.",
+        "En lugar de usar escalas mayores o menores, utiliza la serie de las doce notas de la escala cromática.",
+        "Ninguna nota puede repetirse hasta que no hayan sonado las otras once.",
+        "Produce una música atonal, sin un centro tonal claro, que suena muy vanguardista."
+    ],
+    [
+        "El vibrato es una ligera fluctuación en la altura de un sonido.",
+        "Se utiliza para dar expresividad y calidez a una nota larga.",
+        "Los cantantes y los instrumentos de cuerda lo usan constantemente.",
+        "Es como si la nota estuviera 'vibrando' de emoción."
+    ],
+    [
+        "La música celta es la música tradicional de regiones como Irlanda, Escocia y Galicia.",
+        "Utiliza instrumentos característicos como la gaita, el violín o el arpa celta.",
+        "Sus melodías suelen ser muy alegres y están asociadas a la danza.",
+        "Tiene un ritmo muy marcado que invita a moverse."
+    ],
+    [
+        "Un calderón es un signo musical que se coloca encima de una nota o silencio.",
+        "Indica que su duración debe prolongarse a voluntad del intérprete.",
+        "Crea una pausa y un momento de suspensión en el discurso musical.",
+        "Suele utilizarse en los finales de las frases para darles más énfasis."
+    ],
+    [
+        "El reguetón es un género musical que se originó en América Latina en la década de 1990.",
+        "Combina influencias del reggae, el dancehall y el hip hop.",
+        "Su ritmo característico se conoce como 'dembow' y es muy bailable.",
+        "Se ha convertido en uno de los estilos más populares a nivel mundial."
+    ],
+    [
+        "La articulación en música se refiere a la forma en que se ataca y se enlaza una nota con la siguiente.",
+        "El 'staccato' indica que las notas deben ser cortas y separadas.",
+        "El 'legato' indica que las notas deben tocarse de forma suave y conectada.",
+        "La articulación es fundamental para dar el carácter adecuado a una melodía."
+    ],
+    [
+        "El órgano es un instrumento de viento teclado de grandes dimensiones.",
+        "El sonido se produce al hacer pasar aire a través de tubos de diferente longitud y material.",
+        "Suele encontrarse en iglesias y grandes salas de conciertos.",
+        "Puede imitar los sonidos de toda una orquesta gracias a sus múltiples registros."
+    ],
+    [
+        "La improvisación es el arte de crear música en el momento, sin una partitura escrita.",
+        "Es una característica esencial del jazz, donde los músicos realizan 'solos' improvisados.",
+        "Requiere un gran conocimiento de la armonía y un dominio del instrumento.",
+        "Permite al músico expresar su creatividad de forma espontánea."
+    ],
+    [
+        "La música de la India es muy rica y compleja, con una tradición milenaria.",
+        "Se basa en un sistema de 'ragas' (escalas melódicas) y 'talas' (ciclos rítmicos).",
+        "Instrumentos como el sitar o la tabla son muy representativos.",
+        "La improvisación juega un papel muy importante en sus interpretaciones."
+    ],
+    [
+        "Una cadencia es una sucesión de acordes que marca el final de una frase musical.",
+        "Funciona como los signos de puntuación en el lenguaje.",
+        "La cadencia perfecta (V-I) da una sensación de final conclusivo y reposo.",
+        "Otras cadencias pueden dejar una sensación de suspense o continuidad."
+    ],
+    [
+        "La tuba es el instrumento más grave de la familia de viento metal.",
+        "Debido a su gran tamaño, se apoya sobre las piernas del músico.",
+        "Proporciona la base armónica y rítmica en las bandas y orquestas.",
+        "Su sonido es profundo, redondo y muy potente."
+    ],
+    [
+        "El minimalismo es una corriente musical surgida en la segunda mitad del siglo XX.",
+        "Se caracteriza por el uso de la repetición de pequeñas células melódicas y rítmicas.",
+        "Los cambios se producen de forma muy gradual y casi imperceptible.",
+        "Crea una atmósfera hipnótica y envolvente."
+    ],
+    [
+        "La música africana se caracteriza por su gran riqueza rítmica.",
+        "Los tambores y otros instrumentos de percusión tienen un papel protagonista.",
+        "A menudo, se superponen varios ritmos complejos a la vez, creando una polirritmia.",
+        "La música está muy ligada a la vida social, las ceremonias y la danza."
+    ],
+    [
+        "Un arpegio consiste en tocar las notas de un acorde de forma sucesiva en lugar de simultánea.",
+        "Puede ser ascendente, descendente o una combinación de ambas.",
+        "Es un recurso muy utilizado en el acompañamiento de instrumentos como el piano o la guitarra.",
+        "Añade movimiento y fluidez a la armonía."
+    ],
+    [
+        "La música de los videojuegos ha evolucionado hasta convertirse en un género propio.",
+        "Ya no es solo un simple acompañamiento, sino que crea la atmósfera y narra parte de la historia.",
+        "Algunas bandas sonoras son interpretadas por grandes orquestas sinfónicas.",
+        "La música puede cambiar dinámicamente según las acciones del jugador."
+    ],
+    [
+        "La escala pentatónica es una escala de cinco notas.",
+        "Es una de las escalas más antiguas y se encuentra en la música de muchas culturas del mundo.",
+        "Su sonido es muy abierto y consonante, ya que evita los intervalos de semitono.",
+        "Es muy utilizada en el blues, el rock y la música folclórica."
+    ],
+    [
+        "El director de orquesta no solo marca el pulso, sino que unifica la interpretación.",
+        "Con sus gestos, indica la dinámica, la articulación y el carácter de la música.",
+        "Estudia la partitura en profundidad para tener una visión global de la obra.",
+        "Es el máximo responsable del resultado sonoro final del conjunto."
+    ],
+    [
+        "El canto de los pájaros es una de las formas de música más antiguas de la naturaleza.",
+        "Cada especie tiene su propio repertorio de cantos y llamadas.",
+        "Utilizan el canto para atraer a una pareja, defender su territorio o alertar de un peligro.",
+        "Muchos compositores se han inspirado en sus melodías para crear sus obras."
+    ]
 ]

@@ -1,12 +1,302 @@
 [
-    ["El autor comenzó a escribir el primer capítulo de su novela.", "Desarrolló a los personajes principales, dándoles vida y personalidad.", "Creó un conflicto emocionante que mantendría al lector enganchado.", "Finalmente, escribió un desenlace sorprendente e inesperado.", "La novela se convirtió en un gran éxito de ventas."],
-    ["El juglar llegó a la plaza del castillo para entretener a la corte.", "Recitó de memoria los versos del Cantar de mio Cid.", "Narró las hazañas del héroe castellano y sus batallas.", "El público escuchaba con gran atención y emoción.", "Al terminar, todos aplaudieron su magnífica actuación."],
-    ["Para analizar una oración, primero localizamos el verbo principal.", "Luego, identificamos el sujeto preguntando al verbo '¿quién o quiénes?'.", "Todo lo que no es sujeto forma parte del predicado.", "Dentro del predicado, buscamos los diferentes complementos.", "Así, completamos el análisis sintáctico de la oración."],
-    ["Un cuento es una narración breve de hechos imaginarios.", "Suele tener pocos personajes para centrar la acción.", "Su estructura se divide en planteamiento, nudo y desenlace.", "El objetivo principal del cuento es entretener al lector."],
-    ["La comunicación requiere un emisor que envía un mensaje.", "El receptor es quien recibe e interpreta dicho mensaje.", "El mensaje se transmite a través de un canal específico.", "Todo ello ocurre dentro de un contexto o situación comunicativa."],
-    ["El sustantivo es la palabra que nombra a personas, animales, cosas o ideas.", "Puede ir acompañado de un determinante que lo presenta.", "Un adjetivo puede añadirle una cualidad o característica.", "El sustantivo funciona como el núcleo del grupo nominal."],
-    ["El poeta buscaba inspiración para escribir un soneto.", "Observó la belleza de una puesta de sol en el mar.", "Escribió catorce versos endecasílabos con rima consonante.", "En el poema, expresó sus sentimientos de melancolía y admiración.", "Logró crear una obra de gran belleza formal."],
-    ["En el teatro, los actores representan una historia sobre un escenario.", "Utilizan el diálogo para comunicarse y hacer avanzar la trama.", "Las acotaciones del texto indican sus movimientos y gestos.", "El público observa la representación en directo."],
-    ["Una leyenda es un relato que mezcla realidad y fantasía.", "Se transmite de generación en generación de forma oral.", "Explica el origen de un lugar, una costumbre o un fenómeno natural.", "A menudo, sus protagonistas son héroes o seres sobrenaturales."],
-    ["Para escribir una buena redacción, primero hay que organizar las ideas.", "Se debe crear un borrador con una estructura clara.", "Es importante utilizar un vocabulario rico y evitar repeticiones.", "Finalmente, hay que revisar la ortografía y la gramática cuidadosamente."]
+    [
+        "Un sustantivo es una palabra que nombra a una persona, animal, cosa o lugar.",
+        "Pueden ser comunes, como 'perro', o propios, como 'Toby'.",
+        "También pueden ser concretos, como 'mesa', o abstractos, como 'alegría'.",
+        "En una oración, el sustantivo suele ser el núcleo del sujeto."
+    ],
+    [
+        "Una oración simple tiene un solo verbo en forma personal.",
+        "Consta de un sujeto y un predicado.",
+        "El sujeto es quien realiza la acción, por ejemplo, 'El niño'.",
+        "El predicado es lo que se dice del sujeto, por ejemplo, 'juega en el parque'."
+    ],
+    [
+        "Los adjetivos son palabras que expresan cualidades del sustantivo.",
+        "Acompañan al nombre y concuerdan con él en género y número.",
+        "Por ejemplo, en 'la casa grande', 'grande' es el adjetivo.",
+        "Nos dan más información sobre cómo son las cosas."
+    ],
+    [
+        "Según la posición de la sílaba tónica, las palabras pueden ser agudas, llanas o esdrújulas.",
+        "Las agudas tienen el acento en la última sílaba.",
+        "Las llanas lo tienen en la penúltima.",
+        "Y las esdrújulas lo tienen en la antepenúltima."
+    ],
+    [
+        "El punto es un signo de puntuación que indica el final de una oración.",
+        "El punto y seguido separa oraciones dentro de un mismo párrafo.",
+        "El punto y aparte separa párrafos distintos.",
+        "El punto final se utiliza para terminar un texto."
+    ],
+    [
+        "Los sinónimos son palabras que tienen un significado igual o muy parecido.",
+        "Por ejemplo, 'bonito' y 'hermoso' son sinónimos.",
+        "Utilizar sinónimos nos ayuda a no repetir siempre las mismas palabras.",
+        "Enriquecen nuestro vocabulario y hacen el texto más interesante."
+    ],
+    [
+        "Los antónimos son palabras que tienen significados opuestos o contrarios.",
+        "Por ejemplo, 'grande' es el antónimo de 'pequeño'.",
+        "Otro ejemplo sería 'frío' y 'caliente'.",
+        "Nos ayudan a expresar ideas contrarias."
+    ],
+    [
+        "Un verbo es una palabra que indica una acción, estado o proceso.",
+        "Es el núcleo del predicado en una oración.",
+        "Puede conjugarse en diferentes tiempos: pasado, presente y futuro.",
+        "Por ejemplo, 'cantar' es un verbo en infinitivo."
+    ],
+    [
+        "El género narrativo se utiliza para contar una historia.",
+        "Presenta unos personajes que realizan acciones en un lugar y tiempo determinados.",
+        "La historia es contada por un narrador.",
+        "El cuento y la novela son ejemplos de textos narrativos."
+    ],
+    [
+        "Las palabras agudas llevan tilde cuando terminan en vocal, 'n' o 's'.",
+        "Por ejemplo, la palabra 'sofá' lleva tilde porque es aguda y acaba en vocal.",
+        "La palabra 'camión' también lleva tilde por ser aguda y terminar en 'n'.",
+        "Sin embargo, 'pared' es aguda pero no lleva tilde porque termina en 'd'."
+    ],
+    [
+        "Los determinantes son palabras que acompañan al sustantivo para concretarlo.",
+        "Concuerdan en género y número con el nombre al que acompañan.",
+        "Existen varios tipos: artículos, demostrativos, posesivos, etc.",
+        "En 'este coche', la palabra 'este' es un determinante demostrativo."
+    ],
+    [
+        "La comunicación es el proceso de transmitir un mensaje.",
+        "Intervienen varios elementos: el emisor, el receptor, el mensaje, el canal y el código.",
+        "El emisor es quien envía el mensaje.",
+        "El receptor es quien lo recibe e interpreta."
+    ],
+    [
+        "Un campo semántico es un grupo de palabras que comparten un rasgo de significado.",
+        "Todas las palabras del grupo pertenecen a la misma categoría gramatical.",
+        "Por ejemplo, 'lápiz', 'goma' y 'cuaderno' pertenecen al campo semántico del material escolar.",
+        "Nos ayuda a organizar y entender el vocabulario."
+    ],
+    [
+        "Las palabras llanas llevan tilde cuando no terminan ni en vocal, ni en 'n', ni en 's'.",
+        "Por ejemplo, la palabra 'árbol' lleva tilde porque es llana y termina en 'l'.",
+        "La palabra 'césped' también lleva tilde por la misma razón.",
+        "Sin embargo, 'casa' es llana pero no lleva tilde porque termina en vocal."
+    ],
+    [
+        "Los pronombres personales son palabras que sustituyen al nombre.",
+        "Se utilizan para evitar repeticiones en un texto.",
+        "Los pronombres son 'yo', 'tú', 'él', 'ella', 'nosotros', 'vosotros' y 'ellos'.",
+        "En 'María canta', podemos sustituir 'María' por el pronombre 'ella'."
+    ],
+    [
+        "Un diptongo es la unión de dos vocales en la misma sílaba.",
+        "Para que haya diptongo, una de las vocales debe ser cerrada (i, u).",
+        "Por ejemplo, en la palabra 'aire', las vocales 'a' e 'i' forman un diptongo.",
+        "Las palabras 'fuego' y 'ciudad' también contienen diptongos."
+    ],
+    [
+        "Un hiato se produce cuando dos vocales juntas pertenecen a sílabas diferentes.",
+        "Ocurre cuando se juntan dos vocales abiertas (a, e, o).",
+        "También hay hiato si se junta una vocal abierta con una cerrada tónica.",
+        "Las palabras 'teatro' y 'frío' tienen hiato."
+    ],
+    [
+        "Las palabras esdrújulas siempre llevan tilde.",
+        "Son aquellas cuya sílaba tónica es la antepenúltima.",
+        "Por ejemplo, las palabras 'música', 'pájaro' y 'matemáticas' son esdrújulas.",
+        "No importa en qué letra terminen, la regla de acentuación es muy sencilla."
+    ],
+    [
+        "El sujeto de una oración es la persona, animal o cosa que realiza la acción.",
+        "Para encontrarlo, podemos preguntar al verbo '¿quién?' o '¿quiénes?'.",
+        "En 'El perro ladra mucho', el sujeto es 'El perro'.",
+        "A veces, el sujeto puede estar omitido, como en 'Juego al fútbol' (sujeto: yo)."
+    ],
+    [
+        "Una descripción sirve para explicar cómo es algo o alguien.",
+        "Utiliza muchos adjetivos para detallar las características.",
+        "Podemos describir el aspecto físico de una persona o su carácter.",
+        "También se pueden describir lugares, animales u objetos."
+    ],
+    [
+        "Los adverbios son palabras que modifican a un verbo, a un adjetivo o a otro adverbio.",
+        "Aportan información sobre el lugar, el tiempo, el modo o la cantidad.",
+        "Por ejemplo, en 'corre rápidamente', 'rápidamente' es un adverbio de modo.",
+        "Muchas palabras acabadas en '-mente' son adverbios."
+    ],
+    [
+        "El cuento es una narración breve de hechos imaginarios.",
+        "Suele tener pocos personajes y una trama sencilla.",
+        "Su estructura se divide en planteamiento, nudo y desenlace.",
+        "Cuentos como 'Caperucita Roja' son conocidos en todo el mundo."
+    ],
+    [
+        "La coma es un signo que indica una pausa breve en la lectura.",
+        "Se utiliza para separar los elementos de una enumeración.",
+        "Por ejemplo: 'Compré pan, leche, huevos y fruta'.",
+        "También se usa para hacer aclaraciones dentro de una oración."
+    ],
+    [
+        "Las preposiciones son palabras que sirven para unir otras palabras o grupos de palabras.",
+        "Son palabras invariables, no tienen ni género ni número.",
+        "Algunas preposiciones comunes son 'a', 'ante', 'con', 'de', 'desde' y 'en'.",
+        "En 'libro de historia', la preposición 'de' relaciona las dos palabras."
+    ],
+    [
+        "Una familia de palabras es un conjunto de términos que comparten la misma raíz.",
+        "Todas ellas tienen una parte en común y un significado relacionado.",
+        "Por ejemplo, de la raíz 'pan' derivan palabras como 'panadero' o 'panadería'.",
+        "Conocer la raíz nos ayuda a entender el significado de nuevas palabras."
+    ],
+    [
+        "El género lírico se utiliza para expresar sentimientos y emociones.",
+        "El autor transmite sus vivencias, pensamientos o estados de ánimo.",
+        "El texto lírico más común es el poema.",
+        "Se suele escribir en verso y utiliza recursos literarios."
+    ],
+    [
+        "Las palabras polisémicas son aquellas que tienen varios significados.",
+        "El significado concreto depende del contexto en el que se usan.",
+        "Por ejemplo, la palabra 'banco' puede referirse a un asiento o a una entidad financiera.",
+        "La palabra 'planta' puede ser un ser vivo o el piso de un edificio."
+    ],
+    [
+        "Los dos puntos se usan antes de una enumeración.",
+        "Por ejemplo: 'Mis colores favoritos son tres: azul, verde y rojo'.",
+        "También se utilizan para introducir las palabras exactas que dice alguien.",
+        "Además, se emplean en las cartas después del saludo inicial."
+    ],
+    [
+        "El género teatral o dramático agrupa las obras escritas para ser representadas.",
+        "La historia se desarrolla a través de los diálogos de los personajes.",
+        "No hay un narrador que cuente la historia.",
+        "El texto incluye acotaciones, que son indicaciones para los actores."
+    ],
+    [
+        "Una leyenda es una narración que mezcla hechos reales con elementos fantásticos.",
+        "Se transmite de generación en generación, normalmente de forma oral.",
+        "Suele estar ligada a un lugar o a un personaje histórico concreto.",
+        "Explica el origen de algún elemento de la realidad de forma imaginativa."
+    ],
+    [
+        "Para escribir un buen resumen, primero debemos leer el texto original con atención.",
+        "Después, subrayamos las ideas más importantes.",
+        "Luego, redactamos un nuevo texto con nuestras propias palabras, uniendo esas ideas.",
+        "El resumen debe ser breve y recoger lo esencial del texto original."
+    ],
+    [
+        "Las palabras compuestas se forman por la unión de dos o más palabras simples.",
+        "Por ejemplo, 'abrelatas' se forma de 'abrir' y 'latas'.",
+        "'Paraguas' se forma de 'parar' y 'aguas'.",
+        "A veces, estas palabras se unen con un guion, como en 'físico-químico'."
+    ],
+    [
+        "El lenguaje verbal es el que utiliza las palabras, ya sea de forma oral o escrita.",
+        "El lenguaje no verbal transmite información sin usar palabras.",
+        "Incluye los gestos, las posturas corporales y las expresiones de la cara.",
+        "Ambos tipos de lenguaje se complementan en la comunicación."
+    ],
+    [
+        "Una sílaba es un grupo de sonidos que se pronuncia en un solo golpe de voz.",
+        "Todas las palabras están formadas por una o más sílabas.",
+        "La sílaba que suena más fuerte se llama sílaba tónica.",
+        "Las demás sílabas de la palabra se llaman átonas."
+    ],
+    [
+        "Los artículos son un tipo de determinante que anuncia la presencia de un sustantivo.",
+        "Pueden ser determinados (el, la, los, las) si se refieren a algo conocido.",
+        "O indeterminados (un, una, unos, unas) si se refieren a algo no conocido.",
+        "Concuerdan en género y número con el sustantivo."
+    ],
+    [
+        "El predicado es la parte de la oración que expresa lo que hace o se dice del sujeto.",
+        "Su núcleo es siempre un verbo en forma personal.",
+        "En 'Mi hermana lee un libro', el predicado es 'lee un libro'.",
+        "Puede ser nominal, con los verbos ser, estar o parecer, o verbal, con el resto de verbos."
+    ],
+    [
+        "Las palabras homófonas son aquellas que suenan igual pero se escriben de forma diferente.",
+        "Además, tienen significados distintos.",
+        "Por ejemplo, 'hola' (saludo) y 'ola' (del mar).",
+        "Otro ejemplo es 'vaca' (animal) y 'baca' (del coche)."
+    ],
+    [
+        "La rima es la repetición de sonidos al final de dos o más versos.",
+        "Es un elemento característico de la poesía.",
+        "La rima es consonante si coinciden todos los sonidos a partir de la última vocal acentuada.",
+        "Es asonante si solo coinciden las vocales."
+    ],
+    [
+        "Las mayúsculas se utilizan al principio de un texto.",
+        "También se usan después de un punto.",
+        "Los nombres propios de personas, lugares o animales se escriben con mayúscula inicial.",
+        "Por ejemplo: 'Ana', 'Madrid' y 'Toby'."
+    ],
+    [
+        "Un texto instructivo tiene como objetivo guiar al lector para realizar una tarea.",
+        "Una receta de cocina es un ejemplo de texto instructivo.",
+        "También lo son las instrucciones para montar un mueble.",
+        "Suele utilizar verbos en imperativo, como 'corta', 'mezcla' o 'añade'."
+    ],
+    [
+        "La metáfora es un recurso literario que identifica dos realidades con alguna semejanza.",
+        "Consiste en nombrar una cosa con el nombre de otra.",
+        "Por ejemplo, 'las perlas de tu boca' se refiere a los dientes.",
+        "Embellece el lenguaje y le da un nuevo significado."
+    ],
+    [
+        "Las conjunciones son palabras que sirven para unir oraciones o palabras.",
+        "Son nexos que relacionan los elementos que unen.",
+        "Algunas conjunciones comunes son 'y', 'e', 'ni', 'o', 'u', 'pero', 'aunque'.",
+        "Por ejemplo, en 'fui al cine y comí palomitas', 'y' es la conjunción."
+    ],
+    [
+        "Una entrevista es un diálogo entre dos o más personas.",
+        "El entrevistador formula preguntas para obtener información.",
+        "El entrevistado responde a esas preguntas.",
+        "Suelen publicarse en periódicos, revistas o emitirse en radio o televisión."
+    ],
+    [
+        "El diálogo en una narración es la conversación entre los personajes.",
+        "Se introduce con una raya o guion largo (—).",
+        "Permite conocer mejor a los personajes y hace la historia más ágil.",
+        "Cada intervención de un personaje se escribe en una línea diferente."
+    ],
+    [
+        "Las abreviaturas son la representación de una palabra con una o varias de sus letras.",
+        "Se utilizan para ahorrar espacio al escribir.",
+        "Por ejemplo, 'pág.' es la abreviatura de 'página'.",
+        "Generalmente, terminan con un punto."
+    ],
+    [
+        "Las siglas se forman con las letras iniciales de varias palabras.",
+        "Por ejemplo, 'ESO' son las siglas de 'Educación Secundaria Obligatoria'.",
+        "Se escriben con todas las letras en mayúscula y sin puntos.",
+        "Nos permiten nombrar de forma breve organismos o conceptos."
+    ],
+    [
+        "El predicado nominal se forma con los verbos copulativos: ser, estar o parecer.",
+        "Estos verbos no tienen un significado pleno, solo unen el sujeto con una cualidad.",
+        "Esa cualidad se expresa mediante un atributo.",
+        "En 'El niño está contento', 'contento' es el atributo."
+    ],
+    [
+        "La tilde diacrítica se utiliza para diferenciar palabras que se escriben igual.",
+        "Estas palabras tienen la misma forma pero pertenecen a categorías gramaticales diferentes.",
+        "Por ejemplo, 'tú' (pronombre personal) y 'tu' (determinante posesivo).",
+        "Otro caso es 'él' (pronombre) y 'el' (artículo)."
+    ],
+    [
+        "La personificación es un recurso literario que atribuye cualidades humanas a animales o cosas.",
+        "Por ejemplo, 'El viento susurraba secretos entre los árboles'.",
+        "Es muy común en las fábulas y en la poesía.",
+        "Ayuda a crear imágenes más vivas y expresivas."
+    ],
+    [
+        "Una noticia es un texto periodístico que informa sobre un hecho de actualidad.",
+        "Debe ser objetiva y responder a las preguntas básicas: qué, quién, cómo, cuándo, dónde y por qué.",
+        "Su estructura suele tener un titular, una entradilla y el cuerpo de la noticia.",
+        "Se publican en periódicos, tanto en papel como digitales."
+    ]
 ]

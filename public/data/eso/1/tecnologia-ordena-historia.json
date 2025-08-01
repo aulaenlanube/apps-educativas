@@ -1,12 +1,602 @@
 [
-    ["El equipo de diseño detectó la necesidad de un nuevo objeto.", "Realizaron varios bocetos y eligieron la mejor idea.", "Crearon los planos técnicos con todas las medidas exactas.", "Construyeron un prototipo para probar su funcionamiento.", "Finalmente, fabricaron el producto y lo lanzaron al mercado."],
-    ["Para construir la estructura, primero cortamos las piezas de madera.", "Lijamos los bordes para que quedaran suaves y sin astillas.", "Unimos las piezas utilizando cola y tornillos.", "Comprobamos que la estructura era estable y resistente.", "Por último, la pintamos para darle un buen acabado."],
-    ["Un ordenador se compone de hardware y software.", "El hardware son las partes físicas, como el teclado o el monitor.", "El software son los programas y el sistema operativo.", "Ambos son necesarios para que el ordenador pueda funcionar.", "El sistema operativo gestiona el hardware y ejecuta el software."],
-    ["Para encender un LED, montamos un circuito eléctrico simple.", "Necesitamos una pila como fuente de energía.", "Conectamos el polo positivo de la pila al ánodo del LED.", "Conectamos el cátodo del LED al polo negativo a través de una resistencia.", "La resistencia es necesaria para proteger el LED y que no se queme."],
-    ["Las palancas son máquinas simples que nos ayudan a mover objetos pesados.", "Tienen un punto de apoyo, una fuerza que aplicamos y una resistencia que vencemos.", "Cuanto más largo sea el brazo donde aplicamos la fuerza, menos esfuerzo necesitaremos.", "Las tijeras o una carretilla son ejemplos de palancas."],
-    ["Internet es una red que conecta ordenadores de todo el mundo.", "Para acceder a ella, utilizamos un programa llamado navegador web.", "Escribimos una dirección web para visitar una página.", "La información viaja en pequeños paquetes de datos por la red.", "Esto nos permite comunicarnos y acceder a información al instante."],
-    ["El proceso de fabricación de un objeto de plástico comienza con el petróleo.", "Del petróleo se obtienen unos pequeños granos llamados granza.", "Esta granza se calienta hasta que se derrite.", "El plástico fundido se introduce en un molde con la forma deseada.", "Al enfriarse, el plástico se solidifica y ya tenemos el objeto."],
-    ["Los engranajes son ruedas con dientes que sirven para transmitir movimiento.", "Cuando dos engranajes están en contacto, giran en sentidos opuestos.", "Si un engranaje grande mueve a uno pequeño, la velocidad aumenta.", "Se utilizan en muchos mecanismos, como la caja de cambios de una bicicleta."],
-    ["Para dibujar un objeto a escala, primero medimos el objeto real.", "Decidimos una escala de reducción, por ejemplo, 1:2.", "Dividimos todas las medidas reales entre dos.", "Dibujamos el objeto en el papel con las nuevas medidas obtenidas.", "Así, el dibujo es proporcional al objeto real pero más pequeño."],
-    ["El procesador de textos es un programa para crear documentos.", "Primero, escribimos el texto utilizando el teclado.", "Podemos cambiar el tipo de letra, el tamaño y el color.", "También podemos añadir imágenes para ilustrar el documento.", "Finalmente, guardamos el archivo o lo imprimimos."]
+    [
+        "El proceso tecnológico es el método que seguimos para crear un objeto.",
+        "Primero, se identifica una necesidad o un problema que resolver.",
+        "Luego, se diseña una solución, haciendo bocetos y planos.",
+        "Finalmente, se construye el objeto, se prueba y se evalúa si funciona correctamente."
+    ],
+    [
+        "El hardware de un ordenador son todos sus componentes físicos.",
+        "Incluye la torre, el monitor, el teclado y el ratón.",
+        "En el interior de la torre se encuentran la placa base, el procesador y la memoria RAM.",
+        "Son las partes que podemos ver y tocar del sistema informático."
+    ],
+    [
+        "El software son los programas y las instrucciones que hacen funcionar a un ordenador.",
+        "El sistema operativo, como Windows o Linux, es el software más importante.",
+        "Las aplicaciones, como un procesador de textos o un navegador, también son software.",
+        "Sin el software, el hardware no podría hacer nada."
+    ],
+    [
+        "Internet es una red mundial que conecta millones de ordenadores.",
+        "Nos permite buscar información, comunicarnos y compartir archivos.",
+        "Para navegar por Internet, utilizamos un programa llamado navegador web.",
+        "Google Chrome, Firefox y Edge son algunos de los navegadores más populares."
+    ],
+    [
+        "Una estructura es un conjunto de elementos unidos para soportar pesos.",
+        "Debe ser resistente para no romperse y estable para no volcar.",
+        "Los puentes, los edificios y el esqueleto de una bicicleta son ejemplos de estructuras.",
+        "Las formas triangulares son muy utilizadas porque aportan mucha rigidez."
+    ],
+    [
+        "La madera es un material natural que se obtiene de los troncos de los árboles.",
+        "Es un buen aislante del calor y de la electricidad.",
+        "Se utiliza para fabricar muebles, papel o estructuras de construcción.",
+        "Para trabajarla, se usan herramientas como la sierra, el martillo o el taladro."
+    ],
+    [
+        "Los metales se extraen de los minerales que se encuentran en las rocas.",
+        "Son buenos conductores del calor y la electricidad.",
+        "Materiales como el hierro, el aluminio o el cobre son metales.",
+        "Se utilizan para fabricar herramientas, cables, coches y muchas otras cosas."
+    ],
+    [
+        "Los plásticos son materiales artificiales que se obtienen principalmente del petróleo.",
+        "Son ligeros, resistentes y pueden moldearse con facilidad.",
+        "Existen muchos tipos de plásticos con diferentes propiedades.",
+        "Su reciclaje es muy importante porque tardan mucho tiempo en degradarse."
+    ],
+    [
+        "Un circuito eléctrico es un camino cerrado por el que circula la corriente.",
+        "Necesita un generador, como una pila, para proporcionar la energía.",
+        "Los cables conductores, normalmente de cobre, transportan la electricidad.",
+        "Un receptor, como una bombilla o un motor, transforma la energía eléctrica en otro tipo."
+    ],
+    [
+        "Las máquinas simples nos ayudan a hacer un trabajo con menos esfuerzo.",
+        "Una palanca, como un balancín, sirve para mover objetos pesados.",
+        "Una polea, que es una rueda con una cuerda, facilita la elevación de cargas.",
+        "El plano inclinado nos permite subir objetos a una altura haciendo menos fuerza."
+    ],
+    [
+        "Los operadores mecánicos son piezas que transmiten el movimiento.",
+        "Los engranajes son ruedas dentadas que encajan entre sí.",
+        "Se utilizan para cambiar la velocidad o la dirección del movimiento.",
+        "Un sistema de engranajes se puede ver en el interior de un reloj o en la caja de cambios de un coche."
+    ],
+    [
+        "Un procesador de textos es un programa para crear y editar documentos.",
+        "Permite escribir, borrar, copiar y pegar texto fácilmente.",
+        "También podemos cambiar el tipo de letra, el tamaño y el color.",
+        "Es una herramienta fundamental para hacer trabajos escolares o escribir cartas."
+    ],
+    [
+        "Una hoja de cálculo organiza la información en una tabla de filas y columnas.",
+        "Cada casilla se llama celda y puede contener números, texto o fórmulas.",
+        "Permite realizar cálculos matemáticos de forma automática.",
+        "También se pueden crear gráficos para representar los datos visualmente."
+    ],
+    [
+        "El boceto es el primer dibujo que se hace para representar una idea.",
+        "Se realiza a mano alzada, sin usar reglas ni instrumentos de dibujo.",
+        "No necesita ser preciso, su función es explorar diferentes formas y soluciones.",
+        "Es el punto de partida en el diseño de cualquier objeto tecnológico."
+    ],
+    [
+        "Los planos técnicos representan un objeto con todos sus detalles.",
+        "Se dibujan a escala, manteniendo las proporciones del objeto real.",
+        "Incluyen las vistas principales (alzado, planta y perfil) y las medidas exactas.",
+        "Son necesarios para poder fabricar el objeto sin cometer errores."
+    ],
+    [
+        "Las energías renovables son aquellas que se obtienen de fuentes naturales inagotables.",
+        "La energía solar aprovecha la luz del sol mediante paneles fotovoltaicos.",
+        "La energía eólica utiliza la fuerza del viento con aerogeneradores.",
+        "Son una alternativa limpia a los combustibles fósiles para no contaminar."
+    ],
+    [
+        "La impresión 3D es una tecnología que permite crear objetos tridimensionales.",
+        "Funciona añadiendo material capa por capa a partir de un diseño digital.",
+        "Se pueden fabricar desde prototipos y piezas de repuesto hasta prótesis médicas.",
+        "Está revolucionando la forma en que diseñamos y producimos objetos."
+    ],
+    [
+        "Un algoritmo es una secuencia de pasos ordenados para resolver un problema.",
+        "Es como una receta de cocina, donde se indican las instrucciones a seguir.",
+        "Los programas informáticos están basados en algoritmos.",
+        "Deben ser precisos y no tener ambigüedades para que funcionen correctamente."
+    ],
+    [
+        "El teclado y el ratón son los principales periféricos de entrada de un ordenador.",
+        "El teclado nos permite introducir texto y números.",
+        "El ratón nos permite mover un puntero en la pantalla y hacer clic en los elementos.",
+        "Con ellos, damos órdenes e introducimos información en el sistema."
+    ],
+    [
+        "El monitor y la impresora son periféricos de salida.",
+        "El monitor nos muestra la información de forma visual en una pantalla.",
+        "La impresora produce una copia en papel de un documento o una imagen.",
+        "A través de ellos, el ordenador nos presenta los resultados de su trabajo."
+    ],
+    [
+        "El proceso tecnológico es el método que seguimos para crear un objeto.",
+        "Primero, se identifica una necesidad o un problema que resolver.",
+        "Luego, se diseña una solución, haciendo bocetos y planos.",
+        "Finalmente, se construye el objeto, se prueba y se evalúa si funciona correctamente."
+    ],
+    [
+        "El hardware de un ordenador son todos sus componentes físicos.",
+        "Incluye la torre, el monitor, el teclado y el ratón.",
+        "En el interior de la torre se encuentran la placa base, el procesador y la memoria RAM.",
+        "Son las partes que podemos ver y tocar del sistema informático."
+    ],
+    [
+        "El software son los programas y las instrucciones que hacen funcionar a un ordenador.",
+        "El sistema operativo, como Windows o Linux, es el software más importante.",
+        "Las aplicaciones, como un procesador de textos o un navegador, también son software.",
+        "Sin el software, el hardware no podría hacer nada."
+    ],
+    [
+        "Internet es una red mundial que conecta millones de ordenadores.",
+        "Nos permite buscar información, comunicarnos y compartir archivos.",
+        "Para navegar por Internet, utilizamos un programa llamado navegador web.",
+        "Google Chrome, Firefox y Edge son algunos de los navegadores más populares."
+    ],
+    [
+        "Una estructura es un conjunto de elementos unidos para soportar pesos.",
+        "Debe ser resistente para no romperse y estable para no volcar.",
+        "Los puentes, los edificios y el esqueleto de una bicicleta son ejemplos de estructuras.",
+        "Las formas triangulares son muy utilizadas porque aportan mucha rigidez."
+    ],
+    [
+        "La madera es un material natural que se obtiene de los troncos de los árboles.",
+        "Es un buen aislante del calor y de la electricidad.",
+        "Se utiliza para fabricar muebles, papel o estructuras de construcción.",
+        "Para trabajarla, se usan herramientas como la sierra, el martillo o el taladro."
+    ],
+    [
+        "Los metales se extraen de los minerales que se encuentran en las rocas.",
+        "Son buenos conductores del calor y la electricidad.",
+        "Materiales como el hierro, el aluminio o el cobre son metales.",
+        "Se utilizan para fabricar herramientas, cables, coches y muchas otras cosas."
+    ],
+    [
+        "Los plásticos son materiales artificiales que se obtienen principalmente del petróleo.",
+        "Son ligeros, resistentes y pueden moldearse con facilidad.",
+        "Existen muchos tipos de plásticos con diferentes propiedades.",
+        "Su reciclaje es muy importante porque tardan mucho tiempo en degradarse."
+    ],
+    [
+        "Un circuito eléctrico es un camino cerrado por el que circula la corriente.",
+        "Necesita un generador, como una pila, para proporcionar la energía.",
+        "Los cables conductores, normalmente de cobre, transportan la electricidad.",
+        "Un receptor, como una bombilla o un motor, transforma la energía eléctrica en otro tipo."
+    ],
+    [
+        "Las máquinas simples nos ayudan a hacer un trabajo con menos esfuerzo.",
+        "Una palanca, como un balancín, sirve para mover objetos pesados.",
+        "Una polea, que es una rueda con una cuerda, facilita la elevación de cargas.",
+        "El plano inclinado nos permite subir objetos a una altura haciendo menos fuerza."
+    ],
+    [
+        "Los operadores mecánicos son piezas que transmiten el movimiento.",
+        "Los engranajes son ruedas dentadas que encajan entre sí.",
+        "Se utilizan para cambiar la velocidad o la dirección del movimiento.",
+        "Un sistema de engranajes se puede ver en el interior de un reloj o en la caja de cambios de un coche."
+    ],
+    [
+        "Un procesador de textos es un programa para crear y editar documentos.",
+        "Permite escribir, borrar, copiar y pegar texto fácilmente.",
+        "También podemos cambiar el tipo de letra, el tamaño y el color.",
+        "Es una herramienta fundamental para hacer trabajos escolares o escribir cartas."
+    ],
+    [
+        "Una hoja de cálculo organiza la información en una tabla de filas y columnas.",
+        "Cada casilla se llama celda y puede contener números, texto o fórmulas.",
+        "Permite realizar cálculos matemáticos de forma automática.",
+        "También se pueden crear gráficos para representar los datos visualmente."
+    ],
+    [
+        "El boceto es el primer dibujo que se hace para representar una idea.",
+        "Se realiza a mano alzada, sin usar reglas ni instrumentos de dibujo.",
+        "No necesita ser preciso, su función es explorar diferentes formas y soluciones.",
+        "Es el punto de partida en el diseño de cualquier objeto tecnológico."
+    ],
+    [
+        "Los planos técnicos representan un objeto con todos sus detalles.",
+        "Se dibujan a escala, manteniendo las proporciones del objeto real.",
+        "Incluyen las vistas principales (alzado, planta y perfil) y las medidas exactas.",
+        "Son necesarios para poder fabricar el objeto sin cometer errores."
+    ],
+    [
+        "Las energías renovables son aquellas que se obtienen de fuentes naturales inagotables.",
+        "La energía solar aprovecha la luz del sol mediante paneles fotovoltaicos.",
+        "La energía eólica utiliza la fuerza del viento con aerogeneradores.",
+        "Son una alternativa limpia a los combustibles fósiles para no contaminar."
+    ],
+    [
+        "La impresión 3D es una tecnología que permite crear objetos tridimensionales.",
+        "Funciona añadiendo material capa por capa a partir de un diseño digital.",
+        "Se pueden fabricar desde prototipos y piezas de repuesto hasta prótesis médicas.",
+        "Está revolucionando la forma en que diseñamos y producimos objetos."
+    ],
+    [
+        "Un algoritmo es una secuencia de pasos ordenados para resolver un problema.",
+        "Es como una receta de cocina, donde se indican las instrucciones a seguir.",
+        "Los programas informáticos están basados en algoritmos.",
+        "Deben ser precisos y no tener ambigüedades para que funcionen correctamente."
+    ],
+    [
+        "El teclado y el ratón son los principales periféricos de entrada de un ordenador.",
+        "El teclado nos permite introducir texto y números.",
+        "El ratón nos permite mover un puntero en la pantalla y hacer clic en los elementos.",
+        "Con ellos, damos órdenes e introducimos información en el sistema."
+    ],
+    [
+        "El monitor y la impresora son periféricos de salida.",
+        "El monitor nos muestra la información de forma visual en una pantalla.",
+        "La impresora produce una copia en papel de un documento o una imagen.",
+        "A través de ellos, el ordenador nos presenta los resultados de su trabajo."
+    ],
+    [
+        "El proceso tecnológico es el método que seguimos para crear un objeto.",
+        "Primero, se identifica una necesidad o un problema que resolver.",
+        "Luego, se diseña una solución, haciendo bocetos y planos.",
+        "Finalmente, se construye el objeto, se prueba y se evalúa si funciona correctamente."
+    ],
+    [
+        "El hardware de un ordenador son todos sus componentes físicos.",
+        "Incluye la torre, el monitor, el teclado y el ratón.",
+        "En el interior de la torre se encuentran la placa base, el procesador y la memoria RAM.",
+        "Son las partes que podemos ver y tocar del sistema informático."
+    ],
+    [
+        "El software son los programas y las instrucciones que hacen funcionar a un ordenador.",
+        "El sistema operativo, como Windows o Linux, es el software más importante.",
+        "Las aplicaciones, como un procesador de textos o un navegador, también son software.",
+        "Sin el software, el hardware no podría hacer nada."
+    ],
+    [
+        "Internet es una red mundial que conecta millones de ordenadores.",
+        "Nos permite buscar información, comunicarnos y compartir archivos.",
+        "Para navegar por Internet, utilizamos un programa llamado navegador web.",
+        "Google Chrome, Firefox y Edge son algunos de los navegadores más populares."
+    ],
+    [
+        "Una estructura es un conjunto de elementos unidos para soportar pesos.",
+        "Debe ser resistente para no romperse y estable para no volcar.",
+        "Los puentes, los edificios y el esqueleto de una bicicleta son ejemplos de estructuras.",
+        "Las formas triangulares son muy utilizadas porque aportan mucha rigidez."
+    ],
+    [
+        "La madera es un material natural que se obtiene de los troncos de los árboles.",
+        "Es un buen aislante del calor y de la electricidad.",
+        "Se utiliza para fabricar muebles, papel o estructuras de construcción.",
+        "Para trabajarla, se usan herramientas como la sierra, el martillo o el taladro."
+    ],
+    [
+        "Los metales se extraen de los minerales que se encuentran en las rocas.",
+        "Son buenos conductores del calor y la electricidad.",
+        "Materiales como el hierro, el aluminio o el cobre son metales.",
+        "Se utilizan para fabricar herramientas, cables, coches y muchas otras cosas."
+    ],
+    [
+        "Los plásticos son materiales artificiales que se obtienen principalmente del petróleo.",
+        "Son ligeros, resistentes y pueden moldearse con facilidad.",
+        "Existen muchos tipos de plásticos con diferentes propiedades.",
+        "Su reciclaje es muy importante porque tardan mucho tiempo en degradarse."
+    ],
+    [
+        "Un circuito eléctrico es un camino cerrado por el que circula la corriente.",
+        "Necesita un generador, como una pila, para proporcionar la energía.",
+        "Los cables conductores, normalmente de cobre, transportan la electricidad.",
+        "Un receptor, como una bombilla o un motor, transforma la energía eléctrica en otro tipo."
+    ],
+    [
+        "Las máquinas simples nos ayudan a hacer un trabajo con menos esfuerzo.",
+        "Una palanca, como un balancín, sirve para mover objetos pesados.",
+        "Una polea, que es una rueda con una cuerda, facilita la elevación de cargas.",
+        "El plano inclinado nos permite subir objetos a una altura haciendo menos fuerza."
+    ],
+    [
+        "Los operadores mecánicos son piezas que transmiten el movimiento.",
+        "Los engranajes son ruedas dentadas que encajan entre sí.",
+        "Se utilizan para cambiar la velocidad o la dirección del movimiento.",
+        "Un sistema de engranajes se puede ver en el interior de un reloj o en la caja de cambios de un coche."
+    ],
+    [
+        "Un procesador de textos es un programa para crear y editar documentos.",
+        "Permite escribir, borrar, copiar y pegar texto fácilmente.",
+        "También podemos cambiar el tipo de letra, el tamaño y el color.",
+        "Es una herramienta fundamental para hacer trabajos escolares o escribir cartas."
+    ],
+    [
+        "Una hoja de cálculo organiza la información en una tabla de filas y columnas.",
+        "Cada casilla se llama celda y puede contener números, texto o fórmulas.",
+        "Permite realizar cálculos matemáticos de forma automática.",
+        "También se pueden crear gráficos para representar los datos visualmente."
+    ],
+    [
+        "El boceto es el primer dibujo que se hace para representar una idea.",
+        "Se realiza a mano alzada, sin usar reglas ni instrumentos de dibujo.",
+        "No necesita ser preciso, su función es explorar diferentes formas y soluciones.",
+        "Es el punto de partida en el diseño de cualquier objeto tecnológico."
+    ],
+    [
+        "Los planos técnicos representan un objeto con todos sus detalles.",
+        "Se dibujan a escala, manteniendo las proporciones del objeto real.",
+        "Incluyen las vistas principales (alzado, planta y perfil) y las medidas exactas.",
+        "Son necesarios para poder fabricar el objeto sin cometer errores."
+    ],
+    [
+        "Las energías renovables son aquellas que se obtienen de fuentes naturales inagotables.",
+        "La energía solar aprovecha la luz del sol mediante paneles fotovoltaicos.",
+        "La energía eólica utiliza la fuerza del viento con aerogeneradores.",
+        "Son una alternativa limpia a los combustibles fósiles para no contaminar."
+    ],
+    [
+        "La impresión 3D es una tecnología que permite crear objetos tridimensionales.",
+        "Funciona añadiendo material capa por capa a partir de un diseño digital.",
+        "Se pueden fabricar desde prototipos y piezas de repuesto hasta prótesis médicas.",
+        "Está revolucionando la forma en que diseñamos y producimos objetos."
+    ],
+    [
+        "Un algoritmo es una secuencia de pasos ordenados para resolver un problema.",
+        "Es como una receta de cocina, donde se indican las instrucciones a seguir.",
+        "Los programas informáticos están basados en algoritmos.",
+        "Deben ser precisos y no tener ambigüedades para que funcionen correctamente."
+    ],
+    [
+        "El teclado y el ratón son los principales periféricos de entrada de un ordenador.",
+        "El teclado nos permite introducir texto y números.",
+        "El ratón nos permite mover un puntero en la pantalla y hacer clic en los elementos.",
+        "Con ellos, damos órdenes e introducimos información en el sistema."
+    ],
+    [
+        "El monitor y la impresora son periféricos de salida.",
+        "El monitor nos muestra la información de forma visual en una pantalla.",
+        "La impresora produce una copia en papel de un documento o una imagen.",
+        "A través de ellos, el ordenador nos presenta los resultados de su trabajo."
+    ],
+    [
+        "El proceso tecnológico es el método que seguimos para crear un objeto.",
+        "Primero, se identifica una necesidad o un problema que resolver.",
+        "Luego, se diseña una solución, haciendo bocetos y planos.",
+        "Finalmente, se construye el objeto, se prueba y se evalúa si funciona correctamente."
+    ],
+    [
+        "El hardware de un ordenador son todos sus componentes físicos.",
+        "Incluye la torre, el monitor, el teclado y el ratón.",
+        "En el interior de la torre se encuentran la placa base, el procesador y la memoria RAM.",
+        "Son las partes que podemos ver y tocar del sistema informático."
+    ],
+    [
+        "El software son los programas y las instrucciones que hacen funcionar a un ordenador.",
+        "El sistema operativo, como Windows o Linux, es el software más importante.",
+        "Las aplicaciones, como un procesador de textos o un navegador, también son software.",
+        "Sin el software, el hardware no podría hacer nada."
+    ],
+    [
+        "Internet es una red mundial que conecta millones de ordenadores.",
+        "Nos permite buscar información, comunicarnos y compartir archivos.",
+        "Para navegar por Internet, utilizamos un programa llamado navegador web.",
+        "Google Chrome, Firefox y Edge son algunos de los navegadores más populares."
+    ],
+    [
+        "Una estructura es un conjunto de elementos unidos para soportar pesos.",
+        "Debe ser resistente para no romperse y estable para no volcar.",
+        "Los puentes, los edificios y el esqueleto de una bicicleta son ejemplos de estructuras.",
+        "Las formas triangulares son muy utilizadas porque aportan mucha rigidez."
+    ],
+    [
+        "La madera es un material natural que se obtiene de los troncos de los árboles.",
+        "Es un buen aislante del calor y de la electricidad.",
+        "Se utiliza para fabricar muebles, papel o estructuras de construcción.",
+        "Para trabajarla, se usan herramientas como la sierra, el martillo o el taladro."
+    ],
+    [
+        "Los metales se extraen de los minerales que se encuentran en las rocas.",
+        "Son buenos conductores del calor y la electricidad.",
+        "Materiales como el hierro, el aluminio o el cobre son metales.",
+        "Se utilizan para fabricar herramientas, cables, coches y muchas otras cosas."
+    ],
+    [
+        "Los plásticos son materiales artificiales que se obtienen principalmente del petróleo.",
+        "Son ligeros, resistentes y pueden moldearse con facilidad.",
+        "Existen muchos tipos de plásticos con diferentes propiedades.",
+        "Su reciclaje es muy importante porque tardan mucho tiempo en degradarse."
+    ],
+    [
+        "Un circuito eléctrico es un camino cerrado por el que circula la corriente.",
+        "Necesita un generador, como una pila, para proporcionar la energía.",
+        "Los cables conductores, normalmente de cobre, transportan la electricidad.",
+        "Un receptor, como una bombilla o un motor, transforma la energía eléctrica en otro tipo."
+    ],
+    [
+        "Las máquinas simples nos ayudan a hacer un trabajo con menos esfuerzo.",
+        "Una palanca, como un balancín, sirve para mover objetos pesados.",
+        "Una polea, que es una rueda con una cuerda, facilita la elevación de cargas.",
+        "El plano inclinado nos permite subir objetos a una altura haciendo menos fuerza."
+    ],
+    [
+        "Los operadores mecánicos son piezas que transmiten el movimiento.",
+        "Los engranajes son ruedas dentadas que encajan entre sí.",
+        "Se utilizan para cambiar la velocidad o la dirección del movimiento.",
+        "Un sistema de engranajes se puede ver en el interior de un reloj o en la caja de cambios de un coche."
+    ],
+    [
+        "Un procesador de textos es un programa para crear y editar documentos.",
+        "Permite escribir, borrar, copiar y pegar texto fácilmente.",
+        "También podemos cambiar el tipo de letra, el tamaño y el color.",
+        "Es una herramienta fundamental para hacer trabajos escolares o escribir cartas."
+    ],
+    [
+        "Una hoja de cálculo organiza la información en una tabla de filas y columnas.",
+        "Cada casilla se llama celda y puede contener números, texto o fórmulas.",
+        "Permite realizar cálculos matemáticos de forma automática.",
+        "También se pueden crear gráficos para representar los datos visualmente."
+    ],
+    [
+        "El boceto es el primer dibujo que se hace para representar una idea.",
+        "Se realiza a mano alzada, sin usar reglas ni instrumentos de dibujo.",
+        "No necesita ser preciso, su función es explorar diferentes formas y soluciones.",
+        "Es el punto de partida en el diseño de cualquier objeto tecnológico."
+    ],
+    [
+        "Los planos técnicos representan un objeto con todos sus detalles.",
+        "Se dibujan a escala, manteniendo las proporciones del objeto real.",
+        "Incluyen las vistas principales (alzado, planta y perfil) y las medidas exactas.",
+        "Son necesarios para poder fabricar el objeto sin cometer errores."
+    ],
+    [
+        "Las energías renovables son aquellas que se obtienen de fuentes naturales inagotables.",
+        "La energía solar aprovecha la luz del sol mediante paneles fotovoltaicos.",
+        "La energía eólica utiliza la fuerza del viento con aerogeneradores.",
+        "Son una alternativa limpia a los combustibles fósiles para no contaminar."
+    ],
+    [
+        "La impresión 3D es una tecnología que permite crear objetos tridimensionales.",
+        "Funciona añadiendo material capa por capa a partir de un diseño digital.",
+        "Se pueden fabricar desde prototipos y piezas de repuesto hasta prótesis médicas.",
+        "Está revolucionando la forma en que diseñamos y producimos objetos."
+    ],
+    [
+        "Un algoritmo es una secuencia de pasos ordenados para resolver un problema.",
+        "Es como una receta de cocina, donde se indican las instrucciones a seguir.",
+        "Los programas informáticos están basados en algoritmos.",
+        "Deben ser precisos y no tener ambigüedades para que funcionen correctamente."
+    ],
+    [
+        "El teclado y el ratón son los principales periféricos de entrada de un ordenador.",
+        "El teclado nos permite introducir texto y números.",
+        "El ratón nos permite mover un puntero en la pantalla y hacer clic en los elementos.",
+        "Con ellos, damos órdenes e introducimos información en el sistema."
+    ],
+    [
+        "El monitor y la impresora son periféricos de salida.",
+        "El monitor nos muestra la información de forma visual en una pantalla.",
+        "La impresora produce una copia en papel de un documento o una imagen.",
+        "A través de ellos, el ordenador nos presenta los resultados de su trabajo."
+    ],
+    [
+        "El proceso tecnológico es el método que seguimos para crear un objeto.",
+        "Primero, se identifica una necesidad o un problema que resolver.",
+        "Luego, se diseña una solución, haciendo bocetos y planos.",
+        "Finalmente, se construye el objeto, se prueba y se evalúa si funciona correctamente."
+    ],
+    [
+        "El hardware de un ordenador son todos sus componentes físicos.",
+        "Incluye la torre, el monitor, el teclado y el ratón.",
+        "En el interior de la torre se encuentran la placa base, el procesador y la memoria RAM.",
+        "Son las partes que podemos ver y tocar del sistema informático."
+    ],
+    [
+        "El software son los programas y las instrucciones que hacen funcionar a un ordenador.",
+        "El sistema operativo, como Windows o Linux, es el software más importante.",
+        "Las aplicaciones, como un procesador de textos o un navegador, también son software.",
+        "Sin el software, el hardware no podría hacer nada."
+    ],
+    [
+        "Internet es una red mundial que conecta millones de ordenadores.",
+        "Nos permite buscar información, comunicarnos y compartir archivos.",
+        "Para navegar por Internet, utilizamos un programa llamado navegador web.",
+        "Google Chrome, Firefox y Edge son algunos de los navegadores más populares."
+    ],
+    [
+        "Una estructura es un conjunto de elementos unidos para soportar pesos.",
+        "Debe ser resistente para no romperse y estable para no volcar.",
+        "Los puentes, los edificios y el esqueleto de una bicicleta son ejemplos de estructuras.",
+        "Las formas triangulares son muy utilizadas porque aportan mucha rigidez."
+    ],
+    [
+        "La madera es un material natural que se obtiene de los troncos de los árboles.",
+        "Es un buen aislante del calor y de la electricidad.",
+        "Se utiliza para fabricar muebles, papel o estructuras de construcción.",
+        "Para trabajarla, se usan herramientas como la sierra, el martillo o el taladro."
+    ],
+    [
+        "Los metales se extraen de los minerales que se encuentran en las rocas.",
+        "Son buenos conductores del calor y la electricidad.",
+        "Materiales como el hierro, el aluminio o el cobre son metales.",
+        "Se utilizan para fabricar herramientas, cables, coches y muchas otras cosas."
+    ],
+    [
+        "Los plásticos son materiales artificiales que se obtienen principalmente del petróleo.",
+        "Son ligeros, resistentes y pueden moldearse con facilidad.",
+        "Existen muchos tipos de plásticos con diferentes propiedades.",
+        "Su reciclaje es muy importante porque tardan mucho tiempo en degradarse."
+    ],
+    [
+        "Un circuito eléctrico es un camino cerrado por el que circula la corriente.",
+        "Necesita un generador, como una pila, para proporcionar la energía.",
+        "Los cables conductores, normalmente de cobre, transportan la electricidad.",
+        "Un receptor, como una bombilla o un motor, transforma la energía eléctrica en otro tipo."
+    ],
+    [
+        "Las máquinas simples nos ayudan a hacer un trabajo con menos esfuerzo.",
+        "Una palanca, como un balancín, sirve para mover objetos pesados.",
+        "Una polea, que es una rueda con una cuerda, facilita la elevación de cargas.",
+        "El plano inclinado nos permite subir objetos a una altura haciendo menos fuerza."
+    ],
+    [
+        "Los operadores mecánicos son piezas que transmiten el movimiento.",
+        "Los engranajes son ruedas dentadas que encajan entre sí.",
+        "Se utilizan para cambiar la velocidad o la dirección del movimiento.",
+        "Un sistema de engranajes se puede ver en el interior de un reloj o en la caja de cambios de un coche."
+    ],
+    [
+        "Un procesador de textos es un programa para crear y editar documentos.",
+        "Permite escribir, borrar, copiar y pegar texto fácilmente.",
+        "También podemos cambiar el tipo de letra, el tamaño y el color.",
+        "Es una herramienta fundamental para hacer trabajos escolares o escribir cartas."
+    ],
+    [
+        "Una hoja de cálculo organiza la información en una tabla de filas y columnas.",
+        "Cada casilla se llama celda y puede contener números, texto o fórmulas.",
+        "Permite realizar cálculos matemáticos de forma automática.",
+        "También se pueden crear gráficos para representar los datos visualmente."
+    ],
+    [
+        "El boceto es el primer dibujo que se hace para representar una idea.",
+        "Se realiza a mano alzada, sin usar reglas ni instrumentos de dibujo.",
+        "No necesita ser preciso, su función es explorar diferentes formas y soluciones.",
+        "Es el punto de partida en el diseño de cualquier objeto tecnológico."
+    ],
+    [
+        "Los planos técnicos representan un objeto con todos sus detalles.",
+        "Se dibujan a escala, manteniendo las proporciones del objeto real.",
+        "Incluyen las vistas principales (alzado, planta y perfil) y las medidas exactas.",
+        "Son necesarios para poder fabricar el objeto sin cometer errores."
+    ],
+    [
+        "Las energías renovables son aquellas que se obtienen de fuentes naturales inagotables.",
+        "La energía solar aprovecha la luz del sol mediante paneles fotovoltaicos.",
+        "La energía eólica utiliza la fuerza del viento con aerogeneradores.",
+        "Son una alternativa limpia a los combustibles fósiles para no contaminar."
+    ],
+    [
+        "La impresión 3D es una tecnología que permite crear objetos tridimensionales.",
+        "Funciona añadiendo material capa por capa a partir de un diseño digital.",
+        "Se pueden fabricar desde prototipos y piezas de repuesto hasta prótesis médicas.",
+        "Está revolucionando la forma en que diseñamos y producimos objetos."
+    ],
+    [
+        "Un algoritmo es una secuencia de pasos ordenados para resolver un problema.",
+        "Es como una receta de cocina, donde se indican las instrucciones a seguir.",
+        "Los programas informáticos están basados en algoritmos.",
+        "Deben ser precisos y no tener ambigüedades para que funcionen correctamente."
+    ],
+    [
+        "El teclado y el ratón son los principales periféricos de entrada de un ordenador.",
+        "El teclado nos permite introducir texto y números.",
+        "El ratón nos permite mover un puntero en la pantalla y hacer clic en los elementos.",
+        "Con ellos, damos órdenes e introducimos información en el sistema."
+    ],
+    [
+        "El monitor y la impresora son periféricos de salida.",
+        "El monitor nos muestra la información de forma visual en una pantalla.",
+        "La impresora produce una copia en papel de un documento o una imagen.",
+        "A través de ellos, el ordenador nos presenta los resultados de su trabajo."
+    ]
 ]

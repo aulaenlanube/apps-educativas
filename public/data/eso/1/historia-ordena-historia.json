@@ -1,12 +1,302 @@
 [
-    ["La Prehistoria es la etapa más larga del pasado de la humanidad.", "Se divide en Paleolítico, Neolítico y Edad de los Metales.", "En el Paleolítico, los humanos eran nómadas, cazadores y recolectores.", "Con la invención de la agricultura en el Neolítico, se hicieron sedentarios.", "En la Edad de los Metales aprendieron a fabricar herramientas de metal."],
-    ["La civilización egipcia surgió a orillas del río Nilo.", "El faraón era su rey y lo consideraban un dios.", "Construyeron grandes pirámides como tumbas para los faraones.", "Desarrollaron la escritura jeroglífica para registrar su historia.", "Creían en la vida después de la muerte y momificaban a sus difuntos."],
-    ["La democracia nació en la antigua ciudad griega de Atenas.", "Todos los ciudadanos varones podían participar en la asamblea.", "En la asamblea se votaban las leyes y se tomaban las decisiones importantes.", "Este sistema de gobierno ha influido en nuestras sociedades actuales."],
-    ["El Imperio Romano llegó a dominar todas las tierras alrededor del mar Mediterráneo.", "Construyeron una gran red de calzadas para conectar sus provincias.", "El latín, su lengua, se extendió por todo el imperio.", "Su impresionante arquitectura, como el Coliseo, todavía se conserva."],
-    ["El planeta Tierra realiza un movimiento de rotación sobre sí mismo.", "Este movimiento dura aproximadamente 24 horas.", "Es el responsable de la sucesión de los días y las noches.", "La zona iluminada por el Sol está de día, mientras que la zona a oscuras está de noche."],
-    ["Los mapas son representaciones planas de la superficie terrestre.", "Utilizan una escala para mostrar la relación entre las distancias del mapa y la realidad.", "Los símbolos y colores de la leyenda nos ayudan a interpretar la información.", "Gracias a los mapas, podemos orientarnos y conocer lugares lejanos."],
-    ["El clima de una zona depende de factores como la latitud y la altitud.", "La temperatura y las precipitaciones son los elementos principales del clima.", "Existen diferentes tipos de climas en el mundo, como el ecuatorial o el polar.", "El clima influye en la vegetación, la fauna y las actividades humanas."],
-    ["En el Neolítico, los seres humanos descubrieron la agricultura y la ganadería.", "Esto les permitió producir sus propios alimentos y dejar de ser nómadas.", "Construyeron los primeros poblados estables cerca de tierras fértiles.", "También inventaron la cerámica para almacenar alimentos y la rueda para el transporte."],
-    ["La sociedad romana estaba dividida en patricios y plebeyos.", "Los patricios eran las familias ricas y poderosas que controlaban el gobierno.", "Los plebeyos eran el resto de la población: campesinos, artesanos y comerciantes.", "Los esclavos no tenían derechos y eran considerados propiedad de sus amos."],
-    ["El relieve de la península ibérica se organiza en torno a la Meseta Central.", "Esta meseta está rodeada por importantes sistemas montañosos.", "Las cordilleras más importantes son los Pirineos, el Sistema Central y las Cordilleras Béticas.", "Las zonas costeras presentan llanuras litorales y rías." ]
+    [
+        "La Prehistoria es la etapa más larga del pasado de la humanidad.",
+        "Comienza con la aparición de los primeros seres humanos.",
+        "Se divide principalmente en dos grandes periodos: el Paleolítico y el Neolítico.",
+        "Termina con la invención de la escritura, que da paso a la Historia."
+    ],
+    [
+        "Durante el Paleolítico, los seres humanos eran nómadas.",
+        "Se desplazaban de un lugar a otro en busca de alimento.",
+        "Vivían de la caza, la pesca y la recolección de frutos.",
+        "Se refugiaban en cuevas y fabricaban herramientas de piedra tallada."
+    ],
+    [
+        "El descubrimiento del fuego fue un avance crucial en el Paleolítico.",
+        "Les permitió calentarse y protegerse de los animales.",
+        "También podían iluminar las cuevas y cocinar los alimentos.",
+        "Además, se convirtió en un punto de reunión social para el grupo."
+    ],
+    [
+        "En el Neolítico, los seres humanos se hicieron sedentarios.",
+        "Aprendieron a cultivar plantas, dando origen a la agricultura.",
+        "También comenzaron a domesticar animales, iniciando la ganadería.",
+        "Esto les permitió establecerse en poblados permanentes."
+    ],
+    [
+        "La invención de la escritura marca el final de la Prehistoria.",
+        "Surgió en Mesopotamia hace más de 5.000 años.",
+        "Al principio eran dibujos sencillos que representaban objetos.",
+        "Con el tiempo, permitió registrar leyes, historias y conocimientos."
+    ],
+    [
+        "La civilización mesopotámica se desarrolló entre los ríos Tigris y Éufrates.",
+        "Esta fértil región permitió el desarrollo de una próspera agricultura.",
+        "Inventaron la escritura cuneiforme, una de las primeras del mundo.",
+        "Construyeron grandes ciudades-estado como Ur y Babilonia."
+    ],
+    [
+        "El Antiguo Egipto floreció a orillas del río Nilo.",
+        "Las crecidas anuales del río fertilizaban las tierras para el cultivo.",
+        "Estaban gobernados por un faraón, considerado un dios.",
+        "Construyeron impresionantes pirámides que servían como tumbas para los faraones."
+    ],
+    [
+        "Los egipcios desarrollaron un sistema de escritura basado en jeroglíficos.",
+        "Estos símbolos sagrados se tallaban en piedra o se pintaban en las paredes.",
+        "Para la vida cotidiana, utilizaban una escritura más simple sobre papiro.",
+        "Su conocimiento se conservó gracias al desciframiento de la Piedra de Rosetta."
+    ],
+    [
+        "La Antigua Grecia es considerada la cuna de la civilización occidental.",
+        "Estaba formada por ciudades-estado independientes llamadas polis.",
+        "Atenas y Esparta fueron dos de las polis más importantes y rivales.",
+        "En Grecia nacieron la filosofía, la democracia y el teatro."
+    ],
+    [
+        "La democracia nació en la ciudad de Atenas en el siglo V a.C.",
+        "Permitía que los ciudadanos varones participaran en el gobierno de la ciudad.",
+        "Se reunían en la asamblea para debatir y votar las leyes.",
+        "Aunque era limitada, sentó las bases de los sistemas políticos actuales."
+    ],
+    [
+        "Los Juegos Olímpicos se celebraban en la antigua ciudad de Olimpia.",
+        "Eran un evento deportivo y religioso en honor al dios Zeus.",
+        "Durante los juegos, se declaraba una tregua sagrada entre las ciudades-estado.",
+        "Los atletas competían en pruebas como carreras, lucha y lanzamiento de disco."
+    ],
+    [
+        "La civilización romana comenzó como una pequeña ciudad en la península itálica.",
+        "A través de conquistas militares, llegó a dominar todo el mar Mediterráneo.",
+        "Formó un vasto imperio que se extendió por Europa, África y Asia.",
+        "Su legado incluye el derecho, la arquitectura y el latín, base de muchas lenguas."
+    ],
+    [
+        "El Coliseo de Roma era un enorme anfiteatro construido para espectáculos públicos.",
+        "Podía albergar a más de 50.000 espectadores.",
+        "En él se celebraban luchas de gladiadores y recreaciones de batallas navales.",
+        "Es uno de los monumentos más famosos del Imperio Romano."
+    ],
+    [
+        "Los romanos fueron grandes ingenieros y constructores.",
+        "Construyeron una extensa red de calzadas para conectar su imperio.",
+        "También edificaron acueductos para llevar agua a las ciudades.",
+        "Muchas de estas construcciones todavía se conservan en la actualidad."
+    ],
+    [
+        "La Península Ibérica fue conquistada por los romanos y la llamaron Hispania.",
+        "Introdujeron su cultura, su lengua (el latín) y sus leyes.",
+        "Fundaron ciudades importantes como Mérida (Emerita Augusta) o Zaragoza (Caesaraugusta).",
+        "La romanización fue un proceso profundo que marcó la historia de la península."
+    ],
+    [
+        "La caída del Imperio Romano de Occidente en el año 476 d.C. marca el inicio de la Edad Media.",
+        "Diversos pueblos germánicos, como los visigodos, invadieron el territorio.",
+        "Los visigodos establecieron un reino en Hispania con capital en Toledo.",
+        "Este periodo se caracterizó por la fragmentación del poder político."
+    ],
+    [
+        "En el año 711, un ejército musulmán cruzó el estrecho de Gibraltar.",
+        "Conquistaron gran parte de la Península Ibérica en pocos años.",
+        "Establecieron un territorio llamado al-Ándalus.",
+        "Su presencia en la península duró casi ocho siglos."
+    ],
+    [
+        "Al-Ándalus fue un importante centro cultural y científico durante la Edad Media.",
+        "Ciudades como Córdoba o Granada alcanzaron un gran esplendor.",
+        "Introdujeron nuevos cultivos y técnicas de regadío.",
+        "Nos dejaron un rico legado artístico, como la Mezquita de Córdoba o la Alhambra de Granada."
+    ],
+    [
+        "La Reconquista es el proceso por el cual los reinos cristianos del norte recuperaron el territorio.",
+        "Fue un proceso muy largo, que duró desde el siglo VIII hasta el XV.",
+        "Se formaron reinos como Castilla, Aragón, Portugal y Navarra.",
+        "Terminó en 1492 con la toma de Granada por los Reyes Católicos."
+    ],
+    [
+        "El feudalismo fue el sistema social, político y económico de la Edad Media.",
+        "El rey concedía tierras (feudos) a los nobles a cambio de ayuda militar.",
+        "Los campesinos trabajaban las tierras del señor y le pagaban impuestos a cambio de protección.",
+        "La sociedad estaba dividida en tres estamentos: nobleza, clero y pueblo llano."
+    ],
+    [
+        "Los castillos medievales eran fortalezas construidas para la defensa.",
+        "Estaban rodeados por murallas y un foso para dificultar los ataques.",
+        "En su interior vivía el señor feudal con su familia y sus soldados.",
+        "Eran el centro del poder y la administración del feudo."
+    ],
+    [
+        "Los monasterios fueron centros culturales muy importantes en la Edad Media.",
+        "Los monjes dedicaban su vida a la oración y al trabajo.",
+        "En sus bibliotecas, copiaban a mano libros antiguos, conservando la cultura clásica.",
+        "Gracias a ellos, gran parte del saber de la antigüedad no se perdió."
+    ],
+    [
+        "El Descubrimiento de América en 1492 fue un acontecimiento que cambió el mundo.",
+        "Cristóbal Colón, buscando una nueva ruta a las Indias, llegó a un nuevo continente.",
+        "Este hecho marcó el inicio de la Edad Moderna.",
+        "Supuso el contacto entre dos mundos que habían permanecido aislados."
+    ],
+    [
+        "Los Reyes Católicos, Isabel de Castilla y Fernando de Aragón, unificaron sus reinos.",
+        "Su matrimonio sentó las bases de la monarquía hispánica.",
+        "Finalizaron la Reconquista con la toma de Granada en 1492.",
+        "Financiaron el viaje de Cristóbal Colón que llevó al descubrimiento de América."
+    ],
+    [
+        "El Renacimiento fue un movimiento cultural que surgió en Italia en el siglo XV.",
+        "Se inspiró en el arte y la cultura de la antigua Grecia y Roma.",
+        "Artistas como Leonardo da Vinci y Miguel Ángel crearon obras maestras.",
+        "El ser humano se convirtió en el centro del universo."
+    ],
+    [
+        "La invención de la imprenta por Gutenberg fue revolucionaria.",
+        "Antes, los libros se copiaban a mano, un proceso lento y costoso.",
+        "La imprenta permitió producir libros de forma rápida y barata.",
+        "Gracias a ello, las ideas y el conocimiento se difundieron por toda Europa."
+    ],
+    [
+        "La Reforma Protestante fue un movimiento religioso que rompió la unidad del cristianismo.",
+        "Fue iniciada por Martín Lutero en Alemania en el siglo XVI.",
+        "Criticaba ciertas prácticas de la Iglesia Católica.",
+        "Esto llevó a la creación de nuevas iglesias cristianas, como la luterana."
+    ],
+    [
+        "El Imperio español se convirtió en una gran potencia mundial en el siglo XVI.",
+        "Controlaba vastos territorios en América, así como en Europa, África y Asia.",
+        "Las minas de plata de América proporcionaron una enorme riqueza a la corona.",
+        "Durante este periodo reinaron Carlos I y su hijo, Felipe II."
+    ],
+    [
+        "El absolutismo fue la forma de gobierno dominante en Europa durante el siglo XVII.",
+        "El rey concentraba todos los poderes del Estado: legislativo, ejecutivo y judicial.",
+        "Se creía que su poder provenía directamente de Dios.",
+        "Luis XIV de Francia, el 'Rey Sol', es el máximo exponente de este sistema."
+    ],
+    [
+        "La Ilustración fue un movimiento intelectual del siglo XVIII que defendía la razón.",
+        "Los pensadores ilustrados creían que la educación y el conocimiento podían mejorar la sociedad.",
+        "Defendieron ideas como la separación de poderes y la soberanía nacional.",
+        "Sus ideas influyeron en la Revolución Francesa y la independencia de Estados Unidos."
+    ],
+    [
+        "La Revolución Industrial comenzó en Gran Bretaña a finales del siglo XVIII.",
+        "La invención de la máquina de vapor fue clave para su desarrollo.",
+        "La producción en fábricas sustituyó al trabajo artesanal.",
+        "Provocó grandes cambios sociales, como el crecimiento de las ciudades."
+    ],
+    [
+        "La Revolución Francesa de 1789 acabó con el Antiguo Régimen en Francia.",
+        "El pueblo se levantó contra los privilegios de la nobleza y el clero.",
+        "Se proclamaron los principios de 'libertad, igualdad y fraternidad'.",
+        "Este acontecimiento marcó el inicio de la Edad Contemporánea."
+    ],
+    [
+        "Napoleón Bonaparte fue un general que tomó el poder en Francia tras la revolución.",
+        "Se proclamó emperador y conquistó gran parte de Europa.",
+        "Extendió las ideas de la Revolución Francesa por los territorios que dominaba.",
+        "Fue finalmente derrotado en la batalla de Waterloo en 1815."
+    ],
+    [
+        "El mapa del mundo representa la superficie de la Tierra.",
+        "Está dividido en continentes y océanos.",
+        "Los continentes son grandes masas de tierra: Europa, Asia, África, América, Oceanía y la Antártida.",
+        "Los océanos son las grandes masas de agua salada."
+    ],
+    [
+        "El relieve de la Tierra presenta diferentes formas.",
+        "Las montañas son grandes elevaciones del terreno.",
+        "Las llanuras son grandes extensiones de terreno plano.",
+        "Las mesetas son llanuras elevadas sobre el nivel del mar."
+    ],
+    [
+        "Los ríos son corrientes de agua dulce que fluyen de forma continua.",
+        "Nacen en las montañas y desembocan en el mar, en un lago o en otro río.",
+        "A lo largo de su curso, erosionan el terreno y transportan materiales.",
+        "El Nilo y el Amazonas son dos de los ríos más largos del mundo."
+    ],
+    [
+        "El clima de un lugar es el conjunto de condiciones atmosféricas que se repiten a lo largo del año.",
+        "Depende de factores como la temperatura, las precipitaciones y el viento.",
+        "Existen diferentes zonas climáticas en la Tierra: cálida, templada y fría.",
+        "El clima influye en la vegetación y la fauna de una región."
+    ],
+    [
+        "La población mundial ha experimentado un gran crecimiento en los últimos siglos.",
+        "Actualmente, la mayoría de las personas viven en ciudades.",
+        "La densidad de población indica el número de habitantes por kilómetro cuadrado.",
+        "Asia es el continente más poblado del mundo."
+    ],
+    [
+        "Las ciudades son espacios donde se concentran la población y las actividades económicas.",
+        "Suelen tener diferentes zonas: el centro histórico, las áreas residenciales y las zonas industriales.",
+        "Ofrecen una gran variedad de servicios como hospitales, colegios y transportes.",
+        "El crecimiento de las ciudades plantea retos como la contaminación o el tráfico."
+    ],
+    [
+        "La actividad agrícola es fundamental para la alimentación humana.",
+        "Consiste en el cultivo de la tierra para obtener productos vegetales.",
+        "Existen cultivos de secano, que solo reciben agua de la lluvia.",
+        "Y cultivos de regadío, que necesitan un aporte artificial de agua."
+    ],
+    [
+        "La ganadería es la cría de animales para obtener productos como carne, leche o lana.",
+        "Puede ser extensiva, si los animales pastan en grandes terrenos.",
+        "O intensiva, si los animales se crían en granjas o establos.",
+        "El ganado bovino (vacas) y ovino (ovejas) son muy comunes."
+    ],
+    [
+        "La pesca es la actividad dedicada a la captura de peces y otros animales acuáticos.",
+        "La pesca de bajura se realiza cerca de la costa con barcos pequeños.",
+        "La pesca de altura se lleva a cabo en alta mar con grandes buques.",
+        "La sobrepesca es un grave problema que amenaza los recursos marinos."
+    ],
+    [
+        "La industria transforma las materias primas en productos elaborados.",
+        "Las materias primas pueden ser de origen animal, vegetal o mineral.",
+        "Las fábricas son los lugares donde se realiza esta transformación.",
+        "La industria del automóvil, por ejemplo, fabrica coches a partir de metales y plásticos."
+    ],
+    [
+        "El sector servicios es el más importante en las economías desarrolladas.",
+        "No produce bienes materiales, sino que ofrece servicios a las personas y a las empresas.",
+        "Actividades como el comercio, el turismo, la sanidad o la educación pertenecen a este sector.",
+        "También se le conoce como sector terciario."
+    ],
+    [
+        "El turismo es una actividad económica muy importante en muchos países.",
+        "Consiste en los viajes que realizan las personas por ocio o descanso.",
+        "Existen diferentes tipos de turismo, como el de sol y playa o el cultural.",
+        "Genera empleo en hoteles, restaurantes y empresas de transporte."
+    ],
+    [
+        "El comercio es la compra y venta de bienes y servicios.",
+        "El comercio interior se realiza dentro de las fronteras de un país.",
+        "El comercio exterior se lleva a cabo entre diferentes países.",
+        "Las exportaciones son los productos que un país vende al exterior."
+    ],
+    [
+        "La Unión Europea es una organización de países europeos que colaboran entre sí.",
+        "Su objetivo es promover la paz, la prosperidad y la estabilidad en el continente.",
+        "La mayoría de sus países miembros comparten una moneda única, el euro.",
+        "Sus ciudadanos pueden viajar, vivir y trabajar libremente en cualquier país de la Unión."
+    ],
+    [
+        "La Edad del Cobre fue la primera etapa de la Edad de los Metales.",
+        "Los seres humanos aprendieron a fabricar objetos de cobre.",
+        "Este metal era más resistente que la piedra para hacer herramientas y armas.",
+        "La metalurgia fue una innovación tecnológica muy importante."
+    ],
+    [
+        "La Edad del Bronce siguió a la del Cobre.",
+        "El bronce es una aleación de cobre y estaño.",
+        "Es un metal mucho más duro y resistente que el cobre.",
+        "Permitió fabricar mejores armas, herramientas y objetos de adorno."
+    ],
+    [
+        "La Edad del Hierro es la última etapa de la Prehistoria.",
+        "El hierro es un metal muy abundante, pero más difícil de trabajar que el bronce.",
+        "Su uso se extendió y permitió crear armas y herramientas aún más eficaces.",
+        "Pueblos como los celtas y los íberos vivieron en la Península Ibérica durante esta época."
+    ]
 ]
