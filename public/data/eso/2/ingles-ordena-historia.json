@@ -1,12 +1,242 @@
 [
-    ["Last weekend, my friends and I decided to go to the cinema.", "We chose a new action film that looked very exciting.", "We bought popcorn and drinks before the movie started.", "The film was amazing, with lots of special effects.", "After the cinema, we went for a pizza to talk about it."],
-    ["Emily is planning a surprise party for her brother's birthday.", "First, she needs to send invitations to all his friends.", "Then, she will buy a big chocolate cake and some decorations.", "On the day of the party, she will hide with averyone.", "Her brother will be very surprised and happy."],
-    ["When I was a child, I used to live in a small house in the countryside.", "There was a big garden with many trees and flowers.", "I used to play outside with my dog all day long.", "I remember those days as a very happy time in my life."],
-    ["A famous scientist was working in her laboratory late at night.", "She was trying to find a cure for a serious disease.", "Suddenly, she noticed something unexpected in one of her tests.", "She repeated the experiment and confirmed her discovery.", "Her work would go on to save millions of lives."],
-    ["If you want to be healthy, you should follow some simple advice.", "First, you should eat a balanced diet with lots of fruit and vegetables.", "It is also very important to do exercise regularly.", "Finally, you must sleep at least eight hours every night."],
-    ["A group of astronauts was preparing for a mission to Mars.", "They trained for many months to get ready for the long journey.", "The day of the launch, they boarded the spaceship feeling nervous but excited.", "The rocket took off, and their incredible adventure began.", "They would be the first humans to walk on the red planet."],
-    ["Last year, our school organized a trip to a natural park.", "We saw many wild animals, like deer and eagles.", "A guide explained to us the importance of protecting the environment.", "We learned a lot and had a wonderful time in nature."],
-    ["Alex was walking home when it started to rain heavily.", "He didn't have an umbrella, so he looked for a place to shelter.", "He ran to a small café and decided to wait there.", "He ordered a hot chocolate while he watched the rain outside.", "He felt warm and comfortable inside the café."],
-    ["To make a good cup of tea, you first need to boil some water.", "Then, put a teabag in a cup and pour the hot water over it.", "Let it sit for a few minutes to get the flavour.", "You can add milk or sugar if you like.", "Finally, relax and enjoy your perfect cup of tea."],
-    ["A young musician wanted to form a rock band.", "He found a talented drummer and a great bass player.", "They started practicing together in a garage every weekend.", "They wrote their own songs and soon played their first concert.", "It was the beginning of a very successful music career."]
+  [
+    "Last summer, my family and I went to the beach for our holiday.",
+    "We stayed in a small hotel very close to the sea.",
+    "Every day, we swam in the ocean and built big sandcastles.",
+    "It was the best holiday I have ever had."
+  ],
+  [
+    "Sarah is my best friend and she lives next to my house.",
+    "She has got a dog called Max and it is very playful.",
+    "We often go to the park together to walk the dog.",
+    "Sometimes we play football or just sit and talk for hours."
+  ],
+  [
+    "Yesterday, I had a very difficult exam at school.",
+    "I had to study a lot of history and geography.",
+    "I think I did well, but I will have to wait for the results.",
+    "After the exam, I went to the cinema with my friends to relax."
+  ],
+  [
+    "My favourite hobby is reading science fiction books.",
+    "I have read all the books by my favourite author.",
+    "They transport me to different worlds and amazing adventures.",
+    "Right now, I am reading a book about travelling through time."
+  ],
+  [
+    "Next weekend, my class is going on a school trip to the mountains.",
+    "We are going to learn about the local plants and animals.",
+    "We have to bring a raincoat because the weather can change quickly.",
+    "I am very excited because I love nature."
+  ],
+  [
+    "My older brother is learning to play the electric guitar.",
+    "He practises every day in his room for about an hour.",
+    "Sometimes he plays very loud music, especially rock and roll.",
+    "He wants to form a band with his friends."
+  ],
+  [
+    "If you want to be healthy, you should do exercise regularly.",
+    "You should also eat a balanced diet with lots of fruit and vegetables.",
+    "It is important to drink enough water during the day.",
+    "Getting enough sleep at night is also essential for your health."
+  ],
+  [
+    "London is a very big city with many famous landmarks.",
+    "You can see the Big Ben, the Tower of London and Buckingham Palace.",
+    "It has a lot of museums that are free to enter.",
+    "I would like to visit London one day."
+  ],
+  [
+    "My mother was cooking dinner in the kitchen when the lights went out.",
+    "Suddenly, everything was dark and we couldn't see anything.",
+    "My father found a torch and some candles.",
+    "We had a very special dinner by candlelight."
+  ],
+  [
+    "I have never tried Japanese food like sushi.",
+    "My friend says it is delicious, especially the salmon rolls.",
+    "There is a new Japanese restaurant in my town.",
+    "Maybe I will go there next Saturday to try it."
+  ],
+  [
+    "While I was walking to school this morning, I found a wallet on the pavement.",
+    "I opened it and I saw an ID card and some money.",
+    "I decided to take it to the police station.",
+    "The police officer thanked me for being an honest person."
+  ],
+  [
+    "My school is organizing a competition to protect the environment.",
+    "My class is going to prepare a project about recycling.",
+    "We have to make a presentation in front of the whole school.",
+    "If we win, we will get a prize for our class."
+  ],
+  [
+    "She has been studying French for three years.",
+    "She can speak it quite well, but she wants to improve.",
+    "Next summer, she is going to spend a month in Paris.",
+    "She hopes to practice a lot and become fluent."
+  ],
+  [
+    "He is the tallest boy in our basketball team.",
+    "He is very good at scoring points and blocking shots.",
+    "Last week, our team won the most important match of the season.",
+    "He scored the final basket in the last second."
+  ],
+  [
+    "If I had a lot of money, I would travel around the world.",
+    "First, I would visit the pyramids in Egypt.",
+    "Then, I would explore the Amazon rainforest in Brazil.",
+    "It would be an incredible adventure."
+  ],
+  [
+    "The new superhero film is going to be released next month.",
+    "I have already seen the trailer and it looks amazing.",
+    "My friends and I are planning to go and see it on the first day.",
+    "I am sure it will be a huge success at the box office."
+  ],
+  [
+    "You must not talk loudly in the library.",
+    "It is a place for people to study and read in silence.",
+    "You should also switch off your mobile phone.",
+    "Respecting the rules is important for everyone."
+  ],
+  [
+    "She was very tired last night, so she went to bed early.",
+    "She had been working on a difficult project all day.",
+    "She fell asleep as soon as her head touched the pillow.",
+    "She slept for more than nine hours."
+  ],
+  [
+    "The internet is a very useful tool for finding information.",
+    "You can learn about almost any topic you are interested in.",
+    "However, you have to be careful because not all information is true.",
+    "It is important to check the sources."
+  ],
+  [
+    "He used to live in a small village in the countryside.",
+    "He moved to the city to go to university.",
+    "At first, he didn't like the noise and the traffic.",
+    "Now, he is used to city life and enjoys it."
+  ],
+  [
+    "This is the most beautiful painting I have ever seen.",
+    "It was painted by a famous Spanish artist in the 19th century.",
+    "The colours are so bright and the details are incredible.",
+    "It is displayed at the Prado Museum in Madrid."
+  ],
+  [
+    "We were having a picnic in the park when it started to rain.",
+    "We had to collect everything quickly and run for shelter.",
+    "We found a small kiosk where we waited for the rain to stop.",
+    "Unfortunately, our sandwiches got completely wet."
+  ],
+  [
+    "She has just finished reading a mystery novel.",
+    "She couldn't stop reading because the story was so exciting.",
+    "She didn't expect the ending at all.",
+    "Now she is going to recommend the book to all her friends."
+  ],
+  [
+    "If you mix blue and yellow paint, you get green.",
+    "This is a basic rule in the theory of colour.",
+    "Primary colours cannot be made by mixing other colours.",
+    "Red, yellow and blue are the primary pigment colours."
+  ],
+  [
+    "He is looking for a part-time job to earn some money.",
+    "He wants to buy a new electric scooter.",
+    "He has sent his CV to a few shops in his neighbourhood.",
+    "He hopes someone will call him for an interview soon."
+  ],
+  [
+    "The Amazon is the largest rainforest in the world.",
+    "It is home to millions of species of plants and animals.",
+    "Unfortunately, deforestation is a very serious problem there.",
+    "We must protect this important natural treasure."
+  ],
+  [
+    "She was asked to give a speech at the end-of-year ceremony.",
+    "She was very nervous because she had never spoken in public before.",
+    "She wrote the speech and practised it many times.",
+    "In the end, she did a great job and everyone applauded."
+  ],
+  [
+    "I wish I could fly like a bird.",
+    "I would travel to different countries without a plane ticket.",
+    "I would see the world from a different perspective.",
+    "It would be an amazing feeling of freedom."
+  ],
+  [
+    "The mobile phone was invented many years ago, but it has changed a lot.",
+    "The first mobile phones were very big and heavy.",
+    "They could only be used for making calls.",
+    "Now, smartphones are like small computers in our pockets."
+  ],
+  [
+    "He is not allowed to go out until he finishes his homework.",
+    "His parents are quite strict about his studies.",
+    "He has a lot of maths exercises to do.",
+    "He thinks it will take him at least two hours."
+  ],
+  [
+    "Mount Everest is the highest mountain on Earth.",
+    "It is located in the Himalayas, between Nepal and China.",
+    "Climbing it is extremely difficult and dangerous.",
+    "Many climbers have tried, but only a few have succeeded."
+  ],
+  [
+    "She is very interested in astronomy and the universe.",
+    "She has a telescope and she often looks at the stars at night.",
+    "She can identify different constellations, like Orion or the Big Dipper.",
+    "Her dream is to become an astronaut one day."
+  ],
+  [
+    "The final match of the championship will be played next Saturday.",
+    "Our team has been training very hard for this moment.",
+    "If we win, we will be the champions of the league.",
+    "All our friends and family will come to support us."
+  ],
+  [
+    "He was walking his dog when he heard a strange noise.",
+    "It came from an old, abandoned house at the end of the street.",
+    "He felt a bit scared, but his curiosity was stronger.",
+    "He decided to go closer to investigate."
+  ],
+  [
+    "This restaurant is famous for its delicious Italian pizza.",
+    "They have been making pizza in a traditional wood-fired oven for over fifty years.",
+    "My favourite one is the Margherita, with tomato, mozzarella and basil.",
+    "It is said to be the best pizza in the whole city."
+  ],
+  [
+    "She has a talent for drawing and painting.",
+    "She started drawing when she was only four years old.",
+    "Her bedroom walls are covered with her own pictures.",
+    "She wants to study Fine Arts at university."
+  ],
+  [
+    "The Great Wall of China is one of the most impressive structures ever built.",
+    "It was built over many centuries to protect the Chinese Empire.",
+    "It is thousands of kilometres long.",
+    "It is so big that it can be seen from space."
+  ],
+  [
+    "He was told that the package would arrive in three days.",
+    "He has been waiting for it for over a week now.",
+    "He has called the delivery company several times.",
+    "He is starting to get a bit impatient."
+  ],
+  [
+    "Volunteering is a great way to help other people and the community.",
+    "You can volunteer in a hospital, an animal shelter or an environmental organization.",
+    "You don't get paid, but the experience is very rewarding.",
+    "It helps you develop new skills and meet new people."
+  ],
+  [
+    "She was listening to her favourite podcast while she was tidying her room.",
+    "She likes podcasts about science and technology.",
+    "She learns a lot of new things from them.",
+    "It makes cleaning her room a much more enjoyable task."
+  ]
 ]

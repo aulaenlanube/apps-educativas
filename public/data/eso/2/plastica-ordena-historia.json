@@ -1,42 +1,242 @@
 [
-  "El punto es el elemento más simple de la expresión plástica.",
-  "La línea puede ser recta, curva, quebrada u ondulada.",
-  "Los colores primarios son el rojo, el amarillo y el azul.",
-  "Al mezclar dos colores primarios se obtiene un color secundario.",
-  "El verde, el naranja y el violeta son colores secundarios.",
-  "El círculo cromático organiza los colores de forma circular.",
-  "La textura de una superficie puede ser lisa, rugosa, suave o áspera.",
-  "El volumen representa el espacio que ocupa un objeto tridimensional.",
-  "El dibujo es la base de muchas obras de arte.",
-  "La perspectiva nos ayuda a representar la profundidad en un plano.",
-  "Un bodegón es una obra de arte que representa objetos inanimados.",
-  "El retrato es la representación artística de una persona.",
-  "La acuarela es una técnica de pintura que utiliza colores diluidos en agua.",
-  "El collage es una técnica que consiste en pegar diferentes materiales.",
-  "La simetría es la correspondencia exacta en la forma y el tamaño.",
-  "El punto de fuga es un punto donde convergen las líneas paralelas.",
-  "Los colores cálidos, como el rojo, transmiten energía y cercanía.",
-  "Los colores fríos, como el azul, transmiten calma y lejanía.",
-  "La forma es el aspecto exterior de los objetos.",
-  "El claroscuro es el uso de contrastes entre luces y sombras.",
-  "La escultura es el arte de modelar, tallar o esculpir figuras.",
-  "El boceto es un dibujo rápido que sirve como prueba inicial.",
-  "La composición es la forma de organizar los elementos en una obra.",
-  "El color blanco se produce por la presencia de todos los colores.",
-  "El color negro es la ausencia de luz y color.",
-  "El plano es una superficie de dos dimensiones: alto y ancho.",
-  "La línea de horizonte separa el cielo de la tierra en un paisaje.",
-  "La pintura al óleo utiliza pigmentos mezclados con aceite.",
-  "Un mosaico se crea uniendo pequeñas piezas de colores.",
-  "El grabado es una técnica de impresión artística.",
-  "La arquitectura es el arte de diseñar y construir edificios.",
-  "El diseño gráfico comunica mensajes visuales.",
-  "La proporción es la relación de tamaño entre las partes de un todo.",
-  "El equilibrio visual hace que una composición se vea estable.",
-  "El ritmo en el arte se crea mediante la repetición de elementos.",
-  "El centro de interés es la parte más importante de una obra.",
-  "La abstracción no representa objetos reconocibles de la realidad.",
-  "Leonardo da Vinci fue un famoso artista del Renacimiento.",
-  "Picasso fue un pintor español y creador del cubismo.",
-  "La fotografía es el arte de capturar imágenes con una cámara."
+  [
+    "El punto es el elemento gráfico más simple y el origen de cualquier forma.",
+    "Puede expresar tensión si se agrupa o crear texturas si se dispersa.",
+    "Un conjunto de puntos muy próximos puede ser percibido como una línea o una mancha.",
+    "El puntillismo fue una técnica pictórica que utilizaba pequeños puntos de color puro."
+  ],
+  [
+    "La línea es la traza que deja un punto en movimiento sobre una superficie.",
+    "Puede ser recta, curva, quebrada u ondulada, y su grosor puede variar.",
+    "Las líneas transmiten sensaciones: las verticales expresan equilibrio y las horizontales, calma.",
+    "En un dibujo, la línea se utiliza para definir contornos y crear formas."
+  ],
+  [
+    "La forma es la apariencia externa de los objetos.",
+    "Puede ser figurativa, si representa algo reconocible de la realidad.",
+    "O puede ser abstracta, si no representa la realidad y se centra en el color y la estructura.",
+    "Las formas geométricas básicas son el círculo, el cuadrado y el triángulo."
+  ],
+  [
+    "El color es una experiencia visual producida por la luz.",
+    "Los colores primarios pigmento son el cian, el magenta y el amarillo.",
+    "Al mezclar dos colores primarios, se obtiene un color secundario.",
+    "El verde, el naranja y el violeta son los colores secundarios."
+  ],
+  [
+    "El círculo cromático es una representación ordenada de los colores.",
+    "Los colores complementarios son los que se encuentran opuestos en el círculo.",
+    "Al colocar juntos dos colores complementarios, como el rojo y el verde, se intensifican mutuamente.",
+    "Los colores análogos son los que están situados uno al lado del otro."
+  ],
+  [
+    "Los colores cálidos, como los rojos, naranjas y amarillos, se asocian con el sol y el fuego.",
+    "Transmiten sensaciones de alegría, energía y cercanía.",
+    "En una composición, los colores cálidos tienden a avanzar hacia el espectador.",
+    "Son colores muy utilizados en publicidad para llamar la atención."
+  ],
+  [
+    "Los colores fríos, como los azules, verdes y violetas, se asocian con el agua y el cielo.",
+    "Producen sensaciones de calma, serenidad y lejanía.",
+    "En un paisaje, los colores fríos se suelen usar para representar los objetos distantes.",
+    "Ayudan a crear una atmósfera de tranquilidad en una obra."
+  ],
+  [
+    "La textura es la cualidad de una superficie que podemos percibir a través de la vista o el tacto.",
+    "La textura táctil es la que podemos sentir al tocar, como la rugosidad de una lija.",
+    "La textura visual es la representación de una textura en una superficie bidimensional.",
+    "Los artistas la utilizan para dar más realismo y expresividad a sus obras."
+  ],
+  [
+    "La composición es la forma de organizar los elementos visuales en un espacio.",
+    "Busca crear un equilibrio y un recorrido visual que guíe la mirada del espectador.",
+    "La regla de los tercios es un principio de composición muy utilizado.",
+    "Una buena composición es fundamental para que una obra de arte funcione."
+  ],
+  [
+    "El equilibrio en una composición puede ser simétrico o asimétrico.",
+    "El equilibrio simétrico se produce cuando los elementos se distribuyen de forma igual a ambos lados de un eje.",
+    "Transmite una sensación de orden, estabilidad y formalidad.",
+    "El equilibrio asimétrico se consigue con elementos diferentes pero con un peso visual similar."
+  ],
+  [
+    "El dibujo técnico es un lenguaje gráfico universal para representar objetos.",
+    "Utiliza normas y convenciones para que la información sea precisa y no ambigua.",
+    "Las vistas principales de un objeto son el alzado, la planta y el perfil.",
+    "Se utiliza en campos como la arquitectura, la ingeniería o el diseño industrial."
+  ],
+  [
+    "La perspectiva cónica es un método de dibujo que permite representar la profundidad.",
+    "Se basa en la idea de que las líneas paralelas parecen converger en un punto de fuga.",
+    "Los objetos se dibujan más pequeños a medida que se alejan del espectador.",
+    "Es el sistema que más se asemeja a nuestra percepción visual de la realidad."
+  ],
+  [
+    "El claroscuro es una técnica de pintura y dibujo que utiliza fuertes contrastes de luz y sombra.",
+    "Sirve para crear la ilusión de volumen y profundidad en una superficie plana.",
+    "Fue muy utilizada por los artistas del Barroco, como Caravaggio.",
+    "Ayuda a dirigir la atención del espectador hacia el punto más iluminado."
+  ],
+  [
+    "La fotografía es el arte de capturar imágenes permanentes con una cámara.",
+    "El encuadre es la porción de la escena que el fotógrafo decide incluir en la imagen.",
+    "La composición, la luz y el momento decisivo son elementos clave.",
+    "Puede ser un documento de la realidad o una forma de expresión artística."
+  ],
+  [
+    "El cómic es un medio que narra historias a través de una secuencia de imágenes.",
+    "Cada imagen se enmarca en un recuadro llamado viñeta.",
+    "Los diálogos de los personajes se escriben dentro de bocadillos o globos.",
+    "Las onomatopeyas son palabras que imitan sonidos, como '¡Boom!' o '¡Splash!'."
+  ],
+  [
+    "El diseño gráfico es una disciplina que comunica mensajes visuales.",
+    "Un diseñador gráfico trabaja con imágenes, tipografías y colores.",
+    "Diseña logotipos, carteles, páginas web y todo tipo de comunicación visual.",
+    "Su objetivo es transmitir una idea de forma clara y atractiva."
+  ],
+  [
+    "Un logotipo es el símbolo gráfico que identifica a una empresa o marca.",
+    "Debe ser simple, memorable y representativo de los valores de la marca.",
+    "A veces es solo tipográfico (logotipo) y otras veces incluye un icono (imagotipo).",
+    "Un buen logotipo es fácilmente reconocible por el público."
+  ],
+  [
+    "El arte abstracto no intenta representar figuras u objetos del mundo real.",
+    "Se centra en los elementos puramente plásticos: la forma, el color y la composición.",
+    "Busca crear sensaciones y emociones a través de un lenguaje visual propio.",
+    "Pintores como Kandinsky o Mondrian fueron pioneros de la abstracción."
+  ],
+  [
+    "El cubismo fue un movimiento de vanguardia liderado por Picasso y Braque.",
+    "Rompía con la perspectiva tradicional y representaba los objetos desde múltiples puntos de vista a la vez.",
+    "Descomponía las formas en figuras geométricas, como cubos o cilindros.",
+    "'Las señoritas de Aviñón' de Picasso es considerada la primera obra cubista."
+  ],
+  [
+    "El surrealismo fue un movimiento artístico y literario que exploraba el mundo del subconsciente.",
+    "Se inspiraba en los sueños, las fantasías y lo irracional.",
+    "Artistas como Salvador Dalí o René Magritte crearon imágenes sorprendentes e ilógicas.",
+    "Buscaban liberar la mente de las ataduras de la lógica y la razón."
+  ],
+  [
+    "La escultura es el arte de crear formas tridimensionales.",
+    "Se puede realizar tallando materiales como la piedra o la madera.",
+    "También se puede modelar con materiales blandos como la arcilla.",
+    "La escultura puede ser figurativa o abstracta."
+  ],
+  [
+    "La arquitectura es el arte y la técnica de diseñar y construir edificios y espacios.",
+    "Debe combinar la funcionalidad, la resistencia y la belleza.",
+    "A lo largo de la historia, cada civilización ha desarrollado su propio estilo arquitectónico.",
+    "El arquitecto es el profesional que se encarga de proyectar los edificios."
+  ],
+  [
+    "La acuarela es una técnica de pintura sobre papel o cartulina.",
+    "Utiliza pigmentos muy finos diluidos en agua.",
+    "Se caracteriza por su transparencia y la luminosidad que aporta el blanco del papel.",
+    "Requiere una ejecución rápida, ya que el agua se seca pronto."
+  ],
+  [
+    "El collage es una técnica artística que consiste en ensamblar elementos diversos.",
+    "Se pueden pegar sobre un soporte recortes de periódico, fotografías, telas u otros objetos.",
+    "Fue una técnica muy utilizada por los artistas cubistas y surrealistas.",
+    "Permite crear obras con una gran riqueza de texturas y significados."
+  ],
+  [
+    "El lenguaje audiovisual combina imágenes en movimiento y sonido.",
+    "El cine, la televisión y los videojuegos son medios audiovisuales.",
+    "El plano es la unidad básica, y su combinación crea las escenas.",
+    "El montaje es el proceso de ordenar los planos para construir el relato."
+  ],
+  [
+    "La escala de un objeto se refiere a su tamaño en relación con otro.",
+    "En arte, se puede alterar la escala para crear efectos expresivos.",
+    "Un objeto representado a una escala mucho mayor de lo normal adquiere una gran importancia.",
+    "Jugar con la escala puede generar sorpresa o monumentalidad."
+  ],
+  [
+    "El ritmo en una composición visual se crea mediante la repetición de elementos.",
+    "La repetición de formas, colores o líneas a intervalos regulares genera un patrón.",
+    "El ritmo puede ser uniforme y monótono o variado y dinámico.",
+    "Ayuda a crear una sensación de movimiento y a guiar la mirada del espectador."
+  ],
+  [
+    "El centro de interés es la zona de una obra que atrae la atención en primer lugar.",
+    "El artista utiliza recursos como el contraste, el color o la ubicación para destacarlo.",
+    "No tiene por qué estar en el centro geométrico de la composición.",
+    "Una obra puede tener uno o varios centros de interés."
+  ],
+  [
+    "La tipografía es el arte de diseñar y componer con tipos de letra.",
+    "La elección de una tipografía adecuada es clave en el diseño gráfico.",
+    "Una letra con serifa tiene pequeños remates en los extremos, como la 'Times New Roman'.",
+    "Una letra de palo seco o 'sans-serif', como la 'Arial', no tiene esos remates."
+  ],
+  [
+    "El grabado es una técnica de impresión que permite realizar múltiples copias de una imagen.",
+    "El artista dibuja sobre una plancha de metal o madera, llamada matriz.",
+    "Luego se entinta la plancha y se presiona sobre un papel para transferir la imagen.",
+    "Existen diferentes técnicas de grabado, como el aguafuerte o la xilografía."
+  ],
+  [
+    "Un bodegón o naturaleza muerta es un género artístico que representa objetos inanimados.",
+    "Pueden ser frutas, flores, alimentos, utensilios de cocina u otros objetos cotidianos.",
+    "Permite al artista estudiar la composición, el color y la luz.",
+    "Fue un género muy popular en la pintura barroca holandesa."
+  ],
+  [
+    "El retrato es la representación de una persona, destacando sus rasgos físicos y psicológicos.",
+    "Puede ser un dibujo, una pintura, una escultura o una fotografía.",
+    "Un autorretrato es el retrato que un artista hace de sí mismo.",
+    "El objetivo es captar la esencia y la personalidad del retratado."
+  ],
+  [
+    "El arte pop fue un movimiento que surgió en la década de 1950.",
+    "Se inspiraba en la cultura de masas y en los objetos de la vida cotidiana.",
+    "Utilizaba imágenes de la publicidad, el cómic y los productos de consumo.",
+    "Andy Warhol y sus latas de sopa Campbell son un icono de este movimiento."
+  ],
+  [
+    "La animación es la técnica que crea la ilusión de movimiento mediante imágenes fijas.",
+    "Cada imagen es un fotograma que muestra una ligera variación respecto al anterior.",
+    "Al proyectarlos a gran velocidad, nuestro cerebro percibe un movimiento continuo.",
+    "Los dibujos animados tradicionales o el 'stop motion' son técnicas de animación."
+  ],
+  [
+    "El patrimonio artístico y cultural es el legado que hemos recibido de nuestros antepasados.",
+    "Incluye monumentos, obras de arte, tradiciones y yacimientos arqueológicos.",
+    "Es nuestra responsabilidad conservarlo y transmitirlo a las futuras generaciones.",
+    "La UNESCO designa algunos lugares como Patrimonio de la Humanidad por su valor excepcional."
+  ],
+  [
+    "El color blanco se percibe cuando un objeto refleja toda la luz que recibe.",
+    "El color negro, por el contrario, se percibe cuando un objeto absorbe toda la luz.",
+    "En la síntesis sustractiva, el blanco es la ausencia de pigmento (el papel).",
+    "En la síntesis aditiva, el negro es la ausencia de luz (la pantalla apagada)."
+  ],
+  [
+    "La línea de horizonte es una línea imaginaria que se sitúa a la altura de nuestros ojos.",
+    "En la representación de un paisaje, separa el cielo de la tierra o del mar.",
+    "Es un elemento fundamental para construir la perspectiva en un dibujo.",
+    "Su posición (alta, media o baja) cambia el punto de vista de la escena."
+  ],
+  [
+    "Un módulo es una forma que se repite para crear una estructura mayor.",
+    "La repetición de módulos genera redes modulares o tramas.",
+    "Esta técnica se utiliza mucho en diseño textil, pavimentos o arquitectura.",
+    "Permite crear composiciones complejas a partir de un elemento simple."
+  ],
+  [
+    "El diseño de productos busca crear objetos que sean útiles, atractivos y funcionales.",
+    "El diseñador debe tener en cuenta los materiales, el proceso de fabricación y la ergonomía.",
+    "La ergonomía estudia la adaptación de los objetos a las capacidades de las personas.",
+    "Un buen diseño mejora nuestra calidad de vida."
+  ],
+  [
+    "El graffiti es una forma de expresión artística que se realiza en el espacio público.",
+    "Suele realizarse con pintura en aerosol sobre muros o paredes.",
+    "Algunos artistas urbanos, como Banksy, han alcanzado fama mundial.",
+    "Aunque a veces se considera vandalismo, también es una forma de arte contemporáneo."
+  ]
 ]

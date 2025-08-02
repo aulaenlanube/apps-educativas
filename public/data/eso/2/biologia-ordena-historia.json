@@ -1,42 +1,242 @@
 [
-  "La célula es la unidad básica de todos los seres vivos.",
-  "Los seres vivos se clasifican en cinco reinos diferentes.",
-  "Las plantas fabrican su propio alimento mediante la fotosíntesis.",
-  "Los animales vertebrados tienen una columna vertebral.",
-  "Los mamíferos alimentan a sus crías con leche materna.",
-  "La Tierra está formada por varias capas: corteza, manto y núcleo.",
-  "Las rocas están compuestas por uno o varios minerales.",
-  "Los fósiles son restos de seres vivos del pasado.",
-  "Un ecosistema incluye a los seres vivos y el lugar donde habitan.",
-  "La atmósfera es la capa de gases que rodea nuestro planeta.",
-  "Los minerales tienen propiedades como el color, el brillo y la dureza.",
-  "El ciclo del agua describe su movimiento continuo en la Tierra.",
-  "Los reptiles son animales vertebrados que tienen escamas.",
-  "Los anfibios, como las ranas, viven en el agua y en la tierra.",
-  "El reino de los hongos incluye las setas y las levaduras.",
-  "La corteza terrestre está dividida en placas tectónicas.",
-  "Los terremotos se producen por el movimiento de las placas tectónicas.",
-  "Los volcanes expulsan magma del interior de la Tierra.",
-  "La nutrición, la relación y la reproducción son las funciones vitales.",
-  "Los animales invertebrados no tienen esqueleto interno.",
-  "Los insectos son el grupo de animales más numeroso.",
-  "Las rocas magmáticas se forman al enfriarse el magma.",
-  "Las rocas sedimentarias se originan a partir de restos de otras rocas.",
-  "La erosión es el desgaste del relieve por el viento o el agua.",
-  "El universo está formado por miles de millones de galaxias.",
-  "Nuestro sistema solar se encuentra en la galaxia Vía Láctea.",
-  "Las plantas utilizan las raíces para absorber agua y sales minerales.",
-  "Los peces respiran a través de branquias bajo el agua.",
-  "La cadena alimentaria representa quién se come a quién en un ecosistema.",
-  "Los productores, como las plantas, inician la cadena alimentaria.",
-  "Los consumidores primarios son los animales herbívoros.",
-  "La hidrosfera es toda el agua que hay en el planeta Tierra.",
-  "Los minerales se pueden identificar por su raya y su exfoliación.",
-  "Las aves son animales vertebrados que tienen el cuerpo cubierto de plumas.",
-  "La polinización es el transporte del polen de una flor a otra.",
-  "Los fósiles nos ayudan a entender la historia de la vida.",
-  "La geología es la ciencia que estudia la Tierra.",
-  "La biología es la ciencia que estudia a los seres vivos.",
-  "El núcleo es la parte de la célula que contiene el material genético.",
-  "Los artrópodos, como los insectos, tienen un esqueleto externo."
+  [
+    "La célula es la unidad básica de la vida que compone a todos los organismos.",
+    "Las células eucariotas, a diferencia de las procariotas, tienen un núcleo definido.",
+    "Dentro del núcleo se encuentra el ADN, que contiene la información genética.",
+    "Además, en el citoplasma flotan diversos orgánulos con funciones específicas."
+  ],
+  [
+    "Los cinco reinos agrupan a todos los seres vivos según sus características.",
+    "El reino Monera incluye a las bacterias, organismos unicelulares y procariotas.",
+    "El reino Fungi está formado por los hongos, que son heterótrofos y descomponedores.",
+    "Las plantas y los animales constituyen sus propios reinos, Plantae y Animalia."
+  ],
+  [
+    "Los animales invertebrados son aquellos que carecen de columna vertebral.",
+    "Constituyen el grupo más numeroso y diverso del reino animal.",
+    "Se clasifican en filos como los artrópodos, moluscos, anélidos o cnidarios.",
+    "Muchos de ellos, como los insectos, poseen un esqueleto externo para protegerse."
+  ],
+  [
+    "Los artrópodos se caracterizan por tener un exoesqueleto de quitina y patas articuladas.",
+    "Este filo incluye a los insectos, los arácnidos, los crustáceos y los miriápodos.",
+    "Los insectos, como las hormigas, tienen el cuerpo dividido en cabeza, tórax y abdomen.",
+    "Para crecer, necesitan desprenderse de su exoesqueleto mediante un proceso llamado muda."
+  ],
+  [
+    "Los mamíferos son un grupo de vertebrados de sangre caliente.",
+    "Su cuerpo está cubierto de pelo para mantener la temperatura corporal.",
+    "Las hembras poseen glándulas mamarias para alimentar a sus crías con leche.",
+    "La mayoría son vivíparos, es decir, las crías se desarrollan en el vientre materno."
+  ],
+  [
+    "La fotosíntesis es el proceso por el cual las plantas fabrican su propio alimento.",
+    "Utilizan la energía de la luz solar, dióxido de carbono y agua.",
+    "Este proceso se realiza en los cloroplastos, unos orgánulos de las células vegetales.",
+    "Como producto de desecho, liberan oxígeno, que es esencial para la respiración de otros seres vivos."
+  ],
+  [
+    "Una red trófica representa las complejas interacciones alimentarias en un ecosistema.",
+    "Está formada por múltiples cadenas tróficas interconectadas entre sí.",
+    "Un mismo organismo puede ser consumido por diferentes depredadores.",
+    "Refleja de forma más realista el flujo de energía que una simple cadena."
+  ],
+  [
+    "El sistema circulatorio humano es el encargado de transportar la sangre por el cuerpo.",
+    "El corazón actúa como una bomba que impulsa la sangre a través de los vasos sanguíneos.",
+    "Las arterias llevan la sangre oxigenada desde el corazón a los tejidos.",
+    "Las venas devuelven la sangre sin oxígeno de vuelta al corazón."
+  ],
+  [
+    "La geosfera es la parte sólida de nuestro planeta.",
+    "Se divide en tres capas concéntricas: la corteza, el manto y el núcleo.",
+    "La corteza es la capa más externa y delgada sobre la que vivimos.",
+    "El núcleo, en el centro, está compuesto principalmente por hierro y níquel."
+  ],
+  [
+    "Las rocas sedimentarias se forman a partir de la acumulación de sedimentos.",
+    "Estos sedimentos son fragmentos de otras rocas, restos de seres vivos o precipitados químicos.",
+    "Con el tiempo, las capas de sedimentos se compactan y cementan.",
+    "Son las únicas rocas en las que se pueden encontrar fósiles."
+  ],
+  [
+    "La tectónica de placas es la teoría que explica el movimiento de la litosfera terrestre.",
+    "La litosfera está fragmentada en grandes placas que flotan sobre el manto.",
+    "El movimiento de estas placas es el responsable de los terremotos y los volcanes.",
+    "También explica la formación de cordilleras y la deriva de los continentes."
+  ],
+  [
+    "La función de relación permite a los seres vivos interactuar con su entorno.",
+    "Los organismos captan estímulos a través de sus órganos de los sentidos.",
+    "El sistema nervioso procesa esta información y elabora una respuesta adecuada.",
+    "El aparato locomotor es el encargado de ejecutar las respuestas de movimiento."
+  ],
+  [
+    "Los reptiles son vertebrados con el cuerpo cubierto de escamas impermeables.",
+    "Esta adaptación les permite vivir en ambientes secos sin deshidratarse.",
+    "Son animales de sangre fría, por lo que necesitan el sol para regular su temperatura.",
+    "La mayoría son ovíparos y ponen huevos con una cáscara resistente."
+  ],
+  [
+    "El sistema respiratorio se encarga del intercambio de gases con el exterior.",
+    "El aire entra por las fosas nasales y viaja por la faringe, laringe y tráquea.",
+    "En los alvéolos pulmonares, el oxígeno pasa a la sangre.",
+    "Al mismo tiempo, el dióxido de carbono de la sangre pasa al aire para ser expulsado."
+  ],
+  [
+    "Los minerales son sólidos naturales con una composición química y estructura cristalina definidas.",
+    "Se pueden identificar mediante propiedades como la dureza, el color o el brillo.",
+    "La escala de Mohs clasifica los minerales según su dureza, del 1 (talco) al 10 (diamante).",
+    "Las rocas están compuestas por la agregación de uno o más minerales."
+  ],
+  [
+    "La reproducción sexual requiere la participación de dos progenitores.",
+    "Cada progenitor aporta una célula sexual o gameto.",
+    "La unión de los gametos, llamada fecundación, da lugar a un cigoto.",
+    "Los descendientes son genéticamente diferentes a sus progenitores."
+  ],
+  [
+    "Los anfibios, como las ranas, tienen un ciclo de vida con una profunda metamorfosis.",
+    "Nacen en el agua como larvas llamadas renacuajos, que respiran por branquias.",
+    "Durante la metamorfosis, desarrollan pulmones y patas para la vida terrestre.",
+    "Los adultos suelen vivir cerca del agua, ya que tienen una piel fina y permeable."
+  ],
+  [
+    "El modelado del relieve es el resultado de la acción de los agentes geológicos externos.",
+    "El agua de los ríos excava valles y transporta materiales, creando cañones y deltas.",
+    "El hielo de los glaciares arrastra rocas y modela valles en forma de 'U'.",
+    "El viento también desgasta las rocas y transporta arena, formando dunas en los desiertos."
+  ],
+  [
+    "El sistema excretor es responsable de eliminar los productos de desecho de la sangre.",
+    "Los riñones filtran la sangre y producen la orina.",
+    "La orina contiene agua, sales y sustancias de desecho como la urea.",
+    "Este proceso es vital para mantener el equilibrio interno del organismo."
+  ],
+  [
+    "Las rocas magmáticas o ígneas se forman cuando el magma se enfría y solidifica.",
+    "Si el magma se enfría lentamente en el interior de la Tierra, se forman rocas plutónicas como el granito.",
+    "Si se enfría rápidamente en la superficie tras una erupción, se forman rocas volcánicas como el basalto.",
+    "El tamaño de sus cristales depende de la velocidad de enfriamiento."
+  ],
+  [
+    "La biodiversidad es la gran variedad de seres vivos que habitan en la Tierra.",
+    "Incluye la diversidad de especies, la diversidad genética y la diversidad de ecosistemas.",
+    "Las selvas tropicales y los arrecifes de coral son zonas de alta biodiversidad.",
+    "La actividad humana es la principal amenaza para la conservación de la biodiversidad."
+  ],
+  [
+    "El sistema nervioso central está formado por el encéfalo y la médula espinal.",
+    "El encéfalo, protegido por el cráneo, es el centro de control del cuerpo.",
+    "La médula espinal, alojada en la columna vertebral, se encarga de los actos reflejos.",
+    "Ambos están protegidos por las meninges y el líquido cefalorraquídeo."
+  ],
+  [
+    "Las plantas vasculares poseen un sistema de tejidos conductores.",
+    "El xilema transporta agua y sales minerales desde la raíz hasta las hojas.",
+    "El floema distribuye los nutrientes fabricados en la fotosíntesis por toda la planta.",
+    "Este sistema les permite alcanzar un gran tamaño y vivir en ambientes terrestres."
+  ],
+  [
+    "Un volcán es una estructura geológica por la que emerge magma del interior de la Tierra.",
+    "La acumulación de materiales expulsados forma un cono con un cráter en la cima.",
+    "Las erupciones pueden ser efusivas, con coladas de lava fluida, o explosivas.",
+    "Los volcanes se localizan principalmente en los bordes de las placas tectónicas."
+  ],
+  [
+    "La digestión química se realiza gracias a la acción de las enzimas digestivas.",
+    "Estas enzimas son proteínas que rompen las grandes moléculas de los alimentos.",
+    "La amilasa de la saliva, por ejemplo, empieza a digerir el almidón.",
+    "La pepsina en el estómago se encarga de descomponer las proteínas."
+  ],
+  [
+    "Los helechos son plantas vasculares sin flores ni semillas.",
+    "Se reproducen mediante esporas que se forman en el envés de sus hojas.",
+    "Sus hojas, llamadas frondes, suelen ser grandes y divididas.",
+    "Viven en lugares húmedos y sombríos, como los sotobosques."
+  ],
+  [
+    "Los glaciares son enormes masas de hielo que se mueven lentamente por la superficie.",
+    "Se forman en zonas de alta montaña o en las regiones polares.",
+    "A medida que avanzan, erosionan el terreno, creando valles en forma de 'U'.",
+    "Son una de las mayores reservas de agua dulce del planeta."
+  ],
+  [
+    "El sistema endocrino está compuesto por glándulas que segregan hormonas.",
+    "Las hormonas son mensajeros químicos que viajan por la sangre.",
+    "Regulan procesos lentos como el crecimiento, el metabolismo o la reproducción.",
+    "La hipófisis, el tiroides y el páncreas son ejemplos de glándulas endocrinas."
+  ],
+  [
+    "Los musgos son plantas no vasculares, muy sencillas y de pequeño tamaño.",
+    "No tienen verdaderas raíces, tallos ni hojas.",
+    "Absorben el agua y los nutrientes por toda su superficie.",
+    "Necesitan ambientes muy húmedos para poder vivir y reproducirse."
+  ],
+  [
+    "Un tsunami es una serie de olas gigantescas causadas por un terremoto submarino.",
+    "El movimiento brusco del fondo marino desplaza una gran masa de agua.",
+    "En alta mar, las olas pueden ser imperceptibles, pero ganan altura al llegar a la costa.",
+    "Pueden causar una destrucción devastadora en las zonas litorales."
+  ],
+  [
+    "Los anticuerpos son proteínas producidas por el sistema inmunitario.",
+    "Reconocen y se unen de forma específica a los agentes extraños, como virus o bacterias.",
+    "Esta unión marca a los invasores para que otras células inmunitarias los destruyan.",
+    "Las vacunas funcionan estimulando la producción de anticuerpos específicos."
+  ],
+  [
+    "Las gimnospermas son plantas con semillas que no están encerradas en un fruto.",
+    "Sus semillas se desarrollan en estructuras llamadas conos o piñas.",
+    "La mayoría son árboles o arbustos, como los pinos, los abetos o los cipreses.",
+    "Su polinización se realiza principalmente a través del viento."
+  ],
+  [
+    "El ciclo de las rocas describe cómo las rocas se transforman continuamente.",
+    "Cualquier roca puede convertirse en sedimentaria por erosión y sedimentación.",
+    "El calor y la presión pueden transformar cualquier roca en metamórfica.",
+    "Si una roca se funde y luego se enfría, se convierte en una roca ígnea."
+  ],
+  [
+    "El esqueleto axial está formado por los huesos del cráneo, la columna vertebral y la caja torácica.",
+    "Su función principal es proteger los órganos vitales del sistema nervioso central.",
+    "El cráneo protege el encéfalo.",
+    "La columna vertebral protege la médula espinal."
+  ],
+  [
+    "Las angiospermas son plantas con flores que producen semillas encerradas en un fruto.",
+    "El fruto protege las semillas y ayuda a su dispersión.",
+    "Son el grupo de plantas más diverso y extendido de la Tierra.",
+    "Incluyen desde pequeñas hierbas hasta grandes árboles."
+  ],
+  [
+    "Un acuífero es una formación geológica subterránea que almacena agua.",
+    "El agua de la lluvia se infiltra en el terreno a través de rocas porosas.",
+    "Cuando encuentra una capa impermeable, el agua se acumula.",
+    "Los pozos son perforaciones que nos permiten extraer el agua de los acuíferos."
+  ],
+  [
+    "Las articulaciones son las uniones entre los huesos que permiten el movimiento.",
+    "Los huesos están unidos entre sí por ligamentos, que son bandas de tejido resistente.",
+    "El cartílago recubre los extremos de los huesos para evitar el desgaste.",
+    "El líquido sinovial lubrica la articulación para facilitar el movimiento."
+  ],
+  [
+    "La selección natural es el mecanismo que propuso Charles Darwin para explicar la evolución.",
+    "En una población, los individuos con rasgos más favorables para su entorno sobreviven más.",
+    "Estos individuos tienen más probabilidades de reproducirse y transmitir esos rasgos.",
+    "Con el tiempo, la acumulación de estos cambios puede dar lugar a nuevas especies."
+  ],
+  [
+    "La atmósfera primitiva de la Tierra era muy diferente a la actual.",
+    "No contenía oxígeno libre, un gas que es esencial para nuestra respiración.",
+    "La aparición de los primeros organismos fotosintéticos cambió su composición.",
+    "Estos organismos comenzaron a liberar oxígeno, transformando la atmósfera."
+  ],
+  [
+    "Los músculos antagónicos son pares de músculos que realizan funciones opuestas.",
+    "Cuando un músculo se contrae, su antagonista se relaja.",
+    "Un ejemplo es el bíceps y el tríceps en el brazo.",
+    "Esta coordinación permite un control preciso del movimiento."
+  ]
 ]

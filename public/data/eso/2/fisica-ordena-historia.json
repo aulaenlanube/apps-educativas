@@ -1,12 +1,242 @@
 [
-    ["Una reacción de combustión necesita un combustible, un comburente y calor.", "El combustible, como la madera, es la sustancia que arde.", "El comburente, generalmente el oxígeno del aire, permite que arda.", "Se necesita una energía de activación, como una cerilla, para iniciarla.", "Como resultado, se desprende una gran cantidad de luz y calor."],
-    ["La luz del sol parece blanca, pero en realidad está compuesta por muchos colores.", "Cuando la luz atraviesa un prisma de cristal, se descompone.", "Podemos ver todos los colores del arcoíris, desde el rojo hasta el violeta.", "Este fenómeno se conoce como dispersión de la luz."],
-    ["Una fuerza es capaz de cambiar la forma o el movimiento de un objeto.", "Si aplicamos una fuerza a un objeto en reposo, este puede empezar a moverse.", "Si el objeto ya se está moviendo, una fuerza puede hacer que acelere, frene o cambie de dirección.", "Las fuerzas son interacciones entre dos cuerpos."],
-    ["Para medir la temperatura de un líquido, utilizamos un termómetro.", "Introducimos el bulbo del termómetro en el líquido sin que toque el fondo.", "Esperamos un momento a que el líquido del termómetro se estabilice.", "Leemos la temperatura en la escala graduada.", "La unidad de temperatura en el Sistema Internacional es el Kelvin, pero usamos más el grado Celsius."],
-    ["El sonido se produce cuando un objeto vibra y transmite esa vibración al aire.", "Estas vibraciones viajan por el aire en forma de ondas sonoras.", "Cuando las ondas llegan a nuestro oído, hacen vibrar el tímpano.", "El cerebro interpreta estas vibraciones como los sonidos que escuchamos."],
-    ["En un circuito en serie, los componentes se conectan uno detrás de otro.", "Si uno de los componentes se estropea o se desconecta, el circuito se abre.", "Como resultado, la corriente deja de fluir por todo el circuito.", "Por eso, si se funde una bombilla de una guirnalda antigua, se apagan todas."],
-    ["La flotación de un barco se explica por el principio de Arquímedes.", "El barco, a pesar de ser de hierro, desaloja un gran volumen de agua.", "El agua ejerce una fuerza hacia arriba llamada empuje, que es igual al peso del agua desalojada.", "Si el empuje es mayor que el peso del barco, este flota."],
-    ["El calor se puede transferir de un cuerpo a otro de tres formas.", "La conducción ocurre en los sólidos, cuando el calor pasa de partícula a partícula.", "La convección se da en fluidos, donde las masas calientes ascienden y las frías descienden.", "La radiación es la transferencia de calor a través de ondas, como la del Sol."],
-    ["Un elemento químico está formado por átomos que tienen el mismo número de protones.", "Los elementos se organizan en la tabla periódica según su número atómico.", "Por ejemplo, todos los átomos del elemento oxígeno tienen 8 protones.", "Las propiedades de un elemento dependen de su estructura atómica."],
-    ["Para separar la sal del agua en una disolución, podemos usar la cristalización.", "Calentamos la disolución para que el agua se evapore.", "A medida que el agua se evapora, la sal empieza a formar cristales sólidos.", "Finalmente, toda el agua se ha evaporado y solo nos queda la sal en el recipiente."]
+  [
+    "La materia puede presentarse en tres estados principales: sólido, líquido y gaseoso.",
+    "En estado sólido, las partículas están muy juntas y ordenadas.",
+    "En estado líquido, las partículas están juntas pero pueden moverse.",
+    "En estado gaseoso, las partículas están muy separadas y se mueven libremente."
+  ],
+  [
+    "Un cambio de estado es una transformación física que no altera la composición de la sustancia.",
+    "La fusión es el paso de sólido a líquido, como cuando el hielo se derrite.",
+    "La vaporización es el paso de líquido a gas, como cuando el agua hierve.",
+    "La condensación es el proceso inverso, de gas a líquido."
+  ],
+  [
+    "Una mezcla heterogénea es aquella en la que se pueden distinguir sus componentes a simple vista.",
+    "Un ejemplo es una mezcla de agua y aceite, que forman dos capas separadas.",
+    "Otro ejemplo es una ensalada, donde vemos la lechuga, el tomate y los demás ingredientes.",
+    "Existen métodos como la decantación o la filtración para separar sus componentes."
+  ],
+  [
+    "Una disolución es una mezcla homogénea de dos o más sustancias.",
+    "El soluto es la sustancia que se disuelve y está en menor cantidad.",
+    "El disolvente es la sustancia que disuelve y está en mayor cantidad.",
+    "El agua con azúcar es un ejemplo de disolución, donde el azúcar es el soluto."
+  ],
+  [
+    "La teoría atómica de Dalton fue el primer modelo científico sobre la estructura de la materia.",
+    "Propuso que la materia está compuesta por partículas diminutas e indivisibles llamadas átomos.",
+    "Según Dalton, los átomos de un mismo elemento son idénticos entre sí.",
+    "También postuló que los compuestos se forman por la unión de átomos de distintos elementos."
+  ],
+  [
+    "El modelo atómico de Rutherford se asemeja a un sistema solar en miniatura.",
+    "Descubrió que el átomo tiene un núcleo central muy pequeño y denso con carga positiva.",
+    "Los electrones, con carga negativa, giran en órbitas alrededor de este núcleo.",
+    "La mayor parte del átomo es espacio vacío."
+  ],
+  [
+    "El número atómico, representado por la letra Z, es el número de protones de un átomo.",
+    "Define la identidad de un elemento químico; todos los átomos de un elemento tienen el mismo Z.",
+    "En un átomo neutro, el número de electrones es igual al número de protones.",
+    "Los elementos en la tabla periódica están ordenados por su número atómico creciente."
+  ],
+  [
+    "Una reacción química es un proceso en el que las sustancias iniciales se transforman en otras nuevas.",
+    "Las sustancias iniciales se llaman reactivos.",
+    "Las sustancias finales que se obtienen se denominan productos.",
+    "La oxidación de un clavo de hierro es un ejemplo de reacción química."
+  ],
+  [
+    "La ley de la conservación de la masa fue enunciada por Lavoisier.",
+    "Establece que en una reacción química, la masa total de los reactivos es igual a la masa total de los productos.",
+    "En otras palabras, la materia no se crea ni se destruye, solo se transforma.",
+    "Esta ley es fundamental para realizar cálculos en química."
+  ],
+  [
+    "El movimiento rectilíneo uniforme (MRU) es aquel con velocidad constante y trayectoria recta.",
+    "Esto significa que el móvil recorre espacios iguales en tiempos iguales.",
+    "Su aceleración es nula, ya que la velocidad no cambia.",
+    "Un coche que viaja a 80 km/h por una autopista recta sería un ejemplo."
+  ],
+  [
+    "Una fuerza es cualquier acción capaz de cambiar el estado de movimiento de un cuerpo o de deformarlo.",
+    "La unidad de fuerza en el Sistema Internacional es el Newton (N).",
+    "Las fuerzas son magnitudes vectoriales, por lo que tienen dirección y sentido.",
+    "La fuerza de la gravedad nos mantiene pegados a la superficie de la Tierra."
+  ],
+  [
+    "La primera ley de Newton es también conocida como el principio de inercia.",
+    "Afirma que un objeto permanecerá en reposo o en movimiento rectilíneo uniforme a menos que una fuerza externa actúe sobre él.",
+    "La inercia es la tendencia de los cuerpos a resistirse a los cambios en su movimiento.",
+    "Por eso, cuando un coche frena bruscamente, nuestro cuerpo tiende a seguir hacia adelante."
+  ],
+  [
+    "La energía es la capacidad de los cuerpos para realizar un trabajo o producir cambios.",
+    "El principio de conservación de la energía dice que esta no se crea ni se destruye, solo se transforma.",
+    "Por ejemplo, una bombilla transforma la energía eléctrica en energía luminosa y térmica.",
+    "La unidad de energía en el Sistema Internacional es el Julio (J)."
+  ],
+  [
+    "El calor es una forma de transferencia de energía entre dos cuerpos a diferente temperatura.",
+    "La energía siempre fluye del cuerpo más caliente al cuerpo más frío.",
+    "La conducción, la convección y la radiación son las tres formas de transferir calor.",
+    "La temperatura, en cambio, mide la energía interna de un cuerpo."
+  ],
+  [
+    "La luz se propaga en línea recta en un medio homogéneo.",
+    "La reflexión es el fenómeno por el cual la luz rebota al chocar con una superficie.",
+    "Gracias a la reflexión podemos ver los objetos que no emiten luz propia.",
+    "Un espejo es una superficie pulida que refleja la luz de forma ordenada."
+  ],
+  [
+    "La refracción es el cambio de dirección que experimenta la luz al pasar de un medio a otro.",
+    "Ocurre porque la velocidad de la luz es diferente en cada medio.",
+    "Este fenómeno explica por qué un lápiz parece que se dobla al meterlo en un vaso de agua.",
+    "Las lentes, como las de las gafas, basan su funcionamiento en la refracción."
+  ],
+  [
+    "La tabla periódica organiza todos los elementos químicos conocidos.",
+    "Los elementos están ordenados por su número atómico creciente.",
+    "Las columnas se llaman grupos y agrupan elementos con propiedades similares.",
+    "Las filas se denominan períodos."
+  ],
+  [
+    "Un ión se forma cuando un átomo neutro gana o pierde electrones.",
+    "Si un átomo pierde electrones, se convierte en un ión positivo o catión.",
+    "Si un átomo gana electrones, se transforma en un ión negativo o anión.",
+    "Este proceso es fundamental para la formación de los enlaces iónicos."
+  ],
+  [
+    "La velocidad del sonido depende del medio por el que se propaga.",
+    "En general, el sonido viaja más rápido en los sólidos que en los líquidos.",
+    "Y viaja más rápido en los líquidos que en los gases.",
+    "En el vacío, el sonido no puede propagarse porque no hay partículas que vibren."
+  ],
+  [
+    "La presión es la relación entre la fuerza aplicada y la superficie sobre la que actúa.",
+    "A mayor fuerza, mayor presión.",
+    "A mayor superficie, menor presión para la misma fuerza.",
+    "Por eso, un cuchillo afilado corta mejor, porque concentra la fuerza en una superficie muy pequeña."
+  ],
+  [
+    "La energía cinética es la energía asociada al movimiento de un cuerpo.",
+    "Depende de la masa del cuerpo y de su velocidad.",
+    "Cuanto mayor es la masa o la velocidad, mayor es la energía cinética.",
+    "Un coche en movimiento tiene energía cinética."
+  ],
+  [
+    "La energía potencial gravitatoria es la que tiene un cuerpo por estar a una cierta altura.",
+    "Depende de la masa del objeto, de la gravedad y de la altura.",
+    "Una manzana en un árbol tiene energía potencial.",
+    "Al caer, esta energía potencial se transforma en energía cinética."
+  ],
+  [
+    "Un circuito eléctrico en serie es aquel en el que los componentes se conectan uno tras otro.",
+    "La corriente eléctrica solo tiene un camino por el que circular.",
+    "Si uno de los componentes se estropea, todo el circuito se interrumpe.",
+    "Las luces de Navidad antiguas solían estar conectadas en serie."
+  ],
+  [
+    "En un circuito en paralelo, los componentes se conectan en diferentes ramales.",
+    "La corriente eléctrica se divide y circula por cada uno de los ramales.",
+    "Si un componente falla, los demás pueden seguir funcionando.",
+    "La instalación eléctrica de una casa es un ejemplo de circuito en paralelo."
+  ],
+  [
+    "Los imanes generan a su alrededor un campo magnético.",
+    "Tienen dos polos, un polo norte y un polo sur.",
+    "Polos del mismo nombre se repelen, mientras que polos de distinto nombre se atraen.",
+    "La Tierra se comporta como un imán gigante, lo que permite el funcionamiento de las brújulas."
+  ],
+  [
+    "La densidad es una propiedad que nos permite identificar sustancias.",
+    "Se calcula dividiendo la masa de un objeto entre el volumen que ocupa.",
+    "Un objeto flota en un líquido si su densidad es menor que la del líquido.",
+    "Por ejemplo, el corcho flota en el agua porque es menos denso."
+  ],
+  [
+    "La combustión es una reacción química de oxidación rápida.",
+    "En ella, una sustancia llamada combustible reacciona con el oxígeno.",
+    "Se desprende una gran cantidad de energía en forma de luz y calor.",
+    "La quema de madera o de gasolina son ejemplos de combustión."
+  ],
+  [
+    "La escala de pH mide el grado de acidez o basicidad de una disolución.",
+    "Un pH de 7 indica que la disolución es neutra, como el agua pura.",
+    "Un pH inferior a 7 corresponde a una disolución ácida, como el zumo de limón.",
+    "Un pH superior a 7 indica que es básica, como el amoníaco."
+  ],
+  [
+    "El movimiento circular uniforme es el que describe un cuerpo que gira alrededor de un punto a velocidad constante.",
+    "Aunque la rapidez es constante, la dirección de la velocidad cambia continuamente.",
+    "Por lo tanto, existe una aceleración llamada aceleración centrípeta.",
+    "Un ejemplo es el movimiento de un punto en el borde de un disco que gira."
+  ],
+  [
+    "La segunda ley de Newton o principio fundamental de la dinámica relaciona fuerza y aceleración.",
+    "Establece que la fuerza neta aplicada a un cuerpo es igual a su masa por su aceleración.",
+    "Esto significa que para una misma masa, a mayor fuerza, mayor aceleración.",
+    "Es una de las leyes más importantes de la física clásica."
+  ],
+  [
+    "La energía térmica es la energía interna de un cuerpo debida a la agitación de sus partículas.",
+    "Cuanto más rápido se mueven las partículas, mayor es la energía térmica y la temperatura.",
+    "El calor es la transferencia de esta energía de un cuerpo a otro.",
+    "No es correcto decir que un cuerpo 'tiene calor'."
+  ],
+  [
+    "Los espejos planos forman imágenes virtuales, derechas y del mismo tamaño que el objeto.",
+    "Una imagen virtual es aquella que parece estar detrás del espejo.",
+    "La distancia del objeto al espejo es la misma que la de la imagen al espejo.",
+    "Son los espejos que usamos habitualmente en nuestras casas."
+  ],
+  [
+    "Los isótopos son átomos del mismo elemento que tienen diferente número de neutrones.",
+    "Al tener el mismo número de protones, pertenecen al mismo elemento químico.",
+    "Sin embargo, al variar el número de neutrones, su número másico es diferente.",
+    "Por ejemplo, el carbono-12 y el carbono-14 son isótopos del carbono."
+  ],
+  [
+    "Un enlace covalente se forma cuando dos átomos comparten uno o más pares de electrones.",
+    "Este tipo de enlace se da generalmente entre átomos de elementos no metálicos.",
+    "La molécula de agua (H2O) es un ejemplo de compuesto con enlaces covalentes.",
+    "Al compartir electrones, los átomos consiguen una configuración electrónica más estable."
+  ],
+  [
+    "La fuerza de rozamiento es una fuerza que siempre se opone al movimiento.",
+    "Aparece cuando dos superficies están en contacto y una se desliza sobre la otra.",
+    "Depende del tipo de superficies y de la fuerza con la que se aprietan.",
+    "Sin rozamiento, no podríamos caminar ni frenar un vehículo."
+  ],
+  [
+    "La dilatación es el aumento de tamaño que experimentan los cuerpos al aumentar su temperatura.",
+    "Ocurre porque al calentarse, las partículas que forman el cuerpo vibran más y se separan.",
+    "Los metales se dilatan de forma notable, por eso se dejan juntas de dilatación en puentes y vías de tren.",
+    "El agua presenta un comportamiento anómalo, ya que se dilata al congelarse."
+  ],
+  [
+    "El color de los objetos depende de la luz que reflejan.",
+    "La luz blanca del sol está compuesta por todos los colores del arcoíris.",
+    "Un objeto es de color rojo porque absorbe todos los colores menos el rojo, que lo refleja.",
+    "Un objeto negro absorbe todos los colores y uno blanco los refleja todos."
+  ],
+  [
+    "La ley de la palanca establece que la fuerza por su brazo es igual a la resistencia por el suyo.",
+    "El brazo de una fuerza es la distancia desde el punto de apoyo hasta donde se aplica.",
+    "Permite calcular qué fuerza necesitamos para vencer una resistencia determinada.",
+    "Arquímedes dijo: 'Dadme un punto de apoyo y moveré el mundo'."
+  ],
+  [
+    "Un electroimán consiste en una bobina de hilo conductor enrollada alrededor de un núcleo de hierro.",
+    "Funciona como un imán solo cuando pasa corriente eléctrica por la bobina.",
+    "Si se corta la corriente, el efecto magnético desaparece.",
+    "Se utilizan en timbres, grúas para chatarra y muchos otros dispositivos."
+  ],
+  [
+    "La flotabilidad de un cuerpo en un fluido depende de la relación entre su peso y el empuje.",
+    "El empuje es una fuerza hacia arriba que ejerce el fluido, según el principio de Arquímedes.",
+    "Si el peso es mayor que el empuje, el cuerpo se hunde.",
+    "Si el peso es igual o menor que el empuje, el cuerpo flota."
+  ]
 ]

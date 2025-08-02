@@ -1,12 +1,242 @@
 [
-    ["El calentamiento es la primera parte de cualquier sesión de actividad física.", "Prepara a nuestros músculos y articulaciones para el esfuerzo posterior.", "Ayuda a aumentar la temperatura corporal y el ritmo cardíaco de forma progresiva.", "Un buen calentamiento es fundamental para prevenir posibles lesiones."],
-    ["En un partido de balonmano, cada equipo intenta marcar gol en la portería contraria.", "Los jugadores solo pueden dar un máximo de tres pasos con el balón en las manos.", "Después de los tres pasos, deben botar el balón, pasarlo o lanzar a portería.", "Está prohibido pisar el área del portero, tanto para atacantes como para defensores."],
-    ["La resistencia aeróbica es la capacidad de realizar un esfuerzo de intensidad media o baja durante mucho tiempo.", "Actividades como correr a un ritmo suave, nadar o ir en bicicleta la mejoran.", "Este tipo de ejercicio fortalece el corazón y los pulmones.", "Es la base de una buena condición física general."],
-    ["En la prueba de salto de longitud, el objetivo es alcanzar la mayor distancia posible.", "El atleta realiza una carrera de aproximación para coger velocidad.", "Luego, realiza una batida sobre una tabla de madera sin sobrepasarla.", "Durante el vuelo, adopta una postura para optimizar la distancia.", "Finalmente, aterriza en un foso de arena."],
-    ["Una buena alimentación es esencial para cualquier persona que practique deporte.", "Antes del ejercicio, es bueno tomar hidratos de carbono para tener energía.", "Durante la actividad, es crucial mantenerse bien hidratado bebiendo agua.", "Después del ejercicio, las proteínas ayudan a los músculos a recuperarse.", "Una dieta variada asegura que obtenemos todos los nutrientes necesarios."],
-    ["El acrosport es una disciplina que combina acrobacias, gimnasia y coreografía.", "Los participantes forman figuras y pirámides humanas en grupo.", "Requiere una gran confianza, cooperación y trabajo en equipo.", "Existen diferentes roles en el grupo: portor, ágil y ayudante."],
-    ["La vuelta a la calma es la parte final de una sesión de entrenamiento.", "Consiste en realizar ejercicios de muy baja intensidad.", "Ayuda a que el ritmo cardíaco y la respiración vuelvan a la normalidad poco a poco.", "Se finaliza con estiramientos suaves para relajar los músculos.", "Facilita la recuperación del cuerpo después del esfuerzo."],
-    ["El sistema de ataque en baloncesto busca encontrar posiciones de tiro cómodas.", "Los jugadores se mueven constantemente para crear espacios libres.", "Utilizan pases y bloqueos para desajustar a la defensa contraria.", "El objetivo final es lanzar a canasta con la mayor probabilidad de éxito."],
-    ["La flexibilidad es una cualidad física que nos permite realizar movimientos amplios.", "Se puede mejorar con la práctica regular de ejercicios de estiramiento.", "Es importante estirar los músculos después de haber calentado.", "Una buena flexibilidad ayuda a prevenir lesiones y a mejorar la técnica deportiva."],
-    ["La orientación es un deporte en el que los participantes usan un mapa y una brújula.", "Deben encontrar una serie de puntos de control marcados en el terreno.", "El objetivo es completar el recorrido en el menor tiempo posible.", "Combina la capacidad física de correr con la habilidad de interpretar un mapa."]
+  [
+    "El calentamiento es la parte inicial de cualquier sesión de actividad física.",
+    "Prepara progresivamente nuestro cuerpo para un esfuerzo de mayor intensidad.",
+    "Aumenta la temperatura muscular y el ritmo cardíaco.",
+    "Un buen calentamiento es fundamental para prevenir lesiones."
+  ],
+  [
+    "Las capacidades físicas básicas determinan nuestra condición física.",
+    "Son la fuerza, la resistencia, la velocidad y la flexibilidad.",
+    "Se pueden mejorar a través de un entrenamiento regular y constante.",
+    "Tener un buen nivel en ellas nos ayuda a tener una vida más saludable."
+  ],
+  [
+    "La resistencia es la capacidad de soportar un esfuerzo durante el mayor tiempo posible.",
+    "La resistencia aeróbica se necesita para esfuerzos largos y de intensidad moderada, como correr.",
+    "La resistencia anaeróbica es para esfuerzos cortos y muy intensos, como un sprint.",
+    "Ambos tipos de resistencia son importantes y se pueden entrenar."
+  ],
+  [
+    "La flexibilidad es la capacidad que tienen nuestras articulaciones para moverse con la máxima amplitud.",
+    "Los ejercicios de estiramiento son la mejor forma de mejorarla.",
+    "Una buena flexibilidad ayuda a prevenir lesiones y mejora la coordinación.",
+    "Se pierde con la edad si no se trabaja de forma regular."
+  ],
+  [
+    "El baloncesto es un deporte de equipo que se juega con las manos.",
+    "El objetivo es introducir el balón en la canasta del equipo contrario.",
+    "Cada equipo está formado por cinco jugadores en la cancha.",
+    "El bote, el pase y el tiro son sus fundamentos técnicos principales."
+  ],
+  [
+    "El voleibol se juega entre dos equipos separados por una red central.",
+    "El balón se golpea con las manos o los brazos para pasarlo al campo contrario.",
+    "Cada equipo dispone de un máximo de tres toques antes de devolver el balón.",
+    "El objetivo es que el balón toque el suelo del campo rival."
+  ],
+  [
+    "El atletismo es un conjunto de pruebas que se dividen en carreras, saltos y lanzamientos.",
+    "Las carreras pueden ser de velocidad, de medio fondo, de fondo o de vallas.",
+    "Los saltos incluyen el salto de longitud, de altura, triple salto y salto con pértiga.",
+    "Los lanzamientos son de peso, disco, jabalina y martillo."
+  ],
+  [
+    "Una dieta equilibrada es fundamental para un deportista.",
+    "Debe proporcionar la energía necesaria para el entrenamiento y la competición.",
+    "Los hidratos de carbono son la principal fuente de energía.",
+    "Las proteínas son esenciales para la construcción y reparación de los músculos."
+  ],
+  [
+    "La hidratación es clave para el rendimiento físico.",
+    "Debemos beber agua antes, durante y después de realizar ejercicio.",
+    "La deshidratación puede provocar calambres, mareos y una disminución del rendimiento.",
+    "El agua es la mejor bebida para reponer los líquidos perdidos."
+  ],
+  [
+    "El juego limpio, o 'fair play', es un comportamiento honesto y respetuoso en el deporte.",
+    "Implica aceptar las reglas y las decisiones del árbitro.",
+    "También significa respetar a los compañeros, a los adversarios y a los espectadores.",
+    "Es más importante participar y esforzarse que ganar a cualquier precio."
+  ],
+  [
+    "El acrosport es una disciplina deportiva que combina acrobacias y coreografía.",
+    "Los participantes realizan figuras y pirámides humanas en grupo.",
+    "Requiere fuerza, equilibrio, flexibilidad y una gran confianza en los compañeros.",
+    "Existen dos roles principales: el portor (base) y el ágil (el que sube)."
+  ],
+  [
+    "La frecuencia cardíaca es el número de latidos del corazón por minuto.",
+    "En reposo, suele estar entre 60 y 100 pulsaciones por minuto.",
+    "Durante el ejercicio, la frecuencia cardíaca aumenta para llevar más sangre a los músculos.",
+    "Tomarse el pulso nos da una idea de la intensidad del esfuerzo que estamos realizando."
+  ],
+  [
+    "La vuelta a la calma es la parte final de una sesión de ejercicio.",
+    "Consiste en realizar ejercicios de baja intensidad y estiramientos suaves.",
+    "Ayuda a que el cuerpo vuelva de forma progresiva al estado de reposo.",
+    "Facilita la recuperación muscular y previene las agujetas."
+  ],
+  [
+    "La coordinación es la capacidad de mover diferentes partes del cuerpo de forma ordenada y eficaz.",
+    "Es esencial para realizar la mayoría de los gestos deportivos.",
+    "Actividades como los malabares o los circuitos de agilidad ayudan a mejorarla.",
+    "Una buena coordinación nos permite ser más eficientes en nuestros movimientos."
+  ],
+  [
+    "El bádminton es un deporte de raqueta que se juega con un volante o pluma.",
+    "Se puede jugar de forma individual o por parejas.",
+    "El objetivo es golpear el volante por encima de la red para que caiga en el campo contrario.",
+    "Es el deporte de raqueta más rápido del mundo."
+  ],
+  [
+    "La higiene postural consiste en adoptar posturas correctas en nuestras actividades diarias.",
+    "Una mala postura al sentarse o al levantar pesos puede provocar dolores de espalda.",
+    "Para coger un objeto pesado del suelo, debemos flexionar las rodillas, no la espalda.",
+    "Al llevar la mochila, es importante usar las dos asas para repartir el peso."
+  ],
+  [
+    "Los deportes en el medio natural nos permiten disfrutar de la actividad física al aire libre.",
+    "El senderismo, la escalada o el piragüismo son algunos ejemplos.",
+    "Es fundamental respetar el entorno natural y no dejar basura.",
+    "Nos ayudan a conocer y valorar la importancia de conservar la naturaleza."
+  ],
+  [
+    "El equilibrio es la capacidad de mantener una posición estable, ya sea en reposo o en movimiento.",
+    "El equilibrio estático se da cuando estamos quietos, por ejemplo, al mantenernos a la pata coja.",
+    "El equilibrio dinámico es necesario al movernos, como al patinar o ir en bicicleta.",
+    "Se puede entrenar con ejercicios específicos sobre superficies inestables."
+  ],
+  [
+    "La expresión corporal es una forma de comunicación que utiliza el cuerpo.",
+    "A través de gestos, posturas y movimientos podemos expresar emociones e ideas.",
+    "El mimo y la danza son disciplinas basadas en la expresión corporal.",
+    "Nos ayuda a desinhibirnos y a conocer mejor nuestro propio cuerpo."
+  ],
+  [
+    "Los primeros auxilios son las primeras atenciones que se prestan a un accidentado.",
+    "El objetivo es aliviar el dolor, evitar que la lesión empeore y esperar a la ayuda sanitaria.",
+    "La conducta PAS (Proteger, Avisar, Socorrer) es el protocolo básico a seguir.",
+    "Saber actuar en estas situaciones puede ser de vital importancia."
+  ],
+  [
+    "La fuerza es la capacidad de nuestros músculos para vencer una resistencia.",
+    "La fuerza máxima es la mayor fuerza que podemos ejercer en una sola contracción.",
+    "La fuerza resistencia nos permite repetir un gesto de fuerza muchas veces.",
+    "Ejercicios con nuestro propio peso, como las flexiones, ayudan a mejorarla."
+  ],
+  [
+    "La velocidad es la capacidad de realizar un movimiento en el menor tiempo posible.",
+    "La velocidad de desplazamiento es la capacidad de recorrer una distancia rápidamente.",
+    "La velocidad de reacción es el tiempo que tardamos en responder a un estímulo.",
+    "Es una cualidad muy importante en la mayoría de los deportes."
+  ],
+  [
+    "El balonmano es un deporte de equipo en el que se utiliza un balón con las manos.",
+    "Se juega entre dos equipos de siete jugadores cada uno.",
+    "El objetivo es marcar gol en la portería del equipo contrario.",
+    "Un jugador no puede dar más de tres pasos sin botar el balón."
+  ],
+  [
+    "Los juegos populares son aquellos que se han transmitido de generación en generación.",
+    "Forman parte de la cultura y las tradiciones de un lugar.",
+    "Suelen tener reglas sencillas y no necesitan materiales costosos.",
+    "La rayuela, la comba o el escondite son ejemplos de juegos populares."
+  ],
+  [
+    "La alimentación de un deportista debe ser rica en hidratos de carbono.",
+    "Estos nutrientes, presentes en la pasta o el arroz, son la principal fuente de energía.",
+    "Las proteínas, de la carne o el pescado, ayudan a reparar los músculos.",
+    "Las frutas y verduras aportan las vitaminas y minerales necesarios."
+  ],
+  [
+    "El Ultimate es un deporte de equipo que se juega con un disco volador o 'frisbee'.",
+    "Es un deporte sin contacto y autoarbitrado por los propios jugadores.",
+    "El objetivo es pasar el disco a un compañero situado en la zona de anotación del rival.",
+    "El 'Espíritu de Juego' y el respeto son sus valores fundamentales."
+  ],
+  [
+    "El calentamiento general activa los grandes grupos musculares y el sistema cardiovascular.",
+    "Suele incluir carrera suave y ejercicios de movilidad articular.",
+    "El calentamiento específico realiza movimientos propios del deporte que se va a practicar.",
+    "Ambas partes son necesarias para una preparación completa."
+  ],
+  [
+    "La táctica en un deporte de equipo es el plan colectivo para superar al adversario.",
+    "Se decide cómo atacar y cómo defender en función de las características del rival.",
+    "La estrategia, en cambio, es el plan general que se diseña antes de la competición.",
+    "Una buena táctica requiere de la coordinación y comunicación de todo el equipo."
+  ],
+  [
+    "El dopaje consiste en el uso de sustancias prohibidas para aumentar artificialmente el rendimiento.",
+    "Es una práctica ilegal y contraria a los valores del deporte.",
+    "Supone un grave riesgo para la salud del deportista.",
+    "Existen controles antidopaje para detectarlo y sancionarlo."
+  ],
+  [
+    "El sistema óseo y el sistema muscular forman el aparato locomotor.",
+    "Los huesos forman el esqueleto, que da soporte y protege los órganos.",
+    "Los músculos se unen a los huesos y, al contraerse, producen el movimiento.",
+    "El ejercicio físico fortalece tanto los huesos como los músculos."
+  ],
+  [
+    "El fútbol sala se juega en un campo más pequeño que el de fútbol.",
+    "Cada equipo está formado por cinco jugadores, incluyendo al portero.",
+    "El balón es más pequeño y pesado, lo que favorece un juego más técnico y rápido.",
+    "Es un deporte muy dinámico con muchas ocasiones de gol."
+  ],
+  [
+    "La agilidad es la capacidad de cambiar de posición y dirección de forma rápida y precisa.",
+    "Combina varias capacidades físicas como la velocidad, la fuerza y la coordinación.",
+    "Los circuitos con conos, vallas y cambios de sentido son ideales para mejorarla.",
+    "Es una cualidad esencial en deportes como el baloncesto o el fútbol."
+  ],
+  [
+    "Las carreras de orientación son una modalidad deportiva en el medio natural.",
+    "Los participantes deben completar un recorrido pasando por unos puntos de control o balizas.",
+    "Para orientarse, solo pueden utilizar un mapa y una brújula.",
+    "Gana quien complete el recorrido en el menor tiempo posible."
+  ],
+  [
+    "El sueño es un factor fundamental en la recuperación del deportista.",
+    "Durante el sueño, el cuerpo repara los tejidos musculares dañados en el entrenamiento.",
+    "También se consolida lo aprendido y se recupera la energía mental.",
+    "Un adolescente necesita dormir entre 8 y 10 horas diarias."
+  ],
+  [
+    "El índice de masa corporal (IMC) es un indicador que relaciona el peso y la altura.",
+    "Se calcula dividiendo el peso en kilogramos por la altura en metros al cuadrado.",
+    "Ayuda a determinar si una persona tiene un peso saludable, sobrepeso u obesidad.",
+    "No obstante, no distingue entre masa muscular y masa grasa."
+  ],
+  [
+    "El 'core' o núcleo corporal es el conjunto de músculos de la zona central del cuerpo.",
+    "Incluye los abdominales, los lumbares y los músculos de la pelvis.",
+    "Un 'core' fuerte proporciona estabilidad a la columna y mejora la postura.",
+    "Ejercicios como las planchas son excelentes para fortalecerlo."
+  ],
+  [
+    "El hockey se juega con un palo o 'stick' para conducir y golpear una pelota o disco.",
+    "Existen diferentes modalidades, como el hockey sobre hierba, sobre patines o sobre hielo.",
+    "Es un deporte de equipo que requiere una gran habilidad técnica y coordinación.",
+    "El objetivo es marcar gol en la portería del equipo contrario."
+  ],
+  [
+    "Los deportes de adversario son aquellos en los que nos enfrentamos a un oponente directo.",
+    "Pueden ser de lucha, como el judo, o de raqueta, como el tenis.",
+    "La táctica individual es muy importante para superar al rival.",
+    "El respeto por el oponente es un valor fundamental en estos deportes."
+  ],
+  [
+    "La respiración es un acto que normalmente realizamos de forma inconsciente.",
+    "Durante el ejercicio, es importante coordinar la respiración con el movimiento.",
+    "Una respiración adecuada, profunda y rítmica, mejora el rendimiento.",
+    "La respiración diafragmática o abdominal es más eficiente y relajante."
+  ],
+  [
+    "La coeducación en Educación Física busca eliminar los estereotipos de género en el deporte.",
+    "Promueve la participación de chicos y chicas en todas las actividades en igualdad de condiciones.",
+    "Fomenta el respeto y la colaboración, valorando las capacidades de cada persona.",
+    "El objetivo es que todos disfruten de la actividad física sin prejuicios."
+  ]
 ]

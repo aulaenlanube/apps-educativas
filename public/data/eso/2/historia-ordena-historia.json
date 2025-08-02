@@ -1,12 +1,242 @@
 [
-    ["Tras la caída del Imperio Romano, se formaron los reinos germánicos.", "Uno de ellos, el reino visigodo, se asentó en la Península Ibérica.", "En el año 711, los musulmanes cruzaron el estrecho de Gibraltar.", "Conquistaron casi toda la península, creando el territorio de Al-Ándalus.", "Este hecho marcó el inicio de la Edad Media en España."],
-    ["La sociedad feudal estaba dividida en tres estamentos.", "En la cima estaban los nobles y el clero, que eran los privilegiados.", "La gran mayoría de la población eran campesinos que trabajaban la tierra.", "Los campesinos vivían en un feudo y estaban sometidos a un señor feudal."],
-    ["El Renacimiento fue un movimiento cultural que comenzó en Italia en el siglo XV.", "Supuso una vuelta a los valores de la cultura clásica de Grecia y Roma.", "El ser humano se convirtió en el centro del universo, en lo que se conoce como Humanismo.", "Artistas como Leonardo da Vinci o Miguel Ángel fueron sus máximos exponentes."],
-    ["Los Reyes Católicos, Isabel y Fernando, unificaron los reinos de la Península Ibérica.", "Conquistaron el último reino musulmán, Granada, en 1492.", "Ese mismo año, financiaron el viaje de Cristóbal Colón.", "Este viaje resultó en el descubrimiento de un nuevo continente: América."],
-    ["El arte gótico se desarrolló en Europa durante los últimos siglos de la Edad Media.", "Se caracteriza por la construcción de altas y luminosas catedrales.", "Utilizaron innovaciones como el arco ojival y la bóveda de crucería.", "Las grandes vidrieras de colores llenaban el interior de luz."],
-    ["Martín Lutero fue un monje alemán que criticó a la Iglesia Católica.", "En 1517, publicó sus 95 tesis, dando inicio a la Reforma Protestante.", "Esto provocó una división en la cristiandad entre católicos y protestantes.", "La invención de la imprenta ayudó a difundir rápidamente sus ideas por Europa."],
-    ["La población mundial no se distribuye de forma uniforme por el planeta.", "Existen grandes focos de concentración de población, como el sudeste asiático.", "Por otro lado, hay grandes vacíos demográficos, como los desiertos o las zonas polares.", "Los factores físicos y humanos explican estas diferencias."],
-    ["El sector primario incluye las actividades que obtienen recursos directamente de la naturaleza.", "La agricultura, la ganadería, la pesca y la minería son actividades de este sector.", "En los países menos desarrollados, este sector ocupa a la mayor parte de la población.", "En los países ricos, está muy tecnificado y emplea a poca gente."],
-    ["Al-Ándalus fue un brillante centro cultural durante la Edad Media.", "Ciudades como Córdoba se convirtieron en las más importantes de Europa.", "Los musulmanes introdujeron nuevos cultivos y técnicas de regadío.", "Nos legaron un impresionante patrimonio artístico, como la Mezquita de Córdoba."],
-    ["El descubrimiento de América tuvo enormes consecuencias.", "Llegaron a Europa nuevos productos como la patata, el tomate o el cacao.", "Para los pueblos americanos, supuso la conquista y la imposición de una nueva cultura.", "Se crearon grandes imperios coloniales europeos en el nuevo continente."]
+  [
+    "La Edad Media comenzó con la caída del Imperio Romano de Occidente en el año 476.",
+    "Durante este período, el feudalismo se convirtió en el sistema social dominante.",
+    "La sociedad estaba dividida en estamentos: la nobleza, el clero y los campesinos.",
+    "Finalizó en 1492 con el descubrimiento de América."
+  ],
+  [
+    "El Islam surgió en la península de Arabia en el siglo VII.",
+    "Su profeta fue Mahoma, quien predicó la existencia de un único dios, Alá.",
+    "En pocos años, los musulmanes crearon un vasto imperio que se extendió desde la India hasta la Península Ibérica.",
+    "Córdoba se convirtió en una de las ciudades más importantes y cultas de su tiempo."
+  ],
+  [
+    "En el año 711, un ejército musulmán cruzó el estrecho de Gibraltar.",
+    "Derrotaron al rey visigodo Don Rodrigo en la batalla de Guadalete.",
+    "En pocos años, conquistaron casi toda la Península, a la que llamaron Al-Ándalus.",
+    "Solo algunos núcleos cristianos resistieron en las montañas del norte."
+  ],
+  [
+    "El feudalismo se basaba en relaciones de vasallaje entre señores y vasallos.",
+    "El rey, que era el señor supremo, entregaba un feudo a un noble a cambio de su lealtad.",
+    "Este noble se convertía en vasallo del rey y le prometía ayuda militar y consejo.",
+    "A su vez, este noble podía tener sus propios vasallos de menor rango."
+  ],
+  [
+    "El arte románico se desarrolló en Europa entre los siglos XI y XIII.",
+    "Era un arte principalmente religioso, ligado a los monasterios y las iglesias.",
+    "Se caracteriza por sus muros de piedra gruesos y sus pocas y pequeñas ventanas.",
+    "Sus iglesias solían tener planta de cruz latina y arcos de medio punto."
+  ],
+  [
+    "Las ciudades medievales comenzaron a crecer a partir del siglo XI gracias al comercio.",
+    "Estaban rodeadas de murallas para su defensa.",
+    "En su interior, los artesanos se organizaban en gremios por oficios.",
+    "El mercado y la catedral eran los edificios más importantes del centro urbano."
+  ],
+  [
+    "Las Cruzadas fueron expediciones militares organizadas por los cristianos de Europa.",
+    "Su objetivo principal era conquistar Jerusalén y otros lugares sagrados en Tierra Santa.",
+    "Hubo ocho cruzadas principales entre los siglos XI y XIII.",
+    "Aunque no lograron su objetivo a largo plazo, intensificaron el contacto entre Oriente y Occidente."
+  ],
+  [
+    "El arte gótico surgió en Francia en el siglo XII y se extendió por Europa.",
+    "Buscaba crear edificios más altos y luminosos que los románicos.",
+    "Para ello, utilizaron el arco apuntado y la bóveda de crucería.",
+    "Las grandes vidrieras de colores llenaban de luz el interior de las catedrales."
+  ],
+  [
+    "La Reconquista fue el proceso por el cual los reinos cristianos recuperaron el territorio de Al-Ándalus.",
+    "Fue un proceso muy largo, que duró casi ocho siglos.",
+    "Avanzó en diferentes fases, con importantes batallas como la de las Navas de Tolosa.",
+    "Terminó en 1492 con la toma de Granada por los Reyes Católicos."
+  ],
+  [
+    "La Peste Negra fue una terrible epidemia que asoló Europa a mediados del siglo XIV.",
+    "Se transmitía a través de las pulgas de las ratas que viajaban en los barcos mercantes.",
+    "Se calcula que provocó la muerte de aproximadamente un tercio de la población europea.",
+    "La crisis demográfica tuvo profundas consecuencias económicas y sociales."
+  ],
+  [
+    "La Península Ibérica tiene una elevada altitud media debido a la Meseta Central.",
+    "Esta Meseta está rodeada por importantes sistemas montañosos.",
+    "Al norte se encuentran la Cordillera Cantábrica y los Pirineos.",
+    "Al sur, Sierra Morena y los Sistemas Béticos la delimitan."
+  ],
+  [
+    "España tiene una gran diversidad de climas y paisajes.",
+    "En el norte predomina el clima oceánico, con lluvias abundantes y temperaturas suaves.",
+    "La mayor parte del interior y la costa mediterránea tienen un clima mediterráneo.",
+    "Las Islas Canarias presentan un clima subtropical con temperaturas cálidas todo el año."
+  ],
+  [
+    "Los ríos españoles se agrupan en tres vertientes: la cantábrica, la mediterránea y la atlántica.",
+    "Los ríos de la vertiente cantábrica son cortos, caudalosos y de régimen regular.",
+    "Los de la vertiente mediterránea son cortos e irregulares, excepto el Ebro.",
+    "Los ríos de la vertiente atlántica, como el Tajo o el Duero, son los más largos y caudalosos de la península."
+  ],
+  [
+    "La población española ha experimentado importantes cambios en el último siglo.",
+    "Durante el siglo XX, se produjo un gran éxodo rural, del campo a la ciudad.",
+    "Actualmente, la población se concentra en la costa y en la Comunidad de Madrid.",
+    "En las últimas décadas, la inmigración ha sido un factor clave en su crecimiento."
+  ],
+  [
+    "La Unión Europea es una asociación económica y política formada por 27 países europeos.",
+    "Se creó tras la Segunda Guerra Mundial para fomentar la paz y la cooperación.",
+    "Sus ciudadanos pueden viajar, vivir y trabajar libremente en cualquier país miembro.",
+    "La mayoría de sus miembros comparten una moneda única, el euro."
+  ],
+  [
+    "El sector primario agrupa las actividades que obtienen recursos directamente de la naturaleza.",
+    "Incluye la agricultura, la ganadería, la pesca y la explotación forestal.",
+    "En España, la agricultura de regadío es muy importante en la costa mediterránea.",
+    "La pesca es una actividad fundamental en las regiones costeras como Galicia."
+  ],
+  [
+    "El sector secundario transforma las materias primas en productos elaborados.",
+    "Abarca la industria, la minería, la producción de energía y la construcción.",
+    "Las principales áreas industriales de España se localizan en Cataluña y el País Vasco.",
+    "La industria automovilística y la alimentaria son muy importantes en el país."
+  ],
+  [
+    "El sector terciario o de servicios es el que más personas emplea en España.",
+    "Incluye actividades muy diversas como el comercio, el transporte, la sanidad o la educación.",
+    "El turismo es una de las actividades más importantes dentro de este sector.",
+    "España es uno de los principales destinos turísticos del mundo."
+  ],
+  [
+    "El Renacimiento fue un período de grandes cambios que marcó el inicio de la Edad Moderna.",
+    "Los artistas y pensadores se inspiraron en la antigüedad clásica de Grecia y Roma.",
+    "Se produjeron grandes avances científicos y geográficos, como el descubrimiento de América.",
+    "El Humanismo puso al ser humano en el centro de todas las preocupaciones."
+  ],
+  [
+    "Los Reyes Católicos, Isabel I de Castilla y Fernando II de Aragón, unificaron sus reinos.",
+    "Fortalecieron el poder de la monarquía frente a la nobleza.",
+    "Establecieron la Inquisición para velar por la unidad religiosa.",
+    "Financiaron la expedición de Cristóbal Colón que llevó al descubrimiento de América."
+  ],
+  [
+    "Las civilizaciones precolombinas eran las que existían en América antes de la llegada de Colón.",
+    "Los mayas destacaron por sus conocimientos de astronomía y matemáticas.",
+    "Los aztecas crearon un gran imperio en el actual territorio de México.",
+    "Los incas construyeron un vasto imperio a lo largo de la cordillera de los Andes."
+  ],
+  [
+    "La Reforma Protestante fue un movimiento religioso que rompió la unidad del cristianismo en el siglo XVI.",
+    "Fue iniciada por Martín Lutero en Alemania, quien criticaba ciertas prácticas de la Iglesia.",
+    "Defendía que la salvación se conseguía por la fe y no por las obras.",
+    "Esto dio lugar a la aparición de nuevas iglesias cristianas, como la luterana o la calvinista."
+  ],
+  [
+    "El Imperio español fue uno de los primeros y más extensos imperios de la historia.",
+    "Durante el siglo XVI, bajo los reinados de Carlos I y Felipe II, alcanzó su máximo apogeo.",
+    "Sus dominios se extendían por Europa, América, África y Asia.",
+    "La llegada de grandes cantidades de oro y plata de América financió su poder."
+  ],
+  [
+    "El absolutismo fue la forma de gobierno predominante en Europa durante el Antiguo Régimen.",
+    "El rey concentraba todos los poderes del Estado: legislativo, ejecutivo y judicial.",
+    "Se consideraba que su poder procedía directamente de Dios.",
+    "Luis XIV de Francia, conocido como el 'Rey Sol', es el máximo ejemplo de monarca absoluto."
+  ],
+  [
+    "La Ilustración fue un movimiento intelectual del siglo XVIII que confiaba en la razón humana.",
+    "Pensadores como Montesquieu, Rousseau y Voltaire defendieron la separación de poderes y la soberanía nacional.",
+    "Criticaron los privilegios de la nobleza y el clero del Antiguo Régimen.",
+    "Sus ideas fueron la base de la Revolución Francesa y de las democracias modernas."
+  ],
+  [
+    "La Revolución Industrial comenzó en Gran Bretaña a finales del siglo XVIII.",
+    "La invención de la máquina de vapor fue clave para el desarrollo de las fábricas y el ferrocarril.",
+    "Se pasó de una producción artesanal a una producción industrial en masa.",
+    "Surgió una nueva clase social, el proletariado, formada por los obreros de las fábricas."
+  ],
+  [
+    "La Revolución Francesa estalló en 1789 y acabó con el absolutismo en Francia.",
+    "Su lema fue 'Libertad, Igualdad y Fraternidad'.",
+    "La toma de la Bastilla por el pueblo de París se convirtió en el símbolo de la revolución.",
+    "Se redactó la Declaración de los Derechos del Hombre y del Ciudadano."
+  ],
+  [
+    "Napoleón Bonaparte fue un militar que tomó el poder en Francia tras la revolución.",
+    "Se coronó emperador y conquistó gran parte de Europa.",
+    "A pesar de ser un dictador, extendió muchas de las ideas de la Revolución Francesa.",
+    "Fue derrotado definitivamente en la batalla de Waterloo en 1815."
+  ],
+  [
+    "El liberalismo es una ideología que defiende las libertades y los derechos individuales.",
+    "Apoya la soberanía nacional, la separación de poderes y la existencia de una constitución.",
+    "En economía, defiende la propiedad privada y la no intervención del Estado.",
+    "Fue la ideología de la burguesía durante el siglo XIX."
+  ],
+  [
+    "El nacionalismo es una ideología que defiende el derecho de las naciones a tener su propio Estado.",
+    "Sostiene que cada nación, unida por la lengua, la cultura o la historia, debe formar un país.",
+    "Fue una fuerza muy importante en el siglo XIX, impulsando la unificación de Italia y Alemania.",
+    "También provocó la desintegración de grandes imperios como el austrohúngaro."
+  ],
+  [
+    "El movimiento obrero surgió en el siglo XIX para mejorar las duras condiciones de vida de los trabajadores.",
+    "Los obreros se organizaron en sindicatos para defender sus derechos.",
+    "Las primeras ideologías obreras fueron el marxismo y el anarquismo.",
+    "Lucharon por conseguir la jornada laboral de ocho horas y el derecho a la huelga."
+  ],
+  [
+    "El imperialismo fue la expansión de las potencias industriales europeas durante el siglo XIX.",
+    "Buscaban nuevos mercados para vender sus productos y obtener materias primas baratas.",
+    "Colonizaron vastos territorios en África y Asia, creando grandes imperios coloniales.",
+    "La rivalidad entre estas potencias fue una de las causas de la Primera Guerra Mundial."
+  ],
+  [
+    "La Primera Guerra Mundial (1914-1918) fue un conflicto de una escala nunca antes vista.",
+    "Enfrentó a la Triple Alianza (Alemania, Austria-Hungría) contra la Triple Entente (Francia, Reino Unido, Rusia).",
+    "Se caracterizó por la brutal guerra de trincheras en el frente occidental.",
+    "El final de la guerra supuso la desaparición de los grandes imperios europeos."
+  ],
+  [
+    "La Revolución Rusa de 1917 acabó con el gobierno de los zares.",
+    "Los bolcheviques, liderados por Lenin, tomaron el poder en octubre.",
+    "Establecieron el primer estado comunista de la historia, la Unión Soviética.",
+    "Este hecho marcó profundamente la historia de todo el siglo XX."
+  ],
+  [
+    "El período de entreguerras (1919-1939) fue una época de gran inestabilidad.",
+    "La crisis económica de 1929, o Gran Depresión, afectó a todo el mundo.",
+    "En este contexto, surgieron regímenes totalitarios como el fascismo en Italia y el nazismo en Alemania.",
+    "La debilidad de las democracias no pudo evitar el estallido de un nuevo conflicto mundial."
+  ],
+  [
+    "La Segunda Guerra Mundial (1939-1945) fue el conflicto más mortífero de la humanidad.",
+    "Comenzó con la invasión de Polonia por la Alemania de Hitler.",
+    "Enfrentó a las potencias del Eje (Alemania, Italia, Japón) contra los Aliados (Reino Unido, Francia, URSS, EEUU).",
+    "Terminó en Europa con la rendición de Alemania y en el Pacífico tras las bombas atómicas sobre Japón."
+  ],
+  [
+    "El Holocausto fue el genocidio sistemático de aproximadamente seis millones de judíos europeos.",
+    "Fue perpetrado por el régimen nazi y sus colaboradores durante la Segunda Guerra Mundial.",
+    "Las víctimas fueron perseguidas, confinadas en guetos y asesinadas en campos de exterminio.",
+    "Es uno de los episodios más oscuros y terribles de la historia de la humanidad."
+  ],
+  [
+    "La Guerra Fría fue un período de tensión entre Estados Unidos y la Unión Soviética.",
+    "No hubo un enfrentamiento militar directo entre las dos superpotencias, pero sí conflictos en otros países.",
+    "El mundo quedó dividido en dos bloques: el capitalista, liderado por EEUU, y el comunista, por la URSS.",
+    "La carrera armamentística y la carrera espacial fueron dos de sus manifestaciones más conocidas."
+  ],
+  [
+    "La descolonización fue el proceso por el cual las colonias de África y Asia lograron su independencia.",
+    "Tuvo lugar principalmente después de la Segunda Guerra Mundial.",
+    "En algunos casos fue un proceso pacífico, pero en otros dio lugar a violentas guerras.",
+    "El surgimiento de estos nuevos países cambió el mapa político mundial."
+  ],
+  [
+    "La caída del Muro de Berlín en 1989 es el símbolo del fin de la Guerra Fría.",
+    "Este muro había dividido la ciudad de Berlín en dos desde 1961.",
+    "Su caída permitió la reunificación de Alemania.",
+    "Poco después, la Unión Soviética se desintegró, poniendo fin a la división del mundo en dos bloques."
+  ]
 ]

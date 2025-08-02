@@ -1,12 +1,242 @@
 [
-    ["La música del Barroco se caracteriza por su gran ornamentación y contraste.", "Compositores como Bach y Vivaldi crearon obras de gran complejidad.", "Nació la orquesta y se desarrollaron formas musicales como el concierto.", "Buscaba emocionar y asombrar al oyente con su dramatismo."],
-    ["El Clasicismo musical, en el siglo XVIII, buscaba la belleza y la perfección formal.", "La música se volvió más elegante, equilibrada y clara.", "Mozart y Haydn son los compositores más representativos de este período.", "La sinfonía y la sonata se convirtieron en las formas más importantes."],
-    ["El Romanticismo musical del siglo XIX dio prioridad a la expresión de los sentimientos.", "Los compositores buscaban la libertad creativa y la originalidad.", "Beethoven fue una figura fundamental en la transición hacia este nuevo estilo.", "La música se hizo más personal, dramática y grandiosa."],
-    ["El jazz es un género musical que nació a finales del siglo XIX en Estados Unidos.", "Surgió de la fusión de la música africana y la música europea.", "Una de sus características más importantes es la improvisación.", "Artistas como Louis Armstrong o Duke Ellington lo hicieron famoso en todo el mundo."],
-    ["Una orquesta sinfónica agrupa los instrumentos en tres familias principales.", "La familia de cuerda, con violines y violonchelos, es la más numerosa.", "La familia de viento incluye instrumentos de madera y de metal.", "La familia de percusión se encarga de la base rítmica.", "El director es el encargado de coordinar a todos los músicos."],
-    ["La textura musical describe cómo se combinan las diferentes líneas melódicas.", "La monofonía consiste en una sola línea melódica sin acompañamiento.", "La polifonía combina varias líneas melódicas independientes a la vez.", "La melodía acompañada presenta una melodía principal con un soporte de acordes."],
-    ["La voz humana es el instrumento más natural y expresivo.", "Se clasifica según su tesitura, de la más aguda a la más grave.", "Las voces femeninas son soprano, mezzosoprano y contralto.", "Las voces masculinas son tenor, barítono y bajo.", "Un coro es un grupo de cantantes que interpretan una obra juntos."],
-    ["La forma sonata es una estructura musical muy importante en el Clasicismo.", "Consta de tres partes principales: exposición, desarrollo y reexposición.", "En la exposición se presentan los dos temas musicales principales.", "El desarrollo explora y transforma creativamente esos temas.", "La reexposición vuelve a presentar los temas para concluir la obra."],
-    ["La música de cine es fundamental para crear la atmósfera de una película.", "Puede generar tensión en una escena de suspense.", "Puede evocar alegría en un momento feliz o tristeza en un drama.", "Compositores como John Williams han creado bandas sonoras inolvidables."],
-    ["El flamenco es un arte tradicional de Andalucía que combina cante, toque y baile.", "El cante es el elemento fundamental y expresa profundos sentimientos.", "El toque se refiere a la guitarra flamenca que acompaña al cante.", "El baile es una expresión corporal llena de fuerza y pasión."]
+  [
+    "Las cualidades del sonido son cuatro: altura, duración, intensidad y timbre.",
+    "La altura nos permite distinguir entre sonidos graves y agudos.",
+    "La duración nos indica si un sonido es largo o corto.",
+    "La intensidad se refiere al volumen, si es fuerte o suave."
+  ],
+  [
+    "El pentagrama es el lugar donde escribimos la música.",
+    "Está formado por cinco líneas y cuatro espacios que se cuentan de abajo hacia arriba.",
+    "Las notas musicales se colocan en las líneas o en los espacios.",
+    "Dependiendo de su posición, la nota tendrá una altura u otra."
+  ],
+  [
+    "La clave de Sol es un signo que se coloca al principio del pentagrama.",
+    "Su función es dar nombre a las notas según su posición.",
+    "Se empieza a dibujar en la segunda línea, por lo que la nota en esa línea se llamará Sol.",
+    "A partir de ahí, podemos deducir el nombre de todas las demás notas."
+  ],
+  [
+    "Las figuras musicales representan la duración de los sonidos.",
+    "La redonda es la figura de mayor duración en este nivel.",
+    "Una blanca dura la mitad que una redonda.",
+    "Una negra dura la mitad que una blanca, y así sucesivamente."
+  ],
+  [
+    "La orquesta sinfónica agrupa a los instrumentos en tres grandes familias.",
+    "La familia de cuerda está formada por violines, violas, violonchelos y contrabajos.",
+    "La familia de viento incluye instrumentos de madera y de metal.",
+    "La familia de percusión se encarga de los ritmos y efectos sonoros."
+  ],
+  [
+    "El violín es el instrumento más agudo de la familia de la cuerda frotada.",
+    "Tiene cuatro cuerdas que se hacen sonar frotándolas con un arco.",
+    "El músico lo sujeta entre el hombro y la barbilla.",
+    "Es uno de los instrumentos más importantes de la orquesta."
+  ],
+  [
+    "La flauta travesera, aunque hoy es de metal, pertenece a la familia de viento-madera.",
+    "El sonido se produce al soplar a través de un orificio llamado bisel.",
+    "No utiliza caña, a diferencia del clarinete o el oboe.",
+    "Tiene un sonido brillante y es capaz de ejecutar melodías muy rápidas."
+  ],
+  [
+    "La trompeta es un instrumento de la familia de viento-metal.",
+    "El sonido se origina por la vibración de los labios del músico en la boquilla.",
+    "Posee tres pistones que, al ser pulsados, cambian la longitud del tubo.",
+    "Su timbre es potente y se utiliza en muchos estilos, desde la música clásica hasta el jazz."
+  ],
+  [
+    "Los instrumentos de percusión se clasifican en dos grandes grupos.",
+    "Los de altura determinada pueden producir notas musicales concretas, como el xilófono.",
+    "Los de altura indeterminada producen sonidos, pero no notas definidas, como el tambor.",
+    "Son fundamentales para marcar el ritmo de una pieza musical."
+  ],
+  [
+    "La voz humana es el instrumento musical más natural que existe.",
+    "Se clasifica según su tesitura, es decir, el conjunto de notas que puede cantar.",
+    "Las voces femeninas se suelen clasificar en sopranos y contraltos.",
+    "Las voces masculinas se dividen en tenores y bajos."
+  ],
+  [
+    "La música en la Edad Media estaba muy vinculada a la Iglesia.",
+    "El canto gregoriano era la música religiosa por excelencia, cantada en latín y a una sola voz.",
+    "Por otro lado, los juglares y trovadores interpretaban música profana en las cortes.",
+    "Utilizaban instrumentos como laudes, flautas o panderos."
+  ],
+  [
+    "El Renacimiento fue la edad de oro de la polifonía vocal religiosa.",
+    "La polifonía consiste en que varias melodías suenan de forma simultánea y armoniosa.",
+    "Compositores como Tomás Luis de Victoria en España crearon obras de gran belleza.",
+    "La música se volvió más compleja y expresiva."
+  ],
+  [
+    "El Barroco fue un período de grandes contrastes y ornamentación en la música.",
+    "Nació la ópera, uniendo teatro, música y escenografía de forma grandiosa.",
+    "Compositores como Vivaldi o Bach llevaron la técnica instrumental a un nuevo nivel.",
+    "El bajo continuo, interpretado por el clavecín y el violonchelo, era la base armónica."
+  ],
+  [
+    "El Clasicismo musical, con Mozart y Haydn, buscaba la claridad y el equilibrio.",
+    "Las melodías eran elegantes, sencillas y fáciles de recordar.",
+    "La sinfonía y la sonata se convirtieron en las formas musicales más importantes.",
+    "La orquesta creció y se organizó de una forma similar a la actual."
+  ],
+  [
+    "El Romanticismo fue un movimiento que priorizó la expresión de los sentimientos.",
+    "La música se volvió más personal, dramática y apasionada.",
+    "Compositores como Beethoven o Chopin utilizaron la música para expresar sus emociones más íntimas.",
+    "La orquesta se hizo mucho más grande para conseguir una mayor potencia sonora."
+  ],
+  [
+    "Un compás musical divide la música en partes de igual duración.",
+    "Se indica al principio del pentagrama con una fracción, como 2/4, 3/4 o 4/4.",
+    "El numerador indica el número de pulsos que caben en cada compás.",
+    "El denominador indica la figura que vale un pulso."
+  ],
+  [
+    "La intensidad del sonido se refiere a su volumen.",
+    "Se indica en la partitura con términos italianos.",
+    "'Piano' (p) significa que se debe tocar suavemente.",
+    "'Forte' (f) indica que se debe tocar con fuerza."
+  ],
+  [
+    "El tempo es la velocidad de una pieza musical.",
+    "Términos como 'Adagio' o 'Largo' indican un tempo lento.",
+    "'Allegro' o 'Presto' señalan un tempo rápido.",
+    "El metrónomo es un aparato que ayuda a los músicos a mantener un tempo constante."
+  ],
+  [
+    "La textura musical describe cómo se combinan las diferentes líneas melódicas.",
+    "En la monofonía, solo hay una línea melódica sin acompañamiento.",
+    "En la homofonía, hay una melodía principal que destaca sobre un acompañamiento de acordes.",
+    "La polifonía presenta varias melodías independientes que suenan a la vez."
+  ],
+  [
+    "El jazz es un estilo musical que nació a principios del siglo XX en Estados Unidos.",
+    "Una de sus características más importantes es la improvisación.",
+    "Los músicos crean melodías espontáneamente sobre una estructura armónica.",
+    "El saxofón, la trompeta y el piano son instrumentos muy representativos del jazz."
+  ],
+  [
+    "La guitarra española es un instrumento de cuerda pulsada.",
+    "Tiene seis cuerdas que se hacen sonar con los dedos de la mano derecha.",
+    "La mano izquierda pisa las cuerdas en el mástil para producir diferentes notas.",
+    "Es el instrumento central en la música flamenca."
+  ],
+  [
+    "Una banda de rock normalmente está formada por varios instrumentos.",
+    "La guitarra eléctrica suele llevar la melodía principal o los 'riffs'.",
+    "El bajo eléctrico proporciona la base grave y rítmica.",
+    "La batería marca el pulso y el ritmo de las canciones."
+  ],
+  [
+    "Las alteraciones son signos que modifican la altura de las notas.",
+    "El sostenido (#) sube la altura de la nota un semitono.",
+    "El bemol (b) baja la altura de la nota un semitono.",
+    "El becuadro anula el efecto de las alteraciones anteriores."
+  ],
+  [
+    "La música pop busca llegar a un público muy amplio.",
+    "Sus canciones suelen tener una estructura sencilla de estrofa y estribillo.",
+    "Las melodías son pegadizas y fáciles de recordar.",
+    "La temática principal suele ser el amor y las relaciones personales."
+  ],
+  [
+    "La música tradicional o folclórica es la que se transmite oralmente de generación en generación.",
+    "Forma parte de la identidad cultural de un pueblo o una región.",
+    "Se utiliza en fiestas, danzas y celebraciones.",
+    "Emplea instrumentos típicos de la zona, como la gaita en Galicia."
+  ],
+  [
+    "Un coro es un grupo de cantantes que interpretan una pieza musical juntos.",
+    "Pueden cantar a una sola voz (monofonía) o a varias voces (polifonía).",
+    "Las voces se agrupan en cuerdas: sopranos, contraltos, tenores y bajos.",
+    "Un coro 'a capella' es aquel que canta sin acompañamiento instrumental."
+  ],
+  [
+    "El clarinete es un instrumento de viento-madera.",
+    "El sonido se produce por la vibración de una lengüeta simple de caña.",
+    "Tiene un timbre cálido y una gran agilidad.",
+    "Es un instrumento muy versátil, presente en orquestas, bandas y grupos de jazz."
+  ],
+  [
+    "Una escala cromática está formada por las doce notas posibles en la música occidental.",
+    "La distancia entre cada una de sus notas es de un semitono.",
+    "Incluye tanto las notas naturales como las alteradas.",
+    "Suena muy diferente a las escalas mayores o menores."
+  ],
+  [
+    "La música de cine es compuesta específicamente para una película.",
+    "Su función es crear una atmósfera, subrayar las emociones y aportar ritmo a las escenas.",
+    "A veces, un tema musical o 'leitmotiv' se asocia a un personaje concreto.",
+    "Compositores como John Williams han creado algunas de las bandas sonoras más famosas."
+  ],
+  [
+    "El puntillo es un signo que se coloca a la derecha de una figura.",
+    "Añade a la figura la mitad de su duración original.",
+    "Una blanca con puntillo, por ejemplo, dura tres pulsos (dos de la blanca más uno del puntillo).",
+    "Permite crear ritmos más variados y complejos."
+  ],
+  [
+    "El violonchelo es un instrumento de cuerda frotada, más grande que la viola.",
+    "Se toca sentado, apoyándolo en el suelo con una pica.",
+    "Su registro es grave y su timbre es cálido y expresivo.",
+    "Tiene un papel muy importante tanto como solista como en la orquesta."
+  ],
+  [
+    "La forma musical es la estructura o el plan de una composición.",
+    "Una de las formas más sencillas es la binaria (AB), con dos partes contrastantes.",
+    "La forma ternaria (ABA) presenta una sección inicial, una central diferente y la repetición de la primera.",
+    "El rondó (ABACA) se caracteriza por la repetición de un estribillo (A)."
+  ],
+  [
+    "El rock and roll nació en Estados Unidos en la década de 1950.",
+    "Se caracteriza por un ritmo enérgico y el protagonismo de la guitarra eléctrica.",
+    "Artistas como Elvis Presley lo popularizaron en todo el mundo.",
+    "Supuso una auténtica revolución musical y cultural para la juventud."
+  ],
+  [
+    "La síncopa es un efecto rítmico que crea una sensación de sorpresa.",
+    "Consiste en acentuar una nota que se encuentra en un tiempo o parte débil del compás.",
+    "Es como un acento a contratiempo que rompe la regularidad.",
+    "Es un elemento muy característico del jazz y de la música latina."
+  ],
+  [
+    "El xilófono es un instrumento de percusión de altura determinada.",
+    "Está formado por una serie de láminas de madera ordenadas como un teclado.",
+    "Se golpean con unas baquetas para producir las diferentes notas.",
+    "Su sonido es seco, corto y muy brillante."
+  ],
+  [
+    "Una ópera es una obra de teatro completamente cantada.",
+    "Los cantantes están acompañados por una gran orquesta sinfónica.",
+    "Combina música, literatura, escenografía y vestuario.",
+    "Las diferentes partes cantadas se llaman arias, recitativos y coros."
+  ],
+  [
+    "La música electrónica se crea utilizando dispositivos electrónicos.",
+    "Los sintetizadores, samplers y ordenadores son sus herramientas principales.",
+    "Permite crear sonidos que no existen en la naturaleza.",
+    "Abarca una gran variedad de estilos, desde la música ambiental hasta la de baile."
+  ],
+  [
+    "La familia del viento-metal incluye instrumentos como la trompa, el trombón y la tuba.",
+    "Están construidos con aleaciones de metal.",
+    "El sonido se produce por la vibración de los labios del intérprete en una boquilla.",
+    "Aportan potencia y solemnidad al sonido de la orquesta."
+  ],
+  [
+    "Un intervalo es la distancia de altura que hay entre dos notas.",
+    "Se mide por el número de notas que abarca, incluyendo la primera y la última.",
+    "Un intervalo de tercera abarca tres notas (por ejemplo, de Do a Mi).",
+    "Pueden ser melódicos, si las notas suenan sucesivamente, o armónicos, si suenan a la vez."
+  ],
+  [
+    "El flamenco es un arte que combina el cante, el toque de la guitarra y el baile.",
+    "Es originario de Andalucía y tiene una gran carga expresiva.",
+    "El compás y el ritmo son muy complejos y característicos.",
+    "Ha sido declarado Patrimonio Cultural Inmaterial de la Humanidad por la UNESCO."
+  ]
 ]

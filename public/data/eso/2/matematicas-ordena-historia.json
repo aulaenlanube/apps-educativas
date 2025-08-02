@@ -1,12 +1,242 @@
 [
-    ["Para resolver una ecuación de primer grado, primero agrupamos los términos.", "Pasamos todos los términos con la incógnita a un lado de la igualdad.", "Pasamos todos los números sin incógnita al otro lado.", "Realizamos las operaciones en cada lado.", "Finalmente, despejamos la incógnita para hallar su valor."],
-    ["El teorema de Pitágoras se aplica solo en triángulos rectángulos.", "Establece que el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos.", "Si conocemos dos de los lados, podemos calcular el tercero.", "Es una de las relaciones más importantes de la geometría."],
-    ["Para calcular un porcentaje, podemos usar una regla de tres.", "Por ejemplo, para hallar el 20% de 50, planteamos la proporción.", "Multiplicamos la cantidad total por el porcentaje.", "Luego, dividimos el resultado entre 100.", "Así obtenemos que el 20% de 50 es 10."],
-    ["El lenguaje algebraico nos permite traducir enunciados a expresiones matemáticas.", "Utilizamos letras para representar cantidades desconocidas o variables.", "Por ejemplo, 'el doble de un número' se escribe como '2x'.", "Esto nos permite plantear y resolver problemas mediante ecuaciones."],
-    ["Para calcular el área de un polígono regular, necesitamos la apotema.", "La fórmula es el perímetro multiplicado por la apotema, y todo dividido entre dos.", "Primero calculamos el perímetro sumando todos sus lados.", "Luego aplicamos la fórmula para obtener el área.", "El resultado se expresa en unidades cuadradas."],
-    ["Un sistema de ecuaciones se puede resolver por el método de sustitución.", "Primero, despejamos una incógnita en una de las ecuaciones.", "Sustituimos esa expresión en la otra ecuación.", "Resolvemos la ecuación resultante, que ahora tiene una sola incógnita.", "Con el valor hallado, calculamos el valor de la otra incógnita."],
-    ["La media, la moda y la mediana son medidas de centralización en estadística.", "La media se calcula sumando todos los datos y dividiendo por el número de ellos.", "La moda es el dato que más veces se repite.", "La mediana es el valor que queda en el centro al ordenar los datos."],
-    ["Para sumar dos fracciones, primero buscamos un denominador común.", "Generalmente, utilizamos el mínimo común múltiplo de los denominadores.", "Transformamos las fracciones a otras equivalentes con ese denominador.", "Finalmente, sumamos los nuevos numeradores y mantenemos el denominador común."],
-    ["Las funciones lineales se representan gráficamente como una línea recta.", "La expresión de la función es de la forma 'y = mx + n'.", "La 'm' representa la pendiente, que es la inclinación de la recta.", "La 'n' es la ordenada en el origen, el punto donde la recta corta al eje Y."],
-    ["El volumen de un prisma se calcula de forma sencilla.", "Primero, calculamos el área de su base, que puede ser cualquier polígono.", "Luego, multiplicamos el área de la base por la altura del prisma.", "El resultado nos da el espacio que ocupa el cuerpo geométrico.", "Se expresa en unidades cúbicas, como metros cúbicos."]
+  [
+    "Los números enteros se representan en una recta numérica.",
+    "A la derecha del cero se sitúan los números positivos.",
+    "A la izquierda del cero se encuentran los números negativos.",
+    "El cero es el único número que no es ni positivo ni negativo."
+  ],
+  [
+    "Una fracción consta de un numerador y un denominador.",
+    "El denominador indica en cuántas partes iguales se divide la unidad.",
+    "El numerador indica cuántas de esas partes se toman.",
+    "Así, tres cuartos significa que tomamos tres partes de una unidad dividida en cuatro."
+  ],
+  [
+    "Para sumar dos fracciones con el mismo denominador, se suman los numeradores.",
+    "El denominador de la fracción resultante se mantiene igual.",
+    "Por ejemplo, un quinto más dos quintos son tres quintos.",
+    "Si los denominadores son distintos, primero hay que reducirlos a un denominador común."
+  ],
+  [
+    "El Teorema de Pitágoras se aplica exclusivamente a los triángulos rectángulos.",
+    "Afirma que el cuadrado de la hipotenusa es igual a la suma de los cuadrados de los catetos.",
+    "La hipotenusa es el lado más largo, opuesto al ángulo recto.",
+    "Permite calcular la longitud de un lado si se conocen los otros dos."
+  ],
+  [
+    "El lenguaje algebraico traduce enunciados a expresiones con números y letras.",
+    "Las letras, llamadas incógnitas o variables, representan cantidades desconocidas.",
+    "Una expresión como '2x + 5' significa 'el doble de un número más cinco'.",
+    "Es una herramienta fundamental para resolver problemas y ecuaciones."
+  ],
+  [
+    "Una ecuación es una igualdad que contiene una o más incógnitas.",
+    "Resolver una ecuación consiste en encontrar el valor de la incógnita que hace cierta la igualdad.",
+    "Para ello, se realizan las mismas operaciones a ambos lados de la igualdad.",
+    "El objetivo final es despejar la incógnita, es decir, dejarla sola en un lado."
+  ],
+  [
+    "La proporcionalidad directa relaciona dos magnitudes que aumentan o disminuyen juntas.",
+    "Si una magnitud se duplica, la otra también se duplica.",
+    "Un ejemplo es la relación entre los kilos de fruta que compras y el precio que pagas.",
+    "La razón de proporcionalidad se mantiene constante."
+  ],
+  [
+    "El área de un polígono es la medida de la superficie que ocupa.",
+    "El área de un rectángulo se calcula multiplicando su base por su altura.",
+    "El área de un cuadrado es simplemente el lado elevado al cuadrado.",
+    "Cada tipo de polígono tiene su propia fórmula para calcular el área."
+  ],
+  [
+    "La media aritmética es una medida de tendencia central en estadística.",
+    "Se calcula sumando todos los valores de un conjunto de datos.",
+    "Luego, se divide esta suma por el número total de datos.",
+    "Nos da un valor representativo o 'promedio' del conjunto."
+  ],
+  [
+    "Una potencia es una multiplicación de un número por sí mismo varias veces.",
+    "El número que se multiplica se llama base.",
+    "El exponente indica cuántas veces se multiplica la base.",
+    "Por ejemplo, dos elevado a tres es igual a ocho."
+  ],
+  [
+    "El sistema de coordenadas cartesianas utiliza dos ejes perpendiculares.",
+    "El eje horizontal se llama eje de abscisas o eje X.",
+    "El eje vertical se denomina eje de ordenadas o eje Y.",
+    "Cualquier punto del plano se puede localizar con un par de coordenadas (x, y)."
+  ],
+  [
+    "Los ángulos de un triángulo siempre suman 180 grados.",
+    "Un triángulo equilátero tiene sus tres lados y sus tres ángulos iguales.",
+    "Un triángulo isósceles tiene dos lados iguales y dos ángulos iguales.",
+    "Un triángulo escaleno tiene todos sus lados y ángulos diferentes."
+  ],
+  [
+    "El perímetro de una figura plana es la suma de las longitudes de todos sus lados.",
+    "Para un cuadrado de lado 5 cm, el perímetro sería de 20 cm.",
+    "Para un rectángulo, se suman las longitudes de sus cuatro lados.",
+    "Es una medida de la longitud del contorno de la figura."
+  ],
+  [
+    "La probabilidad mide la posibilidad de que ocurra un suceso.",
+    "Se calcula dividiendo el número de casos favorables entre el número de casos posibles.",
+    "El resultado es siempre un número entre 0 y 1.",
+    "Una probabilidad de 1 significa que el suceso es seguro."
+  ],
+  [
+    "Los poliedros son cuerpos geométricos cuyas caras son polígonos.",
+    "Un cubo es un poliedro regular con seis caras cuadradas.",
+    "Una pirámide tiene una base poligonal y caras laterales triangulares.",
+    "Los vértices son los puntos donde se unen las aristas."
+  ],
+  [
+    "La regla de los signos se aplica al multiplicar y dividir números enteros.",
+    "Si los dos números tienen el mismo signo, el resultado es positivo.",
+    "Si tienen signos diferentes, el resultado es negativo.",
+    "Por ejemplo, menos cinco por menos dos es igual a más diez."
+  ],
+  [
+    "El mínimo común múltiplo (m.c.m.) de varios números es el menor de sus múltiplos comunes.",
+    "Para calcularlo, se descomponen los números en factores primos.",
+    "Luego, se toman los factores comunes y no comunes elevados al mayor exponente.",
+    "Es muy útil para sumar fracciones con distinto denominador."
+  ],
+  [
+    "La bisectriz de un ángulo es la semirrecta que lo divide en dos partes iguales.",
+    "Todos los puntos de la bisectriz equidistan de los lados del ángulo.",
+    "Las tres bisectrices de un triángulo se cortan en un punto llamado incentro.",
+    "El incentro es el centro de la circunferencia inscrita en el triángulo."
+  ],
+  [
+    "Un porcentaje es una forma de expresar una proporción tomando como referencia el número 100.",
+    "Calcular el 25% de una cantidad es lo mismo que dividirla por cuatro.",
+    "Se utiliza mucho en descuentos, impuestos y estadísticas.",
+    "Para calcular un porcentaje, se multiplica la cantidad por el porcentaje y se divide por cien."
+  ],
+  [
+    "Un monomio es una expresión algebraica que consta de un coeficiente y una parte literal.",
+    "El coeficiente es el número que multiplica a las letras.",
+    "La parte literal está formada por las letras con sus exponentes.",
+    "Dos monomios son semejantes si tienen la misma parte literal."
+  ],
+  [
+    "La longitud de una circunferencia se calcula con la fórmula dos por pi por el radio.",
+    "El número pi (π) es una constante matemática con un valor aproximado de 3,1416.",
+    "El radio es la distancia desde el centro de la circunferencia hasta cualquier punto de ella.",
+    "El diámetro es el doble del radio."
+  ],
+  [
+    "Los cuerpos de revolución se generan al girar una figura plana alrededor de un eje.",
+    "Un cilindro se genera al girar un rectángulo sobre uno de sus lados.",
+    "Un cono se forma al girar un triángulo rectángulo sobre uno de sus catetos.",
+    "Una esfera se obtiene al girar un semicírculo sobre su diámetro."
+  ],
+  [
+    "La moda, en estadística, es el valor que tiene mayor frecuencia absoluta.",
+    "En un conjunto de datos, es el número que más veces se repite.",
+    "Un conjunto de datos puede tener una moda, varias o ninguna.",
+    "Es una medida de centralización muy fácil de calcular."
+  ],
+  [
+    "Una función matemática relaciona cada elemento de un conjunto inicial con un único elemento de un conjunto final.",
+    "La variable 'x' se llama variable independiente.",
+    "La variable 'y' o 'f(x)' se llama variable dependiente.",
+    "Su representación gráfica nos permite visualizar la relación entre las variables."
+  ],
+  [
+    "Para simplificar una fracción, se divide el numerador y el denominador por el mismo número.",
+    "Se repite el proceso hasta que no se puedan dividir más.",
+    "La fracción obtenida se llama fracción irreducible.",
+    "Es equivalente a la fracción original, pero con números más pequeños."
+  ],
+  [
+    "El volumen de un cuerpo es el espacio que ocupa.",
+    "El volumen de un cubo se calcula elevando la longitud de su arista al cubo.",
+    "La unidad de volumen en el Sistema Internacional es el metro cúbico.",
+    "Un litro equivale a un decímetro cúbico."
+  ],
+  [
+    "La mediatriz de un segmento es la recta perpendicular a él que pasa por su punto medio.",
+    "Cualquier punto de la mediatriz está a la misma distancia de los extremos del segmento.",
+    "Las tres mediatrices de un triángulo se cortan en un punto llamado circuncentro.",
+    "El circuncentro es el centro de la circunferencia que pasa por los tres vértices."
+  ],
+  [
+    "Las identidades notables son igualdades algebraicas que se cumplen para cualquier valor de las variables.",
+    "El cuadrado de una suma es el cuadrado del primero, más el doble del primero por el segundo, más el cuadrado del segundo.",
+    "El cuadrado de una resta sigue una regla similar, pero el doble producto es negativo.",
+    "Suma por diferencia es igual a la diferencia de los cuadrados."
+  ],
+  [
+    "Un diagrama de sectores, o gráfico circular, representa los datos en un círculo.",
+    "El círculo completo representa el 100% del total de los datos.",
+    "Cada sector circular tiene un ángulo proporcional a su frecuencia.",
+    "Es muy útil para visualizar la proporción de cada categoría."
+  ],
+  [
+    "El máximo común divisor (M.C.D.) de varios números es el mayor de sus divisores comunes.",
+    "Para hallarlo, se descomponen los números en factores primos.",
+    "Luego, se toman solamente los factores comunes elevados al menor exponente.",
+    "Sirve, por ejemplo, para simplificar fracciones de forma directa."
+  ],
+  [
+    "Un trapecio es un cuadrilátero que tiene dos lados paralelos, llamados bases.",
+    "Si sus lados no paralelos son iguales, se llama trapecio isósceles.",
+    "Si tiene un ángulo recto, se denomina trapecio rectángulo.",
+    "El área de un trapecio se calcula con la semisuma de las bases por la altura."
+  ],
+  [
+    "La notación científica permite escribir números muy grandes o muy pequeños de forma abreviada.",
+    "Consiste en un número entre 1 y 10 multiplicado por una potencia de 10.",
+    "Si el exponente es positivo, el número es grande.",
+    "Si el exponente es negativo, el número es pequeño."
+  ],
+  [
+    "Un polígono es regular si todos sus lados y todos sus ángulos son iguales.",
+    "El triángulo equilátero y el cuadrado son ejemplos de polígonos regulares.",
+    "Se pueden inscribir y circunscribir en una circunferencia.",
+    "El centro del polígono es el centro de estas circunferencias."
+  ],
+  [
+    "Para resolver un problema matemático, primero hay que comprender bien el enunciado.",
+    "Después, se deben identificar los datos y lo que se pide calcular.",
+    "Luego, se planifica una estrategia y se realizan las operaciones necesarias.",
+    "Finalmente, se comprueba que la solución tenga sentido."
+  ],
+  [
+    "El plano cartesiano se divide en cuatro cuadrantes.",
+    "El primer cuadrante tiene ambas coordenadas positivas.",
+    "El segundo cuadrante tiene la abscisa negativa y la ordenada positiva.",
+    "Los puntos sobre los ejes no pertenecen a ningún cuadrante."
+  ],
+  [
+    "La raíz cuadrada de un número negativo no es un número real.",
+    "No existe ningún número real que al multiplicarlo por sí mismo dé un resultado negativo.",
+    "Por ejemplo, la raíz cuadrada de -4 no tiene solución en los números reales.",
+    "Esto se debe a que tanto positivo por positivo como negativo por negativo dan positivo."
+  ],
+  [
+    "Un polinomio es una suma algebraica de varios monomios.",
+    "El grado del polinomio es el mayor de los grados de los monomios que lo forman.",
+    "Sumar polinomios consiste en sumar los monomios semejantes.",
+    "Multiplicar polinomios implica aplicar la propiedad distributiva."
+  ],
+  [
+    "Dos rectas en un plano pueden ser secantes, paralelas o coincidentes.",
+    "Las rectas secantes se cortan en un único punto.",
+    "Las rectas paralelas no se cortan nunca, mantienen siempre la misma distancia.",
+    "Las rectas coincidentes son, en realidad, la misma recta."
+  ],
+  [
+    "La estadística es la parte de las matemáticas que se encarga de recoger, organizar y analizar datos.",
+    "La población es el conjunto completo de individuos que se quiere estudiar.",
+    "Una muestra es una parte representativa de la población.",
+    "Las conclusiones obtenidas de la muestra se generalizan a toda la población."
+  ],
+  [
+    "La propiedad conmutativa establece que el orden de los factores no altera el resultado.",
+    "Se cumple para la suma (a + b = b + a).",
+    "También se cumple para la multiplicación (a * b = b * a).",
+    "Sin embargo, no se cumple para la resta ni para la división."
+  ]
 ]

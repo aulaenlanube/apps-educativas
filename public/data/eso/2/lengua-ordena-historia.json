@@ -1,12 +1,242 @@
 [
-    ["El mester de juglaría era propio de los juglares medievales.", "Recitaban poemas épicos en las plazas para entretener al pueblo.", "El 'Cantar de mio Cid' es la obra más importante de este mester.", "Narraba las hazañas de un héroe de forma oral."],
-    ["La Celestina es una obra clave de la literatura española.", "Fue escrita por Fernando de Rojas a finales del siglo XV.", "Narra los trágicos amores de Calisto y Melibea.", "Se considera una obra de transición hacia el Renacimiento.", "Sus personajes muestran una gran profundidad psicológica."],
-    ["Para analizar una oración compuesta, primero identificamos los verbos.", "Localizamos el nexo que une las diferentes proposiciones.", "Determinamos si las proposiciones son coordinadas o subordinadas.", "Finalmente, analizamos cada proposición por separado."],
-    ["El Renacimiento fue un movimiento cultural que valoraba la cultura clásica.", "En literatura, se buscaba la belleza y el equilibrio formal.", "Garcilaso de la Vega introdujo el soneto y otras formas poéticas italianas.", "Los temas principales eran el amor, la naturaleza y la mitología."],
-    ["La novela picaresca narra la vida de un personaje de baja clase social.", "El protagonista, o pícaro, lucha por sobrevivir usando su astucia.", "El 'Lazarillo de Tormes' es la primera y más famosa novela de este género.", "Está escrita en forma de autobiografía y critica la sociedad de la época."],
-    ["Una oración coordinada une dos proposiciones que son independientes.", "Pueden ser copulativas si suman ideas, como con el nexo 'y'.", "Son disyuntivas si presentan opciones, usando el nexo 'o'.", "Son adversativas si expresan oposición, con nexos como 'pero'."],
-    ["El Barroco fue un movimiento artístico del siglo XVII.", "En literatura, se caracteriza por un lenguaje complejo y ornamentado.", "Dos grandes corrientes fueron el culteranismo de Góngora y el conceptismo de Quevedo.", "Buscaba sorprender y emocionar al lector con su ingenio."],
-    ["Para crear un poema, el poeta elige cuidadosamente las palabras.", "Organiza las palabras en versos, que son cada línea del poema.", "Los versos se agrupan en estrofas.", "A menudo utiliza recursos literarios como la metáfora para embellecer el texto."],
-    ["Los determinantes son palabras que acompañan al nombre para concretarlo.", "Los artículos, como 'el' o 'una', presentan al sustantivo.", "Los demostrativos, como 'este' o 'aquel', indican la distancia.", "Los posesivos, como 'mi' o 'suyo', señalan pertenencia."],
-    ["El texto argumentativo tiene como objetivo convencer al lector.", "Presenta una idea principal o tesis que se quiere defender.", "Utiliza argumentos o razones para apoyar esa tesis.", "Finalmente, concluye reforzando la idea principal."]
+  [
+    "El Mester de Clerecía era la literatura culta escrita en la Edad Media.",
+    "Sus autores eran clérigos, hombres instruidos que sabían latín.",
+    "Utilizaban una estrofa llamada cuaderna vía, con versos de catorce sílabas.",
+    "Gonzalo de Berceo es uno de los primeros autores conocidos de este mester."
+  ],
+  [
+    "La comunicación humana utiliza diferentes tipos de lenguaje.",
+    "El lenguaje verbal emplea palabras, ya sea de forma oral o escrita.",
+    "El lenguaje no verbal incluye gestos, posturas y expresiones faciales.",
+    "Ambos lenguajes se complementan para transmitir un mensaje completo."
+  ],
+  [
+    "El Renacimiento fue un movimiento cultural que supuso un renacer de la cultura clásica.",
+    "Surgió en Italia y se extendió por toda Europa durante los siglos XV y XVI.",
+    "El ser humano se convirtió en el centro del universo, en lo que se conoce como antropocentrismo.",
+    "Garcilaso de la Vega es el poeta español más representativo de este período."
+  ],
+  [
+    "Un sintagma es un grupo de palabras que desempeña una función dentro de la oración.",
+    "Cada sintagma tiene un núcleo, que es la palabra más importante.",
+    "Si el núcleo es un nombre, se trata de un sintagma nominal.",
+    "Por ejemplo, 'la casa grande' es un sintagma nominal con núcleo 'casa'."
+  ],
+  [
+    "El 'Lazarillo de Tormes' es una novela anónima que inauguró el género picaresco.",
+    "Narra la vida de Lázaro, un muchacho de origen humilde que sirve a varios amos.",
+    "A través de sus experiencias, la obra critica la sociedad de la época.",
+    "Es la primera vez que un personaje de baja clase social protagoniza una novela."
+  ],
+  [
+    "Las oraciones compuestas están formadas por más de una proposición.",
+    "Las proposiciones coordinadas se unen mediante nexos y son independientes entre sí.",
+    "Las proposiciones yuxtapuestas se unen sin nexos, solo con signos de puntuación.",
+    "Las proposiciones subordinadas dependen de una proposición principal."
+  ],
+  [
+    "El teatro del Siglo de Oro español fue uno de los más importantes de la historia.",
+    "Lope de Vega creó la fórmula de la comedia nueva, mezclando lo trágico y lo cómico.",
+    "Calderón de la Barca es otro gran autor, conocido por obras como 'La vida es sueño'.",
+    "Las obras se representaban en corrales de comedias, que eran patios de casas."
+  ],
+  [
+    "El complemento directo es la parte de la oración que recibe directamente la acción del verbo.",
+    "Se puede sustituir por los pronombres 'lo', 'la', 'los' o 'las'.",
+    "Por ejemplo, en 'Juan come una manzana', 'una manzana' es el complemento directo.",
+    "Al pasar la oración a pasiva, el complemento directo se convierte en el sujeto paciente."
+  ],
+  [
+    "La lírica tradicional está formada por composiciones anónimas que se transmitían oralmente.",
+    "Las jarchas, las cantigas de amigo y los villancicos son ejemplos de esta lírica.",
+    "Suelen tratar temas como el amor, la naturaleza o el trabajo.",
+    "Se caracterizan por su sencillez en el lenguaje y el uso de estribillos."
+  ],
+  [
+    "El punto y coma es un signo de puntuación que indica una pausa mayor que la coma.",
+    "Se utiliza para separar elementos de una enumeración que ya contienen comas.",
+    "También puede unir proposiciones yuxtapuestas que tienen una relación de significado.",
+    "Su uso correcto aporta claridad y orden a los textos largos."
+  ],
+  [
+    "Miguel de Cervantes es el autor más importante de la literatura española.",
+    "Escribió 'El ingenioso hidalgo don Quijote de la Mancha', considerada la primera novela moderna.",
+    "La obra narra las aventuras de un hidalgo que enloquece leyendo libros de caballerías.",
+    "También escribió las 'Novelas ejemplares' y otras obras de gran calidad."
+  ],
+  [
+    "El complemento indirecto indica el destinatario de la acción del verbo.",
+    "Se puede sustituir por los pronombres 'le' o 'les'.",
+    "Generalmente, va introducido por la preposición 'a' o 'para'.",
+    "En la frase 'Compré un regalo para mi madre', 'para mi madre' es el complemento indirecto."
+  ],
+  [
+    "El Barroco fue un movimiento cultural del siglo XVII caracterizado por el pesimismo y el desengaño.",
+    "En literatura, se buscaba la originalidad y la complejidad formal.",
+    "Surgieron dos corrientes: el culteranismo de Góngora y el conceptismo de Quevedo.",
+    "El arte barroco es recargado, dinámico y busca impresionar al espectador."
+  ],
+  [
+    "Las palabras homónimas son aquellas que se pronuncian o escriben igual pero tienen distinto significado.",
+    "Las homógrafas se escriben igual, como 'vino' (bebida) y 'vino' (del verbo venir).",
+    "Las homófonas suenan igual, como 'hola' (saludo) y 'ola' (del mar).",
+    "El contexto es fundamental para entender a qué significado se refieren."
+  ],
+  [
+    "El soneto es una forma poética de catorce versos endecasílabos.",
+    "Se distribuyen en dos cuartetos y dos tercetos.",
+    "La rima es consonante y sigue un esquema fijo, generalmente ABBA ABBA CDC DCD.",
+    "Fue introducido en España por Garcilaso de la Vega en el Renacimiento."
+  ],
+  [
+    "El complemento circunstancial expresa las circunstancias en las que se desarrolla la acción.",
+    "Puede indicar tiempo, lugar, modo, cantidad, compañía, etc.",
+    "No es un complemento exigido por el verbo y puede eliminarse.",
+    "En 'Ayer comimos en el parque', 'ayer' y 'en el parque' son complementos circunstanciales."
+  ],
+  [
+    "La Celestina, de Fernando de Rojas, es una obra de transición entre la Edad Media y el Renacimiento.",
+    "Narra los trágicos amores de Calisto y Melibea, ayudados por la vieja alcahueta Celestina.",
+    "La obra destaca por la profundidad psicológica de sus personajes.",
+    "Su final trágico refleja una visión pesimista de la vida y el amor."
+  ],
+  [
+    "Los dos puntos se utilizan para introducir una enumeración anunciada.",
+    "También se usan antes de reproducir las palabras exactas que ha dicho alguien.",
+    "Se emplean después del saludo en las cartas y correos electrónicos.",
+    "Indican una pausa para llamar la atención sobre lo que sigue."
+  ],
+  [
+    "La novela picaresca narra en primera persona la vida de un pícaro.",
+    "El pícaro es un personaje de baja condición social que lucha por sobrevivir.",
+    "La obra suele tener una estructura abierta, donde el protagonista sirve a varios amos.",
+    "Ofrece una visión satírica y crítica de la sociedad de la época."
+  ],
+  [
+    "El atributo es la función que expresa una cualidad del sujeto en las oraciones con verbos copulativos.",
+    "Los verbos copulativos son 'ser', 'estar' y 'parecer'.",
+    "Concuerda en género y número con el sujeto de la oración.",
+    "En 'La casa es grande', el sintagma 'grande' funciona como atributo."
+  ],
+  [
+    "La Ilustración fue un movimiento intelectual del siglo XVIII conocido como el Siglo de las Luces.",
+    "Defendía el uso de la razón como motor del progreso y el conocimiento.",
+    "En literatura, predominó el ensayo y la fábula con fines didácticos.",
+    "Autores como Feijoo o Jovellanos fueron importantes ilustrados españoles."
+  ],
+  [
+    "Las comillas se usan para encerrar citas textuales.",
+    "También sirven para indicar que una palabra es extranjera o se usa con ironía.",
+    "Se utilizan para citar títulos de artículos, poemas o capítulos de un libro.",
+    "Existen diferentes tipos: angulares (« »), inglesas (“ ”) y simples (‘ ’)."
+  ],
+  [
+    "El Romanticismo fue un movimiento que exaltaba los sentimientos y la libertad individual.",
+    "Surgió en Alemania y el Reino Unido a finales del siglo XVIII.",
+    "Los temas preferidos eran el amor apasionado, la muerte, la naturaleza y la rebeldía.",
+    "José de Espronceda y Gustavo Adolfo Bécquer son grandes poetas románticos españoles."
+  ],
+  [
+    "Una perífrasis verbal es la unión de dos verbos que funcionan como uno solo.",
+    "Está formada por un verbo auxiliar conjugado y un verbo principal en forma no personal.",
+    "A veces, pueden llevar un nexo entre ambos verbos.",
+    "Por ejemplo, 'tengo que estudiar' o 'estoy leyendo' son perífrasis verbales."
+  ],
+  [
+    "El Realismo fue un movimiento artístico y literario de la segunda mitad del siglo XIX.",
+    "Buscaba reflejar la realidad y la sociedad de la época de la forma más objetiva posible.",
+    "La novela se convirtió en el género más importante para describir la vida burguesa.",
+    "Benito Pérez Galdós es el novelista realista más importante de la literatura española."
+  ],
+  [
+    "El guion se utiliza para dividir una palabra al final de una línea.",
+    "También sirve para unir palabras y formar compuestos, como en 'físico-químico'.",
+    "No se deben separar vocales que van seguidas ni dejar una vocal sola al final del renglón.",
+    "Es un signo ortográfico que nos ayuda a organizar el texto."
+  ],
+  [
+    "La Generación del 98 fue un grupo de escritores españoles preocupados por la crisis de España.",
+    "Tras la pérdida de las últimas colonias en 1898, reflexionaron sobre la identidad del país.",
+    "Autores como Unamuno, Machado o Baroja buscaron la esencia de Castilla.",
+    "Su estilo era sobrio y subjetivo, y renovaron los géneros literarios."
+  ],
+  [
+    "El complemento de régimen verbal es un complemento exigido por el verbo.",
+    "Va siempre introducido por una preposición que el propio verbo selecciona.",
+    "Por ejemplo, el verbo 'confiar' exige la preposición 'en': 'Confío en ti'.",
+    "No se puede eliminar de la oración sin que esta pierda el sentido."
+  ],
+  [
+    "El Modernismo fue un movimiento de renovación artística de finales del siglo XIX.",
+    "Buscaba la belleza formal, la musicalidad y el uso de un lenguaje muy cuidado.",
+    "El poeta nicaragüense Rubén Darío fue su principal impulsor en lengua española.",
+    "Los temas exóticos, como princesas y cisnes, eran muy frecuentes."
+  ],
+  [
+    "La oración pasiva se forma con el verbo 'ser' más el participio del verbo principal.",
+    "En ella, el sujeto no realiza la acción, sino que la recibe (sujeto paciente).",
+    "El que realiza la acción se llama complemento agente y va introducido por 'por'.",
+    "Por ejemplo: 'El castillo fue conquistado por los caballeros'."
+  ],
+  [
+    "La Generación del 27 fue un brillante grupo de poetas españoles.",
+    "Supieron unir la tradición literaria española con las vanguardias europeas.",
+    "Autores como Lorca, Alberti, Cernuda o Aleixandre forman parte de ella.",
+    "La Guerra Civil Española truncó trágicamente la trayectoria del grupo."
+  ],
+  [
+    "Los paréntesis se usan para intercalar aclaraciones o datos en un texto.",
+    "También encierran acotaciones en las obras de teatro.",
+    "Se utilizan para añadir fechas, lugares o explicaciones complementarias.",
+    "La información que contienen tiene un menor grado de conexión con el resto de la frase."
+  ],
+  [
+    "La literatura de posguerra en España estuvo marcada por la censura y el exilio.",
+    "En los años 40, surgió una novela existencialista que reflejaba la angustia del momento.",
+    "Camilo José Cela con 'La familia de Pascual Duarte' es un ejemplo de esta tendencia.",
+    "En poesía, Miguel Hernández escribió sus últimos poemas desde la cárcel."
+  ],
+  [
+    "El complemento predicativo es un complemento que se refiere a la vez al verbo y al sujeto o al complemento directo.",
+    "Concuerda en género y número con el sustantivo al que se refiere.",
+    "Puede ser un adjetivo o un sintagma nominal.",
+    "Por ejemplo, en 'Los atletas llegaron cansados', 'cansados' es un complemento predicativo."
+  ],
+  [
+    "A partir de los años 50, surgió en España una novela de realismo social.",
+    "Los autores pretendían denunciar las injusticias y la dura realidad de la posguerra.",
+    "Rafael Sánchez Ferlosio con 'El Jarama' es un autor representativo.",
+    "Utilizaban un lenguaje sencillo y objetivo para reflejar la vida cotidiana."
+  ],
+  [
+    "Los puntos suspensivos indican una pausa o una interrupción en el discurso.",
+    "Se utilizan para dejar una idea incompleta o crear suspense.",
+    "También pueden indicar que se ha omitido una parte de una cita textual.",
+    "Siempre se escriben tres puntos, sin espacio con la palabra anterior."
+  ],
+  [
+    "La literatura hispanoamericana del siglo XX alcanzó un gran reconocimiento mundial.",
+    "El 'boom' de los años 60 dio a conocer a autores como Gabriel García Márquez o Mario Vargas Llosa.",
+    "El realismo mágico es una corriente que mezcla la realidad con elementos fantásticos.",
+    "'Cien años de soledad' es la obra cumbre de este movimiento."
+  ],
+  [
+    "El vocativo es una palabra o grupo de palabras que se usa para llamar o nombrar al interlocutor.",
+    "Se escribe siempre separado por comas del resto de la oración.",
+    "Puede aparecer al principio, en medio o al final de la frase.",
+    "Por ejemplo, en 'Juan, ven aquí', 'Juan' es el vocativo."
+  ],
+  [
+    "Federico García Lorca fue uno de los poetas y dramaturgos más importantes del siglo XX.",
+    "Formó parte de la Generación del 27 y destacó por su gran talento.",
+    "Escribió obras de teatro como 'La casa de Bernarda Alba' y poemarios como 'Romancero gitano'.",
+    "Fue asesinado al comienzo de la Guerra Civil Española."
+  ],
+  [
+    "La aposición es un sintagma nominal que complementa a otro nombre.",
+    "Va entre comas si es explicativa, y sin comas si es especificativa.",
+    "Por ejemplo, en 'Mi amigo, el médico, vive aquí', 'el médico' es una aposición explicativa.",
+    "En 'El río Ebro pasa por Zaragoza', 'Ebro' es una aposición especificativa."
+  ]
 ]

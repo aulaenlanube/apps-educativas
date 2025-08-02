@@ -1,12 +1,242 @@
 [
-    ["Dos amigos discutieron porque no se ponían de acuerdo en un juego.", "En lugar de gritar, decidieron tomarse un momento para calmarse.", "Después, cada uno explicó cómo se sentía y escuchó al otro con respeto.", "Buscaron una solución en la que ambos se sintieran cómodos.", "Al final, se dieron la mano y siguieron siendo amigos."],
-    ["María se dio cuenta de que pasaba demasiado tiempo con el móvil.", "Decidió establecer unas reglas para usarlo de forma más saludable.", "Puso un límite de tiempo diario para las redes sociales.", "Dejó de usar el móvil una hora antes de irse a dormir.", "Empezó a sentirse menos estresada y a dormir mucho mejor."],
-    ["En clase se formaron grupos para un proyecto importante.", "Al principio, en el grupo de Javi nadie se ponía de acuerdo.", "Decidieron nombrar un portavoz y repartir las tareas de forma equitativa.", "Cada miembro se comprometió a realizar su parte del trabajo.", "Gracias a la cooperación, entregaron un proyecto excelente."],
-    ["Cuando Lucía recibía las notas de un examen, solo se fijaba en los fallos.", "Esto le hacía sentir que no era lo suficientemente buena.", "Su tutora le ayudó a reconocer también sus aciertos y su esfuerzo.", "Empezó a valorar sus progresos y a confiar más en sus capacidades.", "Su autoestima mejoró y afrontó los estudios con más seguridad."],
-    ["Un alumno nuevo llegó al instituto y no conocía a nadie.", "Se sentía solo y un poco asustado durante los primeros días.", "Un grupo de compañeros se acercó a él en el recreo para presentarse.", "Le invitaron a sentarse con ellos y le explicaron cómo funcionaban las cosas.", "El nuevo alumno se sintió acogido y agradecido por su amabilidad."],
-    ["Pablo tenía que estudiar para un examen de historia muy largo.", "Se sentía agobiado porque no sabía por dónde empezar.", "Decidió hacer un plan de estudio, dividiendo el temario en partes pequeñas.", "Estudió un poco cada día durante una semana.", "Llegó al examen tranquilo y preparado, y consiguió una buena nota."],
-    ["En una red social, alguien publicó un comentario ofensivo sobre un compañero.", "Varios alumnos vieron el comentario y se sintieron mal.", "En lugar de ignorarlo, decidieron denunciar la publicación.", "También hablaron con el compañero afectado para mostrarle su apoyo.", "Demostraron que el ciberacoso es algo que no se debe tolerar."],
-    ["La clase de 2ºB decidió organizar una recogida de alimentos para una ONG.", "Diseñaron carteles para informar a todo el instituto.", "Colocaron cajas en la entrada para que la gente depositara los alimentos.", "Al final de la semana, habían recogido una gran cantidad de comida.", "Se sintieron muy satisfechos por haber ayudado a los demás."],
-    ["A Elena le costaba mucho decir 'no' a sus amigos.", "A veces acababa haciendo cosas que en realidad no le apetecían.", "Habló con su orientadora y practicó cómo ser más asertiva.", "Aprendió a expresar su opinión con respeto pero con firmeza.", "Sus amigos la respetaron y ella se sintió mucho mejor consigo misma."],
-    ["El equipo de fútbol del instituto perdió un partido importante.", "Al principio, los jugadores estaban enfadados y se echaban la culpa unos a otros.", "El entrenador les reunió y les recordó que eran un equipo.", "Hablaron sobre los errores para aprender de ellos y mejorar juntos.", "Entendieron que en el deporte se gana y se pierde en equipo."]
+  [
+    "La empatía es la habilidad de ponerse en el lugar de otra persona.",
+    "Implica ser capaz de comprender sus sentimientos y emociones.",
+    "No significa estar de acuerdo, sino entender su perspectiva.",
+    "Practicar la empatía mejora nuestras relaciones con los demás."
+  ],
+  [
+    "La asertividad es un estilo de comunicación equilibrado.",
+    "Nos permite defender nuestros derechos y opiniones de forma clara y respetuosa.",
+    "No es ser pasivo, dejando que otros decidan por nosotros.",
+    "Tampoco es ser agresivo, imponiendo nuestras ideas a los demás."
+  ],
+  [
+    "El trabajo en equipo es fundamental para alcanzar objetivos comunes.",
+    "Cada miembro aporta sus habilidades y conocimientos para el bien del grupo.",
+    "La comunicación y la coordinación son claves para que el equipo funcione.",
+    "Aprender a colaborar es una competencia muy valorada en la vida."
+  ],
+  [
+    "La autoestima es la valoración que hacemos de nosotros mismos.",
+    "Una autoestima saludable nos ayuda a afrontar los desafíos con confianza.",
+    "Se construye a partir de nuestras experiencias y de cómo nos vemos.",
+    "Es importante reconocer nuestras cualidades y aceptar nuestros defectos."
+  ],
+  [
+    "La gestión de conflictos de forma pacífica es una habilidad esencial.",
+    "El primer paso es escuchar activamente a todas las partes implicadas.",
+    "Luego, se deben buscar soluciones en las que todos ganen.",
+    "El diálogo y la negociación son herramientas mucho más eficaces que la confrontación."
+  ],
+  [
+    "Establecer metas nos ayuda a dar dirección a nuestros esfuerzos.",
+    "Es importante que las metas sean específicas, medibles y realistas.",
+    "Dividir una gran meta en pequeños pasos la hace más manejable.",
+    "Celebrar los pequeños logros nos mantiene motivados en el camino."
+  ],
+  [
+    "El acoso escolar o 'bullying' es un comportamiento de maltrato repetido.",
+    "Puede ser físico, verbal o social, como excluir a alguien.",
+    "Es un problema muy grave que causa un gran sufrimiento a la víctima.",
+    "Nunca debemos ser espectadores pasivos; es responsabilidad de todos detenerlo."
+  ],
+  [
+    "El pensamiento crítico consiste en analizar la información de forma objetiva.",
+    "Implica no aceptar las cosas sin más, sino cuestionarlas y buscar evidencias.",
+    "Nos ayuda a diferenciar los hechos de las opiniones.",
+    "Es una herramienta fundamental para no ser manipulados y formar nuestras propias ideas."
+  ],
+  [
+    "La responsabilidad es la capacidad de asumir nuestros compromisos y las consecuencias de nuestros actos.",
+    "Ser responsable en los estudios implica hacer las tareas y prepararse para los exámenes.",
+    "También significa ser puntual y cuidar el material escolar.",
+    "Es un valor que nos hace personas más confiables y maduras."
+  ],
+  [
+    "El uso seguro y responsable de las redes sociales es muy importante.",
+    "Debemos proteger nuestra privacidad y no compartir información personal con desconocidos.",
+    "Hay que ser respetuoso con los demás y no participar en el ciberacoso.",
+    "Es bueno recordar que lo que publicamos en internet puede permanecer allí para siempre."
+  ],
+  [
+    "La inteligencia emocional es la capacidad de reconocer y gestionar nuestras emociones.",
+    "Nos permite entender qué sentimos y por qué lo sentimos.",
+    "También incluye la capacidad de reconocer las emociones de los demás.",
+    "Una buena inteligencia emocional mejora nuestro bienestar y nuestras relaciones sociales."
+  ],
+  [
+    "La tolerancia es el respeto hacia las ideas, creencias o prácticas de los demás, aunque sean diferentes a las nuestras.",
+    "No significa que tengamos que compartir esas ideas, sino que aceptamos el derecho de otros a tenerlas.",
+    "Es un pilar fundamental para la convivencia en una sociedad diversa.",
+    "La intolerancia es la base de la discriminación y los conflictos."
+  ],
+  [
+    "Una buena planificación del tiempo de estudio es clave para el éxito académico.",
+    "Es útil crear un horario semanal que combine estudio, ocio y descanso.",
+    "Estudiar en un lugar tranquilo y sin distracciones mejora la concentración.",
+    "Dividir las tareas grandes en partes más pequeñas las hace menos abrumadoras."
+  ],
+  [
+    "La presión de grupo es la influencia que ejerce un grupo sobre una persona.",
+    "A veces, nos puede llevar a hacer cosas que no queremos para sentirnos aceptados.",
+    "Aprender a decir 'no' de forma asertiva es fundamental para mantener nuestra identidad.",
+    "Los verdaderos amigos respetan tus decisiones y no te presionan."
+  ],
+  [
+    "La igualdad de género implica que hombres y mujeres deben tener los mismos derechos y oportunidades.",
+    "Significa eliminar los estereotipos que limitan lo que pueden hacer chicos y chicas.",
+    "La educación es la herramienta más poderosa para construir una sociedad igualitaria.",
+    "Es una cuestión de justicia social y un derecho humano fundamental."
+  ],
+  [
+    "La resiliencia es la capacidad de las personas para superar situaciones difíciles y adversas.",
+    "No significa no sentir dolor o tristeza, sino ser capaz de sobreponerse a ellos.",
+    "Las personas resilientes aprenden de las experiencias negativas y salen fortalecidas.",
+    "Es una cualidad que se puede aprender y desarrollar a lo largo de la vida."
+  ],
+  [
+    "La toma de decisiones es un proceso que realizamos constantemente.",
+    "Para tomar una buena decisión, primero hay que definir el problema y las posibles opciones.",
+    "Luego, se deben analizar las ventajas y desventajas de cada opción.",
+    "Finalmente, se elige una opción y nos hacemos responsables de ella."
+  ],
+  [
+    "La solidaridad es el sentimiento de unidad y apoyo mutuo entre las personas.",
+    "Se manifiesta al ayudar a quienes lo necesitan sin esperar nada a cambio.",
+    "Participar en campañas de recogida de alimentos o en voluntariado son actos solidarios.",
+    "Contribuye a crear una sociedad más justa y cohesionada."
+  ],
+  [
+    "El autoconcepto es la imagen o idea que tenemos de nosotros mismos.",
+    "Se forma a través de nuestras experiencias y de la opinión de los demás.",
+    "Un autoconcepto positivo nos da seguridad y confianza.",
+    "Es importante conocernos bien, con nuestras fortalezas y debilidades."
+  ],
+  [
+    "La mediación es un método para resolver conflictos con la ayuda de una tercera persona.",
+    "El mediador es neutral y no toma partido por nadie.",
+    "Su función es facilitar la comunicación para que las partes lleguen a un acuerdo por sí mismas.",
+    "Es una alternativa constructiva a la confrontación directa."
+  ],
+  [
+    "El desarrollo de hábitos de vida saludables es una inversión en nuestro futuro.",
+    "Incluye una alimentación equilibrada, la práctica regular de ejercicio físico y un descanso adecuado.",
+    "También implica evitar el consumo de tabaco, alcohol y otras drogas.",
+    "Estos hábitos nos ayudan a prevenir enfermedades y a sentirnos mejor."
+  ],
+  [
+    "La huella digital es el rastro que dejamos cada vez que usamos internet.",
+    "Incluye nuestras publicaciones, los 'me gusta' que damos o las páginas que visitamos.",
+    "Esta información puede ser vista por otras personas y es difícil de borrar.",
+    "Por eso, es importante ser conscientes de lo que compartimos en la red."
+  ],
+  [
+    "La participación activa en la vida del centro educativo nos enriquece a todos.",
+    "Ser delegado de clase es una forma de representar a los compañeros.",
+    "Colaborar en actividades como el periódico escolar o el equipo de deportes fomenta el compañerismo.",
+    "Un instituto funciona mejor cuando todos sus miembros se implican."
+  ],
+  [
+    "El respeto a la diversidad significa valorar y aceptar que todas las personas son diferentes.",
+    "Cada persona es única en su cultura, sus capacidades, su orientación o su forma de pensar.",
+    "La diversidad no es un problema, sino una fuente de riqueza para la sociedad.",
+    "La discriminación basada en estas diferencias es una violación de los derechos humanos."
+  ],
+  [
+    "La comunicación no verbal a menudo dice más que las palabras.",
+    "Nuestra postura, nuestros gestos y nuestro tono de voz transmiten mucha información.",
+    "Mantener el contacto visual demuestra interés y sinceridad.",
+    "Ser conscientes de nuestro lenguaje corporal nos ayuda a comunicarnos mejor."
+  ],
+  [
+    "La procrastinación es el hábito de aplazar tareas importantes y sustituirlas por otras más agradables.",
+    "A corto plazo puede aliviar el estrés, pero a largo plazo lo aumenta.",
+    "Técnicas como dividir la tarea en partes o establecer plazos pueden ayudar a combatirla.",
+    "Vencer la procrastinación mejora nuestra productividad y reduce la ansiedad."
+  ],
+  [
+    "La educación afectivo-sexual nos proporciona información para vivir nuestra sexualidad de forma sana y responsable.",
+    "Aborda aspectos biológicos, pero también emocionales y sociales.",
+    "Fomenta el respeto, el consentimiento y la igualdad en las relaciones.",
+    "Es fundamental para prevenir riesgos y tomar decisiones informadas."
+  ],
+  [
+    "La ciudadanía digital se refiere a las normas de comportamiento adecuado en el entorno online.",
+    "Implica usar la tecnología de forma segura, legal y ética.",
+    "Respetar la propiedad intelectual y no difundir noticias falsas son parte de ella.",
+    "Ser un buen ciudadano digital es tan importante como serlo en el mundo real."
+  ],
+  [
+    "El aprendizaje cooperativo es una metodología en la que los alumnos trabajan en pequeños grupos.",
+    "El éxito del grupo depende del esfuerzo de cada uno de sus miembros.",
+    "Fomenta habilidades sociales como la comunicación, la ayuda mutua y la resolución de problemas.",
+    "Se aprende de los compañeros, no solo del profesor."
+  ],
+  [
+    "La gestión del tiempo es una habilidad clave para equilibrar nuestras obligaciones y nuestro ocio.",
+    "Es útil hacer una lista de tareas y priorizar las más importantes o urgentes.",
+    "Aprender a evitar las distracciones, como el móvil, nos ayuda a concentrarnos.",
+    "Una buena gestión del tiempo nos permite ser más eficientes y tener menos estrés."
+  ],
+  [
+    "La identidad personal es el conjunto de rasgos que nos definen y nos hacen únicos.",
+    "Se va construyendo durante la adolescencia a través de nuestras experiencias y relaciones.",
+    "Incluye nuestros valores, creencias, gustos e intereses.",
+    "Es un proceso de autodescubrimiento para saber quiénes somos y quiénes queremos ser."
+  ],
+  [
+    "La prevención de la violencia de género empieza con la educación en igualdad.",
+    "Implica rechazar cualquier comportamiento sexista o de control en las relaciones.",
+    "Es fundamental entender que el respeto es la base de cualquier relación sana.",
+    "Tanto chicos como chicas deben comprometerse en la lucha contra esta lacra social."
+  ],
+  [
+    "Los estereotipos son ideas simplificadas y generalizadas sobre un grupo de personas.",
+    "A menudo son falsos y nos impiden conocer a las personas como realmente son.",
+    "Los estereotipos de género, por ejemplo, limitan las opciones de chicos y chicas.",
+    "Debemos esforzarnos por juzgar a las personas por sus actos y no por prejuicios."
+  ],
+  [
+    "El voluntariado es una forma de dedicar nuestro tiempo a una causa solidaria.",
+    "Se puede colaborar con organizaciones que ayudan a personas, animales o al medio ambiente.",
+    "Es una experiencia muy enriquecedora que nos permite conocer otras realidades.",
+    "Fomenta valores como el compromiso, la generosidad y la empatía."
+  ],
+  [
+    "La orientación académica y profesional nos ayuda a decidir nuestro futuro.",
+    "Es importante informarse sobre las diferentes opciones de estudio y profesiones.",
+    "Conocer nuestros propios intereses y habilidades es el primer paso.",
+    "Hablar con orientadores, profesores y familiares puede ser de gran ayuda."
+  ],
+  [
+    "La participación en el aula mejora el proceso de aprendizaje.",
+    "Preguntar dudas, dar nuestra opinión y escuchar a los demás nos enriquece.",
+    "Demuestra interés y ayuda al profesor a saber si la clase está entendiendo.",
+    "No hay que tener miedo a equivocarse, ya que de los errores también se aprende."
+  ],
+  [
+    "El pensamiento creativo nos permite encontrar soluciones nuevas y originales a los problemas.",
+    "No se trata solo de ser bueno en arte, sino de pensar de forma diferente.",
+    "Técnicas como la lluvia de ideas o 'brainstorming' fomentan la creatividad.",
+    "Es una habilidad muy útil en todos los ámbitos de la vida."
+  ],
+  [
+    "Los derechos de la infancia son un conjunto de normas que protegen a todos los niños y niñas del mundo.",
+    "Incluyen el derecho a la educación, a la salud, a jugar y a ser protegidos.",
+    "Todos los adultos y los gobiernos tienen la obligación de respetar estos derechos.",
+    "Conocerlos es el primer paso para poder defenderlos."
+  ],
+  [
+    "La motivación es la fuerza que nos impulsa a actuar para alcanzar nuestras metas.",
+    "Puede ser intrínseca, cuando hacemos algo porque nos gusta y nos satisface.",
+    "O puede ser extrínseca, cuando actuamos para conseguir una recompensa o evitar un castigo.",
+    "Mantener la motivación es clave para superar las dificultades y perseverar."
+  ],
+  [
+    "Las técnicas de estudio son estrategias que nos ayudan a aprender de forma más eficaz.",
+    "El subrayado de las ideas principales es una técnica muy común.",
+    "Hacer esquemas o mapas conceptuales ayuda a organizar y visualizar la información.",
+    "Repasar de forma periódica es fundamental para consolidar los conocimientos."
+  ]
 ]

@@ -1,12 +1,5 @@
 {
-  "primaria": [
-    { "curso": 1, "id": "general", "nombre": "1º Primaria" },
-    { "curso": 2, "id": "general", "nombre": "2º Primaria" },
-    { "curso": 3, "id": "general", "nombre": "3º Primaria" },
-    { "curso": 4, "id": "general", "nombre": "4º Primaria" },
-    { "curso": 5, "id": "general", "nombre": "5º Primaria" },
-    { "curso": 6, "id": "general", "nombre": "6º Primaria" }
-  ],
+ 
   "eso": {
     "1": [
       { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
@@ -26,8 +19,10 @@
       { "id": "matematicas", "nombre": "Matemáticas", "icon": "🧮" },
       { "id": "historia", "nombre": "Geografía e Historia", "icon": "🌍" },
       { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
+      { "id": "biologia", "nombre": "Biología y Geología", "icon": "🔬" },
       { "id": "fisica", "nombre": "Física y Química", "icon": "🧪" },
       { "id": "musica", "nombre": "Música", "icon": "🎵" },
+      { "id": "plastica", "nombre": "Educación Plástica y Visual", "icon": "🎨" },
       { "id": "tecnologia", "nombre": "Tecnología y Digitalización", "icon": "💻" },
       { "id": "ed-fisica", "nombre": "Educación Física", "icon": "🤸" },
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" }
@@ -39,6 +34,8 @@
       { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
       { "id": "biologia", "nombre": "Biología y Geología", "icon": "🔬" },
       { "id": "fisica", "nombre": "Física y Química", "icon": "🧪" },
+      { "id": "musica", "nombre": "Música", "icon": "🎵" },
+      { "id": "plastica", "nombre": "Educación Plástica y Visual", "icon": "🎨" },
       { "id": "tecnologia", "nombre": "Tecnología y Digitalización", "icon": "💻" },
       { "id": "ed-fisica", "nombre": "Educación Física", "icon": "🤸" },
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" }

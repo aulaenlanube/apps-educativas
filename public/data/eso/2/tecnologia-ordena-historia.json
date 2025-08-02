@@ -1,12 +1,242 @@
 [
-    ["Para dibujar las vistas de un objeto, utilizamos el sistema diédrico.", "La vista principal que elegimos es el alzado.", "La planta es la vista del objeto desde arriba.", "El perfil es la vista del objeto desde un lado.", "Las tres vistas nos dan una idea completa de la forma del objeto."],
-    ["Las estructuras triangulares son muy utilizadas en construcción por su rigidez.", "Se basan en que el triángulo es el único polígono que no se deforma.", "Al aplicar una fuerza, los lados del triángulo trabajan a tracción o a compresión.", "Esto las hace muy estables y capaces de soportar grandes pesos.", "Podemos verlas en puentes, grúas y torres eléctricas."],
-    ["Un mecanismo de tornillo sin fin y corona es un gran reductor de velocidad.", "El tornillo sin fin, al girar, hace que la corona gire muy lentamente.", "Por cada vuelta completa del tornillo, la corona solo avanza un diente.", "Se utiliza en mecanismos que necesitan mucha fuerza y poca velocidad.", "Un ejemplo es el sistema de clavijas para afinar una guitarra."],
-    ["El sistema operativo es el programa más importante de un ordenador.", "Se encarga de gestionar todos los recursos del hardware, como la memoria o el procesador.", "Proporciona una interfaz para que el usuario pueda interactuar con la máquina.", "Permite instalar y ejecutar otros programas o aplicaciones."],
-    ["Para crear un objeto con una impresora 3D, primero se necesita un diseño digital.", "Este diseño se crea con un programa de modelado 3D o CAD.", "El programa de la impresora divide el modelo en capas muy finas.", "La impresora va depositando el material fundido capa por capa.", "Así, poco a poco, se construye el objeto físico desde la base."],
-    ["La ley de Ohm es fundamental para entender los circuitos eléctricos.", "Relaciona tres magnitudes: el voltaje, la intensidad y la resistencia.", "Establece que el voltaje es igual a la intensidad multiplicada por la resistencia.", "Nos permite calcular una de las magnitudes si conocemos las otras dos."],
-    ["Los metales son materiales muy importantes en tecnología.", "Se extraen de los minerales que se encuentran en la corteza terrestre.", "Son buenos conductores del calor y la electricidad.", "Se pueden deformar sin romperse, lo que permite fabricar láminas o hilos."],
-    ["Una red de ordenadores permite compartir recursos e información.", "Los ordenadores se conectan entre sí mediante cables o de forma inalámbrica (wifi).", "Un dispositivo llamado router gestiona el tráfico de datos en la red.", "Internet es la red de redes más grande que existe."],
-    ["El proceso para reciclar el papel comienza con su recogida selectiva.", "En la planta de reciclaje, se mezcla con agua para obtener una pasta.", "Esta pasta se limpia para eliminar tintas y otros residuos.", "Luego, se blanquea y se pasa por unos rodillos para formar nuevas hojas de papel.", "Reciclar papel ayuda a salvar árboles y a ahorrar energía."],
-    ["Una palanca de primer género tiene el punto de apoyo entre la fuerza y la resistencia.", "Un balancín o unas tijeras son ejemplos de este tipo.", "Permite amplificar la fuerza que aplicamos.", "Cuanto más lejos del punto de apoyo apliquemos la fuerza, mayor será el efecto."]
+  [
+    "Las estructuras deben soportar cargas sin romperse ni deformarse en exceso.",
+    "Los pilares son elementos verticales que soportan el peso de la estructura.",
+    "Las vigas son elementos horizontales que se apoyan sobre los pilares.",
+    "La triangulación, formando triángulos, aporta una gran rigidez a las estructuras."
+  ],
+  [
+    "Una palanca es una máquina simple que transmite fuerza y movimiento.",
+    "Consta de una barra rígida que gira sobre un punto de apoyo o fulcro.",
+    "Permite levantar objetos pesados aplicando una fuerza menor.",
+    "Las tijeras son un ejemplo de doble palanca de primer grado."
+  ],
+  [
+    "Los engranajes son ruedas dentadas que se utilizan para transmitir el movimiento circular.",
+    "Cuando un engranaje pequeño mueve a uno grande, la velocidad disminuye pero la fuerza aumenta.",
+    "Si un engranaje grande mueve a uno pequeño, la velocidad aumenta pero la fuerza disminuye.",
+    "Se utilizan en mecanismos como la caja de cambios de un coche o un reloj."
+  ],
+  [
+    "La madera es un material de origen natural que se obtiene de los árboles.",
+    "Es un buen aislante del calor y la electricidad.",
+    "Es un material renovable, pero su explotación debe ser sostenible.",
+    "Se utiliza en la construcción de muebles, estructuras y en la fabricación de papel."
+  ],
+  [
+    "Los metales se extraen de los minerales que se encuentran en las rocas.",
+    "Son buenos conductores del calor y la electricidad.",
+    "La mayoría son dúctiles y maleables, es decir, se pueden deformar en hilos y láminas.",
+    "El hierro, el aluminio y el cobre son algunos de los metales más utilizados."
+  ],
+  [
+    "El proceso tecnológico es el método que seguimos para crear un producto tecnológico.",
+    "Comienza con la identificación de una necesidad o un problema.",
+    "Luego se diseña una solución, se planifica y se construye el objeto.",
+    "Finalmente, se evalúa si el objeto cumple su función y resuelve el problema inicial."
+  ],
+  [
+    "Un circuito eléctrico es un camino cerrado por el que circula la corriente.",
+    "Necesita un generador, como una pila, que proporcione la energía.",
+    "Los cables conductores, normalmente de cobre, transportan la corriente.",
+    "Los receptores, como una bombilla, transforman la energía eléctrica en otro tipo de energía."
+  ],
+  [
+    "El hardware de un ordenador son todos sus componentes físicos y tangibles.",
+    "Incluye la placa base, el procesador, la memoria RAM y el disco duro.",
+    "También son hardware los periféricos como el teclado, el ratón o el monitor.",
+    "Es la parte del ordenador que podemos ver y tocar."
+  ],
+  [
+    "El software es el conjunto de programas, instrucciones y datos que hacen funcionar un ordenador.",
+    "El sistema operativo, como Windows o Linux, es el software más importante.",
+    "Las aplicaciones, como un procesador de textos o un videojuego, también son software.",
+    "A diferencia del hardware, el software no se puede tocar."
+  ],
+  [
+    "Internet es una red global que interconecta millones de ordenadores en todo el mundo.",
+    "Nos permite comunicarnos, buscar información y compartir archivos.",
+    "Para acceder a Internet, necesitamos un dispositivo y una conexión proporcionada por un proveedor.",
+    "La World Wide Web (WWW) es el sistema de páginas interconectadas que navegamos."
+  ],
+  [
+    "La polea simple es una rueda que gira alrededor de un eje.",
+    "No reduce el esfuerzo necesario para levantar un peso, pero cambia la dirección de la fuerza.",
+    "Esto hace que sea más cómodo elevar la carga, ya que podemos tirar hacia abajo.",
+    "Se utiliza en pozos, grúas o para izar banderas."
+  ],
+  [
+    "Los plásticos son materiales sintéticos obtenidos principalmente del petróleo.",
+    "Son ligeros, resistentes y buenos aislantes.",
+    "Existen muchos tipos, como el PET de las botellas o el PVC de las tuberías.",
+    "Su principal problema es que no son biodegradables y generan mucha contaminación."
+  ],
+  [
+    "La representación gráfica de objetos se realiza mediante vistas.",
+    "El alzado es la vista del objeto visto desde el frente.",
+    "La planta es la vista del objeto desde arriba.",
+    "El perfil es la vista del objeto desde un lado."
+  ],
+  [
+    "La corriente eléctrica es un movimiento ordenado de electrones.",
+    "La intensidad de corriente, medida en amperios (A), es la cantidad de electrones que pasan por segundo.",
+    "El voltaje, medido en voltios (V), es la energía que impulsa a los electrones.",
+    "La resistencia, medida en ohmios (Ω), es la oposición al paso de la corriente."
+  ],
+  [
+    "Un algoritmo es una secuencia de pasos lógicos y ordenados para resolver un problema.",
+    "Debe ser preciso, finito y no ambiguo.",
+    "Es la base de la programación informática.",
+    "Una receta de cocina es un ejemplo de algoritmo en la vida cotidiana."
+  ],
+  [
+    "Las energías renovables son aquellas que se obtienen de fuentes naturales inagotables.",
+    "La energía solar aprovecha la radiación del Sol.",
+    "La energía eólica utiliza la fuerza del viento.",
+    "Son una alternativa más limpia a los combustibles fósiles."
+  ],
+  [
+    "La biela-manivela es un mecanismo que transforma un movimiento circular en uno rectilíneo alternativo.",
+    "Está formado por una manivela que gira y una biela articulada a ella.",
+    "El motor de un coche utiliza este mecanismo para mover los pistones.",
+    "También se encuentra en las antiguas máquinas de coser de pedal."
+  ],
+  [
+    "El procesador o CPU es considerado el cerebro del ordenador.",
+    "Se encarga de ejecutar las instrucciones de los programas y procesar los datos.",
+    "Su velocidad se mide en gigahercios (GHz).",
+    "Un procesador más rápido permite al ordenador realizar tareas de forma más eficiente."
+  ],
+  [
+    "Una red informática es un conjunto de ordenadores conectados entre sí.",
+    "Permite a los usuarios compartir archivos, recursos e información.",
+    "Una red de área local (LAN) conecta dispositivos en un espacio reducido, como una casa.",
+    "Internet es la red de redes a escala mundial."
+  ],
+  [
+    "La impresión 3D es una tecnología que permite crear objetos tridimensionales.",
+    "Funciona añadiendo material capa por capa a partir de un diseño digital.",
+    "Se utiliza para fabricar prototipos, prótesis médicas, piezas de repuesto y mucho más.",
+    "Está revolucionando la forma en que diseñamos y producimos objetos."
+  ],
+  [
+    "Una estructura de celosía o triangulada está formada por barras unidas en forma de triángulo.",
+    "Esta forma geométrica es muy rígida y no se deforma fácilmente.",
+    "Permite construir estructuras muy resistentes y a la vez ligeras.",
+    "Se utiliza en puentes, grúas y torres de alta tensión."
+  ],
+  [
+    "El tornillo es una máquina simple que deriva del plano inclinado.",
+    "Es un cilindro con una rosca helicoidal que se usa para unir piezas.",
+    "Convierte un movimiento de giro en un movimiento de avance lineal.",
+    "También se utiliza para ejercer grandes fuerzas, como en un gato de coche."
+  ],
+  [
+    "Los materiales cerámicos se obtienen al cocer arcilla a altas temperaturas.",
+    "Son duros, frágiles y muy resistentes al calor y la corrosión.",
+    "Los ladrillos, las tejas y la porcelana son ejemplos de materiales cerámicos.",
+    "Son buenos aislantes térmicos y eléctricos."
+  ],
+  [
+    "Un circuito en serie es aquel donde los componentes están conectados uno tras otro.",
+    "La corriente eléctrica solo tiene un camino posible para circular.",
+    "Si un componente se funde o se desconecta, todo el circuito se interrumpe.",
+    "El voltaje total del generador se reparte entre los distintos componentes."
+  ],
+  [
+    "La memoria RAM es la memoria principal de un ordenador.",
+    "Almacena de forma temporal los programas y datos que se están usando en cada momento.",
+    "Es una memoria volátil, lo que significa que su contenido se borra al apagar el ordenador.",
+    "Cuanta más memoria RAM tenga un ordenador, más tareas podrá realizar a la vez de forma fluida."
+  ],
+  [
+    "Un navegador web es el software que utilizamos para acceder y visualizar páginas web.",
+    "Interpreta el código HTML en el que están escritas las páginas.",
+    "Permite navegar entre páginas siguiendo los hipervínculos o enlaces.",
+    "Google Chrome, Mozilla Firefox y Microsoft Edge son navegadores muy populares."
+  ],
+  [
+    "Un sistema de poleas con correa transmite el movimiento circular entre dos ejes.",
+    "Está formado por dos o más poleas unidas por una correa.",
+    "Si las poleas tienen diferente diámetro, se puede modificar la velocidad de giro.",
+    "Se utiliza en motores de coche, taladros de columna o lavadoras."
+  ],
+  [
+    "El acero inoxidable es una aleación de acero con cromo.",
+    "El cromo le confiere una alta resistencia a la corrosión y al óxido.",
+    "Se utiliza para fabricar cubiertos, instrumental médico y en la construcción.",
+    "Es un material muy duradero e higiénico."
+  ],
+  [
+    "El dibujo de un objeto a escala permite representarlo más grande o más pequeño que su tamaño real.",
+    "Una escala de ampliación se usa para dibujar objetos muy pequeños, como un tornillo.",
+    "Una escala de reducción se emplea para representar objetos grandes, como un edificio.",
+    "La escala 1:1 indica que el dibujo tiene el mismo tamaño que el objeto real."
+  ],
+  [
+    "La ley de Ohm es una de las leyes fundamentales de la electricidad.",
+    "Relaciona el voltaje, la intensidad y la resistencia en un circuito.",
+    "Afirma que la intensidad es directamente proporcional al voltaje.",
+    "Y es inversamente proporcional a la resistencia del circuito."
+  ],
+  [
+    "Un sistema operativo gestiona los recursos de hardware y software del ordenador.",
+    "Proporciona una interfaz para que el usuario pueda interactuar con la máquina.",
+    "Controla el procesador, la memoria, el almacenamiento y los periféricos.",
+    "Windows, macOS, Linux y Android son ejemplos de sistemas operativos."
+  ],
+  [
+    "Un robot es una máquina programable diseñada para realizar tareas de forma automática.",
+    "Los robots industriales se utilizan en las fábricas para tareas repetitivas o peligrosas.",
+    "Están equipados con sensores para percibir su entorno.",
+    "Los actuadores, como motores o pinzas, les permiten interactuar con el entorno."
+  ],
+  [
+    "Los plásticos termoestables, una vez moldeados, no se pueden volver a ablandar con el calor.",
+    "El calor provoca en ellos una reacción química que los endurece permanentemente.",
+    "Son rígidos y resistentes a las altas temperaturas.",
+    "La baquelita, usada en mangos de sartenes, es un ejemplo de plástico termoestable."
+  ],
+  [
+    "Un plano inclinado es una máquina simple que reduce la fuerza necesaria para elevar un cuerpo.",
+    "Consiste en una superficie plana que forma un ángulo con la horizontal.",
+    "Una rampa es un ejemplo claro de plano inclinado.",
+    "A cambio de reducir la fuerza, se debe recorrer una distancia mayor."
+  ],
+  [
+    "La energía hidráulica aprovecha la energía potencial del agua almacenada en los embalses.",
+    "El agua cae desde una gran altura a través de unas tuberías.",
+    "La fuerza del agua mueve unas turbinas que están conectadas a un generador.",
+    "Este generador transforma la energía mecánica en energía eléctrica."
+  ],
+  [
+    "La placa base es el componente principal de un ordenador.",
+    "Es una gran placa de circuito impreso a la que se conectan todos los demás componentes.",
+    "Contiene el zócalo para el procesador, las ranuras para la memoria RAM y otros conectores.",
+    "Sirve como centro de comunicación entre todas las partes del sistema."
+  ],
+  [
+    "Un motor eléctrico transforma la energía eléctrica en energía mecánica de rotación.",
+    "Se basa en la interacción entre campos magnéticos y corrientes eléctricas.",
+    "Son componentes esenciales en electrodomésticos, juguetes y vehículos eléctricos.",
+    "Son más eficientes y menos contaminantes que los motores de combustión."
+  ],
+  [
+    "Las herramientas manuales son aquellas que se utilizan con la fuerza de nuestras manos.",
+    "Un martillo sirve para golpear y clavar clavos.",
+    "Un destornillador se usa para apretar y aflojar tornillos.",
+    "Un serrucho es una herramienta para cortar madera."
+  ],
+  [
+    "La resistencia de un material es su capacidad para soportar fuerzas sin romperse.",
+    "La elasticidad es la propiedad de un material de recuperar su forma original tras ser deformado.",
+    "La plasticidad es la capacidad de un material de deformarse permanentemente sin romperse.",
+    "La dureza es la resistencia de un material a ser rayado."
+  ],
+  [
+    "La programación por bloques utiliza piezas gráficas que encajan entre sí para crear un programa.",
+    "Cada bloque representa una instrucción o una acción.",
+    "Es un método muy visual e intuitivo, ideal para iniciarse en la programación.",
+    "Plataformas como Scratch utilizan este tipo de programación."
+  ]
 ]
