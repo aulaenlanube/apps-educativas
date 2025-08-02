@@ -63,6 +63,8 @@ export const esoApps = {
         'ingles': [appOrdenaLaFrase, appOrdenaLaHistoria],
         'biologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
         'fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'musica': [appOrdenaLaFrase, appOrdenaLaHistoria],
+        'plastica': [appOrdenaLaFrase, appOrdenaLaHistoria],
         'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
         'ed-fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
         'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
