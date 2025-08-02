@@ -8,6 +8,11 @@ import SupermercadoMatematico6 from './supermercado-matematico/primaria-6/Superm
 import IslaDeLaCalma from './isla-de-la-calma/IslaDeLaCalma';
 import OrdenaLaFraseJuego from './_shared/OrdenaLaFraseJuego';
 import OrdenaLaHistoriaJuego from './_shared/OrdenaLaHistoriaJuego';
+
+
+import DetectiveDePalabras from '@/apps/detective-de-palabras/DetectiveDePalabras';
+
+
 // CORRECCIÓN: Usar el alias de ruta '@' para una importación más robusta.
 import materiasData from './../../public/data/materias.json';
 
@@ -16,14 +21,22 @@ const appIslaDeLaCalma = { id: 'isla-de-la-calma', name: 'Isla de la Calma', des
 const appOrdenaLaFrase = { id: 'ordena-la-frase', name: 'Ordena la Frase', description: 'Arrastra las palabras para construir frases con sentido.', component: OrdenaLaFraseJuego };
 const appOrdenaLaHistoria = { id: 'ordena-la-historia', name: 'Ordena la Historia', description: 'Pon en orden los eventos para reconstruir un relato.', component: OrdenaLaHistoriaJuego };
 
+const appDetectiveDePalabras = {
+  id: 'detective-de-palabras', // El ID ahora es genérico
+  name: 'Detective de Palabras',
+  description: 'Encuentra los espacios ocultos para separar las palabras de la frase.',
+  component: DetectiveDePalabras // Siempre usamos el mismo componente
+};
+
+
 // APPS DE PRIMARIA
 export const primariaApps = {
-    '1': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', component: SupermercadoMatematico1 }],
-    '2': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { id: 'supermercado-matematico-2', name: 'Supermercado Matemático (Sumas llevando)', component: SupermercadoMatematico2 }],
-    '3': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', component: SupermercadoMatematico3 }],
-    '4': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', component: SupermercadoMatematico4 }],
-    '5': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', component: SupermercadoMatematico5 }],
-    '6': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', component: SupermercadoMatematico6 }],
+    '1': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras', name: 'Detective de Palabras (Nivel 1)' }, { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', component: SupermercadoMatematico1 }],
+    '2': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras', name: 'Detective de Palabras (Nivel 2)' },{ id: 'supermercado-matematico-2', name: 'Supermercado Matemático (Sumas llevando)', component: SupermercadoMatematico2 }],
+    '3': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras', name: 'Detective de Palabras (Nivel 3)' },{ id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', component: SupermercadoMatematico3 }],
+    '4': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras', name: 'Detective de Palabras (Nivel 4)' },{ id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', component: SupermercadoMatematico4 }],
+    '5': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras', name: 'Detective de Palabras (Nivel 5)' },{ id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', component: SupermercadoMatematico5 }],
+    '6': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras', name: 'Detective de Palabras (Nivel 6)' },{ id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', component: SupermercadoMatematico6 }],
 };
 
 // ASIGNATURAS Y APPS DE LA ESO
@@ -85,18 +98,33 @@ export const esoApps = {
 };
 
 
-export const findAppById = (level, grade, appId, subjectId = 'general') => {
-    let appCollection;
+export const findAppById = (id, level, grade) => {
     if (level === 'primaria') {
-        appCollection = primariaApps[grade] || [];
-    } else if (level === 'eso') {
-        appCollection = esoApps[grade]?.[subjectId] || [];
-    } else {
-        return null;
+        const gradeApps = primariaApps[grade] || [];
+        const foundApp = gradeApps.find(app => app.id === id);
+        if (foundApp) {
+            return {
+                app: foundApp,
+                level: 'primaria',
+                grade: grade
+            };
+        }
     }
-    const foundApp = appCollection.find(app => app.id === appId);
-    if (foundApp) {
-        return { app: foundApp, level, grade, subjectId };
+
+    if (level === 'eso') {
+        for (const subjectKey in esoApps[grade]) {
+            const subjectApps = esoApps[grade][subjectKey] || [];
+            const foundApp = subjectApps.find(app => app.id === id);
+            if (foundApp) {
+                return {
+                    app: foundApp,
+                    level: 'eso',
+                    grade: grade,
+                    subjectId: subjectKey
+                };
+            }
+        }
     }
-    return null;
+
+    return null; // Si no encuentra nada, devuelve null
 };

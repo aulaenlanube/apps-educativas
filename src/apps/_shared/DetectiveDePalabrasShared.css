@@ -1,0 +1,267 @@
+/* src/apps/_shared/DetectiveDePalabrasShared.css */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+ES:wght@100..400&display=swap');
+
+.detective-container {
+    font-family: 'Lexend', sans-serif;
+    width: 100%;
+    max-width: 800px;
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 auto;
+}
+
+.detective-container .detective-title {
+    font-family: 'Fredoka One', cursive;
+}
+
+.detective-container .instrucciones {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.detective-container .mode-selection {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.detective-container .btn-mode {
+    background: #f0f4f8;
+    color: #4a5568;
+    border: 1px solid #dcdfe6;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+.detective-container .btn-mode:hover,
+.detective-container .btn-mode.active {
+    background: #673de6;
+    color: white;
+    border-color: #673de6;
+}
+
+.font-slider-container {
+    margin: 20px 0;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.font-slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6c757d;
+    padding: 0 5px;
+    margin-bottom: 5px;
+}
+
+input[type="range"].font-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #dee2e6;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+input[type="range"].font-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: #673de6;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    margin-top: -8px; 
+}
+
+input[type="range"].font-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #673de6;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.detective-frase-container {
+    font-size: 2.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    user-select: none;
+    line-height: 1.6;
+    /* CAMBIO: Colores de la caja de Ordena la Frase */
+    background-color: #fef4e8;
+    border: 2px dashed #f8c99b;
+}
+
+.detective-container.font-cursive .detective-letra {
+    font-family: 'Playwrite ES', cursive;
+    font-size: 1.1em;
+}
+
+.detective-container.font-uppercase .detective-letra {
+    text-transform: uppercase;
+}
+
+.detective-letra {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.detective-separador {
+    display: inline-block;
+    width: 6px;
+    height: 40px;
+    background-color: #ff6b81;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin: 0 4px;
+    cursor: pointer;
+    animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+    from { transform: scaleY(0); }
+    to { transform: scaleY(1); }
+}
+
+.detective-container .controles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detective-container button {
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.2em;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    color: white;
+    background-color: #4a90e2; /* Color azul del botón Comprobar */
+    transition: background-color 0.2s; /* Transición más simple */
+    margin: 0 10px;
+}
+
+/* CAMBIO: Estado hover para el botón principal */
+.detective-container button:hover {
+    background-color: #357ABD;
+}
+
+/* CAMBIO: Colores para los botones secundarios */
+.detective-container .btn-siguiente,
+.detective-container .btn-otra-frase {
+    background-color: #d97706;
+}
+
+.detective-container .btn-siguiente:hover,
+.detective-container .btn-otra-frase:hover {
+    background-color: #935106;
+}
+
+.detective-container .oculto {
+    display: none;
+}
+
+.detective-feedback {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 20px;
+    min-height: 28px;
+}
+
+.detective-feedback.correcto {
+    color: #2e7d32;
+}
+
+.detective-feedback.incorrecto {
+    color: #c62828;
+}
+
+.detective-separador.correcto {
+    background-color: #2ecc71;
+}
+
+.detective-separador.incorrecto {
+    background-color: #e74c3c;
+}
+
+.detective-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    font-size: 1.1em;
+    color: #4a90e2;
+    font-weight: 600;
+}
+
+.detective-container .test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #4a5568;
+}
+
+.detective-container .progress-bar-container {
+    width: 100%;
+    background: #e0e0e0;
+    border-radius: 10px;
+    height: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.detective-container .progress-bar {
+    height: 100%;
+    background: #4a90e2;
+    border-radius: 10px;
+    transition: width 0.3s ease-in-out;
+}
+
+.detective-container.test-results .score {
+    font-size: 2rem;
+    margin: 20px 0;
+}
+.detective-container.test-results .score span {
+    font-size: 2.5rem;
+    color: #673de6;
+}
+.detective-container.test-results .results-summary {
+    margin-top: 20px;
+    text-align: left;
+}
+.detective-container.test-results .result-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+.detective-container.test-results .test-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
