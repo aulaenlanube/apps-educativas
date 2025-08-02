@@ -1,12 +1,282 @@
 [
-    ["Para resolver una ecuación de segundo grado, primero la igualamos a cero.", "Identificamos los coeficientes 'a', 'b' y 'c' de la ecuación.", "Aplicamos la fórmula general para encontrar las posibles soluciones.", "El valor del discriminante nos indicará si tiene dos, una o ninguna solución real.", "Finalmente, calculamos los valores de la incógnita 'x'."],
-    ["Un sistema de ecuaciones lineales se puede resolver gráficamente.", "Cada ecuación del sistema representa una línea recta en el plano cartesiano.", "Dibujamos ambas rectas utilizando una tabla de valores para cada una.", "El punto donde las dos rectas se cortan es la solución del sistema.", "Las coordenadas de ese punto de intersección son los valores de 'x' e 'y'."],
-    ["El teorema de Tales nos permite calcular longitudes en figuras semejantes.", "Afirma que si dos rectas son cortadas por varias rectas paralelas, los segmentos que se forman son proporcionales.", "Se aplica a menudo en triángulos en posición de Tales.", "Gracias a este teorema, podemos medir alturas inaccesibles, como la de un edificio.", "Solo necesitamos medir su sombra y la sombra de un objeto de altura conocida."],
-    ["Una función cuadrática tiene la forma 'y = ax² + bx + c'.", "Su representación gráfica es siempre una parábola.", "Si el coeficiente 'a' es positivo, la parábola se abre hacia arriba.", "Si 'a' es negativo, se abre hacia abajo.", "El vértice de la parábola es su punto más bajo o más alto."],
-    ["La estadística nos ayuda a interpretar datos sobre una población.", "A menudo, es imposible estudiar a toda la población, por lo que se elige una muestra representativa.", "Recogemos los datos de la muestra mediante encuestas o experimentos.", "Calculamos parámetros como la media o la desviación típica para resumir la información.", "Estos resultados nos permiten hacer inferencias sobre el comportamiento de toda la población."],
-    ["Una progresión aritmética es una sucesión de números con una diferencia constante.", "Cada término se obtiene sumando una cantidad fija, llamada diferencia, al término anterior.", "Podemos calcular cualquier término de la sucesión con una fórmula general.", "También existe una fórmula para sumar los 'n' primeros términos de la progresión.", "Un ejemplo es la sucesión de los números pares: 2, 4, 6, 8..."],
-    ["Para calcular el volumen de una pirámide, necesitamos el área de su base y su altura.", "La fórmula establece que el volumen es un tercio del producto del área de la base por la altura.", "Primero, calculamos el área de la base, que puede ser un cuadrado, un triángulo, etc.", "Luego, medimos la altura de la pirámide desde el vértice hasta la base.", "Finalmente, aplicamos la fórmula para obtener el volumen en unidades cúbicas."],
-    ["El interés compuesto se diferencia del interés simple en que los intereses se reinvierten.", "Al final de cada período, los intereses generados se suman al capital inicial.", "En el siguiente período, el nuevo capital, que es mayor, vuelve a generar intereses.", "Esto provoca un crecimiento exponencial del dinero a lo largo del tiempo.", "Es el principio fundamental de muchos productos de ahorro e inversión a largo plazo."],
-    ["La probabilidad de un suceso compuesto se puede calcular conociendo la de los sucesos simples.", "Si dos sucesos son independientes, la probabilidad de que ocurran ambos es el producto de sus probabilidades.", "Por ejemplo, la probabilidad de sacar dos seises al lanzar dos dados es 1/6 multiplicado por 1/6.", "Para calcular la probabilidad de que ocurra uno u otro suceso, se utiliza el principio de adición."],
-    ["La trigonometría nos permite resolver cualquier tipo de triángulo.", "El seno, el coseno y la tangente relacionan los ángulos agudos con los lados de un triángulo rectángulo.", "El teorema del seno y el teorema del coseno se aplican a triángulos que no son rectángulos.", "Estas herramientas son muy útiles en campos como la topografía o la navegación.", "Permiten calcular distancias y ángulos de forma indirecta."]
+  [
+    "Los números racionales son aquellos que pueden expresarse como una fracción.",
+    "Tanto los números enteros como los decimales exactos y periódicos son racionales.",
+    "El conjunto de los números racionales se representa con la letra Q.",
+    "Entre dos números racionales cualesquiera, siempre existe otro número racional.",
+    "Son fundamentales para expresar partes de una unidad o proporciones."
+  ],
+  [
+    "Los números irracionales tienen infinitas cifras decimales no periódicas.",
+    "Esto significa que no se pueden expresar como una fracción exacta.",
+    "El número Pi (π) es el ejemplo más famoso de número irracional.",
+    "La raíz cuadrada de dos también es un número irracional.",
+    "El conjunto de los números racionales e irracionales forma los números reales."
+  ],
+  [
+    "Las potencias de exponente entero nos permiten expresar multiplicaciones repetidas.",
+    "Una base elevada a un exponente positivo indica cuántas veces se multiplica la base por sí misma.",
+    "Un exponente negativo equivale al inverso de la base con exponente positivo.",
+    "Cualquier número (distinto de cero) elevado a la potencia cero es igual a uno.",
+    "Las propiedades de las potencias simplifican mucho los cálculos con números grandes o pequeños."
+  ],
+  [
+    "La notación científica es una forma abreviada de escribir números muy grandes o muy pequeños.",
+    "Consiste en expresar un número como un producto de un número entre 1 y 10 y una potencia de 10.",
+    "La distancia de la Tierra al Sol, por ejemplo, se escribe más fácilmente en notación científica.",
+    "Si el exponente de 10 es positivo, representa un número grande.",
+    "Si el exponente es negativo, representa un número pequeño, cercano a cero."
+  ],
+  [
+    "Un polinomio es una expresión algebraica formada por la suma o resta de monomios.",
+    "El grado de un polinomio es el mayor de los grados de los monomios que lo componen.",
+    "Para sumar o restar polinomios, se agrupan y operan los monomios que son semejantes.",
+    "La multiplicación de polinomios se realiza aplicando la propiedad distributiva.",
+    "Factorizar un polinomio es expresarlo como un producto de polinomios de menor grado."
+  ],
+  [
+    "Las identidades notables son igualdades algebraicas que se cumplen siempre.",
+    "El cuadrado de una suma (a+b)² es igual al cuadrado del primero, más el doble del primero por el segundo, más el cuadrado del segundo.",
+    "El cuadrado de una resta (a-b)² sigue una regla similar, pero el doble producto es negativo.",
+    "La identidad de suma por diferencia (a+b)(a-b) es igual a la diferencia de los cuadrados (a²-b²).",
+    "Conocerlas nos permite agilizar mucho los cálculos algebraicos."
+  ],
+  [
+    "Una ecuación de segundo grado completa tiene la forma ax² + bx + c = 0.",
+    "Para resolverla, se utiliza una fórmula general que proporciona los valores de la incógnita x.",
+    "El término dentro de la raíz en la fórmula, b²-4ac, se llama discriminante.",
+    "Si el discriminante es positivo, la ecuación tiene dos soluciones reales distintas.",
+    "Si es cero, tiene una solución real doble, y si es negativo, no tiene soluciones reales."
+  ],
+  [
+    "Un sistema de dos ecuaciones lineales con dos incógnitas representa dos rectas en el plano.",
+    "Resolver el sistema consiste en encontrar el punto de corte de ambas rectas.",
+    "Existen tres métodos principales para resolverlos: sustitución, igualación y reducción.",
+    "Si las rectas son paralelas, el sistema no tiene solución.",
+    "Si las rectas son coincidentes, el sistema tiene infinitas soluciones."
+  ],
+  [
+    "El método de sustitución para resolver sistemas de ecuaciones es muy intuitivo.",
+    "Primero, se despeja una de las incógnitas en una de las ecuaciones.",
+    "Luego, se sustituye la expresión obtenida en la otra ecuación.",
+    "Esto nos deja con una ecuación de primer grado con una sola incógnita, que ya podemos resolver.",
+    "Finalmente, se calcula el valor de la primera incógnita sustituyendo el valor hallado."
+  ],
+  [
+    "Una función es una relación entre dos magnitudes, donde a cada valor de la primera le corresponde un único valor de la segunda.",
+    "La variable 'x' se llama variable independiente, y la 'y' se llama variable dependiente.",
+    "La expresión analítica de una función es la fórmula que relaciona ambas variables.",
+    "Su gráfica en los ejes cartesianos nos permite visualizar su comportamiento.",
+    "El dominio es el conjunto de valores que puede tomar la variable independiente."
+  ],
+  [
+    "Una función afín es aquella cuya representación gráfica es una línea recta.",
+    "Su expresión algebraica es de la forma y = mx + n.",
+    "El número 'm' se llama pendiente y nos indica la inclinación de la recta.",
+    "El número 'n' es la ordenada en el origen, el punto donde la recta corta al eje Y.",
+    "Si la pendiente 'm' es positiva, la función es creciente."
+  ],
+  [
+    "El Teorema de Tales se aplica cuando dos rectas secantes son cortadas por varias rectas paralelas.",
+    "Afirma que los segmentos que se forman en una de las rectas secantes son proporcionales a los segmentos correspondientes en la otra.",
+    "Permite calcular longitudes en figuras donde aparecen triángulos en posición de Tales.",
+    "Es una herramienta fundamental en el estudio de la semejanza de figuras.",
+    "Gracias a este teorema, se pudo medir la altura de las pirámides de Egipto."
+  ],
+  [
+    "Dos figuras son semejantes si tienen la misma forma pero diferente tamaño.",
+    "Esto significa que sus ángulos correspondientes son iguales.",
+    "Además, sus lados correspondientes deben ser proporcionales.",
+    "La razón de semejanza es el número por el que hay que multiplicar las longitudes de una figura para obtener las de la otra.",
+    "Los mapas y las maquetas son ejemplos de figuras semejantes a la realidad."
+  ],
+  [
+    "El área de un polígono es la medida de la superficie encerrada por sus lados.",
+    "Para polígonos regulares, el área se calcula multiplicando el perímetro por la apotema y dividiendo por dos.",
+    "La apotema es la distancia desde el centro del polígono al punto medio de un lado.",
+    "Para polígonos irregulares, a menudo se recurre a la triangulación.",
+    "La unidad de área en el Sistema Internacional es el metro cuadrado (m²)."
+  ],
+  [
+    "Los cuerpos de revolución se generan al girar una figura plana alrededor de un eje.",
+    "Un cilindro se forma al girar un rectángulo alrededor de uno de sus lados.",
+    "Un cono se genera al girar un triángulo rectángulo alrededor de uno de sus catetos.",
+    "Una esfera se obtiene al girar un semicírculo alrededor de su diámetro.",
+    "Su superficie es curva, a diferencia de los poliedros."
+  ],
+  [
+    "El volumen de un cuerpo es la cantidad de espacio tridimensional que ocupa.",
+    "El volumen de un prisma o un cilindro se calcula multiplicando el área de la base por la altura.",
+    "El volumen de una pirámide o un cono es un tercio del área de la base por la altura.",
+    "La unidad de volumen en el Sistema Internacional es el metro cúbico (m³).",
+    "Un litro de capacidad equivale exactamente a un decímetro cúbico de volumen."
+  ],
+  [
+    "La estadística es la rama de las matemáticas que se ocupa de los datos.",
+    "La frecuencia absoluta de un dato es el número de veces que aparece.",
+    "La frecuencia relativa es el cociente entre la frecuencia absoluta y el número total de datos.",
+    "La media, la mediana y la moda son parámetros de centralización que resumen la información.",
+    "Los gráficos estadísticos nos permiten visualizar los datos de forma rápida y clara."
+  ],
+  [
+    "La probabilidad de un suceso se calcula aplicando la regla de Laplace.",
+    "Esta regla dice que la probabilidad es el cociente entre el número de casos favorables y el número de casos posibles.",
+    "Solo es aplicable si todos los sucesos elementales son equiprobables.",
+    "Por ejemplo, la probabilidad de sacar un 5 al lanzar un dado es de un sexto.",
+    "El valor de la probabilidad siempre está entre 0 (suceso imposible) y 1 (suceso seguro)."
+  ],
+  [
+    "Los radicales son expresiones que contienen una raíz.",
+    "Para simplificar un radical, se extraen todos los factores posibles del radicando.",
+    "Dos radicales son semejantes si tienen el mismo índice y el mismo radicando.",
+    "Solo se pueden sumar o restar radicales que sean semejantes.",
+    "Racionalizar consiste en eliminar las raíces del denominador de una fracción."
+  ],
+  [
+    "La división de polinomios sigue un algoritmo similar a la división de números enteros.",
+    "Se ordenan los polinomios dividendo y divisor de mayor a menor grado.",
+    "Se divide el primer término del dividendo entre el primer término del divisor.",
+    "El resultado se multiplica por el divisor y se resta del dividendo.",
+    "Se repite el proceso hasta que el grado del resto sea menor que el del divisor."
+  ],
+  [
+    "La regla de Ruffini es un método abreviado para dividir un polinomio por un binomio de la forma (x-a).",
+    "Solo se utilizan los coeficientes del polinomio dividendo.",
+    "Permite encontrar el cociente y el resto de la división de forma muy rápida.",
+    "También es muy útil para encontrar las raíces de un polinomio.",
+    "El teorema del resto afirma que el resto de esta división es igual al valor numérico del polinomio en 'a'."
+  ],
+  [
+    "El método de igualación para resolver sistemas consiste en despejar la misma incógnita en ambas ecuaciones.",
+    "Una vez despejada, se igualan las dos expresiones obtenidas.",
+    "Esto da lugar a una ecuación de primer grado con una sola incógnita.",
+    "Se resuelve esta ecuación y se obtiene el valor de una de las variables.",
+    "Finalmente, se sustituye este valor en una de las expresiones despejadas para hallar la otra variable."
+  ],
+  [
+    "Una función lineal es aquella cuya gráfica es una recta que pasa por el origen de coordenadas.",
+    "Su expresión es de la forma y = mx, donde 'm' es la pendiente.",
+    "La pendiente indica la variación de 'y' por cada unidad que aumenta 'x'.",
+    "Representa una relación de proporcionalidad directa entre las dos variables.",
+    "Un ejemplo sería la relación entre la distancia recorrida y el tiempo a velocidad constante."
+  ],
+  [
+    "La semejanza de triángulos es una herramienta muy potente en geometría.",
+    "Dos triángulos son semejantes si tienen sus ángulos iguales y sus lados proporcionales.",
+    "El criterio más utilizado es el de tener dos ángulos iguales.",
+    "Si dos triángulos son semejantes, la razón entre sus áreas es el cuadrado de la razón de semejanza.",
+    "Nos permite calcular distancias inaccesibles, como la altura de un edificio."
+  ],
+  [
+    "El área de un círculo se calcula con la famosa fórmula A = πr².",
+    "Esto significa que el área es igual al número pi multiplicado por el radio al cuadrado.",
+    "El radio es la distancia del centro a cualquier punto de la circunferencia.",
+    "El número pi es irracional y su valor aproximado es 3,1416.",
+    "Esta fórmula es una de las más importantes de la geometría."
+  ],
+  [
+    "La esfera es el cuerpo geométrico que se genera al girar un semicírculo alrededor de su diámetro.",
+    "Todos los puntos de su superficie están a la misma distancia del centro.",
+    "El área de una esfera se calcula con la fórmula A = 4πr².",
+    "Su volumen se calcula con la fórmula V = (4/3)πr³.",
+    "La Tierra tiene una forma muy parecida a la de una esfera."
+  ],
+  [
+    "La mediana es un parámetro estadístico de posición.",
+    "Para calcularla, primero hay que ordenar todos los datos de menor a mayor.",
+    "La mediana es el valor que ocupa la posición central.",
+    "Si el número de datos es par, la mediana es la media de los dos valores centrales.",
+    "A diferencia de la media, no se ve afectada por valores extremos muy atípicos."
+  ],
+  [
+    "Un diagrama de árbol es una herramienta para analizar experimentos compuestos.",
+    "Se utiliza para contar el número de resultados posibles y calcular probabilidades.",
+    "Se parte de un tronco y se van añadiendo ramas para cada una de las posibilidades.",
+    "La probabilidad de un camino completo se calcula multiplicando las probabilidades de sus ramas.",
+    "Es muy útil para visualizar problemas de probabilidad condicionada."
+  ],
+  [
+    "La sucesión de Fibonacci es una de las más famosas de las matemáticas.",
+    "Comienza con los números 0 y 1.",
+    "Cada término siguiente se calcula como la suma de los dos anteriores.",
+    "Así, la sucesión es 0, 1, 1, 2, 3, 5, 8, 13...",
+    "Aparece en muchas configuraciones biológicas, como en las ramas de los árboles o las conchas."
+  ],
+  [
+    "Un sistema de ecuaciones es incompatible si no tiene ninguna solución.",
+    "Gráficamente, esto corresponde a dos rectas que son paralelas.",
+    "Al intentar resolverlo por cualquier método, se llega a una contradicción, como 0 = 5.",
+    "Esto indica que no existe ningún par de números que satisfaga ambas ecuaciones a la vez.",
+    "Un ejemplo sería el sistema x + y = 3 y x + y = 7."
+  ],
+  [
+    "La pendiente de una recta nos informa sobre su inclinación.",
+    "Si la pendiente es positiva, la recta es creciente (sube de izquierda a derecha).",
+    "Si la pendiente es negativa, la recta es decreciente (baja de izquierda a derecha).",
+    "Si la pendiente es cero, la recta es horizontal.",
+    "Dos rectas son paralelas si tienen la misma pendiente."
+  ],
+  [
+    "La trigonometría es la rama de las matemáticas que estudia las relaciones entre los lados y los ángulos de los triángulos.",
+    "Las razones trigonométricas principales son el seno, el coseno y la tangente.",
+    "Se definen en un triángulo rectángulo a partir de sus catetos y su hipotenusa.",
+    "El seno de un ángulo es el cateto opuesto dividido por la hipotenusa.",
+    "Es fundamental en campos como la física, la ingeniería o la astronomía."
+  ],
+  [
+    "El volumen de una pirámide es siempre un tercio del volumen de un prisma con la misma base y altura.",
+    "Esta relación fue demostrada por los matemáticos de la antigua Grecia.",
+    "La fórmula para el volumen es V = (Área de la base * altura) / 3.",
+    "Esto se aplica tanto a pirámides de base triangular como cuadrada o de cualquier otro polígono.",
+    "Lo mismo ocurre con el cono, cuyo volumen es un tercio del cilindro correspondiente."
+  ],
+  [
+    "La frecuencia relativa de un dato se obtiene dividiendo su frecuencia absoluta entre el número total de datos.",
+    "Es un número entre 0 y 1 que indica la proporción en que aparece un dato.",
+    "Si se multiplica por 100, se obtiene el porcentaje.",
+    "La suma de todas las frecuencias relativas de un estudio es siempre igual a 1.",
+    "Permite comparar la distribución de datos de muestras de diferente tamaño."
+  ],
+  [
+    "Los sucesos aleatorios son aquellos cuyo resultado no se puede predecir con certeza.",
+    "Lanzar una moneda al aire y observar si sale cara o cruz es un suceso aleatorio.",
+    "El espacio muestral es el conjunto de todos los resultados posibles de un experimento.",
+    "Un suceso elemental es cada uno de los resultados individuales.",
+    "La probabilidad nos ayuda a cuantificar la incertidumbre de estos sucesos."
+  ],
+  [
+    "La factorización de un polinomio consiste en expresarlo como producto de factores irreducibles.",
+    "Es un proceso similar a la descomposición de un número en factores primos.",
+    "Las raíces del polinomio son los valores que hacen que su valor numérico sea cero.",
+    "Si 'a' es una raíz del polinomio P(x), entonces (x-a) es un factor de P(x).",
+    "La regla de Ruffini es una herramienta muy útil para encontrar las raíces enteras."
+  ],
+  [
+    "El método de reducción es muy eficiente para resolver sistemas de ecuaciones.",
+    "Busca obtener dos ecuaciones equivalentes en las que una de las incógnitas tenga coeficientes opuestos.",
+    "Para ello, se multiplican una o ambas ecuaciones por los números adecuados.",
+    "Al sumar las dos nuevas ecuaciones, esa incógnita se elimina.",
+    "Esto nos deja una ecuación sencilla con una sola incógnita para resolver."
+  ],
+  [
+    "Una función cuadrática es aquella cuya expresión es un polinomio de segundo grado.",
+    "Su representación gráfica es una curva llamada parábola.",
+    "Si el coeficiente del término x² es positivo, la parábola se abre hacia arriba.",
+    "Si es negativo, se abre hacia abajo.",
+    "El vértice de la parábola es su punto más bajo o más alto."
+  ],
+  [
+    "La escala en un mapa es la razón de semejanza entre el mapa y la realidad.",
+    "Una escala 1:50.000 significa que 1 cm en el mapa equivale a 50.000 cm en la realidad.",
+    "La escala gráfica es una línea dividida en segmentos que indica las distancias reales.",
+    "Permite realizar mediciones de distancias directamente sobre el mapa.",
+    "Es un elemento fundamental para la correcta interpretación de cualquier mapa."
+  ],
+  [
+    "Un histograma es un gráfico estadístico que se utiliza para representar datos agrupados en intervalos.",
+    "Está formado por rectángulos contiguos cuya base es la amplitud del intervalo.",
+    "La altura de cada rectángulo es proporcional a la frecuencia del intervalo.",
+    "Se utiliza para variables cuantitativas continuas, como la altura o el peso.",
+    "Nos da una idea clara de la distribución de los datos."
+  ]
 ]

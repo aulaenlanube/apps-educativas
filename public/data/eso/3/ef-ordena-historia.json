@@ -1,12 +1,282 @@
 [
-    ["La planificación de un entrenamiento es esencial para lograr una mejora progresiva.", "Primero, se debe establecer un objetivo claro y realista.", "Luego, se diseña un programa que trabaje las cualidades físicas necesarias.", "Es importante aplicar los principios de sobrecarga, progresión y especificidad.", "Finalmente, se deben incluir periodos de descanso para permitir la recuperación.", "Evaluar los resultados periódicamente nos permite ajustar el plan."],
-    ["En un ataque de balonmano, el equipo busca crear una situación clara de gol.", "Los jugadores mueven el balón rápidamente de un lado a otro para descolocar a la defensa.", "Realizan cruces y fintas para generar espacios libres.", "El pivote juega un papel clave fijando a los defensores centrales.", "La jugada suele culminar con un lanzamiento a portería desde una posición favorable."],
-    ["La resistencia anaeróbica permite realizar esfuerzos de muy alta intensidad durante un corto periodo de tiempo.", "En este tipo de esfuerzos, el cuerpo no tiene suficiente oxígeno para producir energía.", "Un ejemplo claro es una carrera de velocidad de 100 metros lisos.", "Este esfuerzo genera una 'deuda de oxígeno' que debe ser recuperada tras la prueba.", "El entrenamiento de series cortas y rápidas ayuda a mejorarla."],
-    ["El bádminton es un deporte de raqueta que requiere una gran condición física y técnica.", "Se juega con un volante o pluma, que tiene una trayectoria de vuelo muy particular.", "El objetivo es que el volante caiga en el campo del contrario pasando por encima de la red.", "Combina movimientos rápidos, saltos y golpeos precisos.", "Un partido se disputa al mejor de tres sets de 21 puntos."],
-    ["La reanimación cardiopulmonar (RCP) es una técnica de primeros auxilios que puede salvar vidas.", "Se aplica cuando una persona no respira y su corazón ha dejado de latir.", "Primero, debemos asegurar la zona y comprobar la consciencia de la víctima.", "Luego, colocamos nuestras manos en el centro de su pecho y realizamos compresiones torácicas.", "Es crucial llamar a los servicios de emergencia lo antes posible.", "La RCP mantiene el flujo de sangre oxigenada al cerebro hasta que llegue la ayuda."],
-    ["La defensa en zona en baloncesto implica que cada jugador defiende un área específica de la cancha.", "No se persigue a un atacante concreto por todo el campo.", "Los jugadores se mueven de forma coordinada para cerrar los espacios al equipo rival.", "Es una defensa muy efectiva contra equipos que no tienen buenos tiradores exteriores.", "Requiere una gran comunicación y trabajo en equipo entre los defensores."],
-    ["La expresión corporal nos permite comunicar ideas y emociones sin usar palabras.", "Utilizamos nuestro cuerpo, nuestros gestos y nuestros movimientos como lenguaje.", "Actividades como el mimo o la danza son formas de expresión corporal.", "Nos ayuda a desarrollar la creatividad y a desinhibirnos.", "También mejora nuestro conocimiento y control sobre nuestro propio cuerpo."],
-    ["El judo es un arte marcial y deporte de combate de origen japonés.", "Su objetivo principal es derribar al oponente utilizando su propia fuerza.", "Una vez en el suelo, se busca inmovilizarlo o forzar su rendición.", "El respeto hacia el rival y el autocontrol son valores fundamentales en el judo.", "Los judokas se clasifican por cinturones de colores según su nivel técnico."],
-    ["Una dieta equilibrada es la que nos aporta todos los nutrientes en la proporción adecuada.", "Los hidratos de carbono deben ser la principal fuente de energía.", "Las proteínas son necesarias para el crecimiento y la reparación de tejidos.", "Las grasas nos aportan energía y son esenciales para algunas funciones vitales.", "Las vitaminas y minerales, presentes en frutas y verduras, regulan el funcionamiento del cuerpo."],
-    ["Las actividades en el medio natural, como el senderismo, nos ofrecen múltiples beneficios.", "Mejoran nuestra condición física al caminar por terrenos variados.", "Nos permiten disfrutar de la naturaleza y aprender a respetarla.", "Reducen el estrés y mejoran nuestro bienestar mental.", "Es importante planificar bien la ruta y llevar el equipamiento adecuado."]
+  [
+    "La condición física es el estado de forma de nuestro cuerpo.",
+    "Se compone de varias capacidades físicas básicas que podemos entrenar.",
+    "Estas capacidades son la resistencia, la fuerza, la velocidad y la flexibilidad.",
+    "Un buen desarrollo de todas ellas nos permite realizar actividades con eficacia y sin fatiga excesiva.",
+    "Mejorar nuestra condición física es fundamental para mantener una buena salud."
+  ],
+  [
+    "La resistencia cardiovascular es la capacidad de realizar un esfuerzo prolongado.",
+    "El sistema cardiorrespiratorio, corazón y pulmones, es el principal implicado.",
+    "Actividades como correr, nadar o ir en bicicleta son ideales para mejorarla.",
+    "Un buen entrenamiento de resistencia fortalece el corazón y aumenta la capacidad pulmonar.",
+    "Esto nos permite cansarnos menos en nuestras actividades diarias."
+  ],
+  [
+    "La fuerza muscular es la capacidad de nuestros músculos para superar una resistencia.",
+    "Existen diferentes tipos, como la fuerza máxima, la fuerza explosiva y la fuerza-resistencia.",
+    "La fuerza máxima es la mayor fuerza que podemos aplicar en una sola contracción.",
+    "Se puede entrenar con nuestro propio peso corporal, con gomas elásticas o con pesas.",
+    "Tener una musculatura fuerte ayuda a proteger nuestras articulaciones y a mantener una buena postura."
+  ],
+  [
+    "La velocidad es la capacidad de realizar uno o varios movimientos en el menor tiempo posible.",
+    "La velocidad de reacción es el tiempo que tardamos en responder a un estímulo, como un pistoletazo de salida.",
+    "La velocidad de desplazamiento es la capacidad de recorrer una distancia en el mínimo tiempo.",
+    "Se entrena con series cortas de ejercicios realizados a máxima intensidad.",
+    "Es una cualidad determinante en muchos deportes."
+  ],
+  [
+    "La flexibilidad permite a nuestras articulaciones moverse en todo su rango de movimiento.",
+    "Depende de la elasticidad de los músculos y de la movilidad de las articulaciones.",
+    "Los estiramientos son el método principal para mejorarla y mantenerla.",
+    "Una buena flexibilidad es crucial para prevenir lesiones musculares y articulares.",
+    "Se debe trabajar de forma suave y progresiva, sin sentir dolor."
+  ],
+  [
+    "El calentamiento es imprescindible antes de cualquier actividad física intensa.",
+    "Su objetivo es preparar al organismo para el esfuerzo, aumentando la temperatura corporal.",
+    "Consta de una parte general, con carrera suave y movilidad articular, y una específica.",
+    "La parte específica incluye ejercicios similares a los que se van a realizar después.",
+    "Un calentamiento adecuado reduce el riesgo de lesiones y mejora el rendimiento."
+  ],
+  [
+    "El baloncesto es un deporte de equipo que requiere una gran coordinación y agilidad.",
+    "La defensa individual consiste en que cada jugador se encarga de marcar a un atacante concreto.",
+    "La defensa en zona implica que cada jugador es responsable de defender un área del campo.",
+    "Un contraataque es una acción ofensiva rápida que se realiza tras recuperar el balón.",
+    "El bloqueo es un movimiento ofensivo para liberar a un compañero del marcaje de su defensor."
+  ],
+  [
+    "En voleibol, la recepción del saque es la primera acción defensiva.",
+    "El toque de antebrazos es el gesto técnico más seguro para recibir el balón.",
+    "Una buena recepción permite al colocador preparar el ataque en condiciones óptimas.",
+    "El objetivo es enviar el balón alto y hacia el centro de la red.",
+    "Es una de las acciones más importantes para poder construir una jugada ofensiva."
+  ],
+  [
+    "El remate en voleibol es la acción de ataque por excelencia.",
+    "Consiste en golpear el balón con fuerza por encima de la red hacia el campo contrario.",
+    "Requiere una buena coordinación entre la carrera, el salto y el golpeo.",
+    "El bloqueo es la acción defensiva que intenta contrarrestar el remate.",
+    "Un remate bien ejecutado es muy difícil de defender."
+  ],
+  [
+    "El atletismo en pista cubierta se realiza en una pista de 200 metros de longitud.",
+    "Las curvas de esta pista tienen una inclinación llamada peralte.",
+    "El peralte ayuda a los atletas a contrarrestar la fuerza centrífuga en las curvas.",
+    "Algunas pruebas, como el lanzamiento de jabalina, no se realizan en pista cubierta.",
+    "Las competiciones son muy emocionantes por la cercanía del público."
+  ],
+  [
+    "La carrera de vallas es una prueba de velocidad que combina la carrera con el salto.",
+    "Los atletas deben superar una serie de diez obstáculos sin derribarlos.",
+    "Requiere una técnica muy depurada para pasar la valla perdiendo la mínima velocidad.",
+    "La coordinación y el ritmo entre vallas son claves para el éxito.",
+    "Es una de las pruebas más técnicas y espectaculares del atletismo."
+  ],
+  [
+    "La nutrición deportiva es fundamental para optimizar el rendimiento.",
+    "Los hidratos de carbono complejos, como la pasta o el arroz, son la principal fuente de energía.",
+    "Las proteínas son necesarias para la recuperación y reparación de los músculos tras el esfuerzo.",
+    "Las grasas saludables, las vitaminas y los minerales también son imprescindibles.",
+    "La comida previa a la competición debe ser rica en carbohidratos y baja en grasas."
+  ],
+  [
+    "Los primeros auxilios ante una lesión deportiva son cruciales.",
+    "El protocolo RICE es una guía básica para las primeras 48 horas.",
+    "Significa Reposo, Hielo (Ice), Compresión y Elevación de la zona afectada.",
+    "Ayuda a reducir la inflamación, el dolor y acelera la recuperación.",
+    "Ante una lesión grave, siempre se debe buscar atención médica profesional."
+  ],
+  [
+    "El 'Ultimate' es un deporte de equipo que se juega con un disco volador.",
+    "Se basa en el juego limpio, ya que es autoarbitrado por los propios jugadores.",
+    "El objetivo es avanzar pasándose el disco hasta recibirlo en la zona de anotación rival.",
+    "El jugador que tiene el disco no puede correr, solo puede pivotar.",
+    "Fomenta la comunicación, el respeto y la responsabilidad."
+  ],
+  [
+    "El acrosport es una disciplina que combina acrobacia, coreografía y fuerza.",
+    "Se realizan pirámides y figuras humanas que requieren una gran coordinación grupal.",
+    "El portor es la persona que sirve de base y soporta el peso.",
+    "El ágil es la persona que trepa y se coloca en las posiciones más altas.",
+    "La seguridad y la confianza en los compañeros son absolutamente esenciales."
+  ],
+  [
+    "El entrenamiento en circuito es un método muy eficaz para mejorar la condición física general.",
+    "Consiste en realizar una serie de ejercicios o 'estaciones' de forma consecutiva.",
+    "Se trabaja con poco tiempo de descanso entre cada estación.",
+    "Permite mejorar la fuerza y la resistencia cardiovascular al mismo tiempo.",
+    "Es un método de entrenamiento muy versátil y ameno."
+  ],
+  [
+    "El sistema aeróbico de obtención de energía utiliza el oxígeno.",
+    "Es la vía principal de energía en ejercicios de larga duración y baja intensidad.",
+    "Actividades como el maratón o el ciclismo dependen fundamentalmente de este sistema.",
+    "Utiliza como combustible principalmente las grasas y los hidratos de carbono.",
+    "Su desarrollo nos permite ser más eficientes en esfuerzos prolongados."
+  ],
+  [
+    "El sistema anaeróbico proporciona energía sin necesidad de oxígeno.",
+    "Se activa en esfuerzos muy intensos y de corta duración.",
+    "Existen dos tipos: el anaeróbico aláctico y el láctico.",
+    "El sistema anaeróbico láctico produce ácido láctico, que causa la fatiga muscular.",
+    "Un sprint de 100 metros es un ejemplo claro de esfuerzo anaeróbico."
+  ],
+  [
+    "La táctica deportiva es el conjunto de acciones que un equipo realiza para sorprender al rival.",
+    "Se planifica cómo atacar y cómo defender en función de las circunstancias del juego.",
+    "Implica tomar decisiones inteligentes durante la competición.",
+    "Una buena táctica puede permitir a un equipo inferior vencer a uno teóricamente superior.",
+    "Requiere de la inteligencia y la comunicación de todos los jugadores."
+  ],
+  [
+    "Los deportes de raqueta, como el tenis o el pádel, desarrollan la coordinación óculo-manual.",
+    "Esta es la habilidad de coordinar los movimientos de la mano con la información visual.",
+    "Es fundamental para golpear el móvil en el momento y lugar precisos.",
+    "También se mejora la capacidad de reacción y la agilidad.",
+    "Son deportes muy completos a nivel físico y mental."
+  ],
+  [
+    "La escalada es una actividad en el medio natural que consiste en ascender por paredes rocosas.",
+    "Requiere fuerza, flexibilidad, equilibrio y una gran concentración mental.",
+    "La seguridad es el aspecto más importante, utilizando siempre arnés, cuerda y casco.",
+    "Fomenta valores como la superación personal y el compañerismo.",
+    "Existen rocódromos para poder practicarla en un entorno controlado."
+  ],
+  [
+    "El bádminton es el deporte de raqueta más rápido del mundo.",
+    "El volante puede alcanzar velocidades superiores a los 400 km/h en un remate.",
+    "Requiere una excelente condición física, con gran velocidad de reacción y agilidad.",
+    "A pesar de la velocidad del volante, es un deporte sin contacto y con muy bajo riesgo de lesión.",
+    "Se juega en una pista más pequeña que la de tenis."
+  ],
+  [
+    "El calentamiento específico debe incluir ejercicios directamente relacionados con el deporte a practicar.",
+    "Si vamos a jugar al fútbol, incluiremos pases y tiros a portería a baja intensidad.",
+    "Si vamos a jugar al voleibol, realizaremos toques de dedos y de antebrazos.",
+    "Prepara los grupos musculares y las articulaciones específicas que más se van a utilizar.",
+    "Se realiza después del calentamiento general y antes de la parte principal."
+  ],
+  [
+    "La frecuencia cardíaca máxima es el número máximo de latidos que tu corazón puede alcanzar.",
+    "Una fórmula aproximada para calcularla es 220 menos tu edad.",
+    "Es un dato importante para planificar la intensidad de los entrenamientos.",
+    "Trabajar en diferentes zonas de frecuencia cardíaca produce distintas adaptaciones.",
+    "Nunca se debe intentar alcanzar la frecuencia cardíaca máxima sin supervisión."
+  ],
+  [
+    "El 'core' o núcleo corporal es el centro de estabilidad de nuestro cuerpo.",
+    "Está formado por los músculos abdominales, lumbares, de la pelvis y la cadera.",
+    "Un 'core' fuerte mejora la postura, previene el dolor de espalda y aumenta el rendimiento.",
+    "Ejercicios como las planchas o los puentes de glúteo son excelentes para fortalecerlo.",
+    "Es la base para transmitir la fuerza del tren inferior al superior."
+  ],
+  [
+    "Los deportes alternativos son modalidades que utilizan materiales y reglas no convencionales.",
+    "Buscan fomentar la participación, la cooperación y la diversión por encima de la competición.",
+    "El 'colpbol', el 'kin-ball' o el 'datchball' son algunos ejemplos.",
+    "Son una excelente forma de descubrir nuevas formas de disfrutar de la actividad física.",
+    "Promueven la inclusión y la igualdad de oportunidades."
+  ],
+  [
+    "La propiocepción es el sentido que nos informa de la posición de nuestro cuerpo en el espacio.",
+    "Nos permite saber dónde están nuestras articulaciones y músculos sin necesidad de mirarlos.",
+    "Es fundamental para el equilibrio y la coordinación de los movimientos.",
+    "Entrenar la propiocepción, por ejemplo con superficies inestables, ayuda a prevenir esguinces.",
+    "Es como el 'sexto sentido' de nuestro sistema locomotor."
+  ],
+  [
+    "En balonmano, la defensa 6-0 es un sistema defensivo muy común.",
+    "Los seis jugadores de campo se colocan en una línea cerca del área de 6 metros.",
+    "Es una defensa muy sólida en el centro, pero más vulnerable en los laterales.",
+    "Su objetivo es impedir los lanzamientos desde la zona central.",
+    "Requiere una gran comunicación y desplazamientos laterales de los defensores."
+  ],
+  [
+    "El salto de altura es una prueba atlética que consiste en superar un listón horizontal.",
+    "Los atletas realizan una carrera de aproximación para coger impulso.",
+    "La técnica más utilizada actualmente es el 'Fosbury Flop', saltando de espaldas.",
+    "Requiere una combinación de velocidad, potencia de salto y una técnica muy depurada.",
+    "El saltador tiene tres intentos para superar cada altura."
+  ],
+  [
+    "La relajación es una parte importante de la vuelta a la calma.",
+    "Ayuda a reducir la tensión muscular y a disminuir la frecuencia cardíaca.",
+    "Técnicas como la respiración profunda o la relajación muscular progresiva son muy efectivas.",
+    "Contribuye a la recuperación física y al bienestar mental después del esfuerzo.",
+    "Dedicar unos minutos a la relajación mejora la calidad del descanso."
+  ],
+  [
+    "El 'trekking' o senderismo es una actividad física que se realiza en el medio natural.",
+    "Consiste en caminar por senderos, montañas o bosques.",
+    "Es una excelente forma de mejorar la resistencia aeróbica y disfrutar del paisaje.",
+    "Es fundamental planificar la ruta, llevar calzado adecuado y consultar la previsión meteorológica.",
+    "Nos permite conectar con la naturaleza y reducir el estrés."
+  ],
+  [
+    "El sistema de ataque 3-3 en baloncesto es una disposición inicial muy equilibrada.",
+    "Consiste en tres jugadores situados por fuera de la línea de tres puntos.",
+    "Los otros dos jugadores se colocan cerca de la canasta, en los postes bajo o alto.",
+    "Permite una buena circulación del balón y opciones tanto de tiro exterior como de juego interior.",
+    "A partir de esta disposición se pueden realizar múltiples jugadas."
+  ],
+  [
+    "El método de entrenamiento Fartlek, que significa 'juego de velocidad' en sueco.",
+    "Consiste en realizar cambios de ritmo de forma improvisada durante una carrera continua.",
+    "Se alternan periodos de carrera rápida con otros de carrera más lenta de recuperación.",
+    "Es una forma amena y efectiva de mejorar la resistencia aeróbica y anaeróbica.",
+    "Se puede adaptar al terreno, por ejemplo, corriendo más rápido en las cuestas."
+  ],
+  [
+    "La biomecánica es la ciencia que estudia el movimiento del cuerpo humano.",
+    "Aplica los principios de la física y la mecánica al análisis de los gestos deportivos.",
+    "Ayuda a entender cómo mejorar la técnica para ser más eficientes y prevenir lesiones.",
+    "Por ejemplo, analiza el ángulo de lanzamiento óptimo o la postura ideal para correr.",
+    "Es una herramienta clave para la mejora del rendimiento deportivo."
+  ],
+  [
+    "El judo es un arte marcial y un deporte de combate de origen japonés.",
+    "Su objetivo es derribar al oponente utilizando su propia fuerza y equilibrio.",
+    "Una vez en el suelo, se pueden utilizar técnicas de inmovilización o estrangulación.",
+    "El respeto por el rival y el autocontrol son valores fundamentales en el judo.",
+    "Los practicantes visten un traje llamado 'judogi'."
+  ],
+  [
+    "La nutrición post-entrenamiento es clave para una buena recuperación.",
+    "Justo después del ejercicio, el cuerpo es como una esponja para absorber nutrientes.",
+    "Es importante reponer los depósitos de energía con hidratos de carbono.",
+    "También se necesita proteína para reparar las fibras musculares dañadas.",
+    "Una buena opción sería una pieza de fruta y un yogur."
+  ],
+  [
+    "Las habilidades gimnásticas básicas son la base de la gimnasia deportiva.",
+    "Incluyen equilibrios, giros, saltos y volteos.",
+    "El pino, la rueda lateral o el volteo adelante son ejemplos de estas habilidades.",
+    "Desarrollan la fuerza, la flexibilidad, la agilidad y el control corporal.",
+    "Su aprendizaje debe ser progresivo y con las ayudas adecuadas para garantizar la seguridad."
+  ],
+  [
+    "El 'kayak' es una pequeña embarcación que se impulsa con una pala de doble hoja.",
+    "El palista va sentado y utiliza la pala alternativamente a cada lado.",
+    "Se puede practicar en aguas tranquilas, como lagos, o en aguas bravas, en los ríos.",
+    "Es una excelente actividad para trabajar la fuerza del tronco y los brazos.",
+    "Permite explorar paisajes naturales desde una perspectiva diferente."
+  ],
+  [
+    "La psicología deportiva estudia los factores mentales que influyen en el rendimiento.",
+    "La motivación, la concentración y la gestión de la ansiedad son aspectos clave.",
+    "Técnicas como la visualización o el establecimiento de objetivos ayudan a los deportistas.",
+    "Una mente fuerte es tan importante como un cuerpo entrenado para alcanzar el éxito.",
+    "Ayuda a los atletas a disfrutar más del deporte y a superar los momentos difíciles."
+  ],
+  [
+    "El entrenamiento interválico de alta intensidad, o HIIT, es un método de entrenamiento muy popular.",
+    "Consiste en alternar periodos muy cortos de ejercicio a máxima intensidad con breves descansos.",
+    "Es una forma muy eficiente de mejorar la capacidad cardiovascular y quemar calorías en poco tiempo.",
+    "Debido a su alta intensidad, no es adecuado para principiantes.",
+    "Una sesión de HIIT suele durar entre 15 y 30 minutos."
+  ]
 ]

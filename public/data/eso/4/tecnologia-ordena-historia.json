@@ -1,12 +1,282 @@
 [
-    ["La domótica busca automatizar y controlar de forma inteligente una vivienda.", "Permite gestionar la iluminación, la climatización o la seguridad de forma remota.", "Se utilizan sensores para recoger información del entorno, como la temperatura o la presencia.", "Un sistema central o controlador procesa esta información y da órdenes a los actuadores.", "Por ejemplo, puede bajar las persianas automáticamente si detecta demasiado sol.", "El objetivo es mejorar el confort, la seguridad y la eficiencia energética de la casa."],
-    ["Un robot seguidor de líneas es un proyecto clásico de robótica educativa.", "Está equipado con sensores de infrarrojos en su parte inferior para detectar una línea negra.", "El microcontrolador, que es el cerebro del robot, lee la información de los sensores.", "Si un sensor detecta la línea, el programa ordena al motor de ese lado que gire más despacio o se pare.", "De esta forma, el robot va corrigiendo su trayectoria para mantenerse siempre sobre la línea.", "Este proyecto permite aprender conceptos básicos de sensores, actuadores y programación."],
-    ["La comunicación entre dispositivos en internet se basa en el modelo cliente-servidor.", "Cuando escribimos una dirección en nuestro navegador, nuestro ordenador actúa como cliente.", "Realiza una petición a un ordenador remoto llamado servidor, donde se aloja la página web.", "El servidor recibe la petición, busca la información solicitada y la envía de vuelta.", "Nuestro navegador recibe la información y la muestra en la pantalla.", "Todo este proceso ocurre en apenas unos segundos."],
-    ["La inteligencia artificial (IA) es una rama de la informática que busca imitar la inteligencia humana.", "Existen diferentes enfoques, como el aprendizaje automático o 'machine learning'.", "En este enfoque, el sistema aprende a partir de una gran cantidad de datos, sin ser programado explícitamente.", "Por ejemplo, una IA puede aprender a reconocer imágenes de gatos tras analizar miles de ellas.", "La IA ya está presente en muchas aplicaciones, como los asistentes de voz o los sistemas de recomendación."],
-    ["La generación de electricidad en una central térmica convencional utiliza combustibles fósiles.", "Primero, se quema el combustible (carbón, gas o petróleo) en una caldera para calentar agua.", "El agua se convierte en vapor a alta presión.", "Este vapor se dirige hacia una turbina y la hace girar a gran velocidad.", "La turbina está conectada a un generador (alternador) que transforma la energía mecánica en energía eléctrica.", "Este proceso genera gases de efecto invernadero que contribuyen al cambio climático."],
-    ["La hidráulica es la tecnología que utiliza un fluido, normalmente aceite, para transmitir potencia.", "Se basa en el principio de Pascal, que dice que la presión se transmite por igual en todo el fluido.", "Un sistema hidráulico utiliza una bomba para generar presión en el fluido.", "Esta presión se utiliza para mover cilindros o motores hidráulicos con una gran fuerza.", "Se emplea en maquinaria pesada como excavadoras, grúas o frenos de camión."],
-    ["El lenguaje HTML es la base sobre la que se construyen todas las páginas web.", "Utiliza un sistema de etiquetas para marcar los diferentes elementos del contenido.", "Por ejemplo, la etiqueta `<p>` se usa para definir un párrafo y `<h1>` para un título principal.", "El navegador web es el encargado de interpretar estas etiquetas y mostrar la página con el formato correcto.", "HTML define la estructura, pero no el aspecto visual de la página."],
-    ["Un programa informático es una secuencia de instrucciones que un ordenador puede ejecutar.", "Antes de escribir el código, es importante diseñar un algoritmo.", "Un algoritmo es un plan detallado de los pasos a seguir para resolver un problema.", "Una vez tenemos el algoritmo, lo traducimos a un lenguaje de programación como Python.", "Finalmente, el programa se compila o interpreta para que el ordenador pueda entenderlo y ejecutarlo."],
-    ["La realidad virtual (VR) busca sumergir al usuario en un entorno digital completamente nuevo.", "El usuario utiliza unas gafas especiales que bloquean la visión del mundo real.", "Estas gafas muestran imágenes generadas por ordenador que crean una sensación de inmersión.", "Los sensores de movimiento en las gafas y los mandos permiten al usuario interactuar con este mundo virtual.", "Se utiliza en videojuegos, simuladores de entrenamiento o visitas virtuales a museos."],
-    ["El reciclaje de aparatos electrónicos es de vital importancia para el medio ambiente.", "Estos dispositivos contienen materiales valiosos como el oro o el cobre, que se pueden recuperar.", "También contienen sustancias tóxicas, como el mercurio o el plomo, que no deben acabar en los vertederos.", "Al reciclarlos, se evita la contaminación del suelo y el agua.", "Además, se reduce la necesidad de extraer nuevas materias primas de la naturaleza.", "Deben ser depositados en puntos limpios o tiendas especializadas para su correcta gestión."]
+  [
+    "La neumática es la tecnología que emplea el aire comprimido para producir trabajo.",
+    "Un compresor se encarga de tomar aire de la atmósfera y aumentar su presión.",
+    "Este aire se almacena en un depósito y se distribuye a través de tuberías.",
+    "Las válvulas controlan el paso del aire hacia los actuadores, como los cilindros.",
+    "Los cilindros transforman la energía del aire comprimido en un movimiento lineal."
+  ],
+  [
+    "La hidráulica utiliza fluidos, normalmente aceite, para transmitir energía.",
+    "Al ser los líquidos prácticamente incompresibles, permite transmitir fuerzas muy grandes.",
+    "Una bomba se encarga de generar la presión en el circuito hidráulico.",
+    "El principio de Pascal es la base de su funcionamiento.",
+    "Se utiliza en maquinaria pesada como excavadoras o en los frenos de los coches."
+  ],
+  [
+    "La electrónica digital trabaja con señales que solo pueden tomar dos valores: 0 y 1.",
+    "Estos dos estados se corresponden con 'apagado' y 'encendido' o 'falso' y 'verdadero'.",
+    "Las puertas lógicas (AND, OR, NOT) son los componentes básicos que procesan estas señales.",
+    "Combinando estas puertas se pueden construir circuitos que realizan operaciones complejas.",
+    "Toda la informática moderna se basa en los principios de la electrónica digital."
+  ],
+  [
+    "Un robot es una máquina programable capaz de interactuar con su entorno.",
+    "Los sensores son los 'sentidos' del robot, permitiéndole captar información.",
+    "El controlador o cerebro procesa la información de los sensores y ejecuta el programa.",
+    "Los actuadores, como motores o pinzas, son los 'músculos' que le permiten moverse y actuar.",
+    "La robótica industrial ha revolucionado las cadenas de montaje en las fábricas."
+  ],
+  [
+    "La programación es el proceso de escribir un conjunto de instrucciones para un ordenador.",
+    "Un algoritmo es la secuencia de pasos lógicos y finitos que resuelve un problema.",
+    "El lenguaje de programación es el idioma que utilizamos para escribir estas instrucciones.",
+    "Un programa no es más que un algoritmo escrito en un lenguaje de programación.",
+    "La depuración es el proceso de encontrar y corregir los errores en un programa."
+  ],
+  [
+    "Internet es una red mundial descentralizada que conecta millones de dispositivos.",
+    "La información viaja por la red dividida en pequeños paquetes.",
+    "Cada dispositivo conectado tiene una dirección IP única que lo identifica.",
+    "Los routers son los encargados de dirigir estos paquetes por el camino más eficiente.",
+    "Protocolos como el TCP/IP establecen las reglas para que esta comunicación sea posible."
+  ],
+  [
+    "El diseño asistido por ordenador (CAD) ha sustituido al dibujo técnico tradicional.",
+    "Permite crear modelos de objetos en 2D y 3D con una precisión milimétrica.",
+    "Facilita enormemente la modificación de los diseños y la creación de variantes.",
+    "Se pueden realizar simulaciones para comprobar la resistencia de una pieza antes de fabricarla.",
+    "Es una herramienta imprescindible en ingeniería, arquitectura y diseño de productos."
+  ],
+  [
+    "La impresión 3D es una tecnología de fabricación aditiva.",
+    "Construye un objeto tridimensional a partir de un modelo digital, añadiendo material capa por capa.",
+    "Permite crear formas muy complejas que serían imposibles de fabricar con métodos tradicionales.",
+    "Se utiliza para la creación rápida de prototipos, la fabricación de piezas personalizadas y en medicina.",
+    "Está cambiando la forma en que pensamos sobre la producción y la logística."
+  ],
+  [
+    "Las energías renovables son aquellas que provienen de fuentes naturales inagotables.",
+    "La energía solar fotovoltaica transforma directamente la luz del sol en electricidad.",
+    "La energía eólica utiliza la fuerza del viento para mover las palas de un aerogenerador.",
+    "La energía geotérmica aprovecha el calor del interior de la Tierra.",
+    "Son la clave para un futuro energético sostenible y para combatir el cambio climático."
+  ],
+  [
+    "Un sistema de control de lazo cerrado utiliza la retroalimentación para ser más preciso.",
+    "Mide constantemente la variable que quiere controlar a través de un sensor.",
+    "Compara esta medida con el valor deseado o consigna.",
+    "Si existe una diferencia o error, el sistema actúa para corregirlo.",
+    "El termostato de una calefacción es un ejemplo clásico de este tipo de control."
+  ],
+  [
+    "La domótica es la automatización de las viviendas y edificios.",
+    "Permite controlar de forma centralizada y remota la iluminación, la climatización o la seguridad.",
+    "Busca aumentar el confort, la eficiencia energética y la accesibilidad.",
+    "El 'Internet de las Cosas' (IoT) es la tecnología que permite la conexión de los objetos del hogar.",
+    "Podemos controlar nuestra casa desde nuestro teléfono móvil estemos donde estemos."
+  ],
+  [
+    "Un microcontrolador es un pequeño ordenador contenido en un único chip.",
+    "Incluye un procesador, memoria y periféricos de entrada y salida.",
+    "Está diseñado para realizar una tarea específica de forma muy eficiente.",
+    "Plataformas como Arduino han hecho que la programación de microcontroladores sea accesible para todos.",
+    "Son el cerebro de la mayoría de los aparatos electrónicos que nos rodean, desde un microondas hasta un coche."
+  ],
+  [
+    "HTML es el lenguaje de marcado que se utiliza para estructurar el contenido de una página web.",
+    "Utiliza etiquetas para definir los diferentes elementos, como títulos, párrafos o enlaces.",
+    "CSS (Cascading Style Sheets) es el lenguaje que se utiliza para dar estilo y diseño a la página.",
+    "Con CSS podemos definir los colores, las fuentes, los tamaños y la disposición de los elementos.",
+    "HTML sería el esqueleto de la página, mientras que CSS sería la ropa y el maquillaje."
+  ],
+  [
+    "La electricidad se puede generar de muchas formas, transformando otro tipo de energía.",
+    "En una central térmica, se quema un combustible para calentar agua y generar vapor.",
+    "Este vapor a alta presión mueve una turbina que está acoplada a un generador.",
+    "El generador, por inducción electromagnética, transforma la energía mecánica en energía eléctrica.",
+    "Este principio de turbina-generador es común a la mayoría de las centrales eléctricas."
+  ],
+  [
+    "Las máquinas eléctricas se dividen en generadores, motores y transformadores.",
+    "Un generador convierte la energía mecánica en energía eléctrica.",
+    "Un motor realiza el proceso inverso, convierte la energía eléctrica en energía mecánica.",
+    "Un transformador modifica los niveles de voltaje de la corriente alterna.",
+    "Son fundamentales para la generación, el transporte y el uso de la energía eléctrica."
+  ],
+  [
+    "La corriente alterna (CA) es aquella en la que los electrones cambian de sentido periódicamente.",
+    "Es la que llega a los enchufes de nuestras casas.",
+    "Su principal ventaja es que se puede transportar a largas distancias con pocas pérdidas.",
+    "Los transformadores permiten elevar su voltaje para el transporte y reducirlo para el consumo.",
+    "Fue la gran apuesta de Nikola Tesla frente a la corriente continua de Edison."
+  ],
+  [
+    "La inteligencia artificial (IA) es la rama de la informática que busca crear máquinas que puedan 'pensar'.",
+    "El aprendizaje automático ('machine learning') es una subdisciplina de la IA.",
+    "Consiste en que los ordenadores aprendan a partir de datos, sin ser programados explícitamente.",
+    "Los sistemas de reconocimiento facial o los traductores automáticos se basan en esta tecnología.",
+    "Está transformando todos los sectores de la economía y la sociedad."
+  ],
+  [
+    "Un circuito integrado o chip es una pastilla de silicio que contiene miles de millones de transistores.",
+    "La invención del circuito integrado permitió la miniaturización de los aparatos electrónicos.",
+    "Es el componente fundamental de los ordenadores, los móviles y cualquier dispositivo digital.",
+    "La Ley de Moore predijo que el número de transistores en un chip se duplicaría cada dos años.",
+    "Esta predicción se ha cumplido durante décadas, impulsando la revolución digital."
+  ],
+  [
+    "La comunicación inalámbrica nos permite transmitir información sin necesidad de cables.",
+    "Tecnologías como el Wi-Fi o el Bluetooth utilizan ondas de radio para enviar y recibir datos.",
+    "El Wi-Fi se utiliza para crear redes locales inalámbricas con acceso a Internet.",
+    "El Bluetooth se emplea para conectar dispositivos a corta distancia, como auriculares o teclados.",
+    "La telefonía móvil es el ejemplo más extendido de comunicación inalámbrica."
+  ],
+  [
+    "El GPS (Global Positioning System) es un sistema que permite determinar nuestra posición en la Tierra.",
+    "Se basa en una red de satélites que orbitan el planeta.",
+    "Nuestro receptor GPS mide el tiempo que tarda en llegar la señal desde varios satélites.",
+    "Mediante la triangulación, puede calcular nuestra latitud, longitud y altitud con gran precisión.",
+    "Ha revolucionado la navegación y la logística."
+  ],
+  [
+    "La ciberseguridad es el conjunto de prácticas para proteger los sistemas informáticos y la información.",
+    "Un cortafuegos o 'firewall' actúa como una barrera que controla el tráfico de red.",
+    "El cifrado o encriptación convierte la información en un código para que no pueda ser leída por terceros.",
+    "Las actualizaciones de software son cruciales para corregir vulnerabilidades de seguridad.",
+    "El eslabón más débil en la ciberseguridad suele ser el propio usuario."
+  ],
+  [
+    "La biotecnología utiliza organismos vivos o sus componentes para crear productos útiles.",
+    "La producción de antibióticos mediante hongos es un ejemplo clásico.",
+    "La ingeniería genética permite modificar el ADN de los organismos para conferirles nuevas propiedades.",
+    "Se utiliza para crear plantas más resistentes a las plagas o para producir fármacos.",
+    "Es un campo con un enorme potencial, pero que también plantea importantes debates éticos."
+  ],
+  [
+    "Los materiales compuestos están formados por la unión de dos o más materiales diferentes.",
+    "El objetivo es combinar las mejores propiedades de cada uno para crear un material superior.",
+    "La fibra de carbono, por ejemplo, combina fibras muy resistentes en una matriz de resina ligera.",
+    "Se obtienen así materiales muy ligeros y a la vez muy resistentes.",
+    "Se utilizan en la industria aeroespacial, en la Fórmula 1 o en bicicletas de alta gama."
+  ],
+  [
+    "La obsolescencia programada es la práctica de diseñar productos para que tengan una vida útil limitada.",
+    "Esto obliga al consumidor a comprar un nuevo producto antes de lo necesario.",
+    "Puede ser por un fallo programado, por la imposibilidad de repararlo o por incompatibilidad de software.",
+    "Genera una enorme cantidad de residuos electrónicos y un consumo insostenible de recursos.",
+    "El derecho a reparar es un movimiento que lucha contra esta práctica."
+  ],
+  [
+    "Un diagrama de flujo es una representación gráfica de un algoritmo.",
+    "Utiliza símbolos estandarizados para representar las diferentes acciones y decisiones.",
+    "Los óvalos indican el inicio y el final del proceso.",
+    "Los rectángulos representan las operaciones o acciones a realizar.",
+    "Los rombos se utilizan para las bifurcaciones o decisiones."
+  ],
+  [
+    "La realidad virtual (VR) sumerge al usuario en un entorno completamente digital.",
+    "Mediante un casco o unas gafas, se bloquea la visión del mundo real.",
+    "Los sensores de movimiento permiten que el usuario se mueva e interactúe dentro de este mundo virtual.",
+    "Se utiliza en videojuegos, simuladores de entrenamiento y terapias psicológicas.",
+    "Busca crear una experiencia totalmente inmersiva."
+  ],
+  [
+    "La realidad aumentada (AR) superpone información digital sobre el entorno real.",
+    "A diferencia de la VR, no nos aísla del mundo, sino que lo enriquece con una capa de información.",
+    "Utiliza la cámara de un dispositivo, como un móvil, para ver el mundo real.",
+    "Sobre esa imagen, se proyectan gráficos, textos o animaciones.",
+    "Juegos como Pokémon GO o los filtros de las redes sociales son ejemplos populares."
+  ],
+  [
+    "El 'Big Data' se refiere al análisis de conjuntos de datos enormes y complejos.",
+    "Estos datos se generan a un ritmo vertiginoso desde múltiples fuentes, como redes sociales o sensores.",
+    "Las herramientas tradicionales no son capaces de procesar tal volumen de información.",
+    "El análisis de 'Big Data' permite encontrar patrones, tendencias y correlaciones.",
+    "Las empresas lo utilizan para entender mejor a sus clientes y optimizar sus servicios."
+  ],
+  [
+    "La computación en la nube o 'cloud computing' es un modelo de prestación de servicios a través de internet.",
+    "En lugar de tener los programas y los datos en nuestro propio ordenador, están en servidores remotos.",
+    "Podemos acceder a ellos desde cualquier dispositivo con conexión a internet.",
+    "Servicios como Google Drive, Spotify o Netflix se basan en la nube.",
+    "Ofrece ventajas como la flexibilidad, la escalabilidad y el ahorro de costes en infraestructura."
+  ],
+  [
+    "El 'blockchain' o cadena de bloques es una tecnología de registro distribuido.",
+    "Es como un libro de contabilidad digital que es compartido y sincronizado entre muchos ordenadores.",
+    "Cada transacción o 'bloque' se enlaza criptográficamente con el anterior, formando una cadena.",
+    "Esto hace que sea extremadamente seguro y prácticamente imposible de modificar.",
+    "Es la tecnología que está detrás de las criptomonedas como el Bitcoin."
+  ],
+  [
+    "Un motor de cuatro tiempos es el tipo de motor de combustión más común.",
+    "Su ciclo de funcionamiento se completa en cuatro fases: admisión, compresión, explosión y escape.",
+    "En la admisión, la mezcla de aire y combustible entra en el cilindro.",
+    "En la compresión, el pistón sube y comprime la mezcla.",
+    "La bujía provoca una chispa que hace explotar la mezcla, empujando el pistón hacia abajo."
+  ],
+  [
+    "La energía solar térmica aprovecha el calor del sol para calentar un fluido.",
+    "Los colectores solares, de color oscuro, absorben la radiación solar.",
+    "En su interior, un circuito de agua o un anticongelante se calienta.",
+    "Este fluido caliente se utiliza para la calefacción o para el agua caliente sanitaria.",
+    "Es una forma muy eficiente y sostenible de obtener energía térmica."
+  ],
+  [
+    "Un transistor es el componente electrónico fundamental de la era digital.",
+    "Es un dispositivo semiconductor que puede actuar como un interruptor o como un amplificador.",
+    "Como interruptor, puede estar en estado de 'encendido' (1) o 'apagado' (0).",
+    "Esta capacidad de conmutación es la base de la lógica digital.",
+    "Los microprocesadores contienen miles de millones de transistores microscópicos."
+  ],
+  [
+    "La nanotecnología es la manipulación de la materia a escala atómica y molecular.",
+    "Trabaja en la escala del nanómetro, que es la milmillonésima parte de un metro.",
+    "A esta escala, los materiales pueden presentar propiedades completamente nuevas.",
+    "Tiene aplicaciones potenciales en campos como la medicina, la electrónica o los materiales.",
+    "Por ejemplo, se investiga en nanorobots que puedan atacar células cancerosas."
+  ],
+  [
+    "Las máquinas-herramienta son máquinas que se utilizan para fabricar otras piezas.",
+    "El torno hace girar la pieza sobre su eje mientras una herramienta de corte le da forma.",
+    "La fresadora, en cambio, hace girar la herramienta de corte para mecanizar una pieza fija.",
+    "El taladro de columna permite realizar agujeros de forma precisa y vertical.",
+    "El control numérico por computadora (CNC) ha automatizado el funcionamiento de estas máquinas."
+  ],
+  [
+    "La palanca es una máquina simple que nos permite amplificar una fuerza.",
+    "Se basa en el principio del momento: Fuerza por su distancia al fulcro.",
+    "Existen tres géneros de palanca, dependiendo de la posición relativa de la fuerza, la resistencia y el fulcro.",
+    "Un balancín es una palanca de primer género.",
+    "Una carretilla es una palanca de segundo género."
+  ],
+  [
+    "Los engranajes son ruedas dentadas que transmiten el movimiento circular entre ejes.",
+    "La relación de transmisión depende del número de dientes de cada engranaje.",
+    "Si un engranaje pequeño mueve a uno grande, la velocidad se reduce y el par de fuerza aumenta.",
+    "Un tren de engranajes es una combinación de varios engranajes para conseguir grandes reducciones.",
+    "Son un componente esencial en la caja de cambios de un coche."
+  ],
+  [
+    "La fibra óptica es un medio de transmisión de datos que utiliza la luz.",
+    "Consiste en un hilo muy fino de vidrio o plástico por el que viajan pulsos de luz.",
+    "La luz queda confinada en el interior de la fibra gracias al fenómeno de la reflexión total interna.",
+    "Permite transmitir una gran cantidad de información a muy alta velocidad y a largas distancias.",
+    "Es la tecnología que está detrás de las conexiones a internet de alta velocidad."
+  ],
+  [
+    "La ofimática es el conjunto de herramientas de software utilizadas en las tareas de oficina.",
+    "Un procesador de textos, como Microsoft Word, se usa para crear y editar documentos.",
+    "Una hoja de cálculo, como Excel, permite organizar datos y realizar cálculos complejos.",
+    "Un programa de presentaciones, como PowerPoint, sirve para crear diapositivas visuales.",
+    "Estas herramientas han aumentado enormemente la productividad en el entorno de trabajo."
+  ],
+  [
+    "El reciclaje es un proceso cuyo objetivo es convertir residuos en nuevos productos.",
+    "Ayuda a reducir el consumo de nuevas materias primas y la energía necesaria para fabricar.",
+    "También disminuye la contaminación del aire y del agua y la cantidad de basura en los vertederos.",
+    "La separación de los residuos en casa en los diferentes contenedores es el primer paso.",
+    "Es una de las claves de la economía circular."
+  ]
 ]

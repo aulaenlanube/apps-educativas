@@ -1,42 +1,282 @@
 [
-  "El punto es el elemento más simple de la expresión plástica.",
-  "La línea puede ser recta, curva, quebrada u ondulada.",
-  "Los colores primarios son el rojo, el amarillo y el azul.",
-  "Al mezclar dos colores primarios se obtiene un color secundario.",
-  "El verde, el naranja y el violeta son colores secundarios.",
-  "El círculo cromático organiza los colores de forma circular.",
-  "La textura de una superficie puede ser lisa, rugosa, suave o áspera.",
-  "El volumen representa el espacio que ocupa un objeto tridimensional.",
-  "El dibujo es la base de muchas obras de arte.",
-  "La perspectiva nos ayuda a representar la profundidad en un plano.",
-  "Un bodegón es una obra de arte que representa objetos inanimados.",
-  "El retrato es la representación artística de una persona.",
-  "La acuarela es una técnica de pintura que utiliza colores diluidos en agua.",
-  "El collage es una técnica que consiste en pegar diferentes materiales.",
-  "La simetría es la correspondencia exacta en la forma y el tamaño.",
-  "El punto de fuga es un punto donde convergen las líneas paralelas.",
-  "Los colores cálidos, como el rojo, transmiten energía y cercanía.",
-  "Los colores fríos, como el azul, transmiten calma y lejanía.",
-  "La forma es el aspecto exterior de los objetos.",
-  "El claroscuro es el uso de contrastes entre luces y sombras.",
-  "La escultura es el arte de modelar, tallar o esculpir figuras.",
-  "El boceto es un dibujo rápido que sirve como prueba inicial.",
-  "La composición es la forma de organizar los elementos en una obra.",
-  "El color blanco se produce por la presencia de todos los colores.",
-  "El color negro es la ausencia de luz y color.",
-  "El plano es una superficie de dos dimensiones: alto y ancho.",
-  "La línea de horizonte separa el cielo de la tierra en un paisaje.",
-  "La pintura al óleo utiliza pigmentos mezclados con aceite.",
-  "Un mosaico se crea uniendo pequeñas piezas de colores.",
-  "El grabado es una técnica de impresión artística.",
-  "La arquitectura es el arte de diseñar y construir edificios.",
-  "El diseño gráfico comunica mensajes visuales.",
-  "La proporción es la relación de tamaño entre las partes de un todo.",
-  "El equilibrio visual hace que una composición se vea estable.",
-  "El ritmo en el arte se crea mediante la repetición de elementos.",
-  "El centro de interés es la parte más importante de una obra.",
-  "La abstracción no representa objetos reconocibles de la realidad.",
-  "Leonardo da Vinci fue un famoso artista del Renacimiento.",
-  "Picasso fue un pintor español y creador del cubismo.",
-  "La fotografía es el arte de capturar imágenes con una cámara."
+  [
+    "La comunicación visual es un proceso de transmisión de ideas a través de la imagen.",
+    "Utiliza un lenguaje propio cuyos elementos son el punto, la línea, la forma y el color.",
+    "A diferencia del lenguaje verbal, puede ser entendido de forma casi universal.",
+    "Un semáforo en rojo, por ejemplo, transmite una orden sin necesidad de palabras.",
+    "Comprender este lenguaje nos ayuda a interpretar el mundo que nos rodea."
+  ],
+  [
+    "La percepción visual es el proceso mediante el cual nuestro cerebro interpreta la información que recibe a través de los ojos.",
+    "No es un proceso pasivo, sino que nuestro cerebro organiza y da sentido a lo que vemos.",
+    "Las leyes de la Gestalt, como la de proximidad o semejanza, explican cómo agrupamos los elementos.",
+    "Las ilusiones ópticas demuestran que nuestra percepción a veces puede ser engañada.",
+    "Entender cómo percibimos es fundamental para los artistas y diseñadores."
+  ],
+  [
+    "La composición es la organización de los elementos visuales dentro de un espacio.",
+    "El objetivo es crear una imagen equilibrada, armoniosa y con un mensaje claro.",
+    "El esquema compositivo es la estructura invisible sobre la que se ordenan las formas.",
+    "Puede ser simple, como uno triangular, o más complejo, como uno en diagonal.",
+    "Una buena composición guía la mirada del espectador a través de la obra."
+  ],
+  [
+    "El peso visual es la capacidad que tiene un elemento para atraer la atención.",
+    "Los colores cálidos, las formas grandes y las texturas rugosas suelen tener más peso visual.",
+    "Un elemento aislado en un espacio vacío también adquiere un gran protagonismo.",
+    "El equilibrio en una composición se logra distribuyendo adecuadamente los pesos visuales.",
+    "Un punto rojo en una composición de tonos azules tendrá un gran peso visual."
+  ],
+  [
+    "El espacio es un elemento fundamental en la composición, tanto el ocupado como el vacío.",
+    "La forma positiva es el espacio ocupado por las figuras principales.",
+    "La forma negativa es el espacio vacío que rodea a esas figuras.",
+    "Jugar con la relación entre la forma positiva y negativa puede crear imágenes muy interesantes.",
+    "En el logotipo de FedEx, por ejemplo, se forma una flecha en el espacio negativo."
+  ],
+  [
+    "El dibujo técnico utiliza sistemas de representación para describir objetos de forma precisa.",
+    "El sistema diédrico utiliza las vistas (alzado, planta, perfil) para definir un objeto.",
+    "La perspectiva axonométrica permite ver el objeto en tres dimensiones en un solo dibujo.",
+    "La perspectiva cónica es la que más se asemeja a la visión humana real.",
+    "Estos sistemas son el lenguaje universal de la arquitectura y la ingeniería."
+  ],
+  [
+    "La perspectiva isométrica es un tipo de representación axonométrica.",
+    "Muestra el objeto en 3D sin que haya una reducción de tamaño con la distancia.",
+    "Los tres ejes espaciales (alto, ancho, profundo) forman ángulos de 120 grados entre sí.",
+    "Las medidas del objeto se representan a la misma escala en los tres ejes.",
+    "Es muy utilizada en videojuegos y en manuales de montaje por su claridad."
+  ],
+  [
+    "La normalización en el dibujo técnico es el conjunto de normas que unifican la representación.",
+    "Define aspectos como los tipos de línea, el formato del papel o la acotación.",
+    "Gracias a la normalización, un plano dibujado en España puede ser entendido en Japón.",
+    "Las normas ISO son las más extendidas a nivel internacional.",
+    "Asegura que la comunicación técnica sea clara, precisa y sin ambigüedades."
+  ],
+  [
+    "La fotografía es el arte de escribir o dibujar con luz.",
+    "La cámara fotográfica es el instrumento que nos permite capturar una imagen.",
+    "El diafragma, la velocidad de obturación y la sensibilidad ISO son los tres pilares de la exposición.",
+    "La composición, el encuadre y la elección del instante son decisiones artísticas clave.",
+    "Una buena fotografía es capaz de contar una historia o transmitir una emoción."
+  ],
+  [
+    "El lenguaje audiovisual combina la imagen en movimiento con el sonido.",
+    "El plano es la unidad narrativa básica, la toma que va desde que se empieza a grabar hasta que se corta.",
+    "El ángulo de la cámara (picado, contrapicado) puede hacer que un personaje parezca más débil o más poderoso.",
+    "Los movimientos de cámara, como el 'travelling', aportan dinamismo a la escena.",
+    "El montaje es el proceso de ordenar los planos para construir el significado final."
+  ],
+  [
+    "El diseño gráfico es la disciplina que comunica mensajes a través de la imagen.",
+    "Un diseñador combina tipografía, color, forma e imagen para transmitir una idea.",
+    "Diseña desde logotipos y carteles hasta páginas web y envases de productos.",
+    "Su objetivo es que la comunicación sea funcional, atractiva y efectiva.",
+    "Es una disciplina presente en casi todos los aspectos de nuestra vida cotidiana."
+  ],
+  [
+    "La publicidad es una forma de comunicación que busca persuadir al público.",
+    "Su objetivo final suele ser la venta de un producto o servicio.",
+    "Utiliza estrategias creativas para llamar la atención y generar un deseo.",
+    "El eslogan es una frase corta y memorable que resume el mensaje de la marca.",
+    "Analizar críticamente los anuncios nos ayuda a ser consumidores más conscientes."
+  ],
+  [
+    "Las vanguardias artísticas del siglo XX supusieron una ruptura total con el arte anterior.",
+    "Los artistas buscaron la experimentación y la originalidad por encima de todo.",
+    "Movimientos como el cubismo, el futurismo o el surrealismo cambiaron las reglas del arte.",
+    "Ya no se buscaba imitar la realidad, sino crear una nueva realidad artística.",
+    "El arte se volvió más conceptual y provocador."
+  ],
+  [
+    "El cubismo, iniciado por Picasso y Braque, revolucionó la forma de representar el espacio.",
+    "Abandonaron la perspectiva cónica tradicional, que solo ofrecía un punto de vista.",
+    "En su lugar, representaban los objetos desde múltiples puntos de vista simultáneamente.",
+    "Descomponían las formas en planos geométricos, como si el objeto estuviera fragmentado.",
+    "El cuadro 'Las señoritas de Aviñón' de Picasso es considerado la obra fundacional del movimiento."
+  ],
+  [
+    "El surrealismo fue un movimiento que exploró el mundo de los sueños y el subconsciente.",
+    "Influenciado por las teorías de Sigmund Freud, buscaba liberar la imaginación de la lógica.",
+    "Artistas como Salvador Dalí, René Magritte o Max Ernst crearon imágenes oníricas e inquietantes.",
+    "Utilizaban técnicas como el automatismo, dibujando sin un control consciente.",
+    "El objetivo era acceder a una realidad superior, una 'surrealidad'."
+  ],
+  [
+    "La abstracción lírica es una vertiente del arte abstracto que se centra en la expresión emocional.",
+    "El artista utiliza el color y el gesto de la pincelada para transmitir sus sentimientos.",
+    "No hay ninguna referencia a la realidad visible; el cuadro es la expresión pura del mundo interior.",
+    "Wassily Kandinsky es considerado el pionero de este tipo de abstracción.",
+    "Buscaba crear una pintura que funcionara como la música, emocionando directamente al alma."
+  ],
+  [
+    "La abstracción geométrica, por el contrario, busca la objetividad y la claridad.",
+    "Utiliza formas geométricas simples, como cuadrados, círculos y líneas rectas.",
+    "Rechaza la expresión de los sentimientos personales en favor de un orden universal.",
+    "Piet Mondrian, con sus composiciones de líneas negras y colores primarios, es su máximo exponente.",
+    "Este movimiento tuvo una gran influencia en el diseño y la arquitectura modernos."
+  ],
+  [
+    "El 'ready-made' o 'arte encontrado' fue una idea revolucionaria de Marcel Duchamp.",
+    "Consistía en tomar un objeto cotidiano, sacarlo de su contexto y presentarlo como una obra de arte.",
+    "El ejemplo más famoso es 'La Fuente', un urinario que firmó y envió a una exposición.",
+    "Duchamp defendía que la idea y la elección del artista eran más importantes que la habilidad manual.",
+    "Este gesto cambió para siempre el concepto de qué es y qué no es arte."
+  ],
+  [
+    "El expresionismo fue un movimiento de vanguardia que surgió en Alemania.",
+    "Buscaba expresar los sentimientos y las emociones del artista de la forma más intensa posible.",
+    "Para ello, distorsionaban las formas y utilizaban colores violentos y arbitrarios.",
+    "Reflejaban la angustia y el malestar de la sociedad de su tiempo.",
+    "El cuadro 'El Grito' de Edvard Munch es un icono del expresionismo."
+  ],
+  [
+    "El 'storyboard' o guion gráfico es una herramienta fundamental en la planificación audiovisual.",
+    "Consiste en una serie de viñetas que representan cada uno de los planos de una secuencia.",
+    "Debajo de cada viñeta se suelen añadir indicaciones sobre el movimiento de cámara o el sonido.",
+    "Permite a todo el equipo visualizar cómo será la escena antes de rodarla.",
+    "Es como un cómic previo a la película."
+  ],
+  [
+    "El plano en el lenguaje audiovisual se clasifica según la porción de realidad que muestra.",
+    "Un gran plano general muestra un paisaje muy amplio, situando la acción.",
+    "Un plano detalle se centra en un objeto o una parte muy pequeña del cuerpo.",
+    "El plano medio muestra a los personajes de cintura para arriba, favoreciendo el diálogo.",
+    "La elección del tipo de plano tiene una intención narrativa y expresiva."
+  ],
+  [
+    "La tipografía es el arte de diseñar las letras.",
+    "La elección de una fuente tipográfica es una decisión de diseño muy importante.",
+    "Una tipografía con serifa, como la Times New Roman, se asocia con la seriedad y la tradición.",
+    "Una tipografía de palo seco, como la Arial, transmite modernidad y claridad.",
+    "La legibilidad es la cualidad más importante que debe tener una buena tipografía."
+  ],
+  [
+    "El cartel es un medio de comunicación gráfico que se exhibe en un lugar público.",
+    "Su objetivo es transmitir un mensaje de forma rápida y directa a un gran número de personas.",
+    "Debe combinar una imagen impactante con un texto breve y claro.",
+    "La jerarquía visual es clave para guiar la lectura del espectador.",
+    "Desde la publicidad hasta la propaganda política, el cartel ha sido un medio muy influyente."
+  ],
+  [
+    "El diseño industrial se encarga de la concepción y desarrollo de los objetos producidos en serie.",
+    "Busca un equilibrio entre la función, la estética y la viabilidad técnica del producto.",
+    "La ergonomía es una parte fundamental, adaptando el objeto al usuario.",
+    "Desde una silla hasta un teléfono móvil, casi todo lo que usamos ha sido diseñado.",
+    "Un buen diseño puede mejorar significativamente nuestra calidad de vida."
+  ],
+  [
+    "La fotografía en blanco y negro no es simplemente una fotografía sin color.",
+    "Al eliminar el color, la atención se centra en otros elementos.",
+    "La composición, la textura, la forma y el contraste de luces y sombras adquieren más importancia.",
+    "Puede transmitir una sensación de atemporalidad, drama o nostalgia.",
+    "Es una opción artística que muchos fotógrafos eligen por su poder expresivo."
+  ],
+  [
+    "La profundidad de campo en fotografía es la zona de la imagen que aparece nítida.",
+    "Puede ser muy amplia, con todo enfocado desde el primer plano hasta el fondo.",
+    "O puede ser muy reducida, con solo un elemento enfocado y el resto desenfocado.",
+    "Se controla principalmente con la apertura del diafragma de la cámara.",
+    "Es un recurso creativo muy potente para dirigir la atención del espectador."
+  ],
+  [
+    "El 'stop motion' es una técnica de animación que crea movimiento a partir de objetos estáticos.",
+    "Se fotografía un objeto, se mueve ligeramente, se vuelve a fotografiar, y así sucesivamente.",
+    "Al proyectar las fotografías a gran velocidad, se crea la ilusión de que el objeto se mueve solo.",
+    "Se pueden animar muñecos de plastilina, marionetas o cualquier tipo de objeto.",
+    "Películas como 'Pesadilla antes de Navidad' utilizan esta laboriosa técnica."
+  ],
+  [
+    "El color corporativo es un elemento clave de la identidad visual de una marca.",
+    "Es el color o la combinación de colores que el público asocia inmediatamente con esa empresa.",
+    "El rojo de Coca-Cola o el azul de Facebook son ejemplos muy claros.",
+    "Ayuda a que la marca sea fácilmente reconocible y a diferenciarla de la competencia.",
+    "La elección del color se basa en la psicología y los valores que la marca quiere transmitir."
+  ],
+  [
+    "La arquitectura moderna, a principios del siglo XX, rompió con los estilos históricos.",
+    "Arquitectos como Le Corbusier defendieron una arquitectura funcional y racional.",
+    "La frase 'la forma sigue a la función' resume su filosofía.",
+    "Utilizaron nuevos materiales como el hormigón armado, el acero y el vidrio.",
+    "Eliminaron la ornamentación superflua en favor de las líneas puras y las formas geométricas."
+  ],
+  [
+    "El 'land art' es una corriente artística que utiliza el propio paisaje como material y soporte.",
+    "Los artistas crean obras directamente en la naturaleza, utilizando elementos como rocas, tierra o ramas.",
+    "Muchas de estas obras son efímeras y desaparecen con el tiempo por la acción de los elementos.",
+    "Busca establecer una nueva relación entre el arte, el ser humano y el entorno natural.",
+    "La obra solo puede ser conocida a través de su documentación fotográfica o de vídeo."
+  ],
+  [
+    "La performance es una forma de arte en la que la acción del artista es la propia obra.",
+    "No hay un objeto artístico tradicional, como una pintura o una escultura.",
+    "El artista utiliza su propio cuerpo y el tiempo como materiales.",
+    "Suele realizarse en directo ante un público.",
+    "Es una forma de arte efímera que busca provocar una reacción en el espectador."
+  ],
+  [
+    "El arte cinético es una corriente que introduce el movimiento en la obra de arte.",
+    "El movimiento puede ser real, producido por motores o por el aire.",
+    "O puede ser virtual, creando una ilusión de movimiento en la percepción del espectador.",
+    "Alexander Calder, con sus famosos 'móviles', es uno de sus representantes más conocidos.",
+    "Busca crear una obra de arte que esté en constante transformación."
+  ],
+  [
+    "La acotación en dibujo técnico es el proceso de indicar las dimensiones de un objeto.",
+    "Se realiza mediante líneas de cota, cifras de cota y símbolos.",
+    "Todas las medidas necesarias para fabricar la pieza deben estar claramente indicadas.",
+    "Las cotas deben ser claras, precisas y no deben repetirse innecesariamente.",
+    "Es una parte fundamental para que el plano sea funcional."
+  ],
+  [
+    "El montaje en el lenguaje audiovisual es el proceso de ordenar los planos y los sonidos.",
+    "Es en la sala de montaje donde la película adquiere su ritmo y su significado final.",
+    "El montador selecciona las mejores tomas y las une para construir las escenas.",
+    "El orden de los planos puede cambiar completamente la percepción de una historia.",
+    "Se le conoce como 'la tercera escritura' de una película, tras el guion y el rodaje."
+  ],
+  [
+    "La marca de una empresa es mucho más que su logotipo.",
+    "Es el conjunto de percepciones y sentimientos que el público tiene sobre ella.",
+    "La identidad visual (logotipo, colores, tipografía) es solo una parte de la marca.",
+    "La calidad del producto, la atención al cliente y los valores de la empresa también la construyen.",
+    "Una marca fuerte genera confianza y fidelidad en los consumidores."
+  ],
+  [
+    "El futurismo fue un movimiento de vanguardia que exaltaba la tecnología y la velocidad.",
+    "Surgió en Italia y glorificaba la máquina, la industria y la guerra.",
+    "Los artistas futuristas intentaban representar el dinamismo y el movimiento en sus obras.",
+    "Utilizaban líneas de fuerza y la repetición de imágenes para crear esta sensación.",
+    "Fue un movimiento muy polémico por su ideología agresiva y su apoyo al fascismo."
+  ],
+  [
+    "El 'op art' u arte óptico es un estilo de arte abstracto que juega con las ilusiones ópticas.",
+    "Utiliza patrones geométricos y contrastes de color para crear una sensación de movimiento o vibración.",
+    "La obra parece cambiar o moverse ante los ojos del espectador.",
+    "Victor Vasarely es considerado el padre de esta corriente artística.",
+    "Es un arte que se basa más en la ciencia de la percepción que en la expresión de sentimientos."
+  ],
+  [
+    "La instalación es una forma de arte contemporáneo que utiliza el espacio como parte de la obra.",
+    "El artista modifica un espacio expositivo para crear una experiencia inmersiva para el espectador.",
+    "El espectador no solo mira la obra, sino que entra en ella y la recorre.",
+    "Puede incluir objetos, esculturas, vídeo, sonido o cualquier otro medio.",
+    "La obra solo existe en ese lugar y durante ese tiempo específico."
+  ],
+  [
+    "El movimiento de la cámara es un recurso expresivo fundamental en el cine.",
+    "La panorámica es un giro de la cámara sobre su propio eje, como si giráramos la cabeza.",
+    "El 'travelling' es un desplazamiento de la cámara, que se mueve junto a la acción.",
+    "El movimiento con grúa permite elevar o descender la cámara para obtener planos espectaculares.",
+    "Estos movimientos aportan dinamismo y subjetividad a la narración."
+  ],
+  [
+    "El diseño de envases o 'packaging' es una especialidad del diseño gráfico e industrial.",
+    "El envase no solo debe proteger el producto, sino también atraer al consumidor.",
+    "En el lineal del supermercado, el envase es el principal vendedor del producto.",
+    "Debe comunicar la identidad de la marca y la información esencial del contenido.",
+    "La sostenibilidad y el uso de materiales reciclables son cada vez más importantes en este campo."
+  ]
 ]

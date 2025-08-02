@@ -1,12 +1,282 @@
 [
-    ["La tabla periódica organiza todos los elementos químicos conocidos.", "Los elementos se ordenan por su número atómico, que es el número de protones.", "Están distribuidos en filas llamadas períodos y columnas llamadas grupos.", "Los elementos de un mismo grupo tienen propiedades químicas similares.", "Esta organización nos permite predecir el comportamiento de los elementos."],
-    ["Una reacción química es un proceso de transformación de la materia.", "Las sustancias iniciales, llamadas reactivos, se rompen y sus átomos se reorganizan.", "Como resultado, se forman nuevas sustancias con propiedades diferentes, llamadas productos.", "La ley de conservación de la masa establece que la masa total se mantiene constante.", "Para que se cumpla, debemos ajustar la ecuación química."],
-    ["El movimiento rectilíneo uniformemente acelerado (MRUA) describe muchos movimientos cotidianos.", "En este tipo de movimiento, la velocidad del objeto cambia a un ritmo constante.", "La magnitud que mide este cambio de velocidad es la aceleración.", "Si un coche arranca desde el reposo, su movimiento es un MRUA.", "La caída libre de un objeto es otro ejemplo clásico de este movimiento."],
-    ["La segunda ley de Newton relaciona la fuerza, la masa y la aceleración.", "Establece que la fuerza neta aplicada sobre un cuerpo es directamente proporcional a la aceleración que adquiere.", "La constante de proporcionalidad es la masa del cuerpo (F=ma).", "Esto significa que para mover un objeto pesado se necesita más fuerza que para mover uno ligero.", "Es una de las leyes fundamentales de la dinámica."],
-    ["El principio de conservación de la energía es una ley fundamental de la física.", "Afirma que la energía no se crea ni se destruye, solo se transforma de un tipo a otro.", "Por ejemplo, al dejar caer una pelota, su energía potencial se transforma en energía cinética.", "En una bombilla, la energía eléctrica se transforma en energía lumínica y térmica.", "La energía total del universo permanece siempre constante."],
-    ["La corriente eléctrica es un flujo de electrones a través de un material conductor.", "Para que exista esta corriente, se necesita un circuito cerrado y un generador.", "El generador, como una pila, proporciona la energía necesaria para mover los electrones.", "La intensidad de corriente mide la cantidad de carga que pasa por segundo.", "Los materiales aislantes, como el plástico, no permiten el paso de la corriente."],
-    ["La ley de Ohm es clave para el análisis de los circuitos eléctricos.", "Relaciona el voltaje (V), la intensidad (I) y la resistencia (R).", "Establece que el voltaje es igual a la intensidad multiplicada por la resistencia (V = I·R).", "La resistencia es la oposición que ofrece un material al paso de la corriente.", "Gracias a esta ley, podemos calcular cualquiera de las tres magnitudes si conocemos las otras dos."],
-    ["Un enlace químico es la fuerza que mantiene unidos a los átomos para formar compuestos.", "En el enlace iónico, un átomo cede electrones y otro los gana, formando iones.", "En el enlace covalente, los átomos comparten pares de electrones para ser más estables.", "El tipo de enlace determina las propiedades de la sustancia resultante.", "Por ejemplo, la sal de mesa tiene enlace iónico y es un sólido cristalino."],
-    ["La presión es la fuerza que se ejerce sobre una determinada superficie.", "Se calcula dividiendo la fuerza aplicada entre el área de la superficie.", "Por eso, un cuchillo afilado corta mejor, porque concentra la fuerza en un área muy pequeña.", "La presión en los fluidos, como el agua, aumenta con la profundidad.", "La unidad de presión en el Sistema Internacional es el Pascal."],
-    ["Las fuentes de energía renovables son aquellas que se obtienen de fuentes naturales inagotables.", "La energía solar aprovecha la radiación del Sol.", "La energía eólica utiliza la fuerza del viento para mover aerogeneradores.", "La energía hidroeléctrica se basa en el movimiento del agua en los ríos.", "Son una alternativa limpia a los combustibles fósiles para combatir el cambio climático."]
+  [
+    "La materia se clasifica en sustancias puras y mezclas.",
+    "Las sustancias puras, como el agua o el hierro, tienen una composición fija.",
+    "Las mezclas son combinaciones de dos o más sustancias puras.",
+    "Si sus componentes se distinguen, la mezcla es heterogénea.",
+    "Si no se distinguen, como en el agua salada, la mezcla es homogénea o disolución."
+  ],
+  [
+    "El modelo atómico ha evolucionado a lo largo de la historia.",
+    "Dalton imaginó los átomos como esferas indivisibles y macizas.",
+    "Thomson descubrió el electrón y propuso su modelo del 'pastel de pasas'.",
+    "Rutherford, con su experimento, descubrió el núcleo atómico, pequeño y positivo.",
+    "Finalmente, el modelo de Bohr introdujo las órbitas para los electrones."
+  ],
+  [
+    "La tabla periódica organiza los elementos químicos según su número atómico.",
+    "Fue ideada principalmente por Dmitri Mendeléyev.",
+    "Las filas se denominan períodos y las columnas se llaman grupos.",
+    "Los elementos de un mismo grupo tienen propiedades químicas similares.",
+    "Nos permite predecir el comportamiento de los elementos."
+  ],
+  [
+    "Una reacción química es un proceso de transformación de la materia.",
+    "Las sustancias iniciales, llamadas reactivos, se rompen y reorganizan.",
+    "Se forman nuevas sustancias con propiedades diferentes, llamadas productos.",
+    "La ecuación química es la representación simbólica de este proceso.",
+    "La ley de Lavoisier establece que la masa se conserva durante la reacción."
+  ],
+  [
+    "El movimiento rectilíneo uniforme (MRU) describe un cuerpo que se mueve en línea recta.",
+    "Su velocidad es constante, lo que significa que no hay aceleración.",
+    "El móvil recorre distancias iguales en intervalos de tiempo iguales.",
+    "La gráfica espacio-tiempo para este movimiento es una línea recta ascendente.",
+    "Su ecuación principal es: espacio es igual a velocidad por tiempo."
+  ],
+  [
+    "Las fuerzas son interacciones que pueden cambiar el movimiento de un cuerpo o deformarlo.",
+    "La segunda ley de Newton relaciona la fuerza, la masa y la aceleración.",
+    "Establece que la fuerza neta es igual a la masa del cuerpo por su aceleración.",
+    "Esto significa que para mover un objeto pesado, se necesita más fuerza que para uno ligero.",
+    "La unidad de fuerza en el Sistema Internacional es el Newton (N)."
+  ],
+  [
+    "La ley de la gravitación universal fue formulada por Isaac Newton.",
+    "Establece que dos cuerpos cualesquiera se atraen con una fuerza.",
+    "Esta fuerza es directamente proporcional al producto de sus masas.",
+    "Y es inversamente proporcional al cuadrado de la distancia que los separa.",
+    "Explica por qué los planetas giran alrededor del Sol y por qué caen los objetos."
+  ],
+  [
+    "La energía mecánica es la suma de la energía cinética y la energía potencial.",
+    "La energía cinética está asociada al movimiento de un cuerpo.",
+    "La energía potencial gravitatoria depende de la altura a la que se encuentra.",
+    "En ausencia de rozamiento, la energía mecánica total de un sistema se conserva.",
+    "Una montaña rusa es un ejemplo perfecto de estas transformaciones de energía."
+  ],
+  [
+    "La corriente eléctrica es el flujo de electrones a través de un material conductor.",
+    "Para que exista, se necesita un circuito cerrado y un generador que impulse los electrones.",
+    "La intensidad de corriente, medida en amperios, es la cantidad de carga que pasa por segundo.",
+    "Los metales, como el cobre, son buenos conductores de la electricidad.",
+    "Los materiales aislantes, como el plástico, no permiten el paso de la corriente."
+  ],
+  [
+    "La ley de Ohm es fundamental para el estudio de los circuitos eléctricos.",
+    "Relaciona las tres magnitudes principales: voltaje, intensidad y resistencia.",
+    "Establece que el voltaje es igual a la intensidad multiplicada por la resistencia.",
+    "La resistencia, medida en ohmios, es la oposición que ofrece un material al paso de la corriente.",
+    "Permite calcular una de las magnitudes si se conocen las otras dos."
+  ],
+  [
+    "La luz se comporta como una onda electromagnética.",
+    "Se propaga en línea recta en todas las direcciones.",
+    "La reflexión ocurre cuando la luz choca con una superficie y rebota, como en un espejo.",
+    "La refracción es el cambio de dirección de la luz al pasar de un medio a otro, como del aire al agua.",
+    "La descomposición de la luz blanca en el arcoíris es un ejemplo de refracción."
+  ],
+  [
+    "El sonido también se propaga en forma de ondas, pero necesita un medio material.",
+    "No puede viajar por el vacío del espacio.",
+    "La velocidad del sonido es mucho menor que la de la luz.",
+    "El eco es un fenómeno que se produce por la reflexión del sonido.",
+    "La altura de un sonido depende de su frecuencia: a mayor frecuencia, sonido más agudo."
+  ],
+  [
+    "Un enlace iónico se forma por la atracción electrostática entre iones de signo opuesto.",
+    "Ocurre generalmente entre un elemento metálico y uno no metálico.",
+    "El metal pierde electrones y se convierte en un catión positivo.",
+    "El no metal gana esos electrones y se convierte en un anión negativo.",
+    "La sal común (cloruro de sodio) es un ejemplo de compuesto iónico."
+  ],
+  [
+    "Un enlace covalente se produce cuando dos átomos no metálicos comparten electrones.",
+    "Al compartir uno o más pares de electrones, ambos átomos alcanzan una configuración más estable.",
+    "Este tipo de enlace da lugar a la formación de moléculas.",
+    "La molécula de agua (H2O) o la de oxígeno (O2) son ejemplos de enlace covalente.",
+    "Son enlaces muy fuertes y direccionales."
+  ],
+  [
+    "La formulación química es el sistema de nombrar y representar los compuestos.",
+    "La fórmula de un compuesto indica los elementos que lo forman y en qué proporción.",
+    "La nomenclatura sistemática utiliza prefijos numéricos (mono-, di-, tri-).",
+    "La nomenclatura de Stock indica la valencia del metal con números romanos.",
+    "Es un lenguaje universal para los químicos de todo el mundo."
+  ],
+  [
+    "La presión es la fuerza que se ejerce por unidad de superficie.",
+    "Se mide en Pascales (Pa) en el Sistema Internacional.",
+    "La presión atmosférica es el peso que ejerce la columna de aire sobre nosotros.",
+    "En los fluidos, la presión aumenta con la profundidad.",
+    "El principio de Pascal es la base del funcionamiento de las prensas hidráulicas."
+  ],
+  [
+    "La tercera ley de Newton se conoce como el principio de acción y reacción.",
+    "Establece que si un cuerpo A ejerce una fuerza sobre un cuerpo B...",
+    "...el cuerpo B ejerce sobre A una fuerza igual y de sentido contrario.",
+    "Estas dos fuerzas nunca se anulan, porque actúan sobre cuerpos diferentes.",
+    "Cuando un cohete expulsa gases hacia abajo (acción), los gases lo empujan hacia arriba (reacción)."
+  ],
+  [
+    "Las máquinas simples son dispositivos que nos permiten realizar un trabajo con menos esfuerzo.",
+    "La palanca, la polea y el plano inclinado son las máquinas simples fundamentales.",
+    "No crean energía, sino que transforman una fuerza.",
+    "A cambio de reducir la fuerza, normalmente hay que aumentar la distancia.",
+    "Han sido utilizadas por la humanidad desde la antigüedad."
+  ],
+  [
+    "La energía térmica de un cuerpo está relacionada con la agitación de sus partículas.",
+    "La temperatura es la medida de esa energía térmica.",
+    "El calor es la transferencia de energía térmica desde un cuerpo más caliente a uno más frío.",
+    "Este proceso continúa hasta que ambos cuerpos alcanzan el equilibrio térmico.",
+    "La dilatación es el aumento de volumen de un cuerpo cuando aumenta su temperatura."
+  ],
+  [
+    "Las ondas se clasifican según su naturaleza y su dirección de propagación.",
+    "Las ondas mecánicas, como el sonido, necesitan un medio material para propagarse.",
+    "Las ondas electromagnéticas, como la luz, pueden viajar por el vacío.",
+    "En las ondas transversales, las partículas vibran perpendicularmente a la dirección de propagación.",
+    "En las ondas longitudinales, las partículas vibran en la misma dirección."
+  ],
+  [
+    "La masa atómica de un elemento es la masa promedio de sus átomos.",
+    "Se mide en unidades de masa atómica (u.m.a.).",
+    "El mol es una unidad que indica una cantidad de sustancia.",
+    "Un mol de cualquier sustancia contiene el número de Avogadro de partículas (6,022 x 10^23).",
+    "La masa molar es la masa de un mol de sustancia, expresada en gramos."
+  ],
+  [
+    "El movimiento rectilíneo uniformemente acelerado (MRUA) tiene una trayectoria recta.",
+    "Su velocidad varía de forma constante a lo largo del tiempo.",
+    "La aceleración es constante y distinta de cero.",
+    "La caída libre de un objeto es un ejemplo de este tipo de movimiento.",
+    "Su gráfica velocidad-tiempo es una línea recta inclinada."
+  ],
+  [
+    "El principio de Arquímedes explica la flotación de los cuerpos.",
+    "Afirma que todo cuerpo sumergido en un fluido experimenta un empuje vertical y hacia arriba.",
+    "Este empuje es igual al peso del fluido que desaloja.",
+    "Un barco flota porque, a pesar de ser de hierro, desaloja un gran volumen de agua.",
+    "El peso del agua desalojada es mayor que el peso del barco."
+  ],
+  [
+    "Los cambios químicos, o reacciones, implican la formación de nuevas sustancias.",
+    "A menudo van acompañados de cambios de color, temperatura o la aparición de un gas.",
+    "La oxidación del hierro es un cambio químico lento.",
+    "La combustión de la madera es un cambio químico rápido.",
+    "Son procesos irreversibles en la mayoría de los casos."
+  ],
+  [
+    "Los metales son elementos que tienden a perder electrones para formar iones positivos.",
+    "Son buenos conductores del calor y la electricidad.",
+    "La mayoría son sólidos a temperatura ambiente, excepto el mercurio.",
+    "Presentan un brillo característico y son dúctiles y maleables.",
+    "Se sitúan en la parte izquierda y central de la tabla periódica."
+  ],
+  [
+    "Los no metales son elementos que tienden a ganar electrones.",
+    "Son malos conductores del calor y la electricidad.",
+    "Pueden ser sólidos, líquidos o gases a temperatura ambiente.",
+    "No tienen brillo metálico y no son dúctiles ni maleables.",
+    "Se encuentran en la parte derecha de la tabla periódica."
+  ],
+  [
+    "La energía eléctrica se puede transformar en otros tipos de energía.",
+    "En una bombilla, se transforma en energía luminosa y térmica.",
+    "En un motor, se convierte en energía mecánica de movimiento.",
+    "En un altavoz, se transforma en energía sonora.",
+    "Estas transformaciones son la base del funcionamiento de la mayoría de nuestros aparatos."
+  ],
+  [
+    "La óptica es la rama de la física que estudia la luz y sus fenómenos.",
+    "Las lentes convergentes, como una lupa, concentran los rayos de luz en un punto.",
+    "Las lentes divergentes separan los rayos de luz que las atraviesan.",
+    "El ojo humano es un sistema óptico complejo.",
+    "La miopía y la hipermetropía son defectos de la visión que se corrigen con lentes."
+  ],
+  [
+    "El átomo de Bohr fue un paso importante para entender la estructura atómica.",
+    "Propuso que los electrones solo podían girar en ciertas órbitas circulares permitidas.",
+    "Cada órbita tiene un nivel de energía asociado.",
+    "Un electrón puede saltar a una órbita de mayor energía si absorbe energía.",
+    "Al volver a su órbita original, emite esa energía en forma de luz."
+  ],
+  [
+    "La velocidad de una reacción química depende de varios factores.",
+    "La temperatura es uno de ellos: al aumentarla, la velocidad de reacción suele aumentar.",
+    "La concentración de los reactivos también influye; a mayor concentración, mayor velocidad.",
+    "La superficie de contacto es importante en reactivos sólidos.",
+    "Los catalizadores son sustancias que aumentan la velocidad de una reacción sin consumirse."
+  ],
+  [
+    "La fuerza de rozamiento es una fuerza que se opone al deslizamiento entre superficies.",
+    "Depende de la naturaleza de las superficies en contacto.",
+    "También depende de la fuerza normal, que es la fuerza con que se aprietan las superficies.",
+    "Aunque a veces es un inconveniente, es necesaria para acciones como caminar o frenar.",
+    "El rozamiento produce calor, como cuando nos frotamos las manos."
+  ],
+  [
+    "Las fuentes de energía renovables son aquellas que no se agotan con su uso.",
+    "Provienen de fuentes naturales como el Sol, el viento o el agua.",
+    "La energía solar fotovoltaica convierte la luz del sol en electricidad.",
+    "Son una alternativa más sostenible a los combustibles fósiles.",
+    "Su uso ayuda a combatir el cambio climático."
+  ],
+  [
+    "El peso de un cuerpo es la fuerza de atracción gravitatoria que la Tierra ejerce sobre él.",
+    "Es una fuerza, por lo que se mide en Newtons.",
+    "Depende de la masa del cuerpo y de la aceleración de la gravedad.",
+    "No se debe confundir con la masa, que es la cantidad de materia y se mide en kilogramos.",
+    "El peso de un objeto en la Luna es menor que en la Tierra."
+  ],
+  [
+    "Un ácido y una base reaccionan entre sí en una reacción de neutralización.",
+    "El producto de esta reacción es siempre una sal y agua.",
+    "Por ejemplo, el ácido clorhídrico reacciona con el hidróxido de sodio.",
+    "Se forma cloruro de sodio (sal común) y agua.",
+    "Estas reacciones suelen liberar calor."
+  ],
+  [
+    "El trabajo, en física, se realiza cuando una fuerza provoca un desplazamiento.",
+    "Se calcula multiplicando el valor de la fuerza por la distancia recorrida en su misma dirección.",
+    "Si no hay desplazamiento, no se realiza trabajo, por mucho que nos esforcemos.",
+    "Su unidad en el Sistema Internacional es el Julio (J).",
+    "La potencia es el trabajo realizado por unidad de tiempo."
+  ],
+  [
+    "La masa molecular de un compuesto se calcula sumando las masas atómicas de sus átomos.",
+    "Las masas atómicas de cada elemento se encuentran en la tabla periódica.",
+    "Por ejemplo, para el agua (H2O), se suma la masa de dos hidrógenos y un oxígeno.",
+    "Se expresa en unidades de masa atómica (u.m.a.).",
+    "Es un dato fundamental para los cálculos estequiométricos."
+  ],
+  [
+    "La presión hidrostática es la que ejerce un líquido en reposo.",
+    "Aumenta con la profundidad, ya que el peso de la columna de líquido es mayor.",
+    "También depende de la densidad del líquido.",
+    "Por eso, los submarinos deben tener una estructura muy resistente.",
+    "Todos los puntos a la misma profundidad soportan la misma presión."
+  ],
+  [
+    "El momento de una fuerza, o torque, mide su capacidad para producir un giro.",
+    "Depende de la intensidad de la fuerza y de la distancia al punto de giro.",
+    "Para apretar una tuerca, hacemos más fuerza si usamos una llave más larga.",
+    "Es una magnitud vectorial.",
+    "El equilibrio de un objeto depende tanto de la suma de fuerzas como de la suma de momentos."
+  ],
+  [
+    "La estequiometría es la parte de la química que estudia las relaciones cuantitativas en las reacciones.",
+    "Una ecuación química ajustada nos informa de la proporción en moles de reactivos y productos.",
+    "Permite calcular qué cantidad de producto se obtendrá a partir de una cantidad de reactivo.",
+    "También permite determinar el reactivo limitante, que es el que se agota primero.",
+    "Es fundamental para el control de los procesos en la industria química."
+  ],
+  [
+    "La inducción electromagnética es la producción de corriente eléctrica por un campo magnético variable.",
+    "Fue descubierta por Michael Faraday.",
+    "Si movemos un imán cerca de una bobina de cable, se genera una corriente en ella.",
+    "Es el principio de funcionamiento de los generadores eléctricos de las centrales.",
+    "También es la base de la carga inalámbrica de los móviles."
+  ]
 ]

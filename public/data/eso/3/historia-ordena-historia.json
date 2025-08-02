@@ -1,12 +1,282 @@
 [
-    ["La Revolución Industrial transformó por completo la sociedad y la economía.", "Comenzó en Gran Bretaña en el siglo XVIII con la invención de la máquina de vapor.", "La producción artesanal en talleres fue sustituida por la producción en masa en fábricas.", "Surgió una nueva clase social, el proletariado, formada por los obreros industriales.", "Las ciudades crecieron rápidamente y aparecieron nuevos problemas sociales."],
-    ["La Revolución Francesa de 1789 marcó el fin del Antiguo Régimen.", "La burguesía, descontenta con los privilegios de la nobleza y el clero, impulsó la revolución.", "La toma de la Bastilla se convirtió en el símbolo del levantamiento popular.", "Se proclamó la Declaración de los Derechos del Hombre y del Ciudadano.", "Sus ideales de libertad, igualdad y fraternidad se extendieron por todo el mundo."],
-    ["Napoleón Bonaparte fue una figura clave a principios del siglo XIX.", "Dio un golpe de Estado en Francia y se proclamó emperador.", "Con sus ejércitos, conquistó gran parte de Europa, extendiendo las ideas revolucionarias.", "Sin embargo, su invasión de España y Rusia marcó el inicio de su declive.", "Finalmente, fue derrotado en la batalla de Waterloo en 1815."],
-    ["El imperialismo fue la expansión de las potencias europeas por África y Asia en el siglo XIX.", "Buscaban nuevos mercados para sus productos y materias primas para sus industrias.", "La Conferencia de Berlín de 1885 organizó el reparto de África entre estas potencias.", "Esta dominación tuvo graves consecuencias para los pueblos colonizados.", "Las tensiones entre las potencias imperialistas fueron una de las causas de la Primera Guerra Mundial."],
-    ["La Primera Guerra Mundial fue un conflicto devastador que tuvo lugar entre 1914 y 1918.", "Enfrentó a dos grandes alianzas: la Triple Entente y las Potencias Centrales.", "Fue una guerra de trincheras, con un enorme coste en vidas humanas.", "La entrada de Estados Unidos en el conflicto fue decisiva para la victoria aliada.", "El Tratado de Versalles impuso duras condiciones a Alemania, lo que generaría futuros conflictos."],
-    ["La economía globalizada actual se caracteriza por la interconexión de los mercados.", "Las empresas multinacionales operan en muchos países diferentes.", "La deslocalización industrial traslada la producción a países con mano de obra más barata.", "Las tecnologías de la información y la comunicación han sido clave para este proceso.", "Aunque ofrece oportunidades, la globalización también genera grandes desigualdades."],
-    ["El sector servicios es el más importante en las economías de los países desarrollados.", "Incluye actividades muy diversas como el comercio, el turismo, la sanidad o la educación.", "No produce bienes materiales, sino que ofrece prestaciones a las personas o a las empresas.", "El desarrollo del turismo ha sido fundamental para la economía de países como España."],
-    ["La Unión Europea es un proyecto de integración económica y política único en el mundo.", "Nació tras la Segunda Guerra Mundial con el objetivo de asegurar la paz en el continente.", "Ha creado un mercado único donde personas, bienes y capitales circulan libremente.", "La mayoría de sus países miembros comparten una moneda única, el euro.", "Toma decisiones importantes que afectan a la vida de sus ciudadanos."],
-    ["La Revolución Rusa de 1917 tuvo un impacto mundial.", "Acabó con el gobierno de los zares e instauró el primer estado comunista de la historia.", "Líderes como Lenin y Trotsky dirigieron a los bolcheviques en la toma del poder.", "Se basaba en las ideas del filósofo Karl Marx.", "Este acontecimiento marcó el inicio de la Guerra Fría con Estados Unidos."],
-    ["España en el siglo XIX fue un período de gran agitación política y social.", "Tras la Guerra de la Independencia contra Napoleón, se intentó establecer un régimen liberal.", "Se sucedieron numerosos cambios de gobierno, pronunciamientos militares y guerras civiles.", "La monarquía de Isabel II fue inestable y terminó con una revolución en 1868.", "El siglo finalizó con la pérdida de las últimas colonias: Cuba, Puerto Rico y Filipinas."]
+  [
+    "A finales de la Edad Media, el comercio con Oriente era muy importante para Europa.",
+    "Los turcos conquistaron Constantinopla en 1453, cortando la tradicional Ruta de la Seda.",
+    "Esto impulsó a los reinos europeos, como Portugal y Castilla, a buscar nuevas rutas marítimas.",
+    "Cristóbal Colón propuso una ruta alternativa navegando hacia el oeste.",
+    "Su viaje en 1492 culminó con el descubrimiento de un nuevo continente: América."
+  ],
+  [
+    "El Humanismo fue un movimiento intelectual que situó al ser humano en el centro del universo.",
+    "Surgió en Italia en el siglo XIV y se extendió por toda Europa.",
+    "Los humanistas se inspiraron en los textos y la cultura de la antigua Grecia y Roma.",
+    "Figuras como Erasmo de Róterdam fueron clave en la difusión de estas nuevas ideas.",
+    "La invención de la imprenta por Gutenberg fue crucial para su rápida expansión."
+  ],
+  [
+    "El Renacimiento fue la expresión artística del Humanismo durante los siglos XV y XVI.",
+    "Los artistas buscaron la belleza ideal, la proporción y la armonía, inspirándose en el arte clásico.",
+    "En Italia, destacaron genios como Leonardo da Vinci, Miguel Ángel y Rafael.",
+    "La perspectiva se convirtió en una herramienta fundamental para crear la ilusión de profundidad.",
+    "El mecenazgo de familias ricas, como los Médici, fue esencial para este florecimiento artístico."
+  ],
+  [
+    "La Reforma Protestante fue un movimiento religioso que rompió la unidad del cristianismo occidental.",
+    "Fue iniciada en 1517 por el monje alemán Martín Lutero.",
+    "Lutero criticó la venta de indulgencias y defendió que la salvación se obtiene solo por la fe.",
+    "Sus ideas se difundieron rápidamente gracias a la imprenta, dando lugar a las iglesias protestantes.",
+    "La Iglesia Católica respondió con la Contrarreforma y el Concilio de Trento."
+  ],
+  [
+    "Los Reyes Católicos, Isabel de Castilla y Fernando de Aragón, sentaron las bases de la Monarquía Hispánica.",
+    "Unieron dinásticamente sus reinos, aunque cada uno mantuvo sus propias leyes e instituciones.",
+    "Fortalecieron el poder real frente a la nobleza y crearon instituciones como la Santa Hermandad.",
+    "Concluyeron la Reconquista con la toma de Granada en 1492.",
+    "También establecieron la Inquisición para velar por la unidad religiosa."
+  ],
+  [
+    "El imperio de Carlos V fue uno de los más grandes de la historia.",
+    "Heredó de sus abuelos los territorios de Castilla, Aragón, Borgoña y Austria.",
+    "Además, fue elegido emperador del Sacro Imperio Romano Germánico.",
+    "Durante su reinado, se enfrentó a los príncipes protestantes alemanes y al Imperio otomano.",
+    "Su gran sueño fue mantener la unidad religiosa de la cristiandad, pero fracasó."
+  ],
+  [
+    "Felipe II heredó la mayor parte del imperio de su padre, Carlos V, excepto el Sacro Imperio.",
+    "Estableció la capital de su vasto imperio en Madrid.",
+    "Su reinado se caracterizó por la defensa a ultranza del catolicismo.",
+    "Luchó contra los turcos en la batalla de Lepanto y contra los protestantes en los Países Bajos.",
+    "El desastre de la Armada Invencible fue un duro golpe en su enfrentamiento contra Inglaterra."
+  ],
+  [
+    "Las civilizaciones precolombinas alcanzaron un alto grado de desarrollo antes de la llegada de los europeos.",
+    "El Imperio azteca dominaba el centro de México desde su capital, Tenochtitlán.",
+    "El Imperio inca se extendía por la cordillera de los Andes, con capital en Cuzco.",
+    "Los mayas, en el sur de México y Centroamérica, destacaron por su escritura y astronomía.",
+    "Estas civilizaciones fueron conquistadas por los españoles en el siglo XVI."
+  ],
+  [
+    "La monarquía absoluta fue la forma de gobierno predominante en Europa durante el siglo XVII.",
+    "El rey concentraba en su persona todos los poderes del Estado: legislativo, ejecutivo y judicial.",
+    "Se consideraba que su poder era de origen divino, por lo que solo respondía ante Dios.",
+    "Luis XIV de Francia, el 'Rey Sol', es el ejemplo más representativo de monarca absoluto.",
+    "Su palacio de Versalles se convirtió en el símbolo de su poder y gloria."
+  ],
+  [
+    "El Barroco fue el estilo artístico del siglo XVII, una época de crisis y contrastes.",
+    "Buscaba emocionar y sorprender al espectador con obras grandiosas y dinámicas.",
+    "En pintura, artistas como Caravaggio utilizaron el claroscuro para crear efectos dramáticos.",
+    "En arquitectura, abundan las líneas curvas, la decoración recargada y la sensación de movimiento.",
+    "Fue un arte al servicio del poder de la Iglesia (Contrarreforma) y de los reyes absolutos."
+  ],
+  [
+    "La Ilustración fue un movimiento intelectual del siglo XVIII que promovió el uso de la razón.",
+    "Los ilustrados creían que la razón y la educación podían iluminar a la humanidad y traer el progreso.",
+    "Pensadores como Montesquieu defendieron la separación de poderes.",
+    "Rousseau formuló el principio de la soberanía nacional, donde el poder reside en el pueblo.",
+    "Estas ideas socavaron las bases del Antiguo Régimen y prepararon las revoluciones liberales."
+  ],
+  [
+    "La Revolución Americana dio lugar al nacimiento de los Estados Unidos.",
+    "Las trece colonias británicas de Norteamérica se rebelaron contra el rey de Gran Bretaña.",
+    "Protestaban por no tener representación en el Parlamento y por los altos impuestos.",
+    "La Declaración de Independencia de 1776 proclamó los derechos a la vida, la libertad y la búsqueda de la felicidad.",
+    "Su Constitución fue la primera en establecer la separación de poderes y la soberanía nacional."
+  ],
+  [
+    "La Revolución Francesa de 1789 es uno de los acontecimientos más importantes de la historia.",
+    "El pueblo de París tomó la Bastilla, símbolo del poder absoluto del rey.",
+    "Se proclamó la Declaración de los Derechos del Hombre y del Ciudadano.",
+    "Acabó con el Antiguo Régimen y estableció los principios de libertad, igualdad y fraternidad.",
+    "Marcó el inicio de la Edad Contemporánea."
+  ],
+  [
+    "La población mundial ha experimentado un crecimiento espectacular en los últimos siglos.",
+    "Durante la mayor parte de la historia, el crecimiento fue muy lento.",
+    "La Revolución Industrial y los avances médicos provocaron una explosión demográfica.",
+    "Actualmente, la población mundial supera los 8.000 millones de habitantes.",
+    "Este crecimiento plantea grandes desafíos, como la gestión de los recursos."
+  ],
+  [
+    "La distribución de la población en el mundo es muy desigual.",
+    "Existen grandes focos de concentración de población, como el Sudeste Asiático o Europa.",
+    "Por otro lado, hay grandes vacíos demográficos en desiertos, selvas o zonas polares.",
+    "Los factores físicos, como el clima o el relieve, y los humanos, como la economía, explican esta distribución.",
+    "La densidad de población mide la relación entre los habitantes y la superficie que ocupan."
+  ],
+  [
+    "Las migraciones son los desplazamientos de la población de un lugar a otro.",
+    "La emigración es la salida de población desde su lugar de origen.",
+    "La inmigración es la llegada de población a un lugar de destino.",
+    "Las causas pueden ser económicas (buscar trabajo), políticas (guerras) o naturales (catástrofes).",
+    "Estos movimientos tienen importantes consecuencias tanto para los países de origen como para los de destino."
+  ],
+  [
+    "El proceso de urbanización ha transformado el mundo en las últimas décadas.",
+    "Cada vez más personas viven en ciudades en lugar de en el campo.",
+    "Las ciudades ofrecen más oportunidades de trabajo, educación y servicios.",
+    "Una megaciudad es aquella que supera los diez millones de habitantes.",
+    "Este crecimiento urbano genera problemas como la contaminación, el tráfico o el acceso a la vivienda."
+  ],
+  [
+    "El sector primario incluye las actividades que extraen recursos directamente de la naturaleza.",
+    "La agricultura es el cultivo de la tierra para obtener productos vegetales.",
+    "La ganadería consiste en la cría de animales para su aprovechamiento.",
+    "La pesca y la explotación forestal también forman parte de este sector.",
+    "En los países desarrollados, ocupa a un porcentaje muy pequeño de la población."
+  ],
+  [
+    "El sector secundario transforma las materias primas en productos elaborados.",
+    "La industria es la actividad principal de este sector.",
+    "También incluye la minería, la producción de energía y la construcción.",
+    "La Revolución Industrial marcó el inicio del desarrollo de este sector.",
+    "Su localización depende de factores como la cercanía a las materias primas o a los mercados."
+  ],
+  [
+    "El sector terciario o de servicios agrupa actividades que no producen bienes materiales.",
+    "Es el sector más importante en las economías de los países desarrollados.",
+    "Incluye el comercio, el transporte, el turismo, la sanidad o la educación.",
+    "El desarrollo de las tecnologías de la información ha impulsado enormemente este sector.",
+    "Se le conoce también como el sector servicios."
+  ],
+  [
+    "La globalización es un proceso de creciente interconexión a escala mundial.",
+    "Las empresas multinacionales operan en muchos países a la vez.",
+    "Las nuevas tecnologías de la comunicación, como internet, han sido un factor clave.",
+    "Este proceso tiene ventajas, como el intercambio cultural, pero también inconvenientes, como el aumento de las desigualdades.",
+    "Nuestra vida cotidiana está profundamente influenciada por la globalización."
+  ],
+  [
+    "El relieve de Europa se caracteriza por su escasa altitud media.",
+    "La Gran Llanura Europea es la unidad de relieve más extensa.",
+    "En el norte se encuentran los sistemas montañosos más antiguos y erosionados, como los Montes Escandinavos.",
+    "En el sur se localizan las cordilleras más jóvenes y elevadas, como los Alpes y los Pirineos.",
+    "Sus costas son muy recortadas, con abundantes penínsulas, golfos y fiordos."
+  ],
+  [
+    "El clima de Europa es predominantemente templado, pero con importantes variaciones.",
+    "El clima oceánico, en la costa atlántica, es suave y lluvioso todo el año.",
+    "El clima mediterráneo, en el sur, tiene veranos secos y calurosos.",
+    "El clima continental, en el este, presenta inviernos muy fríos y veranos muy cálidos.",
+    "En el extremo norte, encontramos el clima polar, con temperaturas muy bajas."
+  ],
+  [
+    "La Unión Europea es el resultado de un largo proceso de integración.",
+    "Sus orígenes se remontan a la Comunidad Europea del Carbón y del Acero en 1951.",
+    "El Tratado de Roma de 1957 creó la Comunidad Económica Europea.",
+    "España se adhirió a la Comunidad Europea en 1986.",
+    "Su objetivo es promover la paz, la democracia y el desarrollo económico de sus miembros."
+  ],
+  [
+    "La organización territorial de España se establece en la Constitución de 1978.",
+    "El Estado se organiza en municipios, provincias y Comunidades Autónomas.",
+    "Existen 17 Comunidades Autónomas y dos Ciudades Autónomas (Ceuta y Melilla).",
+    "Cada Comunidad Autónoma tiene su propio Estatuto de Autonomía.",
+    "Este modelo se conoce como el 'Estado de las Autonomías'."
+  ],
+  [
+    "El relieve de África está dominado por extensas mesetas y cubetas.",
+    "El Macizo Etíope y los Montes Drakensberg son importantes sistemas montañosos.",
+    "El Valle del Rift es una enorme fractura geológica que recorre el este del continente.",
+    "El desierto del Sáhara, al norte, es el desierto cálido más grande del mundo.",
+    "El río Nilo es el más largo de África y uno de los más largos del mundo."
+  ],
+  [
+    "Asia es un continente de grandes contrastes físicos.",
+    "Alberga las montañas más altas del planeta en la cordillera del Himalaya.",
+    "También posee las mesetas más extensas, como la del Tíbet.",
+    "Grandes llanuras aluviales, como la del Ganges, son zonas muy fértiles y pobladas.",
+    "El clima monzónico, con una estación de lluvias torrenciales, afecta a gran parte del sur y sureste."
+  ],
+  [
+    "El relieve de América está organizado en tres grandes unidades.",
+    "En el oeste, se extienden grandes cordilleras jóvenes como las Montañas Rocosas y los Andes.",
+    "En el centro, se localizan extensas llanuras recorridas por grandes ríos como el Misisipi o el Amazonas.",
+    "En el este, se encuentran macizos y mesetas más antiguos y de menor altitud.",
+    "Esta disposición del relieve influye enormemente en la distribución de climas y ríos."
+  ],
+  [
+    "El desarrollo sostenible busca satisfacer las necesidades actuales sin comprometer el futuro.",
+    "Se basa en tres pilares interconectados: el crecimiento económico, la inclusión social y la protección del medio ambiente.",
+    "Implica utilizar los recursos naturales de forma responsable para no agotarlos.",
+    "Fomentar las energías renovables y el reciclaje son ejemplos de desarrollo sostenible.",
+    "Es el único camino para garantizar un futuro próspero y saludable para todos."
+  ],
+  [
+    "La crisis del siglo XVII en España afectó a la demografía y a la economía.",
+    "La población disminuyó a causa de las epidemias, las malas cosechas y las guerras.",
+    "La llegada de metales preciosos de América comenzó a descender.",
+    "La expulsión de los moriscos en 1609 supuso una gran pérdida de población activa agrícola.",
+    "Este período de decadencia contrastó con el esplendor cultural del Siglo de Oro."
+  ],
+  [
+    "El despotismo ilustrado fue una forma de gobierno del siglo XVIII.",
+    "Los monarcas absolutos adoptaron algunas ideas de la Ilustración.",
+    "Su lema era 'Todo para el pueblo, pero sin el pueblo'.",
+    "Realizaron reformas para modernizar la administración y la economía, pero sin ceder poder.",
+    "Carlos III es el mejor ejemplo de déspota ilustrado en España."
+  ],
+  [
+    "La sociedad del Antiguo Régimen era estamental y se basaba en la desigualdad.",
+    "Se dividía en tres estamentos: la nobleza, el clero y el Tercer Estado.",
+    "La nobleza y el clero eran los estamentos privilegiados: no pagaban impuestos y tenían leyes propias.",
+    "El Tercer Estado, que incluía desde campesinos hasta burgueses, carecía de privilegios.",
+    "Era una sociedad muy rígida, donde era muy difícil cambiar de estamento."
+  ],
+  [
+    "La Guerra de Sucesión Española (1701-1714) fue un conflicto internacional.",
+    "Se originó por la muerte sin descendencia del rey Carlos II.",
+    "Enfrentó a los partidarios de Felipe de Anjou (Francia) y del archiduque Carlos de Austria.",
+    "Finalizó con el Tratado de Utrecht, que reconoció a Felipe V como rey de España.",
+    "A cambio, España tuvo que ceder importantes territorios en Europa, como Gibraltar."
+  ],
+  [
+    "El Imperio otomano fue una gran potencia que se extendió por el Mediterráneo oriental.",
+    "En 1453, conquistaron Constantinopla, poniendo fin al Imperio bizantino.",
+    "Su expansión por los Balcanes y el norte de África fue una amenaza constante para Europa.",
+    "El sultán era la máxima autoridad política y religiosa.",
+    "La batalla de Lepanto fue una importante victoria naval de una coalición cristiana contra los turcos."
+  ],
+  [
+    "La sociedad de Al-Ándalus era muy diversa y urbana.",
+    "La mayoría de la población era musulmana, pero también había importantes comunidades de cristianos y judíos.",
+    "Los mozárabes eran los cristianos que vivían en territorio musulmán.",
+    "Córdoba, Sevilla o Granada fueron grandes ciudades y centros de comercio y cultura.",
+    "Al-Ándalus fue un puente de transmisión de conocimiento entre Oriente y Occidente."
+  ],
+  [
+    "El arte islámico tiene características muy definidas.",
+    "No suele representar figuras humanas o de animales, por lo que es un arte anicónico.",
+    "Utiliza una decoración muy rica a base de motivos geométricos, vegetales y caligráficos.",
+    "El arco de herradura y el uso de materiales pobres como el ladrillo son típicos.",
+    "La Mezquita de Córdoba es uno de los ejemplos más impresionantes de este arte."
+  ],
+  [
+    "La población activa es el conjunto de personas en edad de trabajar que trabajan o buscan empleo.",
+    "Se divide en población ocupada y población parada o desempleada.",
+    "La tasa de paro indica el porcentaje de población activa que está en desempleo.",
+    "La estructura de la población activa por sectores económicos refleja el nivel de desarrollo de un país.",
+    "En España, la mayoría de la población activa trabaja en el sector servicios."
+  ],
+  [
+    "La pirámide de población es un gráfico que representa la estructura de la población por edad y sexo.",
+    "Una pirámide con base ancha y cúspide estrecha es típica de un país joven y subdesarrollado.",
+    "Una pirámide con base estrecha y ensanchada en el centro indica un envejecimiento de la población.",
+    "Permite analizar la historia demográfica de un país y prever sus necesidades futuras.",
+    "La pirámide de población de España muestra claramente el envejecimiento y la baja natalidad."
+  ],
+  [
+    "El espacio rural ha sufrido grandes transformaciones en los países desarrollados.",
+    "La mecanización del campo ha reducido la necesidad de mano de obra.",
+    "Esto ha provocado un intenso éxodo rural y el despoblamiento de muchas zonas.",
+    "Actualmente, el espacio rural se diversifica con nuevas actividades como el turismo rural.",
+    "La agricultura y la ganadería se han vuelto mucho más tecnificadas y productivas."
+  ],
+  [
+    "El comercio internacional ha crecido enormemente gracias a la globalización.",
+    "Se basa en la exportación (venta de productos a otros países) y la importación (compra).",
+    "La balanza comercial de un país registra la diferencia entre sus exportaciones e importaciones.",
+    "La Organización Mundial del Comercio (OMC) es el organismo que regula el comercio a nivel mundial.",
+    "El transporte marítimo en grandes contenedores es el medio más utilizado para el comercio de mercancías."
+  ]
 ]

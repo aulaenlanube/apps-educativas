@@ -1,12 +1,282 @@
 [
-    ["El Romanticismo fue un movimiento que exaltaba los sentimientos por encima de la razón.", "Sus autores anhelaban la libertad y a menudo se sentían en conflicto con la sociedad.", "Gustavo Adolfo Bécquer, con sus 'Rimas', es un ejemplo del posromanticismo español.", "En sus poemas, exploraba el amor idealizado y el desengaño con gran sensibilidad.", "Su obra se caracteriza por una aparente sencillez formal que esconde una gran profundidad."],
-    ["El Realismo literario del siglo XIX buscaba ser un espejo de la sociedad de su tiempo.", "Los novelistas observaban y describían con detalle la vida de la burguesía.", "Benito Pérez Galdós es uno de los máximos exponentes de esta corriente en España.", "En novelas como 'Fortunata y Jacinta', retrató magistralmente el Madrid de la época.", "Su objetivo era realizar una crónica fiel de la realidad social y los conflictos humanos."],
-    ["Una oración subordinada sustantiva es aquella que desempeña la función de un sustantivo.", "Puede funcionar, por ejemplo, como sujeto de la oración principal.", "También puede actuar como complemento directo de un verbo.", "Se introduce mediante nexos como 'que' o 'si', o con un infinitivo.", "Por ejemplo, en 'Me gusta que vengas', la subordinada es el sujeto."],
-    ["La Generación del 98 fue un grupo de escritores preocupados por la decadencia de España.", "Tras la pérdida de las últimas colonias en 1898, reflexionaron sobre la identidad del país.", "Autores como Unamuno, Machado o Baroja buscaron las raíces de la cultura española.", "Su estilo era sobrio y antirretórico, en contraposición al Modernismo.", "Mostraban un gran amor por los paisajes de Castilla, que veían como el alma de España."],
-    ["Para realizar un comentario de texto, primero debemos leerlo atentamente varias veces.", "A continuación, resumimos su contenido y determinamos el tema principal.", "Después, analizamos su estructura interna, dividiéndolo en partes lógicas.", "Luego, se estudian los aspectos formales, como el lenguaje y las figuras retóricas.", "Finalmente, redactamos una conclusión personal y una valoración crítica de la obra."],
-    ["El Modernismo, liderado por Rubén Darío, renovó profundamente la poesía en español.", "Buscaba la belleza sensorial a través de imágenes exóticas y un lenguaje musical.", "Los modernistas sentían una profunda evasión de la realidad cotidiana y burguesa.", "El cisne se convirtió en uno de los símbolos más representativos del movimiento.", "Su lema era 'el arte por el arte', defendiendo la autonomía de la creación artística."],
-    ["La Generación del 27 reunió a un grupo de poetas excepcionales como Lorca, Alberti o Cernuda.", "Combinaron la admiración por la poesía tradicional española con las nuevas vanguardias europeas.", "Utilizaron tanto formas clásicas como el soneto, como el verso libre.", "La metáfora se convirtió en el recurso central de su lenguaje poético.", "La Guerra Civil Española dispersó trágicamente al grupo y marcó el fin de su trayectoria conjunta."],
-    ["Una proposición subordinada adjetiva funciona igual que un adjetivo.", "Su función principal es la de complementar a un sustantivo de la oración principal.", "Este sustantivo al que complementa se denomina antecedente.", "El nexo más común para introducirlas es el pronombre relativo 'que'.", "Por ejemplo, en 'El libro que me prestaste es interesante', la subordinada modifica a 'libro'."],
-    ["El teatro del Barroco español se representaba en los corrales de comedias.", "Lope de Vega fue uno de sus dramaturgos más prolíficos y populares.", "Creó una nueva fórmula teatral que mezclaba lo trágico y lo cómico.", "Las obras trataban temas como el honor, la monarquía y la religión.", "El público, de todas las clases sociales, acudía masivamente a las representaciones."],
-    ["El análisis morfológico de una palabra consiste en descomponerla en sus morfemas.", "Primero, identificamos el lexema o raíz, que contiene el significado principal.", "Luego, buscamos los morfemas flexivos, que indican género, número o tiempo verbal.", "También podemos encontrar morfemas derivativos, como prefijos o sufijos, que crean nuevas palabras.", "Este análisis nos permite comprender la estructura interna del vocabulario."]
+  [
+    "El Realismo fue un movimiento literario que surgió en la segunda mitad del siglo XIX.",
+    "Su principal objetivo era reflejar la realidad y la sociedad de la época de la manera más fiel posible.",
+    "Los autores realistas observaban y documentaban detalladamente el comportamiento de la burguesía.",
+    "La novela se convirtió en el género perfecto para describir estos ambientes y personajes.",
+    "Benito Pérez Galdós es considerado el máximo representante del Realismo en España."
+  ],
+  [
+    "Una oración compuesta está formada por dos o más proposiciones.",
+    "Las proposiciones subordinadas son aquellas que dependen de una proposición principal.",
+    "Desempeñan una función sintáctica dentro de la oración principal, como si fueran un sintagma.",
+    "Pueden ser sustantivas, adjetivas o adverbiales, según su función.",
+    "Se introducen mediante nexos como 'que', 'quien', 'cuando' o 'donde'."
+  ],
+  [
+    "La Generación del 98 fue un grupo de escritores españoles profundamente afectados por la crisis de 1898.",
+    "España perdió sus últimas colonias, Cuba y Filipinas, lo que generó un gran pesimismo nacional.",
+    "Autores como Unamuno, Machado, Baroja o Azorín reflexionaron sobre la identidad de España.",
+    "Buscaron la esencia del 'alma española' en el paisaje castellano y en la historia.",
+    "Su estilo era sobrio y subjetivo, y renovaron profundamente los géneros literarios."
+  ],
+  [
+    "Las proposiciones subordinadas sustantivas equivalen a un sintagma nominal.",
+    "Pueden desempeñar las mismas funciones que un sustantivo: sujeto, complemento directo, etc.",
+    "Se pueden sustituir por un pronombre neutro como 'eso' o 'esto'.",
+    "Un nexo frecuente para introducirlas es la conjunción 'que'.",
+    "Por ejemplo, en 'Me gusta que vengas', 'que vengas' funciona como sujeto."
+  ],
+  [
+    "El Modernismo fue un movimiento de profunda renovación estética a finales del siglo XIX.",
+    "Buscaba la belleza formal, la musicalidad del lenguaje y la evasión de la realidad cotidiana.",
+    "El poeta nicaragüense Rubén Darío fue su principal figura y gran renovador.",
+    "Los poemas modernistas están llenos de cisnes, princesas, jardines exóticos y piedras preciosas.",
+    "Utilizaban un vocabulario muy rico y cuidado para crear imágenes sensoriales."
+  ],
+  [
+    "Las proposiciones subordinadas adjetivas o de relativo complementan a un sustantivo.",
+    "Funcionan igual que un adjetivo, aportando una cualidad o información sobre un nombre.",
+    "Este nombre al que complementan se llama antecedente.",
+    "Se introducen por pronombres relativos como 'que', 'quien', 'el cual' o 'cuyo'.",
+    "En 'El libro que me prestaste es interesante', 'que me prestaste' modifica a 'libro'."
+  ],
+  [
+    "La Generación del 27 es uno de los grupos poéticos más brillantes de la literatura española.",
+    "Sus miembros, como Lorca, Alberti o Cernuda, supieron unir la tradición y la vanguardia.",
+    "Admiraban tanto a los poetas clásicos españoles como a los movimientos de vanguardia europeos.",
+    "La metáfora se convirtió en el recurso central de su lenguaje poético.",
+    "La Guerra Civil Española supuso la trágica desintegración del grupo."
+  ],
+  [
+    "Las proposiciones subordinadas adverbiales desempeñan la función de un complemento circunstancial.",
+    "Expresan diferentes circunstancias como tiempo, lugar, modo o causa.",
+    "Las de tiempo se introducen por nexos como 'cuando' o 'mientras'.",
+    "Las de lugar utilizan nexos como 'donde' o 'adonde'.",
+    "Por ejemplo, en 'Iré cuando termines', 'cuando termines' indica el tiempo."
+  ],
+  [
+    "El teatro de Federico García Lorca es una de las cumbres del teatro español.",
+    "Sus obras, como 'Bodas de sangre' o 'La casa de Bernarda Alba', son tragedias.",
+    "En ellas, explora temas como el amor frustrado, la represión y el deseo de libertad.",
+    "Sus protagonistas suelen ser mujeres fuertes que se enfrentan a una sociedad opresiva.",
+    "Lorca combina un lenguaje realista con un profundo simbolismo poético."
+  ],
+  [
+    "Las perífrasis verbales son construcciones formadas por dos o más verbos que funcionan como uno solo.",
+    "Constan de un verbo auxiliar conjugado y un verbo principal en forma no personal (infinitivo, gerundio o participio).",
+    "Aportan matices de obligación, posibilidad, duración o inicio de una acción.",
+    "Por ejemplo, 'tengo que estudiar' es una perífrasis modal de obligación.",
+    "'Estoy leyendo' es una perífrasis aspectual que indica una acción en proceso."
+  ],
+  [
+    "El Naturalismo es una corriente literaria que lleva el Realismo a sus últimas consecuencias.",
+    "Surgió en Francia con Émile Zola como su máximo representante.",
+    "Sostenía que el comportamiento humano está determinado por la herencia biológica y el medio social.",
+    "Sus novelas suelen retratar los ambientes más sórdidos y los aspectos más oscuros de la sociedad.",
+    "Emilia Pardo Bazán fue una de las principales introductoras del Naturalismo en España."
+  ],
+  [
+    "El texto argumentativo tiene como objetivo convencer o persuadir al receptor.",
+    "Para ello, el autor expone una idea principal o tesis.",
+    "Luego, desarrolla una serie de argumentos o razones para defender su tesis.",
+    "La estructura suele ser: introducción, cuerpo argumentativo y conclusión.",
+    "Los artículos de opinión o los discursos políticos son ejemplos de textos argumentativos."
+  ],
+  [
+    "Las vanguardias fueron una serie de movimientos artísticos que rompieron con el arte tradicional.",
+    "Surgieron en Europa a principios del siglo XX, buscando la originalidad y la experimentación.",
+    "Movimientos como el cubismo, el futurismo o el surrealismo revolucionaron la pintura.",
+    "En literatura, los vanguardistas jugaron con el lenguaje y la disposición del texto.",
+    "El poeta español Ramón Gómez de la Serna inventó la greguería, una forma de vanguardia."
+  ],
+  [
+    "El complemento agente es una función sintáctica que solo aparece en las oraciones pasivas.",
+    "Indica quién realiza la acción del verbo en este tipo de oraciones.",
+    "Siempre va introducido por la preposición 'por'.",
+    "En 'El tesoro fue encontrado por el pirata', 'por el pirata' es el complemento agente.",
+    "Al transformar la oración a activa, se convierte en el sujeto."
+  ],
+  [
+    "La literatura de posguerra en España estuvo profundamente marcada por la Guerra Civil.",
+    "En los años 40, la novela reflejó el pesimismo y la angustia de la época, en una corriente llamada tremendismo.",
+    "A partir de los años 50, surgió el realismo social, que denunciaba las injusticias.",
+    "Muchos escritores importantes, como Rafael Alberti o Rosa Chacel, tuvieron que exiliarse.",
+    "La censura del régimen franquista limitó la libertad de los autores que se quedaron."
+  ],
+  [
+    "Las proposiciones subordinadas adverbiales impropias no equivalen a un adverbio.",
+    "Expresan relaciones lógicas como la condición, la concesión o la consecuencia.",
+    "Las condicionales, introducidas por 'si', expresan una condición para que se cumpla la principal.",
+    "Las concesivas, con nexos como 'aunque', expresan un obstáculo que no impide la acción.",
+    "Por ejemplo, en 'Aunque llueva, saldré', 'aunque llueva' es una proposición concesiva."
+  ],
+  [
+    "Antonio Machado fue un poeta clave de la Generación del 98.",
+    "Su poesía evoluciona desde un modernismo íntimo hasta una reflexión sobre España.",
+    "En 'Campos de Castilla', describe el paisaje castellano y a sus gentes con un tono crítico y afectivo.",
+    "Sus poemas se caracterizan por su lenguaje sobrio y su profunda carga filosófica.",
+    "Murió en el exilio en Francia poco antes de que terminara la Guerra Civil."
+  ],
+  [
+    "El texto expositivo tiene como finalidad informar y explicar un tema de manera objetiva.",
+    "El autor no da su opinión personal, sino que se basa en datos y hechos.",
+    "Utiliza un lenguaje claro, preciso y formal.",
+    "Los libros de texto, las enciclopedias o los artículos científicos son textos expositivos.",
+    "Su estructura suele ser deductiva (de lo general a lo particular) o inductiva."
+  ],
+  [
+    "El teatro español de la primera mitad del siglo XX fue muy innovador.",
+    "Valle-Inclán creó el esperpento, una visión deformada y grotesca de la realidad española.",
+    "Federico García Lorca unió la tradición popular con la vanguardia en sus tragedias.",
+    "Jacinto Benavente, premio Nobel, representaba el teatro burgués de la época.",
+    "La Guerra Civil supuso un corte drástico en esta brillante trayectoria teatral."
+  ],
+  [
+    "Los valores de 'se' en español son muy variados.",
+    "Puede funcionar como pronombre reflexivo ('Juan se lava') o recíproco ('Se saludan').",
+    "También forma parte de los verbos pronominales, como en 'quejarse' o 'arrepentirse'.",
+    "El 'se' impersonal aparece en oraciones sin sujeto, como en 'Se vive bien aquí'.",
+    "En la pasiva refleja, el 'se' acompaña a un verbo en tercera persona, como en 'Se venden pisos'."
+  ],
+  [
+    "El Neoclasicismo fue el movimiento artístico y literario del siglo XVIII.",
+    "Inspirado por la Ilustración, buscaba un retorno a la sobriedad y el equilibrio del arte clásico.",
+    "En literatura, se valoraba la razón, la claridad y la finalidad didáctica.",
+    "La fábula, con autores como Iriarte o Samaniego, fue uno de los géneros preferidos.",
+    "El teatro neoclásico respetaba estrictamente la regla de las tres unidades."
+  ],
+  [
+    "Las variedades de la lengua dependen de diferentes factores.",
+    "Las variedades geográficas o dialectos son las diferentes formas de hablar en cada región.",
+    "Las variedades sociales o sociolectos dependen del nivel cultural o del grupo social.",
+    "Los registros lingüísticos (formal, coloquial) se adaptan a la situación comunicativa.",
+    "Ninguna variedad es intrínsecamente mejor que otra, solo son diferentes."
+  ],
+  [
+    "El Romanticismo literario en España tuvo dos grandes vertientes.",
+    "El romanticismo tradicional defendía los valores conservadores, como en el Duque de Rivas.",
+    "El romanticismo liberal y revolucionario, representado por Espronceda, exaltaba la rebeldía.",
+    "Ambos compartían el gusto por los temas históricos, el individualismo y los sentimientos exaltados.",
+    "Gustavo Adolfo Bécquer representa una etapa más íntima y posromántica."
+  ],
+  [
+    "La formación de palabras en español se realiza mediante varios procedimientos.",
+    "La derivación consiste en añadir prefijos o sufijos a una raíz, como en 're-hacer' o 'pan-adero'.",
+    "La composición une dos o más palabras para formar una nueva, como en 'sacacorchos'.",
+    "La parasíntesis combina la composición y la derivación simultáneamente, como en 'quince-añ-ero'.",
+    "Estos mecanismos permiten que la lengua cree constantemente nuevas palabras."
+  ],
+  [
+    "La novela social de los años 50 en España adoptó una postura de denuncia.",
+    "Los autores querían reflejar las duras condiciones de vida de las clases trabajadoras.",
+    "Utilizaban un estilo objetivo y un lenguaje sencillo, casi como un reportaje.",
+    "El protagonista suele ser un personaje colectivo, que representa a un grupo social.",
+    "Obras como 'El Jarama' de Sánchez Ferlosio son un claro ejemplo de esta tendencia."
+  ],
+  [
+    "El texto periodístico tiene como función principal informar sobre la actualidad.",
+    "La noticia es el género informativo por excelencia y debe ser objetiva.",
+    "Responde a las seis preguntas básicas: qué, quién, cómo, cuándo, dónde y por qué.",
+    "Los géneros de opinión, como el editorial o el artículo, interpretan y valoran la información.",
+    "La crónica es un género mixto que combina información y valoración personal."
+  ],
+  [
+    "Juan Ramón Jiménez es una figura central de la poesía española del siglo XX.",
+    "Su obra evoluciona desde el Modernismo hacia una 'poesía pura' y esencial.",
+    "Buscaba alcanzar la belleza y el conocimiento a través de la palabra poética.",
+    "Su libro en prosa 'Platero y yo' es una de sus obras más conocidas universalmente.",
+    "Recibió el Premio Nobel de Literatura en 1956."
+  ],
+  [
+    "Las relaciones semánticas se establecen entre los significados de las palabras.",
+    "La sinonimia se da entre palabras con significado igual o muy parecido.",
+    "La antonimia ocurre entre palabras con significados opuestos.",
+    "La polisemia es la propiedad de una palabra de tener varios significados.",
+    "La homonimia se produce cuando dos palabras distintas coinciden en su forma o pronunciación."
+  ],
+  [
+    "El teatro de la posguerra española se dividió en varias corrientes.",
+    "Por un lado, un teatro comercial y de humor que buscaba la evasión del público.",
+    "Por otro, un teatro de denuncia social que intentaba sortear la censura.",
+    "Autores como Antonio Buero Vallejo utilizaron el simbolismo para criticar la dictadura.",
+    "El teatro del absurdo, con autores como Miguel Mihura, también tuvo su espacio."
+  ],
+  [
+    "Las funciones del lenguaje describen la intención del hablante al comunicarse.",
+    "La función representativa se centra en informar objetivamente sobre la realidad.",
+    "La función expresiva manifiesta los sentimientos y emociones del emisor.",
+    "La función apelativa busca influir en el receptor para que actúe de una determinada manera.",
+    "En un mismo mensaje pueden coexistir varias funciones, aunque una suela ser la dominante."
+  ],
+  [
+    "El Realismo Mágico es una corriente narrativa propia de la literatura hispanoamericana.",
+    "Se caracteriza por la inclusión de elementos fantásticos o maravillosos en un relato realista.",
+    "Los personajes y el narrador aceptan estos sucesos extraordinarios como si fueran normales.",
+    "Gabriel García Márquez, con 'Cien años de soledad', es su máximo exponente.",
+    "Busca mostrar una realidad más rica y compleja que la puramente racional."
+  ],
+  [
+    "El lenguaje publicitario tiene unas características muy definidas.",
+    "Su función principal es la apelativa, ya que busca convencer al receptor para que compre un producto.",
+    "Utiliza un lenguaje connotativo, que sugiere emociones y valores asociados a la marca.",
+    "Emplea recursos retóricos, como metáforas o hipérboles, para llamar la atención.",
+    "La imagen y el eslogan son dos de sus elementos fundamentales."
+  ],
+  [
+    "Miguel Delibes es uno de los grandes novelistas españoles de la segunda mitad del siglo XX.",
+    "Sus obras retratan con maestría el mundo rural de Castilla y su declive.",
+    "Defendió la naturaleza y criticó los efectos de un progreso deshumanizado.",
+    "Personajes como el Azarías de 'Los santos inocentes' son inolvidables.",
+    "Su lenguaje es preciso, rico y muy apegado a la realidad que describe."
+  ],
+  [
+    "Un texto instructivo tiene como finalidad guiar al receptor para que realice una tarea.",
+    "Las instrucciones deben ser claras, precisas y ordenadas.",
+    "Suelen utilizarse verbos en imperativo o en infinitivo.",
+    "Una receta de cocina, un manual de montaje o las reglas de un juego son textos instructivos.",
+    "A menudo se acompañan de imágenes o diagramas para facilitar la comprensión."
+  ],
+  [
+    "El 'boom' latinoamericano fue un fenómeno editorial en la década de 1960.",
+    "Dio a conocer a nivel mundial a una brillante generación de novelistas.",
+    "Autores como García Márquez, Vargas Llosa, Cortázar y Fuentes alcanzaron fama internacional.",
+    "Sus obras se caracterizaron por una gran innovación técnica y narrativa.",
+    "Marcó un antes y un después en la historia de la literatura en español."
+  ],
+  [
+    "Las variedades diastráticas o sociolectos dependen del nivel sociocultural del hablante.",
+    "El nivel culto se caracteriza por su riqueza léxica y su corrección gramatical.",
+    "El nivel estándar o común es el que utiliza la mayoría de los hablantes en situaciones normales.",
+    "El nivel popular utiliza un vocabulario más limitado y a veces comete incorrecciones.",
+    "Las jergas son lenguajes específicos de ciertos grupos profesionales o sociales."
+  ],
+  [
+    "La poesía social de los años 50 en España fue un instrumento de denuncia.",
+    "Los poetas querían que su poesía fuera un arma para cambiar la sociedad.",
+    "Utilizaban un lenguaje claro y directo para que el mensaje llegara a la mayoría.",
+    "Temas como la injusticia, la pobreza o la falta de libertad eran centrales.",
+    "Autores como Gabriel Celaya o Blas de Otero fueron sus principales representantes."
+  ],
+  [
+    "Las propiedades textuales son las que hacen que un texto sea coherente y cohesionado.",
+    "La coherencia es la propiedad que dota de sentido global al texto.",
+    "La cohesión se consigue mediante mecanismos que relacionan las diferentes partes del texto.",
+    "La adecuación es la adaptación del texto a la situación comunicativa.",
+    "Un buen texto debe cumplir estas tres propiedades."
+  ],
+  [
+    "La novela experimental de los años 60 en España rompió con el realismo anterior.",
+    "Los autores se preocuparon más por la forma de contar que por la historia en sí.",
+    "Experimentaron con la estructura, el punto de vista narrativo y el lenguaje.",
+    "Luis Martín-Santos, con 'Tiempo de silencio', es el gran iniciador de esta renovación.",
+    "La novela se volvió más compleja y exigía un lector más activo."
+  ],
+  [
+    "Los mecanismos de cohesión textual ayudan a conectar las ideas en un texto.",
+    "La repetición de palabras o el uso de sinónimos y antónimos son mecanismos léxicos.",
+    "El uso de pronombres o determinantes para referirse a algo ya mencionado es un mecanismo gramatical.",
+    "Los conectores, como 'sin embargo' o 'además', establecen relaciones lógicas entre las frases.",
+    "Gracias a ellos, un texto no es una simple suma de oraciones, sino una unidad."
+  ]
 ]

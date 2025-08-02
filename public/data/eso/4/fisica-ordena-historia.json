@@ -1,12 +1,282 @@
 [
-    ["El movimiento de un proyectil, como una pelota lanzada, es un tiro parabólico.", "Podemos descomponer este movimiento en dos más sencillos: uno horizontal y otro vertical.", "El movimiento horizontal es rectilíneo y uniforme, ya que no hay aceleración en esa dirección.", "El movimiento vertical es rectilíneo y uniformemente acelerado, debido a la fuerza de la gravedad.", "La combinación de ambos movimientos da como resultado la trayectoria parabólica.", "La cinemática nos permite calcular el alcance máximo o la altura máxima del proyectil."],
-    ["La ley de la gravitación universal de Newton describe la fuerza de atracción entre dos masas.", "Establece que esta fuerza es directamente proporcional al producto de sus masas.", "Y es inversamente proporcional al cuadrado de la distancia que las separa.", "Esta ley explica tanto la caída de una manzana como el movimiento de los planetas alrededor del Sol.", "Fue uno de los mayores logros de la historia de la ciencia."],
-    ["El principio de conservación de la energía mecánica es una herramienta muy útil.", "Afirma que si sobre un cuerpo solo actúan fuerzas conservativas, su energía mecánica total permanece constante.", "La energía mecánica es la suma de la energía cinética y la energía potencial.", "Por ejemplo, en una montaña rusa sin rozamiento, la energía se transforma de potencial a cinética y viceversa.", "La energía total en cualquier punto del recorrido es siempre la misma."],
-    ["El trabajo y la energía están íntimamente relacionados.", "El teorema de la energía cinética establece que el trabajo total realizado sobre un cuerpo es igual a la variación de su energía cinética.", "Si el trabajo es positivo, la energía cinética del cuerpo aumenta, es decir, acelera.", "Si el trabajo es negativo, como el del rozamiento, la energía cinética disminuye y el cuerpo frena.", "El trabajo es, por tanto, una medida de la transferencia de energía."],
-    ["La inducción electromagnética fue descubierta por Faraday.", "Demostró que un campo magnético variable puede generar una corriente eléctrica en un circuito cercano.", "Este fenómeno es el principio de funcionamiento de los generadores eléctricos.", "En una central eléctrica, se hace girar una bobina dentro de un campo magnético para producir electricidad.", "Es la base de casi toda la energía eléctrica que consumimos.", "También es el principio de los transformadores que cambian el voltaje."],
-    ["La química orgánica es la química de los compuestos del carbono.", "El átomo de carbono tiene la capacidad única de formar largas cadenas y enlaces estables consigo mismo.", "Esto permite la existencia de una enorme variedad de moléculas orgánicas.", "Los hidrocarburos, formados solo por carbono e hidrógeno, son los compuestos más sencillos.", "Las moléculas orgánicas son la base de la vida en la Tierra.", "El petróleo es la principal fuente de compuestos orgánicos industriales."],
-    ["Para ajustar una reacción química, debemos aplicar la ley de conservación de la masa.", "La ley de Lavoisier dice que la masa de los reactivos debe ser igual a la de los productos.", "Esto implica que el número de átomos de cada elemento debe ser el mismo a ambos lados de la ecuación.", "Para lograrlo, colocamos unos números llamados coeficientes estequiométricos delante de cada fórmula.", "El ajuste se realiza por tanteo o utilizando métodos algebraicos."],
-    ["El concepto de mol es fundamental en estequiometría.", "Un mol es una cantidad de sustancia que contiene un número de partículas igual al número de Avogadro.", "Este número es aproximadamente 6,022 por 10 elevado a 23.", "La masa de un mol de una sustancia, expresada en gramos, es su masa molar.", "El mol nos permite relacionar el mundo macroscópico (gramos) con el mundo microscópico (átomos y moléculas)."],
-    ["Las ondas son perturbaciones que se propagan transportando energía, pero no materia.", "Las ondas mecánicas, como el sonido, necesitan un medio material para viajar.", "Las ondas electromagnéticas, como la luz, pueden propagarse en el vacío.", "Se caracterizan por su frecuencia, longitud de onda y amplitud.", "La frecuencia es el número de oscilaciones por segundo y se mide en hercios."],
-    ["El movimiento circular uniforme (MCU) describe un cuerpo que gira a velocidad constante.", "Aunque la rapidez es constante, la velocidad no lo es, porque su dirección cambia continuamente.", "Este cambio de dirección implica que existe una aceleración, llamada aceleración normal o centrípeta.", "Esta aceleración está siempre dirigida hacia el centro de la trayectoria.", "Para que exista, es necesaria una fuerza centrípeta que obligue al cuerpo a girar."]
+  [
+    "El movimiento es el cambio de posición de un cuerpo a lo largo del tiempo.",
+    "Para describirlo, necesitamos un sistema de referencia, un punto fijo respecto al cual medimos.",
+    "La trayectoria es la línea imaginaria que une las sucesivas posiciones del móvil.",
+    "La velocidad es una magnitud vectorial que nos indica la rapidez y la dirección del movimiento.",
+    "La aceleración mide cómo cambia la velocidad con el tiempo."
+  ],
+  [
+    "El Movimiento Rectilíneo Uniforme (MRU) es el más simple de todos.",
+    "Su trayectoria es una línea recta y su velocidad es siempre constante.",
+    "Esto implica que su aceleración es cero.",
+    "El espacio recorrido es directamente proporcional al tiempo empleado.",
+    "Un coche en una autopista recta a velocidad constante es una buena aproximación."
+  ],
+  [
+    "El Movimiento Rectilíneo Uniformemente Acelerado (MRUA) describe un movimiento con aceleración constante.",
+    "La velocidad del móvil aumenta o disminuye de forma uniforme con el tiempo.",
+    "Si la aceleración es positiva, el cuerpo acelera; si es negativa, frena.",
+    "La caída libre de un objeto es un ejemplo de MRUA, donde la aceleración es la gravedad.",
+    "Las gráficas velocidad-tiempo de este movimiento son líneas rectas inclinadas."
+  ],
+  [
+    "Las leyes de Newton son los pilares fundamentales de la dinámica clásica.",
+    "La primera ley, o ley de la inercia, dice que un cuerpo mantiene su estado de movimiento si no actúan fuerzas sobre él.",
+    "La segunda ley establece que la fuerza es igual a la masa por la aceleración.",
+    "La tercera ley es el principio de acción y reacción.",
+    "Estas tres leyes explican la mayor parte de los movimientos que observamos a diario."
+  ],
+  [
+    "La fuerza de rozamiento es una fuerza que siempre se opone al movimiento.",
+    "Aparece por el contacto entre dos superficies.",
+    "Depende de la naturaleza de las superficies y de la fuerza con la que se aprietan.",
+    "Aunque a menudo la vemos como un inconveniente, es esencial para poder caminar o frenar.",
+    "El rozamiento transforma parte de la energía mecánica en calor."
+  ],
+  [
+    "La ley de la gravitación universal de Newton describe la atracción entre dos masas.",
+    "Establece que la fuerza de atracción es directamente proporcional al producto de sus masas.",
+    "Y es inversamente proporcional al cuadrado de la distancia que las separa.",
+    "Esta ley explica tanto la caída de una manzana como el movimiento de los planetas.",
+    "Es una de las leyes más importantes y universales de la física."
+  ],
+  [
+    "La energía mecánica de un cuerpo es la suma de su energía cinética y su energía potencial.",
+    "La energía cinética es la energía del movimiento y depende de la masa y la velocidad.",
+    "La energía potencial gravitatoria es la energía almacenada por la altura.",
+    "Si no hay rozamiento, la energía mecánica total se conserva, aunque sus formas se transformen.",
+    "Una bola que cae es un ejemplo de cómo la energía potencial se convierte en cinética."
+  ],
+  [
+    "El trabajo y la potencia son dos conceptos clave en física.",
+    "Se realiza un trabajo cuando una fuerza produce un desplazamiento.",
+    "Se calcula multiplicando la componente de la fuerza en la dirección del desplazamiento por la distancia.",
+    "La potencia es la rapidez con la que se realiza un trabajo.",
+    "Un motor es más potente que otro si puede hacer el mismo trabajo en menos tiempo."
+  ],
+  [
+    "La presión es la fuerza ejercida por unidad de superficie.",
+    "Un objeto afilado ejerce mucha presión porque concentra la fuerza en un área muy pequeña.",
+    "La presión en el interior de un fluido aumenta con la profundidad.",
+    "El principio de Pascal es la base de la prensa hidráulica, que multiplica las fuerzas.",
+    "La unidad de presión en el Sistema Internacional es el Pascal (Pa)."
+  ],
+  [
+    "El principio de Arquímedes explica por qué los objetos flotan.",
+    "Afirma que todo cuerpo sumergido en un fluido recibe un empuje hacia arriba.",
+    "Este empuje es igual al peso del volumen de fluido que desaloja.",
+    "Un objeto flota si el empuje es mayor o igual que su propio peso.",
+    "Por eso un enorme barco de acero puede flotar en el agua."
+  ],
+  [
+    "La estructura de la materia se ha ido descubriendo a lo largo de la historia.",
+    "A principios del siglo XX, se pensaba que el átomo era indivisible.",
+    "El descubrimiento del electrón, el protón y el neutrón demostró que el átomo tenía una estructura interna.",
+    "El modelo de Rutherford propuso un núcleo central positivo con electrones girando alrededor.",
+    "Hoy sabemos que incluso los protones y neutrones están formados por partículas más pequeñas llamadas quarks."
+  ],
+  [
+    "La tabla periódica moderna organiza los elementos por su número atómico creciente.",
+    "Los elementos en una misma columna o grupo tienen propiedades químicas similares.",
+    "Esto se debe a que tienen la misma configuración de electrones en su última capa.",
+    "Las filas se llaman períodos e indican el nivel de energía de la capa de valencia.",
+    "Es una herramienta increíblemente poderosa para predecir el comportamiento químico de los elementos."
+  ],
+  [
+    "El enlace químico es la fuerza que mantiene unidos a los átomos para formar compuestos.",
+    "Los átomos se unen para alcanzar una configuración electrónica más estable, similar a la de un gas noble.",
+    "Existen tres tipos principales de enlace: iónico, covalente y metálico.",
+    "El tipo de enlace que se forma depende de la naturaleza de los átomos que se unen.",
+    "Las propiedades de una sustancia dependen directamente del tipo de enlace que presentan sus átomos."
+  ],
+  [
+    "El enlace iónico se forma por la atracción entre iones de carga opuesta.",
+    "Se da típicamente entre un metal, que tiende a ceder electrones, y un no metal, que tiende a ganarlos.",
+    "El metal se convierte en un catión (positivo) y el no metal en un anión (negativo).",
+    "Los compuestos iónicos forman redes cristalinas muy ordenadas.",
+    "Son sólidos a temperatura ambiente, frágiles y buenos conductores en disolución."
+  ],
+  [
+    "El enlace covalente consiste en la compartición de electrones entre dos átomos.",
+    "Se forma generalmente entre átomos de elementos no metálicos.",
+    "Al compartir electrones, ambos átomos consiguen una estructura más estable.",
+    "Este enlace da lugar a la formación de moléculas discretas.",
+    "Sustancias como el agua, el oxígeno o el dióxido de carbono tienen enlaces covalentes."
+  ],
+  [
+    "El enlace metálico es el que se da entre los átomos de los metales.",
+    "Los átomos de metal ceden sus electrones de valencia, que forman una 'nube' o 'mar' de electrones.",
+    "Esta nube de electrones se mueve libremente entre los cationes metálicos fijos.",
+    "Esta estructura explica por qué los metales son buenos conductores del calor y la electricidad.",
+    "También explica su brillo característico y su ductilidad."
+  ],
+  [
+    "Una reacción química es un proceso en el que se rompen unos enlaces y se forman otros nuevos.",
+    "La ecuación química es la forma de representar simbólicamente esta transformación.",
+    "A la izquierda se escriben los reactivos y a la derecha los productos.",
+    "La ley de conservación de la masa exige que la ecuación esté ajustada.",
+    "Ajustar una ecuación consiste en tener el mismo número de átomos de cada elemento a ambos lados."
+  ],
+  [
+    "La velocidad de una reacción química puede depender de varios factores.",
+    "Un aumento de la temperatura generalmente acelera la reacción.",
+    "Aumentar la concentración de los reactivos también suele incrementar la velocidad.",
+    "La presencia de un catalizador puede acelerar enormemente una reacción.",
+    "Los catalizadores son sustancias que no se consumen en el proceso."
+  ],
+  [
+    "El mol es la unidad de cantidad de sustancia en el Sistema Internacional.",
+    "Un mol de cualquier sustancia contiene siempre el mismo número de partículas.",
+    "Este número se conoce como número de Avogadro y es aproximadamente 6,022 x 10²³.",
+    "La masa de un mol de una sustancia es su masa molar, expresada en gramos/mol.",
+    "El concepto de mol es fundamental para realizar cálculos estequiométricos en química."
+  ],
+  [
+    "La química del carbono es también conocida como química orgánica.",
+    "El átomo de carbono tiene la capacidad única de formar cuatro enlaces covalentes estables.",
+    "Puede unirse a otros átomos de carbono para formar largas cadenas y anillos.",
+    "Esta versatilidad permite la existencia de una inmensa variedad de compuestos orgánicos.",
+    "Es la química de la vida, ya que todas las biomoléculas se basan en el carbono."
+  ],
+  [
+    "Los hidrocarburos son los compuestos orgánicos más sencillos.",
+    "Están formados únicamente por átomos de carbono e hidrógeno.",
+    "Los alcanos solo tienen enlaces simples entre los carbonos.",
+    "Los alquenos contienen al menos un doble enlace y los alquinos, un triple enlace.",
+    "El petróleo y el gas natural son mezclas de hidrocarburos."
+  ],
+  [
+    "Los polímeros son macromoléculas formadas por la unión de muchas unidades más pequeñas llamadas monómeros.",
+    "Existen polímeros naturales, como el almidón o las proteínas.",
+    "También existen polímeros sintéticos, que son los que conocemos como plásticos.",
+    "El PVC, el polietileno o el nailon son ejemplos de polímeros sintéticos.",
+    "Sus propiedades dependen del tipo de monómero y de cómo se unen entre sí."
+  ],
+  [
+    "Las ondas transportan energía sin transportar materia.",
+    "Una onda es una perturbación que se propaga a través de un medio o del vacío.",
+    "La longitud de onda es la distancia entre dos puntos consecutivos en el mismo estado de vibración.",
+    "La frecuencia es el número de oscilaciones que se producen por segundo.",
+    "La velocidad de propagación de una onda es igual a su longitud de onda por su frecuencia."
+  ],
+  [
+    "La energía nuclear se libera en las reacciones que afectan al núcleo de los átomos.",
+    "En la fisión nuclear, un núcleo pesado se rompe en otros más ligeros, liberando una gran cantidad de energía.",
+    "Este es el proceso que se utiliza en las centrales nucleares.",
+    "En la fusión nuclear, dos núcleos ligeros se unen para formar uno más pesado, liberando aún más energía.",
+    "La fusión es el proceso que tiene lugar en el interior del Sol y las estrellas."
+  ],
+  [
+    "El Movimiento Circular Uniforme (MCU) describe un cuerpo que gira con rapidez constante.",
+    "Aunque la rapidez no cambia, la dirección de la velocidad está cambiando continuamente.",
+    "Este cambio en la dirección de la velocidad implica que existe una aceleración.",
+    "Esta aceleración, llamada centrípeta, apunta siempre hacia el centro de la trayectoria.",
+    "Un satélite en órbita circular es un buen ejemplo de MCU."
+  ],
+  [
+    "Las fuerzas de contacto solo actúan cuando los cuerpos se tocan.",
+    "La fuerza normal es la que ejerce una superficie para evitar que un objeto la atraviese.",
+    "La tensión es la fuerza que ejerce una cuerda cuando está tirante.",
+    "La fuerza de rozamiento, que se opone al movimiento, también es de contacto.",
+    "Son las fuerzas que experimentamos de forma más directa en nuestra vida diaria."
+  ],
+  [
+    "Las fuerzas a distancia, en cambio, actúan sin necesidad de que los cuerpos se toquen.",
+    "La fuerza gravitatoria es la atracción entre dos masas.",
+    "La fuerza eléctrica es la que actúa entre cuerpos con carga eléctrica.",
+    "La fuerza magnética es la que ejercen los imanes y las corrientes eléctricas.",
+    "Estas cuatro interacciones fundamentales rigen todo el universo."
+  ],
+  [
+    "La estequiometría nos permite realizar cálculos en las reacciones químicas.",
+    "Se basa en la ley de la conservación de la masa y en las proporciones fijas.",
+    "Una ecuación química ajustada nos da la proporción en moles de reactivos y productos.",
+    "A partir de la masa de un reactivo, podemos calcular la masa de producto que se formará.",
+    "Es una herramienta esencial en cualquier laboratorio o proceso industrial químico."
+  ],
+  [
+    "Las disoluciones son mezclas homogéneas de un soluto en un disolvente.",
+    "La concentración de una disolución expresa la cantidad de soluto que hay en una cantidad de disolvente o de disolución.",
+    "Se puede expresar en gramos por litro, en porcentaje en masa o en molaridad.",
+    "Una disolución está saturada cuando ya no admite más soluto.",
+    "La solubilidad de una sustancia depende de la temperatura."
+  ],
+  [
+    "Los grupos funcionales son átomos o grupos de átomos que confieren propiedades específicas a los compuestos orgánicos.",
+    "El grupo hidroxilo (-OH) es característico de los alcoholes.",
+    "El grupo carboxilo (-COOH) define a los ácidos carboxílicos.",
+    "La presencia de un grupo funcional determina la reactividad y el comportamiento de la molécula.",
+    "La química orgánica se organiza en torno al estudio de estos grupos."
+  ],
+  [
+    "La cinemática es la parte de la física que estudia el movimiento sin atender a las causas que lo producen.",
+    "Describe la trayectoria, la posición, la velocidad y la aceleración de los cuerpos.",
+    "Utiliza un lenguaje matemático para describir estos conceptos.",
+    "El MRU y el MRUA son los modelos cinemáticos más básicos.",
+    "Es el primer paso para poder entender la dinámica, que sí estudia las causas del movimiento."
+  ],
+  [
+    "La dinámica, en cambio, estudia la relación entre las fuerzas y el movimiento.",
+    "Las leyes de Newton son el fundamento de la dinámica.",
+    "Permite predecir cómo se moverá un cuerpo si conocemos las fuerzas que actúan sobre él.",
+    "También permite determinar qué fuerza neta está actuando si conocemos cómo se mueve.",
+    "Es una de las ramas más importantes y con más aplicaciones de la física."
+  ],
+  [
+    "El momento lineal o cantidad de movimiento es una magnitud que relaciona la masa y la velocidad de un cuerpo.",
+    "Se calcula multiplicando la masa por la velocidad.",
+    "Es una magnitud vectorial, con la misma dirección y sentido que la velocidad.",
+    "En un sistema aislado, el momento lineal total se conserva.",
+    "Este principio de conservación es fundamental para estudiar las colisiones y los choques."
+  ],
+  [
+    "El impulso mecánico es la fuerza aplicada a un cuerpo durante un intervalo de tiempo.",
+    "Se calcula multiplicando la fuerza por el tiempo que actúa.",
+    "El teorema del impulso establece que el impulso aplicado a un cuerpo es igual a la variación de su momento lineal.",
+    "Para frenar un coche, podemos aplicar una fuerza grande durante poco tiempo o una pequeña durante más tiempo.",
+    "En ambos casos, el cambio en la cantidad de movimiento será el mismo."
+  ],
+  [
+    "Las reacciones de oxidación-reducción, o redox, implican una transferencia de electrones.",
+    "La oxidación es la pérdida de electrones por parte de una especie química.",
+    "La reducción es la ganancia de electrones.",
+    "Ambos procesos ocurren siempre de forma simultánea.",
+    "La corrosión de los metales o el funcionamiento de una pila son ejemplos de reacciones redox."
+  ],
+  [
+    "La electroquímica es la rama de la química que estudia las reacciones redox.",
+    "Una pila galvánica es un dispositivo que produce corriente eléctrica a partir de una reacción redox espontánea.",
+    "La electrólisis es el proceso inverso: utiliza corriente eléctrica para provocar una reacción redox no espontánea.",
+    "Se utiliza para recubrir objetos con metales (galvanoplastia) o para obtener elementos como el aluminio.",
+    "Las baterías de nuestros móviles y coches se basan en principios electroquímicos."
+  ],
+  [
+    "La termoquímica estudia el calor intercambiado en las reacciones químicas.",
+    "Una reacción exotérmica es aquella que desprende calor al entorno.",
+    "Una reacción endotérmica, en cambio, necesita absorber calor del entorno para producirse.",
+    "La entalpía es la magnitud que mide el calor absorbido o desprendido en una reacción a presión constante.",
+    "Las reacciones de combustión son ejemplos muy claros de procesos exotérmicos."
+  ],
+  [
+    "El petróleo es una mezcla compleja de hidrocarburos.",
+    "Se formó a partir de la descomposición de materia orgánica durante millones de años.",
+    "No se puede utilizar tal como se extrae, por lo que se somete a un proceso de refino.",
+    "En la torre de destilación fraccionada, se separa en diferentes productos según su punto de ebullición.",
+    "De él se obtienen combustibles como la gasolina o el gasóleo, y materias primas para los plásticos."
+  ],
+  [
+    "El efecto invernadero es un fenómeno natural que permite la vida en la Tierra.",
+    "Ciertos gases de la atmósfera, como el CO2, retienen parte del calor que emite la superficie terrestre.",
+    "Sin este efecto, la temperatura media del planeta sería de unos -18ºC.",
+    "El problema es que la actividad humana ha aumentado la concentración de estos gases.",
+    "Este aumento está provocando un calentamiento global con graves consecuencias."
+  ],
+  [
+    "La lluvia ácida se forma cuando los óxidos de azufre y nitrógeno reaccionan con el agua de la atmósfera.",
+    "Estos óxidos se liberan principalmente por la quema de combustibles fósiles en la industria y el transporte.",
+    "Se forman ácido sulfúrico y ácido nítrico, que caen a la superficie con la lluvia.",
+    "Provoca la acidificación de lagos y suelos, dañando los ecosistemas.",
+    "También corroe los edificios y monumentos de piedra caliza."
+  ]
 ]

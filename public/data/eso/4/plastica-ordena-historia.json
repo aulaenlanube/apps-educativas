@@ -1,42 +1,282 @@
 [
-  "El punto es el elemento más simple de la expresión plástica.",
-  "La línea puede ser recta, curva, quebrada u ondulada.",
-  "Los colores primarios son el rojo, el amarillo y el azul.",
-  "Al mezclar dos colores primarios se obtiene un color secundario.",
-  "El verde, el naranja y el violeta son colores secundarios.",
-  "El círculo cromático organiza los colores de forma circular.",
-  "La textura de una superficie puede ser lisa, rugosa, suave o áspera.",
-  "El volumen representa el espacio que ocupa un objeto tridimensional.",
-  "El dibujo es la base de muchas obras de arte.",
-  "La perspectiva nos ayuda a representar la profundidad en un plano.",
-  "Un bodegón es una obra de arte que representa objetos inanimados.",
-  "El retrato es la representación artística de una persona.",
-  "La acuarela es una técnica de pintura que utiliza colores diluidos en agua.",
-  "El collage es una técnica que consiste en pegar diferentes materiales.",
-  "La simetría es la correspondencia exacta en la forma y el tamaño.",
-  "El punto de fuga es un punto donde convergen las líneas paralelas.",
-  "Los colores cálidos, como el rojo, transmiten energía y cercanía.",
-  "Los colores fríos, como el azul, transmiten calma y lejanía.",
-  "La forma es el aspecto exterior de los objetos.",
-  "El claroscuro es el uso de contrastes entre luces y sombras.",
-  "La escultura es el arte de modelar, tallar o esculpir figuras.",
-  "El boceto es un dibujo rápido que sirve como prueba inicial.",
-  "La composición es la forma de organizar los elementos en una obra.",
-  "El color blanco se produce por la presencia de todos los colores.",
-  "El color negro es la ausencia de luz y color.",
-  "El plano es una superficie de dos dimensiones: alto y ancho.",
-  "La línea de horizonte separa el cielo de la tierra en un paisaje.",
-  "La pintura al óleo utiliza pigmentos mezclados con aceite.",
-  "Un mosaico se crea uniendo pequeñas piezas de colores.",
-  "El grabado es una técnica de impresión artística.",
-  "La arquitectura es el arte de diseñar y construir edificios.",
-  "El diseño gráfico comunica mensajes visuales.",
-  "La proporción es la relación de tamaño entre las partes de un todo.",
-  "El equilibrio visual hace que una composición se vea estable.",
-  "El ritmo en el arte se crea mediante la repetición de elementos.",
-  "El centro de interés es la parte más importante de una obra.",
-  "La abstracción no representa objetos reconocibles de la realidad.",
-  "Leonardo da Vinci fue un famoso artista del Renacimiento.",
-  "Picasso fue un pintor español y creador del cubismo.",
-  "La fotografía es el arte de capturar imágenes con una cámara."
+  [
+    "El Impresionismo fue un movimiento pictórico que revolucionó el arte en el siglo XIX.",
+    "Surgió en Francia como una reacción contra el arte académico y su rigidez.",
+    "Los pintores impresionistas, como Monet o Renoir, salieron a pintar al aire libre.",
+    "Su principal objetivo era captar la impresión fugaz de la luz y la atmósfera sobre los objetos.",
+    "Utilizaban una pincelada suelta y rápida, y colores puros directamente sobre el lienzo."
+  ],
+  [
+    "El Postimpresionismo no fue un estilo unificado, sino la obra de varios artistas que partieron del Impresionismo.",
+    "Artistas como Van Gogh, Cézanne o Gauguin buscaron un arte más personal y expresivo.",
+    "Van Gogh utilizó el color y la pincelada para expresar sus turbulentas emociones.",
+    "Cézanne, en cambio, buscaba la estructura geométrica subyacente en la naturaleza.",
+    "Abrieron el camino a las vanguardias artísticas del siglo XX."
+  ],
+  [
+    "Las vanguardias históricas surgieron a principios del siglo XX con una voluntad de ruptura total.",
+    "Rechazaron el arte del pasado y buscaron la experimentación y la originalidad a toda costa.",
+    "Movimientos como el fauvismo, el cubismo, el futurismo o el surrealismo se sucedieron rápidamente.",
+    "Cada 'ismo' proponía una nueva forma de entender el arte y la realidad.",
+    "Su influencia ha sido determinante en todo el arte posterior."
+  ],
+  [
+    "El cubismo, liderado por Pablo Picasso y Georges Braque, rompió con la perspectiva tradicional.",
+    "Propusieron representar los objetos desde múltiples puntos de vista de forma simultánea.",
+    "Descomponían la realidad en formas geométricas básicas, como cubos, conos y cilindros.",
+    "La paleta de colores al principio era muy reducida, con predominio de grises y ocres.",
+    "La obra 'Las señoritas de Aviñón' de Picasso es considerada el punto de partida de este movimiento."
+  ],
+  [
+    "El surrealismo fue un movimiento que exploró el mundo de los sueños y el inconsciente.",
+    "Influenciado por las teorías psicoanalíticas de Sigmund Freud, buscaba un arte que surgiera del automatismo.",
+    "Artistas como Salvador Dalí, Joan Miró o René Magritte crearon imágenes oníricas y sorprendentes.",
+    "Representaban un mundo ilógico, donde los objetos más extraños convivían de forma natural.",
+    "Fue una revolución que afectó no solo a la pintura, sino también a la literatura y el cine."
+  ],
+  [
+    "La abstracción es un lenguaje artístico que no representa la realidad figurativa.",
+    "En su lugar, se centra en los elementos plásticos puros: la forma, el color y la línea.",
+    "Wassily Kandinsky es considerado el pionero de la abstracción lírica, basada en la expresión de la emoción.",
+    "Piet Mondrian, en cambio, desarrolló una abstracción geométrica basada en el orden y la armonía universal.",
+    "El arte abstracto busca crear un impacto visual y emocional directo en el espectador."
+  ],
+  [
+    "La Bauhaus fue una escuela de arte, diseño y arquitectura fundada en Alemania en 1919.",
+    "Su objetivo era unir el arte y la artesanía con la producción industrial.",
+    "Defendían un diseño funcional, donde 'la forma sigue a la función'.",
+    "Tuvo una influencia enorme en el diseño gráfico, el diseño industrial y la arquitectura moderna.",
+    "A pesar de su corta vida, su legado sigue siendo fundamental en el diseño actual."
+  ],
+  [
+    "El diseño industrial es la disciplina que se encarga de la creación de objetos producidos en serie.",
+    "Un buen diseño debe equilibrar la funcionalidad, la estética y la viabilidad económica.",
+    "La ergonomía es una parte clave, buscando adaptar el objeto a las necesidades del usuario.",
+    "Desde un coche hasta un cepillo de dientes, casi todo lo que usamos es fruto del diseño industrial.",
+    "El diseño sostenible busca además minimizar el impacto ambiental del producto."
+  ],
+  [
+    "La identidad visual corporativa es la imagen que una empresa proyecta al público.",
+    "Se compone de elementos como el logotipo, los colores corporativos y la tipografía.",
+    "Todos estos elementos se recogen en un manual de identidad corporativa para asegurar su uso coherente.",
+    "Una identidad visual fuerte y consistente ayuda a que una marca sea reconocible y memorable.",
+    "Es una parte fundamental de la estrategia de comunicación de cualquier empresa."
+  ],
+  [
+    "El lenguaje publicitario busca persuadir al espectador para que consuma un producto o servicio.",
+    "Utiliza un lenguaje connotativo, que sugiere valores y emociones asociados a la marca.",
+    "La imagen y el eslogan son sus dos herramientas más poderosas para captar la atención.",
+    "A menudo, no vende solo un producto, sino un estilo de vida o un estatus social.",
+    "Analizar sus estrategias nos permite ser consumidores más críticos y conscientes."
+  ],
+  [
+    "El lenguaje cinematográfico tiene su propia gramática, basada en la combinación de planos.",
+    "El plano es la unidad básica, y su tamaño (general, medio, primer plano) tiene una intención expresiva.",
+    "El ángulo de la cámara puede hacer que un personaje parezca poderoso (contrapicado) o vulnerable (picado).",
+    "El montaje es el proceso de ordenar los planos para crear el ritmo y el significado de la película.",
+    "La combinación de imagen y sonido crea una experiencia inmersiva para el espectador."
+  ],
+  [
+    "El guion gráfico o 'storyboard' es una herramienta esencial en la preproducción audiovisual.",
+    "Consiste en una serie de viñetas que ilustran cada plano de la película, como si fuera un cómic.",
+    "Permite al director y al equipo visualizar la película antes de empezar a rodar.",
+    "Ayuda a planificar los movimientos de cámara, la composición de los planos y la puesta en escena.",
+    "Es un paso clave para optimizar el tiempo y los recursos durante el rodaje."
+  ],
+  [
+    "El dibujo técnico en el sistema diédrico representa un objeto mediante sus vistas.",
+    "Las vistas principales son el alzado (frente), la planta (arriba) y el perfil (lado).",
+    "Cada vista se proyecta de forma ortogonal sobre un plano de proyección.",
+    "La disposición normalizada de las vistas permite definir la forma del objeto sin ambigüedad.",
+    "Es el sistema universal utilizado en la industria y la arquitectura."
+  ],
+  [
+    "La acotación es el conjunto de normas para indicar las dimensiones de un objeto en un plano.",
+    "Utiliza líneas de cota, cifras de cota y símbolos para especificar todas las medidas.",
+    "Las cotas deben ser claras, precisas y estar dispuestas de forma ordenada.",
+    "No se debe acotar más de lo necesario ni omitir ninguna medida fundamental.",
+    "Una correcta acotación es imprescindible para que la pieza pueda ser fabricada."
+  ],
+  [
+    "Las secciones y los cortes son representaciones que nos permiten ver el interior de una pieza.",
+    "Se obtienen al imaginar que cortamos la pieza por un plano.",
+    "La superficie de la pieza que ha sido cortada por el plano se representa rayada.",
+    "Permiten acotar y definir las partes internas del objeto que no son visibles desde el exterior.",
+    "Son un recurso fundamental para la representación de piezas complejas."
+  ],
+  [
+    "El Pop Art fue un movimiento artístico que surgió en los años 50 y 60.",
+    "Se inspiraba en la cultura popular y de masas, como la publicidad, el cómic o los objetos de consumo.",
+    "Artistas como Andy Warhol o Roy Lichtenstein utilizaron imágenes icónicas de la sociedad de consumo.",
+    "Empleaban técnicas de reproducción mecánica, como la serigrafía, para criticar la idea de obra de arte única.",
+    "Fue un arte que reflejaba de forma irónica y a veces crítica la opulencia de la sociedad occidental."
+  ],
+  [
+    "El arte de acción engloba manifestaciones artísticas en las que la obra es la propia acción.",
+    "El happening es una acción artística que busca la participación espontánea del público.",
+    "La performance, en cambio, está más guionizada y el artista es el eje central.",
+    "No buscan crear un objeto artístico vendible, sino una experiencia única y efímera.",
+    "El cuerpo del artista y el tiempo se convierten en los principales materiales de la obra."
+  ],
+  [
+    "El videoarte es una forma de expresión artística que utiliza el vídeo como medio.",
+    "A diferencia del cine comercial, no necesariamente cuenta una historia narrativa.",
+    "Puede explorar las posibilidades plásticas de la imagen en movimiento, el sonido o el tiempo.",
+    "A menudo se presenta en forma de videoinstalación, ocupando un espacio expositivo.",
+    "Artistas como Nam June Paik o Bill Viola son pioneros de esta disciplina."
+  ],
+  [
+    "La fotografía como medio de expresión artística va más allá del simple registro de la realidad.",
+    "El fotógrafo toma decisiones creativas sobre el encuadre, la composición, la luz y el instante.",
+    "Puede buscar la belleza formal, documentar una realidad social o construir una ficción.",
+    "Fotógrafos como Henri Cartier-Bresson o Ansel Adams son considerados grandes artistas.",
+    "En el arte contemporáneo, la fotografía es uno de los medios más utilizados."
+  ],
+  [
+    "El diseño de moda es una disciplina que combina la creatividad con la funcionalidad.",
+    "El diseñador no solo crea prendas estéticamente atractivas, sino que también deben ser ponibles.",
+    "El proceso incluye el diseño del boceto, la elección de los tejidos y la confección del patrón.",
+    "La alta costura es la creación de prendas exclusivas y a medida.",
+    "El 'prêt-à-porter' es la moda producida en serie y lista para llevar."
+  ],
+  [
+    "La arquitectura sostenible o 'verde' busca minimizar el impacto ambiental de los edificios.",
+    "Utiliza materiales ecológicos y de bajo impacto en su construcción.",
+    "Diseña los edificios para aprovechar al máximo la luz natural y la ventilación.",
+    "Incorpora sistemas de energías renovables, como paneles solares o geotermia.",
+    "Su objetivo es crear espacios saludables para las personas y respetuosos con el planeta."
+  ],
+  [
+    "La perspectiva cónica es un sistema de representación que crea una ilusión de profundidad muy realista.",
+    "Se basa en el principio de que los objetos parecen más pequeños cuanto más lejos están.",
+    "Las líneas paralelas que se alejan del espectador parecen converger en un punto de fuga.",
+    "Este punto de fuga se sitúa en la línea del horizonte.",
+    "Fue desarrollada durante el Renacimiento y cambió por completo la historia de la pintura."
+  ],
+  [
+    "La psicología del color estudia cómo los colores afectan a nuestras emociones y percepciones.",
+    "Los colores cálidos, como el rojo, suelen asociarse con la energía, la pasión o el peligro.",
+    "Los colores fríos, como el azul, transmiten calma, serenidad y confianza.",
+    "El verde se asocia con la naturaleza, la salud y la esperanza.",
+    "El marketing y la publicidad utilizan estos conocimientos para influir en nuestras decisiones de compra."
+  ],
+  [
+    "La serigrafía es una técnica de impresión que permite estampar un diseño sobre diferentes soportes.",
+    "Se utiliza una malla tensada en un marco, que se bloquea en las zonas donde no debe pasar la tinta.",
+    "Se presiona la tinta a través de la malla con una rasqueta para transferir el diseño.",
+    "Permite imprimir el mismo diseño muchas veces de forma rápida y económica.",
+    "Andy Warhol popularizó esta técnica en el mundo del arte con sus retratos de Marilyn Monroe."
+  ],
+  [
+    "El cómic ha evolucionado hasta convertirse en un medio artístico de gran complejidad.",
+    "La novela gráfica es un formato de cómic que presenta historias más largas y con mayor ambición literaria.",
+    "Autores como Art Spiegelman, con 'Maus', han demostrado que el cómic puede tratar temas muy profundos.",
+    "La combinación de texto e imagen permite crear narrativas muy potentes y personales.",
+    "Hoy en día, es reconocido como el 'noveno arte'."
+  ],
+  [
+    "El diseño de interiores es la disciplina que planifica y acondiciona los espacios habitables.",
+    "Busca crear ambientes que sean funcionales, estéticos y confortables para el usuario.",
+    "El diseñador trabaja con la distribución del espacio, el mobiliario, la iluminación y los materiales.",
+    "Debe tener en cuenta las necesidades y el estilo de vida de las personas que van a usar ese espacio.",
+    "Un buen diseño de interiores puede mejorar significativamente nuestro bienestar."
+  ],
+  [
+    "El cartelismo es una disciplina del diseño gráfico con una larga historia.",
+    "A finales del siglo XIX, artistas como Toulouse-Lautrec elevaron el cartel a la categoría de arte.",
+    "Un buen cartel debe captar la atención y transmitir un mensaje de forma instantánea.",
+    "La jerarquía visual, guiando la mirada del espectador, es fundamental.",
+    "Ha sido una herramienta muy poderosa para la publicidad, la propaganda y la difusión cultural."
+  ],
+  [
+    "La animación es la técnica que da vida a los dibujos o a los objetos inanimados.",
+    "La animación tradicional, como la de las primeras películas de Disney, se dibujaba fotograma a fotograma.",
+    "El 'stop motion' anima objetos reales, como muñecos de plastilina, moviéndolos ligeramente entre cada foto.",
+    "La animación por ordenador (CGI) es la técnica dominante en la actualidad.",
+    "Permite crear mundos y personajes con un nivel de realismo asombroso."
+  ],
+  [
+    "El patrimonio cultural es el legado de bienes y expresiones que hemos heredado del pasado.",
+    "Incluye monumentos, obras de arte, pero también tradiciones o fiestas populares.",
+    "La conservación y restauración de este patrimonio es fundamental para proteger nuestra memoria colectiva.",
+    "La UNESCO declara algunos bienes como Patrimonio de la Humanidad por su valor universal excepcional.",
+    "Es nuestra responsabilidad cuidarlo y transmitirlo a las generaciones futuras."
+  ],
+  [
+    "La semiótica de la imagen estudia cómo las imágenes producen significado.",
+    "Una imagen tiene un significado denotativo, que es lo que representa de forma objetiva.",
+    "También tiene un significado connotativo, que son las ideas y emociones que nos sugiere.",
+    "Los signos visuales, como los iconos o los símbolos, forman parte de nuestro lenguaje cotidiano.",
+    "Analizar una imagen semióticamente nos permite desvelar sus mensajes ocultos."
+  ],
+  [
+    "El arte conceptual es una corriente en la que la idea o el concepto es más importante que la obra física.",
+    "El objeto artístico, si existe, es solo un vehículo para transmitir la idea.",
+    "Cuestiona la naturaleza del arte y el papel del artista y del espectador.",
+    "La obra puede ser un texto, una fotografía, un vídeo o simplemente una acción.",
+    "Requiere una participación más activa e intelectual por parte del público."
+  ],
+  [
+    "La instalación artística es una obra de arte que ocupa y transforma un espacio completo.",
+    "El espectador no se sitúa frente a la obra, sino que se adentra y forma parte de ella.",
+    "Puede ser multisensorial, incluyendo elementos visuales, sonoros o incluso olfativos.",
+    "Es un arte efímero, ya que solo existe en ese lugar y durante el tiempo de la exposición.",
+    "Busca crear una experiencia inmersiva y envolvente."
+  ],
+  [
+    "El 'branding' o gestión de marca es el proceso de construir y dar a conocer una marca.",
+    "Va más allá del diseño del logotipo; se trata de definir la personalidad y los valores de la empresa.",
+    "Busca crear una conexión emocional con el público objetivo.",
+    "Una estrategia de 'branding' coherente se aplica en todos los puntos de contacto con el cliente.",
+    "Una marca fuerte es uno de los activos más valiosos que puede tener una empresa."
+  ],
+  [
+    "El movimiento Arts and Crafts, a finales del siglo XIX, reaccionó contra la producción industrial en masa.",
+    "Defendía una vuelta a la artesanía y al trabajo bien hecho.",
+    "Buscaba crear objetos bellos y funcionales para la vida cotidiana.",
+    "Liderado por William Morris, tuvo una gran influencia en el diseño y la arquitectura.",
+    "Fue un precursor del diseño moderno al intentar dignificar los objetos de uso diario."
+  ],
+  [
+    "El Art Nouveau fue un estilo que se desarrolló a finales del siglo XIX y principios del XX.",
+    "Se inspiraba en las formas de la naturaleza, utilizando líneas curvas y ondulantes.",
+    "Buscaba la integración de todas las artes: arquitectura, mobiliario, joyería, etc.",
+    "Arquitectos como Gaudí en Barcelona o Victor Horta en Bruselas son sus máximos exponentes.",
+    "Fue un intento de crear un arte nuevo, moderno y adaptado a la vida urbana."
+  ],
+  [
+    "El Art Déco fue el estilo dominante en los años 20 y 30.",
+    "A diferencia del Art Nouveau, se inspiraba en la geometría, la simetría y las formas de la máquina.",
+    "Era un estilo lujoso, elegante y decorativo.",
+    "Utilizaba materiales caros y exóticos, como el ébano, el marfil o el carey.",
+    "El edificio Chrysler de Nueva York es un icono de la arquitectura Art Déco."
+  ],
+  [
+    "El expresionismo abstracto fue el primer gran movimiento artístico genuinamente estadounidense.",
+    "Surgió en Nueva York después de la Segunda Guerra Mundial.",
+    "Se caracteriza por el uso de grandes formatos y una pincelada muy gestual y enérgica.",
+    "Jackson Pollock, con su técnica del 'dripping' o goteo, es su figura más conocida.",
+    "El cuadro se convierte en el testimonio de la acción física del artista."
+  ],
+  [
+    "La fotografía de reportaje o fotoperiodismo busca documentar la realidad y contar historias.",
+    "El fotógrafo debe ser un observador objetivo, pero su mirada siempre aporta un punto de vista.",
+    "Fotógrafos como Robert Capa documentaron los grandes conflictos del siglo XX.",
+    "Una sola fotografía puede convertirse en un icono y resumir toda una época.",
+    "Busca informar, concienciar y, a veces, denunciar las injusticias sociales."
+  ],
+  [
+    "La tipografía cinética es la animación de texto para expresar ideas.",
+    "No se trata solo de que el texto se mueva, sino de que el movimiento aporte significado.",
+    "Se utiliza mucho en los créditos de las películas, en anuncios y en vídeos explicativos.",
+    "Combina los principios del diseño gráfico con los de la animación.",
+    "Es una forma muy dinámica y atractiva de comunicar un mensaje."
+  ],
+  [
+    "El 'land art' o arte de la tierra es una corriente que utiliza el paisaje como lienzo y material.",
+    "Los artistas crean sus obras directamente en la naturaleza, a menudo a gran escala.",
+    "Utilizan elementos del propio lugar, como rocas, tierra, agua o ramas.",
+    "Muchas de estas obras son efímeras y están destinadas a desaparecer por la erosión.",
+    "Busca una conexión más profunda entre el arte, el ser humano y el planeta."
+  ]
 ]

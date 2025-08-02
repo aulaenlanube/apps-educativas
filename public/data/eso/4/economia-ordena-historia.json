@@ -1,12 +1,282 @@
 [
-    ["El mercado es el lugar físico o virtual donde se encuentran la oferta y la demanda.", "La demanda está formada por los compradores que desean adquirir un bien.", "La oferta está formada por los vendedores que desean vender ese bien.", "La interacción entre ambos determina el precio de equilibrio del producto.", "A ese precio, la cantidad que se quiere comprar coincide con la que se quiere vender.", "Este mecanismo es la base de la economía de mercado."],
-    ["El Producto Interior Bruto (PIB) es el principal indicador para medir la riqueza de un país.", "Mide el valor monetario de todos los bienes y servicios finales producidos en un país durante un año.", "Si el PIB crece, significa que la economía del país está en expansión.", "Si decrece durante dos trimestres consecutivos, se considera que el país está en recesión.", "Se suele utilizar el PIB per cápita para comparar el nivel de vida entre países."],
-    ["La inflación es el aumento generalizado y continuo de los precios de una economía.", "Cuando hay inflación, el dinero pierde valor y nuestro poder adquisitivo disminuye.", "Es decir, con la misma cantidad de dinero podemos comprar menos cosas que antes.", "Una inflación moderada se considera normal, pero una inflación muy alta es perjudicial.", "Los bancos centrales, como el BCE, utilizan la política monetaria para intentar controlarla."],
-    ["Para crear una empresa, un emprendedor debe elaborar un plan de negocio.", "En este plan, primero se describe la idea de negocio y el producto o servicio que se ofrecerá.", "Luego, se realiza un estudio de mercado para analizar a los clientes y a la competencia.", "También se detalla un plan de marketing para dar a conocer la empresa.", "Finalmente, se elabora un plan financiero para estudiar la viabilidad económica del proyecto.", "Este documento es fundamental para buscar financiación."],
-    ["El sector público interviene en la economía para corregir los fallos del mercado.", "Proporciona bienes y servicios públicos que las empresas privadas no ofrecerían, como la defensa o la justicia.", "También se encarga de redistribuir la renta para reducir las desigualdades.", "Esto lo hace a través de los impuestos y las ayudas sociales, como las pensiones o el subsidio de desempleo.", "Además, intenta suavizar los ciclos económicos mediante la política fiscal."],
-    ["El comercio internacional permite a los países especializarse en aquello que producen mejor.", "Un país exporta los bienes en los que tiene una ventaja comparativa.", "E importa aquellos bienes que otros países producen de forma más eficiente.", "Esto aumenta la eficiencia de la economía mundial y la variedad de productos disponibles.", "Sin embargo, también puede generar problemas a los sectores nacionales que compiten con las importaciones."],
-    ["El mercado de trabajo es donde se encuentran la oferta y la demanda de empleo.", "La oferta de trabajo está formada por los trabajadores que desean trabajar.", "La demanda de trabajo la realizan las empresas que necesitan contratar personal.", "El salario es el precio de equilibrio en este mercado.", "El desempleo o paro se produce cuando hay más personas dispuestas a trabajar que puestos de trabajo disponibles."],
-    ["El dinero es un medio de cambio que facilita las transacciones económicas.", "Antiguamente se utilizaba el trueque, pero era muy ineficiente.", "El dinero cumple tres funciones: medio de pago, depósito de valor y unidad de cuenta.", "Permite que el valor de todos los bienes se exprese en una misma unidad.", "La cantidad de dinero que circula en una economía está controlada por el banco central."],
-    ["A la hora de invertir nuestros ahorros, existe una relación directa entre riesgo y rentabilidad.", "Las inversiones más seguras, como los depósitos bancarios, suelen ofrecer una rentabilidad baja.", "Las inversiones con mayor riesgo, como las acciones en bolsa, tienen el potencial de generar una mayor rentabilidad.", "Sin embargo, con las acciones también podemos perder parte o todo nuestro dinero.", "La diversificación, es decir, no invertir todo en un solo producto, es una estrategia clave para reducir el riesgo."],
-    ["La empresa combina los factores de producción para crear bienes y servicios.", "Los factores son los recursos naturales, el trabajo de los empleados y el capital (maquinaria, instalaciones).", "El objetivo de la mayoría de las empresas es maximizar sus beneficios.", "El beneficio es la diferencia entre los ingresos que obtiene por sus ventas y los costes de producción.", "Las empresas se clasifican según su tamaño, su sector o su forma jurídica."]
+  [
+    "La economía es la ciencia que estudia cómo gestionar recursos escasos.",
+    "Las necesidades humanas son ilimitadas, pero los recursos para satisfacerlas no lo son.",
+    "Este problema fundamental se conoce como la escasez económica.",
+    "Nos obliga a tomar decisiones y a elegir constantemente entre diferentes alternativas.",
+    "La economía analiza cómo los individuos y la sociedad toman estas decisiones."
+  ],
+  [
+    "El coste de oportunidad es el valor de la mejor alternativa a la que renunciamos al tomar una decisión.",
+    "Por ejemplo, si decides comprar un videojuego, tu coste de oportunidad podría ser el libro que no pudiste comprar.",
+    "No es solo un coste monetario, sino el valor de la oportunidad perdida.",
+    "Este concepto es fundamental para entender la toma de decisiones económicas.",
+    "Siempre que elegimos algo, inevitablemente estamos renunciando a otra cosa."
+  ],
+  [
+    "Los factores de producción son los recursos necesarios para producir bienes y servicios.",
+    "Tradicionalmente se clasifican en tres grandes grupos: tierra, trabajo y capital.",
+    "El factor tierra incluye todos los recursos naturales.",
+    "El factor trabajo es el esfuerzo humano, tanto físico como intelectual.",
+    "El capital son los bienes producidos que sirven para producir otros bienes, como la maquinaria."
+  ],
+  [
+    "Los agentes económicos son los protagonistas de la actividad económica.",
+    "Las familias o economías domésticas consumen bienes y servicios y ofrecen su trabajo.",
+    "Las empresas producen y distribuyen los bienes y servicios.",
+    "El sector público regula la economía, proporciona bienes públicos y redistribuye la renta.",
+    "Estos tres agentes se relacionan entre sí en el flujo circular de la renta."
+  ],
+  [
+    "El mercado es el lugar físico o virtual donde se encuentran la oferta y la demanda.",
+    "Los compradores, que desean adquirir un bien, constituyen la demanda.",
+    "Los vendedores, que desean vender ese bien, constituyen la oferta.",
+    "De la interacción entre ambos surge el precio del producto.",
+    "En una economía de mercado, los precios son la señal que guía las decisiones de los agentes."
+  ],
+  [
+    "La ley de la demanda establece que, si el precio de un bien sube, la cantidad demandada disminuirá.",
+    "Por el contrario, si el precio de un bien baja, la cantidad demandada aumentará.",
+    "Esta relación inversa se debe a que los consumidores buscan maximizar su utilidad.",
+    "La curva de demanda tiene, por tanto, una pendiente negativa.",
+    "Factores como la renta o los gustos pueden desplazar toda la curva de demanda."
+  ],
+  [
+    "La ley de la oferta dice que, si el precio de un bien sube, la cantidad ofertada aumentará.",
+    "Si el precio baja, los productores estarán dispuestos a vender menos cantidad.",
+    "Esto se debe a que los productores buscan maximizar sus beneficios.",
+    "La curva de oferta tiene, por lo tanto, una pendiente positiva.",
+    "Factores como los costes de producción pueden desplazar toda la curva de oferta."
+  ],
+  [
+    "El punto de equilibrio en un mercado se alcanza cuando la cantidad ofertada es igual a la cantidad demandada.",
+    "A este precio, no hay ni escasez ni excedente de producto.",
+    "Tanto compradores como vendedores están satisfechos con el precio y la cantidad intercambiada.",
+    "Si el precio estuviera por encima del equilibrio, habría un exceso de oferta.",
+    "Si estuviera por debajo, habría un exceso de demanda o escasez."
+  ],
+  [
+    "El dinero es un medio de cambio aceptado por una comunidad para el intercambio de bienes y servicios.",
+    "Antes del dinero, existía el trueque, que era el intercambio directo de unos bienes por otros.",
+    "El dinero facilita enormemente el comercio, ya que evita la necesidad de una doble coincidencia de deseos.",
+    "Además de medio de cambio, también funciona como unidad de cuenta y depósito de valor.",
+    "Su valor se basa en la confianza que la gente tiene en él."
+  ],
+  [
+    "La inflación es el aumento generalizado y sostenido de los precios de los bienes y servicios.",
+    "Cuando hay inflación, el valor del dinero disminuye.",
+    "Esto significa que con la misma cantidad de dinero podemos comprar menos cosas que antes.",
+    "Una inflación moderada se considera normal, pero una inflación alta es perjudicial para la economía.",
+    "El Índice de Precios al Consumo (IPC) es el indicador que se utiliza para medirla."
+  ],
+  [
+    "El Producto Interior Bruto (PIB) es el principal indicador para medir la riqueza de un país.",
+    "Representa el valor de mercado de todos los bienes y servicios finales producidos en un país durante un año.",
+    "Si el PIB crece, significa que la economía del país está en expansión.",
+    "Si el PIB decrece durante dos trimestres consecutivos, se habla de recesión económica.",
+    "El PIB per cápita divide el PIB total entre el número de habitantes."
+  ],
+  [
+    "El desempleo o paro es la situación de la persona que, estando en edad de trabajar, no tiene un puesto de trabajo.",
+    "La tasa de paro es el porcentaje de la población activa que se encuentra desempleada.",
+    "Existen diferentes tipos de desempleo: estacional, friccional, estructural y cíclico.",
+    "Un nivel alto de desempleo es uno de los mayores problemas económicos y sociales para un país.",
+    "Las políticas de empleo buscan reducir estas tasas y fomentar la creación de puestos de trabajo."
+  ],
+  [
+    "El sector público juega un papel fundamental en la economía.",
+    "Establece el marco legal y regula la actividad económica para corregir fallos de mercado.",
+    "Proporciona bienes y servicios públicos que la empresa privada no ofrecería, como la defensa o la justicia.",
+    "Redistribuye la renta a través de los impuestos y las transferencias, como las pensiones o las becas.",
+    "También se encarga de estabilizar la economía para suavizar los ciclos económicos."
+  ],
+  [
+    "Los impuestos son pagos obligatorios que los ciudadanos y las empresas realizan al Estado.",
+    "Son la principal fuente de ingresos del sector público.",
+    "Con ellos se financian los servicios públicos como la sanidad, la educación o las infraestructuras.",
+    "Los impuestos pueden ser directos, como el IRPF, que grava la renta de las personas.",
+    "O pueden ser indirectos, como el IVA, que grava el consumo."
+  ],
+  [
+    "El presupuesto del Estado es un documento que recoge la previsión de ingresos y gastos del sector público para un año.",
+    "Si los ingresos son mayores que los gastos, se produce un superávit público.",
+    "Si los gastos superan a los ingresos, se genera un déficit público.",
+    "Para financiar el déficit, el Estado tiene que pedir prestado, emitiendo deuda pública.",
+    "La acumulación de déficits a lo largo del tiempo aumenta la deuda pública del país."
+  ],
+  [
+    "Una empresa es una organización que combina los factores de producción para producir bienes y servicios.",
+    "Su objetivo principal en una economía de mercado suele ser la obtención de beneficios.",
+    "Las empresas se pueden clasificar según su tamaño, su sector de actividad o su forma jurídica.",
+    "Crean empleo, generan riqueza e innovan con nuevos productos.",
+    "Son un agente económico fundamental para el desarrollo de un país."
+  ],
+  [
+    "La iniciativa emprendedora es la capacidad de identificar una oportunidad y poner en marcha un proyecto empresarial.",
+    "Un emprendedor es una persona que está dispuesta a asumir riesgos para desarrollar una idea de negocio.",
+    "La creatividad, la innovación y la perseverancia son cualidades clave de un buen emprendedor.",
+    "El plan de empresa es el documento que recoge y analiza todos los aspectos del futuro negocio.",
+    "Fomentar el espíritu emprendedor es importante para la creación de nuevas empresas y empleo."
+  ],
+  [
+    "El marketing es el conjunto de técnicas que buscan mejorar la comercialización de un producto.",
+    "Se basa en las 'cuatro P': Producto, Precio, Distribución (Place) y Promoción.",
+    "El producto debe satisfacer una necesidad del consumidor.",
+    "El precio debe ser adecuado para el mercado y rentable para la empresa.",
+    "La promoción incluye la publicidad y todas las acciones para dar a conocer el producto."
+  ],
+  [
+    "El sistema financiero canaliza el ahorro desde los ahorradores hacia los inversores.",
+    "Los bancos y las cajas de ahorros son los intermediarios financieros más conocidos.",
+    "Captan el dinero de los ahorradores a través de depósitos y lo prestan a quienes lo necesitan.",
+    "La diferencia entre el tipo de interés que pagan y el que cobran es su principal fuente de beneficio.",
+    "Un sistema financiero eficiente es crucial para el crecimiento económico."
+  ],
+  [
+    "El tipo de interés es el precio del dinero.",
+    "Es el porcentaje que el prestamista cobra al prestatario por el uso de su dinero durante un tiempo.",
+    "Para el ahorrador, es la rentabilidad que obtiene por su dinero.",
+    "Para el que pide un préstamo, es el coste de la financiación.",
+    "Los bancos centrales, como el Banco Central Europeo, influyen en los tipos de interés para controlar la economía."
+  ],
+  [
+    "La bolsa de valores es un mercado donde se compran y venden acciones de empresas.",
+    "Una acción representa una pequeña parte de la propiedad de una empresa.",
+    "Las empresas emiten acciones para conseguir financiación para sus proyectos.",
+    "El precio de las acciones varía constantemente en función de la oferta y la demanda.",
+    "Invertir en bolsa conlleva un riesgo, ya que el valor de las acciones puede subir o bajar."
+  ],
+  [
+    "La globalización económica es la creciente integración de las economías de todo el mundo.",
+    "Las empresas multinacionales producen y venden sus productos en muchos países.",
+    "El comercio internacional y los flujos de capital han crecido de forma espectacular.",
+    "Las nuevas tecnologías de la información y el transporte han sido los motores de este proceso.",
+    "Ha permitido un gran crecimiento económico, pero también ha generado desigualdades."
+  ],
+  [
+    "El comercio internacional se basa en el principio de la ventaja comparativa.",
+    "Cada país se especializa en producir aquellos bienes que puede hacer de forma más eficiente.",
+    "Luego, comercian entre sí para obtener los bienes que no producen.",
+    "Esto permite a todos los países consumir una mayor variedad de productos a un menor coste.",
+    "El proteccionismo, mediante aranceles, es una barrera que dificulta este comercio."
+  ],
+  [
+    "Un presupuesto personal es una herramienta para gestionar nuestras finanzas.",
+    "Consiste en registrar todos nuestros ingresos y gastos durante un período de tiempo.",
+    "Nos permite saber en qué gastamos nuestro dinero y si gastamos más de lo que ingresamos.",
+    "Es el primer paso para poder controlar nuestros gastos y empezar a ahorrar.",
+    "Ayuda a evitar deudas y a planificar metas financieras a largo plazo."
+  ],
+  [
+    "El ahorro es la parte de nuestros ingresos que no destinamos al consumo inmediato.",
+    "Es fundamental para poder hacer frente a imprevistos y para alcanzar metas futuras.",
+    "Metas como comprar un coche, pagar estudios o tener una jubilación tranquila.",
+    "La clave del ahorro es la constancia, aunque sea en pequeñas cantidades.",
+    "Invertir el ahorro permite que nuestro dinero crezca con el tiempo gracias al interés compuesto."
+  ],
+  [
+    "Los derechos del consumidor protegen a los compradores en sus relaciones con las empresas.",
+    "Tenemos derecho a recibir información clara y veraz sobre los productos.",
+    "También tenemos derecho a la seguridad y a que los productos no sean perjudiciales.",
+    "La garantía de un producto nos protege contra los defectos de fabricación.",
+    "Existen organismos de consumo donde podemos reclamar si nuestros derechos son vulnerados."
+  ],
+  [
+    "Los ciclos económicos son las fluctuaciones de la actividad económica a lo largo del tiempo.",
+    "Se distinguen cuatro fases: expansión, auge, recesión y depresión.",
+    "La fase de expansión se caracteriza por el crecimiento del PIB y la creación de empleo.",
+    "La recesión es una fase de decrecimiento de la economía, con aumento del paro.",
+    "Las políticas económicas del gobierno intentan suavizar estos ciclos."
+  ],
+  [
+    "La división del trabajo consiste en la especialización de los trabajadores en tareas concretas.",
+    "Adam Smith ya observó que esto aumentaba enormemente la productividad.",
+    "Cada trabajador se vuelve más hábil y rápido en su tarea específica.",
+    "Permite la producción en cadena, como la que se utiliza en la fabricación de automóviles.",
+    "Es una de las bases de la eficiencia en la producción moderna."
+  ],
+  [
+    "La productividad mide la eficiencia con la que se utilizan los factores de producción.",
+    "Se calcula dividiendo la producción obtenida entre los recursos utilizados.",
+    "Un aumento de la productividad significa que podemos producir más con los mismos recursos.",
+    "La inversión en nueva tecnología y la formación de los trabajadores son claves para aumentarla.",
+    "Es un factor fundamental para el crecimiento económico a largo plazo de un país."
+  ],
+  [
+    "Una sociedad limitada (S.L.) es un tipo de empresa muy común en España.",
+    "La responsabilidad de los socios se limita al capital que han aportado.",
+    "Esto significa que no responden con su patrimonio personal de las deudas de la empresa.",
+    "El capital social está dividido en participaciones sociales.",
+    "Es una forma jurídica adecuada para pequeñas y medianas empresas."
+  ],
+  [
+    "Una sociedad anónima (S.A.) es una forma jurídica pensada para grandes empresas.",
+    "Su capital social está dividido en acciones, que pueden ser compradas y vendidas libremente.",
+    "Esto facilita la captación de grandes cantidades de capital de muchos inversores.",
+    "Al igual que en la S.L., la responsabilidad de los socios está limitada al capital aportado.",
+    "Las empresas que cotizan en bolsa suelen ser sociedades anónimas."
+  ],
+  [
+    "Los fallos de mercado son situaciones en las que el mercado no asigna los recursos de forma eficiente.",
+    "Las externalidades son un ejemplo, como la contaminación que genera una fábrica.",
+    "Los bienes públicos, como el alumbrado de las calles, son otro fallo de mercado.",
+    "La competencia imperfecta, como los monopolios, también es un fallo.",
+    "La intervención del sector público se justifica para corregir estos fallos."
+  ],
+  [
+    "Un monopolio es un mercado en el que solo existe una empresa oferente.",
+    "Esta empresa tiene un control total sobre el precio y la cantidad del producto.",
+    "Al no tener competencia, los precios suelen ser más altos y la calidad más baja.",
+    "La mayoría de los países tienen leyes antimonopolio para impedir su existencia.",
+    "A veces, existen monopolios naturales, como en la distribución de agua."
+  ],
+  [
+    "La publicidad es una herramienta de comunicación que utilizan las empresas.",
+    "Su objetivo es informar sobre un producto y persuadir a los consumidores para que lo compren.",
+    "Utiliza diferentes medios, como la televisión, la radio, internet o vallas publicitarias.",
+    "A menudo, no solo vende un producto, sino un estilo de vida asociado a él.",
+    "La publicidad engañosa está prohibida por la ley."
+  ],
+  [
+    "El Banco Central Europeo (BCE) es el banco central de los países de la zona euro.",
+    "Su principal objetivo es mantener la estabilidad de precios, es decir, controlar la inflación.",
+    "Para ello, utiliza como principal herramienta la fijación de los tipos de interés.",
+    "También es el único autorizado para emitir los billetes de euro.",
+    "Sus decisiones tienen un gran impacto en la economía de todos los países miembros."
+  ],
+  [
+    "El tipo de cambio es el precio de una moneda expresado en términos de otra.",
+    "Por ejemplo, cuántos dólares podemos comprar con un euro.",
+    "Este precio fluctúa constantemente en los mercados de divisas.",
+    "Una apreciación de nuestra moneda hace que nuestros productos sean más caros para los extranjeros.",
+    "Una depreciación, en cambio, abarata nuestras exportaciones."
+  ],
+  [
+    "La balanza de pagos es un documento contable que registra todas las transacciones de un país con el resto del mundo.",
+    "Se divide en varias sub-balanzas, como la balanza por cuenta corriente y la de capital.",
+    "La balanza por cuenta corriente incluye el comercio de bienes y servicios.",
+    "Teóricamente, la balanza de pagos siempre debe estar en equilibrio.",
+    "Es un indicador clave de la situación económica de un país con el exterior."
+  ],
+  [
+    "El desarrollo humano es un concepto más amplio que el simple crecimiento económico.",
+    "No solo tiene en cuenta el nivel de ingresos (PIB per cápita).",
+    "También incluye otros aspectos como la esperanza de vida y el nivel educativo.",
+    "El Índice de Desarrollo Humano (IDH) es el indicador que lo mide.",
+    "Busca evaluar el bienestar y las oportunidades reales de las personas."
+  ],
+  [
+    "La economía sumergida es el conjunto de actividades económicas que no se declaran al Estado.",
+    "Estas actividades escapan al control fiscal y a la regulación laboral.",
+    "Supone una gran pérdida de ingresos por impuestos para el Estado.",
+    "También genera una competencia desleal para las empresas que sí cumplen la ley.",
+    "Los trabajadores de la economía sumergida carecen de protección social."
+  ],
+  [
+    "Un plan de pensiones es un producto de ahorro a largo plazo.",
+    "Su objetivo es complementar la pensión pública de jubilación.",
+    "El ahorrador realiza aportaciones periódicas que se invierten para generar una rentabilidad.",
+    "El dinero no se puede rescatar hasta el momento de la jubilación, salvo excepciones.",
+    "Ofrece ventajas fiscales, ya que las aportaciones reducen la base imponible del IRPF."
+  ]
 ]

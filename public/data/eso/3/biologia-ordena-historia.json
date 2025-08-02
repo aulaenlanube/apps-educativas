@@ -1,12 +1,282 @@
 [
-    ["El proceso de la digestión comienza en la boca.", "Allí, los dientes trituran los alimentos y la saliva comienza la digestión química.", "El bolo alimenticio pasa por la faringe y el esófago hasta llegar al estómago.", "En el estómago, los jugos gástricos continúan descomponiendo los alimentos.", "Finalmente, en el intestino delgado se absorben los nutrientes.", "Los restos no digeridos pasan al intestino grueso y se eliminan."],
-    ["El sistema nervioso central es el centro de control de nuestro cuerpo.", "Está formado por el encéfalo, que se encuentra en el cráneo, y la médula espinal.", "El encéfalo se encarga de procesar la información, pensar y tomar decisiones.", "La médula espinal transmite los impulsos nerviosos entre el encéfalo y el resto del cuerpo.", "Además, la médula es responsable de los actos reflejos."],
-    ["Una dieta saludable debe ser completa, equilibrada y variada.", "Debe aportarnos todos los nutrientes que nuestro cuerpo necesita: glúcidos, lípidos, proteínas, vitaminas y minerales.", "Los glúcidos, como el pan o la pasta, nos dan energía rápida.", "Las proteínas, presentes en la carne o las legumbres, son necesarias para construir nuestros tejidos.", "Es importante limitar el consumo de grasas saturadas y azúcares."],
-    ["El sistema inmunitario nos defiende de los microorganismos que causan enfermedades.", "Cuando un patógeno entra en nuestro cuerpo, los glóbulos blancos lo detectan.", "Algunos glóbulos blancos producen anticuerpos, que son proteínas que neutralizan al invasor.", "Otros glóbulos blancos se encargan de destruir directamente a los patógenos.", "Gracias a la memoria inmunológica, el cuerpo reacciona más rápido en futuras infecciones."],
-    ["La tectónica de placas es la teoría que explica la estructura de la corteza terrestre.", "La litosfera está dividida en grandes fragmentos llamados placas tectónicas.", "Estas placas se desplazan lentamente sobre el manto, chocando o separándose entre sí.", "En los límites de las placas es donde se concentran los terremotos y los volcanes.", "El movimiento de las placas es el responsable de la formación de las montañas."],
-    ["La circulación sanguínea en los humanos es doble y completa.", "Es doble porque la sangre pasa dos veces por el corazón en cada recorrido.", "Hay un circuito menor que va a los pulmones para oxigenar la sangre.", "Y un circuito mayor que reparte esa sangre oxigenada por todo el cuerpo.", "Es completa porque la sangre rica en oxígeno nunca se mezcla con la sangre pobre en oxígeno."],
-    ["Para prevenir enfermedades infecciosas, la higiene es fundamental.", "Lavarse las manos con frecuencia es una de las medidas más eficaces.", "También es importante mantener una correcta higiene de los alimentos que consumimos.", "Las vacunas son otra herramienta clave para prevenir muchas enfermedades graves.", "Nos protegen a nosotros y a las personas que nos rodean."],
-    ["El aparato locomotor nos permite movernos y relacionarnos con el entorno.", "Está formado por el sistema esquelético y el sistema muscular.", "El esqueleto, compuesto por los huesos, nos da soporte y protege los órganos.", "Los músculos se unen a los huesos y, al contraerse, generan el movimiento.", "Los huesos y los músculos trabajan de forma coordinada."],
-    ["Las rocas metamórficas se forman a partir de otras rocas preexistentes.", "Estas rocas originales son sometidas a altas presiones y temperaturas en el interior de la Tierra.", "Estas condiciones provocan cambios en sus minerales y en su estructura.", "Sin embargo, la roca no llega a fundirse por completo.", "La pizarra o el mármol son ejemplos de rocas metamórficas."],
-    ["Un estilo de vida saludable va más allá de la alimentación.", "Incluye la práctica regular de actividad física adaptada a nuestra edad.", "También es fundamental tener un descanso adecuado y dormir las horas suficientes.", "Evitar el consumo de sustancias tóxicas como el tabaco o el alcohol es crucial.", "Cuidar nuestra salud mental y nuestras relaciones sociales también forma parte de ello."]
+  [
+    "El aparato digestivo se encarga de transformar los alimentos en nutrientes.",
+    "La digestión comienza en la boca con la masticación y la acción de la saliva.",
+    "En el estómago, los jugos gástricos descomponen las proteínas.",
+    "El intestino delgado absorbe la mayoría de los nutrientes, que pasan a la sangre.",
+    "Finalmente, el intestino grueso absorbe agua y forma los desechos para su expulsión."
+  ],
+  [
+    "La respiración permite obtener el oxígeno necesario para las células.",
+    "El aire entra por las fosas nasales, se calienta y se humedece.",
+    "Pasa por la faringe, laringe y tráquea hasta llegar a los pulmones.",
+    "En los alvéolos pulmonares, el oxígeno pasa a la sangre y se libera el dióxido de carbono.",
+    "Este intercambio de gases es un proceso vital e ininterrumpido."
+  ],
+  [
+    "El sistema circulatorio transporta nutrientes y oxígeno por todo el cuerpo.",
+    "El corazón es el músculo que bombea la sangre sin descanso.",
+    "Las arterias llevan la sangre desde el corazón a los órganos.",
+    "Las venas devuelven la sangre de los órganos al corazón.",
+    "Los capilares son vasos muy finos donde se produce el intercambio con las células."
+  ],
+  [
+    "El aparato excretor limpia la sangre de sustancias de desecho.",
+    "Los riñones actúan como filtros que producen la orina.",
+    "La orina contiene agua, sales minerales y urea, una sustancia tóxica.",
+    "Desde los riñones, la orina baja por los uréteres hasta la vejiga, donde se almacena.",
+    "Finalmente, la orina es expulsada al exterior a través de la uretra."
+  ],
+  [
+    "Una dieta saludable debe ser completa, equilibrada y variada.",
+    "Debe aportar todos los nutrientes necesarios: glúcidos, lípidos, proteínas, vitaminas y minerales.",
+    "Los glúcidos, como la pasta, nos dan energía de forma rápida.",
+    "Las proteínas, como las de la carne, son esenciales para construir nuestros tejidos.",
+    "Las frutas y verduras son ricas en vitaminas y fibra."
+  ],
+  [
+    "El sistema nervioso coordina todas las funciones de nuestro cuerpo.",
+    "Está formado por el sistema nervioso central y el sistema nervioso periférico.",
+    "El encéfalo y la médula espinal componen el sistema nervioso central.",
+    "Los nervios, que recorren todo el cuerpo, forman el sistema nervioso periférico.",
+    "Las neuronas son las células especializadas en transmitir los impulsos nerviosos."
+  ],
+  [
+    "Los órganos de los sentidos captan la información del entorno.",
+    "Los ojos nos permiten percibir la luz, los colores y las formas.",
+    "El oído capta las vibraciones del aire y nos permite escuchar.",
+    "La piel, a través del tacto, nos informa de la temperatura, la presión y el dolor.",
+    "El gusto y el olfato detectan sustancias químicas en los alimentos y en el aire."
+  ],
+  [
+    "El aparato locomotor está formado por el esqueleto y la musculatura.",
+    "El esqueleto nos da soporte, protege los órganos y permite el movimiento.",
+    "Los músculos son los órganos activos que, al contraerse, tiran de los huesos.",
+    "Las articulaciones son las uniones entre los huesos y permiten la movilidad.",
+    "La coordinación entre huesos, músculos y articulaciones produce el movimiento."
+  ],
+  [
+    "El sistema endocrino está formado por glándulas que producen hormonas.",
+    "Las hormonas son mensajeros químicos que viajan por la sangre.",
+    "Regulan procesos lentos como el crecimiento, el metabolismo o el desarrollo sexual.",
+    "La hipófisis, situada en el cerebro, es la glándula que dirige a las demás.",
+    "El páncreas, por ejemplo, produce insulina para regular el nivel de azúcar en sangre."
+  ],
+  [
+    "La reproducción humana es sexual y requiere la participación de dos progenitores.",
+    "El aparato reproductor masculino produce los gametos masculinos, los espermatozoides.",
+    "El aparato reproductor femenino produce los gametos femeninos, los óvulos.",
+    "La fecundación es la unión de un óvulo y un espermatozoide, formando el cigoto.",
+    "A partir del cigoto se desarrolla un nuevo ser humano durante el embarazo."
+  ],
+  [
+    "Una enfermedad infecciosa está causada por un microorganismo patógeno.",
+    "Estos microorganismos pueden ser virus, bacterias, hongos o protozoos.",
+    "Se pueden transmitir de una persona a otra por el aire, el agua o el contacto directo.",
+    "La gripe, el resfriado o la varicela son ejemplos de enfermedades infecciosas.",
+    "Los antibióticos solo son eficaces contra las infecciones causadas por bacterias."
+  ],
+  [
+    "El sistema inmunitario es la defensa natural del cuerpo contra las infecciones.",
+    "Los glóbulos blancos son las células encargadas de luchar contra los gérmenes.",
+    "Existen barreras defensivas como la piel, que impide la entrada de patógenos.",
+    "El sistema inmunitario tiene memoria, lo que le permite actuar más rápido ante una segunda infección.",
+    "Las vacunas se basan en esta memoria para proteger nuestro cuerpo."
+  ],
+  [
+    "Los hábitos de vida saludables son fundamentales para prevenir enfermedades.",
+    "Una dieta equilibrada nos aporta los nutrientes necesarios para estar sanos.",
+    "Realizar ejercicio físico de forma regular fortalece nuestro cuerpo.",
+    "Dormir las horas suficientes es crucial para la recuperación física y mental.",
+    "Evitar el consumo de tabaco y alcohol previene numerosas enfermedades graves."
+  ],
+  [
+    "La dinámica de los ecosistemas estudia cómo fluye la materia y la energía.",
+    "La energía entra en el ecosistema a través de los productores, gracias a la luz solar.",
+    "Esta energía se transfiere a lo largo de la cadena trófica, de un nivel al siguiente.",
+    "En cada paso, una gran parte de la energía se pierde en forma de calor.",
+    "La materia, en cambio, sigue un ciclo cerrado y se recicla gracias a los descomponedores."
+  ],
+  [
+    "La Tierra es un planeta dinámico cuyo relieve está en constante cambio.",
+    "Los agentes geológicos internos, como volcanes y terremotos, crean relieve.",
+    "Estos procesos están impulsados por la energía interna del planeta.",
+    "Por otro lado, los agentes geológicos externos, como el agua y el viento, lo modelan.",
+    "La interacción entre ambos tipos de agentes da forma a los paisajes que vemos."
+  ],
+  [
+    "La tectónica de placas es la teoría que unifica la geología moderna.",
+    "Sostiene que la litosfera está dividida en grandes placas que se mueven.",
+    "En los bordes divergentes, las placas se separan y se crea nueva corteza oceánica.",
+    "En los bordes convergentes, las placas chocan, formando cordilleras o zonas de subducción.",
+    "En los bordes transformantes, las placas se deslizan lateralmente una respecto a la otra."
+  ],
+  [
+    "Los volcanes son manifestaciones de la energía interna de la Tierra.",
+    "Se forman cuando el magma del interior asciende y sale a la superficie.",
+    "La erupción puede expulsar lava, cenizas, gases y piroclastos.",
+    "La mayoría de los volcanes se localizan en los límites de las placas tectónicas.",
+    "La forma del cono volcánico depende del tipo de lava que expulsa."
+  ],
+  [
+    "Un terremoto es una vibración de la superficie terrestre.",
+    "Se produce por la liberación brusca de energía acumulada en las fallas.",
+    "El punto interior donde se origina se llama hipocentro.",
+    "El punto en la superficie directamente sobre él se denomina epicentro.",
+    "La intensidad de un terremoto se mide con la escala de Richter o la de Mercalli."
+  ],
+  [
+    "El ciclo de las rocas describe las transformaciones entre los tres tipos de rocas.",
+    "Cualquier roca en la superficie puede ser erosionada y formar una roca sedimentaria.",
+    "El calor y la presión del interior terrestre pueden transformar cualquier roca en metamórfica.",
+    "Si una roca se funde y el magma se enfría, se formará una roca ígnea.",
+    "Es un ciclo continuo que ha estado operando durante miles de millones de años."
+  ],
+  [
+    "La historia de la Tierra se divide en grandes eones, eras y períodos.",
+    "Los fósiles son la principal herramienta para reconstruir esta historia.",
+    "La era Paleozoica vio la gran explosión de vida en los mares y la conquista del medio terrestre.",
+    "La era Mesozoica es conocida como la 'era de los dinosaurios'.",
+    "Vivimos en la era Cenozoica, la 'era de los mamíferos'."
+  ],
+  [
+    "La nutrición celular es el conjunto de procesos para obtener materia y energía.",
+    "Las células autótrofas, como las vegetales, fabrican su propia materia orgánica.",
+    "Las células heterótrofas, como las animales, deben tomar la materia orgánica del exterior.",
+    "La respiración celular, en las mitocondrias, libera la energía contenida en los nutrientes.",
+    "Esta energía es la que utiliza la célula para realizar todas sus funciones."
+  ],
+  [
+    "El corazón tiene un sistema de válvulas que aseguran que la sangre fluya en una sola dirección.",
+    "Las válvulas auriculoventriculares separan las aurículas de los ventrículos.",
+    "Las válvulas sigmoideas se encuentran a la salida de los ventrículos.",
+    "Cuando se cierran, producen los sonidos característicos del latido cardíaco.",
+    "Un fallo en estas válvulas puede provocar soplos cardíacos."
+  ],
+  [
+    "La sangre está compuesta por el plasma y las células sanguíneas.",
+    "El plasma es la parte líquida y transporta nutrientes y sustancias de desecho.",
+    "Los glóbulos rojos son los encargados de transportar el oxígeno.",
+    "Los glóbulos blancos forman parte del sistema inmunitario.",
+    "Las plaquetas intervienen en la coagulación de la sangre."
+  ],
+  [
+    "La sinapsis es la comunicación especializada entre dos neuronas.",
+    "Cuando un impulso nervioso llega al final de una neurona, se liberan neurotransmisores.",
+    "Estos neurotransmisores viajan por un pequeño espacio hasta la siguiente neurona.",
+    "Allí, se unen a receptores específicos y desencadenan un nuevo impulso nervioso.",
+    "Este proceso permite la transmisión de información por todo el sistema nervioso."
+  ],
+  [
+    "El ojo humano funciona de manera similar a una cámara fotográfica.",
+    "La córnea y el cristalino actúan como lentes que enfocan la luz.",
+    "El iris funciona como un diafragma que regula la cantidad de luz que entra por la pupila.",
+    "La retina, en el fondo del ojo, sería el sensor donde se forma la imagen.",
+    "El nervio óptico envía la información de la imagen al cerebro para ser interpretada."
+  ],
+  [
+    "Los huesos del esqueleto están unidos por articulaciones.",
+    "Las articulaciones móviles, como la rodilla, permiten un amplio rango de movimiento.",
+    "Las articulaciones semimóviles, como las de las vértebras, tienen una movilidad limitada.",
+    "Las articulaciones fijas, como las del cráneo, no permiten ningún movimiento.",
+    "El tipo de articulación determina la flexibilidad de cada parte del cuerpo."
+  ],
+  [
+    "Los métodos anticonceptivos permiten controlar la capacidad reproductiva.",
+    "Los métodos de barrera, como el preservativo, impiden físicamente la llegada de los espermatozoides al óvulo.",
+    "Los métodos hormonales, como la píldora, alteran el ciclo hormonal para evitar la ovulación.",
+    "El preservativo es el único método que además protege frente a las infecciones de transmisión sexual.",
+    "La elección del método debe ser una decisión informada y responsable."
+  ],
+  [
+    "Las drogas son sustancias que alteran el funcionamiento normal del sistema nervioso.",
+    "Pueden ser estimulantes, depresoras o alucinógenas.",
+    "Su consumo puede generar dependencia física y psicológica, lo que se conoce como adicción.",
+    "A largo plazo, el abuso de drogas causa graves daños a la salud física y mental.",
+    "La mejor prevención es una buena información y el desarrollo de un estilo de vida saludable."
+  ],
+  [
+    "Un ecosistema acuático puede ser de agua dulce o de agua salada.",
+    "Los ecosistemas de agua dulce incluyen ríos, lagos y lagunas.",
+    "Los ecosistemas marinos, de agua salada, son los más extensos del planeta.",
+    "Los seres vivos que habitan en ellos presentan adaptaciones específicas a la salinidad.",
+    "El plancton, formado por organismos microscópicos, es la base de la vida en estos ecosistemas."
+  ],
+  [
+    "La acción humana está alterando gravemente los ecosistemas.",
+    "La contaminación del agua, el aire y el suelo afecta a todos los seres vivos.",
+    "La sobreexplotación de recursos, como la pesca excesiva, agota las poblaciones.",
+    "La introducción de especies exóticas invasoras puede desplazar a las especies autóctonas.",
+    "La conservación de los ecosistemas es fundamental para el futuro del planeta."
+  ],
+  [
+    "La corteza oceánica es más delgada y densa que la corteza continental.",
+    "Se crea continuamente en las dorsales oceánicas, donde las placas se separan.",
+    "Está compuesta principalmente por rocas como el basalto.",
+    "Se destruye en las zonas de subducción, donde se introduce bajo una placa continental.",
+    "Por ello, la corteza oceánica es mucho más joven que la continental."
+  ],
+  [
+    "Los fósiles guía son aquellos que nos permiten datar la edad de las rocas.",
+    "Pertenecen a especies que vivieron durante un período de tiempo muy concreto y corto.",
+    "Tuvieron una amplia distribución geográfica, por lo que se encuentran en muchos lugares.",
+    "Los trilobites, por ejemplo, son excelentes fósiles guía de la era Paleozoica.",
+    "Encontrar uno de ellos en un estrato nos da una pista muy precisa sobre su edad."
+  ],
+  [
+    "La nutrición es un proceso complejo que incluye varias fases.",
+    "La ingestión es la toma de alimentos del exterior.",
+    "La digestión es la transformación de los alimentos en nutrientes más sencillos.",
+    "La absorción es el paso de estos nutrientes a la sangre.",
+    "La egestión es la eliminación de los restos no digeridos."
+  ],
+  [
+    "El sistema nervioso autónomo regula las funciones involuntarias del cuerpo.",
+    "Controla procesos como el ritmo cardíaco, la digestión o la respiración.",
+    "Se divide en el sistema simpático y el sistema parasimpático.",
+    "El sistema simpático nos prepara para la acción ('lucha o huida').",
+    "El sistema parasimpático se encarga de las funciones en estado de reposo y relajación."
+  ],
+  [
+    "El embarazo humano dura aproximadamente cuarenta semanas.",
+    "Durante el primer trimestre se forman todos los órganos principales del embrión.",
+    "En el segundo trimestre, el feto crece rápidamente y sus movimientos son perceptibles.",
+    "En el tercer trimestre, el feto madura sus órganos y se prepara para el nacimiento.",
+    "El parto es el proceso de salida del bebé al exterior a través de la vagina."
+  ],
+  [
+    "Las enfermedades no infecciosas no son causadas por patógenos y no se contagian.",
+    "Muchas están relacionadas con el estilo de vida, como las enfermedades cardiovasculares.",
+    "Otras tienen un componente genético, como algunas enfermedades hereditarias.",
+    "El cáncer es un grupo de enfermedades caracterizadas por el crecimiento celular descontrolado.",
+    "Los accidentes y las enfermedades mentales también se incluyen en este grupo."
+  ],
+  [
+    "La deforestación es la destrucción a gran escala de los bosques.",
+    "Sus principales causas son la agricultura, la ganadería y la tala de árboles.",
+    "Provoca la pérdida de biodiversidad al destruir el hábitat de muchas especies.",
+    "También contribuye al cambio climático, ya que los árboles absorben CO2.",
+    "Fomentar la reforestación y el consumo de madera certificada ayuda a combatirla."
+  ],
+  [
+    "Las fallas son fracturas en la corteza terrestre a lo largo de las cuales se produce un desplazamiento.",
+    "La fricción entre los bloques de roca impide que se muevan continuamente.",
+    "Esto hace que se acumule una gran cantidad de energía.",
+    "Cuando la energía acumulada supera la fricción, se libera bruscamente, provocando un terremoto.",
+    "La falla de San Andrés en California es una de las más famosas del mundo."
+  ],
+  [
+    "La meiosis es el tipo de división celular que produce los gametos.",
+    "A partir de una célula diploide, se obtienen cuatro células haploides.",
+    "Las células haploides tienen la mitad de cromosomas que la célula original.",
+    "Este proceso introduce variabilidad genética, ya que los cromosomas se recombinan.",
+    "Es un paso esencial para la reproducción sexual."
+  ],
+  [
+    "Los primeros auxilios son la asistencia inmediata que se presta a una persona accidentada.",
+    "El primer paso es evaluar la situación y garantizar la seguridad de la zona.",
+    "Luego, se debe comprobar el estado de consciencia y la respiración de la víctima.",
+    "Es fundamental llamar a los servicios de emergencia lo antes posible.",
+    "No se debe mover a un herido grave a menos que su vida corra peligro inminente."
+  ]
 ]

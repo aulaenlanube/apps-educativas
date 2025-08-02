@@ -1,12 +1,282 @@
 [
-    ["La planificación del entrenamiento deportivo se organiza en diferentes ciclos.", "El macrociclo es el plan completo para una temporada o un año.", "Se divide en mesociclos, que son bloques de varias semanas con objetivos concretos.", "Cada mesociclo se compone de microciclos, que son las semanas de entrenamiento.", "Finalmente, el microciclo se desglosa en las sesiones diarias de trabajo.", "Esta organización permite una progresión lógica y evita el sobreentrenamiento."],
-    ["El dopaje es el uso de sustancias o métodos prohibidos para aumentar artificialmente el rendimiento.", "Supone una grave violación de la ética deportiva y del juego limpio.", "Pone en riesgo la salud de los deportistas que lo practican.", "Existen agencias antidopaje, como la WADA, que realizan controles para detectarlo.", "Los deportistas que dan positivo se enfrentan a duras sanciones.", "Luchar contra el dopaje es fundamental para proteger la integridad del deporte."],
-    ["La biomecánica es la ciencia que estudia el movimiento del cuerpo humano desde una perspectiva mecánica.", "Analiza las fuerzas que actúan sobre el cuerpo y los efectos que producen.", "Ayuda a los deportistas a mejorar su técnica para ser más eficientes.", "Por ejemplo, estudia la mejor postura para correr más rápido o lanzar más lejos.", "También es fundamental para diseñar material deportivo más seguro y eficaz.", "Su aplicación permite optimizar el rendimiento y prevenir lesiones."],
-    ["En un partido de voleibol, la recepción del saque es la primera acción de ataque.", "El objetivo es pasar el balón al colocador en las mejores condiciones posibles.", "El colocador es el 'cerebro' del equipo y decide a quién pasar el balón para el remate.", "El rematador salta y golpea el balón con fuerza para enviarlo al campo contrario.", "Mientras tanto, los otros jugadores preparan el bloqueo defensivo.", "Una buena recepción es la clave para poder construir un buen ataque."],
-    ["La psicología deportiva ayuda a los atletas a afrontar los aspectos mentales de la competición.", "Enseña técnicas para controlar la ansiedad y el estrés antes de una prueba.", "Trabaja para mejorar la concentración y la atención durante el rendimiento.", "Ayuda a establecer metas realistas y a mantener la motivación a largo plazo.", "También es importante para gestionar la frustración después de una derrota.", "Un deportista fuerte mentalmente tiene una gran ventaja competitiva."],
-    ["El entrenamiento en circuito o 'circuit training' es un método muy completo.", "Consiste en realizar una serie de ejercicios diferentes de forma consecutiva.", "Cada ejercicio se realiza en una 'estación' durante un tiempo o número de repeticiones.", "Se pasa de una estación a otra con un descanso muy corto o sin él.", "Permite trabajar diferentes cualidades físicas, como la fuerza y la resistencia, en una misma sesión.", "Es una forma de entrenamiento muy eficiente y variada."],
-    ["La táctica en los deportes de equipo es el plan de acción para superar al adversario.", "La táctica ofensiva busca crear y aprovechar los espacios para marcar.", "La táctica defensiva intenta cerrar los espacios y recuperar la posesión del balón.", "La estrategia es el plan general para todo el partido, mientras que la táctica son las acciones concretas.", "Un buen equipo debe ser capaz de adaptarse y cambiar de táctica durante el partido."],
-    ["El umbral anaeróbico es un indicador clave del rendimiento en deportes de resistencia.", "Es la intensidad de ejercicio a partir de la cual el cuerpo empieza a acumular ácido láctico.", "El ácido láctico es un producto de desecho que causa fatiga muscular.", "Entrenar justo por debajo o en este umbral ayuda a que el cuerpo se adapte.", "Un atleta bien entrenado puede mantener una intensidad más alta sin superar su umbral.", "Mejorar este parámetro es un objetivo fundamental para corredores o ciclistas."],
-    ["El 'Ultimate Frisbee' es un deporte de equipo que se juega con un disco volador.", "Se juega en un campo rectangular con dos zonas de marca en los extremos.", "Se anota un punto cuando un jugador recibe un pase dentro de la zona de marca del equipo contrario.", "El jugador que tiene el disco no puede correr, solo puede pivotar.", "Una de sus características más especiales es que es autoarbitrado, basándose en el 'espíritu de juego'."],
-    ["La nutrición deportiva es fundamental para optimizar el rendimiento y la recuperación.", "Los hidratos de carbono son el principal combustible para los músculos durante el ejercicio.", "Las proteínas son esenciales para reparar las fibras musculares dañadas tras el entrenamiento.", "Una correcta hidratación antes, durante y después es crucial para evitar la deshidratación.", "La planificación de las comidas en torno a los entrenamientos se conoce como 'timing' nutricional.", "Una buena nutrición es el entrenamiento invisible del deportista."]
+  [
+    "La planificación del entrenamiento es clave para mejorar el rendimiento de forma segura.",
+    "Debe basarse en principios como la progresión, la variedad y la individualización.",
+    "Un macrociclo divide la temporada en periodos con objetivos diferentes.",
+    "Cada microciclo, generalmente una semana, organiza las sesiones de entrenamiento.",
+    "Una buena planificación evita el sobreentrenamiento y optimiza los resultados."
+  ],
+  [
+    "Los sistemas energéticos del cuerpo proporcionan el combustible para el movimiento.",
+    "El sistema aeróbico, que utiliza oxígeno, es dominante en esfuerzos largos y sostenidos.",
+    "Los sistemas anaeróbicos, aláctico y láctico, actúan en esfuerzos cortos y explosivos.",
+    "El tipo de esfuerzo determina qué sistema energético predomina.",
+    "Entrenar de forma variada nos permite mejorar la eficiencia de todos los sistemas."
+  ],
+  [
+    "La frecuencia cardíaca es un indicador fiable de la intensidad del ejercicio.",
+    "La frecuencia cardíaca máxima (FCmáx) es el límite teórico de nuestro corazón.",
+    "Trabajar en diferentes zonas de frecuencia cardíaca produce distintas adaptaciones.",
+    "La zona aeróbica, entre el 60% y 80% de la FCmáx, mejora la resistencia cardiovascular.",
+    "Un pulsómetro es una herramienta muy útil para controlar la intensidad durante el entrenamiento."
+  ],
+  [
+    "La fuerza explosiva es la capacidad de generar la máxima fuerza en el mínimo tiempo.",
+    "Es una cualidad fundamental en gestos como los saltos o los lanzamientos.",
+    "El entrenamiento pliométrico, que utiliza el ciclo estiramiento-acortamiento, es ideal para mejorarla.",
+    "Ejercicios como los saltos al cajón o las sentadillas con salto son pliométricos.",
+    "Mejorar la fuerza explosiva nos hace más rápidos y potentes."
+  ],
+  [
+    "La técnica del triple salto en atletismo es una secuencia compleja de movimientos.",
+    "Consta de una carrera de aproximación y tres saltos consecutivos: hop, step y jump.",
+    "El 'hop' se realiza aterrizando con la misma pierna de batida.",
+    "El 'step' consiste en un cambio de pierna en el aire para aterrizar con la opuesta.",
+    "Finalmente, el 'jump' es un salto en longitud convencional hacia el foso de arena."
+  ],
+  [
+    "En baloncesto, el ataque contra una defensa en zona requiere una buena circulación de balón.",
+    "El objetivo es mover el balón rápidamente para generar huecos en la defensa.",
+    "Los pases deben ser rápidos y precisos para evitar que la defensa se reajuste.",
+    "Un jugador que se sitúa en el poste alto puede ser clave para romper la zona.",
+    "La paciencia y el juego en equipo son más importantes que las individualidades."
+  ],
+  [
+    "El sistema de juego 5-1 es el más utilizado en el voleibol de alto nivel.",
+    "El número '5' indica que hay cinco atacantes en la pista.",
+    "El número '1' se refiere a que hay un único colocador.",
+    "Este colocador es el especialista que se encarga de dirigir el ataque del equipo.",
+    "Permite tener siempre tres atacantes en la red, maximizando el potencial ofensivo."
+  ],
+  [
+    "La alimentación pre-competición es crucial para asegurar las reservas de energía.",
+    "La última comida importante debe realizarse unas 3-4 horas antes del evento.",
+    "Debe ser rica en hidratos de carbono de bajo índice glucémico, como la pasta integral.",
+    "Debe ser baja en grasas y fibra para facilitar la digestión.",
+    "Una correcta hidratación en las horas previas también es fundamental."
+  ],
+  [
+    "El dopaje es el uso de sustancias o métodos prohibidos para aumentar el rendimiento.",
+    "Es una práctica ilegal y totalmente contraria al espíritu del deporte.",
+    "Supone un grave riesgo para la salud del deportista, con efectos secundarios peligrosos.",
+    "La Agencia Mundial Antidopaje (AMA) es el organismo que lucha contra esta lacra.",
+    "El verdadero éxito deportivo se consigue con esfuerzo, talento y juego limpio."
+  ],
+  [
+    "La danza contemporánea es un estilo que busca la expresión a través del movimiento.",
+    "Rompe con las reglas estrictas del ballet clásico y busca una mayor libertad.",
+    "Utiliza el cuerpo de formas no convencionales, incluyendo caídas y trabajo de suelo.",
+    "La improvisación y la experimentación son elementos muy importantes.",
+    "Busca comunicar emociones e ideas a través de un lenguaje corporal personal."
+  ],
+  [
+    "El lanzamiento de disco en atletismo es una prueba de gran complejidad técnica.",
+    "El atleta realiza un giro rápido sobre sí mismo dentro de un círculo.",
+    "Este giro sirve para generar una gran velocidad angular que se transmite al disco.",
+    "El disco debe soltarse en el momento preciso y con el ángulo adecuado.",
+    "La combinación de fuerza, velocidad y coordinación es esencial para un buen lanzamiento."
+  ],
+  [
+    "La prevención de lesiones es un aspecto fundamental del entrenamiento.",
+    "Un buen calentamiento y una correcta vuelta a la calma son la primera línea de defensa.",
+    "El fortalecimiento de la musculatura estabilizadora, como el 'core', protege las articulaciones.",
+    "Una técnica de ejecución correcta en los ejercicios es crucial.",
+    "El descanso adecuado y una buena nutrición son igualmente importantes para la recuperación."
+  ],
+  [
+    "El 'parkour' es una disciplina física que consiste en superar obstáculos urbanos.",
+    "Los practicantes, o 'traceurs', utilizan su cuerpo para moverse de la forma más eficiente posible.",
+    "Combina carreras, saltos, escalada y acrobacias.",
+    "No es una disciplina competitiva, sino que se centra en la superación personal.",
+    "Requiere una gran preparación física y mental, así como una progresión muy cuidadosa."
+  ],
+  [
+    "La valoración de la condición física se realiza mediante tests estandarizados.",
+    "El Test de Cooper, por ejemplo, mide la resistencia aeróbica.",
+    "El test de salto vertical evalúa la potencia del tren inferior.",
+    "El test de 'Sit and Reach' mide la flexibilidad de la cadena muscular posterior.",
+    "Estas pruebas nos dan datos objetivos sobre nuestro estado de forma y nuestra progresión."
+  ],
+  [
+    "En balonmano, el lanzamiento en suspensión es el gesto de finalización más común.",
+    "El jugador salta por encima de la defensa para buscar un mejor ángulo de tiro.",
+    "Requiere una gran potencia de salto y una buena coordinación en el aire.",
+    "El armado del brazo y el golpe de muñeca final son claves para la potencia y precisión.",
+    "Es una acción muy espectacular y difícil de defender para el portero."
+  ],
+  [
+    "La psicología deportiva ayuda a los atletas a optimizar su rendimiento mental.",
+    "Trabaja aspectos como la motivación, la concentración y la autoconfianza.",
+    "Técnicas como la visualización permiten ensayar mentalmente una acción antes de realizarla.",
+    "La gestión de la ansiedad precompetitiva es uno de sus campos de trabajo más importantes.",
+    "Una mente bien preparada es tan crucial como un cuerpo bien entrenado."
+  ],
+  [
+    "El entrenamiento funcional busca mejorar el rendimiento en las actividades de la vida diaria.",
+    "En lugar de trabajar músculos aislados, se centra en patrones de movimiento completos.",
+    "Ejercicios como las sentadillas, el peso muerto o las planchas son funcionales.",
+    "Mejora la fuerza, la coordinación, el equilibrio y la estabilidad del 'core'.",
+    "Su objetivo es mejorar la calidad de vida y prevenir lesiones."
+  ],
+  [
+    "El 'floorball' o unihockey es un deporte de equipo similar al hockey.",
+    "Se juega en un pabellón con 'sticks' y una pelota de plástico muy ligera.",
+    "Es un deporte muy rápido, dinámico y con reglas que fomentan la seguridad.",
+    "El contacto físico está muy limitado, lo que reduce el riesgo de lesiones.",
+    "Es una excelente alternativa para iniciarse en los deportes de 'stick'."
+  ],
+  [
+    "La adaptación al entrenamiento es el proceso por el cual nuestro cuerpo se hace más fuerte.",
+    "Cuando entrenamos, generamos un estrés o fatiga en el organismo.",
+    "Durante el período de descanso, el cuerpo se recupera y se adapta.",
+    "Este proceso, llamado supercompensación, nos sitúa en un nivel de forma superior al inicial.",
+    "Por eso, el descanso es una parte tan importante del entrenamiento como el propio esfuerzo."
+  ],
+  [
+    "La defensa presionante en baloncesto busca dificultar la subida del balón del equipo contrario.",
+    "Se realiza en toda la pista o en tres cuartos de campo.",
+    "El objetivo es provocar pérdidas de balón y forzar al rival a cometer errores.",
+    "Requiere una gran condición física y una perfecta coordinación entre los defensores.",
+    "Es una táctica de alto riesgo, ya que si se supera, puede generar canastas fáciles."
+  ],
+  [
+    "El salvamento acuático deportivo es una modalidad que simula rescates en el agua.",
+    "Combina natación con técnicas específicas de remolque de maniquíes y uso de material de rescate.",
+    "Existen pruebas tanto en piscina como en aguas abiertas (playas).",
+    "Desarrolla una excelente condición física y habilidades que pueden salvar vidas.",
+    "Es un deporte que une el rendimiento físico con un gran valor social."
+  ],
+  [
+    "El principio de sobrecarga progresiva es fundamental para la mejora física.",
+    "Establece que para que el cuerpo mejore, el estímulo de entrenamiento debe aumentar gradualmente.",
+    "Podemos aumentar la carga subiendo el peso, el número de repeticiones o la intensidad.",
+    "Si el estímulo es siempre el mismo, el cuerpo se estanca y no progresa.",
+    "Este aumento debe ser progresivo para permitir la adaptación y evitar lesiones."
+  ],
+  [
+    "El 'slackline' es un deporte de equilibrio que consiste en caminar sobre una cinta plana.",
+    "La cinta se tensa entre dos puntos de anclaje, como dos árboles.",
+    "A diferencia del funambulismo, la cinta es elástica y se mueve.",
+    "Requiere una gran concentración, equilibrio y control del 'core'.",
+    "Es una actividad muy completa que trabaja el cuerpo y la mente."
+  ],
+  [
+    "La biomecánica deportiva analiza el movimiento humano desde la perspectiva de la física.",
+    "Estudia las fuerzas que actúan sobre el cuerpo y cómo este las genera.",
+    "Ayuda a optimizar la técnica deportiva para maximizar el rendimiento.",
+    "También es clave para diseñar material deportivo más eficiente y seguro.",
+    "Por ejemplo, analiza la aerodinámica de un ciclista o la trayectoria de un balón."
+  ],
+  [
+    "En voleibol, el líbero es un jugador especialista en defensa.",
+    "Viste una camiseta de color diferente para poder ser identificado.",
+    "Puede entrar y salir del campo continuamente para sustituir a los jugadores altos en la zona de defensa.",
+    "No puede sacar, bloquear ni rematar por encima de la red.",
+    "Su agilidad y su calidad en la recepción son fundamentales para el equipo."
+  ],
+  [
+    "El entrenamiento en suspensión, como el TRX, utiliza el propio peso corporal.",
+    "El sistema consta de unas cintas con agarres que se anclan en un punto alto.",
+    "Permite realizar una gran variedad de ejercicios modificando la inclinación del cuerpo.",
+    "Trabaja la fuerza, el equilibrio, la flexibilidad y la estabilidad del 'core' de forma simultánea.",
+    "Es un método de entrenamiento muy versátil y funcional."
+  ],
+  [
+    "El rugby es un deporte de equipo de contacto y evasión.",
+    "El objetivo es llevar un balón ovalado hasta la zona de ensayo del equipo contrario.",
+    "El balón solo puede pasarse con las manos hacia atrás.",
+    "El placaje es la acción defensiva para detener al portador del balón.",
+    "Valores como el respeto, la disciplina y el trabajo en equipo son la esencia de este deporte."
+  ],
+  [
+    "La composición corporal se refiere a la proporción de masa grasa y masa magra en el cuerpo.",
+    "La masa magra incluye los músculos, los huesos, los órganos y el agua.",
+    "No se trata solo de controlar el peso total, sino de mantener un porcentaje de grasa saludable.",
+    "El ejercicio de fuerza ayuda a aumentar la masa muscular.",
+    "Una composición corporal adecuada es un indicador de salud más fiable que el simple peso."
+  ],
+  [
+    "El 'frisbee' o disco volador tiene unas propiedades aerodinámicas únicas.",
+    "Al lanzarlo con un movimiento de rotación, se genera un efecto giroscópico que lo estabiliza.",
+    "La diferencia de presión entre la parte superior e inferior del disco crea la sustentación.",
+    "Esto le permite planear en el aire y recorrer grandes distancias.",
+    "Dominar su lanzamiento requiere práctica y una buena técnica."
+  ],
+  [
+    "La periodización del entrenamiento organiza la temporada en fases con objetivos específicos.",
+    "El período preparatorio busca desarrollar una base física general.",
+    "El período competitivo se centra en alcanzar el máximo rendimiento para las competiciones.",
+    "El período de transición es una fase de descanso activo para recuperarse física y mentalmente.",
+    "Esta planificación evita el estancamiento y reduce el riesgo de lesiones."
+  ],
+  [
+    "El kin-ball es un deporte cooperativo que se juega con una pelota gigante.",
+    "Se enfrentan tres equipos de cuatro jugadores al mismo tiempo.",
+    "El equipo que ataca nombra a uno de los otros dos equipos antes de lanzar el balón.",
+    "El equipo nombrado debe evitar que la pelota toque el suelo.",
+    "Fomenta la colaboración y la comunicación, ya que todos los jugadores deben participar."
+  ],
+  [
+    "El VO2 máx es un indicador de la capacidad aeróbica de un deportista.",
+    "Representa el volumen máximo de oxígeno que el cuerpo puede procesar durante el ejercicio.",
+    "Se mide en mililitros de oxígeno por kilogramo de peso por minuto.",
+    "Un VO2 máx alto está directamente relacionado con un buen rendimiento en deportes de resistencia.",
+    "Se puede mejorar mediante el entrenamiento de resistencia cardiovascular."
+  ],
+  [
+    "La técnica de la 'braza' en natación es la más antigua de los estilos competitivos.",
+    "Es el único estilo en el que la recuperación de los brazos se realiza por debajo del agua.",
+    "El movimiento de las piernas, conocido como 'patada de rana', es simétrico y simultáneo.",
+    "Requiere una gran coordinación entre la brazada, la patada y la respiración.",
+    "Aunque es el estilo más lento, es muy utilizado en el salvamento acuático."
+  ],
+  [
+    "La agilidad es la capacidad de cambiar de dirección y de posición de forma rápida y eficaz.",
+    "No depende solo de la velocidad, sino también de la coordinación y el equilibrio.",
+    "Los circuitos de agilidad con conos, vallas y cambios de sentido son ideales para entrenarla.",
+    "Es una cualidad fundamental en deportes de equipo como el fútbol o el baloncesto.",
+    "Permite reaccionar rápidamente a las situaciones cambiantes del juego."
+  ],
+  [
+    "El pádel es un deporte de pala que se ha popularizado enormemente.",
+    "Se juega por parejas en una pista rectangular cerrada por paredes.",
+    "Las paredes forman parte del juego, ya que la pelota puede rebotar en ellas.",
+    "El saque se realiza por debajo de la cintura y debe botar en el cuadro de saque contrario.",
+    "Es un deporte muy social, táctico y divertido."
+  ],
+  [
+    "El principio de especificidad del entrenamiento establece que las adaptaciones son específicas al estímulo.",
+    "Si quieres mejorar tu carrera, la mejor forma de hacerlo es corriendo.",
+    "El cuerpo se adapta de forma muy concreta al tipo de ejercicio que se realiza.",
+    "Un levantador de pesas no mejorará su marca de maratón levantando más peso.",
+    "El entrenamiento debe ser lo más parecido posible a los gestos y demandas del deporte practicado."
+  ],
+  [
+    "La escalada en bloque o 'boulder' es una modalidad que se practica sin cuerda.",
+    "Se realiza en paredes de poca altura, con colchonetas de seguridad en el suelo.",
+    "Se centra en la resolución de secuencias de movimientos cortos pero de gran dificultad.",
+    "Requiere una gran fuerza de dedos, potencia y una técnica muy depurada.",
+    "Es una modalidad muy social que se practica a menudo en rocódromos."
+  ],
+  [
+    "La flexibilidad dinámica se trabaja mediante movimientos controlados y suaves.",
+    "Prepara las articulaciones y los músculos para el movimiento, aumentando el rango de forma activa.",
+    "Ejercicios como las rotaciones de brazos o las patadas al aire son de flexibilidad dinámica.",
+    "Es la más recomendada para incluir en la parte final del calentamiento.",
+    "A diferencia de la estática, no se mantienen posiciones de estiramiento."
+  ],
+  [
+    "El 'crossfit' es un sistema de entrenamiento que combina ejercicios de diferentes disciplinas.",
+    "Incluye movimientos de halterofilia, gimnasia y entrenamiento metabólico.",
+    "Las sesiones, llamadas WOD (Workout of the Day), son de alta intensidad y constantemente variadas.",
+    "Busca desarrollar una condición física completa y equilibrada.",
+    "Fomenta un fuerte sentimiento de comunidad entre sus practicantes."
+  ],
+  [
+    "La fatiga es una disminución transitoria de la capacidad de rendimiento.",
+    "Puede ser física, por el agotamiento de las reservas de energía o la acumulación de desechos.",
+    "También puede ser mental, por la falta de concentración o motivación.",
+    "El descanso y una nutrición adecuada son los mejores remedios contra la fatiga.",
+    "El sobreentrenamiento es un estado de fatiga crónica por exceso de entrenamiento y falta de recuperación."
+  ]
 ]

@@ -1,12 +1,282 @@
 [
-    ["El período de entreguerras (1919-1939) fue una época de gran inestabilidad.", "Tras la Primera Guerra Mundial, muchos países sufrieron una grave crisis económica.", "La crisis de 1929 en Estados Unidos, o Gran Depresión, afectó a todo el mundo.", "Este descontento social favoreció el ascenso de ideologías totalitarias.", "En Italia, Mussolini instauró el fascismo, y en Alemania, Hitler llegó al poder con el nazismo.", "Estas tensiones desembocaron finalmente en la Segunda Guerra Mundial."],
-    ["La Segunda Guerra Mundial fue el conflicto más mortífero de la historia.", "Comenzó en 1939 con la invasión de Polonia por parte de la Alemania nazi.", "Enfrentó a las potencias del Eje (Alemania, Italia, Japón) contra los Aliados (Reino Unido, Francia, URSS, EEUU).", "Uno de sus episodios más oscuros fue el Holocausto, el genocidio del pueblo judío.", "El conflicto terminó en 1945 con la victoria de los Aliados.", "Como consecuencia, se creó la ONU para intentar preservar la paz mundial."],
-    ["La Guerra Fría fue un enfrentamiento ideológico, político y económico tras la Segunda Guerra Mundial.", "Enfrentó a dos superpotencias: Estados Unidos (bloque capitalista) y la Unión Soviética (bloque comunista).", "Aunque no hubo un conflicto militar directo entre ambas, libraron 'guerras subsidiarias' en otros países.", "El mundo vivió bajo la amenaza constante de una guerra nuclear.", "La construcción del Muro de Berlín se convirtió en el símbolo de esta división.", "La Guerra Fría terminó con la caída del bloque comunista a finales de los años 80."],
-    ["El proceso de descolonización se aceleró después de 1945.", "Los grandes imperios coloniales europeos se debilitaron tras la guerra.", "En Asia y África surgieron movimientos nacionalistas que luchaban por la independencia.", "La India, liderada por Gandhi, logró su independencia del Reino Unido de forma pacífica.", "En otros lugares, como Argelia, la independencia se consiguió tras una dura guerra.", "La mayoría de los nuevos países se enfrentaron a grandes dificultades políticas y económicas."],
-    ["La Transición española es el período que va desde la muerte de Franco hasta la consolidación de la democracia.", "Tras la muerte del dictador en 1975, el rey Juan Carlos I fue proclamado jefe de Estado.", "Adolfo Suárez fue el presidente que lideró las principales reformas políticas.", "Se legalizaron los partidos políticos y se celebraron las primeras elecciones democráticas en 1977.", "El proceso culminó con la aprobación de la Constitución de 1978.", "Fue un proceso complejo, no exento de tensiones y violencia terrorista."],
-    ["La globalización es un fenómeno de interconexión a escala planetaria.", "Las nuevas tecnologías de la comunicación, como internet, han sido su principal motor.", "Las empresas multinacionales producen y venden sus productos en todo el mundo.", "Se ha producido una gran difusión de pautas culturales, principalmente occidentales.", "Aunque ha generado crecimiento económico, también ha aumentado las desigualdades.", "Problemas como el cambio climático también son globales y requieren soluciones conjuntas."],
-    ["La Constitución española de 1978 define a España como un Estado social y democrático de Derecho.", "Establece que la soberanía nacional reside en el pueblo español.", "Garantiza los derechos y libertades fundamentales de todos los ciudadanos.", "Organiza el territorio en municipios, provincias y comunidades autónomas.", "Define la monarquía parlamentaria como la forma política del Estado.", "Fue aprobada en referéndum por una amplia mayoría de los españoles."],
-    ["El franquismo fue la dictadura que gobernó España desde 1939 hasta 1975.", "Tras la Guerra Civil, el general Franco concentró todos los poderes del Estado.", "Se suprimieron los partidos políticos y los sindicatos, y se anularon las libertades.", "Durante los primeros años, el régimen aplicó una política de autarquía económica.", "La represión sobre los vencidos en la guerra fue muy dura y prolongada.", "El régimen se mantuvo aislado internacionalmente hasta la década de 1950."],
-    ["El arte del siglo XX rompió radicalmente con la tradición artística anterior.", "Surgieron las vanguardias, que buscaban la experimentación y la originalidad.", "El cubismo, con Picasso, descompuso la realidad en formas geométricas.", "El surrealismo, influido por el psicoanálisis, exploró el mundo de los sueños y el inconsciente.", "El arte abstracto renunció a representar la realidad visible.", "El artista ya no buscaba imitar la naturaleza, sino expresar su mundo interior."],
-    ["La Unión Europea ha pasado por un largo proceso de construcción.", "Sus orígenes se remontan a la Comunidad Europea del Carbón y del Acero en los años 50.", "El objetivo inicial era económico: crear un mercado común para evitar futuras guerras.", "Poco a poco, se fue ampliando con la incorporación de nuevos países.", "También ha ido asumiendo más competencias políticas y sociales.", "Se enfrenta a grandes retos como la gestión de la inmigración o el cambio climático."]
+  [
+    "La Revolución Industrial transformó por completo la sociedad y la economía.",
+    "Comenzó en Gran Bretaña a finales del siglo XVIII con la invención de la máquina de vapor.",
+    "La producción artesanal en pequeños talleres fue sustituida por la producción en masa en grandes fábricas.",
+    "Surgió una nueva clase social, el proletariado, formada por los obreros industriales.",
+    "Este proceso dio lugar a un gran crecimiento de las ciudades y a nuevas formas de vida."
+  ],
+  [
+    "La Revolución Francesa de 1789 marcó el fin del Antiguo Régimen.",
+    "Sus principios de libertad, igualdad y fraternidad se extendieron por toda Europa.",
+    "Napoleón Bonaparte, a través de sus conquistas, difundió muchas de estas ideas revolucionarias.",
+    "Aunque fue derrotado, sus ejércitos habían despertado el liberalismo y el nacionalismo.",
+    "Tras su caída, las potencias absolutistas intentaron restaurar el viejo orden en el Congreso de Viena."
+  ],
+  [
+    "El liberalismo es una ideología que defiende las libertades y los derechos individuales.",
+    "Políticamente, aboga por la soberanía nacional, la separación de poderes y una constitución.",
+    "En economía, defiende la propiedad privada y la no intervención del Estado.",
+    "Fue la ideología de la burguesía, que luchó por acabar con los privilegios del Antiguo Régimen.",
+    "Las revoluciones liberales de 1820, 1830 y 1848 se inspiraron en estos principios."
+  ],
+  [
+    "El nacionalismo es una ideología que exalta la nación como entidad fundamental.",
+    "Sostiene que cada nación, definida por una lengua, cultura o historia común, debe tener su propio Estado.",
+    "En el siglo XIX, fue una fuerza unificadora en lugares como Italia y Alemania.",
+    "Por el contrario, fue una fuerza disgregadora en los grandes imperios multinacionales, como el austrohúngaro.",
+    "La exaltación nacionalista fue una de las principales causas del estallido de la Primera Guerra Mundial."
+  ],
+  [
+    "El movimiento obrero surgió para protestar contra las duras condiciones de trabajo en las fábricas.",
+    "Los obreros carecían de derechos, con jornadas laborales agotadoras y salarios de miseria.",
+    "Se organizaron en sindicatos para poder negociar con más fuerza con los patronos.",
+    "Las principales ideologías obreras fueron el marxismo y el anarquismo.",
+    "Su lucha consiguió avances como la jornada de ocho horas o la prohibición del trabajo infantil."
+  ],
+  [
+    "El marxismo es una teoría política y económica desarrollada por Karl Marx y Friedrich Engels.",
+    "Analiza la historia como una lucha de clases entre opresores y oprimidos.",
+    "En la sociedad capitalista, esta lucha se da entre la burguesía y el proletariado.",
+    "Proponía una revolución obrera para conquistar el poder del Estado.",
+    "El objetivo final era establecer una sociedad comunista, sin clases y sin propiedad privada."
+  ],
+  [
+    "El anarquismo es una ideología que se opone a cualquier forma de autoridad impuesta.",
+    "Rechaza el Estado, la Iglesia y cualquier otra institución que coarte la libertad individual.",
+    "Defiende una sociedad basada en la libre asociación de individuos en comunas autogestionadas.",
+    "Pensadores como Bakunin o Kropotkin fueron sus principales teóricos.",
+    "Tuvo una gran influencia en el movimiento obrero de países como España."
+  ],
+  [
+    "El imperialismo del siglo XIX fue la expansión de las potencias industriales por el resto del mundo.",
+    "Buscaban nuevos mercados para vender su producción y obtener materias primas baratas.",
+    "La superioridad militar y técnica les permitió colonizar vastos territorios en África y Asia.",
+    "La Conferencia de Berlín de 1885 organizó el reparto de África entre las potencias europeas.",
+    "Esta expansión generó grandes tensiones y rivalidades que desembocarían en la Gran Guerra."
+  ],
+  [
+    "La Primera Guerra Mundial (1914-1918) fue el primer conflicto a escala global.",
+    "Las rivalidades imperialistas, las alianzas militares y una carrera de armamentos crearon un clima de tensión.",
+    "El asesinato del archiduque Francisco Fernando en Sarajevo fue el detonante que hizo estallar el conflicto.",
+    "Enfrentó a los Imperios Centrales (Alemania, Austria-Hungría) contra la Triple Entente (Francia, Reino Unido, Rusia).",
+    "Fue una guerra totalmente nueva, caracterizada por la brutalidad de las trincheras y el uso de nuevas armas."
+  ],
+  [
+    "La Revolución Rusa de 1917 cambió el curso de la historia del siglo XX.",
+    "En febrero, una revolución derrocó al zar y estableció un gobierno provisional.",
+    "En octubre, los bolcheviques, liderados por Lenin, tomaron el poder.",
+    "Establecieron el primer Estado comunista del mundo, basado en las ideas de Marx.",
+    "Tras una cruenta guerra civil, se consolidó la Unión de Repúblicas Socialistas Soviéticas (URSS)."
+  ],
+  [
+    "El Tratado de Versalles, firmado en 1919, puso fin oficialmente a la Primera Guerra Mundial.",
+    "Impuso unas condiciones de paz muy duras a Alemania, a la que se consideró única culpable.",
+    "Alemania perdió territorios, fue desmilitarizada y obligada a pagar enormes reparaciones de guerra.",
+    "Estas condiciones fueron percibidas como una humillación por el pueblo alemán.",
+    "Este tratado, en lugar de asegurar la paz, sembró la semilla de la Segunda Guerra Mundial."
+  ],
+  [
+    "Los 'felices años veinte' fueron una década de prosperidad económica en Estados Unidos.",
+    "Tras la guerra, la economía estadounidense creció a un ritmo vertiginoso.",
+    "Surgió una nueva sociedad de consumo, con nuevos productos como el automóvil o los electrodomésticos.",
+    "La especulación en la bolsa de valores se convirtió en una actividad muy popular.",
+    "Esta burbuja de optimismo terminó bruscamente con el crack de 1929."
+  ],
+  [
+    "El crack de la bolsa de Nueva York en 1929 desencadenó una profunda crisis económica mundial.",
+    "El 'jueves negro', el valor de las acciones se desplomó, arruinando a miles de inversores.",
+    "La crisis se extendió rápidamente a la banca, la industria y el comercio.",
+    "El resultado fue la Gran Depresión, con millones de parados y una gran miseria social.",
+    "Esta crisis demostró la fragilidad del sistema capitalista y favoreció el ascenso de los totalitarismos."
+  ],
+  [
+    "El fascismo es una ideología totalitaria que surgió en Italia tras la Primera Guerra Mundial.",
+    "Fue liderado por Benito Mussolini, quien se hizo con el poder en 1922.",
+    "Se caracteriza por un nacionalismo exacerbado, el culto al líder y el rechazo de la democracia.",
+    "El Estado controlaba todos los aspectos de la vida social y económica.",
+    "Suprimió violentamente a toda la oposición política."
+  ],
+  [
+    "El nazismo fue la ideología del partido liderado por Adolf Hitler en Alemania.",
+    "Compartía los rasgos totalitarios del fascismo, pero añadió un componente racista radical.",
+    "Sostenía la superioridad de la 'raza aria' y un profundo antisemitismo.",
+    "Hitler llegó al poder en 1933 y estableció una dictadura brutal.",
+    "Su política expansionista y su ideología racista fueron las causas directas de la Segunda Guerra Mundial."
+  ],
+  [
+    "La Segunda Guerra Mundial (1939-1945) fue el conflicto más devastador de la historia.",
+    "Comenzó con la invasión de Polonia por parte de la Alemania nazi.",
+    "Enfrentó a las potencias del Eje (Alemania, Italia, Japón) contra los Aliados (Reino Unido, Francia, URSS, EEUU).",
+    "Fue una 'guerra total' que afectó a la población civil de forma masiva.",
+    "El conflicto terminó en Europa con la rendición de Alemania y en Asia tras las bombas atómicas sobre Hiroshima y Nagasaki."
+  ],
+  [
+    "El Holocausto fue el genocidio sistemático de seis millones de judíos por el régimen nazi.",
+    "Los nazis consideraban a los judíos una raza inferior y los culparon de los problemas de Alemania.",
+    "Fueron perseguidos, confinados en guetos y finalmente deportados a campos de exterminio.",
+    "En campos como Auschwitz, fueron asesinados de forma industrializada en cámaras de gas.",
+    "Es uno de los crímenes más atroces y vergonzosos de la historia de la humanidad."
+  ],
+  [
+    "Tras la Segunda Guerra Mundial, el mundo quedó dividido en dos bloques antagónicos.",
+    "El bloque capitalista, liderado por Estados Unidos, defendía la democracia liberal y la economía de mercado.",
+    "El bloque comunista, liderado por la Unión Soviética, defendía un sistema de partido único y economía planificada.",
+    "Esta tensión permanente entre las dos superpotencias se conoce como la Guerra Fría.",
+    "Europa quedó dividida por el 'Telón de Acero'."
+  ],
+  [
+    "La Guerra Fría no fue un enfrentamiento militar directo entre EEUU y la URSS.",
+    "Sin embargo, ambas superpotencias se enfrentaron indirectamente en conflictos en otros países.",
+    "La Guerra de Corea y la Guerra de Vietnam son dos ejemplos de estos enfrentamientos.",
+    "La crisis de los misiles en Cuba en 1962 fue el momento de máxima tensión.",
+    "El mundo vivió durante décadas bajo la amenaza de una guerra nuclear."
+  ],
+  [
+    "La descolonización fue el proceso de independencia de las colonias europeas en África y Asia.",
+    "Se intensificó después de la Segunda Guerra Mundial, con las potencias europeas muy debilitadas.",
+    "En algunos casos, la independencia se logró de forma pacífica y negociada.",
+    "En otros, dio lugar a largas y sangrientas guerras de liberación.",
+    "El surgimiento de estos nuevos países, el 'Tercer Mundo', cambió el equilibrio geopolítico mundial."
+  ],
+  [
+    "La caída del Muro de Berlín en 1989 es el gran símbolo del fin de la Guerra Fría.",
+    "Este muro había dividido la ciudad alemana desde 1961, siendo el icono de la división de Europa.",
+    "Su caída fue el resultado de las protestas ciudadanas y de la crisis del bloque comunista.",
+    "Poco después, Alemania se reunificó.",
+    "En 1991, la propia Unión Soviética se disolvió, poniendo fin a la era bipolar."
+  ],
+  [
+    "El siglo XIX en España fue un período de gran inestabilidad política.",
+    "Comenzó con la Guerra de la Independencia contra la invasión napoleónica (1808-1814).",
+    "Durante todo el siglo se produjo un duro enfrentamiento entre absolutistas y liberales.",
+    "Se sucedieron numerosos pronunciamientos militares y cambios de gobierno.",
+    "Las guerras carlistas enfrentaron a los partidarios del absolutismo con los de un estado liberal."
+  ],
+  [
+    "El reinado de Isabel II (1833-1868) supuso la construcción del Estado liberal en España.",
+    "Se consolidó un sistema de monarquía constitucional, aunque con un sufragio muy restringido.",
+    "Los dos grandes partidos liberales, el Moderado y el Progresista, se alternaron en el poder.",
+    "Fue una época de inestabilidad, con numerosos levantamientos militares.",
+    "La reina fue finalmente expulsada de España por la revolución de 1868, 'La Gloriosa'."
+  ],
+  [
+    "La Restauración borbónica (1875-1923) fue un período de mayor estabilidad.",
+    "Se restauró la monarquía en la figura de Alfonso XII, hijo de Isabel II.",
+    "El sistema político, ideado por Cánovas del Castillo, se basaba en el turnismo de dos partidos.",
+    "El Partido Conservador y el Partido Liberal se alternaban pacíficamente en el gobierno.",
+    "Este sistema era fraudulento y se mantenía gracias al caciquismo y al pucherazo."
+  ],
+  [
+    "El desastre de 1898 supuso un profundo trauma para la sociedad española.",
+    "España perdió sus últimas colonias de ultramar: Cuba, Puerto Rico y Filipinas.",
+    "La derrota en una breve guerra contra Estados Unidos evidenció la decadencia del país.",
+    "Esta crisis provocó el surgimiento de un movimiento intelectual, la Generación del 98.",
+    "También impulsó el Regeneracionismo, que buscaba modernizar España."
+  ],
+  [
+    "La Segunda República Española (1931-1936) fue un intento de modernizar el país.",
+    "Se proclamó tras la marcha del rey Alfonso XIII.",
+    "La nueva Constitución estableció un régimen democrático con sufragio universal, incluido el femenino.",
+    "Se emprendieron importantes reformas, como la reforma agraria, la educativa y la militar.",
+    "Sin embargo, fue un período de gran polarización política y social."
+  ],
+  [
+    "La Guerra Civil Española (1936-1939) fue un conflicto devastador.",
+    "Comenzó con un golpe de Estado militar contra el gobierno de la República.",
+    "Enfrentó al bando republicano, leal al gobierno, contra el bando sublevado o nacional, liderado por Franco.",
+    "Tuvo una gran repercusión internacional, con la Alemania nazi y la Italia fascista apoyando a Franco.",
+    "Terminó con la victoria del bando sublevado y el inicio de una larga dictadura."
+  ],
+  [
+    "La dictadura de Francisco Franco duró casi cuarenta años (1939-1975).",
+    "Fue un régimen totalitario, sin libertades políticas ni derechos fundamentales.",
+    "Se caracterizó por una dura represión contra los vencidos en la guerra.",
+    "Durante los primeros años, España sufrió un gran aislamiento internacional.",
+    "A partir de los años 60, se produjo un importante desarrollo económico, pero sin libertades."
+  ],
+  [
+    "La Transición española es el proceso de paso de la dictadura a la democracia.",
+    "Comenzó tras la muerte de Franco en 1975, con el rey Juan Carlos I como jefe de Estado.",
+    "Fue un proceso liderado por políticos como Adolfo Suárez, que legalizó los partidos políticos.",
+    "Las primeras elecciones democráticas se celebraron en 1977.",
+    "El proceso culminó con la aprobación de la Constitución de 1978."
+  ],
+  [
+    "La Constitución de 1978 es la norma fundamental del sistema democrático español.",
+    "Define a España como un Estado social y democrático de Derecho.",
+    "Establece la monarquía parlamentaria como forma de gobierno.",
+    "Recoge los derechos y libertades fundamentales de los ciudadanos.",
+    "Organiza el territorio en Comunidades Autónomas para descentralizar el poder."
+  ],
+  [
+    "El Estado del Bienestar es un modelo que busca garantizar unos servicios públicos básicos.",
+    "El Estado se compromete a proporcionar sanidad, educación y protección social a todos los ciudadanos.",
+    "Se financia a través de los impuestos que pagan los ciudadanos y las empresas.",
+    "Busca reducir las desigualdades y asegurar un nivel de vida digno para todos.",
+    "Es una de las señas de identidad del modelo social europeo tras la Segunda Guerra Mundial."
+  ],
+  [
+    "El mundo actual se enfrenta a grandes desafíos globales.",
+    "El cambio climático es una de las mayores amenazas para el futuro del planeta.",
+    "Las desigualdades económicas entre el Norte y el Sur siguen siendo enormes.",
+    "Los movimientos migratorios masivos plantean retos sociales y políticos.",
+    "La resolución de estos problemas requiere de la cooperación de todos los países."
+  ],
+  [
+    "La Unión Europea es un proyecto único de integración económica y política.",
+    "Ha creado un mercado único donde personas, bienes y capitales circulan libremente.",
+    "La mayoría de sus miembros comparten una moneda única, el euro.",
+    "Sus instituciones, como el Parlamento Europeo, son democráticas.",
+    "Se enfrenta a retos como el envejecimiento de la población o la gestión de la inmigración."
+  ],
+  [
+    "La Guerra de la Independencia Española (1808-1814) fue la resistencia contra la invasión napoleónica.",
+    "El levantamiento popular del 2 de mayo de 1808 en Madrid dio inicio al conflicto.",
+    "El pueblo español se organizó en guerrillas, una nueva forma de lucha.",
+    "Durante la guerra, las Cortes de Cádiz redactaron la primera Constitución española en 1812.",
+    "La guerra fue muy destructiva, pero terminó con la expulsión de los franceses."
+  ],
+  [
+    "La sociedad de clases del siglo XIX sustituyó a la sociedad estamental.",
+    "La posición social ya no dependía del nacimiento, sino de la riqueza.",
+    "La burguesía, dueña de las fábricas y los negocios, se convirtió en la clase dominante.",
+    "El proletariado, formado por los obreros, era la clase más numerosa y desfavorecida.",
+    "Aunque la ley proclamaba la igualdad, en la práctica existían enormes desigualdades económicas."
+  ],
+  [
+    "El sufragio fue evolucionando a lo largo del siglo XIX y XX.",
+    "Al principio, el sufragio era censitario, solo podían votar los hombres con un alto nivel de riqueza.",
+    "El sufragio universal masculino se fue implantando progresivamente en muchos países.",
+    "El movimiento sufragista luchó por conseguir el derecho al voto para las mujeres.",
+    "En España, el sufragio femenino se logró durante la Segunda República, en 1931."
+  ],
+  [
+    "El arte del siglo XIX estuvo marcado por una sucesión de estilos.",
+    "El Neoclasicismo, a principios de siglo, se inspiraba en la antigüedad clásica.",
+    "El Romanticismo, con pintores como Goya o Delacroix, exaltaba los sentimientos.",
+    "El Realismo buscaba representar la realidad de forma objetiva.",
+    "El Impresionismo, a finales de siglo, revolucionó la forma de pintar la luz y el color."
+  ],
+  [
+    "La desintegración de la Unión Soviética en 1991 marcó el fin de una era.",
+    "La crisis económica y las demandas de libertad de sus repúblicas provocaron su colapso.",
+    "Supuso el fin de la Guerra Fría y del mundo bipolar.",
+    "Estados Unidos quedó como la única superpotencia mundial.",
+    "Muchos de los antiguos países comunistas de Europa del Este se integraron en la Unión Europea y la OTAN."
+  ],
+  [
+    "El conflicto árabe-israelí es uno de los más largos y complejos del mundo contemporáneo.",
+    "Se originó con la creación del Estado de Israel en 1948 en territorio palestino.",
+    "Ha provocado varias guerras entre Israel y sus vecinos árabes.",
+    "El problema de los refugiados palestinos y la ocupación de territorios son los puntos clave.",
+    "A pesar de los numerosos intentos, todavía no se ha alcanzado una paz duradera."
+  ],
+  [
+    "La globalización ha sido posible gracias a la revolución de los transportes y las comunicaciones.",
+    "Los grandes buques portacontenedores han abaratado enormemente el transporte marítimo.",
+    "El transporte aéreo permite el desplazamiento rápido de personas y mercancías de alto valor.",
+    "Internet y la telefonía móvil han hecho posible la comunicación instantánea a nivel mundial.",
+    "Estas tecnologías han creado un mundo mucho más interconectado."
+  ]
 ]

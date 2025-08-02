@@ -1,12 +1,282 @@
 [
-    ["La toma de decisiones sobre el futuro es un proceso que requiere reflexión.", "Primero, es fundamental el autoconocimiento: conocer nuestros intereses, habilidades y valores.", "Luego, debemos informarnos sobre las diferentes opciones académicas y profesionales que existen.", "Es útil analizar las ventajas y desventajas de cada opción.", "Hablar con orientadores, profesionales y familiares puede aportarnos diferentes perspectivas.", "Finalmente, debemos tomar una decisión personal y responsable, sabiendo que siempre se puede reorientar en el futuro."],
-    ["El mercado laboral actual es muy dinámico y competitivo.", "Las profesiones del futuro estarán muy ligadas a la tecnología y la digitalización.", "Además de los conocimientos técnicos, las empresas valoran mucho las 'habilidades blandas'.", "Estas incluyen la capacidad de trabajar en equipo, la comunicación y la resolución de problemas.", "La formación continua y la capacidad de adaptarse al cambio serán claves para el éxito profesional.", "Por eso, es importante no dejar de aprender nunca."],
-    ["Un conflicto entre dos personas a menudo surge de un malentendido o de diferentes puntos de vista.", "El primer paso para resolverlo es que ambas partes quieran solucionarlo de forma pacífica.", "Es esencial practicar la escucha activa, intentando comprender la perspectiva del otro.", "Luego, cada uno debe expresar sus propios sentimientos y necesidades de forma asertiva.", "El objetivo es buscar una solución 'gana-gana', en la que ambas partes se sientan satisfechas.", "A veces, la ayuda de una tercera persona neutral, o mediador, puede ser muy útil."],
-    ["Preparar una entrevista de trabajo aumenta nuestras posibilidades de éxito.", "Primero, debemos investigar sobre la empresa para conocer su actividad y sus valores.", "Es importante repasar nuestro propio currículum y preparar respuestas para posibles preguntas.", "También debemos pensar en preguntas que nosotros queramos hacer sobre el puesto o la empresa.", "Cuidar nuestra apariencia y la puntualidad es fundamental para dar una buena primera impresión.", "Durante la entrevista, debemos mostrarnos seguros, honestos y entusiastas."],
-    ["La participación ciudadana es un pilar fundamental de una sociedad democrática.", "No se limita solo a votar en las elecciones cada cuatro años.", "Podemos participar a través de asociaciones de vecinos, ONGs o movimientos sociales.", "También implica informarse sobre los asuntos públicos y formarse una opinión crítica.", "El respeto por las opiniones diferentes y el diálogo son esenciales para la convivencia.", "Una ciudadanía activa y comprometida es la mejor garantía para una sociedad más justa."],
-    ["La inteligencia emocional es una habilidad que se puede entrenar y mejorar.", "El primer paso es ser consciente de nuestras propias emociones y saber ponerles nombre.", "Luego, debemos aprender a regular esas emociones para que no nos dominen.", "También es crucial desarrollar la empatía para reconocer y comprender las emociones de los demás.", "Finalmente, debemos utilizar esta información para guiar nuestras relaciones sociales de forma positiva.", "Esta habilidad es clave para nuestro bienestar y nuestras relaciones."],
-    ["Elaborar un presupuesto personal nos ayuda a gestionar mejor nuestro dinero.", "Primero, debemos anotar todos nuestros ingresos fijos y variables.", "Luego, hacemos un seguimiento de todos nuestros gastos durante un mes para saber a dónde va el dinero.", "Clasificamos los gastos en fijos (necesarios) y variables (prescindibles).", "Con esta información, podemos fijar metas de ahorro y tomar decisiones de consumo más conscientes.", "Un presupuesto nos da el control sobre nuestras finanzas personales."],
-    ["La igualdad de oportunidades entre hombres y mujeres es un derecho y un objetivo social.", "Significa que todas las personas, sin importar su género, deben tener las mismas posibilidades de desarrollarse.", "Esto aplica a todos los ámbitos: la educación, el trabajo, la política y la vida familiar.", "Todavía existen barreras invisibles, como los estereotipos de género, que dificultan esta igualdad.", "La coeducación es una herramienta clave para educar a niños y niñas en el respeto y la igualdad.", "Es una lucha que concierne a toda la sociedad en su conjunto."],
-    ["El pensamiento creativo nos permite encontrar soluciones originales a los problemas.", "No se trata solo de ser artístico, sino de pensar de forma diferente y flexible.", "Una técnica para fomentarlo es la 'tormenta de ideas' o 'brainstorming'.", "Consiste en generar el mayor número de ideas posible sin juzgarlas.", "Luego, se analizan y combinan estas ideas para encontrar nuevas soluciones.", "La creatividad es una habilidad muy demandada en todos los ámbitos profesionales."],
-    ["La transición a la vida adulta implica asumir nuevas responsabilidades.", "Una de ellas es la responsabilidad económica, aprendiendo a gestionar nuestros propios recursos.", "También implica una mayor autonomía en la toma de decisiones personales.", "El desarrollo de un proyecto de vida, con metas y objetivos, nos sirve de guía.", "Es una etapa de grandes cambios y aprendizaje, pero también de oportunidades.", "Construir relaciones sanas y una buena red de apoyo es fundamental durante este proceso."]
+  [
+    "La toma de decisiones sobre nuestro futuro académico y profesional es un paso importante.",
+    "Es normal sentir dudas e incertidumbre ante las diferentes opciones que se nos presentan.",
+    "El autoconocimiento, saber qué nos gusta y en qué somos buenos, es el punto de partida.",
+    "Informarse sobre las distintas modalidades de bachillerato y ciclos formativos es fundamental.",
+    "Tomar una decisión meditada y personal nos ayudará a construir un futuro con el que nos sintamos satisfechos."
+  ],
+  [
+    "La inteligencia emocional es la capacidad de gestionar nuestras propias emociones y entender las de los demás.",
+    "No se trata de reprimir lo que sentimos, sino de canalizarlo de forma constructiva.",
+    "La empatía, la capacidad de ponerse en el lugar del otro, es un componente clave.",
+    "Desarrollar esta inteligencia mejora nuestras relaciones interpersonales y nuestro bienestar.",
+    "Es una de las habilidades más importantes para el éxito en la vida personal y profesional."
+  ],
+  [
+    "La presión de grupo es una influencia social que puede ser tanto positiva como negativa.",
+    "A veces, el grupo nos anima a superarnos y a adoptar hábitos positivos.",
+    "Otras veces, puede incitarnos a realizar acciones con las que no estamos de acuerdo.",
+    "La asertividad es la habilidad para mantener nuestra propia postura con respeto, pero con firmeza.",
+    "Saber decir 'no' y defender nuestros valores es un signo de madurez y autoestima."
+  ],
+  [
+    "El pensamiento crítico es la habilidad de analizar la información de forma objetiva y racional.",
+    "En la era de la información y las 'fake news', es una herramienta de supervivencia intelectual.",
+    "Implica no creer todo lo que leemos, sino cuestionar las fuentes y buscar evidencias.",
+    "Nos permite formar nuestras propias opiniones fundamentadas y no ser fácilmente manipulables.",
+    "Un ciudadano crítico es la base de una sociedad democrática y saludable."
+  ],
+  [
+    "Establecer metas personales nos da un propósito y una dirección en la vida.",
+    "Una meta debe ser SMART: Específica, Medible, Alcanzable, Relevante y con un Plazo definido.",
+    "Dividir una gran meta en pequeños objetivos a corto plazo la hace mucho más manejable.",
+    "La perseverancia es la clave para no desanimarse ante los obstáculos que puedan surgir.",
+    "Alcanzar nuestras metas, por pequeñas que sean, refuerza nuestra autoconfianza."
+  ],
+  [
+    "La gestión del tiempo es una habilidad fundamental para equilibrar nuestras responsabilidades y nuestro ocio.",
+    "Herramientas como las agendas o las listas de tareas nos ayudan a organizarnos.",
+    "Es importante diferenciar entre lo urgente y lo importante para establecer prioridades.",
+    "La técnica Pomodoro, que alterna periodos de concentración con breves descansos, puede ser muy eficaz.",
+    "Una buena gestión del tiempo reduce el estrés y aumenta nuestra productividad."
+  ],
+  [
+    "La identidad digital es la imagen que proyectamos de nosotros mismos en el entorno online.",
+    "Se construye a través de nuestros perfiles, publicaciones, comentarios y fotos.",
+    "Es importante ser conscientes de que esta huella digital es pública y a menudo permanente.",
+    "Debemos gestionar nuestra privacidad y pensar dos veces antes de compartir información personal.",
+    "Construir una identidad digital positiva y respetuosa es una responsabilidad de todos."
+  ],
+  [
+    "La resolución de conflictos es una habilidad social imprescindible.",
+    "El primer paso para resolver un conflicto es reconocer su existencia y querer solucionarlo.",
+    "La escucha activa, intentando comprender el punto de vista del otro, es fundamental.",
+    "La negociación busca encontrar una solución que sea aceptable para todas las partes.",
+    "El objetivo no es 'ganar' la discusión, sino llegar a un entendimiento."
+  ],
+  [
+    "La prevención de la violencia de género comienza con la educación en igualdad.",
+    "Implica desmontar los estereotipos y roles de género tradicionales que generan desigualdad.",
+    "Es fundamental entender que el control, los celos o el menosprecio no son muestras de amor.",
+    "Una relación de pareja sana se basa en el respeto, la confianza y la libertad mutua.",
+    "Tanto chicos como chicas tienen la responsabilidad de construir relaciones igualitarias."
+  ],
+  [
+    "El voluntariado es una forma de participación ciudadana que busca el bien común.",
+    "Consiste en dedicar parte de nuestro tiempo de forma altruista a una causa social o medioambiental.",
+    "Nos permite conocer otras realidades y desarrollar una mayor sensibilidad social.",
+    "Fomenta valores como la solidaridad, el compromiso y la empatía.",
+    "Es una experiencia muy enriquecedora que nos hace crecer como personas."
+  ],
+  [
+    "La salud mental es tan importante como la salud física.",
+    "Implica un estado de bienestar emocional, psicológico y social.",
+    "Es normal sentir ansiedad o tristeza a veces, pero si estos sentimientos son persistentes, hay que pedir ayuda.",
+    "Hablar sobre nuestras emociones con personas de confianza es un primer paso muy importante.",
+    "Cuidar nuestra salud mental es fundamental para tener una vida plena y satisfactoria."
+  ],
+  [
+    "Los estereotipos son ideas simplificadas y generalizadas sobre grupos de personas.",
+    "Nos llevan a juzgar a los individuos basándonos en prejuicios en lugar de en sus méritos.",
+    "Pueden basarse en la nacionalidad, el género, la orientación sexual o cualquier otra característica.",
+    "Son la base de la discriminación y de muchas actitudes injustas.",
+    "Debemos esforzarnos por conocer a las personas individualmente y superar estos clichés."
+  ],
+  [
+    "La elección entre Bachillerato y Formación Profesional es una decisión importante.",
+    "El Bachillerato tiene un carácter más académico y está orientado principalmente a la universidad.",
+    "La Formación Profesional (FP) es una opción más práctica y enfocada al mundo laboral.",
+    "La FP ofrece ciclos de Grado Medio y Grado Superior con una alta tasa de inserción laboral.",
+    "Ninguna opción es mejor que otra; la elección depende de nuestros intereses y objetivos."
+  ],
+  [
+    "El debate es una herramienta para intercambiar ideas de forma estructurada y respetuosa.",
+    "No se trata de imponer nuestra opinión, sino de argumentarla con datos y razonamientos.",
+    "Es fundamental escuchar atentamente los argumentos del equipo contrario para poder refutarlos.",
+    "Aprender a debatir mejora nuestra capacidad de expresión oral y nuestro pensamiento crítico.",
+    "Nos enseña que sobre un mismo tema pueden existir diferentes puntos de vista válidos."
+  ],
+  [
+    "El consumo de drogas, incluido el alcohol y el tabaco, conlleva graves riesgos para la salud.",
+    "Afecta negativamente al desarrollo del cerebro, que en la adolescencia aún está madurando.",
+    "Puede generar una fuerte adicción, haciendo muy difícil abandonar su consumo.",
+    "Aumenta el riesgo de sufrir accidentes y de desarrollar enfermedades graves a largo plazo.",
+    "La mejor decisión es siempre informarse y optar por un estilo de vida saludable."
+  ],
+  [
+    "La ciudadanía activa implica participar en la vida de nuestra comunidad.",
+    "No se limita a votar cada cuatro años, sino que es un compromiso diario.",
+    "Podemos participar en asociaciones de nuestro barrio, en el consejo escolar o en iniciativas locales.",
+    "Una ciudadanía informada y participativa es la mejor garantía de una democracia fuerte.",
+    "Contribuir a mejorar nuestro entorno es un derecho y un deber."
+  ],
+  [
+    "La resiliencia es la capacidad de adaptarnos y recuperarnos frente a la adversidad.",
+    "Las personas resilientes no son las que no tienen problemas, sino las que saben cómo afrontarlos.",
+    "Ven las dificultades como oportunidades para aprender y crecer.",
+    "Tener una red de apoyo de amigos y familiares es un factor clave para la resiliencia.",
+    "Es una cualidad que se puede cultivar a lo largo de toda la vida."
+  ],
+  [
+    "La cooperación internacional es necesaria para abordar los grandes retos globales.",
+    "Problemas como el cambio climático, las pandemias o la pobreza no pueden ser resueltos por un solo país.",
+    "Los Objetivos de Desarrollo Sostenible (ODS) de la ONU son una hoja de ruta para esta cooperación.",
+    "Buscan un mundo más justo, próspero y sostenible para el año 2030.",
+    "La solidaridad entre los pueblos es imprescindible para construir un futuro mejor."
+  ],
+  [
+    "La gestión de nuestra economía personal es una habilidad clave para la vida adulta.",
+    "Elaborar un presupuesto sencillo nos ayuda a controlar nuestros ingresos y gastos.",
+    "Es importante diferenciar entre necesidades reales y deseos o caprichos.",
+    "Ahorrar una pequeña parte de nuestros ingresos de forma regular crea un hábito muy valioso.",
+    "Aprender a ser un consumidor crítico e informado nos protege de la publicidad engañosa."
+  ],
+  [
+    "Los derechos humanos son el conjunto de derechos y libertades fundamentales de todas las personas.",
+    "Son universales, inalienables e indivisibles.",
+    "La Declaración Universal de los Derechos Humanos, proclamada en 1948, es su documento de referencia.",
+    "Incluyen el derecho a la vida, a la libertad de expresión y a la educación, entre otros.",
+    "Es responsabilidad de todos y de los Estados promoverlos y protegerlos."
+  ],
+  [
+    "El pensamiento lateral es una forma de resolver problemas de manera creativa.",
+    "A diferencia del pensamiento lógico o vertical, no sigue un camino directo.",
+    "Busca nuevas perspectivas y enfoques, desafiando las suposiciones iniciales.",
+    "Técnicas como la provocación o la analogía pueden estimular este tipo de pensamiento.",
+    "Es una herramienta muy útil para la innovación y la búsqueda de soluciones originales."
+  ],
+  [
+    "La empatía digital es la capacidad de ser empático en nuestras interacciones online.",
+    "Es fácil olvidar que detrás de cada perfil hay una persona real con sentimientos.",
+    "Antes de publicar un comentario, debemos pensar en cómo le afectaría a la otra persona.",
+    "La falta de comunicación no verbal en la red puede dar lugar a muchos malentendidos.",
+    "Practicar la empatía digital contribuye a crear un entorno en línea más seguro y respetuoso."
+  ],
+  [
+    "La vocación profesional es la inclinación personal hacia una determinada profesión.",
+    "Suele estar relacionada con nuestros intereses, habilidades y valores.",
+    "Descubrir nuestra vocación no siempre es un proceso fácil ni inmediato.",
+    "Explorar diferentes campos, hablar con profesionales y tener experiencias prácticas puede ayudar.",
+    "Trabajar en algo que te apasiona es una de las mayores fuentes de satisfacción."
+  ],
+  [
+    "El aprendizaje servicio es una propuesta educativa que une el aprendizaje con el compromiso social.",
+    "Los estudiantes aprenden contenidos curriculares al mismo tiempo que realizan un servicio a la comunidad.",
+    "Por ejemplo, se puede aprender sobre botánica mientras se recupera un jardín en el barrio.",
+    "Conecta el aprendizaje con la realidad y le da un sentido práctico.",
+    "Fomenta la ciudadanía activa y el desarrollo de competencias sociales."
+  ],
+  [
+    "La mediación de conflictos en el ámbito escolar es una herramienta muy eficaz.",
+    "Un equipo de mediadores, formado por alumnos y profesores, ayuda a las partes a comunicarse.",
+    "El mediador no es un juez, sino un facilitador que guía el diálogo.",
+    "El objetivo es que las propias partes encuentren una solución satisfactoria para el problema.",
+    "Fomenta una cultura de paz y diálogo en el centro educativo."
+  ],
+  [
+    "La motivación es el impulso que nos mueve a actuar para lograr un objetivo.",
+    "La motivación intrínseca es la que nace de nosotros mismos, del placer de hacer la tarea.",
+    "La motivación extrínseca depende de factores externos, como obtener un premio o evitar un castigo.",
+    "La motivación más fuerte y duradera es la intrínseca.",
+    "Entender qué nos motiva nos ayuda a enfocar nuestros esfuerzos de forma más eficaz."
+  ],
+  [
+    "La diversidad afectivo-sexual es una realidad en nuestra sociedad.",
+    "Se refiere a las diferentes formas de sentir y expresar el afecto, el deseo y la identidad de género.",
+    "La orientación sexual puede ser heterosexual, homosexual, bisexual, entre otras.",
+    "El respeto a esta diversidad es un pilar fundamental de una sociedad inclusiva.",
+    "La LGTBIfobia es la discriminación y el rechazo hacia las personas por su orientación o identidad, y es inaceptable."
+  ],
+  [
+    "El desarrollo de la autonomía personal es uno de los grandes retos de la adolescencia.",
+    "Implica aprender a tomar nuestras propias decisiones y a ser responsables de ellas.",
+    "También significa ser capaces de realizar tareas por nosotros mismos, sin depender constantemente de los demás.",
+    "La confianza de nuestros padres y educadores es importante, pero se gana demostrando madurez.",
+    "La autonomía nos prepara para la vida adulta y nos hace sentir más capaces."
+  ],
+  [
+    "La participación en el aula es beneficiosa tanto para el alumno como para el grupo.",
+    "Preguntar dudas, expresar opiniones o participar en los debates enriquece el aprendizaje.",
+    "Ayuda a mantener la atención y a comprender mejor los contenidos.",
+    "Vencer la timidez y atreverse a participar refuerza la autoconfianza.",
+    "El aula se convierte en un espacio de aprendizaje más dinámico y colaborativo."
+  ],
+  [
+    "El proyecto de vida es un plan que trazamos para nuestro futuro.",
+    "Nos ayuda a reflexionar sobre qué queremos conseguir en diferentes áreas: personal, académica, profesional...",
+    "No es un camino rígido, sino una guía que nos orienta en nuestras decisiones.",
+    "Tener un proyecto de vida nos da un sentido de propósito y nos motiva.",
+    "Es un proceso de reflexión que evoluciona y cambia a medida que nosotros maduramos."
+  ],
+  [
+    "El pensamiento consecuencial nos ayuda a anticipar los resultados de nuestras acciones.",
+    "Antes de actuar, es útil pararse a pensar: '¿Qué podría pasar si hago esto?'.",
+    "Implica analizar las posibles consecuencias tanto para nosotros como para los demás.",
+    "Nos ayuda a tomar decisiones más reflexivas y a evitar conductas de riesgo.",
+    "Es una herramienta clave para el desarrollo de la responsabilidad personal."
+  ],
+  [
+    "La comunicación en la familia es fundamental para una buena convivencia.",
+    "Un clima de confianza permite que todos los miembros puedan expresar sus sentimientos y preocupaciones.",
+    "La escucha activa, sin interrupciones ni juicios, es la base de una buena comunicación.",
+    "Negociar las normas y los límites de forma dialogada es más eficaz que la imposición.",
+    "Una comunicación familiar fluida fortalece los vínculos y ayuda a resolver los problemas."
+  ],
+  [
+    "La prevención del consumo de alcohol en menores es un tema de salud pública.",
+    "El alcohol es una droga que afecta especialmente al cerebro en desarrollo de los adolescentes.",
+    "Su consumo aumenta el riesgo de accidentes, violencia y relaciones sexuales no seguras.",
+    "La presión de grupo es a menudo un factor de inicio en el consumo.",
+    "Tener información veraz y desarrollar alternativas de ocio saludables son la mejor prevención."
+  ],
+  [
+    "La solidaridad intergeneracional es el apoyo mutuo entre personas de diferentes edades.",
+    "Los jóvenes pueden aportar su energía y sus conocimientos digitales a las personas mayores.",
+    "Las personas mayores, a su vez, pueden compartir su experiencia y su sabiduría.",
+    "Este intercambio enriquece a ambas partes y fortalece los lazos de la comunidad.",
+    "El voluntariado con personas mayores es una forma muy bonita de practicarla."
+  ],
+  [
+    "La cultura del esfuerzo es valorar la dedicación y la perseverancia para alcanzar nuestras metas.",
+    "Entiende que los logros importantes no se consiguen de forma inmediata ni sin trabajo.",
+    "El esfuerzo nos ayuda a desarrollar la paciencia y la tolerancia a la frustración.",
+    "La satisfacción de conseguir algo por nuestro propio mérito es muy gratificante.",
+    "Es un valor que nos prepara para los desafíos de la vida."
+  ],
+  [
+    "La educación emocional nos enseña a ser inteligentes con nuestras emociones.",
+    "El primer paso es la conciencia emocional: saber qué siento y por qué.",
+    "Luego viene la regulación emocional: aprender a manejar esas emociones de forma adecuada.",
+    "También incluye la automotivación y el desarrollo de la empatía.",
+    "Estas competencias son tan importantes o más que las puramente académicas."
+  ],
+  [
+    "El ocio saludable es aquel que contribuye a nuestro bienestar físico y mental.",
+    "Actividades como el deporte, la lectura, la música o el arte son ejemplos de ocio enriquecedor.",
+    "Es importante encontrar un equilibrio y no abusar del ocio pasivo basado en pantallas.",
+    "Compartir actividades de ocio con amigos o familiares fortalece nuestras relaciones.",
+    "El tiempo libre es una oportunidad para aprender, crear y disfrutar."
+  ],
+  [
+    "La participación ciudadana es la base de un sistema democrático.",
+    "No se trata solo de votar, sino de implicarse en los asuntos de la comunidad.",
+    "Podemos participar a través de asociaciones, presupuestos participativos o iniciativas legislativas populares.",
+    "Una ciudadanía informada, crítica y activa es el mejor control para el poder político.",
+    "El futuro de nuestra sociedad depende del compromiso de todos."
+  ],
+  [
+    "La cooperación frente a la competición nos enseña a trabajar juntos.",
+    "En un modelo competitivo, el éxito de uno implica el fracaso de otro.",
+    "En un modelo cooperativo, el éxito solo se alcanza si todo el grupo lo logra.",
+    "El aprendizaje cooperativo en el aula fomenta la ayuda mutua y la inclusión.",
+    "Nos prepara para un mundo laboral donde el trabajo en equipo es cada vez más importante."
+  ],
+  [
+    "La construcción de la identidad de género es un proceso personal.",
+    "El sexo se refiere a las características biológicas, mientras que el género es una construcción social y cultural.",
+    "La identidad de género es la vivencia interna y personal del género tal como cada persona la siente.",
+    "Puede corresponder o no con el sexo asignado al nacer.",
+    "El respeto a la identidad de cada persona es un principio básico de convivencia."
+  ]
 ]

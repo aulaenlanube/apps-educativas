@@ -1,42 +1,282 @@
 [
-  "Las notas musicales son do, re, mi, fa, sol, la y si.",
-  "El pentagrama es el lugar donde se escriben las notas musicales.",
-  "La clave de sol se coloca al principio del pentagrama.",
-  "Una redonda es la figura musical de mayor duración.",
-  "El pulso es el latido regular de la música.",
-  "La orquesta sinfónica agrupa instrumentos de cuerda, viento y percusión.",
-  "El piano es un instrumento de cuerda percutida.",
-  "La flauta dulce es un instrumento de viento madera.",
-  "El ritmo es la combinación de sonidos y silencios en el tiempo.",
-  "La melodía es una sucesión de sonidos con sentido musical.",
-  "La intensidad en música se refiere al volumen del sonido.",
-  "Forte significa que se debe tocar con un sonido fuerte.",
-  "Piano significa que se debe interpretar con un sonido suave.",
-  "El compás organiza la música en partes de igual duración.",
-  "Una corchea dura la mitad que una negra.",
-  "El director de orquesta guía a los músicos con sus gestos.",
-  "La guitarra es un instrumento muy popular de cuerda pulsada.",
-  "Los instrumentos de percusión se tocan golpeándolos o agitándolos.",
-  "El violín es el instrumento más agudo de la familia de la cuerda frotada.",
-  "Un coro es un grupo de personas que cantan juntas.",
-  "La escala musical es una sucesión ordenada de notas.",
-  "El silencio es una parte fundamental de la música.",
-  "Mozart fue un compositor muy famoso del Clasicismo.",
-  "Beethoven compuso sinfonías muy importantes.",
-  "El timbre es la cualidad que nos permite diferenciar los instrumentos.",
-  "La altura del sonido nos indica si es grave o agudo.",
-  "Una canción suele tener estrofas y un estribillo.",
-  "La música puede expresar diferentes emociones y sentimientos.",
-  "El pentagrama tiene cinco líneas y cuatro espacios.",
-  "La trompeta es un instrumento de viento metal.",
-  "El arpa tiene muchas cuerdas que se pulsan con los dedos.",
-  "El xilófono está formado por láminas de madera.",
-  "La música folclórica es la música tradicional de un pueblo.",
-  "El rock and roll es un estilo de música muy enérgico.",
-  "La ópera es una obra de teatro cantada con acompañamiento de orquesta.",
-  "Una partitura es el texto completo de una obra musical.",
-  "El tempo indica la velocidad a la que se debe interpretar una pieza.",
-  "Adagio es un tempo lento y allegro es un tempo rápido.",
-  "La armonía es la combinación de diferentes sonidos que suenan a la vez.",
-  "La clave de fa se usa para escribir los sonidos más graves."
+  [
+    "La música del siglo XX se caracteriza por una ruptura radical con las reglas del pasado.",
+    "Los compositores abandonaron el sistema tonal que había dominado la música durante siglos.",
+    "Surgieron una multitud de corrientes y 'ismos', como el impresionismo o el expresionismo.",
+    "La experimentación con el ritmo, el timbre y la disonancia fue una constante.",
+    "Esta revolución sonora abrió un universo de posibilidades expresivas nunca antes explorado."
+  ],
+  [
+    "El Impresionismo musical, liderado por Claude Debussy, buscaba crear atmósferas y sensaciones.",
+    "Se inspiraba en la pintura impresionista, tratando de captar la luz y el instante.",
+    "Utilizaba escalas y armonías ambiguas que evocaban un mundo sonoro flotante y misterioso.",
+    "El timbre de los instrumentos se convirtió en un elemento tan importante como la melodía.",
+    "Obras como 'Preludio a la siesta de un fauno' son un claro ejemplo de este estilo."
+  ],
+  [
+    "El Expresionismo, con Arnold Schönberg a la cabeza, exploró las profundidades del subconsciente humano.",
+    "Buscaba expresar la angustia, el miedo y las tensiones del hombre moderno.",
+    "Para ello, utilizó la atonalidad, abandonando por completo las escalas tradicionales.",
+    "La música expresionista es a menudo disonante, tensa y dramática.",
+    "Obras como 'Pierrot Lunaire' reflejan perfectamente esta estética."
+  ],
+  [
+    "El dodecafonismo fue un sistema de composición creado por Arnold Schönberg.",
+    "Buscaba organizar la música atonal, dándole una nueva estructura.",
+    "Se basa en una 'serie' que contiene las doce notas de la escala cromática, sin repetir ninguna.",
+    "Toda la composición se desarrolla a partir de las diferentes transformaciones de esta serie.",
+    "Fue un intento de crear un nuevo orden musical tras el colapso de la tonalidad."
+  ],
+  [
+    "El Neoclasicismo fue una reacción contra el sentimentalismo del Romanticismo y la complejidad del Expresionismo.",
+    "Compositores como Ígor Stravinski volvieron su mirada hacia las formas y estilos del Barroco y el Clasicismo.",
+    "Buscaban una música más clara, objetiva y equilibrada.",
+    "Utilizaron formas como la sinfonía o el concierto, pero con un lenguaje armónico y rítmico del siglo XX.",
+    "Fue una especie de 'vuelta al orden' tras los excesos de las primeras vanguardias."
+  ],
+  [
+    "La música electrónica nació de la posibilidad de grabar y manipular el sonido.",
+    "La música concreta, iniciada por Pierre Schaeffer, utilizaba sonidos grabados del mundo real como materia prima.",
+    "Posteriormente, los sintetizadores permitieron crear sonidos completamente nuevos desde cero.",
+    "Compositores como Stockhausen exploraron las posibilidades de los estudios de grabación.",
+    "Esta revolución tecnológica cambió para siempre la forma de crear y pensar la música."
+  ],
+  [
+    "El jazz, a lo largo del siglo XX, evolucionó en una gran variedad de estilos.",
+    "El swing, en los años 30, fue la música de las 'big bands' y se convirtió en la música de baile más popular.",
+    "El bebop, en los 40, fue una reacción más intelectual, con tempos muy rápidos y solos complejos.",
+    "El cool jazz, en los 50, buscó un sonido más relajado y lírico.",
+    "El free jazz, en los 60, rompió con todas las estructuras de armonía y ritmo."
+  ],
+  [
+    "El blues es la raíz de la que han surgido la mayoría de los géneros de la música popular moderna.",
+    "Su estructura de doce compases y su escala característica son su seña de identidad.",
+    "Del blues rural del Delta del Misisipi se pasó al blues eléctrico de las ciudades como Chicago.",
+    "Artistas como B.B. King o Muddy Waters lo llevaron a un público mundial.",
+    "El rock and roll, el soul o el rhythm and blues no existirían sin el blues."
+  ],
+  [
+    "El rock and roll de los años 50 fue una auténtica explosión de energía juvenil.",
+    "Combinó el ritmo del rhythm and blues con la instrumentación del country.",
+    "La guitarra eléctrica se convirtió en el instrumento protagonista.",
+    "Figuras como Chuck Berry, Little Richard y, sobre todo, Elvis Presley, fueron sus grandes iconos.",
+    "Su actitud rebelde y su ritmo bailable lo convirtieron en un fenómeno social."
+  ],
+  [
+    "La década de 1960 fue una época de enorme creatividad y cambio en la música pop y rock.",
+    "The Beatles revolucionaron la música popular, experimentando con nuevos sonidos y estructuras.",
+    "The Rolling Stones representaron la cara más dura y rebelde del rock.",
+    "Bob Dylan introdujo la poesía y la conciencia social en las letras de la música pop.",
+    "El Festival de Woodstock de 1969 fue el gran símbolo de la cultura hippie y el poder de la música."
+  ],
+  [
+    "El soul es un género que fusiona el rhythm and blues con la intensidad emocional de la música góspel.",
+    "Nació en la comunidad afroamericana y fue la banda sonora de la lucha por los derechos civiles.",
+    "Sellos discográficos como Motown o Stax definieron su sonido característico.",
+    "Artistas como Aretha Franklin, James Brown o Otis Redding son leyendas del soul.",
+    "Sus canciones expresan una profunda gama de emociones, desde el dolor hasta la alegría."
+  ],
+  [
+    "El rock sinfónico o progresivo surgió a finales de los años 60.",
+    "Buscaba elevar el rock a un mayor nivel de complejidad y ambición artística.",
+    "Incorporaba elementos de la música clásica, como estructuras complejas y pasajes instrumentales largos.",
+    "Grupos como Pink Floyd, Genesis o Yes utilizaron sintetizadores y crearon álbumes conceptuales.",
+    "Sus conciertos solían ser grandes espectáculos audiovisuales."
+  ],
+  [
+    "El heavy metal se caracteriza por un sonido potente, basado en guitarras muy distorsionadas.",
+    "Sus ritmos son enérgicos y la voz suele ser aguda y potente.",
+    "Grupos pioneros como Black Sabbath o Led Zeppelin definieron las bases del género.",
+    "Las letras a menudo tratan temas fantásticos, épicos u oscuros.",
+    "Ha evolucionado en una gran cantidad de subgéneros, desde el thrash metal hasta el power metal."
+  ],
+  [
+    "El punk rock fue una explosión de rebeldía a mediados de los años 70.",
+    "Nació como una reacción contra la complejidad del rock sinfónico y el establishment.",
+    "Su filosofía era 'hazlo tú mismo', con canciones cortas, rápidas y sencillas.",
+    "Grupos como The Ramones en Nueva York o los Sex Pistols en Londres fueron sus pioneros.",
+    "Su actitud provocadora y su estética tuvieron un gran impacto cultural."
+  ],
+  [
+    "El reggae es un estilo musical que se originó en Jamaica en los años 60.",
+    "Su ritmo es muy característico, con un acento en el 'off-beat' o contratiempo.",
+    "Bob Marley es su figura más universal y el responsable de su difusión mundial.",
+    "Las letras del reggae a menudo tienen un contenido social y espiritual, ligado al movimiento rastafari.",
+    "Ha influido en muchos géneros, desde el pop hasta el punk."
+  ],
+  [
+    "La música disco dominó las pistas de baile en la segunda mitad de los años 70.",
+    "Se caracteriza por un ritmo constante de cuatro por cuatro, ideal para bailar.",
+    "Utilizaba arreglos de cuerda y metal, y nuevas tecnologías como los sintetizadores.",
+    "Artistas como Donna Summer o grupos como los Bee Gees fueron sus grandes estrellas.",
+    "La película 'Fiebre del sábado noche' fue el gran fenómeno que la catapultó a la fama."
+  ],
+  [
+    "El hip hop es una cultura que nació en el Bronx, Nueva York, en los años 70.",
+    "Se compone de cuatro elementos fundamentales: el rap (MCing), el DJing, el breakdance y el graffiti.",
+    "El rap consiste en recitar rimas sobre una base rítmica o 'beat'.",
+    "El DJ es el encargado de crear y mezclar la música, a menudo usando 'samples' de otras canciones.",
+    "Se ha convertido en uno de los géneros musicales más influyentes a nivel global."
+  ],
+  [
+    "La música electrónica de baile (EDM) abarca una gran cantidad de géneros.",
+    "El house, originario de Chicago, tiene un ritmo four-on-the-floor y líneas de bajo prominentes.",
+    "El techno, de Detroit, es más rápido, repetitivo y con un sonido más industrial.",
+    "El trance busca crear una atmósfera hipnótica y eufórica con melodías repetitivas.",
+    "La figura del DJ es central en esta cultura, creando sesiones en directo."
+  ],
+  [
+    "La música latina es un término muy amplio que engloba una gran diversidad de ritmos.",
+    "La salsa, de origen cubano y puertorriqueño, es un género muy bailable y con una rica instrumentación.",
+    "La cumbia, originaria de Colombia, se ha extendido por toda América Latina.",
+    "El reguetón, surgido en Panamá y Puerto Rico, se ha convertido en un fenómeno global.",
+    "La fusión de ritmos latinos con el pop y el rock es una constante en la música actual."
+  ],
+  [
+    "La música de cine ha evolucionado enormemente a lo largo de su historia.",
+    "En el cine mudo, un pianista o una orquesta tocaban en directo durante la proyección.",
+    "La llegada del cine sonoro permitió sincronizar la música con la imagen de forma precisa.",
+    "Compositores como John Williams, Ennio Morricone o Hans Zimmer son tan famosos como los directores.",
+    "Una buena banda sonora es capaz de crear una identidad sonora única para una película."
+  ],
+  [
+    "El minimalismo es una corriente musical que se basa en la repetición de pequeñas ideas.",
+    "Compositores como Philip Glass o Steve Reich son sus principales exponentes.",
+    "Utilizan patrones melódicos y rítmicos que se repiten con cambios muy graduales.",
+    "Crea una sensación hipnótica y una percepción del tiempo diferente.",
+    "Ha tenido una gran influencia en la música de cine y en la música electrónica."
+  ],
+  [
+    "La tecnología ha revolucionado la producción musical en las últimas décadas.",
+    "Los estudios de grabación han pasado de usar grandes mesas de mezclas analógicas a trabajar con software.",
+    "Un DAW (Digital Audio Workstation) es un programa que permite grabar, editar y mezclar música en un ordenador.",
+    "Los instrumentos virtuales (VSTi) pueden emular el sonido de cualquier instrumento real.",
+    "Esto ha democratizado la producción musical, permitiendo crear música de alta calidad en casa."
+  ],
+  [
+    "El videoclip se convirtió en una herramienta de promoción fundamental a partir de los años 80.",
+    "El canal de televisión MTV, dedicado a emitir vídeos musicales 24 horas, fue su gran impulsor.",
+    "Artistas como Michael Jackson, con 'Thriller', lo elevaron a la categoría de cortometraje.",
+    "Un buen videoclip ayuda a construir la imagen del artista y a dar un significado visual a la canción.",
+    "Hoy en día, plataformas como YouTube son el principal canal de difusión de los videoclips."
+  ],
+  [
+    "El flamenco es un arte declarado Patrimonio de la Humanidad por la UNESCO.",
+    "Sus tres pilares son el cante, el toque (guitarra) y el baile.",
+    "Los diferentes estilos del flamenco se llaman 'palos', cada uno con su propio compás y carácter.",
+    "La soleá es considerada uno de los palos fundamentales, de carácter solemne y profundo.",
+    "Artistas como Camarón de la Isla o Paco de Lucía lo renovaron y lo abrieron a nuevas influencias."
+  ],
+  [
+    "La música del mundo o 'world music' es una categoría que engloba las músicas tradicionales de todo el planeta.",
+    "Busca dar a conocer la riqueza y diversidad de las culturas musicales más allá de la música occidental.",
+    "A menudo, se producen fusiones entre estas músicas tradicionales y géneros como el pop o el jazz.",
+    "Festivales como el WOMAD son un gran escaparate para los artistas de este género.",
+    "Nos permite viajar con los oídos y descubrir nuevas sonoridades."
+  ],
+  [
+    "El 'sampleado' es la técnica de tomar un fragmento de sonido de una grabación existente para reutilizarlo.",
+    "Este fragmento o 'sample' puede ser una base rítmica, una melodía o una palabra.",
+    "Es una técnica fundamental en la producción de música hip hop y electrónica.",
+    "Permite crear nuevas composiciones a partir de la deconstrucción de otras.",
+    "El uso de 'samples' está a menudo sujeto a las leyes de derechos de autor."
+  ],
+  [
+    "La música indie o independiente se refiere a la música producida fuera de los grandes sellos discográficos.",
+    "Los artistas suelen tener un mayor control creativo sobre su obra.",
+    "A menudo se asocia con un sonido más personal y menos comercial.",
+    "En los años 80 y 90, surgieron muchos sellos 'indie' que dieron a conocer a bandas alternativas.",
+    "Internet ha facilitado enormemente la autoedición y la difusión de la música independiente."
+  ],
+  [
+    "La ópera rock es un género que combina la estructura de una ópera con la música rock.",
+    "Presenta una historia a través de las canciones, que forman un álbum conceptual.",
+    "El álbum 'Tommy' del grupo The Who es considerado uno de los primeros ejemplos.",
+    "'Jesucristo Superstar' o 'Bohemian Rhapsody' de Queen también tienen elementos de ópera rock.",
+    "A menudo se llevan al escenario como grandes espectáculos teatrales."
+  ],
+  [
+    "La música grunge surgió en la ciudad de Seattle a finales de los años 80.",
+    "Combinaba la energía del punk con la pesadez del heavy metal.",
+    "Sus letras reflejaban la angustia y el desencanto de la llamada 'Generación X'.",
+    "Bandas como Nirvana, Pearl Jam o Soundgarden alcanzaron un éxito masivo a principios de los 90.",
+    "Su estética, con camisas de leña y vaqueros rotos, también se hizo muy popular."
+  ],
+  [
+    "La música de los videojuegos ha pasado de ser un simple acompañamiento a una parte esencial de la experiencia.",
+    "En los inicios, eran melodías simples de 8 bits debido a las limitaciones técnicas.",
+    "Hoy en día, se componen grandes bandas sonoras orquestales para los videojuegos.",
+    "La música puede ser interactiva, cambiando dinámicamente según las acciones del jugador.",
+    "Compositores como Koji Kondo (Mario, Zelda) o Nobuo Uematsu (Final Fantasy) son leyendas en este campo."
+  ],
+  [
+    "El 'autotune' es un procesador de audio que permite corregir la afinación de la voz.",
+    "Se puede utilizar de forma sutil para que un cantante suene perfectamente afinado.",
+    "También se puede usar de forma extrema para crear un efecto robótico y artificial.",
+    "Este efecto se popularizó a finales de los 90 y es muy común en el pop y la música urbana actual.",
+    "Su uso ha generado un gran debate sobre la autenticidad en la música."
+  ],
+  [
+    "Un festival de música es un evento que reúne a un gran número de artistas durante varios días.",
+    "Suelen celebrarse al aire libre y atraen a miles de espectadores.",
+    "Existen festivales especializados en casi todos los géneros: rock, electrónica, folk, etc.",
+    "Además de la música, suelen ofrecer otras actividades culturales y de ocio.",
+    "Festivales como Glastonbury o Coachella son eventos de fama mundial."
+  ],
+  [
+    "El 'beatbox' es el arte de crear ritmos y sonidos utilizando únicamente la boca, la nariz y la garganta.",
+    "Los 'beatboxers' pueden imitar los sonidos de una batería, un bajo o incluso efectos de DJ.",
+    "Es considerado uno de los elementos de la cultura hip hop.",
+    "Requiere un gran control de la respiración y de los órganos fonadores.",
+    "Es una demostración increíble de la capacidad del cuerpo humano como instrumento musical."
+  ],
+  [
+    "La propiedad intelectual protege los derechos de los creadores sobre sus obras.",
+    "En música, existen los derechos de autor para el compositor de la melodía y el autor de la letra.",
+    "También existen los derechos de los artistas intérpretes y de los productores fonográficos.",
+    "Entidades como la SGAE se encargan de gestionar y recaudar estos derechos.",
+    "Es fundamental para que los creadores puedan vivir de su trabajo."
+  ],
+  [
+    "El 'ska' es un precursor del reggae que también nació en Jamaica.",
+    "Es un ritmo más rápido y alegre que el reggae, con un característico acento en el contratiempo.",
+    "La sección de vientos (trompetas, trombones) tiene un papel muy importante.",
+    "Tuvo una gran influencia en el Reino Unido, dando lugar a movimientos como el '2 Tone'.",
+    "Bandas como The Specials o Madness fusionaron el ska con la energía del punk."
+  ],
+  [
+    "La música 'new wave' surgió a finales de los 70 como una evolución del punk.",
+    "Era menos agresiva y más experimental que el punk rock.",
+    "Incorporó el uso de sintetizadores y ritmos de la música pop y disco.",
+    "Bandas como The Police, Blondie o The Cars son representativas de este estilo.",
+    "Su estética, con peinados y ropa llamativos, también fue muy influyente."
+  ],
+  [
+    "El 'remix' o remezcla es una versión alternativa de una canción original.",
+    "Un productor o DJ toma las pistas de la canción y las reorganiza o añade nuevos elementos.",
+    "A menudo, se hacen para adaptar una canción a la pista de baile, añadiendo un ritmo más marcado.",
+    "Es una práctica muy común en la música electrónica y pop.",
+    "Algunos remixes han llegado a ser más famosos que la versión original."
+  ],
+  [
+    "El 'trap' es un subgénero del hip hop que se originó en el sur de Estados Unidos.",
+    "Se caracteriza por un contenido lírico que a menudo trata sobre la vida en la calle.",
+    "Musicalmente, utiliza ritmos lentos y pesados con un uso intensivo de subgraves y hi-hats rápidos.",
+    "El uso del 'autotune' con un efecto melódico en la voz es muy frecuente.",
+    "En los últimos años, se ha fusionado con la música latina, dando lugar al 'latin trap'."
+  ],
+  [
+    "La música 'ambient' es un género que busca crear una atmósfera sonora.",
+    "La melodía y el ritmo no son los elementos principales.",
+    "Se centra en el timbre y la textura del sonido para generar un paisaje sonoro.",
+    "Brian Eno es considerado uno de los padres de la música ambient.",
+    "A menudo se utiliza como música de fondo para la relajación o la concentración."
+  ],
+  [
+    "El 'manager' es una figura clave en la carrera de un artista musical.",
+    "Es el representante del artista y se encarga de gestionar todos los aspectos de su carrera.",
+    "Negocia los contratos discográficos, las giras y las apariciones en medios.",
+    "Actúa como consejero y busca las mejores oportunidades para el artista.",
+    "Un buen manager es fundamental para que un músico pueda centrarse en su arte."
+  ]
 ]

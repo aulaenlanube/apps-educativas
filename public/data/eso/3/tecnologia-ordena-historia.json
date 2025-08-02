@@ -1,12 +1,282 @@
 [
-    ["Un motor de combustión interna, como el de un coche, funciona en cuatro tiempos.", "Primero, en la admisión, la mezcla de aire y combustible entra en el cilindro.", "En la compresión, el pistón sube y comprime la mezcla.", "Una chispa de la bujía provoca la explosión, que empuja el pistón hacia abajo.", "Finalmente, en el escape, el pistón sube de nuevo para expulsar los gases quemados.", "Este ciclo se repite continuamente para generar el movimiento."],
-    ["La electricidad que llega a nuestras casas se genera en las centrales eléctricas.", "Desde allí, viaja a través de cables de alta tensión a grandes distancias.", "Antes de llegar a las ciudades, los transformadores reducen su voltaje.", "Finalmente, una red de distribución local la lleva hasta cada vivienda.", "Gracias a este sistema, podemos usar nuestros electrodomésticos."],
-    ["La electrónica digital se basa en el sistema binario, que solo utiliza dos dígitos: 0 y 1.", "Estos dígitos se conocen como bits y son la unidad mínima de información.", "Los circuitos electrónicos, como los microprocesadores, trabajan con estos ceros y unos.", "Las puertas lógicas son componentes que realizan operaciones básicas con estos bits.", "Toda la información que maneja un ordenador se codifica en este sistema."],
-    ["Un robot industrial está diseñado para realizar tareas repetitivas de forma automática.", "Está formado por un brazo robótico con varios ejes de movimiento.", "En el extremo del brazo se coloca una herramienta específica para la tarea.", "Un programa informático controla todos sus movimientos con gran precisión.", "Se utilizan en las cadenas de montaje para soldar, pintar o ensamblar piezas."],
-    ["Para crear una página web, se utiliza principalmente el lenguaje HTML.", "HTML se encarga de definir la estructura y el contenido de la página, como los títulos y párrafos.", "Para darle estilo y un aspecto visual atractivo, se utiliza el lenguaje CSS.", "Con CSS podemos definir los colores, las fuentes y la disposición de los elementos.", "Finalmente, con JavaScript se puede añadir interactividad y efectos dinámicos a la página."],
-    ["La comunicación por fibra óptica ha revolucionado las telecomunicaciones.", "Utiliza un hilo muy fino de vidrio o plástico para transmitir información.", "La información viaja en forma de pulsos de luz a través de este hilo.", "Permite transmitir una cantidad enorme de datos a una velocidad muy alta.", "Es la tecnología que se utiliza en las conexiones a internet de alta velocidad."],
-    ["Un sistema de control de lazo cerrado, o realimentado, es muy eficaz.", "Mide constantemente la variable de salida que quiere controlar.", "Compara este valor medido con el valor deseado o de referencia.", "Si hay una diferencia o error, el sistema actúa para corregirlo.", "El termostato de una calefacción es un ejemplo: enciende o apaga la caldera para mantener la temperatura."],
-    ["La neumática es la tecnología que utiliza el aire comprimido para producir trabajo.", "Un compresor se encarga de tomar aire de la atmósfera y comprimirlo.", "Este aire a presión se almacena en un depósito.", "A través de válvulas y tuberías, el aire se dirige a los actuadores, como los cilindros.", "Se utiliza en muchas aplicaciones industriales, como abrir las puertas de un autobús."],
-    ["El diseño asistido por ordenador (CAD) ha sustituido al dibujo técnico tradicional.", "Permite a los ingenieros y diseñadores crear modelos precisos en 2D y 3D.", "Es mucho más rápido y fácil modificar un diseño en el ordenador que en el papel.", "Estos modelos se pueden usar para realizar simulaciones y pruebas virtuales.", "También sirven como base para la fabricación de prototipos y productos finales."],
-    ["Un microcontrolador es como un pequeño ordenador dentro de un solo chip.", "Contiene un procesador, memoria y periféricos de entrada y salida.", "Se puede programar para realizar tareas específicas de control de forma autónoma.", "Plataformas como Arduino han hecho que su uso sea accesible para aficionados.", "Se encuentran en infinidad de aparatos, desde electrodomésticos hasta juguetes."]
+  [
+    "El proceso tecnológico es el método ordenado para crear soluciones a problemas.",
+    "Todo comienza con la identificación de una necesidad o un problema a resolver.",
+    "Luego, se diseña la solución, se planifican los pasos y se construye un prototipo.",
+    "Después, se realizan pruebas para evaluar si el prototipo funciona correctamente.",
+    "Finalmente, si es necesario, se realizan mejoras para optimizar el producto final."
+  ],
+  [
+    "El hardware de un ordenador comprende todos sus componentes físicos.",
+    "La placa base es el circuito principal que conecta todos los elementos.",
+    "La CPU o procesador actúa como el cerebro, ejecutando todas las instrucciones.",
+    "La memoria RAM almacena temporalmente los datos de los programas en uso.",
+    "El disco duro o SSD es el encargado del almacenamiento permanente de la información."
+  ],
+  [
+    "El software es el conjunto de programas que permite al hardware realizar tareas.",
+    "El sistema operativo es el software fundamental que gestiona todo el sistema.",
+    "Las aplicaciones son programas diseñados para una función específica, como escribir un texto.",
+    "El software se escribe en lenguajes de programación que los ordenadores pueden entender.",
+    "Sin software, un ordenador sería simplemente una máquina inerte."
+  ],
+  [
+    "Una red informática conecta varios ordenadores para compartir recursos.",
+    "Una red LAN (Local Area Network) conecta dispositivos en un área pequeña, como una casa.",
+    "Internet es una red WAN (Wide Area Network) que conecta ordenadores de todo el mundo.",
+    "Cada dispositivo conectado a una red tiene una dirección IP única que lo identifica.",
+    "Los routers son los dispositivos encargados de dirigir el tráfico de datos entre las redes."
+  ],
+  [
+    "La programación es el arte de dar instrucciones a un ordenador.",
+    "Un algoritmo es la secuencia de pasos lógicos que resuelve un problema.",
+    "El código fuente es el conjunto de instrucciones escritas en un lenguaje de programación.",
+    "Un compilador o intérprete traduce este código a un lenguaje que la máquina puede ejecutar.",
+    "La programación por bloques, como en Scratch, es una forma muy visual de aprender a programar."
+  ],
+  [
+    "La electricidad es un flujo de electrones a través de un material conductor.",
+    "La ley de Ohm es la fórmula fundamental que relaciona voltaje, intensidad y resistencia.",
+    "El voltaje (V) es la energía que impulsa a los electrones.",
+    "La intensidad (I) es la cantidad de electrones que pasan por segundo.",
+    "La resistencia (R) es la oposición que presenta el material al paso de la corriente."
+  ],
+  [
+    "Los componentes electrónicos son la base de todos los aparatos modernos.",
+    "Una resistencia es un componente que limita el paso de la corriente eléctrica.",
+    "Un condensador es capaz de almacenar energía eléctrica y liberarla rápidamente.",
+    "Un diodo permite que la corriente fluya en un solo sentido.",
+    "Un transistor actúa como un interruptor o un amplificador de corriente."
+  ],
+  [
+    "La robótica es la ciencia que diseña y construye robots.",
+    "Un robot combina mecánica, electrónica e informática.",
+    "Los sensores permiten al robot percibir información de su entorno, como la luz o la distancia.",
+    "La unidad de control o cerebro procesa esa información y toma decisiones.",
+    "Los actuadores, como los motores, son los que ejecutan los movimientos del robot."
+  ],
+  [
+    "El dibujo técnico utiliza un sistema de vistas para representar un objeto.",
+    "El alzado es la vista principal, que muestra el objeto de frente.",
+    "La planta es la vista del objeto desde arriba.",
+    "El perfil es la vista del objeto desde un lado (izquierdo o derecho).",
+    "La correcta disposición de estas tres vistas permite definir un objeto sin ambigüedad."
+  ],
+  [
+    "Las estructuras deben ser diseñadas para ser estables y resistentes.",
+    "La estabilidad es la capacidad de una estructura para no volcar.",
+    "La resistencia es la capacidad de soportar las cargas sin romperse.",
+    "Las cerchas, basadas en la triangulación, son estructuras muy resistentes y ligeras.",
+    "Los ingenieros deben calcular los esfuerzos de tracción, compresión y flexión."
+  ],
+  [
+    "Los mecanismos son elementos que transmiten y transforman fuerzas y movimientos.",
+    "Las palancas, las poleas y los engranajes son mecanismos fundamentales.",
+    "Un sistema de engranajes puede aumentar o reducir la velocidad de giro.",
+    "La biela-manivela transforma un movimiento circular en uno de vaivén.",
+    "Son la base del funcionamiento de casi todas las máquinas."
+  ],
+  [
+    "Las energías renovables son una alternativa sostenible a los combustibles fósiles.",
+    "La energía solar fotovoltaica convierte la luz del sol en electricidad mediante paneles.",
+    "La energía eólica aprovecha la fuerza del viento para mover las palas de un aerogenerador.",
+    "La energía hidráulica utiliza la fuerza de la caída del agua en los embalses.",
+    "Su uso es clave para luchar contra el cambio climático."
+  ],
+  [
+    "HTML (HyperText Markup Language) es el lenguaje estándar para crear páginas web.",
+    "No es un lenguaje de programación, sino un lenguaje de marcado.",
+    "Utiliza etiquetas para estructurar el contenido, como párrafos, encabezados o imágenes.",
+    "Por ejemplo, la etiqueta `<p>` se usa para definir un párrafo de texto.",
+    "El navegador web es el encargado de interpretar este código y mostrar la página visualmente."
+  ],
+  [
+    "El diseño asistido por ordenador (CAD) utiliza software para crear dibujos técnicos.",
+    "Permite diseñar piezas y ensamblajes en 2D y 3D con gran precisión.",
+    "Facilita la modificación de los diseños y la simulación de su comportamiento.",
+    "Es una herramienta esencial en arquitectura, ingeniería y diseño industrial.",
+    "Programas como AutoCAD o SketchUp son muy utilizados en este campo."
+  ],
+  [
+    "La impresión 3D o fabricación aditiva construye objetos capa por capa.",
+    "Parte de un modelo digital en 3D creado con un programa de CAD.",
+    "La impresora va depositando o solidificando el material según el diseño.",
+    "Permite crear formas muy complejas que serían imposibles con otros métodos.",
+    "Se utiliza para fabricar desde prototipos rápidos hasta prótesis médicas personalizadas."
+  ],
+  [
+    "Un sistema operativo es el software que actúa como intermediario entre el usuario y el hardware.",
+    "Gestiona los recursos del ordenador, como el procesador, la memoria y los periféricos.",
+    "Proporciona una interfaz gráfica para que podamos interactuar con la máquina de forma sencilla.",
+    "Carga los programas en la memoria y gestiona su ejecución.",
+    "Windows, macOS, Linux, Android e iOS son los sistemas operativos más conocidos."
+  ],
+  [
+    "La seguridad informática es crucial para proteger nuestra información.",
+    "Un virus es un programa malicioso que puede dañar nuestro sistema o robar datos.",
+    "El 'phishing' es una técnica de engaño para que revelemos nuestras contraseñas.",
+    "Es fundamental utilizar contraseñas seguras y no compartirlas.",
+    "Tener un antivirus actualizado y ser prudente al navegar son las mejores defensas."
+  ],
+  [
+    "Los plásticos son materiales poliméricos con propiedades muy versátiles.",
+    "Los termoplásticos, como el PET, se ablandan con el calor y se pueden reciclar fácilmente.",
+    "Los termoestables, una vez moldeados, se endurecen y no se pueden volver a fundir.",
+    "Los elastómeros, como el caucho, son muy elásticos y recuperan su forma.",
+    "Su bajo coste y ligereza los hacen omnipresentes, pero su gestión como residuo es un gran reto."
+  ],
+  [
+    "La neumática es la tecnología que utiliza el aire comprimido como medio de transmisión de energía.",
+    "Un compresor se encarga de aumentar la presión del aire.",
+    "Este aire a presión se distribuye por tuberías hasta los actuadores, como los cilindros.",
+    "Las válvulas controlan la dirección y el flujo del aire.",
+    "Se utiliza en muchas aplicaciones industriales, como en frenos de camiones o herramientas."
+  ],
+  [
+    "La hidráulica es muy similar a la neumática, pero utiliza un fluido, normalmente aceite, en lugar de aire.",
+    "Como los líquidos son incompresibles, la hidráulica permite transmitir fuerzas mucho mayores.",
+    "Es la base del funcionamiento de las excavadoras, los frenos de los coches o los ascensores.",
+    "Un circuito hidráulico consta de una bomba, válvulas, tuberías y un cilindro o motor.",
+    "El principio de Pascal es la ley física fundamental en la que se basa."
+  ],
+  [
+    "La digitalización del sonido consiste en convertir una onda sonora analógica en información digital.",
+    "Se toman miles de muestras de la amplitud de la onda por segundo.",
+    "Cada muestra se cuantifica, es decir, se le asigna un valor numérico binario.",
+    "La calidad del sonido digital depende de la frecuencia de muestreo y de la resolución.",
+    "Formatos como el MP3 o el WAV almacenan esta información digital."
+  ],
+  [
+    "Una imagen digital está formada por una rejilla de pequeños puntos llamados píxeles.",
+    "Cada píxel tiene un color específico definido por una combinación de números.",
+    "La resolución de una imagen se refiere al número total de píxeles que contiene.",
+    "A mayor resolución, mayor nivel de detalle y calidad de la imagen.",
+    "El modelo de color RGB (Rojo, Verde, Azul) es el que se utiliza en las pantallas."
+  ],
+  [
+    "Los metales ferrosos son aquellos cuyo componente principal es el hierro.",
+    "El hierro puro es blando, pero al alearlo con carbono se obtiene el acero.",
+    "El acero es uno de los materiales más importantes en la construcción y la industria.",
+    "Las fundiciones son aleaciones de hierro con un alto contenido de carbono.",
+    "El principal inconveniente de estos metales es su tendencia a la corrosión."
+  ],
+  [
+    "La domótica es el conjunto de tecnologías aplicadas al control y la automatización inteligente de la vivienda.",
+    "Permite gestionar de forma remota la iluminación, la climatización o la seguridad.",
+    "Busca aumentar el confort, el ahorro energético y la seguridad del hogar.",
+    "Se puede controlar a través de un smartphone, una tablet o asistentes de voz.",
+    "El 'Internet de las Cosas' (IoT) es la tecnología que permite conectar los objetos del hogar."
+  ],
+  [
+    "Un motor de combustión interna transforma la energía química de un combustible en movimiento.",
+    "La explosión del combustible dentro de los cilindros empuja los pistones hacia abajo.",
+    "Un mecanismo de biela-manivela convierte este movimiento lineal en el giro del cigüeñal.",
+    "Este giro se transmite finalmente a las ruedas del vehículo.",
+    "Son máquinas muy potentes, pero generan gases contaminantes."
+  ],
+  [
+    "La escala en el dibujo técnico es la relación entre las dimensiones del dibujo y las del objeto real.",
+    "Una escala de reducción (ej: 1:10) se usa para dibujar objetos grandes en un papel pequeño.",
+    "Una escala de ampliación (ej: 2:1) se emplea para ver con detalle objetos muy pequeños.",
+    "La escala natural (1:1) significa que el dibujo tiene el mismo tamaño que el objeto.",
+    "El escalímetro es la herramienta que se utiliza para medir sobre planos a diferentes escalas."
+  ],
+  [
+    "Un diodo LED (Light Emitting Diode) es un componente electrónico que emite luz.",
+    "Solo permite el paso de la corriente en un sentido, como un diodo normal.",
+    "Cuando la corriente lo atraviesa, sus materiales emiten fotones de luz.",
+    "Son mucho más eficientes y duraderos que las bombillas incandescentes.",
+    "Se utilizan en la iluminación, las pantallas de los televisores y todo tipo de indicadores."
+  ],
+  [
+    "La placa de prototipos o 'protoboard' es una herramienta para montar circuitos electrónicos sin soldadura.",
+    "Tiene una matriz de orificios conectados eléctricamente en su interior.",
+    "Permite insertar los componentes y los cables para probar un circuito de forma rápida.",
+    "Es ideal para experimentar y aprender los fundamentos de la electrónica.",
+    "Si el circuito funciona, luego se puede pasar a una placa soldada permanente."
+  ],
+  [
+    "La memoria de un ordenador se organiza en una jerarquía.",
+    "Los registros del procesador son la memoria más rápida, pero de menor capacidad.",
+    "La memoria caché es un poco más lenta, pero almacena los datos más usados.",
+    "La memoria RAM es la memoria principal de trabajo.",
+    "El disco duro es el más lento, pero ofrece una gran capacidad de almacenamiento permanente."
+  ],
+  [
+    "La ergonomía es la ciencia que busca adaptar el entorno de trabajo a las capacidades del ser humano.",
+    "Una silla ergonómica, por ejemplo, está diseñada para mantener una buena postura.",
+    "Busca prevenir lesiones y problemas de salud relacionados con el trabajo.",
+    "También tiene como objetivo aumentar la eficiencia y el confort del trabajador.",
+    "Se aplica en el diseño de herramientas, mobiliario y puestos de trabajo."
+  ],
+  [
+    "Un sensor es un dispositivo que detecta un estímulo del entorno y lo convierte en una señal eléctrica.",
+    "Un sensor de luz (LDR) cambia su resistencia según la cantidad de luz que recibe.",
+    "Un sensor de temperatura mide el calor del ambiente.",
+    "Un sensor de ultrasonidos puede medir distancias emitiendo y recibiendo ondas de sonido.",
+    "Son los 'sentidos' de cualquier sistema automático o robot."
+  ],
+  [
+    "La World Wide Web (WWW) es un sistema de documentos de hipertexto enlazados entre sí.",
+    "Fue inventada por Tim Berners-Lee en 1989.",
+    "No se debe confundir con Internet, que es la red física que la soporta.",
+    "Navegamos por la web siguiendo los hipervínculos o enlaces de una página a otra.",
+    "Los navegadores son los programas que nos permiten acceder a este universo de información."
+  ],
+  [
+    "La programación orientada a objetos es un paradigma de programación muy extendido.",
+    "Se basa en el concepto de 'objeto', que agrupa datos y los procedimientos para manejarlos.",
+    "Los objetos se crean a partir de 'clases', que son como plantillas o moldes.",
+    "Este enfoque ayuda a organizar programas complejos de forma más modular y reutilizable.",
+    "Lenguajes como Java, Python o C++ utilizan este paradigma."
+  ],
+  [
+    "La fabricación mecánica utiliza diferentes procesos para dar forma a los metales.",
+    "El torneado se utiliza para crear piezas de revolución, como ejes o tornillos.",
+    "El fresado emplea una herramienta giratoria para arrancar viruta y dar forma a la pieza.",
+    "La soldadura es un proceso de unión de piezas metálicas mediante la aplicación de calor.",
+    "Estas técnicas son la base de la industria metalúrgica."
+  ],
+  [
+    "Un sistema de control de lazo abierto funciona sin tener en cuenta el resultado de su acción.",
+    "Ejecuta una serie de instrucciones preprogramadas sin ninguna retroalimentación.",
+    "Un tostador o un semáforo son ejemplos de sistemas de lazo abierto.",
+    "Son sencillos y económicos, pero no pueden corregir errores.",
+    "Si el pan no se ha tostado lo suficiente, el tostador no lo sabe y se para igualmente."
+  ],
+  [
+    "Un sistema de control de lazo cerrado utiliza la retroalimentación para corregir su acción.",
+    "Un sensor mide la variable de salida y la compara con el valor deseado.",
+    "Si hay una diferencia o error, el sistema ajusta su acción para corregirlo.",
+    "El sistema de climatización de una casa es un ejemplo claro.",
+    "Son más complejos y precisos que los sistemas de lazo abierto."
+  ],
+  [
+    "La madera se puede clasificar en maderas duras y maderas blandas.",
+    "Las maderas duras, como el roble o el nogal, provienen de árboles de hoja caduca.",
+    "Son más densas, resistentes y caras.",
+    "Las maderas blandas, como el pino o el abeto, provienen de coníferas.",
+    "Son más ligeras y fáciles de trabajar, por lo que se usan mucho en carpintería."
+  ],
+  [
+    "Un motor de corriente continua funciona gracias a la interacción de campos magnéticos.",
+    "Tiene una parte fija llamada estátor y una parte móvil llamada rotor.",
+    "Al pasar corriente por las bobinas del rotor, este gira dentro del campo magnético del estátor.",
+    "La dirección de giro se puede invertir cambiando la polaridad de la corriente.",
+    "Se utilizan en juguetes, taladros a batería y pequeños robots."
+  ],
+  [
+    "La realidad virtual (VR) crea un entorno completamente digital que sustituye al mundo real.",
+    "El usuario se sumerge en este entorno mediante unas gafas o un casco especial.",
+    "Permite interactuar con este mundo virtual como si fuera real.",
+    "Se utiliza en videojuegos, simuladores de vuelo o para tratamientos médicos.",
+    "Busca engañar a nuestros sentidos para crear una experiencia inmersiva."
+  ],
+  [
+    "La realidad aumentada (AR) superpone información digital sobre el mundo real.",
+    "A diferencia de la VR, no nos aísla del entorno, sino que lo enriquece.",
+    "Utiliza la cámara de un smartphone o unas gafas especiales para ver el mundo real.",
+    "Sobre esa imagen, añade capas de información, gráficos o animaciones.",
+    "Juegos como Pokémon GO o los filtros de Instagram son ejemplos populares de AR."
+  ]
 ]

@@ -1,12 +1,282 @@
 [
-    ["La lengua latina fue el idioma oficial del Imperio Romano.", "Se expandió por Europa, África y Asia gracias a las conquistas militares.", "Tras la caída del Imperio, el latín vulgar hablado por el pueblo evolucionó.", "De esta evolución nacieron las lenguas romances, como el español, el francés o el italiano.", "Por eso, una gran parte de nuestro vocabulario procede directamente del latín.", "Estudiar latín nos ayuda a comprender mejor nuestra propia lengua."],
-    ["La sociedad romana era compleja y estaba muy jerarquizada.", "En la cima estaban los patricios, las familias nobles y ricas.", "Debajo se encontraban los plebeyos, que eran ciudadanos libres pero con menos derechos.", "En el escalón más bajo estaban los esclavos, que eran considerados propiedades.", "Existían también los libertos, que eran esclavos que habían conseguido la libertad."],
-    ["Para traducir una oración simple en latín, seguimos un orden lógico.", "Primero, buscamos el verbo para saber el tiempo y la persona.", "Luego, localizamos el sujeto, que normalmente estará en caso nominativo.", "Después, buscamos el complemento directo, que suele ir en acusativo.", "Finalmente, traducimos los demás complementos según el caso en que se encuentren.", "El orden de las palabras en latín es mucho más flexible que en español."],
-    ["La 'Eneida' es el gran poema épico nacional de la antigua Roma.", "Fue escrito por el poeta Virgilio por encargo del emperador Augusto.", "Narra las aventuras de Eneas, un héroe troyano que huye de la destrucción de su ciudad.", "Tras un largo viaje, llega a Italia, donde sus descendientes fundarían Roma.", "La obra buscaba glorificar los orígenes de Roma y del propio Augusto."],
-    ["Julio César fue una de las figuras más importantes de la historia de Roma.", "Fue un brillante general que conquistó las Galias para Roma.", "Formó el primer triunvirato junto a Craso y Pompeyo para gobernar.", "Tras una guerra civil contra Pompeyo, se convirtió en el hombre más poderoso de Roma.", "Fue asesinado en el Senado por un grupo de conspiradores que temían su poder.", "Su muerte marcó el fin de la República romana."],
-    ["La mitología romana estaba muy influenciada por la griega.", "Los romanos adoptaron los dioses griegos, pero les cambiaron los nombres.", "Zeus pasó a ser Júpiter, el dios principal del panteón.", "Hera, su esposa, fue llamada Juno.", "Ares, el dios de la guerra, fue rebautizado como Marte.", "Esta asimilación cultural es un ejemplo del sincretismo religioso romano."],
-    ["La arquitectura romana fue grandiosa y muy funcional.", "Fueron grandes ingenieros y constructores de obras públicas.", "Construyeron una extensa red de calzadas para comunicar todo el imperio.", "Los acueductos llevaban agua potable a las ciudades desde lugares lejanos.", "También construyeron edificios para el ocio como teatros, anfiteatros y termas."],
-    ["El verbo latino tiene una conjugación muy rica y compleja.", "La información sobre la voz, el modo, el tiempo, el número y la persona se expresa mediante desinencias.", "Existen cuatro conjugaciones regulares para el tema de presente.", "El verbo 'sum' (ser/estar) es irregular y se usa muy a menudo.", "Dominar el verbo es fundamental para poder traducir textos latinos."],
-    ["El derecho romano es una de las mayores aportaciones de Roma a la civilización occidental.", "Fue un sistema legal muy desarrollado y sofisticado.", "Estableció principios fundamentales que todavía hoy están vigentes.", "Diferenciaba entre el derecho público, el privado y el derecho de gentes.", "Muchas de las leyes y conceptos jurídicos actuales tienen su origen en Roma."],
-    ["La caída del Imperio Romano de Occidente en el 476 d.C. fue un proceso largo y complejo.", "Sufrió una grave crisis económica y política durante el siglo III.", "La presión de los pueblos germánicos, a los que llamaban bárbaros, en sus fronteras era cada vez mayor.", "El imperio se dividió en dos partes, Oriente y Occidente, para facilitar su defensa.", "Finalmente, el último emperador de Occidente fue depuesto por un jefe germano."]
+  [
+    "La ciudad de Roma fue fundada, según la leyenda, por los gemelos Rómulo y Remo.",
+    "Fueron amamantados por una loba llamada Luperca, que los encontró en el río Tíber.",
+    "Al crecer, decidieron fundar una ciudad en el monte Palatino.",
+    "Una disputa por el liderazgo terminó con la muerte de Remo a manos de Rómulo.",
+    "Así, Rómulo se convirtió en el primer rey de Roma en el año 753 a.C."
+  ],
+  [
+    "El latín era la lengua hablada por los antiguos romanos.",
+    "Se expandió por todo el territorio a medida que el Imperio crecía.",
+    "De la evolución del latín vulgar hablado por el pueblo nacieron las lenguas romances.",
+    "El español, el francés, el italiano, el portugués y el rumano son lenguas romances.",
+    "Por eso, estudiar latín nos ayuda a comprender mejor nuestra propia lengua."
+  ],
+  [
+    "La sociedad romana estaba dividida en diferentes clases sociales.",
+    "En la cima se encontraban los patricios, que eran las familias nobles y ricas.",
+    "La gran mayoría de la población eran los plebeyos, que eran hombres libres pero con menos derechos.",
+    "Por debajo de todos estaban los esclavos, que no tenían ningún derecho y eran considerados propiedades.",
+    "También existían los libertos, que eran antiguos esclavos que habían conseguido la libertad."
+  ],
+  [
+    "El Foro Romano era el corazón de la vida pública en la antigua Roma.",
+    "Era una gran plaza rodeada de los edificios más importantes.",
+    "Allí se encontraban los templos, la Curia donde se reunía el Senado y las basílicas para los negocios.",
+    "Los ciudadanos acudían al Foro para comerciar, socializar y participar en la política.",
+    "Hoy en día, sus ruinas son un impresionante testimonio de la grandeza de Roma."
+  ],
+  [
+    "La familia romana estaba bajo la autoridad del 'pater familias'.",
+    "Él era el cabeza de familia y tenía poder absoluto sobre su esposa, hijos y esclavos.",
+    "La 'domus' era la vivienda típica de las familias romanas adineradas.",
+    "Se organizaba en torno a un patio central llamado atrio ('atrium').",
+    "La educación de los hijos era una de las principales preocupaciones de la familia."
+  ],
+  [
+    "Los dioses romanos eran muy similares a los de la antigua Grecia.",
+    "Júpiter, rey de los dioses, se correspondía con el Zeus griego.",
+    "Juno, su esposa, era la diosa del matrimonio, equivalente a la Hera griega.",
+    "Marte, el dios de la guerra, era el Ares griego.",
+    "Esta asimilación se conoce como sincretismo religioso."
+  ],
+  [
+    "El ejército romano fue una de las claves de su éxito y expansión.",
+    "Estaba formado por legiones, que eran unidades de unos 5.000 soldados.",
+    "Los legionarios eran ciudadanos romanos muy disciplinados y bien entrenados.",
+    "Construyeron una vasta red de calzadas para poder desplazar sus tropas rápidamente.",
+    "Además de luchar, los soldados también realizaban importantes obras de ingeniería."
+  ],
+  [
+    "Julio César fue uno de los personajes más importantes de la historia de Roma.",
+    "Fue un brillante general que conquistó la Galia para Roma.",
+    "Formó el Primer Triunvirato junto a Craso y Pompeyo para controlar el poder.",
+    "Tras una guerra civil, se convirtió en dictador perpetuo de Roma.",
+    "Fue asesinado en el Senado por un grupo de conspiradores que temían su poder."
+  ],
+  [
+    "Las declinaciones latinas son los diferentes modelos para declinar los sustantivos.",
+    "El latín tiene cinco declinaciones principales.",
+    "Cada declinación agrupa a los nombres que comparten un mismo tema.",
+    "Para saber a qué declinación pertenece un sustantivo, debemos fijarnos en su genitivo singular.",
+    "Dominar las declinaciones es fundamental para poder traducir correctamente."
+  ],
+  [
+    "Los casos gramaticales indican la función que una palabra desempeña en la oración.",
+    "El latín tiene seis casos principales: nominativo, vocativo, acusativo, genitivo, dativo y ablativo.",
+    "El nominativo se utiliza para la función de sujeto.",
+    "El acusativo se usa para el complemento directo.",
+    "Gracias a los casos, el orden de las palabras en una frase latina es mucho más libre que en español."
+  ],
+  [
+    "El Coliseo de Roma es el anfiteatro más grande jamás construido.",
+    "Fue inaugurado en el año 80 d.C. y podía albergar a más de 50.000 espectadores.",
+    "En su arena se celebraban espectáculos como las luchas de gladiadores y las cacerías de animales.",
+    "Incluso se llegaba a inundar para representar batallas navales.",
+    "Es uno de los monumentos más icónicos de la antigua Roma y del mundo."
+  ],
+  [
+    "Las termas eran los baños públicos de la antigua Roma.",
+    "Eran mucho más que un lugar para lavarse; eran centros sociales.",
+    "Tenían piscinas de agua a diferentes temperaturas: 'frigidarium', 'tepidarium' y 'caldarium'.",
+    "Además, contaban con gimnasios, bibliotecas y jardines.",
+    "Eran un lugar de encuentro para personas de todas las clases sociales."
+  ],
+  [
+    "La primera declinación latina agrupa a la mayoría de los sustantivos de género femenino.",
+    "Su enunciado se caracteriza por tener el nominativo en '-a' y el genitivo en '-ae'.",
+    "Un ejemplo es 'puella, puellae', que significa 'niña'.",
+    "Sigue un modelo de declinación relativamente sencillo y regular.",
+    "Muchísimas palabras en español que acaban en '-a' provienen de esta declinación."
+  ],
+  [
+    "El verbo 'sum' es el verbo 'ser' o 'estar' en latín.",
+    "Es un verbo irregular, al igual que en español y muchas otras lenguas.",
+    "Sus formas de presente de indicativo son 'sum, es, est, sumus, estis, sunt'.",
+    "Se utiliza como verbo copulativo con un atributo.",
+    "También funciona como verbo auxiliar para formar la voz pasiva de perfecto."
+  ],
+  [
+    "La Eneida es el gran poema épico de la literatura latina.",
+    "Fue escrita por el poeta Virgilio en el siglo I a.C.",
+    "Narra las aventuras del héroe troyano Eneas tras la caída de Troya.",
+    "Eneas viaja por el Mediterráneo hasta llegar a Italia, donde sus descendientes fundarán Roma.",
+    "Fue un encargo del emperador Augusto para glorificar los orígenes de Roma."
+  ],
+  [
+    "El acueducto era una obra de ingeniería para transportar agua a las ciudades.",
+    "Los romanos fueron maestros en la construcción de acueductos.",
+    "Utilizaban una suave pendiente constante para que el agua fluyera por gravedad.",
+    "Para salvar los valles, construían impresionantes puentes con arcos.",
+    "El acueducto de Segovia es un ejemplo espectacular que todavía se conserva en España."
+  ],
+  [
+    "La segunda declinación agrupa a sustantivos masculinos y neutros.",
+    "Los masculinos suelen tener el nominativo en '-us' o '-er' y el genitivo en '-i'.",
+    "Por ejemplo, 'dominus, domini' (señor) o 'puer, pueri' (niño).",
+    "Los neutros tienen el nominativo en '-um', como 'templum, templi' (templo).",
+    "Es una de las declinaciones más importantes y con más sustantivos."
+  ],
+  [
+    "El presente de indicativo de la primera conjugación latina es muy regular.",
+    "Los verbos de esta conjugación tienen el infinitivo en '-are', como 'amare' (amar).",
+    "Para conjugarlo, se quita la terminación '-o' del enunciado y se añaden las desinencias personales.",
+    "Las desinencias son -o, -s, -t, -mus, -tis, -nt.",
+    "Así, la conjugación de 'amo' es 'amo, amas, amat, amamus, amatis, amant'."
+  ],
+  [
+    "La erupción del volcán Vesubio en el año 79 d.C. fue una catástrofe.",
+    "Sepultó por completo las ciudades romanas de Pompeya y Herculano.",
+    "Una gruesa capa de ceniza y lava conservó las ciudades casi intactas durante siglos.",
+    "Las excavaciones arqueológicas nos han permitido conocer con gran detalle cómo era la vida cotidiana.",
+    "Es como una fotografía instantánea del mundo romano en el siglo I."
+  ],
+  [
+    "Los gladiadores eran luchadores que combatían en los anfiteatros.",
+    "La mayoría eran esclavos o prisioneros de guerra entrenados para el espectáculo.",
+    "Existían diferentes tipos de gladiadores, cada uno con sus propias armas y armaduras.",
+    "El público decidía con su pulgar si el gladiador vencido debía vivir o morir.",
+    "A pesar de su baja condición social, los gladiadores victoriosos podían alcanzar una gran fama."
+  ],
+  [
+    "La tercera declinación es la más compleja del latín.",
+    "Agrupa a sustantivos de los tres géneros: masculino, femenino y neutro.",
+    "No tiene una terminación fija para el nominativo, lo que dificulta su identificación.",
+    "El genitivo singular siempre termina en '-is', y es la clave para reconocerlos.",
+    "Palabras como 'rex, regis' (rey) o 'corpus, corporis' (cuerpo) pertenecen a esta declinación."
+  ],
+  [
+    "Los adjetivos en latín deben concordar con el sustantivo al que acompañan.",
+    "La concordancia debe ser en género, número y caso.",
+    "Un adjetivo puede seguir la primera y segunda declinación, como 'bonus, -a, -um'.",
+    "Otros siguen la tercera declinación.",
+    "Esta concordancia es una de las reglas de oro de la sintaxis latina."
+  ],
+  [
+    "El teatro romano se inspiró en el teatro griego, pero con características propias.",
+    "Los edificios del teatro se construían en llano, a diferencia de los griegos que aprovechaban las laderas.",
+    "Los géneros principales eran la comedia y la tragedia.",
+    "Autores como Plauto y Terencio destacaron en la comedia.",
+    "Los actores, que eran siempre hombres, utilizaban máscaras para representar a los personajes."
+  ],
+  [
+    "Las calzadas romanas eran la espina dorsal del Imperio.",
+    "Formaban una red de más de 80.000 kilómetros que conectaba todas las provincias.",
+    "Estaban construidas con varias capas de piedra para asegurar su durabilidad.",
+    "Facilitaban el movimiento del ejército, el comercio y la difusión de la cultura.",
+    "Muchas carreteras actuales en Europa siguen el trazado de las antiguas calzadas romanas."
+  ],
+  [
+    "El imperfecto de indicativo en latín expresa una acción pasada que se estaba desarrollando.",
+    "Se forma añadiendo el infijo '-ba-' entre el tema de presente y las desinencias.",
+    "Por ejemplo, del verbo 'amare', el imperfecto es 'amabam, amabas, amabat...'.",
+    "Equivale a las formas españolas 'amaba' o 'comía'.",
+    "Describe acciones duraderas o habituales en el pasado."
+  ],
+  [
+    "El panteón de Agripa es uno de los edificios mejor conservados de la antigua Roma.",
+    "Originalmente fue un templo dedicado a todos los dioses.",
+    "Su característica más impresionante es su enorme cúpula de hormigón.",
+    "La cúpula tiene un óculo central que es la única fuente de luz natural.",
+    "Es una obra maestra de la ingeniería y la arquitectura romanas."
+  ],
+  [
+    "La cuarta declinación agrupa a sustantivos mayoritariamente masculinos.",
+    "Su enunciado tiene el nominativo en '-us' y el genitivo también en '-us'.",
+    "Un ejemplo es 'exercitus, exercitus', que significa 'ejército'.",
+    "También hay algunos sustantivos neutros con nominativo en '-u', como 'cornu' (cuerno).",
+    "Es una declinación con menos sustantivos que las tres primeras."
+  ],
+  [
+    "El futuro de indicativo en latín se forma de manera diferente para las dos primeras conjugaciones.",
+    "Para la 1ª y 2ª conjugación, se utiliza el infijo '-bi-'.",
+    "Por ejemplo, del verbo 'amare', el futuro es 'amabo, amabis, amabit...'.",
+    "Para las demás conjugaciones, se utilizan otras terminaciones.",
+    "Expresa una acción que ocurrirá en el futuro."
+  ],
+  [
+    "Cicerón fue un gran orador, político y filósofo romano.",
+    "Sus discursos en el Senado y en los tribunales son un modelo de elocuencia.",
+    "Defendió la República frente a las ambiciones de personajes como Catilina o Marco Antonio.",
+    "Su obra en prosa perfeccionó el latín y lo convirtió en una gran lengua de cultura.",
+    "Fue asesinado por orden de Marco Antonio por su oposición política."
+  ],
+  [
+    "La caída del Imperio Romano de Occidente en el año 476 d.C. marca el fin de la Antigüedad.",
+    "Las invasiones de los pueblos bárbaros fueron una de las causas principales.",
+    "Una profunda crisis económica y política había debilitado el Imperio durante siglos.",
+    "El último emperador, Rómulo Augústulo, fue depuesto por el jefe germano Odoacro.",
+    "Sin embargo, el Imperio Romano de Oriente, o Imperio Bizantino, sobrevivió mil años más."
+  ],
+  [
+    "La quinta declinación es la que tiene menos sustantivos en latín.",
+    "Agrupa a sustantivos de género femenino.",
+    "Su enunciado tiene el nominativo en '-es' y el genitivo en '-ei'.",
+    "La palabra más importante de esta declinación es 'res, rei', que significa 'cosa'.",
+    "Otra palabra muy común es 'dies, diei', que significa 'día'."
+  ],
+  [
+    "El pretérito perfecto de indicativo en latín expresa una acción pasada y terminada.",
+    "Se forma a partir del tema de perfecto, que es la tercera forma del enunciado del verbo.",
+    "A este tema se le añaden unas desinencias propias.",
+    "Por ejemplo, del verbo 'amare', cuyo perfecto es 'amavi', las formas son 'amavi, amavisti, amavit...'.",
+    "Equivale al pretérito perfecto simple en español, como 'amé'."
+  ],
+  [
+    "La mitología romana está llena de historias sobre héroes y dioses.",
+    "Muchas de estas leyendas fueron tomadas de la mitología griega.",
+    "La historia de Hércules y sus doce trabajos es una de las más famosas.",
+    "El mito de Orfeo y Eurídice narra un trágico intento de rescatar a un amor del inframundo.",
+    "Estos mitos explicaban el mundo y transmitían valores a la sociedad."
+  ],
+  [
+    "El circo romano era un recinto alargado destinado a las carreras de carros.",
+    "El Circo Máximo de Roma era el más grande y podía acoger a más de 250.000 espectadores.",
+    "Los aurigas, que conducían los carros tirados por caballos, eran ídolos de masas.",
+    "Existían diferentes equipos o facciones, identificados por colores, que despertaban grandes pasiones.",
+    "Las carreras eran un espectáculo muy emocionante y peligroso."
+  ],
+  [
+    "Los pronombres personales en latín también se declinan por casos.",
+    "El pronombre de primera persona es 'ego' (yo) y el de segunda es 'tu' (tú).",
+    "No existe un pronombre de tercera persona como tal, se utiliza el pronombre 'is, ea, id'.",
+    "Las formas del pronombre varían mucho según el caso.",
+    "A menudo, el pronombre sujeto se omite, ya que la desinencia del verbo ya indica la persona."
+  ],
+  [
+    "La voz pasiva en latín indica que el sujeto no realiza la acción, sino que la padece.",
+    "Se forma con unas desinencias personales pasivas específicas para el tema de presente.",
+    "Para el tema de perfecto, se utiliza el participio del verbo más el verbo 'sum' como auxiliar.",
+    "El agente que realiza la acción se expresa en caso ablativo.",
+    "Por ejemplo, 'Puer a magistro laudatur' significa 'El niño es alabado por el maestro'."
+  ],
+  [
+    "El legado de Roma es inmenso y sigue presente en nuestra cultura.",
+    "Nuestra lengua, el español, es una evolución directa del latín.",
+    "Nuestro sistema de derecho, el Derecho Romano, es la base de la legislación occidental.",
+    "Muchas de nuestras ciudades conservan obras de ingeniería romana como puentes o acueductos.",
+    "Conceptos como la ciudadanía o la república también tienen su origen en Roma."
+  ],
+  [
+    "Las Guerras Púnicas fueron una serie de tres conflictos entre Roma y Cartago.",
+    "Ambas potencias luchaban por el control del Mediterráneo occidental.",
+    "En la Segunda Guerra Púnica, el general cartaginés Aníbal cruzó los Alpes con sus elefantes.",
+    "A pesar de sus victorias, Aníbal no pudo conquistar Roma.",
+    "Al final, Roma destruyó por completo a Cartago y se convirtió en la dueña del Mediterráneo."
+  ],
+  [
+    "El participio es una forma no personal del verbo que funciona como un adjetivo.",
+    "En latín, existen participios de presente, de perfecto y de futuro.",
+    "Se declinan como los adjetivos y concuerdan en género, número y caso con un sustantivo.",
+    "Aportan información sobre una acción relacionada con ese sustantivo.",
+    "Son muy utilizados en construcciones como el ablativo absoluto."
+  ],
+  [
+    "El ablativo absoluto es una construcción muy característica del latín.",
+    "Está formada por un sustantivo en ablativo y un participio en ablativo que concuerda con él.",
+    "Funciona como una proposición subordinada que expresa una circunstancia de tiempo, causa o modo.",
+    "Es sintácticamente independiente del resto de la oración principal.",
+    "Una frase como 'Urbe capta, hostes discesserunt' se traduce como 'Tomada la ciudad, los enemigos se marcharon'."
+  ]
 ]

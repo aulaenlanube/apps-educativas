@@ -1,42 +1,282 @@
 [
-  "Las notas musicales son do, re, mi, fa, sol, la y si.",
-  "El pentagrama es el lugar donde se escriben las notas musicales.",
-  "La clave de sol se coloca al principio del pentagrama.",
-  "Una redonda es la figura musical de mayor duración.",
-  "El pulso es el latido regular de la música.",
-  "La orquesta sinfónica agrupa instrumentos de cuerda, viento y percusión.",
-  "El piano es un instrumento de cuerda percutida.",
-  "La flauta dulce es un instrumento de viento madera.",
-  "El ritmo es la combinación de sonidos y silencios en el tiempo.",
-  "La melodía es una sucesión de sonidos con sentido musical.",
-  "La intensidad en música se refiere al volumen del sonido.",
-  "Forte significa que se debe tocar con un sonido fuerte.",
-  "Piano significa que se debe interpretar con un sonido suave.",
-  "El compás organiza la música en partes de igual duración.",
-  "Una corchea dura la mitad que una negra.",
-  "El director de orquesta guía a los músicos con sus gestos.",
-  "La guitarra es un instrumento muy popular de cuerda pulsada.",
-  "Los instrumentos de percusión se tocan golpeándolos o agitándolos.",
-  "El violín es el instrumento más agudo de la familia de la cuerda frotada.",
-  "Un coro es un grupo de personas que cantan juntas.",
-  "La escala musical es una sucesión ordenada de notas.",
-  "El silencio es una parte fundamental de la música.",
-  "Mozart fue un compositor muy famoso del Clasicismo.",
-  "Beethoven compuso sinfonías muy importantes.",
-  "El timbre es la cualidad que nos permite diferenciar los instrumentos.",
-  "La altura del sonido nos indica si es grave o agudo.",
-  "Una canción suele tener estrofas y un estribillo.",
-  "La música puede expresar diferentes emociones y sentimientos.",
-  "El pentagrama tiene cinco líneas y cuatro espacios.",
-  "La trompeta es un instrumento de viento metal.",
-  "El arpa tiene muchas cuerdas que se pulsan con los dedos.",
-  "El xilófono está formado por láminas de madera.",
-  "La música folclórica es la música tradicional de un pueblo.",
-  "El rock and roll es un estilo de música muy enérgico.",
-  "La ópera es una obra de teatro cantada con acompañamiento de orquesta.",
-  "Una partitura es el texto completo de una obra musical.",
-  "El tempo indica la velocidad a la que se debe interpretar una pieza.",
-  "Adagio es un tempo lento y allegro es un tempo rápido.",
-  "La armonía es la combinación de diferentes sonidos que suenan a la vez.",
-  "La clave de fa se usa para escribir los sonidos más graves."
+  [
+    "La Edad Media abarca un largo período musical, desde la caída del Imperio Romano hasta el siglo XV.",
+    "Al principio, la música más importante era el canto gregoriano, de carácter religioso y monódico.",
+    "Más tarde, en la Escuela de Notre Dame, surgió la polifonía, con varias melodías sonando a la vez.",
+    "Los trovadores y juglares, por su parte, desarrollaron la música profana en las cortes y plazas.",
+    "Esta época sentó las bases de la notación musical que utilizamos hoy."
+  ],
+  [
+    "El Renacimiento, en los siglos XV y XVI, es considerado la edad de oro de la polifonía vocal.",
+    "La música se volvió más compleja y expresiva, buscando un equilibrio entre las diferentes voces.",
+    "Compositores como Josquin des Prez o Palestrina llevaron el contrapunto a su máxima perfección.",
+    "La invención de la imprenta musical permitió una difusión sin precedentes de las partituras.",
+    "Aunque la música religiosa seguía siendo muy importante, la música profana ganó mucho terreno."
+  ],
+  [
+    "El Barroco (1600-1750) fue una época de gran ornamentación y dramatismo en la música.",
+    "Nació la ópera, uniendo teatro, música y escenografía para contar historias de forma grandiosa.",
+    "Se consolidó la orquesta y el sistema tonal, basado en las escalas mayor y menor.",
+    "El bajo continuo, interpretado por instrumentos como el clavecín, era la base armónica.",
+    "Compositores como Bach, Vivaldi y Haendel son los máximos exponentes de este período."
+  ],
+  [
+    "El Clasicismo musical (1750-1820) buscaba la claridad, la sencillez y la proporción.",
+    "Las melodías eran elegantes, equilibradas y fáciles de recordar.",
+    "La sinfonía y la sonata se convirtieron en las formas instrumentales más importantes.",
+    "La orquesta creció y se estandarizó su formación, con la sección de cuerda como base.",
+    "Haydn, Mozart y el primer Beethoven son los tres grandes maestros del Clasicismo vienés."
+  ],
+  [
+    "El Romanticismo (siglo XIX) fue un movimiento que exaltó la libertad individual y la expresión de los sentimientos.",
+    "La música se volvió más personal, apasionada y a menudo autobiográfica.",
+    "Los compositores exploraron nuevos límites de la armonía, la dinámica y el timbre.",
+    "La figura del virtuoso, como Paganini al violín o Liszt al piano, alcanzó gran fama.",
+    "Surgieron nuevas formas como el poema sinfónico y las pequeñas piezas para piano."
+  ],
+  [
+    "El Nacionalismo musical fue una corriente del Romanticismo que buscaba afirmar la identidad cultural de cada pueblo.",
+    "Los compositores se inspiraron en el folclore, las danzas y las leyendas de sus países.",
+    "Utilizaron melodías y ritmos populares para crear un lenguaje musical propio.",
+    "En España, compositores como Albéniz o Falla son representantes de esta corriente.",
+    "Fue un movimiento muy importante en países que luchaban por su independencia o reconocimiento."
+  ],
+  [
+    "La música del siglo XX se caracteriza por una ruptura radical con la tradición anterior.",
+    "Los compositores buscaron nuevos lenguajes y sistemas de organización del sonido.",
+    "Surgieron corrientes como el impresionismo, el expresionismo, el dodecafonismo o el neoclasicismo.",
+    "La experimentación con el timbre y el ritmo fue una constante.",
+    "La tecnología, con la aparición de la grabación y los instrumentos electrónicos, también transformó la música."
+  ],
+  [
+    "El jazz es un género musical que nació en las comunidades afroamericanas de Nueva Orleans.",
+    "Combina elementos de la música africana y la música europea.",
+    "Sus características principales son el ritmo sincopado ('swing') y la improvisación.",
+    "Los músicos crean solos espontáneos sobre una estructura de acordes.",
+    "Ha evolucionado en muchos estilos, desde el swing hasta el bebop o el cool jazz."
+  ],
+  [
+    "El rock and roll surgió en Estados Unidos en la década de 1950.",
+    "Fusionó estilos como el blues, el country y el rhythm and blues.",
+    "Se caracterizó por un ritmo enérgico, el protagonismo de la guitarra eléctrica y letras dirigidas a los jóvenes.",
+    "Figuras como Elvis Presley o The Beatles lo convirtieron en un fenómeno de masas.",
+    "Más que un estilo musical, fue una auténtica revolución cultural."
+  ],
+  [
+    "La música pop (música popular) es un género que busca llegar a un público muy amplio.",
+    "Sus canciones suelen tener una estructura sencilla, con estrofas y un estribillo pegadizo.",
+    "La duración de las canciones suele ser corta, adaptada a la difusión por radio.",
+    "La imagen del artista es un componente muy importante en la música pop.",
+    "Abarca una gran variedad de estilos y se renueva constantemente con las modas."
+  ],
+  [
+    "La banda sonora de una película es un elemento crucial de la narrativa audiovisual.",
+    "La música original, compuesta específicamente para el film, crea la atmósfera adecuada.",
+    "Puede generar tensión, anticipar un peligro o subrayar la emoción de una escena.",
+    "El 'leitmotiv' es un tema musical que se asocia a un personaje o situación concreta.",
+    "Una buena banda sonora puede hacer que una película sea inolvidable."
+  ],
+  [
+    "Una orquesta sinfónica se organiza en cuatro familias instrumentales.",
+    "La cuerda frotada (violines, violas, violonchelos, contrabajos) es la sección más numerosa.",
+    "El viento madera (flautas, clarinetes, oboes, fagots) aporta una gran variedad de timbres.",
+    "El viento metal (trompetas, trompas, trombones, tuba) proporciona potencia y solemnidad.",
+    "La percusión se encarga de los aspectos rítmicos y de los efectos especiales."
+  ],
+  [
+    "La escala es una sucesión de notas ordenadas por altura.",
+    "La escala mayor transmite una sensación de alegría y luminosidad.",
+    "La escala menor, en cambio, suele asociarse con la tristeza o la melancolía.",
+    "La estructura de tonos y semitonos entre sus notas define el tipo de escala.",
+    "Son la base sobre la que se construyen las melodías y la armonía en la música tonal."
+  ],
+  [
+    "Un acorde es un conjunto de tres o más notas que suenan simultáneamente.",
+    "Los acordes se construyen superponiendo notas de una escala.",
+    "El acorde de tríada, formado por tres notas, es el más básico.",
+    "La sucesión de acordes en una canción crea la progresión armónica.",
+    "La armonía es la parte de la música que estudia la formación y el enlace de los acordes."
+  ],
+  [
+    "La forma musical es la estructura y el plan organizativo de una composición.",
+    "La forma binaria (AB) consta de dos secciones que contrastan entre sí.",
+    "La forma ternaria (ABA) presenta una sección, una segunda contrastante y la repetición de la primera.",
+    "El rondó (ABACA...) se caracteriza por la alternancia de un estribillo (A) con diferentes estrofas (B, C...).",
+    "Comprender la forma nos ayuda a entender mejor la obra."
+  ],
+  [
+    "La música tradicional de un país forma parte de su identidad cultural.",
+    "Se transmite de generación en generación, a menudo de forma oral.",
+    "Está ligada a las danzas, las fiestas y las celebraciones de la comunidad.",
+    "Utiliza instrumentos y escalas característicos de cada región.",
+    "El flamenco en España o el tango en Argentina son ejemplos de músicas tradicionales muy conocidas."
+  ],
+  [
+    "La improvisación es el arte de crear música de forma espontánea.",
+    "El músico no sigue una partitura, sino que inventa la melodía en el momento.",
+    "Requiere un profundo conocimiento de la armonía y un gran dominio del instrumento.",
+    "Es una característica esencial del jazz, donde los músicos realizan 'solos' improvisados.",
+    "Permite una gran libertad y expresividad al intérprete."
+  ],
+  [
+    "La ópera es un género escénico en el que la acción se desarrolla a través del canto.",
+    "Combina música, poesía (el libreto), escenografía y, a menudo, ballet.",
+    "Los cantantes están acompañados por una orquesta sinfónica.",
+    "Las partes solistas más importantes se llaman arias, donde el personaje expresa sus sentimientos.",
+    "Nació en Italia a principios del Barroco."
+  ],
+  [
+    "La música electrónica abarca todos los estilos creados con instrumentos electrónicos.",
+    "Los sintetizadores son capaces de generar una infinidad de sonidos nuevos.",
+    "Los samplers permiten grabar sonidos reales para luego manipularlos y utilizarlos musicalmente.",
+    "El ordenador se ha convertido en la herramienta central para la producción de música electrónica.",
+    "Géneros como el techno, el house o el ambient pertenecen a este campo."
+  ],
+  [
+    "El timbre es la cualidad que nos permite diferenciar dos sonidos de la misma altura e intensidad.",
+    "Es el 'color' o la 'personalidad' de cada instrumento o voz.",
+    "Depende de los armónicos que acompañan a la nota fundamental.",
+    "Gracias al timbre, distinguimos una flauta de un violín aunque toquen la misma nota.",
+    "La combinación de diferentes timbres es una de las grandes riquezas de la música orquestal."
+  ],
+  [
+    "El contrapunto es una técnica de composición que entrelaza varias líneas melódicas independientes.",
+    "Cada melodía o 'voz' tiene la misma importancia y dialoga con las demás.",
+    "La fuga es la forma contrapuntística más compleja y elaborada.",
+    "Johann Sebastian Bach es considerado el maestro indiscutible del contrapunto.",
+    "Requiere un gran dominio de la armonía y la conducción de las voces."
+  ],
+  [
+    "La música de cámara está escrita para un pequeño grupo de intérpretes.",
+    "El nombre proviene de que antiguamente se interpretaba en las cámaras o salones de los palacios.",
+    "No necesita director, por lo que la comunicación entre los músicos es esencial.",
+    "Formaciones habituales son el cuarteto de cuerda o el quinteto de viento.",
+    "Es un género que busca la intimidad y el detalle en la interpretación."
+  ],
+  [
+    "El blues es un género que expresa sentimientos de tristeza y melancolía.",
+    "Nació en las comunidades afroamericanas del sur de Estados Unidos a finales del siglo XIX.",
+    "Se caracteriza por una estructura de doce compases y el uso de las 'blue notes'.",
+    "La guitarra y la armónica son dos de sus instrumentos más representativos.",
+    "Ha sido la raíz de la que han surgido géneros como el jazz y el rock and roll."
+  ],
+  [
+    "La síncopa es un recurso rítmico que crea un efecto de desplazamiento del acento.",
+    "Consiste en empezar un sonido en una parte débil del compás y prolongarlo hasta una parte fuerte.",
+    "Genera una sensación de ritmo 'a contratiempo' muy característica.",
+    "Es un elemento fundamental en el jazz, la música latina y el funk.",
+    "Hace que la música sea más dinámica y bailable."
+  ],
+  [
+    "La música programática es aquella que intenta describir una historia, un paisaje o una idea.",
+    "Utiliza los recursos musicales (melodía, ritmo, timbre) para evocar imágenes en el oyente.",
+    "El poema sinfónico es la forma más importante de este tipo de música.",
+    "'El aprendiz de brujo' de Dukas es un famoso ejemplo de música programática.",
+    "Se opone a la música absoluta, que no tiene ninguna referencia extramusical."
+  ],
+  [
+    "Un musical es un espectáculo teatral que combina música, canciones, diálogos y baile.",
+    "Las canciones suelen avanzar la trama o desarrollar los sentimientos de los personajes.",
+    "Se originó en los teatros de Broadway, en Nueva York.",
+    "Obras como 'El Rey León' o 'Los Miserables' son musicales de gran éxito mundial.",
+    "Requiere artistas muy completos que sepan actuar, cantar y bailar."
+  ],
+  [
+    "La música minimalista es una corriente del siglo XX que se basa en la repetición.",
+    "Utiliza pequeñas células melódicas o rítmicas que se repiten con variaciones muy sutiles.",
+    "Crea un efecto hipnótico y una sensación de tiempo suspendido.",
+    "Compositores como Philip Glass o Steve Reich son sus principales representantes.",
+    "A menudo se asocia con un estado de meditación o trance."
+  ],
+  [
+    "La acústica es la rama de la física que estudia el sonido, su producción y su propagación.",
+    "Analiza cómo las ondas sonoras viajan a través de diferentes medios.",
+    "La acústica arquitectónica se encarga de diseñar salas de conciertos para que suenen bien.",
+    "El eco y la reverberación son fenómenos acústicos importantes.",
+    "Comprender la acústica es fundamental para los músicos y los ingenieros de sonido."
+  ],
+  [
+    "La música aleatoria o indeterminada introduce el azar en la composición o la interpretación.",
+    "El compositor no determina todos los detalles, dejando algunas decisiones al intérprete o al azar.",
+    "Por ejemplo, el orden de las secciones puede ser libre o las notas pueden elegirse tirando unos dados.",
+    "Esto hace que cada interpretación de la obra sea única e irrepetible.",
+    "John Cage fue un compositor pionero en la exploración de la música aleatoria."
+  ],
+  [
+    "La tecnología ha transformado la forma en que creamos y escuchamos música.",
+    "La invención del gramófono permitió por primera vez grabar y reproducir el sonido.",
+    "Los sintetizadores y ordenadores han abierto un universo de nuevos timbres.",
+    "Las plataformas de 'streaming' nos dan acceso a casi toda la música del mundo al instante.",
+    "Hoy en día, cualquiera puede producir música en su propia casa con un ordenador."
+  ],
+  [
+    "La escala pentatónica es una escala de cinco notas por octava.",
+    "Es una de las escalas más antiguas y se encuentra en la música de muchas culturas.",
+    "Su sonido es muy abierto y consonante, ya que carece de semitonos.",
+    "Es muy utilizada en la música folclórica, el blues y el rock.",
+    "El teclado de un piano utiliza las teclas negras para formar una escala pentatónica."
+  ],
+  [
+    "La dinámica en música se refiere a los diferentes grados de intensidad o volumen.",
+    "Permite crear contrastes y expresar emociones.",
+    "Un 'crescendo' es un aumento gradual de la intensidad.",
+    "Un 'diminuendo' o 'decrescendo' es una disminución gradual.",
+    "Las indicaciones van desde 'pianissimo' (muy suave) hasta 'fortissimo' (muy fuerte)."
+  ],
+  [
+    "La música fusión combina elementos de dos o más estilos musicales diferentes.",
+    "Puede mezclar jazz con rock, flamenco con pop, o música clásica con electrónica.",
+    "Es un campo muy creativo que busca derribar las fronteras entre géneros.",
+    "Artistas como Paco de Lucía o Miles Davis fueron grandes exploradores de la fusión.",
+    "El resultado es un lenguaje musical nuevo y enriquecido."
+  ],
+  [
+    "El director de orquesta tiene una función mucho más allá de marcar el compás.",
+    "Es el máximo responsable de la interpretación de la obra.",
+    "Con sus gestos, indica a los músicos la dinámica, la articulación y el carácter de cada pasaje.",
+    "Unifica el sonido de más de cien músicos para que suene como un solo instrumento.",
+    "Su trabajo previo de estudio de la partitura es fundamental."
+  ],
+  [
+    "La música celta es la música tradicional de los países con herencia celta.",
+    "Regiones como Irlanda, Escocia o Galicia tienen una rica tradición de esta música.",
+    "Instrumentos como la gaita, el violín ('fiddle') o la flauta irlandesa son característicos.",
+    "Sus melodías suelen ser muy rítmicas y a menudo están asociadas a la danza.",
+    "Ha influido en muchos artistas de pop y rock."
+  ],
+  [
+    "La forma 'tema con variaciones' es una estructura musical muy popular.",
+    "Consiste en presentar una melodía principal o 'tema' al principio.",
+    "A continuación, se presentan una serie de 'variaciones' sobre ese tema.",
+    "Cada variación modifica algún aspecto del tema: el ritmo, la armonía, la melodía, etc.",
+    "Permite al compositor mostrar su creatividad a partir de una idea sencilla."
+  ],
+  [
+    "El 'soul' es un género musical que combina el rhythm and blues con el góspel.",
+    "Surgió en la comunidad afroamericana de Estados Unidos en los años 50 y 60.",
+    "Se caracteriza por una gran expresividad vocal y letras que hablan de sentimientos profundos.",
+    "Artistas como Aretha Franklin o James Brown son grandes leyendas del soul.",
+    "Tuvo un papel importante en la lucha por los derechos civiles."
+  ],
+  [
+    "La música de la India es una de las más antiguas y complejas del mundo.",
+    "No se basa en la armonía de acordes, sino en el desarrollo melódico y rítmico.",
+    "Utiliza un sistema de escalas melódicas llamadas 'ragas'.",
+    "Los ciclos rítmicos, llamados 'talas', pueden ser muy largos y complicados.",
+    "Instrumentos como el sitar y la tabla son icónicos de esta música."
+  ],
+  [
+    "La música funcional es aquella que se crea con un propósito específico más allá de la simple escucha.",
+    "La música publicitaria busca asociar un producto a una melodía pegadiza.",
+    "La música ambiental de las tiendas intenta crear una atmósfera agradable que incite a la compra.",
+    "La musicoterapia utiliza la música con fines curativos o de rehabilitación.",
+    "La música militar sirve para marcar el paso y levantar la moral."
+  ],
+  [
+    "Un concierto para solista y orquesta es una obra en la que un instrumento destaca sobre el resto.",
+    "El solista dialoga con la orquesta, a veces colaborando, a veces compitiendo.",
+    "Suele tener tres movimientos: rápido-lento-rápido.",
+    "La 'cadencia' es un momento en el que el solista toca solo, demostrando su virtuosismo.",
+    "Los conciertos para piano y para violín son los más habituales."
+  ]
 ]

@@ -1,12 +1,282 @@
 [
-    ["A group of friends were planning their summer holiday.", "They considered going to the beach, but they wanted something more adventurous.", "Finally, they decided to go hiking in the mountains for a week.", "They bought a map and planned a route with different stops.", "They knew it would be a challenging but unforgettable experience.", "They were looking forward to the amazing views from the top."],
-    ["Sarah was studying in the library when she received a mysterious note.", "It said: 'Meet me at the old oak tree at midnight'.", "She was a bit scared, but her curiosity was stronger.", "That night, she went to the tree and waited.", "Suddenly, all her friends jumped out and shouted 'Surprise!'.", "They had organized a secret birthday party for her."],
-    ["If I won the lottery, my life would change completely.", "First, I would buy a big house with a swimming pool for my family.", "Then, I would travel around the world and visit many different countries.", "I would also donate a part of the money to a charity.", "However, I would continue working because I love my job."],
-    ["A new restaurant was opened in my town last month.", "It is said to have the best Italian food in the area.", "My family and I went there for dinner last Saturday.", "I ordered a pizza, and it was absolutely delicious.", "The restaurant was very popular, and we had to book a table in advance."],
-    ["Mark was late for his job interview.", "He had set his alarm, but he didn't hear it ring.", "He got dressed as quickly as he could and ran to the bus stop.", "Unfortunately, he had just missed the bus.", "He had to take a taxi, which was very expensive.", "Despite everything, he arrived just in time for the interview."],
-    ["The city council has decided to build a new public park.", "The park will have a playground for children and a special area for dogs.", "They are also going to plant more than one hundred new trees.", "Construction will begin next month and is expected to be finished by next year.", "The citizens are very happy with this new project."],
-    ["While I was cleaning the attic, I found an old wooden box.", "I opened it and discovered a collection of my grandfather's letters.", "He had written them to my grandmother during the war.", "The letters told a beautiful story of love and hope.", "It was a very emotional and special discovery for me."],
-    ["To reduce pollution, we should all change some of our habits.", "For example, we could use public transport more often instead of the car.", "We should also remember to recycle paper, plastic, and glass.", "Saving energy at home by turning off the lights is also important.", "Every small action helps to protect our planet."],
-    ["Lucy has been practicing the piano for many years.", "She started playing when she was only five years old.", "Now, she is preparing for a very important international competition.", "She practices for at least four hours every single day.", "Her dream is to become a famous concert pianist."],
-    ["A detective was investigating a strange robbery at the museum.", "A very valuable diamond had been stolen during the night.", "There were no signs of a forced entry, which was very mysterious.", "The detective interviewed all the museum staff.", "After analyzing all the clues, he finally discovered the thief's identity.", "It was the security guard, who had made a copy of the key."]
+  [
+    "Last year, my family and I travelled to Paris for the first time.",
+    "We visited the Eiffel Tower and took a lot of photos from the top.",
+    "The view of the city from there was absolutely breathtaking.",
+    "We also went on a boat trip along the Seine river at night.",
+    "It was an unforgettable experience that I hope to repeat someday."
+  ],
+  [
+    "My friend Alex has just got a new drone for his birthday.",
+    "It has a high-quality camera that can record amazing videos.",
+    "Yesterday, we took it to the park to test it out.",
+    "He flew it very high and we could see our whole town.",
+    "We are planning to make a short film with it next weekend."
+  ],
+  [
+    "If you want to reduce your environmental impact, you can start with small changes.",
+    "You should try to recycle plastic, paper, and glass properly.",
+    "Using a reusable water bottle instead of buying plastic ones helps a lot.",
+    "Walking or cycling for short distances reduces air pollution.",
+    "Every small action contributes to protecting our planet for the future."
+  ],
+  [
+    "I have been a member of the school's chess club for two years.",
+    "We meet every Wednesday after class to play and practice.",
+    "Last month, our team participated in a regional tournament.",
+    "We didn't win, but we played against some very good players.",
+    "Playing chess has taught me to think strategically and be patient."
+  ],
+  [
+    "While I was surfing the internet, I found a website about volunteering abroad.",
+    "They offered programs to help build schools in developing countries.",
+    "I have always wanted to do something to help other people.",
+    "I showed the website to my parents and they thought it was a great idea.",
+    "Now, I am saving money because I am going to join the program next summer."
+  ],
+  [
+    "A few years ago, scientists discovered a new species of deep-sea fish.",
+    "It lives at a depth where there is no sunlight at all.",
+    "This fish has the incredible ability to produce its own light.",
+    "It uses this bioluminescence to attract prey and communicate in the dark.",
+    "This discovery shows how much we still have to learn about our oceans."
+  ],
+  [
+    "My grandmother told me a story about her childhood.",
+    "She used to live in a small village without electricity or running water.",
+    "Every morning, she had to walk two kilometres to get water from a well.",
+    "She said that life was harder, but people were more connected to each other.",
+    "It made me appreciate all the modern conveniences we have today."
+  ],
+  [
+    "If a fire starts in your home, you must act quickly and calmly.",
+    "First, you should alert everyone in the house to get out immediately.",
+    "You must not stop to collect any personal belongings.",
+    "Once you are safely outside, you have to call the emergency services.",
+    "Never go back into a burning building for any reason."
+  ],
+  [
+    "The first conditional is used to talk about possible future situations.",
+    "It is formed with 'if' followed by a present simple tense.",
+    "The main clause uses a future tense, usually with 'will'.",
+    "For example: 'If it rains tomorrow, we will stay at home'.",
+    "It describes a real possibility and its likely consequence."
+  ],
+  [
+    "Last Saturday, my friends and I decided to cook dinner for our parents.",
+    "We found a recipe for spaghetti carbonara on the internet.",
+    "Everything was going well until we confused the salt with the sugar.",
+    "The pasta tasted terrible, but we all laughed a lot.",
+    "In the end, we had to order a pizza for everyone."
+  ],
+  [
+    "She has been learning to code since she was twelve years old.",
+    "She is now able to create her own websites and simple video games.",
+    "She thinks that programming is a very useful skill for the future.",
+    "Next year, she is going to study computer science at university.",
+    "Her dream is to work for a big technology company like Google."
+  ],
+  [
+    "The passive voice is used when the focus is on the action, not the person who does it.",
+    "It is formed with the verb 'to be' and the past participle of the main verb.",
+    "For example, 'The window was broken' is a passive sentence.",
+    "We don't know who broke it, or it is not important.",
+    "It is very common in news reports and scientific texts."
+  ],
+  [
+    "He was cycling in the park when he saw something strange under a bench.",
+    "It was a small, scared puppy with no collar.",
+    "He decided to take it home and give it some food and water.",
+    "The next day, he took the puppy to the vet to check if it had a microchip.",
+    "Now, the puppy, which he named Lucky, is a happy member of his family."
+  ],
+  [
+    "Climate change is causing global temperatures to rise.",
+    "This is mainly due to the emission of greenhouse gases from burning fossil fuels.",
+    "The consequences include more extreme weather events, like heatwaves and floods.",
+    "Glaciers are melting and sea levels are rising, threatening coastal cities.",
+    "It is urgent that we transition to renewable energy sources to mitigate its effects."
+  ],
+  [
+    "If I could have any superpower, I would choose the ability to teleport.",
+    "I would never have to waste time travelling again.",
+    "I could have breakfast in Paris and then go to the beach in Australia for lunch.",
+    "It would also be very useful to avoid traffic jams in the city.",
+    "I think it would make life much more exciting and efficient."
+  ],
+  [
+    "The school is organizing a fundraising event to help a local charity.",
+    "My class has decided to set up a stall to sell homemade cakes.",
+    "We have been baking all week to have enough for the event.",
+    "All the money we raise will be donated to a shelter for homeless people.",
+    "I hope we can sell a lot of cakes and contribute to a good cause."
+  ],
+  [
+    "The present perfect tense connects the past with the present.",
+    "It is used for actions that started in the past and continue to the present.",
+    "For example, 'I have lived here for five years' means I still live here.",
+    "It is also used for past experiences when the exact time is not important.",
+    "We often use it with words like 'ever', 'never', 'already' and 'yet'."
+  ],
+  [
+    "Last weekend, a famous film director visited our town.",
+    "He was looking for locations to shoot his new movie.",
+    "He walked through the old town and seemed very impressed by the castle.",
+    "A local newspaper reported that he might film here next spring.",
+    "Everyone in town is very excited about the possibility."
+  ],
+  [
+    "My mobile phone is quite old and it doesn't work very well.",
+    "The battery doesn't last very long and the screen has a crack.",
+    "I have been saving my pocket money for months.",
+    "I am going to buy a new one during the sales next month.",
+    "I am looking for a phone with a good camera and a long battery life."
+  ],
+  [
+    "She was very nervous before her driving test.",
+    "She had been taking lessons for over three months.",
+    "During the test, she tried to stay calm and remember everything her instructor had taught her.",
+    "She drove carefully and managed to pass on her first attempt.",
+    "She was incredibly happy and relieved when she heard the news."
+  ],
+  [
+    "The Colosseum in Rome is an ancient Roman amphitheatre.",
+    "It was built in the first century AD and was used for gladiator contests.",
+    "It could hold up to 50,000 spectators.",
+    "Although it is now in ruins, it is still an impressive monument.",
+    "It is one of the most popular tourist attractions in the world."
+  ],
+  [
+    "If you heat water to 100 degrees Celsius, it boils and turns into steam.",
+    "This is a scientific fact, so we use the zero conditional.",
+    "The zero conditional is formed with 'if' plus present simple in both clauses.",
+    "It is used to talk about general truths and things that always happen.",
+    "For example, 'If you don't water plants, they die'."
+  ],
+  [
+    "He has decided to become a vegetarian.",
+    "He made this decision after watching a documentary about animal welfare.",
+    "He believes it is a healthier and more ethical way to live.",
+    "At first, he found it difficult to change his eating habits.",
+    "Now, he enjoys discovering new vegetarian recipes."
+  ],
+  [
+    "While the students were writing the exam, the fire alarm suddenly went off.",
+    "Everyone had to stop writing and evacuate the building immediately.",
+    "We all gathered in the school playground and waited for instructions.",
+    "It turned out to be a false alarm caused by a technical problem.",
+    "The school decided to repeat the exam the following day."
+  ],
+  [
+    "Artificial intelligence is changing the world in many ways.",
+    "It is used in applications like virtual assistants and self-driving cars.",
+    "AI can process huge amounts of data much faster than humans.",
+    "Some people are worried that it might take away many jobs.",
+    "However, it also has the potential to solve some of the world's biggest problems."
+  ],
+  [
+    "She had never flown on a plane before her trip to London.",
+    "She was a little bit nervous during the take-off.",
+    "But when she looked out of the window, she was amazed by the view of the clouds.",
+    "She listened to music and read a book during the flight.",
+    "She really enjoyed the experience and now she is not afraid of flying."
+  ],
+  [
+    "Reported speech is used to tell someone what another person said.",
+    "When we report what someone said, we often have to change the verb tenses.",
+    "For example, 'I am happy' in direct speech becomes 'He said he was happy' in reported speech.",
+    "Pronouns and time expressions may also need to be changed.",
+    "It is a very important grammar point for communication."
+  ],
+  [
+    "My city has built a new network of cycle lanes.",
+    "The aim is to encourage more people to use their bikes instead of their cars.",
+    "This will help to reduce traffic congestion and air pollution.",
+    "I have started using my bike to go to school every day.",
+    "It is a great way to get some exercise and help the environment."
+  ],
+  [
+    "He was looking for his keys everywhere, but he couldn't find them.",
+    "He had already checked his pockets, his backpack, and the kitchen table.",
+    "He was starting to get worried because he was going to be late for his appointment.",
+    "Suddenly, he realized they were in the lock of the front door.",
+    "He had left them there when he came home the day before."
+  ],
+  [
+    "The second conditional is used to talk about hypothetical or imaginary situations.",
+    "It is formed with 'if' followed by a past simple tense.",
+    "The main clause uses 'would' followed by the infinitive.",
+    "For example: 'If I won the lottery, I would buy a big house'.",
+    "It describes an unreal situation in the present or future."
+  ],
+  [
+    "She found an old box in the attic of her grandparents' house.",
+    "Inside the box, there were old black and white photographs.",
+    "There were also some letters tied with a ribbon.",
+    "The letters were from her great-grandfather, written during the war.",
+    "Reading them was like travelling back in time."
+  ],
+  [
+    "Many animal species are in danger of extinction.",
+    "This is mainly due to the destruction of their natural habitats and climate change.",
+    "The giant panda and the tiger are two well-known examples.",
+    "Conservation organizations are working hard to protect these animals.",
+    "We all have a responsibility to help preserve biodiversity."
+  ],
+  [
+    "He had been saving money for months to buy a new video game console.",
+    "He did extra chores around the house to earn more pocket money.",
+    "Last weekend, he finally had enough money to buy it.",
+    "He went to the electronics shop with his father.",
+    "He has been playing with his new console ever since."
+  ],
+  [
+    "Modal verbs are auxiliary verbs that express ability, possibility, or obligation.",
+    "Examples include 'can', 'must', 'should', 'might' and 'will'.",
+    "They are followed by an infinitive verb without 'to'.",
+    "For instance, you say 'You should study', not 'You should to study'.",
+    "They do not change their form for the third person singular."
+  ],
+  [
+    "She decided to learn a new skill during the summer holidays.",
+    "She signed up for a pottery class at the local community centre.",
+    "At first, she found it very difficult to shape the clay on the wheel.",
+    "With practice, she learned how to make bowls and mugs.",
+    "She discovered that she was quite creative and patient."
+  ],
+  [
+    "The Titanic was a huge luxury ship that was considered unsinkable.",
+    "It set off on its first voyage from England to New York in 1912.",
+    "On the fourth night, it hit an iceberg in the Atlantic Ocean.",
+    "The ship sank in less than three hours.",
+    "It is one of the most famous maritime disasters in history."
+  ],
+  [
+    "A solar eclipse happens when the Moon passes between the Sun and Earth.",
+    "The Moon temporarily blocks the light from the Sun.",
+    "This can only happen during the new moon phase.",
+    "It is very important not to look directly at the sun during an eclipse.",
+    "You must use special protective glasses to observe it safely."
+  ],
+  [
+    "He was chosen to be the main actor in the school play.",
+    "He had to memorize a lot of lines and rehearse every day after school.",
+    "On the night of the performance, he was very nervous backstage.",
+    "But as soon as he stepped onto the stage, his nerves disappeared.",
+    "He gave a fantastic performance and the audience loved it."
+  ],
+  [
+    "The comparative form of an adjective is used to compare two things.",
+    "For short adjectives, we usually add '-er' at the end, like 'taller'.",
+    "For long adjectives, we use the word 'more' before the adjective, like 'more expensive'.",
+    "The superlative form is used to compare one thing with a whole group.",
+    "For superlatives, we use '-est' or 'the most', like 'the tallest' or 'the most expensive'."
+  ],
+  [
+    "My family has decided to adopt a rescue dog from an animal shelter.",
+    "We went to the shelter last weekend to meet some of the dogs.",
+    "We fell in love with a friendly, medium-sized dog named Buster.",
+    "We have to prepare our home before we can bring him.",
+    "We are all very excited to welcome a new member to our family."
+  ]
 ]

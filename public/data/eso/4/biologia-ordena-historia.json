@@ -1,12 +1,282 @@
 [
-    ["El ADN es la molécula que contiene las instrucciones para la vida.", "Está formado por una doble hélice de dos cadenas de nucleótidos.", "Un gen es un segmento de ADN con la información para fabricar una proteína.", "El conjunto de todos los genes de un organismo constituye su genoma.", "La replicación es el proceso por el que el ADN hace una copia de sí mismo antes de la división celular."],
-    ["La teoría de la evolución por selección natural fue propuesta por Darwin y Wallace.", "Plantea que los individuos de una población presentan variaciones hereditarias.", "El medio ambiente ejerce una presión que selecciona a los individuos mejor adaptados.", "Estos individuos tienen más probabilidades de sobrevivir y reproducirse.", "Con el tiempo, la acumulación de estas variaciones puede dar lugar a una nueva especie.", "Los fósiles y la anatomía comparada son pruebas que apoyan esta teoría."],
-    ["La meiosis es un tipo especial de división celular que produce los gametos.", "A partir de una célula diploide, se obtienen cuatro células haploides.", "Durante la meiosis, se produce la recombinación genética, que aumenta la variabilidad.", "Este proceso es fundamental para la reproducción sexual.", "Asegura que los descendientes tengan un número de cromosomas correcto.", "La variabilidad que genera es la materia prima sobre la que actúa la selección natural."],
-    ["Un ecosistema está formado por el biotopo y la biocenosis.", "El biotopo es el medio físico, con sus factores abióticos como la luz o la temperatura.", "La biocenosis es el conjunto de seres vivos que habitan en él.", "Entre ellos se establecen relaciones tróficas que forman cadenas y redes.", "La energía fluye desde los productores a los consumidores, mientras que la materia se recicla.", "El equilibrio del ecosistema es delicado y puede ser alterado por la actividad humana."],
-    ["La ingeniería genética es un conjunto de técnicas que permiten manipular el ADN.", "Una de sus herramientas son las enzimas de restricción, que pueden cortar el ADN en puntos específicos.", "Permite introducir genes de una especie en otra, creando organismos transgénicos.", "Tiene aplicaciones en medicina, como la producción de insulina humana en bacterias.", "También se utiliza en agricultura para crear plantas más resistentes a las plagas.", "Sin embargo, su uso genera un importante debate ético y social."],
-    ["Las leyes de Mendel describen cómo se transmiten los caracteres hereditarios.", "Mendel realizó sus experimentos cruzando diferentes variedades de guisantes.", "Descubrió que existen factores (hoy llamados alelos) dominantes y recesivos.", "La primera ley establece que los híbridos de la primera generación son todos iguales.", "La segunda ley explica que los alelos se segregan durante la formación de los gametos.", "Sus trabajos sentaron las bases de la genética moderna."],
-    ["La tectónica de placas explica la dinámica de la superficie terrestre.", "La litosfera está fragmentada en placas que se mueven sobre el manto.", "En los bordes convergentes, las placas chocan, formando cordilleras o zonas de subducción.", "En los bordes divergentes, las placas se separan, permitiendo la salida de magma y creando nueva corteza.", "En los bordes transformantes, las placas se deslizan lateralmente, provocando intensos terremotos."],
-    ["La biodiversidad o diversidad biológica es la gran variedad de seres vivos que existen en la Tierra.", "Incluye la diversidad de especies, la diversidad genética dentro de cada especie y la diversidad de ecosistemas.", "Es el resultado de miles de millones de años de evolución.", "La actividad humana, como la deforestación o la contaminación, es su principal amenaza.", "Conservar la biodiversidad es esencial para el equilibrio del planeta y nuestro propio bienestar."],
-    ["El proceso de fosilización permite que los restos de un organismo se conserven durante millones de años.", "Tras la muerte del ser vivo, sus partes blandas se descomponen rápidamente.", "Sus partes duras, como huesos o conchas, son cubiertas por sedimentos.", "Con el tiempo, los minerales de los sedimentos sustituyen la materia orgánica del resto.", "El sedimento se compacta y se convierte en roca, conservando el fósil en su interior.", "Los fósiles son una ventana al pasado de la vida en nuestro planeta."],
-    ["El ciclo celular es el conjunto de etapas por las que pasa una célula desde que nace hasta que se divide.", "La mayor parte del tiempo, la célula se encuentra en la interfase, durante la cual crece y duplica su ADN.", "La fase de división o fase M es cuando se produce el reparto del material genético.", "En las células somáticas, esta división se realiza por mitosis.", "El ciclo está finamente regulado, y un fallo en esta regulación puede provocar cáncer."]
+  [
+    "La teoría de la deriva continental fue propuesta por Alfred Wegener en 1912.",
+    "Sugirió que en el pasado todos los continentes estuvieron unidos en un supercontinente llamado Pangea.",
+    "Aportó pruebas geográficas, paleontológicas y climáticas para apoyar su idea.",
+    "Sin embargo, no pudo explicar qué fuerza era capaz de mover masas tan enormes.",
+    "Su teoría fue rechazada inicialmente, pero sentó las bases de la actual tectónica de placas."
+  ],
+  [
+    "La tectónica de placas es la teoría que explica la estructura y dinámica de la Tierra.",
+    "Sostiene que la litosfera está fragmentada en placas que se mueven sobre el manto.",
+    "Los límites entre placas son las zonas de mayor actividad geológica del planeta.",
+    "Existen límites divergentes, convergentes y transformantes, cada uno con procesos asociados.",
+    "Esta teoría unifica y da sentido a fenómenos como los terremotos, los volcanes y la formación de cordilleras."
+  ],
+  [
+    "La estructura del ADN fue descubierta por Watson y Crick en 1953.",
+    "Propusieron un modelo de doble hélice para esta molécula fundamental para la vida.",
+    "Cada hélice está formada por una secuencia de nucleótidos.",
+    "El ADN contiene la información genética para construir y hacer funcionar a un ser vivo.",
+    "Este descubrimiento revolucionó la biología y abrió las puertas a la ingeniería genética."
+  ],
+  [
+    "La evolución biológica es el proceso de cambio y diversificación de los seres vivos a lo largo del tiempo.",
+    "Charles Darwin propuso la selección natural como el principal motor de este proceso.",
+    "Los individuos mejor adaptados a su entorno tienen más probabilidades de sobrevivir y reproducirse.",
+    "La acumulación de pequeños cambios a lo largo de millones de años puede dar lugar a nuevas especies.",
+    "El registro fósil y las pruebas genéticas son evidencias clave de la evolución."
+  ],
+  [
+    "La célula eucariota es la unidad estructural de los organismos de los reinos Protoctista, Fungi, Plantae y Animalia.",
+    "Se caracteriza por tener un núcleo verdadero que alberga el material genético.",
+    "Su citoplasma es complejo y contiene numerosos orgánulos membranosos.",
+    "Orgánulos como las mitocondrias se encargan de la respiración celular para obtener energía.",
+    "Las células vegetales, además, poseen pared celular, cloroplastos y una gran vacuola."
+  ],
+  [
+    "La mitosis es el proceso de división celular que produce dos células hijas idénticas.",
+    "Es fundamental para el crecimiento, la reparación de tejidos y la reproducción asexual.",
+    "La célula madre duplica su material genético antes de comenzar la división.",
+    "El proceso se divide en varias fases: profase, metafase, anafase y telofase.",
+    "Como resultado, se obtienen dos células diploides genéticamente iguales a la original."
+  ],
+  [
+    "La meiosis es un tipo especial de división celular que produce los gametos.",
+    "A partir de una célula diploide, se obtienen cuatro células haploides.",
+    "Las células haploides tienen la mitad de cromosomas que la célula madre.",
+    "Durante la meiosis se produce la recombinación genética, que aumenta la variabilidad.",
+    "Este proceso es la base de la reproducción sexual."
+  ],
+  [
+    "La genética mendeliana estudia la transmisión de los caracteres hereditarios.",
+    "Gregor Mendel, a través de sus experimentos con guisantes, estableció las leyes de la herencia.",
+    "Un gen es un fragmento de ADN que contiene la información para un carácter.",
+    "Los alelos son las diferentes variantes que puede presentar un gen.",
+    "Un alelo puede ser dominante, enmascarando el efecto de otro alelo recesivo."
+  ],
+  [
+    "Un ecosistema es un sistema biológico formado por una comunidad de seres vivos y el medio físico.",
+    "Los factores abióticos son las condiciones fisicoquímicas del medio, como la temperatura o la luz.",
+    "Los factores bióticos son los seres vivos y las relaciones que establecen entre sí.",
+    "Estas relaciones pueden ser de depredación, mutualismo, competencia o parasitismo.",
+    "El equilibrio de un ecosistema es frágil y puede ser alterado por cambios naturales o por la acción humana."
+  ],
+  [
+    "El sistema endocrino y el sistema nervioso trabajan juntos para coordinar el organismo.",
+    "El sistema nervioso proporciona una respuesta rápida y de corta duración a través de impulsos nerviosos.",
+    "El sistema endocrino, en cambio, produce una respuesta lenta y duradera mediante hormonas.",
+    "Las hormonas son mensajeros químicos que viajan por la sangre hasta sus células diana.",
+    "Ambos sistemas son fundamentales para mantener la homeostasis o equilibrio interno."
+  ],
+  [
+    "La inmunidad es la capacidad del cuerpo para defenderse de los agentes patógenos.",
+    "La inmunidad innata es la primera barrera de defensa, es inespecífica y actúa rápidamente.",
+    "La inmunidad adquirida o adaptativa es específica para cada patógeno y tiene memoria.",
+    "Los linfocitos son las células clave de la respuesta adquirida.",
+    "Las vacunas se basan en esta memoria inmunológica para prevenir enfermedades."
+  ],
+  [
+    "Un relieve kárstico se forma por la disolución de rocas calizas por la acción del agua.",
+    "El agua, ligeramente ácida por el CO2, disuelve lentamente el carbonato de calcio de la roca.",
+    "En la superficie, se forman estructuras como los lapiaces o las dolinas.",
+    "En el interior, se crean cuevas, galerías y simas.",
+    "Las estalactitas y estalagmitas son depósitos de carbonato de calcio dentro de las cuevas."
+  ],
+  [
+    "La replicación del ADN es el proceso por el cual se obtienen dos copias idénticas de una molécula de ADN.",
+    "Es un proceso semiconservativo, ya que cada nueva molécula conserva una de las hebras originales.",
+    "La enzima ADN polimerasa es la encargada de añadir los nuevos nucleótidos.",
+    "Este proceso es fundamental para que la información genética se transmita a las células hijas.",
+    "Ocurre justo antes de que la célula comience su proceso de división."
+  ],
+  [
+    "La transcripción es el primer paso de la expresión génica.",
+    "Consiste en copiar la información de un gen de ADN a una molécula de ARN mensajero.",
+    "Este proceso tiene lugar en el núcleo de las células eucariotas.",
+    "La enzima ARN polimerasa es la responsable de sintetizar la molécula de ARN.",
+    "El ARN mensajero resultante viajará al citoplasma para ser traducido."
+  ],
+  [
+    "La traducción es el proceso de síntesis de proteínas a partir de la información del ARN mensajero.",
+    "Ocurre en los ribosomas, situados en el citoplasma celular.",
+    "Los ribosomas leen la secuencia de nucleótidos del ARN en grupos de tres, llamados codones.",
+    "Cada codón especifica un aminoácido concreto que se va añadiendo a la cadena proteica.",
+    "Este proceso es la materialización de la información contenida en los genes."
+  ],
+  [
+    "Las mutaciones son cambios permanentes en la secuencia del ADN.",
+    "Pueden ser espontáneas o inducidas por agentes mutagénicos, como la radiación.",
+    "Si afectan a un solo gen, se llaman mutaciones génicas.",
+    "Si afectan a la estructura o al número de cromosomas, son mutaciones cromosómicas.",
+    "Son la fuente primaria de la variabilidad genética y la materia prima de la evolución."
+  ],
+  [
+    "La ingeniería genética es la manipulación directa de los genes de un organismo.",
+    "Permite introducir, eliminar o modificar genes para cambiar las características del organismo.",
+    "Los organismos resultantes se denominan organismos modificados genéticamente o transgénicos.",
+    "Tiene aplicaciones en medicina, como la producción de insulina, y en agricultura.",
+    "Plantea importantes debates éticos y de seguridad."
+  ],
+  [
+    "Un ciclo biogeoquímico describe el movimiento de un elemento químico en un ecosistema.",
+    "El ciclo del carbono es fundamental para la vida en la Tierra.",
+    "El carbono se encuentra en la atmósfera como CO2, en los seres vivos y en las rocas.",
+    "La fotosíntesis retira CO2 de la atmósfera y la respiración lo devuelve.",
+    "La quema de combustibles fósiles está alterando este ciclo, provocando el calentamiento global."
+  ],
+  [
+    "La sucesión ecológica es el proceso de cambio en las comunidades de un ecosistema a lo largo del tiempo.",
+    "Una sucesión primaria ocurre en un lugar donde no existía vida previamente, como una colada de lava.",
+    "Una sucesión secundaria tiene lugar en una zona que ha sufrido una perturbación, como un incendio.",
+    "Las especies pioneras son las primeras en colonizar el terreno.",
+    "El proceso culmina en una comunidad clímax, estable y madura."
+  ],
+  [
+    "La historia geológica de la Península Ibérica es muy compleja.",
+    "Durante la orogenia alpina, la colisión de la placa africana y la euroasiática levantó los Pirineos y las Béticas.",
+    "Esta colisión también fracturó y levantó el antiguo Macizo Hespérico, formando la Meseta Central.",
+    "Posteriormente, las cuencas del Ebro y del Guadalquivir fueron rellenadas por sedimentos.",
+    "Las glaciaciones del Cuaternario modelaron los relieves de las zonas más altas."
+  ],
+  [
+    "Los riesgos geológicos son los procesos naturales de la Tierra que pueden causar daños.",
+    "Los riesgos internos, como terremotos y volcanes, se deben a la energía interna del planeta.",
+    "Los riesgos externos, como inundaciones o deslizamientos, se deben a la dinámica externa.",
+    "La peligrosidad es la probabilidad de que ocurra un fenómeno en un lugar y tiempo determinados.",
+    "La planificación territorial es clave para mitigar estos riesgos."
+  ],
+  [
+    "El sistema nervioso periférico está formado por los nervios que conectan el sistema nervioso central con el resto del cuerpo.",
+    "Los nervios sensitivos llevan la información desde los receptores sensoriales hacia el SNC.",
+    "Los nervios motores transmiten las órdenes desde el SNC hacia los músculos y glándulas.",
+    "Se divide en el sistema somático, que controla los actos voluntarios.",
+    "Y el sistema autónomo, que regula las funciones involuntarias."
+  ],
+  [
+    "Las vacunas son preparados que enseñan a nuestro sistema inmunitario a reconocer a un patógeno.",
+    "Contienen el patógeno muerto o debilitado, o una parte de él.",
+    "Esto desencadena una respuesta inmunitaria primaria sin causar la enfermedad.",
+    "Se producen linfocitos de memoria específicos para ese patógeno.",
+    "Si en el futuro nos infectamos, la respuesta inmunitaria será mucho más rápida y eficaz."
+  ],
+  [
+    "La biotecnología utiliza organismos vivos o sus componentes para obtener productos de interés.",
+    "La biotecnología tradicional incluye la fabricación de pan, vino o queso mediante fermentación.",
+    "La biotecnología moderna utiliza técnicas de ingeniería genética.",
+    "Tiene aplicaciones en la producción de fármacos, la mejora de cultivos o la biorremediación.",
+    "Es un campo con un enorme potencial para resolver problemas globales."
+  ],
+  [
+    "Los recursos naturales son los bienes que obtenemos de la naturaleza.",
+    "Los recursos renovables, como el sol o el viento, no se agotan con su uso.",
+    "Los recursos no renovables, como el petróleo o el carbón, existen en cantidades limitadas.",
+    "La sobreexplotación de los recursos pone en peligro la sostenibilidad del planeta.",
+    "Una gestión sostenible de los recursos es fundamental para las generaciones futuras."
+  ],
+  [
+    "La contaminación atmosférica es la presencia de sustancias nocivas en el aire.",
+    "La quema de combustibles fósiles en la industria y el transporte es la principal causa.",
+    "Gases como los óxidos de azufre y nitrógeno provocan la lluvia ácida.",
+    "El aumento de gases de efecto invernadero, como el CO2, causa el calentamiento global.",
+    "La contaminación del aire tiene graves efectos sobre la salud humana y los ecosistemas."
+  ],
+  [
+    "La estructura de un cromosoma eucariota es muy compleja.",
+    "Está formado por una larguísima molécula de ADN asociada a proteínas llamadas histonas.",
+    "Este conjunto de ADN y proteínas se denomina cromatina.",
+    "Durante la división celular, la cromatina se condensa enormemente para formar los cromosomas visibles.",
+    "Esta compactación es necesaria para que el material genético se pueda repartir correctamente."
+  ],
+  [
+    "Las leyes de Mendel son la base de la genética clásica.",
+    "La primera ley establece que los híbridos de la primera generación son uniformes.",
+    "La segunda ley explica que los alelos se segregan durante la formación de los gametos.",
+    "La tercera ley postula que los diferentes caracteres se heredan de forma independiente.",
+    "Estos principios explican los patrones de herencia de muchos rasgos."
+  ],
+  [
+    "La especiación es el proceso evolutivo por el cual se forman nuevas especies.",
+    "Suele ocurrir cuando una población queda aislada geográficamente de las demás.",
+    "En aislamiento, cada población acumula mutaciones y se adapta a su propio entorno.",
+    "Con el tiempo, las diferencias pueden llegar a ser tan grandes que ya no pueden reproducirse entre sí.",
+    "En ese momento, se considera que se han formado dos especies distintas."
+  ],
+  [
+    "El citoplasma celular no es un simple líquido, sino que tiene una estructura interna.",
+    "El citoesqueleto es una red de filamentos proteicos que da forma a la célula.",
+    "También interviene en el movimiento celular y en el transporte de orgánulos.",
+    "Está formado por microtúbulos, microfilamentos y filamentos intermedios.",
+    "Es una estructura dinámica que se reorganiza constantemente según las necesidades de la célula."
+  ],
+  [
+    "La homeostasis es el mantenimiento de unas condiciones internas estables en un organismo.",
+    "A pesar de los cambios en el exterior, el medio interno se mantiene en equilibrio.",
+    "La temperatura corporal, el pH de la sangre o el nivel de glucosa son parámetros regulados.",
+    "El sistema nervioso y el sistema endocrino son los principales responsables de esta regulación.",
+    "Es una condición indispensable para el correcto funcionamiento de las células y, por tanto, para la vida."
+  ],
+  [
+    "Los antibióticos son medicamentos que combaten las infecciones bacterianas.",
+    "Actúan matando a las bacterias o impidiendo su multiplicación.",
+    "No son eficaces contra los virus, como los del resfriado o la gripe.",
+    "El uso incorrecto y abusivo de los antibióticos ha provocado la aparición de bacterias resistentes.",
+    "Este es uno de los mayores problemas de salud pública a nivel mundial."
+  ],
+  [
+    "La placa litosférica es cada uno de los fragmentos en que se divide la capa más externa de la Tierra.",
+    "Existen placas oceánicas, formadas por corteza oceánica, y placas mixtas.",
+    "Se mueven a una velocidad de unos pocos centímetros al año.",
+    "Las corrientes de convección del manto son el motor que impulsa este movimiento.",
+    "La interacción en sus bordes es la causa de la mayor parte de la actividad geológica."
+  ],
+  [
+    "Un sismógrafo es el instrumento que se utiliza para medir los terremotos.",
+    "Detecta las vibraciones del terreno, conocidas como ondas sísmicas.",
+    "Consta de una masa suspendida que permanece en reposo por inercia durante el temblor.",
+    "El movimiento relativo entre la masa y el suelo se registra en un sismograma.",
+    "El análisis de los sismogramas permite localizar el epicentro y determinar la magnitud del seísmo."
+  ],
+  [
+    "El neodarwinismo o teoría sintética de la evolución integra las ideas de Darwin con la genética.",
+    "Mantiene la selección natural como el principal mecanismo evolutivo.",
+    "Pero explica que la fuente de la variabilidad sobre la que actúa la selección son las mutaciones y la recombinación genética.",
+    "La evolución se define como un cambio en las frecuencias de los alelos en una población a lo largo del tiempo.",
+    "Es el modelo evolutivo aceptado actualmente por la comunidad científica."
+  ],
+  [
+    "El ARN (ácido ribonucleico) es una molécula esencial en la expresión génica.",
+    "A diferencia del ADN, suele ser una cadena sencilla y contiene uracilo en lugar de timina.",
+    "El ARN mensajero (ARNm) copia la información de un gen y la lleva a los ribosomas.",
+    "El ARN de transferencia (ARNt) transporta los aminoácidos hasta el ribosoma durante la traducción.",
+    "El ARN ribosómico (ARNr) forma parte de la estructura de los propios ribosomas."
+  ],
+  [
+    "El código genético es el conjunto de reglas que traduce la secuencia de nucleótidos a una secuencia de aminoácidos.",
+    "Es un código de tripletes, es decir, cada tres nucleótidos (un codón) codifican un aminoácido.",
+    "Es degenerado, lo que significa que varios codones pueden codificar el mismo aminoácido.",
+    "No es ambiguo, ya que un codón nunca codifica más de un aminoácido.",
+    "Es prácticamente universal, el mismo para casi todos los seres vivos."
+  ],
+  [
+    "La clonación es el proceso de crear una copia genéticamente idéntica de un organismo.",
+    "La oveja Dolly fue el primer mamífero clonado a partir de una célula adulta.",
+    "La clonación reproductiva busca crear un individuo completo.",
+    "La clonación terapéutica, en cambio, busca obtener células madre para tratar enfermedades.",
+    "Este campo de la biotecnología plantea profundos dilemas éticos."
+  ],
+  [
+    "El impacto ambiental es cualquier alteración del medio ambiente causada por la actividad humana.",
+    "La construcción de una carretera, la emisión de gases o la generación de residuos son impactos.",
+    "Una evaluación de impacto ambiental es un estudio previo para predecir y mitigar estos efectos.",
+    "El objetivo es lograr un desarrollo que sea compatible con la protección del entorno.",
+    "La huella ecológica es un indicador que mide nuestro impacto sobre el planeta."
+  ],
+  [
+    "La datación radiométrica es una técnica para determinar la edad absoluta de las rocas.",
+    "Se basa en la desintegración radiactiva de ciertos isótopos que contienen las rocas.",
+    "Estos isótopos se desintegran a un ritmo constante y conocido, llamado período de semidesintegración.",
+    "Midiendo la proporción entre el isótopo 'padre' y el isótopo 'hijo', se puede calcular el tiempo transcurrido.",
+    "El método del carbono-14 es muy conocido, pero solo sirve para datar restos orgánicos relativamente recientes."
+  ]
 ]

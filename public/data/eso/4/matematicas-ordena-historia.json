@@ -1,12 +1,282 @@
 [
-    ["Para resolver una inecuación con una incógnita, operamos de forma similar a una ecuación.", "Agrupamos los términos con la incógnita a un lado y los números al otro.", "Hay que tener una precaución especial al multiplicar o dividir por un número negativo.", "Si lo hacemos, el sentido de la desigualdad debe cambiar.", "La solución no es un único valor, sino un conjunto de números o un intervalo."],
-    ["La trigonometría nos permite resolver problemas de cálculo de alturas y distancias.", "Imaginemos que queremos medir la altura de un árbol sin subirnos a él.", "Nos situamos a una distancia conocida de su base y medimos el ángulo de elevación hasta la copa.", "Con la razón trigonométrica de la tangente, que relaciona los dos catetos, podemos plantear una ecuación.", "Despejando, obtenemos la altura del árbol de forma indirecta.", "Esta técnica es fundamental en topografía y astronomía."],
-    ["Una función se puede estudiar analizando sus propiedades a partir de su gráfica.", "El dominio es el conjunto de valores de 'x' para los que existe la función.", "El recorrido es el conjunto de valores de 'y' que toma la función.", "Estudiamos sus intervalos de crecimiento y decrecimiento.", "También localizamos sus máximos y mínimos, que son los puntos más altos y bajos.", "Observar si es continua o si tiene simetría también nos da información valiosa."],
-    ["La combinatoria nos ayuda a contar el número de agrupaciones que se pueden hacer con un conjunto de elementos.", "Si importa el orden de los elementos, utilizamos variaciones o permutaciones.", "Si el orden no importa, como al elegir un comité, utilizamos combinaciones.", "Las permutaciones son un caso particular de las variaciones en el que se usan todos los elementos.", "Estas herramientas son muy útiles en el cálculo de probabilidades."],
-    ["La estadística inferencial nos permite sacar conclusiones sobre una población a partir de una muestra.", "Primero, debemos asegurarnos de que la muestra elegida sea representativa de la población.", "A partir de los datos de la muestra, calculamos estadísticos como la media.", "Luego, mediante técnicas de inferencia, estimamos cuál será el valor de ese parámetro en toda la población.", "Siempre existe un margen de error en estas estimaciones.", "Se utiliza en campos como los sondeos de opinión o el control de calidad industrial."],
-    ["Para racionalizar una expresión con una raíz en el denominador, buscamos eliminarla.", "Multiplicamos tanto el numerador como el denominador por una expresión adecuada.", "Si en el denominador hay una raíz cuadrada, multiplicamos por esa misma raíz.", "Si hay una suma o resta con una raíz, multiplicamos por el conjugado.", "De esta forma, la raíz desaparece del denominador, simplificando la expresión."],
-    ["La geometría analítica traduce problemas geométricos al lenguaje del álgebra.", "Cada punto del plano se representa con un par de coordenadas (x, y).", "Una recta se representa mediante una ecuación lineal.", "Podemos calcular distancias entre puntos, pendientes de rectas o puntos de intersección.", "Esta conexión entre geometría y álgebra es una herramienta muy poderosa."],
-    ["Un logaritmo responde a la pregunta: '¿a qué exponente debo elevar la base para obtener este número?'.", "Por ejemplo, el logaritmo en base 10 de 100 es 2, porque 10 al cuadrado es 100.", "Los logaritmos tienen propiedades que nos permiten simplificar operaciones complejas.", "Convierten los productos en sumas y las potencias en multiplicaciones.", "Fueron inventados para facilitar los cálculos antes de la era de las calculadoras."],
-    ["Una progresión geométrica es una sucesión donde cada término se obtiene multiplicando el anterior por una constante.", "Esta constante se llama 'razón' de la progresión.", "Si la razón es mayor que 1, los términos crecen exponencialmente.", "Si la razón está entre 0 y 1, los términos decrecen y se acercan a cero.", "Existe una fórmula para calcular la suma de los infinitos términos si la razón es menor que 1."],
-    ["El estudio de la correlación entre dos variables estadísticas nos dice si están relacionadas.", "Dibujamos un diagrama de dispersión o nube de puntos para visualizar la relación.", "Si los puntos se agrupan en torno a una recta creciente, la correlación es positiva.", "Si se agrupan en torno a una recta decreciente, es negativa.", "Si los puntos están dispersos sin ningún patrón, no hay correlación lineal.", "El coeficiente de correlación 'r' es un número que cuantifica la fuerza de esta relación."]
+  [
+    "El conjunto de los números reales incluye tanto a los números racionales como a los irracionales.",
+    "Los números racionales son aquellos que se pueden expresar como una fracción.",
+    "Los números irracionales, como la raíz de 2 o el número pi, tienen infinitas cifras decimales no periódicas.",
+    "Juntos, cubren por completo la recta numérica, sin dejar ningún hueco.",
+    "Cualquier punto de la recta representa un número real."
+  ],
+  [
+    "Un intervalo es un subconjunto de la recta real que representa a todos los números comprendidos entre dos extremos.",
+    "Si los extremos están incluidos, el intervalo es cerrado y se representa con corchetes.",
+    "Si los extremos no están incluidos, el intervalo es abierto y se representa con paréntesis.",
+    "También existen intervalos semiabiertos, que incluyen solo uno de los extremos.",
+    "Son una forma muy útil de expresar conjuntos de soluciones de inecuaciones."
+  ],
+  [
+    "Las potencias de exponente fraccionario están directamente relacionadas con los radicales.",
+    "Un número elevado a una fracción es igual a la raíz cuyo índice es el denominador y cuyo radicando es la base elevada al numerador.",
+    "Por ejemplo, 5 elevado a 2/3 es igual a la raíz cúbica de 5 al cuadrado.",
+    "Esta equivalencia nos permite aplicar las propiedades de las potencias para operar con radicales.",
+    "Simplifica mucho los cálculos con raíces de distinto índice."
+  ],
+  [
+    "Un polinomio es una expresión algebraica que es la suma de varios monomios.",
+    "Las raíces de un polinomio son los valores de la variable que hacen que el polinomio valga cero.",
+    "El teorema del factor establece que si 'a' es una raíz de un polinomio P(x), entonces (x-a) es un factor de P(x).",
+    "Esto nos permite factorizar el polinomio, es decir, expresarlo como un producto de factores más simples.",
+    "La regla de Ruffini es un método muy eficiente para encontrar las raíces enteras de un polinomio."
+  ],
+  [
+    "Una ecuación bicuadrada es una ecuación de cuarto grado que no tiene términos de grado impar.",
+    "Tiene la forma ax⁴ + bx² + c = 0.",
+    "Para resolverla, se realiza un cambio de variable, llamando z = x².",
+    "Con este cambio, la ecuación se transforma en una ecuación de segundo grado en 'z'.",
+    "Una vez resuelta para 'z', se deshace el cambio para encontrar los valores de 'x'."
+  ],
+  [
+    "Un sistema de ecuaciones no lineales es aquel que contiene al menos una ecuación que no es de primer grado.",
+    "Por ejemplo, puede incluir una ecuación de segundo grado o una con la incógnita en el denominador.",
+    "El método más general para resolverlos es el de sustitución.",
+    "Se despeja una incógnita en la ecuación más sencilla y se sustituye en la otra.",
+    "Estos sistemas pueden tener varias soluciones, una o ninguna."
+  ],
+  [
+    "El Teorema de Pitágoras es una herramienta fundamental que se aplica a los triángulos rectángulos.",
+    "Establece que la suma de los cuadrados de los catetos es igual al cuadrado de la hipotenusa.",
+    "Nos permite calcular la longitud de un lado si conocemos los otros dos.",
+    "Es la base para definir las razones trigonométricas de un ángulo agudo.",
+    "Tiene innumerables aplicaciones en la geometría, la física y la vida cotidiana."
+  ],
+  [
+    "Las razones trigonométricas de un ángulo agudo se definen en un triángulo rectángulo.",
+    "El seno (sen) es el cociente entre el cateto opuesto y la hipotenusa.",
+    "El coseno (cos) es el cociente entre el cateto contiguo y la hipotenusa.",
+    "La tangente (tan) es el cociente entre el cateto opuesto y el cateto contiguo.",
+    "Estas razones no dependen del tamaño del triángulo, solo del valor del ángulo."
+  ],
+  [
+    "Existen relaciones fundamentales entre las razones trigonométricas de un mismo ángulo.",
+    "La fórmula fundamental de la trigonometría establece que sen²(α) + cos²(α) = 1.",
+    "Otra relación importante es que la tangente de un ángulo es igual a su seno dividido por su coseno.",
+    "Estas fórmulas nos permiten calcular todas las razones trigonométricas si conocemos solo una de ellas.",
+    "Son herramientas esenciales para resolver problemas trigonométricos."
+  ],
+  [
+    "La geometría analítica estudia las figuras geométricas utilizando un sistema de coordenadas.",
+    "Fue desarrollada por René Descartes en el siglo XVII.",
+    "Cada punto del plano se representa por un par de coordenadas (x, y).",
+    "Una recta se puede representar mediante una ecuación lineal.",
+    "Permite resolver problemas geométricos utilizando métodos algebraicos."
+  ],
+  [
+    "Un vector fijo es un segmento orientado que tiene origen, módulo, dirección y sentido.",
+    "El módulo es la longitud del vector.",
+    "La dirección es la de la recta que lo contiene.",
+    "El sentido viene indicado por la flecha.",
+    "Dos vectores son equipolentes si tienen el mismo módulo, dirección y sentido, aunque su origen sea diferente."
+  ],
+  [
+    "La ecuación de la recta es una expresión algebraica que cumplen todos los puntos de la recta.",
+    "La ecuación explícita, y = mx + n, nos da directamente la pendiente 'm' y la ordenada en el origen 'n'.",
+    "La ecuación punto-pendiente nos permite hallar la ecuación de la recta si conocemos un punto y su pendiente.",
+    "Dos rectas son paralelas si tienen la misma pendiente.",
+    "Dos rectas son perpendiculares si el producto de sus pendientes es -1."
+  ],
+  [
+    "Una función es una relación que asigna a cada elemento de un conjunto inicial un único elemento de un conjunto final.",
+    "El dominio de una función es el conjunto de todos los valores para los que la función está definida.",
+    "El recorrido o imagen es el conjunto de todos los valores que toma la variable dependiente.",
+    "Una función puede ser creciente si al aumentar 'x', aumenta 'y'.",
+    "Los máximos y mínimos son los puntos donde la función alcanza sus valores más altos o más bajos en un entorno."
+  ],
+  [
+    "Una función cuadrática es aquella cuya expresión es un polinomio de segundo grado.",
+    "Su representación gráfica es una curva llamada parábola.",
+    "El vértice es el punto más alto o más bajo de la parábola.",
+    "El eje de simetría es una recta vertical que pasa por el vértice.",
+    "La orientación de la parábola (hacia arriba o hacia abajo) depende del signo del coeficiente de x²."
+  ],
+  [
+    "Las funciones definidas a trozos son aquellas cuya expresión analítica cambia según el intervalo de la variable 'x'.",
+    "Cada 'trozo' de la función se define con una fórmula diferente en un dominio específico.",
+    "La función valor absoluto es un ejemplo clásico de función definida a trozos.",
+    "Para representarlas, se dibuja cada trozo en su intervalo correspondiente.",
+    "Es importante prestar atención a los puntos donde cambia la definición."
+  ],
+  [
+    "La estadística es la ciencia que se encarga de recoger, organizar y analizar datos.",
+    "La estadística descriptiva se ocupa de resumir y describir los datos de una muestra.",
+    "La estadística inferencial va más allá y permite sacar conclusiones sobre la población total a partir de la muestra.",
+    "Es una herramienta fundamental en la investigación científica, la sociología o la economía.",
+    "Nos ayuda a tomar decisiones informadas basadas en la evidencia de los datos."
+  ],
+  [
+    "Las medidas de dispersión nos informan sobre cómo de agrupados o separados están los datos.",
+    "El rango o recorrido es la diferencia entre el valor máximo y el mínimo.",
+    "La varianza mide la dispersión de los datos respecto a la media, pero al cuadrado.",
+    "La desviación típica es la raíz cuadrada de la varianza y se expresa en las mismas unidades que los datos.",
+    "Una desviación típica pequeña indica que los datos están muy concentrados alrededor de la media."
+  ],
+  [
+    "La probabilidad de un suceso es un número entre 0 y 1 que indica la posibilidad de que ocurra.",
+    "La regla de Laplace se utiliza cuando todos los resultados son igualmente probables.",
+    "Para sucesos compuestos, como lanzar dos dados, es útil utilizar tablas de contingencia o diagramas de árbol.",
+    "La probabilidad de la unión de dos sucesos se calcula con una fórmula específica.",
+    "La probabilidad condicionada es la probabilidad de que ocurra un suceso sabiendo que ya ha ocurrido otro."
+  ],
+  [
+    "La combinatoria es la parte de las matemáticas que se encarga de contar.",
+    "Estudia las diferentes formas de agrupar y ordenar los elementos de un conjunto.",
+    "Las variaciones, las combinaciones y las permutaciones son las herramientas básicas.",
+    "En las variaciones y permutaciones, el orden de los elementos sí importa.",
+    "En las combinaciones, en cambio, el orden no importa."
+  ],
+  [
+    "Las funciones exponenciales son aquellas en las que la variable independiente aparece en el exponente.",
+    "Tienen la forma y = aˣ, donde la base 'a' es un número real positivo.",
+    "Si la base es mayor que 1, la función es de crecimiento exponencial.",
+    "Si la base está entre 0 y 1, la función es de decrecimiento exponencial.",
+    "Modelizan fenómenos como el crecimiento de poblaciones o la desintegración radiactiva."
+  ],
+  [
+    "Las funciones logarítmicas son las funciones inversas de las exponenciales.",
+    "El logaritmo de un número es el exponente al que hay que elevar la base para obtener ese número.",
+    "Su dominio está restringido a los números reales positivos.",
+    "Crecen de forma muy lenta, al contrario que las exponenciales.",
+    "Las escalas logarítmicas, como la de Richter para terremotos, se basan en esta función."
+  ],
+  [
+    "La trigonometría permite resolver cualquier tipo de triángulo, no solo los rectángulos.",
+    "El teorema del seno relaciona cada lado de un triángulo con el seno de su ángulo opuesto.",
+    "El teorema del coseno es una generalización del teorema de Pitágoras.",
+    "Permite calcular un lado si se conocen los otros dos y el ángulo que forman.",
+    "Estas dos herramientas son fundamentales para la topografía y la navegación."
+  ],
+  [
+    "Un radical es equivalente a una potencia de exponente fraccionario.",
+    "Esta equivalencia nos permite utilizar las propiedades de las potencias para simplificar radicales.",
+    "Para introducir un factor dentro de una raíz, se eleva ese factor al índice de la raíz.",
+    "Para extraer factores, se descompone el radicando y se sacan los factores cuyo exponente sea mayor o igual que el índice.",
+    "Operar con radicales se simplifica enormemente al pasarlos a forma de potencia."
+  ],
+  [
+    "La racionalización de denominadores es un proceso para eliminar las raíces del denominador de una fracción.",
+    "Si en el denominador hay una raíz cuadrada, se multiplica numerador y denominador por esa misma raíz.",
+    "Si en el denominador hay una suma o resta con una raíz, se multiplica por el conjugado.",
+    "El conjugado de (a+b) es (a-b), y viceversa.",
+    "Este proceso facilita los cálculos y es una convención matemática."
+  ],
+  [
+    "La media y la desviación típica son dos parámetros que resumen muy bien una distribución de datos.",
+    "La media nos da una medida del centro de la distribución.",
+    "La desviación típica nos informa sobre la dispersión de los datos alrededor de esa media.",
+    "En una distribución normal, aproximadamente el 68% de los datos se encuentra a una distancia de una desviación típica de la media.",
+    "Juntos, nos ofrecen una imagen muy completa del conjunto de datos."
+  ],
+  [
+    "La interpolación es un método para estimar un valor desconocido que se encuentra entre dos valores conocidos.",
+    "La interpolación lineal asume que la variación entre los puntos es constante.",
+    "Gráficamente, equivale a unir los dos puntos conocidos con una línea recta.",
+    "Se utiliza para estimar datos en tablas o para rellenar huecos en una serie de datos.",
+    "Es una herramienta de estimación muy utilizada en ciencia e ingeniería."
+  ],
+  [
+    "La ecuación de una circunferencia con centro en el origen es x² + y² = r².",
+    "Todos los puntos (x, y) de la circunferencia cumplen esta ecuación.",
+    "'r' representa el radio de la circunferencia.",
+    "Si el centro está en un punto (a, b), la ecuación se convierte en (x-a)² + (y-b)² = r².",
+    "Esta es la expresión de la distancia de cualquier punto al centro, basada en el teorema de Pitágoras."
+  ],
+  [
+    "Los logaritmos tienen propiedades que simplifican operaciones complejas.",
+    "El logaritmo de un producto es la suma de los logaritmos de los factores.",
+    "El logaritmo de un cociente es la resta de los logaritmos del numerador y del denominador.",
+    "El logaritmo de una potencia es el exponente multiplicado por el logaritmo de la base.",
+    "Gracias a estas propiedades, los logaritmos convertían multiplicaciones en sumas, facilitando los cálculos antes de las calculadoras."
+  ],
+  [
+    "La estadística bidimensional estudia la relación entre dos variables de una misma población.",
+    "Por ejemplo, podemos estudiar la relación entre la altura y el peso de los alumnos de una clase.",
+    "Los datos se representan en un gráfico llamado nube de puntos o diagrama de dispersión.",
+    "Si los puntos se agrupan en torno a una recta, decimos que hay correlación lineal.",
+    "La covarianza y el coeficiente de correlación miden la fuerza de esta relación."
+  ],
+  [
+    "La recta de regresión es la que mejor se ajusta a una nube de puntos.",
+    "Permite hacer predicciones sobre el valor de una variable si conocemos el de la otra.",
+    "Por ejemplo, podríamos predecir el peso de un alumno a partir de su altura.",
+    "El coeficiente de correlación 'r' nos indica si esta predicción es fiable.",
+    "Si 'r' está cerca de 1 o -1, la correlación es fuerte y la predicción será buena."
+  ],
+  [
+    "Las permutaciones de 'n' elementos son las diferentes formas de ordenar esos 'n' elementos.",
+    "En las permutaciones, se utilizan todos los elementos y el orden sí importa.",
+    "El número de permutaciones de 'n' elementos se calcula como 'n' factorial (n!).",
+    "Por ejemplo, las letras A, B, C se pueden ordenar de 3! = 6 formas diferentes.",
+    "Son un caso particular de las variaciones."
+  ],
+  [
+    "Las combinaciones de 'm' elementos tomados de 'n' en 'n' son los diferentes grupos que se pueden formar.",
+    "En las combinaciones, no se utilizan todos los elementos y el orden no importa.",
+    "Por ejemplo, en un grupo de 5 personas, ¿cuántos comités de 3 personas se pueden formar?",
+    "Se utiliza una fórmula específica con números factoriales.",
+    "Es la herramienta que se usa para calcular las posibles apuestas en juegos como la lotería."
+  ],
+  [
+    "Un vector libre es un conjunto de todos los vectores equipolentes a uno dado.",
+    "Se caracteriza por tener el mismo módulo, dirección y sentido.",
+    "Se puede representar por cualquiera de sus vectores fijos, normalmente uno con origen en el (0,0).",
+    "Las coordenadas del vector libre son las del extremo de este representante.",
+    "Permite realizar operaciones como la suma de vectores de forma gráfica y analítica."
+  ],
+  [
+    "La suma de dos vectores se puede realizar gráficamente mediante la regla del paralelogramo.",
+    "Se dibujan ambos vectores desde un mismo origen.",
+    "Se completa el paralelogramo que definen los dos vectores.",
+    "El vector suma es la diagonal del paralelogramo que parte del origen común.",
+    "Analíticamente, la suma se calcula sumando las coordenadas de los vectores componente a componente."
+  ],
+  [
+    "El producto escalar de dos vectores es una operación cuyo resultado es un número, no un vector.",
+    "Se puede calcular de dos formas: multiplicando sus módulos por el coseno del ángulo que forman.",
+    "O también, multiplicando sus coordenadas componente a componente y sumando los resultados.",
+    "Si el producto escalar de dos vectores es cero, significa que son perpendiculares.",
+    "Tiene muchas aplicaciones en física, como el cálculo del trabajo realizado por una fuerza."
+  ],
+  [
+    "Las funciones trigonométricas (seno, coseno, tangente) se pueden representar gráficamente.",
+    "Son funciones periódicas, es decir, su gráfica se repite cada cierto intervalo.",
+    "El período de las funciones seno y coseno es de 360 grados o 2π radianes.",
+    "Sus gráficas son ondas suaves llamadas sinusoide y cosinusoide.",
+    "Modelizan una gran cantidad de fenómenos ondulatorios en la naturaleza, como el sonido o la luz."
+  ],
+  [
+    "La distribución normal es la distribución de probabilidad más importante en estadística.",
+    "Muchos fenómenos naturales, como la altura o la inteligencia, siguen esta distribución.",
+    "Su gráfica tiene una forma de campana simétrica, conocida como la campana de Gauss.",
+    "Está completamente definida por su media y su desviación típica.",
+    "Es la base de la estadística inferencial y los contrastes de hipótesis."
+  ],
+  [
+    "La muestra en un estudio estadístico debe ser representativa de la población.",
+    "Esto significa que debe reflejar las características de la población total a pequeña escala.",
+    "El muestreo aleatorio simple es una técnica en la que cada individuo tiene la misma probabilidad de ser elegido.",
+    "Si la muestra no es representativa, las conclusiones que se extraigan del estudio no serán válidas.",
+    "El tamaño de la muestra también es un factor crucial para la fiabilidad de los resultados."
+  ],
+  [
+    "Las inecuaciones son desigualdades algebraicas.",
+    "A diferencia de las ecuaciones, su solución no es un único valor, sino un conjunto de valores.",
+    "Este conjunto de soluciones se suele expresar en forma de intervalo.",
+    "Se resuelven de forma muy similar a las ecuaciones, pero hay que tener cuidado al multiplicar o dividir por un número negativo.",
+    "Si se hace, el sentido de la desigualdad cambia."
+  ],
+  [
+    "La programación lineal es una técnica matemática para optimizar una función.",
+    "Busca encontrar el valor máximo o mínimo de una función lineal, llamada función objetivo.",
+    "Esta función está sujeta a una serie de restricciones, expresadas como inecuaciones lineales.",
+    "La región factible es el conjunto de puntos que cumplen todas las restricciones.",
+    "La solución óptima siempre se encuentra en uno de los vértices de esta región."
+  ]
 ]
