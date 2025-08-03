@@ -17,14 +17,12 @@ const DetectiveDePalabrasTestScreen = ({ game }) => {
         testQuestions,
         startTest,
         exitTestMode,
-        getTransformedSolution // Mantenemos esta función para mostrar resultados correctamente
+        getTransformedSolution
     } = game;
 
     const progressPercentage = ((indiceFraseActual + 1) / TOTAL_TEST_QUESTIONS) * 100;
 
     if (showResults) {
-        // La lógica de `getTransformedSolution` aquí se asegura de que si el test
-        // se inició en mayúsculas, los resultados se muestren también en mayúsculas.
         const correctAnswers = testQuestions.filter((q, i) => getTransformedSolution(q.solucion) === userAnswers[i]).length;
 
         return (
@@ -59,10 +57,12 @@ const DetectiveDePalabrasTestScreen = ({ game }) => {
         );
     }
 
-    // CAMBIO: Se ha eliminado la clase `font-${fontStyle}` y el slider de tipografía
     return (
         <div className="detective-container">
-            <h1 className="detective-title gradient-text text-4xl font-bold mb-4">📝 Test del Detective</h1>
+            {/* CAMBIO: El emoji se saca fuera del span con la clase gradient-text */}
+            <h1 className="detective-title text-4xl font-bold mb-4">
+                <span role="img" aria-label="Detective">📝</span> <span className="gradient-text">Test del Detective</span>
+            </h1>
             
             <div className="test-header">
                 <div className="question-counter">Frase {indiceFraseActual + 1} / {TOTAL_TEST_QUESTIONS}</div>

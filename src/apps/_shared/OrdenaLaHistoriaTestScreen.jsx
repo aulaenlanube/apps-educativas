@@ -38,7 +38,9 @@ const OrdenaLaHistoriaTestScreen = ({ game }) => {
     return (
         // --- AÑADIMOS LOS EVENTOS TÁCTILES AL CONTENEDOR ---
         <div className={`ordena-historia-container font-${game.fontStyle}`} onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd}>
-            <h1 className="main-title gradient-text text-4xl font-bold mb-4">📝 Test de Historias</h1>
+            <h1 className="main-title text-4xl font-bold mb-4">
+                <span role="img" aria-label="Icono de libreta">📝</span> <span className="gradient-text">Test de Historias</span>
+            </h1>
             
             {/* --- AÑADIMOS EL SLIDER TAMBIÉN AL MODO TEST --- */}
             <div className="font-slider-container">

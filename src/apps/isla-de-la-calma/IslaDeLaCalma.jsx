@@ -1,4 +1,4 @@
-// src/apps/isla-de-la-calma/IslaDeLaCalma.jsx
+// src/apps/isla-de-la-calma/IslaDeLaCalma.jsx (CORREGIDO)
 import React, { useState, useEffect, useRef } from 'react';
 import './IslaDeLaCalma.css';
 
@@ -95,7 +95,9 @@ const IslaDeLaCalma = () => {
                 return (
                     <div className="calma-container">
                         {/* --- LÍNEA MODIFICADA --- */}
-                        <h1 className="calma-title gradient-text text-5xl font-bold mb-4">🏝️ Isla de la Calma</h1>
+                        <h1 className="calma-title text-5xl font-bold mb-4">
+                            <span role="img" aria-label="Isla">🏝️</span> <span className="gradient-text">Isla de la Calma</span>
+                        </h1>
                         <p>Una pausa para encontrar la calma a través de la respiración. Sigue la animación y las instrucciones para relajar tu cuerpo y tu mente.</p>
                         <div className="configuracion-ciclos">
                             <label htmlFor="numeroCiclos">Número de respiraciones:</label>

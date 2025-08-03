@@ -39,7 +39,9 @@ const OrdenaLaFraseTestScreen = ({ game }) => {
 
     return (
         <div className="ordena-frase-container" onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd}>
-            <h1 className="ordena-frase-main-title gradient-text text-4xl font-bold mb-4">📝 Test de Frases</h1>
+            <h1 className="ordena-frase-main-title text-4xl font-bold mb-4">
+                <span role="img" aria-label="Icono de libreta">📝</span> <span className="gradient-text">Test de Frases</span>
+            </h1>
             
             <div className="test-header">
                 <div className="question-counter">Frase {game.currentQuestionIndex + 1} / {game.TOTAL_TEST_QUESTIONS}</div>

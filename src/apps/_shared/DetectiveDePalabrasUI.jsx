@@ -17,9 +17,11 @@ const DetectiveDePalabrasUI = ({ game }) => {
     } = game;
 
     return (
-        // CORRECCIÓN: Se utiliza la sintaxis de template literal (` `) para que la clase sea dinámica
         <div className={`detective-container font-${fontStyle}`}>
-            <h1 className="detective-title gradient-text text-5xl mb-4">🕵️‍♂️ Detective de Palabras</h1>
+            {/* CAMBIO: El emoji se saca fuera del span con la clase gradient-text */}
+            <h1 className="detective-title text-5xl mb-4">
+                <span role="img" aria-label="Detective">🕵️‍♂️</span> <span className="gradient-text">Detective de Palabras</span>
+            </h1>
             <p className="instrucciones">Haz clic entre las letras para separar las palabras. ¡Luego comprueba tu respuesta!</p>
 
             <div className="mode-selection">

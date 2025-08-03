@@ -111,7 +111,6 @@ input[type="range"].font-slider::-moz-range-thumb {
     cursor: pointer;
     user-select: none;
     line-height: 1.6;
-    /* CAMBIO: Colores de la caja de Ordena la Frase */
     background-color: #fef4e8;
     border: 2px dashed #f8c99b;
 }
@@ -132,10 +131,11 @@ input[type="range"].font-slider::-moz-range-thumb {
 
 .detective-separador {
     display: inline-block;
-    width: 6px;
-    height: 40px;
-    background-color: #ff6b81;
-    border-radius: 3px;
+    /* CAMBIOS AQUÍ */
+    width: 8px; /* Más grueso */
+    height: 45px; /* Más alto */
+    background-color: #e74c3c; /* Rojo más vivo */
+    border-radius: 4px;
     vertical-align: middle;
     margin: 0 4px;
     cursor: pointer;
@@ -161,17 +161,15 @@ input[type="range"].font-slider::-moz-range-thumb {
     border-radius: 12px;
     cursor: pointer;
     color: white;
-    background-color: #4a90e2; /* Color azul del botón Comprobar */
-    transition: background-color 0.2s; /* Transición más simple */
+    background-color: #4a90e2;
+    transition: background-color 0.2s;
     margin: 0 10px;
 }
 
-/* CAMBIO: Estado hover para el botón principal */
 .detective-container button:hover {
     background-color: #357ABD;
 }
 
-/* CAMBIO: Colores para los botones secundarios */
 .detective-container .btn-siguiente,
 .detective-container .btn-otra-frase {
     background-color: #d97706;

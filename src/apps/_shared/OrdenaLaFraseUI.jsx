@@ -14,7 +14,9 @@ const OrdenaLaFraseUI = ({
     return (
         <div className={`ordena-frase-container font-${fontStyle}`} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
             
-            <h1 className="ordena-frase-main-title gradient-text text-5xl mb-4">📝 Ordena la Frase</h1>
+            <h1 className="ordena-frase-main-title text-5xl mb-4">
+                <span role="img" aria-label="Icono de libreta">📝</span> <span className="gradient-text">Ordena la Frase</span>
+            </h1>
             <p className="instrucciones">Arrastra las palabras para formar una frase con sentido.</p>
 
             <div className="mode-selection">

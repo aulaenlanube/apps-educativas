@@ -10,7 +10,9 @@ const OrdenaLaHistoriaUI = ({
 }) => {
     return (
         <div className={`ordena-historia-container font-${fontStyle}`} onTouchMove={handleTouchMove} onTouchEnd={handleTouchEnd}>
-            <h1 className="main-title gradient-text text-5xl mb-4">📚 Ordena la Historia</h1>
+            <h1 className="main-title text-5xl mb-4">
+                <span role="img" aria-label="Icono de libros">📚</span> <span className="gradient-text">Ordena la Historia</span>
+            </h1>
             <p className="instrucciones">Arrastra las frases para ordenarlas y que la historia tenga sentido.</p>
 
             <div className="mode-selection">
