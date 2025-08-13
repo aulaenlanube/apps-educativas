@@ -12,6 +12,11 @@ import OrdenaLaHistoriaJuego from './_shared/OrdenaLaHistoriaJuego';
 
 import DetectiveDePalabras from '@/apps/detective-de-palabras/DetectiveDePalabras';
 
+import SumasPrimaria1 from '@/apps/sumas/primaria-1/SumasPrimaria1';
+import SumasPrimaria2 from '@/apps/sumas/primaria-2/SumasPrimaria2';
+import SumasPrimaria3 from '/src/apps/sumas/primaria-3/SumasPrimaria3';
+import SumasPrimaria4 from '/src/apps/sumas/primaria-4/SumasPrimaria4';
+import SumasPrimaria5 from '/src/apps/sumas/primaria-5/SumasPrimaria5';
 
 // CORRECCIÓN: Usar el alias de ruta '@' para una importación más robusta.
 import materiasData from './../../public/data/materias.json';
@@ -31,11 +36,42 @@ const appDetectiveDePalabras = {
 
 // APPS DE PRIMARIA
 export const primariaApps = {
-    '1': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }, { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', description: 'Resuelve sumas sencillas con productos del súper.', component: SupermercadoMatematico1 }],
-    '2': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-2', name: 'Supermercado Matemático (Sumas llevando)', description: 'Suma los precios de varios productos, ¡a veces tendrás que llevar!', component: SupermercadoMatematico2 }],
-    '3': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', description: 'Calcula el coste de comprar varias unidades del mismo producto.', component: SupermercadoMatematico3 }],
-    '4': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 }],
-    '5': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 }],
+    '1': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, {
+                id: 'sumas-primaria-1',
+                name: 'Sumas sin Llevadas',
+                description: 'Aprende a sumar números de dos cifras.',
+                // Asocia el componente importado
+                component: SumasPrimaria1 
+            }, { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }, { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', description: 'Resuelve sumas sencillas con productos del súper.', component: SupermercadoMatematico1 }],
+    '2': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, {
+                id: 'sumas-primaria-2-drag',
+                name: 'Sumas con Llevadas (2º)',
+                description: 'Resuelve sumas de dos cifras con llevadas.',
+                // Asocia el nuevo componente
+                component: SumasPrimaria2
+            }, { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-2', name: 'Supermercado Matemático (Sumas llevando)', description: 'Suma los precios de varios productos, ¡a veces tendrás que llevar!', component: SupermercadoMatematico2 }],
+    '3': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria,
+        {
+                id: 'sumas-primaria-3-drag',
+                name: 'Sumas con Llevadas (3º)',
+                description: 'Resuelve sumas de 3 y 4 cifras con llevadas.',
+                // Asocia el nuevo componente
+                component: SumasPrimaria3
+            }, { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', description: 'Calcula el coste de comprar varias unidades del mismo producto.', component: SupermercadoMatematico3 }],
+    '4': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, {
+                id: 'sumas-primaria-4-drag',
+                name: 'Sumas triples (4º)',
+                description: 'Resuelve sumas triples de 3 y 4 cifras con llevadas.',
+                // Asocia el nuevo componente
+                component: SumasPrimaria4
+            }, { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 }],
+    '5': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, {
+                id: 'sumas-primaria-5-drag',
+                name: 'Sumas con Decimales (5º)',
+                description: 'Resuelve sumas con decimales.',
+                // Asocia el nuevo componente
+                component: SumasPrimaria5
+            }, { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 }],
     '6': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 }],
 };
 
