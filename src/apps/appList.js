@@ -17,6 +17,7 @@ import SumasPrimaria2 from '@/apps/sumas/primaria-2/SumasPrimaria2';
 import SumasPrimaria3 from '/src/apps/sumas/primaria-3/SumasPrimaria3';
 import SumasPrimaria4 from '/src/apps/sumas/primaria-4/SumasPrimaria4';
 import SumasPrimaria5 from '/src/apps/sumas/primaria-5/SumasPrimaria5';
+import SumasPrimaria6 from '/src/apps/sumas/primaria-6/SumasPrimaria6';
 
 // CORRECCIÓN: Usar el alias de ruta '@' para una importación más robusta.
 import materiasData from './../../public/data/materias.json';
@@ -72,7 +73,13 @@ export const primariaApps = {
                 // Asocia el nuevo componente
                 component: SumasPrimaria5
             }, { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 }],
-    '6': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 }],
+    '6': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria,  {
+                id: 'sumas-primaria-6-drag',
+                name: 'Sumas triples con Decimales (6º)',
+                description: 'Resuelve sumas triples con hasta 3 decimales.',
+                // Asocia el nuevo componente
+                component: SumasPrimaria6
+            },{ ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 }],
 };
 
 // ASIGNATURAS Y APPS DE LA ESO
