@@ -14,7 +14,7 @@ function App() {
     <>
       <Helmet>        
         <title>Apps Educativas para Primaria y secundaria en España</title>
-        <meta name="description" content="Descubre las mejores apps educativas gratuitas, organizadas por cursos de Primaria y ESO para aprender jugando." />
+        <meta name="description" content="Descubre las mejores apps educativas gratuitas organizadas por cursos de Primaria y ESO." />
         <meta name="author" content="Edu Torregrosa" />
       </Helmet>
       

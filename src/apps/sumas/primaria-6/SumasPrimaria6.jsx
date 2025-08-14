@@ -245,11 +245,11 @@ const SumasPrimaria6 = () => {
         mensajeRetro.textContent = '¡Excelente! ¡Suma correcta! 🎉'
         mensajeRetro.className = 'feedback-correct'
       } else {
-        mensajeRetro.textContent = 'el resultado es correcto, pero revisa las llevadas que has escrito'
+        mensajeRetro.textContent = 'El resultado es correcto, pero revisa las llevadas que has escrito'
         mensajeRetro.className = 'feedback-incorrect'
       }
     } else {
-      mensajeRetro.textContent = 'casi... revisa las casillas en rojo'
+      mensajeRetro.textContent = 'Casi... revisa las casillas en rojo'
       mensajeRetro.className = 'feedback-incorrect'
     }
   }
@@ -264,7 +264,7 @@ const SumasPrimaria6 = () => {
     <div id="app-container">
       <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
         <span role="img" aria-label="Suma">📝</span>{' '}
-        <span className="gradient-text">Suma como en el cole · 6º</span>
+        <span className="gradient-text">Suma como en el cole</span>
       </h1>
 
       <div id="options-area">
