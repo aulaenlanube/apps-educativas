@@ -8,11 +8,11 @@ import { findAppById } from '@/apps/appList';
 
 const AppRunnerPage = () => {
     // CAMBIO: Ahora obtenemos level, grade y appId de la URL
-    const { level, grade, appId } = useParams();
+    const { level, grade, subjectId, appId } = useParams();
     const navigate = useNavigate();
 
     // CAMBIO: Le pasamos toda la información a la función de búsqueda
-    const result = findAppById(appId, level, grade);
+    const result = findAppById(appId, level, grade, subjectId);
 
     if (!result) {
         return (
@@ -26,7 +26,7 @@ const AppRunnerPage = () => {
         );
     }
 
-    const { app, subjectId } = result;
+    const { app } = result;
     const AppToRender = app.component;
 
     const backPath = level === 'eso' 

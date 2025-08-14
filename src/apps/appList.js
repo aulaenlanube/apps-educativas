@@ -141,7 +141,7 @@ export const esoApps = {
 };
 
 
-export const findAppById = (id, level, grade) => {
+export const findAppById = (id, level, grade, subjectId ) => {
     if (level === 'primaria') {
         const gradeApps = primariaApps[grade] || [];
         const foundApp = gradeApps.find(app => app.id === id);
@@ -155,6 +155,14 @@ export const findAppById = (id, level, grade) => {
     }
 
     if (level === 'eso') {
+
+        if( subjectId) {
+            const appsInSubject = esoApps[grade]?.[subjectId] || [];
+            const found = appsInSubject.find(app => app.id === id);
+            if (found) return { app: found, level, grade, subjectId };
+        }
+
+
         for (const subjectKey in esoApps[grade]) {
             const subjectApps = esoApps[grade][subjectKey] || [];
             const foundApp = subjectApps.find(app => app.id === id);
@@ -162,8 +170,8 @@ export const findAppById = (id, level, grade) => {
                 return {
                     app: foundApp,
                     level: 'eso',
-                    grade: grade,
-                    subjectId: subjectKey
+                    grade,
+                    subjectId: key
                 };
             }
         }
