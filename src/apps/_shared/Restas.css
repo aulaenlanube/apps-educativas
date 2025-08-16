@@ -155,3 +155,21 @@
 
 /* Opcionales para compatibilidad con el esqueleto de Sumas */
 #app-container .carry-placeholder { width: 30px; height: 30px; visibility: hidden; }
+
+
+/* Para marcar un dígito modificado por llevada */
+.modified-digit {
+  color: #007bff;         /* Azul */
+  position: relative;
+  font-weight: bold;
+}
+
+.modified-digit::after {
+  content: '*';
+  position: absolute;
+  top: 0px;
+  right: -5px;
+  font-size: 0.5em;
+  font-weight: bold;
+  color: #007bff;
+}

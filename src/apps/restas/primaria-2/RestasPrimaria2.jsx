@@ -6,23 +6,23 @@ const RestasPrimaria2 = () => {
   const feedbackRef = useRef(null);
   const helpToggleRef = useRef(null);
 
+  // Estado interno no reactivo porque reconstruimos el DOM de la operación cada vez
   let originalOperands = { num1: 0, num2: 0 };
   let userBorrows = [];
 
-  // --- GENERACIÓN DEL PROBLEMA ---
+  // Genera un problema 2-4 cifras, num1 > num2
   function generateNewProblem() {
-    const numDigits = Math.floor(Math.random() * 3) + 2; // 2, 3 o 4 cifras
-
+    const numDigits = Math.floor(Math.random() * 3) + 2; // 2..4 cifras
     const min = Math.pow(10, numDigits - 1);
     const max = Math.pow(10, numDigits);
     const num1 = Math.floor(Math.random() * (max - min)) + min;
     const num2 = Math.floor(Math.random() * num1);
 
     originalOperands = { num1, num2 };
-    const num1Str = num1.toString().padStart(numDigits, "0");
-    const num2Str = num2.toString().padStart(numDigits, "0");
-
     userBorrows = new Array(numDigits).fill(0);
+
+    const n1 = num1.toString().padStart(numDigits, "0");
+    const n2 = num2.toString().padStart(numDigits, "0");
 
     const area = problemAreaRef.current;
     const feedback = feedbackRef.current;
@@ -30,7 +30,13 @@ const RestasPrimaria2 = () => {
     feedback.textContent = "";
     feedback.className = "";
 
+    // Define rejilla: 1 columna operador + (círculo 25px, dígito 60px) × dígitos
     const columnTemplate = "25px 60px ";
+    area.style.display = "inline-grid";
+    area.style.justifyItems = "center";
+    area.style.alignItems = "center";
+    area.style.gridGap = "5px 0";
+    area.style.gridTemplateRows = "60px 60px 12px 60px";
     area.style.gridTemplateColumns = `35px ${columnTemplate.repeat(numDigits)}`;
 
     // Operador
@@ -43,63 +49,103 @@ const RestasPrimaria2 = () => {
 
     // Celdas por dígito
     for (let i = 0; i < numDigits; i++) {
-      const circleGridCol = 2 + i * 2;
-      const digitGridCol = 3 + i * 2;
+      const circleCol = 2 + i * 2;
+      const digitCol = 3 + i * 2;
 
+      // Círculo de llevada solo si no es la columna más a la izquierda
       if (i !== 0) {
         const borrowBox = document.createElement("div");
         borrowBox.className = "borrow-helper-box";
         borrowBox.dataset.target = "true";
         borrowBox.dataset.type = "borrow";
-        borrowBox.dataset.index = i;
+        borrowBox.dataset.index = String(i);
         borrowBox.style.gridRow = "1";
-        borrowBox.style.gridColumn = circleGridCol;
+        borrowBox.style.gridColumn = String(circleCol);
+
+        // Estilos inline para garantizar visibilidad aunque el CSS no tenga la clase
+        Object.assign(borrowBox.style, {
+          width: "40px",
+          height: "40px",
+          borderRadius: "50%",
+          border: "2px dashed #ccc",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "0.8em",
+          color: "#005a9c",
+          marginRight: "-15px",
+          userSelect: "none",
+        });
+
+        // Soporta DnD sobre el círculo de llevada
+        borrowBox.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          borrowBox.classList.add("drag-over");
+        });
+        borrowBox.addEventListener("dragleave", () => borrowBox.classList.remove("drag-over"));
+        borrowBox.addEventListener("drop", (e) => {
+          e.preventDefault();
+          borrowBox.classList.remove("drag-over");
+          const dropped = e.dataTransfer.getData("text/plain");
+          const idx = parseInt(borrowBox.dataset.index || "0", 10);
+          userBorrows[idx] = dropped === "1" ? 1 : 0;
+          borrowBox.textContent = userBorrows[idx] ? "1" : ""; // Muestra 1 si hay llevada
+          updateSubtrahendDisplay();
+        });
+
         area.appendChild(borrowBox);
       }
 
-      const topNumber = document.createElement("div");
-      topNumber.className = "digit-display";
-      topNumber.textContent = num1Str[i];
-      topNumber.style.gridRow = "1";
-      topNumber.style.gridColumn = digitGridCol;
-      area.appendChild(topNumber);
+      // Dígito superior (minuendo)
+      const topDigit = document.createElement("div");
+      topDigit.className = "digit-display";
+      topDigit.textContent = n1[i];
+      topDigit.style.gridRow = "1";
+      topDigit.style.gridColumn = String(digitCol);
+      area.appendChild(topDigit);
 
-      const bottomNumber = document.createElement("div");
-      bottomNumber.className = "digit-display subtrahend-digit";
-      bottomNumber.textContent = num2Str[i];
-      bottomNumber.style.gridRow = "2";
-      bottomNumber.style.gridColumn = digitGridCol;
-      bottomNumber.dataset.index = i;
-      area.appendChild(bottomNumber);
+      // Dígito inferior (sustraendo, se actualiza si hay llevada a la derecha)
+      const bottomDigit = document.createElement("div");
+      bottomDigit.className = "digit-display subtrahend-digit";
+      bottomDigit.dataset.index = String(i);
+      bottomDigit.textContent = n2[i];
+      bottomDigit.style.gridRow = "2";
+      bottomDigit.style.gridColumn = String(digitCol);
+      area.appendChild(bottomDigit);
 
+      // Casilla de resultado
       const resultBox = document.createElement("div");
       resultBox.className = "box result-box";
       resultBox.dataset.target = "true";
       resultBox.style.gridRow = "4";
-      resultBox.style.gridColumn = digitGridCol;
+      resultBox.style.gridColumn = String(digitCol);
       area.appendChild(resultBox);
     }
 
+    // Línea de operación
     const hr = document.createElement("hr");
     hr.className = "operation-line";
     hr.style.gridRow = "3";
     hr.style.gridColumn = `2 / ${2 + numDigits * 2}`;
     area.appendChild(hr);
 
-    area.classList.toggle("borrows-hidden", !helpToggleRef.current.checked);
+    // Visibilidad de llevadas según el toggle
+    toggleBorrowVisibility(helpToggleRef.current?.checked ?? true);
 
+    // Activa DnD para los números y para las casillas de resultado
     addDragDropListeners();
   }
 
-  // --- DRAG & DROP ---
+  // Activa DnD en casillas de resultado y en paleta de números
   function addDragDropListeners() {
-    const numberTiles = document.querySelectorAll(".number-tile");
-    const targetBoxes = problemAreaRef.current.querySelectorAll("[data-target='true']");
+    const area = problemAreaRef.current;
+    const targetBoxes = area.querySelectorAll("[data-target='true']");
+    const tiles = area.parentElement?.querySelectorAll(".number-tile") || [];
 
-    numberTiles.forEach((tile) => {
-      tile.addEventListener("dragstart", (e) =>
-        e.dataTransfer.setData("text/plain", tile.textContent)
-      );
+    tiles.forEach((tile) => {
+      tile.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("text/plain", tile.textContent || "");
+      });
     });
 
     targetBoxes.forEach((box) => {
@@ -111,114 +157,131 @@ const RestasPrimaria2 = () => {
       box.addEventListener("drop", (e) => {
         e.preventDefault();
         box.classList.remove("drag-over");
-        const digit = e.dataTransfer.getData("text/plain");
-        box.textContent = digit;
+        const dropped = e.dataTransfer.getData("text/plain");
 
-        if (box.dataset.type === "borrow") {
-          const index = parseInt(box.dataset.index);
-          userBorrows[index] = digit === "1" ? 1 : 0;
-          updateSubtrahendDisplay();
-        }
+        // Si es círculo de llevada, ya lo tratamos en su listener inline
+        if (box.dataset.type === "borrow") return;
+
+        // Resultado: escribe el dígito
+        box.textContent = dropped;
       });
     });
   }
 
-  // --- ACTUALIZAR SUSTRAENDO ---
+  // Actualiza visualmente el sustraendo cuando hay llevadas a la derecha
   function updateSubtrahendDisplay() {
-    if (!helpToggleRef.current.checked) return;
+    if (!helpToggleRef.current?.checked) return;
 
-    const subtrahendEls = problemAreaRef.current.querySelectorAll(".subtrahend-digit");
-    const numDigits = subtrahendEls.length;
+    const area = problemAreaRef.current;
+    const subEls = area.querySelectorAll(".subtrahend-digit");
+    const numDigits = subEls.length;
+    if (!numDigits) return;
+
     const originalDigits = originalOperands.num2
       .toString()
       .padStart(numDigits, "0")
       .split("")
       .map(Number);
 
-    subtrahendEls.forEach((el, i) => {
-      let carryFromRight = i < numDigits - 1 && userBorrows[i + 1] === 1 ? 1 : 0;
+    subEls.forEach((el, i) => {
+      const carryFromRight = i < numDigits - 1 && userBorrows[i + 1] === 1 ? 1 : 0;
       const newVal = originalDigits[i] + carryFromRight;
-      el.textContent = newVal;
-      el.classList.toggle("modified-digit", newVal !== originalDigits[i]);
+      el.textContent = String(newVal);
+      el.classList.remove("modified-digit");
+      if (newVal !== originalDigits[i]) el.classList.add("modified-digit");
     });
   }
 
-  // --- COMPROBAR RESPUESTA ---
+  // Muestra u oculta los círculos de llevadas de forma robusta
+  function toggleBorrowVisibility(show) {
+    const area = problemAreaRef.current;
+    const circles = area.querySelectorAll(".borrow-helper-box");
+    circles.forEach((c) => {
+      c.style.visibility = show ? "visible" : "hidden";
+    });
+    // Si se muestran, recalcular subtrahendo visual
+    if (show) updateSubtrahendDisplay();
+    else {
+      // Restaurar dígitos originales
+      const subEls = area.querySelectorAll(".subtrahend-digit");
+      const numDigits = subEls.length;
+      const originalDigits = originalOperands.num2
+        .toString()
+        .padStart(numDigits, "0")
+        .split("");
+      subEls.forEach((el, i) => {
+        el.textContent = originalDigits[i];
+        el.classList.remove("modified-digit");
+      });
+    }
+  }
+
+  // Comprueba el resultado y la corrección de las llevadas si la ayuda está activa
   function checkAnswer() {
-    const resultBoxes = problemAreaRef.current.querySelectorAll(".result-box");
-    const borrowBoxes = problemAreaRef.current.querySelectorAll(".borrow-helper-box");
+    const area = problemAreaRef.current;
+    const resultBoxes = area.querySelectorAll(".result-box");
+    const borrowBoxes = area.querySelectorAll(".borrow-helper-box");
     const numDigits = resultBoxes.length;
-    const helpEnabled = helpToggleRef.current.checked;
+    const helpEnabled = !!helpToggleRef.current?.checked;
 
     const userAnswerStr = Array.from(resultBoxes)
-      .map((box) => box.textContent.trim() || "0")
+      .map((b) => (b.textContent?.trim() || "0"))
       .join("");
-    const userAnswerNum = parseInt(userAnswerStr, 10);
+    const userAnswer = parseInt(userAnswerStr, 10);
     const correctAnswer = originalOperands.num1 - originalOperands.num2;
-    const isResultCorrect = userAnswerNum === correctAnswer;
+    const isResultCorrect = userAnswer === correctAnswer;
 
+    // Colorea casillas de resultado
     const correctDigits = correctAnswer.toString().padStart(numDigits, "0").split("");
     resultBoxes.forEach((box, i) => {
       box.classList.remove("correct", "incorrect");
-      box.classList.add(
-        box.textContent === correctDigits[i] ? "correct" : "incorrect"
-      );
+      box.classList.add(box.textContent === correctDigits[i] ? "correct" : "incorrect");
     });
 
-    let hasWrongBorrow = false;
+    // Validación de llevadas si la ayuda está activa
+    let wrongBorrow = false;
     if (helpEnabled) {
-      const minuendDigits = originalOperands.num1
-        .toString()
-        .padStart(numDigits, "0")
-        .split("")
-        .map(Number);
-      const subtrahendDigits = originalOperands.num2
-        .toString()
-        .padStart(numDigits, "0")
-        .split("")
-        .map(Number);
+      const minuendDigits = originalOperands.num1.toString().padStart(numDigits, "0").split("").map(Number);
+      const subtrahendDigits = originalOperands.num2.toString().padStart(numDigits, "0").split("").map(Number);
       let carry = 0;
 
-      borrowBoxes.forEach((box) => box.classList.remove("correct", "incorrect"));
+      borrowBoxes.forEach((b) => b.classList.remove("correct", "incorrect"));
 
       for (let i = numDigits - 1; i >= 0; i--) {
         const top = minuendDigits[i];
         const bottom = subtrahendDigits[i] + carry;
         const neededBorrow = top < bottom;
-        const userPlacedBorrow = userBorrows[i] === 1;
+        const userPlaced = userBorrows[i] === 1;
+        const circle = area.querySelector(`.borrow-helper-box[data-index="${i}"]`);
 
-        const borrowBox = problemAreaRef.current.querySelector(
-          `.borrow-helper-box[data-index="${i}"]`
-        );
-
-        if (userPlacedBorrow) {
-          if (neededBorrow) borrowBox?.classList.add("correct");
+        if (userPlaced) {
+          if (neededBorrow) circle && circle.classList.add("correct");
           else {
-            borrowBox?.classList.add("incorrect");
-            hasWrongBorrow = true;
+            circle && circle.classList.add("incorrect");
+            wrongBorrow = true;
           }
         }
-        if (!isResultCorrect && neededBorrow && !userPlacedBorrow) {
-          borrowBox?.classList.add("incorrect");
-          hasWrongBorrow = true;
+        if (!isResultCorrect && neededBorrow && !userPlaced) {
+          circle && circle.classList.add("incorrect");
+          wrongBorrow = true;
         }
 
         carry = neededBorrow ? 1 : 0;
       }
     }
 
+    // Mensaje de feedback
     if (isResultCorrect) {
-      if (!helpEnabled || !hasWrongBorrow) {
+      if (!helpEnabled || !wrongBorrow) {
         feedbackRef.current.textContent = "¡Perfecto! ¡Resta correcta! ✅";
         feedbackRef.current.className = "feedback-correct";
-        borrowBoxes.forEach((box) => box.classList.remove("incorrect"));
+        borrowBoxes.forEach((b) => b.classList.remove("incorrect"));
       } else {
-        feedbackRef.current.textContent =
-          "El resultado es correcto, pero has puesto alguna llevada incorrecta.";
+        feedbackRef.current.textContent = "El resultado es correcto, pero has puesto alguna llevada incorrecta";
         feedbackRef.current.className = "feedback-incorrect";
       }
     } else {
-      feedbackRef.current.textContent = "¡Ups! Revisa los números y las llevadas. ❌";
+      feedbackRef.current.textContent = "¡Ups! Revisa los números y las llevadas ❌";
       feedbackRef.current.className = "feedback-incorrect";
     }
   }
@@ -229,7 +292,10 @@ const RestasPrimaria2 = () => {
 
   return (
     <div id="app-container">
-      <h1>Resta como en el cole 📝</h1>
+      <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
+        <span role="img" aria-label="Resta">📝</span>{' '}
+        <span className="gradient-text">Resta como en el cole</span>
+      </h1>
 
       <div id="options-area">
         <label htmlFor="help-toggle">Ayuda con llevadas</label>
@@ -239,25 +305,7 @@ const RestasPrimaria2 = () => {
             id="help-toggle"
             defaultChecked
             ref={helpToggleRef}
-            onChange={() => {
-              problemAreaRef.current.classList.toggle(
-                "borrows-hidden",
-                !helpToggleRef.current.checked
-              );
-              if (helpToggleRef.current.checked) updateSubtrahendDisplay();
-              else {
-                const subtrahendEls =
-                  problemAreaRef.current.querySelectorAll(".subtrahend-digit");
-                const originalDigits = originalOperands.num2
-                  .toString()
-                  .padStart(subtrahendEls.length, "0")
-                  .split("");
-                subtrahendEls.forEach((el, i) => {
-                  el.textContent = originalDigits[i];
-                  el.classList.remove("modified-digit");
-                });
-              }
-            }}
+            onChange={() => toggleBorrowVisibility(!!helpToggleRef.current?.checked)}
           />
           <span className="slider round"></span>
         </label>
@@ -268,12 +316,8 @@ const RestasPrimaria2 = () => {
       <div id="feedback-message" ref={feedbackRef}></div>
 
       <div id="controls">
-        <button id="check-button" onClick={checkAnswer}>
-          Comprobar
-        </button>
-        <button id="new-problem-button" onClick={generateNewProblem}>
-          Nueva Resta
-        </button>
+        <button id="check-button" onClick={checkAnswer}>Comprobar</button>
+        <button id="new-problem-button" onClick={generateNewProblem}>Nueva Resta</button>
       </div>
 
       <div id="number-palette">
@@ -284,9 +328,7 @@ const RestasPrimaria2 = () => {
               key={n}
               className="number-tile"
               draggable="true"
-              onDragStart={(e) =>
-                e.dataTransfer.setData("text/plain", n.toString())
-              }
+              onDragStart={(e) => e.dataTransfer.setData("text/plain", n.toString())}
             >
               {n}
             </div>
