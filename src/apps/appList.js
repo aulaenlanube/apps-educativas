@@ -19,6 +19,14 @@ import SumasPrimaria4 from '/src/apps/sumas/primaria-4/SumasPrimaria4';
 import SumasPrimaria5 from '/src/apps/sumas/primaria-5/SumasPrimaria5';
 import SumasPrimaria6 from '/src/apps/sumas/primaria-6/SumasPrimaria6';
 
+import RestasPrimaria1 from './restas/primaria-1/RestasPrimaria1';
+import RestasPrimaria2 from './restas/primaria-2/RestasPrimaria2';
+import RestasPrimaria3 from './restas/primaria-3/RestasPrimaria3';
+import RestasPrimaria4 from './restas/primaria-4/RestasPrimaria4';
+import RestasPrimaria5 from './restas/primaria-5/RestasPrimaria5';
+import RestasPrimaria6 from './restas/primaria-6/RestasPrimaria6';
+
+
 // CORRECCIÓN: Usar el alias de ruta '@' para una importación más robusta.
 import materiasData from './../../public/data/materias.json';
 
@@ -43,14 +51,23 @@ export const primariaApps = {
                 description: 'Aprende a sumar números de dos cifras.',
                 // Asocia el componente importado
                 component: SumasPrimaria1 
-            }, { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }, { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', description: 'Resuelve sumas sencillas con productos del súper.', component: SupermercadoMatematico1 }],
+            }, {
+  id: 'restas-primaria-1',
+  name: 'Resta 1º Primaria',
+  description: 'Restas de 2 cifras sin llevadas',
+  component: RestasPrimaria1,
+}, { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }, { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', description: 'Resuelve sumas sencillas con productos del súper.', component: SupermercadoMatematico1 }],
     '2': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, {
                 id: 'sumas-primaria-2-drag',
                 name: 'Sumas con Llevadas (2º)',
                 description: 'Resuelve sumas de dos cifras con llevadas.',
                 // Asocia el nuevo componente
                 component: SumasPrimaria2
-            }, { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-2', name: 'Supermercado Matemático (Sumas llevando)', description: 'Suma los precios de varios productos, ¡a veces tendrás que llevar!', component: SupermercadoMatematico2 }],
+            }, {
+  id: 'restas-primaria-1',
+  name: 'Resta 2º Primaria',
+  description: 'Restas de 2 cifras con llevadas',
+  component: RestasPrimaria2,}, { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-2', name: 'Supermercado Matemático (Sumas llevando)', description: 'Suma los precios de varios productos, ¡a veces tendrás que llevar!', component: SupermercadoMatematico2 }],
     '3': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria,
         {
                 id: 'sumas-primaria-3-drag',

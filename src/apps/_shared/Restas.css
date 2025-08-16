@@ -1,0 +1,157 @@
+/* Mismo enfoque que en Sumas.css: alta especificidad basada en #app-container
+   para evitar conflictos con CSS global del proyecto. */
+
+#app-container {
+  background-color: #ffffff;
+  padding: 20px 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-width: 380px;
+  max-width: 95vw;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #333;
+  user-select: none;
+  font-family: 'Lexend', sans-serif;
+}
+
+#app-container h1 { font-family: 'Fredoka One', cursive; }
+#app-container h2 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5em;
+  color: #005a9c;
+}
+
+/* Área del problema: mismo layout que Sumas */
+#app-container #problem-area {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 20px auto;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+#app-container .column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2px;
+}
+
+#app-container .digit-display {
+  width: 45px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Línea por columna, igual que en Sumas */
+#app-container .operation-line {
+  border: none;
+  border-top: 5px solid #333;
+  width: 120%;
+  margin: 10px;
+  padding: 0;
+  position: relative;
+  left: -2.5%;
+}
+
+/* Operador y espaciador como en Sumas */
+#app-container .operator {
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 70px;
+  color: #e74c3c;
+}
+#app-container .operator-spacer { width: 35px; }
+
+/* Cajas de resultado: misma transición/borde para evitar “saltos” */
+#app-container .box {
+  width: 45px;
+  height: 45px;
+  border: 2px dashed #ccc;      /* mismo grosor en todos los estados */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+  margin-bottom: 5px;
+  box-sizing: border-box;        /* que el borde no cambie el tamaño total */
+}
+
+#app-container .box.drag-over {
+  background-color: #e0e0e0;
+  border-style: solid;
+}
+
+#app-container .box.correct {
+  border: 2px solid #2ecc71;
+  background-color: #e8f8f5;
+}
+
+#app-container .box.incorrect {
+  border: 2px solid #e74c3c;
+  background-color: #fdedec;
+}
+
+/* Feedback con altura fija (como en Sumas) para que no mueva la UI */
+#app-container #feedback-message {
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  height: 30px;                 /* reserva espacio siempre */
+}
+#app-container .feedback-correct { color: #2ecc71; }
+#app-container .feedback-incorrect { color: #e74c3c; }
+
+/* Paleta y controles (idénticos a Sumas) */
+#app-container #number-palette {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+#app-container .number-tiles-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#app-container .number-tile {
+  display: inline-flex;
+  width: 50px;
+  height: 50px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: grab;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.1s;
+}
+#app-container .number-tile:active { cursor: grabbing; transform: scale(1.1); }
+
+#app-container #controls { margin-top: 20px; }
+
+#app-container button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  margin: 0 10px;
+}
+#app-container #check-button { background-color: #28a745; }
+#app-container #new-problem-button { background-color: #c0392b; }
+
+/* Opcionales para compatibilidad con el esqueleto de Sumas */
+#app-container .carry-placeholder { width: 30px; height: 30px; visibility: hidden; }
