@@ -133,3 +133,63 @@ input:checked + .slider:before { transform: translateX(26px); }
 button { padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; color: white; cursor: pointer; margin: 0 10px; }
 #check-button { background-color: #28a745; }
 #new-problem-button { background-color: #c0392b; }
+
+
+.with-decimal { position: relative; }
+.decimal-mark {
+  position: absolute;
+  right: -6px;
+  bottom: 6px;
+  font-weight: bold;
+  font-size: 0.8em;
+  pointer-events: none;
+}
+/* Coma visual en operandos (se mantiene) */
+.with-decimal { position: relative; }
+.decimal-mark {
+  position: absolute;
+  right: -6px;
+  bottom: 6px;
+  font-weight: bold;
+  font-size: 0.8em;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* --- Huecos de coma en el resultado (vertical entre números) --- */
+/* Fila de huecos para la coma */
+.comma-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: -25px;     /* muy pegado a las cajas de los dígitos */
+  margin-bottom: 6px;
+}
+
+/* Rectángulos verticales pequeños */
+.comma-slot {
+  width: 8px;           /* más finito */
+  height: 18px;         /* más corto que la caja de dígito */
+  border: 2px solid #bdbdbd;
+  background: #fff;
+  border-radius: 2px;
+  margin: 0 20px;       /* se ajusta al ancho de tus cajas (~45px) */
+  cursor: pointer;
+  transition: background-color .1s, border-color .1s;
+}
+
+/* Estado activo: negro sólido */
+.comma-slot.active {
+  background: #000;
+  border-color: #000;
+}
+
+.comma-slot:active{ transform:scale(0.96); }
+
+/* Estado activo: negro sólido */
+.comma-slot.active{
+  background:#000;
+  border-color:#000;
+}
+
+/* Sin estados intermedios ni guías de color */
