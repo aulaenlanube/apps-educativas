@@ -139,7 +139,7 @@
 }
 #app-container .number-tile:active { cursor: grabbing; transform: scale(1.1); }
 
-#app-container #controls { margin-top: 20px; }
+#app-container #controls { margin-top: 50px; } 
 
 #app-container button {
   padding: 10px 20px;

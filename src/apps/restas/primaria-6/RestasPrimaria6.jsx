@@ -13,17 +13,21 @@ const RestasPrimaria6 = () => {
   function generateNewProblem() {
     hiddenPart = Math.random() < 0.5 ? 'minuend' : 'subtrahend';
 
-    const num1IntDigits = Math.floor(Math.random() * 2) + 3; // 3-4 int digits
-    const num1DecimalPlaces = Math.floor(Math.random() * 3); // 0-2 dec places
+    const num1IntDigits = Math.floor(Math.random() * 2) + 1; // 1-2
+    const num1DecimalPlaces = Math.floor(Math.random() * 3) + 1; // 1-3
     const num1TotalDigits = num1IntDigits + num1DecimalPlaces;
+
     const num1Factor = Math.pow(10, num1DecimalPlaces);
     const num1Min = Math.pow(10, num1TotalDigits - 1);
     const num1Max = Math.pow(10, num1TotalDigits);
     const num1Int = Math.floor(Math.random() * (num1Max - num1Min)) + num1Min;
     const num1 = num1Int / num1Factor;
 
-    const num2DecimalPlaces = Math.floor(Math.random() * 3);
-    let num2 = (Math.random() * num1 * 0.9).toFixed(num2DecimalPlaces);
+    const num2DecimalPlaces = Math.floor(Math.random() * 3) + 1; // 1-3
+    let num2 = (Math.random() * num1).toFixed(num2DecimalPlaces);
+    if (parseFloat(num2) >= num1) {
+        num2 = (num1 * 0.9).toFixed(num2DecimalPlaces);
+    }
     num2 = parseFloat(num2);
 
     const result = num1 - num2;

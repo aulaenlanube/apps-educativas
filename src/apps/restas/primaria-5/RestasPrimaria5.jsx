@@ -12,8 +12,8 @@ const RestasPrimaria5 = () => {
   let maxDecimalPlaces = 0;
 
   function generateNewProblem() {
-    const num1IntDigits = Math.floor(Math.random() * 2) + 3; // 3-4 integer digits for num1
-    const num1DecimalPlaces = Math.floor(Math.random() * 3); // 0-2 decimal places for num1
+    const num1IntDigits = Math.floor(Math.random() * 2) + 2; // 1-2
+    const num1DecimalPlaces = Math.floor(Math.random() * 2) + 2; // 1-2
     const num1TotalDigits = num1IntDigits + num1DecimalPlaces;
 
     const num1Factor = Math.pow(10, num1DecimalPlaces);
@@ -22,12 +22,11 @@ const RestasPrimaria5 = () => {
     const num1Int = Math.floor(Math.random() * (num1Max - num1Min)) + num1Min;
     const num1 = num1Int / num1Factor;
 
-    const num2IntDigits = Math.floor(Math.random() * num1IntDigits) + 1;
-    const num2DecimalPlaces = Math.floor(Math.random() * 3);
-    const num2TotalDigits = num2IntDigits + num2DecimalPlaces;
-    const num2Factor = Math.pow(10, num2DecimalPlaces);
-    const num2Max = Math.pow(10, num2TotalDigits);
-    let num2 = (Math.random() * num1 * 0.9).toFixed(num2DecimalPlaces);
+    const num2DecimalPlaces = Math.floor(Math.random() * 2) + 1; // 1-2
+    let num2 = (Math.random() * num1).toFixed(num2DecimalPlaces);
+    if (parseFloat(num2) >= num1) {
+        num2 = (num1 * 0.9).toFixed(num2DecimalPlaces);
+    }
     num2 = parseFloat(num2);
 
     originalOperands = { num1, num2 };

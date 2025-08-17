@@ -8,11 +8,15 @@ const RestasPrimaria4 = () => {
 
   let originalOperands = { num1: 0, num2: 0 };
   let userBorrows = [];
-  const intDigits = 3;
-  const decimalPlaces = 1;
-  const numDigits = intDigits + decimalPlaces;
+  let intDigits = 0;
+  let decimalPlaces = 0;
+  let numDigits = 0;
 
   function generateNewProblem() {
+    intDigits = Math.floor(Math.random() * 2) + 1; // 2-3
+    decimalPlaces = 1; // 0-1
+    numDigits = intDigits + decimalPlaces;
+
     const factor = Math.pow(10, decimalPlaces);
     const min = Math.pow(10, numDigits - 1);
     const max = Math.pow(10, numDigits);
@@ -35,8 +39,10 @@ const RestasPrimaria4 = () => {
     const columnTemplate = "25px 60px ";
     let gridColumns = `35px `;
     for (let i = 0; i < intDigits; i++) gridColumns += columnTemplate;
-    gridColumns += "35px "; // Comma
-    for (let i = 0; i < decimalPlaces; i++) gridColumns += columnTemplate;
+    if (decimalPlaces > 0) {
+        gridColumns += "35px "; // Comma
+        for (let i = 0; i < decimalPlaces; i++) gridColumns += columnTemplate;
+    }
 
     area.style.display = "inline-grid";
     area.style.justifyItems = "center";
@@ -54,7 +60,7 @@ const RestasPrimaria4 = () => {
 
     let currentGridCol = 2;
     for (let i = 0; i < numDigits; i++) {
-      if (i === intDigits) {
+      if (i === intDigits && decimalPlaces > 0) {
         const comma = (row) => {
             const el = document.createElement("div");
             el.className = "digit-display";
@@ -196,7 +202,9 @@ const RestasPrimaria4 = () => {
     const helpEnabled = !!helpToggleRef.current?.checked;
 
     let userAnswerStr = resultBoxes.map(b => b.textContent?.trim() || "0").join("");
-    userAnswerStr = userAnswerStr.slice(0, intDigits) + "." + userAnswerStr.slice(intDigits);
+    if (decimalPlaces > 0) {
+        userAnswerStr = userAnswerStr.slice(0, intDigits) + "." + userAnswerStr.slice(intDigits);
+    }
     
     const userAnswer = parseFloat(userAnswerStr);
     const correctAnswer = originalOperands.num1 - originalOperands.num2;
@@ -277,7 +285,7 @@ const RestasPrimaria4 = () => {
       </div>
 
       <div id="problem-area" ref={problemAreaRef}></div>
-      <div id="feedback-message" ref={feedbackRef}></div>
+      <div id="feedback-message" ref={feedbackRef} className="mb-4"></div>
 
       <div id="controls">
         <button id="check-button" onClick={checkAnswer}>Comprobar</button>
