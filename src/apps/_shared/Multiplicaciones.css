@@ -1,0 +1,135 @@
+/* Estilos generales compatibles con 3º y 4º */
+#app-container {
+  background-color: #ffffff;
+  padding: 20px 40px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,.1);
+  text-align: center;
+  min-width: 380px;
+  max-width: 95vw;
+  font-family: 'Lexend', sans-serif;
+  color: #333;
+}
+
+#app-container h1 {
+   font-family: 'Fredoka One', cursive;
+   
+}
+
+#app-container h2 {
+   font-family: 'Fredoka One', cursive;
+    font-size: 1.5em;
+    color: #005a9c;
+}
+
+/* Opciones y toggle */
+#options-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}
+#options-area label { margin-right: 10px; }
+
+.switch { position: relative; display: inline-block; width: 60px; height: 34px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; }
+.slider:before { position: absolute; content: ""; height: 26px; width: 26px; left: 4px; bottom: 4px; background-color: white; transition: .4s; }
+input:checked + .slider { background-color: #28a745; }
+input:checked + .slider:before { transform: translateX(26px); }
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+
+/* Rejilla del problema */
+#problem-area {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 20px auto;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 2px;
+}
+
+.digit-display {
+  width: 45px;
+  position: relative;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Símbolo × inline */
+.cross-inline {
+  position: absolute;
+  right: 100%;
+  margin-right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #e74c3c;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.operation-line {
+  border: 2px solid #333;
+  width: 100%;
+}
+
+/* Casillas */
+.box {
+  width: 45px;
+  height: 45px;
+  border: 2px dashed #ccc;   /* Grosor constante */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  transition: all .2s ease;
+  margin-bottom: 5px;
+}
+
+.carry-box {
+  width: 30px;
+  height: 30px;
+  font-size: .8em;
+  border-radius: 50%;
+  color: #e74c3c;
+}
+
+.box.disabled { opacity: .4; pointer-events: none; }
+.carries-hidden .carry-box,
+.hidden-by-toggle { visibility: hidden; }
+
+/* Estados de feedback (mismo grosor de borde) */
+.box.drag-over { background-color: #e0e0e0; border-style: solid; }
+.box.correct   { border: 2px solid #2ecc71; background-color: #e8f8f5; }
+.box.incorrect { border: 2px solid #e74c3c; background-color: #fdedec; }
+
+/* Mensaje */
+#feedback-message { margin-top: 20px; font-size: 1.2em; font-weight: bold; height: 30px; }
+.feedback-correct { color: #2ecc71; }
+.feedback-incorrect { color: #e74c3c; }
+
+/* Paleta y botones */
+#number-palette { margin-top: 15px; padding: 15px; background-color: #f9f9f9; border-radius: 10px; }
+.number-tiles-container { display: flex; flex-wrap: wrap; justify-content: center; }
+.number-tile {
+  display: inline-flex; width: 50px; height: 50px; background-color: #007bff;
+  color: white; font-size: 1.8em; font-weight: bold; margin: 5px; border-radius: 8px;
+  cursor: grab; justify-content: center; align-items: center; transition: transform .1s;
+}
+.number-tile:active { cursor: grabbing; transform: scale(1.1); }
+
+#controls { margin-top: 20px; }
+button { padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; color: white; cursor: pointer; margin: 0 10px; }
+#check-button { background-color: #28a745; }
+#new-problem-button { background-color: #c0392b; }

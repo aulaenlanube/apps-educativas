@@ -26,6 +26,11 @@ import RestasPrimaria4 from './restas/primaria-4/RestasPrimaria4';
 import RestasPrimaria5 from './restas/primaria-5/RestasPrimaria5';
 import RestasPrimaria6 from './restas/primaria-6/RestasPrimaria6';
 
+import MultiplicacionesPrimaria3 from './multiplicaciones/primaria-3/MultiplicacionesPrimaria3';
+import MultiplicacionesPrimaria4 from './multiplicaciones/primaria-4/MultiplicacionesPrimaria4';
+import MultiplicacionesPrimaria5 from './multiplicaciones/primaria-5/MultiplicacionesPrimaria5';
+import MultiplicacionesPrimaria6 from './multiplicaciones/primaria-6/MultiplicacionesPrimaria6';
+
 
 // CORRECCIÓN: Usar el alias de ruta '@' para una importación más robusta.
 import materiasData from './../../public/data/materias.json';
@@ -77,7 +82,11 @@ export const primariaApps = {
   name: 'Resta 3º Primaria',
   description: 'Restas de 3 y 4 cifras con llevadas',
   component: RestasPrimaria3,
-}, { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', description: 'Calcula el coste de comprar varias unidades del mismo producto.', component: SupermercadoMatematico3 }],
+}, 
+{ id: 'multiplicaciones-primaria-3',
+  name: 'Multiplicaciones 3º Primaria',
+  description: 'Multiplicaciones de 1 cifra en el multiplicador',
+  component: MultiplicacionesPrimaria3,}, { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', description: 'Calcula el coste de comprar varias unidades del mismo producto.', component: SupermercadoMatematico3 }],
     '4': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, {
                 id: 'sumas-primaria-4-drag',
                 name: 'Sumas triples (4º)',
@@ -88,7 +97,12 @@ export const primariaApps = {
   name: 'Resta 4º Primaria',
   description: 'Restas con 1 decimal',
   component: RestasPrimaria4,
-}, { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 }],
+}, {
+     id: 'multiplicaciones-primaria-4',
+  name: 'Multiplicaciones 4º Primaria',
+  description: 'Multiplica por más de 1 cifra',
+  component: MultiplicacionesPrimaria4,
+ },{ ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 }],
     '5': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, {
                 id: 'sumas-primaria-5-drag',
                 name: 'Sumas con Decimales (5º)',
@@ -99,7 +113,12 @@ export const primariaApps = {
   name: 'Resta 5º Primaria',
   description: 'Restas con varios decimales',
   component: RestasPrimaria5,
-}, { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 }],
+}, {
+     id: 'multiplicaciones-primaria-5',
+  name: 'Multiplicaciones 5º Primaria',
+  description: 'Multiplica por varios dígitos',
+  component: MultiplicacionesPrimaria5,
+ },{ ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 }],
     '6': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria,  {
                 id: 'sumas-primaria-6-drag',
                 name: 'Sumas triples con Decimales (6º)',
@@ -110,7 +129,12 @@ export const primariaApps = {
   name: 'Resta 6º Primaria',
   description: 'Completa la resta',
   component: RestasPrimaria6,
-}, { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 }],
+}, {
+     id: 'multiplicaciones-primaria-6',
+  name: 'Multiplicaciones 6º Primaria',
+  description: 'Multiplicaciones con decimales',
+  component: MultiplicacionesPrimaria6,
+ }, { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' },{ id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 }],
 };
 
 // ASIGNATURAS Y APPS DE LA ESO
