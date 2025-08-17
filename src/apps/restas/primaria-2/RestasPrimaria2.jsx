@@ -12,7 +12,7 @@ const RestasPrimaria2 = () => {
 
   // Genera un problema 2-4 cifras, num1 > num2
   function generateNewProblem() {
-    const numDigits = Math.floor(Math.random() * 3) + 2; // 2..4 cifras
+    const numDigits = Math.floor(Math.random() * 2) + 2; // 2..3 cifras
     const min = Math.pow(10, numDigits - 1);
     const max = Math.pow(10, numDigits);
     const num1 = Math.floor(Math.random() * (max - min)) + min;

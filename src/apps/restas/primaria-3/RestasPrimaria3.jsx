@@ -1,288 +1,341 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import '/src/apps/_shared/Restas.css';
+import React, { useEffect, useRef } from "react";
+import "/src/apps/_shared/Restas.css"; // usa el CSS que ya tienes adaptado
 
-/**
- * Componente para 3º de Primaria: restas de 3 o 4 cifras con llevadas.
- *
- * Genera restas de tres o cuatro dígitos en las que el minuendo es
- * siempre mayor o igual que el sustraendo. Permite practicar las
- * llevadas entre columnas. El número de cifras se elige aleatoriamente
- * (50% de probabilidad de cada uno) para aportar variedad.
- */
 const RestasPrimaria3 = () => {
   const problemAreaRef = useRef(null);
   const feedbackRef = useRef(null);
-  const [originalOperands, setOriginalOperands] = useState({ num1: 0, num2: 0, digits: 3 });
-  const [helpEnabled, setHelpEnabled] = useState(true);
-  const userBorrowsRef = useRef([]);
+  const helpToggleRef = useRef(null);
 
-  /**
-   * Genera un nuevo ejercicio de resta. Puede ser de 3 o 4 cifras.
-   */
-  const generateNewProblem = useCallback(() => {
-    // Decide aleatoriamente si se usan 3 o 4 cifras
-    const digits = Math.random() < 0.5 ? 3 : 4;
-    const min = Math.pow(10, digits - 1);
-    const max = Math.pow(10, digits) - 1;
-    let num1, num2;
-    // Garantizar que num1 >= num2
-    do {
-      num1 = Math.floor(Math.random() * (max - min + 1)) + min;
-      num2 = Math.floor(Math.random() * (max - min + 1)) + min;
-    } while (num1 < num2);
-    setOriginalOperands({ num1, num2, digits });
-    userBorrowsRef.current = new Array(digits).fill(0);
-    const problemArea = problemAreaRef.current;
+  // Estado interno no reactivo porque reconstruimos el DOM de la operación cada vez
+  let originalOperands = { num1: 0, num2: 0 };
+  let userBorrows = [];
+
+  // Genera un problema 3-4 cifras, num1 > num2
+  function generateNewProblem() {
+    const numDigits = Math.floor(Math.random() * 2) + 3; // 3..4 cifras
+    const min = Math.pow(10, numDigits - 1);
+    const max = Math.pow(10, numDigits);
+    const num1 = Math.floor(Math.random() * (max - min)) + min;
+    const num2 = Math.floor(Math.random() * num1);
+
+    originalOperands = { num1, num2 };
+    userBorrows = new Array(numDigits).fill(0);
+
+    const n1 = num1.toString().padStart(numDigits, "0");
+    const n2 = num2.toString().padStart(numDigits, "0");
+
+    const area = problemAreaRef.current;
     const feedback = feedbackRef.current;
-    if (!problemArea || !feedback) return;
-    problemArea.innerHTML = '';
-    feedback.textContent = '';
-    feedback.className = '';
-    const columnTemplate = '25px 60px ';
-    problemArea.style.gridTemplateColumns = `35px ${columnTemplate.repeat(digits)}`;
-    // Operador '-'
-    const operator = document.createElement('div');
-    operator.className = 'operator';
-    operator.textContent = '-';
-    operator.style.gridRow = '2';
-    operator.style.gridColumn = '1';
-    problemArea.appendChild(operator);
-    const num1Str = num1.toString().padStart(digits, '0');
-    const num2Str = num2.toString().padStart(digits, '0');
-    for (let i = 0; i < digits; i++) {
-      const circleGridCol = 2 + i * 2;
-      const digitGridCol = 3 + i * 2;
+    area.innerHTML = "";
+    feedback.textContent = "";
+    feedback.className = "";
+
+    // Define rejilla: 1 columna operador + (círculo 25px, dígito 60px) × dígitos
+    const columnTemplate = "25px 60px ";
+    area.style.display = "inline-grid";
+    area.style.justifyItems = "center";
+    area.style.alignItems = "center";
+    area.style.gridGap = "5px 0";
+    area.style.gridTemplateRows = "60px 60px 12px 60px";
+    area.style.gridTemplateColumns = `35px ${columnTemplate.repeat(numDigits)}`;
+
+    // Operador
+    const operator = document.createElement("div");
+    operator.className = "operator";
+    operator.textContent = "-";
+    operator.style.gridRow = "2";
+    operator.style.gridColumn = "1";
+    area.appendChild(operator);
+
+    // Celdas por dígito
+    for (let i = 0; i < numDigits; i++) {
+      const circleCol = 2 + i * 2;
+      const digitCol = 3 + i * 2;
+
+      // Círculo de llevada solo si no es la columna más a la izquierda
       if (i !== 0) {
-        const borrowBox = document.createElement('div');
-        borrowBox.className = 'borrow-helper-box';
-        borrowBox.dataset.target = 'true';
-        borrowBox.dataset.type = 'borrow';
-        borrowBox.dataset.index = i.toString();
-        borrowBox.style.gridRow = '1';
-        borrowBox.style.gridColumn = circleGridCol.toString();
-        problemArea.appendChild(borrowBox);
-      }
-      // minuendo
-      const topDigit = document.createElement('div');
-      topDigit.className = 'digit-display';
-      topDigit.textContent = num1Str[i];
-      topDigit.style.gridRow = '1';
-      topDigit.style.gridColumn = digitGridCol.toString();
-      problemArea.appendChild(topDigit);
-      // sustraendo
-      const botDigit = document.createElement('div');
-      botDigit.className = 'digit-display subtrahend-digit';
-      botDigit.textContent = num2Str[i];
-      botDigit.style.gridRow = '2';
-      botDigit.style.gridColumn = digitGridCol.toString();
-      botDigit.dataset.index = i.toString();
-      problemArea.appendChild(botDigit);
-      // resultado
-      const resultBox = document.createElement('div');
-      resultBox.className = 'box result-box';
-      resultBox.dataset.target = 'true';
-      resultBox.style.gridRow = '4';
-      resultBox.style.gridColumn = digitGridCol.toString();
-      problemArea.appendChild(resultBox);
-    }
-    const hr = document.createElement('hr');
-    hr.className = 'operation-line';
-    hr.style.gridRow = '3';
-    hr.style.gridColumn = `2 / ${2 + digits * 2}`;
-    problemArea.appendChild(hr);
-    problemArea.classList.toggle('borrows-hidden', !helpEnabled);
-    addDragDropListeners();
-    updateSubtrahendDisplay();
-  }, [helpEnabled]);
+        const borrowBox = document.createElement("div");
+        borrowBox.className = "borrow-helper-box";
+        borrowBox.dataset.target = "true";
+        borrowBox.dataset.type = "borrow";
+        borrowBox.dataset.index = String(i);
+        borrowBox.style.gridRow = "1";
+        borrowBox.style.gridColumn = String(circleCol);
 
-  /**
-   * Drag & drop listeners.
-   */
-  const addDragDropListeners = () => {
-    const problemArea = problemAreaRef.current;
-    if (!problemArea) return;
-    const targets = problemArea.querySelectorAll('[data-target="true"]');
-    const tiles = document.querySelectorAll('.number-tile');
-    tiles.forEach(tile => {
-      tile.addEventListener('dragstart', e => {
-        e.dataTransfer.setData('text/plain', tile.textContent);
-      });
-    });
-    targets.forEach(box => {
-      box.addEventListener('dragover', e => {
-        e.preventDefault();
-        box.classList.add('drag-over');
-      });
-      box.addEventListener('dragleave', () => box.classList.remove('drag-over'));
-      box.addEventListener('drop', e => {
-        e.preventDefault();
-        box.classList.remove('drag-over', 'correct', 'incorrect');
-        const digit = e.dataTransfer.getData('text/plain');
-        box.textContent = digit;
-        if (box.dataset.type === 'borrow') {
-          const idx = parseInt(box.dataset.index);
-          userBorrowsRef.current[idx] = digit === '1' ? 1 : 0;
+        // Estilos inline para garantizar visibilidad aunque el CSS no tenga la clase
+        Object.assign(borrowBox.style, {
+          width: "40px",
+          height: "40px",
+          borderRadius: "50%",
+          border: "2px dashed #ccc",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontSize: "0.8em",
+          color: "#005a9c",
+          marginRight: "-15px",
+          userSelect: "none",
+        });
+
+        // Soporta DnD sobre el círculo de llevada
+        borrowBox.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          borrowBox.classList.add("drag-over");
+        });
+        borrowBox.addEventListener("dragleave", () => borrowBox.classList.remove("drag-over"));
+        borrowBox.addEventListener("drop", (e) => {
+          e.preventDefault();
+          borrowBox.classList.remove("drag-over");
+          const dropped = e.dataTransfer.getData("text/plain");
+          const idx = parseInt(borrowBox.dataset.index || "0", 10);
+          userBorrows[idx] = dropped === "1" ? 1 : 0;
+          borrowBox.textContent = userBorrows[idx] ? "1" : ""; // Muestra 1 si hay llevada
           updateSubtrahendDisplay();
-        }
+        });
+
+        area.appendChild(borrowBox);
+      }
+
+      // Dígito superior (minuendo)
+      const topDigit = document.createElement("div");
+      topDigit.className = "digit-display";
+      topDigit.textContent = n1[i];
+      topDigit.style.gridRow = "1";
+      topDigit.style.gridColumn = String(digitCol);
+      area.appendChild(topDigit);
+
+      // Dígito inferior (sustraendo, se actualiza si hay llevada a la derecha)
+      const bottomDigit = document.createElement("div");
+      bottomDigit.className = "digit-display subtrahend-digit";
+      bottomDigit.dataset.index = String(i);
+      bottomDigit.textContent = n2[i];
+      bottomDigit.style.gridRow = "2";
+      bottomDigit.style.gridColumn = String(digitCol);
+      area.appendChild(bottomDigit);
+
+      // Casilla de resultado
+      const resultBox = document.createElement("div");
+      resultBox.className = "box result-box";
+      resultBox.dataset.target = "true";
+      resultBox.style.gridRow = "4";
+      resultBox.style.gridColumn = String(digitCol);
+      area.appendChild(resultBox);
+    }
+
+    // Línea de operación
+    const hr = document.createElement("hr");
+    hr.className = "operation-line";
+    hr.style.gridRow = "3";
+    hr.style.gridColumn = `2 / ${2 + numDigits * 2}`;
+    area.appendChild(hr);
+
+    // Visibilidad de llevadas según el toggle
+    toggleBorrowVisibility(helpToggleRef.current?.checked ?? true);
+
+    // Activa DnD para los números y para las casillas de resultado
+    addDragDropListeners();
+  }
+
+  // Activa DnD en casillas de resultado y en paleta de números
+  function addDragDropListeners() {
+    const area = problemAreaRef.current;
+    const targetBoxes = area.querySelectorAll("[data-target='true']");
+    const tiles = area.parentElement?.querySelectorAll(".number-tile") || [];
+
+    tiles.forEach((tile) => {
+      tile.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("text/plain", tile.textContent || "");
       });
     });
-  };
 
-  /**
-   * Actualiza los dígitos del sustraendo aplicando las llevadas definidas
-   * por el usuario. Si hay una llevada en la columna i+1, se suma 1 al
-   * dígito de la columna i del sustraendo.
-   */
-  const updateSubtrahendDisplay = () => {
-    if (!helpEnabled) return;
-    const problemArea = problemAreaRef.current;
-    if (!problemArea) return;
-    const subDigits = problemArea.querySelectorAll('.subtrahend-digit');
-    const n = subDigits.length;
-    if (n === 0) return;
-    const orig = originalOperands.num2
-      .toString()
-      .padStart(n, '0')
-      .split('')
-      .map(d => parseInt(d));
-    subDigits.forEach((el, i) => {
-      let carryFromRight = 0;
-      if (i < n - 1 && userBorrowsRef.current[i + 1] === 1) carryFromRight = 1;
-      const newVal = orig[i] + carryFromRight;
-      el.textContent = newVal.toString();
-      el.classList.remove('modified-digit');
-      if (newVal !== orig[i]) {
-        el.classList.add('modified-digit');
-      }
+    targetBoxes.forEach((box) => {
+      box.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        box.classList.add("drag-over");
+      });
+      box.addEventListener("dragleave", () => box.classList.remove("drag-over"));
+      box.addEventListener("drop", (e) => {
+        e.preventDefault();
+        box.classList.remove("drag-over");
+        const dropped = e.dataTransfer.getData("text/plain");
+
+        // Si es círculo de llevada, ya lo tratamos en su listener inline
+        if (box.dataset.type === "borrow") return;
+
+        // Resultado: escribe el dígito
+        box.textContent = dropped;
+      });
     });
-  };
+  }
 
-  /**
-   * Comprueba la respuesta y las llevadas del usuario.
-   */
-  const checkAnswer = () => {
-    const problemArea = problemAreaRef.current;
-    if (!problemArea) return;
-    const resultBoxes = problemArea.querySelectorAll('.result-box');
-    const borrowBoxes = problemArea.querySelectorAll('.borrow-helper-box');
-    const n = resultBoxes.length;
+  // Actualiza visualmente el sustraendo cuando hay llevadas a la derecha
+  function updateSubtrahendDisplay() {
+    if (!helpToggleRef.current?.checked) return;
+
+    const area = problemAreaRef.current;
+    const subEls = area.querySelectorAll(".subtrahend-digit");
+    const numDigits = subEls.length;
+    if (!numDigits) return;
+
+    const originalDigits = originalOperands.num2
+      .toString()
+      .padStart(numDigits, "0")
+      .split("")
+      .map(Number);
+
+    subEls.forEach((el, i) => {
+      const carryFromRight = i < numDigits - 1 && userBorrows[i + 1] === 1 ? 1 : 0;
+      const newVal = originalDigits[i] + carryFromRight;
+      el.textContent = String(newVal);
+      el.classList.remove("modified-digit");
+      if (newVal !== originalDigits[i]) el.classList.add("modified-digit");
+    });
+  }
+
+  // Muestra u oculta los círculos de llevadas de forma robusta
+  function toggleBorrowVisibility(show) {
+    const area = problemAreaRef.current;
+    const circles = area.querySelectorAll(".borrow-helper-box");
+    circles.forEach((c) => {
+      c.style.visibility = show ? "visible" : "hidden";
+    });
+    // Si se muestran, recalcular subtrahendo visual
+    if (show) updateSubtrahendDisplay();
+    else {
+      // Restaurar dígitos originales
+      const subEls = area.querySelectorAll(".subtrahend-digit");
+      const numDigits = subEls.length;
+      const originalDigits = originalOperands.num2
+        .toString()
+        .padStart(numDigits, "0")
+        .split("");
+      subEls.forEach((el, i) => {
+        el.textContent = originalDigits[i];
+        el.classList.remove("modified-digit");
+      });
+    }
+  }
+
+  // Comprueba el resultado y la corrección de las llevadas si la ayuda está activa
+  function checkAnswer() {
+    const area = problemAreaRef.current;
+    const resultBoxes = area.querySelectorAll(".result-box");
+    const borrowBoxes = area.querySelectorAll(".borrow-helper-box");
+    const numDigits = resultBoxes.length;
+    const helpEnabled = !!helpToggleRef.current?.checked;
+
     const userAnswerStr = Array.from(resultBoxes)
-      .map(box => box.textContent.trim() || '0')
-      .join('');
-    const userAnswerNum = parseInt(userAnswerStr, 10);
+      .map((b) => (b.textContent?.trim() || "0"))
+      .join("");
+    const userAnswer = parseInt(userAnswerStr, 10);
     const correctAnswer = originalOperands.num1 - originalOperands.num2;
-    const isResultCorrect = userAnswerNum === correctAnswer;
-    const correctDigits = correctAnswer
-      .toString()
-      .padStart(n, '0')
-      .split('');
+    const isResultCorrect = userAnswer === correctAnswer;
+
+    // Colorea casillas de resultado
+    const correctDigits = correctAnswer.toString().padStart(numDigits, "0").split("");
     resultBoxes.forEach((box, i) => {
-      box.classList.remove('correct', 'incorrect');
-      if (box.textContent === correctDigits[i]) {
-        box.classList.add('correct');
-      } else {
-        box.classList.add('incorrect');
-      }
+      box.classList.remove("correct", "incorrect");
+      box.classList.add(box.textContent === correctDigits[i] ? "correct" : "incorrect");
     });
-    let hasWrittenIncorrectBorrow = false;
+
+    // Validación de llevadas si la ayuda está activa
+    let wrongBorrow = false;
     if (helpEnabled) {
-      const minuendDigits = originalOperands.num1
-        .toString()
-        .padStart(n, '0')
-        .split('')
-        .map(d => parseInt(d));
-      const subDigits = originalOperands.num2
-        .toString()
-        .padStart(n, '0')
-        .split('')
-        .map(d => parseInt(d));
+      const minuendDigits = originalOperands.num1.toString().padStart(numDigits, "0").split("").map(Number);
+      const subtrahendDigits = originalOperands.num2.toString().padStart(numDigits, "0").split("").map(Number);
       let carry = 0;
-      borrowBoxes.forEach(b => b.classList.remove('correct', 'incorrect'));
-      for (let i = n - 1; i >= 0; i--) {
-        const topDigit = minuendDigits[i];
-        const bottomDigit = subDigits[i] + carry;
-        const neededBorrow = topDigit < bottomDigit;
-        const userPlaced = userBorrowsRef.current[i] === 1;
-        const caja = problemArea.querySelector(
-          `.borrow-helper-box[data-index="${i}"]`
-        );
+
+      borrowBoxes.forEach((b) => b.classList.remove("correct", "incorrect"));
+
+      for (let i = numDigits - 1; i >= 0; i--) {
+        const top = minuendDigits[i];
+        const bottom = subtrahendDigits[i] + carry;
+        const neededBorrow = top < bottom;
+        const userPlaced = userBorrows[i] === 1;
+        const circle = area.querySelector(`.borrow-helper-box[data-index="${i}"]`);
+
         if (userPlaced) {
-          if (neededBorrow) {
-            if (caja) caja.classList.add('correct');
-          } else {
-            if (caja) caja.classList.add('incorrect');
-            hasWrittenIncorrectBorrow = true;
+          if (neededBorrow) circle && circle.classList.add("correct");
+          else {
+            circle && circle.classList.add("incorrect");
+            wrongBorrow = true;
           }
         }
         if (!isResultCorrect && neededBorrow && !userPlaced) {
-          if (caja) caja.classList.add('incorrect');
-          hasWrittenIncorrectBorrow = true;
+          circle && circle.classList.add("incorrect");
+          wrongBorrow = true;
         }
+
         carry = neededBorrow ? 1 : 0;
       }
     }
-    const feedback = feedbackRef.current;
-    if (!feedback) return;
+
+    // Mensaje de feedback
     if (isResultCorrect) {
-      if (!helpEnabled || !hasWrittenIncorrectBorrow) {
-        feedback.textContent = '¡Perfecto! ¡Resta correcta! ✅';
-        feedback.className = 'feedback-correct';
-        borrowBoxes.forEach(b => b.classList.remove('incorrect'));
+      if (!helpEnabled || !wrongBorrow) {
+        feedbackRef.current.textContent = "¡Perfecto! ¡Resta correcta! ✅";
+        feedbackRef.current.className = "feedback-correct";
+        borrowBoxes.forEach((b) => b.classList.remove("incorrect"));
       } else {
-        feedback.textContent = 'El resultado es correcto, pero revisa las llevadas.';
-        feedback.className = 'feedback-incorrect';
+        feedbackRef.current.textContent = "El resultado es correcto, pero has puesto alguna llevada incorrecta";
+        feedbackRef.current.className = "feedback-incorrect";
       }
     } else {
-      feedback.textContent = '¡Ups! Revisa los números y las llevadas. ❌';
-      feedback.className = 'feedback-incorrect';
+      feedbackRef.current.textContent = "¡Ups! Revisa los números y las llevadas ❌";
+      feedbackRef.current.className = "feedback-incorrect";
     }
-  };
-
-  const handleToggleHelp = () => {
-    setHelpEnabled(prev => !prev);
-    const problemArea = problemAreaRef.current;
-    if (problemArea) {
-      problemArea.classList.toggle('borrows-hidden', helpEnabled);
-    }
-    setTimeout(() => updateSubtrahendDisplay(), 0);
-  };
+  }
 
   useEffect(() => {
     generateNewProblem();
-  }, [generateNewProblem]);
+  }, []);
 
   return (
-    <>
-      <h1>Resta como en el cole 📝</h1>
+    <div id="app-container">
+      <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
+        <span role="img" aria-label="Resta">📝</span>{' '}
+        <span className="gradient-text">Restas de 3 y 4 cifras</span>
+      </h1>
+
       <div id="options-area">
         <label htmlFor="help-toggle">Ayuda con llevadas</label>
         <label className="switch">
           <input
-            id="help-toggle"
             type="checkbox"
-            checked={helpEnabled}
-            onChange={handleToggleHelp}
+            id="help-toggle"
+            defaultChecked
+            ref={helpToggleRef}
+            onChange={() => toggleBorrowVisibility(!!helpToggleRef.current?.checked)}
           />
           <span className="slider round"></span>
         </label>
       </div>
-      <div ref={problemAreaRef} id="problem-area"></div>
-      <div ref={feedbackRef} id="feedback-message"></div>
+
+      <div id="problem-area" ref={problemAreaRef}></div>
+
+      <div id="feedback-message" ref={feedbackRef}></div>
+
       <div id="controls">
-        <button onClick={checkAnswer}>Comprobar</button>
-        <button onClick={generateNewProblem}>Nueva Resta</button>
+        <button id="check-button" onClick={checkAnswer}>Comprobar</button>
+        <button id="new-problem-button" onClick={generateNewProblem}>Nueva Resta</button>
       </div>
+
       <div id="number-palette">
         <h2>Arrastra los números 👇</h2>
         <div className="number-tiles-container">
-          {[...Array(10).keys()].map(n => (
-            <div key={n} className="number-tile" draggable="true">
+          {[...Array(10).keys()].map((n) => (
+            <div
+              key={n}
+              className="number-tile"
+              draggable="true"
+              onDragStart={(e) => e.dataTransfer.setData("text/plain", n.toString())}
+            >
               {n}
             </div>
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,367 +1,313 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import '/src/apps/_shared/Restas.css';
+import React, { useEffect, useRef } from "react";
+import "/src/apps/_shared/Restas.css";
 
-/**
- * Componente para 5º de Primaria: restas con números decimales (hasta 2 decimales).
- *
- * Se generan dos números de 2 o 3 cifras con uno o dos decimales. El
- * alumno debe realizar la resta arrastrando los dígitos correctos a las
- * casillas de resultado. Las cajas de llevada permiten indicar cuándo
- * es necesario pedir prestado en cada columna. Las cifras se muestran
- * alineadas por columnas, incluyendo la coma decimal.
- */
 const RestasPrimaria5 = () => {
   const problemAreaRef = useRef(null);
   const feedbackRef = useRef(null);
-  const [nums, setNums] = useState({ num1: '', num2: '' });
-  const [meta, setMeta] = useState({ digitsCount: 0, maxDec: 0, cifrasEnteras: 0 });
-  const [helpEnabled, setHelpEnabled] = useState(true);
-  const userBorrowsRef = useRef([]);
+  const helpToggleRef = useRef(null);
 
-  /**
-   * Genera un número aleatorio con una cantidad dada de cifras enteras y decimales.
-   * Devuelve una cadena con coma como separador decimal (por ejemplo "123,4").
-   */
-  const generarNumero = (cifrasEnteras, decimales) => {
-    const min = cifrasEnteras === 2 ? 10 : 100;
-    const max = cifrasEnteras === 2 ? 99 : 999;
-    const entero = Math.floor(Math.random() * (max - min + 1)) + min;
-    if (decimales === 0) return entero.toString();
-    const parteDecimal = Math.floor(Math.random() * Math.pow(10, decimales))
-      .toString()
-      .padStart(decimales, '0');
-    return `${entero},${parteDecimal}`;
-  };
+  let originalOperands = { num1: 0, num2: 0 };
+  let userBorrows = [];
+  let maxIntDigits = 0;
+  let maxDecimalPlaces = 0;
 
-  /**
-   * Convierte un número como cadena con coma decimal a un string de dígitos y
-   * coma, con relleno a la izquierda (enteros) y derecha (decimales) usando
-   * espacios. También incluye una columna de guardia a la izquierda.
-   */
-  const padNumero = (num, maxEnteros, maxDec) => {
-    const tieneComa = num.includes(',');
-    const [entCruda, decCruda = ''] = tieneComa ? num.split(',') : [num, ''];
-    // Rellenar parte entera: maxEnteros + 1 (incluye guardia)
-    const entPad = entCruda.padStart(maxEnteros + 1, ' ');
-    if (maxDec > 0) {
-      const decPad = decCruda.padEnd(maxDec, ' ');
-      return `${entPad},${decPad}`;
-    } else {
-      return entPad;
-    }
-  };
+  function generateNewProblem() {
+    const num1IntDigits = Math.floor(Math.random() * 2) + 3; // 3-4 integer digits for num1
+    const num1DecimalPlaces = Math.floor(Math.random() * 3); // 0-2 decimal places for num1
+    const num1TotalDigits = num1IntDigits + num1DecimalPlaces;
 
-  /**
-   * Genera un nuevo ejercicio decimal, asegurando que num1 >= num2.
-   */
-  const generateNewProblem = useCallback(() => {
-    // Elegir 2 o 3 cifras enteras
-    const cifrasEnteras = Math.random() < 0.5 ? 2 : 3;
-    // 70% misma cantidad de decimales, 30% distinta
-    const mismaCantidad = Math.random() > 0.3;
-    let dec1, dec2;
-    if (mismaCantidad) {
-      dec1 = [1, 2][Math.floor(Math.random() * 2)];
-      dec2 = dec1;
-    } else {
-      const opciones = [0, 1, 2];
-      do {
-        dec1 = opciones[Math.floor(Math.random() * opciones.length)];
-        dec2 = opciones[Math.floor(Math.random() * opciones.length)];
-      } while (dec1 === dec2 || (dec1 === 0 && dec2 === 0));
-    }
-    // Generar números
-    let a = generarNumero(cifrasEnteras, dec1);
-    let b = generarNumero(cifrasEnteras, dec2);
-    // Asegurar que a >= b
-    const parseNum = (str) => parseFloat(str.replace(',', '.'));
-    if (parseNum(a) < parseNum(b)) {
-      const tmp = a;
-      a = b;
-      b = tmp;
-    }
-    setNums({ num1: a, num2: b });
-    const maxDec = Math.max(dec1, dec2);
-    const digitsCount = cifrasEnteras + (maxDec > 0 ? 1 + maxDec : 0);
-    setMeta({ digitsCount, maxDec, cifrasEnteras });
-    userBorrowsRef.current = new Array(digitsCount).fill(0);
-    const problemArea = problemAreaRef.current;
+    const num1Factor = Math.pow(10, num1DecimalPlaces);
+    const num1Min = Math.pow(10, num1TotalDigits - 1);
+    const num1Max = Math.pow(10, num1TotalDigits);
+    const num1Int = Math.floor(Math.random() * (num1Max - num1Min)) + num1Min;
+    const num1 = num1Int / num1Factor;
+
+    const num2IntDigits = Math.floor(Math.random() * num1IntDigits) + 1;
+    const num2DecimalPlaces = Math.floor(Math.random() * 3);
+    const num2TotalDigits = num2IntDigits + num2DecimalPlaces;
+    const num2Factor = Math.pow(10, num2DecimalPlaces);
+    const num2Max = Math.pow(10, num2TotalDigits);
+    let num2 = (Math.random() * num1 * 0.9).toFixed(num2DecimalPlaces);
+    num2 = parseFloat(num2);
+
+    originalOperands = { num1, num2 };
+
+    const [n1IntStr, n1DecStr = ''] = num1.toString().split('.');
+    const [n2IntStr, n2DecStr = ''] = num2.toString().split('.');
+
+    maxIntDigits = Math.max(n1IntStr.length, n2IntStr.length);
+    maxDecimalPlaces = Math.max(n1DecStr.length, n2DecStr.length);
+    const numDigits = maxIntDigits + maxDecimalPlaces;
+
+    userBorrows = new Array(numDigits).fill(0);
+
+    const n1Padded = n1IntStr.padStart(maxIntDigits, '0') + n1DecStr.padEnd(maxDecimalPlaces, '0');
+    const n2Padded = n2IntStr.padStart(maxIntDigits, '0') + n2DecStr.padEnd(maxDecimalPlaces, '0');
+
+    const area = problemAreaRef.current;
     const feedback = feedbackRef.current;
-    if (!problemArea || !feedback) return;
-    problemArea.innerHTML = '';
-    feedback.textContent = '';
-    feedback.className = '';
-    // Configurar rejilla: una columna para el operador y dos subcolumnas por cada carácter
-    const columnTemplate = '25px 60px ';
-    problemArea.style.gridTemplateColumns = `35px ${columnTemplate.repeat(digitsCount)}`;
-    // Operador '-' en la fila del sustraendo (fila 3)
-    const operator = document.createElement('div');
-    operator.className = 'operator';
-    operator.textContent = '-';
-    operator.style.gridRow = '3';
-    operator.style.gridColumn = '1';
-    problemArea.appendChild(operator);
-    // Preparar cadenas con relleno
-    const aPadded = padNumero(a, cifrasEnteras, maxDec);
-    const bPadded = padNumero(b, cifrasEnteras, maxDec);
-    // Índice de la coma (si existe)
-    const commaIndex = maxDec > 0 ? cifrasEnteras + 1 /* guardia + enteros */ : -1;
-    // Crear columnas
-    for (let i = 0; i < digitsCount; i++) {
-      const circleCol = 2 + i * 2;
-      const digitCol = 3 + i * 2;
-      const charA = aPadded[i] ?? ' ';
-      const charB = bPadded[i] ?? ' ';
-      const esComa = i === commaIndex;
-      // Caja de llevada si no es coma ni primera columna
-      if (i !== 0 && !esComa) {
-        const borrowBox = document.createElement('div');
-        borrowBox.className = 'borrow-helper-box';
-        borrowBox.dataset.target = 'true';
-        borrowBox.dataset.type = 'borrow';
-        borrowBox.dataset.index = i.toString();
-        borrowBox.style.gridRow = '1';
-        borrowBox.style.gridColumn = circleCol.toString();
-        problemArea.appendChild(borrowBox);
+    area.innerHTML = "";
+    feedback.textContent = "";
+    feedback.className = "";
+
+    const columnTemplate = "25px 60px ";
+    let gridColumns = `35px `;
+    for (let i = 0; i < maxIntDigits; i++) gridColumns += columnTemplate;
+    if (maxDecimalPlaces > 0) gridColumns += "35px ";
+    for (let i = 0; i < maxDecimalPlaces; i++) gridColumns += columnTemplate;
+
+    area.style.display = "inline-grid";
+    area.style.justifyItems = "center";
+    area.style.alignItems = "center";
+    area.style.gridGap = "5px 0";
+    area.style.gridTemplateRows = "60px 60px 12px 60px";
+    area.style.gridTemplateColumns = gridColumns;
+
+    const operator = document.createElement("div");
+    operator.className = "operator";
+    operator.textContent = "-";
+    operator.style.gridRow = "2";
+    operator.style.gridColumn = "1";
+    area.appendChild(operator);
+
+    let currentGridCol = 2;
+    for (let i = 0; i < numDigits; i++) {
+      if (i === maxIntDigits && maxDecimalPlaces > 0) {
+        const comma = (row) => {
+            const el = document.createElement("div");
+            el.className = "digit-display";
+            el.textContent = ",";
+            el.style.gridRow = row;
+            el.style.gridColumn = String(currentGridCol);
+            return el;
+        }
+        area.appendChild(comma(1));
+        area.appendChild(comma(2));
+        area.appendChild(comma(4));
+        currentGridCol++;
       }
-      // Dígitos del minuendo y sustraendo
-      const top = document.createElement('div');
-      top.className = 'digit-display';
-      top.textContent = charA;
-      top.style.gridRow = '2';
-      top.style.gridColumn = digitCol.toString();
-      problemArea.appendChild(top);
-      const bot = document.createElement('div');
-      bot.className = 'digit-display';
-      bot.textContent = charB;
-      bot.style.gridRow = '3';
-      bot.style.gridColumn = digitCol.toString();
-      problemArea.appendChild(bot);
-      // Caja de resultado o coma
-      if (esComa) {
-        const commaBox = document.createElement('div');
-        commaBox.className = 'box';
-        commaBox.style.gridRow = '5';
-        commaBox.style.gridColumn = digitCol.toString();
-        const span = document.createElement('span');
-        span.textContent = ',';
-        commaBox.appendChild(span);
-        problemArea.appendChild(commaBox);
-      } else {
-        const resBox = document.createElement('div');
-        resBox.className = 'box result-box';
-        resBox.dataset.target = 'true';
-        resBox.style.gridRow = '5';
-        resBox.style.gridColumn = digitCol.toString();
-        problemArea.appendChild(resBox);
+
+      const circleCol = currentGridCol++;
+      const digitCol = currentGridCol++;
+
+      if (i !== 0) {
+        const borrowBox = document.createElement("div");
+        borrowBox.className = "borrow-helper-box";
+        borrowBox.dataset.target = "true";
+        borrowBox.dataset.type = "borrow";
+        borrowBox.dataset.index = String(i);
+        borrowBox.style.gridRow = "1";
+        borrowBox.style.gridColumn = String(circleCol);
+        Object.assign(borrowBox.style, { width: "40px", height: "40px", borderRadius: "50%", border: "2px dashed #ccc", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "0.8em", color: "#005a9c", marginRight: "-15px", userSelect: "none" });
+        borrowBox.addEventListener("dragover", (e) => { e.preventDefault(); borrowBox.classList.add("drag-over"); });
+        borrowBox.addEventListener("dragleave", () => borrowBox.classList.remove("drag-over"));
+        borrowBox.addEventListener("drop", (e) => {
+          e.preventDefault();
+          borrowBox.classList.remove("drag-over");
+          const dropped = e.dataTransfer.getData("text/plain");
+          const idx = parseInt(borrowBox.dataset.index || "0", 10);
+          userBorrows[idx] = dropped === "1" ? 1 : 0;
+          borrowBox.textContent = userBorrows[idx] ? "1" : "";
+          updateSubtrahendDisplay();
+        });
+        area.appendChild(borrowBox);
       }
+
+      const createDigit = (text, row, col) => {
+        const el = document.createElement("div");
+        el.textContent = text;
+        el.style.gridRow = row;
+        el.style.gridColumn = col;
+        return el;
+      }
+
+      const topDigit = createDigit(n1Padded[i], "1", String(digitCol));
+      topDigit.className = "digit-display";
+      area.appendChild(topDigit);
+
+      const bottomDigit = createDigit(n2Padded[i], "2", String(digitCol));
+      bottomDigit.className = "digit-display subtrahend-digit";
+      bottomDigit.dataset.index = String(i);
+      area.appendChild(bottomDigit);
+
+      const resultBox = createDigit("", "4", String(digitCol));
+      resultBox.className = "box result-box";
+      resultBox.dataset.target = "true";
+      resultBox.dataset.index = i;
+      area.appendChild(resultBox);
     }
-    // Línea de operación justo antes de la fila de resultado (fila 4)
-    const hr = document.createElement('hr');
-    hr.className = 'operation-line';
-    hr.style.gridRow = '4';
-    hr.style.gridColumn = `2 / ${2 + digitsCount * 2}`;
-    problemArea.appendChild(hr);
-    // Mostrar/ocultar cajas de llevadas
-    problemArea.classList.toggle('borrows-hidden', !helpEnabled);
+
+    const hr = document.createElement("hr");
+    hr.className = "operation-line";
+    hr.style.gridRow = "3";
+    hr.style.gridColumn = `2 / ${currentGridCol}`;
+    area.appendChild(hr);
+
+    toggleBorrowVisibility(helpToggleRef.current?.checked ?? true);
     addDragDropListeners();
-  }, [helpEnabled]);
+  }
 
-  /**
-   * Añade listeners de drag & drop a las casillas de resultado y a las de llevadas.
-   */
-  const addDragDropListeners = () => {
-    const problemArea = problemAreaRef.current;
-    if (!problemArea) return;
-    const targets = problemArea.querySelectorAll('[data-target="true"]');
-    const tiles = document.querySelectorAll('.number-tile');
-    tiles.forEach(tile => {
-      tile.addEventListener('dragstart', e => {
-        e.dataTransfer.setData('text/plain', tile.textContent);
+  function addDragDropListeners() {
+    const area = problemAreaRef.current;
+    const targetBoxes = area.querySelectorAll("[data-target='true']");
+    const tiles = area.parentElement?.querySelectorAll(".number-tile") || [];
+    tiles.forEach(tile => tile.addEventListener("dragstart", e => e.dataTransfer.setData("text/plain", tile.textContent || "")));
+    targetBoxes.forEach(box => {
+      box.addEventListener("dragover", e => { e.preventDefault(); box.classList.add("drag-over"); });
+      box.addEventListener("dragleave", () => box.classList.remove("drag-over"));
+      box.addEventListener("drop", e => {
+        e.preventDefault();
+        box.classList.remove("drag-over");
+        const dropped = e.dataTransfer.getData("text/plain");
+        if (box.dataset.type !== "borrow") box.textContent = dropped;
       });
     });
-    targets.forEach(box => {
-      box.addEventListener('dragover', e => {
-        e.preventDefault();
-        box.classList.add('drag-over');
-      });
-      box.addEventListener('dragleave', () => box.classList.remove('drag-over'));
-      box.addEventListener('drop', e => {
-        e.preventDefault();
-        box.classList.remove('drag-over', 'correct', 'incorrect');
-        const digit = e.dataTransfer.getData('text/plain');
-        box.textContent = digit;
-        if (box.dataset.type === 'borrow') {
-          const idx = parseInt(box.dataset.index);
-          userBorrowsRef.current[idx] = digit === '1' ? 1 : 0;
-        }
-      });
+  }
+
+  function updateSubtrahendDisplay() {
+    if (!helpToggleRef.current?.checked) return;
+    const area = problemAreaRef.current;
+    const subEls = area.querySelectorAll(".subtrahend-digit");
+    if (!subEls.length) return;
+
+    const n2Padded = originalOperands.num2.toFixed(maxDecimalPlaces).replace('.', '').padStart(maxIntDigits + maxDecimalPlaces, '0');
+    const originalDigits = n2Padded.split("").map(Number);
+
+    subEls.forEach(el => {
+      const i = parseInt(el.dataset.index, 10);
+      const carryFromRight = i < originalDigits.length - 1 && userBorrows[i + 1] === 1 ? 1 : 0;
+      const newVal = originalDigits[i] + carryFromRight;
+      el.textContent = String(newVal);
+      el.classList.toggle("modified-digit", newVal !== originalDigits[i]);
     });
-  };
+  }
 
-  /**
-   * Construye la respuesta del usuario a partir de las casillas de resultado y
-   * devuelve tanto el número como la cadena de caracteres completa con coma.
-   */
-  const buildUserAnswer = () => {
-    const problemArea = problemAreaRef.current;
-    if (!problemArea) return { str: '', num: 0 };
-    const digitsCount = meta.digitsCount;
-    const cifrasEnteras = meta.cifrasEnteras;
-    const maxDec = meta.maxDec;
-    const commaIndex = maxDec > 0 ? cifrasEnteras + 1 : -1;
-    let chars = [];
-    let resultIdx = 0;
-    for (let i = 0; i < digitsCount; i++) {
-      if (i === commaIndex) {
-        chars.push(',');
-      } else {
-        const box = problemArea.querySelector(
-          `.result-box[style*="grid-column: ${3 + i * 2}px"]`
-        );
-        // Fallback: buscar por orden
-        const resultBoxes = problemArea.querySelectorAll('.result-box');
-        const current = resultBoxes[resultIdx++];
-        const char = current && current.textContent.trim() ? current.textContent.trim() : '0';
-        chars.push(char);
-      }
+  function toggleBorrowVisibility(show) {
+    const area = problemAreaRef.current;
+    area.querySelectorAll(".borrow-helper-box").forEach(c => c.style.visibility = show ? "visible" : "hidden");
+    if (show) {
+        updateSubtrahendDisplay();
+    } else {
+      const subEls = area.querySelectorAll(".subtrahend-digit");
+      const n2Padded = originalOperands.num2.toFixed(maxDecimalPlaces).replace('.', '').padStart(maxIntDigits + maxDecimalPlaces, '0');
+      const originalDigits = n2Padded.split("");
+      subEls.forEach(el => {
+        const i = parseInt(el.dataset.index, 10);
+        el.textContent = originalDigits[i];
+        el.classList.remove("modified-digit");
+      });
     }
-    const str = chars.join('');
-    const num = parseFloat(str.replace(',', '.'));
-    return { str, num };
-  };
+  }
 
-  /**
-   * Comprueba la respuesta del usuario y las llevadas introducidas.
-   */
-  const checkAnswer = () => {
-    const { str: userStr, num: userNum } = buildUserAnswer();
-    const a = parseFloat(nums.num1.replace(',', '.'));
-    const b = parseFloat(nums.num2.replace(',', '.'));
-    const correctNum = a - b;
-    const maxDec = meta.maxDec;
-    // Formatear la respuesta correcta con el mismo número de decimales
-    const correctStrWithDec = correctNum
-      .toFixed(maxDec)
-      .replace('.', ',');
-    // Rellenar a la izquierda y derecha para comparar por columnas
-    const padCorrect = padNumero(correctStrWithDec, meta.cifrasEnteras, maxDec);
-    const problemArea = problemAreaRef.current;
-    if (!problemArea) return;
-    const resultBoxes = problemArea.querySelectorAll('.result-box');
-    // Índice de coma
-    const commaIndex = maxDec > 0 ? meta.cifrasEnteras + 1 : -1;
-    // Comparar dígitos
-    let boxIdx = 0;
-    for (let i = 0; i < meta.digitsCount; i++) {
-      if (i === commaIndex) continue; // no hay caja de resultado aquí
-      const correctChar = padCorrect[i];
-      const box = resultBoxes[boxIdx++];
-      box.classList.remove('correct', 'incorrect');
-      const userChar = box.textContent.trim() || '0';
-      // Se permite dejar en blanco un cero a la izquierda
-      const isCorrect =
-        userChar === correctChar ||
-        (correctChar === '0' && userChar === '');
-      box.classList.add(isCorrect ? 'correct' : 'incorrect');
+  function checkAnswer() {
+    const area = problemAreaRef.current;
+    const resultBoxes = [...area.querySelectorAll(".result-box")].sort((a, b) => a.dataset.index - b.dataset.index);
+    const borrowBoxes = area.querySelectorAll(".borrow-helper-box");
+    const helpEnabled = !!helpToggleRef.current?.checked;
+
+    let userAnswerStr = resultBoxes.map(b => b.textContent?.trim() || "0").join("");
+    if (maxDecimalPlaces > 0) {
+        userAnswerStr = userAnswerStr.slice(0, maxIntDigits) + "." + userAnswerStr.slice(maxIntDigits);
     }
-    const isResultCorrect = parseFloat(userStr.replace(',', '.')) === correctNum;
-    // Calcular llevadas correctas
-    let hasWrongBorrow = false;
+    
+    const userAnswer = parseFloat(userAnswerStr);
+    const correctAnswer = originalOperands.num1 - originalOperands.num2;
+    
+    const isResultCorrect = Math.abs(userAnswer - correctAnswer) < 0.001;
+
+    const correctResultStr = correctAnswer.toFixed(maxDecimalPlaces).replace(".", "");
+    const correctDigits = correctResultStr.padStart(maxIntDigits + maxDecimalPlaces, "0").split("");
+
+    resultBoxes.forEach((box, i) => {
+      box.classList.remove("correct", "incorrect");
+      box.classList.add(box.textContent === correctDigits[i] ? "correct" : "incorrect");
+    });
+
+    let wrongBorrow = false;
     if (helpEnabled) {
-      // Crear arrays de dígitos (0 para espacios o coma)
-      const toDigits = (str) =>
-        str.split('').map(ch => (ch >= '0' && ch <= '9' ? parseInt(ch) : 0));
-      const aDigits = toDigits(padNumero(nums.num1, meta.cifrasEnteras, maxDec));
-      const bDigits = toDigits(padNumero(nums.num2, meta.cifrasEnteras, maxDec));
+      const n1Padded = originalOperands.num1.toFixed(maxDecimalPlaces).replace('.', '').padStart(maxIntDigits + maxDecimalPlaces, '0');
+      const n2Padded = originalOperands.num2.toFixed(maxDecimalPlaces).replace('.', '').padStart(maxIntDigits + maxDecimalPlaces, '0');
+      const minuendDigits = n1Padded.split("").map(Number);
+      const subtrahendDigits = n2Padded.split("").map(Number);
       let carry = 0;
-      // Resetear clases de las cajas de llevada
-      const borrowBoxes = problemArea.querySelectorAll('.borrow-helper-box');
-      borrowBoxes.forEach(b => b.classList.remove('correct', 'incorrect'));
-      for (let i = meta.digitsCount - 1; i >= 0; i--) {
-        if (i === commaIndex) {
-          continue;
-        }
-        const top = aDigits[i];
-        const bottom = bDigits[i] + carry;
+
+      borrowBoxes.forEach(b => b.classList.remove("correct", "incorrect"));
+
+      for (let i = minuendDigits.length - 1; i >= 0; i--) {
+        const top = minuendDigits[i];
+        const bottom = subtrahendDigits[i] + carry;
         const neededBorrow = top < bottom;
-        const userPlaced = userBorrowsRef.current[i] === 1;
-        const caja = problemArea.querySelector(
-          `.borrow-helper-box[data-index="${i}"]`
-        );
-        if (userPlaced) {
-          if (neededBorrow) {
-            if (caja) caja.classList.add('correct');
-          } else {
-            if (caja) caja.classList.add('incorrect');
-            hasWrongBorrow = true;
-          }
-        }
-        if (!isResultCorrect && neededBorrow && !userPlaced) {
-          if (caja) caja.classList.add('incorrect');
-          hasWrongBorrow = true;
+        const userPlaced = userBorrows[i] === 1;
+        const circle = area.querySelector(`.borrow-helper-box[data-index="${i}"]`);
+
+        if (circle) {
+            if (userPlaced) {
+                if (neededBorrow) circle.classList.add("correct");
+                else { circle.classList.add("incorrect"); wrongBorrow = true; }
+            }
+            if (!isResultCorrect && neededBorrow && !userPlaced) {
+                circle.classList.add("incorrect");
+                wrongBorrow = true;
+            }
         }
         carry = neededBorrow ? 1 : 0;
       }
     }
+
     const feedback = feedbackRef.current;
-    if (!feedback) return;
     if (isResultCorrect) {
-      if (!helpEnabled || !hasWrongBorrow) {
-        feedback.textContent = '¡Genial! ¡Resta correcta! ✅';
-        feedback.className = 'feedback-correct';
+      if (!helpEnabled || !wrongBorrow) {
+        feedback.textContent = "¡Perfecto! ¡Resta correcta! ✅";
+        feedback.className = "feedback-correct";
+        borrowBoxes.forEach(b => b.classList.remove("incorrect"));
       } else {
-        feedback.textContent = 'El resultado es correcto, pero revisa las llevadas.';
-        feedback.className = 'feedback-incorrect';
+        feedback.textContent = "El resultado es correcto, pero alguna llevada es incorrecta.";
+        feedback.className = "feedback-incorrect";
       }
     } else {
-      feedback.textContent = '¡Ups! Revisa los números y las llevadas.';
-      feedback.className = 'feedback-incorrect';
+      feedback.textContent = "¡Ups! Revisa los números y las llevadas. ❌";
+      feedback.className = "feedback-incorrect";
     }
-  };
-
-  const handleToggleHelp = () => {
-    setHelpEnabled(prev => !prev);
-    const area = problemAreaRef.current;
-    if (area) area.classList.toggle('borrows-hidden', helpEnabled);
-  };
+  }
 
   useEffect(() => {
     generateNewProblem();
-  }, [generateNewProblem]);
+  }, []);
 
   return (
-    <>
-      <h1>Resta como en el cole 📝</h1>
+    <div id="app-container">
+      <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
+        <span role="img" aria-label="Resta">📝</span>{' '}
+        <span className="gradient-text">Restas con Decimales</span>
+      </h1>
+
       <div id="options-area">
         <label htmlFor="help-toggle">Ayuda con llevadas</label>
         <label className="switch">
-          <input
-            id="help-toggle"
-            type="checkbox"
-            checked={helpEnabled}
-            onChange={handleToggleHelp}
-          />
+          <input type="checkbox" id="help-toggle" defaultChecked ref={helpToggleRef} onChange={() => toggleBorrowVisibility(!!helpToggleRef.current?.checked)} />
           <span className="slider round"></span>
         </label>
       </div>
-      <div ref={problemAreaRef} id="problem-area"></div>
-      <div ref={feedbackRef} id="feedback-message"></div>
+
+      <div id="problem-area" ref={problemAreaRef}></div>
+      <div id="feedback-message" ref={feedbackRef}></div>
+
       <div id="controls">
-        <button onClick={checkAnswer}>Comprobar</button>
-        <button onClick={generateNewProblem}>Nueva Resta</button>
+        <button id="check-button" onClick={checkAnswer}>Comprobar</button>
+        <button id="new-problem-button" onClick={generateNewProblem}>Nueva Resta</button>
       </div>
+
       <div id="number-palette">
         <h2>Arrastra los números 👇</h2>
         <div className="number-tiles-container">
           {[...Array(10).keys()].map(n => (
-            <div key={n} className="number-tile" draggable="true">
+            <div key={n} className="number-tile" draggable="true" onDragStart={e => e.dataTransfer.setData("text/plain", n.toString())}>
               {n}
             </div>
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
