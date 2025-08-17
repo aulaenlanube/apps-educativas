@@ -1,39 +1,46 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "/src/apps/_shared/Multiplicaciones.css";
 
-/* 6º Primaria con decimales (coma manual por clic en huecos)
+
+/* 6º Primaria con decimales (coma manual entre dígitos, grid intercalado)
    - Multiplicador: total de cifras (enteras+decimales) ∈ [2,3]
    - Multiplicando: total de cifras (enteras+decimales) ∈ [3,5]
    - Al menos uno con decimales
-   - Se multiplica como enteros; la coma del resultado = d1 + d2
-   - La coma del resultado se coloca pulsando una mini-caja entre dígitos
+   - Se multiplica como enteros; posición de la coma en el resultado = d1 + d2
+   - El alumno marca la coma pulsando una ranura vertical entre dígitos
 */
 
 export default function MultiplicacionesPrimaria6() {
+  // Factores (mostrarán coma visual en operandos)
   const [multiplicando, setMultiplicando] = useState("");
   const [multiplicador, setMultiplicador] = useState("");
-  const [d1, setD1] = useState(0);
-  const [d2, setD2] = useState(0);
-  const [decimalesTotal, setDecimalesTotal] = useState(0);
+  const [d1, setD1] = useState(0); // decimales m1
+  const [d2, setD2] = useState(0); // decimales m2
+  const [decimalesTotal, setDecimalesTotal] = useState(0); // d1 + d2
 
+  // Datos esperados
   const [parcialesEsperados, setParcialesEsperados] = useState([]); // [{digitos:[], llevadas:[]}]
-  const [resultadoFinalEsperado, setResultadoFinalEsperado] = useState([]); // ["1","2","3",...]
-  const [commaSlot, setCommaSlot] = useState(null); // hueco seleccionado en el resultado (0..ancho)
+  const [resultadoFinalEsperado, setResultadoFinalEsperado] = useState([]); // ["1","2",...]
 
+  // Entradas del alumno
   const [entradasParciales, setEntradasParciales] = useState([]); // [fila][col]
   const [entradasLlevadas, setEntradasLlevadas] = useState([]);   // [fila][col]
-  const [entradasFinal, setEntradasFinal] = useState([]);         // [col] solo dígitos (sin coma)
+  const [entradasFinal, setEntradasFinal] = useState([]);         // [col] (solo dígitos)
 
+  // Estados visuales
   const [clasesParciales, setClasesParciales] = useState([]);     // [fila][col]
   const [clasesLlevadas, setClasesLlevadas] = useState([]);       // [fila][col]
   const [clasesFinal, setClasesFinal] = useState([]);             // [col]
-
   const [feedback, setFeedback] = useState({ texto: "", tipo: "" });
   const [ayudaLlevadas, setAyudaLlevadas] = useState(true);
+
+  // Ranura seleccionada para la coma en el resultado (0..ancho)
+  const [commaSlot, setCommaSlot] = useState(null);
 
   // ---------- Utilidades ----------
   const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
+  // Genera número por total de dígitos y nº de decimales
   const generarPorTotalYDec = (totalDigits, decLen) => {
     const intLen = totalDigits - decLen;
     let intStr = String(randInt(1, 9));
@@ -87,7 +94,7 @@ export default function MultiplicacionesPrimaria6() {
         fila[ancho - 1 - k] = "";
         llevadas[ancho - 1 - k] = "";
       }
-      // Limpiar ceros a la izquierda (solo visual)
+      // Limpiar ceros visuales a la izquierda
       let started = false;
       for (let c = 0; c < ancho; c++) {
         if (!started) {
@@ -118,11 +125,13 @@ export default function MultiplicacionesPrimaria6() {
 
   // ---------- Nueva operación ----------
   const generarNueva = () => {
-    const totalB = randInt(2, 3); // multiplicador 2..3 dígitos totales
+    // Multiplicador: 2..3 cifras totales
+    const totalB = randInt(2, 3);
     let decB = randInt(0, totalB - 1);
-    const totalA = randInt(3, 5); // multiplicando 3..5 dígitos totales
+    // Multiplicando: 3..5 cifras totales
+    const totalA = randInt(3, 5);
     let decA = randInt(0, totalA - 1);
-
+    // Al menos uno con decimales
     if (decA === 0 && decB === 0) {
       if (totalB >= 2) decB = 1;
       else decA = 1;
@@ -151,7 +160,7 @@ export default function MultiplicacionesPrimaria6() {
     setClasesParciales(Array.from({ length: filas }, () => new Array(cols).fill("")));
     setClasesLlevadas(Array.from({ length: filas }, () => new Array(cols).fill("")));
     setClasesFinal(new Array(cols).fill(""));
-    setCommaSlot(null); // sin coma seleccionada
+    setCommaSlot(null);
     setFeedback({ texto: "", tipo: "" });
   };
 
@@ -160,6 +169,7 @@ export default function MultiplicacionesPrimaria6() {
   // ---------- Preparación render ----------
   const ancho = resultadoFinalEsperado.length || 0;
 
+  // Alinear operandos SIN punto (solo dígitos)
   const mulcdoRelleno = useMemo(() => {
     if (!multiplicando) return [];
     const n1 = multiplicando.replace(".", "");
@@ -176,20 +186,20 @@ export default function MultiplicacionesPrimaria6() {
     return arr;
   }, [multiplicador, ancho]);
 
+  // Comas visuales de operandos
   const idxComaMultiplicando = d1 > 0 ? ancho - d1 - 1 : null;
   const idxComaMultiplicador = d2 > 0 ? ancho - d2 - 1 : null;
 
-  // Hueco correcto para la coma del resultado (0..ancho)
-  // Slot s está entre columnas s-1 y s (contando desde la izquierda)
+  // Hueco correcto para la coma del resultado
   const expectedCommaSlot = decimalesTotal > 0 ? (ancho - decimalesTotal) : null;
 
-  // ---------- Drag & Drop (solo dígitos) ----------
+  // ---------- DnD (solo dígitos) ----------
   const onDragStartNumero = (e, valor) => e.dataTransfer.setData("text/plain", valor);
   const onDragOver = (e) => e.preventDefault();
   const onDrop = (e, tipo, fila, col) => {
     e.preventDefault();
-    const valor = e.dataTransfer.getData("text/plain"); // "0".."9"
-    if (!/^\d$/.test(valor)) return; // no permitir comas ni otros
+    const valor = e.dataTransfer.getData("text/plain");
+    if (!/^\d$/.test(valor)) return; // no permitir comas u otros
     if (tipo === "parcial") {
       setEntradasParciales((p) => { const n = p.map(f => [...f]); n[fila][col] = valor; return n; });
       setClasesParciales((p) => { const n = p.map(f => [...f]); n[fila][col] = ""; return n; });
@@ -209,7 +219,6 @@ export default function MultiplicacionesPrimaria6() {
     const clasesPar = parcialesEsperados.map(f => f.digitos.map(() => ""));
     const clasesLev = parcialesEsperados.map(f => f.llevadas.map(() => ""));
     const clasesFin = resultadoFinalEsperado.map(() => "");
-
     const primeraNoCero = resultadoFinalEsperado.findIndex(d => d !== "0");
 
     // Llevadas
@@ -235,7 +244,7 @@ export default function MultiplicacionesPrimaria6() {
       }
     }
 
-    // Final (dígitos con tolerancia de ceros a la izquierda)
+    // Resultado (dígitos con tolerancia de ceros a la izquierda)
     for (let c = 0; c < ancho; c++) {
       const esperado = resultadoFinalEsperado[c];
       const escrito = (entradasFinal[c] || "").trim();
@@ -249,15 +258,10 @@ export default function MultiplicacionesPrimaria6() {
       }
     }
 
-    // Coma manual: debe existir y estar en el hueco exacto
+    // Coma manual: debe estar marcada exactamente en el hueco esperado
     if (decimalesTotal > 0) {
-      if (commaSlot === expectedCommaSlot) {
-        // correcto
-      } else {
-        ok = false;
-      }
+      if (commaSlot !== expectedCommaSlot) ok = false;
     } else {
-      // No se espera coma: si el usuario marcó un hueco, lo consideramos incorrecto
       if (commaSlot !== null) ok = false;
     }
 
@@ -273,7 +277,7 @@ export default function MultiplicacionesPrimaria6() {
     }
   };
 
-  // ---------- Render ----------
+  // ---------- Render: columnas (operandos, llevadas y parciales; SIN la fila final aquí) ----------
   let operadorColocado = false;
   const columnas = [];
   for (let c = 0; c < ancho; c++) {
@@ -339,42 +343,8 @@ export default function MultiplicacionesPrimaria6() {
         })}
 
         <hr className="operation-line" />
-
-        {/* Resultado: solo dígitos (la coma va en los huecos) */}
-        <div
-          className={["box","result-box","final-box",clasesFinal[c] || ""].join(" ")}
-          onDragOver={onDragOver}
-          onDrop={(e) => onDrop(e, "final", 0, c)}
-        >
-          {entradasFinal[c] || ""}
-        </div>
+        {/* (La fila final se pinta fuera, en el grid intercalado) */}
       </div>
-    );
-  }
-
-  // Fila de "huecos" para marcar la coma (ancho+1 huecos entre/bordes)
-  const commaSlots = [];
-  for (let s = 0; s <= ancho; s++) {
-    const activo = commaSlot === s;
-    const esCorrecto = expectedCommaSlot === s;
-    commaSlots.push(
-      <div
-        key={`slot-${s}`}
-        className={[
-          "comma-slot",
-          activo ? "active" : "",
-          decimalesTotal > 0 && esCorrecto ? "guide" : ""
-        ].join(" ")}
-        onClick={() => {
-          if (decimalesTotal === 0) {
-            // Si no debe haber coma, permitir sólo desactivar
-            setCommaSlot(null);
-            return;
-          }
-          setCommaSlot(prev => (prev === s ? null : s));
-        }}
-        title={decimalesTotal > 0 ? "Marca aquí la coma" : "Esta operación no lleva coma"}
-      />
     );
   }
 
@@ -385,7 +355,7 @@ export default function MultiplicacionesPrimaria6() {
         <span className="gradient-text">Multiplica con decimales</span>
       </h1>
 
-      
+
 
       <div id="options-area">
         <label htmlFor="help-toggle">Ayuda con llevadas</label>
@@ -404,9 +374,46 @@ export default function MultiplicacionesPrimaria6() {
         {columnas}
       </div>
 
-      {/* Fila de huecos para la coma bajo el resultado */}
-      <div className="comma-row">
-        {commaSlots}
+      {/* === Resultado + ranuras de coma intercalados en un grid === */}
+      <div
+        className="result-grid"
+        style={{
+          // Patrón: slot, box, slot, box, ..., slot  ->  (2*ancho + 1) columnas
+          gridTemplateColumns:
+            `${Array.from({ length: ancho }, () => "var(--slot-w) var(--box-w)").join(" ")} var(--slot-w)`
+        }}
+      >
+        {Array.from({ length: 2 * ancho + 1 }, (_, k) => {
+          if (k % 2 === 0) {
+            // Columna par -> ranura de coma (slot s = k/2)
+            const s = Math.floor(k / 2);
+            const activo = commaSlot === s;
+            return (
+              <div
+                key={`slot-${s}`}
+                className={["comma-slot", activo ? "active" : ""].join(" ")}
+                onClick={() => {
+                  if (decimalesTotal === 0) { setCommaSlot(null); return; }
+                  setCommaSlot(prev => (prev === s ? null : s));  // toggle binario
+                }}
+                title={decimalesTotal > 0 ? "Marca aquí la coma" : "Esta operación no lleva coma"}
+              />
+            );
+          } else {
+            // Columna impar -> caja de dígito (col c = (k-1)/2)
+            const c = (k - 1) / 2;
+            return (
+              <div
+                key={`final-${c}`}
+                className={["box", "result-box", "final-box", clasesFinal[c] || ""].join(" ")}
+                onDragOver={onDragOver}
+                onDrop={(e) => onDrop(e, "final", 0, c)}
+              >
+                {entradasFinal[c] || ""}
+              </div>
+            );
+          }
+        })}
       </div>
 
       <div id="feedback-message" className={feedback.tipo}>
