@@ -122,7 +122,7 @@ const SumasPrimaria1 = () => {
         if (allCorrect) {
             feedbackMessage.textContent = '¡Excelente! ¡Suma correcta! 🎉';
             feedbackMessage.className = 'feedback-correct';
-            fire("success"); // Dispara confeti
+            fire(); // Dispara confeti
         } else {
             feedbackMessage.textContent = 'Casi... ¡Revisa las casillas en rojo!';
             feedbackMessage.className = 'feedback-incorrect';
