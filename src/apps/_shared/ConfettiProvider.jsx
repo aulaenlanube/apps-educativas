@@ -8,11 +8,12 @@ import React, {
 import ReactDOM from "react-dom";
 import ReactConfetti from "react-confetti";
 
-const ConfettiCtx = createContext({ fire: () => {} });
+const ConfettiCtx = createContext({ confeti: () => {} });
 
 export function ConfettiProvider({ children }) {
   const [portalEl, setPortalEl] = useState(null);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [isRecycling, setIsRecycling] = useState(true);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   // Obtenemos y actualizamos las dimensiones de la ventana
@@ -41,35 +42,42 @@ export function ConfettiProvider({ children }) {
     return () => document.body.removeChild(el);
   }, []);
 
-  // La función `fire` ahora simplemente activa el confeti
-  const fire = useCallback(() => {
+  // La función `confeti` activa el confeti y resetea el reciclaje
+  const confeti = useCallback(() => {
     setShowConfetti(true);
+    setIsRecycling(true); // Aseguramos que siempre empiece reciclando
   }, []);
 
-  // Este efecto controla la duración de la animación
+  // Este efecto maneja el ciclo de vida de la animación
   useEffect(() => {
     if (showConfetti) {
-      // Activamos un temporizador para ocultar el confeti después de 4000ms
+      // Después de un timer, detenemos el reciclaje de partículas.
+      // Esto hace que dejen de generarse nuevas y las existentes caigan hasta desaparecer.
       const timer = setTimeout(() => {
-        setShowConfetti(false);
-      }, 3500); // Duración
+        setIsRecycling(false);
+      }, 2500); // 2500 ms = 2.5 segundos
 
-      // Limpiamos el temporizador si el componente se desmonta antes
       return () => clearTimeout(timer);
     }
   }, [showConfetti]);
+
+  // Esta función se llama automáticamente cuando todas las partículas han desaparecido
+  const onConfettiComplete = () => {
+    setShowConfetti(false);
+  };
 
   const canvas = showConfetti ? (
     <ReactConfetti
       width={dimensions.width}
       height={dimensions.height}
-      numberOfPieces={500}
-      recycle={true}
-      gravity={0.25} // Aumenta la velocidad de caída (valor por defecto es 0.1)
+      numberOfPieces={300}
+      recycle={isRecycling}
+      gravity={0.3}
+      onConfettiComplete={onConfettiComplete}
     />
   ) : null;
 
-  const value = { fire };
+  const value = { confeti };
 
   return (
     <ConfettiCtx.Provider value={value}>

@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
-// reutiliza la misma hoja de estilos
+import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
 import '/src/apps/_shared/Sumas.css'
 
 const SumasPrimaria3 = () => {
   const areaProblemaRef = useRef(null)
   const mensajeRetroRef = useRef(null)
+  const { confeti } = useConfetti();
 
   const [operandosActuales, setOperandosActuales] = useState({ num1: 0, num2: 0, cifras: 3 })
   const [mostrarLlevadas, setMostrarLlevadas] = useState(true)
@@ -177,6 +178,7 @@ const SumasPrimaria3 = () => {
       if (!mostrarLlevadas || !llevadaIncorrecta) {
         mensajeRetro.textContent = '¡Excelente! ¡Suma correcta! 🎉'
         mensajeRetro.className = 'feedback-correct'
+        confeti();
         cajasLlevada.forEach(c => c.classList.remove('incorrect'))
       } else {
         mensajeRetro.textContent = 'el resultado es correcto, pero revisa las llevadas'

@@ -5,7 +5,7 @@ import '/src/apps/_shared/Sumas.css';
 
 const SumasPrimaria1 = () => {
 
-    const { fire } = useConfetti();
+    const { confeti } = useConfetti();
 
     // Refs para acceder a los elementos del DOM directamente, como en el script original
     const problemAreaRef = useRef(null);
@@ -122,7 +122,7 @@ const SumasPrimaria1 = () => {
         if (allCorrect) {
             feedbackMessage.textContent = '¡Excelente! ¡Suma correcta! 🎉';
             feedbackMessage.className = 'feedback-correct';
-            fire(); // Dispara confeti
+            confeti();
         } else {
             feedbackMessage.textContent = 'Casi... ¡Revisa las casillas en rojo!';
             feedbackMessage.className = 'feedback-incorrect';

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
 import '/src/apps/_shared/Sumas.css'
 
 const SumasPrimaria6 = () => {
   const areaProblemaRef = useRef(null)
   const mensajeRetroRef = useRef(null)
+  const { confeti } = useConfetti();
 
   const [operandosActuales, setOperandosActuales] = useState({ nums: [] })
   const [mostrarLlevadas, setMostrarLlevadas] = useState(true)
@@ -244,6 +246,7 @@ const SumasPrimaria6 = () => {
       if (!mostrarLlevadas || !huboLlevadaErroneaEscrita) {
         mensajeRetro.textContent = '¡Excelente! ¡Suma correcta! 🎉'
         mensajeRetro.className = 'feedback-correct'
+        confeti()
       } else {
         mensajeRetro.textContent = 'El resultado es correcto, pero revisa las llevadas que has escrito'
         mensajeRetro.className = 'feedback-incorrect'
