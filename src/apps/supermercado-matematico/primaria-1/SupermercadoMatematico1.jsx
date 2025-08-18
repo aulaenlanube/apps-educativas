@@ -3,9 +3,11 @@ import '@/apps/_shared/SupermercadoShared.css';
 import { useSupermercadoGame } from '@/hooks/useSupermercadoGame';
 import TestScreen from '@/apps/_shared/TestScreen';
 
+
 const productos = [ { nombre: "Leche", emoji: "🥛", precio: 1 }, { nombre: "Pan", emoji: "🍞", precio: 1 }, { nombre: "Manzana", emoji: "🍎", precio: 1 }, { nombre: "Huevo", emoji: "🥚", precio: 2 }, { nombre: "Zumo", emoji: "🧃", precio: 2 }, { nombre: "Queso", emoji: "🧀", precio: 3 }];
 
 const generarNuevaMision = () => {
+    
     const numProductos = 2;
     const productosMezclados = [...productos].sort(() => 0.5 - Math.random());
     let listaDeCompra = [];

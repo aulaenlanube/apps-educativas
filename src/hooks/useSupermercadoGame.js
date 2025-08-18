@@ -1,6 +1,7 @@
 // src/hooks/useSupermercadoGame.js
 
 import { useState, useEffect, useCallback } from 'react';
+import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
 
 const TOTAL_TEST_QUESTIONS = 5;
 
@@ -16,6 +17,7 @@ export const useSupermercadoGame = ({ generarNuevaMision, withTimer = false }) =
     const [elapsedTime, setElapsedTime] = useState(0);
     const [score, setScore] = useState(0);
     const [showResults, setShowResults] = useState(false);
+    const { confeti } = useConfetti();
 
     // Genera una misión para el modo práctica
     const startPracticeMission = useCallback(() => {
@@ -111,6 +113,7 @@ export const useSupermercadoGame = ({ generarNuevaMision, withTimer = false }) =
         }
         if (Math.abs(respuestaNum - mision.solucion) < 0.001) {
             setFeedback({ texto: "¡Correcto! ¡Muy bien!", clase: 'correcta' });
+            confeti();
         } else {
             setFeedback({ texto: `Casi... La respuesta correcta era ${mision.solucion.toFixed(2).replace('.', ',')}€. ¡Inténtalo de nuevo!`, clase: 'incorrecta' });
         }

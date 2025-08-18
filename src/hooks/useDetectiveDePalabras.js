@@ -1,5 +1,6 @@
 // src/hooks/useDetectiveDePalabras.js
 import { useState, useCallback, useEffect } from 'react';
+import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
 
 const TOTAL_TEST_QUESTIONS = 5;
 const FONT_STYLES = ['default', 'cursive', 'uppercase'];
@@ -17,6 +18,7 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
   const [feedback, setFeedback] = useState({ texto: '', clase: '' });
   const [letras, setLetras] = useState([]);
   const [fraseResuelta, setFraseResuelta] = useState(false);
+  const { confeti } = useConfetti();
 
   // Tipografía (sin hooks condicionales)
   const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
@@ -118,6 +120,7 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
 
     if (esTotalmenteCorrecto) {
       setFeedback({ texto: '¡Correcto! ¡Caso resuelto!', clase: 'correcto' });
+      confeti();
       setPuntuacion((p) => p + 10);
       setFraseResuelta(true);
     } else {

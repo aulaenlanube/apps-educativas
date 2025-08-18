@@ -1,5 +1,6 @@
 // src/hooks/useOrdenaLaFraseGame.js
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
 
 const TOTAL_TEST_QUESTIONS = 5;
 const FONT_STYLES = ['default', 'cursive', 'uppercase'];
@@ -14,6 +15,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     const dropZoneRef = useRef(null);
     const originZoneRef = useRef(null);
     const draggedCloneRef = useRef(null);
+    const { confeti } = useConfetti();
 
     const [isTestMode, setIsTestMode] = useState(false);
     const [testQuestions, setTestQuestions] = useState([]);
@@ -147,6 +149,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         const fraseUsuario = palabrasDestino.map(p => p.texto).join(' ');
         if (fraseUsuario === mision.solucion) {
             setFeedback({ texto: "¡Correcto! ¡Muy bien!", clase: 'correcta' });
+            confeti();
         } else {
             setFeedback({ texto: "Casi... Revisa el orden de las palabras.", clase: 'incorrecta' });
         }

@@ -1,5 +1,6 @@
 // src/hooks/useOrdenaLaHistoriaGame.js
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
 
 const TOTAL_TEST_STORIES = 5;
 const FONT_STYLES = ['default', 'cursive', 'uppercase'];
@@ -12,6 +13,7 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     const draggedItem = useRef(null);
     const dropZoneRef = useRef(null);
     const draggedCloneRef = useRef(null);
+    const { confeti } = useConfetti();
 
     const [isTestMode, setIsTestMode] = useState(false);
     const [testQuestions, setTestQuestions] = useState([]);
@@ -137,6 +139,7 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
         const correctOrder = historiaCorrecta.map(f => f.texto).join();
         if (userOrder === correctOrder) {
             setFeedback({ texto: "¡Correcto! La historia tiene sentido.", clase: 'correcta' });
+            confeti();
         } else {
             setFeedback({ texto: "Casi... Intenta ordenar las frases de otra manera.", clase: 'incorrecta' });
         }
