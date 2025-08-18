@@ -159,25 +159,31 @@ button { padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; c
   margin-top: 4px;       /* muy pegado a los números */
 }
 
+.final-box {
+  font-size: 2.5em;   /* usa el mismo que tengas en .box */
+  font-weight: bold;  /* opcional, para que se vean igual de claros */
+}
+
 /* Caja de resultado (se hereda de .box/.final-box) */
 .result-grid .final-box { width: var(--box-w); }
 
-/* Ranuras de la coma: rectángulo vertical, dos estados */
+/* Ranuras de la coma: solo el carácter ',' */
 .comma-slot {
   width: var(--slot-w);
-  height: 18px;                /* corto, tipo palito */
-  border: 2px solid #bdbdbd;
-  background: #fff;
-  border-radius: 2px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3em;       /* tamaño similar al de los números */
+  color: #ccc;            /* gris claro por defecto */
   cursor: pointer;
-  justify-self: center;
-  align-self: flex-end;
-  transition: background-color .1s, border-color .1s, transform .05s;
+  user-select: none;
 }
-.comma-slot:active { transform: scale(0.95); }
 
-/* Activa = negro sólido (sin estados intermedios) */
 .comma-slot.active {
-  background: #000;
-  border-color: #000;
+  color: #000;            /* al activar: negro */
 }
+
+
+
+.comma-slot:hover { color: #000;  }

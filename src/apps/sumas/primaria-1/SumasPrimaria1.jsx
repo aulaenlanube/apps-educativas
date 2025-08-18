@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-// Usamos la ruta absoluta desde la raíz del proyecto (src)
+import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
 import '/src/apps/_shared/Sumas.css';
 
+
 const SumasPrimaria1 = () => {
+
+    const { fire } = useConfetti();
+
     // Refs para acceder a los elementos del DOM directamente, como en el script original
     const problemAreaRef = useRef(null);
     const feedbackMessageRef = useRef(null);
@@ -108,6 +112,7 @@ const SumasPrimaria1 = () => {
             box.classList.remove('correct', 'incorrect');
             if (box.textContent === solutionDigits[i]) {
                 box.classList.add('correct');
+               
             } else {
                 box.classList.add('incorrect');
                 allCorrect = false;
@@ -117,6 +122,7 @@ const SumasPrimaria1 = () => {
         if (allCorrect) {
             feedbackMessage.textContent = '¡Excelente! ¡Suma correcta! 🎉';
             feedbackMessage.className = 'feedback-correct';
+            fire("success"); // Dispara confeti
         } else {
             feedbackMessage.textContent = 'Casi... ¡Revisa las casillas en rojo!';
             feedbackMessage.className = 'feedback-incorrect';

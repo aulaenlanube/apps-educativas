@@ -1,13 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "/src/apps/_shared/Multiplicaciones.css";
 
-
 /* 6º Primaria con decimales (coma manual entre dígitos, grid intercalado)
    - Multiplicador: total de cifras (enteras+decimales) ∈ [2,3]
    - Multiplicando: total de cifras (enteras+decimales) ∈ [3,5]
    - Al menos uno con decimales
    - Se multiplica como enteros; posición de la coma en el resultado = d1 + d2
-   - El alumno marca la coma pulsando una ranura vertical entre dígitos
+   - El alumno marca la coma pulsando una ranura entre dígitos (mostrando “,”)
 */
 
 export default function MultiplicacionesPrimaria6() {
@@ -355,8 +354,6 @@ export default function MultiplicacionesPrimaria6() {
         <span className="gradient-text">Multiplica con decimales</span>
       </h1>
 
-
-
       <div id="options-area">
         <label htmlFor="help-toggle">Ayuda con llevadas</label>
         <label className="switch">
@@ -397,7 +394,9 @@ export default function MultiplicacionesPrimaria6() {
                   setCommaSlot(prev => (prev === s ? null : s));  // toggle binario
                 }}
                 title={decimalesTotal > 0 ? "Marca aquí la coma" : "Esta operación no lleva coma"}
-              />
+              >
+                ,
+              </div>
             );
           } else {
             // Columna impar -> caja de dígito (col c = (k-1)/2)

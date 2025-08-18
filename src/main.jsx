@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { ConfettiProvider } from "/src/apps/_shared/ConfettiProvider";
 
 import App from '@/App';
 import MainLayout from '@/components/layout/MainLayout';
@@ -23,50 +24,28 @@ const router = createBrowserRouter(
         {
           element: <MainLayout />,
           children: [
-            {
-              index: true,
-              element: <HomePage />,
-            },
-            {
-              // Ruta para los cursos de Primaria (no tienen asignaturas)
-              path: 'curso/primaria/:grade',
-              element: <CoursePage />,
-            },
-            {
-              // Ruta para seleccionar la asignatura en ESO
-              path: 'curso/eso/:grade',
-              element: <SubjectPage />,
-            },
-            {
-              // Ruta para ver la lista de apps de una asignatura concreta
-              path: 'curso/eso/:grade/:subjectId',
-              element: <AppListPage />,
-            }
+            { index: true, element: <HomePage /> },
+            { path: 'curso/primaria/:grade', element: <CoursePage /> },
+            { path: 'curso/eso/:grade', element: <SubjectPage /> },
+            { path: 'curso/eso/:grade/:subjectId', element: <AppListPage /> },
           ],
         },
-        // --- CORRECCIÓN CLAVE: RUTA ÚNICA PARA MOSTRAR CUALQUIER APP ---
-        {
-          // Esta ruta ahora gestiona todas las apps, tanto de Primaria como de ESO.
-          // Para Primaria, ':subjectId' será siempre "general".
-          path: '/curso/:level/:grade/:subjectId/app/:appId',
-          element: <AppRunnerPage />,
-        },
+        // Ruta única para ejecutar apps
+        { path: '/curso/:level/:grade/:subjectId/app/:appId', element: <AppRunnerPage /> },
       ],
     },
   ],
-  {
-    future: {
-      v7_startTransition: true,
-      v7_relativeSplatPath: true,
-    },
-  }
+  { future: { v7_startTransition: true, v7_relativeSplatPath: true } }
 );
 
+// Renderiza la aplicación principal
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
-      <RouterProvider router={router} />
-      <Toaster />
+      <ConfettiProvider>
+        <RouterProvider router={router} />
+        <Toaster />
+      </ConfettiProvider>
     </HelmetProvider>
   </React.StrictMode>
 );
