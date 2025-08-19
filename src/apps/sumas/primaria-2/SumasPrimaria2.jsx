@@ -156,7 +156,7 @@ const SumasPrimaria2 = () => {
             if (!showCarries || !hasWrittenIncorrectCarry) {
                 feedbackMessage.textContent = '¡Excelente! ¡Suma correcta! 🎉';
                 feedbackMessage.className = 'feedback-correct';
-                confeti();
+                //confeti();
                 carryBoxes.forEach(box => box.classList.remove('incorrect'));
             } else {
                 feedbackMessage.textContent = 'El resultado es correcto, ¡pero revisa las llevadas!';

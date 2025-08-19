@@ -120,7 +120,7 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
 
     if (esTotalmenteCorrecto) {
       setFeedback({ texto: '¡Correcto! ¡Caso resuelto!', clase: 'correcto' });
-      confeti();
+      //confeti();
       setPuntuacion((p) => p + 10);
       setFraseResuelta(true);
     } else {

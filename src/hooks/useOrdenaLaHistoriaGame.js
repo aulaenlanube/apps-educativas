@@ -139,7 +139,7 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
         const correctOrder = historiaCorrecta.map(f => f.texto).join();
         if (userOrder === correctOrder) {
             setFeedback({ texto: "¡Correcto! La historia tiene sentido.", clase: 'correcta' });
-            confeti();
+            //confeti();
         } else {
             setFeedback({ texto: "Casi... Intenta ordenar las frases de otra manera.", clase: 'incorrecta' });
         }

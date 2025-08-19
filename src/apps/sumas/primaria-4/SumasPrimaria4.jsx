@@ -169,7 +169,7 @@ const SumasPrimaria4 = () => {
       if (!mostrarLlevadas || !llevadaIncorrecta) {
         mensajeRetro.textContent = '¡Excelente! ¡Suma correcta! 🎉'
         mensajeRetro.className = 'feedback-correct'
-        confeti();
+        //confeti();
         cajasLlevada.forEach(c => c.classList.remove('incorrect'))
       } else {
         mensajeRetro.textContent = 'el resultado es correcto, pero revisa las llevadas'

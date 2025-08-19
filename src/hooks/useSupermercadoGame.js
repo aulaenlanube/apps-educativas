@@ -113,7 +113,7 @@ export const useSupermercadoGame = ({ generarNuevaMision, withTimer = false }) =
         }
         if (Math.abs(respuestaNum - mision.solucion) < 0.001) {
             setFeedback({ texto: "¡Correcto! ¡Muy bien!", clase: 'correcta' });
-            confeti();
+            //confeti();
         } else {
             setFeedback({ texto: `Casi... La respuesta correcta era ${mision.solucion.toFixed(2).replace('.', ',')}€. ¡Inténtalo de nuevo!`, clase: 'incorrecta' });
         }

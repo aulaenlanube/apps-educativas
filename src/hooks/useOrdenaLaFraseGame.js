@@ -149,7 +149,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         const fraseUsuario = palabrasDestino.map(p => p.texto).join(' ');
         if (fraseUsuario === mision.solucion) {
             setFeedback({ texto: "¡Correcto! ¡Muy bien!", clase: 'correcta' });
-            confeti();
+            //confeti();
         } else {
             setFeedback({ texto: "Casi... Revisa el orden de las palabras.", clase: 'incorrecta' });
         }

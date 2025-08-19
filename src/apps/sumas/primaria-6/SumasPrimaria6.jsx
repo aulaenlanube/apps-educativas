@@ -246,7 +246,7 @@ const SumasPrimaria6 = () => {
       if (!mostrarLlevadas || !huboLlevadaErroneaEscrita) {
         mensajeRetro.textContent = '¡Excelente! ¡Suma correcta! 🎉'
         mensajeRetro.className = 'feedback-correct'
-        confeti()
+        //confeti()
       } else {
         mensajeRetro.textContent = 'El resultado es correcto, pero revisa las llevadas que has escrito'
         mensajeRetro.className = 'feedback-incorrect'
