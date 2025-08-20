@@ -1,240 +1,365 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
-import '/src/apps/_shared/Sumas.css'
+// src/apps/sumas/SumasPrimaria4.jsx
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import '/src/apps/_shared/Sumas.css';
+
+const TOTAL_TEST_QUESTIONS = 5;
+
+/** Calcula llevadas para varios sumandos (nums) con columnCount columnas (incluye la extra de la izquierda). */
+function computeCarriesMany(nums, columnCount) {
+  const padded = nums.map(n =>
+    n.toString().padStart(columnCount, '0').split('').map(d => parseInt(d, 10))
+  );
+  const carries = Array(columnCount - 1).fill(0);
+  let carry = 0;
+  for (let i = columnCount - 1; i >= 0; i--) {
+    const colSum = padded.reduce((acc, arr) => acc + arr[i], 0) + carry;
+    const nextCarry = Math.floor(colSum / 10);
+    if (i - 1 >= 0) carries[i - 1] = nextCarry;
+    carry = nextCarry;
+  }
+  return carries;
+}
+
+/** Tablero React para 3 ó 4 cifras + 3 sumandos, con llevadas opcionales. */
+function ProblemBoard({
+  nums, cifras,
+  showCarries,
+  resultSlots, setResultSlots,     // length = columnCount
+  carrySlots, setCarrySlots,       // length = columnCount - 1
+  checkInfo                        // { show, correctResult, correctCarries[] }
+}) {
+  const columnCount = cifras + 1; // añadimos columna extra a la izquierda (posible llevada final)
+  const digitRows = useMemo(
+    () => nums.map(n => n.toString().padStart(columnCount, ' ').split('')),
+    [nums, columnCount]
+  );
+
+  const onDragOver = (e) => e.preventDefault();
+
+  const dropResult = (i, e) => {
+    e.preventDefault();
+    const data = e.dataTransfer.getData('text/plain');
+    if (!/^\d$/.test(data)) return;
+    setResultSlots(prev => {
+      const next = [...prev];
+      next[i] = data;
+      return next;
+    });
+  };
+  const clearResult = (i) => {
+    setResultSlots(prev => {
+      const next = [...prev];
+      next[i] = '';
+      return next;
+    });
+  };
+
+  const dropCarry = (i, e) => {
+    e.preventDefault();
+    const data = e.dataTransfer.getData('text/plain');
+    if (!/^\d$/.test(data)) return;
+    setCarrySlots(prev => {
+      const next = [...prev];
+      next[i] = data;
+      return next;
+    });
+  };
+  const clearCarry = (i) => {
+    setCarrySlots(prev => {
+      const next = [...prev];
+      next[i] = '';
+      return next;
+    });
+  };
+
+  const resultCls = (i) => {
+    if (!checkInfo?.show) return '';
+    const user = (resultSlots[i] || '0');
+    const ok = user === checkInfo.correctResult[i];
+    return ok ? 'correct' : 'incorrect';
+  };
+  const carryCls = (i) => {
+    if (!checkInfo?.show) return '';
+    const expected = (checkInfo.correctCarries?.[i] ?? 0).toString();
+    const user = carrySlots[i] || '';
+    const ok = user === '' ? expected === '0' : user === expected;
+    return ok ? 'correct' : 'incorrect';
+  };
+
+  return (
+    <div className={`board ${!showCarries ? 'carries-hidden' : ''}`}>
+      <div className="operator">+</div>
+
+      {Array.from({ length: columnCount }).map((_, colIdx) => (
+        <div className="column" key={colIdx}>
+          {/* Carry en todas menos la última (unidades) */}
+          {colIdx < columnCount - 1 ? (
+            <div
+              className={`box carry-box ${carryCls(colIdx)}`}
+              onDragOver={onDragOver}
+              onDrop={(e) => dropCarry(colIdx, e)}
+              onClick={() => clearCarry(colIdx)}
+            >
+              {carrySlots[colIdx]}
+            </div>
+          ) : (
+            <div className="carry-placeholder" />
+          )}
+
+          {/* Tres filas de dígitos (tres sumandos) */}
+          {digitRows.map((row, r) => (
+            <div className="digit-display" key={`r${r}`}>{row[colIdx]}</div>
+          ))}
+
+          <hr className="operation-line" />
+
+          <div
+            className={`box result-box ${resultSlots[colIdx] ? 'filled' : ''} ${resultCls(colIdx)}`}
+            onDragOver={onDragOver}
+            onDrop={(e) => dropResult(colIdx, e)}
+            onClick={() => clearResult(colIdx)}
+          >
+            {resultSlots[colIdx]}
+          </div>
+        </div>
+      ))}
+
+      <div className="operator-spacer" />
+    </div>
+  );
+}
 
 const SumasPrimaria4 = () => {
-  const areaProblemaRef = useRef(null)
-  const mensajeRetroRef = useRef(null)
-  const { confeti } = useConfetti();
+  // Estado principal (3 sumandos, 3 o 4 cifras)
+  const [current, setCurrent] = useState({ nums: [0,0,0], cifras: 3 });
+  const [showCarries, setShowCarries] = useState(true);
 
-  const [operandosActuales, setOperandosActuales] = useState({ nums: [], cifras: 3 })
-  const [mostrarLlevadas, setMostrarLlevadas] = useState(true)
+  // Slots tablero
+  const [resultSlots, setResultSlots] = useState(['','','','']); // se ajusta según cifras
+  const [carrySlots, setCarrySlots]   = useState(['','','']);
 
-  // --- generación del problema ---
-  const generarNuevoProblema = useCallback(() => {
-    const cifras = Math.random() < 0.5 ? 3 : 4
-    const min = cifras === 3 ? 100 : 1000
-    const max = cifras === 3 ? 999 : 9999
+  // Feedback práctica
+  const [feedback, setFeedback] = useState({ text: '', cls: '' });
+  const [checkInfo, setCheckInfo] = useState({ show:false, correctResult:'', correctCarries:[] });
 
-    // tres números aleatorios
-    const num1 = Math.floor(Math.random() * (max - min + 1)) + min
-    const num2 = Math.floor(Math.random() * (max - min + 1)) + min
-    const num3 = Math.floor(Math.random() * (max - min + 1)) + min
+  // Test
+  const [isTestMode, setIsTestMode] = useState(false);
+  const [testQuestions, setTestQuestions] = useState([]); // [{ nums:[n1,n2,n3], cifras }]
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [userAnswers, setUserAnswers] = useState([]);     // ["cadena de dígitos"]
+  const [showResults, setShowResults] = useState(false);
+  const [score, setScore] = useState(0);
 
-    setOperandosActuales({ nums: [num1, num2, num3], cifras })
+  /** Generar ejercicio de 3 ó 4 cifras para 3 sumandos */
+  const generateExercise = useCallback(() => {
+    const cifras = Math.random() < 0.5 ? 3 : 4;
+    const min = cifras === 3 ? 100 : 1000;
+    const max = cifras === 3 ? 999 : 9999;
+    const n1 = Math.floor(Math.random() * (max - min + 1)) + min;
+    const n2 = Math.floor(Math.random() * (max - min + 1)) + min;
+    const n3 = Math.floor(Math.random() * (max - min + 1)) + min;
+    return { nums: [n1, n2, n3], cifras };
+  }, []);
 
-    const areaProblema = areaProblemaRef.current
-    const mensajeRetro = mensajeRetroRef.current
-    if (!areaProblema || !mensajeRetro) return
+  /** Carga ejercicio en el tablero (práctica o test) */
+  const loadExercise = useCallback(({ nums, cifras }) => {
+    const columnCount = cifras + 1;
+    setCurrent({ nums, cifras });
+    setResultSlots(Array(columnCount).fill(''));
+    setCarrySlots(Array(columnCount - 1).fill(''));
+    setFeedback({ text:'', cls:'' });
 
-    const columnasTotales = cifras + 1
-    const numsStr = [num1, num2, num3].map(n =>
-      n.toString().padStart(columnasTotales, ' ')
-    )
+    const correctResult = nums.reduce((a,b)=>a+b,0).toString().padStart(columnCount, '0');
+    const correctCarries = computeCarriesMany(nums, columnCount);
+    setCheckInfo({ show:false, correctResult, correctCarries });
+  }, []);
 
-    areaProblema.innerHTML = ''
-    mensajeRetro.textContent = ''
-    mensajeRetro.className = ''
+  /** PRÁCTICA */
+  const startPractice = useCallback(() => {
+    loadExercise(generateExercise());
+  }, [generateExercise, loadExercise]);
 
-    const operador = document.createElement('div')
-    operador.className = 'operator'
-    operador.textContent = '+'
-    areaProblema.appendChild(operador)
+  const checkPractice = useCallback(() => {
+    const columnCount = current.cifras + 1;
+    const correct = current.nums.reduce((a,b)=>a+b,0).toString().padStart(columnCount, '0');
+    const user = resultSlots.map(x => x || '0').join('');
+    const carriesOk = computeCarriesMany(current.nums, columnCount);
+    setCheckInfo({ show:true, correctResult: correct, correctCarries: carriesOk });
 
-    for (let i = 0; i < columnasTotales; i++) {
-      const columna = document.createElement('div')
-      columna.className = 'column'
-
-      const llevada = document.createElement('div')
-      if (i < columnasTotales - 1) {
-        llevada.className = 'box carry-box'
-        llevada.dataset.target = 'true'
-      } else {
-        llevada.className = 'carry-placeholder'
-      }
-      columna.appendChild(llevada)
-
-      numsStr.forEach(numStr => {
-        columna.innerHTML += `<div class="digit-display">${numStr[i]}</div>`
-      })
-
-      const linea = document.createElement('hr')
-      linea.className = 'operation-line'
-      columna.appendChild(linea)
-
-      const cajaResultado = document.createElement('div')
-      cajaResultado.className = 'box result-box'
-      cajaResultado.dataset.target = 'true'
-      columna.appendChild(cajaResultado)
-
-      areaProblema.appendChild(columna)
-    }
-
-    const separador = document.createElement('div')
-    separador.className = 'operator-spacer'
-    areaProblema.appendChild(separador)
-
-    areaProblema.classList.toggle('carries-hidden', !mostrarLlevadas)
-
-    agregarListenersDragDrop()
-  }, [mostrarLlevadas])
-
-  // --- drag & drop ---
-  const agregarListenersDragDrop = () => {
-    const cajasObjetivo = areaProblemaRef.current.querySelectorAll('[data-target="true"]')
-    const fichasNumero = document.querySelectorAll('.number-tile')
-
-    fichasNumero.forEach(ficha => {
-      ficha.addEventListener('dragstart', e =>
-        e.dataTransfer.setData('text/plain', ficha.textContent)
-      )
-    })
-
-    cajasObjetivo.forEach(caja => {
-      caja.addEventListener('dragover', e => {
-        e.preventDefault()
-        caja.classList.add('drag-over')
-      })
-      caja.addEventListener('dragleave', () => caja.classList.remove('drag-over'))
-      caja.addEventListener('drop', e => {
-        e.preventDefault()
-        caja.classList.remove('drag-over', 'correct', 'incorrect')
-        caja.textContent = e.dataTransfer.getData('text/plain')
-      })
-    })
-  }
-
-  // --- comprobación ---
-  const comprobarRespuesta = () => {
-    const cajasResultado = areaProblemaRef.current.querySelectorAll('.result-box')
-    const cajasLlevada = areaProblemaRef.current.querySelectorAll('.carry-box')
-    const mensajeRetro = mensajeRetroRef.current
-
-    const solucion = operandosActuales.nums.reduce((a, b) => a + b, 0)
-    const digitosSolucion = solucion
-      .toString()
-      .padStart(cajasResultado.length, '0')
-      .split('')
-
-    const respuestaUsuarioStrCruda = Array.from(cajasResultado).map(b => b.textContent.trim())
-    const respuestaUsuarioStrParaNum = respuestaUsuarioStrCruda.map(t => (t === '' ? '0' : t)).join('')
-    const respuestaUsuarioNum = parseInt(respuestaUsuarioStrParaNum) || 0
-    const esResultadoCorrecto = respuestaUsuarioNum === solucion
-
-    cajasResultado.forEach((caja, i) => {
-      caja.classList.remove('correct', 'incorrect')
-      const texto = caja.textContent.trim()
-      const correcto = digitosSolucion[i]
-      const coincide =
-        texto === correcto || (texto === '' && correcto === '0')
-      caja.classList.add(coincide ? 'correct' : 'incorrect')
-    })
-
-    let llevadaIncorrecta = false
-    if (mostrarLlevadas) {
-      let llevada = 0
-      const numsPadded = operandosActuales.nums.map(n =>
-        n.toString().padStart(cajasResultado.length, '0')
-      )
-
-      cajasLlevada.forEach(c => c.classList.remove('correct', 'incorrect'))
-
-      for (let i = cajasResultado.length - 1; i >= 1; i--) {
-        const sumaColumna = numsPadded.reduce(
-          (acum, num) => acum + parseInt(num[i]),
-          llevada
-        )
-        const llevadaCorrecta = Math.floor(sumaColumna / 10)
-
-        const cajaLlevada = cajasLlevada[i - 1]
-        const textoUsuario = cajaLlevada.textContent.trim()
-
-        const coincide =
-          (textoUsuario === '' && llevadaCorrecta === 0) ||
-          (textoUsuario !== '' && parseInt(textoUsuario) === llevadaCorrecta)
-
-        if (coincide) {
-          cajaLlevada.classList.add('correct')
-        } else {
-          cajaLlevada.classList.add('incorrect')
-          if (textoUsuario !== '' || llevadaCorrecta > 0) {
-            llevadaIncorrecta = true
-          }
-        }
-        llevada = llevadaCorrecta
-      }
-    }
-
-    if (esResultadoCorrecto) {
-      if (!mostrarLlevadas || !llevadaIncorrecta) {
-        mensajeRetro.textContent = '¡Excelente! ¡Suma correcta! 🎉'
-        mensajeRetro.className = 'feedback-correct'
-        //confeti();
-        cajasLlevada.forEach(c => c.classList.remove('incorrect'))
-      } else {
-        mensajeRetro.textContent = 'el resultado es correcto, pero revisa las llevadas'
-        mensajeRetro.className = 'feedback-incorrect'
-      }
+    if (user === correct) {
+      setFeedback({ text:'¡Excelente! ¡Suma correcta! 🎉', cls:'feedback-correct' });
     } else {
-      mensajeRetro.textContent = 'casi... revisa las casillas en rojo'
-      mensajeRetro.className = 'feedback-incorrect'
+      setFeedback({ text:'Casi... ¡Revisa las casillas!', cls:'feedback-incorrect' });
     }
-  }
+  }, [current, resultSlots]);
 
-  const alternarAyudaLlevadas = () => {
-    setMostrarLlevadas(prev => !prev)
-  }
+  /** TEST */
+  const startTest = useCallback(() => {
+    const qs = Array.from({ length: TOTAL_TEST_QUESTIONS }, () => generateExercise());
+    setTestQuestions(qs);
+    setCurrentQuestionIndex(0);
+    setUserAnswers([]);
+    setShowResults(false);
+    setScore(0);
+    setIsTestMode(true);
+    loadExercise(qs[0]);
+  }, [generateExercise, loadExercise]);
 
-  useEffect(() => {
-    generarNuevoProblema()
-  }, [generarNuevoProblema])
+  const handleNextQuestion = useCallback(() => {
+    const user = resultSlots.map(x => x || '0').join('');
+    const newAnswers = [...userAnswers, user];
+    setUserAnswers(newAnswers);
+
+    const isLast = currentQuestionIndex >= TOTAL_TEST_QUESTIONS - 1;
+    if (!isLast) {
+      const next = currentQuestionIndex + 1;
+      setCurrentQuestionIndex(next);
+      loadExercise(testQuestions[next]);
+    } else {
+      let correctCount = 0;
+      testQuestions.forEach((q, i) => {
+        const colCount = q.cifras + 1;
+        const correct = q.nums.reduce((a,b)=>a+b,0).toString().padStart(colCount, '0');
+        if (newAnswers[i] === correct) correctCount++;
+      });
+      setScore(correctCount * 200);
+      setShowResults(true);
+    }
+  }, [resultSlots, userAnswers, currentQuestionIndex, testQuestions, loadExercise]);
+
+  const exitTestMode = useCallback(() => {
+    setIsTestMode(false);
+    setShowResults(false);
+    startPractice();
+  }, [startPractice]);
+
+  useEffect(() => { startPractice(); }, [startPractice]);
+
+  // Progreso test
+  const progressPct = ((currentQuestionIndex + 1) / TOTAL_TEST_QUESTIONS) * 100;
 
   return (
     <div id="app-container">
       <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-        <span role="img" aria-label="Suma">📝</span>{' '}
-        <span className="gradient-text">Suma como en el cole</span>
+        <span role="img" aria-label="Suma">🧮</span>{' '}
+        <span className="gradient-text">Suma como en el cole (4º)</span>
       </h1>
 
-      <div id="options-area">
+      {/* Modo */}
+      <div className="mode-selection">
+        <button
+          className={`btn-mode ${!isTestMode ? 'active' : ''}`}
+          onClick={() => { setIsTestMode(false); setShowResults(false); startPractice(); }}
+        >
+          Práctica Libre
+        </button>
+        <button className="btn-mode" onClick={startTest}>Iniciar Test</button>
+      </div>
+
+      {/* Toggle llevadas */}
+      <div id="options-area" style={{ display:'flex', alignItems:'center', gap:12, justifyContent:'center', marginBottom:8 }}>
         <label htmlFor="help-toggle">Ayuda con llevadas</label>
         <label className="switch">
           <input
             type="checkbox"
             id="help-toggle"
-            checked={mostrarLlevadas}
-            onChange={alternarAyudaLlevadas}
+            checked={showCarries}
+            onChange={() => setShowCarries(v => !v)}
           />
           <span className="slider round"></span>
         </label>
       </div>
 
-      <div id="problem-area" ref={areaProblemaRef}></div>
+      {/* Cabecera y progreso Test */}
+      {isTestMode && !showResults && (
+        <>
+          <div className="test-header">
+            <div>Pregunta {currentQuestionIndex + 1} / {TOTAL_TEST_QUESTIONS}</div>
+          </div>
+          <div className="progress-bar-container">
+            <div className="progress-bar" style={{ width: `${progressPct}%` }} />
+          </div>
+        </>
+      )}
 
-      <div id="feedback-message" ref={mensajeRetroRef}></div>
+      {/* Tablero: se oculta en resultados */}
+      {!(isTestMode && showResults) && (
+        <ProblemBoard
+          nums={current.nums}
+          cifras={current.cifras}
+          showCarries={showCarries}
+          resultSlots={resultSlots} setResultSlots={setResultSlots}
+          carrySlots={carrySlots}   setCarrySlots={setCarrySlots}
+          checkInfo={checkInfo}
+        />
+      )}
 
-      <div id="controls">
-        <button id="check-button" onClick={comprobarRespuesta}>Comprobar</button>
-        <button id="new-problem-button" onClick={generarNuevoProblema}>Nueva Suma</button>
-      </div>
+      {/* Controles práctica */}
+      {!isTestMode && (
+        <>
+          <div id="feedback-message" className={feedback.cls}>{feedback.text}</div>
+          <div id="controls">
+            <button id="check-button" onClick={checkPractice}>Comprobar</button>
+            <button id="new-problem-button" onClick={startPractice}>Nueva Suma</button>
+          </div>
+        </>
+      )}
 
-      <div id="number-palette">
-        <h2>Arrastra los números 👇</h2>
-        <div className="number-tiles-container">
-          {[...Array(10).keys()].map(n => (
-            <div
-              key={n}
-              className="number-tile"
-              draggable="true"
-              onDragStart={e => e.dataTransfer.setData('text/plain', n)}
-            >
-              {n}
-            </div>
-          ))}
+      {/* Controles Test */}
+      {isTestMode && !showResults && (
+        <div className="controles" style={{ marginTop: 16 }}>
+          <button onClick={handleNextQuestion} className="btn-test">
+            {currentQuestionIndex === TOTAL_TEST_QUESTIONS - 1 ? 'Finalizar' : 'Siguiente'}
+          </button>
         </div>
-      </div>
-    </div>
-  )
-}
+      )}
 
-export default SumasPrimaria4
+      {/* Paleta de números: oculta en resultados */}
+      {!showResults && (
+        <div id="number-palette">
+          <h2>Arrastra los números 👇</h2>
+          <div className="number-tiles-container">
+            {[...Array(10).keys()].map(n => (
+              <div
+                key={n}
+                className="number-tile"
+                draggable="true"
+                onDragStart={(e) => e.dataTransfer.setData('text/plain', n)}
+              >
+                {n}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Resultados del Test (no mostramos la última operación en el tablero) */}
+      {isTestMode && showResults && (
+        <div className="test-results" style={{ marginTop: 20 }}>
+          <h2 className="score">Puntuación: <span>{score}</span></h2>
+          <div className="results-summary" style={{ marginTop: 12 }}>
+            {testQuestions.map((q, i) => {
+              const colCount = q.cifras + 1;
+              const correct = q.nums.reduce((a,b)=>a+b,0).toString().padStart(colCount, '0');
+              const user = userAnswers[i] || 'No contestada';
+              const ok = user === correct;
+              return (
+                <div key={i} className="result-item">
+                  <p><strong>Suma {i + 1}:</strong> {q.nums[0]} + {q.nums[1]} + {q.nums[2]}</p>
+                  <p className={ok ? 'correcta' : 'incorrecta'}>Tu respuesta: {user}</p>
+                  {!ok && <p className="correcta">Solución: {correct}</p>}
+                </div>
+              );
+            })}
+          </div>
+          <div className="test-controls" style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 16 }}>
+            <button onClick={startTest} className="btn-test">Volver a intentar</button>
+            <button onClick={exitTestMode} className="btn-mode">Modo Práctica</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default SumasPrimaria4;

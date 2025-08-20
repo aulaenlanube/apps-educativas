@@ -1,216 +1,371 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
+// src/apps/sumas/SumasPrimaria2.jsx
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import '/src/apps/_shared/Sumas.css';
 
-const SumasPrimaria2 = () => {
-    const problemAreaRef = useRef(null);
-    const feedbackMessageRef = useRef(null);
-    const { confeti } = useConfetti();
-    
-    const [currentOperands, setCurrentOperands] = useState({ num1: 0, num2: 0 });
-    const [showCarries, setShowCarries] = useState(true);
+const TOTAL_TEST_QUESTIONS = 5;
 
-    // --- GENERACIÓN DEL PROBLEMA (2 cifras, con posibles llevadas) ---
-    const generateNewProblem = useCallback(() => {
-        // Generamos dos números aleatorios de 2 cifras
-        const num1 = Math.floor(Math.random() * 90) + 10; // 10-99
-        const num2 = Math.floor(Math.random() * 90) + 10; // 10-99
+/** ==== Tablero React con llevadas (3 columnas) ==== */
+function ProblemBoard({
+  num1, num2,
+  showCarries,
+  resultSlots, setResultSlots,        // ['','',''] -> centenas, decenas, unidades
+  carrySlots, setCarrySlots,          // ['','']   -> [carry a centenas, carry a decenas]
+  checkInfo                           // { show:boolean, correctResult:'XYZ', correctCarries:[cHundreds,cTens] }
+}) {
+  // Dígitos mostrados (3 columnas, con huecos en centenas si procede)
+  const d1 = useMemo(() => num1.toString().padStart(3, ' ').split(''), [num1]);
+  const d2 = useMemo(() => num2.toString().padStart(3, ' ').split(''), [num2]);
 
-        setCurrentOperands({ num1, num2 });
+  const onDragOver = (e) => e.preventDefault();
 
-        const problemArea = problemAreaRef.current;
-        const feedbackMessage = feedbackMessageRef.current;
-        if (!problemArea || !feedbackMessage) return;
+  const dropResult = (i, e) => {
+    e.preventDefault();
+    const data = e.dataTransfer.getData('text/plain');
+    if (!/^\d$/.test(data)) return;
+    setResultSlots(prev => {
+      const next = [...prev];
+      next[i] = data;
+      return next;
+    });
+  };
+  const clearResult = (i) => {
+    setResultSlots(prev => {
+      const next = [...prev];
+      next[i] = '';
+      return next;
+    });
+  };
 
-        // El número total de columnas es 3 (2 para los dígitos, 1 para la llevada final)
-        const totalColumns = 3; 
-        const num1Str = num1.toString().padStart(totalColumns, ' ');
-        const num2Str = num2.toString().padStart(totalColumns, ' ');
-        
-        problemArea.innerHTML = '';
-        feedbackMessage.textContent = '';
-        feedbackMessage.className = '';
+  const dropCarry = (i, e) => {
+    e.preventDefault();
+    const data = e.dataTransfer.getData('text/plain');
+    if (!/^\d$/.test(data)) return;
+    setCarrySlots(prev => {
+      const next = [...prev];
+      next[i] = data;
+      return next;
+    });
+  };
+  const clearCarry = (i) => {
+    setCarrySlots(prev => {
+      const next = [...prev];
+      next[i] = '';
+      return next;
+    });
+  };
 
-        const operator = document.createElement('div');
-        operator.className = 'operator';
-        operator.textContent = '+';
-        problemArea.appendChild(operator);
+  // Clases de corrección solo si checkInfo.show
+  const resultCls = (i) => {
+    if (!checkInfo?.show) return '';
+    const user = (resultSlots[i] || '0');
+    const ok = user === checkInfo.correctResult[i];
+    return ok ? 'correct' : 'incorrect';
+  };
+  const carryCls = (i) => {
+    if (!checkInfo?.show) return '';
+    const expected = (checkInfo.correctCarries?.[i] ?? 0).toString();
+    const user = carrySlots[i] || '';
+    const ok = user === '' ? expected === '0' : user === expected;
+    return ok ? 'correct' : 'incorrect';
+  };
 
-        for (let i = 0; i < totalColumns; i++) {
-            const column = document.createElement('div');
-            column.className = 'column';
+  return (
+    <div className="board">
+      <div className="operator">+</div>
 
-            const carry = document.createElement('div');
-            // La última columna de la izquierda no tiene caja de llevada encima
-            if (i < totalColumns - 1) { 
-                carry.className = 'box carry-box';
-                carry.dataset.target = 'true';
-            } else {
-                carry.className = 'carry-placeholder';
-            }
-            column.appendChild(carry);
-
-            column.innerHTML += `
-                <div class="digit-display">${num1Str[i]}</div>
-                <div class="digit-display">${num2Str[i]}</div>
-                <hr class="operation-line">
-            `;
-
-            const resultBox = document.createElement('div');
-            resultBox.className = 'box result-box';
-            resultBox.dataset.target = 'true';
-            column.appendChild(resultBox);
-
-            problemArea.appendChild(column);
-        }
-        
-        const spacer = document.createElement('div');
-        spacer.className = 'operator-spacer';
-        problemArea.appendChild(spacer);
-        
-        // Aplica el estado del toggle de ayuda
-        problemArea.classList.toggle('carries-hidden', !showCarries);
-
-        addDragDropListeners();
-    }, [showCarries]); // Se regenera si cambia la visibilidad de las llevadas
-
-    // --- LÓGICA DE DRAG & DROP (sin cambios) ---
-    const addDragDropListeners = () => {
-        const targetBoxes = problemAreaRef.current.querySelectorAll('[data-target="true"]');
-        const numberTiles = document.querySelectorAll('.number-tile');
-        
-        numberTiles.forEach(tile => {
-            tile.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', tile.textContent));
-        });
-
-        targetBoxes.forEach(box => {
-            box.addEventListener('dragover', e => { e.preventDefault(); box.classList.add('drag-over'); });
-            box.addEventListener('dragleave', () => box.classList.remove('drag-over'));
-            box.addEventListener('drop', e => {
-                e.preventDefault();
-                box.classList.remove('drag-over', 'correct', 'incorrect');
-                box.textContent = e.dataTransfer.getData('text/plain');
-            });
-        });
-    };
-
-    // --- COMPROBACIÓN DE RESPUESTA (Lógica original con llevadas) ---
-    const checkAnswer = () => {
-        const resultBoxes = problemAreaRef.current.querySelectorAll('.result-box');
-        const carryBoxes = problemAreaRef.current.querySelectorAll('.carry-box');
-        const feedbackMessage = feedbackMessageRef.current;
-        
-        const solution = currentOperands.num1 + currentOperands.num2;
-        const solutionDigits = solution.toString().padStart(resultBoxes.length, '0').split('');
-        
-        let userAnswerStr = Array.from(resultBoxes).map(box => box.textContent.trim()).join('');
-        const userAnswerNum = parseInt(userAnswerStr) || 0;
-        const isResultCorrect = (userAnswerNum === solution);
-
-        // Colorear casillas del resultado
-        resultBoxes.forEach((box, i) => {
-            box.classList.remove('correct', 'incorrect');
-            if (box.textContent === solutionDigits[i]) {
-                box.classList.add('correct');
-            } else {
-                box.classList.add('incorrect');
-            }
-        });
-        
-        // Comprobar las llevadas
-        let hasWrittenIncorrectCarry = false;
-        if (showCarries) {
-            let carry = 0;
-            const num1Padded = currentOperands.num1.toString().padStart(resultBoxes.length, '0');
-            const num2Padded = currentOperands.num2.toString().padStart(resultBoxes.length, '0');
-
-            carryBoxes.forEach(box => box.classList.remove('correct', 'incorrect'));
-
-            for (let i = resultBoxes.length - 1; i >= 1; i--) {
-                const num1Digit = parseInt(num1Padded[i]);
-                const num2Digit = parseInt(num2Padded[i]);
-                
-                const correctCarry = Math.floor((num1Digit + num2Digit + carry) / 10);
-                const userCarryText = carryBoxes[i - 1].textContent;
-
-                if (userCarryText !== '') {
-                    const userCarryNum = parseInt(userCarryText);
-                    if (userCarryNum === correctCarry) {
-                        carryBoxes[i - 1].classList.add('correct');
-                    } else {
-                        carryBoxes[i - 1].classList.add('incorrect');
-                        hasWrittenIncorrectCarry = true;
-                    }
-                }
-                
-                if (!isResultCorrect && correctCarry > 0 && userCarryText === '') {
-                     carryBoxes[i - 1].classList.add('incorrect');
-                     hasWrittenIncorrectCarry = true;
-                }
-                carry = correctCarry;
-            }
-        }
-
-        // Feedback final
-        if (isResultCorrect) {
-            if (!showCarries || !hasWrittenIncorrectCarry) {
-                feedbackMessage.textContent = '¡Excelente! ¡Suma correcta! 🎉';
-                feedbackMessage.className = 'feedback-correct';
-                //confeti();
-                carryBoxes.forEach(box => box.classList.remove('incorrect'));
-            } else {
-                feedbackMessage.textContent = 'El resultado es correcto, ¡pero revisa las llevadas!';
-                feedbackMessage.className = 'feedback-incorrect';
-            }
-        } else {
-            feedbackMessage.textContent = 'Casi... ¡Revisa las casillas en rojo!';
-            feedbackMessage.className = 'feedback-incorrect';
-        }
-    };
-
-    const handleToggleCarries = () => {
-        setShowCarries(prev => !prev);
-    };
-    
-    useEffect(() => {
-        generateNewProblem();
-    }, [generateNewProblem]);
-
-    return (
-        <div id="app-container">
-            <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-    <span role="img" aria-label="Suma">📝</span> <span className="gradient-text">Suma como en el cole</span>
-</h1>
-
-            <div id="options-area">
-                <label htmlFor="help-toggle">Ayuda con llevadas</label>
-                <label className="switch">
-                    <input type="checkbox" id="help-toggle" checked={showCarries} onChange={handleToggleCarries} />
-                    <span className="slider round"></span>
-                </label>
-            </div>
-            
-            <div id="problem-area" ref={problemAreaRef}></div>
-            
-            <div id="feedback-message" ref={feedbackMessageRef}></div>
-
-            <div id="controls">
-                <button id="check-button" onClick={checkAnswer}>Comprobar</button>
-                <button id="new-problem-button" onClick={generateNewProblem}>Nueva Suma</button>
-            </div>
-
-            <div id="number-palette">
-                <h2>Arrastra los números 👇</h2>
-                <div className="number-tiles-container">
-                    {[...Array(10).keys()].map(number => (
-                        <div key={number} className="number-tile" draggable="true" onDragStart={(e) => e.dataTransfer.setData('text/plain', number)}>
-                            {number}
-                        </div>
-                    ))}
-                </div>
-            </div>
+      {/* Centenas */}
+      <div className="column">
+        {showCarries ? (
+          <div className={`box carry-box ${carryCls(0)}`}
+               onDragOver={onDragOver} onDrop={(e)=>dropCarry(0,e)} onClick={()=>clearCarry(0)}>
+            {carrySlots[0]}
+          </div>
+        ) : (<div className="carry-placeholder" />)}
+        <div className="digit-display">{d1[0]}</div>
+        <div className="digit-display">{d2[0]}</div>
+        <hr className="operation-line" />
+        <div className={`box result-box ${resultSlots[0] ? 'filled' : ''} ${resultCls(0)}`}
+             onDragOver={onDragOver} onDrop={(e)=>dropResult(0,e)} onClick={()=>clearResult(0)}>
+          {resultSlots[0]}
         </div>
-    );
+      </div>
+
+      {/* Decenas */}
+      <div className="column">
+        {showCarries ? (
+          <div className={`box carry-box ${carryCls(1)}`}
+               onDragOver={onDragOver} onDrop={(e)=>dropCarry(1,e)} onClick={()=>clearCarry(1)}>
+            {carrySlots[1]}
+          </div>
+        ) : (<div className="carry-placeholder" />)}
+        <div className="digit-display">{d1[1]}</div>
+        <div className="digit-display">{d2[1]}</div>
+        <hr className="operation-line" />
+        <div className={`box result-box ${resultSlots[1] ? 'filled' : ''} ${resultCls(1)}`}
+             onDragOver={onDragOver} onDrop={(e)=>dropResult(1,e)} onClick={()=>clearResult(1)}>
+          {resultSlots[1]}
+        </div>
+      </div>
+
+      {/* Unidades */}
+      <div className="column">
+        <div className="carry-placeholder" />
+        <div className="digit-display">{d1[2]}</div>
+        <div className="digit-display">{d2[2]}</div>
+        <hr className="operation-line" />
+        <div className={`box result-box ${resultSlots[2] ? 'filled' : ''} ${resultCls(2)}`}
+             onDragOver={onDragOver} onDrop={(e)=>dropResult(2,e)} onClick={()=>clearResult(2)}>
+          {resultSlots[2]}
+        </div>
+      </div>
+
+      <div className="operator-spacer" />
+    </div>
+  );
+}
+
+/** ==== Pantalla principal 2º Primaria con modo práctica + test ==== */
+const SumasPrimaria2 = () => {
+  // Estado núcleo
+  const [currentOperands, setCurrentOperands] = useState({ num1: 0, num2: 0 });
+  const [showCarries, setShowCarries] = useState(true);
+
+  // Slots actuales del tablero
+  const [resultSlots, setResultSlots] = useState(['','','']); // C,D,U
+  const [carrySlots, setCarrySlots]   = useState(['','']);    // [carry a C, carry a D]
+
+  // Feedback práctica
+  const [feedback, setFeedback] = useState({ text: '', cls: '' });
+  const [checkInfo, setCheckInfo] = useState({ show:false, correctResult:'000', correctCarries:[0,0] });
+
+  // Test
+  const [isTestMode, setIsTestMode] = useState(false);
+  const [testQuestions, setTestQuestions] = useState([]); // [{num1,num2}]
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [userAnswers, setUserAnswers] = useState([]);     // ["XYZ", ...]
+  const [showResults, setShowResults] = useState(false);
+  const [score, setScore] = useState(0);
+
+  /** Generar dos números aleatorios de 2 cifras 10..99 */
+  const generateOperands = useCallback(() => {
+    const num1 = Math.floor(Math.random() * 90) + 10;
+    const num2 = Math.floor(Math.random() * 90) + 10;
+    return { num1, num2 };
+  }, []);
+
+  /** Calcular llevadas correctas para num1+num2: [carry a centenas, carry a decenas] */
+  const computeCarries = useCallback((a, b) => {
+    const aU = a % 10, bU = b % 10;
+    const cTens = Math.floor((aU + bU) / 10);
+    const aT = Math.floor(a/10)%10, bT = Math.floor(b/10)%10;
+    const cHundreds = Math.floor((aT + bT + cTens) / 10);
+    return [cHundreds, cTens];
+  }, []);
+
+  /** Práctica: nueva suma */
+  const startPractice = useCallback(() => {
+    const { num1, num2 } = generateOperands();
+    setCurrentOperands({ num1, num2 });
+    setResultSlots(['','','']);
+    setCarrySlots(['','']);
+    setFeedback({ text:'', cls:'' });
+    const correct = (num1 + num2).toString().padStart(3,'0');
+    const carries = computeCarries(num1, num2);
+    setCheckInfo({ show:false, correctResult: correct, correctCarries: carries });
+  }, [generateOperands, computeCarries]);
+
+  /** Práctica: comprobar */
+  const checkPractice = useCallback(() => {
+    const { num1, num2 } = currentOperands;
+    const correct = (num1 + num2).toString().padStart(3,'0');
+    const user = resultSlots.map(x => x || '0').join('');
+    const carriesOk = computeCarries(num1, num2);
+    setCheckInfo({ show:true, correctResult: correct, correctCarries: carriesOk });
+
+    if (user === correct) {
+      setFeedback({ text:'¡Excelente! ¡Suma correcta! 🎉', cls:'feedback-correct' });
+    } else {
+      setFeedback({ text:'Casi... ¡Revisa las casillas!', cls:'feedback-incorrect' });
+    }
+  }, [currentOperands, resultSlots, computeCarries]);
+
+  /** Test: iniciar */
+  const startTest = useCallback(() => {
+    const qs = Array.from({length: TOTAL_TEST_QUESTIONS}, () => generateOperands());
+    setTestQuestions(qs);
+    setCurrentQuestionIndex(0);
+    setUserAnswers([]);
+    setShowResults(false);
+    setScore(0);
+    setIsTestMode(true);
+
+    const { num1, num2 } = qs[0];
+    setCurrentOperands({ num1, num2 });
+    setResultSlots(['','','']);
+    setCarrySlots(['','']);
+    setFeedback({ text:'', cls:'' });
+
+    const correct = (num1 + num2).toString().padStart(3,'0');
+    const carries = computeCarries(num1, num2);
+    setCheckInfo({ show:false, correctResult: correct, correctCarries: carries });
+  }, [generateOperands, computeCarries]);
+
+  /** Test: siguiente o finalizar */
+  const handleNextQuestion = useCallback(() => {
+    const user = resultSlots.map(x => x || '0').join('');
+    const newAnswers = [...userAnswers, user];
+    setUserAnswers(newAnswers);
+
+    const isLast = currentQuestionIndex >= TOTAL_TEST_QUESTIONS - 1;
+    if (!isLast) {
+      const next = currentQuestionIndex + 1;
+      setCurrentQuestionIndex(next);
+      const { num1, num2 } = testQuestions[next];
+      setCurrentOperands({ num1, num2 });
+      setResultSlots(['','','']);
+      setCarrySlots(['','']);
+      setFeedback({ text:'', cls:'' });
+      const correct = (num1 + num2).toString().padStart(3,'0');
+      const carries = computeCarries(num1, num2);
+      setCheckInfo({ show:false, correctResult: correct, correctCarries: carries });
+    } else {
+      let correctCount = 0;
+      testQuestions.forEach((q, i) => {
+        const correct = (q.num1 + q.num2).toString().padStart(3,'0');
+        if (newAnswers[i] === correct) correctCount++;
+      });
+      setScore(correctCount * 200);
+      setShowResults(true);
+    }
+  }, [resultSlots, userAnswers, currentQuestionIndex, testQuestions, computeCarries]);
+
+  /** Test: salir a práctica */
+  const exitTestMode = useCallback(() => {
+    setIsTestMode(false);
+    setShowResults(false);
+    startPractice();
+  }, [startPractice]);
+
+  useEffect(() => { startPractice(); }, [startPractice]);
+
+  // Progreso para test
+  const progressPct = ((currentQuestionIndex + 1) / TOTAL_TEST_QUESTIONS) * 100;
+
+  return (
+    <div id="app-container">
+      <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
+        <span role="img" aria-label="Suma">🧮</span> <span className="gradient-text">Suma como en el cole</span>
+      </h1>
+
+      {/* Botones de modo */}
+      <div className="mode-selection">
+        <button
+          className={`btn-mode ${!isTestMode ? 'active' : ''}`}
+          onClick={() => { setIsTestMode(false); setShowResults(false); startPractice(); }}
+        >
+          Práctica Libre
+        </button>
+        <button className="btn-mode" onClick={startTest}>Iniciar Test</button>
+      </div>
+
+      {/* Toggle de llevadas */}
+      <div id="options-area" style={{ display:'flex', alignItems:'center', gap:12, justifyContent:'center', marginBottom:8 }}>
+        <label htmlFor="help-toggle">Ayuda con llevadas</label>
+        <label className="switch">
+          <input type="checkbox" id="help-toggle" checked={showCarries} onChange={()=>setShowCarries(v=>!v)} />
+          <span className="slider round"></span>
+        </label>
+      </div>
+
+      {/* Cabecera y progreso test */}
+      {isTestMode && !showResults && (
+        <>
+          <div className="test-header">
+            <div>Pregunta {currentQuestionIndex + 1} / {TOTAL_TEST_QUESTIONS}</div>
+          </div>
+          <div className="progress-bar-container">
+            <div className="progress-bar" style={{ width: `${progressPct}%` }} />
+          </div>
+        </>
+      )}
+
+      {/* Mostrar tablero solo si NO estamos en resultados */}
+      {!(isTestMode && showResults) && (
+        <ProblemBoard
+          num1={currentOperands.num1}
+          num2={currentOperands.num2}
+          showCarries={showCarries}
+          resultSlots={resultSlots} setResultSlots={setResultSlots}
+          carrySlots={carrySlots}   setCarrySlots={setCarrySlots}
+          checkInfo={checkInfo}
+        />
+      )}
+
+      {/* Controles práctica */}
+      {!isTestMode && (
+        <>
+          <div id="feedback-message" className={feedback.cls}>{feedback.text}</div>
+          <div id="controls">
+            <button id="check-button" onClick={checkPractice}>Comprobar</button>
+            <button id="new-problem-button" onClick={startPractice}>Nueva Suma</button>
+          </div>
+        </>
+      )}
+
+      {/* Controles test */}
+      {isTestMode && !showResults && (
+        <div className="controles" style={{ marginTop: 16 }}>
+          <button onClick={handleNextQuestion} className="btn-test">
+            {currentQuestionIndex === TOTAL_TEST_QUESTIONS - 1 ? 'Finalizar' : 'Siguiente'}
+          </button>
+        </div>
+      )}
+
+      {/* Paleta de números en ambos modos salvo resultados */}
+      {!showResults && (
+        <div id="number-palette">
+          <h2>Arrastra los números 👇</h2>
+          <div className="number-tiles-container">
+            {[...Array(10).keys()].map(n => (
+              <div
+                key={n}
+                className="number-tile"
+                draggable="true"
+                onDragStart={(e) => e.dataTransfer.setData('text/plain', n)}
+              >
+                {n}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Resultados del test */}
+      {isTestMode && showResults && (
+        <div className="test-results" style={{ marginTop: 20 }}>
+          <h2 className="score">Puntuación: <span>{score}</span></h2>
+          <div className="results-summary" style={{ marginTop: 12 }}>
+            {testQuestions.map((q, i) => {
+              const correct = (q.num1 + q.num2).toString().padStart(3, '0');
+              const user = userAnswers[i] || 'No contestada';
+              const ok = user === correct;
+              return (
+                <div key={i} className="result-item">
+                  <p><strong>Suma {i + 1}:</strong> {q.num1} + {q.num2}</p>
+                  <p className={ok ? 'correcta' : 'incorrecta'}>Tu respuesta: {user}</p>
+                  {!ok && <p className="correcta">Solución: {correct}</p>}
+                </div>
+              );
+            })}
+          </div>
+          <div className="test-controls" style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 16 }}>
+            <button onClick={startTest} className="btn-test">Volver a intentar</button>
+            <button onClick={exitTestMode} className="btn-mode">Modo Práctica</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default SumasPrimaria2;
