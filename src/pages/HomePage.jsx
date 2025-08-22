@@ -154,7 +154,7 @@ const HomePage = () => {
                 className="card-hover"
               >
                 <div 
-                  className={`bg-gradient-to-br ${grade.color} p-8 rounded-3xl shadow-xl cursor-pointer relative overflow-hidden`}
+                  className={`bg-gradient-to-br ${grade.color} p-8 rounded-3xl shadow-xl cursor-pointer relative overflow-hidden hover:rounded-none transition-all duration-1000`}
                   onClick={() => handleGradeClick('primaria', grade.grade)}
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
@@ -207,7 +207,7 @@ const HomePage = () => {
                 className="card-hover"
               >
                 <div 
-                  className={`bg-gradient-to-br ${grade.color} p-8 rounded-3xl shadow-xl cursor-pointer relative overflow-hidden`}
+                  className={`bg-gradient-to-br ${grade.color} p-8 rounded-3xl shadow-xl cursor-pointer relative overflow-hidden hover:rounded-none transition-all duration-1000`}
                   onClick={() => handleGradeClick('eso', grade.grade)}
                 >
                   <div className="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -translate-y-14 translate-x-14"></div>
