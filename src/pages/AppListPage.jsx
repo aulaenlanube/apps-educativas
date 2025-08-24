@@ -1,4 +1,3 @@
-// src/pages/AppListPage.jsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -31,9 +30,6 @@ const AppList = ({ apps, level, grade, subjectId }) => {
 
 
 const AppListPage = () => {
-    // --- CORRECCIÓN CLAVE ---
-    // La variable 'level' no viene de la URL en esta página.
-    // La extraemos de los parámetros y la definimos estáticamente como 'eso'.
     const { grade, subjectId } = useParams();
     const level = 'eso';
     const navigate = useNavigate();
@@ -42,7 +38,6 @@ const AppListPage = () => {
     const subjectName = subjectInfo ? subjectInfo.nombre : subjectId;
 
     const appsForSubject = esoApps[grade]?.[subjectId] || [];
-    // Ahora 'level.toUpperCase()' funcionará correctamente.
     const fullTitle = `${subjectName} - ${grade}º ${level.toUpperCase()}`;
 
     return (
@@ -62,8 +57,7 @@ const AppListPage = () => {
                            <h1 className="text-2xl font-bold gradient-text">EduApps</h1>
                            <p className="text-sm text-gray-600">Apps Educativas</p>
                          </div>
-                       </div>
-                       {/* CAMBIO: La ruta de vuelta ahora incluye el nivel 'eso' */}
+                       </div>                       
                        <Button onClick={() => navigate(`/curso/eso/${grade}`)} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
                          <ArrowLeft className="mr-2 h-4 w-4" /> Volver a Asignaturas
                        </Button>

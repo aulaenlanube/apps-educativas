@@ -1,5 +1,3 @@
-// src/components/ui/AboutModal.jsx (CORREGIDO)
-
 import React from 'react';
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
@@ -8,8 +6,6 @@ import IconXSocial from '../icons/IconXSocial';
 
 const Dialog = DialogPrimitive.Root;
 const DialogContent = DialogPrimitive.Content;
-
-// CAMBIO: Importamos los componentes específicos para Título y Descripción
 const DialogTitle = DialogPrimitive.Title;
 const DialogDescription = DialogPrimitive.Description;
 
@@ -25,12 +21,10 @@ const AboutModal = ({ open, onOpenChange }) => {
         <DialogContent 
             className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90vw] max-w-[425px] bg-white rounded-2xl p-6 shadow-lg"
         >
-          <DialogHeader>
-            {/* CAMBIO: Envolvemos el título con el componente DialogTitle de Radix */}
+          <DialogHeader>            
             <DialogTitle className="text-3xl font-bold gradient-text">Soy Edu Torregrosa</DialogTitle>
           </DialogHeader>
 
-          {/* CAMBIO: Envolvemos la descripción principal con el componente DialogDescription de Radix */}
           <DialogDescription asChild>
             <div className="py-4 text-center">
               <img
@@ -54,7 +48,7 @@ const AboutModal = ({ open, onOpenChange }) => {
                 <a href="https://x.com/_edu_torregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-900 transition-colors">
                   <IconXSocial size={24} />
                 </a>
-                <a href="https://www.linkedin.com/in/edu-torregrosa-llacer/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-700 transition-colors">
+                <a href="https://www.linkedin.com/in/edutorregrosa/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-blue-700 transition-colors">
                   <Linkedin size={28} />
                 </a>
               </div>

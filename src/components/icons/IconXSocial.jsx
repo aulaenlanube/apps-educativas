@@ -1,5 +1,3 @@
-// src/components/icons/IconXSocial.jsx (NUEVO ARCHIVO)
-
 import React from 'react';
 
 const IconXSocial = ({ size = 24, className = '' }) => (

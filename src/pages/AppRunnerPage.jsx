@@ -1,4 +1,3 @@
-// src/pages/AppRunnerPage.jsx (CORREGIDO)
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -7,11 +6,8 @@ import { Button } from '@/components/ui/button';
 import { findAppById } from '@/apps/appList';
 
 const AppRunnerPage = () => {
-    // CAMBIO: Ahora obtenemos level, grade y appId de la URL
     const { level, grade, subjectId, appId } = useParams();
     const navigate = useNavigate();
-
-    // CAMBIO: Le pasamos toda la información a la función de búsqueda
     const result = findAppById(appId, level, grade, subjectId);
 
     if (!result) {

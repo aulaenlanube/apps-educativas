@@ -1,4 +1,3 @@
-// src/pages/CoursePage.jsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -19,7 +18,6 @@ const AppList = ({ apps, level, grade }) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     className="bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-purple-100"
-                    // CORRECCIÓN: Añadimos 'general' para que la URL coincida con la nueva ruta
                     onClick={() => navigate(`/curso/${level}/${grade}/general/app/${app.id}`)}
                 >
                     <h3 className="text-xl font-bold text-gray-800 mb-2">{app.name}</h3>
@@ -30,7 +28,6 @@ const AppList = ({ apps, level, grade }) => {
     );
 };
 
-// El resto del componente no necesita cambios
 const CoursePage = () => {
   const { grade } = useParams();
   const navigate = useNavigate();

@@ -1,4 +1,3 @@
-// src/pages/SubjectPage.jsx
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -10,8 +9,7 @@ import { esoSubjects } from '@/apps/appList';
 const SubjectList = ({ subjects, level, grade }) => {
     const navigate = useNavigate();
 
-    const handleSubjectClick = (subjectId) => {
-        // Esta navegación es correcta
+    const handleSubjectClick = (subjectId) => {       
         navigate(`/curso/${level}/${grade}/${subjectId}`);
     };
 
@@ -27,8 +25,7 @@ const SubjectList = ({ subjects, level, grade }) => {
                     onClick={() => handleSubjectClick(subject.id)}
                 >
                     <div className="text-4xl">{subject.icon}</div>
-                    <div>
-                        {/* CORRECCIÓN: Usamos 'nombre' en lugar de 'name' */}
+                    <div>                        
                         <h3 className="text-xl font-bold text-gray-800">{subject.nombre}</h3>
                     </div>
                 </motion.div>
@@ -37,7 +34,6 @@ const SubjectList = ({ subjects, level, grade }) => {
     );
 };
 
-// El resto del componente se queda igual que lo tenías.
 const SubjectPage = ({}) => {
   const { grade } = useParams();
   const navigate = useNavigate();

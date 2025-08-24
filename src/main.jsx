@@ -1,4 +1,3 @@
-// src/main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -30,7 +29,6 @@ const router = createBrowserRouter(
             { path: 'curso/eso/:grade/:subjectId', element: <AppListPage /> },
           ],
         },
-        // Ruta única para ejecutar apps
         { path: '/curso/:level/:grade/:subjectId/app/:appId', element: <AppRunnerPage /> },
       ],
     },
@@ -38,7 +36,6 @@ const router = createBrowserRouter(
   { future: { v7_startTransition: true, v7_relativeSplatPath: true } }
 );
 
-// Renderiza la aplicación principal
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <HelmetProvider>
