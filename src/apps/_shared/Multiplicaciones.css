@@ -160,7 +160,7 @@ button { padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; c
 }
 
 .final-box {
-  font-size: 2.5em;   /* usa el mismo que tengas en .box */
+  font-size: 1.2em;   /* usa el mismo que tengas en .box */
   font-weight: bold;  /* opcional, para que se vean igual de claros */
 }
 
