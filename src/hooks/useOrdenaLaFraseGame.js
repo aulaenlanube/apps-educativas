@@ -1,287 +1,294 @@
-// src/hooks/useOrdenaLaFraseGame.js
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
 
 const TOTAL_TEST_QUESTIONS = 5;
 const FONT_STYLES = ['default', 'cursive', 'uppercase'];
 
 export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
-    const [mision, setMision] = useState({ texto: '', solucion: '' });
-    const [palabrasOrigen, setPalabrasOrigen] = useState([]);
-    const [palabrasDestino, setPalabrasDestino] = useState([]);
-    const [feedback, setFeedback] = useState({ texto: '', clase: '' });
-    const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
-    const draggedItem = useRef(null);
-    const dropZoneRef = useRef(null);
-    const originZoneRef = useRef(null);
-    const draggedCloneRef = useRef(null);
-    const { confeti } = useConfetti();
+  const [mision, setMision] = useState({ texto: '', solucion: '' });
+  const [palabrasOrigen, setPalabrasOrigen] = useState([]);
+  const [palabrasDestino, setPalabrasDestino] = useState([]);
+  const [feedback, setFeedback] = useState({ texto: '', clase: '' });
+  const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
 
-    const [isTestMode, setIsTestMode] = useState(false);
-    const [testQuestions, setTestQuestions] = useState([]);
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-    const [userAnswers, setUserAnswers] = useState([]);
-    const [startTime, setStartTime] = useState(0);
-    const [elapsedTime, setElapsedTime] = useState(0);
-    const [score, setScore] = useState(0);
-    const [showResults, setShowResults] = useState(false);
+  const draggedItem = useRef(null);
+  const dropZoneRef = useRef(null);
+  const originZoneRef = useRef(null);
+  const draggedCloneRef = useRef(null);
 
-    const handleFontStyleChange = (event) => {
-        const newIndex = parseInt(event.target.value, 10);
-        setFontStyle(FONT_STYLES[newIndex]);
-    };
+  const { confeti } = useConfetti();
 
-    const startPracticeMission = useCallback(() => {
-        setFeedback({ texto: '', clase: '' });
-        
-        // --- CORRECCIÓN CLAVE: Comprobar si ya hay frases cargadas ---
-        if (!frases || frases.length === 0) {
-            setPalabrasOrigen([]);
-            setPalabrasDestino([]);
-            setMision({ texto: '', solucion: '' });
-            return;
-        }
+  const [isTestMode, setIsTestMode] = useState(false);
+  const [testQuestions, setTestQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [userAnswers, setUserAnswers] = useState([]);
+  const [startTime, setStartTime] = useState(0);
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [score, setScore] = useState(0);
+  const [showResults, setShowResults] = useState(false);
 
-        setMision(prevMision => {
-            let nuevaFrase;
-            do {
-                nuevaFrase = frases[Math.floor(Math.random() * frases.length)];
-            } while (frases.length > 1 && nuevaFrase === prevMision.solucion);
+  // Clave estable para detectar cambios en el contenido real de frases
+  const frasesKey = useMemo(() => {
+    if (!Array.isArray(frases)) return '';
+    return frases.join('§');
+  }, [frases]);
 
-            const fraseFinal = fontStyle === 'uppercase' ? nuevaFrase.toUpperCase() : nuevaFrase;
-            const palabras = fraseFinal.split(' ').sort(() => Math.random() - 0.5);
-            
-            setPalabrasOrigen(palabras.map((p, i) => ({ id: `p-${Date.now()}-${i}`, texto: p })));
-            setPalabrasDestino([]);
-            
-            return { texto: 'Forma la frase:', solucion: fraseFinal };
-        });
-    }, [frases, fontStyle]);
+  const handleFontStyleChange = (event) => {
+    const newIndex = parseInt(event.target.value, 10);
+    setFontStyle(FONT_STYLES[newIndex]);
+  };
 
-    useEffect(() => {
-        if (!isTestMode) {
-            startPracticeMission();
-        }
-    }, [isTestMode, fontStyle, startPracticeMission]);
+  const startPracticeMission = useCallback(() => {
+    setFeedback({ texto: '', clase: '' });
 
-    const startTest = () => {
-        const selectedFrases = new Set();
-        while (selectedFrases.size < TOTAL_TEST_QUESTIONS && selectedFrases.size < frases.length) {
-            const frase = frases[Math.floor(Math.random() * frases.length)];
-            selectedFrases.add(frase);
-        }
-        const questions = Array.from(selectedFrases).map(frase => ({
-            texto: 'Forma la frase:',
-            solucion: fontStyle === 'uppercase' ? frase.toUpperCase() : frase
-        }));
+    if (!frases || frases.length === 0) {
+      setPalabrasOrigen([]);
+      setPalabrasDestino([]);
+      setMision({ texto: '', solucion: '' });
+      return;
+    }
 
-        setTestQuestions(questions);
-        setCurrentQuestionIndex(0);
-        setUserAnswers([]);
-        const { solucion } = questions[0];
-        const palabras = solucion.split(' ').sort(() => Math.random() - 0.5);
-        setMision(questions[0]);
-        setPalabrasOrigen(palabras.map((p, i) => ({ id: `p-${Date.now()}-${i}`, texto: p })));
-        setPalabrasDestino([]);
-        setFeedback({ texto: '', clase: '' });
-        setShowResults(false);
-        setScore(0);
-        setIsTestMode(true);
-        if (withTimer) {
-            setStartTime(Date.now());
-            setElapsedTime(0);
-        }
-    };
-    
-    useEffect(() => {
-        let timer;
-        if (isTestMode && withTimer && !showResults) {
-            timer = setInterval(() => {
-                setElapsedTime(Math.floor((Date.now() - startTime) / 1000));
-            }, 1000);
-        }
-        return () => clearInterval(timer);
-    }, [isTestMode, withTimer, showResults, startTime]);
+    setMision(prevMision => {
+      let nuevaFrase;
+      do {
+        nuevaFrase = frases[Math.floor(Math.random() * frases.length)];
+      } while (frases.length > 1 && nuevaFrase === prevMision.solucion);
 
-    const calculateScore = (correctCount, time) => {
-        let baseScore = correctCount * 200;
-        if (withTimer && correctCount > 0) {
-            const timeBonus = Math.max(0, 100 - (time * 2));
-            baseScore += timeBonus;
-        }
-        return Math.floor(baseScore);
-    };
+      const fraseFinal = fontStyle === 'uppercase' ? nuevaFrase.toUpperCase() : nuevaFrase;
 
-    const handleNextQuestion = () => {
-        const fraseUsuario = palabrasDestino.map(p => p.texto).join(' ');
-        const newAnswers = [...userAnswers, fraseUsuario];
-        setUserAnswers(newAnswers);
+      const palabras = fraseFinal.split(' ').sort(() => Math.random() - 0.5);
+      const ahora = Date.now();
+      setPalabrasOrigen(palabras.map((p, i) => ({ id: `p-${ahora}-${i}`, texto: p })));
+      setPalabrasDestino([]);
 
-        if (currentQuestionIndex < TOTAL_TEST_QUESTIONS - 1) {
-            const nextIndex = currentQuestionIndex + 1;
-            setCurrentQuestionIndex(nextIndex);
-            const { solucion } = testQuestions[nextIndex];
-            const palabras = solucion.split(' ').sort(() => Math.random() - 0.5);
-            setMision(testQuestions[nextIndex]);
-            setPalabrasOrigen(palabras.map((p, i) => ({ id: `p-${Date.now()}-${i}`, texto: p })));
-            setPalabrasDestino([]);
-        } else {
-            const finalTime = withTimer ? Math.floor((Date.now() - startTime) / 1000) : 0;
-            setElapsedTime(finalTime);
-            
-            let correctCount = 0;
-            testQuestions.forEach((q, index) => {
-                if (newAnswers[index] === q.solucion) {
-                    correctCount++;
-                }
-            });
+      return { texto: 'Forma la frase:', solucion: fraseFinal };
+    });
+  }, [frasesKey, fontStyle]); // Depende de clave estable y estilo, no de la referencia del array
 
-            setScore(calculateScore(correctCount, finalTime));
-            setShowResults(true);
-        }
-    };
-    
-    const exitTestMode = () => {
-        setIsTestMode(false);
-    };
+  useEffect(() => {
+    if (!isTestMode) {
+      startPracticeMission();
+    }
+  }, [isTestMode, fontStyle, frasesKey, startPracticeMission]);
 
-    const checkPracticeAnswer = () => {
-        const fraseUsuario = palabrasDestino.map(p => p.texto).join(' ');
-        if (fraseUsuario === mision.solucion) {
-            setFeedback({ texto: "¡Correcto! ¡Muy bien!", clase: 'correcta' });
-            //confeti();
-        } else {
-            setFeedback({ texto: "Casi... Revisa el orden de las palabras.", clase: 'incorrecta' });
-        }
-    };
-    
-    const getDropTarget = (container, x, y) => {
-        const draggableElements = [...container.querySelectorAll('.palabra:not(.dragging)')];
-        
-        for (const element of draggableElements) {
-            const box = element.getBoundingClientRect();
-            if (x >= box.left && x <= box.right && y >= box.top && y <= box.bottom) {
-                return element;
-            }
-        }
-        return null;
-    };
+  const startTest = () => {
+    if (!frases || frases.length === 0) return;
 
-    const handleDragStart = (e, palabra) => {
-        draggedItem.current = palabra;
-        e.target.classList.add('dragging');
-    };
+    const selectedFrases = new Set();
+    while (selectedFrases.size < TOTAL_TEST_QUESTIONS && selectedFrases.size < frases.length) {
+      const frase = frases[Math.floor(Math.random() * frases.length)];
+      selectedFrases.add(frase);
+    }
 
-    const handleDragEnd = () => {
-        document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
-        draggedItem.current = null;
-    };
+    const questions = Array.from(selectedFrases).map(frase => ({
+      texto: 'Forma la frase:',
+      solucion: fontStyle === 'uppercase' ? frase.toUpperCase() : frase
+    }));
 
-    const handleDrop = (e, targetZoneId) => {
-        e.preventDefault();
-        if (!draggedItem.current) return;
-        
-        const palabraArrastrada = draggedItem.current;
-        let nuevasPalabrasOrigen = palabrasOrigen.filter(p => p.id !== palabraArrastrada.id);
-        let nuevasPalabrasDestino = palabrasDestino.filter(p => p.id !== palabraArrastrada.id);
+    setTestQuestions(questions);
+    setCurrentQuestionIndex(0);
+    setUserAnswers([]);
+    const { solucion } = questions[0];
+    const palabras = solucion.split(' ').sort(() => Math.random() - 0.5);
+    const ahora = Date.now();
+    setMision(questions[0]);
+    setPalabrasOrigen(palabras.map((p, i) => ({ id: `p-${ahora}-${i}`, texto: p })));
+    setPalabrasDestino([]);
+    setFeedback({ texto: '', clase: '' });
+    setShowResults(false);
+    setScore(0);
+    setIsTestMode(true);
+    if (withTimer) {
+      setStartTime(Date.now());
+      setElapsedTime(0);
+    }
+  };
 
-        if (targetZoneId === 'origen') {
-            nuevasPalabrasOrigen.push(palabraArrastrada);
-            nuevasPalabrasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
-        } else {
-            const dropTarget = getDropTarget(e.currentTarget, e.clientX, e.clientY);
-            if (dropTarget) {
-                const index = nuevasPalabrasDestino.findIndex(p => p.id === dropTarget.dataset.id);
-                nuevasPalabrasDestino.splice(index, 0, palabraArrastrada);
-            } else {
-                nuevasPalabrasDestino.push(palabraArrastrada);
-            }
-        }
-        
-        setPalabrasOrigen(nuevasPalabrasOrigen);
-        setPalabrasDestino(nuevasPalabrasDestino);
-    };
+  useEffect(() => {
+    let timer;
+    if (isTestMode && withTimer && !showResults) {
+      timer = setInterval(() => {
+        setElapsedTime(Math.floor((Date.now() - startTime) / 1000));
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [isTestMode, withTimer, showResults, startTime]);
 
-    const handleDragOver = (e) => e.preventDefault();
-    
-    const handleTouchStart = (e, palabra) => {
-        draggedItem.current = palabra;
-        const touchElement = e.currentTarget;
-        const rect = touchElement.getBoundingClientRect();
+  const calculateScore = (correctCount, time) => {
+    let baseScore = correctCount * 200;
+    if (withTimer && correctCount > 0) {
+      const timeBonus = Math.max(0, 100 - (time * 2));
+      baseScore += timeBonus;
+    }
+    return Math.floor(baseScore);
+  };
 
-        const clone = touchElement.cloneNode(true);
-        clone.classList.add('palabra-clone');
-        clone.style.width = `${rect.width}px`;
-        clone.style.height = `${rect.height}px`;
-        clone.style.top = `${rect.top}px`;
-        clone.style.left = `${rect.left}px`;
-        document.body.appendChild(clone);
-        draggedCloneRef.current = clone;
+  const handleNextQuestion = () => {
+    const fraseUsuario = palabrasDestino.map(p => p.texto).join(' ');
+    const newAnswers = [...userAnswers, fraseUsuario];
+    setUserAnswers(newAnswers);
 
-        touchElement.classList.add('dragging');
-        document.body.classList.add('no-scroll');
-    };
+    if (currentQuestionIndex < TOTAL_TEST_QUESTIONS - 1) {
+      const nextIndex = currentQuestionIndex + 1;
+      setCurrentQuestionIndex(nextIndex);
+      const { solucion } = testQuestions[nextIndex];
+      const palabras = solucion.split(' ').sort(() => Math.random() - 0.5);
+      const ahora = Date.now();
+      setMision(testQuestions[nextIndex]);
+      setPalabrasOrigen(palabras.map((p, i) => ({ id: `p-${ahora}-${i}`, texto: p })));
+      setPalabrasDestino([]);
+    } else {
+      const finalTime = withTimer ? Math.floor((Date.now() - startTime) / 1000) : 0;
+      setElapsedTime(finalTime);
 
-    const handleTouchMove = (e) => {
-        if (!draggedCloneRef.current || !e.touches[0]) return;
-        
-        const touch = e.touches[0];
-        const clone = draggedCloneRef.current;
-        clone.style.transform = `translate(${touch.clientX - parseFloat(clone.style.left) - clone.offsetWidth / 2}px, ${touch.clientY - parseFloat(clone.style.top) - clone.offsetHeight / 2}px)`;
-    };
+      let correctCount = 0;
+      testQuestions.forEach((q, index) => {
+        if (newAnswers[index] === q.solucion) correctCount++;
+      });
 
-    const handleTouchEnd = (e) => {
-        if (!draggedItem.current) return;
+      setScore(calculateScore(correctCount, finalTime));
+      setShowResults(true);
+    }
+  };
 
-        if (draggedCloneRef.current) {
-            document.body.removeChild(draggedCloneRef.current);
-            draggedCloneRef.current = null;
-        }
-        document.body.classList.remove('no-scroll');
-        document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
-        
-        const touch = e.changedTouches[0];
-        const dropZone = dropZoneRef.current;
-        const palabraArrastrada = draggedItem.current;
+  const exitTestMode = () => {
+    setIsTestMode(false);
+  };
 
-        let nuevasPalabrasOrigen = palabrasOrigen.filter(p => p.id !== palabraArrastrada.id);
-        let nuevasPalabrasDestino = palabrasDestino.filter(p => p.id !== palabraArrastrada.id);
-        
-        const dropZoneRect = dropZone.getBoundingClientRect();
-        
-        if (touch.clientX >= dropZoneRect.left && touch.clientX <= dropZoneRect.right &&
-            touch.clientY >= dropZoneRect.top && touch.clientY <= dropZoneRect.bottom) {
-            
-            const dropTarget = getDropTarget(dropZone, touch.clientX, touch.clientY);
-            if (dropTarget) {
-                const index = nuevasPalabrasDestino.findIndex(p => p.id === dropTarget.dataset.id);
-                nuevasPalabrasDestino.splice(index, 0, palabraArrastrada);
-            } else {
-                nuevasPalabrasDestino.push(palabraArrastrada);
-            }
-        } else {
-            nuevasPalabrasOrigen.push(palabraArrastrada);
-            nuevasPalabrasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
-        }
+  const checkPracticeAnswer = () => {
+    const fraseUsuario = palabrasDestino.map(p => p.texto).join(' ');
+    if (fraseUsuario === mision.solucion) {
+      setFeedback({ texto: "¡Correcto! ¡Muy bien!", clase: 'correcta' });
+      // confeti()
+    } else {
+      setFeedback({ texto: "Casi... Revisa el orden de las palabras.", clase: 'incorrecta' });
+    }
+  };
 
-        setPalabrasOrigen(nuevasPalabrasOrigen);
-        setPalabrasDestino(nuevasPalabrasDestino);
+  const getDropTarget = (container, x, y) => {
+    const draggableElements = [...container.querySelectorAll('.palabra:not(.dragging)')];
+    for (const element of draggableElements) {
+      const box = element.getBoundingClientRect();
+      if (x >= box.left && x <= box.right && y >= box.top && y <= box.bottom) {
+        return element;
+      }
+    }
+    return null;
+  };
 
-        draggedItem.current = null;
-    };
+  const handleDragStart = (e, palabra) => {
+    draggedItem.current = palabra;
+    e.target.classList.add('dragging');
+  };
 
-    const fontStyleIndex = FONT_STYLES.indexOf(fontStyle);
+  const handleDragEnd = () => {
+    document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
+    draggedItem.current = null;
+  };
 
-    return {
-        isTestMode, startTest, exitTestMode,
-        mision, palabrasOrigen, palabrasDestino, feedback,
-        checkPracticeAnswer, startPracticeMission,
-        handleDragStart, handleDragEnd, handleDragOver, handleDrop,
-        handleTouchStart, handleTouchMove, handleTouchEnd,
-        dropZoneRef, originZoneRef,
-        currentQuestionIndex, TOTAL_TEST_QUESTIONS, elapsedTime,
-        showResults, score, testQuestions, userAnswers,
-        handleNextQuestion,
-        fontStyle, fontStyleIndex, handleFontStyleChange
-    };
+  const handleDrop = (e, targetZoneId) => {
+    e.preventDefault();
+    if (!draggedItem.current) return;
+
+    const palabraArrastrada = draggedItem.current;
+    let nuevasPalabrasOrigen = palabrasOrigen.filter(p => p.id !== palabraArrastrada.id);
+    let nuevasPalabrasDestino = palabrasDestino.filter(p => p.id !== palabraArrastrada.id);
+
+    if (targetZoneId === 'origen') {
+      nuevasPalabrasOrigen.push(palabraArrastrada);
+      nuevasPalabrasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
+    } else {
+      const dropTarget = getDropTarget(e.currentTarget, e.clientX, e.clientY);
+      if (dropTarget) {
+        const index = nuevasPalabrasDestino.findIndex(p => p.id === dropTarget.dataset.id);
+        nuevasPalabrasDestino.splice(index, 0, palabraArrastrada);
+      } else {
+        nuevasPalabrasDestino.push(palabraArrastrada);
+      }
+    }
+
+    setPalabrasOrigen(nuevasPalabrasOrigen);
+    setPalabrasDestino(nuevasPalabrasDestino);
+  };
+
+  const handleDragOver = (e) => e.preventDefault();
+
+  const handleTouchStart = (e, palabra) => {
+    draggedItem.current = palabra;
+    const touchElement = e.currentTarget;
+    const rect = touchElement.getBoundingClientRect();
+
+    const clone = touchElement.cloneNode(true);
+    clone.classList.add('palabra-clone');
+    clone.style.width = `${rect.width}px`;
+    clone.style.height = `${rect.height}px`;
+    clone.style.top = `${rect.top}px`;
+    clone.style.left = `${rect.left}px`;
+    document.body.appendChild(clone);
+    draggedCloneRef.current = clone;
+
+    touchElement.classList.add('dragging');
+    document.body.classList.add('no-scroll');
+  };
+
+  const handleTouchMove = (e) => {
+    if (!draggedCloneRef.current || !e.touches[0]) return;
+    const touch = e.touches[0];
+    const clone = draggedCloneRef.current;
+    clone.style.transform = `translate(${touch.clientX - parseFloat(clone.style.left) - clone.offsetWidth / 2}px, ${touch.clientY - parseFloat(clone.style.top) - clone.offsetHeight / 2}px)`;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (!draggedItem.current) return;
+
+    if (draggedCloneRef.current) {
+      document.body.removeChild(draggedCloneRef.current);
+      draggedCloneRef.current = null;
+    }
+    document.body.classList.remove('no-scroll');
+    document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
+
+    const touch = e.changedTouches[0];
+    const dropZone = dropZoneRef.current;
+    const palabraArrastrada = draggedItem.current;
+
+    let nuevasPalabrasOrigen = palabrasOrigen.filter(p => p.id !== palabraArrastrada.id);
+    let nuevasPalabrasDestino = palabrasDestino.filter(p => p.id !== palabraArrastrada.id);
+
+    const dropZoneRect = dropZone.getBoundingClientRect();
+
+    if (touch.clientX >= dropZoneRect.left && touch.clientX <= dropZoneRect.right &&
+        touch.clientY >= dropZoneRect.top && touch.clientY <= dropZoneRect.bottom) {
+      const dropTarget = getDropTarget(dropZone, touch.clientX, touch.clientY);
+      if (dropTarget) {
+        const index = nuevasPalabrasDestino.findIndex(p => p.id === dropTarget.dataset.id);
+        nuevasPalabrasDestino.splice(index, 0, palabraArrastrada);
+      } else {
+        nuevasPalabrasDestino.push(palabraArrastrada);
+      }
+    } else {
+      nuevasPalabrasOrigen.push(palabraArrastrada);
+      nuevasPalabrasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
+    }
+
+    setPalabrasOrigen(nuevasPalabrasOrigen);
+    setPalabrasDestino(nuevasPalabrasDestino);
+
+    draggedItem.current = null;
+  };
+
+  const fontStyleIndex = FONT_STYLES.indexOf(fontStyle);
+
+  return {
+    isTestMode, startTest, exitTestMode,
+    mision, palabrasOrigen, palabrasDestino, feedback,
+    checkPracticeAnswer, startPracticeMission,
+    handleDragStart, handleDragEnd, handleDragOver, handleDrop,
+    handleTouchStart, handleTouchMove, handleTouchEnd,
+    dropZoneRef, originZoneRef,
+    currentQuestionIndex, TOTAL_TEST_QUESTIONS, elapsedTime,
+    showResults, score, testQuestions, userAnswers,
+    handleNextQuestion,
+    fontStyle, fontStyleIndex, handleFontStyleChange
+  };
 };
