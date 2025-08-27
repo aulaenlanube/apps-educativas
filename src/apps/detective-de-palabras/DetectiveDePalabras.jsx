@@ -1,13 +1,12 @@
 // Modified version of the DetectiveDePalabras component to support
-// loading subject‑specific JSON files for primary education.  This
-// component now reads both the grade and the subject identifier from
-// the URL parameters.  When the subject identifier is present, it
-// attempts to load a JSON file named `<subjectId>-detective-palabras.json`.
-// If that file is unavailable it falls back to the generic
-// `detective-palabras.json` for the same grade and finally to the
-// grade 1 generic file, mirroring the behaviour of ESO apps.  This
-// ensures that each subject in grades 1–6 of primary can have its own
-// customised detective de palabras content.
+// loading subject‑specific JSON files for primary and ESO education.  This
+// component now reads the level (primaria or eso), the grade and the subject
+// identifier from the URL parameters.  When the subject identifier is present,
+// it attempts to load a JSON file named `<subject>-detective-palabras.json`.
+// If that file is unavailable it falls back to the generic `detective-palabras.json`
+// for the same grade and finally to the grade 1 generic file.  This ensures
+// that each subject in grades 1–6 of primary and grades 1–4 of ESO can have
+// its own customised detective de palabras content.
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -16,33 +15,42 @@ import DetectiveDePalabrasUI from '../_shared/DetectiveDePalabrasUI';
 import DetectiveDePalabrasTestScreen from '../_shared/DetectiveDePalabrasTestScreen';
 
 const DetectiveDePalabras = () => {
-  // Extract grade and optional subjectId from the route parameters
-  const { grade, subjectId } = useParams();
+  // Extract level, grade and optional subjectId from the route parameters
+  const { level, grade, subjectId } = useParams();
 
-  // Normalise the grade: ensure it is between 1 and 6; default to 1
+  // Normalise the grade: primary courses go from 1 to 6 and ESO from 1 to 4.
+  // Any out-of-range or invalid value falls back to '1'.
   const grado = useMemo(() => {
     const n = parseInt(grade, 10);
-    return Number.isFinite(n) && n >= 1 && n <= 6 ? String(n) : '1';
-  }, [grade]);
+    if (!Number.isFinite(n) || n < 1) return '1';
+    const maxGrade = level === 'primaria' ? 6 : 4;
+    return n <= maxGrade ? String(n) : '1';
+  }, [grade, level]);
 
-  // Normalise the subject identifier.  For routes without a subject
-  // parameter (as in the original implementation) we fall back to
-  // 'general'.  This allows the component to continue working even if
-  // the router has not been updated to include the subject segment.
+  // Normalise the subject identifier.  In primary education the
+  // `subjectId` is optional: when absent or empty we fall back to
+  // 'general'.  In secondary education (`eso`) the subject must be
+  // provided; we simply trim the value and trust the router.
   const asignatura = useMemo(() => {
     if (typeof subjectId === 'string' && subjectId.trim().length > 0) {
       return subjectId.trim();
     }
-    return 'general';
-  }, [subjectId]);
+    return level === 'primaria' ? 'general' : '';
+  }, [subjectId, level]);
 
   // Component state
   const [frasesDelNivel, setFrasesDelNivel] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
 
-  // Enable timer from grade 3 onwards
-  const conTemporizador = parseInt(grado, 10) >= 3;
+  // Enable the timer for ESO (secondary) in all grades and for
+  // primary courses from grade 3 onwards, mirroring the behaviour of
+  // the other ordering games.
+  const conTemporizador = useMemo(() => {
+    const g = parseInt(grado, 10);
+    if (level === 'eso') return true;
+    return g >= 3;
+  }, [grado, level]);
 
   // Always initialise the game hook to maintain hooks order
   const game = useDetectiveDePalabras(frasesDelNivel, conTemporizador);
@@ -70,21 +78,28 @@ const DetectiveDePalabras = () => {
     return copia;
   };
 
-  // Load the JSON data whenever grade or subject changes
+  // Load the JSON data whenever level, grade or subject changes
   useEffect(() => {
     let cancelado = false;
     setCargando(true);
     setError(null);
 
     const base = import.meta.env.BASE_URL || '/';
-    // Construct URLs in order of priority: subject specific, generic for
-    // the same grade, and fallback to grade 1 generic.  The file names
-    // follow the convention used across the repository:
-    //   <subjectId>-detective-palabras.json
-    //   detective-palabras.json
-    const urlSubject = `${base}data/primaria/${grado}/${asignatura}-detective-palabras.json`;
-    const urlGeneric = `${base}data/primaria/${grado}/detective-palabras.json`;
-    const urlFallback = `${base}data/primaria/1/detective-palabras.json`;
+    // Construct URLs depending on the educational level.  For primary
+    // courses we first try a subject‑specific file when the subject
+    // isn't 'general'.  We then fall back to the generic file for the
+    // same grade and finally to the grade 1 generic.  For ESO courses
+    // there is no generic file per subject; instead we try the
+    // subject‑specific file and then attempt to load a generic
+    // detective-palabras.json for the same grade and ultimately a
+    // generic from grade 1 (useful if some subjects share content).
+    const nivel = level === 'primaria' ? 'primaria' : 'eso';
+    const urlSubject =
+      asignatura && asignatura !== 'general'
+        ? `${base}data/${nivel}/${grado}/${asignatura}-detective-palabras.json`
+        : null;
+    const urlGeneric = `${base}data/${nivel}/${grado}/detective-palabras.json`;
+    const urlFallback = `${base}data/${nivel}/1/detective-palabras.json`;
 
     const cargar = async (url) => {
       const resp = await fetch(url, { cache: 'no-cache' });
@@ -95,34 +110,37 @@ const DetectiveDePalabras = () => {
 
     (async () => {
       try {
-        // Try subject‑specific file first
-        const frases = await cargar(urlSubject);
+        // Try subject‑specific file when defined
+        if (urlSubject) {
+          const frases = await cargar(urlSubject);
+          if (!cancelado) {
+            setFrasesDelNivel(frases);
+            setCargando(false);
+            return;
+          }
+        }
+        // Try generic file for the same grade
+        const gen = await cargar(urlGeneric);
         if (!cancelado) {
-          setFrasesDelNivel(frases);
+          setFrasesDelNivel(gen);
           setCargando(false);
+          return;
         }
       } catch {
-        try {
-          // Try generic file for the same grade
-          const gen = await cargar(urlGeneric);
-          if (!cancelado) {
-            setFrasesDelNivel(gen);
-            setCargando(false);
-          }
-        } catch {
-          try {
-            // Final fallback to grade 1 generic file
-            const fallback = await cargar(urlFallback);
-            if (!cancelado) {
-              setFrasesDelNivel(fallback);
-              setCargando(false);
-            }
-          } catch (e2) {
-            if (!cancelado) {
-              setError('No se pudieron cargar las frases');
-              setCargando(false);
-            }
-          }
+        // ignore and continue to fallback
+      }
+      try {
+        // Final fallback to grade 1 generic file
+        const fallback = await cargar(urlFallback);
+        if (!cancelado) {
+          setFrasesDelNivel(fallback);
+          setCargando(false);
+          return;
+        }
+      } catch {
+        if (!cancelado) {
+          setError('No se pudieron cargar las frases');
+          setCargando(false);
         }
       }
     })();
@@ -130,11 +148,11 @@ const DetectiveDePalabras = () => {
     return () => {
       cancelado = true;
     };
-  }, [grado, asignatura]);
+  }, [level, grado, asignatura]);
 
   // Render loading or error states
-  if (cargando) return <div style={{ padding: 16 }}>Cargando frases…</div>;
-  if (error) return <div style={{ padding: 16, color: 'crimson' }}>{error}</div>;
+  if (cargando) return <span>Cargando frases…</span>;
+  if (error) return <span>{error}</span>;
 
   // When in test mode, show the dedicated screen
   if (game.isTestMode) return <DetectiveDePalabrasTestScreen game={game} />;
