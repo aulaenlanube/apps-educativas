@@ -1,4 +1,3 @@
-// src/hooks/useOrdenaLaHistoriaGame.js
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
 
@@ -26,17 +25,16 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
 
-  // Clave estable por contenido para no depender de la referencia de 'historias'
+  // Firma estable del contenido para evitar depender de la referencia del array
   const historiasKey = useMemo(() => {
     if (!Array.isArray(historias)) return '';
-    // Historias es array de arrays de strings, JSON.stringify es suficiente y estable
     return JSON.stringify(historias);
   }, [historias]);
 
   const mapToUniqueItems = (frasesArray) =>
     frasesArray.map((frase, index) => ({
       id: `frase-${Date.now()}-${index}`,
-      texto: fontStyle === 'uppercase' ? frase.toUpperCase() : frase
+      texto: frase // El estilo se aplica por CSS, no mutamos el texto
     }));
 
   const handleFontStyleChange = (event) => {
@@ -53,45 +51,45 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
       return;
     }
 
-    setHistoriaCorrecta(prevHistoriaCorrecta => {
-      // Compara contra la historia anterior para no repetir exactamente la misma
-      const prevText = prevHistoriaCorrecta.map(f => f.texto.toLowerCase());
-      let nuevaHistoria;
-      do {
-        nuevaHistoria = historias[Math.floor(Math.random() * historias.length)];
-      } while (
-        historias.length > 1 &&
-        JSON.stringify(nuevaHistoria.map(f => f.toLowerCase())) === JSON.stringify(prevText)
+    setHistoriaCorrecta((prevHistoria) => {
+      // Firma (contenido) de la historia previa
+      const prevSig = JSON.stringify(prevHistoria.map(f => f.texto.toLowerCase()));
+
+      // Pool de candidatas con contenido distinto a la previa
+      let candidatas = historias.filter(
+        h => JSON.stringify(h.map(f => f.toLowerCase())) !== prevSig
       );
 
-      const historiaMapeada = mapToUniqueItems(nuevaHistoria);
-      setFrasesDesordenadas([...historiaMapeada].sort(() => Math.random() - 0.5));
-      return historiaMapeada;
+      // Si todas son iguales a la previa, permitimos repetir para evitar bucle infinito
+      if (candidatas.length === 0) candidatas = historias;
+
+      // Elegir aleatoria de las candidatas
+      const nuevaHistoria = candidatas[Math.floor(Math.random() * candidatas.length)];
+
+      const items = mapToUniqueItems(nuevaHistoria);
+      setFrasesDesordenadas([...items].sort(() => Math.random() - 0.5));
+      return items;
     });
-  // Depende de la clave estable y del estilo, no de la referencia del array
-  }, [historiasKey, fontStyle]);
+  }, [historiasKey]);
 
   useEffect(() => {
-    if (!isTestMode) {
-      cargarSiguienteHistoria();
-    }
-  }, [isTestMode, fontStyle, historiasKey, cargarSiguienteHistoria]);
+    if (!isTestMode) cargarSiguienteHistoria();
+  }, [isTestMode, historiasKey, cargarSiguienteHistoria]);
 
   const startTest = () => {
     if (!historias || historias.length === 0) return;
 
-    // Dedup por contenido y selecciona hasta TOTAL_TEST_STORIES
-    const únicas = [...new Set(historias.map(h => JSON.stringify(h)))].map(s => JSON.parse(s));
-    const questions = únicas.sort(() => 0.5 - Math.random()).slice(0, TOTAL_TEST_STORIES);
+    const unicas = [...new Set(historias.map(h => JSON.stringify(h)))].map(s => JSON.parse(s));
+    const questions = unicas.sort(() => 0.5 - Math.random()).slice(0, TOTAL_TEST_STORIES);
 
     setTestQuestions(questions.map(q => mapToUniqueItems(q)));
     setCurrentStoryIndex(0);
     setUserAnswers([]);
 
-    const primeraHistoria = questions[0] || [];
-    const historiaMapeada = mapToUniqueItems(primeraHistoria);
-    setHistoriaCorrecta(historiaMapeada);
-    setFrasesDesordenadas([...historiaMapeada].sort(() => Math.random() - 0.5));
+    const primera = questions[0] || [];
+    const items = mapToUniqueItems(primera);
+    setHistoriaCorrecta(items);
+    setFrasesDesordenadas([...items].sort(() => Math.random() - 0.5));
 
     setShowResults(false);
     setScore(0);
@@ -113,47 +111,45 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
   }, [isTestMode, withTimer, showResults, startTime]);
 
   const calculateScore = (correctCount, time) => {
-    let baseScore = correctCount * 200;
+    let base = correctCount * 200;
     if (withTimer && correctCount > 0) {
-      const timeBonus = Math.max(0, 100 - (time / correctCount) * 2);
-      baseScore += timeBonus;
+      const bonus = Math.max(0, 100 - (time / correctCount) * 2);
+      base += bonus;
     }
-    return Math.floor(baseScore);
+    return Math.floor(base);
   };
 
   const handleNextStory = () => {
-    const userAnswer = [...frasesDesordenadas];
-    const currentAnswers = [...userAnswers, userAnswer];
-    setUserAnswers(currentAnswers);
+    const respuesta = [...frasesDesordenadas];
+    const actuales = [...userAnswers, respuesta];
+    setUserAnswers(actuales);
 
     if (currentStoryIndex < TOTAL_TEST_STORIES - 1 && currentStoryIndex < testQuestions.length - 1) {
-      const nextIndex = currentStoryIndex + 1;
-      setCurrentStoryIndex(nextIndex);
-      const nextStory = testQuestions[nextIndex];
-      setHistoriaCorrecta(nextStory);
-      setFrasesDesordenadas([...nextStory].sort(() => Math.random() - 0.5));
+      const next = currentStoryIndex + 1;
+      setCurrentStoryIndex(next);
+      const siguiente = testQuestions[next];
+      setHistoriaCorrecta(siguiente);
+      setFrasesDesordenadas([...siguiente].sort(() => Math.random() - 0.5));
     } else {
       const finalTime = withTimer ? Math.floor((Date.now() - startTime) / 1000) : 0;
       setElapsedTime(finalTime);
       let correctCount = 0;
-      testQuestions.forEach((story, index) => {
-        const userOrder = currentAnswers[index].map(f => f.texto).join();
-        const correctOrder = story.map(f => f.texto).join();
-        if (userOrder === correctOrder) correctCount++;
+      testQuestions.forEach((story, i) => {
+        const u = actuales[i].map(f => f.texto).join();
+        const c = story.map(f => f.texto).join();
+        if (u === c) correctCount++;
       });
       setScore(calculateScore(correctCount, finalTime));
       setShowResults(true);
     }
   };
 
-  const exitTestMode = () => {
-    setIsTestMode(false);
-  };
+  const exitTestMode = () => setIsTestMode(false);
 
   const checkStory = () => {
-    const userOrder = frasesDesordenadas.map(f => f.texto).join();
-    const correctOrder = historiaCorrecta.map(f => f.texto).join();
-    if (userOrder === correctOrder) {
+    const u = frasesDesordenadas.map(f => f.texto).join();
+    const c = historiaCorrecta.map(f => f.texto).join();
+    if (u === c) {
       setFeedback({ texto: "¡Correcto! La historia tiene sentido", clase: 'correcta' });
       // confeti()
     } else {
@@ -163,16 +159,12 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
 
   const handleDragStart = (e, frase) => {
     draggedItem.current = frase;
-    setTimeout(() => {
-      if (e.target) e.target.classList.add('dragging');
-    }, 0);
+    setTimeout(() => { if (e.target) e.target.classList.add('dragging'); }, 0);
   };
-
   const handleDragEnd = (e) => {
     if (e.target && e.target.classList) e.target.classList.remove('dragging');
     draggedItem.current = null;
   };
-
   const getDragAfterElement = (container, y) => {
     const elements = [...container.querySelectorAll('.frase:not(.dragging)')];
     return elements.reduce((closest, child) => {
@@ -182,34 +174,27 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
       return closest;
     }, { offset: Number.NEGATIVE_INFINITY }).element;
   };
-
   const handleDrop = (e) => {
     e.preventDefault();
     if (!draggedItem.current) return;
-
     const container = e.currentTarget;
-    const afterElement = getDragAfterElement(container, e.clientY);
-
-    let newList = frasesDesordenadas.filter(f => f.id !== draggedItem.current.id);
-
-    if (afterElement == null) {
-      newList.push(draggedItem.current);
-    } else {
-      const afterId = afterElement.getAttribute('data-id');
-      const insertIndex = newList.findIndex(f => f.id === afterId);
-      newList.splice(insertIndex, 0, draggedItem.current);
+    const after = getDragAfterElement(container, e.clientY);
+    let nueva = frasesDesordenadas.filter(f => f.id !== draggedItem.current.id);
+    if (after == null) nueva.push(draggedItem.current);
+    else {
+      const afterId = after.getAttribute('data-id');
+      const idx = nueva.findIndex(f => f.id === afterId);
+      nueva.splice(idx, 0, draggedItem.current);
     }
-    setFrasesDesordenadas(newList);
+    setFrasesDesordenadas(nueva);
   };
-
   const handleDragOver = (e) => e.preventDefault();
 
   const handleTouchStart = (e, frase) => {
     draggedItem.current = frase;
-    const touchElement = e.currentTarget;
-    const rect = touchElement.getBoundingClientRect();
-
-    const clone = touchElement.cloneNode(true);
+    const el = e.currentTarget;
+    const rect = el.getBoundingClientRect();
+    const clone = el.cloneNode(true);
     clone.classList.add('frase-clone');
     clone.style.width = `${rect.width}px`;
     clone.style.height = `${rect.height}px`;
@@ -217,44 +202,31 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     clone.style.left = `${rect.left}px`;
     document.body.appendChild(clone);
     draggedCloneRef.current = clone;
-
-    touchElement.classList.add('dragging');
+    el.classList.add('dragging');
     document.body.classList.add('no-scroll');
   };
-
   const handleTouchMove = (e) => {
     if (!draggedCloneRef.current || !e.touches[0]) return;
     const t = e.touches[0];
     const clone = draggedCloneRef.current;
-    clone.style.transform = `translate(${t.clientX - parseFloat(clone.style.left) - clone.offsetWidth / 2}px, ${t.clientY - parseFloat(clone.style.top) - clone.offsetHeight / 2}px)`;
+    clone.style.transform = `translate(${t.clientX - parseFloat(clonestyle.left) - clone.offsetWidth / 2}px, ${t.clientY - parseFloat(clonestyle.top) - clone.offsetHeight / 2}px)`;
   };
-
   const handleTouchEnd = (e) => {
     if (!draggedItem.current) return;
-
     if (draggedCloneRef.current) {
       draggedCloneRef.current.remove();
       draggedCloneRef.current = null;
     }
     document.body.classList.remove('no-scroll');
     document.querySelectorAll('.frase.dragging').forEach(el => el.classList.remove('dragging'));
-
     const touch = e.changedTouches[0];
     const dropZone = dropZoneRef.current;
-    if (!dropZone || !touch) {
-      draggedItem.current = null;
-      return;
+    if (!dropZone || !touch) { draggedItem.current = null; return; }
+    const r = dropZone.getBoundingClientRect();
+    if (touch.clientX >= r.left && touch.clientX <= r.right && touch.clientY >= r.top && touch.clientY <= r.bottom) {
+      const fake = { preventDefault: () => {}, currentTarget: dropZone, clientY: touch.clientY };
+      handleDrop(fake);
     }
-
-    const dropRect = dropZone.getBoundingClientRect();
-    if (
-      touch.clientX >= dropRect.left && touch.clientX <= dropRect.right &&
-      touch.clientY >= dropRect.top && touch.clientY <= dropRect.bottom
-    ) {
-      const fakeEvent = { preventDefault: () => {}, currentTarget: dropZone, clientY: touch.clientY };
-      handleDrop(fakeEvent);
-    }
-
     draggedItem.current = null;
   };
 
@@ -262,13 +234,13 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
 
   return {
     isTestMode, startTest, exitTestMode,
-    frasesDesordenadas, feedback,
+    frasesDesordenadas, feedback, historiaCorrecta,
     checkStory, cargarSiguienteHistoria,
     handleDragStart, handleDragEnd, handleDragOver, handleDrop,
     handleTouchStart, handleTouchMove, handleTouchEnd, dropZoneRef,
     currentStoryIndex, TOTAL_TEST_STORIES, elapsedTime,
     showResults, score, testQuestions, userAnswers,
-    handleNextStory, historiaCorrecta,
+    handleNextStory,
     fontStyle, fontStyleIndex, handleFontStyleChange
   };
 };
