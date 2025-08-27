@@ -12,7 +12,7 @@ import IslaDeLaCalma from './isla-de-la-calma/IslaDeLaCalma';
 import OrdenaLaFraseJuego from './_shared/OrdenaLaFraseJuego';
 import OrdenaLaHistoriaJuego from './_shared/OrdenaLaHistoriaJuego';
 
-import DetectiveDePalabras from '@/apps/detective-de-palabras/DetectiveDePalabras';
+import DetectiveDePalabras from '@/apps/_shared/DetectiveDePalabrasJuego';
 
 // importaciones de operaciones matemáticas para primaria
 import SumasPrimaria1 from '@/apps/sumas/primaria-1/SumasPrimaria1';
