@@ -1,14 +1,152 @@
 [
   [
-    "Pensamos en el problema matemático",
-    "Anotamos los números en la libreta",
-    "Calculamos la operación paso a paso",
-    "Revisamos el resultado final"
+    "Tengo 1 manzanas.",
+    "Compro 1 más.",
+    "Ahora tengo 2 manzanas."
   ],
   [
-    "Para medir, tomamos una regla",
-    "Comparamos longitudes con cuidado",
-    "Anotamos la medida en centímetros",
-    "Comprobamos que es correcta"
+    "Tengo 2 manzanas.",
+    "Compro 3 más.",
+    "Ahora tengo 5 manzanas."
+  ],
+  [
+    "Tengo 3 manzanas.",
+    "Compro 5 más.",
+    "Ahora tengo 8 manzanas."
+  ],
+  [
+    "Tengo 4 manzanas.",
+    "Compro 7 más.",
+    "Ahora tengo 11 manzanas."
+  ],
+  [
+    "Tengo 5 manzanas.",
+    "Compro 9 más.",
+    "Ahora tengo 14 manzanas."
+  ],
+  [
+    "Tengo 6 manzanas.",
+    "Compro 1 más.",
+    "Ahora tengo 7 manzanas."
+  ],
+  [
+    "Tengo 7 manzanas.",
+    "Compro 3 más.",
+    "Ahora tengo 10 manzanas."
+  ],
+  [
+    "Tengo 8 manzanas.",
+    "Compro 5 más.",
+    "Ahora tengo 13 manzanas."
+  ],
+  [
+    "Tengo 9 manzanas.",
+    "Compro 7 más.",
+    "Ahora tengo 16 manzanas."
+  ],
+  [
+    "Tengo 10 manzanas.",
+    "Compro 9 más.",
+    "Ahora tengo 19 manzanas."
+  ],
+  [
+    "Tengo 1 manzanas.",
+    "Compro 1 más.",
+    "Ahora tengo 2 manzanas."
+  ],
+  [
+    "Tengo 2 manzanas.",
+    "Compro 3 más.",
+    "Ahora tengo 5 manzanas."
+  ],
+  [
+    "Tengo 3 manzanas.",
+    "Compro 5 más.",
+    "Ahora tengo 8 manzanas."
+  ],
+  [
+    "Tengo 4 manzanas.",
+    "Compro 7 más.",
+    "Ahora tengo 11 manzanas."
+  ],
+  [
+    "Tengo 5 manzanas.",
+    "Compro 9 más.",
+    "Ahora tengo 14 manzanas."
+  ],
+  [
+    "Tengo 6 manzanas.",
+    "Compro 1 más.",
+    "Ahora tengo 7 manzanas."
+  ],
+  [
+    "Tengo 7 manzanas.",
+    "Compro 3 más.",
+    "Ahora tengo 10 manzanas."
+  ],
+  [
+    "Tengo 8 manzanas.",
+    "Compro 5 más.",
+    "Ahora tengo 13 manzanas."
+  ],
+  [
+    "Tengo 9 manzanas.",
+    "Compro 7 más.",
+    "Ahora tengo 16 manzanas."
+  ],
+  [
+    "Tengo 10 manzanas.",
+    "Compro 9 más.",
+    "Ahora tengo 19 manzanas."
+  ],
+  [
+    "Tengo 1 manzanas.",
+    "Compro 1 más.",
+    "Ahora tengo 2 manzanas."
+  ],
+  [
+    "Tengo 2 manzanas.",
+    "Compro 3 más.",
+    "Ahora tengo 5 manzanas."
+  ],
+  [
+    "Tengo 3 manzanas.",
+    "Compro 5 más.",
+    "Ahora tengo 8 manzanas."
+  ],
+  [
+    "Tengo 4 manzanas.",
+    "Compro 7 más.",
+    "Ahora tengo 11 manzanas."
+  ],
+  [
+    "Tengo 5 manzanas.",
+    "Compro 9 más.",
+    "Ahora tengo 14 manzanas."
+  ],
+  [
+    "Tengo 6 manzanas.",
+    "Compro 1 más.",
+    "Ahora tengo 7 manzanas."
+  ],
+  [
+    "Tengo 7 manzanas.",
+    "Compro 3 más.",
+    "Ahora tengo 10 manzanas."
+  ],
+  [
+    "Tengo 8 manzanas.",
+    "Compro 5 más.",
+    "Ahora tengo 13 manzanas."
+  ],
+  [
+    "Tengo 9 manzanas.",
+    "Compro 7 más.",
+    "Ahora tengo 16 manzanas."
+  ],
+  [
+    "Tengo 10 manzanas.",
+    "Compro 9 más.",
+    "Ahora tengo 19 manzanas."
   ]
 ]
