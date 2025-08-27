@@ -9,13 +9,14 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   const [palabrasOrigen, setPalabrasOrigen] = useState([]);
   const [palabrasDestino, setPalabrasDestino] = useState([]);
   const [feedback, setFeedback] = useState({ texto: '', clase: '' });
+
+  // Mantengo la API de estilo para el slider, pero ya no toca los datos
   const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
 
   const draggedItem = useRef(null);
   const dropZoneRef = useRef(null);
   const originZoneRef = useRef(null);
   const draggedCloneRef = useRef(null);
-
   const { confeti } = useConfetti();
 
   const [isTestMode, setIsTestMode] = useState(false);
@@ -27,7 +28,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
 
-  // Clave estable para detectar cambios en el contenido real de frases
+  // Clave estable por contenido para no depender de la referencia del array
   const frasesKey = useMemo(() => {
     if (!Array.isArray(frases)) return '';
     return frases.join('§');
@@ -48,46 +49,43 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
       return;
     }
 
-    setMision(prevMision => {
-      let nuevaFrase;
-      do {
-        nuevaFrase = frases[Math.floor(Math.random() * frases.length)];
-      } while (frases.length > 1 && nuevaFrase === prevMision.solucion);
+    setMision(prev => {
+      const prevSig = prev.solucion ? prev.solucion.toLowerCase() : '';
 
-      const fraseFinal = fontStyle === 'uppercase' ? nuevaFrase.toUpperCase() : nuevaFrase;
+      // Pool de candidatas distintas a la anterior por contenido
+      let candidatas = frases.filter(f => (f || '').toLowerCase() !== prevSig);
+      if (candidatas.length === 0) candidatas = frases; // Si todas son iguales, permite repetir
 
-      const palabras = fraseFinal.split(' ').sort(() => Math.random() - 0.5);
+      const nueva = candidatas[Math.floor(Math.random() * candidatas.length)];
+      const solucion = nueva; // No transformamos por estilo; lo hace CSS
+
+      const palabras = solucion.split(' ').sort(() => Math.random() - 0.5);
       const ahora = Date.now();
       setPalabrasOrigen(palabras.map((p, i) => ({ id: `p-${ahora}-${i}`, texto: p })));
       setPalabrasDestino([]);
 
-      return { texto: 'Forma la frase:', solucion: fraseFinal };
+      return { texto: 'Forma la frase:', solucion };
     });
-  }, [frasesKey, fontStyle]); // Depende de clave estable y estilo, no de la referencia del array
+  }, [frasesKey]); // Importante: no depender de fontStyle
 
+  // Solo recarga misión si cambia el contenido real (no al mover el slider)
   useEffect(() => {
-    if (!isTestMode) {
-      startPracticeMission();
-    }
-  }, [isTestMode, fontStyle, frasesKey, startPracticeMission]);
+    if (!isTestMode) startPracticeMission();
+  }, [isTestMode, frasesKey, startPracticeMission]);
 
   const startTest = () => {
     if (!frases || frases.length === 0) return;
 
-    const selectedFrases = new Set();
-    while (selectedFrases.size < TOTAL_TEST_QUESTIONS && selectedFrases.size < frases.length) {
-      const frase = frases[Math.floor(Math.random() * frases.length)];
-      selectedFrases.add(frase);
-    }
+    // Elegimos hasta TOTAL_TEST_QUESTIONS frases (únicas por contenido)
+    const unicas = [...new Set(frases.map(f => (f || '').trim()))];
+    const seleccion = unicas.sort(() => 0.5 - Math.random()).slice(0, TOTAL_TEST_QUESTIONS);
 
-    const questions = Array.from(selectedFrases).map(frase => ({
-      texto: 'Forma la frase:',
-      solucion: fontStyle === 'uppercase' ? frase.toUpperCase() : frase
-    }));
+    const questions = seleccion.map(sol => ({ texto: 'Forma la frase:', solucion: sol }));
 
     setTestQuestions(questions);
     setCurrentQuestionIndex(0);
     setUserAnswers([]);
+
     const { solucion } = questions[0];
     const palabras = solucion.split(' ').sort(() => Math.random() - 0.5);
     const ahora = Date.now();
@@ -98,6 +96,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     setShowResults(false);
     setScore(0);
     setIsTestMode(true);
+
     if (withTimer) {
       setStartTime(Date.now());
       setElapsedTime(0);
@@ -115,12 +114,12 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   }, [isTestMode, withTimer, showResults, startTime]);
 
   const calculateScore = (correctCount, time) => {
-    let baseScore = correctCount * 200;
+    let base = correctCount * 200;
     if (withTimer && correctCount > 0) {
       const timeBonus = Math.max(0, 100 - (time * 2));
-      baseScore += timeBonus;
+      base += timeBonus;
     }
-    return Math.floor(baseScore);
+    return Math.floor(base);
   };
 
   const handleNextQuestion = () => {
@@ -151,9 +150,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     }
   };
 
-  const exitTestMode = () => {
-    setIsTestMode(false);
-  };
+  const exitTestMode = () => setIsTestMode(false);
 
   const checkPracticeAnswer = () => {
     const fraseUsuario = palabrasDestino.map(p => p.texto).join(' ');
@@ -161,17 +158,16 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
       setFeedback({ texto: "¡Correcto! ¡Muy bien!", clase: 'correcta' });
       // confeti()
     } else {
-      setFeedback({ texto: "Casi... Revisa el orden de las palabras.", clase: 'incorrecta' });
+      setFeedback({ texto: "Casi... Revisa el orden de las palabras", clase: 'incorrecta' });
     }
   };
 
+  // Utilidades DnD (idénticas)
   const getDropTarget = (container, x, y) => {
-    const draggableElements = [...container.querySelectorAll('.palabra:not(.dragging)')];
-    for (const element of draggableElements) {
-      const box = element.getBoundingClientRect();
-      if (x >= box.left && x <= box.right && y >= box.top && y <= box.bottom) {
-        return element;
-      }
+    const els = [...container.querySelectorAll('.palabra:not(.dragging)')];
+    for (const el of els) {
+      const box = el.getBoundingClientRect();
+      if (x >= box.left && x <= box.right && y >= box.top && y <= box.bottom) return el;
     }
     return null;
   };
@@ -180,7 +176,6 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     draggedItem.current = palabra;
     e.target.classList.add('dragging');
   };
-
   const handleDragEnd = () => {
     document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
     draggedItem.current = null;
@@ -190,35 +185,35 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     e.preventDefault();
     if (!draggedItem.current) return;
 
-    const palabraArrastrada = draggedItem.current;
-    let nuevasPalabrasOrigen = palabrasOrigen.filter(p => p.id !== palabraArrastrada.id);
-    let nuevasPalabrasDestino = palabrasDestino.filter(p => p.id !== palabraArrastrada.id);
+    const item = draggedItem.current;
+    let nuevasOrigen = palabrasOrigen.filter(p => p.id !== item.id);
+    let nuevasDestino = palabrasDestino.filter(p => p.id !== item.id);
 
     if (targetZoneId === 'origen') {
-      nuevasPalabrasOrigen.push(palabraArrastrada);
-      nuevasPalabrasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
+      nuevasOrigen.push(item);
+      nuevasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
     } else {
       const dropTarget = getDropTarget(e.currentTarget, e.clientX, e.clientY);
       if (dropTarget) {
-        const index = nuevasPalabrasDestino.findIndex(p => p.id === dropTarget.dataset.id);
-        nuevasPalabrasDestino.splice(index, 0, palabraArrastrada);
+        const index = nuevasDestino.findIndex(p => p.id === dropTarget.dataset.id);
+        nuevasDestino.splice(index, 0, item);
       } else {
-        nuevasPalabrasDestino.push(palabraArrastrada);
+        nuevasDestino.push(item);
       }
     }
 
-    setPalabrasOrigen(nuevasPalabrasOrigen);
-    setPalabrasDestino(nuevasPalabrasDestino);
+    setPalabrasOrigen(nuevasOrigen);
+    setPalabrasDestino(nuevasDestino);
   };
 
   const handleDragOver = (e) => e.preventDefault();
 
   const handleTouchStart = (e, palabra) => {
     draggedItem.current = palabra;
-    const touchElement = e.currentTarget;
-    const rect = touchElement.getBoundingClientRect();
+    const el = e.currentTarget;
+    const rect = el.getBoundingClientRect();
 
-    const clone = touchElement.cloneNode(true);
+    const clone = el.cloneNode(true);
     clone.classList.add('palabra-clone');
     clone.style.width = `${rect.width}px`;
     clone.style.height = `${rect.height}px`;
@@ -227,15 +222,15 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     document.body.appendChild(clone);
     draggedCloneRef.current = clone;
 
-    touchElement.classList.add('dragging');
+    el.classList.add('dragging');
     document.body.classList.add('no-scroll');
   };
 
   const handleTouchMove = (e) => {
     if (!draggedCloneRef.current || !e.touches[0]) return;
-    const touch = e.touches[0];
+    const t = e.touches[0];
     const clone = draggedCloneRef.current;
-    clone.style.transform = `translate(${touch.clientX - parseFloat(clone.style.left) - clone.offsetWidth / 2}px, ${touch.clientY - parseFloat(clone.style.top) - clone.offsetHeight / 2}px)`;
+    clone.style.transform = `translate(${t.clientX - parseFloat(clone.style.left) - clone.offsetWidth / 2}px, ${t.clientY - parseFloat(clone.style.top) - clone.offsetHeight / 2}px)`;
   };
 
   const handleTouchEnd = (e) => {
@@ -250,30 +245,28 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
 
     const touch = e.changedTouches[0];
     const dropZone = dropZoneRef.current;
-    const palabraArrastrada = draggedItem.current;
+    const item = draggedItem.current;
 
-    let nuevasPalabrasOrigen = palabrasOrigen.filter(p => p.id !== palabraArrastrada.id);
-    let nuevasPalabrasDestino = palabrasDestino.filter(p => p.id !== palabraArrastrada.id);
+    let nuevasOrigen = palabrasOrigen.filter(p => p.id !== item.id);
+    let nuevasDestino = palabrasDestino.filter(p => p.id !== item.id);
 
-    const dropZoneRect = dropZone.getBoundingClientRect();
-
-    if (touch.clientX >= dropZoneRect.left && touch.clientX <= dropZoneRect.right &&
-        touch.clientY >= dropZoneRect.top && touch.clientY <= dropZoneRect.bottom) {
+    const rect = dropZone.getBoundingClientRect();
+    if (touch.clientX >= rect.left && touch.clientX <= rect.right &&
+        touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
       const dropTarget = getDropTarget(dropZone, touch.clientX, touch.clientY);
       if (dropTarget) {
-        const index = nuevasPalabrasDestino.findIndex(p => p.id === dropTarget.dataset.id);
-        nuevasPalabrasDestino.splice(index, 0, palabraArrastrada);
+        const index = nuevasDestino.findIndex(p => p.id === dropTarget.dataset.id);
+        nuevasDestino.splice(index, 0, item);
       } else {
-        nuevasPalabrasDestino.push(palabraArrastrada);
+        nuevasDestino.push(item);
       }
     } else {
-      nuevasPalabrasOrigen.push(palabraArrastrada);
-      nuevasPalabrasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
+      nuevasOrigen.push(item);
+      nuevasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
     }
 
-    setPalabrasOrigen(nuevasPalabrasOrigen);
-    setPalabrasDestino(nuevasPalabrasDestino);
-
+    setPalabrasOrigen(nuevasOrigen);
+    setPalabrasDestino(nuevasDestino);
     draggedItem.current = null;
   };
 

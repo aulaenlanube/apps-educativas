@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useOrdenaLaFraseGame } from '@/hooks/useOrdenaLaFraseGame';
 import OrdenaLaFraseUI from '@/apps/_shared/OrdenaLaFraseUI';
-import OrdenaLaFraseTestScreen from '@/apps/_shared/OrdenaLaFraseTestScreen';
 import { getFrases } from './../../../public/data/api';
 
 const OrdenaLaFraseJuego = () => {
@@ -31,7 +30,8 @@ const OrdenaLaFraseJuego = () => {
     return <div className="text-center p-10 font-bold text-orange-600">No hay contenido disponible para este juego todavía</div>;
   }
 
-  return game.isTestMode ? <OrdenaLaFraseTestScreen game={game} /> : <OrdenaLaFraseUI {...game} />;
+  // Un único componente UI gestiona práctica y test
+  return <OrdenaLaFraseUI game={game} />;
 };
 
 export default OrdenaLaFraseJuego;
