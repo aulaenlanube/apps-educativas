@@ -1,182 +1,32 @@
 [
-  [
-    "Amistad es divertido.",
-    "Yo aprendo sobre amistad.",
-    "El amistad me gusta mucho."
-  ],
-  [
-    "Yo aprendo sobre respeto.",
-    "El respeto me gusta mucho.",
-    "En clase hablamos de respeto."
-  ],
-  [
-    "El orden me gusta mucho.",
-    "En clase hablamos de orden.",
-    "Miramos orden todos los días."
-  ],
-  [
-    "En clase hablamos de higiene.",
-    "Miramos higiene todos los días.",
-    "Aprendo mucho sobre higiene cada día."
-  ],
-  [
-    "Miramos puntualidad todos los días.",
-    "Aprendo mucho sobre puntualidad cada día.",
-    "Me encanta escuchar cuentos de puntualidad."
-  ],
-  [
-    "Aprendo mucho sobre amistad cada día.",
-    "Me encanta escuchar cuentos de amistad.",
-    "Dibujamos amistad en clase."
-  ],
-  [
-    "Me encanta escuchar cuentos de respeto.",
-    "Dibujamos respeto en clase.",
-    "Mi amigo sabe mucho sobre respeto."
-  ],
-  [
-    "Dibujamos orden en clase.",
-    "Mi amigo sabe mucho sobre orden.",
-    "Jugamos con tarjetas de orden."
-  ],
-  [
-    "Mi amigo sabe mucho sobre higiene.",
-    "Jugamos con tarjetas de higiene.",
-    "Higiene es divertido."
-  ],
-  [
-    "Jugamos con tarjetas de puntualidad.",
-    "Puntualidad es divertido.",
-    "Yo aprendo sobre puntualidad."
-  ],
-  [
-    "Amistad es divertido.",
-    "Yo aprendo sobre amistad.",
-    "El amistad me gusta mucho.",
-    "En clase hablamos de amistad."
-  ],
-  [
-    "Yo aprendo sobre respeto.",
-    "El respeto me gusta mucho.",
-    "En clase hablamos de respeto.",
-    "Miramos respeto todos los días."
-  ],
-  [
-    "El orden me gusta mucho.",
-    "En clase hablamos de orden.",
-    "Miramos orden todos los días.",
-    "Aprendo mucho sobre orden cada día."
-  ],
-  [
-    "En clase hablamos de higiene.",
-    "Miramos higiene todos los días.",
-    "Aprendo mucho sobre higiene cada día.",
-    "Me encanta escuchar cuentos de higiene."
-  ],
-  [
-    "Miramos puntualidad todos los días.",
-    "Aprendo mucho sobre puntualidad cada día.",
-    "Me encanta escuchar cuentos de puntualidad.",
-    "Dibujamos puntualidad en clase."
-  ],
-  [
-    "Aprendo mucho sobre amistad cada día.",
-    "Me encanta escuchar cuentos de amistad.",
-    "Dibujamos amistad en clase.",
-    "Mi amigo sabe mucho sobre amistad."
-  ],
-  [
-    "Me encanta escuchar cuentos de respeto.",
-    "Dibujamos respeto en clase.",
-    "Mi amigo sabe mucho sobre respeto.",
-    "Jugamos con tarjetas de respeto."
-  ],
-  [
-    "Dibujamos orden en clase.",
-    "Mi amigo sabe mucho sobre orden.",
-    "Jugamos con tarjetas de orden.",
-    "Orden es divertido."
-  ],
-  [
-    "Mi amigo sabe mucho sobre higiene.",
-    "Jugamos con tarjetas de higiene.",
-    "Higiene es divertido.",
-    "Yo aprendo sobre higiene."
-  ],
-  [
-    "Jugamos con tarjetas de puntualidad.",
-    "Puntualidad es divertido.",
-    "Yo aprendo sobre puntualidad.",
-    "El puntualidad me gusta mucho."
-  ],
-  [
-    "Amistad es divertido.",
-    "Yo aprendo sobre amistad.",
-    "El amistad me gusta mucho.",
-    "En clase hablamos de amistad.",
-    "Miramos amistad todos los días."
-  ],
-  [
-    "Yo aprendo sobre respeto.",
-    "El respeto me gusta mucho.",
-    "En clase hablamos de respeto.",
-    "Miramos respeto todos los días.",
-    "Aprendo mucho sobre respeto cada día."
-  ],
-  [
-    "El orden me gusta mucho.",
-    "En clase hablamos de orden.",
-    "Miramos orden todos los días.",
-    "Aprendo mucho sobre orden cada día.",
-    "Me encanta escuchar cuentos de orden."
-  ],
-  [
-    "En clase hablamos de higiene.",
-    "Miramos higiene todos los días.",
-    "Aprendo mucho sobre higiene cada día.",
-    "Me encanta escuchar cuentos de higiene.",
-    "Dibujamos higiene en clase."
-  ],
-  [
-    "Miramos puntualidad todos los días.",
-    "Aprendo mucho sobre puntualidad cada día.",
-    "Me encanta escuchar cuentos de puntualidad.",
-    "Dibujamos puntualidad en clase.",
-    "Mi amigo sabe mucho sobre puntualidad."
-  ],
-  [
-    "Aprendo mucho sobre amistad cada día.",
-    "Me encanta escuchar cuentos de amistad.",
-    "Dibujamos amistad en clase.",
-    "Mi amigo sabe mucho sobre amistad.",
-    "Jugamos con tarjetas de amistad."
-  ],
-  [
-    "Me encanta escuchar cuentos de respeto.",
-    "Dibujamos respeto en clase.",
-    "Mi amigo sabe mucho sobre respeto.",
-    "Jugamos con tarjetas de respeto.",
-    "Respeto es divertido."
-  ],
-  [
-    "Dibujamos orden en clase.",
-    "Mi amigo sabe mucho sobre orden.",
-    "Jugamos con tarjetas de orden.",
-    "Orden es divertido.",
-    "Yo aprendo sobre orden."
-  ],
-  [
-    "Mi amigo sabe mucho sobre higiene.",
-    "Jugamos con tarjetas de higiene.",
-    "Higiene es divertido.",
-    "Yo aprendo sobre higiene.",
-    "El higiene me gusta mucho."
-  ],
-  [
-    "Jugamos con tarjetas de puntualidad.",
-    "Puntualidad es divertido.",
-    "Yo aprendo sobre puntualidad.",
-    "El puntualidad me gusta mucho.",
-    "En clase hablamos de puntualidad."
-  ]
+  ["Leo se cae en el patio.", "Ana le ayuda a levantarse.", "Leo le da las gracias a su amiga."],
+  ["Es el turno de hablar de María.", "Carlos espera en silencio para escucharla.", "Cuando María termina, Carlos da su opinión."],
+  ["Pablo quiere el lápiz rojo de Lucía.", "Le dice: '¿Me lo dejas, por favor?'.", "Lucía se lo presta contenta."],
+  ["El equipo de fútbol ha ganado el partido.", "Todos los jugadores se abrazan.", "Celebran la victoria juntos."],
+  ["A Juan no le sale bien un dibujo.", "Se enfada y lo arruga.", "La profesora le dice que lo importante es intentarlo."],
+  ["Sofía está triste porque echa de menos a su mamá.", "Su amigo Hugo le da un abrazo.", "Sofía se siente un poco mejor."],
+  ["En la asamblea, hablamos de un problema.", "Buscamos una solución entre todos.", "Llegamos a un acuerdo que nos gusta."],
+  ["Alguien ha roto un vaso sin querer.", "El que ha sido lo cuenta a la profesora.", "Decir la verdad es de valientes."],
+  ["Martina comparte sus galletas con Marcos.", "Marcos no tenía almuerzo ese día.", "Compartir es un gesto de amistad."],
+  ["El nuevo compañero de clase no conoce a nadie.", "Nos presentamos y le invitamos a jugar.", "Ahora tiene muchos amigos nuevos."],
+  ["Hemos hecho un trabajo en grupo.", "Cada uno ha hecho una parte.", "El trabajo en equipo ha quedado genial."],
+  ["Me he enfadado con mi mejor amigo.", "Respiro hondo para calmarme.", "Luego hablamos para solucionarlo."],
+  ["Veo a un niño solo en el recreo.", "Le pregunto si quiere jugar con nosotros.", "Jugar todos juntos es más divertido."],
+  ["Hemos terminado de jugar.", "Recogemos todos los juguetes.", "Dejamos la clase ordenada como estaba."],
+  ["La profesora nos pide ayuda.", "Le ayudamos a repartir los libros.", "Colaborar hace las tareas más fáciles."],
+  ["Mi compañero ha hecho un castillo muy chulo.", "Le digo: '¡Qué bien te ha quedado!'.", "Se pone muy contento al escucharlo."],
+  ["Sin querer, he empujado a una niña.", "Le pido perdón inmediatamente.", "Ella me sonríe y me perdona."],
+  ["Escuchamos las ideas de los demás.", "Todas las opiniones son importantes.", "Respetamos aunque no pensemos igual."],
+  ["Cuando alguien habla, le miramos a los ojos.", "Es una forma de mostrar interés.", "Demuestra que le estamos escuchando."],
+  ["He encontrado un estuche en el suelo.", "No es mío, así que lo entrego a la profesora.", "Devolver lo que no es nuestro está bien."],
+  ["Mi abuela me ha dado un regalo.", "Le doy un gran abrazo y le digo gracias.", "Ser agradecido es importante."],
+  ["Me siento muy feliz hoy.", "Comparto mi alegría con mis compañeros.", "Las emociones se pueden contagiar."],
+  ["Hoy estoy un poco enfadado.", "Hago un dibujo para expresar cómo me siento.", "Es una buena forma de desahogarse."],
+  ["Me esfuerzo mucho en hacer mis tareas.", "Aunque a veces me cuesten un poco.", "Me siento orgulloso cuando las termino."],
+  ["Ayudo a mi hermano pequeño a atarse los zapatos.", "Él todavía no sabe hacerlo solo.", "Ayudar a los demás nos hace sentir bien."],
+  ["La regla del juego es no empujar.", "Respetamos las normas para no hacernos daño.", "Así todos podemos jugar seguros."],
+  ["Si no estoy de acuerdo con algo, lo digo con respeto.", "No grito ni me enfado.", "Dialogar es la mejor solución."],
+  ["Todos somos diferentes.", "Cada uno tiene sus propias cualidades.", "Esa diversidad nos hace especiales."],
+  ["Confío en mis amigos y ellos en mí.", "Nos contamos nuestros secretos.", "La confianza es la base de la amistad."],
+  ["Cuido de las plantas del aula.", "Las riego para que no se sequen.", "Es nuestra responsabilidad cuidarlas."]
 ]

@@ -1,182 +1,32 @@
 [
-  [
-    "Ayer aprendimos sobre planetas y fue fascinante.",
-    "Para dominar planetas, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender planetas, pero sigo intentando."
-  ],
-  [
-    "Para dominar sistema digestivo, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender sistema digestivo, pero sigo intentando.",
-    "El estudio de sistema digestivo requiere mucha atención."
-  ],
-  [
-    "Me cuesta un poco entender nutrición, pero sigo intentando.",
-    "El estudio de nutrición requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre nutrición."
-  ],
-  [
-    "El estudio de fotosíntesis requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre fotosíntesis.",
-    "Cuando investigamos fotosíntesis, encontramos datos muy interesantes."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre invertebrados.",
-    "Cuando investigamos invertebrados, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre invertebrados."
-  ],
-  [
-    "Cuando investigamos planetas, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre planetas.",
-    "He descubierto que planetas puede ser divertido y educativo."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre sistema digestivo.",
-    "He descubierto que sistema digestivo puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre sistema digestivo en clase."
-  ],
-  [
-    "He descubierto que nutrición puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre nutrición en clase.",
-    "Es increíble cómo nutrición se relaciona con otras materias."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre fotosíntesis en clase.",
-    "Es increíble cómo fotosíntesis se relaciona con otras materias.",
-    "Ayer aprendimos sobre fotosíntesis y fue fascinante."
-  ],
-  [
-    "Es increíble cómo invertebrados se relaciona con otras materias.",
-    "Ayer aprendimos sobre invertebrados y fue fascinante.",
-    "Para dominar invertebrados, necesitamos practicar todos los días."
-  ],
-  [
-    "Ayer aprendimos sobre planetas y fue fascinante.",
-    "Para dominar planetas, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender planetas, pero sigo intentando.",
-    "El estudio de planetas requiere mucha atención."
-  ],
-  [
-    "Para dominar sistema digestivo, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender sistema digestivo, pero sigo intentando.",
-    "El estudio de sistema digestivo requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre sistema digestivo."
-  ],
-  [
-    "Me cuesta un poco entender nutrición, pero sigo intentando.",
-    "El estudio de nutrición requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre nutrición.",
-    "Cuando investigamos nutrición, encontramos datos muy interesantes."
-  ],
-  [
-    "El estudio de fotosíntesis requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre fotosíntesis.",
-    "Cuando investigamos fotosíntesis, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre fotosíntesis."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre invertebrados.",
-    "Cuando investigamos invertebrados, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre invertebrados.",
-    "He descubierto que invertebrados puede ser divertido y educativo."
-  ],
-  [
-    "Cuando investigamos planetas, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre planetas.",
-    "He descubierto que planetas puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre planetas en clase."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre sistema digestivo.",
-    "He descubierto que sistema digestivo puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre sistema digestivo en clase.",
-    "Es increíble cómo sistema digestivo se relaciona con otras materias."
-  ],
-  [
-    "He descubierto que nutrición puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre nutrición en clase.",
-    "Es increíble cómo nutrición se relaciona con otras materias.",
-    "Ayer aprendimos sobre nutrición y fue fascinante."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre fotosíntesis en clase.",
-    "Es increíble cómo fotosíntesis se relaciona con otras materias.",
-    "Ayer aprendimos sobre fotosíntesis y fue fascinante.",
-    "Para dominar fotosíntesis, necesitamos practicar todos los días."
-  ],
-  [
-    "Es increíble cómo invertebrados se relaciona con otras materias.",
-    "Ayer aprendimos sobre invertebrados y fue fascinante.",
-    "Para dominar invertebrados, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender invertebrados, pero sigo intentando."
-  ],
-  [
-    "Ayer aprendimos sobre planetas y fue fascinante.",
-    "Para dominar planetas, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender planetas, pero sigo intentando.",
-    "El estudio de planetas requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre planetas."
-  ],
-  [
-    "Para dominar sistema digestivo, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender sistema digestivo, pero sigo intentando.",
-    "El estudio de sistema digestivo requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre sistema digestivo.",
-    "Cuando investigamos sistema digestivo, encontramos datos muy interesantes."
-  ],
-  [
-    "Me cuesta un poco entender nutrición, pero sigo intentando.",
-    "El estudio de nutrición requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre nutrición.",
-    "Cuando investigamos nutrición, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre nutrición."
-  ],
-  [
-    "El estudio de fotosíntesis requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre fotosíntesis.",
-    "Cuando investigamos fotosíntesis, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre fotosíntesis.",
-    "He descubierto que fotosíntesis puede ser divertido y educativo."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre invertebrados.",
-    "Cuando investigamos invertebrados, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre invertebrados.",
-    "He descubierto que invertebrados puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre invertebrados en clase."
-  ],
-  [
-    "Cuando investigamos planetas, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre planetas.",
-    "He descubierto que planetas puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre planetas en clase.",
-    "Es increíble cómo planetas se relaciona con otras materias."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre sistema digestivo.",
-    "He descubierto que sistema digestivo puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre sistema digestivo en clase.",
-    "Es increíble cómo sistema digestivo se relaciona con otras materias.",
-    "Ayer aprendimos sobre sistema digestivo y fue fascinante."
-  ],
-  [
-    "He descubierto que nutrición puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre nutrición en clase.",
-    "Es increíble cómo nutrición se relaciona con otras materias.",
-    "Ayer aprendimos sobre nutrición y fue fascinante.",
-    "Para dominar nutrición, necesitamos practicar todos los días."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre fotosíntesis en clase.",
-    "Es increíble cómo fotosíntesis se relaciona con otras materias.",
-    "Ayer aprendimos sobre fotosíntesis y fue fascinante.",
-    "Para dominar fotosíntesis, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender fotosíntesis, pero sigo intentando."
-  ],
-  [
-    "Es increíble cómo invertebrados se relaciona con otras materias.",
-    "Ayer aprendimos sobre invertebrados y fue fascinante.",
-    "Para dominar invertebrados, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender invertebrados, pero sigo intentando.",
-    "El estudio de invertebrados requiere mucha atención."
-  ]
+  ["Primero plantamos una semilla en la tierra.", "Luego, la regamos con agua todos los días.", "Finalmente, de la semilla crece una bonita flor."],
+  ["Por la mañana, el sol aparece en el cielo.", "Al mediodía, el sol está muy alto y nos da calor.", "Por la noche, el sol se esconde y sale la luna."],
+  ["La oruga come muchas hojas verdes.", "Después se envuelve en un capullo para dormir.", "Al despertar, se convierte en una mariposa."],
+  ["Las nubes del cielo se ponen grises.", "Empieza a caer agua sin parar.", "Después de la lluvia, sale un precioso arcoíris."],
+  ["El león ruge muy fuerte en la sabana.", "Todos los animales le oyen y se asustan.", "Es el rey de la selva y todos le respetan."],
+  ["En primavera, los campos se llenan de flores.", "En verano, el sol nos da mucho calor.", "En otoño, las hojas de los árboles se caen."],
+  ["El pez nada muy rápido en el agua.", "Mueve sus aletas para poder avanzar.", "Respira a través de sus branquias."],
+  ["Tengo hambre a la hora de comer.", "Como frutas y verduras para estar fuerte.", "La comida me da energía para jugar."],
+  ["El perro entierra un hueso en el jardín.", "Hace un agujero grande con sus patas.", "Así guarda su comida para más tarde."],
+  ["Las abejas vuelan de flor en flor.", "Recogen el néctar dulce con su lengua.", "Con el néctar fabrican una rica miel."],
+  ["El pájaro recoge ramitas y paja.", "Con ellas construye un nido en el árbol.", "Allí pondrá sus huevos y cuidará a sus polluelos."],
+  ["Cuando tengo frío, me abrigo bien.", "Mi cuerpo tiembla para generar calor.", "Así consigo mantener mi temperatura."],
+  ["El agua del río baja de la montaña.", "El río llega hasta el mar.", "El agua del mar es muy salada."],
+  ["La gallina pone un huevo en el corral.", "Lo empolla con su calor durante días.", "Del huevo nace un pequeño pollito."],
+  ["La araña teje una telaraña con su seda.", "Espera pacientemente en el centro.", "Atrapa a los insectos que caen en su trampa."],
+  ["El oso come mucho durante el otoño.", "Busca una cueva para pasar el invierno.", "Duerme durante muchos meses hasta que llega la primavera."],
+  ["Para vivir necesitamos respirar aire.", "El aire entra por nuestra nariz.", "Llena nuestros pulmones de oxígeno."],
+  ["La Tierra es nuestro planeta.", "Gira alrededor del sol sin parar.", "Gracias a eso tenemos día y noche."],
+  ["Las plantas fabrican su propio alimento.", "Necesitan la luz del sol, el agua y la tierra.", "Este proceso se llama fotosíntesis."],
+  ["El esqueleto está formado por huesos.", "Los huesos sostienen todo nuestro cuerpo.", "Gracias a ellos podemos movernos."],
+  ["Los dinosaurios vivieron hace mucho tiempo.", "Eran reptiles muy grandes y fuertes.", "Se extinguieron y ahora solo vemos sus fósiles."],
+  ["El camaleón cambia de color.", "Se camufla para esconderse de otros animales.", "Así puede cazar y no ser cazado."],
+  ["Las estrellas brillan mucho por la noche.", "Son bolas de fuego gigantes que están muy lejos.", "Desde aquí parecen puntos de luz pequeños."],
+  ["El corazón bombea la sangre.", "La sangre viaja por todo nuestro cuerpo.", "Lleva el oxígeno y los alimentos a todas partes."],
+  ["El caracol se mueve muy despacio.", "Lleva su casa a cuestas para protegerse.", "Deja un rastro de baba por donde pasa."],
+  ["Cuando es de día, hay mucha luz.", "Cuando es de noche, todo está oscuro.", "La luz viene del sol."],
+  ["Las focas viven en lugares muy fríos.", "Tienen una capa de grasa para no tener frío.", "Nadan muy bien en el agua helada."],
+  ["El reciclaje es muy importante.", "Separamos el papel, el vidrio y el plástico.", "Así ayudamos a cuidar nuestro planeta."],
+  ["Las frutas maduran en los árboles.", "Cuando están listas, las recogemos.", "Son un alimento muy sano y delicioso."],
+  ["El eco se produce cuando gritamos en la montaña.", "Nuestra voz choca contra las rocas.", "El sonido vuelve hasta nuestros oídos."]
 ]

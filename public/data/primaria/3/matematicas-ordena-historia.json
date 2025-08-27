@@ -1,182 +1,32 @@
 [
-  [
-    "Ayer aprendimos sobre ángulos y fue fascinante.",
-    "Para dominar ángulos, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender ángulos, pero sigo intentando."
-  ],
-  [
-    "Para dominar perímetros, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender perímetros, pero sigo intentando.",
-    "El estudio de perímetros requiere mucha atención."
-  ],
-  [
-    "Me cuesta un poco entender áreas, pero sigo intentando.",
-    "El estudio de áreas requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre áreas."
-  ],
-  [
-    "El estudio de gráficas requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre gráficas.",
-    "Cuando investigamos gráficas, encontramos datos muy interesantes."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre problemas.",
-    "Cuando investigamos problemas, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre problemas."
-  ],
-  [
-    "Cuando investigamos ángulos, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre ángulos.",
-    "He descubierto que ángulos puede ser divertido y educativo."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre perímetros.",
-    "He descubierto que perímetros puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre perímetros en clase."
-  ],
-  [
-    "He descubierto que áreas puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre áreas en clase.",
-    "Es increíble cómo áreas se relaciona con otras materias."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre gráficas en clase.",
-    "Es increíble cómo gráficas se relaciona con otras materias.",
-    "Ayer aprendimos sobre gráficas y fue fascinante."
-  ],
-  [
-    "Es increíble cómo problemas se relaciona con otras materias.",
-    "Ayer aprendimos sobre problemas y fue fascinante.",
-    "Para dominar problemas, necesitamos practicar todos los días."
-  ],
-  [
-    "Ayer aprendimos sobre ángulos y fue fascinante.",
-    "Para dominar ángulos, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender ángulos, pero sigo intentando.",
-    "El estudio de ángulos requiere mucha atención."
-  ],
-  [
-    "Para dominar perímetros, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender perímetros, pero sigo intentando.",
-    "El estudio de perímetros requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre perímetros."
-  ],
-  [
-    "Me cuesta un poco entender áreas, pero sigo intentando.",
-    "El estudio de áreas requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre áreas.",
-    "Cuando investigamos áreas, encontramos datos muy interesantes."
-  ],
-  [
-    "El estudio de gráficas requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre gráficas.",
-    "Cuando investigamos gráficas, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre gráficas."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre problemas.",
-    "Cuando investigamos problemas, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre problemas.",
-    "He descubierto que problemas puede ser divertido y educativo."
-  ],
-  [
-    "Cuando investigamos ángulos, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre ángulos.",
-    "He descubierto que ángulos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre ángulos en clase."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre perímetros.",
-    "He descubierto que perímetros puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre perímetros en clase.",
-    "Es increíble cómo perímetros se relaciona con otras materias."
-  ],
-  [
-    "He descubierto que áreas puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre áreas en clase.",
-    "Es increíble cómo áreas se relaciona con otras materias.",
-    "Ayer aprendimos sobre áreas y fue fascinante."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre gráficas en clase.",
-    "Es increíble cómo gráficas se relaciona con otras materias.",
-    "Ayer aprendimos sobre gráficas y fue fascinante.",
-    "Para dominar gráficas, necesitamos practicar todos los días."
-  ],
-  [
-    "Es increíble cómo problemas se relaciona con otras materias.",
-    "Ayer aprendimos sobre problemas y fue fascinante.",
-    "Para dominar problemas, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender problemas, pero sigo intentando."
-  ],
-  [
-    "Ayer aprendimos sobre ángulos y fue fascinante.",
-    "Para dominar ángulos, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender ángulos, pero sigo intentando.",
-    "El estudio de ángulos requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre ángulos."
-  ],
-  [
-    "Para dominar perímetros, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender perímetros, pero sigo intentando.",
-    "El estudio de perímetros requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre perímetros.",
-    "Cuando investigamos perímetros, encontramos datos muy interesantes."
-  ],
-  [
-    "Me cuesta un poco entender áreas, pero sigo intentando.",
-    "El estudio de áreas requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre áreas.",
-    "Cuando investigamos áreas, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre áreas."
-  ],
-  [
-    "El estudio de gráficas requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre gráficas.",
-    "Cuando investigamos gráficas, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre gráficas.",
-    "He descubierto que gráficas puede ser divertido y educativo."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre problemas.",
-    "Cuando investigamos problemas, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre problemas.",
-    "He descubierto que problemas puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre problemas en clase."
-  ],
-  [
-    "Cuando investigamos ángulos, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre ángulos.",
-    "He descubierto que ángulos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre ángulos en clase.",
-    "Es increíble cómo ángulos se relaciona con otras materias."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre perímetros.",
-    "He descubierto que perímetros puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre perímetros en clase.",
-    "Es increíble cómo perímetros se relaciona con otras materias.",
-    "Ayer aprendimos sobre perímetros y fue fascinante."
-  ],
-  [
-    "He descubierto que áreas puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre áreas en clase.",
-    "Es increíble cómo áreas se relaciona con otras materias.",
-    "Ayer aprendimos sobre áreas y fue fascinante.",
-    "Para dominar áreas, necesitamos practicar todos los días."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre gráficas en clase.",
-    "Es increíble cómo gráficas se relaciona con otras materias.",
-    "Ayer aprendimos sobre gráficas y fue fascinante.",
-    "Para dominar gráficas, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender gráficas, pero sigo intentando."
-  ],
-  [
-    "Es increíble cómo problemas se relaciona con otras materias.",
-    "Ayer aprendimos sobre problemas y fue fascinante.",
-    "Para dominar problemas, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender problemas, pero sigo intentando.",
-    "El estudio de problemas requiere mucha atención."
-  ]
+  ["Tengo tres caramelos en una mano.", "En la otra mano tengo dos caramelos más.", "En total, tengo cinco caramelos."],
+  ["Había cinco pájaros en un árbol.", "Dos pájaros se fueron volando.", "Ahora quedan tres pájaros en el árbol."],
+  ["Mamá compra una caja con diez galletas.", "Mi hermano y yo nos comemos dos cada uno.", "En la caja ahora quedan seis galletas."],
+  ["En el estuche tengo cuatro lápices rojos.", "También tengo tres lápices azules.", "Tengo más lápices de color rojo."],
+  ["La gallina ha puesto tres huevos hoy.", "Ayer puso dos huevos.", "Entre los dos días ha puesto cinco huevos."],
+  ["Una bicicleta tiene dos ruedas.", "Un triciclo tiene tres ruedas.", "El triciclo tiene una rueda más que la bicicleta."],
+  ["Empiezo a contar desde el número uno.", "Sigo contando hasta llegar al diez.", "He contado todos los números seguidos."],
+  ["Dibujo un cuadrado en mi cuaderno.", "El cuadrado tiene cuatro lados iguales.", "También tiene cuatro esquinas."],
+  ["Tengo ocho cromos y mi amigo tiene seis.", "Yo tengo dos cromos más que mi amigo.", "Le regalo uno para que tengamos casi los mismos."],
+  ["Papá me da una moneda de dos euros.", "Compro un helado que cuesta un euro.", "Me devuelven una moneda de un euro."],
+  ["La semana empieza el lunes.", "Tiene siete días en total.", "El último día de la semana es el domingo."],
+  ["La aguja pequeña del reloj marca las tres.", "La aguja grande marca las doce.", "Son las tres en punto."],
+  ["En una fila hay cinco niños.", "En otra fila hay otros cinco niños.", "En total hay diez niños."],
+  ["Una decena está formada por diez cosas.", "Si tengo diez dedos, tengo una decena de dedos.", "Es una forma de agrupar."],
+  ["Tengo una tarta de cumpleaños con seis velas.", "Soplo y apago cuatro velas.", "Todavía quedan dos velas encendidas."],
+  ["La jirafa es más alta que la cebra.", "La cebra es más baja que la jirafa.", "Comparamos sus alturas."],
+  ["El camino a casa es corto.", "El camino al colegio es más largo.", "Tardo más en llegar al colegio."],
+  ["Mi libro tiene veinte páginas.", "Ya he leído diez páginas.", "Me falta por leer la mitad del libro."],
+  ["Cojo la regla para medir mi goma.", "Mi goma mide cinco centímetros.", "La regla me ayuda a saber su longitud."],
+  ["La pelota es una esfera.", "No es plana como un círculo.", "Puede rodar en todas las direcciones."],
+  ["Mi hermano tiene el doble de años que yo.", "Yo tengo cuatro años.", "Mi hermano tiene ocho años."],
+  ["Reparto doce pegatinas entre mis tres amigos.", "A cada amigo le doy cuatro pegatinas.", "Todos tienen la misma cantidad."],
+  ["El número que va antes del seis es el cinco.", "El número que va después del seis es el siete.", "El seis está en medio de los dos."],
+  ["Lanzo un dado y sale el número cuatro.", "Vuelvo a lanzar y sale el tres.", "La primera vez salió un número más alto."],
+  ["Hago una torre con cinco bloques.", "Mi amigo hace una torre con ocho bloques.", "Su torre es más alta que la mía."],
+  ["En el plato hay una manzana entera.", "La parto por la mitad.", "Ahora tengo dos trozos iguales."],
+  ["El número cero significa que no hay nada.", "Si tengo cero caramelos, no tengo ninguno.", "Es el primer número de todos."],
+  ["Sumar es añadir.", "Restar es quitar.", "Son operaciones contrarias."],
+  ["El rectángulo tiene cuatro lados.", "Dos lados son largos y dos son cortos.", "No son todos iguales como en el cuadrado."],
+  ["Un problema matemático tiene una pregunta.", "Pienso en los datos para resolverla.", "Encuentro la solución correcta."]
 ]

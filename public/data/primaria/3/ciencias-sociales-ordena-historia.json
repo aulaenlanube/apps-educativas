@@ -1,182 +1,32 @@
 [
-  [
-    "Ayer aprendimos sobre las instituciones y fue fascinante.",
-    "Para dominar las instituciones, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender las instituciones, pero sigo intentando."
-  ],
-  [
-    "Para dominar las culturas, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender las culturas, pero sigo intentando.",
-    "El estudio de las culturas requiere mucha atención."
-  ],
-  [
-    "Me cuesta un poco entender los continentes, pero sigo intentando.",
-    "El estudio de los continentes requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre los continentes."
-  ],
-  [
-    "El estudio de la historia local requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre la historia local.",
-    "Cuando investigamos la historia local, encontramos datos muy interesantes."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre los medios de comunicación.",
-    "Cuando investigamos los medios de comunicación, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre los medios de comunicación."
-  ],
-  [
-    "Cuando investigamos las instituciones, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre las instituciones.",
-    "He descubierto que las instituciones puede ser divertido y educativo."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre las culturas.",
-    "He descubierto que las culturas puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre las culturas en clase."
-  ],
-  [
-    "He descubierto que los continentes puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre los continentes en clase.",
-    "Es increíble cómo los continentes se relaciona con otras materias."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre la historia local en clase.",
-    "Es increíble cómo la historia local se relaciona con otras materias.",
-    "Ayer aprendimos sobre la historia local y fue fascinante."
-  ],
-  [
-    "Es increíble cómo los medios de comunicación se relaciona con otras materias.",
-    "Ayer aprendimos sobre los medios de comunicación y fue fascinante.",
-    "Para dominar los medios de comunicación, necesitamos practicar todos los días."
-  ],
-  [
-    "Ayer aprendimos sobre las instituciones y fue fascinante.",
-    "Para dominar las instituciones, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender las instituciones, pero sigo intentando.",
-    "El estudio de las instituciones requiere mucha atención."
-  ],
-  [
-    "Para dominar las culturas, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender las culturas, pero sigo intentando.",
-    "El estudio de las culturas requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre las culturas."
-  ],
-  [
-    "Me cuesta un poco entender los continentes, pero sigo intentando.",
-    "El estudio de los continentes requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre los continentes.",
-    "Cuando investigamos los continentes, encontramos datos muy interesantes."
-  ],
-  [
-    "El estudio de la historia local requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre la historia local.",
-    "Cuando investigamos la historia local, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre la historia local."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre los medios de comunicación.",
-    "Cuando investigamos los medios de comunicación, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre los medios de comunicación.",
-    "He descubierto que los medios de comunicación puede ser divertido y educativo."
-  ],
-  [
-    "Cuando investigamos las instituciones, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre las instituciones.",
-    "He descubierto que las instituciones puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre las instituciones en clase."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre las culturas.",
-    "He descubierto que las culturas puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre las culturas en clase.",
-    "Es increíble cómo las culturas se relaciona con otras materias."
-  ],
-  [
-    "He descubierto que los continentes puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre los continentes en clase.",
-    "Es increíble cómo los continentes se relaciona con otras materias.",
-    "Ayer aprendimos sobre los continentes y fue fascinante."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre la historia local en clase.",
-    "Es increíble cómo la historia local se relaciona con otras materias.",
-    "Ayer aprendimos sobre la historia local y fue fascinante.",
-    "Para dominar la historia local, necesitamos practicar todos los días."
-  ],
-  [
-    "Es increíble cómo los medios de comunicación se relaciona con otras materias.",
-    "Ayer aprendimos sobre los medios de comunicación y fue fascinante.",
-    "Para dominar los medios de comunicación, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender los medios de comunicación, pero sigo intentando."
-  ],
-  [
-    "Ayer aprendimos sobre las instituciones y fue fascinante.",
-    "Para dominar las instituciones, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender las instituciones, pero sigo intentando.",
-    "El estudio de las instituciones requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre las instituciones."
-  ],
-  [
-    "Para dominar las culturas, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender las culturas, pero sigo intentando.",
-    "El estudio de las culturas requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre las culturas.",
-    "Cuando investigamos las culturas, encontramos datos muy interesantes."
-  ],
-  [
-    "Me cuesta un poco entender los continentes, pero sigo intentando.",
-    "El estudio de los continentes requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre los continentes.",
-    "Cuando investigamos los continentes, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre los continentes."
-  ],
-  [
-    "El estudio de la historia local requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre la historia local.",
-    "Cuando investigamos la historia local, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre la historia local.",
-    "He descubierto que la historia local puede ser divertido y educativo."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre los medios de comunicación.",
-    "Cuando investigamos los medios de comunicación, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre los medios de comunicación.",
-    "He descubierto que los medios de comunicación puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre los medios de comunicación en clase."
-  ],
-  [
-    "Cuando investigamos las instituciones, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre las instituciones.",
-    "He descubierto que las instituciones puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre las instituciones en clase.",
-    "Es increíble cómo las instituciones se relaciona con otras materias."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre las culturas.",
-    "He descubierto que las culturas puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre las culturas en clase.",
-    "Es increíble cómo las culturas se relaciona con otras materias.",
-    "Ayer aprendimos sobre las culturas y fue fascinante."
-  ],
-  [
-    "He descubierto que los continentes puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre los continentes en clase.",
-    "Es increíble cómo los continentes se relaciona con otras materias.",
-    "Ayer aprendimos sobre los continentes y fue fascinante.",
-    "Para dominar los continentes, necesitamos practicar todos los días."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre la historia local en clase.",
-    "Es increíble cómo la historia local se relaciona con otras materias.",
-    "Ayer aprendimos sobre la historia local y fue fascinante.",
-    "Para dominar la historia local, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender la historia local, pero sigo intentando."
-  ],
-  [
-    "Es increíble cómo los medios de comunicación se relaciona con otras materias.",
-    "Ayer aprendimos sobre los medios de comunicación y fue fascinante.",
-    "Para dominar los medios de comunicación, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender los medios de comunicación, pero sigo intentando.",
-    "El estudio de los medios de comunicación requiere mucha atención."
-  ]
+  ["La panadera se levanta muy temprano.", "Amasa la harina para hacer el pan.", "Por la mañana, vende las barras recién hechas."],
+  ["El cartero recoge las cartas en la oficina.", "Las reparte por todas las casas de la ciudad.", "Gracias a él, recibimos las noticias de lejos."],
+  ["Los bomberos reciben una llamada de emergencia.", "Conducen su camión muy rápido con la sirena.", "Apagan el fuego con sus grandes mangueras."],
+  ["Para cruzar la calle, primero miro a los lados.", "Espero a que el semáforo de peatones se ponga en verde.", "Entonces, cruzo por el paso de cebra."],
+  ["Mi familia vive en una casa.", "Mi casa está en una calle.", "Mi calle forma parte de mi barrio."],
+  ["Voy al colegio todos los días.", "En clase, aprendo a leer y a escribir.", "En el patio, juego con todos mis amigos."],
+  ["El médico nos ayuda cuando estamos enfermos.", "Nos ausculta para ver qué nos pasa.", "Nos da medicinas para que nos curemos pronto."],
+  ["En el supermercado compramos la comida.", "Ponemos las cosas en el carrito.", "Al final, pagamos todo en la caja."],
+  ["La policía vigila las calles de la ciudad.", "Ayuda a las personas que tienen problemas.", "Gracias a ellos, todos estamos más seguros."],
+  ["En la biblioteca hay muchos libros.", "Elijo el cuento que más me gusta.", "Me lo llevo a casa para poder leerlo."],
+  ["Los agricultores siembran semillas en el campo.", "Cuidan las plantas para que crezcan sanas.", "Recogen las frutas y verduras cuando maduran."],
+  ["Celebramos mi cumpleaños con una fiesta.", "Invito a mis amigos a casa.", "Soplo las velas de la tarta y pido un deseo."],
+  ["Antiguamente, la gente vivía en cuevas.", "Luego construyeron castillos para protegerse.", "Ahora vivimos en casas y pisos modernos."],
+  ["El ayuntamiento es el gobierno de la ciudad.", "El alcalde o la alcaldesa toma decisiones importantes.", "Trabajan para que la ciudad funcione bien."],
+  ["En el parque hay columpios y toboganes.", "Me encanta jugar allí con mis amigos.", "Es un lugar para divertirse al aire libre."],
+  ["Para viajar lejos, podemos ir en avión.", "El avión despega desde el aeropuerto.", "Vuela muy alto por encima de las nubes."],
+  ["El tren se mueve por las vías.", "Hace paradas en diferentes estaciones.", "Es un transporte muy cómodo para viajar."],
+  ["Mi barrio tiene tiendas y parques.", "Conozco a muchos vecinos.", "Me gusta vivir aquí."],
+  ["En Navidad, decoramos el árbol.", "Cantamos villancicos en familia.", "Recibimos regalos de Papá Noel o los Reyes Magos."],
+  ["Las normas de convivencia nos ayudan a vivir mejor.", "Hay que respetar a los demás.", "Así todos podemos ser felices."],
+  ["El dinero sirve para comprar cosas.", "Antiguamente, la gente hacía trueques.", "Cambiaban unas cosas por otras sin usar monedas."],
+  ["Mi ciudad tiene monumentos muy antiguos.", "Cuentan la historia de cómo era la vida antes.", "Es importante cuidarlos para el futuro."],
+  ["El mapa nos ayuda a saber dónde estamos.", "Muestra los países, las ciudades y los ríos.", "Es un dibujo de la Tierra o de una parte de ella."],
+  ["El pastor cuida de sus ovejas en el campo.", "Las lleva a los mejores pastos para que coman.", "Por la noche, las encierra en el redil."],
+  ["El zapatero arregla los zapatos rotos.", "Usa herramientas como el martillo y los clavos.", "Deja los zapatos como si fueran nuevos."],
+  ["Hay diferentes tipos de familias.", "Algunas son grandes y otras pequeñas.", "Lo más importante es que se quieran mucho."],
+  ["La bandera de mi país tiene colores especiales.", "Representa a todas las personas que vivimos aquí.", "La respetamos como un símbolo importante."],
+  ["Para comunicarnos, usamos el lenguaje.", "Podemos hablar, escribir o hacer gestos.", "Así expresamos lo que pensamos y sentimos."],
+  ["El cocinero prepara comidas deliciosas.", "Mezcla los ingredientes en la cocina.", "Sirve los platos en el restaurante."],
+  ["Las fiestas del pueblo son muy divertidas.", "Hay música, bailes y mucha gente.", "Es una tradición que se celebra todos los años."]
 ]

@@ -1,182 +1,32 @@
 [
-  [
-    "La familia es divertido.",
-    "Yo aprendo sobre la familia.",
-    "El la familia me gusta mucho."
-  ],
-  [
-    "Yo aprendo sobre la comunidad.",
-    "El la comunidad me gusta mucho.",
-    "En clase hablamos de la comunidad."
-  ],
-  [
-    "El la escuela me gusta mucho.",
-    "En clase hablamos de la escuela.",
-    "Miramos la escuela todos los días."
-  ],
-  [
-    "En clase hablamos de el barrio.",
-    "Miramos el barrio todos los días.",
-    "Aprendo mucho sobre el barrio cada día."
-  ],
-  [
-    "Miramos las reglas todos los días.",
-    "Aprendo mucho sobre las reglas cada día.",
-    "Me encanta escuchar cuentos de las reglas."
-  ],
-  [
-    "Aprendo mucho sobre la familia cada día.",
-    "Me encanta escuchar cuentos de la familia.",
-    "Dibujamos la familia en clase."
-  ],
-  [
-    "Me encanta escuchar cuentos de la comunidad.",
-    "Dibujamos la comunidad en clase.",
-    "Mi amigo sabe mucho sobre la comunidad."
-  ],
-  [
-    "Dibujamos la escuela en clase.",
-    "Mi amigo sabe mucho sobre la escuela.",
-    "Jugamos con tarjetas de la escuela."
-  ],
-  [
-    "Mi amigo sabe mucho sobre el barrio.",
-    "Jugamos con tarjetas de el barrio.",
-    "El barrio es divertido."
-  ],
-  [
-    "Jugamos con tarjetas de las reglas.",
-    "Las reglas es divertido.",
-    "Yo aprendo sobre las reglas."
-  ],
-  [
-    "La familia es divertido.",
-    "Yo aprendo sobre la familia.",
-    "El la familia me gusta mucho.",
-    "En clase hablamos de la familia."
-  ],
-  [
-    "Yo aprendo sobre la comunidad.",
-    "El la comunidad me gusta mucho.",
-    "En clase hablamos de la comunidad.",
-    "Miramos la comunidad todos los días."
-  ],
-  [
-    "El la escuela me gusta mucho.",
-    "En clase hablamos de la escuela.",
-    "Miramos la escuela todos los días.",
-    "Aprendo mucho sobre la escuela cada día."
-  ],
-  [
-    "En clase hablamos de el barrio.",
-    "Miramos el barrio todos los días.",
-    "Aprendo mucho sobre el barrio cada día.",
-    "Me encanta escuchar cuentos de el barrio."
-  ],
-  [
-    "Miramos las reglas todos los días.",
-    "Aprendo mucho sobre las reglas cada día.",
-    "Me encanta escuchar cuentos de las reglas.",
-    "Dibujamos las reglas en clase."
-  ],
-  [
-    "Aprendo mucho sobre la familia cada día.",
-    "Me encanta escuchar cuentos de la familia.",
-    "Dibujamos la familia en clase.",
-    "Mi amigo sabe mucho sobre la familia."
-  ],
-  [
-    "Me encanta escuchar cuentos de la comunidad.",
-    "Dibujamos la comunidad en clase.",
-    "Mi amigo sabe mucho sobre la comunidad.",
-    "Jugamos con tarjetas de la comunidad."
-  ],
-  [
-    "Dibujamos la escuela en clase.",
-    "Mi amigo sabe mucho sobre la escuela.",
-    "Jugamos con tarjetas de la escuela.",
-    "La escuela es divertido."
-  ],
-  [
-    "Mi amigo sabe mucho sobre el barrio.",
-    "Jugamos con tarjetas de el barrio.",
-    "El barrio es divertido.",
-    "Yo aprendo sobre el barrio."
-  ],
-  [
-    "Jugamos con tarjetas de las reglas.",
-    "Las reglas es divertido.",
-    "Yo aprendo sobre las reglas.",
-    "El las reglas me gusta mucho."
-  ],
-  [
-    "La familia es divertido.",
-    "Yo aprendo sobre la familia.",
-    "El la familia me gusta mucho.",
-    "En clase hablamos de la familia.",
-    "Miramos la familia todos los días."
-  ],
-  [
-    "Yo aprendo sobre la comunidad.",
-    "El la comunidad me gusta mucho.",
-    "En clase hablamos de la comunidad.",
-    "Miramos la comunidad todos los días.",
-    "Aprendo mucho sobre la comunidad cada día."
-  ],
-  [
-    "El la escuela me gusta mucho.",
-    "En clase hablamos de la escuela.",
-    "Miramos la escuela todos los días.",
-    "Aprendo mucho sobre la escuela cada día.",
-    "Me encanta escuchar cuentos de la escuela."
-  ],
-  [
-    "En clase hablamos de el barrio.",
-    "Miramos el barrio todos los días.",
-    "Aprendo mucho sobre el barrio cada día.",
-    "Me encanta escuchar cuentos de el barrio.",
-    "Dibujamos el barrio en clase."
-  ],
-  [
-    "Miramos las reglas todos los días.",
-    "Aprendo mucho sobre las reglas cada día.",
-    "Me encanta escuchar cuentos de las reglas.",
-    "Dibujamos las reglas en clase.",
-    "Mi amigo sabe mucho sobre las reglas."
-  ],
-  [
-    "Aprendo mucho sobre la familia cada día.",
-    "Me encanta escuchar cuentos de la familia.",
-    "Dibujamos la familia en clase.",
-    "Mi amigo sabe mucho sobre la familia.",
-    "Jugamos con tarjetas de la familia."
-  ],
-  [
-    "Me encanta escuchar cuentos de la comunidad.",
-    "Dibujamos la comunidad en clase.",
-    "Mi amigo sabe mucho sobre la comunidad.",
-    "Jugamos con tarjetas de la comunidad.",
-    "La comunidad es divertido."
-  ],
-  [
-    "Dibujamos la escuela en clase.",
-    "Mi amigo sabe mucho sobre la escuela.",
-    "Jugamos con tarjetas de la escuela.",
-    "La escuela es divertido.",
-    "Yo aprendo sobre la escuela."
-  ],
-  [
-    "Mi amigo sabe mucho sobre el barrio.",
-    "Jugamos con tarjetas de el barrio.",
-    "El barrio es divertido.",
-    "Yo aprendo sobre el barrio.",
-    "El el barrio me gusta mucho."
-  ],
-  [
-    "Jugamos con tarjetas de las reglas.",
-    "Las reglas es divertido.",
-    "Yo aprendo sobre las reglas.",
-    "El las reglas me gusta mucho.",
-    "En clase hablamos de las reglas."
-  ]
+  ["La panadera se levanta muy temprano.", "Amasa la harina para hacer el pan.", "Por la mañana, vende las barras recién hechas."],
+  ["El cartero recoge las cartas en la oficina.", "Las reparte por todas las casas de la ciudad.", "Gracias a él, recibimos las noticias de lejos."],
+  ["Los bomberos reciben una llamada de emergencia.", "Conducen su camión muy rápido con la sirena.", "Apagan el fuego con sus grandes mangueras."],
+  ["Para cruzar la calle, primero miro a los lados.", "Espero a que el semáforo de peatones se ponga en verde.", "Entonces, cruzo por el paso de cebra."],
+  ["Mi familia vive en una casa.", "Mi casa está en una calle.", "Mi calle forma parte de mi barrio."],
+  ["Voy al colegio todos los días.", "En clase, aprendo a leer y a escribir.", "En el patio, juego con todos mis amigos."],
+  ["El médico nos ayuda cuando estamos enfermos.", "Nos ausculta para ver qué nos pasa.", "Nos da medicinas para que nos curemos pronto."],
+  ["En el supermercado compramos la comida.", "Ponemos las cosas en el carrito.", "Al final, pagamos todo en la caja."],
+  ["La policía vigila las calles de la ciudad.", "Ayuda a las personas que tienen problemas.", "Gracias a ellos, todos estamos más seguros."],
+  ["En la biblioteca hay muchos libros.", "Elijo el cuento que más me gusta.", "Me lo llevo a casa para poder leerlo."],
+  ["Los agricultores siembran semillas en el campo.", "Cuidan las plantas para que crezcan sanas.", "Recogen las frutas y verduras cuando maduran."],
+  ["Celebramos mi cumpleaños con una fiesta.", "Invito a mis amigos a casa.", "Soplo las velas de la tarta y pido un deseo."],
+  ["Antiguamente, la gente vivía en cuevas.", "Luego construyeron castillos para protegerse.", "Ahora vivimos en casas y pisos modernos."],
+  ["El ayuntamiento es el gobierno de la ciudad.", "El alcalde o la alcaldesa toma decisiones importantes.", "Trabajan para que la ciudad funcione bien."],
+  ["En el parque hay columpios y toboganes.", "Me encanta jugar allí con mis amigos.", "Es un lugar para divertirse al aire libre."],
+  ["Para viajar lejos, podemos ir en avión.", "El avión despega desde el aeropuerto.", "Vuela muy alto por encima de las nubes."],
+  ["El tren se mueve por las vías.", "Hace paradas en diferentes estaciones.", "Es un transporte muy cómodo para viajar."],
+  ["Mi barrio tiene tiendas y parques.", "Conozco a muchos vecinos.", "Me gusta vivir aquí."],
+  ["En Navidad, decoramos el árbol.", "Cantamos villancicos en familia.", "Recibimos regalos de Papá Noel o los Reyes Magos."],
+  ["Las normas de convivencia nos ayudan a vivir mejor.", "Hay que respetar a los demás.", "Así todos podemos ser felices."],
+  ["El dinero sirve para comprar cosas.", "Antiguamente, la gente hacía trueques.", "Cambiaban unas cosas por otras sin usar monedas."],
+  ["Mi ciudad tiene monumentos muy antiguos.", "Cuentan la historia de cómo era la vida antes.", "Es importante cuidarlos para el futuro."],
+  ["El mapa nos ayuda a saber dónde estamos.", "Muestra los países, las ciudades y los ríos.", "Es un dibujo de la Tierra o de una parte de ella."],
+  ["El pastor cuida de sus ovejas en el campo.", "Las lleva a los mejores pastos para que coman.", "Por la noche, las encierra en el redil."],
+  ["El zapatero arregla los zapatos rotos.", "Usa herramientas como el martillo y los clavos.", "Deja los zapatos como si fueran nuevos."],
+  ["Hay diferentes tipos de familias.", "Algunas son grandes y otras pequeñas.", "Lo más importante es que se quieran mucho."],
+  ["La bandera de mi país tiene colores especiales.", "Representa a todas las personas que vivimos aquí.", "La respetamos como un símbolo importante."],
+  ["Para comunicarnos, usamos el lenguaje.", "Podemos hablar, escribir o hacer gestos.", "Así expresamos lo que pensamos y sentimos."],
+  ["El cocinero prepara comidas deliciosas.", "Mezcla los ingredientes en la cocina.", "Sirve los platos en el restaurante."],
+  ["Las fiestas del pueblo son muy divertidas.", "Hay música, bailes y mucha gente.", "Es una tradición que se celebra todos los años."]
 ]

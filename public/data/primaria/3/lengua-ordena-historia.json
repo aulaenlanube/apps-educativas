@@ -1,182 +1,32 @@
 [
-  [
-    "Ayer aprendimos sobre adjetivos y fue fascinante.",
-    "Para dominar adjetivos, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender adjetivos, pero sigo intentando."
-  ],
-  [
-    "Para dominar verbos, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender verbos, pero sigo intentando.",
-    "El estudio de verbos requiere mucha atención."
-  ],
-  [
-    "Me cuesta un poco entender sustantivos, pero sigo intentando.",
-    "El estudio de sustantivos requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre sustantivos."
-  ],
-  [
-    "El estudio de pronombres requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre pronombres.",
-    "Cuando investigamos pronombres, encontramos datos muy interesantes."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre redacción.",
-    "Cuando investigamos redacción, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre redacción."
-  ],
-  [
-    "Cuando investigamos adjetivos, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre adjetivos.",
-    "He descubierto que adjetivos puede ser divertido y educativo."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre verbos.",
-    "He descubierto que verbos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre verbos en clase."
-  ],
-  [
-    "He descubierto que sustantivos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre sustantivos en clase.",
-    "Es increíble cómo sustantivos se relaciona con otras materias."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre pronombres en clase.",
-    "Es increíble cómo pronombres se relaciona con otras materias.",
-    "Ayer aprendimos sobre pronombres y fue fascinante."
-  ],
-  [
-    "Es increíble cómo redacción se relaciona con otras materias.",
-    "Ayer aprendimos sobre redacción y fue fascinante.",
-    "Para dominar redacción, necesitamos practicar todos los días."
-  ],
-  [
-    "Ayer aprendimos sobre adjetivos y fue fascinante.",
-    "Para dominar adjetivos, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender adjetivos, pero sigo intentando.",
-    "El estudio de adjetivos requiere mucha atención."
-  ],
-  [
-    "Para dominar verbos, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender verbos, pero sigo intentando.",
-    "El estudio de verbos requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre verbos."
-  ],
-  [
-    "Me cuesta un poco entender sustantivos, pero sigo intentando.",
-    "El estudio de sustantivos requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre sustantivos.",
-    "Cuando investigamos sustantivos, encontramos datos muy interesantes."
-  ],
-  [
-    "El estudio de pronombres requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre pronombres.",
-    "Cuando investigamos pronombres, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre pronombres."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre redacción.",
-    "Cuando investigamos redacción, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre redacción.",
-    "He descubierto que redacción puede ser divertido y educativo."
-  ],
-  [
-    "Cuando investigamos adjetivos, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre adjetivos.",
-    "He descubierto que adjetivos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre adjetivos en clase."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre verbos.",
-    "He descubierto que verbos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre verbos en clase.",
-    "Es increíble cómo verbos se relaciona con otras materias."
-  ],
-  [
-    "He descubierto que sustantivos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre sustantivos en clase.",
-    "Es increíble cómo sustantivos se relaciona con otras materias.",
-    "Ayer aprendimos sobre sustantivos y fue fascinante."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre pronombres en clase.",
-    "Es increíble cómo pronombres se relaciona con otras materias.",
-    "Ayer aprendimos sobre pronombres y fue fascinante.",
-    "Para dominar pronombres, necesitamos practicar todos los días."
-  ],
-  [
-    "Es increíble cómo redacción se relaciona con otras materias.",
-    "Ayer aprendimos sobre redacción y fue fascinante.",
-    "Para dominar redacción, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender redacción, pero sigo intentando."
-  ],
-  [
-    "Ayer aprendimos sobre adjetivos y fue fascinante.",
-    "Para dominar adjetivos, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender adjetivos, pero sigo intentando.",
-    "El estudio de adjetivos requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre adjetivos."
-  ],
-  [
-    "Para dominar verbos, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender verbos, pero sigo intentando.",
-    "El estudio de verbos requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre verbos.",
-    "Cuando investigamos verbos, encontramos datos muy interesantes."
-  ],
-  [
-    "Me cuesta un poco entender sustantivos, pero sigo intentando.",
-    "El estudio de sustantivos requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre sustantivos.",
-    "Cuando investigamos sustantivos, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre sustantivos."
-  ],
-  [
-    "El estudio de pronombres requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre pronombres.",
-    "Cuando investigamos pronombres, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre pronombres.",
-    "He descubierto que pronombres puede ser divertido y educativo."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre redacción.",
-    "Cuando investigamos redacción, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre redacción.",
-    "He descubierto que redacción puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre redacción en clase."
-  ],
-  [
-    "Cuando investigamos adjetivos, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre adjetivos.",
-    "He descubierto que adjetivos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre adjetivos en clase.",
-    "Es increíble cómo adjetivos se relaciona con otras materias."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre verbos.",
-    "He descubierto que verbos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre verbos en clase.",
-    "Es increíble cómo verbos se relaciona con otras materias.",
-    "Ayer aprendimos sobre verbos y fue fascinante."
-  ],
-  [
-    "He descubierto que sustantivos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre sustantivos en clase.",
-    "Es increíble cómo sustantivos se relaciona con otras materias.",
-    "Ayer aprendimos sobre sustantivos y fue fascinante.",
-    "Para dominar sustantivos, necesitamos practicar todos los días."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre pronombres en clase.",
-    "Es increíble cómo pronombres se relaciona con otras materias.",
-    "Ayer aprendimos sobre pronombres y fue fascinante.",
-    "Para dominar pronombres, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender pronombres, pero sigo intentando."
-  ],
-  [
-    "Es increíble cómo redacción se relaciona con otras materias.",
-    "Ayer aprendimos sobre redacción y fue fascinante.",
-    "Para dominar redacción, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender redacción, pero sigo intentando.",
-    "El estudio de redacción requiere mucha atención."
-  ]
+  ["El niño coge su mochila.", "Se despide de su mamá con un beso.", "Camina contento hacia el colegio."],
+  ["La niña tiene una regadera.", "Echa agua a una pequeña semilla.", "Pronto nacerá una planta con flores."],
+  ["Es la hora del desayuno.", "Tomo un vaso de leche con galletas.", "Me da energía para empezar el día."],
+  ["El sol calienta mucho en la playa.", "Construimos un castillo de arena.", "Nos bañamos en las olas del mar."],
+  ["El panadero amasa la harina.", "Mete el pan en el horno caliente.", "El olor a pan recién hecho es delicioso."],
+  ["El pájaro busca ramitas secas.", "Construye su nido en lo alto de un árbol.", "Allí cuidará de sus polluelos."],
+  ["El coche de carreras es muy rápido.", "Corre a toda velocidad por el circuito.", "El piloto es el primero en llegar a la meta."],
+  ["Empiezan a caer gotas de lluvia.", "Abro mi paraguas de colores.", "Me encanta saltar en los charcos."],
+  ["Por la noche, miro por la ventana.", "La luna llena ilumina el cielo.", "Cuento las estrellas hasta que me duermo."],
+  ["El bebé se ríe a carcajadas.", "Juega con su sonajero sin parar.", "Es el bebé más feliz del mundo."],
+  ["El perro esconde su pelota.", "Hace un agujero en la tierra con las patas.", "Luego la busca moviendo el rabo."],
+  ["El pez de colores nada en su pecera.", "Sube a la superficie a por comida.", "Es muy bonito verlo nadar."],
+  ["El agricultor ara la tierra con su tractor.", "Planta semillas de trigo en los surcos.", "En verano recogerá una gran cosecha."],
+  ["Hoy es la fiesta de fin de curso.", "Bailamos y cantamos en el escenario.", "Nos despedimos de los profesores hasta el año que viene."],
+  ["El payaso del circo es muy gracioso.", "Se tropieza y se cae al suelo.", "Todos los niños ríen sin parar."],
+  ["La profesora nos cuenta un cuento.", "Todos escuchamos en silencio.", "La historia trata de un príncipe valiente."],
+  ["Con la nieve hacemos un muñeco.", "Le ponemos una zanahoria por nariz.", "El muñeco de nieve nos sonríe."],
+  ["La araña es una gran tejedora.", "Crea una tela de araña perfecta.", "Es una trampa para los insectos."],
+  ["Remamos en una barca en el lago.", "Disfrutamos de la tranquilidad del agua.", "Vemos a los patos nadar a nuestro lado."],
+  ["El león descansa después de cazar.", "Es el animal más fiero de la selva.", "Su rugido se oye a lo lejos."],
+  ["El mono come un plátano.", "Se cuelga de las ramas con su cola.", "Es un animal muy ágil y divertido."],
+  ["El cocinero prepara una pizza.", "Le pone tomate, queso y jamón.", "La mete en el horno hasta que esté dorada."],
+  ["La gallina cacarea en el gallinero.", "Busca un sitio cómodo para poner un huevo.", "El granjero lo recogerá por la mañana."],
+  ["El avión se prepara para despegar.", "Acelera por la pista y se eleva.", "Desde el cielo, las casas parecen muy pequeñas."],
+  ["Suena la sirena de los bomberos.", "Acuden a apagar un incendio.", "Son muy valientes y ayudan a la gente."],
+  ["Antes de dormir, me pongo el pijama.", "Me lavo muy bien los dientes.", "Mi mamá me da un beso de buenas noches."],
+  ["El conejo sale de su madriguera.", "Busca hierba fresca para comer.", "Mueve sus largas orejas para escuchar."],
+  ["La tortuga camina muy lentamente.", "Lleva su caparazón a todas partes.", "Es su casa y su protección."],
+  ["La hormiga encuentra una miga de pan.", "La carga sobre su espalda.", "La lleva al hormiguero para compartirla."],
+  ["El artista pinta un cuadro.", "Mezcla los colores en su paleta.", "Crea una obra de arte preciosa."]
 ]

@@ -1,182 +1,32 @@
 [
-  [
-    "Números es divertido.",
-    "Yo aprendo sobre números.",
-    "El números me gusta mucho."
-  ],
-  [
-    "Yo aprendo sobre sumas.",
-    "El sumas me gusta mucho.",
-    "En clase hablamos de sumas."
-  ],
-  [
-    "El restas me gusta mucho.",
-    "En clase hablamos de restas.",
-    "Miramos restas todos los días."
-  ],
-  [
-    "En clase hablamos de figuras.",
-    "Miramos figuras todos los días.",
-    "Aprendo mucho sobre figuras cada día."
-  ],
-  [
-    "Miramos patrones todos los días.",
-    "Aprendo mucho sobre patrones cada día.",
-    "Me encanta escuchar cuentos de patrones."
-  ],
-  [
-    "Aprendo mucho sobre números cada día.",
-    "Me encanta escuchar cuentos de números.",
-    "Dibujamos números en clase."
-  ],
-  [
-    "Me encanta escuchar cuentos de sumas.",
-    "Dibujamos sumas en clase.",
-    "Mi amigo sabe mucho sobre sumas."
-  ],
-  [
-    "Dibujamos restas en clase.",
-    "Mi amigo sabe mucho sobre restas.",
-    "Jugamos con tarjetas de restas."
-  ],
-  [
-    "Mi amigo sabe mucho sobre figuras.",
-    "Jugamos con tarjetas de figuras.",
-    "Figuras es divertido."
-  ],
-  [
-    "Jugamos con tarjetas de patrones.",
-    "Patrones es divertido.",
-    "Yo aprendo sobre patrones."
-  ],
-  [
-    "Números es divertido.",
-    "Yo aprendo sobre números.",
-    "El números me gusta mucho.",
-    "En clase hablamos de números."
-  ],
-  [
-    "Yo aprendo sobre sumas.",
-    "El sumas me gusta mucho.",
-    "En clase hablamos de sumas.",
-    "Miramos sumas todos los días."
-  ],
-  [
-    "El restas me gusta mucho.",
-    "En clase hablamos de restas.",
-    "Miramos restas todos los días.",
-    "Aprendo mucho sobre restas cada día."
-  ],
-  [
-    "En clase hablamos de figuras.",
-    "Miramos figuras todos los días.",
-    "Aprendo mucho sobre figuras cada día.",
-    "Me encanta escuchar cuentos de figuras."
-  ],
-  [
-    "Miramos patrones todos los días.",
-    "Aprendo mucho sobre patrones cada día.",
-    "Me encanta escuchar cuentos de patrones.",
-    "Dibujamos patrones en clase."
-  ],
-  [
-    "Aprendo mucho sobre números cada día.",
-    "Me encanta escuchar cuentos de números.",
-    "Dibujamos números en clase.",
-    "Mi amigo sabe mucho sobre números."
-  ],
-  [
-    "Me encanta escuchar cuentos de sumas.",
-    "Dibujamos sumas en clase.",
-    "Mi amigo sabe mucho sobre sumas.",
-    "Jugamos con tarjetas de sumas."
-  ],
-  [
-    "Dibujamos restas en clase.",
-    "Mi amigo sabe mucho sobre restas.",
-    "Jugamos con tarjetas de restas.",
-    "Restas es divertido."
-  ],
-  [
-    "Mi amigo sabe mucho sobre figuras.",
-    "Jugamos con tarjetas de figuras.",
-    "Figuras es divertido.",
-    "Yo aprendo sobre figuras."
-  ],
-  [
-    "Jugamos con tarjetas de patrones.",
-    "Patrones es divertido.",
-    "Yo aprendo sobre patrones.",
-    "El patrones me gusta mucho."
-  ],
-  [
-    "Números es divertido.",
-    "Yo aprendo sobre números.",
-    "El números me gusta mucho.",
-    "En clase hablamos de números.",
-    "Miramos números todos los días."
-  ],
-  [
-    "Yo aprendo sobre sumas.",
-    "El sumas me gusta mucho.",
-    "En clase hablamos de sumas.",
-    "Miramos sumas todos los días.",
-    "Aprendo mucho sobre sumas cada día."
-  ],
-  [
-    "El restas me gusta mucho.",
-    "En clase hablamos de restas.",
-    "Miramos restas todos los días.",
-    "Aprendo mucho sobre restas cada día.",
-    "Me encanta escuchar cuentos de restas."
-  ],
-  [
-    "En clase hablamos de figuras.",
-    "Miramos figuras todos los días.",
-    "Aprendo mucho sobre figuras cada día.",
-    "Me encanta escuchar cuentos de figuras.",
-    "Dibujamos figuras en clase."
-  ],
-  [
-    "Miramos patrones todos los días.",
-    "Aprendo mucho sobre patrones cada día.",
-    "Me encanta escuchar cuentos de patrones.",
-    "Dibujamos patrones en clase.",
-    "Mi amigo sabe mucho sobre patrones."
-  ],
-  [
-    "Aprendo mucho sobre números cada día.",
-    "Me encanta escuchar cuentos de números.",
-    "Dibujamos números en clase.",
-    "Mi amigo sabe mucho sobre números.",
-    "Jugamos con tarjetas de números."
-  ],
-  [
-    "Me encanta escuchar cuentos de sumas.",
-    "Dibujamos sumas en clase.",
-    "Mi amigo sabe mucho sobre sumas.",
-    "Jugamos con tarjetas de sumas.",
-    "Sumas es divertido."
-  ],
-  [
-    "Dibujamos restas en clase.",
-    "Mi amigo sabe mucho sobre restas.",
-    "Jugamos con tarjetas de restas.",
-    "Restas es divertido.",
-    "Yo aprendo sobre restas."
-  ],
-  [
-    "Mi amigo sabe mucho sobre figuras.",
-    "Jugamos con tarjetas de figuras.",
-    "Figuras es divertido.",
-    "Yo aprendo sobre figuras.",
-    "El figuras me gusta mucho."
-  ],
-  [
-    "Jugamos con tarjetas de patrones.",
-    "Patrones es divertido.",
-    "Yo aprendo sobre patrones.",
-    "El patrones me gusta mucho.",
-    "En clase hablamos de patrones."
-  ]
+  ["Tengo tres caramelos en una mano.", "En la otra mano tengo dos caramelos más.", "En total, tengo cinco caramelos."],
+  ["Había cinco pájaros en un árbol.", "Dos pájaros se fueron volando.", "Ahora quedan tres pájaros en el árbol."],
+  ["Mamá compra una caja con diez galletas.", "Mi hermano y yo nos comemos dos cada uno.", "En la caja ahora quedan seis galletas."],
+  ["En el estuche tengo cuatro lápices rojos.", "También tengo tres lápices azules.", "Tengo más lápices de color rojo."],
+  ["La gallina ha puesto tres huevos hoy.", "Ayer puso dos huevos.", "Entre los dos días ha puesto cinco huevos."],
+  ["Una bicicleta tiene dos ruedas.", "Un triciclo tiene tres ruedas.", "El triciclo tiene una rueda más que la bicicleta."],
+  ["Empiezo a contar desde el número uno.", "Sigo contando hasta llegar al diez.", "He contado todos los números seguidos."],
+  ["Dibujo un cuadrado en mi cuaderno.", "El cuadrado tiene cuatro lados iguales.", "También tiene cuatro esquinas."],
+  ["Tengo ocho cromos y mi amigo tiene seis.", "Yo tengo dos cromos más que mi amigo.", "Le regalo uno para que tengamos casi los mismos."],
+  ["Papá me da una moneda de dos euros.", "Compro un helado que cuesta un euro.", "Me devuelven una moneda de un euro."],
+  ["La semana empieza el lunes.", "Tiene siete días en total.", "El último día de la semana es el domingo."],
+  ["La aguja pequeña del reloj marca las tres.", "La aguja grande marca las doce.", "Son las tres en punto."],
+  ["En una fila hay cinco niños.", "En otra fila hay otros cinco niños.", "En total hay diez niños."],
+  ["Una decena está formada por diez cosas.", "Si tengo diez dedos, tengo una decena de dedos.", "Es una forma de agrupar."],
+  ["Tengo una tarta de cumpleaños con seis velas.", "Soplo y apago cuatro velas.", "Todavía quedan dos velas encendidas."],
+  ["La jirafa es más alta que la cebra.", "La cebra es más baja que la jirafa.", "Comparamos sus alturas."],
+  ["El camino a casa es corto.", "El camino al colegio es más largo.", "Tardo más en llegar al colegio."],
+  ["Mi libro tiene veinte páginas.", "Ya he leído diez páginas.", "Me falta por leer la mitad del libro."],
+  ["Cojo la regla para medir mi goma.", "Mi goma mide cinco centímetros.", "La regla me ayuda a saber su longitud."],
+  ["La pelota es una esfera.", "No es plana como un círculo.", "Puede rodar en todas las direcciones."],
+  ["Mi hermano tiene el doble de años que yo.", "Yo tengo cuatro años.", "Mi hermano tiene ocho años."],
+  ["Reparto doce pegatinas entre mis tres amigos.", "A cada amigo le doy cuatro pegatinas.", "Todos tienen la misma cantidad."],
+  ["El número que va antes del seis es el cinco.", "El número que va después del seis es el siete.", "El seis está en medio de los dos."],
+  ["Lanzo un dado y sale el número cuatro.", "Vuelvo a lanzar y sale el tres.", "La primera vez salió un número más alto."],
+  ["Hago una torre con cinco bloques.", "Mi amigo hace una torre con ocho bloques.", "Su torre es más alta que la mía."],
+  ["En el plato hay una manzana entera.", "La parto por la mitad.", "Ahora tengo dos trozos iguales."],
+  ["El número cero significa que no hay nada.", "Si tengo cero caramelos, no tengo ninguno.", "Es el primer número de todos."],
+  ["Sumar es añadir.", "Restar es quitar.", "Son operaciones contrarias."],
+  ["El rectángulo tiene cuatro lados.", "Dos lados son largos y dos son cortos.", "No son todos iguales como en el cuadrado."],
+  ["Un problema matemático tiene una pregunta.", "Pienso en los datos para resolverla.", "Encuentro la solución correcta."]
 ]

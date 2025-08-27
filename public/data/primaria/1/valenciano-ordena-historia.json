@@ -1,182 +1,32 @@
 [
-  [
-    "Vocales valencianas es divertido.",
-    "Yo aprendo sobre vocales valencianas.",
-    "El vocales valencianas me gusta mucho."
-  ],
-  [
-    "Yo aprendo sobre números en valenciano.",
-    "El números en valenciano me gusta mucho.",
-    "En clase hablamos de números en valenciano."
-  ],
-  [
-    "El colores en valenciano me gusta mucho.",
-    "En clase hablamos de colores en valenciano.",
-    "Miramos colores en valenciano todos los días."
-  ],
-  [
-    "En clase hablamos de familia en valenciano.",
-    "Miramos familia en valenciano todos los días.",
-    "Aprendo mucho sobre familia en valenciano cada día."
-  ],
-  [
-    "Miramos animales en valenciano todos los días.",
-    "Aprendo mucho sobre animales en valenciano cada día.",
-    "Me encanta escuchar cuentos de animales en valenciano."
-  ],
-  [
-    "Aprendo mucho sobre vocales valencianas cada día.",
-    "Me encanta escuchar cuentos de vocales valencianas.",
-    "Dibujamos vocales valencianas en clase."
-  ],
-  [
-    "Me encanta escuchar cuentos de números en valenciano.",
-    "Dibujamos números en valenciano en clase.",
-    "Mi amigo sabe mucho sobre números en valenciano."
-  ],
-  [
-    "Dibujamos colores en valenciano en clase.",
-    "Mi amigo sabe mucho sobre colores en valenciano.",
-    "Jugamos con tarjetas de colores en valenciano."
-  ],
-  [
-    "Mi amigo sabe mucho sobre familia en valenciano.",
-    "Jugamos con tarjetas de familia en valenciano.",
-    "Familia en valenciano es divertido."
-  ],
-  [
-    "Jugamos con tarjetas de animales en valenciano.",
-    "Animales en valenciano es divertido.",
-    "Yo aprendo sobre animales en valenciano."
-  ],
-  [
-    "Vocales valencianas es divertido.",
-    "Yo aprendo sobre vocales valencianas.",
-    "El vocales valencianas me gusta mucho.",
-    "En clase hablamos de vocales valencianas."
-  ],
-  [
-    "Yo aprendo sobre números en valenciano.",
-    "El números en valenciano me gusta mucho.",
-    "En clase hablamos de números en valenciano.",
-    "Miramos números en valenciano todos los días."
-  ],
-  [
-    "El colores en valenciano me gusta mucho.",
-    "En clase hablamos de colores en valenciano.",
-    "Miramos colores en valenciano todos los días.",
-    "Aprendo mucho sobre colores en valenciano cada día."
-  ],
-  [
-    "En clase hablamos de familia en valenciano.",
-    "Miramos familia en valenciano todos los días.",
-    "Aprendo mucho sobre familia en valenciano cada día.",
-    "Me encanta escuchar cuentos de familia en valenciano."
-  ],
-  [
-    "Miramos animales en valenciano todos los días.",
-    "Aprendo mucho sobre animales en valenciano cada día.",
-    "Me encanta escuchar cuentos de animales en valenciano.",
-    "Dibujamos animales en valenciano en clase."
-  ],
-  [
-    "Aprendo mucho sobre vocales valencianas cada día.",
-    "Me encanta escuchar cuentos de vocales valencianas.",
-    "Dibujamos vocales valencianas en clase.",
-    "Mi amigo sabe mucho sobre vocales valencianas."
-  ],
-  [
-    "Me encanta escuchar cuentos de números en valenciano.",
-    "Dibujamos números en valenciano en clase.",
-    "Mi amigo sabe mucho sobre números en valenciano.",
-    "Jugamos con tarjetas de números en valenciano."
-  ],
-  [
-    "Dibujamos colores en valenciano en clase.",
-    "Mi amigo sabe mucho sobre colores en valenciano.",
-    "Jugamos con tarjetas de colores en valenciano.",
-    "Colores en valenciano es divertido."
-  ],
-  [
-    "Mi amigo sabe mucho sobre familia en valenciano.",
-    "Jugamos con tarjetas de familia en valenciano.",
-    "Familia en valenciano es divertido.",
-    "Yo aprendo sobre familia en valenciano."
-  ],
-  [
-    "Jugamos con tarjetas de animales en valenciano.",
-    "Animales en valenciano es divertido.",
-    "Yo aprendo sobre animales en valenciano.",
-    "El animales en valenciano me gusta mucho."
-  ],
-  [
-    "Vocales valencianas es divertido.",
-    "Yo aprendo sobre vocales valencianas.",
-    "El vocales valencianas me gusta mucho.",
-    "En clase hablamos de vocales valencianas.",
-    "Miramos vocales valencianas todos los días."
-  ],
-  [
-    "Yo aprendo sobre números en valenciano.",
-    "El números en valenciano me gusta mucho.",
-    "En clase hablamos de números en valenciano.",
-    "Miramos números en valenciano todos los días.",
-    "Aprendo mucho sobre números en valenciano cada día."
-  ],
-  [
-    "El colores en valenciano me gusta mucho.",
-    "En clase hablamos de colores en valenciano.",
-    "Miramos colores en valenciano todos los días.",
-    "Aprendo mucho sobre colores en valenciano cada día.",
-    "Me encanta escuchar cuentos de colores en valenciano."
-  ],
-  [
-    "En clase hablamos de familia en valenciano.",
-    "Miramos familia en valenciano todos los días.",
-    "Aprendo mucho sobre familia en valenciano cada día.",
-    "Me encanta escuchar cuentos de familia en valenciano.",
-    "Dibujamos familia en valenciano en clase."
-  ],
-  [
-    "Miramos animales en valenciano todos los días.",
-    "Aprendo mucho sobre animales en valenciano cada día.",
-    "Me encanta escuchar cuentos de animales en valenciano.",
-    "Dibujamos animales en valenciano en clase.",
-    "Mi amigo sabe mucho sobre animales en valenciano."
-  ],
-  [
-    "Aprendo mucho sobre vocales valencianas cada día.",
-    "Me encanta escuchar cuentos de vocales valencianas.",
-    "Dibujamos vocales valencianas en clase.",
-    "Mi amigo sabe mucho sobre vocales valencianas.",
-    "Jugamos con tarjetas de vocales valencianas."
-  ],
-  [
-    "Me encanta escuchar cuentos de números en valenciano.",
-    "Dibujamos números en valenciano en clase.",
-    "Mi amigo sabe mucho sobre números en valenciano.",
-    "Jugamos con tarjetas de números en valenciano.",
-    "Números en valenciano es divertido."
-  ],
-  [
-    "Dibujamos colores en valenciano en clase.",
-    "Mi amigo sabe mucho sobre colores en valenciano.",
-    "Jugamos con tarjetas de colores en valenciano.",
-    "Colores en valenciano es divertido.",
-    "Yo aprendo sobre colores en valenciano."
-  ],
-  [
-    "Mi amigo sabe mucho sobre familia en valenciano.",
-    "Jugamos con tarjetas de familia en valenciano.",
-    "Familia en valenciano es divertido.",
-    "Yo aprendo sobre familia en valenciano.",
-    "El familia en valenciano me gusta mucho."
-  ],
-  [
-    "Jugamos con tarjetas de animales en valenciano.",
-    "Animales en valenciano es divertido.",
-    "Yo aprendo sobre animales en valenciano.",
-    "El animales en valenciano me gusta mucho.",
-    "En clase hablamos de animales en valenciano."
-  ]
+  ["El xiquet té una pilota roja.", "Juga a futbol al parc.", "Marca un gol."],
+  ["La xiqueta troba un gatet.", "Li dóna un poc de llet.", "El gat es fa el seu amic."],
+  ["És de matí.", "Esmorze a casa.", "Després, me'n vaig a l'escola."],
+  ["El sol brilla molt fort.", "Anem a la platja.", "Nadem en la mar."],
+  ["El carter arriba amb la bicicleta.", "Porta una carta per a nosaltres.", "És una postal de la iaia."],
+  ["El cuiner prepara una sopa.", "Afig moltes verdures.", "La sopa fa molt bona olor."],
+  ["L'ocell construïx el seu niu.", "Gasta palla i branquillons.", "Prompte hi haurà ous."],
+  ["El cotxe està al garatge.", "El pare el llava amb aigua.", "Ara està molt net."],
+  ["El tren entra en l'estació.", "Molta gent baixa dels vagons.", "Esperem els nostres cosins."],
+  ["La flor creix a l'hort.", "Té els pètals de color rosa.", "Una abella ve a visitar-la."],
+  ["El conill menja una carlota.", "Mou el seu nasset.", "És molt bonic."],
+  ["Comença a ploure.", "Obric el meu paraigua.", "Així no em mulle."],
+  ["La lluna està en el cel.", "És redona i blanca.", "Les estreles brillen al seu voltant."],
+  ["El bebé està al seu bressol.", "Dorm profundament.", "No hem de fer soroll."],
+  ["El gos corre darrere de la pilota.", "L'agafa amb la boca.", "La torna al seu amo."],
+  ["El peix roig està en la peixera.", "Neda fent cercles.", "Li done menjar cada dia."],
+  ["El llaurador conduïx el seu tractor.", "Treballa en el camp.", "Va a plantar blat."],
+  ["És el meu aniversari.", "Tinc un pastís molt gran.", "Bufaré les veles."],
+  ["El pallasso té el nas roig.", "Fa ganyotes molt divertides.", "Tothom riu molt."],
+  ["La mestra llig un conte.", "Els xiquets escolten amb atenció.", "És la història d'un drac."],
+  ["El ninot de neu està al jardí.", "Porta un barret i una bufanda.", "El sol el desfarà."],
+  ["L'aranya teixix la seua teranyina.", "Espera que caiga una mosca.", "La teranyina és molt forta."],
+  ["El vaixell sura en el llac.", "Remem amb les pagalles.", "És un passeig molt agradable."],
+  ["El lleó dorm a l'ombra.", "És el rei dels animals.", "No l'hem de despertar."],
+  ["El mico s'enfila a l'arbre.", "Menja un plàtan.", "És molt àgil."],
+  ["El forner posa el pa al forn.", "El pa està calent i daurat.", "M'encanta l'olor de pa fresc."],
+  ["La gallina picoteja les llavors.", "Passeja pel corral.", "Ha post un ou."],
+  ["L'avió s'enlaira de la pista.", "Puja molt alt en el cel.", "Travessa els núvols."],
+  ["El bomber té un camió gran.", "Utilitza una escala molt llarga.", "Salva un gat d'un arbre."],
+  ["Em pose el pijama.", "Em llave les dents.", "Me'n vaig a dormir."]
 ]

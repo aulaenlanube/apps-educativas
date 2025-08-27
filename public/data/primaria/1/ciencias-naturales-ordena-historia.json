@@ -1,182 +1,32 @@
 [
-  [
-    "Animales es divertido.",
-    "Yo aprendo sobre animales.",
-    "El animales me gusta mucho."
-  ],
-  [
-    "Yo aprendo sobre plantas.",
-    "El plantas me gusta mucho.",
-    "En clase hablamos de plantas."
-  ],
-  [
-    "El el agua me gusta mucho.",
-    "En clase hablamos de el agua.",
-    "Miramos el agua todos los días."
-  ],
-  [
-    "En clase hablamos de el sol.",
-    "Miramos el sol todos los días.",
-    "Aprendo mucho sobre el sol cada día."
-  ],
-  [
-    "Miramos el clima todos los días.",
-    "Aprendo mucho sobre el clima cada día.",
-    "Me encanta escuchar cuentos de el clima."
-  ],
-  [
-    "Aprendo mucho sobre animales cada día.",
-    "Me encanta escuchar cuentos de animales.",
-    "Dibujamos animales en clase."
-  ],
-  [
-    "Me encanta escuchar cuentos de plantas.",
-    "Dibujamos plantas en clase.",
-    "Mi amigo sabe mucho sobre plantas."
-  ],
-  [
-    "Dibujamos el agua en clase.",
-    "Mi amigo sabe mucho sobre el agua.",
-    "Jugamos con tarjetas de el agua."
-  ],
-  [
-    "Mi amigo sabe mucho sobre el sol.",
-    "Jugamos con tarjetas de el sol.",
-    "El sol es divertido."
-  ],
-  [
-    "Jugamos con tarjetas de el clima.",
-    "El clima es divertido.",
-    "Yo aprendo sobre el clima."
-  ],
-  [
-    "Animales es divertido.",
-    "Yo aprendo sobre animales.",
-    "El animales me gusta mucho.",
-    "En clase hablamos de animales."
-  ],
-  [
-    "Yo aprendo sobre plantas.",
-    "El plantas me gusta mucho.",
-    "En clase hablamos de plantas.",
-    "Miramos plantas todos los días."
-  ],
-  [
-    "El el agua me gusta mucho.",
-    "En clase hablamos de el agua.",
-    "Miramos el agua todos los días.",
-    "Aprendo mucho sobre el agua cada día."
-  ],
-  [
-    "En clase hablamos de el sol.",
-    "Miramos el sol todos los días.",
-    "Aprendo mucho sobre el sol cada día.",
-    "Me encanta escuchar cuentos de el sol."
-  ],
-  [
-    "Miramos el clima todos los días.",
-    "Aprendo mucho sobre el clima cada día.",
-    "Me encanta escuchar cuentos de el clima.",
-    "Dibujamos el clima en clase."
-  ],
-  [
-    "Aprendo mucho sobre animales cada día.",
-    "Me encanta escuchar cuentos de animales.",
-    "Dibujamos animales en clase.",
-    "Mi amigo sabe mucho sobre animales."
-  ],
-  [
-    "Me encanta escuchar cuentos de plantas.",
-    "Dibujamos plantas en clase.",
-    "Mi amigo sabe mucho sobre plantas.",
-    "Jugamos con tarjetas de plantas."
-  ],
-  [
-    "Dibujamos el agua en clase.",
-    "Mi amigo sabe mucho sobre el agua.",
-    "Jugamos con tarjetas de el agua.",
-    "El agua es divertido."
-  ],
-  [
-    "Mi amigo sabe mucho sobre el sol.",
-    "Jugamos con tarjetas de el sol.",
-    "El sol es divertido.",
-    "Yo aprendo sobre el sol."
-  ],
-  [
-    "Jugamos con tarjetas de el clima.",
-    "El clima es divertido.",
-    "Yo aprendo sobre el clima.",
-    "El el clima me gusta mucho."
-  ],
-  [
-    "Animales es divertido.",
-    "Yo aprendo sobre animales.",
-    "El animales me gusta mucho.",
-    "En clase hablamos de animales.",
-    "Miramos animales todos los días."
-  ],
-  [
-    "Yo aprendo sobre plantas.",
-    "El plantas me gusta mucho.",
-    "En clase hablamos de plantas.",
-    "Miramos plantas todos los días.",
-    "Aprendo mucho sobre plantas cada día."
-  ],
-  [
-    "El el agua me gusta mucho.",
-    "En clase hablamos de el agua.",
-    "Miramos el agua todos los días.",
-    "Aprendo mucho sobre el agua cada día.",
-    "Me encanta escuchar cuentos de el agua."
-  ],
-  [
-    "En clase hablamos de el sol.",
-    "Miramos el sol todos los días.",
-    "Aprendo mucho sobre el sol cada día.",
-    "Me encanta escuchar cuentos de el sol.",
-    "Dibujamos el sol en clase."
-  ],
-  [
-    "Miramos el clima todos los días.",
-    "Aprendo mucho sobre el clima cada día.",
-    "Me encanta escuchar cuentos de el clima.",
-    "Dibujamos el clima en clase.",
-    "Mi amigo sabe mucho sobre el clima."
-  ],
-  [
-    "Aprendo mucho sobre animales cada día.",
-    "Me encanta escuchar cuentos de animales.",
-    "Dibujamos animales en clase.",
-    "Mi amigo sabe mucho sobre animales.",
-    "Jugamos con tarjetas de animales."
-  ],
-  [
-    "Me encanta escuchar cuentos de plantas.",
-    "Dibujamos plantas en clase.",
-    "Mi amigo sabe mucho sobre plantas.",
-    "Jugamos con tarjetas de plantas.",
-    "Plantas es divertido."
-  ],
-  [
-    "Dibujamos el agua en clase.",
-    "Mi amigo sabe mucho sobre el agua.",
-    "Jugamos con tarjetas de el agua.",
-    "El agua es divertido.",
-    "Yo aprendo sobre el agua."
-  ],
-  [
-    "Mi amigo sabe mucho sobre el sol.",
-    "Jugamos con tarjetas de el sol.",
-    "El sol es divertido.",
-    "Yo aprendo sobre el sol.",
-    "El el sol me gusta mucho."
-  ],
-  [
-    "Jugamos con tarjetas de el clima.",
-    "El clima es divertido.",
-    "Yo aprendo sobre el clima.",
-    "El el clima me gusta mucho.",
-    "En clase hablamos de el clima."
-  ]
+  ["Primero plantamos una semilla en la tierra.", "Luego, la regamos con agua todos los días.", "Finalmente, de la semilla crece una bonita flor."],
+  ["Por la mañana, el sol aparece en el cielo.", "Al mediodía, el sol está muy alto y nos da calor.", "Por la noche, el sol se esconde y sale la luna."],
+  ["La oruga come muchas hojas verdes.", "Después se envuelve en un capullo para dormir.", "Al despertar, se convierte en una mariposa."],
+  ["Las nubes del cielo se ponen grises.", "Empieza a caer agua sin parar.", "Después de la lluvia, sale un precioso arcoíris."],
+  ["El león ruge muy fuerte en la sabana.", "Todos los animales le oyen y se asustan.", "Es el rey de la selva y todos le respetan."],
+  ["En primavera, los campos se llenan de flores.", "En verano, el sol nos da mucho calor.", "En otoño, las hojas de los árboles se caen."],
+  ["El pez nada muy rápido en el agua.", "Mueve sus aletas para poder avanzar.", "Respira a través de sus branquias."],
+  ["Tengo hambre a la hora de comer.", "Como frutas y verduras para estar fuerte.", "La comida me da energía para jugar."],
+  ["El perro entierra un hueso en el jardín.", "Hace un agujero grande con sus patas.", "Así guarda su comida para más tarde."],
+  ["Las abejas vuelan de flor en flor.", "Recogen el néctar dulce con su lengua.", "Con el néctar fabrican una rica miel."],
+  ["El pájaro recoge ramitas y paja.", "Con ellas construye un nido en el árbol.", "Allí pondrá sus huevos y cuidará a sus polluelos."],
+  ["Cuando tengo frío, me abrigo bien.", "Mi cuerpo tiembla para generar calor.", "Así consigo mantener mi temperatura."],
+  ["El agua del río baja de la montaña.", "El río llega hasta el mar.", "El agua del mar es muy salada."],
+  ["La gallina pone un huevo en el corral.", "Lo empolla con su calor durante días.", "Del huevo nace un pequeño pollito."],
+  ["La araña teje una telaraña con su seda.", "Espera pacientemente en el centro.", "Atrapa a los insectos que caen en su trampa."],
+  ["El oso come mucho durante el otoño.", "Busca una cueva para pasar el invierno.", "Duerme durante muchos meses hasta que llega la primavera."],
+  ["Para vivir necesitamos respirar aire.", "El aire entra por nuestra nariz.", "Llena nuestros pulmones de oxígeno."],
+  ["La Tierra es nuestro planeta.", "Gira alrededor del sol sin parar.", "Gracias a eso tenemos día y noche."],
+  ["Las plantas fabrican su propio alimento.", "Necesitan la luz del sol, el agua y la tierra.", "Este proceso se llama fotosíntesis."],
+  ["El esqueleto está formado por huesos.", "Los huesos sostienen todo nuestro cuerpo.", "Gracias a ellos podemos movernos."],
+  ["Los dinosaurios vivieron hace mucho tiempo.", "Eran reptiles muy grandes y fuertes.", "Se extinguieron y ahora solo vemos sus fósiles."],
+  ["El camaleón cambia de color.", "Se camufla para esconderse de otros animales.", "Así puede cazar y no ser cazado."],
+  ["Las estrellas brillan mucho por la noche.", "Son bolas de fuego gigantes que están muy lejos.", "Desde aquí parecen puntos de luz pequeños."],
+  ["El corazón bombea la sangre.", "La sangre viaja por todo nuestro cuerpo.", "Lleva el oxígeno y los alimentos a todas partes."],
+  ["El caracol se mueve muy despacio.", "Lleva su casa a cuestas para protegerse.", "Deja un rastro de baba por donde pasa."],
+  ["Cuando es de día, hay mucha luz.", "Cuando es de noche, todo está oscuro.", "La luz viene del sol."],
+  ["Las focas viven en lugares muy fríos.", "Tienen una capa de grasa para no tener frío.", "Nadan muy bien en el agua helada."],
+  ["El reciclaje es muy importante.", "Separamos el papel, el vidrio y el plástico.", "Así ayudamos a cuidar nuestro planeta."],
+  ["Las frutas maduran en los árboles.", "Cuando están listas, las recogemos.", "Son un alimento muy sano y delicioso."],
+  ["El eco se produce cuando gritamos en la montaña.", "Nuestra voz choca contra las rocas.", "El sonido vuelve hasta nuestros oídos."]
 ]

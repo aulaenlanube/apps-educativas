@@ -1,182 +1,32 @@
 [
-  [
-    "Colores en inglés es divertido.",
-    "Yo aprendo sobre colores en inglés.",
-    "El colores en inglés me gusta mucho."
-  ],
-  [
-    "Yo aprendo sobre números en inglés.",
-    "El números en inglés me gusta mucho.",
-    "En clase hablamos de números en inglés."
-  ],
-  [
-    "El saludos en inglés me gusta mucho.",
-    "En clase hablamos de saludos en inglés.",
-    "Miramos saludos en inglés todos los días."
-  ],
-  [
-    "En clase hablamos de animales en inglés.",
-    "Miramos animales en inglés todos los días.",
-    "Aprendo mucho sobre animales en inglés cada día."
-  ],
-  [
-    "Miramos objetos del aula todos los días.",
-    "Aprendo mucho sobre objetos del aula cada día.",
-    "Me encanta escuchar cuentos de objetos del aula."
-  ],
-  [
-    "Aprendo mucho sobre colores en inglés cada día.",
-    "Me encanta escuchar cuentos de colores en inglés.",
-    "Dibujamos colores en inglés en clase."
-  ],
-  [
-    "Me encanta escuchar cuentos de números en inglés.",
-    "Dibujamos números en inglés en clase.",
-    "Mi amigo sabe mucho sobre números en inglés."
-  ],
-  [
-    "Dibujamos saludos en inglés en clase.",
-    "Mi amigo sabe mucho sobre saludos en inglés.",
-    "Jugamos con tarjetas de saludos en inglés."
-  ],
-  [
-    "Mi amigo sabe mucho sobre animales en inglés.",
-    "Jugamos con tarjetas de animales en inglés.",
-    "Animales en inglés es divertido."
-  ],
-  [
-    "Jugamos con tarjetas de objetos del aula.",
-    "Objetos del aula es divertido.",
-    "Yo aprendo sobre objetos del aula."
-  ],
-  [
-    "Colores en inglés es divertido.",
-    "Yo aprendo sobre colores en inglés.",
-    "El colores en inglés me gusta mucho.",
-    "En clase hablamos de colores en inglés."
-  ],
-  [
-    "Yo aprendo sobre números en inglés.",
-    "El números en inglés me gusta mucho.",
-    "En clase hablamos de números en inglés.",
-    "Miramos números en inglés todos los días."
-  ],
-  [
-    "El saludos en inglés me gusta mucho.",
-    "En clase hablamos de saludos en inglés.",
-    "Miramos saludos en inglés todos los días.",
-    "Aprendo mucho sobre saludos en inglés cada día."
-  ],
-  [
-    "En clase hablamos de animales en inglés.",
-    "Miramos animales en inglés todos los días.",
-    "Aprendo mucho sobre animales en inglés cada día.",
-    "Me encanta escuchar cuentos de animales en inglés."
-  ],
-  [
-    "Miramos objetos del aula todos los días.",
-    "Aprendo mucho sobre objetos del aula cada día.",
-    "Me encanta escuchar cuentos de objetos del aula.",
-    "Dibujamos objetos del aula en clase."
-  ],
-  [
-    "Aprendo mucho sobre colores en inglés cada día.",
-    "Me encanta escuchar cuentos de colores en inglés.",
-    "Dibujamos colores en inglés en clase.",
-    "Mi amigo sabe mucho sobre colores en inglés."
-  ],
-  [
-    "Me encanta escuchar cuentos de números en inglés.",
-    "Dibujamos números en inglés en clase.",
-    "Mi amigo sabe mucho sobre números en inglés.",
-    "Jugamos con tarjetas de números en inglés."
-  ],
-  [
-    "Dibujamos saludos en inglés en clase.",
-    "Mi amigo sabe mucho sobre saludos en inglés.",
-    "Jugamos con tarjetas de saludos en inglés.",
-    "Saludos en inglés es divertido."
-  ],
-  [
-    "Mi amigo sabe mucho sobre animales en inglés.",
-    "Jugamos con tarjetas de animales en inglés.",
-    "Animales en inglés es divertido.",
-    "Yo aprendo sobre animales en inglés."
-  ],
-  [
-    "Jugamos con tarjetas de objetos del aula.",
-    "Objetos del aula es divertido.",
-    "Yo aprendo sobre objetos del aula.",
-    "El objetos del aula me gusta mucho."
-  ],
-  [
-    "Colores en inglés es divertido.",
-    "Yo aprendo sobre colores en inglés.",
-    "El colores en inglés me gusta mucho.",
-    "En clase hablamos de colores en inglés.",
-    "Miramos colores en inglés todos los días."
-  ],
-  [
-    "Yo aprendo sobre números en inglés.",
-    "El números en inglés me gusta mucho.",
-    "En clase hablamos de números en inglés.",
-    "Miramos números en inglés todos los días.",
-    "Aprendo mucho sobre números en inglés cada día."
-  ],
-  [
-    "El saludos en inglés me gusta mucho.",
-    "En clase hablamos de saludos en inglés.",
-    "Miramos saludos en inglés todos los días.",
-    "Aprendo mucho sobre saludos en inglés cada día.",
-    "Me encanta escuchar cuentos de saludos en inglés."
-  ],
-  [
-    "En clase hablamos de animales en inglés.",
-    "Miramos animales en inglés todos los días.",
-    "Aprendo mucho sobre animales en inglés cada día.",
-    "Me encanta escuchar cuentos de animales en inglés.",
-    "Dibujamos animales en inglés en clase."
-  ],
-  [
-    "Miramos objetos del aula todos los días.",
-    "Aprendo mucho sobre objetos del aula cada día.",
-    "Me encanta escuchar cuentos de objetos del aula.",
-    "Dibujamos objetos del aula en clase.",
-    "Mi amigo sabe mucho sobre objetos del aula."
-  ],
-  [
-    "Aprendo mucho sobre colores en inglés cada día.",
-    "Me encanta escuchar cuentos de colores en inglés.",
-    "Dibujamos colores en inglés en clase.",
-    "Mi amigo sabe mucho sobre colores en inglés.",
-    "Jugamos con tarjetas de colores en inglés."
-  ],
-  [
-    "Me encanta escuchar cuentos de números en inglés.",
-    "Dibujamos números en inglés en clase.",
-    "Mi amigo sabe mucho sobre números en inglés.",
-    "Jugamos con tarjetas de números en inglés.",
-    "Números en inglés es divertido."
-  ],
-  [
-    "Dibujamos saludos en inglés en clase.",
-    "Mi amigo sabe mucho sobre saludos en inglés.",
-    "Jugamos con tarjetas de saludos en inglés.",
-    "Saludos en inglés es divertido.",
-    "Yo aprendo sobre saludos en inglés."
-  ],
-  [
-    "Mi amigo sabe mucho sobre animales en inglés.",
-    "Jugamos con tarjetas de animales en inglés.",
-    "Animales en inglés es divertido.",
-    "Yo aprendo sobre animales en inglés.",
-    "El animales en inglés me gusta mucho."
-  ],
-  [
-    "Jugamos con tarjetas de objetos del aula.",
-    "Objetos del aula es divertido.",
-    "Yo aprendo sobre objetos del aula.",
-    "El objetos del aula me gusta mucho.",
-    "En clase hablamos de objetos del aula."
-  ]
+  ["The boy has a red ball.", "He plays football in the park.", "He scores a goal."],
+  ["The girl finds a little cat.", "She gives it some milk.", "The cat becomes her friend."],
+  ["It is morning.", "I eat my breakfast.", "Then, I go to school."],
+  ["The sun is shining brightly.", "We go to the beach.", "We swim in the sea."],
+  ["The postman comes on his bike.", "He has a letter for us.", "It's a postcard from grandma."],
+  ["The cook is making soup.", "He adds some vegetables.", "The soup smells very good."],
+  ["The bird builds its nest.", "It uses straw and branches.", "Soon, there will be eggs."],
+  ["The car is in the garage.", "Dad washes it with water.", "Now, it is very clean."],
+  ["The train arrives at the station.", "Many people get off.", "We are waiting for our cousins."],
+  ["The flower grows in the garden.", "It has pink petals.", "A bee comes to visit it."],
+  ["The rabbit eats a carrot.", "It wiggles its little nose.", "It is very cute."],
+  ["It starts to rain.", "I open my umbrella.", "I am not wet."],
+  ["The moon is in the sky.", "It is round and white.", "The stars are shining around it."],
+  ["The baby is in his bed.", "He is sleeping deeply.", "We must not make any noise."],
+  ["The dog runs after the ball.", "He catches it with his mouth.", "He brings it back to his master."],
+  ["The goldfish is in the bowl.", "It swims in circles.", "I give it some food."],
+  ["The farmer drives his tractor.", "He works in the fields.", "He is going to plant wheat."],
+  ["It's my birthday.", "I have a big cake.", "I blow out the candles."],
+  ["The clown has a red nose.", "He makes funny faces.", "Everybody laughs."],
+  ["The teacher reads a story.", "The children listen carefully.", "It's a story about a dragon."],
+  ["The snowman is in the garden.", "He has a hat and a scarf.", "The sun will melt him."],
+  ["The spider spins its web.", "It waits for a fly.", "The web is very strong."],
+  ["The boat is on the lake.", "We row with paddles.", "It's a nice trip."],
+  ["The lion sleeps in the shade.", "He is the king of the animals.", "We must not wake him up."],
+  ["The monkey climbs the tree.", "It eats a banana.", "It is very agile."],
+  ["The baker puts the bread in the oven.", "The bread is hot and golden.", "I love the smell of fresh bread."],
+  ["The hen pecks at the seeds.", "She walks in the yard.", "She has laid an egg."],
+  ["The plane takes off from the runway.", "It goes very high in the sky.", "It flies through the clouds."],
+  ["The firefighter has a big truck.", "He uses a ladder.", "He saves a cat from a tree."],
+  ["I put on my pyjamas.", "I brush my teeth.", "I am going to bed."]
 ]

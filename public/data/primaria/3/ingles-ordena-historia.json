@@ -1,182 +1,32 @@
 [
-  [
-    "Ayer aprendimos sobre tiempos verbales y fue fascinante.",
-    "Para dominar tiempos verbales, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender tiempos verbales, pero sigo intentando."
-  ],
-  [
-    "Para dominar descripciones, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender descripciones, pero sigo intentando.",
-    "El estudio de descripciones requiere mucha atención."
-  ],
-  [
-    "Me cuesta un poco entender lugares de la ciudad, pero sigo intentando.",
-    "El estudio de lugares de la ciudad requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre lugares de la ciudad."
-  ],
-  [
-    "El estudio de profesiones en inglés requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre profesiones en inglés.",
-    "Cuando investigamos profesiones en inglés, encontramos datos muy interesantes."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre rutinas diarias.",
-    "Cuando investigamos rutinas diarias, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre rutinas diarias."
-  ],
-  [
-    "Cuando investigamos tiempos verbales, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre tiempos verbales.",
-    "He descubierto que tiempos verbales puede ser divertido y educativo."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre descripciones.",
-    "He descubierto que descripciones puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre descripciones en clase."
-  ],
-  [
-    "He descubierto que lugares de la ciudad puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre lugares de la ciudad en clase.",
-    "Es increíble cómo lugares de la ciudad se relaciona con otras materias."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre profesiones en inglés en clase.",
-    "Es increíble cómo profesiones en inglés se relaciona con otras materias.",
-    "Ayer aprendimos sobre profesiones en inglés y fue fascinante."
-  ],
-  [
-    "Es increíble cómo rutinas diarias se relaciona con otras materias.",
-    "Ayer aprendimos sobre rutinas diarias y fue fascinante.",
-    "Para dominar rutinas diarias, necesitamos practicar todos los días."
-  ],
-  [
-    "Ayer aprendimos sobre tiempos verbales y fue fascinante.",
-    "Para dominar tiempos verbales, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender tiempos verbales, pero sigo intentando.",
-    "El estudio de tiempos verbales requiere mucha atención."
-  ],
-  [
-    "Para dominar descripciones, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender descripciones, pero sigo intentando.",
-    "El estudio de descripciones requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre descripciones."
-  ],
-  [
-    "Me cuesta un poco entender lugares de la ciudad, pero sigo intentando.",
-    "El estudio de lugares de la ciudad requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre lugares de la ciudad.",
-    "Cuando investigamos lugares de la ciudad, encontramos datos muy interesantes."
-  ],
-  [
-    "El estudio de profesiones en inglés requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre profesiones en inglés.",
-    "Cuando investigamos profesiones en inglés, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre profesiones en inglés."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre rutinas diarias.",
-    "Cuando investigamos rutinas diarias, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre rutinas diarias.",
-    "He descubierto que rutinas diarias puede ser divertido y educativo."
-  ],
-  [
-    "Cuando investigamos tiempos verbales, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre tiempos verbales.",
-    "He descubierto que tiempos verbales puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre tiempos verbales en clase."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre descripciones.",
-    "He descubierto que descripciones puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre descripciones en clase.",
-    "Es increíble cómo descripciones se relaciona con otras materias."
-  ],
-  [
-    "He descubierto que lugares de la ciudad puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre lugares de la ciudad en clase.",
-    "Es increíble cómo lugares de la ciudad se relaciona con otras materias.",
-    "Ayer aprendimos sobre lugares de la ciudad y fue fascinante."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre profesiones en inglés en clase.",
-    "Es increíble cómo profesiones en inglés se relaciona con otras materias.",
-    "Ayer aprendimos sobre profesiones en inglés y fue fascinante.",
-    "Para dominar profesiones en inglés, necesitamos practicar todos los días."
-  ],
-  [
-    "Es increíble cómo rutinas diarias se relaciona con otras materias.",
-    "Ayer aprendimos sobre rutinas diarias y fue fascinante.",
-    "Para dominar rutinas diarias, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender rutinas diarias, pero sigo intentando."
-  ],
-  [
-    "Ayer aprendimos sobre tiempos verbales y fue fascinante.",
-    "Para dominar tiempos verbales, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender tiempos verbales, pero sigo intentando.",
-    "El estudio de tiempos verbales requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre tiempos verbales."
-  ],
-  [
-    "Para dominar descripciones, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender descripciones, pero sigo intentando.",
-    "El estudio de descripciones requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre descripciones.",
-    "Cuando investigamos descripciones, encontramos datos muy interesantes."
-  ],
-  [
-    "Me cuesta un poco entender lugares de la ciudad, pero sigo intentando.",
-    "El estudio de lugares de la ciudad requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre lugares de la ciudad.",
-    "Cuando investigamos lugares de la ciudad, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre lugares de la ciudad."
-  ],
-  [
-    "El estudio de profesiones en inglés requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre profesiones en inglés.",
-    "Cuando investigamos profesiones en inglés, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre profesiones en inglés.",
-    "He descubierto que profesiones en inglés puede ser divertido y educativo."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre rutinas diarias.",
-    "Cuando investigamos rutinas diarias, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre rutinas diarias.",
-    "He descubierto que rutinas diarias puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre rutinas diarias en clase."
-  ],
-  [
-    "Cuando investigamos tiempos verbales, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre tiempos verbales.",
-    "He descubierto que tiempos verbales puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre tiempos verbales en clase.",
-    "Es increíble cómo tiempos verbales se relaciona con otras materias."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre descripciones.",
-    "He descubierto que descripciones puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre descripciones en clase.",
-    "Es increíble cómo descripciones se relaciona con otras materias.",
-    "Ayer aprendimos sobre descripciones y fue fascinante."
-  ],
-  [
-    "He descubierto que lugares de la ciudad puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre lugares de la ciudad en clase.",
-    "Es increíble cómo lugares de la ciudad se relaciona con otras materias.",
-    "Ayer aprendimos sobre lugares de la ciudad y fue fascinante.",
-    "Para dominar lugares de la ciudad, necesitamos practicar todos los días."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre profesiones en inglés en clase.",
-    "Es increíble cómo profesiones en inglés se relaciona con otras materias.",
-    "Ayer aprendimos sobre profesiones en inglés y fue fascinante.",
-    "Para dominar profesiones en inglés, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender profesiones en inglés, pero sigo intentando."
-  ],
-  [
-    "Es increíble cómo rutinas diarias se relaciona con otras materias.",
-    "Ayer aprendimos sobre rutinas diarias y fue fascinante.",
-    "Para dominar rutinas diarias, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender rutinas diarias, pero sigo intentando.",
-    "El estudio de rutinas diarias requiere mucha atención."
-  ]
+  ["The boy has a red ball.", "He plays football in the park.", "He scores a goal."],
+  ["The girl finds a little cat.", "She gives it some milk.", "The cat becomes her friend."],
+  ["It is morning.", "I eat my breakfast.", "Then, I go to school."],
+  ["The sun is shining brightly.", "We go to the beach.", "We swim in the sea."],
+  ["The postman comes on his bike.", "He has a letter for us.", "It's a postcard from grandma."],
+  ["The cook is making soup.", "He adds some vegetables.", "The soup smells very good."],
+  ["The bird builds its nest.", "It uses straw and branches.", "Soon, there will be eggs."],
+  ["The car is in the garage.", "Dad washes it with water.", "Now, it is very clean."],
+  ["The train arrives at the station.", "Many people get off.", "We are waiting for our cousins."],
+  ["The flower grows in the garden.", "It has pink petals.", "A bee comes to visit it."],
+  ["The rabbit eats a carrot.", "It wiggles its little nose.", "It is very cute."],
+  ["It starts to rain.", "I open my umbrella.", "I am not wet."],
+  ["The moon is in the sky.", "It is round and white.", "The stars are shining around it."],
+  ["The baby is in his bed.", "He is sleeping deeply.", "We must not make any noise."],
+  ["The dog runs after the ball.", "He catches it with his mouth.", "He brings it back to his master."],
+  ["The goldfish is in the bowl.", "It swims in circles.", "I give it some food."],
+  ["The farmer drives his tractor.", "He works in the fields.", "He is going to plant wheat."],
+  ["It's my birthday.", "I have a big cake.", "I blow out the candles."],
+  ["The clown has a red nose.", "He makes funny faces.", "Everybody laughs."],
+  ["The teacher reads a story.", "The children listen carefully.", "It's a story about a dragon."],
+  ["The snowman is in the garden.", "He has a hat and a scarf.", "The sun will melt him."],
+  ["The spider spins its web.", "It waits for a fly.", "The web is very strong."],
+  ["The boat is on the lake.", "We row with paddles.", "It's a nice trip."],
+  ["The lion sleeps in the shade.", "He is the king of the animals.", "We must not wake him up."],
+  ["The monkey climbs the tree.", "It eats a banana.", "It is very agile."],
+  ["The baker puts the bread in the oven.", "The bread is hot and golden.", "I love the smell of fresh bread."],
+  ["The hen pecks at the seeds.", "She walks in the yard.", "She has laid an egg."],
+  ["The plane takes off from the runway.", "It goes very high in the sky.", "It flies through the clouds."],
+  ["The firefighter has a big truck.", "He uses a ladder.", "He saves a cat from a tree."],
+  ["I put on my pyjamas.", "I brush my teeth.", "I am going to bed."]
 ]

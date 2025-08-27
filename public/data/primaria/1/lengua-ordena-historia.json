@@ -1,182 +1,32 @@
 [
-  [
-    "Vocales es divertido.",
-    "Yo aprendo sobre vocales.",
-    "El vocales me gusta mucho."
-  ],
-  [
-    "Yo aprendo sobre letras.",
-    "El letras me gusta mucho.",
-    "En clase hablamos de letras."
-  ],
-  [
-    "El palabras me gusta mucho.",
-    "En clase hablamos de palabras.",
-    "Miramos palabras todos los días."
-  ],
-  [
-    "En clase hablamos de historias.",
-    "Miramos historias todos los días.",
-    "Aprendo mucho sobre historias cada día."
-  ],
-  [
-    "Miramos poemas todos los días.",
-    "Aprendo mucho sobre poemas cada día.",
-    "Me encanta escuchar cuentos de poemas."
-  ],
-  [
-    "Aprendo mucho sobre vocales cada día.",
-    "Me encanta escuchar cuentos de vocales.",
-    "Dibujamos vocales en clase."
-  ],
-  [
-    "Me encanta escuchar cuentos de letras.",
-    "Dibujamos letras en clase.",
-    "Mi amigo sabe mucho sobre letras."
-  ],
-  [
-    "Dibujamos palabras en clase.",
-    "Mi amigo sabe mucho sobre palabras.",
-    "Jugamos con tarjetas de palabras."
-  ],
-  [
-    "Mi amigo sabe mucho sobre historias.",
-    "Jugamos con tarjetas de historias.",
-    "Historias es divertido."
-  ],
-  [
-    "Jugamos con tarjetas de poemas.",
-    "Poemas es divertido.",
-    "Yo aprendo sobre poemas."
-  ],
-  [
-    "Vocales es divertido.",
-    "Yo aprendo sobre vocales.",
-    "El vocales me gusta mucho.",
-    "En clase hablamos de vocales."
-  ],
-  [
-    "Yo aprendo sobre letras.",
-    "El letras me gusta mucho.",
-    "En clase hablamos de letras.",
-    "Miramos letras todos los días."
-  ],
-  [
-    "El palabras me gusta mucho.",
-    "En clase hablamos de palabras.",
-    "Miramos palabras todos los días.",
-    "Aprendo mucho sobre palabras cada día."
-  ],
-  [
-    "En clase hablamos de historias.",
-    "Miramos historias todos los días.",
-    "Aprendo mucho sobre historias cada día.",
-    "Me encanta escuchar cuentos de historias."
-  ],
-  [
-    "Miramos poemas todos los días.",
-    "Aprendo mucho sobre poemas cada día.",
-    "Me encanta escuchar cuentos de poemas.",
-    "Dibujamos poemas en clase."
-  ],
-  [
-    "Aprendo mucho sobre vocales cada día.",
-    "Me encanta escuchar cuentos de vocales.",
-    "Dibujamos vocales en clase.",
-    "Mi amigo sabe mucho sobre vocales."
-  ],
-  [
-    "Me encanta escuchar cuentos de letras.",
-    "Dibujamos letras en clase.",
-    "Mi amigo sabe mucho sobre letras.",
-    "Jugamos con tarjetas de letras."
-  ],
-  [
-    "Dibujamos palabras en clase.",
-    "Mi amigo sabe mucho sobre palabras.",
-    "Jugamos con tarjetas de palabras.",
-    "Palabras es divertido."
-  ],
-  [
-    "Mi amigo sabe mucho sobre historias.",
-    "Jugamos con tarjetas de historias.",
-    "Historias es divertido.",
-    "Yo aprendo sobre historias."
-  ],
-  [
-    "Jugamos con tarjetas de poemas.",
-    "Poemas es divertido.",
-    "Yo aprendo sobre poemas.",
-    "El poemas me gusta mucho."
-  ],
-  [
-    "Vocales es divertido.",
-    "Yo aprendo sobre vocales.",
-    "El vocales me gusta mucho.",
-    "En clase hablamos de vocales.",
-    "Miramos vocales todos los días."
-  ],
-  [
-    "Yo aprendo sobre letras.",
-    "El letras me gusta mucho.",
-    "En clase hablamos de letras.",
-    "Miramos letras todos los días.",
-    "Aprendo mucho sobre letras cada día."
-  ],
-  [
-    "El palabras me gusta mucho.",
-    "En clase hablamos de palabras.",
-    "Miramos palabras todos los días.",
-    "Aprendo mucho sobre palabras cada día.",
-    "Me encanta escuchar cuentos de palabras."
-  ],
-  [
-    "En clase hablamos de historias.",
-    "Miramos historias todos los días.",
-    "Aprendo mucho sobre historias cada día.",
-    "Me encanta escuchar cuentos de historias.",
-    "Dibujamos historias en clase."
-  ],
-  [
-    "Miramos poemas todos los días.",
-    "Aprendo mucho sobre poemas cada día.",
-    "Me encanta escuchar cuentos de poemas.",
-    "Dibujamos poemas en clase.",
-    "Mi amigo sabe mucho sobre poemas."
-  ],
-  [
-    "Aprendo mucho sobre vocales cada día.",
-    "Me encanta escuchar cuentos de vocales.",
-    "Dibujamos vocales en clase.",
-    "Mi amigo sabe mucho sobre vocales.",
-    "Jugamos con tarjetas de vocales."
-  ],
-  [
-    "Me encanta escuchar cuentos de letras.",
-    "Dibujamos letras en clase.",
-    "Mi amigo sabe mucho sobre letras.",
-    "Jugamos con tarjetas de letras.",
-    "Letras es divertido."
-  ],
-  [
-    "Dibujamos palabras en clase.",
-    "Mi amigo sabe mucho sobre palabras.",
-    "Jugamos con tarjetas de palabras.",
-    "Palabras es divertido.",
-    "Yo aprendo sobre palabras."
-  ],
-  [
-    "Mi amigo sabe mucho sobre historias.",
-    "Jugamos con tarjetas de historias.",
-    "Historias es divertido.",
-    "Yo aprendo sobre historias.",
-    "El historias me gusta mucho."
-  ],
-  [
-    "Jugamos con tarjetas de poemas.",
-    "Poemas es divertido.",
-    "Yo aprendo sobre poemas.",
-    "El poemas me gusta mucho.",
-    "En clase hablamos de poemas."
-  ]
+  ["El niño coge su mochila.", "Se despide de su mamá con un beso.", "Camina contento hacia el colegio."],
+  ["La niña tiene una regadera.", "Echa agua a una pequeña semilla.", "Pronto nacerá una planta con flores."],
+  ["Es la hora del desayuno.", "Tomo un vaso de leche con galletas.", "Me da energía para empezar el día."],
+  ["El sol calienta mucho en la playa.", "Construimos un castillo de arena.", "Nos bañamos en las olas del mar."],
+  ["El panadero amasa la harina.", "Mete el pan en el horno caliente.", "El olor a pan recién hecho es delicioso."],
+  ["El pájaro busca ramitas secas.", "Construye su nido en lo alto de un árbol.", "Allí cuidará de sus polluelos."],
+  ["El coche de carreras es muy rápido.", "Corre a toda velocidad por el circuito.", "El piloto es el primero en llegar a la meta."],
+  ["Empiezan a caer gotas de lluvia.", "Abro mi paraguas de colores.", "Me encanta saltar en los charcos."],
+  ["Por la noche, miro por la ventana.", "La luna llena ilumina el cielo.", "Cuento las estrellas hasta que me duermo."],
+  ["El bebé se ríe a carcajadas.", "Juega con su sonajero sin parar.", "Es el bebé más feliz del mundo."],
+  ["El perro esconde su pelota.", "Hace un agujero en la tierra con las patas.", "Luego la busca moviendo el rabo."],
+  ["El pez de colores nada en su pecera.", "Sube a la superficie a por comida.", "Es muy bonito verlo nadar."],
+  ["El agricultor ara la tierra con su tractor.", "Planta semillas de trigo en los surcos.", "En verano recogerá una gran cosecha."],
+  ["Hoy es la fiesta de fin de curso.", "Bailamos y cantamos en el escenario.", "Nos despedimos de los profesores hasta el año que viene."],
+  ["El payaso del circo es muy gracioso.", "Se tropieza y se cae al suelo.", "Todos los niños ríen sin parar."],
+  ["La profesora nos cuenta un cuento.", "Todos escuchamos en silencio.", "La historia trata de un príncipe valiente."],
+  ["Con la nieve hacemos un muñeco.", "Le ponemos una zanahoria por nariz.", "El muñeco de nieve nos sonríe."],
+  ["La araña es una gran tejedora.", "Crea una tela de araña perfecta.", "Es una trampa para los insectos."],
+  ["Remamos en una barca en el lago.", "Disfrutamos de la tranquilidad del agua.", "Vemos a los patos nadar a nuestro lado."],
+  ["El león descansa después de cazar.", "Es el animal más fiero de la selva.", "Su rugido se oye a lo lejos."],
+  ["El mono come un plátano.", "Se cuelga de las ramas con su cola.", "Es un animal muy ágil y divertido."],
+  ["El cocinero prepara una pizza.", "Le pone tomate, queso y jamón.", "La mete en el horno hasta que esté dorada."],
+  ["La gallina cacarea en el gallinero.", "Busca un sitio cómodo para poner un huevo.", "El granjero lo recogerá por la mañana."],
+  ["El avión se prepara para despegar.", "Acelera por la pista y se eleva.", "Desde el cielo, las casas parecen muy pequeñas."],
+  ["Suena la sirena de los bomberos.", "Acuden a apagar un incendio.", "Son muy valientes y ayudan a la gente."],
+  ["Antes de dormir, me pongo el pijama.", "Me lavo muy bien los dientes.", "Mi mamá me da un beso de buenas noches."],
+  ["El conejo sale de su madriguera.", "Busca hierba fresca para comer.", "Mueve sus largas orejas para escuchar."],
+  ["La tortuga camina muy lentamente.", "Lleva su caparazón a todas partes.", "Es su casa y su protección."],
+  ["La hormiga encuentra una miga de pan.", "La carga sobre su espalda.", "La lleva al hormiguero para compartirla."],
+  ["El artista pinta un cuadro.", "Mezcla los colores en su paleta.", "Crea una obra de arte preciosa."]
 ]

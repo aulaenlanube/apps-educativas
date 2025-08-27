@@ -1,182 +1,32 @@
 [
-  [
-    "Ayer aprendimos sobre comunicación y fue fascinante.",
-    "Para dominar comunicación, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender comunicación, pero sigo intentando."
-  ],
-  [
-    "Para dominar resolución de conflictos, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender resolución de conflictos, pero sigo intentando.",
-    "El estudio de resolución de conflictos requiere mucha atención."
-  ],
-  [
-    "Me cuesta un poco entender creatividad, pero sigo intentando.",
-    "El estudio de creatividad requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre creatividad."
-  ],
-  [
-    "El estudio de cooperación requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre cooperación.",
-    "Cuando investigamos cooperación, encontramos datos muy interesantes."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre tolerancia.",
-    "Cuando investigamos tolerancia, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre tolerancia."
-  ],
-  [
-    "Cuando investigamos comunicación, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre comunicación.",
-    "He descubierto que comunicación puede ser divertido y educativo."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre resolución de conflictos.",
-    "He descubierto que resolución de conflictos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre resolución de conflictos en clase."
-  ],
-  [
-    "He descubierto que creatividad puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre creatividad en clase.",
-    "Es increíble cómo creatividad se relaciona con otras materias."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre cooperación en clase.",
-    "Es increíble cómo cooperación se relaciona con otras materias.",
-    "Ayer aprendimos sobre cooperación y fue fascinante."
-  ],
-  [
-    "Es increíble cómo tolerancia se relaciona con otras materias.",
-    "Ayer aprendimos sobre tolerancia y fue fascinante.",
-    "Para dominar tolerancia, necesitamos practicar todos los días."
-  ],
-  [
-    "Ayer aprendimos sobre comunicación y fue fascinante.",
-    "Para dominar comunicación, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender comunicación, pero sigo intentando.",
-    "El estudio de comunicación requiere mucha atención."
-  ],
-  [
-    "Para dominar resolución de conflictos, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender resolución de conflictos, pero sigo intentando.",
-    "El estudio de resolución de conflictos requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre resolución de conflictos."
-  ],
-  [
-    "Me cuesta un poco entender creatividad, pero sigo intentando.",
-    "El estudio de creatividad requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre creatividad.",
-    "Cuando investigamos creatividad, encontramos datos muy interesantes."
-  ],
-  [
-    "El estudio de cooperación requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre cooperación.",
-    "Cuando investigamos cooperación, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre cooperación."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre tolerancia.",
-    "Cuando investigamos tolerancia, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre tolerancia.",
-    "He descubierto que tolerancia puede ser divertido y educativo."
-  ],
-  [
-    "Cuando investigamos comunicación, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre comunicación.",
-    "He descubierto que comunicación puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre comunicación en clase."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre resolución de conflictos.",
-    "He descubierto que resolución de conflictos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre resolución de conflictos en clase.",
-    "Es increíble cómo resolución de conflictos se relaciona con otras materias."
-  ],
-  [
-    "He descubierto que creatividad puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre creatividad en clase.",
-    "Es increíble cómo creatividad se relaciona con otras materias.",
-    "Ayer aprendimos sobre creatividad y fue fascinante."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre cooperación en clase.",
-    "Es increíble cómo cooperación se relaciona con otras materias.",
-    "Ayer aprendimos sobre cooperación y fue fascinante.",
-    "Para dominar cooperación, necesitamos practicar todos los días."
-  ],
-  [
-    "Es increíble cómo tolerancia se relaciona con otras materias.",
-    "Ayer aprendimos sobre tolerancia y fue fascinante.",
-    "Para dominar tolerancia, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender tolerancia, pero sigo intentando."
-  ],
-  [
-    "Ayer aprendimos sobre comunicación y fue fascinante.",
-    "Para dominar comunicación, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender comunicación, pero sigo intentando.",
-    "El estudio de comunicación requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre comunicación."
-  ],
-  [
-    "Para dominar resolución de conflictos, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender resolución de conflictos, pero sigo intentando.",
-    "El estudio de resolución de conflictos requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre resolución de conflictos.",
-    "Cuando investigamos resolución de conflictos, encontramos datos muy interesantes."
-  ],
-  [
-    "Me cuesta un poco entender creatividad, pero sigo intentando.",
-    "El estudio de creatividad requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre creatividad.",
-    "Cuando investigamos creatividad, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre creatividad."
-  ],
-  [
-    "El estudio de cooperación requiere mucha atención.",
-    "Nuestro maestro nos contó curiosidades sobre cooperación.",
-    "Cuando investigamos cooperación, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre cooperación.",
-    "He descubierto que cooperación puede ser divertido y educativo."
-  ],
-  [
-    "Nuestro maestro nos contó curiosidades sobre tolerancia.",
-    "Cuando investigamos tolerancia, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre tolerancia.",
-    "He descubierto que tolerancia puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre tolerancia en clase."
-  ],
-  [
-    "Cuando investigamos comunicación, encontramos datos muy interesantes.",
-    "Durante la semana hemos trabajado en proyectos sobre comunicación.",
-    "He descubierto que comunicación puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre comunicación en clase.",
-    "Es increíble cómo comunicación se relaciona con otras materias."
-  ],
-  [
-    "Durante la semana hemos trabajado en proyectos sobre resolución de conflictos.",
-    "He descubierto que resolución de conflictos puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre resolución de conflictos en clase.",
-    "Es increíble cómo resolución de conflictos se relaciona con otras materias.",
-    "Ayer aprendimos sobre resolución de conflictos y fue fascinante."
-  ],
-  [
-    "He descubierto que creatividad puede ser divertido y educativo.",
-    "Mis amigos y yo debatimos sobre creatividad en clase.",
-    "Es increíble cómo creatividad se relaciona con otras materias.",
-    "Ayer aprendimos sobre creatividad y fue fascinante.",
-    "Para dominar creatividad, necesitamos practicar todos los días."
-  ],
-  [
-    "Mis amigos y yo debatimos sobre cooperación en clase.",
-    "Es increíble cómo cooperación se relaciona con otras materias.",
-    "Ayer aprendimos sobre cooperación y fue fascinante.",
-    "Para dominar cooperación, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender cooperación, pero sigo intentando."
-  ],
-  [
-    "Es increíble cómo tolerancia se relaciona con otras materias.",
-    "Ayer aprendimos sobre tolerancia y fue fascinante.",
-    "Para dominar tolerancia, necesitamos practicar todos los días.",
-    "Me cuesta un poco entender tolerancia, pero sigo intentando.",
-    "El estudio de tolerancia requiere mucha atención."
-  ]
+  ["Leo se cae en el patio.", "Ana le ayuda a levantarse.", "Leo le da las gracias a su amiga."],
+  ["Es el turno de hablar de María.", "Carlos espera en silencio para escucharla.", "Cuando María termina, Carlos da su opinión."],
+  ["Pablo quiere el lápiz rojo de Lucía.", "Le dice: '¿Me lo dejas, por favor?'.", "Lucía se lo presta contenta."],
+  ["El equipo de fútbol ha ganado el partido.", "Todos los jugadores se abrazan.", "Celebran la victoria juntos."],
+  ["A Juan no le sale bien un dibujo.", "Se enfada y lo arruga.", "La profesora le dice que lo importante es intentarlo."],
+  ["Sofía está triste porque echa de menos a su mamá.", "Su amigo Hugo le da un abrazo.", "Sofía se siente un poco mejor."],
+  ["En la asamblea, hablamos de un problema.", "Buscamos una solución entre todos.", "Llegamos a un acuerdo que nos gusta."],
+  ["Alguien ha roto un vaso sin querer.", "El que ha sido lo cuenta a la profesora.", "Decir la verdad es de valientes."],
+  ["Martina comparte sus galletas con Marcos.", "Marcos no tenía almuerzo ese día.", "Compartir es un gesto de amistad."],
+  ["El nuevo compañero de clase no conoce a nadie.", "Nos presentamos y le invitamos a jugar.", "Ahora tiene muchos amigos nuevos."],
+  ["Hemos hecho un trabajo en grupo.", "Cada uno ha hecho una parte.", "El trabajo en equipo ha quedado genial."],
+  ["Me he enfadado con mi mejor amigo.", "Respiro hondo para calmarme.", "Luego hablamos para solucionarlo."],
+  ["Veo a un niño solo en el recreo.", "Le pregunto si quiere jugar con nosotros.", "Jugar todos juntos es más divertido."],
+  ["Hemos terminado de jugar.", "Recogemos todos los juguetes.", "Dejamos la clase ordenada como estaba."],
+  ["La profesora nos pide ayuda.", "Le ayudamos a repartir los libros.", "Colaborar hace las tareas más fáciles."],
+  ["Mi compañero ha hecho un castillo muy chulo.", "Le digo: '¡Qué bien te ha quedado!'.", "Se pone muy contento al escucharlo."],
+  ["Sin querer, he empujado a una niña.", "Le pido perdón inmediatamente.", "Ella me sonríe y me perdona."],
+  ["Escuchamos las ideas de los demás.", "Todas las opiniones son importantes.", "Respetamos aunque no pensemos igual."],
+  ["Cuando alguien habla, le miramos a los ojos.", "Es una forma de mostrar interés.", "Demuestra que le estamos escuchando."],
+  ["He encontrado un estuche en el suelo.", "No es mío, así que lo entrego a la profesora.", "Devolver lo que no es nuestro está bien."],
+  ["Mi abuela me ha dado un regalo.", "Le doy un gran abrazo y le digo gracias.", "Ser agradecido es importante."],
+  ["Me siento muy feliz hoy.", "Comparto mi alegría con mis compañeros.", "Las emociones se pueden contagiar."],
+  ["Hoy estoy un poco enfadado.", "Hago un dibujo para expresar cómo me siento.", "Es una buena forma de desahogarse."],
+  ["Me esfuerzo mucho en hacer mis tareas.", "Aunque a veces me cuesten un poco.", "Me siento orgulloso cuando las termino."],
+  ["Ayudo a mi hermano pequeño a atarse los zapatos.", "Él todavía no sabe hacerlo solo.", "Ayudar a los demás nos hace sentir bien."],
+  ["La regla del juego es no empujar.", "Respetamos las normas para no hacernos daño.", "Así todos podemos jugar seguros."],
+  ["Si no estoy de acuerdo con algo, lo digo con respeto.", "No grito ni me enfado.", "Dialogar es la mejor solución."],
+  ["Todos somos diferentes.", "Cada uno tiene sus propias cualidades.", "Esa diversidad nos hace especiales."],
+  ["Confío en mis amigos y ellos en mí.", "Nos contamos nuestros secretos.", "La confianza es la base de la amistad."],
+  ["Cuido de las plantas del aula.", "Las riego para que no se sequen.", "Es nuestra responsabilidad cuidarlas."]
 ]
