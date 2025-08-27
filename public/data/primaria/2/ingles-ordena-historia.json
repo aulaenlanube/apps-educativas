@@ -1,182 +1,32 @@
 [
-  [
-    "Estudiamos verbos básicos en inglés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica verbos básicos en inglés de forma divertida.",
-    "Practicar verbos básicos en inglés me ayuda a entenderlo mejor."
-  ],
-  [
-    "Mi profesor explica frases cotidianas de forma divertida.",
-    "Practicar frases cotidianas me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre frases cotidianas."
-  ],
-  [
-    "Practicar familia en inglés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre familia en inglés.",
-    "Hacemos ejercicios de familia en inglés para mejorar."
-  ],
-  [
-    "Durante la clase, aprendemos sobre comida en inglés.",
-    "Hacemos ejercicios de comida en inglés para mejorar.",
-    "Mis compañeros y yo comentamos sobre comida en inglés en grupo."
-  ],
-  [
-    "Hacemos ejercicios de ropa en inglés para mejorar.",
-    "Mis compañeros y yo comentamos sobre ropa en inglés en grupo.",
-    "En casa repaso ropa en inglés con mis padres."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre verbos básicos en inglés en grupo.",
-    "En casa repaso verbos básicos en inglés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con verbos básicos en inglés."
-  ],
-  [
-    "En casa repaso frases cotidianas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con frases cotidianas.",
-    "Me esfuerzo por escribir sobre frases cotidianas sin errores."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con familia en inglés.",
-    "Me esfuerzo por escribir sobre familia en inglés sin errores.",
-    "Resolviendo actividades de familia en inglés, aprendo cosas nuevas."
-  ],
-  [
-    "Me esfuerzo por escribir sobre comida en inglés sin errores.",
-    "Resolviendo actividades de comida en inglés, aprendo cosas nuevas.",
-    "Estudiamos comida en inglés en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Resolviendo actividades de ropa en inglés, aprendo cosas nuevas.",
-    "Estudiamos ropa en inglés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica ropa en inglés de forma divertida."
-  ],
-  [
-    "Estudiamos verbos básicos en inglés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica verbos básicos en inglés de forma divertida.",
-    "Practicar verbos básicos en inglés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre verbos básicos en inglés."
-  ],
-  [
-    "Mi profesor explica frases cotidianas de forma divertida.",
-    "Practicar frases cotidianas me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre frases cotidianas.",
-    "Hacemos ejercicios de frases cotidianas para mejorar."
-  ],
-  [
-    "Practicar familia en inglés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre familia en inglés.",
-    "Hacemos ejercicios de familia en inglés para mejorar.",
-    "Mis compañeros y yo comentamos sobre familia en inglés en grupo."
-  ],
-  [
-    "Durante la clase, aprendemos sobre comida en inglés.",
-    "Hacemos ejercicios de comida en inglés para mejorar.",
-    "Mis compañeros y yo comentamos sobre comida en inglés en grupo.",
-    "En casa repaso comida en inglés con mis padres."
-  ],
-  [
-    "Hacemos ejercicios de ropa en inglés para mejorar.",
-    "Mis compañeros y yo comentamos sobre ropa en inglés en grupo.",
-    "En casa repaso ropa en inglés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con ropa en inglés."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre verbos básicos en inglés en grupo.",
-    "En casa repaso verbos básicos en inglés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con verbos básicos en inglés.",
-    "Me esfuerzo por escribir sobre verbos básicos en inglés sin errores."
-  ],
-  [
-    "En casa repaso frases cotidianas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con frases cotidianas.",
-    "Me esfuerzo por escribir sobre frases cotidianas sin errores.",
-    "Resolviendo actividades de frases cotidianas, aprendo cosas nuevas."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con familia en inglés.",
-    "Me esfuerzo por escribir sobre familia en inglés sin errores.",
-    "Resolviendo actividades de familia en inglés, aprendo cosas nuevas.",
-    "Estudiamos familia en inglés en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Me esfuerzo por escribir sobre comida en inglés sin errores.",
-    "Resolviendo actividades de comida en inglés, aprendo cosas nuevas.",
-    "Estudiamos comida en inglés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica comida en inglés de forma divertida."
-  ],
-  [
-    "Resolviendo actividades de ropa en inglés, aprendo cosas nuevas.",
-    "Estudiamos ropa en inglés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica ropa en inglés de forma divertida.",
-    "Practicar ropa en inglés me ayuda a entenderlo mejor."
-  ],
-  [
-    "Estudiamos verbos básicos en inglés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica verbos básicos en inglés de forma divertida.",
-    "Practicar verbos básicos en inglés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre verbos básicos en inglés.",
-    "Hacemos ejercicios de verbos básicos en inglés para mejorar."
-  ],
-  [
-    "Mi profesor explica frases cotidianas de forma divertida.",
-    "Practicar frases cotidianas me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre frases cotidianas.",
-    "Hacemos ejercicios de frases cotidianas para mejorar.",
-    "Mis compañeros y yo comentamos sobre frases cotidianas en grupo."
-  ],
-  [
-    "Practicar familia en inglés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre familia en inglés.",
-    "Hacemos ejercicios de familia en inglés para mejorar.",
-    "Mis compañeros y yo comentamos sobre familia en inglés en grupo.",
-    "En casa repaso familia en inglés con mis padres."
-  ],
-  [
-    "Durante la clase, aprendemos sobre comida en inglés.",
-    "Hacemos ejercicios de comida en inglés para mejorar.",
-    "Mis compañeros y yo comentamos sobre comida en inglés en grupo.",
-    "En casa repaso comida en inglés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con comida en inglés."
-  ],
-  [
-    "Hacemos ejercicios de ropa en inglés para mejorar.",
-    "Mis compañeros y yo comentamos sobre ropa en inglés en grupo.",
-    "En casa repaso ropa en inglés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con ropa en inglés.",
-    "Me esfuerzo por escribir sobre ropa en inglés sin errores."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre verbos básicos en inglés en grupo.",
-    "En casa repaso verbos básicos en inglés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con verbos básicos en inglés.",
-    "Me esfuerzo por escribir sobre verbos básicos en inglés sin errores.",
-    "Resolviendo actividades de verbos básicos en inglés, aprendo cosas nuevas."
-  ],
-  [
-    "En casa repaso frases cotidianas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con frases cotidianas.",
-    "Me esfuerzo por escribir sobre frases cotidianas sin errores.",
-    "Resolviendo actividades de frases cotidianas, aprendo cosas nuevas.",
-    "Estudiamos frases cotidianas en la escuela con ejemplos sencillos."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con familia en inglés.",
-    "Me esfuerzo por escribir sobre familia en inglés sin errores.",
-    "Resolviendo actividades de familia en inglés, aprendo cosas nuevas.",
-    "Estudiamos familia en inglés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica familia en inglés de forma divertida."
-  ],
-  [
-    "Me esfuerzo por escribir sobre comida en inglés sin errores.",
-    "Resolviendo actividades de comida en inglés, aprendo cosas nuevas.",
-    "Estudiamos comida en inglés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica comida en inglés de forma divertida.",
-    "Practicar comida en inglés me ayuda a entenderlo mejor."
-  ],
-  [
-    "Resolviendo actividades de ropa en inglés, aprendo cosas nuevas.",
-    "Estudiamos ropa en inglés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica ropa en inglés de forma divertida.",
-    "Practicar ropa en inglés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre ropa en inglés."
-  ]
+  ["The black cat sleeps on the rug.", "Suddenly, it hears a noise.", "It opens its eyes and looks."],
+  ["I take a sheet of paper.", "I draw a big tree.", "I colour the leaves green."],
+  ["The sun rises in the morning.", "The birds start to sing.", "A new day begins."],
+  ["The girl has a pretty dress.", "The dress is yellow.", "She wears it to go to the party."],
+  ["The boy has a new bike.", "He is learning to ride without training wheels.", "His dad helps him to keep his balance."],
+  ["The dog is hungry.", "It goes to its bowl.", "It is empty, so it barks."],
+  ["The red rose is in the garden.", "It smells very good in the morning.", "A bee comes to visit it."],
+  ["I take a banana for a snack.", "I peel the yellow skin.", "The banana is sweet and good."],
+  ["The book tells the story of a pirate.", "The pirate is looking for a treasure.", "He has a map to find it."],
+  ["The little bird fell from the nest.", "It cannot fly yet.", "Its mum brings it food."],
+  ["The goldfish swims in its bowl.", "It makes bubbles in the water.", "It looks through the glass."],
+  ["The alarm clock rings at seven.", "It is time to get up.", "I get out of bed and I stretch."],
+  ["The cow watches the train go by.", "She chews grass quietly.", "She says 'moo' when the train whistles."],
+  ["The train stops at the station.", "Some travellers get on.", "The train leaves for another city."],
+  ["The hen scratches the ground.", "She finds an earthworm.", "She pecks it quickly."],
+  ["My dad is very strong.", "He can carry me on his shoulders.", "From up there, I can see everything."],
+  ["The moon shines in the dark night.", "It lights up the path.", "Sometimes, it is shaped like a crescent."],
+  ["The rabbit comes out of its burrow.", "It looks to the left and to the right.", "Then, it runs into the field."],
+  ["The boat sails on the sea.", "The waves make it move.", "The seagulls fly above it."],
+  ["The pig rolls in the mud.", "It cools it down when it's hot.", "Afterwards, it is all brown."],
+  ["In my backpack, there is a pencil case.", "In the pencil case, there are pens.", "I use the pens to write."],
+  ["The tree loses its leaves in autumn.", "The wind carries them away.", "The ground becomes a carpet of leaves."],
+  ["The sky is covered with clouds.", "A drop of rain falls on my nose.", "I run to take shelter."],
+  ["The frog is sitting on a lily pad.", "It catches a fly with its tongue.", "It croaks with contentment."],
+  ["The plane is ready to take off.", "The engines make a lot of noise.", "It flies away into the blue sky."],
+  ["The little mouse nibbles a piece of cheese.", "It hears the cat coming.", "It runs to hide in its hole."],
+  ["We put the tablecloth on the table.", "Mum brings the plates.", "We are going to eat soon."],
+  ["In the evening, I am tired.", "I put on my pyjamas.", "I fall asleep in my cosy bed."],
+  ["The front door is locked.", "Dad takes the key from his pocket.", "He opens the door and we go inside."],
+  ["The pastry chef decorates the cake.", "He puts strawberries and cream on it.", "The birthday cake is beautiful."]
 ]

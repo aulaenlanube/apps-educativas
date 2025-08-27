@@ -1,182 +1,32 @@
 [
-  [
-    "Estudiamos verbos básicos en francés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica verbos básicos en francés de forma divertida.",
-    "Practicar verbos básicos en francés me ayuda a entenderlo mejor."
-  ],
-  [
-    "Mi profesor explica frases cotidianas en francés de forma divertida.",
-    "Practicar frases cotidianas en francés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre frases cotidianas en francés."
-  ],
-  [
-    "Practicar comida en francés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre comida en francés.",
-    "Hacemos ejercicios de comida en francés para mejorar."
-  ],
-  [
-    "Durante la clase, aprendemos sobre ropa en francés.",
-    "Hacemos ejercicios de ropa en francés para mejorar.",
-    "Mis compañeros y yo comentamos sobre ropa en francés en grupo."
-  ],
-  [
-    "Hacemos ejercicios de escuela en francés para mejorar.",
-    "Mis compañeros y yo comentamos sobre escuela en francés en grupo.",
-    "En casa repaso escuela en francés con mis padres."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre verbos básicos en francés en grupo.",
-    "En casa repaso verbos básicos en francés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con verbos básicos en francés."
-  ],
-  [
-    "En casa repaso frases cotidianas en francés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con frases cotidianas en francés.",
-    "Me esfuerzo por escribir sobre frases cotidianas en francés sin errores."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con comida en francés.",
-    "Me esfuerzo por escribir sobre comida en francés sin errores.",
-    "Resolviendo actividades de comida en francés, aprendo cosas nuevas."
-  ],
-  [
-    "Me esfuerzo por escribir sobre ropa en francés sin errores.",
-    "Resolviendo actividades de ropa en francés, aprendo cosas nuevas.",
-    "Estudiamos ropa en francés en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Resolviendo actividades de escuela en francés, aprendo cosas nuevas.",
-    "Estudiamos escuela en francés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica escuela en francés de forma divertida."
-  ],
-  [
-    "Estudiamos verbos básicos en francés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica verbos básicos en francés de forma divertida.",
-    "Practicar verbos básicos en francés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre verbos básicos en francés."
-  ],
-  [
-    "Mi profesor explica frases cotidianas en francés de forma divertida.",
-    "Practicar frases cotidianas en francés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre frases cotidianas en francés.",
-    "Hacemos ejercicios de frases cotidianas en francés para mejorar."
-  ],
-  [
-    "Practicar comida en francés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre comida en francés.",
-    "Hacemos ejercicios de comida en francés para mejorar.",
-    "Mis compañeros y yo comentamos sobre comida en francés en grupo."
-  ],
-  [
-    "Durante la clase, aprendemos sobre ropa en francés.",
-    "Hacemos ejercicios de ropa en francés para mejorar.",
-    "Mis compañeros y yo comentamos sobre ropa en francés en grupo.",
-    "En casa repaso ropa en francés con mis padres."
-  ],
-  [
-    "Hacemos ejercicios de escuela en francés para mejorar.",
-    "Mis compañeros y yo comentamos sobre escuela en francés en grupo.",
-    "En casa repaso escuela en francés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con escuela en francés."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre verbos básicos en francés en grupo.",
-    "En casa repaso verbos básicos en francés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con verbos básicos en francés.",
-    "Me esfuerzo por escribir sobre verbos básicos en francés sin errores."
-  ],
-  [
-    "En casa repaso frases cotidianas en francés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con frases cotidianas en francés.",
-    "Me esfuerzo por escribir sobre frases cotidianas en francés sin errores.",
-    "Resolviendo actividades de frases cotidianas en francés, aprendo cosas nuevas."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con comida en francés.",
-    "Me esfuerzo por escribir sobre comida en francés sin errores.",
-    "Resolviendo actividades de comida en francés, aprendo cosas nuevas.",
-    "Estudiamos comida en francés en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Me esfuerzo por escribir sobre ropa en francés sin errores.",
-    "Resolviendo actividades de ropa en francés, aprendo cosas nuevas.",
-    "Estudiamos ropa en francés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica ropa en francés de forma divertida."
-  ],
-  [
-    "Resolviendo actividades de escuela en francés, aprendo cosas nuevas.",
-    "Estudiamos escuela en francés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica escuela en francés de forma divertida.",
-    "Practicar escuela en francés me ayuda a entenderlo mejor."
-  ],
-  [
-    "Estudiamos verbos básicos en francés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica verbos básicos en francés de forma divertida.",
-    "Practicar verbos básicos en francés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre verbos básicos en francés.",
-    "Hacemos ejercicios de verbos básicos en francés para mejorar."
-  ],
-  [
-    "Mi profesor explica frases cotidianas en francés de forma divertida.",
-    "Practicar frases cotidianas en francés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre frases cotidianas en francés.",
-    "Hacemos ejercicios de frases cotidianas en francés para mejorar.",
-    "Mis compañeros y yo comentamos sobre frases cotidianas en francés en grupo."
-  ],
-  [
-    "Practicar comida en francés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre comida en francés.",
-    "Hacemos ejercicios de comida en francés para mejorar.",
-    "Mis compañeros y yo comentamos sobre comida en francés en grupo.",
-    "En casa repaso comida en francés con mis padres."
-  ],
-  [
-    "Durante la clase, aprendemos sobre ropa en francés.",
-    "Hacemos ejercicios de ropa en francés para mejorar.",
-    "Mis compañeros y yo comentamos sobre ropa en francés en grupo.",
-    "En casa repaso ropa en francés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con ropa en francés."
-  ],
-  [
-    "Hacemos ejercicios de escuela en francés para mejorar.",
-    "Mis compañeros y yo comentamos sobre escuela en francés en grupo.",
-    "En casa repaso escuela en francés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con escuela en francés.",
-    "Me esfuerzo por escribir sobre escuela en francés sin errores."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre verbos básicos en francés en grupo.",
-    "En casa repaso verbos básicos en francés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con verbos básicos en francés.",
-    "Me esfuerzo por escribir sobre verbos básicos en francés sin errores.",
-    "Resolviendo actividades de verbos básicos en francés, aprendo cosas nuevas."
-  ],
-  [
-    "En casa repaso frases cotidianas en francés con mis padres.",
-    "La maestra nos cuenta historias relacionadas con frases cotidianas en francés.",
-    "Me esfuerzo por escribir sobre frases cotidianas en francés sin errores.",
-    "Resolviendo actividades de frases cotidianas en francés, aprendo cosas nuevas.",
-    "Estudiamos frases cotidianas en francés en la escuela con ejemplos sencillos."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con comida en francés.",
-    "Me esfuerzo por escribir sobre comida en francés sin errores.",
-    "Resolviendo actividades de comida en francés, aprendo cosas nuevas.",
-    "Estudiamos comida en francés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica comida en francés de forma divertida."
-  ],
-  [
-    "Me esfuerzo por escribir sobre ropa en francés sin errores.",
-    "Resolviendo actividades de ropa en francés, aprendo cosas nuevas.",
-    "Estudiamos ropa en francés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica ropa en francés de forma divertida.",
-    "Practicar ropa en francés me ayuda a entenderlo mejor."
-  ],
-  [
-    "Resolviendo actividades de escuela en francés, aprendo cosas nuevas.",
-    "Estudiamos escuela en francés en la escuela con ejemplos sencillos.",
-    "Mi profesor explica escuela en francés de forma divertida.",
-    "Practicar escuela en francés me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre escuela en francés."
-  ]
+  ["Le chat noir dort sur le tapis.", "Soudain, il entend un bruit.", "Il ouvre les yeux et regarde."],
+  ["Je prends une feuille de papier.", "Je dessine un grand arbre.", "Je colorie les feuilles en vert."],
+  ["Le soleil se lève le matin.", "Les oiseaux commencent à chanter.", "Une nouvelle journée commence."],
+  ["La fille a une jolie robe.", "La robe est de couleur jaune.", "Elle la met pour aller à la fête."],
+  ["Le garçon a un nouveau vélo.", "Il apprend à rouler sans les petites roues.", "Son papa l'aide à garder l'équilibre."],
+  ["Le chien a faim.", "Il va voir sa gamelle.", "Elle est vide, alors il aboie."],
+  ["La rose rouge est dans le jardin.", "Elle sent très bon le matin.", "Une abeille vient la visiter."],
+  ["Je prends une banane pour le goûter.", "J'enlève la peau jaune.", "La banane est sucrée et bonne."],
+  ["Le livre raconte l'histoire d'un pirate.", "Le pirate cherche un trésor.", "Il a une carte pour le trouver."],
+  ["Le petit oiseau est tombé du nid.", "Il ne sait pas encore voler.", "Sa maman lui apporte à manger."],
+  ["Le poisson rouge nage dans son bocal.", "Il fait des bulles dans l'eau.", "Il regarde à travers le verre."],
+  ["Le réveil sonne à sept heures.", "C'est l'heure de se lever.", "Je sors du lit et je m'étire."],
+  ["La vache regarde passer le train.", "Elle mâche de l'herbe tranquillement.", "Elle fait 'meuh' quand le train siffle."],
+  ["Le train s'arrête à la gare.", "Des voyageurs montent.", "Le train repart vers une autre ville."],
+  ["La poule gratte la terre.", "Elle trouve un ver de terre.", "Elle le picore rapidement."],
+  ["Mon papa est très fort.", "Il peut me porter sur ses épaules.", "De là-haut, je vois tout."],
+  ["La lune brille dans la nuit noire.", "Elle éclaire le chemin.", "Parfois, elle a la forme d'un croissant."],
+  ["Le lapin sort de son terrier.", "Il regarde à gauche et à droite.", "Puis, il court dans le champ."],
+  ["Le bateau navigue sur la mer.", "Les vagues le font bouger.", "Les mouettes volent au-dessus."],
+  ["Le cochon se roule dans la boue.", "Ça le rafraîchit quand il fait chaud.", "Après, il est tout marron."],
+  ["Dans mon sac à dos, il y a une trousse.", "Dans la trousse, il y a des stylos.", "J'utilise les stylos pour écrire."],
+  ["L'arbre perd ses feuilles en automne.", "Le vent les emporte.", "Le sol devient un tapis de feuilles."],
+  ["Le ciel est couvert de nuages.", "Une goutte de pluie tombe sur mon nez.", "Je cours pour me mettre à l'abri."],
+  ["La grenouille est assise sur un nénuphar.", "Elle attrape une mouche avec sa langue.", "Elle coasse de contentement."],
+  ["L'avion est prêt à décoller.", "Les moteurs font beaucoup de bruit.", "Il s'envole dans le ciel bleu."],
+  ["La petite souris grignote un morceau de fromage.", "Elle entend le chat arriver.", "Elle court se cacher dans son trou."],
+  ["Nous mettons la nappe sur la table.", "Maman apporte les assiettes.", "Nous allons bientôt manger."],
+  ["Le soir, je suis fatigué.", "Je me mets en pyjama.", "Je m'endors dans mon lit douillet."],
+  ["La porte d'entrée est fermée à clé.", "Papa prend la clé dans sa poche.", "Il ouvre la porte et nous entrons."],
+  ["Le pâtissier décore le gâteau.", "Il met des fraises et de la crème.", "Le gâteau d'anniversaire est magnifique."]
 ]

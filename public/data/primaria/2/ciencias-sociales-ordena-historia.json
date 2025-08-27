@@ -1,182 +1,32 @@
 [
-  [
-    "Estudiamos los oficios en la escuela con ejemplos sencillos.",
-    "Mi profesor explica los oficios de forma divertida.",
-    "Practicar los oficios me ayuda a entenderlo mejor."
-  ],
-  [
-    "Mi profesor explica los pueblos de forma divertida.",
-    "Practicar los pueblos me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre los pueblos."
-  ],
-  [
-    "Practicar las tradiciones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre las tradiciones.",
-    "Hacemos ejercicios de las tradiciones para mejorar."
-  ],
-  [
-    "Durante la clase, aprendemos sobre las fiestas.",
-    "Hacemos ejercicios de las fiestas para mejorar.",
-    "Mis compañeros y yo comentamos sobre las fiestas en grupo."
-  ],
-  [
-    "Hacemos ejercicios de los mapas para mejorar.",
-    "Mis compañeros y yo comentamos sobre los mapas en grupo.",
-    "En casa repaso los mapas con mis padres."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre los oficios en grupo.",
-    "En casa repaso los oficios con mis padres.",
-    "La maestra nos cuenta historias relacionadas con los oficios."
-  ],
-  [
-    "En casa repaso los pueblos con mis padres.",
-    "La maestra nos cuenta historias relacionadas con los pueblos.",
-    "Me esfuerzo por escribir sobre los pueblos sin errores."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con las tradiciones.",
-    "Me esfuerzo por escribir sobre las tradiciones sin errores.",
-    "Resolviendo actividades de las tradiciones, aprendo cosas nuevas."
-  ],
-  [
-    "Me esfuerzo por escribir sobre las fiestas sin errores.",
-    "Resolviendo actividades de las fiestas, aprendo cosas nuevas.",
-    "Estudiamos las fiestas en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Resolviendo actividades de los mapas, aprendo cosas nuevas.",
-    "Estudiamos los mapas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica los mapas de forma divertida."
-  ],
-  [
-    "Estudiamos los oficios en la escuela con ejemplos sencillos.",
-    "Mi profesor explica los oficios de forma divertida.",
-    "Practicar los oficios me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre los oficios."
-  ],
-  [
-    "Mi profesor explica los pueblos de forma divertida.",
-    "Practicar los pueblos me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre los pueblos.",
-    "Hacemos ejercicios de los pueblos para mejorar."
-  ],
-  [
-    "Practicar las tradiciones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre las tradiciones.",
-    "Hacemos ejercicios de las tradiciones para mejorar.",
-    "Mis compañeros y yo comentamos sobre las tradiciones en grupo."
-  ],
-  [
-    "Durante la clase, aprendemos sobre las fiestas.",
-    "Hacemos ejercicios de las fiestas para mejorar.",
-    "Mis compañeros y yo comentamos sobre las fiestas en grupo.",
-    "En casa repaso las fiestas con mis padres."
-  ],
-  [
-    "Hacemos ejercicios de los mapas para mejorar.",
-    "Mis compañeros y yo comentamos sobre los mapas en grupo.",
-    "En casa repaso los mapas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con los mapas."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre los oficios en grupo.",
-    "En casa repaso los oficios con mis padres.",
-    "La maestra nos cuenta historias relacionadas con los oficios.",
-    "Me esfuerzo por escribir sobre los oficios sin errores."
-  ],
-  [
-    "En casa repaso los pueblos con mis padres.",
-    "La maestra nos cuenta historias relacionadas con los pueblos.",
-    "Me esfuerzo por escribir sobre los pueblos sin errores.",
-    "Resolviendo actividades de los pueblos, aprendo cosas nuevas."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con las tradiciones.",
-    "Me esfuerzo por escribir sobre las tradiciones sin errores.",
-    "Resolviendo actividades de las tradiciones, aprendo cosas nuevas.",
-    "Estudiamos las tradiciones en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Me esfuerzo por escribir sobre las fiestas sin errores.",
-    "Resolviendo actividades de las fiestas, aprendo cosas nuevas.",
-    "Estudiamos las fiestas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica las fiestas de forma divertida."
-  ],
-  [
-    "Resolviendo actividades de los mapas, aprendo cosas nuevas.",
-    "Estudiamos los mapas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica los mapas de forma divertida.",
-    "Practicar los mapas me ayuda a entenderlo mejor."
-  ],
-  [
-    "Estudiamos los oficios en la escuela con ejemplos sencillos.",
-    "Mi profesor explica los oficios de forma divertida.",
-    "Practicar los oficios me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre los oficios.",
-    "Hacemos ejercicios de los oficios para mejorar."
-  ],
-  [
-    "Mi profesor explica los pueblos de forma divertida.",
-    "Practicar los pueblos me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre los pueblos.",
-    "Hacemos ejercicios de los pueblos para mejorar.",
-    "Mis compañeros y yo comentamos sobre los pueblos en grupo."
-  ],
-  [
-    "Practicar las tradiciones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre las tradiciones.",
-    "Hacemos ejercicios de las tradiciones para mejorar.",
-    "Mis compañeros y yo comentamos sobre las tradiciones en grupo.",
-    "En casa repaso las tradiciones con mis padres."
-  ],
-  [
-    "Durante la clase, aprendemos sobre las fiestas.",
-    "Hacemos ejercicios de las fiestas para mejorar.",
-    "Mis compañeros y yo comentamos sobre las fiestas en grupo.",
-    "En casa repaso las fiestas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con las fiestas."
-  ],
-  [
-    "Hacemos ejercicios de los mapas para mejorar.",
-    "Mis compañeros y yo comentamos sobre los mapas en grupo.",
-    "En casa repaso los mapas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con los mapas.",
-    "Me esfuerzo por escribir sobre los mapas sin errores."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre los oficios en grupo.",
-    "En casa repaso los oficios con mis padres.",
-    "La maestra nos cuenta historias relacionadas con los oficios.",
-    "Me esfuerzo por escribir sobre los oficios sin errores.",
-    "Resolviendo actividades de los oficios, aprendo cosas nuevas."
-  ],
-  [
-    "En casa repaso los pueblos con mis padres.",
-    "La maestra nos cuenta historias relacionadas con los pueblos.",
-    "Me esfuerzo por escribir sobre los pueblos sin errores.",
-    "Resolviendo actividades de los pueblos, aprendo cosas nuevas.",
-    "Estudiamos los pueblos en la escuela con ejemplos sencillos."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con las tradiciones.",
-    "Me esfuerzo por escribir sobre las tradiciones sin errores.",
-    "Resolviendo actividades de las tradiciones, aprendo cosas nuevas.",
-    "Estudiamos las tradiciones en la escuela con ejemplos sencillos.",
-    "Mi profesor explica las tradiciones de forma divertida."
-  ],
-  [
-    "Me esfuerzo por escribir sobre las fiestas sin errores.",
-    "Resolviendo actividades de las fiestas, aprendo cosas nuevas.",
-    "Estudiamos las fiestas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica las fiestas de forma divertida.",
-    "Practicar las fiestas me ayuda a entenderlo mejor."
-  ],
-  [
-    "Resolviendo actividades de los mapas, aprendo cosas nuevas.",
-    "Estudiamos los mapas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica los mapas de forma divertida.",
-    "Practicar los mapas me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre los mapas."
-  ]
+  ["El panadero mezcla harina, agua y levadura.", "Amasa la mezcla para formar las barras de pan.", "Las hornea hasta que están doradas y crujientes."],
+  ["El cartero clasifica las cartas por calles.", "Las reparte en los buzones de cada casa.", "Gracias a su trabajo, nos comunicamos con los demás."],
+  ["Los bomberos practican para estar preparados.", "Cuando hay un incendio, acuden con su camión.", "Usan mangueras y escaleras para apagar el fuego."],
+  ["Antes de cruzar, miro el semáforo de peatones.", "Si está en verde, puedo pasar con cuidado.", "Siempre cruzo por el paso de cebra."],
+  ["Yo vivo con mi familia en un piso.", "Mi piso está en un edificio con más vecinos.", "El edificio está en una calle de mi localidad."],
+  ["En el colegio aprendo cosas nuevas cada día.", "La profesora nos enseña a leer y a calcular.", "En el recreo, juego al fútbol con mis compañeros."],
+  ["Cuando me duele la garganta, voy al centro de salud.", "La doctora me mira la garganta con una luz.", "Me receta un jarabe para que me cure pronto."],
+  ["Hacemos la lista de la compra en casa.", "En el supermercado, cogemos los productos que necesitamos.", "Al final, pasamos por la caja para pagar."],
+  ["La policía patrulla la ciudad para que sea segura.", "Si tenemos un problema, podemos pedirles ayuda.", "Se aseguran de que todos cumplamos las normas."],
+  ["En la biblioteca municipal hay libros y ordenadores.", "Busco un libro de aventuras en las estanterías.", "Me lo llevo a casa con mi carnet de socio."],
+  ["El agricultor prepara la tierra con el tractor.", "Siembra las semillas y riega el campo.", "Cuando crecen, recoge la cosecha de cereales."],
+  ["Para mi cumpleaños, organizamos una fiesta.", "Vienen mis amigos y mi familia a celebrarlo.", "Soplo las velas y todos me cantan."],
+  ["En la Edad Media construyeron grandes castillos.", "Tenían murallas altas para protegerse.", "Los caballeros luchaban con espadas y escudos."],
+  ["El alcalde es elegido por los vecinos del pueblo.", "Trabaja en el ayuntamiento con los concejales.", "Toman decisiones para mejorar la vida de todos."],
+  ["El parque tiene zonas de juegos y bancos para descansar.", "Mis amigos y yo jugamos en los columpios.", "Es un espacio público para que todos lo disfruten."],
+  ["Para hacer un viaje largo, podemos coger un avión.", "El avión despega y aterriza en el aeropuerto.", "Desde la ventanilla, las nubes parecen de algodón."],
+  ["El tren se desliza por las vías de metal.", "Tiene muchos vagones unidos unos con otros.", "Para en las estaciones para que suban los pasajeros."],
+  ["Mi barrio tiene un mercado y una farmacia.", "Las calles están limpias y las aceras son anchas.", "Es un buen lugar para vivir y pasear."],
+  ["En Navidad, adornamos la casa con luces y espumillón.", "Cenamos en familia en Nochebuena.", "El día de Reyes abrimos los regalos."],
+  ["Las normas de clase nos ayudan a respetarnos.", "Levantamos la mano y escuchamos al que habla.", "Así el ambiente en el aula es mucho mejor."],
+  ["Las monedas y los billetes forman nuestro dinero.", "Antiguamente, se usaba el trueque para cambiar cosas.", "Ahora usamos el dinero para comprar y vender."],
+  ["La catedral de mi ciudad es un monumento histórico.", "Se construyó hace muchísimos años.", "Debemos cuidarla porque es parte de nuestra historia."],
+  ["Un globo terráqueo es una bola que representa la Tierra.", "En él podemos ver los continentes y los océanos.", "Nos ayuda a entender cómo es nuestro planeta."],
+  ["El pastor guía a su rebaño de ovejas.", "Las lleva a la montaña para que coman pasto fresco.", "Su perro le ayuda a que no se pierda ninguna."],
+  ["El zapatero utiliza un martillo y clavos pequeños.", "Arregla la suela de un zapato que está rota.", "Gracias a él, puedo volver a usar mis zapatos."],
+  ["Hay muchos tipos de familias diferentes.", "Algunas tienen abuelos, padres e hijos.", "Lo importante en una familia es el cariño."],
+  ["La bandera representa a un país.", "La nuestra tiene tres franjas y un escudo.", "La izamos en días de fiesta y celebraciones."],
+  ["Para comunicarnos podemos usar el teléfono.", "Marcamos el número de la otra persona.", "Su voz se oye a través del aparato."],
+  ["El cocinero sigue una receta para preparar la comida.", "Corta las verduras y las echa a la olla.", "El plato final tiene una pinta deliciosa."],
+  ["En la fiesta mayor del pueblo hay gigantes y cabezudos.", "Bailan por las calles al ritmo de la música.", "Es una tradición muy antigua y divertida."]
 ]

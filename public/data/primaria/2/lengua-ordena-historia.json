@@ -1,182 +1,32 @@
 [
-  [
-    "Estudiamos sílabas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica sílabas de forma divertida.",
-    "Practicar sílabas me ayuda a entenderlo mejor."
-  ],
-  [
-    "Mi profesor explica gramática de forma divertida.",
-    "Practicar gramática me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre gramática."
-  ],
-  [
-    "Practicar lectura me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre lectura.",
-    "Hacemos ejercicios de lectura para mejorar."
-  ],
-  [
-    "Durante la clase, aprendemos sobre escritura.",
-    "Hacemos ejercicios de escritura para mejorar.",
-    "Mis compañeros y yo comentamos sobre escritura en grupo."
-  ],
-  [
-    "Hacemos ejercicios de cuentos para mejorar.",
-    "Mis compañeros y yo comentamos sobre cuentos en grupo.",
-    "En casa repaso cuentos con mis padres."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre sílabas en grupo.",
-    "En casa repaso sílabas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con sílabas."
-  ],
-  [
-    "En casa repaso gramática con mis padres.",
-    "La maestra nos cuenta historias relacionadas con gramática.",
-    "Me esfuerzo por escribir sobre gramática sin errores."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con lectura.",
-    "Me esfuerzo por escribir sobre lectura sin errores.",
-    "Resolviendo actividades de lectura, aprendo cosas nuevas."
-  ],
-  [
-    "Me esfuerzo por escribir sobre escritura sin errores.",
-    "Resolviendo actividades de escritura, aprendo cosas nuevas.",
-    "Estudiamos escritura en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Resolviendo actividades de cuentos, aprendo cosas nuevas.",
-    "Estudiamos cuentos en la escuela con ejemplos sencillos.",
-    "Mi profesor explica cuentos de forma divertida."
-  ],
-  [
-    "Estudiamos sílabas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica sílabas de forma divertida.",
-    "Practicar sílabas me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre sílabas."
-  ],
-  [
-    "Mi profesor explica gramática de forma divertida.",
-    "Practicar gramática me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre gramática.",
-    "Hacemos ejercicios de gramática para mejorar."
-  ],
-  [
-    "Practicar lectura me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre lectura.",
-    "Hacemos ejercicios de lectura para mejorar.",
-    "Mis compañeros y yo comentamos sobre lectura en grupo."
-  ],
-  [
-    "Durante la clase, aprendemos sobre escritura.",
-    "Hacemos ejercicios de escritura para mejorar.",
-    "Mis compañeros y yo comentamos sobre escritura en grupo.",
-    "En casa repaso escritura con mis padres."
-  ],
-  [
-    "Hacemos ejercicios de cuentos para mejorar.",
-    "Mis compañeros y yo comentamos sobre cuentos en grupo.",
-    "En casa repaso cuentos con mis padres.",
-    "La maestra nos cuenta historias relacionadas con cuentos."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre sílabas en grupo.",
-    "En casa repaso sílabas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con sílabas.",
-    "Me esfuerzo por escribir sobre sílabas sin errores."
-  ],
-  [
-    "En casa repaso gramática con mis padres.",
-    "La maestra nos cuenta historias relacionadas con gramática.",
-    "Me esfuerzo por escribir sobre gramática sin errores.",
-    "Resolviendo actividades de gramática, aprendo cosas nuevas."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con lectura.",
-    "Me esfuerzo por escribir sobre lectura sin errores.",
-    "Resolviendo actividades de lectura, aprendo cosas nuevas.",
-    "Estudiamos lectura en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Me esfuerzo por escribir sobre escritura sin errores.",
-    "Resolviendo actividades de escritura, aprendo cosas nuevas.",
-    "Estudiamos escritura en la escuela con ejemplos sencillos.",
-    "Mi profesor explica escritura de forma divertida."
-  ],
-  [
-    "Resolviendo actividades de cuentos, aprendo cosas nuevas.",
-    "Estudiamos cuentos en la escuela con ejemplos sencillos.",
-    "Mi profesor explica cuentos de forma divertida.",
-    "Practicar cuentos me ayuda a entenderlo mejor."
-  ],
-  [
-    "Estudiamos sílabas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica sílabas de forma divertida.",
-    "Practicar sílabas me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre sílabas.",
-    "Hacemos ejercicios de sílabas para mejorar."
-  ],
-  [
-    "Mi profesor explica gramática de forma divertida.",
-    "Practicar gramática me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre gramática.",
-    "Hacemos ejercicios de gramática para mejorar.",
-    "Mis compañeros y yo comentamos sobre gramática en grupo."
-  ],
-  [
-    "Practicar lectura me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre lectura.",
-    "Hacemos ejercicios de lectura para mejorar.",
-    "Mis compañeros y yo comentamos sobre lectura en grupo.",
-    "En casa repaso lectura con mis padres."
-  ],
-  [
-    "Durante la clase, aprendemos sobre escritura.",
-    "Hacemos ejercicios de escritura para mejorar.",
-    "Mis compañeros y yo comentamos sobre escritura en grupo.",
-    "En casa repaso escritura con mis padres.",
-    "La maestra nos cuenta historias relacionadas con escritura."
-  ],
-  [
-    "Hacemos ejercicios de cuentos para mejorar.",
-    "Mis compañeros y yo comentamos sobre cuentos en grupo.",
-    "En casa repaso cuentos con mis padres.",
-    "La maestra nos cuenta historias relacionadas con cuentos.",
-    "Me esfuerzo por escribir sobre cuentos sin errores."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre sílabas en grupo.",
-    "En casa repaso sílabas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con sílabas.",
-    "Me esfuerzo por escribir sobre sílabas sin errores.",
-    "Resolviendo actividades de sílabas, aprendo cosas nuevas."
-  ],
-  [
-    "En casa repaso gramática con mis padres.",
-    "La maestra nos cuenta historias relacionadas con gramática.",
-    "Me esfuerzo por escribir sobre gramática sin errores.",
-    "Resolviendo actividades de gramática, aprendo cosas nuevas.",
-    "Estudiamos gramática en la escuela con ejemplos sencillos."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con lectura.",
-    "Me esfuerzo por escribir sobre lectura sin errores.",
-    "Resolviendo actividades de lectura, aprendo cosas nuevas.",
-    "Estudiamos lectura en la escuela con ejemplos sencillos.",
-    "Mi profesor explica lectura de forma divertida."
-  ],
-  [
-    "Me esfuerzo por escribir sobre escritura sin errores.",
-    "Resolviendo actividades de escritura, aprendo cosas nuevas.",
-    "Estudiamos escritura en la escuela con ejemplos sencillos.",
-    "Mi profesor explica escritura de forma divertida.",
-    "Practicar escritura me ayuda a entenderlo mejor."
-  ],
-  [
-    "Resolviendo actividades de cuentos, aprendo cosas nuevas.",
-    "Estudiamos cuentos en la escuela con ejemplos sencillos.",
-    "Mi profesor explica cuentos de forma divertida.",
-    "Practicar cuentos me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre cuentos."
-  ]
+  ["El gato negro duerme encima de la alfombra.", "De repente, oye un ruido extraño.", "Abre los ojos y mira a todas partes."],
+  ["Cojo una hoja de papel blanco.", "Dibujo un árbol con muchas ramas.", "Coloreo el tronco de color marrón."],
+  ["El sol aparece por el horizonte.", "Los pájaros empiezan a cantar en los árboles.", "Un nuevo día está comenzando."],
+  ["La niña estrena un vestido nuevo.", "El vestido es de color amarillo con flores.", "Se lo pone para ir a la fiesta de cumpleaños."],
+  ["El niño aprende a montar en su bicicleta.", "Su padre le sujeta el sillín para que no se caiga.", "Pronto conseguirá mantener el equilibrio solo."],
+  ["El perro se acerca a su cuenco de comida.", "Ve que está vacío y se pone a ladrar.", "Nos está pidiendo que le echemos pienso."],
+  ["En el jardín ha crecido una rosa.", "Por la mañana desprende un olor muy bueno.", "Una abeja se posa sobre sus pétalos."],
+  ["Para merendar, me como un plátano.", "Primero le quito la piel amarilla.", "El plátano es una fruta dulce y sana."],
+  ["El libro cuenta una aventura de piratas.", "El capitán pirata está buscando un tesoro.", "Tiene un mapa con una equis que marca el lugar."],
+  ["Un pajarito se ha caído del nido.", "Todavía no sabe volar por sí mismo.", "Su madre le trae gusanitos para alimentarlo."],
+  ["El pez de colores nada en la pecera.", "Hace burbujas que suben a la superficie.", "Observa todo lo que pasa fuera del cristal."],
+  ["El despertador suena a las siete en punto.", "Es la hora de levantarse para ir al colegio.", "Salgo de la cama y me estiro con pereza."],
+  ["La vaca está pastando en el prado.", "Mira cómo el tren pasa a lo lejos.", "Hace 'muuu' cuando oye el silbato del tren."],
+  ["El tren se detiene en la estación.", "Algunos viajeros se bajan de los vagones.", "El tren continúa su viaje hacia otra ciudad."],
+  ["La gallina escarba en la tierra con sus patas.", "Encuentra un gusano y se lo come.", "Sigue buscando más comida por el corral."],
+  ["Mi padre me sube sobre sus hombros.", "Desde ahí arriba puedo verlo todo mucho mejor.", "Es como si fuera un gigante."],
+  ["Por la noche, la luna ilumina el cielo.", "A veces está llena y parece una pelota.", "Otras veces parece una sonrisa."],
+  ["El conejo sale de su madriguera.", "Mira a su alrededor para ver si hay peligro.", "Después, corre a buscar trébol para comer."],
+  ["Un velero navega por el mar azul.", "El viento empuja las velas para que avance.", "Las gaviotas vuelan siguiendo el barco."],
+  ["Al cerdo le encanta revolcarse en el barro.", "El barro le refresca la piel cuando hace calor.", "Después de su baño, se queda muy tranquilo."],
+  ["En mi estuche guardo lápices y una goma.", "Lo meto todo dentro de la mochila.", "Así no se me olvida nada para el cole."],
+  ["En otoño, las hojas del árbol cambian de color.", "El viento las arranca de las ramas.", "El suelo se cubre con una alfombra de hojas."],
+  ["El cielo se ha llenado de nubes oscuras.", "Una gota de lluvia me cae en la frente.", "Empieza a llover y corro a refugiarme."],
+  ["La rana está sentada en una hoja flotante.", "Ve pasar una mosca y saca su larga lengua.", "La atrapa al vuelo y se la come."],
+  ["El avión acelera por la pista de despegue.", "Sus motores hacen un ruido muy fuerte.", "Se eleva poco a poco hacia el cielo."],
+  ["El ratoncito encuentra un trozo de queso.", "Lo roe con sus dientes afilados.", "Cuando oye al gato, se esconde en su agujero."],
+  ["Ponemos el mantel antes de comer.", "Mi madre trae los platos y los cubiertos.", "Pronto nos sentaremos todos a la mesa."],
+  ["Cuando llega la noche, me entra el sueño.", "Me pongo el pijama y me lavo los dientes.", "Me acuesto en mi cama y me duermo enseguida."],
+  ["La puerta de la calle está cerrada.", "Papá mete la llave en la cerradura.", "La gira y la puerta se abre."],
+  ["El pastelero está decorando una tarta.", "Le pone nata y virutas de chocolate.", "La tarta tiene una pinta deliciosa."]
 ]

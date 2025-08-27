@@ -1,182 +1,32 @@
 [
-  [
-    "Estudiamos sílabas valencianas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica sílabas valencianas de forma divertida.",
-    "Practicar sílabas valencianas me ayuda a entenderlo mejor."
-  ],
-  [
-    "Mi profesor explica meses del año de forma divertida.",
-    "Practicar meses del año me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre meses del año."
-  ],
-  [
-    "Practicar días de la semana me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre días de la semana.",
-    "Hacemos ejercicios de días de la semana para mejorar."
-  ],
-  [
-    "Durante la clase, aprendemos sobre objetos de casa.",
-    "Hacemos ejercicios de objetos de casa para mejorar.",
-    "Mis compañeros y yo comentamos sobre objetos de casa en grupo."
-  ],
-  [
-    "Hacemos ejercicios de comida valenciana para mejorar.",
-    "Mis compañeros y yo comentamos sobre comida valenciana en grupo.",
-    "En casa repaso comida valenciana con mis padres."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre sílabas valencianas en grupo.",
-    "En casa repaso sílabas valencianas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con sílabas valencianas."
-  ],
-  [
-    "En casa repaso meses del año con mis padres.",
-    "La maestra nos cuenta historias relacionadas con meses del año.",
-    "Me esfuerzo por escribir sobre meses del año sin errores."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con días de la semana.",
-    "Me esfuerzo por escribir sobre días de la semana sin errores.",
-    "Resolviendo actividades de días de la semana, aprendo cosas nuevas."
-  ],
-  [
-    "Me esfuerzo por escribir sobre objetos de casa sin errores.",
-    "Resolviendo actividades de objetos de casa, aprendo cosas nuevas.",
-    "Estudiamos objetos de casa en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Resolviendo actividades de comida valenciana, aprendo cosas nuevas.",
-    "Estudiamos comida valenciana en la escuela con ejemplos sencillos.",
-    "Mi profesor explica comida valenciana de forma divertida."
-  ],
-  [
-    "Estudiamos sílabas valencianas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica sílabas valencianas de forma divertida.",
-    "Practicar sílabas valencianas me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre sílabas valencianas."
-  ],
-  [
-    "Mi profesor explica meses del año de forma divertida.",
-    "Practicar meses del año me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre meses del año.",
-    "Hacemos ejercicios de meses del año para mejorar."
-  ],
-  [
-    "Practicar días de la semana me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre días de la semana.",
-    "Hacemos ejercicios de días de la semana para mejorar.",
-    "Mis compañeros y yo comentamos sobre días de la semana en grupo."
-  ],
-  [
-    "Durante la clase, aprendemos sobre objetos de casa.",
-    "Hacemos ejercicios de objetos de casa para mejorar.",
-    "Mis compañeros y yo comentamos sobre objetos de casa en grupo.",
-    "En casa repaso objetos de casa con mis padres."
-  ],
-  [
-    "Hacemos ejercicios de comida valenciana para mejorar.",
-    "Mis compañeros y yo comentamos sobre comida valenciana en grupo.",
-    "En casa repaso comida valenciana con mis padres.",
-    "La maestra nos cuenta historias relacionadas con comida valenciana."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre sílabas valencianas en grupo.",
-    "En casa repaso sílabas valencianas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con sílabas valencianas.",
-    "Me esfuerzo por escribir sobre sílabas valencianas sin errores."
-  ],
-  [
-    "En casa repaso meses del año con mis padres.",
-    "La maestra nos cuenta historias relacionadas con meses del año.",
-    "Me esfuerzo por escribir sobre meses del año sin errores.",
-    "Resolviendo actividades de meses del año, aprendo cosas nuevas."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con días de la semana.",
-    "Me esfuerzo por escribir sobre días de la semana sin errores.",
-    "Resolviendo actividades de días de la semana, aprendo cosas nuevas.",
-    "Estudiamos días de la semana en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Me esfuerzo por escribir sobre objetos de casa sin errores.",
-    "Resolviendo actividades de objetos de casa, aprendo cosas nuevas.",
-    "Estudiamos objetos de casa en la escuela con ejemplos sencillos.",
-    "Mi profesor explica objetos de casa de forma divertida."
-  ],
-  [
-    "Resolviendo actividades de comida valenciana, aprendo cosas nuevas.",
-    "Estudiamos comida valenciana en la escuela con ejemplos sencillos.",
-    "Mi profesor explica comida valenciana de forma divertida.",
-    "Practicar comida valenciana me ayuda a entenderlo mejor."
-  ],
-  [
-    "Estudiamos sílabas valencianas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica sílabas valencianas de forma divertida.",
-    "Practicar sílabas valencianas me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre sílabas valencianas.",
-    "Hacemos ejercicios de sílabas valencianas para mejorar."
-  ],
-  [
-    "Mi profesor explica meses del año de forma divertida.",
-    "Practicar meses del año me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre meses del año.",
-    "Hacemos ejercicios de meses del año para mejorar.",
-    "Mis compañeros y yo comentamos sobre meses del año en grupo."
-  ],
-  [
-    "Practicar días de la semana me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre días de la semana.",
-    "Hacemos ejercicios de días de la semana para mejorar.",
-    "Mis compañeros y yo comentamos sobre días de la semana en grupo.",
-    "En casa repaso días de la semana con mis padres."
-  ],
-  [
-    "Durante la clase, aprendemos sobre objetos de casa.",
-    "Hacemos ejercicios de objetos de casa para mejorar.",
-    "Mis compañeros y yo comentamos sobre objetos de casa en grupo.",
-    "En casa repaso objetos de casa con mis padres.",
-    "La maestra nos cuenta historias relacionadas con objetos de casa."
-  ],
-  [
-    "Hacemos ejercicios de comida valenciana para mejorar.",
-    "Mis compañeros y yo comentamos sobre comida valenciana en grupo.",
-    "En casa repaso comida valenciana con mis padres.",
-    "La maestra nos cuenta historias relacionadas con comida valenciana.",
-    "Me esfuerzo por escribir sobre comida valenciana sin errores."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre sílabas valencianas en grupo.",
-    "En casa repaso sílabas valencianas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con sílabas valencianas.",
-    "Me esfuerzo por escribir sobre sílabas valencianas sin errores.",
-    "Resolviendo actividades de sílabas valencianas, aprendo cosas nuevas."
-  ],
-  [
-    "En casa repaso meses del año con mis padres.",
-    "La maestra nos cuenta historias relacionadas con meses del año.",
-    "Me esfuerzo por escribir sobre meses del año sin errores.",
-    "Resolviendo actividades de meses del año, aprendo cosas nuevas.",
-    "Estudiamos meses del año en la escuela con ejemplos sencillos."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con días de la semana.",
-    "Me esfuerzo por escribir sobre días de la semana sin errores.",
-    "Resolviendo actividades de días de la semana, aprendo cosas nuevas.",
-    "Estudiamos días de la semana en la escuela con ejemplos sencillos.",
-    "Mi profesor explica días de la semana de forma divertida."
-  ],
-  [
-    "Me esfuerzo por escribir sobre objetos de casa sin errores.",
-    "Resolviendo actividades de objetos de casa, aprendo cosas nuevas.",
-    "Estudiamos objetos de casa en la escuela con ejemplos sencillos.",
-    "Mi profesor explica objetos de casa de forma divertida.",
-    "Practicar objetos de casa me ayuda a entenderlo mejor."
-  ],
-  [
-    "Resolviendo actividades de comida valenciana, aprendo cosas nuevas.",
-    "Estudiamos comida valenciana en la escuela con ejemplos sencillos.",
-    "Mi profesor explica comida valenciana de forma divertida.",
-    "Practicar comida valenciana me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre comida valenciana."
-  ]
+  ["El gat negre dorm a la catifa.", "De sobte, sent un soroll.", "Obri els ulls i mira."],
+  ["Agafe un full de paper.", "Dibuixe un arbre ben gran.", "Pinte les fulles de color verd."],
+  ["El sol ix cada matí.", "Els ocells comencen a cantar.", "Un nou dia comença."],
+  ["La xiqueta té un vestit molt bonic.", "El vestit és de color groc.", "Se'l posa per a anar a la festa."],
+  ["El xiquet té una bicicleta nova.", "Aprén a anar sense les rodetes.", "Son pare l'ajuda a mantindre l'equilibri."],
+  ["El gos té fam.", "Va cap al seu plat.", "El plat està buit i es posa a lladrar."],
+  ["La rosa roja està al jardí.", "Fa molt bona olor al matí.", "Una abella ve a visitar-la."],
+  ["Agafe un plàtan per a berenar.", "Li lleve la pell groga.", "El plàtan és dolç i està bo."],
+  ["El llibre conta la història d'un pirata.", "El pirata busca un tresor amagat.", "Té un mapa per a poder trobar-lo."],
+  ["El pardalet ha caigut del niu.", "Encara no sap volar bé.", "Sa mare li porta menjar al bec."],
+  ["El peix roig neda dins la peixera.", "Fa bambolles en l'aigua.", "Mira a través del vidre."],
+  ["El despertador sona a les set.", "És hora d'alçar-se del llit.", "M'estire abans de posar-me de peus."],
+  ["La vaca mira com passa el tren.", "Masdega herba tranquil·lament.", "Fa 'muuu' quan el tren xiula."],
+  ["El tren para a l'estació.", "Pugen alguns viatgers.", "El tren se'n va cap a una altra ciutat."],
+  ["La gallina rasca la terra.", "Troba un cuc de terra.", "Se'l menja molt de pressa."],
+  ["El meu pare és molt fort.", "Em pot portar a coll.", "Des de dalt ho veig tot."],
+  ["La lluna brilla en la nit fosca.", "Il·lumina el camí.", "A voltes té forma de tall de meló."],
+  ["El conill ix del seu cau.", "Mira a esquerra i a dreta.", "Després, corre pel camp."],
+  ["El vaixell navega per la mar.", "Les onades el fan moure.", "Les gavines volen per damunt."],
+  ["El porc es rebolca en el fang.", "Això el refresca quan fa calor.", "Després, està tot ple de llot."],
+  ["Dins la motxilla, hi ha un estoig.", "Dins l'estoig, hi ha bolígrafs.", "Gaste els bolígrafs per a escriure."],
+  ["L'arbre perd les seues fulles a la tardor.", "El vent se les emporta lluny.", "El terra pareix una catifa de fulles."],
+  ["El cel està cobert de núvols.", "Una gota de pluja em cau al nas.", "Correcuites a buscar un lloc cobert."],
+  ["La granota està asseguda en un nenúfar.", "Atrapa una mosca amb la seua llengua.", "Raua molt contenta."],
+  ["L'avió està preparat per a enlairar-se.", "Els motors fan molt de soroll.", "S'enlaira cap al cel blau."],
+  ["El ratolinet rosega un tros de formatge.", "Sent que ve el gat.", "Corre a amagar-se al seu forat."],
+  ["Parem la taula amb les estovalles.", "La mare porta els plats.", "Prompte ens posarem a dinar."],
+  ["A la nit, estic cansat.", "Em pose el pijama.", "M'adormisc al meu llit còmode."],
+  ["La porta de casa està tancada amb clau.", "El pare trau la clau de la butxaca.", "Obri la porta i entrem a casa."],
+  ["El pastisser decora el pastís.", "Li posa maduixes i nata.", "El pastís d'aniversari és magnífic."]
 ]

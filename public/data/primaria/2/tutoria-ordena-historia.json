@@ -1,182 +1,32 @@
 [
-  [
-    "Estudiamos trabajo en equipo en la escuela con ejemplos sencillos.",
-    "Mi profesor explica trabajo en equipo de forma divertida.",
-    "Practicar trabajo en equipo me ayuda a entenderlo mejor."
-  ],
-  [
-    "Mi profesor explica empatía de forma divertida.",
-    "Practicar empatía me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre empatía."
-  ],
-  [
-    "Practicar responsabilidad me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre responsabilidad.",
-    "Hacemos ejercicios de responsabilidad para mejorar."
-  ],
-  [
-    "Durante la clase, aprendemos sobre autoestima.",
-    "Hacemos ejercicios de autoestima para mejorar.",
-    "Mis compañeros y yo comentamos sobre autoestima en grupo."
-  ],
-  [
-    "Hacemos ejercicios de solidaridad para mejorar.",
-    "Mis compañeros y yo comentamos sobre solidaridad en grupo.",
-    "En casa repaso solidaridad con mis padres."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre trabajo en equipo en grupo.",
-    "En casa repaso trabajo en equipo con mis padres.",
-    "La maestra nos cuenta historias relacionadas con trabajo en equipo."
-  ],
-  [
-    "En casa repaso empatía con mis padres.",
-    "La maestra nos cuenta historias relacionadas con empatía.",
-    "Me esfuerzo por escribir sobre empatía sin errores."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con responsabilidad.",
-    "Me esfuerzo por escribir sobre responsabilidad sin errores.",
-    "Resolviendo actividades de responsabilidad, aprendo cosas nuevas."
-  ],
-  [
-    "Me esfuerzo por escribir sobre autoestima sin errores.",
-    "Resolviendo actividades de autoestima, aprendo cosas nuevas.",
-    "Estudiamos autoestima en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Resolviendo actividades de solidaridad, aprendo cosas nuevas.",
-    "Estudiamos solidaridad en la escuela con ejemplos sencillos.",
-    "Mi profesor explica solidaridad de forma divertida."
-  ],
-  [
-    "Estudiamos trabajo en equipo en la escuela con ejemplos sencillos.",
-    "Mi profesor explica trabajo en equipo de forma divertida.",
-    "Practicar trabajo en equipo me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre trabajo en equipo."
-  ],
-  [
-    "Mi profesor explica empatía de forma divertida.",
-    "Practicar empatía me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre empatía.",
-    "Hacemos ejercicios de empatía para mejorar."
-  ],
-  [
-    "Practicar responsabilidad me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre responsabilidad.",
-    "Hacemos ejercicios de responsabilidad para mejorar.",
-    "Mis compañeros y yo comentamos sobre responsabilidad en grupo."
-  ],
-  [
-    "Durante la clase, aprendemos sobre autoestima.",
-    "Hacemos ejercicios de autoestima para mejorar.",
-    "Mis compañeros y yo comentamos sobre autoestima en grupo.",
-    "En casa repaso autoestima con mis padres."
-  ],
-  [
-    "Hacemos ejercicios de solidaridad para mejorar.",
-    "Mis compañeros y yo comentamos sobre solidaridad en grupo.",
-    "En casa repaso solidaridad con mis padres.",
-    "La maestra nos cuenta historias relacionadas con solidaridad."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre trabajo en equipo en grupo.",
-    "En casa repaso trabajo en equipo con mis padres.",
-    "La maestra nos cuenta historias relacionadas con trabajo en equipo.",
-    "Me esfuerzo por escribir sobre trabajo en equipo sin errores."
-  ],
-  [
-    "En casa repaso empatía con mis padres.",
-    "La maestra nos cuenta historias relacionadas con empatía.",
-    "Me esfuerzo por escribir sobre empatía sin errores.",
-    "Resolviendo actividades de empatía, aprendo cosas nuevas."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con responsabilidad.",
-    "Me esfuerzo por escribir sobre responsabilidad sin errores.",
-    "Resolviendo actividades de responsabilidad, aprendo cosas nuevas.",
-    "Estudiamos responsabilidad en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Me esfuerzo por escribir sobre autoestima sin errores.",
-    "Resolviendo actividades de autoestima, aprendo cosas nuevas.",
-    "Estudiamos autoestima en la escuela con ejemplos sencillos.",
-    "Mi profesor explica autoestima de forma divertida."
-  ],
-  [
-    "Resolviendo actividades de solidaridad, aprendo cosas nuevas.",
-    "Estudiamos solidaridad en la escuela con ejemplos sencillos.",
-    "Mi profesor explica solidaridad de forma divertida.",
-    "Practicar solidaridad me ayuda a entenderlo mejor."
-  ],
-  [
-    "Estudiamos trabajo en equipo en la escuela con ejemplos sencillos.",
-    "Mi profesor explica trabajo en equipo de forma divertida.",
-    "Practicar trabajo en equipo me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre trabajo en equipo.",
-    "Hacemos ejercicios de trabajo en equipo para mejorar."
-  ],
-  [
-    "Mi profesor explica empatía de forma divertida.",
-    "Practicar empatía me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre empatía.",
-    "Hacemos ejercicios de empatía para mejorar.",
-    "Mis compañeros y yo comentamos sobre empatía en grupo."
-  ],
-  [
-    "Practicar responsabilidad me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre responsabilidad.",
-    "Hacemos ejercicios de responsabilidad para mejorar.",
-    "Mis compañeros y yo comentamos sobre responsabilidad en grupo.",
-    "En casa repaso responsabilidad con mis padres."
-  ],
-  [
-    "Durante la clase, aprendemos sobre autoestima.",
-    "Hacemos ejercicios de autoestima para mejorar.",
-    "Mis compañeros y yo comentamos sobre autoestima en grupo.",
-    "En casa repaso autoestima con mis padres.",
-    "La maestra nos cuenta historias relacionadas con autoestima."
-  ],
-  [
-    "Hacemos ejercicios de solidaridad para mejorar.",
-    "Mis compañeros y yo comentamos sobre solidaridad en grupo.",
-    "En casa repaso solidaridad con mis padres.",
-    "La maestra nos cuenta historias relacionadas con solidaridad.",
-    "Me esfuerzo por escribir sobre solidaridad sin errores."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre trabajo en equipo en grupo.",
-    "En casa repaso trabajo en equipo con mis padres.",
-    "La maestra nos cuenta historias relacionadas con trabajo en equipo.",
-    "Me esfuerzo por escribir sobre trabajo en equipo sin errores.",
-    "Resolviendo actividades de trabajo en equipo, aprendo cosas nuevas."
-  ],
-  [
-    "En casa repaso empatía con mis padres.",
-    "La maestra nos cuenta historias relacionadas con empatía.",
-    "Me esfuerzo por escribir sobre empatía sin errores.",
-    "Resolviendo actividades de empatía, aprendo cosas nuevas.",
-    "Estudiamos empatía en la escuela con ejemplos sencillos."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con responsabilidad.",
-    "Me esfuerzo por escribir sobre responsabilidad sin errores.",
-    "Resolviendo actividades de responsabilidad, aprendo cosas nuevas.",
-    "Estudiamos responsabilidad en la escuela con ejemplos sencillos.",
-    "Mi profesor explica responsabilidad de forma divertida."
-  ],
-  [
-    "Me esfuerzo por escribir sobre autoestima sin errores.",
-    "Resolviendo actividades de autoestima, aprendo cosas nuevas.",
-    "Estudiamos autoestima en la escuela con ejemplos sencillos.",
-    "Mi profesor explica autoestima de forma divertida.",
-    "Practicar autoestima me ayuda a entenderlo mejor."
-  ],
-  [
-    "Resolviendo actividades de solidaridad, aprendo cosas nuevas.",
-    "Estudiamos solidaridad en la escuela con ejemplos sencillos.",
-    "Mi profesor explica solidaridad de forma divertida.",
-    "Practicar solidaridad me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre solidaridad."
-  ]
+  ["Mi compañero se ha tropezado en el patio.", "Me acerco para ver si se ha hecho daño.", "Le ayudo a levantarse y a sacudirse la ropa."],
+  ["La profesora hace una pregunta a la clase.", "Yo sé la respuesta, así que levanto la mano.", "Espero mi turno para poder contestar."],
+  ["Estamos haciendo un puzle muy grande.", "A mi amigo le falta una pieza que yo tengo.", "Se la ofrezco para que pueda terminar su parte."],
+  ["Hemos terminado de usar los juegos de mesa.", "Cada uno recoge las fichas de su juego.", "Guardamos las cajas ordenadas en la estantería."],
+  ["Veo a una compañera llorando en un rincón.", "Me siento a su lado y le pregunto qué le pasa.", "Le doy un abrazo para que se sienta mejor."],
+  ["Cuando otra persona está hablando, la escucho.", "Miro a la cara y presto atención a lo que dice.", "Así demuestro que me importa su opinión."],
+  ["Necesito unas tijeras que tiene otro niño.", "Le digo 'por favor, ¿me las puedes dejar un momento?'.", "Cuando me las da, le digo 'muchas gracias'."],
+  ["Tenemos que hacer un mural en equipo.", "Repartimos las tareas entre todos.", "Cada uno hace su parte y el resultado es genial."],
+  ["Sin querer, le he dado un golpe a mi amiga.", "Enseguida le pido perdón y le pregunto si está bien.", "Ella entiende que ha sido un accidente."],
+  ["Ha llegado un niño nuevo al colegio.", "En el recreo, le invito a jugar con mi grupo.", "Le presentamos a nuestros amigos para que no esté solo."],
+  ["No me gusta cómo me ha hablado un compañero.", "En lugar de gritar, se lo explico con calma.", "Hablando podemos solucionar nuestros conflictos."],
+  ["Mi amiga ha hecho un dibujo precioso.", "Le digo que es una artista y que me encanta.", "Ella se pone muy contenta con mi cumplido."],
+  ["La planta de nuestra clase parece un poco seca.", "Nos turnamos para regarla cada dos días.", "Cuidar de ella es responsabilidad de todos."],
+  ["En el patio, jugamos a la comba.", "Invitamos a todos los que quieran participar.", "Nos aseguramos de que nadie se quede fuera."],
+  ["Estoy muy enfadado por algo que ha pasado.", "Me voy a un sitio tranquilo para respirar hondo.", "Cuando estoy más calmado, puedo pensar mejor."],
+  ["Mi compañero no entiende un problema de mates.", "Como yo sí lo he entendido, se lo explico.", "Ayudarnos unos a otros nos hace mejores."],
+  ["Hacemos una fila para entrar al comedor.", "Espero detrás del último sin empujar.", "Respeto el orden de llegada de los demás."],
+  ["Un niño se ríe porque he pronunciado mal.", "Le explico que eso no me gusta.", "Burlarse de los demás puede hacerles daño."],
+  ["Mi amigo comparte su bocadillo conmigo.", "Al día siguiente, yo comparto mis galletas con él.", "La amistad también es saber compartir."],
+  ["El patio está lleno de papeles después del recreo.", "Entre varios, recogemos la basura.", "Mantener limpio el colegio es tarea de todos."],
+  ["Me he esforzado mucho en mi redacción.", "Aunque tiene algunos fallos, estoy orgulloso.", "Lo importante es aprender y mejorar poco a poco."],
+  ["He visto quién ha roto el cristal sin querer.", "Animo a mi amigo a que cuente la verdad.", "Ser sincero es lo correcto, aunque a veces cueste."],
+  ["En un debate, no todos pensamos igual.", "Escucho las razones de los demás con respeto.", "Aunque no esté de acuerdo, intento entenderlos."],
+  ["Mi abuelo me cuenta historias de cuando era joven.", "Le escucho con mucha atención e interés.", "Me encanta aprender de la experiencia de los mayores."],
+  ["Intento imaginar cómo se siente mi hermano.", "Pienso por qué está triste o enfadado.", "La empatía nos ayuda a comprender a los demás."],
+  ["Hoy hemos aprendido una canción nueva.", "Me ha gustado tanto que la canto de camino a casa.", "Disfruto de las cosas buenas que me pasan."],
+  ["Este ejercicio me parece muy difícil.", "Le pido a la profesora que me lo vuelva a explicar.", "Pedir ayuda es un signo de inteligencia."],
+  ["Le doy los buenos días al conductor del autobús.", "Sonrío a la quiosquera cuando compro el pan.", "Ser amable hace el día más agradable a todos."],
+  ["Cuido mis libros y no pinto en ellos.", "Los forro para que no se estropeen las tapas.", "El material de clase es para usarlo bien."],
+  ["Le doy un abrazo a mi padre al llegar a casa.", "Le cuento las cosas que he hecho en el cole.", "Expresar nuestro cariño es muy importante."]
 ]

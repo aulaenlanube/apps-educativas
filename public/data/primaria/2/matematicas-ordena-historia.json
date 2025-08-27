@@ -1,182 +1,32 @@
 [
-  [
-    "Estudiamos multiplicaciones en la escuela con ejemplos sencillos.",
-    "Mi profesor explica multiplicaciones de forma divertida.",
-    "Practicar multiplicaciones me ayuda a entenderlo mejor."
-  ],
-  [
-    "Mi profesor explica divisiones de forma divertida.",
-    "Practicar divisiones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre divisiones."
-  ],
-  [
-    "Practicar fracciones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre fracciones.",
-    "Hacemos ejercicios de fracciones para mejorar."
-  ],
-  [
-    "Durante la clase, aprendemos sobre geometría.",
-    "Hacemos ejercicios de geometría para mejorar.",
-    "Mis compañeros y yo comentamos sobre geometría en grupo."
-  ],
-  [
-    "Hacemos ejercicios de medidas para mejorar.",
-    "Mis compañeros y yo comentamos sobre medidas en grupo.",
-    "En casa repaso medidas con mis padres."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre multiplicaciones en grupo.",
-    "En casa repaso multiplicaciones con mis padres.",
-    "La maestra nos cuenta historias relacionadas con multiplicaciones."
-  ],
-  [
-    "En casa repaso divisiones con mis padres.",
-    "La maestra nos cuenta historias relacionadas con divisiones.",
-    "Me esfuerzo por escribir sobre divisiones sin errores."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con fracciones.",
-    "Me esfuerzo por escribir sobre fracciones sin errores.",
-    "Resolviendo actividades de fracciones, aprendo cosas nuevas."
-  ],
-  [
-    "Me esfuerzo por escribir sobre geometría sin errores.",
-    "Resolviendo actividades de geometría, aprendo cosas nuevas.",
-    "Estudiamos geometría en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Resolviendo actividades de medidas, aprendo cosas nuevas.",
-    "Estudiamos medidas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica medidas de forma divertida."
-  ],
-  [
-    "Estudiamos multiplicaciones en la escuela con ejemplos sencillos.",
-    "Mi profesor explica multiplicaciones de forma divertida.",
-    "Practicar multiplicaciones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre multiplicaciones."
-  ],
-  [
-    "Mi profesor explica divisiones de forma divertida.",
-    "Practicar divisiones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre divisiones.",
-    "Hacemos ejercicios de divisiones para mejorar."
-  ],
-  [
-    "Practicar fracciones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre fracciones.",
-    "Hacemos ejercicios de fracciones para mejorar.",
-    "Mis compañeros y yo comentamos sobre fracciones en grupo."
-  ],
-  [
-    "Durante la clase, aprendemos sobre geometría.",
-    "Hacemos ejercicios de geometría para mejorar.",
-    "Mis compañeros y yo comentamos sobre geometría en grupo.",
-    "En casa repaso geometría con mis padres."
-  ],
-  [
-    "Hacemos ejercicios de medidas para mejorar.",
-    "Mis compañeros y yo comentamos sobre medidas en grupo.",
-    "En casa repaso medidas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con medidas."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre multiplicaciones en grupo.",
-    "En casa repaso multiplicaciones con mis padres.",
-    "La maestra nos cuenta historias relacionadas con multiplicaciones.",
-    "Me esfuerzo por escribir sobre multiplicaciones sin errores."
-  ],
-  [
-    "En casa repaso divisiones con mis padres.",
-    "La maestra nos cuenta historias relacionadas con divisiones.",
-    "Me esfuerzo por escribir sobre divisiones sin errores.",
-    "Resolviendo actividades de divisiones, aprendo cosas nuevas."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con fracciones.",
-    "Me esfuerzo por escribir sobre fracciones sin errores.",
-    "Resolviendo actividades de fracciones, aprendo cosas nuevas.",
-    "Estudiamos fracciones en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Me esfuerzo por escribir sobre geometría sin errores.",
-    "Resolviendo actividades de geometría, aprendo cosas nuevas.",
-    "Estudiamos geometría en la escuela con ejemplos sencillos.",
-    "Mi profesor explica geometría de forma divertida."
-  ],
-  [
-    "Resolviendo actividades de medidas, aprendo cosas nuevas.",
-    "Estudiamos medidas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica medidas de forma divertida.",
-    "Practicar medidas me ayuda a entenderlo mejor."
-  ],
-  [
-    "Estudiamos multiplicaciones en la escuela con ejemplos sencillos.",
-    "Mi profesor explica multiplicaciones de forma divertida.",
-    "Practicar multiplicaciones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre multiplicaciones.",
-    "Hacemos ejercicios de multiplicaciones para mejorar."
-  ],
-  [
-    "Mi profesor explica divisiones de forma divertida.",
-    "Practicar divisiones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre divisiones.",
-    "Hacemos ejercicios de divisiones para mejorar.",
-    "Mis compañeros y yo comentamos sobre divisiones en grupo."
-  ],
-  [
-    "Practicar fracciones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre fracciones.",
-    "Hacemos ejercicios de fracciones para mejorar.",
-    "Mis compañeros y yo comentamos sobre fracciones en grupo.",
-    "En casa repaso fracciones con mis padres."
-  ],
-  [
-    "Durante la clase, aprendemos sobre geometría.",
-    "Hacemos ejercicios de geometría para mejorar.",
-    "Mis compañeros y yo comentamos sobre geometría en grupo.",
-    "En casa repaso geometría con mis padres.",
-    "La maestra nos cuenta historias relacionadas con geometría."
-  ],
-  [
-    "Hacemos ejercicios de medidas para mejorar.",
-    "Mis compañeros y yo comentamos sobre medidas en grupo.",
-    "En casa repaso medidas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con medidas.",
-    "Me esfuerzo por escribir sobre medidas sin errores."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre multiplicaciones en grupo.",
-    "En casa repaso multiplicaciones con mis padres.",
-    "La maestra nos cuenta historias relacionadas con multiplicaciones.",
-    "Me esfuerzo por escribir sobre multiplicaciones sin errores.",
-    "Resolviendo actividades de multiplicaciones, aprendo cosas nuevas."
-  ],
-  [
-    "En casa repaso divisiones con mis padres.",
-    "La maestra nos cuenta historias relacionadas con divisiones.",
-    "Me esfuerzo por escribir sobre divisiones sin errores.",
-    "Resolviendo actividades de divisiones, aprendo cosas nuevas.",
-    "Estudiamos divisiones en la escuela con ejemplos sencillos."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con fracciones.",
-    "Me esfuerzo por escribir sobre fracciones sin errores.",
-    "Resolviendo actividades de fracciones, aprendo cosas nuevas.",
-    "Estudiamos fracciones en la escuela con ejemplos sencillos.",
-    "Mi profesor explica fracciones de forma divertida."
-  ],
-  [
-    "Me esfuerzo por escribir sobre geometría sin errores.",
-    "Resolviendo actividades de geometría, aprendo cosas nuevas.",
-    "Estudiamos geometría en la escuela con ejemplos sencillos.",
-    "Mi profesor explica geometría de forma divertida.",
-    "Practicar geometría me ayuda a entenderlo mejor."
-  ],
-  [
-    "Resolviendo actividades de medidas, aprendo cosas nuevas.",
-    "Estudiamos medidas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica medidas de forma divertida.",
-    "Practicar medidas me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre medidas."
-  ]
+  ["En un cesto tengo cinco manzanas rojas.", "Añado otras tres manzanas verdes.", "Ahora, en el cesto hay ocho manzanas en total."],
+  ["Había diez galletas en el tarro de cristal.", "Mi hermano y yo nos hemos comido tres.", "Dentro del tarro solo quedan siete galletas."],
+  ["Papá compra una docena de huevos.", "Una docena son doce huevos.", "Usamos dos para hacer una tortilla."],
+  ["En mi estuche guardo ocho pinturas de cera.", "También tengo cinco rotuladores.", "Tengo más pinturas que rotuladores."],
+  ["La gallina Paca ha puesto cuatro huevos.", "La gallina Lola ha puesto cinco.", "Entre las dos gallinas han puesto nueve huevos."],
+  ["Un coche normal tiene cuatro ruedas.", "Una moto tiene solo dos ruedas.", "El coche tiene el doble de ruedas que la moto."],
+  ["Cuento los números de dos en dos.", "Digo dos, cuatro, seis, ocho...", "Llego hasta el número veinte."],
+  ["Dibujo un rectángulo en una hoja.", "Tiene dos lados largos y dos lados cortos.", "Sus cuatro esquinas son ángulos rectos."],
+  ["Tengo doce cromos para repartir.", "Somos tres amigos, así que nos tocan cuatro a cada uno.", "Hemos hecho un reparto equitativo."],
+  ["Voy a la tienda con una moneda de un euro.", "Compro un chicle que cuesta veinte céntimos.", "La tendera me devuelve ochenta céntimos."],
+  ["El mes de enero es el primero del año.", "El año tiene doce meses en total.", "El último mes del año es diciembre."],
+  ["La aguja pequeña del reloj señala el nueve.", "La aguja grande, el doce.", "Son las nueve en punto de la mañana."],
+  ["En una caja hay diez lápices.", "Tengo tres cajas iguales.", "En total tengo treinta lápices."],
+  ["Una centena equivale a cien unidades.", "El número cien se escribe con un uno y dos ceros.", "Es un número de tres cifras."],
+  ["Inflando globos para una fiesta.", "Ya he inflado quince globos.", "Tengo que inflar veinticinco, así que me faltan diez."],
+  ["Mi padre es más alto que mi madre.", "Yo soy más bajo que mi hermano mayor.", "Estamos comparando nuestras estaturas."],
+  ["El camino de mi casa al parque es corto.", "El camino del colegio a casa es más largo.", "Por eso tardo más en volver del colegio."],
+  ["Mi libro de cuentos tiene cincuenta páginas.", "Cada día me leo diez páginas.", "Tardaré cinco días en terminar el libro."],
+  ["Con la regla mido el largo de mi cuaderno.", "Mide treinta centímetros de largo.", "También mido el ancho, que son veinte centímetros."],
+  ["Una lata de refresco se parece a un cilindro.", "Tiene dos bases que son círculos.", "Puede rodar si la tumbas."],
+  ["Mi hermano tiene el triple de canicas que yo.", "Yo tengo cinco canicas.", "Mi hermano tiene quince canicas."],
+  ["En la granja hay veinte animales.", "La mitad son gallinas y la otra mitad son conejos.", "Hay diez gallinas y diez conejos."],
+  ["El número que está justo antes del 50.", "Es el número 49.", "El que está después es el 51."],
+  ["Tiro dos dados a la vez.", "En un dado sale un cinco y en el otro un cuatro.", "La suma de los dos dados es nueve."],
+  ["Construyo una torre con bloques de madera.", "Pongo una base de cinco bloques.", "Cada piso tiene un bloque menos que el anterior."],
+  ["Tengo una pizza entera para cenar.", "La divido en cuatro porciones iguales.", "Cada porción es un cuarto de la pizza."],
+  ["El número cero no vale nada por sí solo.", "Pero si lo pones a la derecha de un uno, formas un diez.", "El cero es un número muy importante."],
+  ["La suma y la resta son operaciones matemáticas.", "La multiplicación es como hacer una suma repetida.", "Poco a poco aprenderé a dividir."],
+  ["El cubo tiene seis caras iguales.", "Todas sus caras son cuadrados perfectos.", "Un dado de jugar es un ejemplo de cubo."],
+  ["Un problema me da unos datos.", "Tengo que leer la pregunta para saber qué calcular.", "Pienso la operación y resuelvo el problema."]
 ]

@@ -1,182 +1,32 @@
 [
-  [
-    "Estudiamos ecosistemas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica ecosistemas de forma divertida.",
-    "Practicar ecosistemas me ayuda a entenderlo mejor."
-  ],
-  [
-    "Mi profesor explica cuerpo humano de forma divertida.",
-    "Practicar cuerpo humano me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre cuerpo humano."
-  ],
-  [
-    "Practicar estaciones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre estaciones.",
-    "Hacemos ejercicios de estaciones para mejorar."
-  ],
-  [
-    "Durante la clase, aprendemos sobre materia.",
-    "Hacemos ejercicios de materia para mejorar.",
-    "Mis compañeros y yo comentamos sobre materia en grupo."
-  ],
-  [
-    "Hacemos ejercicios de energía para mejorar.",
-    "Mis compañeros y yo comentamos sobre energía en grupo.",
-    "En casa repaso energía con mis padres."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre ecosistemas en grupo.",
-    "En casa repaso ecosistemas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con ecosistemas."
-  ],
-  [
-    "En casa repaso cuerpo humano con mis padres.",
-    "La maestra nos cuenta historias relacionadas con cuerpo humano.",
-    "Me esfuerzo por escribir sobre cuerpo humano sin errores."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con estaciones.",
-    "Me esfuerzo por escribir sobre estaciones sin errores.",
-    "Resolviendo actividades de estaciones, aprendo cosas nuevas."
-  ],
-  [
-    "Me esfuerzo por escribir sobre materia sin errores.",
-    "Resolviendo actividades de materia, aprendo cosas nuevas.",
-    "Estudiamos materia en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Resolviendo actividades de energía, aprendo cosas nuevas.",
-    "Estudiamos energía en la escuela con ejemplos sencillos.",
-    "Mi profesor explica energía de forma divertida."
-  ],
-  [
-    "Estudiamos ecosistemas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica ecosistemas de forma divertida.",
-    "Practicar ecosistemas me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre ecosistemas."
-  ],
-  [
-    "Mi profesor explica cuerpo humano de forma divertida.",
-    "Practicar cuerpo humano me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre cuerpo humano.",
-    "Hacemos ejercicios de cuerpo humano para mejorar."
-  ],
-  [
-    "Practicar estaciones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre estaciones.",
-    "Hacemos ejercicios de estaciones para mejorar.",
-    "Mis compañeros y yo comentamos sobre estaciones en grupo."
-  ],
-  [
-    "Durante la clase, aprendemos sobre materia.",
-    "Hacemos ejercicios de materia para mejorar.",
-    "Mis compañeros y yo comentamos sobre materia en grupo.",
-    "En casa repaso materia con mis padres."
-  ],
-  [
-    "Hacemos ejercicios de energía para mejorar.",
-    "Mis compañeros y yo comentamos sobre energía en grupo.",
-    "En casa repaso energía con mis padres.",
-    "La maestra nos cuenta historias relacionadas con energía."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre ecosistemas en grupo.",
-    "En casa repaso ecosistemas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con ecosistemas.",
-    "Me esfuerzo por escribir sobre ecosistemas sin errores."
-  ],
-  [
-    "En casa repaso cuerpo humano con mis padres.",
-    "La maestra nos cuenta historias relacionadas con cuerpo humano.",
-    "Me esfuerzo por escribir sobre cuerpo humano sin errores.",
-    "Resolviendo actividades de cuerpo humano, aprendo cosas nuevas."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con estaciones.",
-    "Me esfuerzo por escribir sobre estaciones sin errores.",
-    "Resolviendo actividades de estaciones, aprendo cosas nuevas.",
-    "Estudiamos estaciones en la escuela con ejemplos sencillos."
-  ],
-  [
-    "Me esfuerzo por escribir sobre materia sin errores.",
-    "Resolviendo actividades de materia, aprendo cosas nuevas.",
-    "Estudiamos materia en la escuela con ejemplos sencillos.",
-    "Mi profesor explica materia de forma divertida."
-  ],
-  [
-    "Resolviendo actividades de energía, aprendo cosas nuevas.",
-    "Estudiamos energía en la escuela con ejemplos sencillos.",
-    "Mi profesor explica energía de forma divertida.",
-    "Practicar energía me ayuda a entenderlo mejor."
-  ],
-  [
-    "Estudiamos ecosistemas en la escuela con ejemplos sencillos.",
-    "Mi profesor explica ecosistemas de forma divertida.",
-    "Practicar ecosistemas me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre ecosistemas.",
-    "Hacemos ejercicios de ecosistemas para mejorar."
-  ],
-  [
-    "Mi profesor explica cuerpo humano de forma divertida.",
-    "Practicar cuerpo humano me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre cuerpo humano.",
-    "Hacemos ejercicios de cuerpo humano para mejorar.",
-    "Mis compañeros y yo comentamos sobre cuerpo humano en grupo."
-  ],
-  [
-    "Practicar estaciones me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre estaciones.",
-    "Hacemos ejercicios de estaciones para mejorar.",
-    "Mis compañeros y yo comentamos sobre estaciones en grupo.",
-    "En casa repaso estaciones con mis padres."
-  ],
-  [
-    "Durante la clase, aprendemos sobre materia.",
-    "Hacemos ejercicios de materia para mejorar.",
-    "Mis compañeros y yo comentamos sobre materia en grupo.",
-    "En casa repaso materia con mis padres.",
-    "La maestra nos cuenta historias relacionadas con materia."
-  ],
-  [
-    "Hacemos ejercicios de energía para mejorar.",
-    "Mis compañeros y yo comentamos sobre energía en grupo.",
-    "En casa repaso energía con mis padres.",
-    "La maestra nos cuenta historias relacionadas con energía.",
-    "Me esfuerzo por escribir sobre energía sin errores."
-  ],
-  [
-    "Mis compañeros y yo comentamos sobre ecosistemas en grupo.",
-    "En casa repaso ecosistemas con mis padres.",
-    "La maestra nos cuenta historias relacionadas con ecosistemas.",
-    "Me esfuerzo por escribir sobre ecosistemas sin errores.",
-    "Resolviendo actividades de ecosistemas, aprendo cosas nuevas."
-  ],
-  [
-    "En casa repaso cuerpo humano con mis padres.",
-    "La maestra nos cuenta historias relacionadas con cuerpo humano.",
-    "Me esfuerzo por escribir sobre cuerpo humano sin errores.",
-    "Resolviendo actividades de cuerpo humano, aprendo cosas nuevas.",
-    "Estudiamos cuerpo humano en la escuela con ejemplos sencillos."
-  ],
-  [
-    "La maestra nos cuenta historias relacionadas con estaciones.",
-    "Me esfuerzo por escribir sobre estaciones sin errores.",
-    "Resolviendo actividades de estaciones, aprendo cosas nuevas.",
-    "Estudiamos estaciones en la escuela con ejemplos sencillos.",
-    "Mi profesor explica estaciones de forma divertida."
-  ],
-  [
-    "Me esfuerzo por escribir sobre materia sin errores.",
-    "Resolviendo actividades de materia, aprendo cosas nuevas.",
-    "Estudiamos materia en la escuela con ejemplos sencillos.",
-    "Mi profesor explica materia de forma divertida.",
-    "Practicar materia me ayuda a entenderlo mejor."
-  ],
-  [
-    "Resolviendo actividades de energía, aprendo cosas nuevas.",
-    "Estudiamos energía en la escuela con ejemplos sencillos.",
-    "Mi profesor explica energía de forma divertida.",
-    "Practicar energía me ayuda a entenderlo mejor.",
-    "Durante la clase, aprendemos sobre energía."
-  ]
+  ["Primero, plantamos una pequeña semilla en la maceta.", "Después, la regamos con un poco de agua cada día.", "Al final, de la semilla nace una planta con hojas verdes."],
+  ["El sol sale por el este cada mañana.", "Nos proporciona luz y un calor agradable.", "Cuando anochece, el sol se oculta y sale la luna."],
+  ["Una pequeña oruga come hojas sin parar.", "Luego, se encierra en un capullo de seda.", "Al cabo de un tiempo, se transforma en una bonita mariposa."],
+  ["Las nubes cargadas de agua se vuelven grises.", "Entonces, empiezan a caer gotas de lluvia del cielo.", "Cuando la lluvia para, a veces se ve un arcoíris."],
+  ["El león es un animal mamífero.", "Su pelo forma una impresionante melena.", "Ruge muy fuerte para asustar a otros animales."],
+  ["En primavera, los campos se visten de flores.", "En verano, disfrutamos de los días largos y calurosos.", "En otoño, el viento sopla y se lleva las hojas secas."],
+  ["El pez utiliza sus aletas para nadar.", "Vive en el agua de los ríos o del mar.", "Respira el oxígeno del agua a través de las branquias."],
+  ["Para estar sanos, debemos comer variado.", "Las frutas nos dan vitaminas y energía.", "Después de comer, me siento fuerte para jugar."],
+  ["Mi perro entierra su hueso favorito en el jardín.", "Hace un agujero con las patas delanteras.", "Así lo guarda para encontrarlo en otro momento."],
+  ["La abeja vuela buscando flores con néctar.", "Lo recoge y lo lleva a la colmena.", "Allí, con el néctar, todas juntas fabrican la miel."],
+  ["El pájaro carpintero hace un agujero en el tronco.", "Usa su pico fuerte para construir su nido.", "Dentro estará a salvo de otros animales."],
+  ["Cuando mi cuerpo siente frío, empiezo a tiritar.", "Me pongo un jersey de lana para abrigarme.", "El abrigo me ayuda a mantener el calor corporal."],
+  ["El agua de los ríos desciende desde las montañas.", "Este viaje termina cuando llega al mar.", "El agua del mar tiene un sabor salado."],
+  ["La gallina empolla sus huevos con cuidado.", "Les da calor para que crezcan los pollitos.", "Cuando nacen, los pollitos pían sin parar."],
+  ["La araña teje su telaraña entre dos ramas.", "Es una trampa perfecta para cazar insectos.", "Se sienta a esperar que alguno caiga en ella."],
+  ["Durante el otoño, el oso come muchísimos frutos.", "Se prepara para dormir durante todo el invierno.", "Este largo sueño se llama hibernación."],
+  ["Respiramos aire para poder vivir.", "El aire entra por la nariz y llega a los pulmones.", "Los pulmones cogen el oxígeno que necesitamos."],
+  ["Nuestro planeta, la Tierra, gira sobre sí mismo.", "Este movimiento de rotación dura un día entero.", "Por eso tenemos momentos de luz y de oscuridad."],
+  ["La planta absorbe agua por la raíz.", "La luz del sol le da la energía que necesita.", "Así fabrica su propio alimento para crecer."],
+  ["El esqueleto humano está formado por muchos huesos.", "Los huesos son duros y protegen nuestros órganos.", "Nos permiten mantenernos de pie y movernos."],
+  ["Hace millones de años vivieron los dinosaurios.", "Algunos eran herbívoros y otros carnívoros.", "Se extinguieron, pero encontramos sus fósiles."],
+  ["El camaleón se mueve despacio por la rama.", "Si se siente en peligro, cambia el color de su piel.", "Así se camufla y se esconde de sus enemigos."],
+  ["Las estrellas son enormes bolas de fuego.", "Están tan lejos que las vemos como puntos de luz.", "Por la noche, iluminan el cielo oscuro."],
+  ["Mi corazón late sin descanso.", "Bombea la sangre para que llegue a todo el cuerpo.", "Si corro, late mucho más deprisa."],
+  ["El caracol avanza lentamente dejando un rastro.", "Lleva su concha a cuestas para protegerse.", "Si algo le asusta, se esconde dentro."],
+  ["El día comienza cuando sale el sol.", "La noche llega cuando el sol se pone.", "La luz y el calor vienen del sol."],
+  ["La foca está adaptada a vivir en el frío.", "Una gruesa capa de grasa la protege del hielo.", "Es una excelente nadadora en aguas heladas."],
+  ["Para reciclar, separamos la basura en contenedores.", "El papel va al azul y el plástico al amarillo.", "Es un gesto importante para cuidar el medio ambiente."],
+  ["El manzano se llena de flores en primavera.", "Después, las flores se convierten en manzanas.", "En otoño, recogemos las manzanas maduras."],
+  ["Si grito fuerte en un valle, oigo mi propia voz.", "El sonido choca contra las montañas.", "Ese sonido que vuelve es lo que llamamos eco."]
 ]
