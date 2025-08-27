@@ -1,182 +1,32 @@
 [
-  [
-    "Aunque oraciones puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender oraciones, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de oraciones son cada vez más desafiantes."
-  ],
-  [
-    "Para comprender párrafos, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de párrafos son cada vez más desafiantes.",
-    "El conocimiento de párrafos es esencial para avanzar."
-  ],
-  [
-    "Nuestros ejercicios de narrativa son cada vez más desafiantes.",
-    "El conocimiento de narrativa es esencial para avanzar.",
-    "Cuando discutimos narrativa, todos participamos activamente."
-  ],
-  [
-    "El conocimiento de ortografía es esencial para avanzar.",
-    "Cuando discutimos ortografía, todos participamos activamente.",
-    "A veces asociamos ortografía con ejemplos de la vida real para entenderlo mejor."
-  ],
-  [
-    "Cuando discutimos poesía, todos participamos activamente.",
-    "A veces asociamos poesía con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar poesía, revisamos lo aprendido anteriormente."
-  ],
-  [
-    "A veces asociamos oraciones con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar oraciones, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender oraciones con distintos puntos de vista."
-  ],
-  [
-    "Antes de estudiar párrafos, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender párrafos con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en párrafos."
-  ],
-  [
-    "Los trabajos en grupo nos ayudan a aprender narrativa con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en narrativa.",
-    "Después de las actividades, evaluamos lo que sabemos de narrativa."
-  ],
-  [
-    "Cada semana dedicamos tiempo extra para profundizar en ortografía.",
-    "Después de las actividades, evaluamos lo que sabemos de ortografía.",
-    "Aunque ortografía puede ser complejo, con esfuerzo se comprende."
-  ],
-  [
-    "Después de las actividades, evaluamos lo que sabemos de poesía.",
-    "Aunque poesía puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender poesía, primero repasamos los conceptos básicos."
-  ],
-  [
-    "Aunque oraciones puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender oraciones, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de oraciones son cada vez más desafiantes.",
-    "El conocimiento de oraciones es esencial para avanzar."
-  ],
-  [
-    "Para comprender párrafos, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de párrafos son cada vez más desafiantes.",
-    "El conocimiento de párrafos es esencial para avanzar.",
-    "Cuando discutimos párrafos, todos participamos activamente."
-  ],
-  [
-    "Nuestros ejercicios de narrativa son cada vez más desafiantes.",
-    "El conocimiento de narrativa es esencial para avanzar.",
-    "Cuando discutimos narrativa, todos participamos activamente.",
-    "A veces asociamos narrativa con ejemplos de la vida real para entenderlo mejor."
-  ],
-  [
-    "El conocimiento de ortografía es esencial para avanzar.",
-    "Cuando discutimos ortografía, todos participamos activamente.",
-    "A veces asociamos ortografía con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar ortografía, revisamos lo aprendido anteriormente."
-  ],
-  [
-    "Cuando discutimos poesía, todos participamos activamente.",
-    "A veces asociamos poesía con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar poesía, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender poesía con distintos puntos de vista."
-  ],
-  [
-    "A veces asociamos oraciones con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar oraciones, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender oraciones con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en oraciones."
-  ],
-  [
-    "Antes de estudiar párrafos, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender párrafos con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en párrafos.",
-    "Después de las actividades, evaluamos lo que sabemos de párrafos."
-  ],
-  [
-    "Los trabajos en grupo nos ayudan a aprender narrativa con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en narrativa.",
-    "Después de las actividades, evaluamos lo que sabemos de narrativa.",
-    "Aunque narrativa puede ser complejo, con esfuerzo se comprende."
-  ],
-  [
-    "Cada semana dedicamos tiempo extra para profundizar en ortografía.",
-    "Después de las actividades, evaluamos lo que sabemos de ortografía.",
-    "Aunque ortografía puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender ortografía, primero repasamos los conceptos básicos."
-  ],
-  [
-    "Después de las actividades, evaluamos lo que sabemos de poesía.",
-    "Aunque poesía puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender poesía, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de poesía son cada vez más desafiantes."
-  ],
-  [
-    "Aunque oraciones puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender oraciones, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de oraciones son cada vez más desafiantes.",
-    "El conocimiento de oraciones es esencial para avanzar.",
-    "Cuando discutimos oraciones, todos participamos activamente."
-  ],
-  [
-    "Para comprender párrafos, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de párrafos son cada vez más desafiantes.",
-    "El conocimiento de párrafos es esencial para avanzar.",
-    "Cuando discutimos párrafos, todos participamos activamente.",
-    "A veces asociamos párrafos con ejemplos de la vida real para entenderlo mejor."
-  ],
-  [
-    "Nuestros ejercicios de narrativa son cada vez más desafiantes.",
-    "El conocimiento de narrativa es esencial para avanzar.",
-    "Cuando discutimos narrativa, todos participamos activamente.",
-    "A veces asociamos narrativa con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar narrativa, revisamos lo aprendido anteriormente."
-  ],
-  [
-    "El conocimiento de ortografía es esencial para avanzar.",
-    "Cuando discutimos ortografía, todos participamos activamente.",
-    "A veces asociamos ortografía con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar ortografía, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender ortografía con distintos puntos de vista."
-  ],
-  [
-    "Cuando discutimos poesía, todos participamos activamente.",
-    "A veces asociamos poesía con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar poesía, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender poesía con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en poesía."
-  ],
-  [
-    "A veces asociamos oraciones con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar oraciones, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender oraciones con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en oraciones.",
-    "Después de las actividades, evaluamos lo que sabemos de oraciones."
-  ],
-  [
-    "Antes de estudiar párrafos, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender párrafos con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en párrafos.",
-    "Después de las actividades, evaluamos lo que sabemos de párrafos.",
-    "Aunque párrafos puede ser complejo, con esfuerzo se comprende."
-  ],
-  [
-    "Los trabajos en grupo nos ayudan a aprender narrativa con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en narrativa.",
-    "Después de las actividades, evaluamos lo que sabemos de narrativa.",
-    "Aunque narrativa puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender narrativa, primero repasamos los conceptos básicos."
-  ],
-  [
-    "Cada semana dedicamos tiempo extra para profundizar en ortografía.",
-    "Después de las actividades, evaluamos lo que sabemos de ortografía.",
-    "Aunque ortografía puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender ortografía, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de ortografía son cada vez más desafiantes."
-  ],
-  [
-    "Después de las actividades, evaluamos lo que sabemos de poesía.",
-    "Aunque poesía puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender poesía, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de poesía son cada vez más desafiantes.",
-    "El conocimiento de poesía es esencial para avanzar."
-  ]
+  ["La médica visita a un paciente en la consulta.", "Escucha su respiración con el estetoscopio.", "Le receta un medicamento para la tos."],
+  ["El panadero prepara la masa del pan.", "La deja reposar unas horas para que fermente.", "Después, la hornea hasta que esté dorada."],
+  ["El pájaro teje su nido con pequeñas ramitas.", "Forra el interior con plumas y musgo.", "Pronto pondrá los huevos y criará a sus polluelos."],
+  ["La ardilla ha encontrado una bellota.", "Sube rápidamente a la rama de un roble.", "Se la come sujetándola con las patas."],
+  ["El tren de mercancías transporta muchos contenedores.", "Recorre largas distancias por la vía férrea.", "El maquinista controla la velocidad del convoy."],
+  ["La florista prepara un ramo de flores precioso.", "Combina rosas rojas con margaritas blancas.", "El ramo es para una celebración especial."],
+  ["Empieza a llover y abrimos el paraguas.", "Las gotas repiquetean sobre la tela.", "Las calles mojadas parecen espejos."],
+  ["La Luna llena ilumina el cielo de la noche.", "Las estrellas brillan con luz temblorosa.", "Es una noche perfecta para observar el firmamento."],
+  ["La mamá acuna a su bebé con una canción.", "El bebé se relaja y cierra los ojitos.", "Finalmente, se duerme profundamente."],
+  ["El perro persigue su propio rabo dando vueltas.", "Es un juego que le divierte mucho.", "Al final, se marea y se tumba a descansar."],
+  ["El pez payaso se esconde entre los tentáculos de la anémona.", "Así se protege de otros peces más grandes.", "Es una relación de simbiosis."],
+  ["El agricultor labra la tierra con su tractor.", "Prepara el campo para la siembra del cereal.", "Espera que la cosecha de este año sea buena."],
+  ["Es el cumpleaños de mi mejor amigo.", "Le he preparado una fiesta sorpresa en mi casa.", "Todos los amigos le hemos comprado un regalo."],
+  ["El mago sacó un conejo de su chistera.", "El público aplaudió muy entusiasmado.", "Fue un truco de magia sorprendente."],
+  ["La profesora nos contó una antigua leyenda.", "Trataba de un dragón que custodiaba un tesoro.", "Tuvimos que dibujar al dragón al final."],
+  ["Ha nevado mucho durante toda la noche.", "El paisaje se ha cubierto de una alfombra blanca.", "Construiremos un muñeco de nieve en el jardín."],
+  ["La araña espera pacientemente en el centro de la telaraña.", "Un insecto despistado ha quedado atrapado.", "La araña lo envuelve rápidamente con su seda."],
+  ["Hemos salido a navegar con un barco de vela.", "El viento hincha las velas e impulsa la embarcación.", "Es una sensación de libertad increíble."],
+  ["El león es el felino más grande de África.", "Su potente rugido demuestra su fuerza.", "Las leonas son las encargadas de cazar para el grupo."],
+  ["El mono pela un plátano con mucha habilidad.", "Se lo come a mordiscos, sentado en la rama.", "Es su fruta preferida."],
+  ["El panadero ha sacado las ensaimadas del horno.", "El olor dulce impregna toda la calle.", "He comprado una para merendar."],
+  ["La gallina escarba en la tierra buscando gusanos.", "Sus pollitos la siguen piando sin cesar.", "Les enseña a buscar su propio alimento."],
+  ["El avión acelera por la pista de despegue.", "Las ruedas se separan del suelo.", "Comienza el viaje hacia otro continente."],
+  ["El bombero sujeta la manguera con firmeza.", "El agua sale a una gran presión.", "Consigue extinguir las llamas del incendio."],
+  ["Me cepillo los dientes después de cada comida.", "Es un hábito muy importante para la salud dental.", "Evito comer demasiados dulces y chucherías."],
+  ["El conejo ha detectado un peligro con sus largas orejas.", "Corre velozmente a esconderse en su madriguera.", "Ha logrado escapar de su depredador."],
+  ["La tortuga marina nada elegantemente por el océano.", "Utiliza sus aletas como si fueran alas.", "Puede vivir más de cien años."],
+  ["La hormiga ha encontrado una miga de galleta.", "Es demasiado pesada para ella sola.", "Va a buscar a otras hormigas para que la ayuden."],
+  ["El artista mezcla los colores en su paleta.", "Con el pincel, da vida al lienzo en blanco.", "Está pintando un retrato muy realista."],
+  ["El pirata descubrió un mapa del tesoro.", "Siguió las indicaciones hasta una isla desierta.", "Cavó en la arena y encontró un cofre lleno de joyas."]
 ]

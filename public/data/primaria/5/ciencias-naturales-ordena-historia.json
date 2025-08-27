@@ -1,182 +1,32 @@
 [
-  [
-    "Para preparar el examen de genética, estudié distintos ejemplos y teorías.",
-    "Mientras investigaba sobre genética, descubrí cosas muy interesantes.",
-    "La relación entre genética y la vida cotidiana es sorprendente."
-  ],
-  [
-    "Mientras investigaba sobre evolución, descubrí cosas muy interesantes.",
-    "La relación entre evolución y la vida cotidiana es sorprendente.",
-    "Analizamos evolución en profundidad durante las clases."
-  ],
-  [
-    "La relación entre ecosistemas complejos y la vida cotidiana es sorprendente.",
-    "Analizamos ecosistemas complejos en profundidad durante las clases.",
-    "En nuestros proyectos, aplicamos conceptos de ecosistemas complejos."
-  ],
-  [
-    "Analizamos relieve en profundidad durante las clases.",
-    "En nuestros proyectos, aplicamos conceptos de relieve.",
-    "Además de leer sobre relieve, realizamos experimentos prácticos."
-  ],
-  [
-    "En nuestros proyectos, aplicamos conceptos de química básica.",
-    "Además de leer sobre química básica, realizamos experimentos prácticos.",
-    "Aunque al principio química básica me parecía difícil, ahora me resulta apasionante."
-  ],
-  [
-    "Además de leer sobre genética, realizamos experimentos prácticos.",
-    "Aunque al principio genética me parecía difícil, ahora me resulta apasionante.",
-    "A menudo debatimos diferentes puntos de vista sobre genética en clase."
-  ],
-  [
-    "Aunque al principio evolución me parecía difícil, ahora me resulta apasionante.",
-    "A menudo debatimos diferentes puntos de vista sobre evolución en clase.",
-    "El profesor nos pidió reflexionar sobre la importancia de evolución en la sociedad."
-  ],
-  [
-    "A menudo debatimos diferentes puntos de vista sobre ecosistemas complejos en clase.",
-    "El profesor nos pidió reflexionar sobre la importancia de ecosistemas complejos en la sociedad.",
-    "En equipos, creamos presentaciones detalladas sobre ecosistemas complejos."
-  ],
-  [
-    "El profesor nos pidió reflexionar sobre la importancia de relieve en la sociedad.",
-    "En equipos, creamos presentaciones detalladas sobre relieve.",
-    "Para preparar el examen de relieve, estudié distintos ejemplos y teorías."
-  ],
-  [
-    "En equipos, creamos presentaciones detalladas sobre química básica.",
-    "Para preparar el examen de química básica, estudié distintos ejemplos y teorías.",
-    "Mientras investigaba sobre química básica, descubrí cosas muy interesantes."
-  ],
-  [
-    "Para preparar el examen de genética, estudié distintos ejemplos y teorías.",
-    "Mientras investigaba sobre genética, descubrí cosas muy interesantes.",
-    "La relación entre genética y la vida cotidiana es sorprendente.",
-    "Analizamos genética en profundidad durante las clases."
-  ],
-  [
-    "Mientras investigaba sobre evolución, descubrí cosas muy interesantes.",
-    "La relación entre evolución y la vida cotidiana es sorprendente.",
-    "Analizamos evolución en profundidad durante las clases.",
-    "En nuestros proyectos, aplicamos conceptos de evolución."
-  ],
-  [
-    "La relación entre ecosistemas complejos y la vida cotidiana es sorprendente.",
-    "Analizamos ecosistemas complejos en profundidad durante las clases.",
-    "En nuestros proyectos, aplicamos conceptos de ecosistemas complejos.",
-    "Además de leer sobre ecosistemas complejos, realizamos experimentos prácticos."
-  ],
-  [
-    "Analizamos relieve en profundidad durante las clases.",
-    "En nuestros proyectos, aplicamos conceptos de relieve.",
-    "Además de leer sobre relieve, realizamos experimentos prácticos.",
-    "Aunque al principio relieve me parecía difícil, ahora me resulta apasionante."
-  ],
-  [
-    "En nuestros proyectos, aplicamos conceptos de química básica.",
-    "Además de leer sobre química básica, realizamos experimentos prácticos.",
-    "Aunque al principio química básica me parecía difícil, ahora me resulta apasionante.",
-    "A menudo debatimos diferentes puntos de vista sobre química básica en clase."
-  ],
-  [
-    "Además de leer sobre genética, realizamos experimentos prácticos.",
-    "Aunque al principio genética me parecía difícil, ahora me resulta apasionante.",
-    "A menudo debatimos diferentes puntos de vista sobre genética en clase.",
-    "El profesor nos pidió reflexionar sobre la importancia de genética en la sociedad."
-  ],
-  [
-    "Aunque al principio evolución me parecía difícil, ahora me resulta apasionante.",
-    "A menudo debatimos diferentes puntos de vista sobre evolución en clase.",
-    "El profesor nos pidió reflexionar sobre la importancia de evolución en la sociedad.",
-    "En equipos, creamos presentaciones detalladas sobre evolución."
-  ],
-  [
-    "A menudo debatimos diferentes puntos de vista sobre ecosistemas complejos en clase.",
-    "El profesor nos pidió reflexionar sobre la importancia de ecosistemas complejos en la sociedad.",
-    "En equipos, creamos presentaciones detalladas sobre ecosistemas complejos.",
-    "Para preparar el examen de ecosistemas complejos, estudié distintos ejemplos y teorías."
-  ],
-  [
-    "El profesor nos pidió reflexionar sobre la importancia de relieve en la sociedad.",
-    "En equipos, creamos presentaciones detalladas sobre relieve.",
-    "Para preparar el examen de relieve, estudié distintos ejemplos y teorías.",
-    "Mientras investigaba sobre relieve, descubrí cosas muy interesantes."
-  ],
-  [
-    "En equipos, creamos presentaciones detalladas sobre química básica.",
-    "Para preparar el examen de química básica, estudié distintos ejemplos y teorías.",
-    "Mientras investigaba sobre química básica, descubrí cosas muy interesantes.",
-    "La relación entre química básica y la vida cotidiana es sorprendente."
-  ],
-  [
-    "Para preparar el examen de genética, estudié distintos ejemplos y teorías.",
-    "Mientras investigaba sobre genética, descubrí cosas muy interesantes.",
-    "La relación entre genética y la vida cotidiana es sorprendente.",
-    "Analizamos genética en profundidad durante las clases.",
-    "En nuestros proyectos, aplicamos conceptos de genética."
-  ],
-  [
-    "Mientras investigaba sobre evolución, descubrí cosas muy interesantes.",
-    "La relación entre evolución y la vida cotidiana es sorprendente.",
-    "Analizamos evolución en profundidad durante las clases.",
-    "En nuestros proyectos, aplicamos conceptos de evolución.",
-    "Además de leer sobre evolución, realizamos experimentos prácticos."
-  ],
-  [
-    "La relación entre ecosistemas complejos y la vida cotidiana es sorprendente.",
-    "Analizamos ecosistemas complejos en profundidad durante las clases.",
-    "En nuestros proyectos, aplicamos conceptos de ecosistemas complejos.",
-    "Además de leer sobre ecosistemas complejos, realizamos experimentos prácticos.",
-    "Aunque al principio ecosistemas complejos me parecía difícil, ahora me resulta apasionante."
-  ],
-  [
-    "Analizamos relieve en profundidad durante las clases.",
-    "En nuestros proyectos, aplicamos conceptos de relieve.",
-    "Además de leer sobre relieve, realizamos experimentos prácticos.",
-    "Aunque al principio relieve me parecía difícil, ahora me resulta apasionante.",
-    "A menudo debatimos diferentes puntos de vista sobre relieve en clase."
-  ],
-  [
-    "En nuestros proyectos, aplicamos conceptos de química básica.",
-    "Además de leer sobre química básica, realizamos experimentos prácticos.",
-    "Aunque al principio química básica me parecía difícil, ahora me resulta apasionante.",
-    "A menudo debatimos diferentes puntos de vista sobre química básica en clase.",
-    "El profesor nos pidió reflexionar sobre la importancia de química básica en la sociedad."
-  ],
-  [
-    "Además de leer sobre genética, realizamos experimentos prácticos.",
-    "Aunque al principio genética me parecía difícil, ahora me resulta apasionante.",
-    "A menudo debatimos diferentes puntos de vista sobre genética en clase.",
-    "El profesor nos pidió reflexionar sobre la importancia de genética en la sociedad.",
-    "En equipos, creamos presentaciones detalladas sobre genética."
-  ],
-  [
-    "Aunque al principio evolución me parecía difícil, ahora me resulta apasionante.",
-    "A menudo debatimos diferentes puntos de vista sobre evolución en clase.",
-    "El profesor nos pidió reflexionar sobre la importancia de evolución en la sociedad.",
-    "En equipos, creamos presentaciones detalladas sobre evolución.",
-    "Para preparar el examen de evolución, estudié distintos ejemplos y teorías."
-  ],
-  [
-    "A menudo debatimos diferentes puntos de vista sobre ecosistemas complejos en clase.",
-    "El profesor nos pidió reflexionar sobre la importancia de ecosistemas complejos en la sociedad.",
-    "En equipos, creamos presentaciones detalladas sobre ecosistemas complejos.",
-    "Para preparar el examen de ecosistemas complejos, estudié distintos ejemplos y teorías.",
-    "Mientras investigaba sobre ecosistemas complejos, descubrí cosas muy interesantes."
-  ],
-  [
-    "El profesor nos pidió reflexionar sobre la importancia de relieve en la sociedad.",
-    "En equipos, creamos presentaciones detalladas sobre relieve.",
-    "Para preparar el examen de relieve, estudié distintos ejemplos y teorías.",
-    "Mientras investigaba sobre relieve, descubrí cosas muy interesantes.",
-    "La relación entre relieve y la vida cotidiana es sorprendente."
-  ],
-  [
-    "En equipos, creamos presentaciones detalladas sobre química básica.",
-    "Para preparar el examen de química básica, estudié distintos ejemplos y teorías.",
-    "Mientras investigaba sobre química básica, descubrí cosas muy interesantes.",
-    "La relación entre química básica y la vida cotidiana es sorprendente.",
-    "Analizamos química básica en profundidad durante las clases."
-  ]
+  ["La célula es la unidad de vida más pequeña que existe.", "Algunos seres vivos, como las bacterias, solo tienen una.", "Los animales y las plantas estamos formados por millones de ellas.", "Se agrupan para formar tejidos y órganos."],
+  ["El ecosistema del bosque está lleno de vida.", "Los árboles son los productores, creando su propio alimento.", "Los ciervos son consumidores primarios porque comen plantas.", "Los zorros son consumidores secundarios porque cazan ciervos."],
+  ["La materia nos rodea por todas partes.", "Puede encontrarse en estado sólido, líquido o gaseoso.", "Por ejemplo, el agua puede ser hielo, líquido o vapor.", "Estos cambios de estado se producen con el frío o el calor."],
+  ["La energía eólica es una fuente de energía renovable.", "Se produce gracias a la fuerza del viento.", "Unos molinos gigantes, llamados aerogeneradores, la transforman en electricidad."],
+  ["La función de nutrición es vital para los seres vivos.", "Engloba el aparato digestivo, el respiratorio, el circulatorio y el excretor.", "Todos ellos trabajan de forma coordinada.", "Así conseguimos la energía y los materiales que necesitamos."],
+  ["El cerebro es el órgano que dirige nuestro cuerpo.", "Recibe información a través de los sentidos.", "Procesa esa información y envía las órdenes a los músculos.", "Es como un ordenador increíblemente potente."],
+  ["Los animales vivíparos nacen del vientre de su madre.", "Las crías se alimentan de la leche materna al nacer.", "Los mamíferos, como los perros o los humanos, son vivíparos."],
+  ["La flor es el órgano reproductor de muchas plantas.", "El polen viaja desde los estambres hasta el pistilo.", "Tras la fecundación, el óvulo se transforma en semilla.", "El ovario se convierte en el fruto que protege la semilla."],
+  ["Un circuito eléctrico simple necesita varios componentes.", "Necesita un generador, como una pila, que da energía.", "Los cables conductores transportan la electricidad.", "Una bombilla o un motor actúan como receptores."],
+  ["El Sistema Solar está formado por el Sol y los astros que giran a su alrededor.", "Hay ocho planetas principales en nuestro sistema.", "La Tierra ocupa la tercera órbita contando desde el Sol.", "Además de planetas, hay satélites, cometas y asteroides."],
+  ["La digestión de los alimentos comienza en la boca.", "Los dientes trituran la comida y la saliva la humedece.", "Este primer bolo alimenticio baja por el esófago.", "En el estómago, los jugos gástricos continúan el proceso."],
+  ["Las articulaciones son las uniones entre los huesos.", "Nos permiten doblar las rodillas o girar la muñeca.", "Sin ellas, nuestro esqueleto sería completamente rígido."],
+  ["Los hongos no son ni animales ni plantas.", "Forman su propio reino de seres vivos.", "Se alimentan descomponiendo materia orgánica.", "Las setas y el moho son tipos de hongos."],
+  ["El camuflaje es una estrategia de supervivencia.", "Muchos animales imitan los colores de su entorno.", "Así consiguen pasar desapercibidos para sus depredadores."],
+  ["La Tierra tiene dos movimientos principales.", "El de rotación, sobre sí misma, causa el día y la noche.", "El de traslación, alrededor del Sol, causa las estaciones del año."],
+  ["El agua es un recurso muy valioso.", "Aunque cubre la mayor parte del planeta, solo una pequeña fracción es dulce.", "Es fundamental no malgastarla y mantenerla limpia.", "Todos los seres vivos dependemos de ella."],
+  ["Los pulmones son los órganos principales de la respiración.", "En su interior, el oxígeno del aire pasa a la sangre.", "A la vez, el dióxido de carbono sale de la sangre.", "Este intercambio de gases es vital."],
+  ["Los imanes crean un campo magnético a su alrededor.", "Tienen la capacidad de atraer objetos de hierro.", "Cada imán tiene un polo norte y un polo sur."],
+  ["Una polea es una máquina simple que nos ayuda.", "Sirve para levantar objetos pesados con menos esfuerzo.", "Consiste en una rueda por la que pasa una cuerda."],
+  ["Las vacunas nos protegen de muchas enfermedades.", "Introducen en nuestro cuerpo un virus debilitado.", "Así, nuestro sistema inmunitario aprende a defenderse.", "Son un avance importantísimo de la medicina."],
+  ["Los animales ovíparos se desarrollan dentro de un huevo.", "La cáscara protege al embrión mientras crece.", "Las aves, los peces y los reptiles son ovíparos."],
+  ["La biodiversidad es la gran variedad de vida en la Tierra.", "Incluye a todas las plantas, animales y microorganismos.", "Es muy importante protegerla para mantener el equilibrio del planeta."],
+  ["Un cambio químico altera la naturaleza de una sustancia.", "Cuando quemamos un papel, se convierte en ceniza.", "La ceniza es una sustancia completamente nueva.", "No podemos volver a obtener el papel original."],
+  ["Los animales invertebrados son los que no tienen esqueleto interno.", "Es el grupo de animales más numeroso del planeta.", "Los insectos, los moluscos o las medusas son invertebrados."],
+  ["Los glóbulos rojos son células de la sangre.", "Su misión es transportar el oxígeno desde los pulmones.", "Lo reparten por todas las partes del cuerpo."],
+  ["Las plantas necesitan luz, agua, aire y sales minerales.", "Absorben el agua y las sales por la raíz.", "Toman el dióxido de carbono del aire por las hojas."],
+  ["Un eclipse de Sol ocurre cuando la Luna se interpone.", "La Luna se coloca entre el Sol y la Tierra.", "Proyecta una sombra sobre nuestro planeta."],
+  ["La flotabilidad depende de la densidad.", "Un objeto flota si es menos denso que el líquido.", "Por eso, un trozo de madera flota en el agua."],
+  ["La reproducción asexual solo necesita un individuo.", "Algunas plantas pueden reproducirse por esquejes.", "Una estrella de mar puede regenerarse a partir de un brazo."],
+  ["El sonido necesita un medio para viajar.", "Puede ser el aire, el agua o un sólido.", "En el vacío del espacio no se puede oír nada."]
 ]

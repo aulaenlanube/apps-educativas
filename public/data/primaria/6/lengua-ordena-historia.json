@@ -1,182 +1,32 @@
 [
-  [
-    "La importancia de figuras literarias en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, figuras literarias ha influido en muchos avances científicos.",
-    "Entender figuras literarias nos permite interpretar fenómenos complejos."
-  ],
-  [
-    "Durante la historia, argumentos ha influido en muchos avances científicos.",
-    "Entender argumentos nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de argumentos son numerosas y variadas."
-  ],
-  [
-    "Entender géneros literarios nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de géneros literarios son numerosas y variadas.",
-    "Estudiar géneros literarios nos prepara para retos futuros."
-  ],
-  [
-    "Las aplicaciones prácticas de ensayos son numerosas y variadas.",
-    "Estudiar ensayos nos prepara para retos futuros.",
-    "El análisis crítico de ensayos muestra su relevancia en el desarrollo tecnológico."
-  ],
-  [
-    "Estudiar comunicaciones nos prepara para retos futuros.",
-    "El análisis crítico de comunicaciones muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de comunicaciones."
-  ],
-  [
-    "El análisis crítico de figuras literarias muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de figuras literarias.",
-    "Discutimos cómo figuras literarias ha evolucionado a lo largo de los siglos."
-  ],
-  [
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de argumentos.",
-    "Discutimos cómo argumentos ha evolucionado a lo largo de los siglos.",
-    "La comprensión de argumentos abre puertas a nuevas disciplinas científicas."
-  ],
-  [
-    "Discutimos cómo géneros literarios ha evolucionado a lo largo de los siglos.",
-    "La comprensión de géneros literarios abre puertas a nuevas disciplinas científicas.",
-    "Explorar géneros literarios nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
-  ],
-  [
-    "La comprensión de ensayos abre puertas a nuevas disciplinas científicas.",
-    "Explorar ensayos nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de ensayos en nuestra educación se refleja en su uso en diferentes áreas."
-  ],
-  [
-    "Explorar comunicaciones nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de comunicaciones en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, comunicaciones ha influido en muchos avances científicos."
-  ],
-  [
-    "La importancia de figuras literarias en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, figuras literarias ha influido en muchos avances científicos.",
-    "Entender figuras literarias nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de figuras literarias son numerosas y variadas."
-  ],
-  [
-    "Durante la historia, argumentos ha influido en muchos avances científicos.",
-    "Entender argumentos nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de argumentos son numerosas y variadas.",
-    "Estudiar argumentos nos prepara para retos futuros."
-  ],
-  [
-    "Entender géneros literarios nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de géneros literarios son numerosas y variadas.",
-    "Estudiar géneros literarios nos prepara para retos futuros.",
-    "El análisis crítico de géneros literarios muestra su relevancia en el desarrollo tecnológico."
-  ],
-  [
-    "Las aplicaciones prácticas de ensayos son numerosas y variadas.",
-    "Estudiar ensayos nos prepara para retos futuros.",
-    "El análisis crítico de ensayos muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de ensayos."
-  ],
-  [
-    "Estudiar comunicaciones nos prepara para retos futuros.",
-    "El análisis crítico de comunicaciones muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de comunicaciones.",
-    "Discutimos cómo comunicaciones ha evolucionado a lo largo de los siglos."
-  ],
-  [
-    "El análisis crítico de figuras literarias muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de figuras literarias.",
-    "Discutimos cómo figuras literarias ha evolucionado a lo largo de los siglos.",
-    "La comprensión de figuras literarias abre puertas a nuevas disciplinas científicas."
-  ],
-  [
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de argumentos.",
-    "Discutimos cómo argumentos ha evolucionado a lo largo de los siglos.",
-    "La comprensión de argumentos abre puertas a nuevas disciplinas científicas.",
-    "Explorar argumentos nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
-  ],
-  [
-    "Discutimos cómo géneros literarios ha evolucionado a lo largo de los siglos.",
-    "La comprensión de géneros literarios abre puertas a nuevas disciplinas científicas.",
-    "Explorar géneros literarios nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de géneros literarios en nuestra educación se refleja en su uso en diferentes áreas."
-  ],
-  [
-    "La comprensión de ensayos abre puertas a nuevas disciplinas científicas.",
-    "Explorar ensayos nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de ensayos en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, ensayos ha influido en muchos avances científicos."
-  ],
-  [
-    "Explorar comunicaciones nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de comunicaciones en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, comunicaciones ha influido en muchos avances científicos.",
-    "Entender comunicaciones nos permite interpretar fenómenos complejos."
-  ],
-  [
-    "La importancia de figuras literarias en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, figuras literarias ha influido en muchos avances científicos.",
-    "Entender figuras literarias nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de figuras literarias son numerosas y variadas.",
-    "Estudiar figuras literarias nos prepara para retos futuros."
-  ],
-  [
-    "Durante la historia, argumentos ha influido en muchos avances científicos.",
-    "Entender argumentos nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de argumentos son numerosas y variadas.",
-    "Estudiar argumentos nos prepara para retos futuros.",
-    "El análisis crítico de argumentos muestra su relevancia en el desarrollo tecnológico."
-  ],
-  [
-    "Entender géneros literarios nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de géneros literarios son numerosas y variadas.",
-    "Estudiar géneros literarios nos prepara para retos futuros.",
-    "El análisis crítico de géneros literarios muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de géneros literarios."
-  ],
-  [
-    "Las aplicaciones prácticas de ensayos son numerosas y variadas.",
-    "Estudiar ensayos nos prepara para retos futuros.",
-    "El análisis crítico de ensayos muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de ensayos.",
-    "Discutimos cómo ensayos ha evolucionado a lo largo de los siglos."
-  ],
-  [
-    "Estudiar comunicaciones nos prepara para retos futuros.",
-    "El análisis crítico de comunicaciones muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de comunicaciones.",
-    "Discutimos cómo comunicaciones ha evolucionado a lo largo de los siglos.",
-    "La comprensión de comunicaciones abre puertas a nuevas disciplinas científicas."
-  ],
-  [
-    "El análisis crítico de figuras literarias muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de figuras literarias.",
-    "Discutimos cómo figuras literarias ha evolucionado a lo largo de los siglos.",
-    "La comprensión de figuras literarias abre puertas a nuevas disciplinas científicas.",
-    "Explorar figuras literarias nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
-  ],
-  [
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de argumentos.",
-    "Discutimos cómo argumentos ha evolucionado a lo largo de los siglos.",
-    "La comprensión de argumentos abre puertas a nuevas disciplinas científicas.",
-    "Explorar argumentos nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de argumentos en nuestra educación se refleja en su uso en diferentes áreas."
-  ],
-  [
-    "Discutimos cómo géneros literarios ha evolucionado a lo largo de los siglos.",
-    "La comprensión de géneros literarios abre puertas a nuevas disciplinas científicas.",
-    "Explorar géneros literarios nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de géneros literarios en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, géneros literarios ha influido en muchos avances científicos."
-  ],
-  [
-    "La comprensión de ensayos abre puertas a nuevas disciplinas científicas.",
-    "Explorar ensayos nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de ensayos en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, ensayos ha influido en muchos avances científicos.",
-    "Entender ensayos nos permite interpretar fenómenos complejos."
-  ],
-  [
-    "Explorar comunicaciones nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de comunicaciones en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, comunicaciones ha influido en muchos avances científicos.",
-    "Entender comunicaciones nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de comunicaciones son numerosas y variadas."
-  ]
+  ["El análisis sintáctico de una oración es complejo.", "Primero, hay que identificar el sujeto y el predicado.", "Después, se analizan los complementos y demás elementos.", "Es un ejercicio clave en la asignatura de lengua."],
+  ["El escritor presentó su última novela.", "Firmó ejemplares a todos sus lectores.", "Explicó que se había inspirado en un viaje.", "La novela fue un éxito de ventas."],
+  ["El protagonista de aquella película era un detective privado.", "Tenía que resolver un caso muy misterioso.", "Siguió las pistas por toda la ciudad.", "Al final, descubrió que el culpable era quien menos se esperaba."],
+  ["El verbo es el núcleo del predicado.", "Expresa la acción que realiza el sujeto.", "Concuerda con el sujeto en número y persona.", "Puede ir acompañado de diversos complementos."],
+  ["La acentuación de las palabras sigue unas reglas.", "Las palabras agudas se acentúan si acaban en vocal, -n o -s.", "Las palabras llanas, al contrario.", "Todas las palabras esdrújulas se acentúan siempre."],
+  ["La comunicación es un proceso complejo.", "Intervienen un emisor, un receptor y un mensaje.", "El mensaje se transmite a través de un canal.", "Es fundamental para la vida en sociedad."],
+  ["La biblioteca del barrio ha organizado un club de lectura.", "Nos reunimos una vez al mes para comentar un libro.", "Es una actividad muy enriquecedora.", "Compartimos nuestras opiniones y descubrimos nuevas lecturas."],
+  ["La poesía es un género literario que busca la belleza.", "Utiliza recursos como la metáfora o la comparación.", "Los poemas se estructuran en versos y estrofas.", "A menudo, los versos tienen rima."],
+  ["El teatro es un espectáculo en vivo.", "Los actores interpretan a unos personajes sobre un escenario.", "Siguen un texto escrito llamado guion teatral.", "El público observa la representación."],
+  ["Para escribir una buena noticia, hay que ser objetivo.", "El periodista debe informar de los hechos sin dar su opinión.", "La noticia debe responder a las preguntas básicas.", "Qué, quién, cómo, cuándo, dónde y por qué."],
+  ["Una oración compuesta tiene más de un verbo.", "Está formada por varias proposiciones.", "Estas proposiciones pueden ser coordinadas o subordinadas.", "Su estudio es más complejo que el de la oración simple."],
+  ["Los pronombres personales sustituyen a un nombre.", "'Él', 'nosotros' o 'vosotras' son pronombres personales.", "Se utilizan para no repetir el nombre constantemente.", "Los hay tónicos y átonos."],
+  ["Una descripción puede ser objetiva o subjetiva.", "La descripción objetiva informa de la realidad tal como es.", "La subjetiva incluye las impresiones y emociones del autor."],
+  ["El cuento es una narración breve.", "Suele tener pocos personajes y una trama sencilla.", "Tradicionalmente, empezaba con 'Érase una vez...'.", "Tiene una introducción, un nudo y un desenlace."],
+  ["Tengo que hacer un resumen de un texto largo.", "Primero, leeré el texto con atención para entenderlo bien.", "Después, subrayaré las ideas principales.", "Finalmente, redactaré el resumen con mis propias palabras."],
+  ["La lengua castellana proviene del latín.", "Es una de las lenguas románicas.", "Comparte raíces con el gallego, el francés o el italiano.", "Tiene una gran riqueza de palabras y expresiones."],
+  ["El diálogo es una parte fundamental de la narración.", "Reproduce las conversaciones de los personajes.", "Cada intervención se marca con un guion.", "Aporta realismo y agilidad al texto."],
+  ["Los gentilicios son palabras que indican el origen.", "Derivan del nombre del lugar de procedencia.", "El gentilicio de Madrid es 'madrileño'.", "El de los habitantes de Sevilla es 'sevillano'."],
+  ["Una fábula es un relato con una enseñanza.", "Sus protagonistas suelen ser animales que hablan.", "Al final, siempre incluye una moraleja.", "La fábula de la cigarra y la hormiga es un ejemplo."],
+  ["Una entrevista sirve para obtener información.", "El periodista prepara una serie de preguntas.", "El entrevistado responde a las preguntas.", "Puede publicarse en un periódico o emitirse por televisión."],
+  ["El campo semántico de 'vivienda' incluye muchas palabras.", "Palabras como 'casa', 'piso', 'apartamento' o 'chalé'.", "Todas se refieren a un lugar donde vivir.", "Comparten una parte de su significado."],
+  ["Para formar el plural, normalmente añadimos una '-s' o '-es'.", "Pero hay reglas especiales para algunas palabras.", "Por ejemplo, 'luz' hace el plural 'luces'.", "Hay que conocer bien estas reglas ortográficas."],
+  ["La metáfora es una figura retórica.", "Consiste en identificar un término real con uno imaginario.", "'Las perlas de tu boca' es una metáfora para 'los dientes'." ],
+  ["El texto expositivo tiene como finalidad informar.", "Presenta las ideas de forma clara y ordenada.", "Utiliza un lenguaje preciso y objetivo.", "Los libros de texto son un buen ejemplo."],
+  ["Una familia de palabras tiene una raíz común.", "De la palabra 'mar' derivan 'marinero', 'marea' o 'marítimo'.", "Todas están relacionadas por su significado.", "La raíz es la parte que no cambia."],
+  ["Los determinantes posesivos indican a quién pertenece algo.", "'Mi libro', 'tu hermana', 'sus amigos'.", "Concuerdan en género y número con el sustantivo.", "Los hay para un poseedor y para varios."],
+  ["Un texto instructivo nos da indicaciones.", "Nos explica cómo hacer algo paso a paso.", "Una receta de cocina o el manual de un juego son ejemplos.", "Utiliza verbos en imperativo."],
+  ["El cómic narra una historia con dibujos.", "El texto aparece dentro de bocadillos o globos.", "Las viñetas son los cuadros que componen la página.", "Utiliza onomatopeyas para representar los sonidos."],
+  ["La biografía narra la vida de una persona.", "Explica los hechos más importantes desde su nacimiento.", "La autobiografía es cuando la persona escribe sobre sí misma.", "Es un subgénero narrativo."],
+  ["Para hacer una buena exposición oral, hay que prepararse.", "Primero, se debe organizar bien la información.", "Es útil hacer un guion con las ideas principales.", "Se debe hablar despacio y con claridad."]
 ]

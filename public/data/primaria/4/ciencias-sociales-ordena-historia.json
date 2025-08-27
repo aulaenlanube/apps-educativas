@@ -1,182 +1,32 @@
 [
-  [
-    "Aunque las civilizaciones antiguas puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender las civilizaciones antiguas, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de las civilizaciones antiguas son cada vez más desafiantes."
-  ],
-  [
-    "Para comprender la geografía española, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de la geografía española son cada vez más desafiantes.",
-    "El conocimiento de la geografía española es esencial para avanzar."
-  ],
-  [
-    "Nuestros ejercicios de los derechos son cada vez más desafiantes.",
-    "El conocimiento de los derechos es esencial para avanzar.",
-    "Cuando discutimos los derechos, todos participamos activamente."
-  ],
-  [
-    "El conocimiento de los deberes es esencial para avanzar.",
-    "Cuando discutimos los deberes, todos participamos activamente.",
-    "A veces asociamos los deberes con ejemplos de la vida real para entenderlo mejor."
-  ],
-  [
-    "Cuando discutimos los héroes, todos participamos activamente.",
-    "A veces asociamos los héroes con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar los héroes, revisamos lo aprendido anteriormente."
-  ],
-  [
-    "A veces asociamos las civilizaciones antiguas con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar las civilizaciones antiguas, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender las civilizaciones antiguas con distintos puntos de vista."
-  ],
-  [
-    "Antes de estudiar la geografía española, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender la geografía española con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en la geografía española."
-  ],
-  [
-    "Los trabajos en grupo nos ayudan a aprender los derechos con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en los derechos.",
-    "Después de las actividades, evaluamos lo que sabemos de los derechos."
-  ],
-  [
-    "Cada semana dedicamos tiempo extra para profundizar en los deberes.",
-    "Después de las actividades, evaluamos lo que sabemos de los deberes.",
-    "Aunque los deberes puede ser complejo, con esfuerzo se comprende."
-  ],
-  [
-    "Después de las actividades, evaluamos lo que sabemos de los héroes.",
-    "Aunque los héroes puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender los héroes, primero repasamos los conceptos básicos."
-  ],
-  [
-    "Aunque las civilizaciones antiguas puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender las civilizaciones antiguas, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de las civilizaciones antiguas son cada vez más desafiantes.",
-    "El conocimiento de las civilizaciones antiguas es esencial para avanzar."
-  ],
-  [
-    "Para comprender la geografía española, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de la geografía española son cada vez más desafiantes.",
-    "El conocimiento de la geografía española es esencial para avanzar.",
-    "Cuando discutimos la geografía española, todos participamos activamente."
-  ],
-  [
-    "Nuestros ejercicios de los derechos son cada vez más desafiantes.",
-    "El conocimiento de los derechos es esencial para avanzar.",
-    "Cuando discutimos los derechos, todos participamos activamente.",
-    "A veces asociamos los derechos con ejemplos de la vida real para entenderlo mejor."
-  ],
-  [
-    "El conocimiento de los deberes es esencial para avanzar.",
-    "Cuando discutimos los deberes, todos participamos activamente.",
-    "A veces asociamos los deberes con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar los deberes, revisamos lo aprendido anteriormente."
-  ],
-  [
-    "Cuando discutimos los héroes, todos participamos activamente.",
-    "A veces asociamos los héroes con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar los héroes, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender los héroes con distintos puntos de vista."
-  ],
-  [
-    "A veces asociamos las civilizaciones antiguas con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar las civilizaciones antiguas, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender las civilizaciones antiguas con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en las civilizaciones antiguas."
-  ],
-  [
-    "Antes de estudiar la geografía española, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender la geografía española con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en la geografía española.",
-    "Después de las actividades, evaluamos lo que sabemos de la geografía española."
-  ],
-  [
-    "Los trabajos en grupo nos ayudan a aprender los derechos con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en los derechos.",
-    "Después de las actividades, evaluamos lo que sabemos de los derechos.",
-    "Aunque los derechos puede ser complejo, con esfuerzo se comprende."
-  ],
-  [
-    "Cada semana dedicamos tiempo extra para profundizar en los deberes.",
-    "Después de las actividades, evaluamos lo que sabemos de los deberes.",
-    "Aunque los deberes puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender los deberes, primero repasamos los conceptos básicos."
-  ],
-  [
-    "Después de las actividades, evaluamos lo que sabemos de los héroes.",
-    "Aunque los héroes puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender los héroes, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de los héroes son cada vez más desafiantes."
-  ],
-  [
-    "Aunque las civilizaciones antiguas puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender las civilizaciones antiguas, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de las civilizaciones antiguas son cada vez más desafiantes.",
-    "El conocimiento de las civilizaciones antiguas es esencial para avanzar.",
-    "Cuando discutimos las civilizaciones antiguas, todos participamos activamente."
-  ],
-  [
-    "Para comprender la geografía española, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de la geografía española son cada vez más desafiantes.",
-    "El conocimiento de la geografía española es esencial para avanzar.",
-    "Cuando discutimos la geografía española, todos participamos activamente.",
-    "A veces asociamos la geografía española con ejemplos de la vida real para entenderlo mejor."
-  ],
-  [
-    "Nuestros ejercicios de los derechos son cada vez más desafiantes.",
-    "El conocimiento de los derechos es esencial para avanzar.",
-    "Cuando discutimos los derechos, todos participamos activamente.",
-    "A veces asociamos los derechos con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar los derechos, revisamos lo aprendido anteriormente."
-  ],
-  [
-    "El conocimiento de los deberes es esencial para avanzar.",
-    "Cuando discutimos los deberes, todos participamos activamente.",
-    "A veces asociamos los deberes con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar los deberes, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender los deberes con distintos puntos de vista."
-  ],
-  [
-    "Cuando discutimos los héroes, todos participamos activamente.",
-    "A veces asociamos los héroes con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar los héroes, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender los héroes con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en los héroes."
-  ],
-  [
-    "A veces asociamos las civilizaciones antiguas con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar las civilizaciones antiguas, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender las civilizaciones antiguas con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en las civilizaciones antiguas.",
-    "Después de las actividades, evaluamos lo que sabemos de las civilizaciones antiguas."
-  ],
-  [
-    "Antes de estudiar la geografía española, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender la geografía española con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en la geografía española.",
-    "Después de las actividades, evaluamos lo que sabemos de la geografía española.",
-    "Aunque la geografía española puede ser complejo, con esfuerzo se comprende."
-  ],
-  [
-    "Los trabajos en grupo nos ayudan a aprender los derechos con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en los derechos.",
-    "Después de las actividades, evaluamos lo que sabemos de los derechos.",
-    "Aunque los derechos puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender los derechos, primero repasamos los conceptos básicos."
-  ],
-  [
-    "Cada semana dedicamos tiempo extra para profundizar en los deberes.",
-    "Después de las actividades, evaluamos lo que sabemos de los deberes.",
-    "Aunque los deberes puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender los deberes, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de los deberes son cada vez más desafiantes."
-  ],
-  [
-    "Después de las actividades, evaluamos lo que sabemos de los héroes.",
-    "Aunque los héroes puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender los héroes, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de los héroes son cada vez más desafiantes.",
-    "El conocimiento de los héroes es esencial para avanzar."
-  ]
+  ["La Prehistoria es la primera etapa de la humanidad.", "Los hombres prehistóricos eran nómadas y cazadores.", "Pintaban animales en las paredes de las cuevas."],
+  ["Los romanos conquistaron la península ibérica.", "Construyeron ciudades, calzadas y acueductos.", "Nos dejaron su lengua, el latín."],
+  ["En la Edad Media, la sociedad era feudal.", "Los caballeros defendían los castillos de los nobles.", "Los monjes copiaban libros en los monasterios."],
+  ["Cristóbal Colón quería llegar a las Indias por una nueva ruta.", "Cruzó el océano Atlántico con tres carabelas.", "En 1492, llegó a un nuevo continente: América."],
+  ["La invención de la imprenta fue muy importante.", "Permitió hacer muchos libros de forma rápida.", "La cultura pudo llegar a más personas."],
+  ["La Revolución Industrial empezó en el siglo XVIII.", "Se inventó la máquina de vapor, que movía los trenes.", "Mucha gente del campo se fue a trabajar a las fábricas."],
+  ["La Tierra es un planeta del Sistema Solar.", "Gira sobre sí misma, provocando el día y la noche.", "También gira alrededor del Sol, originando las estaciones."],
+  ["El relieve de España es muy variado.", "En el centro hay una gran Meseta.", "Está rodeada de importantes cordilleras."],
+  ["Los ríos recogen el agua de la lluvia.", "Desembocan en el mar, en un lago o en otro río.", "El curso de un río tiene tres partes: alto, medio y bajo."],
+  ["El clima de un lugar nos dice el tiempo que suele hacer.", "En España hay clima mediterráneo y oceánico, entre otros.", "La temperatura y las lluvias son elementos del clima."],
+  ["La población de un país puede aumentar o disminuir.", "La natalidad es el número de bebés que nacen.", "La mortalidad es el número de personas que mueren."],
+  ["El sector primario obtiene productos de la naturaleza.", "La agricultura, la ganadería y la pesca son actividades de este sector.", "Nos proporcionan alimentos y materias primas."],
+  ["El sector secundario transforma las materias primas.", "La industria y la construcción pertenecen a este sector.", "Las fábricas producen los objetos que usamos."],
+  ["El sector terciario ofrece servicios a las personas.", "El comercio, el transporte o la sanidad son ejemplos.", "Es el sector que más empleo genera en España."],
+  ["La Constitución es la ley más importante de España.", "Recoge nuestros derechos y nuestros deberes.", "Establece que España es una monarquía parlamentaria."],
+  ["El rey es el Jefe del Estado.", "Representa a España en otros países.", "Su función es simbólica."],
+  ["Para orientarnos, usamos los puntos cardinales.", "La brújula siempre señala el norte.", "El Sol sale por el este y se pone por el oeste."],
+  ["Un mapa es la representación de un territorio.", "La leyenda del mapa explica el significado de los símbolos.", "La escala nos dice cuántas veces se ha reducido la realidad."],
+  ["La Unión Europea es una asociación de países de Europa.", "Comparten algunas leyes y una moneda, el euro.", "Sus ciudadanos pueden viajar y trabajar libremente en los países miembros."],
+  ["El ayuntamiento gobierna el municipio.", "El alcalde es la persona que lo dirige.", "Se encarga de los servicios como la limpieza o el transporte."],
+  ["Los egipcios construyeron grandes pirámides.", "Eran las tumbas de los faraones.", "Creían en la vida después de la muerte."],
+  ["Los griegos fueron una civilización muy avanzada.", "Inventaron la democracia y el teatro.", "Celebraban los Juegos Olímpicos en honor a sus dioses."],
+  ["Las materias primas se obtienen de la naturaleza.", "La madera o el algodón son materias primas.", "La industria las transforma en productos elaborados."],
+  ["El comercio consiste en comprar y vender productos.", "Puede ser comercio interior, dentro de un país, o exterior.", "Las tiendas son establecimientos comerciales."],
+  ["El agua es un recurso escaso y necesario.", "Debemos evitar malgastarla en nuestras casas.", "No hay que contaminar los ríos ni los mares."],
+  ["El patrimonio cultural incluye monumentos y tradiciones.", "La Alhambra de Granada es un monumento muy famoso.", "Es nuestra responsabilidad conservarlo."],
+  ["La atmósfera es la capa de aire que rodea la Tierra.", "Nos protege del sol y tiene el oxígeno que respiramos.", "La contaminación del aire es un problema grave."],
+  ["El relieve de la costa tiene acantilados y playas.", "Un golfo es una entrada grande de mar en la costa.", "Una península es tierra rodeada de agua por todas partes menos por una."],
+  ["El censo de población se realiza cada diez años.", "Cuenta cuántas personas viven en un país.", "Ayuda a organizar los servicios públicos."],
+  ["La Edad Contemporánea llega hasta nuestros días.", "Se caracteriza por grandes avances tecnológicos.", "La invención de internet ha cambiado el mundo."]
 ]

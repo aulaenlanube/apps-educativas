@@ -1,182 +1,32 @@
 [
-  [
-    "Aunque liderazgo puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender liderazgo, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de liderazgo son cada vez más desafiantes."
-  ],
-  [
-    "Para comprender orientación vocacional, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de orientación vocacional son cada vez más desafiantes.",
-    "El conocimiento de orientación vocacional es esencial para avanzar."
-  ],
-  [
-    "Nuestros ejercicios de gestión del tiempo son cada vez más desafiantes.",
-    "El conocimiento de gestión del tiempo es esencial para avanzar.",
-    "Cuando discutimos gestión del tiempo, todos participamos activamente."
-  ],
-  [
-    "El conocimiento de escucha activa es esencial para avanzar.",
-    "Cuando discutimos escucha activa, todos participamos activamente.",
-    "A veces asociamos escucha activa con ejemplos de la vida real para entenderlo mejor."
-  ],
-  [
-    "Cuando discutimos asertividad, todos participamos activamente.",
-    "A veces asociamos asertividad con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar asertividad, revisamos lo aprendido anteriormente."
-  ],
-  [
-    "A veces asociamos liderazgo con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar liderazgo, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender liderazgo con distintos puntos de vista."
-  ],
-  [
-    "Antes de estudiar orientación vocacional, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender orientación vocacional con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en orientación vocacional."
-  ],
-  [
-    "Los trabajos en grupo nos ayudan a aprender gestión del tiempo con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en gestión del tiempo.",
-    "Después de las actividades, evaluamos lo que sabemos de gestión del tiempo."
-  ],
-  [
-    "Cada semana dedicamos tiempo extra para profundizar en escucha activa.",
-    "Después de las actividades, evaluamos lo que sabemos de escucha activa.",
-    "Aunque escucha activa puede ser complejo, con esfuerzo se comprende."
-  ],
-  [
-    "Después de las actividades, evaluamos lo que sabemos de asertividad.",
-    "Aunque asertividad puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender asertividad, primero repasamos los conceptos básicos."
-  ],
-  [
-    "Aunque liderazgo puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender liderazgo, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de liderazgo son cada vez más desafiantes.",
-    "El conocimiento de liderazgo es esencial para avanzar."
-  ],
-  [
-    "Para comprender orientación vocacional, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de orientación vocacional son cada vez más desafiantes.",
-    "El conocimiento de orientación vocacional es esencial para avanzar.",
-    "Cuando discutimos orientación vocacional, todos participamos activamente."
-  ],
-  [
-    "Nuestros ejercicios de gestión del tiempo son cada vez más desafiantes.",
-    "El conocimiento de gestión del tiempo es esencial para avanzar.",
-    "Cuando discutimos gestión del tiempo, todos participamos activamente.",
-    "A veces asociamos gestión del tiempo con ejemplos de la vida real para entenderlo mejor."
-  ],
-  [
-    "El conocimiento de escucha activa es esencial para avanzar.",
-    "Cuando discutimos escucha activa, todos participamos activamente.",
-    "A veces asociamos escucha activa con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar escucha activa, revisamos lo aprendido anteriormente."
-  ],
-  [
-    "Cuando discutimos asertividad, todos participamos activamente.",
-    "A veces asociamos asertividad con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar asertividad, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender asertividad con distintos puntos de vista."
-  ],
-  [
-    "A veces asociamos liderazgo con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar liderazgo, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender liderazgo con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en liderazgo."
-  ],
-  [
-    "Antes de estudiar orientación vocacional, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender orientación vocacional con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en orientación vocacional.",
-    "Después de las actividades, evaluamos lo que sabemos de orientación vocacional."
-  ],
-  [
-    "Los trabajos en grupo nos ayudan a aprender gestión del tiempo con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en gestión del tiempo.",
-    "Después de las actividades, evaluamos lo que sabemos de gestión del tiempo.",
-    "Aunque gestión del tiempo puede ser complejo, con esfuerzo se comprende."
-  ],
-  [
-    "Cada semana dedicamos tiempo extra para profundizar en escucha activa.",
-    "Después de las actividades, evaluamos lo que sabemos de escucha activa.",
-    "Aunque escucha activa puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender escucha activa, primero repasamos los conceptos básicos."
-  ],
-  [
-    "Después de las actividades, evaluamos lo que sabemos de asertividad.",
-    "Aunque asertividad puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender asertividad, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de asertividad son cada vez más desafiantes."
-  ],
-  [
-    "Aunque liderazgo puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender liderazgo, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de liderazgo son cada vez más desafiantes.",
-    "El conocimiento de liderazgo es esencial para avanzar.",
-    "Cuando discutimos liderazgo, todos participamos activamente."
-  ],
-  [
-    "Para comprender orientación vocacional, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de orientación vocacional son cada vez más desafiantes.",
-    "El conocimiento de orientación vocacional es esencial para avanzar.",
-    "Cuando discutimos orientación vocacional, todos participamos activamente.",
-    "A veces asociamos orientación vocacional con ejemplos de la vida real para entenderlo mejor."
-  ],
-  [
-    "Nuestros ejercicios de gestión del tiempo son cada vez más desafiantes.",
-    "El conocimiento de gestión del tiempo es esencial para avanzar.",
-    "Cuando discutimos gestión del tiempo, todos participamos activamente.",
-    "A veces asociamos gestión del tiempo con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar gestión del tiempo, revisamos lo aprendido anteriormente."
-  ],
-  [
-    "El conocimiento de escucha activa es esencial para avanzar.",
-    "Cuando discutimos escucha activa, todos participamos activamente.",
-    "A veces asociamos escucha activa con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar escucha activa, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender escucha activa con distintos puntos de vista."
-  ],
-  [
-    "Cuando discutimos asertividad, todos participamos activamente.",
-    "A veces asociamos asertividad con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar asertividad, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender asertividad con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en asertividad."
-  ],
-  [
-    "A veces asociamos liderazgo con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar liderazgo, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender liderazgo con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en liderazgo.",
-    "Después de las actividades, evaluamos lo que sabemos de liderazgo."
-  ],
-  [
-    "Antes de estudiar orientación vocacional, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender orientación vocacional con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en orientación vocacional.",
-    "Después de las actividades, evaluamos lo que sabemos de orientación vocacional.",
-    "Aunque orientación vocacional puede ser complejo, con esfuerzo se comprende."
-  ],
-  [
-    "Los trabajos en grupo nos ayudan a aprender gestión del tiempo con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en gestión del tiempo.",
-    "Después de las actividades, evaluamos lo que sabemos de gestión del tiempo.",
-    "Aunque gestión del tiempo puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender gestión del tiempo, primero repasamos los conceptos básicos."
-  ],
-  [
-    "Cada semana dedicamos tiempo extra para profundizar en escucha activa.",
-    "Después de las actividades, evaluamos lo que sabemos de escucha activa.",
-    "Aunque escucha activa puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender escucha activa, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de escucha activa son cada vez más desafiantes."
-  ],
-  [
-    "Después de las actividades, evaluamos lo que sabemos de asertividad.",
-    "Aunque asertividad puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender asertividad, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de asertividad son cada vez más desafiantes.",
-    "El conocimiento de asertividad es esencial para avanzar."
-  ]
+  ["Había un rumor falso sobre un compañero.", "Decidimos no difundirlo y hablar con él.", "Aclarar las cosas evitó un gran malentendido."],
+  ["El equipo de baloncesto perdió el partido final.", "En lugar de culparse, se animaron unos a otros.", "Entendieron que el esfuerzo era lo más importante."],
+  ["Marta tenía miedo de exponer su trabajo en clase.", "Sus amigos la ayudaron a ensayar varias veces.", "Al final, hizo una exposición fantástica."],
+  ["Alguien rompió el cristal de una ventana jugando.", "El grupo entero asumió la responsabilidad.", "Hablaron con el director y se ofrecieron a pagarlo."],
+  ["Un compañero nuevo llegó de otro país.", "Al principio se sentía solo porque no entendía el idioma.", "Creamos un equipo de bienvenida para ayudarle a integrarse."],
+  ["Vimos que estaban acosando a un niño en el patio.", "No miramos hacia otro lado y avisamos a un profesor.", "La intervención del profesor detuvo el acoso."],
+  ["Teníamos opiniones muy diferentes sobre cómo hacer un proyecto.", "Hicimos una lluvia de ideas y votamos la mejor opción.", "El resultado final fue una mezcla de las ideas de todos."],
+  ["Laura encontró una cartera con dinero en el vestuario.", "Podría habérsela quedado, pero la entregó a su tutor.", "La dueña de la cartera le estuvo muy agradecida."],
+  ["El abuelo de Carlos estaba enfermo en el hospital.", "Toda la clase le escribió cartas para darle ánimos.", "Carlos se sintió muy apoyado por sus compañeros."],
+  ["Durante un debate, las opiniones se acaloraron.", "La moderadora pidió calma y recordó las normas.", "El debate continuó de forma mucho más respetuosa."],
+  ["Mi amigo me contó un secreto muy importante.", "Aunque otros me preguntaron, no dije nada.", "La confianza es la base de nuestra amistad."],
+  ["El equipo de limpieza estaba sobrecargado de trabajo.", "Decidimos organizar una campaña para mantener las clases más limpias.", "El colegio mejoró y su trabajo se hizo más fácil."],
+  ["Me costaba mucho entender las divisiones con decimales.", "Le pedí ayuda a una compañera que se le daban muy bien.", "Gracias a su paciencia, por fin lo entendí."],
+  ["Organizamos una recogida de alimentos para una ONG.", "Toda la comunidad escolar colaboró aportando comida.", "Aprendimos el valor de la solidaridad."],
+  ["En un juego, uno de los equipos hizo trampas.", "En lugar de enfadarnos, hablamos con ellos.", "Repetimos el juego de forma justa y fue más divertido."],
+  ["Mi amiga estaba triste porque había suspendido un examen.", "No le dije 'no es para tanto', sino que la escuché.", "A veces, solo necesitas que alguien te escuche."],
+  ["El profesor propuso un proyecto voluntario sobre el medio ambiente.", "Al principio solo se apuntaron dos personas.", "Al final, toda la clase participó en la limpieza del río."],
+  ["Había que elegir un delegado para la clase.", "Los candidatos presentaron sus propuestas de forma clara.", "Realizamos una votación secreta y respetamos el resultado."],
+  ["Un compañero se burló de mis zapatillas nuevas.", "Me sentí mal, pero le dije con calma que su comentario me había dolido.", "Se disculpó y entendió que no estuvo bien."],
+  ["Teníamos que montar un mueble para el rincón de lectura.", "Las instrucciones parecían muy complicadas.", "Colaborando entre todos, conseguimos montarlo perfectamente."],
+  ["Encontramos un pájaro herido en el patio.", "Con cuidado, lo llevamos a la conserjería.", "El conserje llamó a un centro de recuperación de animales."],
+  ["Mi hermano pequeño no sabía atarse los cordones.", "Con mucha paciencia, le enseñé cómo hacerlo.", "Cuando lo consiguió, se puso muy contento."],
+  ["Nos dimos cuenta de que usábamos demasiados vasos de plástico.", "Propusimos traer una botella reutilizable cada uno.", "Redujimos mucho la cantidad de residuos."],
+  ["Un amigo se cambió de casa a otra ciudad.", "Para que no nos echara de menos, hacemos videollamadas.", "La distancia no puede romper una buena amistad."],
+  ["Estaba enfadado porque no me habían elegido para el equipo.", "Respiré hondo y pensé en las razones.", "Decidí entrenar más para mejorar la próxima vez."],
+  ["Vimos a una persona mayor que se había caído en la calle.", "Nos acercamos a preguntarle si necesitaba ayuda.", "Llamamos a una ambulancia para que la atendieran."],
+  ["El trabajo de historia era muy largo y aburrido.", "Decidimos convertirlo en una obra de teatro.", "Aprendimos mucho más y nos lo pasamos genial."],
+  ["Me sentía abrumado con la cantidad de deberes.", "Hice un horario para organizar mi tiempo de estudio.", "Ahora me siento menos estresado y saco mejores notas."],
+  ["Una compañera dio una respuesta equivocada y algunos se rieron.", "El profesor explicó que de los errores se aprende.", "Nadie volvió a reírse de una equivocación."],
+  ["Al final del curso, escribimos una nota de agradecimiento.", "Se la dimos a todos los profesores por su trabajo.", "Fue una bonita forma de despedirnos."]
 ]

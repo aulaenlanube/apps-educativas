@@ -1,182 +1,32 @@
 [
-  [
-    "La importancia de la Revolución Francesa en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, la Revolución Francesa ha influido en muchos avances científicos.",
-    "Entender la Revolución Francesa nos permite interpretar fenómenos complejos."
-  ],
-  [
-    "Durante la historia, la democracia ha influido en muchos avances científicos.",
-    "Entender la democracia nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de la democracia son numerosas y variadas."
-  ],
-  [
-    "Entender la globalización nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de la globalización son numerosas y variadas.",
-    "Estudiar la globalización nos prepara para retos futuros."
-  ],
-  [
-    "Las aplicaciones prácticas de los derechos humanos son numerosas y variadas.",
-    "Estudiar los derechos humanos nos prepara para retos futuros.",
-    "El análisis crítico de los derechos humanos muestra su relevancia en el desarrollo tecnológico."
-  ],
-  [
-    "Estudiar la Unión Europea nos prepara para retos futuros.",
-    "El análisis crítico de la Unión Europea muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de la Unión Europea."
-  ],
-  [
-    "El análisis crítico de la Revolución Francesa muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de la Revolución Francesa.",
-    "Discutimos cómo la Revolución Francesa ha evolucionado a lo largo de los siglos."
-  ],
-  [
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de la democracia.",
-    "Discutimos cómo la democracia ha evolucionado a lo largo de los siglos.",
-    "La comprensión de la democracia abre puertas a nuevas disciplinas científicas."
-  ],
-  [
-    "Discutimos cómo la globalización ha evolucionado a lo largo de los siglos.",
-    "La comprensión de la globalización abre puertas a nuevas disciplinas científicas.",
-    "Explorar la globalización nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
-  ],
-  [
-    "La comprensión de los derechos humanos abre puertas a nuevas disciplinas científicas.",
-    "Explorar los derechos humanos nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de los derechos humanos en nuestra educación se refleja en su uso en diferentes áreas."
-  ],
-  [
-    "Explorar la Unión Europea nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de la Unión Europea en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, la Unión Europea ha influido en muchos avances científicos."
-  ],
-  [
-    "La importancia de la Revolución Francesa en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, la Revolución Francesa ha influido en muchos avances científicos.",
-    "Entender la Revolución Francesa nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de la Revolución Francesa son numerosas y variadas."
-  ],
-  [
-    "Durante la historia, la democracia ha influido en muchos avances científicos.",
-    "Entender la democracia nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de la democracia son numerosas y variadas.",
-    "Estudiar la democracia nos prepara para retos futuros."
-  ],
-  [
-    "Entender la globalización nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de la globalización son numerosas y variadas.",
-    "Estudiar la globalización nos prepara para retos futuros.",
-    "El análisis crítico de la globalización muestra su relevancia en el desarrollo tecnológico."
-  ],
-  [
-    "Las aplicaciones prácticas de los derechos humanos son numerosas y variadas.",
-    "Estudiar los derechos humanos nos prepara para retos futuros.",
-    "El análisis crítico de los derechos humanos muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de los derechos humanos."
-  ],
-  [
-    "Estudiar la Unión Europea nos prepara para retos futuros.",
-    "El análisis crítico de la Unión Europea muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de la Unión Europea.",
-    "Discutimos cómo la Unión Europea ha evolucionado a lo largo de los siglos."
-  ],
-  [
-    "El análisis crítico de la Revolución Francesa muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de la Revolución Francesa.",
-    "Discutimos cómo la Revolución Francesa ha evolucionado a lo largo de los siglos.",
-    "La comprensión de la Revolución Francesa abre puertas a nuevas disciplinas científicas."
-  ],
-  [
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de la democracia.",
-    "Discutimos cómo la democracia ha evolucionado a lo largo de los siglos.",
-    "La comprensión de la democracia abre puertas a nuevas disciplinas científicas.",
-    "Explorar la democracia nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
-  ],
-  [
-    "Discutimos cómo la globalización ha evolucionado a lo largo de los siglos.",
-    "La comprensión de la globalización abre puertas a nuevas disciplinas científicas.",
-    "Explorar la globalización nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de la globalización en nuestra educación se refleja en su uso en diferentes áreas."
-  ],
-  [
-    "La comprensión de los derechos humanos abre puertas a nuevas disciplinas científicas.",
-    "Explorar los derechos humanos nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de los derechos humanos en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, los derechos humanos ha influido en muchos avances científicos."
-  ],
-  [
-    "Explorar la Unión Europea nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de la Unión Europea en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, la Unión Europea ha influido en muchos avances científicos.",
-    "Entender la Unión Europea nos permite interpretar fenómenos complejos."
-  ],
-  [
-    "La importancia de la Revolución Francesa en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, la Revolución Francesa ha influido en muchos avances científicos.",
-    "Entender la Revolución Francesa nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de la Revolución Francesa son numerosas y variadas.",
-    "Estudiar la Revolución Francesa nos prepara para retos futuros."
-  ],
-  [
-    "Durante la historia, la democracia ha influido en muchos avances científicos.",
-    "Entender la democracia nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de la democracia son numerosas y variadas.",
-    "Estudiar la democracia nos prepara para retos futuros.",
-    "El análisis crítico de la democracia muestra su relevancia en el desarrollo tecnológico."
-  ],
-  [
-    "Entender la globalización nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de la globalización son numerosas y variadas.",
-    "Estudiar la globalización nos prepara para retos futuros.",
-    "El análisis crítico de la globalización muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de la globalización."
-  ],
-  [
-    "Las aplicaciones prácticas de los derechos humanos son numerosas y variadas.",
-    "Estudiar los derechos humanos nos prepara para retos futuros.",
-    "El análisis crítico de los derechos humanos muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de los derechos humanos.",
-    "Discutimos cómo los derechos humanos ha evolucionado a lo largo de los siglos."
-  ],
-  [
-    "Estudiar la Unión Europea nos prepara para retos futuros.",
-    "El análisis crítico de la Unión Europea muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de la Unión Europea.",
-    "Discutimos cómo la Unión Europea ha evolucionado a lo largo de los siglos.",
-    "La comprensión de la Unión Europea abre puertas a nuevas disciplinas científicas."
-  ],
-  [
-    "El análisis crítico de la Revolución Francesa muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de la Revolución Francesa.",
-    "Discutimos cómo la Revolución Francesa ha evolucionado a lo largo de los siglos.",
-    "La comprensión de la Revolución Francesa abre puertas a nuevas disciplinas científicas.",
-    "Explorar la Revolución Francesa nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
-  ],
-  [
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de la democracia.",
-    "Discutimos cómo la democracia ha evolucionado a lo largo de los siglos.",
-    "La comprensión de la democracia abre puertas a nuevas disciplinas científicas.",
-    "Explorar la democracia nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de la democracia en nuestra educación se refleja en su uso en diferentes áreas."
-  ],
-  [
-    "Discutimos cómo la globalización ha evolucionado a lo largo de los siglos.",
-    "La comprensión de la globalización abre puertas a nuevas disciplinas científicas.",
-    "Explorar la globalización nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de la globalización en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, la globalización ha influido en muchos avances científicos."
-  ],
-  [
-    "La comprensión de los derechos humanos abre puertas a nuevas disciplinas científicas.",
-    "Explorar los derechos humanos nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de los derechos humanos en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, los derechos humanos ha influido en muchos avances científicos.",
-    "Entender los derechos humanos nos permite interpretar fenómenos complejos."
-  ],
-  [
-    "Explorar la Unión Europea nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de la Unión Europea en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, la Unión Europea ha influido en muchos avances científicos.",
-    "Entender la Unión Europea nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de la Unión Europea son numerosas y variadas."
-  ]
+  ["La invención de la escritura marcó el fin de la Prehistoria.", "Surgió en Mesopotamia hace más de cinco mil años.", "Al principio, se utilizaban pictogramas para representar objetos e ideas.", "Gracias a la escritura, podemos conocer con detalle las civilizaciones antiguas."],
+  ["El Imperio Romano fue una de las civilizaciones más influyentes de la historia.", "Extendió su dominio por toda la cuenca del Mediterráneo.", "Construyeron una impresionante red de calzadas para conectar sus territorios.", "Su legado, como el derecho o la lengua latina, perdura hasta hoy."],
+  ["Durante la Edad Media, el feudalismo organizó la sociedad.", "El rey concedía tierras o feudos a los nobles a cambio de su lealtad.", "Los campesinos trabajaban las tierras de los nobles a cambio de protección.", "La vida de la mayoría de la población era muy dura."],
+  ["La Ruta de la Seda fue una red de caminos comerciales que unía Asia y Europa.", "Por ella viajaban caravanas cargadas de seda, especias y otros productos de lujo.", "No solo se intercambiaban mercancías, sino también ideas y culturas.", "Marco Polo fue uno de los exploradores más famosos que la recorrió."],
+  ["La Revolución Industrial, iniciada en el siglo XVIII, transformó el mundo.", "La invención de la máquina de vapor permitió la mecanización de la producción.", "Se construyeron grandes fábricas en las ciudades, atrayendo a la población del campo.", "Esta transformación económica también provocó importantes cambios sociales."],
+  ["La Declaración Universal de los Derechos Humanos fue proclamada en 1948.", "Establece que todas las personas nacen libres e iguales.", "Estos derechos son universales e inalienables, sin importar la nacionalidad o el color de piel.", "Su objetivo es promover la paz y la justicia en todo el mundo."],
+  ["España es una monarquía parlamentaria con un sistema democrático.", "Los ciudadanos eligen a sus representantes en el Parlamento mediante elecciones.", "El Parlamento elabora las leyes y controla la acción del Gobierno.", "El rey ejerce la Jefatura del Estado de forma simbólica."],
+  ["La Unión Europea es un proyecto de integración política y económica.", "Se fundó tras la Segunda Guerra Mundial para asegurar la paz en el continente.", "Sus países miembros colaboran estrechamente en muchos ámbitos.", "La creación del euro como moneda única fue un paso muy importante."],
+  ["El relieve de la Tierra está en constante cambio, aunque muy lentamente.", "Las fuerzas internas, como los volcanes, crean nuevas montañas.", "Las fuerzas externas, como la erosión del agua, las desgastan.", "Este ciclo de creación y destrucción modela el paisaje."],
+  ["Los climas del mundo se clasifican en diferentes zonas.", "En la zona cálida, cerca del ecuador, se encuentran los climas ecuatorial y tropical.", "En las zonas templadas, hay climas como el mediterráneo o el oceánico.", "En las zonas frías, cerca de los polos, domina el clima polar."],
+  ["La globalización ha hecho que el mundo esté más interconectado que nunca.", "Podemos comprar productos fabricados en la otra punta del planeta.", "Las noticias y las ideas viajan instantáneamente a través de internet.", "Este fenómeno tiene tanto ventajas como inconvenientes."],
+  ["El patrimonio de la humanidad está formado por lugares de excepcional valor.", "La UNESCO es la organización que decide qué lugares reciben este título.", "Pueden ser monumentos, como las pirámides de Egipto, o espacios naturales.", "Todos tenemos la responsabilidad de proteger este legado para el futuro."],
+  ["Las antiguas civilizaciones fluviales surgieron junto a grandes ríos.", "Egipto se desarrolló a orillas del Nilo, y Mesopotamia entre el Tigris y el Éufrates.", "Los ríos proporcionaban agua para beber y para regar los cultivos.", "Sus crecidas fertilizaban la tierra, permitiendo una agricultura muy productiva."],
+  ["El Renacimiento fue un periodo de gran esplendor cultural en Europa.", "Artistas como Leonardo da Vinci o Miguel Ángel crearon obras maestras.", "Se recuperó el interés por la cultura y el arte de la Grecia y Roma clásicas.", "La invención de la imprenta ayudó a difundir las nuevas ideas."],
+  ["La población mundial se distribuye de manera muy desigual.", "Existen grandes zonas densamente pobladas, como el sudeste asiático.", "Otras áreas, como los desiertos o las zonas polares, están casi vacías.", "Los factores físicos y humanos explican esta distribución."],
+  ["La democracia ateniense es un antecedente de nuestros sistemas políticos.", "Los ciudadanos varones de Atenas participaban directamente en el gobierno.", "Se reunían en la asamblea para votar las leyes y tomar decisiones.", "Aunque era una democracia limitada, fue un avance revolucionario para la época."],
+  ["La caída del Muro de Berlín en 1989 fue un momento histórico.", "Simbolizó el fin de la Guerra Fría entre Estados Unidos y la Unión Soviética.", "Permitió la reunificación de Alemania tras décadas de separación.", "Miles de personas celebraron la caída de este símbolo de división."],
+  ["El sector primario agrupa las actividades económicas que obtienen recursos de la naturaleza.", "La agricultura, la ganadería, la pesca y la minería son sus principales ramas.", "Estos recursos se destinan al consumo directo o a ser transformados por la industria.", "En los países desarrollados, ocupa a una pequeña parte de la población."],
+  ["El desarrollo sostenible busca compatibilizar el progreso con la protección del planeta.", "Propone un crecimiento económico que no agote los recursos naturales.", "Fomenta el uso de energías renovables y el reciclaje.", "Su objetivo es garantizar un futuro digno para las próximas generaciones."],
+  ["La organización territorial de España es compleja.", "El Estado se divide en diecisiete comunidades autónomas y dos ciudades autónomas.", "Cada comunidad se divide en provincias, y estas a su vez en municipios.", "Esta estructura busca acercar la administración a los ciudadanos."],
+  ["La Revolución Neolítica fue un cambio fundamental en la vida humana.", "Los seres humanos aprendieron a cultivar plantas y a domesticar animales.", "Dejaron de ser nómadas y se establecieron en aldeas permanentes.", "Este cambio permitió el desarrollo de las primeras civilizaciones."],
+  ["El comercio triangular fue una ruta comercial que se estableció en el Atlántico.", "Los barcos europeos llevaban productos manufacturados a África.", "Allí los intercambiaban por esclavos que eran llevados a América.", "Finalmente, volvían a Europa con productos americanos como el azúcar o el café."],
+  ["La Ilustración fue un movimiento intelectual del siglo XVIII.", "Los pensadores ilustrados defendían la razón y el conocimiento científico.", "Cuestionaron el poder absoluto de los reyes y los privilegios de la nobleza.", "Sus ideas fueron la base de la Revolución Francesa."],
+  ["Los mapas son herramientas esenciales para la geografía.", "Utilizan símbolos, colores y una escala para representar la realidad.", "Un mapa físico muestra el relieve, mientras que un mapa político muestra las fronteras.", "Saber interpretar un mapa es una habilidad muy importante."],
+  ["La densidad de población mide cómo de poblado está un territorio.", "Se calcula dividiendo el número de habitantes entre la superficie en kilómetros cuadrados.", "Las grandes ciudades tienen una densidad de población muy alta.", "Las zonas rurales suelen tener una densidad muy baja."],
+  ["Los fenicios fueron un pueblo de grandes navegantes y comerciantes.", "Crearon factorías y colonias por toda la costa del Mediterráneo.", "Desarrollaron un alfabeto que es la base de nuestro sistema de escritura actual.", "Su influencia fue fundamental para otras culturas."],
+  ["El Camino de Santiago es una ruta de peregrinación milenaria.", "Miles de peregrinos lo recorren cada año por motivos religiosos o culturales.", "Existen diferentes rutas que atraviesan España hasta llegar a Santiago de Compostela.", "Es una experiencia única que une a personas de todo el mundo."],
+  ["Las pirámides de población son gráficos que muestran la estructura de una población.", "Representan la cantidad de hombres y mujeres para cada grupo de edad.", "Un gráfico con base ancha indica una población joven con alta natalidad.", "Un gráfico con base estrecha indica una población envejecida."],
+  ["La Segunda Guerra Mundial fue el conflicto más destructivo de la historia.", "Enfrentó a las potencias del Eje contra los Aliados.", "Millones de personas, tanto soldados como civiles, perdieron la vida.", "Su fin llevó a la creación de la Organización de las Naciones Unidas (ONU)."],
+  ["El cambio climático está provocando el aumento de la temperatura global.", "Es causado principalmente por la emisión de gases de efecto invernadero.", "Sus consecuencias son el deshielo de los polos y la subida del nivel del mar.", "Es urgente tomar medidas para frenar este proceso."]
 ]

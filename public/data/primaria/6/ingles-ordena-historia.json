@@ -1,182 +1,32 @@
 [
-  [
-    "La importancia de condicionales en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, condicionales ha influido en muchos avances científicos.",
-    "Entender condicionales nos permite interpretar fenómenos complejos."
-  ],
-  [
-    "Durante la historia, discursos indirectos ha influido en muchos avances científicos.",
-    "Entender discursos indirectos nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de discursos indirectos son numerosas y variadas."
-  ],
-  [
-    "Entender expresiones idiomáticas nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de expresiones idiomáticas son numerosas y variadas.",
-    "Estudiar expresiones idiomáticas nos prepara para retos futuros."
-  ],
-  [
-    "Las aplicaciones prácticas de debates son numerosas y variadas.",
-    "Estudiar debates nos prepara para retos futuros.",
-    "El análisis crítico de debates muestra su relevancia en el desarrollo tecnológico."
-  ],
-  [
-    "Estudiar presentaciones nos prepara para retos futuros.",
-    "El análisis crítico de presentaciones muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de presentaciones."
-  ],
-  [
-    "El análisis crítico de condicionales muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de condicionales.",
-    "Discutimos cómo condicionales ha evolucionado a lo largo de los siglos."
-  ],
-  [
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de discursos indirectos.",
-    "Discutimos cómo discursos indirectos ha evolucionado a lo largo de los siglos.",
-    "La comprensión de discursos indirectos abre puertas a nuevas disciplinas científicas."
-  ],
-  [
-    "Discutimos cómo expresiones idiomáticas ha evolucionado a lo largo de los siglos.",
-    "La comprensión de expresiones idiomáticas abre puertas a nuevas disciplinas científicas.",
-    "Explorar expresiones idiomáticas nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
-  ],
-  [
-    "La comprensión de debates abre puertas a nuevas disciplinas científicas.",
-    "Explorar debates nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de debates en nuestra educación se refleja en su uso en diferentes áreas."
-  ],
-  [
-    "Explorar presentaciones nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de presentaciones en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, presentaciones ha influido en muchos avances científicos."
-  ],
-  [
-    "La importancia de condicionales en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, condicionales ha influido en muchos avances científicos.",
-    "Entender condicionales nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de condicionales son numerosas y variadas."
-  ],
-  [
-    "Durante la historia, discursos indirectos ha influido en muchos avances científicos.",
-    "Entender discursos indirectos nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de discursos indirectos son numerosas y variadas.",
-    "Estudiar discursos indirectos nos prepara para retos futuros."
-  ],
-  [
-    "Entender expresiones idiomáticas nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de expresiones idiomáticas son numerosas y variadas.",
-    "Estudiar expresiones idiomáticas nos prepara para retos futuros.",
-    "El análisis crítico de expresiones idiomáticas muestra su relevancia en el desarrollo tecnológico."
-  ],
-  [
-    "Las aplicaciones prácticas de debates son numerosas y variadas.",
-    "Estudiar debates nos prepara para retos futuros.",
-    "El análisis crítico de debates muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de debates."
-  ],
-  [
-    "Estudiar presentaciones nos prepara para retos futuros.",
-    "El análisis crítico de presentaciones muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de presentaciones.",
-    "Discutimos cómo presentaciones ha evolucionado a lo largo de los siglos."
-  ],
-  [
-    "El análisis crítico de condicionales muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de condicionales.",
-    "Discutimos cómo condicionales ha evolucionado a lo largo de los siglos.",
-    "La comprensión de condicionales abre puertas a nuevas disciplinas científicas."
-  ],
-  [
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de discursos indirectos.",
-    "Discutimos cómo discursos indirectos ha evolucionado a lo largo de los siglos.",
-    "La comprensión de discursos indirectos abre puertas a nuevas disciplinas científicas.",
-    "Explorar discursos indirectos nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
-  ],
-  [
-    "Discutimos cómo expresiones idiomáticas ha evolucionado a lo largo de los siglos.",
-    "La comprensión de expresiones idiomáticas abre puertas a nuevas disciplinas científicas.",
-    "Explorar expresiones idiomáticas nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de expresiones idiomáticas en nuestra educación se refleja en su uso en diferentes áreas."
-  ],
-  [
-    "La comprensión de debates abre puertas a nuevas disciplinas científicas.",
-    "Explorar debates nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de debates en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, debates ha influido en muchos avances científicos."
-  ],
-  [
-    "Explorar presentaciones nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de presentaciones en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, presentaciones ha influido en muchos avances científicos.",
-    "Entender presentaciones nos permite interpretar fenómenos complejos."
-  ],
-  [
-    "La importancia de condicionales en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, condicionales ha influido en muchos avances científicos.",
-    "Entender condicionales nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de condicionales son numerosas y variadas.",
-    "Estudiar condicionales nos prepara para retos futuros."
-  ],
-  [
-    "Durante la historia, discursos indirectos ha influido en muchos avances científicos.",
-    "Entender discursos indirectos nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de discursos indirectos son numerosas y variadas.",
-    "Estudiar discursos indirectos nos prepara para retos futuros.",
-    "El análisis crítico de discursos indirectos muestra su relevancia en el desarrollo tecnológico."
-  ],
-  [
-    "Entender expresiones idiomáticas nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de expresiones idiomáticas son numerosas y variadas.",
-    "Estudiar expresiones idiomáticas nos prepara para retos futuros.",
-    "El análisis crítico de expresiones idiomáticas muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de expresiones idiomáticas."
-  ],
-  [
-    "Las aplicaciones prácticas de debates son numerosas y variadas.",
-    "Estudiar debates nos prepara para retos futuros.",
-    "El análisis crítico de debates muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de debates.",
-    "Discutimos cómo debates ha evolucionado a lo largo de los siglos."
-  ],
-  [
-    "Estudiar presentaciones nos prepara para retos futuros.",
-    "El análisis crítico de presentaciones muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de presentaciones.",
-    "Discutimos cómo presentaciones ha evolucionado a lo largo de los siglos.",
-    "La comprensión de presentaciones abre puertas a nuevas disciplinas científicas."
-  ],
-  [
-    "El análisis crítico de condicionales muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de condicionales.",
-    "Discutimos cómo condicionales ha evolucionado a lo largo de los siglos.",
-    "La comprensión de condicionales abre puertas a nuevas disciplinas científicas.",
-    "Explorar condicionales nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
-  ],
-  [
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de discursos indirectos.",
-    "Discutimos cómo discursos indirectos ha evolucionado a lo largo de los siglos.",
-    "La comprensión de discursos indirectos abre puertas a nuevas disciplinas científicas.",
-    "Explorar discursos indirectos nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de discursos indirectos en nuestra educación se refleja en su uso en diferentes áreas."
-  ],
-  [
-    "Discutimos cómo expresiones idiomáticas ha evolucionado a lo largo de los siglos.",
-    "La comprensión de expresiones idiomáticas abre puertas a nuevas disciplinas científicas.",
-    "Explorar expresiones idiomáticas nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de expresiones idiomáticas en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, expresiones idiomáticas ha influido en muchos avances científicos."
-  ],
-  [
-    "La comprensión de debates abre puertas a nuevas disciplinas científicas.",
-    "Explorar debates nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de debates en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, debates ha influido en muchos avances científicos.",
-    "Entender debates nos permite interpretar fenómenos complejos."
-  ],
-  [
-    "Explorar presentaciones nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de presentaciones en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, presentaciones ha influido en muchos avances científicos.",
-    "Entender presentaciones nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de presentaciones son numerosas y variadas."
-  ]
+  ["The famous detective Sherlock Holmes was called to solve a murder.", "The crime took place in a luxurious train stranded by snow.", "All the passengers are suspects and each one has a secret to hide.", "Holmes will have to use his incredible grey cells to find the culprit."],
+  ["The astronaut Thomas Pesquet spent six months on the International Space Station.", "He conducted many scientific experiments in zero gravity.", "He shared his daily life with millions of people on social media.", "His journey has inspired many young people to take an interest in space."],
+  ["Vesuvius is an Italian volcano famous for its terrible eruption.", "In the year 79, it completely buried the Roman city of Pompeii.", "The volcanic ash preserved the city almost intact for centuries.", "Today, archaeologists can study the daily life of the Romans thanks to this site."],
+  ["The gardener decided to create an organic vegetable patch in his garden.", "He doesn't use any pesticides or chemical products to grow his vegetables.", "He makes his own compost to enrich the soil.", "His tomatoes, salads and carrots have an exceptional taste."],
+  ["The music band is preparing for its first big concert.", "They have been rehearsing their songs for months to be perfect.", "On the night of the concert, the hall was packed.", "The audience sang and danced all night long."],
+  ["The explorer is embarking on an expedition through the Amazon rainforest.", "His goal is to find an indigenous tribe that has never had contact with the outside world.", "He will have to face many dangers, such as wild animals and diseases.", "It is a perilous but exciting adventure."],
+  ["The great magician Houdini was the master of escape.", "He could free himself from chains, handcuffs and even safes.", "His shows attracted huge crowds, who held their breath.", "No one has ever managed to uncover all the secrets of his tricks."],
+  ["The family found an old grimoire in the attic of the house.", "The book contained magic formulas and strange drawings.", "The children tried to say one of the formulas out loud.", "Suddenly, all the objects in the room started to float in the air."],
+  ["The artist is painting a huge mural on the wall of a building.", "His work represents the history and cultural diversity of the neighbourhood.", "He uses bright colours to attract the attention of passers-by.", "Urban art transforms the city into an open-air museum."],
+  ["The parcel I was waiting for finally arrived this morning.", "It contained the telescope I had ordered for my birthday.", "Tonight, if the sky is clear, I will be able to observe the stars.", "I hope to be able to see the rings of Saturn."],
+  ["The rugby team won the tournament final.", "The match was very close until the last second.", "The winning try was scored just before the final whistle.", "The supporters invaded the pitch to celebrate with the players."],
+  ["A violent storm hit the coast.", "Gigantic waves crashed against the rocks.", "The wind blew so hard that it uprooted trees.", "The fishing boats remained sheltered in the harbour."],
+  ["My grandfather was a lighthouse keeper on an isolated island.", "His mission was to guide the ships during the night.", "He had to make sure that the lighthouse light never went out.", "He lived through many adventures facing the raging ocean."],
+  ["The symphony orchestra performed a work by a famous composer.", "The sound of the violins mingled with that of the trumpets and percussion.", "The conductor guided the musicians with precise gestures.", "The moved audience applauded for a long time at the end of the concert."],
+  ["The group of mountaineers has undertaken the ascent of Everest.", "It is the highest mountain in the world and the climb is extremely difficult.", "They have to acclimatise to the altitude to avoid mountain sickness.", "Reaching the summit is a feat reserved for the bravest."],
+  ["The archaeologist Howard Carter discovered the tomb of Tutankhamun.", "The tomb had remained intact for over three thousand years.", "Inside, he found fabulous treasures, such as the famous golden mask.", "This discovery has allowed us to better understand the Egypt of the pharaohs."],
+  ["The children built the biggest sandcastle on the whole beach.", "They made towers, ramparts and even a drawbridge.", "They decorated it with shells and seaweed.", "Unfortunately, the rising tide washed it away a few hours later."],
+  ["The Library of Alexandria was the largest library of Antiquity.", "It contained hundreds of thousands of papyrus scrolls.", "Scholars from all over the world came to study there.", "Unfortunately, a fire destroyed it and caused an immense loss for human knowledge."],
+  ["The Tyrannosaurus Rex is one of the best-known dinosaurs.", "It was a formidable predator with an overpowered jaw.", "Despite its tiny arms, it was the king of its ecosystem.", "Its name means 'tyrant lizard king'."],
+  ["The medieval blacksmith made the tools and weapons for the whole village.", "He worked the red-hot iron on his anvil.", "His craftsmanship was essential to the life of the community.", "He was a very respected craftsman."],
+  ["The round-the-world sailing race is an extreme competition.", "Solo sailors must face the most dangerous oceans.", "They sleep very little and must constantly adjust their sails.", "Finishing the race is already a victory in itself."],
+  ["The war correspondent risks his life to inform us.", "He goes to conflict zones to witness reality.", "His reports show us the terrible consequences of war.", "His work is essential for freedom of the press."],
+  ["The Palace of Versailles was the residence of the kings of France.", "Its immense gardens and fountains are famous throughout the world.", "The Hall of Mirrors is a dazzling room with its mirrors and chandeliers.", "It is a symbol of the power of the absolute monarchy."],
+  ["The Curiosity rover has been exploring the planet Mars for many years.", "It analyses the rocks and the atmosphere to look for signs of past life.", "It sends spectacular photos of the Martian landscape.", "Its discoveries help us to better understand our planetary neighbours."],
+  ["The beekeeper harvests the honey with great care.", "He uses a smoker to calm the bees.", "He removes the frames from the hive that are filled with honey.", "It is a job that requires patience and love of nature."],
+  ["The photographer waited for the perfect moment to capture the image.", "A snow leopard appeared stealthily between the rocks.", "He only had a few seconds to take the picture.", "This exceptional shot won an international award."],
+  ["The Orient Express train connected Paris to Istanbul.", "It was the most luxurious and famous train of its time.", "On board, you could meet spies, princesses and writers.", "It became a legend thanks to the novels of Agatha Christie."],
+  ["The writer Jules Verne imagined extraordinary journeys.", "He wrote about journeys to the centre of the Earth or to the Moon.", "His science fiction novels were far ahead of his time.", "Many of his imaginary inventions have become reality."],
+  ["The potter has placed his clay vase in the kiln.", "Firing at a very high temperature will make it strong and resistant.", "After firing, he will decorate it with coloured glazes.", "Each piece he creates is unique."],
+  ["The astronaut is floating in zero gravity in the space station.", "He is carrying out important scientific experiments.", "He can observe the Earth from space.", "It is an experience that changes your life forever."]
 ]

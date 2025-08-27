@@ -1,182 +1,32 @@
 [
-  [
-    "Aunque decimales puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender decimales, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de decimales son cada vez más desafiantes."
-  ],
-  [
-    "Para comprender proporciones, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de proporciones son cada vez más desafiantes.",
-    "El conocimiento de proporciones es esencial para avanzar."
-  ],
-  [
-    "Nuestros ejercicios de fracciones equivalentes son cada vez más desafiantes.",
-    "El conocimiento de fracciones equivalentes es esencial para avanzar.",
-    "Cuando discutimos fracciones equivalentes, todos participamos activamente."
-  ],
-  [
-    "El conocimiento de volumen es esencial para avanzar.",
-    "Cuando discutimos volumen, todos participamos activamente.",
-    "A veces asociamos volumen con ejemplos de la vida real para entenderlo mejor."
-  ],
-  [
-    "Cuando discutimos estadística, todos participamos activamente.",
-    "A veces asociamos estadística con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar estadística, revisamos lo aprendido anteriormente."
-  ],
-  [
-    "A veces asociamos decimales con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar decimales, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender decimales con distintos puntos de vista."
-  ],
-  [
-    "Antes de estudiar proporciones, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender proporciones con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en proporciones."
-  ],
-  [
-    "Los trabajos en grupo nos ayudan a aprender fracciones equivalentes con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en fracciones equivalentes.",
-    "Después de las actividades, evaluamos lo que sabemos de fracciones equivalentes."
-  ],
-  [
-    "Cada semana dedicamos tiempo extra para profundizar en volumen.",
-    "Después de las actividades, evaluamos lo que sabemos de volumen.",
-    "Aunque volumen puede ser complejo, con esfuerzo se comprende."
-  ],
-  [
-    "Después de las actividades, evaluamos lo que sabemos de estadística.",
-    "Aunque estadística puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender estadística, primero repasamos los conceptos básicos."
-  ],
-  [
-    "Aunque decimales puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender decimales, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de decimales son cada vez más desafiantes.",
-    "El conocimiento de decimales es esencial para avanzar."
-  ],
-  [
-    "Para comprender proporciones, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de proporciones son cada vez más desafiantes.",
-    "El conocimiento de proporciones es esencial para avanzar.",
-    "Cuando discutimos proporciones, todos participamos activamente."
-  ],
-  [
-    "Nuestros ejercicios de fracciones equivalentes son cada vez más desafiantes.",
-    "El conocimiento de fracciones equivalentes es esencial para avanzar.",
-    "Cuando discutimos fracciones equivalentes, todos participamos activamente.",
-    "A veces asociamos fracciones equivalentes con ejemplos de la vida real para entenderlo mejor."
-  ],
-  [
-    "El conocimiento de volumen es esencial para avanzar.",
-    "Cuando discutimos volumen, todos participamos activamente.",
-    "A veces asociamos volumen con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar volumen, revisamos lo aprendido anteriormente."
-  ],
-  [
-    "Cuando discutimos estadística, todos participamos activamente.",
-    "A veces asociamos estadística con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar estadística, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender estadística con distintos puntos de vista."
-  ],
-  [
-    "A veces asociamos decimales con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar decimales, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender decimales con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en decimales."
-  ],
-  [
-    "Antes de estudiar proporciones, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender proporciones con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en proporciones.",
-    "Después de las actividades, evaluamos lo que sabemos de proporciones."
-  ],
-  [
-    "Los trabajos en grupo nos ayudan a aprender fracciones equivalentes con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en fracciones equivalentes.",
-    "Después de las actividades, evaluamos lo que sabemos de fracciones equivalentes.",
-    "Aunque fracciones equivalentes puede ser complejo, con esfuerzo se comprende."
-  ],
-  [
-    "Cada semana dedicamos tiempo extra para profundizar en volumen.",
-    "Después de las actividades, evaluamos lo que sabemos de volumen.",
-    "Aunque volumen puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender volumen, primero repasamos los conceptos básicos."
-  ],
-  [
-    "Después de las actividades, evaluamos lo que sabemos de estadística.",
-    "Aunque estadística puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender estadística, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de estadística son cada vez más desafiantes."
-  ],
-  [
-    "Aunque decimales puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender decimales, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de decimales son cada vez más desafiantes.",
-    "El conocimiento de decimales es esencial para avanzar.",
-    "Cuando discutimos decimales, todos participamos activamente."
-  ],
-  [
-    "Para comprender proporciones, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de proporciones son cada vez más desafiantes.",
-    "El conocimiento de proporciones es esencial para avanzar.",
-    "Cuando discutimos proporciones, todos participamos activamente.",
-    "A veces asociamos proporciones con ejemplos de la vida real para entenderlo mejor."
-  ],
-  [
-    "Nuestros ejercicios de fracciones equivalentes son cada vez más desafiantes.",
-    "El conocimiento de fracciones equivalentes es esencial para avanzar.",
-    "Cuando discutimos fracciones equivalentes, todos participamos activamente.",
-    "A veces asociamos fracciones equivalentes con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar fracciones equivalentes, revisamos lo aprendido anteriormente."
-  ],
-  [
-    "El conocimiento de volumen es esencial para avanzar.",
-    "Cuando discutimos volumen, todos participamos activamente.",
-    "A veces asociamos volumen con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar volumen, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender volumen con distintos puntos de vista."
-  ],
-  [
-    "Cuando discutimos estadística, todos participamos activamente.",
-    "A veces asociamos estadística con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar estadística, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender estadística con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en estadística."
-  ],
-  [
-    "A veces asociamos decimales con ejemplos de la vida real para entenderlo mejor.",
-    "Antes de estudiar decimales, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender decimales con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en decimales.",
-    "Después de las actividades, evaluamos lo que sabemos de decimales."
-  ],
-  [
-    "Antes de estudiar proporciones, revisamos lo aprendido anteriormente.",
-    "Los trabajos en grupo nos ayudan a aprender proporciones con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en proporciones.",
-    "Después de las actividades, evaluamos lo que sabemos de proporciones.",
-    "Aunque proporciones puede ser complejo, con esfuerzo se comprende."
-  ],
-  [
-    "Los trabajos en grupo nos ayudan a aprender fracciones equivalentes con distintos puntos de vista.",
-    "Cada semana dedicamos tiempo extra para profundizar en fracciones equivalentes.",
-    "Después de las actividades, evaluamos lo que sabemos de fracciones equivalentes.",
-    "Aunque fracciones equivalentes puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender fracciones equivalentes, primero repasamos los conceptos básicos."
-  ],
-  [
-    "Cada semana dedicamos tiempo extra para profundizar en volumen.",
-    "Después de las actividades, evaluamos lo que sabemos de volumen.",
-    "Aunque volumen puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender volumen, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de volumen son cada vez más desafiantes."
-  ],
-  [
-    "Después de las actividades, evaluamos lo que sabemos de estadística.",
-    "Aunque estadística puede ser complejo, con esfuerzo se comprende.",
-    "Para comprender estadística, primero repasamos los conceptos básicos.",
-    "Nuestros ejercicios de estadística son cada vez más desafiantes.",
-    "El conocimiento de estadística es esencial para avanzar."
-  ]
+  ["La clase de cuarto tiene 24 alumnos.", "El profesor quiere hacer equipos de 4 personas.", "Podrá formar 6 equipos completos."],
+  ["He comprado un libro que costaba 15 euros.", "He pagado con un billete de 20 euros.", "Me han devuelto 5 euros de cambio."],
+  ["Un lado de un cuadrado mide 5 centímetros.", "Para calcular su perímetro, sumo sus cuatro lados.", "El perímetro de ese cuadrado es de 20 centímetros."],
+  ["En el autobús viajaban 35 personas.", "En la primera parada se han bajado 12.", "Ahora quedan 23 personas en el autobús."],
+  ["Mi padre ha comprado 3 cajas de galletas.", "Cada caja contiene 10 galletas.", "En total, ha comprado 30 galletas."],
+  ["El reloj analógico marcaba las tres en punto.", "La aguja horaria estaba en el 3 y el minutero en el 12.", "Es un ángulo de 90 grados exactos."],
+  ["Una pizza está dividida en 8 porciones iguales.", "Mis amigos y yo nos hemos comido 5 porciones.", "Quedan 3 octavos de la pizza."],
+  ["Para hacer un pastel, necesito 250 gramos de harina.", "El paquete que tengo es de un kilogramo.", "Me sobrarán 750 gramos de harina."],
+  ["El cine empieza a las cinco y media de la tarde.", "La película tiene una duración de 90 minutos.", "Terminará a las siete de la tarde."],
+  ["En la granja hay 15 vacas y el doble de gallinas.", "Para saber el número de gallinas, multiplico 15 por 2.", "Hay 30 gallinas en la granja."],
+  ["Tengo una colección de 124 cromos.", "Mi amigo tiene 87 cromos.", "Tengo 37 cromos más que mi amigo."],
+  ["Un triángulo equilátero tiene sus tres lados iguales.", "Si cada lado mide 6 centímetros.", "Su perímetro será de 18 centímetros."],
+  ["He ahorrado 50 euros en mi hucha.", "Quiero comprar un juego que cuesta 35 euros.", "Después de comprarlo, me quedarán 15 euros."],
+  ["Una carrera de atletismo es de 5 kilómetros.", "Ya he recorrido 3.500 metros.", "Me faltan 1.500 metros para llegar a la meta."],
+  ["En una caja hay 100 clips.", "He utilizado tres cuartas partes.", "Me quedan 25 clips en la caja."],
+  ["La temperatura hoy es de 25 grados Celsius.", "Ayer fue de 21 grados Celsius.", "La temperatura ha subido 4 grados."],
+  ["Un ángulo recto es como la esquina de un libro.", "Mide exactamente 90 grados.", "Un ángulo agudo mide menos de 90 grados."],
+  ["Un número es par si termina en 0, 2, 4, 6 u 8.", "El número 3.456 es un número par.", "Se puede dividir entre 2 de forma exacta."],
+  ["El área de un rectángulo se calcula multiplicando su base por su altura.", "Si la base mide 10 cm y la altura 5 cm.", "Su área es de 50 centímetros cuadrados."],
+  ["He lanzado una moneda al aire.", "Puede salir cara o puede salir cruz.", "La probabilidad de que salga cara es de un 50%."],
+  ["En una bolsa hay 5 bolas rojas y 3 azules.", "Es más probable sacar una bola roja.", "Hay menos probabilidad de sacar una bola azul."],
+  ["Mi abuelo nació en el año 1950.", "Estamos en el año 2024.", "Mi abuelo tiene 74 años."],
+  ["Una receta indica que necesito medio litro de leche.", "Tengo una botella de un litro entero.", "Debo usar la mitad de la botella."],
+  ["Un camión puede transportar 3 toneladas de arena.", "Una tonelada son 1.000 kilogramos.", "El camión puede llevar 3.000 kilogramos."],
+  ["El resultado de 25 por 100 es 2.500.", "Para multiplicar por cien, añadimos dos ceros.", "Es un truco muy fácil para calcular."],
+  ["Un número primo solo se puede dividir por 1 y por sí mismo.", "El número 7 es un número primo.", "El número 8 no es primo, porque se puede dividir por 2 y por 4."],
+  ["He dibujado un círculo con un compás.", "La línea que lo forma se llama circunferencia.", "La distancia del centro al borde es el radio."],
+  ["En la frutería, un kilo de manzanas cuesta 2 euros.", "He comprado 3 kilos y medio.", "Me ha costado un total de 7 euros."],
+  ["Mi nota media en matemáticas es de un 8.", "He sacado un 7, un 8 y un 9.", "La media se calcula sumando las notas y dividiendo entre tres."],
+  ["Un polígono de cinco lados se llama pentágono.", "Si todos sus lados son iguales, es un pentágono regular.", "Tiene cinco vértices y cinco ángulos."]
 ]

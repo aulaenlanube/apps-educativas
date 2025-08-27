@@ -1,182 +1,32 @@
 [
-  [
-    "La importancia de álgebra en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, álgebra ha influido en muchos avances científicos.",
-    "Entender álgebra nos permite interpretar fenómenos complejos."
-  ],
-  [
-    "Durante la historia, funciones ha influido en muchos avances científicos.",
-    "Entender funciones nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de funciones son numerosas y variadas."
-  ],
-  [
-    "Entender geometría analítica nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de geometría analítica son numerosas y variadas.",
-    "Estudiar geometría analítica nos prepara para retos futuros."
-  ],
-  [
-    "Las aplicaciones prácticas de probabilidad avanzada son numerosas y variadas.",
-    "Estudiar probabilidad avanzada nos prepara para retos futuros.",
-    "El análisis crítico de probabilidad avanzada muestra su relevancia en el desarrollo tecnológico."
-  ],
-  [
-    "Estudiar estadística avanzada nos prepara para retos futuros.",
-    "El análisis crítico de estadística avanzada muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de estadística avanzada."
-  ],
-  [
-    "El análisis crítico de álgebra muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de álgebra.",
-    "Discutimos cómo álgebra ha evolucionado a lo largo de los siglos."
-  ],
-  [
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de funciones.",
-    "Discutimos cómo funciones ha evolucionado a lo largo de los siglos.",
-    "La comprensión de funciones abre puertas a nuevas disciplinas científicas."
-  ],
-  [
-    "Discutimos cómo geometría analítica ha evolucionado a lo largo de los siglos.",
-    "La comprensión de geometría analítica abre puertas a nuevas disciplinas científicas.",
-    "Explorar geometría analítica nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
-  ],
-  [
-    "La comprensión de probabilidad avanzada abre puertas a nuevas disciplinas científicas.",
-    "Explorar probabilidad avanzada nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de probabilidad avanzada en nuestra educación se refleja en su uso en diferentes áreas."
-  ],
-  [
-    "Explorar estadística avanzada nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de estadística avanzada en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, estadística avanzada ha influido en muchos avances científicos."
-  ],
-  [
-    "La importancia de álgebra en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, álgebra ha influido en muchos avances científicos.",
-    "Entender álgebra nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de álgebra son numerosas y variadas."
-  ],
-  [
-    "Durante la historia, funciones ha influido en muchos avances científicos.",
-    "Entender funciones nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de funciones son numerosas y variadas.",
-    "Estudiar funciones nos prepara para retos futuros."
-  ],
-  [
-    "Entender geometría analítica nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de geometría analítica son numerosas y variadas.",
-    "Estudiar geometría analítica nos prepara para retos futuros.",
-    "El análisis crítico de geometría analítica muestra su relevancia en el desarrollo tecnológico."
-  ],
-  [
-    "Las aplicaciones prácticas de probabilidad avanzada son numerosas y variadas.",
-    "Estudiar probabilidad avanzada nos prepara para retos futuros.",
-    "El análisis crítico de probabilidad avanzada muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de probabilidad avanzada."
-  ],
-  [
-    "Estudiar estadística avanzada nos prepara para retos futuros.",
-    "El análisis crítico de estadística avanzada muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de estadística avanzada.",
-    "Discutimos cómo estadística avanzada ha evolucionado a lo largo de los siglos."
-  ],
-  [
-    "El análisis crítico de álgebra muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de álgebra.",
-    "Discutimos cómo álgebra ha evolucionado a lo largo de los siglos.",
-    "La comprensión de álgebra abre puertas a nuevas disciplinas científicas."
-  ],
-  [
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de funciones.",
-    "Discutimos cómo funciones ha evolucionado a lo largo de los siglos.",
-    "La comprensión de funciones abre puertas a nuevas disciplinas científicas.",
-    "Explorar funciones nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
-  ],
-  [
-    "Discutimos cómo geometría analítica ha evolucionado a lo largo de los siglos.",
-    "La comprensión de geometría analítica abre puertas a nuevas disciplinas científicas.",
-    "Explorar geometría analítica nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de geometría analítica en nuestra educación se refleja en su uso en diferentes áreas."
-  ],
-  [
-    "La comprensión de probabilidad avanzada abre puertas a nuevas disciplinas científicas.",
-    "Explorar probabilidad avanzada nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de probabilidad avanzada en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, probabilidad avanzada ha influido en muchos avances científicos."
-  ],
-  [
-    "Explorar estadística avanzada nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de estadística avanzada en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, estadística avanzada ha influido en muchos avances científicos.",
-    "Entender estadística avanzada nos permite interpretar fenómenos complejos."
-  ],
-  [
-    "La importancia de álgebra en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, álgebra ha influido en muchos avances científicos.",
-    "Entender álgebra nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de álgebra son numerosas y variadas.",
-    "Estudiar álgebra nos prepara para retos futuros."
-  ],
-  [
-    "Durante la historia, funciones ha influido en muchos avances científicos.",
-    "Entender funciones nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de funciones son numerosas y variadas.",
-    "Estudiar funciones nos prepara para retos futuros.",
-    "El análisis crítico de funciones muestra su relevancia en el desarrollo tecnológico."
-  ],
-  [
-    "Entender geometría analítica nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de geometría analítica son numerosas y variadas.",
-    "Estudiar geometría analítica nos prepara para retos futuros.",
-    "El análisis crítico de geometría analítica muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de geometría analítica."
-  ],
-  [
-    "Las aplicaciones prácticas de probabilidad avanzada son numerosas y variadas.",
-    "Estudiar probabilidad avanzada nos prepara para retos futuros.",
-    "El análisis crítico de probabilidad avanzada muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de probabilidad avanzada.",
-    "Discutimos cómo probabilidad avanzada ha evolucionado a lo largo de los siglos."
-  ],
-  [
-    "Estudiar estadística avanzada nos prepara para retos futuros.",
-    "El análisis crítico de estadística avanzada muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de estadística avanzada.",
-    "Discutimos cómo estadística avanzada ha evolucionado a lo largo de los siglos.",
-    "La comprensión de estadística avanzada abre puertas a nuevas disciplinas científicas."
-  ],
-  [
-    "El análisis crítico de álgebra muestra su relevancia en el desarrollo tecnológico.",
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de álgebra.",
-    "Discutimos cómo álgebra ha evolucionado a lo largo de los siglos.",
-    "La comprensión de álgebra abre puertas a nuevas disciplinas científicas.",
-    "Explorar álgebra nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
-  ],
-  [
-    "A través de proyectos de investigación, profundizamos en aspectos avanzados de funciones.",
-    "Discutimos cómo funciones ha evolucionado a lo largo de los siglos.",
-    "La comprensión de funciones abre puertas a nuevas disciplinas científicas.",
-    "Explorar funciones nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de funciones en nuestra educación se refleja en su uso en diferentes áreas."
-  ],
-  [
-    "Discutimos cómo geometría analítica ha evolucionado a lo largo de los siglos.",
-    "La comprensión de geometría analítica abre puertas a nuevas disciplinas científicas.",
-    "Explorar geometría analítica nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de geometría analítica en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, geometría analítica ha influido en muchos avances científicos."
-  ],
-  [
-    "La comprensión de probabilidad avanzada abre puertas a nuevas disciplinas científicas.",
-    "Explorar probabilidad avanzada nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de probabilidad avanzada en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, probabilidad avanzada ha influido en muchos avances científicos.",
-    "Entender probabilidad avanzada nos permite interpretar fenómenos complejos."
-  ],
-  [
-    "Explorar estadística avanzada nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
-    "La importancia de estadística avanzada en nuestra educación se refleja en su uso en diferentes áreas.",
-    "Durante la historia, estadística avanzada ha influido en muchos avances científicos.",
-    "Entender estadística avanzada nos permite interpretar fenómenos complejos.",
-    "Las aplicaciones prácticas de estadística avanzada son numerosas y variadas."
-  ]
+  ["Una empresa de refrescos fabrica 10.000 litros de naranjada al día.", "Para envasarla, utiliza botellas con una capacidad de 250 mililitros.", "Primero, es necesario convertir los litros a mililitros para usar la misma unidad.", "La empresa puede llenar 40.000 botellas de naranjada cada día."],
+  ["Un ciclista profesional se prepara para una etapa de 210 kilómetros.", "Planea mantener una velocidad media de 35 kilómetros por hora.", "Para calcular el tiempo que tardará, debe dividir la distancia total entre su velocidad.", "Si no tiene ningún contratiempo, completará la etapa en 6 horas."],
+  ["En una tienda de ropa, un abrigo que costaba 120 euros tiene un 15% de descuento.", "Para saber cuánto nos ahorramos, calculamos el 15% de 120.", "El descuento es de 18 euros, por lo que el precio final se reduce.", "El abrigo rebajado costará finalmente 102 euros."],
+  ["Para construir una maqueta, un arquitecto utiliza una escala de 1:200.", "Esto significa que cada centímetro de la maqueta representa 200 centímetros en la realidad.", "La fachada del edificio en la maqueta mide 30 centímetros de ancho.", "Por lo tanto, la fachada real del edificio medirá 6.000 centímetros, es decir, 60 metros."],
+  ["Un depósito de agua con una capacidad de 5.000 litros está a tres cuartas partes de su capacidad.", "Para saber cuántos litros contiene, calculamos los 3/4 de 5.000.", "El depósito contiene actualmente 3.750 litros de agua.", "Aún se pueden añadir 1.250 litros más para llenarlo por completo."],
+  ["Un atleta corre en una pista de atletismo que mide 400 metros de longitud.", "Quiere entrenar una distancia total de 10 kilómetros.", "Primero, debe unificar las unidades, pasando los kilómetros a metros.", "El atleta deberá dar 25 vueltas completas a la pista."],
+  ["En una clase de 30 alumnos, dos quintas partes son chicos.", "Para averiguar el número de chicas, primero calculamos cuántos chicos hay.", "Hay 12 chicos, por lo que el resto serán chicas.", "En la clase hay un total de 18 chicas."],
+  ["Un panadero utiliza 500 gramos de harina para hacer una barra de pan.", "Hoy ha comprado un saco que contiene 25 kilogramos de harina.", "Para saber cuántas barras puede hacer, debe usar las mismas unidades.", "Con ese saco de harina podrá hornear 50 barras de pan."],
+  ["Queremos vallar un terreno de forma rectangular que mide 50 metros de largo por 30 de ancho.", "Para ello, necesitamos calcular el perímetro del terreno.", "El perímetro es la suma de la longitud de todos sus lados.", "Necesitaremos comprar 160 metros de valla."],
+  ["La probabilidad de sacar un número par al lanzar un dado de seis caras es de 3 sobre 6.", "Los casos favorables son sacar un 2, un 4 o un 6.", "Esta fracción se puede simplificar a un medio.", "Por lo tanto, la probabilidad es del 50%."],
+  ["Un tren de alta velocidad sale de Madrid a las 9:00 y llega a Barcelona a las 11:30.", "Ha recorrido una distancia de aproximadamente 625 kilómetros.", "Para calcular su velocidad media, dividimos la distancia entre el tiempo empleado.", "El tren ha viajado a una velocidad media de 250 kilómetros por hora."],
+  ["En una encuesta sobre la mascota preferida, el 50% eligió perro, el 25% gato y el resto otros animales.", "Estos datos se pueden representar en un gráfico de sectores.", "El sector del perro ocupará la mitad del círculo, es decir, 180 grados.", "El sector del gato ocupará una cuarta parte, 90 grados."],
+  ["El volumen de una piscina es de 75 metros cúbicos.", "Sabemos que un metro cúbico equivale a 1.000 litros de agua.", "Para conocer la capacidad de la piscina en litros, realizamos una multiplicación.", "La piscina tiene una capacidad total de 75.000 litros."],
+  ["Para aprobar una asignatura, necesito una nota media de 5 en tres exámenes.", "En los dos primeros exámenes he sacado un 4 y un 5.", "Necesito saber qué nota debo sacar en el último examen.", "Debo sacar como mínimo un 6 para que la media sea un 5."],
+  ["Un número es divisible por 6 si lo es por 2 y por 3 a la vez.", "El número 534 es par, por lo que es divisible por 2.", "La suma de sus cifras (5+3+4) es 12, que es múltiplo de 3.", "Por lo tanto, el número 534 es divisible por 6."],
+  ["He comprado un ordenador que cuesta 800 euros más el 21% de IVA.", "Primero, calculo el importe del IVA multiplicando 800 por 0,21.", "El IVA asciende a 168 euros.", "El precio final que tendré que pagar por el ordenador es de 968 euros."],
+  ["Un mapa utiliza una escala gráfica para representar las distancias.", "Mido con la regla un segmento de la escala y veo que 1 cm equivale a 10 km.", "La distancia entre dos ciudades en el mapa es de 5,5 centímetros.", "La distancia real entre las dos ciudades es de 55 kilómetros."],
+  ["Dos ángulos de un triángulo miden 40 y 60 grados.", "La suma de los tres ángulos de cualquier triángulo es siempre 180 grados.", "Para hallar el tercer ángulo, sumo los dos que conozco y se lo resto a 180.", "El tercer ángulo de ese triángulo mide 80 grados."],
+  ["Queremos embaldosar una habitación cuadrada de 4 metros de lado.", "Cada baldosa es un cuadrado de 25 centímetros de lado.", "Primero, calculamos el área de la habitación y de una baldosa en las mismas unidades.", "Necesitaremos un total de 256 baldosas para cubrir todo el suelo."],
+  ["Un librero ha vendido 135 libros esta semana.", "Esta cifra representa tres séptimas partes de todos los libros que tenía.", "Para saber cuántos libros tenía al principio, podemos usar una regla de tres.", "El librero tenía un total de 315 libros en la estantería."],
+  ["Para hacer una paella para 6 personas, se necesitan 750 gramos de arroz.", "Este fin de semana, seremos 10 personas para comer.", "Planteamos una proporción para saber cuánto arroz necesitaremos.", "Necesitaremos 1.250 gramos, es decir, un kilo y cuarto de arroz."],
+  ["El sistema de numeración romano utiliza siete letras mayúsculas.", "Cada letra tiene un valor numérico específico.", "El número 2024 se escribe en romano como MMXXIV.", "Las reglas de suma y resta determinan la posición de las letras."],
+  ["El área de un círculo se calcula con la fórmula pi por el radio al cuadrado.", "La rueda de una bicicleta tiene un radio de 40 centímetros.", "Multiplicamos 3,14 por el radio al cuadrado para hallar su área.", "El área de la rueda es de aproximadamente 5.024 centímetros cuadrados."],
+  ["Un grifo llena un depósito en 3 horas y otro lo llena en 6 horas.", "Si abrimos los dos grifos a la vez, el tiempo de llenado será menor.", "Es un problema de caudales que se resuelve sumando las fracciones de trabajo.", "Juntos, los dos grifos llenarán el depósito en solo 2 horas."],
+  ["En una carrera de relevos, cuatro atletas corren 400 metros cada uno.", "El primer atleta tardó 50 segundos, el segundo 52 y el tercero 49.", "El tiempo total del equipo fue de 3 minutos y 20 segundos.", "Calculando la diferencia, sabemos que el último atleta tardó 49 segundos."],
+  ["Una empresa ha tenido unos beneficios de 1,5 millones de euros.", "Decide repartir el 10% de esos beneficios entre sus 50 empleados.", "Primero, se calcula la cantidad total a repartir, que son 150.000 euros.", "Cada empleado recibirá una paga extra de 3.000 euros."],
+  ["Un pintor tarda 8 horas en pintar una habitación completa.", "Necesita pintar un piso que tiene 5 habitaciones iguales.", "Para calcular el tiempo total, multiplicamos el tiempo por habitación por el número de estancias.", "Tardará 40 horas de trabajo en pintar todo el piso."],
+  ["Un excursionista está a 1.200 metros de altitud y quiere subir a una cima de 2.800 metros.", "El desnivel que tiene que superar es la diferencia entre las dos altitudes.", "Debe ascender un total de 1.600 metros.", "Si sube a un ritmo de 400 metros por hora, tardará 4 horas."],
+  ["El interés que produce un capital en un banco depende de la cantidad, el tiempo y el tipo de interés.", "Si deposito 2.000 euros durante un año a un interés del 3%.", "Al final del año, habré ganado 60 euros en intereses.", "Mi capital final será de 2.060 euros."],
+  ["Un número es divisible por 5 si su última cifra es 0 o 5.", "Un número es divisible por 9 si la suma de sus cifras es un múltiplo de 9.", "El número 4.365 termina en 5, por lo que es divisible por 5.", "Además, la suma de sus cifras es 18, por lo que también es divisible por 9."]
 ]
