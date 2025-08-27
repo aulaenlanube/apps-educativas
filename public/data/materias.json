@@ -1,5 +1,4 @@
 {
- 
   "eso": {
     "1": [
       { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
@@ -51,6 +50,56 @@
       { "id": "economia", "nombre": "Economía", "icon": "📈" },
       { "id": "tecnologia", "nombre": "Tecnología", "icon": "💻" },
       { "id": "ed-fisica", "nombre": "Educación Física", "icon": "🤸" },
+      { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" }
+    ]
+  },
+  "primaria": {
+    "1": [
+      { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
+      { "id": "matematicas", "nombre": "Matemáticas", "icon": "🧮" },
+      { "id": "ciencias-naturales", "nombre": "Ciencias Naturales", "icon": "🌱" },
+      { "id": "ciencias-sociales", "nombre": "Ciencias Sociales", "icon": "🌍" },
+      { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
+      { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" }
+    ],
+    "2": [
+      { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
+      { "id": "matematicas", "nombre": "Matemáticas", "icon": "🧮" },
+      { "id": "ciencias-naturales", "nombre": "Ciencias Naturales", "icon": "🌱" },
+      { "id": "ciencias-sociales", "nombre": "Ciencias Sociales", "icon": "🌍" },
+      { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
+      { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" }
+    ],
+    "3": [
+      { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
+      { "id": "matematicas", "nombre": "Matemáticas", "icon": "🧮" },
+      { "id": "ciencias-naturales", "nombre": "Ciencias Naturales", "icon": "🌱" },
+      { "id": "ciencias-sociales", "nombre": "Ciencias Sociales", "icon": "🌍" },
+      { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
+      { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" }
+    ],
+    "4": [
+      { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
+      { "id": "matematicas", "nombre": "Matemáticas", "icon": "🧮" },
+      { "id": "ciencias-naturales", "nombre": "Ciencias Naturales", "icon": "🌱" },
+      { "id": "ciencias-sociales", "nombre": "Ciencias Sociales", "icon": "🌍" },
+      { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
+      { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" }
+    ],
+    "5": [
+      { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
+      { "id": "matematicas", "nombre": "Matemáticas", "icon": "🧮" },
+      { "id": "ciencias-naturales", "nombre": "Ciencias Naturales", "icon": "🌱" },
+      { "id": "ciencias-sociales", "nombre": "Ciencias Sociales", "icon": "🌍" },
+      { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
+      { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" }
+    ],
+    "6": [
+      { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
+      { "id": "matematicas", "nombre": "Matemáticas", "icon": "🧮" },
+      { "id": "ciencias-naturales", "nombre": "Ciencias Naturales", "icon": "🌱" },
+      { "id": "ciencias-sociales", "nombre": "Ciencias Sociales", "icon": "🌍" },
+      { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" }
     ]
   }

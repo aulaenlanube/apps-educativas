@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
-import AboutModal from '@/components/ui/AboutModal';
+import Header from '@/components/layout/Header';
+import GradientTitle from '@/components/ui/GradientTitle';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -41,28 +42,11 @@ const HomePage = () => {
 
   return (
     <div> 
-      <AboutModal open={isModalOpen} onOpenChange={setIsModalOpen} />
-
-      <header className="bg-white/80 backdrop-blur-md shadow-lg border-b border-purple-100 sticky top-0 z-50">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                <GraduationCap className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold gradient-text">EduApps</h1>
-                <p className="text-sm text-gray-600">Apps Educativas</p>
-              </div>
-            </div>
-            <nav className="flex items-center">
-              <Button variant="ghost" className="text-gray-700 hover:text-purple-600" onClick={() => setIsModalOpen(true)}>
-                Quién soy
-              </Button>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header>
+        <Button variant="ghost" className="text-gray-700 hover:text-purple-600" onClick={() => setIsModalOpen(true)}>
+          Quién soy
+        </Button>
+      </Header>
 
        <motion.section 
         initial={{ opacity: 0, scale: 0.9 }}
@@ -79,9 +63,9 @@ const HomePage = () => {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="mb-8"
           >
-            <h1 className="text-5xl md:text-7xl font-bold gradient-text mb-16 leading-normal">
+            <GradientTitle tag="h1" className="text-5xl md:text-7xl mb-16 leading-normal">
               ¡Aprende Jugando!
-            </h1>
+            </GradientTitle>
             <p className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
               Descubre las mejores apps educativas organizadas por cursos. 
               Desde 1º de Primaria hasta 4º de ESO, ¡el aprendizaje nunca fue tan divertido!
@@ -132,7 +116,7 @@ const HomePage = () => {
           <motion.div variants={itemVariants} className="text-center mb-12">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <BookOpen className="w-8 h-8 text-blue-500" />
-              <h2 className="text-4xl font-bold gradient-text">Educación Primaria</h2>
+              <GradientTitle tag="h2" className="text-4xl">Educación Primaria</GradientTitle>
               <Sparkles className="w-8 h-8 text-purple-500" />
             </div>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -185,7 +169,7 @@ const HomePage = () => {
           <motion.div variants={itemVariants} className="text-center mb-12">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <GraduationCap className="w-8 h-8 text-indigo-500" />
-              <h2 className="text-4xl font-bold gradient-text">Educación Secundaria</h2>
+              <GradientTitle tag="h2" className="text-4xl">Educación Secundaria</GradientTitle>
               <Trophy className="w-8 h-8 text-purple-500" />
             </div>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -236,7 +220,7 @@ const HomePage = () => {
       >
         <div className="container mx-auto">
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl font-bold gradient-text mb-4">¿Por qué elegir EduApps?</h2>
+            <GradientTitle tag="h2" className="text-4xl mb-4">¿Por qué elegir EduApps?</GradientTitle>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Es una plataforma diseñada para hacer el aprendizaje más efectivo y divertido
             </p>
