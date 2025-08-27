@@ -1,152 +1,182 @@
 [
   [
-    "Tengo 1 manzanas.",
-    "Compro 1 más.",
-    "Ahora tengo 2 manzanas."
+    "La importancia de álgebra en nuestra educación se refleja en su uso en diferentes áreas.",
+    "Durante la historia, álgebra ha influido en muchos avances científicos.",
+    "Entender álgebra nos permite interpretar fenómenos complejos."
   ],
   [
-    "Tengo 2 manzanas.",
-    "Compro 3 más.",
-    "Ahora tengo 5 manzanas."
+    "Durante la historia, funciones ha influido en muchos avances científicos.",
+    "Entender funciones nos permite interpretar fenómenos complejos.",
+    "Las aplicaciones prácticas de funciones son numerosas y variadas."
   ],
   [
-    "Tengo 3 manzanas.",
-    "Compro 5 más.",
-    "Ahora tengo 8 manzanas."
+    "Entender geometría analítica nos permite interpretar fenómenos complejos.",
+    "Las aplicaciones prácticas de geometría analítica son numerosas y variadas.",
+    "Estudiar geometría analítica nos prepara para retos futuros."
   ],
   [
-    "Tengo 4 manzanas.",
-    "Compro 7 más.",
-    "Ahora tengo 11 manzanas."
+    "Las aplicaciones prácticas de probabilidad avanzada son numerosas y variadas.",
+    "Estudiar probabilidad avanzada nos prepara para retos futuros.",
+    "El análisis crítico de probabilidad avanzada muestra su relevancia en el desarrollo tecnológico."
   ],
   [
-    "Tengo 5 manzanas.",
-    "Compro 9 más.",
-    "Ahora tengo 14 manzanas."
+    "Estudiar estadística avanzada nos prepara para retos futuros.",
+    "El análisis crítico de estadística avanzada muestra su relevancia en el desarrollo tecnológico.",
+    "A través de proyectos de investigación, profundizamos en aspectos avanzados de estadística avanzada."
   ],
   [
-    "Tengo 6 manzanas.",
-    "Compro 1 más.",
-    "Ahora tengo 7 manzanas."
+    "El análisis crítico de álgebra muestra su relevancia en el desarrollo tecnológico.",
+    "A través de proyectos de investigación, profundizamos en aspectos avanzados de álgebra.",
+    "Discutimos cómo álgebra ha evolucionado a lo largo de los siglos."
   ],
   [
-    "Tengo 7 manzanas.",
-    "Compro 3 más.",
-    "Ahora tengo 10 manzanas."
+    "A través de proyectos de investigación, profundizamos en aspectos avanzados de funciones.",
+    "Discutimos cómo funciones ha evolucionado a lo largo de los siglos.",
+    "La comprensión de funciones abre puertas a nuevas disciplinas científicas."
   ],
   [
-    "Tengo 8 manzanas.",
-    "Compro 5 más.",
-    "Ahora tengo 13 manzanas."
+    "Discutimos cómo geometría analítica ha evolucionado a lo largo de los siglos.",
+    "La comprensión de geometría analítica abre puertas a nuevas disciplinas científicas.",
+    "Explorar geometría analítica nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
   ],
   [
-    "Tengo 9 manzanas.",
-    "Compro 7 más.",
-    "Ahora tengo 16 manzanas."
+    "La comprensión de probabilidad avanzada abre puertas a nuevas disciplinas científicas.",
+    "Explorar probabilidad avanzada nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
+    "La importancia de probabilidad avanzada en nuestra educación se refleja en su uso en diferentes áreas."
   ],
   [
-    "Tengo 10 manzanas.",
-    "Compro 9 más.",
-    "Ahora tengo 19 manzanas."
+    "Explorar estadística avanzada nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
+    "La importancia de estadística avanzada en nuestra educación se refleja en su uso en diferentes áreas.",
+    "Durante la historia, estadística avanzada ha influido en muchos avances científicos."
   ],
   [
-    "Tengo 1 manzanas.",
-    "Compro 1 más.",
-    "Ahora tengo 2 manzanas."
+    "La importancia de álgebra en nuestra educación se refleja en su uso en diferentes áreas.",
+    "Durante la historia, álgebra ha influido en muchos avances científicos.",
+    "Entender álgebra nos permite interpretar fenómenos complejos.",
+    "Las aplicaciones prácticas de álgebra son numerosas y variadas."
   ],
   [
-    "Tengo 2 manzanas.",
-    "Compro 3 más.",
-    "Ahora tengo 5 manzanas."
+    "Durante la historia, funciones ha influido en muchos avances científicos.",
+    "Entender funciones nos permite interpretar fenómenos complejos.",
+    "Las aplicaciones prácticas de funciones son numerosas y variadas.",
+    "Estudiar funciones nos prepara para retos futuros."
   ],
   [
-    "Tengo 3 manzanas.",
-    "Compro 5 más.",
-    "Ahora tengo 8 manzanas."
+    "Entender geometría analítica nos permite interpretar fenómenos complejos.",
+    "Las aplicaciones prácticas de geometría analítica son numerosas y variadas.",
+    "Estudiar geometría analítica nos prepara para retos futuros.",
+    "El análisis crítico de geometría analítica muestra su relevancia en el desarrollo tecnológico."
   ],
   [
-    "Tengo 4 manzanas.",
-    "Compro 7 más.",
-    "Ahora tengo 11 manzanas."
+    "Las aplicaciones prácticas de probabilidad avanzada son numerosas y variadas.",
+    "Estudiar probabilidad avanzada nos prepara para retos futuros.",
+    "El análisis crítico de probabilidad avanzada muestra su relevancia en el desarrollo tecnológico.",
+    "A través de proyectos de investigación, profundizamos en aspectos avanzados de probabilidad avanzada."
   ],
   [
-    "Tengo 5 manzanas.",
-    "Compro 9 más.",
-    "Ahora tengo 14 manzanas."
+    "Estudiar estadística avanzada nos prepara para retos futuros.",
+    "El análisis crítico de estadística avanzada muestra su relevancia en el desarrollo tecnológico.",
+    "A través de proyectos de investigación, profundizamos en aspectos avanzados de estadística avanzada.",
+    "Discutimos cómo estadística avanzada ha evolucionado a lo largo de los siglos."
   ],
   [
-    "Tengo 6 manzanas.",
-    "Compro 1 más.",
-    "Ahora tengo 7 manzanas."
+    "El análisis crítico de álgebra muestra su relevancia en el desarrollo tecnológico.",
+    "A través de proyectos de investigación, profundizamos en aspectos avanzados de álgebra.",
+    "Discutimos cómo álgebra ha evolucionado a lo largo de los siglos.",
+    "La comprensión de álgebra abre puertas a nuevas disciplinas científicas."
   ],
   [
-    "Tengo 7 manzanas.",
-    "Compro 3 más.",
-    "Ahora tengo 10 manzanas."
+    "A través de proyectos de investigación, profundizamos en aspectos avanzados de funciones.",
+    "Discutimos cómo funciones ha evolucionado a lo largo de los siglos.",
+    "La comprensión de funciones abre puertas a nuevas disciplinas científicas.",
+    "Explorar funciones nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
   ],
   [
-    "Tengo 8 manzanas.",
-    "Compro 5 más.",
-    "Ahora tengo 13 manzanas."
+    "Discutimos cómo geometría analítica ha evolucionado a lo largo de los siglos.",
+    "La comprensión de geometría analítica abre puertas a nuevas disciplinas científicas.",
+    "Explorar geometría analítica nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
+    "La importancia de geometría analítica en nuestra educación se refleja en su uso en diferentes áreas."
   ],
   [
-    "Tengo 9 manzanas.",
-    "Compro 7 más.",
-    "Ahora tengo 16 manzanas."
+    "La comprensión de probabilidad avanzada abre puertas a nuevas disciplinas científicas.",
+    "Explorar probabilidad avanzada nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
+    "La importancia de probabilidad avanzada en nuestra educación se refleja en su uso en diferentes áreas.",
+    "Durante la historia, probabilidad avanzada ha influido en muchos avances científicos."
   ],
   [
-    "Tengo 10 manzanas.",
-    "Compro 9 más.",
-    "Ahora tengo 19 manzanas."
+    "Explorar estadística avanzada nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
+    "La importancia de estadística avanzada en nuestra educación se refleja en su uso en diferentes áreas.",
+    "Durante la historia, estadística avanzada ha influido en muchos avances científicos.",
+    "Entender estadística avanzada nos permite interpretar fenómenos complejos."
   ],
   [
-    "Tengo 1 manzanas.",
-    "Compro 1 más.",
-    "Ahora tengo 2 manzanas."
+    "La importancia de álgebra en nuestra educación se refleja en su uso en diferentes áreas.",
+    "Durante la historia, álgebra ha influido en muchos avances científicos.",
+    "Entender álgebra nos permite interpretar fenómenos complejos.",
+    "Las aplicaciones prácticas de álgebra son numerosas y variadas.",
+    "Estudiar álgebra nos prepara para retos futuros."
   ],
   [
-    "Tengo 2 manzanas.",
-    "Compro 3 más.",
-    "Ahora tengo 5 manzanas."
+    "Durante la historia, funciones ha influido en muchos avances científicos.",
+    "Entender funciones nos permite interpretar fenómenos complejos.",
+    "Las aplicaciones prácticas de funciones son numerosas y variadas.",
+    "Estudiar funciones nos prepara para retos futuros.",
+    "El análisis crítico de funciones muestra su relevancia en el desarrollo tecnológico."
   ],
   [
-    "Tengo 3 manzanas.",
-    "Compro 5 más.",
-    "Ahora tengo 8 manzanas."
+    "Entender geometría analítica nos permite interpretar fenómenos complejos.",
+    "Las aplicaciones prácticas de geometría analítica son numerosas y variadas.",
+    "Estudiar geometría analítica nos prepara para retos futuros.",
+    "El análisis crítico de geometría analítica muestra su relevancia en el desarrollo tecnológico.",
+    "A través de proyectos de investigación, profundizamos en aspectos avanzados de geometría analítica."
   ],
   [
-    "Tengo 4 manzanas.",
-    "Compro 7 más.",
-    "Ahora tengo 11 manzanas."
+    "Las aplicaciones prácticas de probabilidad avanzada son numerosas y variadas.",
+    "Estudiar probabilidad avanzada nos prepara para retos futuros.",
+    "El análisis crítico de probabilidad avanzada muestra su relevancia en el desarrollo tecnológico.",
+    "A través de proyectos de investigación, profundizamos en aspectos avanzados de probabilidad avanzada.",
+    "Discutimos cómo probabilidad avanzada ha evolucionado a lo largo de los siglos."
   ],
   [
-    "Tengo 5 manzanas.",
-    "Compro 9 más.",
-    "Ahora tengo 14 manzanas."
+    "Estudiar estadística avanzada nos prepara para retos futuros.",
+    "El análisis crítico de estadística avanzada muestra su relevancia en el desarrollo tecnológico.",
+    "A través de proyectos de investigación, profundizamos en aspectos avanzados de estadística avanzada.",
+    "Discutimos cómo estadística avanzada ha evolucionado a lo largo de los siglos.",
+    "La comprensión de estadística avanzada abre puertas a nuevas disciplinas científicas."
   ],
   [
-    "Tengo 6 manzanas.",
-    "Compro 1 más.",
-    "Ahora tengo 7 manzanas."
+    "El análisis crítico de álgebra muestra su relevancia en el desarrollo tecnológico.",
+    "A través de proyectos de investigación, profundizamos en aspectos avanzados de álgebra.",
+    "Discutimos cómo álgebra ha evolucionado a lo largo de los siglos.",
+    "La comprensión de álgebra abre puertas a nuevas disciplinas científicas.",
+    "Explorar álgebra nos ayuda a comprender fenómenos de nuestra vida diaria y del universo."
   ],
   [
-    "Tengo 7 manzanas.",
-    "Compro 3 más.",
-    "Ahora tengo 10 manzanas."
+    "A través de proyectos de investigación, profundizamos en aspectos avanzados de funciones.",
+    "Discutimos cómo funciones ha evolucionado a lo largo de los siglos.",
+    "La comprensión de funciones abre puertas a nuevas disciplinas científicas.",
+    "Explorar funciones nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
+    "La importancia de funciones en nuestra educación se refleja en su uso en diferentes áreas."
   ],
   [
-    "Tengo 8 manzanas.",
-    "Compro 5 más.",
-    "Ahora tengo 13 manzanas."
+    "Discutimos cómo geometría analítica ha evolucionado a lo largo de los siglos.",
+    "La comprensión de geometría analítica abre puertas a nuevas disciplinas científicas.",
+    "Explorar geometría analítica nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
+    "La importancia de geometría analítica en nuestra educación se refleja en su uso en diferentes áreas.",
+    "Durante la historia, geometría analítica ha influido en muchos avances científicos."
   ],
   [
-    "Tengo 9 manzanas.",
-    "Compro 7 más.",
-    "Ahora tengo 16 manzanas."
+    "La comprensión de probabilidad avanzada abre puertas a nuevas disciplinas científicas.",
+    "Explorar probabilidad avanzada nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
+    "La importancia de probabilidad avanzada en nuestra educación se refleja en su uso en diferentes áreas.",
+    "Durante la historia, probabilidad avanzada ha influido en muchos avances científicos.",
+    "Entender probabilidad avanzada nos permite interpretar fenómenos complejos."
   ],
   [
-    "Tengo 10 manzanas.",
-    "Compro 9 más.",
-    "Ahora tengo 19 manzanas."
+    "Explorar estadística avanzada nos ayuda a comprender fenómenos de nuestra vida diaria y del universo.",
+    "La importancia de estadística avanzada en nuestra educación se refleja en su uso en diferentes áreas.",
+    "Durante la historia, estadística avanzada ha influido en muchos avances científicos.",
+    "Entender estadística avanzada nos permite interpretar fenómenos complejos.",
+    "Las aplicaciones prácticas de estadística avanzada son numerosas y variadas."
   ]
 ]

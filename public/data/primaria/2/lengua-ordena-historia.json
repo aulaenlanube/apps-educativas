@@ -1,152 +1,182 @@
 [
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Estudiamos sílabas en la escuela con ejemplos sencillos.",
+    "Mi profesor explica sílabas de forma divertida.",
+    "Practicar sílabas me ayuda a entenderlo mejor."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Mi profesor explica gramática de forma divertida.",
+    "Practicar gramática me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre gramática."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Practicar lectura me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre lectura.",
+    "Hacemos ejercicios de lectura para mejorar."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Durante la clase, aprendemos sobre escritura.",
+    "Hacemos ejercicios de escritura para mejorar.",
+    "Mis compañeros y yo comentamos sobre escritura en grupo."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Hacemos ejercicios de cuentos para mejorar.",
+    "Mis compañeros y yo comentamos sobre cuentos en grupo.",
+    "En casa repaso cuentos con mis padres."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Mis compañeros y yo comentamos sobre sílabas en grupo.",
+    "En casa repaso sílabas con mis padres.",
+    "La maestra nos cuenta historias relacionadas con sílabas."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "En casa repaso gramática con mis padres.",
+    "La maestra nos cuenta historias relacionadas con gramática.",
+    "Me esfuerzo por escribir sobre gramática sin errores."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "La maestra nos cuenta historias relacionadas con lectura.",
+    "Me esfuerzo por escribir sobre lectura sin errores.",
+    "Resolviendo actividades de lectura, aprendo cosas nuevas."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Me esfuerzo por escribir sobre escritura sin errores.",
+    "Resolviendo actividades de escritura, aprendo cosas nuevas.",
+    "Estudiamos escritura en la escuela con ejemplos sencillos."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Resolviendo actividades de cuentos, aprendo cosas nuevas.",
+    "Estudiamos cuentos en la escuela con ejemplos sencillos.",
+    "Mi profesor explica cuentos de forma divertida."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Estudiamos sílabas en la escuela con ejemplos sencillos.",
+    "Mi profesor explica sílabas de forma divertida.",
+    "Practicar sílabas me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre sílabas."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Mi profesor explica gramática de forma divertida.",
+    "Practicar gramática me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre gramática.",
+    "Hacemos ejercicios de gramática para mejorar."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Practicar lectura me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre lectura.",
+    "Hacemos ejercicios de lectura para mejorar.",
+    "Mis compañeros y yo comentamos sobre lectura en grupo."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Durante la clase, aprendemos sobre escritura.",
+    "Hacemos ejercicios de escritura para mejorar.",
+    "Mis compañeros y yo comentamos sobre escritura en grupo.",
+    "En casa repaso escritura con mis padres."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Hacemos ejercicios de cuentos para mejorar.",
+    "Mis compañeros y yo comentamos sobre cuentos en grupo.",
+    "En casa repaso cuentos con mis padres.",
+    "La maestra nos cuenta historias relacionadas con cuentos."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Mis compañeros y yo comentamos sobre sílabas en grupo.",
+    "En casa repaso sílabas con mis padres.",
+    "La maestra nos cuenta historias relacionadas con sílabas.",
+    "Me esfuerzo por escribir sobre sílabas sin errores."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "En casa repaso gramática con mis padres.",
+    "La maestra nos cuenta historias relacionadas con gramática.",
+    "Me esfuerzo por escribir sobre gramática sin errores.",
+    "Resolviendo actividades de gramática, aprendo cosas nuevas."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "La maestra nos cuenta historias relacionadas con lectura.",
+    "Me esfuerzo por escribir sobre lectura sin errores.",
+    "Resolviendo actividades de lectura, aprendo cosas nuevas.",
+    "Estudiamos lectura en la escuela con ejemplos sencillos."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Me esfuerzo por escribir sobre escritura sin errores.",
+    "Resolviendo actividades de escritura, aprendo cosas nuevas.",
+    "Estudiamos escritura en la escuela con ejemplos sencillos.",
+    "Mi profesor explica escritura de forma divertida."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Resolviendo actividades de cuentos, aprendo cosas nuevas.",
+    "Estudiamos cuentos en la escuela con ejemplos sencillos.",
+    "Mi profesor explica cuentos de forma divertida.",
+    "Practicar cuentos me ayuda a entenderlo mejor."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Estudiamos sílabas en la escuela con ejemplos sencillos.",
+    "Mi profesor explica sílabas de forma divertida.",
+    "Practicar sílabas me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre sílabas.",
+    "Hacemos ejercicios de sílabas para mejorar."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Mi profesor explica gramática de forma divertida.",
+    "Practicar gramática me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre gramática.",
+    "Hacemos ejercicios de gramática para mejorar.",
+    "Mis compañeros y yo comentamos sobre gramática en grupo."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Practicar lectura me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre lectura.",
+    "Hacemos ejercicios de lectura para mejorar.",
+    "Mis compañeros y yo comentamos sobre lectura en grupo.",
+    "En casa repaso lectura con mis padres."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Durante la clase, aprendemos sobre escritura.",
+    "Hacemos ejercicios de escritura para mejorar.",
+    "Mis compañeros y yo comentamos sobre escritura en grupo.",
+    "En casa repaso escritura con mis padres.",
+    "La maestra nos cuenta historias relacionadas con escritura."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Hacemos ejercicios de cuentos para mejorar.",
+    "Mis compañeros y yo comentamos sobre cuentos en grupo.",
+    "En casa repaso cuentos con mis padres.",
+    "La maestra nos cuenta historias relacionadas con cuentos.",
+    "Me esfuerzo por escribir sobre cuentos sin errores."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Mis compañeros y yo comentamos sobre sílabas en grupo.",
+    "En casa repaso sílabas con mis padres.",
+    "La maestra nos cuenta historias relacionadas con sílabas.",
+    "Me esfuerzo por escribir sobre sílabas sin errores.",
+    "Resolviendo actividades de sílabas, aprendo cosas nuevas."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "En casa repaso gramática con mis padres.",
+    "La maestra nos cuenta historias relacionadas con gramática.",
+    "Me esfuerzo por escribir sobre gramática sin errores.",
+    "Resolviendo actividades de gramática, aprendo cosas nuevas.",
+    "Estudiamos gramática en la escuela con ejemplos sencillos."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "La maestra nos cuenta historias relacionadas con lectura.",
+    "Me esfuerzo por escribir sobre lectura sin errores.",
+    "Resolviendo actividades de lectura, aprendo cosas nuevas.",
+    "Estudiamos lectura en la escuela con ejemplos sencillos.",
+    "Mi profesor explica lectura de forma divertida."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Me esfuerzo por escribir sobre escritura sin errores.",
+    "Resolviendo actividades de escritura, aprendo cosas nuevas.",
+    "Estudiamos escritura en la escuela con ejemplos sencillos.",
+    "Mi profesor explica escritura de forma divertida.",
+    "Practicar escritura me ayuda a entenderlo mejor."
   ],
   [
-    "Me levanto temprano.",
-    "Desayuno con mi familia.",
-    "Voy a la escuela feliz."
+    "Resolviendo actividades de cuentos, aprendo cosas nuevas.",
+    "Estudiamos cuentos en la escuela con ejemplos sencillos.",
+    "Mi profesor explica cuentos de forma divertida.",
+    "Practicar cuentos me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre cuentos."
   ]
 ]

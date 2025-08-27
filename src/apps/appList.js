@@ -125,7 +125,6 @@ export const primariaApps = {
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
-    // añadimos francés con las mismas tres apps para 1º de primaria
     'frances': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -172,7 +171,6 @@ export const primariaApps = {
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
     ],
-    // añadimos francés para 2º de primaria
     'frances': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -219,8 +217,7 @@ export const primariaApps = {
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
-    ],
-    // añadimos francés para 3º de primaria
+    ],    
     'frances': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -268,7 +265,6 @@ export const primariaApps = {
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' }
     ],
-    // añadimos francés para 4º de primaria
     'frances': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -316,7 +312,6 @@ export const primariaApps = {
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' }
     ],
-    // añadimos francés para 5º de primaria
     'frances': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -364,7 +359,6 @@ export const primariaApps = {
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' }
     ],
-    // añadimos francés para 6º de primaria
     'frances': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -396,7 +390,6 @@ export const esoApps = {
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-1', name: 'Detective de Palabras' }
     ],
-    // añadimos francés como nueva materia con las tres apps en 1º de ESO
     'frances': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -421,7 +414,6 @@ export const esoApps = {
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-2', name: 'Detective de Palabras' }
     ],
-    // añadimos francés en 2º de ESO
     'frances': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -446,7 +438,6 @@ export const esoApps = {
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-3', name: 'Detective de Palabras' }
     ],
-    // añadimos francés en 3º de ESO
     'frances': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -471,7 +462,6 @@ export const esoApps = {
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-4', name: 'Detective de Palabras' }
     ],
-    // añadimos francés en 4º de ESO
     'frances': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,

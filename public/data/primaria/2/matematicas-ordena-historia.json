@@ -1,152 +1,182 @@
 [
   [
-    "Tengo 1 manzanas.",
-    "Compro 1 más.",
-    "Ahora tengo 2 manzanas."
+    "Estudiamos multiplicaciones en la escuela con ejemplos sencillos.",
+    "Mi profesor explica multiplicaciones de forma divertida.",
+    "Practicar multiplicaciones me ayuda a entenderlo mejor."
   ],
   [
-    "Tengo 2 manzanas.",
-    "Compro 3 más.",
-    "Ahora tengo 5 manzanas."
+    "Mi profesor explica divisiones de forma divertida.",
+    "Practicar divisiones me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre divisiones."
   ],
   [
-    "Tengo 3 manzanas.",
-    "Compro 5 más.",
-    "Ahora tengo 8 manzanas."
+    "Practicar fracciones me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre fracciones.",
+    "Hacemos ejercicios de fracciones para mejorar."
   ],
   [
-    "Tengo 4 manzanas.",
-    "Compro 7 más.",
-    "Ahora tengo 11 manzanas."
+    "Durante la clase, aprendemos sobre geometría.",
+    "Hacemos ejercicios de geometría para mejorar.",
+    "Mis compañeros y yo comentamos sobre geometría en grupo."
   ],
   [
-    "Tengo 5 manzanas.",
-    "Compro 9 más.",
-    "Ahora tengo 14 manzanas."
+    "Hacemos ejercicios de medidas para mejorar.",
+    "Mis compañeros y yo comentamos sobre medidas en grupo.",
+    "En casa repaso medidas con mis padres."
   ],
   [
-    "Tengo 6 manzanas.",
-    "Compro 1 más.",
-    "Ahora tengo 7 manzanas."
+    "Mis compañeros y yo comentamos sobre multiplicaciones en grupo.",
+    "En casa repaso multiplicaciones con mis padres.",
+    "La maestra nos cuenta historias relacionadas con multiplicaciones."
   ],
   [
-    "Tengo 7 manzanas.",
-    "Compro 3 más.",
-    "Ahora tengo 10 manzanas."
+    "En casa repaso divisiones con mis padres.",
+    "La maestra nos cuenta historias relacionadas con divisiones.",
+    "Me esfuerzo por escribir sobre divisiones sin errores."
   ],
   [
-    "Tengo 8 manzanas.",
-    "Compro 5 más.",
-    "Ahora tengo 13 manzanas."
+    "La maestra nos cuenta historias relacionadas con fracciones.",
+    "Me esfuerzo por escribir sobre fracciones sin errores.",
+    "Resolviendo actividades de fracciones, aprendo cosas nuevas."
   ],
   [
-    "Tengo 9 manzanas.",
-    "Compro 7 más.",
-    "Ahora tengo 16 manzanas."
+    "Me esfuerzo por escribir sobre geometría sin errores.",
+    "Resolviendo actividades de geometría, aprendo cosas nuevas.",
+    "Estudiamos geometría en la escuela con ejemplos sencillos."
   ],
   [
-    "Tengo 10 manzanas.",
-    "Compro 9 más.",
-    "Ahora tengo 19 manzanas."
+    "Resolviendo actividades de medidas, aprendo cosas nuevas.",
+    "Estudiamos medidas en la escuela con ejemplos sencillos.",
+    "Mi profesor explica medidas de forma divertida."
   ],
   [
-    "Tengo 1 manzanas.",
-    "Compro 1 más.",
-    "Ahora tengo 2 manzanas."
+    "Estudiamos multiplicaciones en la escuela con ejemplos sencillos.",
+    "Mi profesor explica multiplicaciones de forma divertida.",
+    "Practicar multiplicaciones me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre multiplicaciones."
   ],
   [
-    "Tengo 2 manzanas.",
-    "Compro 3 más.",
-    "Ahora tengo 5 manzanas."
+    "Mi profesor explica divisiones de forma divertida.",
+    "Practicar divisiones me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre divisiones.",
+    "Hacemos ejercicios de divisiones para mejorar."
   ],
   [
-    "Tengo 3 manzanas.",
-    "Compro 5 más.",
-    "Ahora tengo 8 manzanas."
+    "Practicar fracciones me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre fracciones.",
+    "Hacemos ejercicios de fracciones para mejorar.",
+    "Mis compañeros y yo comentamos sobre fracciones en grupo."
   ],
   [
-    "Tengo 4 manzanas.",
-    "Compro 7 más.",
-    "Ahora tengo 11 manzanas."
+    "Durante la clase, aprendemos sobre geometría.",
+    "Hacemos ejercicios de geometría para mejorar.",
+    "Mis compañeros y yo comentamos sobre geometría en grupo.",
+    "En casa repaso geometría con mis padres."
   ],
   [
-    "Tengo 5 manzanas.",
-    "Compro 9 más.",
-    "Ahora tengo 14 manzanas."
+    "Hacemos ejercicios de medidas para mejorar.",
+    "Mis compañeros y yo comentamos sobre medidas en grupo.",
+    "En casa repaso medidas con mis padres.",
+    "La maestra nos cuenta historias relacionadas con medidas."
   ],
   [
-    "Tengo 6 manzanas.",
-    "Compro 1 más.",
-    "Ahora tengo 7 manzanas."
+    "Mis compañeros y yo comentamos sobre multiplicaciones en grupo.",
+    "En casa repaso multiplicaciones con mis padres.",
+    "La maestra nos cuenta historias relacionadas con multiplicaciones.",
+    "Me esfuerzo por escribir sobre multiplicaciones sin errores."
   ],
   [
-    "Tengo 7 manzanas.",
-    "Compro 3 más.",
-    "Ahora tengo 10 manzanas."
+    "En casa repaso divisiones con mis padres.",
+    "La maestra nos cuenta historias relacionadas con divisiones.",
+    "Me esfuerzo por escribir sobre divisiones sin errores.",
+    "Resolviendo actividades de divisiones, aprendo cosas nuevas."
   ],
   [
-    "Tengo 8 manzanas.",
-    "Compro 5 más.",
-    "Ahora tengo 13 manzanas."
+    "La maestra nos cuenta historias relacionadas con fracciones.",
+    "Me esfuerzo por escribir sobre fracciones sin errores.",
+    "Resolviendo actividades de fracciones, aprendo cosas nuevas.",
+    "Estudiamos fracciones en la escuela con ejemplos sencillos."
   ],
   [
-    "Tengo 9 manzanas.",
-    "Compro 7 más.",
-    "Ahora tengo 16 manzanas."
+    "Me esfuerzo por escribir sobre geometría sin errores.",
+    "Resolviendo actividades de geometría, aprendo cosas nuevas.",
+    "Estudiamos geometría en la escuela con ejemplos sencillos.",
+    "Mi profesor explica geometría de forma divertida."
   ],
   [
-    "Tengo 10 manzanas.",
-    "Compro 9 más.",
-    "Ahora tengo 19 manzanas."
+    "Resolviendo actividades de medidas, aprendo cosas nuevas.",
+    "Estudiamos medidas en la escuela con ejemplos sencillos.",
+    "Mi profesor explica medidas de forma divertida.",
+    "Practicar medidas me ayuda a entenderlo mejor."
   ],
   [
-    "Tengo 1 manzanas.",
-    "Compro 1 más.",
-    "Ahora tengo 2 manzanas."
+    "Estudiamos multiplicaciones en la escuela con ejemplos sencillos.",
+    "Mi profesor explica multiplicaciones de forma divertida.",
+    "Practicar multiplicaciones me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre multiplicaciones.",
+    "Hacemos ejercicios de multiplicaciones para mejorar."
   ],
   [
-    "Tengo 2 manzanas.",
-    "Compro 3 más.",
-    "Ahora tengo 5 manzanas."
+    "Mi profesor explica divisiones de forma divertida.",
+    "Practicar divisiones me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre divisiones.",
+    "Hacemos ejercicios de divisiones para mejorar.",
+    "Mis compañeros y yo comentamos sobre divisiones en grupo."
   ],
   [
-    "Tengo 3 manzanas.",
-    "Compro 5 más.",
-    "Ahora tengo 8 manzanas."
+    "Practicar fracciones me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre fracciones.",
+    "Hacemos ejercicios de fracciones para mejorar.",
+    "Mis compañeros y yo comentamos sobre fracciones en grupo.",
+    "En casa repaso fracciones con mis padres."
   ],
   [
-    "Tengo 4 manzanas.",
-    "Compro 7 más.",
-    "Ahora tengo 11 manzanas."
+    "Durante la clase, aprendemos sobre geometría.",
+    "Hacemos ejercicios de geometría para mejorar.",
+    "Mis compañeros y yo comentamos sobre geometría en grupo.",
+    "En casa repaso geometría con mis padres.",
+    "La maestra nos cuenta historias relacionadas con geometría."
   ],
   [
-    "Tengo 5 manzanas.",
-    "Compro 9 más.",
-    "Ahora tengo 14 manzanas."
+    "Hacemos ejercicios de medidas para mejorar.",
+    "Mis compañeros y yo comentamos sobre medidas en grupo.",
+    "En casa repaso medidas con mis padres.",
+    "La maestra nos cuenta historias relacionadas con medidas.",
+    "Me esfuerzo por escribir sobre medidas sin errores."
   ],
   [
-    "Tengo 6 manzanas.",
-    "Compro 1 más.",
-    "Ahora tengo 7 manzanas."
+    "Mis compañeros y yo comentamos sobre multiplicaciones en grupo.",
+    "En casa repaso multiplicaciones con mis padres.",
+    "La maestra nos cuenta historias relacionadas con multiplicaciones.",
+    "Me esfuerzo por escribir sobre multiplicaciones sin errores.",
+    "Resolviendo actividades de multiplicaciones, aprendo cosas nuevas."
   ],
   [
-    "Tengo 7 manzanas.",
-    "Compro 3 más.",
-    "Ahora tengo 10 manzanas."
+    "En casa repaso divisiones con mis padres.",
+    "La maestra nos cuenta historias relacionadas con divisiones.",
+    "Me esfuerzo por escribir sobre divisiones sin errores.",
+    "Resolviendo actividades de divisiones, aprendo cosas nuevas.",
+    "Estudiamos divisiones en la escuela con ejemplos sencillos."
   ],
   [
-    "Tengo 8 manzanas.",
-    "Compro 5 más.",
-    "Ahora tengo 13 manzanas."
+    "La maestra nos cuenta historias relacionadas con fracciones.",
+    "Me esfuerzo por escribir sobre fracciones sin errores.",
+    "Resolviendo actividades de fracciones, aprendo cosas nuevas.",
+    "Estudiamos fracciones en la escuela con ejemplos sencillos.",
+    "Mi profesor explica fracciones de forma divertida."
   ],
   [
-    "Tengo 9 manzanas.",
-    "Compro 7 más.",
-    "Ahora tengo 16 manzanas."
+    "Me esfuerzo por escribir sobre geometría sin errores.",
+    "Resolviendo actividades de geometría, aprendo cosas nuevas.",
+    "Estudiamos geometría en la escuela con ejemplos sencillos.",
+    "Mi profesor explica geometría de forma divertida.",
+    "Practicar geometría me ayuda a entenderlo mejor."
   ],
   [
-    "Tengo 10 manzanas.",
-    "Compro 9 más.",
-    "Ahora tengo 19 manzanas."
+    "Resolviendo actividades de medidas, aprendo cosas nuevas.",
+    "Estudiamos medidas en la escuela con ejemplos sencillos.",
+    "Mi profesor explica medidas de forma divertida.",
+    "Practicar medidas me ayuda a entenderlo mejor.",
+    "Durante la clase, aprendemos sobre medidas."
   ]
 ]
