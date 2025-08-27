@@ -77,9 +77,12 @@ export const esoSubjects = materiasData.eso;
 
 /*
  * primariaApps almacena las apps de primaria organizadas por curso y materia.
- * cada curso (1‑6) incluye las materias definidas en materiasData.primaria
- * por ahora solo asignamos apps a las materias de Lengua, Matemáticas y Tutoría
- * las demás materias se inicializan con arrays vacíos para futuras ampliaciones
+ * A diferencia de la implementación original, en cada materia incluimos
+ * también las apps de ordenación de frases, ordenación de historias y
+ * detective de palabras. Se conservan las apps específicas de cada materia
+ * (como las de matemáticas) y se añaden estas tres apps básicas al final de
+ * cada lista. El identificador del detective de palabras se personaliza por
+ * curso para evitar colisiones en la navegación.
  */
 export const primariaApps = {
   '1': {
@@ -91,12 +94,37 @@ export const primariaApps = {
     'matematicas': [
       { id: 'sumas-primaria-1', name: 'Sumas sin Llevadas', description: 'Aprende a sumar números de dos cifras.', component: SumasPrimaria1 },
       { id: 'restas-primaria-1', name: 'Resta 1º Primaria', description: 'Restas de 2 cifras sin llevadas', component: RestasPrimaria1 },
-      { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', description: 'Resuelve sumas sencillas con productos del súper.', component: SupermercadoMatematico1 }
+      { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', description: 'Resuelve sumas sencillas con productos del súper.', component: SupermercadoMatematico1 },
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
-    'ciencias-naturales': [],
-    'ciencias-sociales': [],
-    'ingles': [],
-    'tutoria': [appIslaDeLaCalma]
+    'ciencias-naturales': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
+    ],
+    'ciencias-sociales': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
+    ],
+    'ingles': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
+    ],
+    'tutoria': [
+      appIslaDeLaCalma,
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
+    ],
+    'valenciano': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
+    ]
   },
   '2': {
     'lengua': [
@@ -107,12 +135,37 @@ export const primariaApps = {
     'matematicas': [
       { id: 'sumas-primaria-2-drag', name: 'Sumas con Llevadas (2º)', description: 'Resuelve sumas de dos cifras con llevadas.', component: SumasPrimaria2 },
       { id: 'restas-primaria-2', name: 'Resta 2º Primaria', description: 'Restas de 2 cifras con llevadas', component: RestasPrimaria2 },
-      { id: 'supermercado-matematico-2', name: 'Supermercado Matemático (Sumas llevando)', description: 'Suma los precios de varios productos, ¡a veces tendrás que llevar!', component: SupermercadoMatematico2 }
+      { id: 'supermercado-matematico-2', name: 'Supermercado Matemático (Sumas llevando)', description: 'Suma los precios de varios productos, ¡a veces tendrás que llevar!', component: SupermercadoMatematico2 },
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
     ],
-    'ciencias-naturales': [],
-    'ciencias-sociales': [],
-    'ingles': [],
-    'tutoria': [appIslaDeLaCalma]
+    'ciencias-naturales': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
+    ],
+    'ciencias-sociales': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
+    ],
+    'ingles': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
+    ],
+    'tutoria': [
+      appIslaDeLaCalma,
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
+    ],
+    'valenciano': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
+    ]
   },
   '3': {
     'lengua': [
@@ -124,12 +177,37 @@ export const primariaApps = {
       { id: 'sumas-primaria-3-drag', name: 'Sumas con Llevadas (3º)', description: 'Resuelve sumas de 3 y 4 cifras con llevadas.', component: SumasPrimaria3 },
       { id: 'restas-primaria-3', name: 'Resta 3º Primaria', description: 'Restas de 3 y 4 cifras con llevadas', component: RestasPrimaria3 },
       { id: 'multiplicaciones-primaria-3', name: 'Multiplicaciones 3º Primaria', description: 'Multiplicaciones de 1 cifra en el multiplicador', component: MultiplicacionesPrimaria3 },
-      { id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', description: 'Calcula el coste de comprar varias unidades del mismo producto.', component: SupermercadoMatematico3 }
+      { id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', description: 'Calcula el coste de comprar varias unidades del mismo producto.', component: SupermercadoMatematico3 },
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
     ],
-    'ciencias-naturales': [],
-    'ciencias-sociales': [],
-    'ingles': [],
-    'tutoria': [appIslaDeLaCalma]
+    'ciencias-naturales': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
+    ],
+    'ciencias-sociales': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
+    ],
+    'ingles': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
+    ],
+    'tutoria': [
+      appIslaDeLaCalma,
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
+    ],
+    'valenciano': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
+    ]
   },
   '4': {
     'lengua': [
@@ -141,12 +219,37 @@ export const primariaApps = {
       { id: 'sumas-primaria-4-drag', name: 'Sumas triples (4º)', description: 'Resuelve sumas triples de 3 y 4 cifras con llevadas.', component: SumasPrimaria4 },
       { id: 'restas-primaria-4', name: 'Resta 4º Primaria', description: 'Restas con 1 decimal', component: RestasPrimaria4 },
       { id: 'multiplicaciones-primaria-4', name: 'Multiplicaciones 4º Primaria', description: 'Multiplica por más de 1 cifra', component: MultiplicacionesPrimaria4 },
-      { id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 }
+      { id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 },
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' }
     ],
-    'ciencias-naturales': [],
-    'ciencias-sociales': [],
-    'ingles': [],
-    'tutoria': [appIslaDeLaCalma]
+    'ciencias-naturales': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' }
+    ],
+    'ciencias-sociales': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' }
+    ],
+    'ingles': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' }
+    ],
+    'tutoria': [
+      appIslaDeLaCalma,
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' }
+    ],
+    'valenciano': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' }
+    ]
   },
   '5': {
     'lengua': [
@@ -158,12 +261,37 @@ export const primariaApps = {
       { id: 'sumas-primaria-5-drag', name: 'Sumas con Decimales (5º)', description: 'Resuelve sumas con decimales.', component: SumasPrimaria5 },
       { id: 'restas-primaria-5', name: 'Resta 5º Primaria', description: 'Restas con varios decimales', component: RestasPrimaria5 },
       { id: 'multiplicaciones-primaria-5', name: 'Multiplicaciones 5º Primaria', description: 'Multiplica por varios dígitos', component: MultiplicacionesPrimaria5 },
-      { id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 }
+      { id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 },
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' }
     ],
-    'ciencias-naturales': [],
-    'ciencias-sociales': [],
-    'ingles': [],
-    'tutoria': [appIslaDeLaCalma]
+    'ciencias-naturales': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' }
+    ],
+    'ciencias-sociales': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' }
+    ],
+    'ingles': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' }
+    ],
+    'tutoria': [
+      appIslaDeLaCalma,
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' }
+    ],
+    'valenciano': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' }
+    ]
   },
   '6': {
     'lengua': [
@@ -175,12 +303,37 @@ export const primariaApps = {
       { id: 'sumas-primaria-6-drag', name: 'Sumas triples con Decimales (6º)', description: 'Resuelve sumas triples con hasta 3 decimales.', component: SumasPrimaria6 },
       { id: 'restas-primaria-6', name: 'Resta 6º Primaria', description: 'Completa la resta', component: RestasPrimaria6 },
       { id: 'multiplicaciones-primaria-6', name: 'Multiplicaciones 6º Primaria', description: 'Multiplicaciones con decimales', component: MultiplicacionesPrimaria6 },
-      { id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 }
+      { id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 },
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' }
     ],
-    'ciencias-naturales': [],
-    'ciencias-sociales': [],
-    'ingles': [],
-    'tutoria': [appIslaDeLaCalma]
+    'ciencias-naturales': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' }
+    ],
+    'ciencias-sociales': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' }
+    ],
+    'ingles': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' }
+    ],
+    'tutoria': [
+      appIslaDeLaCalma,
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' }
+    ],
+    'valenciano': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' }
+    ]
   }
 };
 
@@ -201,6 +354,12 @@ export const esoApps = {
     'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'ed-fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
+    ,
+    'valenciano': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-1', name: 'Detective de Palabras' }
+    ]
   },
   '2': {
     'lengua': [appOrdenaLaFrase, appOrdenaLaHistoria],
@@ -214,6 +373,12 @@ export const esoApps = {
     'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'ed-fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
+    ,
+    'valenciano': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-2', name: 'Detective de Palabras' }
+    ]
   },
   '3': {
     'lengua': [appOrdenaLaFrase, appOrdenaLaHistoria],
@@ -227,6 +392,12 @@ export const esoApps = {
     'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'ed-fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
+    ,
+    'valenciano': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-3', name: 'Detective de Palabras' }
+    ]
   },
   '4': {
     'lengua': [appOrdenaLaFrase, appOrdenaLaHistoria],
@@ -240,12 +411,18 @@ export const esoApps = {
     'economia': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
+    ,
+    'valenciano': [
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria,
+      { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-4', name: 'Detective de Palabras' }
+    ]
   }
 };
 
 /**
- * busca una app por su identificador. Acepta el nivel, curso y materia cuando exista
- * devuelve un objeto con la app y el contexto si la encuentra, o null en caso contrario
+ * Busca una app por su identificador. Acepta el nivel, curso y materia cuando exista
+ * Devuelve un objeto con la app y el contexto si la encuentra, o null en caso contrario
  * @param {string} id identificador único de la app
  * @param {string} level nivel educativo ('primaria' o 'eso')
  * @param {string} grade curso dentro del nivel (por ejemplo '1')
@@ -256,7 +433,7 @@ export const findAppById = (id, level, grade, subjectId) => {
     // si se especifica la materia, buscamos únicamente dentro de esa categoría
     if (subjectId) {
       const appsEnMateria = primariaApps[grade]?.[subjectId] || [];
-      const encontrada = appsEnMateria.find(app => app.id === id);
+      const encontrada = appsEnMateria.find((app) => app.id === id);
       if (encontrada) {
         return { app: encontrada, level: 'primaria', grade, subjectId };
       }
@@ -265,7 +442,7 @@ export const findAppById = (id, level, grade, subjectId) => {
     const materiasCurso = primariaApps[grade] || {};
     for (const claveMateria in materiasCurso) {
       const appsMateria = materiasCurso[claveMateria] || [];
-      const encontrada = appsMateria.find(app => app.id === id);
+      const encontrada = appsMateria.find((app) => app.id === id);
       if (encontrada) {
         return { app: encontrada, level: 'primaria', grade, subjectId: claveMateria };
       }
@@ -274,7 +451,7 @@ export const findAppById = (id, level, grade, subjectId) => {
   if (level === 'eso') {
     if (subjectId) {
       const appsEnMateria = esoApps[grade]?.[subjectId] || [];
-      const encontrada = appsEnMateria.find(app => app.id === id);
+      const encontrada = appsEnMateria.find((app) => app.id === id);
       if (encontrada) {
         return { app: encontrada, level: 'eso', grade, subjectId };
       }
@@ -283,7 +460,7 @@ export const findAppById = (id, level, grade, subjectId) => {
     const materiasCurso = esoApps[grade] || {};
     for (const claveMateria in materiasCurso) {
       const appsMateria = materiasCurso[claveMateria] || [];
-      const encontrada = appsMateria.find(app => app.id === id);
+      const encontrada = appsMateria.find((app) => app.id === id);
       if (encontrada) {
         return { app: encontrada, level: 'eso', grade, subjectId: claveMateria };
       }
