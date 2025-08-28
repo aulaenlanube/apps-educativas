@@ -1,22 +1,12 @@
-// 1. Añade 'useState', 'Suspense' y 'lazy' a la importación de React
 import React, { useState, Suspense, lazy } from 'react';
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import { Toaster } from "@/components/ui/toaster";
-
-// --- INICIO DE LOS CAMBIOS ---
-
-// 2. Importa tu modal usando React.lazy
-const AboutModal = lazy(() => import('../ui/AboutModal'));
-
-// Asumo que el botón para abrir el modal también está aquí. Si no, ignora esta parte.
 import { Button } from '@/components/ui/button';
 
-// --- FIN DE LOS CAMBIOS ---
-
+const AboutModal = lazy(() => import('../ui/AboutModal'));
 
 const MainLayout = () => {
-  // 3. La gestión del estado se queda EXACTAMENTE IGUAL
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -27,7 +17,7 @@ const MainLayout = () => {
       <Toaster />
       <Footer />
       
-      {/* 4. El botón que abre el modal se queda EXACTAMENTE IGUAL */}
+      {/* 4. El botón que abre el modal se queda EXACTAMENTE IGUAL 
       <Button
         onClick={() => setIsModalOpen(true)}
         variant="default"
@@ -37,7 +27,7 @@ const MainLayout = () => {
         <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-      </Button>
+      </Button>*/}
 
       {/* 5. Envuelve el modal en un componente <Suspense> */}
       <Suspense fallback={null}>
