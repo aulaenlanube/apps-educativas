@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { BookOpen, Star, Sparkles, GraduationCap, Users, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import GradientTitle from '@/components/ui/GradientTitle';
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { setIsModalOpen } = useOutletContext();
 
   const primaryGrades = [
     { grade: '1', title: '1º Primaria', color: 'from-red-400 to-pink-500', icon: '🌟' },
@@ -43,9 +43,9 @@ const HomePage = () => {
   return (
     <div> 
       <Header>
-        {/*<Button variant="ghost" className="text-gray-700 hover:text-purple-600" onClick={() => setIsModalOpen(true)}>
+        <Button variant="ghost" className="text-gray-700 hover:text-purple-600" onClick={() => setIsModalOpen(true)}>
           Quién soy
-        </Button>*/}
+        </Button>
       </Header>
 
        <motion.section 

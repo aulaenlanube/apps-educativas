@@ -22,7 +22,7 @@ const MainLayout = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
-        <Outlet />
+        <Outlet context={{ setIsModalOpen }} />
       </main>
       <Toaster />
       <Footer />
