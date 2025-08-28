@@ -3,11 +3,12 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "dev": "vite",
-    "build": "node tools/generate-llms.js || true && vite build",
-    "preview": "vite preview"
-  },
+"scripts": {
+  "dev": "node tools/generate-llms.js && vite",
+  "build": "node tools/generate-llms.js && vite build",
+  "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+  "preview": "vite preview"
+},
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.3",
