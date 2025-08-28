@@ -43,9 +43,9 @@ const HomePage = () => {
   return (
     <div> 
       <Header>
-        <Button variant="ghost" className="text-gray-700 hover:text-purple-600" onClick={() => setIsModalOpen(true)}>
+        {/*<Button variant="ghost" className="text-gray-700 hover:text-purple-600" onClick={() => setIsModalOpen(true)}>
           Quién soy
-        </Button>
+        </Button>*/}
       </Header>
 
        <motion.section 
