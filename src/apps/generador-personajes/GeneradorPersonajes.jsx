@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './GeneradorPersonajes.css';
 
 const GeneradorPersonajes = () => {
+  const { level, grade } = useParams();
   const [personajes, setPersonajes] = useState([]);
   const [sexo, setSexo] = useState('Cualquiera');
   const [categoria, setCategoria] = useState('Cualquiera');
@@ -15,18 +17,10 @@ const GeneradorPersonajes = () => {
   const [isAssignerVisible, setIsAssignerVisible] = useState(false);
   const [studentList, setStudentList] = useState('');
   const [assignments, setAssignments] = useState([]);
-
-  const CATEGORIAS = [
-    'Ciencia y tecnología',
-    'Arte y cultura',
-    'Política y liderazgo',
-    'Derechos y sociedad',
-    'Exploración y descubrimientos',
-    'Deporte'
-  ];
+  const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
-    const ruta = `${import.meta.env.BASE_URL}data/eso/1/generador-personajes.json`;
+    const ruta = `${import.meta.env.BASE_URL}data/${level}/${grade}/generador-personajes.json`;
     fetch(ruta, { cache: 'no-store' })
       .then((res) => {
         if (!res.ok) throw new Error(`No se pudo cargar ${ruta} (${res.status})`);
@@ -35,11 +29,13 @@ const GeneradorPersonajes = () => {
       .then((data) => {
         if (!Array.isArray(data)) throw new Error('El JSON no es un array');
         setPersonajes(data);
+        const uniqueCategorias = [...new Set(data.map(p => p.categoria))];
+        setCategorias(uniqueCategorias);
       })
       .catch((err) => {
         setError(err.message);
       });
-  }, []);
+  }, [level, grade]);
 
   const seleccionarAleatorioTotal = () => {
     if (personajes.length === 0) return null;
@@ -166,7 +162,7 @@ const GeneradorPersonajes = () => {
       <div className="gp-content">
         <h1 className="text-4xl font-bold mb-4 text-center">
           <span role="img" aria-label="Personas">✨</span> 
-          <span className="gradient-text">Generador de personajes históricos</span>
+          <span className="gradient-text">Generador de personajes</span>
         </h1>
         
         <section className="gp-controles">
@@ -203,11 +199,11 @@ const GeneradorPersonajes = () => {
               onChange={(e) => setCategoria(e.target.value)}
             >
               <option value="Cualquiera">Cualquiera</option>
-              {CATEGORIAS.map((cat) => (
+              {categorias.map((cat) => (
                 <option value={cat} key={cat}>
                   {cat}
                 </option>
-              ))}
+              ))}}
             </select>
           </div>
           <button className="gp-boton-primario" onClick={handleObtener}>

@@ -126,6 +126,7 @@ export const primariaApps = {
     ],
     'tutoria': [
       appIslaDeLaCalma,
+      appGeneradorPersonajes,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
@@ -172,6 +173,7 @@ export const primariaApps = {
     ],
     'tutoria': [
       appIslaDeLaCalma,
+      appGeneradorPersonajes,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
@@ -219,6 +221,7 @@ export const primariaApps = {
     ],
     'tutoria': [
       appIslaDeLaCalma,
+      appGeneradorPersonajes,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
@@ -266,6 +269,7 @@ export const primariaApps = {
     ],
     'tutoria': [
       appIslaDeLaCalma,
+      appGeneradorPersonajes,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' }
@@ -313,6 +317,7 @@ export const primariaApps = {
     ],
     'tutoria': [
       appIslaDeLaCalma,
+      appGeneradorPersonajes,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' }
@@ -360,6 +365,7 @@ export const primariaApps = {
     ],
     'tutoria': [
       appIslaDeLaCalma,
+      appGeneradorPersonajes,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' }
