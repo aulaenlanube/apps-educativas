@@ -33,6 +33,9 @@ import MultiplicacionesPrimaria4 from './multiplicaciones/primaria-4/Multiplicac
 import MultiplicacionesPrimaria5 from './multiplicaciones/primaria-5/MultiplicacionesPrimaria5';
 import MultiplicacionesPrimaria6 from './multiplicaciones/primaria-6/MultiplicacionesPrimaria6';
 
+// importación del nuevo juego de personajes históricos
+import GeneradorPersonajes from './generador-personajes/GeneradorPersonajes';
+
 // importamos los datos de materias (asignaturas) desde un archivo JSON
 // contiene la definición de asignaturas para cada nivel y curso
 import materiasData from './../../public/data/materias.json';
@@ -68,6 +71,14 @@ const appDetectiveDePalabras = {
   name: 'Detective de Palabras',
   description: 'Encuentra los espacios ocultos para separar las palabras de la frase.',
   component: DetectiveDePalabras
+};
+
+// generador de personajes históricos: nueva app para tutoría en la ESO
+const appGeneradorPersonajes = {
+  id: 'generador-personajes-historicos',
+  name: 'Generador de personajes históricos',
+  description: 'Genera personajes históricos aleatorios con filtros por sexo y categoría.',
+  component: GeneradorPersonajes
 };
 
 // exportamos las materias para primaria y ESO desde el JSON
@@ -216,7 +227,7 @@ export const primariaApps = {
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
-    ],    
+    ],
     'frances': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -383,8 +394,7 @@ export const esoApps = {
     'plastica': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'ed-fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
-    'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
-    ,
+    'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, appGeneradorPersonajes],
     'valenciano': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -408,8 +418,7 @@ export const esoApps = {
     'plastica': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'ed-fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
-    'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
-    ,
+    'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, appGeneradorPersonajes],
     'valenciano': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -433,8 +442,7 @@ export const esoApps = {
     'plastica': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'ed-fisica': [appOrdenaLaFrase, appOrdenaLaHistoria],
-    'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
-    ,
+    'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, appGeneradorPersonajes],
     'valenciano': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -458,8 +466,7 @@ export const esoApps = {
     'latin': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'economia': [appOrdenaLaFrase, appOrdenaLaHistoria],
     'tecnologia': [appOrdenaLaFrase, appOrdenaLaHistoria],
-    'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria]
-    ,
+    'tutoria': [appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, appGeneradorPersonajes],
     'valenciano': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,

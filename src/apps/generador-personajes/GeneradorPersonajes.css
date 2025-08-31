@@ -1,0 +1,152 @@
+/*
+ * Estilos para el Generador de Personajes Históricos
+ *
+ * Este archivo define un conjunto de variables y clases con el prefijo
+ * `gp-` para aislar los estilos de la app del resto del proyecto. Las
+ * variables de color se inspiran en la paleta utilizada en otras apps
+ * educativas, con fondos claros y acentos turquesa. Estas clases se
+ * aplican en el componente React para estructurar controles y tarjetas
+ * de resultados.
+ */
+
+/* Variables personalizadas para el generador */
+:root {
+  --gp-fondo: #f8fafc;
+  --gp-panel: #ffffff;
+  --gp-borde: #e5e7eb;
+  --gp-texto: #1f2937;
+  --gp-texto-suave: #6b7280;
+  --gp-acento: #008080;
+  --gp-acento-oscuro: #006666;
+  --gp-ok: #10b981;
+  --gp-warning: #f59e0b;
+}
+
+/* Contenedor principal de la aplicación */
+.gp-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+}
+
+.gp-content {
+  max-width: 880px;
+  margin: 40px auto;
+  padding: 24px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título principal */
+.gp-titulo-principal {
+  font-size: clamp(22px, 3.2vw, 34px);
+  margin: 0 0 16px 0;
+  letter-spacing: 0.2px;
+  color: var(--gp-texto);
+  text-align: center;
+  width: 100%;
+}
+
+/* Sección de controles */
+.gp-controles {
+  background: var(--gp-panel);
+  border: 1px solid var(--gp-borde);
+  border-radius: 16px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Filas dentro del panel de controles */
+.gp-fila {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.gp-fila label {
+  font-size: 14px;
+  color: var(--gp-texto-suave);
+}
+
+/* Selects personalizados */
+.gp-select {
+  flex: 1;
+  background: #f8fafc;
+  color: var(--gp-texto);
+  border: 1px solid var(--gp-borde);
+  border-radius: 10px;
+  padding: 10px 12px;
+  outline: none;
+  min-width: 0;
+}
+
+.gp-select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Botón principal */
+.gp-boton-primario {
+  grid-column: 1/-1;
+  align-self: center;
+  justify-self: center;
+  background: var(--gp-acento);
+  color: #ffffff;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.05s ease, box-shadow 0.2s ease, background 0.2s ease;
+  box-shadow: 0 6px 14px rgba(0, 128, 128, 0.25);
+}
+
+.gp-boton-primario:hover {
+  background: var(--gp-acento-oscuro);
+}
+
+.gp-boton-primario:active {
+  transform: translateY(1px);
+}
+
+/* Contenedor de resultados */
+.gp-resultado {
+  margin-top: 22px;
+}
+
+/* Tarjetas de resultado */
+.gp-tarjeta {
+  background: #ffffff;
+  border: 1px solid var(--gp-borde);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.gp-titulo {
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: var(--gp-texto);
+  text-align: center;
+}
+
+.gp-detalle {
+  margin-top: 6px;
+  color: var(--gp-texto-suave);
+  font-size: 14px;
+  text-align: center;
+}
+
