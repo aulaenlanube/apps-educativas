@@ -1,0 +1,69 @@
+:root{
+  --bg-intruso:#f8fafc; /* Light gray/off-white */
+  --panel-intruso:#ffffff; /* White */
+  --texto-intruso:#1f2937; /* Dark gray */
+  --muted-intruso:#6b7280; /* Darker muted gray */
+  --ok-intruso:#22c55e; 
+  --ko-intruso:#ef4444; 
+  --borde-intruso:#e2e8f0; /* Lighter border */
+  --boton-intruso:#2563eb; 
+  --boton-h-intruso:#1d4ed8
+}
+.contenedor-intruso{
+  width:100%; max-width: 700px; margin: auto; display:grid; gap:16px; font-family:system-ui,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;
+  color: var(--texto-intruso); background: var(--bg-intruso); padding: 16px; border-radius: 14px;
+}
+.encabezado-intruso{
+  display:flex;
+  font-family: 'Fredoka One';
+  flex-wrap:wrap; 
+  gap:12px; 
+  align-items:center; 
+  justify-content:center
+}
+.titulo-intruso{font-family: 'Fredoka One'; font-size:clamp(1.25rem,2.2vw,1.8rem); font-weight:500; letter-spacing:.3px; flex-grow:1; text-align:center;}
+.controles-intruso{display:flex; flex-wrap:wrap; gap:8px; align-items:center; justify-content:center}
+.btn-intruso{
+  font-family: 'Fredoka One';border:none; background:var(--boton-intruso); color:white; padding:10px 14px; border-radius:10px; cursor:pointer; font-weight:200
+}
+.btn-intruso:hover{ background:var(--boton-h-intruso)}
+.btn-intruso.sec-intruso{ background:#374151}
+.panel-intruso{
+  background:var(--panel-intruso); border:1px solid var(--borde-intruso); border-radius:14px; padding:12px
+}
+.barra-info-intruso{display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between}
+.chips-intruso{display:flex; gap:8px; flex-wrap:wrap}
+.chip-intruso{
+  background:#e2e8f0; border:1px solid var(--borde-intruso); color:var(--muted-intruso);
+  padding:6px 10px; border-radius:999px; font-size:.92rem
+}
+.chip-intruso strong{color:var(--texto-intruso)}
+.tablero-intruso{
+  display:grid; gap:6px; padding:6px; place-items:center
+}
+.celda-intruso{
+  width:100%; aspect-ratio: 1; display:grid; place-items:center; font-size:clamp(20px, 4vw, 32px); cursor:pointer;
+  border-radius:8px; background:#f1f5f9; border:1px solid var(--borde-intruso); user-select:none; transition:transform .06s ease
+}
+.celda-intruso:active{ transform:scale(.96)}
+.feedback-intruso{
+  min-height:28px; color:var(--muted-intruso); font-weight:600; text-align: center; margin-bottom: 10px;
+}
+.ok-intruso{ color:var(--ok-intruso)}
+.ko-intruso{ color:var(--ko-intruso)}
+.resumen-intruso{
+  display:flex; flex-direction:column; align-items:center; gap:12px; text-align:center; padding:20px
+}
+.punt-intruso{
+  font-family: 'Fredoka One'; font-size:2.2rem; font-weight:800
+}
+.progreso-intruso{
+  height:10px; background:#0b1220; border:1px solid var(--borde-intruso); border-radius:999px; overflow:hidden; flex-grow: 1;
+}
+.progreso-intruso > div{
+  height:100%; background:linear-gradient(90deg,#22c55e,#10b981);
+}
+@keyframes parpadeoOK{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.0)}50%{box-shadow:0 0 0 6px rgba(34,197,94,.15)}}
+@keyframes sacudir{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-6px)}40%,60%{transform:translateX(6px)}}
+.celda-intruso.ok{ outline:2px solid var(--ok-intruso); animation:parpadeoOK .35s ease}
+.celda-intruso.ko{ outline:2px solid var(--ko-intruso); animation:sacudir .28s ease}

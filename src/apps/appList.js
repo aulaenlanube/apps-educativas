@@ -36,6 +36,8 @@ import MultiplicacionesPrimaria6 from './multiplicaciones/primaria-6/Multiplicac
 // importación del nuevo juego de personajes históricos
 import GeneradorPersonajes from './generador-personajes/GeneradorPersonajes';
 
+import BuscaElIntruso from './busca-el-intruso/BuscaElIntruso.jsx'
+
 // importamos los datos de materias (asignaturas) desde un archivo JSON
 // contiene la definición de asignaturas para cada nivel y curso
 import materiasData from './../../public/data/materias.json';
@@ -81,6 +83,13 @@ const appGeneradorPersonajes = {
   component: GeneradorPersonajes
 };
 
+const appBuscaElIntruso = { 
+  id: 'busca-el-intruso', 
+  name: 'Busca el Intruso', 
+  description: 'Encuentra el emoji diferente entre un conjunto de iguales.', 
+  component: BuscaElIntruso 
+};
+
 // exportamos las materias para primaria y ESO desde el JSON
 export const primariaSubjects = materiasData.primaria;
 export const esoSubjects = materiasData.eso;
@@ -99,6 +108,7 @@ export const primariaApps = {
     'lengua': [
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
+      appBuscaElIntruso,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'matematicas': [
