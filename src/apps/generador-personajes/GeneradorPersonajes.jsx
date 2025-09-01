@@ -160,7 +160,7 @@ const GeneradorPersonajes = () => {
   return (
     <div className="gp-contenedor">
       <div className="gp-content">
-        <h1 className="text-4xl font-bold mb-4 text-center">
+        <h1 className="text-5xl font-bold mb-4 text-center">
           <span role="img" aria-label="Personas">✨</span> 
           <span className="gradient-text">Generador de personajes</span>
         </h1>
@@ -203,7 +203,7 @@ const GeneradorPersonajes = () => {
                 <option value={cat} key={cat}>
                   {cat}
                 </option>
-              ))}}
+              ))}
             </select>
           </div>
           <button className="gp-boton-primario" onClick={handleObtener}>
@@ -238,7 +238,7 @@ const GeneradorPersonajes = () => {
               />
               <div className="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mt-4" role="alert">
                 <p className="font-bold">Información de Privacidad</p>
-                <p>ℹ️ Puedes incluir los nombres reales de tus alumnos sin miedo a la protección de datos. La lista de alumnos no se almacena en ningún servidor. El proceso se realiza localmente en tu navegador.</p>
+                <p>ℹ️ Puedes incluir los nombres reales de tus alumnos sin miedo a la protección de datos. La lista de alumnos NO se almacena en ningún servidor. El proceso se realiza localmente en tu navegador.</p>
               </div>
             </div>
             <div className="col-span-full flex justify-center gap-4">
