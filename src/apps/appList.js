@@ -33,19 +33,8 @@ import MultiplicacionesPrimaria4 from './multiplicaciones/primaria-4/Multiplicac
 import MultiplicacionesPrimaria5 from './multiplicaciones/primaria-5/MultiplicacionesPrimaria5';
 import MultiplicacionesPrimaria6 from './multiplicaciones/primaria-6/MultiplicacionesPrimaria6';
 
-// importación del nuevo juego de personajes históricos
 import GeneradorPersonajes from './generador-personajes/GeneradorPersonajes';
-
-// importaciones de Busca el Intruso
 import BuscaElIntruso from './busca-el-intruso/BuscaElIntruso.jsx'
-import BuscaElIntrusoLengua from './busca-el-intruso/BuscaElIntrusoLengua'
-import BuscaElIntrusoMatematicas from './busca-el-intruso/BuscaElIntrusoMatematicas'
-import BuscaElIntrusoCienciasNaturales from './busca-el-intruso/BuscaElIntrusoCienciasNaturales'
-import BuscaElIntrusoCienciasSociales from './busca-el-intruso/BuscaElIntrusoCienciasSociales'
-import BuscaElIntrusoIngles from './busca-el-intruso/BuscaElIntrusoIngles'
-import BuscaElIntrusoTutoria from './busca-el-intruso/BuscaElIntrusoTutoria'
-import BuscaElIntrusoValenciano from './busca-el-intruso/BuscaElIntrusoValenciano'
-import BuscaElIntrusoFrances from './busca-el-intruso/BuscaElIntrusoFrances'
 
 // importamos los datos de materias (asignaturas) desde un archivo JSON
 // contiene la definición de asignaturas para cada nivel y curso
@@ -108,11 +97,11 @@ export const esoSubjects = materiasData.eso;
 export const primariaApps = {
   '1': {
     'lengua': [
-      { 
-        id: 'busca-el-intruso-lengua-1', 
-        name: 'Busca el Intruso - Lengua', 
-        description: 'Encuentra el símbolo de escritura diferente. ¡Practica tu atención con elementos de lectura!', 
-        component: BuscaElIntrusoLengua 
+      {
+        id: 'busca-el-intruso-lengua-1',
+        name: 'Busca el Intruso',
+        description: 'Encuentra la letra diferente. ¡Practica tu atención con letras!',
+        component: BuscaElIntruso
       },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -122,44 +111,44 @@ export const primariaApps = {
       { id: 'sumas-primaria-1', name: 'Sumas sin llevadas', description: 'Aprende a sumar números de dos cifras.', component: SumasPrimaria1 },
       { id: 'restas-primaria-1', name: 'Restas sin llevadas', description: 'Restas de 2 cifras sin llevadas', component: RestasPrimaria1 },
       { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', description: 'Resuelve sumas sencillas con productos del súper.', component: SupermercadoMatematico1 },
-      { 
-        id: 'busca-el-intruso-matematicas-1', 
-        name: 'Busca el Intruso - Matemáticas', 
-        description: 'Encuentra el número o símbolo matemático diferente. ¡Entrena tu vista con números!', 
-        component: BuscaElIntrusoMatematicas 
+      {
+        id: 'busca-el-intruso-matematicas-1',
+        name: 'Busca el Intruso',
+        description: 'Encuentra el número diferente. ¡Entrena tu vista con números!',
+        component: BuscaElIntruso
       },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'ciencias-naturales': [
-      { 
-        id: 'busca-el-intruso-naturales-1', 
-        name: 'Busca el Intruso - Naturaleza', 
-        description: 'Encuentra la planta o animal diferente. ¡Aprende sobre la naturaleza jugando!', 
-        component: BuscaElIntrusoCienciasNaturales 
+      {
+        id: 'busca-el-intruso-naturales-1',
+        name: 'Busca el Intruso',
+        description: 'Encuentra el elemento diferente. ¡Aprende sobre la naturaleza jugando!',
+        component: BuscaElIntruso
       },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'ciencias-sociales': [
-      { 
-        id: 'busca-el-intruso-sociales-1', 
-        name: 'Busca el Intruso - Sociedad', 
-        description: 'Encuentra el edificio o símbolo social diferente. ¡Conoce tu entorno!', 
-        component: BuscaElIntrusoCienciasSociales 
+      {
+        id: 'busca-el-intruso-sociales-1',
+        name: 'Busca el Intruso',
+        description: 'Encuentra el elemento diferente.',
+        component: BuscaElIntruso
       },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'ingles': [
-      { 
-        id: 'busca-el-intruso-ingles-1', 
-        name: 'Find the Odd One - English', 
-        description: 'Find the different letter or symbol. Practice your attention with English elements!', 
-        component: BuscaElIntrusoIngles 
+      {
+        id: 'busca-el-intruso-ingles-1',
+        name: 'Find the Odd One',
+        description: 'Find the different letter.',
+        component: BuscaElIntruso
       },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -168,33 +157,33 @@ export const primariaApps = {
     'tutoria': [
       appIslaDeLaCalma,
       appGeneradorPersonajes,
-      { 
-        id: 'busca-el-intruso-tutoria-1', 
-        name: 'Busca el Intruso - Emociones', 
-        description: 'Encuentra la emoción diferente. ¡Aprende sobre sentimientos y emociones!', 
-        component: BuscaElIntrusoTutoria 
+      {
+        id: 'busca-el-intruso-tutoria-1',
+        name: 'Busca el Intruso',
+        description: 'Encuentra la emoción diferente. ¡Aprende sobre sentimientos y emociones!',
+        component: BuscaElIntruso
       },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'valenciano': [
-      { 
-        id: 'busca-el-intruso-valenciano-1', 
-        name: 'Busca l\'Intrus - Valencià', 
-        description: 'Troba el símbol diferent relacionat amb la cultura valenciana!', 
-        component: BuscaElIntrusoValenciano 
+      {
+        id: 'busca-el-intruso-valenciano-1',
+        name: "Busca l'Intrus",
+        description: 'Troba la lletra diferent!',
+        component: BuscaElIntruso
       },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'frances': [
-      { 
-        id: 'busca-el-intruso-frances-1', 
-        name: 'Trouve l\'Intrus - Français', 
-        description: 'Trouve le symbole différent de la culture française!', 
-        component: BuscaElIntrusoFrances 
+      {
+        id: 'busca-el-intruso-frances-1',
+        name: "Trouve l'Intrus",
+        description: 'Trouve le symbole différent de la culture française!',
+        component: BuscaElIntruso
       },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,

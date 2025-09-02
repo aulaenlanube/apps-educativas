@@ -35,7 +35,7 @@
 .chips-intruso{display:flex; gap:8px; flex-wrap:wrap}
 .chip-intruso{
   background:#e2e8f0; border:1px solid var(--borde-intruso); color:var(--muted-intruso);
-  padding:6px 10px; border-radius:999px; font-size:.92rem
+  padding:6px 10px; border-radius:999px; font-size:.92rem;
 }
 .chip-intruso strong{color:var(--texto-intruso)}
 .tablero-intruso{
