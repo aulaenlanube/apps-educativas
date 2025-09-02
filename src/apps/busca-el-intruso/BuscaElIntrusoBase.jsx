@@ -271,9 +271,7 @@ const BuscaElIntrusoBase = ({ tema = 'general' }) => {
           <span role="img" aria-label="Lupa">🔎</span> 
           <span className="gradient-text">Busca el intruso</span>
         </h1>
-        <div className="chip-intruso" style={{margin: '0 auto', fontSize: '1.1rem', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white'}}>
-          <strong>{temaIcon} {temaName}</strong>
-        </div>
+        
         
         <div className="controles-intruso">
           <button onClick={activarModoLibre} className="btn-intruso">Modo libre</button>

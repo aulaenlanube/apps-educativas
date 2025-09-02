@@ -36,9 +36,8 @@ import MultiplicacionesPrimaria6 from './multiplicaciones/primaria-6/Multiplicac
 // importación del nuevo juego de personajes históricos
 import GeneradorPersonajes from './generador-personajes/GeneradorPersonajes';
 
-import BuscaElIntruso from './busca-el-intruso/BuscaElIntruso.jsx'
-
 // importaciones de Busca el Intruso
+import BuscaElIntruso from './busca-el-intruso/BuscaElIntruso.jsx'
 import BuscaElIntrusoLengua from './busca-el-intruso/BuscaElIntrusoLengua'
 import BuscaElIntrusoMatematicas from './busca-el-intruso/BuscaElIntrusoMatematicas'
 import BuscaElIntrusoCienciasNaturales from './busca-el-intruso/BuscaElIntrusoCienciasNaturales'
@@ -93,13 +92,6 @@ const appGeneradorPersonajes = {
   component: GeneradorPersonajes
 };
 
-const appBuscaElIntruso = { 
-  id: 'busca-el-intruso', 
-  name: 'Busca el Intruso', 
-  description: 'Encuentra el emoji diferente entre un conjunto de iguales.', 
-  component: BuscaElIntruso 
-};
-
 // exportamos las materias para primaria y ESO desde el JSON
 export const primariaSubjects = materiasData.primaria;
 export const esoSubjects = materiasData.eso;
@@ -116,30 +108,59 @@ export const esoSubjects = materiasData.eso;
 export const primariaApps = {
   '1': {
     'lengua': [
+      { 
+        id: 'busca-el-intruso-lengua-1', 
+        name: 'Busca el Intruso - Lengua', 
+        description: 'Encuentra el símbolo de escritura diferente. ¡Practica tu atención con elementos de lectura!', 
+        component: BuscaElIntrusoLengua 
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
-      appBuscaElIntruso,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'matematicas': [
       { id: 'sumas-primaria-1', name: 'Sumas sin llevadas', description: 'Aprende a sumar números de dos cifras.', component: SumasPrimaria1 },
       { id: 'restas-primaria-1', name: 'Restas sin llevadas', description: 'Restas de 2 cifras sin llevadas', component: RestasPrimaria1 },
       { id: 'supermercado-matematico-1', name: 'Supermercado Matemático (Sumas)', description: 'Resuelve sumas sencillas con productos del súper.', component: SupermercadoMatematico1 },
+      { 
+        id: 'busca-el-intruso-matematicas-1', 
+        name: 'Busca el Intruso - Matemáticas', 
+        description: 'Encuentra el número o símbolo matemático diferente. ¡Entrena tu vista con números!', 
+        component: BuscaElIntrusoMatematicas 
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'ciencias-naturales': [
+      { 
+        id: 'busca-el-intruso-naturales-1', 
+        name: 'Busca el Intruso - Naturaleza', 
+        description: 'Encuentra la planta o animal diferente. ¡Aprende sobre la naturaleza jugando!', 
+        component: BuscaElIntrusoCienciasNaturales 
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'ciencias-sociales': [
+      { 
+        id: 'busca-el-intruso-sociales-1', 
+        name: 'Busca el Intruso - Sociedad', 
+        description: 'Encuentra el edificio o símbolo social diferente. ¡Conoce tu entorno!', 
+        component: BuscaElIntrusoCienciasSociales 
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'ingles': [
+      { 
+        id: 'busca-el-intruso-ingles-1', 
+        name: 'Find the Odd One - English', 
+        description: 'Find the different letter or symbol. Practice your attention with English elements!', 
+        component: BuscaElIntrusoIngles 
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
@@ -147,16 +168,34 @@ export const primariaApps = {
     'tutoria': [
       appIslaDeLaCalma,
       appGeneradorPersonajes,
+      { 
+        id: 'busca-el-intruso-tutoria-1', 
+        name: 'Busca el Intruso - Emociones', 
+        description: 'Encuentra la emoción diferente. ¡Aprende sobre sentimientos y emociones!', 
+        component: BuscaElIntrusoTutoria 
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'valenciano': [
+      { 
+        id: 'busca-el-intruso-valenciano-1', 
+        name: 'Busca l\'Intrus - Valencià', 
+        description: 'Troba el símbol diferent relacionat amb la cultura valenciana!', 
+        component: BuscaElIntrusoValenciano 
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'frances': [
+      { 
+        id: 'busca-el-intruso-frances-1', 
+        name: 'Trouve l\'Intrus - Français', 
+        description: 'Trouve le symbole différent de la culture française!', 
+        component: BuscaElIntrusoFrances 
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
