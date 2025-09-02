@@ -38,6 +38,16 @@ import GeneradorPersonajes from './generador-personajes/GeneradorPersonajes';
 
 import BuscaElIntruso from './busca-el-intruso/BuscaElIntruso.jsx'
 
+// importaciones de Busca el Intruso
+import BuscaElIntrusoLengua from './busca-el-intruso/BuscaElIntrusoLengua'
+import BuscaElIntrusoMatematicas from './busca-el-intruso/BuscaElIntrusoMatematicas'
+import BuscaElIntrusoCienciasNaturales from './busca-el-intruso/BuscaElIntrusoCienciasNaturales'
+import BuscaElIntrusoCienciasSociales from './busca-el-intruso/BuscaElIntrusoCienciasSociales'
+import BuscaElIntrusoIngles from './busca-el-intruso/BuscaElIntrusoIngles'
+import BuscaElIntrusoTutoria from './busca-el-intruso/BuscaElIntrusoTutoria'
+import BuscaElIntrusoValenciano from './busca-el-intruso/BuscaElIntrusoValenciano'
+import BuscaElIntrusoFrances from './busca-el-intruso/BuscaElIntrusoFrances'
+
 // importamos los datos de materias (asignaturas) desde un archivo JSON
 // contiene la definición de asignaturas para cada nivel y curso
 import materiasData from './../../public/data/materias.json';
