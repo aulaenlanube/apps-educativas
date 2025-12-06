@@ -1,0 +1,155 @@
+/* src/apps/_shared/Medidas.css */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+.medidas-container {
+    font-family: 'Lexend', sans-serif;
+    width: 100%;
+    max-width: 800px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    border: 1px solid #e2e8f0;
+}
+
+.medidas-container h1 {
+    margin-top: 0;
+    font-family: 'Fredoka One', cursive;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.medidas-container .instrucciones {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* --- ZONA DE JUEGO --- */
+.comparison-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 30px 0;
+    flex-wrap: wrap; /* Permite que baje en móviles muy pequeños */
+}
+
+/* Tarjetas de medidas */
+.measure-card {
+    background: #f1f5f9;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 2rem; /* Un poco más pequeño para que quepan textos largos */
+    font-weight: 700;
+    color: #1e293b;
+    min-width: 140px;
+    border: 2px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 0 #cbd5e1;
+}
+
+/* Zona central para el signo */
+.sign-drop-zone {
+    width: 80px;
+    height: 80px;
+    border: 3px dashed #cbd5e1;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8fafc;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #4f46e5;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.sign-drop-zone.filled {
+    border-style: solid;
+    border-color: #4f46e5;
+    background-color: #eef2ff;
+    box-shadow: 0 4px 0 #3730a3;
+    transform: translateY(-2px);
+}
+
+.sign-drop-zone.correct {
+    background-color: #dcfce7;
+    border-color: #166534;
+    color: #166534;
+    box-shadow: 0 4px 0 #14532d;
+}
+
+.sign-drop-zone.incorrect {
+    background-color: #fee2e2;
+    border-color: #991b1b;
+    color: #991b1b;
+    box-shadow: 0 4px 0 #7f1d1d;
+}
+
+/* --- PALETA DE SIGNOS --- */
+.signs-palette {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8fafc;
+    border-radius: 12px;
+}
+
+.sign-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: white;
+    border: 2px solid #4f46e5;
+    color: #4f46e5;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s;
+    box-shadow: 0 4px 0 #3730a3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sign-btn:hover {
+    transform: translateY(-2px);
+    background-color: #eef2ff;
+}
+
+.sign-btn:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+/* --- ELEMENTOS COMUNES --- */
+.mode-selection { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+.btn-mode { font-family: 'Lexend', sans-serif; padding: 10px 20px; border-radius: 8px; border: 1px solid #dcdfe6; background: #f0f4f8; color: #4a5568; cursor: pointer; font-weight: 600; }
+.btn-mode.active, .btn-mode:hover { background-color: #673de6; color: white; border-color: #673de6; }
+
+.controles { margin-top: 25px; display: flex; justify-content: center; gap: 15px; }
+.controles button { font-family: 'Lexend', sans-serif; font-size: 16px; font-weight: 600; padding: 12px 25px; border-radius: 8px; border: none; cursor: pointer; background-color: #4a90e2; color: white; transition: background-color 0.2s; min-width: 140px; }
+.controles button:hover { background-color: #357ABD; }
+.controles .btn-saltar { background-color: #d97706; }
+.controles .btn-saltar:hover { background-color: #935106; }
+
+.feedback-message { margin-top: 20px; font-weight: bold; font-size: 1.2rem; min-height: 1.5rem; }
+.feedback-correct { color: #166534; }
+.feedback-incorrect { color: #991b1b; }
+
+@media (max-width: 600px) {
+    .measure-card { font-size: 1.3rem; min-width: 100px; padding: 10px; }
+    .sign-drop-zone { width: 60px; height: 60px; font-size: 2rem; }
+    .sign-btn { width: 55px; height: 55px; font-size: 2rem; }
+}
