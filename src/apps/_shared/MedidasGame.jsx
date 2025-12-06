@@ -4,13 +4,13 @@ import './Medidas.css';
 const TOTAL_TEST_QUESTIONS = 10;
 
 // --- CONFIGURACIÓN DE SISTEMAS DE UNIDADES ---
-// Base: 1 = unidad más pequeña del sistema (mm, mg, ml)
 const MEASURE_TYPES = {
     longitud: {
         id: 'longitud',
         label: 'Longitud',
         icon: '📏',
-        baseUnit: 'mm',
+        baseUnit: 'mm', // Solo para cálculos internos
+        displayBase: 'm', // Para destacar en la UI
         units: { mm: 1, cm: 10, dm: 100, m: 1000, dam: 10000, hm: 100000, km: 1000000 },
         order: ['km', 'hm', 'dam', 'm', 'dm', 'cm', 'mm']
     },
@@ -19,6 +19,7 @@ const MEASURE_TYPES = {
         label: 'Masa',
         icon: '⚖️',
         baseUnit: 'mg',
+        displayBase: 'g',
         units: { mg: 1, cg: 10, dg: 100, g: 1000, dag: 10000, hg: 100000, kg: 1000000 },
         order: ['kg', 'hg', 'dag', 'g', 'dg', 'cg', 'mg']
     },
@@ -27,6 +28,7 @@ const MEASURE_TYPES = {
         label: 'Capacidad',
         icon: '💧',
         baseUnit: 'ml',
+        displayBase: 'l',
         units: { ml: 1, cl: 10, dl: 100, l: 1000, dal: 10000, hl: 100000, kl: 1000000 },
         order: ['kl', 'hl', 'dal', 'l', 'dl', 'cl', 'ml']
     }
@@ -54,21 +56,18 @@ const generateProblemData = (level, typeId) => {
     const config = MEASURE_TYPES[typeId];
     const { units } = config;
     
-    // Mapeo genérico de niveles a unidades permitidas según el sistema
     let allowedUnits = [];
     let maxBase = 1000;
 
-    // Definimos las unidades "clave" por nivel para cada sistema
-    // Nivel 1: Unidades muy básicas
     const uSmall = typeId === 'longitud' ? 'cm' : (typeId === 'masa' ? 'g' : 'cl');
     const uMed = typeId === 'longitud' ? 'm' : (typeId === 'masa' ? 'kg' : 'l');
     const uTiny = typeId === 'longitud' ? 'mm' : (typeId === 'masa' ? 'mg' : 'ml');
-    const uLarge = typeId === 'longitud' ? 'km' : (typeId === 'masa' ? 'kg' : 'kl'); // kg suele ser tope en primaria vs ton
+    const uLarge = typeId === 'longitud' ? 'km' : (typeId === 'masa' ? 'kg' : 'kl');
 
     switch (level) {
         case 1: 
             allowedUnits = [uSmall, uMed]; 
-            maxBase = 20 * units[uMed]; // Ej: 20m, 20kg
+            maxBase = 20 * units[uMed];
             break;
         case 2: 
             allowedUnits = [uSmall, uMed]; 
@@ -79,17 +78,14 @@ const generateProblemData = (level, typeId) => {
             maxBase = 5000 * units[uMed]; 
             break;
         case 4: 
-            // Todas
             allowedUnits = config.order; 
             maxBase = 10 * units[uLarge]; 
             break;
         case 5: 
-            // Enfocado en las comunes
             allowedUnits = [uMed, uLarge, uSmall]; 
             maxBase = 100 * units[uLarge]; 
             break;
         case 6: 
-            // Todas y grandes
             allowedUnits = config.order; 
             maxBase = 1000 * units[uLarge]; 
             break;
@@ -97,30 +93,26 @@ const generateProblemData = (level, typeId) => {
             allowedUnits = [uMed];
     }
 
-    // Filtramos para asegurar que solo usamos unidades que existen en la config (por seguridad)
     allowedUnits = allowedUnits.filter(u => units[u]);
 
     // --- Generar Izquierda ---
     let left;
-    // Expresiones compuestas en niveles altos (5 y 6)
     if (level >= 5 && Math.random() > 0.6) {
-        // Ej: 2 kg 500 g
         const possibleBigs = allowedUnits.filter(u => units[u] >= units[uMed]);
         const uBig = possibleBigs.length > 0 ? pickUnit(possibleBigs) : uMed;
         
-        // Buscar una unidad más pequeña que uBig
         const possibleSmalls = allowedUnits.filter(u => units[u] < units[uBig]);
         const uSmallChoice = possibleSmalls.length > 0 ? pickUnit(possibleSmalls) : uTiny;
 
         const valBig = randomInt(1, 10);
-        const valSmall = randomInt(10, 900); // Ej: 500 g
+        const valSmall = randomInt(10, 900);
         
         const totalBase = (valBig * units[uBig]) + (valSmall * units[uSmallChoice]);
         left = {
             text: `${valBig} ${uBig} ${valSmall} ${uSmallChoice}`,
             valueBase: totalBase,
             isComplex: true,
-            unit: null // No tiene unidad única
+            unit: null
         };
     } else {
         left = generateMeasurement(config, allowedUnits, maxBase);
@@ -133,11 +125,9 @@ const generateProblemData = (level, typeId) => {
 
     if (relation < 0.3) {
         // IGUALES (=)
-        // Buscar unidad equivalente distinta
         const validEquivalents = allowedUnits.filter(u => targetBase % units[u] === 0);
         let candidates = validEquivalents;
         
-        // Si izquierda es simple, evitar repetir la misma unidad
         if (left.unit && !left.isComplex) {
             candidates = validEquivalents.filter(u => u !== left.unit);
         }
@@ -147,8 +137,6 @@ const generateProblemData = (level, typeId) => {
             const valR = targetBase / units[unitR];
             right = { text: `${valR} ${unitR}`, valueBase: targetBase };
         } else {
-            // Si no hay conversión limpia, usar Suma
-            // Ej: 500g + 500g
             const uRef = left.unit || uMed;
             const valRef = Math.floor(targetBase / units[uRef]) || targetBase;
             const finalUnit = (targetBase % units[uRef] === 0) ? uRef : config.baseUnit;
@@ -167,14 +155,12 @@ const generateProblemData = (level, typeId) => {
         let newBase = targetBase + variation;
         if (newBase <= 0) newBase = targetBase + Math.abs(variation);
 
-        // Intentar representar en una unidad limpia
         const validUnits = allowedUnits.filter(u => newBase % units[u] === 0);
         if (validUnits.length > 0) {
             const unitR = pickUnit(validUnits);
             const valR = newBase / units[unitR];
             right = { text: `${valR} ${unitR}`, valueBase: newBase };
         } else {
-            // Fallback a unidad pequeña disponible
             const smallestAvailable = allowedUnits.reduce((prev, curr) => units[curr] < units[prev] ? curr : prev, allowedUnits[0]);
             const safeBase = Math.round(newBase / units[smallestAvailable]) * units[smallestAvailable];
             right = { text: `${safeBase / units[smallestAvailable]} ${smallestAvailable}`, valueBase: safeBase };
@@ -185,7 +171,7 @@ const generateProblemData = (level, typeId) => {
 };
 
 const MedidasGame = ({ level, title }) => {
-    const [measureType, setMeasureType] = useState('longitud'); // 'longitud', 'masa', 'capacidad'
+    const [measureType, setMeasureType] = useState('longitud'); 
     const [isTestMode, setIsTestMode] = useState(false);
     const [leftItem, setLeftItem] = useState({ text: '', valueBase: 0 });
     const [rightItem, setRightItem] = useState({ text: '', valueBase: 0 });
@@ -213,10 +199,9 @@ const MedidasGame = ({ level, title }) => {
         setFeedback({ text: '', type: '' });
     }, [generateProblem]);
 
-    // Reiniciar práctica si cambiamos de tipo
     useEffect(() => {
         if (!isTestMode) startPractice();
-    }, [measureType]); // Dependencia clave
+    }, [measureType, startPractice, isTestMode]);
 
     const startTest = useCallback(() => {
         const qs = Array.from({ length: TOTAL_TEST_QUESTIONS }, () => generateProblem());
@@ -234,11 +219,6 @@ const MedidasGame = ({ level, title }) => {
         setShowHelper(false);
         setFeedback({ text: '', type: '' });
     }, [generateProblem]);
-
-    useEffect(() => {
-        // Carga inicial
-        startPractice();
-    }, []);
 
     const handleSignSelect = (sign) => {
         setSelectedSign(sign);
@@ -346,7 +326,7 @@ const MedidasGame = ({ level, title }) => {
                 </div>
                 
                 <div className="flex items-center gap-2 bg-gray-50 p-2 rounded-lg border border-gray-200">
-                    <span className="text-sm font-bold text-gray-600">Escala</span>
+                    <span className="text-sm font-bold text-gray-600">Ayuda</span>
                     <label className="switch">
                         <input type="checkbox" checked={showHelper} onChange={(e) => setShowHelper(e.target.checked)} />
                         <span className="slider round"></span>
@@ -354,25 +334,34 @@ const MedidasGame = ({ level, title }) => {
                 </div>
             </div>
 
-            {/* --- VISUALIZADOR DE ESCALA (AYUDA) --- */}
+            {/* --- VISUALIZADOR DE ESCALA MEJORADO --- */}
             {showHelper && (
                 <div className="mb-6 p-4 bg-gray-50 rounded-xl border-2 border-gray-100 fade-in">
-                    <div className="flex justify-center items-center gap-1 md:gap-3 overflow-x-auto py-2">
-                        {currentConfig.order.map((u, index) => (
-                            <React.Fragment key={u}>
-                                <div className="scale-step">
-                                    <div className="scale-circle shadow-sm text-sm md:text-base">
-                                        {u}
+                    <div className="flex justify-between items-center px-4 mb-2">
+                        <span className="scale-label">MAYOR</span>
+                        <span className="scale-label">MENOR</span>
+                    </div>
+                    
+                    <div className="scale-container">
+                        {currentConfig.order.map((u, index) => {
+                            const isBase = u === currentConfig.displayBase;
+                            return (
+                                <React.Fragment key={u}>
+                                    <div className="scale-step">
+                                        <div className={`scale-circle ${isBase ? 'is-base' : ''}`}>
+                                            {u}
+                                        </div>
                                     </div>
-                                    <span className="text-[10px] text-gray-400 mt-1 text-center font-bold">
-                                        {currentConfig.units[u] === 1000 ? 'BASE' : (index === 0 ? 'x10' : '')}
-                                    </span>
-                                </div>
-                                {index < currentConfig.order.length - 1 && (
-                                    <div className="text-gray-300 font-bold text-lg">→</div>
-                                )}
-                            </React.Fragment>
-                        ))}
+                                    
+                                    {index < currentConfig.order.length - 1 && (
+                                        <div className="scale-connector">
+                                            <span className="scale-multiplier">x10</span>
+                                            <span className="scale-arrow">→</span>
+                                        </div>
+                                    )}
+                                </React.Fragment>
+                            );
+                        })}
                     </div>
                 </div>
             )}
