@@ -1,32 +1,45 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './Medidas.css';
 
 const TOTAL_TEST_QUESTIONS = 10;
 
-// Factores de conversión a mm
-const UNITS = {
-    mm: 1,
-    cm: 10,
-    dm: 100,
-    m: 1000,
-    dam: 10000,
-    hm: 100000,
-    km: 1000000
+// --- CONFIGURACIÓN DE SISTEMAS DE UNIDADES ---
+// Base: 1 = unidad más pequeña del sistema (mm, mg, ml)
+const MEASURE_TYPES = {
+    longitud: {
+        id: 'longitud',
+        label: 'Longitud',
+        icon: '📏',
+        baseUnit: 'mm',
+        units: { mm: 1, cm: 10, dm: 100, m: 1000, dam: 10000, hm: 100000, km: 1000000 },
+        order: ['km', 'hm', 'dam', 'm', 'dm', 'cm', 'mm']
+    },
+    masa: {
+        id: 'masa',
+        label: 'Masa',
+        icon: '⚖️',
+        baseUnit: 'mg',
+        units: { mg: 1, cg: 10, dg: 100, g: 1000, dag: 10000, hg: 100000, kg: 1000000 },
+        order: ['kg', 'hg', 'dag', 'g', 'dg', 'cg', 'mg']
+    },
+    capacidad: {
+        id: 'capacidad',
+        label: 'Capacidad',
+        icon: '💧',
+        baseUnit: 'ml',
+        units: { ml: 1, cl: 10, dl: 100, l: 1000, dal: 10000, hl: 100000, kl: 1000000 },
+        order: ['kl', 'hl', 'dal', 'l', 'dl', 'cl', 'ml']
+    }
 };
-
-// Orden para la escalera visual
-const UNIT_ORDER = ['km', 'hm', 'dam', 'm', 'dm', 'cm', 'mm'];
 
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 const pickUnit = (list) => list[randomInt(0, list.length - 1)];
 
-/**
- * Genera una cantidad válida que sea ENTERA en la unidad elegida.
- */
-const generateMeasurement = (allowedUnits, maxValBase) => {
+// --- GENERADORES ---
+
+const generateMeasurement = (typeConfig, allowedUnits, maxValBase) => {
     const unitStr = pickUnit(allowedUnits);
-    const factor = UNITS[unitStr];
-    // Evitar 0, mínimo 1
+    const factor = typeConfig.units[unitStr];
     const val = randomInt(1, Math.floor(maxValBase / factor) || 1);
 
     return {
@@ -37,98 +50,134 @@ const generateMeasurement = (allowedUnits, maxValBase) => {
     };
 };
 
-/**
- * Genera el problema asegurando que si son iguales, la representación sea distinta.
- */
-const generateProblemData = (level) => {
+const generateProblemData = (level, typeId) => {
+    const config = MEASURE_TYPES[typeId];
+    const { units } = config;
+    
+    // Mapeo genérico de niveles a unidades permitidas según el sistema
     let allowedUnits = [];
     let maxBase = 1000;
 
+    // Definimos las unidades "clave" por nivel para cada sistema
+    // Nivel 1: Unidades muy básicas
+    const uSmall = typeId === 'longitud' ? 'cm' : (typeId === 'masa' ? 'g' : 'cl');
+    const uMed = typeId === 'longitud' ? 'm' : (typeId === 'masa' ? 'kg' : 'l');
+    const uTiny = typeId === 'longitud' ? 'mm' : (typeId === 'masa' ? 'mg' : 'ml');
+    const uLarge = typeId === 'longitud' ? 'km' : (typeId === 'masa' ? 'kg' : 'kl'); // kg suele ser tope en primaria vs ton
+
     switch (level) {
-        case 1: allowedUnits = ['cm', 'm']; maxBase = 20000; break;
-        case 2: allowedUnits = ['cm', 'm']; maxBase = 5000; break;
-        case 3: allowedUnits = ['mm', 'cm', 'm', 'km']; maxBase = 5000000; break;
-        case 4: allowedUnits = ['mm', 'cm', 'dm', 'm', 'dam', 'hm', 'km']; maxBase = 10000000; break;
-        case 5: allowedUnits = ['m', 'km', 'cm']; maxBase = 10000000; break;
-        case 6: allowedUnits = ['mm', 'cm', 'dm', 'm', 'dam', 'hm', 'km']; maxBase = 100000000; break;
-        default: allowedUnits = ['m'];
+        case 1: 
+            allowedUnits = [uSmall, uMed]; 
+            maxBase = 20 * units[uMed]; // Ej: 20m, 20kg
+            break;
+        case 2: 
+            allowedUnits = [uSmall, uMed]; 
+            maxBase = 100 * units[uMed]; 
+            break;
+        case 3: 
+            allowedUnits = [uTiny, uSmall, uMed, uLarge]; 
+            maxBase = 5000 * units[uMed]; 
+            break;
+        case 4: 
+            // Todas
+            allowedUnits = config.order; 
+            maxBase = 10 * units[uLarge]; 
+            break;
+        case 5: 
+            // Enfocado en las comunes
+            allowedUnits = [uMed, uLarge, uSmall]; 
+            maxBase = 100 * units[uLarge]; 
+            break;
+        case 6: 
+            // Todas y grandes
+            allowedUnits = config.order; 
+            maxBase = 1000 * units[uLarge]; 
+            break;
+        default: 
+            allowedUnits = [uMed];
     }
 
-    // --- GENERAR LADO IZQUIERDO ---
+    // Filtramos para asegurar que solo usamos unidades que existen en la config (por seguridad)
+    allowedUnits = allowedUnits.filter(u => units[u]);
+
+    // --- Generar Izquierda ---
     let left;
-    // Expresiones compuestas (ej: 1 m 50 cm) para niveles altos
+    // Expresiones compuestas en niveles altos (5 y 6)
     if (level >= 5 && Math.random() > 0.6) {
-        const uBig = level === 5 ? 'km' : pickUnit(['km', 'm', 'dm']);
-        const uSmall = level === 5 ? 'm' : (uBig === 'km' ? 'm' : (uBig === 'm' ? 'cm' : 'mm'));
+        // Ej: 2 kg 500 g
+        const possibleBigs = allowedUnits.filter(u => units[u] >= units[uMed]);
+        const uBig = possibleBigs.length > 0 ? pickUnit(possibleBigs) : uMed;
+        
+        // Buscar una unidad más pequeña que uBig
+        const possibleSmalls = allowedUnits.filter(u => units[u] < units[uBig]);
+        const uSmallChoice = possibleSmalls.length > 0 ? pickUnit(possibleSmalls) : uTiny;
+
         const valBig = randomInt(1, 10);
-        const valSmall = randomInt(10, 900);
-        const totalBase = (valBig * UNITS[uBig]) + (valSmall * UNITS[uSmall]);
+        const valSmall = randomInt(10, 900); // Ej: 500 g
+        
+        const totalBase = (valBig * units[uBig]) + (valSmall * units[uSmallChoice]);
         left = {
-            text: `${valBig} ${uBig} ${valSmall} ${uSmall}`,
+            text: `${valBig} ${uBig} ${valSmall} ${uSmallChoice}`,
             valueBase: totalBase,
-            isComplex: true
+            isComplex: true,
+            unit: null // No tiene unidad única
         };
     } else {
-        left = generateMeasurement(allowedUnits, maxBase);
+        left = generateMeasurement(config, allowedUnits, maxBase);
     }
 
-    // --- GENERAR LADO DERECHO ---
+    // --- Generar Derecha ---
     let right;
     let targetBase = left.valueBase;
     const relation = Math.random();
-    
+
     if (relation < 0.3) {
-        // --- CASO IGUALES (=) ---
-        // Estrategia: Buscar una unidad diferente para representar el mismo valor.
-        // Si left es "3000 m", buscamos si es divisible por km, hm, etc.
-        
-        // Unidades que pueden representar este valor sin decimales
-        const validEquivalents = allowedUnits.filter(u => targetBase % UNITS[u] === 0);
-        
-        // Filtramos para que NO sea la misma unidad que la izquierda (si es simple)
+        // IGUALES (=)
+        // Buscar unidad equivalente distinta
+        const validEquivalents = allowedUnits.filter(u => targetBase % units[u] === 0);
         let candidates = validEquivalents;
+        
+        // Si izquierda es simple, evitar repetir la misma unidad
         if (left.unit && !left.isComplex) {
             candidates = validEquivalents.filter(u => u !== left.unit);
         }
 
         if (candidates.length > 0) {
-            // Conversión de unidad (Ej: 3000 m -> 3 km)
             const unitR = pickUnit(candidates);
-            const valR = targetBase / UNITS[unitR];
+            const valR = targetBase / units[unitR];
             right = { text: `${valR} ${unitR}`, valueBase: targetBase };
         } else {
-            // Si no hay conversión limpia posible (o misma unidad obligatoria), usamos Suma
-            // Ej: "15 m" -> "10 m + 5 m"
-            // Usamos la unidad base del target o la de left
-            const uRef = left.unit || allowedUnits[0]; 
-            const valRef = targetBase / UNITS[uRef]; // valor numérico en esa unidad
-            
-            // Partición simple
-            const part1 = Math.floor(valRef / 2);
-            const part2 = valRef - part1;
+            // Si no hay conversión limpia, usar Suma
+            // Ej: 500g + 500g
+            const uRef = left.unit || uMed;
+            const valRef = Math.floor(targetBase / units[uRef]) || targetBase;
+            const finalUnit = (targetBase % units[uRef] === 0) ? uRef : config.baseUnit;
+            const finalVal = (targetBase % units[uRef] === 0) ? valRef : targetBase;
+
+            const part1 = Math.floor(finalVal / 2);
+            const part2 = finalVal - part1;
             right = { 
-                text: `${part1} + ${part2} ${uRef}`, 
+                text: `${part1} + ${part2} ${finalUnit}`, 
                 valueBase: targetBase 
             };
         }
-
     } else {
-        // --- CASO DIFERENTES (> o <) ---
+        // DIFERENTES
         const variation = (Math.random() > 0.5 ? 1 : -1) * randomInt(1, Math.max(1, Math.floor(left.valueBase * 0.2)));
         let newBase = targetBase + variation;
         if (newBase <= 0) newBase = targetBase + Math.abs(variation);
 
-        // Intentar buscar unidad limpia
-        const validUnits = allowedUnits.filter(u => newBase % UNITS[u] === 0);
+        // Intentar representar en una unidad limpia
+        const validUnits = allowedUnits.filter(u => newBase % units[u] === 0);
         if (validUnits.length > 0) {
             const unitR = pickUnit(validUnits);
-            const valR = newBase / UNITS[unitR];
+            const valR = newBase / units[unitR];
             right = { text: `${valR} ${unitR}`, valueBase: newBase };
         } else {
-            // Fallback a unidad pequeña
-            const smallestU = allowedUnits.includes('mm') ? 'mm' : allowedUnits[0];
-            const safeBase = Math.round(newBase / UNITS[smallestU]) * UNITS[smallestU];
-            right = { text: `${safeBase / UNITS[smallestU]} ${smallestU}`, valueBase: safeBase };
+            // Fallback a unidad pequeña disponible
+            const smallestAvailable = allowedUnits.reduce((prev, curr) => units[curr] < units[prev] ? curr : prev, allowedUnits[0]);
+            const safeBase = Math.round(newBase / units[smallestAvailable]) * units[smallestAvailable];
+            right = { text: `${safeBase / units[smallestAvailable]} ${smallestAvailable}`, valueBase: safeBase };
         }
     }
 
@@ -136,13 +185,12 @@ const generateProblemData = (level) => {
 };
 
 const MedidasGame = ({ level, title }) => {
+    const [measureType, setMeasureType] = useState('longitud'); // 'longitud', 'masa', 'capacidad'
     const [isTestMode, setIsTestMode] = useState(false);
     const [leftItem, setLeftItem] = useState({ text: '', valueBase: 0 });
     const [rightItem, setRightItem] = useState({ text: '', valueBase: 0 });
     const [selectedSign, setSelectedSign] = useState(null); 
     const [feedback, setFeedback] = useState({ text: '', type: '' });
-    
-    // Estado para la Ayuda Visual (Escalera)
     const [showHelper, setShowHelper] = useState(false);
 
     const [testStats, setTestStats] = useState({
@@ -154,8 +202,8 @@ const MedidasGame = ({ level, title }) => {
     });
 
     const generateProblem = useCallback(() => {
-        return generateProblemData(level);
-    }, [level]);
+        return generateProblemData(level, measureType);
+    }, [level, measureType]);
 
     const startPractice = useCallback(() => {
         const { left, right } = generateProblem();
@@ -164,6 +212,11 @@ const MedidasGame = ({ level, title }) => {
         setSelectedSign(null);
         setFeedback({ text: '', type: '' });
     }, [generateProblem]);
+
+    // Reiniciar práctica si cambiamos de tipo
+    useEffect(() => {
+        if (!isTestMode) startPractice();
+    }, [measureType]); // Dependencia clave
 
     const startTest = useCallback(() => {
         const qs = Array.from({ length: TOTAL_TEST_QUESTIONS }, () => generateProblem());
@@ -178,13 +231,14 @@ const MedidasGame = ({ level, title }) => {
         setLeftItem(qs[0].left);
         setRightItem(qs[0].right);
         setSelectedSign(null);
-        setShowHelper(false); // Ocultar ayuda en test por defecto
+        setShowHelper(false);
         setFeedback({ text: '', type: '' });
     }, [generateProblem]);
 
     useEffect(() => {
+        // Carga inicial
         startPractice();
-    }, [startPractice]);
+    }, []);
 
     const handleSignSelect = (sign) => {
         setSelectedSign(sign);
@@ -195,7 +249,6 @@ const MedidasGame = ({ level, title }) => {
         if (!selectedSign) return;
 
         const diff = leftItem.valueBase - rightItem.valueBase;
-        // Pequeña tolerancia por seguridad, aunque usamos enteros base
         let correct = '=';
         if (diff > 0) correct = '>';
         if (diff < 0) correct = '<';
@@ -243,9 +296,11 @@ const MedidasGame = ({ level, title }) => {
         }
     };
 
+    const currentConfig = MEASURE_TYPES[measureType];
+
     if (isTestMode && testStats.finished) {
         return (
-            <div className="medidas-container">
+            <div className={`medidas-container theme-${measureType}`}>
                 <h1><span className="gradient-text">Resultados</span></h1>
                 <h2 className="text-2xl font-bold mb-4">Puntuación: {testStats.score} / {TOTAL_TEST_QUESTIONS}</h2>
                 <div className="text-left overflow-y-auto mb-6" style={{maxHeight: '300px'}}>
@@ -267,18 +322,31 @@ const MedidasGame = ({ level, title }) => {
     }
 
     return (
-        <div className="medidas-container">
+        <div className={`medidas-container theme-${measureType}`}>
             <h1><span className="gradient-text">{title}</span></h1>
             
-            {/* Controles Superiores: Modo y Ayuda */}
-            <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+            <div className="flex justify-center">
+                <div className="type-selector-container">
+                    {Object.values(MEASURE_TYPES).map(type => (
+                        <button
+                            key={type.id}
+                            className={`type-btn t-${type.id} ${measureType === type.id ? 'active' : ''}`}
+                            onClick={() => { setMeasureType(type.id); setIsTestMode(false); }}
+                        >
+                            <span>{type.icon}</span> {type.label}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4 px-4">
                 <div className="mode-selection mb-0">
                     <button className={`btn-mode ${!isTestMode ? 'active' : ''}`} onClick={() => {setIsTestMode(false); startPractice();}}>Práctica</button>
                     <button className={`btn-mode ${isTestMode ? 'active' : ''}`} onClick={startTest}>Test</button>
                 </div>
                 
                 <div className="flex items-center gap-2 bg-gray-50 p-2 rounded-lg border border-gray-200">
-                    <span className="text-sm font-bold text-gray-600">Ver Escala</span>
+                    <span className="text-sm font-bold text-gray-600">Escala</span>
                     <label className="switch">
                         <input type="checkbox" checked={showHelper} onChange={(e) => setShowHelper(e.target.checked)} />
                         <span className="slider round"></span>
@@ -288,19 +356,20 @@ const MedidasGame = ({ level, title }) => {
 
             {/* --- VISUALIZADOR DE ESCALA (AYUDA) --- */}
             {showHelper && (
-                <div className="mb-6 p-4 bg-indigo-50 rounded-xl border-2 border-indigo-100 fade-in">
-                    <p className="text-sm text-indigo-600 mb-2 font-semibold">Escalera de Unidades: ¡Multiplica o divide por 10!</p>
+                <div className="mb-6 p-4 bg-gray-50 rounded-xl border-2 border-gray-100 fade-in">
                     <div className="flex justify-center items-center gap-1 md:gap-3 overflow-x-auto py-2">
-                        {UNIT_ORDER.map((u, index) => (
+                        {currentConfig.order.map((u, index) => (
                             <React.Fragment key={u}>
-                                <div className="flex flex-col items-center">
-                                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border-2 border-indigo-400 flex items-center justify-center font-bold text-indigo-700 shadow-sm text-sm md:text-base">
+                                <div className="scale-step">
+                                    <div className="scale-circle shadow-sm text-sm md:text-base">
                                         {u}
                                     </div>
-                                    <span className="text-xs text-gray-500 mt-1">{UNITS[u] === 1000 ? 'BASE' : ''}</span>
+                                    <span className="text-[10px] text-gray-400 mt-1 text-center font-bold">
+                                        {currentConfig.units[u] === 1000 ? 'BASE' : (index === 0 ? 'x10' : '')}
+                                    </span>
                                 </div>
-                                {index < UNIT_ORDER.length - 1 && (
-                                    <div className="text-gray-300 font-bold text-xl">→</div>
+                                {index < currentConfig.order.length - 1 && (
+                                    <div className="text-gray-300 font-bold text-lg">→</div>
                                 )}
                             </React.Fragment>
                         ))}
@@ -346,11 +415,11 @@ const MedidasGame = ({ level, title }) => {
     );
 };
 
-export const Medidas1 = () => <MedidasGame level={1} title="Comparar Longitudes (1º)" />;
-export const Medidas2 = () => <MedidasGame level={2} title="Metros y Centímetros (2º)" />;
-export const Medidas3 = () => <MedidasGame level={3} title="Km, m, cm y mm (3º)" />;
-export const Medidas4 = () => <MedidasGame level={4} title="Conversión de Unidades (4º)" />;
-export const Medidas5 = () => <MedidasGame level={5} title="Medidas Complejas (5º)" />;
-export const Medidas6 = () => <MedidasGame level={6} title="Experto en Medidas (6º)" />;
+export const Medidas1 = () => <MedidasGame level={1} title="Medidas: Iniciación (1º)" />;
+export const Medidas2 = () => <MedidasGame level={2} title="Medidas: Unidades Básicas (2º)" />;
+export const Medidas3 = () => <MedidasGame level={3} title="Medidas: Conversión Simple (3º)" />;
+export const Medidas4 = () => <MedidasGame level={4} title="Medidas: Sistema Completo (4º)" />;
+export const Medidas5 = () => <MedidasGame level={5} title="Medidas: Expresiones Complejas (5º)" />;
+export const Medidas6 = () => <MedidasGame level={6} title="Medidas: Reto Experto (6º)" />;
 
 export default MedidasGame;
