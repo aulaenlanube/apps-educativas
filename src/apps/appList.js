@@ -12,6 +12,7 @@ import IslaDeLaCalma from './isla-de-la-calma/IslaDeLaCalma';
 import OrdenaLaFraseJuego from './_shared/OrdenaLaFraseJuego';
 import OrdenaLaHistoriaJuego from './_shared/OrdenaLaHistoriaJuego';
 import DetectiveDePalabras from '@/apps/_shared/DetectiveDePalabrasJuego';
+import { NumerosRomanos3, NumerosRomanos4, NumerosRomanos5y6 } from './_shared/NumerosRomanosGame';
 
 // importaciones de operaciones matemáticas para primaria
 import SumasPrimaria1 from '@/apps/sumas/primaria-1/SumasPrimaria1';
@@ -81,6 +82,28 @@ const appGeneradorPersonajes = {
   component: GeneradorPersonajes
 };
 
+// Definimos los objetos de configuración para cada nivel
+const appNumerosRomanos3 = {
+  id: 'numeros-romanos-3',
+  name: 'Números Romanos (Básico)',
+  description: 'Aprende los números romanos del 1 al 20.',
+  component: NumerosRomanos3
+};
+
+const appNumerosRomanos4 = {
+  id: 'numeros-romanos-4',
+  name: 'Números Romanos (Intermedio)',
+  description: 'Practica números romanos hasta el 100.',
+  component: NumerosRomanos4
+};
+
+const appNumerosRomanosAdvanced = {
+  id: 'numeros-romanos-avanzado',
+  name: 'Números Romanos (Avanzado)',
+  description: 'Domina los números romanos hasta el 3999.',
+  component: NumerosRomanos5y6
+};
+
 // exportamos las materias para primaria y ESO desde el JSON
 export const primariaSubjects = materiasData.primaria;
 export const esoSubjects = materiasData.eso;
@@ -117,6 +140,7 @@ export const primariaApps = {
         description: 'Encuentra el número diferente. ¡Entrena tu vista con números!',
         component: BuscaElIntruso
       },
+      appNumerosRomanos3,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
@@ -200,6 +224,7 @@ export const primariaApps = {
       { id: 'sumas-primaria-2-drag', name: 'Sumas con llevadas', description: 'Resuelve sumas de dos cifras con llevadas.', component: SumasPrimaria2 },
       { id: 'restas-primaria-2', name: 'Restas con llevadas', description: 'Restas de 2 cifras con llevadas', component: RestasPrimaria2 },
       { id: 'supermercado-matematico-2', name: 'Supermercado Matemático (Sumas llevando)', description: 'Suma los precios de varios productos, ¡a veces tendrás que llevar!', component: SupermercadoMatematico2 },
+      appNumerosRomanos3,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
@@ -248,6 +273,7 @@ export const primariaApps = {
       { id: 'restas-primaria-3', name: 'Restas con llevadas', description: 'Restas de 3 y 4 cifras con llevadas', component: RestasPrimaria3 },
       { id: 'multiplicaciones-primaria-3', name: 'Multiplicaciones', description: 'Multiplicaciones de 1 cifra en el multiplicador', component: MultiplicacionesPrimaria3 },
       { id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', description: 'Calcula el coste de comprar varias unidades del mismo producto.', component: SupermercadoMatematico3 },
+      appNumerosRomanos3,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
@@ -296,6 +322,7 @@ export const primariaApps = {
       { id: 'restas-primaria-4', name: 'Restas con un decimal', description: 'Restas con 1 decimal', component: RestasPrimaria4 },
       { id: 'multiplicaciones-primaria-4', name: 'Multiplicaciones', description: 'Multiplica por más de 1 cifra', component: MultiplicacionesPrimaria4 },
       { id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 },
+      appNumerosRomanos4,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' }
@@ -344,6 +371,7 @@ export const primariaApps = {
       { id: 'restas-primaria-5', name: 'Restas con decimales', description: 'Restas con varios decimales', component: RestasPrimaria5 },
       { id: 'multiplicaciones-primaria-5', name: 'Multiplicaciones', description: 'Multiplica por varios dígitos', component: MultiplicacionesPrimaria5 },
       { id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 },
+      appNumerosRomanosAdvanced,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' }
@@ -392,6 +420,7 @@ export const primariaApps = {
       { id: 'restas-primaria-6', name: 'Restas a completar', description: 'Completa cualquier parte de la resta', component: RestasPrimaria6 },
       { id: 'multiplicaciones-primaria-6', name: 'Multiplicaciones', description: 'Multiplicaciones con decimales', component: MultiplicacionesPrimaria6 },
       { id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 },
+      appNumerosRomanosAdvanced,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' }

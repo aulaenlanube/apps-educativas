@@ -1,0 +1,171 @@
+/* src/apps/_shared/NumerosRomanos.css */
+.roman-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+}
+
+.roman-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border: 2px solid #e2e8f0;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.target-number {
+    font-size: 5rem;
+    font-weight: 800;
+    color: #4f46e5;
+    margin: 1rem 0;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Área de respuesta (Drop Zone) */
+.drop-zone {
+    min-height: 80px;
+    background-color: #f8fafc;
+    border: 3px dashed #cbd5e1;
+    border-radius: 1rem;
+    margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+    transition: all 0.2s;
+}
+
+.drop-zone.active {
+    border-color: #4f46e5;
+    background-color: #eef2ff;
+}
+
+.drop-zone:empty::before {
+    content: 'Arrastra las letras aquí';
+    color: #94a3b8;
+    font-style: italic;
+}
+
+/* Fichas Romanas */
+.roman-tile {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border: 2px solid #4f46e5;
+    color: #4f46e5;
+    border-radius: 12px;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Times New Roman', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    user-select: none;
+    box-shadow: 0 4px 0 #3730a3;
+    transition: transform 0.1s;
+}
+
+.roman-tile:active {
+    cursor: grabbing;
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+/* Fichas en la zona de respuesta (más pequeñas o iguales) */
+.drop-zone .roman-tile {
+    cursor: pointer; /* Click para borrar */
+    box-shadow: 0 2px 0 #3730a3;
+}
+
+.drop-zone .roman-tile:hover::after {
+    content: '×';
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+/* Paleta de fichas */
+.palette {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f1f5f9;
+    border-radius: 1rem;
+}
+
+/* Ayuda y Controles */
+.helper-display {
+    height: 2rem;
+    font-size: 1.25rem;
+    color: #64748b;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.controls-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Toggle Switch (reutilizado del estilo de Sumas si existe, si no, definido aquí) */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .slider { background-color: #4f46e5; }
+input:checked + .slider:before { transform: translateX(22px); }
+
+/* Animaciones */
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    80% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); }
+}
+
+.roman-tile { animation: popIn 0.3s ease-out backwards; }
