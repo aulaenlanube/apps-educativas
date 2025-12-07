@@ -1,10 +1,20 @@
 // UI unificada para práctica y test
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './OrdenaLaFraseShared.css';
 
 const OrdenaLaFraseUI = ({ game }) => {
   const progressPct = ((game.currentQuestionIndex + 1) / game.TOTAL_TEST_QUESTIONS) * 100;
   const cls = `ordena-frase-container font-${game.fontStyle}`;
+  
+  // Detectar si es dispositivo táctil para adaptar el mensaje
+  const [isTouch, setIsTouch] = useState(false);
+  useEffect(() => {
+    setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
+
+  const subtitulo = isTouch 
+    ? "Toca las palabras para moverlas o usa arrastrar y soltar" 
+    : "Arrastra las palabras o haz clic en ellas para formar la frase";
 
   const Header = ({ titulo, subtitulo }) => (
     <>
@@ -13,7 +23,6 @@ const OrdenaLaFraseUI = ({ game }) => {
       </h1>
       {subtitulo && <p className="instrucciones">{subtitulo}</p>}
 
-      {/* Slider de tipografía */}
       <div className="font-slider-container">
         <div className="font-slider-labels">
           <span>Imprenta</span>
@@ -45,6 +54,8 @@ const OrdenaLaFraseUI = ({ game }) => {
         onDragStart={(e) => game.handleDragStart(e, p)} 
         onDragEnd={game.handleDragEnd}
         onTouchStart={(e) => game.handleTouchStart(e, p)}
+        // FIX: Añadido onTouchCancel para evitar que se queden flotando
+        onTouchCancel={game.handleTouchCancel} 
         onClick={!isDestino ? () => game.handleOriginWordClick(p) : undefined}
       >
         {p.texto}
@@ -56,8 +67,9 @@ const OrdenaLaFraseUI = ({ game }) => {
               game.handleRemoveWord(p); 
             }}
             aria-label="Eliminar palabra"
+            // FIX: En táctil, evitar que el toque se propague y cause comportamientos raros
+            onTouchEnd={(e) => e.stopPropagation()} 
           >
-            {/* Icono de papelera SVG */}
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <path d="M3 6h18"></path>
               <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
@@ -105,7 +117,7 @@ const OrdenaLaFraseUI = ({ game }) => {
   // Modo TEST: en curso
   if (game.isTestMode) {
     return (
-      <div className={cls} onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd}>
+      <div className={cls} onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd} onTouchCancel={game.handleTouchCancel}>
         <Header titulo="Test de Frases" />
         <div className="test-header">
           <div>Frase {game.currentQuestionIndex + 1} / {game.TOTAL_TEST_QUESTIONS}</div>
@@ -134,10 +146,10 @@ const OrdenaLaFraseUI = ({ game }) => {
 
   // Modo PRÁCTICA
   return (
-    <div className={cls} onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd}>
+    <div className={cls} onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd} onTouchCancel={game.handleTouchCancel}>
       <Header
         titulo="Ordena la Frase"
-        subtitulo="Arrastra las palabras o haz clic en ellas para formar la frase"
+        subtitulo={subtitulo}
       />
 
       <div className="mode-selection">
@@ -156,7 +168,19 @@ const OrdenaLaFraseUI = ({ game }) => {
       <div className="controles">
         <button onClick={game.checkPracticeAnswer}>Comprobar</button>
         <button onClick={game.startPracticeMission} className="btn-saltar">Otra Frase</button>
+        <button 
+          onClick={game.toggleSolution} 
+          className="btn-ver-solucion"
+        >
+          {game.showSolution ? 'Ocultar' : 'Solución'}
+        </button>
       </div>
+
+      {game.showSolution && (
+        <div className="caja-solucion">
+          <strong>Solución:</strong> {game.mision.solucion}
+        </div>
+      )}
 
       <p id="feedback" className={game.feedback.clase}>{game.feedback.texto}</p>
     </div>

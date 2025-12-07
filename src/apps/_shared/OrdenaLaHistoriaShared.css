@@ -1,32 +1,23 @@
-/* src/apps/_shared/OrdenaLaHistoriaShared.css */
+/* src/apps/_shared/OrdenaLaFraseShared.css */
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playwrite+ES:wght@100..400&display=swap');
 
-/* --- CLASES PARA SOPORTE TÁCTIL --- */
+/* --- CLASE PARA BLOQUEAR SCROLL --- */
 body.no-scroll {
     overflow: hidden;
 }
 
-.frase-clone {
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transform: scale(1.05) rotate(2deg);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    font-size: 17px;
-    text-align: left;
+/* --- CLASE PARA TÍTULOS --- */
+.ordena-frase-container .ordena-frase-main-title {
+    font-family: 'Fredoka One', cursive;
 }
-/* ------------------------------------ */
 
-.ordena-historia-container {
+/* --- CONTENEDOR PRINCIPAL --- */
+.ordena-frase-container {
     font-family: 'Lexend', sans-serif;
     width: 100%;
-    max-width: 700px;
+    max-width: 800px;
     background: #fff;
     padding: 30px;
     border-radius: 15px;
@@ -36,54 +27,127 @@ body.no-scroll {
     position: relative;
 }
 
-.ordena-historia-container .main-title {
-    font-family: 'Fredoka One', cursive;
+.ordena-frase-container h1 {
+    margin-top: 0;
 }
 
-.ordena-historia-container .instrucciones {
+.ordena-frase-container .instrucciones {
     font-size: 16px;
     color: #666;
     margin-bottom: 25px;
 }
 
-.ordena-historia-container .zona-frases {
+/* --- ZONAS DE ARRASTRE --- */
+.ordena-frase-container .zona-destino, 
+.ordena-frase-container .zona-origen {
     width: 100%;
-    min-height: 150px;
-    padding: 10px;
+    min-height: 80px;
+    padding: 15px; 
     border-radius: 10px;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
     box-sizing: border-box;
     transition: background-color 0.3s;
-    background-color: #f0f7f8;
-    border: 2px dashed #a2d5c6;
 }
 
-.ordena-historia-container .frase {
+.ordena-frase-container .zona-destino {
+    background-color: #e9f7ef;
+    border: 2px dashed #a3d9b8;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.ordena-frase-container .zona-origen {
+    background-color: #fef4e8;
+    border: 2px dashed #f8c99b;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+/* --- PALABRAS --- */
+.ordena-frase-container .palabra {
+    position: relative; 
     background-color: #fff;
-    padding: 15px;
+    padding: 10px 20px;
     border-radius: 8px;
     border: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    cursor: grab;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    cursor: pointer;
     user-select: none;
-    font-size: 17px;
-    text-align: left;
-    transition: opacity 0.2s, background-color 0.2s;
-    touch-action: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.2s;
+    touch-action: none; 
 }
 
-.ordena-historia-container .frase.dragging {
+.ordena-frase-container .palabra:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    border-color: #b0c4de;
+}
+
+.ordena-frase-container .palabra.dragging {
     opacity: 0.3;
-    background: #e9f7ef;
+    background-color: #f0f4f8;
 }
 
-.ordena-historia-container .controles {
+/* --- BOTÓN ELIMINAR (Papelera) --- */
+.ordena-frase-container .btn-remove-word {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 20px !important;
+    height: 20px !important;
+    padding: 0 !important;
+    background-color: #dc3545 !important;
+    color: white !important;
+    border-radius: 50% !important;
+    border: 1px solid #fff !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 10;
+    margin: 0 !important;
+    transition: transform 0.2s, background-color 0.2s, opacity 0.2s ease-in-out;
+}
+
+.ordena-frase-container .btn-remove-word:hover {
+    background-color: #c82333 !important;
+    transform: scale(1.1);
+}
+
+/* LÓGICA DE VISIBILIDAD DE PAPELERA */
+.ordena-frase-container .btn-remove-word { opacity: 1; }
+@media (hover: hover) {
+    .ordena-frase-container .btn-remove-word { opacity: 0; pointer-events: none; }
+    .ordena-frase-container .palabra:hover .btn-remove-word { opacity: 1; pointer-events: auto; }
+}
+
+/* CLONE PARA DND */
+.palabra-clone {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* --- BOTONES GENERALES --- */
+.ordena-frase-container .controles {
     margin: 25px 0;
 }
 
-.ordena-historia-container button {
+.ordena-frase-container button:not(.btn-remove-word) {
     font-family: 'Lexend', sans-serif;
     font-size: 16px;
     font-weight: 600;
@@ -97,88 +161,110 @@ body.no-scroll {
     transition: background-color 0.2s;
 }
 
-.ordena-historia-container button:hover {
+.ordena-frase-container button:not(.btn-remove-word):hover {
     background-color: #357ABD;
 }
 
-.ordena-historia-container #feedback {
-    font-size: 18px;
-    font-weight: bold;
-    min-height: 25px;
-    padding: 10px;
+/* Estilo para botón Ver Solución */
+.ordena-frase-container .btn-ver-solucion {
+    background-color: #17a2b8 !important; /* Cian */
+}
+.ordena-frase-container .btn-ver-solucion:hover {
+    background-color: #138496 !important;
+}
+
+/* Caja de Solución */
+.caja-solucion {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border: 1px solid #dee2e6;
     border-radius: 8px;
-    margin-top: 15px;
+    color: #495057;
+    font-size: 1.1em;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease-in;
 }
 
-.ordena-historia-container #feedback.correcta { 
-    color: #2e7d32; 
-    background-color: #e8f5e9;
-}
-.ordena-historia-container #feedback.incorrecta { 
-    color: #c62828; 
-    background-color: #ffebee;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.ordena-historia-container .btn-saltar {
-    background-color: #f59e0b;
-}
-.ordena-historia-container .btn-saltar:hover {
-    background-color: #d97706;
-}
-
-.ordena-historia-container .mode-selection {
+.ordena-frase-container .mode-selection {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 20px;
-}
-.ordena-historia-container .btn-mode {
-    background: #f0f4f8;
-    color: #4a5568;
-    border: 1px solid #dcdfe6;
-}
-.ordena-historia-container .btn-mode:hover,
-.ordena-historia-container .btn-mode.active {
-    background-color: #673de6;
-    color: white;
-    border-color: #673de6;
+    margin-bottom: 20px; 
 }
 
-.ordena-historia-container .test-results .score {
+.ordena-frase-container .btn-mode {
+    background: #f0f4f8 !important;
+    color: #4a5568 !important;
+    border: 1px solid #dcdfe6 !important;
+}
+
+.ordena-frase-container .btn-mode:hover,
+.ordena-frase-container .btn-mode.active {
+    background-color: #673de6 !important;
+    color: white !important;
+    border-color: #673de6 !important;
+}
+
+.ordena-frase-container .btn-saltar {
+    background-color: #d97706 !important;
+}
+
+.ordena-frase-container .btn-saltar:hover {
+    background-color: #935106 !important;
+}
+
+#feedback {
+    font-size: 18px;
+    font-weight: bold;
+    min-height: 25px;
+}
+
+#feedback.correcta { color: #2e7d32; }
+#feedback.incorrecta { color: #c62828; }
+
+/* --- PANTALLA DE RESULTADOS DEL TEST --- */
+.test-results .score {
     font-family: 'Fredoka One', cursive;
     font-size: 2rem;
     margin: 20px 0;
     color: #333;
 }
-.ordena-historia-container .test-results .score span {
+.test-results .score span {
     font-size: 2.5rem;
-    background-image: linear-gradient(to right, #673de6, #008080);
+    background-image: linear-gradient(to right, #4a90e2, #357ABD);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
 }
 
-.ordena-historia-container .test-results .results-summary { margin-top: 20px; text-align: left; }
-.ordena-historia-container .test-results .result-item { padding: 10px; border-bottom: 1px solid #eee; }
-.ordena-historia-container .test-results .result-item p { margin: 4px 0; }
-.ordena-historia-container .test-results .result-item ol { padding-left: 20px; }
-.ordena-historia-container .test-results .test-controls { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
-.ordena-historia-container .test-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-weight: bold; color: #4a5568; }
-.ordena-historia-container .progress-bar-container { width: 100%; background: #e0e0e0; border-radius: 10px; height: 10px; margin-bottom: 20px; overflow: hidden; }
-.ordena-historia-container .progress-bar { height: 100%; background: #673de6; border-radius: 10px; transition: width 0.3s ease-in-out; }
-.ordena-historia-container .btn-test { background: #2e7d32; }
-.ordena-historia-container .btn-test:hover { background: #1b5e20; }
+.test-results .results-summary { margin-top: 20px; text-align: left; }
+.test-results .result-item { padding: 10px; border-bottom: 1px solid #eee; }
+.test-results .result-item p { margin: 4px 0; }
+.test-results .test-controls { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }
+
+/* --- Barra de progreso y cabecera del Test --- */
+.test-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-weight: bold; color: #4a5568; }
+.progress-bar-container { width: 100%; background: #e0e0e0; border-radius: 10px; height: 10px; margin-bottom: 20px; overflow: hidden; }
+.progress-bar { height: 100%; background: #4a90e2; border-radius: 10px; transition: width 0.3s ease-in-out; }
+.btn-test { background: #2e7d32 !important; }
+.btn-test:hover { background: #1b5e20 !important; }
 
 /* --- ESTILOS PARA LAS TIPOGRAFÍAS --- */
-.ordena-historia-container.font-cursive .frase,
-.ordena-historia-container.font-cursive .frase-clone {
+.ordena-frase-container.font-cursive .palabra,
+.ordena-frase-container.font-cursive .palabra-clone {
     font-family: 'Playwrite ES', cursive;
-    font-size: 19px;
+    font-size: 22px;
 }
 
-.ordena-historia-container.font-uppercase .frase,
-.ordena-historia-container.font-uppercase .frase-clone {
+.ordena-frase-container.font-uppercase .palabra,
+.ordena-frase-container.font-uppercase .palabra-clone {
     text-transform: uppercase;
 }
 

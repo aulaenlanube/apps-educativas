@@ -9,8 +9,8 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   const [palabrasOrigen, setPalabrasOrigen] = useState([]);
   const [palabrasDestino, setPalabrasDestino] = useState([]);
   const [feedback, setFeedback] = useState({ texto: '', clase: '' });
-
-  // Mantengo la API de estilo para el slider, pero ya no toca los datos
+  
+  const [showSolution, setShowSolution] = useState(false);
   const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
 
   const draggedItem = useRef(null);
@@ -28,7 +28,6 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
 
-  // Clave estable por contenido para no depender de la referencia del array
   const frasesKey = useMemo(() => {
     if (!Array.isArray(frases)) return '';
     return frases.join('§');
@@ -39,8 +38,11 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     setFontStyle(FONT_STYLES[newIndex]);
   };
 
+  const toggleSolution = () => setShowSolution(prev => !prev);
+
   const startPracticeMission = useCallback(() => {
     setFeedback({ texto: '', clase: '' });
+    setShowSolution(false);
 
     if (!frases || frases.length === 0) {
       setPalabrasOrigen([]);
@@ -51,13 +53,11 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
 
     setMision(prev => {
       const prevSig = prev.solucion ? prev.solucion.toLowerCase() : '';
-
-      // Pool de candidatas distintas a la anterior por contenido
       let candidatas = frases.filter(f => (f || '').toLowerCase() !== prevSig);
-      if (candidatas.length === 0) candidatas = frases; // Si todas son iguales, permite repetir
+      if (candidatas.length === 0) candidatas = frases;
 
       const nueva = candidatas[Math.floor(Math.random() * candidatas.length)];
-      const solucion = nueva; // No transformamos por estilo; lo hace CSS
+      const solucion = nueva; 
 
       const palabras = solucion.split(' ').sort(() => Math.random() - 0.5);
       const ahora = Date.now();
@@ -68,7 +68,6 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     });
   }, [frasesKey]); 
 
-  // Solo recarga misión si cambia el contenido real (no al mover el slider)
   useEffect(() => {
     if (!isTestMode) startPracticeMission();
   }, [isTestMode, frasesKey, startPracticeMission]);
@@ -76,10 +75,8 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   const startTest = () => {
     if (!frases || frases.length === 0) return;
 
-    // Elegimos hasta TOTAL_TEST_QUESTIONS frases (únicas por contenido)
     const unicas = [...new Set(frases.map(f => (f || '').trim()))];
     const seleccion = unicas.sort(() => 0.5 - Math.random()).slice(0, TOTAL_TEST_QUESTIONS);
-
     const questions = seleccion.map(sol => ({ texto: 'Forma la frase:', solucion: sol }));
 
     setTestQuestions(questions);
@@ -93,6 +90,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     setPalabrasOrigen(palabras.map((p, i) => ({ id: `p-${ahora}-${i}`, texto: p })));
     setPalabrasDestino([]);
     setFeedback({ texto: '', clase: '' });
+    setShowSolution(false);
     setShowResults(false);
     setScore(0);
     setIsTestMode(true);
@@ -162,20 +160,15 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     }
   };
 
-  // --- NUEVA LÓGICA DE CLIC Y BOTÓN ---
-
-  // Mover palabra de origen a destino (al hacer clic)
   const handleOriginWordClick = (palabra) => {
     setPalabrasOrigen(prev => prev.filter(p => p.id !== palabra.id));
     setPalabrasDestino(prev => [...prev, palabra]);
   };
 
-  // Devolver palabra de destino a origen (al pulsar la X)
   const handleRemoveWord = (palabra) => {
     setPalabrasDestino(prev => prev.filter(p => p.id !== palabra.id));
     setPalabrasOrigen(prev => {
         const nuevos = [...prev, palabra];
-        // Reordenar por el ID original para que no se desordenen al volver
         return nuevos.sort((a, b) => {
             const idA = parseInt(a.id.split('-')[2] || '0', 10);
             const idB = parseInt(b.id.split('-')[2] || '0', 10);
@@ -184,7 +177,6 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     });
   };
 
-  // --- LÓGICA DRAG & DROP (EXISTENTE) ---
   const getDropTarget = (container, x, y) => {
     const els = [...container.querySelectorAll('.palabra:not(.dragging)')];
     for (const el of els) {
@@ -231,12 +223,17 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   const handleDragOver = (e) => e.preventDefault();
 
   const handleTouchStart = (e, palabra) => {
+    // FIX: Evitar menú contextual o selección en pulsación larga
+    // Solo si es cancelable para no bloquear scroll innecesariamente (aunque touch-action lo hace)
+    if (e.cancelable && !e.defaultPrevented) {
+        // e.preventDefault(); // Opcional: Descomentar si aún hay problemas con menús nativos
+    }
+
     draggedItem.current = palabra;
     const el = e.currentTarget;
     const rect = el.getBoundingClientRect();
 
     const clone = el.cloneNode(true);
-    // Clon no debe tener el botón X visible o funcional, es visual
     const btn = clone.querySelector('.btn-remove-word');
     if(btn) btn.style.display = 'none';
 
@@ -256,14 +253,21 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     if (!draggedCloneRef.current || !e.touches[0]) return;
     const t = e.touches[0];
     const clone = draggedCloneRef.current;
-    clone.style.transform = `translate(${t.clientX - parseFloat(clone.style.left) - clone.offsetWidth / 2}px, ${t.clientY - parseFloat(clone.style.top) - clone.offsetHeight / 2}px)`;
+    
+    // Mover el clon siguiendo el dedo
+    const x = t.clientX - parseFloat(clone.style.left) - clone.offsetWidth / 2;
+    const y = t.clientY - parseFloat(clone.style.top) - clone.offsetHeight / 2;
+    clone.style.transform = `translate(${x}px, ${y}px)`;
   };
 
   const handleTouchEnd = (e) => {
     if (!draggedItem.current) return;
 
+    // Limpiar clon
     if (draggedCloneRef.current) {
-      document.body.removeChild(draggedCloneRef.current);
+      if (draggedCloneRef.current.parentNode) {
+        document.body.removeChild(draggedCloneRef.current);
+      }
       draggedCloneRef.current = null;
     }
     document.body.classList.remove('no-scroll');
@@ -296,6 +300,19 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     draggedItem.current = null;
   };
 
+  // FIX: Manejador para cancelaciones (ej. scroll, menu contextual, salir de pantalla)
+  const handleTouchCancel = (e) => {
+    if (draggedCloneRef.current) {
+        if (draggedCloneRef.current.parentNode) {
+            document.body.removeChild(draggedCloneRef.current);
+        }
+        draggedCloneRef.current = null;
+    }
+    document.body.classList.remove('no-scroll');
+    document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
+    draggedItem.current = null;
+  };
+
   const fontStyleIndex = FONT_STYLES.indexOf(fontStyle);
 
   return {
@@ -303,13 +320,13 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     mision, palabrasOrigen, palabrasDestino, feedback,
     checkPracticeAnswer, startPracticeMission,
     handleDragStart, handleDragEnd, handleDragOver, handleDrop,
-    handleTouchStart, handleTouchMove, handleTouchEnd,
-    handleOriginWordClick, handleRemoveWord, // Exportamos los nuevos handlers
+    handleTouchStart, handleTouchMove, handleTouchEnd, handleTouchCancel, // Exportado nuevo handler
+    handleOriginWordClick, handleRemoveWord,
     dropZoneRef, originZoneRef,
     currentQuestionIndex, TOTAL_TEST_QUESTIONS, elapsedTime,
     showResults, score, testQuestions, userAnswers,
     handleNextQuestion,
-    fontStyle, fontStyleIndex, handleFontStyleChange
+    fontStyle, fontStyleIndex, handleFontStyleChange,
+    showSolution, toggleSolution
   };
 };
-
