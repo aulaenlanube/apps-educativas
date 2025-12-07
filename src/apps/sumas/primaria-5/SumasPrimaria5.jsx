@@ -1,501 +1,197 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import '/src/apps/_shared/Sumas.css';
+// src/apps/sumas/primaria-5/SumasPrimaria5.jsx
+import React, { useCallback, useEffect, useState } from 'react';
+import SumasLayout from '/src/apps/_shared/SumasLayout';
+import UniversalSumBoard, { buildColumnPlan } from '/src/apps/_shared/UniversalSumBoard';
 
 const TOTAL_TEST_QUESTIONS = 5;
 
-/* ------------ Utilidades ------------ */
+// Utils
 const toFloat = (s) => parseFloat(s.replace(',', '.'));
-const countDecimals = (s) => (s.split(',')[1] || '').length;
+const countDecimals = (s) => (s.includes(',') ? s.split(',')[1].length : 0);
 
-const generarNumero = (cifrasEnteras, decimales) => {
-  const min = cifrasEnteras === 2 ? 10 : 100;
-  const max = cifrasEnteras === 2 ? 99 : 999;
-  const entero = Math.floor(Math.random() * (max - min + 1)) + min;
-  if (decimales === 0) return entero.toString();
-  const parteDecimal = Math.floor(Math.random() * Math.pow(10, decimales))
-    .toString()
-    .padStart(decimales, '0');
-  return `${entero},${parteDecimal}`;
-};
-
-/* Genera ejercicio con 2/3 cifras enteras y 0..2 decimales */
-const generarEjercicio = () => {
-  const cifrasEnteras = Math.random() < 0.5 ? 2 : 3;
-  const mismaCantidad = Math.random() > 0.3;
-  let dec1, dec2;
-  if (mismaCantidad) {
-    dec1 = [1, 2][Math.floor(Math.random() * 2)];
-    dec2 = dec1;
-  } else {
-    const opts = [0, 1, 2];
-    do {
-      dec1 = opts[Math.floor(Math.random() * opts.length)];
-      dec2 = opts[Math.floor(Math.random() * opts.length)];
-    } while (dec1 === dec2 || (dec1 === 0 && dec2 === 0));
-  }
-  const num1 = generarNumero(cifrasEnteras, dec1);
-  const num2 = generarNumero(cifrasEnteras, dec2);
-  return { num1, num2, cifrasEnteras };
-};
-
-/* ---------- ¡IMPORTANTE!: función PURA ---------- */
-function buildColumnPlan(num1, num2, cifrasEnteras) {
-  const dec1 = countDecimals(num1);
-  const dec2 = countDecimals(num2);
-  const maxDec = Math.max(dec1, dec2);
-
-  const totalCols = 1 + cifrasEnteras + (maxDec > 0 ? (1 + maxDec) : 0);
-
-  const padNumero = (num) => {
-    const tieneComa = num.includes(',');
-    const [entCruda, decCruda = ''] = tieneComa ? num.split(',') : [num, ''];
-    const entPad = entCruda.padStart(cifrasEnteras + 1, ' '); 
-    if (maxDec > 0) {
-      const decPad = decCruda.padEnd(maxDec, ' ');
-      return `${entPad},${decPad}`;
-    }
-    return entPad;
-  };
-
-  const str1 = padNumero(num1);
-  const str2 = padNumero(num2);
-
-  const commaIndex = maxDec > 0 ? str1.indexOf(',') : -1;
-  const digitIndices = Array.from({ length: totalCols }, (_, i) => i).filter(i => i !== commaIndex);
-
-  return {
-    totalCols,
-    commaIndex,
-    digitIndices,
-    maxDec,
-    chars1: str1.split(''),
-    chars2: str2.split(''),
-  };
-}
-
-/* Inserta coma en una cadena de dígitos según nº decimales */
-const withComma = (digits, decCount) => {
-  if (decCount <= 0) return digits.replace(/^0+(?=\d)/, '');
-  const n = digits.length;
-  const left = digits.slice(0, n - decCount) || '0';
-  const right = digits.slice(n - decCount).padStart(decCount, '0');
-  return `${left},${right}`;
-};
-
-/* ---------- Tablero React ---------- */
-function ProblemBoard({
-  num1, num2, cifrasEnteras,
-  showCarries,
-  resultSlots, setResultSlots,
-  carrySlots, setCarrySlots,
-  checkInfo,
-  activeSlot, setActiveSlot
-}) {
-  const plan = useMemo(() => buildColumnPlan(num1, num2, cifrasEnteras), [num1, num2, cifrasEnteras]);
-
-  const onDragOver = (e) => e.preventDefault();
-
-  const dropResult = (digitIdx, e) => {
-    e.preventDefault();
-    const data = e.dataTransfer.getData('text/plain');
-    if (!/^\d$/.test(data)) return;
-    setResultSlots(prev => {
-      const next = [...prev];
-      next[digitIdx] = data;
-      return next;
-    });
-    setActiveSlot({ type: 'result', index: digitIdx });
-  };
-  const clearResult = (digitIdx) => {
-    setResultSlots(prev => {
-      const next = [...prev];
-      next[digitIdx] = '';
-      return next;
-    });
-    setActiveSlot({ type: 'result', index: digitIdx });
-  };
-
-  const dropCarry = (digitIdx, e) => {
-    e.preventDefault();
-    const data = e.dataTransfer.getData('text/plain');
-    if (!/^\d$/.test(data)) return;
-    setCarrySlots(prev => {
-      const next = [...prev];
-      next[digitIdx] = data;
-      return next;
-    });
-    setActiveSlot({ type: 'carry', index: digitIdx });
-  };
-  const clearCarry = (digitIdx) => {
-    setCarrySlots(prev => {
-      const next = [...prev];
-      next[digitIdx] = '';
-      return next;
-    });
-    setActiveSlot({ type: 'carry', index: digitIdx });
-  };
-
-  const handleSlotClick = (type, index, e) => {
-    e.stopPropagation();
-    if (activeSlot && activeSlot.type === type && activeSlot.index === index) {
-      setActiveSlot(null);
-    } else {
-      setActiveSlot({ type, index });
-    }
-  };
-
-  const resultCls = (digitIdx) => {
-    if (!checkInfo?.show) return '';
-    const user = (resultSlots[digitIdx] || '0');
-    if ((resultSlots[digitIdx] || '') === '' &&
-        checkInfo.expectedDigits[digitIdx] === '0' &&
-        (checkInfo.firstNonZeroIdx === -1 || digitIdx < checkInfo.firstNonZeroIdx)) {
-      return '';
-    }
-    return user === checkInfo.expectedDigits[digitIdx] ? 'correct' : 'incorrect';
-  };
-
-  const carryCls = (digitIdx) => {
-    if (!checkInfo?.show) return '';
-    const expected = (checkInfo.expectedCarries?.[digitIdx] ?? 0).toString();
-    const user = carrySlots[digitIdx] || '';
-    const ok = user === '' ? expected === '0' : user === expected;
-    return ok ? 'correct' : 'incorrect';
-  };
-
-  const isSelected = (type, index) => activeSlot?.type === type && activeSlot?.index === index;
-
-  let runningDigitIdx = 0;
-
-  return (
-    <div className={`board ${!showCarries ? 'carries-hidden' : ''}`}>
-      <div className="operator">+</div>
-
-      {Array.from({ length: plan.totalCols }).map((_, colIdx) => {
-        const isComma = colIdx === plan.commaIndex;
-        const showCarryBox = !isComma && colIdx !== plan.totalCols - 1;
-
-        let digitIdxThisCol = null;
-        if (!isComma) {
-          digitIdxThisCol = runningDigitIdx;
-          runningDigitIdx++;
-        }
-
-        return (
-          <div className="column" key={colIdx}>
-            {showCarryBox ? (
-              <div
-                className={`box carry-box ${carryCls(digitIdxThisCol)} ${isSelected('carry', digitIdxThisCol) ? 'selected' : ''}`}
-                onDragOver={onDragOver}
-                onDrop={(e) => dropCarry(digitIdxThisCol, e)}
-                onClick={(e) => handleSlotClick('carry', digitIdxThisCol, e)}
-              >
-                {carrySlots[digitIdxThisCol]}
-              </div>
-            ) : (
-              <div className="carry-placeholder" />
-            )}
-
-            <div className="digit-display">{plan.chars1[colIdx] ?? ' '}</div>
-            <div className="digit-display">{plan.chars2[colIdx] ?? ' '}</div>
-
-            <hr className="operation-line" />
-
-            {isComma ? (
-              <div className="box comma-box"><span>,</span></div>
-            ) : (
-              <div
-                className={`box result-box ${resultSlots[digitIdxThisCol] ? 'filled' : ''} ${resultCls(digitIdxThisCol)} ${isSelected('result', digitIdxThisCol) ? 'selected' : ''}`}
-                onDragOver={onDragOver}
-                onDrop={(e) => dropResult(digitIdxThisCol, e)}
-                onClick={(e) => handleSlotClick('result', digitIdxThisCol, e)}
-              >
-                {resultSlots[digitIdxThisCol]}
-              </div>
-            )}
-          </div>
-        );
-      })}
-
-      <div className="operator-spacer" />
-    </div>
-  );
-}
-
-/* ---------- App 5º Primaria ---------- */
 const SumasPrimaria5 = () => {
-  const [current, setCurrent] = useState({ num1: '10,0', num2: '10,0', cifrasEnteras: 2 });
+  const [currentOperands, setCurrentOperands] = useState(['0', '0']);
   const [showCarries, setShowCarries] = useState(true);
-
-  const plan = useMemo(
-    () => buildColumnPlan(current.num1, current.num2, current.cifrasEnteras),
-    [current.num1, current.num2, current.cifrasEnteras]
-  );
-
-  const [resultSlots, setResultSlots] = useState(Array(plan.digitIndices.length).fill(''));
-  const [carrySlots, setCarrySlots] = useState(Array(Math.max(plan.digitIndices.length - 1, 0)).fill(''));
+  
+  const [resultSlots, setResultSlots] = useState([]);
+  const [carrySlots, setCarrySlots] = useState([]);
   const [activeSlot, setActiveSlot] = useState(null);
 
-  const [feedback, setFeedback] = useState({ text: '', cls: '' });
-  const [checkInfo, setCheckInfo] = useState({ show: false, expectedDigits: [], expectedCarries: [], firstNonZeroIdx: -1 });
-
   const [isTestMode, setIsTestMode] = useState(false);
+  const [feedback, setFeedback] = useState({ text: '', cls: '' });
+  const [checkInfo, setCheckInfo] = useState({ show: false, expectedResult: [], expectedCarries: [], firstNonZeroIdx: -1 });
+  
   const [testQuestions, setTestQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
 
-  const loadExercise = useCallback(({ num1, num2, cifrasEnteras }) => {
-    setCurrent({ num1, num2, cifrasEnteras });
-    const plan2 = buildColumnPlan(num1, num2, cifrasEnteras);
-    setResultSlots(Array(plan2.digitIndices.length).fill(''));
-    setCarrySlots(Array(Math.max(plan2.digitIndices.length - 1, 0)).fill(''));
+  // --- Generación Decimales (2 sumandos) ---
+  const generarNumero = (cifrasEnteras, decimales) => {
+    const min = cifrasEnteras === 2 ? 10 : 100;
+    const max = cifrasEnteras === 2 ? 99 : 999;
+    const entero = Math.floor(Math.random() * (max - min + 1)) + min;
+    if (decimales === 0) return entero.toString();
+    const parteDecimal = Math.floor(Math.random() * Math.pow(10, decimales)).toString().padStart(decimales, '0');
+    return `${entero},${parteDecimal}`;
+  };
+
+  const generateExercise = useCallback(() => {
+    const cifras = Math.random() < 0.5 ? 2 : 3;
+    // 50% probabilidad de misma cantidad de decimales o distinta
+    const mismaCantidad = Math.random() > 0.5;
+    let d1, d2;
+    if (mismaCantidad) {
+        d1 = Math.floor(Math.random() * 2) + 1; // 1 o 2 decimales
+        d2 = d1;
+    } else {
+        d1 = Math.floor(Math.random() * 3); // 0, 1, 2
+        do { d2 = Math.floor(Math.random() * 3); } while (d2 === d1);
+    }
+    return [generarNumero(cifras, d1), generarNumero(cifras, d2)];
+  }, []);
+
+  const prepareExercise = useCallback((ops) => {
+    setCurrentOperands(ops);
+    const plan = buildColumnPlan(ops, 2);
+    setResultSlots(Array(plan.digitIndices.length).fill(''));
+    setCarrySlots(Array(Math.max(0, plan.digitIndices.length - 1)).fill(''));
     setActiveSlot(null);
     setFeedback({ text: '', cls: '' });
-
-    const maxDec = Math.max(countDecimals(num1), countDecimals(num2));
-    const expectedStr = (toFloat(num1) + toFloat(num2)).toFixed(maxDec).replace('.', ',');
-    const expectedDigits = expectedStr.replace(',', '').padStart(plan2.digitIndices.length, '0').split('');
-    const firstNonZeroIdx = expectedDigits.findIndex(d => d !== '0');
-
-    const [e1, d1 = ''] = num1.replace(',', '.').split('.');
-    const [e2, d2 = ''] = num2.replace(',', '.').split('.');
-    const maxD = Math.max(d1.length, d2.length);
-    const plano1 = (e1 + d1.padEnd(maxD, '0')).padStart(plan2.digitIndices.length, '0');
-    const plano2 = (e2 + d2.padEnd(maxD, '0')).padStart(plan2.digitIndices.length, '0');
-    const expectedCarries = Array(Math.max(plan2.digitIndices.length - 1, 0)).fill(0);
-    let carry = 0;
-    for (let i = plan2.digitIndices.length - 1; i >= 1; i--) {
-      const s = parseInt(plano1[i], 10) + parseInt(plano2[i], 10) + carry;
-      const c = Math.floor(s / 10);
-      expectedCarries[i - 1] = c;
-      carry = c;
-    }
-
-    setCheckInfo({ show: false, expectedDigits, expectedCarries, firstNonZeroIdx });
+    setCheckInfo({ show: false });
   }, []);
 
   const handlePaletteClick = (val) => {
     if (!activeSlot) return;
-    const { type, index } = activeSlot;
     const strVal = val.toString();
-
-    if (type === 'result') {
-      setResultSlots(prev => {
-        const n = [...prev];
-        n[index] = strVal;
-        return n;
-      });
-    } else if (type === 'carry') {
-      setCarrySlots(prev => {
-        const n = [...prev];
-        n[index] = strVal;
-        return n;
-      });
+    if (activeSlot.type === 'result') {
+      const n = [...resultSlots]; n[activeSlot.index] = strVal; setResultSlots(n);
+    } else {
+      const n = [...carrySlots]; n[activeSlot.index] = strVal; setCarrySlots(n);
     }
   };
 
-  const startPractice = useCallback(() => {
-    loadExercise(generarEjercicio());
-  }, [loadExercise]);
-
-  const checkPractice = useCallback(() => {
-    const maxDec = Math.max(countDecimals(current.num1), countDecimals(current.num2));
-    const expectedStr = (toFloat(current.num1) + toFloat(current.num2)).toFixed(maxDec).replace('.', ',');
-    const expectedDigits = expectedStr.replace(',', '').padStart(plan.digitIndices.length, '0').split('');
-    const firstNonZeroIdx = expectedDigits.findIndex(d => d !== '0');
-
-    // carries calculation (duplicated for checking)
-    const [e1, d1 = ''] = current.num1.replace(',', '.').split('.');
-    const [e2, d2 = ''] = current.num2.replace(',', '.').split('.');
+  const calculateSolution = (ops) => {
+    const plan = buildColumnPlan(ops, 2);
+    const sumVal = ops.reduce((acc, val) => acc + toFloat(val), 0);
+    const maxDec = plan.maxDec;
+    const sumStr = sumVal.toFixed(maxDec).replace('.', ',');
+    const digitsStr = sumStr.replace(',', '').padStart(plan.digitIndices.length, '0');
+    
+    // Cálculo de llevadas con alineación decimal
+    const [e1, d1 = ''] = ops[0].replace(',', '.').split('.');
+    const [e2, d2 = ''] = ops[1].replace(',', '.').split('.');
     const maxD = Math.max(d1.length, d2.length);
     const plano1 = (e1 + d1.padEnd(maxD, '0')).padStart(plan.digitIndices.length, '0');
     const plano2 = (e2 + d2.padEnd(maxD, '0')).padStart(plan.digitIndices.length, '0');
-    const expectedCarries = Array(Math.max(plan.digitIndices.length - 1, 0)).fill(0);
+    
+    const expectedCarries = Array(plan.digitIndices.length - 1).fill(0);
     let carry = 0;
-    for (let i = plan.digitIndices.length - 1; i >= 1; i--) {
-      const s = parseInt(plano1[i], 10) + parseInt(plano2[i], 10) + carry;
-      const c = Math.floor(s / 10);
-      expectedCarries[i - 1] = c;
-      carry = c;
+    for (let i = plan.digitIndices.length - 1; i > 0; i--) {
+        const s = parseInt(plano1[i]) + parseInt(plano2[i]) + carry;
+        carry = Math.floor(s / 10);
+        expectedCarries[i - 1] = carry;
     }
 
-    setCheckInfo({ show: true, expectedDigits, expectedCarries, firstNonZeroIdx });
+    return { expectedResult: digitsStr.split(''), expectedCarries, solutionStr: sumStr };
+  };
 
-    const userDigits = resultSlots.map(x => x || '0').join('');
-    if (userDigits === expectedDigits.join('')) {
-      setFeedback({ text: '¡Excelente! ¡Suma correcta! 🎉', cls: 'feedback-correct' });
-      setActiveSlot(null);
+  const startPractice = () => prepareExercise(generateExercise());
+  
+  const checkPractice = () => {
+    const { expectedResult, expectedCarries } = calculateSolution(currentOperands);
+    const firstNonZeroIdx = expectedResult.findIndex(d => d !== '0');
+    setCheckInfo({ show: true, expectedResult, expectedCarries, firstNonZeroIdx });
+    
+    const userStr = resultSlots.join('');
+    const correctStr = expectedResult.join('');
+    if (userStr === correctStr) {
+        setFeedback({ text: '¡Excelente! 🎉', cls: 'feedback-correct' });
+        setActiveSlot(null);
     } else {
-      setFeedback({ text: 'Casi... ¡Revisa las casillas!', cls: 'feedback-incorrect' });
+        setFeedback({ text: 'Casi... ¡Revisa las casillas!', cls: 'feedback-incorrect' });
     }
-  }, [current, plan.digitIndices.length, resultSlots]);
+  };
 
-  const startTest = useCallback(() => {
-    const qs = Array.from({ length: TOTAL_TEST_QUESTIONS }, () => generarEjercicio());
+  const startTest = () => {
+    const qs = Array.from({ length: TOTAL_TEST_QUESTIONS }, generateExercise);
     setTestQuestions(qs);
     setCurrentQuestionIndex(0);
     setUserAnswers([]);
-    setShowResults(false);
     setScore(0);
+    setShowResults(false);
     setIsTestMode(true);
-    loadExercise(qs[0]);
-  }, [loadExercise]);
+    prepareExercise(qs[0]);
+  };
 
-  const handleNextQuestion = useCallback(() => {
-    const user = resultSlots.map(x => x || '0').join('');
-    const newAnswers = [...userAnswers, user];
+  const nextQuestion = () => {
+    const plan = buildColumnPlan(currentOperands, 2);
+    const userDigits = resultSlots.join('');
+    const cut = userDigits.length - plan.maxDec;
+    const userFormatted = plan.maxDec > 0 
+        ? userDigits.slice(0, cut) + ',' + userDigits.slice(cut) 
+        : userDigits;
+
+    const newAnswers = [...userAnswers, userFormatted];
     setUserAnswers(newAnswers);
 
-    const isLast = currentQuestionIndex >= TOTAL_TEST_QUESTIONS - 1;
-    if (!isLast) {
-      const next = currentQuestionIndex + 1;
-      setCurrentQuestionIndex(next);
-      loadExercise(testQuestions[next]);
+    if (currentQuestionIndex < TOTAL_TEST_QUESTIONS - 1) {
+        const nextIdx = currentQuestionIndex + 1;
+        setCurrentQuestionIndex(nextIdx);
+        prepareExercise(testQuestions[nextIdx]);
     } else {
-      let correctCount = 0;
-      testQuestions.forEach((q, i) => {
-        const planQ = buildColumnPlan(q.num1, q.num2, q.cifrasEnteras);
-        const maxDec = Math.max(countDecimals(q.num1), countDecimals(q.num2));
-        const expected = (toFloat(q.num1) + toFloat(q.num2))
-          .toFixed(maxDec).replace('.', ',')
-          .replace(',', '')
-          .padStart(planQ.digitIndices.length, '0');
-        if (newAnswers[i] === expected) correctCount++;
-      });
-      setScore(correctCount * 200);
-      setShowResults(true);
+        let hits = 0;
+        testQuestions.forEach((q, i) => {
+            const { solutionStr } = calculateSolution(q);
+            if (toFloat(newAnswers[i]) === toFloat(solutionStr)) hits++;
+        });
+        setScore(hits * 200);
+        setShowResults(true);
     }
-  }, [resultSlots, userAnswers, currentQuestionIndex, testQuestions, loadExercise]);
+  };
 
-  const exitTestMode = useCallback(() => {
-    setIsTestMode(false);
-    setShowResults(false);
-    startPractice();
-  }, [startPractice]);
+  useEffect(() => { startPractice(); }, []);
 
-  useEffect(() => { startPractice(); }, [startPractice]);
-
-  const progressPct = ((currentQuestionIndex + 1) / TOTAL_TEST_QUESTIONS) * 100;
-  const formatUserAnswer = (digits, q) => {
-    const maxDec = Math.max(countDecimals(q.num1), countDecimals(q.num2));
-    return withComma(digits, maxDec);
+  const withComma = (digits, q) => {
+     const maxDec = Math.max(...q.map(n => countDecimals(n)));
+     if (maxDec === 0) return digits;
+     const cut = digits.length - maxDec;
+     return digits.slice(0, cut) + ',' + digits.slice(cut);
   };
 
   return (
-    <div id="app-container">
-      <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-        <span role="img" aria-label="Suma">🧮</span>{' '}
-        <span className="gradient-text">Suma con decimales</span>
-      </h1>
-
-      <div className="mode-selection">
-        <button
-          className={`btn-mode ${!isTestMode ? 'active' : ''}`}
-          onClick={() => { setIsTestMode(false); setShowResults(false); startPractice(); }}
-        >
-          Práctica Libre
-        </button>
-        <button className="btn-mode" onClick={startTest}>Iniciar Test</button>
-      </div>
-
-      <div id="options-area" style={{ display:'flex', alignItems:'center', gap:12, justifyContent:'center', marginBottom:8 }}>
-        <label htmlFor="help-toggle">Ayuda con llevadas</label>
-        <label className="switch">
-          <input type="checkbox" id="help-toggle" checked={showCarries} onChange={() => setShowCarries(v => !v)} />
-          <span className="slider round"></span>
-        </label>
-      </div>
-
-      {isTestMode && !showResults && (
-        <>
-          <div className="test-header">
-            <div>Pregunta {currentQuestionIndex + 1} / {TOTAL_TEST_QUESTIONS}</div>
-          </div>
-          <div className="progress-bar-container">
-            <div className="progress-bar" style={{ width: `${progressPct}%` }} />
-          </div>
-        </>
-      )}
-
-      {!(isTestMode && showResults) && (
-        <ProblemBoard
-          num1={current.num1}
-          num2={current.num2}
-          cifrasEnteras={current.cifrasEnteras}
-          showCarries={showCarries}
-          resultSlots={resultSlots} setResultSlots={setResultSlots}
-          carrySlots={carrySlots}   setCarrySlots={setCarrySlots}
-          checkInfo={checkInfo}
-          activeSlot={activeSlot} setActiveSlot={setActiveSlot}
-        />
-      )}
-
-      {isTestMode && !showResults && (
-        <div className="controles" style={{ marginTop: 16 }}>
-          <button onClick={handleNextQuestion} className="btn-test">
-            {currentQuestionIndex === TOTAL_TEST_QUESTIONS - 1 ? 'Finalizar' : 'Siguiente'}
-          </button>
-        </div>
-      )}
-
-      {!isTestMode && (
-        <>
-          <div id="feedback-message" className={feedback.cls}>{feedback.text}</div>
-          <div id="controls">
-            <button id="check-button" onClick={checkPractice}>Comprobar</button>
-            <button id="new-problem-button" onClick={startPractice}>Nueva Suma</button>
-          </div>
-        </>
-      )}
-
-      {!showResults && (
-        <div id="number-palette">
-          <h2>Arrastra o pulsa los números 👇</h2>
-          <div className="number-tiles-container">
-            {[...Array(10).keys()].map(n => (
-              <div
-                key={n}
-                className="number-tile"
-                draggable="true"
-                onDragStart={(e) => e.dataTransfer.setData('text/plain', n)}
-                onClick={() => handlePaletteClick(n)}
-              >
-                {n}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {isTestMode && showResults && (
-        <div className="test-results" style={{ marginTop: 20 }}>
-          <h2 className="score">Puntuación: <span>{score}</span></h2>
-          <div className="results-summary" style={{ marginTop: 12 }}>
-            {testQuestions.map((q, i) => {
-              const planQ = buildColumnPlan(q.num1, q.num2, q.cifrasEnteras);
-              const maxDec = Math.max(countDecimals(q.num1), countDecimals(q.num2));
-              const correct = (toFloat(q.num1) + toFloat(q.num2)).toFixed(maxDec).replace('.', ',');
-              const user = userAnswers[i] ? formatUserAnswer(userAnswers[i], q) : 'No contestada';
-              const expectedDigits = correct.replace(',', '').padStart(planQ.digitIndices.length, '0');
-              const ok = userAnswers[i] === expectedDigits;
-              return (
-                <div key={i} className="result-item">
-                  <p><strong>Suma {i + 1}:</strong> {q.num1} + {q.num2}</p>
-                  <p className={ok ? 'correcta' : 'incorrecta'}>Tu respuesta: {user}</p>
-                  {!ok && <p className="correcta">Solución: {correct}</p>}
-                </div>
-              );
-            })}
-          </div>
-          <div className="test-controls" style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 16 }}>
-            <button onClick={startTest} className="btn-test">Volver a intentar</button>
-            <button onClick={exitTestMode} className="btn-mode">Modo Práctica</button>
-          </div>
-        </div>
-      )}
-    </div>
+    <SumasLayout
+      title="Suma con decimales (5º)"
+      isTestMode={isTestMode}
+      setTestMode={setIsTestMode}
+      testState={{ currentQuestionIndex, totalQuestions: TOTAL_TEST_QUESTIONS, showResults, score, testQuestions, userAnswers }}
+      practiceState={{ feedback }}
+      actions={{ 
+        startPractice, 
+        startTest: () => { setIsTestMode(true); startTest(); },
+        checkPractice, 
+        nextQuestion, 
+        exitTest: () => { setIsTestMode(false); setShowResults(false); startPractice(); },
+        onPaletteClick: handlePaletteClick
+      }}
+      options={{ showCarries, setShowCarries }}
+    >
+      <UniversalSumBoard
+        nums={currentOperands}
+        minIntegerDigits={2}
+        showCarries={showCarries}
+        resultSlots={resultSlots}
+        carrySlots={carrySlots}
+        activeSlot={activeSlot}
+        actions={{
+            updateResult: (i, v) => { const n=[...resultSlots]; n[i]=v; setResultSlots(n); },
+            updateCarry: (i, v) => { const n=[...carrySlots]; n[i]=v; setCarrySlots(n); },
+            setActiveSlot
+        }}
+        validation={checkInfo}
+      />
+    </SumasLayout>
   );
 };
 
