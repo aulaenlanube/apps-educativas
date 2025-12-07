@@ -42,12 +42,12 @@ body.no-scroll {
 .ordena-frase-container .zona-origen {
     width: 100%;
     min-height: 80px;
-    padding: 10px;
+    padding: 15px; 
     border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     box-sizing: border-box;
     transition: background-color 0.3s;
 }
@@ -56,6 +56,7 @@ body.no-scroll {
     background-color: #e9f7ef;
     border: 2px dashed #a3d9b8;
     justify-content: flex-start;
+    align-content: flex-start;
 }
 
 .ordena-frase-container .zona-origen {
@@ -67,17 +68,24 @@ body.no-scroll {
 
 /* --- PALABRAS --- */
 .ordena-frase-container .palabra {
+    position: relative; 
     background-color: #fff;
     padding: 10px 20px;
     border-radius: 8px;
     border: 1px solid #ddd;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    cursor: grab;
+    cursor: pointer;
     user-select: none;
     font-size: 18px;
     font-weight: 600;
-    transition: opacity 0.2s, transform 0.2s;
+    transition: all 0.2s;
     touch-action: none; 
+}
+
+.ordena-frase-container .palabra:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    border-color: #b0c4de;
 }
 
 .ordena-frase-container .palabra.dragging {
@@ -85,6 +93,57 @@ body.no-scroll {
     background-color: #f0f4f8;
 }
 
+/* --- BOTÓN ELIMINAR (Papelera) --- */
+.ordena-frase-container .btn-remove-word {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 20px !important;
+    height: 20px !important;
+    padding: 0 !important;
+    background-color: #dc3545 !important; /* Rojo */
+    color: white !important;
+    border-radius: 50% !important;
+    border: 1px solid #fff !important;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 10;
+    margin: 0 !important;
+    
+    /* Transiciones para hover y visibilidad */
+    transition: transform 0.2s, background-color 0.2s, opacity 0.2s ease-in-out;
+}
+
+.ordena-frase-container .btn-remove-word:hover {
+    background-color: #c82333 !important;
+    transform: scale(1.1);
+}
+
+/* LÓGICA DE VISIBILIDAD */
+
+/* 1. Por defecto (Táctil): Siempre visible */
+.ordena-frase-container .btn-remove-word {
+    opacity: 1;
+}
+
+/* 2. En dispositivos con ratón (Desktop): Invisible hasta hover */
+@media (hover: hover) {
+    .ordena-frase-container .btn-remove-word {
+        opacity: 0;
+        pointer-events: none; /* Evita clics accidentales cuando está invisible */
+    }
+
+    .ordena-frase-container .palabra:hover .btn-remove-word {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+/* CLONE PARA DND */
 .palabra-clone {
     position: fixed;
     pointer-events: none;
@@ -99,12 +158,12 @@ body.no-scroll {
     font-weight: 600;
 }
 
-/* --- BOTONES --- */
+/* --- BOTONES GENERALES --- */
 .ordena-frase-container .controles {
     margin: 25px 0;
 }
 
-.ordena-frase-container button {
+.ordena-frase-container button:not(.btn-remove-word) {
     font-family: 'Lexend', sans-serif;
     font-size: 16px;
     font-weight: 600;
@@ -118,7 +177,7 @@ body.no-scroll {
     transition: background-color 0.2s;
 }
 
-.ordena-frase-container button:hover {
+.ordena-frase-container button:not(.btn-remove-word):hover {
     background-color: #357ABD;
 }
 
@@ -126,28 +185,28 @@ body.no-scroll {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 20px; /* Reducimos el margen inferior */
+    margin-bottom: 20px; 
 }
 
 .ordena-frase-container .btn-mode {
-    background: #f0f4f8;
-    color: #4a5568;
-    border: 1px solid #dcdfe6;
+    background: #f0f4f8 !important;
+    color: #4a5568 !important;
+    border: 1px solid #dcdfe6 !important;
 }
 
 .ordena-frase-container .btn-mode:hover,
 .ordena-frase-container .btn-mode.active {
-    background-color: #673de6;
-    color: white;
-    border-color: #673de6;
+    background-color: #673de6 !important;
+    color: white !important;
+    border-color: #673de6 !important;
 }
 
 .ordena-frase-container .btn-saltar {
-    background-color: #d97706;
+    background-color: #d97706 !important;
 }
 
 .ordena-frase-container .btn-saltar:hover {
-    background-color: #935106;
+    background-color: #935106 !important;
 }
 
 #feedback {
@@ -184,8 +243,8 @@ body.no-scroll {
 .test-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-weight: bold; color: #4a5568; }
 .progress-bar-container { width: 100%; background: #e0e0e0; border-radius: 10px; height: 10px; margin-bottom: 20px; overflow: hidden; }
 .progress-bar { height: 100%; background: #4a90e2; border-radius: 10px; transition: width 0.3s ease-in-out; }
-.btn-test { background: #2e7d32; }
-.btn-test:hover { background: #1b5e20; }
+.btn-test { background: #2e7d32 !important; }
+.btn-test:hover { background: #1b5e20 !important; }
 
 /* --- ESTILOS PARA LAS TIPOGRAFÍAS --- */
 .ordena-frase-container.font-cursive .palabra,

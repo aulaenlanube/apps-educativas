@@ -13,7 +13,7 @@ const OrdenaLaFraseUI = ({ game }) => {
       </h1>
       {subtitulo && <p className="instrucciones">{subtitulo}</p>}
 
-      {/* Slider de tipografía (solo cambia clase CSS) */}
+      {/* Slider de tipografía */}
       <div className="font-slider-container">
         <div className="font-slider-labels">
           <span>Imprenta</span>
@@ -32,6 +32,41 @@ const OrdenaLaFraseUI = ({ game }) => {
         />
       </div>
     </>
+  );
+
+  // Helper para renderizar palabras
+  const renderPalabras = (palabras, isDestino) => (
+    palabras.map(p => (
+      <div 
+        key={p.id} 
+        data-id={p.id} 
+        className="palabra" 
+        draggable
+        onDragStart={(e) => game.handleDragStart(e, p)} 
+        onDragEnd={game.handleDragEnd}
+        onTouchStart={(e) => game.handleTouchStart(e, p)}
+        onClick={!isDestino ? () => game.handleOriginWordClick(p) : undefined}
+      >
+        {p.texto}
+        {isDestino && (
+          <button 
+            className="btn-remove-word" 
+            onClick={(e) => { 
+              e.stopPropagation(); 
+              game.handleRemoveWord(p); 
+            }}
+            aria-label="Eliminar palabra"
+          >
+            {/* Icono de papelera SVG */}
+            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 6h18"></path>
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+            </svg>
+          </button>
+        )}
+      </div>
+    ))
   );
 
   // Modo TEST: resultados
@@ -81,23 +116,11 @@ const OrdenaLaFraseUI = ({ game }) => {
         </div>
 
         <div className="zona-destino" ref={game.dropZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'destino')}>
-          {game.palabrasDestino.map(p => (
-            <div key={p.id} data-id={p.id} className="palabra" draggable
-                 onDragStart={(e) => game.handleDragStart(e, p)} onDragEnd={game.handleDragEnd}
-                 onTouchStart={(e) => game.handleTouchStart(e, p)}>
-              {p.texto}
-            </div>
-          ))}
+          {renderPalabras(game.palabrasDestino, true)}
         </div>
 
         <div className="zona-origen" ref={game.originZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'origen')}>
-          {game.palabrasOrigen.map(p => (
-            <div key={p.id} data-id={p.id} className="palabra" draggable
-                 onDragStart={(e) => game.handleDragStart(e, p)} onDragEnd={game.handleDragEnd}
-                 onTouchStart={(e) => game.handleTouchStart(e, p)}>
-              {p.texto}
-            </div>
-          ))}
+          {renderPalabras(game.palabrasOrigen, false)}
         </div>
 
         <div className="controles">
@@ -114,7 +137,7 @@ const OrdenaLaFraseUI = ({ game }) => {
     <div className={cls} onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd}>
       <Header
         titulo="Ordena la Frase"
-        subtitulo="Arrastra las palabras para formar una frase con sentido"
+        subtitulo="Arrastra las palabras o haz clic en ellas para formar la frase"
       />
 
       <div className="mode-selection">
@@ -123,23 +146,11 @@ const OrdenaLaFraseUI = ({ game }) => {
       </div>
 
       <div className="zona-destino" ref={game.dropZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'destino')}>
-        {game.palabrasDestino.map(p => (
-          <div key={p.id} data-id={p.id} className="palabra" draggable
-               onDragStart={(e) => game.handleDragStart(e, p)} onDragEnd={game.handleDragEnd}
-               onTouchStart={(e) => game.handleTouchStart(e, p)}>
-            {p.texto}
-          </div>
-        ))}
+        {renderPalabras(game.palabrasDestino, true)}
       </div>
 
       <div className="zona-origen" ref={game.originZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'origen')}>
-        {game.palabrasOrigen.map(p => (
-          <div key={p.id} data-id={p.id} className="palabra" draggable
-               onDragStart={(e) => game.handleDragStart(e, p)} onDragEnd={game.handleDragEnd}
-               onTouchStart={(e) => game.handleTouchStart(e, p)}>
-            {p.texto}
-          </div>
-        ))}
+        {renderPalabras(game.palabrasOrigen, false)}
       </div>
 
       <div className="controles">

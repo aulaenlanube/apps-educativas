@@ -66,7 +66,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
 
       return { texto: 'Forma la frase:', solucion };
     });
-  }, [frasesKey]); // Importante: no depender de fontStyle
+  }, [frasesKey]); 
 
   // Solo recarga misión si cambia el contenido real (no al mover el slider)
   useEffect(() => {
@@ -162,7 +162,29 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     }
   };
 
-  // Utilidades DnD (idénticas)
+  // --- NUEVA LÓGICA DE CLIC Y BOTÓN ---
+
+  // Mover palabra de origen a destino (al hacer clic)
+  const handleOriginWordClick = (palabra) => {
+    setPalabrasOrigen(prev => prev.filter(p => p.id !== palabra.id));
+    setPalabrasDestino(prev => [...prev, palabra]);
+  };
+
+  // Devolver palabra de destino a origen (al pulsar la X)
+  const handleRemoveWord = (palabra) => {
+    setPalabrasDestino(prev => prev.filter(p => p.id !== palabra.id));
+    setPalabrasOrigen(prev => {
+        const nuevos = [...prev, palabra];
+        // Reordenar por el ID original para que no se desordenen al volver
+        return nuevos.sort((a, b) => {
+            const idA = parseInt(a.id.split('-')[2] || '0', 10);
+            const idB = parseInt(b.id.split('-')[2] || '0', 10);
+            return idA - idB;
+        });
+    });
+  };
+
+  // --- LÓGICA DRAG & DROP (EXISTENTE) ---
   const getDropTarget = (container, x, y) => {
     const els = [...container.querySelectorAll('.palabra:not(.dragging)')];
     for (const el of els) {
@@ -214,6 +236,10 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     const rect = el.getBoundingClientRect();
 
     const clone = el.cloneNode(true);
+    // Clon no debe tener el botón X visible o funcional, es visual
+    const btn = clone.querySelector('.btn-remove-word');
+    if(btn) btn.style.display = 'none';
+
     clone.classList.add('palabra-clone');
     clone.style.width = `${rect.width}px`;
     clone.style.height = `${rect.height}px`;
@@ -278,6 +304,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     checkPracticeAnswer, startPracticeMission,
     handleDragStart, handleDragEnd, handleDragOver, handleDrop,
     handleTouchStart, handleTouchMove, handleTouchEnd,
+    handleOriginWordClick, handleRemoveWord, // Exportamos los nuevos handlers
     dropZoneRef, originZoneRef,
     currentQuestionIndex, TOTAL_TEST_QUESTIONS, elapsedTime,
     showResults, score, testQuestions, userAnswers,
@@ -285,3 +312,4 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     fontStyle, fontStyleIndex, handleFontStyleChange
   };
 };
+
