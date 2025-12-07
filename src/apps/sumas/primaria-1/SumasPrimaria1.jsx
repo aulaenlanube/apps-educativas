@@ -8,10 +8,7 @@ const TOTAL_TEST_QUESTIONS = 5;
 const SumasPrimaria1 = () => {
   // --- Estados ---
   const [currentOperands, setCurrentOperands] = useState(['0', '0']);
-  // En 1º normalmente no se usan "cajas de llevadas" porque son sumas sin llevadas,
-  // pero mantenemos la opción por consistencia o si quieres ampliarlo luego.
-  // Lo inicializamos a false.
-  const [showCarries, setShowCarries] = useState(false);
+  // Eliminamos el estado showCarries ya que no habrá toggle
   
   // Estados del Tablero
   const [resultSlots, setResultSlots] = useState([]);
@@ -48,26 +45,32 @@ const SumasPrimaria1 = () => {
     setCurrentOperands(ops);
     const plan = buildColumnPlan(ops, 2); // Mínimo 2 columnas
     setResultSlots(Array(plan.digitIndices.length).fill(''));
-    // Aunque no haya llevadas, inicializamos el array por si el usuario activa la opción
-    setCarrySlots(Array(Math.max(0, plan.digitIndices.length - 1)).fill(''));
-    setActiveSlot(null);
+    setCarrySlots(Array(Math.max(0, plan.digitIndices.length - 1)).fill('')); // Inicializamos aunque no se usen
     setFeedback({ text: '', cls: '' });
     setCheckInfo({ show: false });
+    
+    // Activar por defecto la casilla más a la derecha (unidades)
+    setActiveSlot({ type: 'result', index: plan.digitIndices.length - 1 });
   }, []);
 
-  // --- Manejadores de Interacción ---
   const handlePaletteClick = (val) => {
     if (!activeSlot) return;
     const strVal = val.toString();
+    
     if (activeSlot.type === 'result') {
       const n = [...resultSlots]; 
       n[activeSlot.index] = strVal; 
       setResultSlots(n);
-    } else {
-      const n = [...carrySlots]; 
-      n[activeSlot.index] = strVal; 
-      setCarrySlots(n);
-    }
+
+      // Auto-avance hacia la izquierda
+      const nextIndex = activeSlot.index - 1;
+      if (nextIndex >= 0) {
+        setActiveSlot({ type: 'result', index: nextIndex });
+      } else {
+        setActiveSlot(null); // Terminado
+      }
+    } 
+    // No gestionamos 'carry' aquí porque no hay llevadas visibles
   };
 
   const calculateSolution = (ops) => {
@@ -75,30 +78,24 @@ const SumasPrimaria1 = () => {
     const sum = ops.reduce((a, b) => a + parseInt(b), 0);
     const expectedStr = sum.toString().padStart(plan.digitIndices.length, '0');
     const expectedResult = expectedStr.split('');
-    
-    // En 1º no esperamos llevadas, pero calculamos el array de ceros para la validación
     const expectedCarries = Array(Math.max(0, plan.digitIndices.length - 1)).fill(0);
 
     return { expectedResult, expectedCarries, solutionStr: sum.toString() };
   };
 
-  // --- Acciones del Juego ---
   const startPractice = () => prepareExercise(generateOperands());
   
   const checkPractice = () => {
     const { expectedResult, expectedCarries } = calculateSolution(currentOperands);
     const firstNonZeroIdx = expectedResult.findIndex(d => d !== '0');
-    
-    // ¡Aquí está la magia! Pasamos la info de validación al tablero para que pinte rojo/verde
     setCheckInfo({ show: true, expectedResult, expectedCarries, firstNonZeroIdx });
     
     const userStr = resultSlots.join('');
     const correctStr = expectedResult.join('');
     
-    // Validamos comparando valores numéricos (ignora ceros a la izquierda vacíos)
     if (parseInt(userStr || '0') === parseInt(correctStr)) {
         setFeedback({ text: '¡Excelente! ¡Suma correcta! 🎉', cls: 'feedback-correct' });
-        setActiveSlot(null); // Desactivar selección al acertar
+        setActiveSlot(null);
     } else {
         setFeedback({ text: 'Casi... ¡Revisa las casillas en rojo!', cls: 'feedback-incorrect' });
     }
@@ -125,7 +122,6 @@ const SumasPrimaria1 = () => {
         setCurrentQuestionIndex(nextIdx);
         prepareExercise(testQuestions[nextIdx]);
     } else {
-        // Finalizar Test
         let hits = 0;
         testQuestions.forEach((q, i) => {
             const sum = q.reduce((a, b) => a + parseInt(b), 0);
@@ -136,7 +132,6 @@ const SumasPrimaria1 = () => {
     }
   };
 
-  // Iniciar ejercicio al montar
   useEffect(() => { startPractice(); }, []);
 
   return (
@@ -144,31 +139,22 @@ const SumasPrimaria1 = () => {
       title="Suma como en el cole (1º)"
       isTestMode={isTestMode}
       setTestMode={setIsTestMode}
-      testState={{ 
-        currentQuestionIndex, 
-        totalQuestions: TOTAL_TEST_QUESTIONS, 
-        showResults, 
-        score, 
-        testQuestions, 
-        userAnswers 
-      }}
+      testState={{ currentQuestionIndex, totalQuestions: TOTAL_TEST_QUESTIONS, showResults, score, testQuestions, userAnswers }}
       practiceState={{ feedback }}
       actions={{ 
         startPractice, 
-        startTest: () => { setIsTestMode(true); startTest(); },
+        startTest: () => { setIsTestMode(true); startTest(); }, 
         checkPractice, 
         nextQuestion, 
-        exitTest: () => { setIsTestMode(false); setShowResults(false); startPractice(); },
-        onPaletteClick: handlePaletteClick
+        exitTest: () => { setIsTestMode(false); setShowResults(false); startPractice(); }, 
+        onPaletteClick: handlePaletteClick 
       }}
-      // Opcional: Pasamos options si queremos que el niño pueda activar/desactivar cajitas de llevada
-      // aunque en 1º no se usen mucho.
-      options={{ showCarries, setShowCarries }}
+      // AL QUITAR LA PROP 'options', EL SLIDER DESAPARECE
     >
       <UniversalSumBoard
         nums={currentOperands}
-        minIntegerDigits={2} // Forzamos ancho de 2 columnas (decenas, unidades)
-        showCarries={showCarries}
+        minIntegerDigits={2}
+        showCarries={false} // Forzamos siempre oculto
         resultSlots={resultSlots}
         carrySlots={carrySlots}
         activeSlot={activeSlot}

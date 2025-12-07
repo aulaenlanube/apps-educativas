@@ -4,15 +4,12 @@ import SumasLayout from '/src/apps/_shared/SumasLayout';
 import UniversalSumBoard, { buildColumnPlan } from '/src/apps/_shared/UniversalSumBoard';
 
 const TOTAL_TEST_QUESTIONS = 5;
-
-// Utils
 const toFloat = (s) => parseFloat(s.replace(',', '.'));
 const countDecimals = (s) => (s.includes(',') ? s.split(',')[1].length : 0);
 
 const SumasPrimaria5 = () => {
   const [currentOperands, setCurrentOperands] = useState(['0', '0']);
   const [showCarries, setShowCarries] = useState(true);
-  
   const [resultSlots, setResultSlots] = useState([]);
   const [carrySlots, setCarrySlots] = useState([]);
   const [activeSlot, setActiveSlot] = useState(null);
@@ -27,7 +24,6 @@ const SumasPrimaria5 = () => {
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
 
-  // --- Generación Decimales (2 sumandos) ---
   const generarNumero = (cifrasEnteras, decimales) => {
     const min = cifrasEnteras === 2 ? 10 : 100;
     const max = cifrasEnteras === 2 ? 99 : 999;
@@ -39,14 +35,13 @@ const SumasPrimaria5 = () => {
 
   const generateExercise = useCallback(() => {
     const cifras = Math.random() < 0.5 ? 2 : 3;
-    // 50% probabilidad de misma cantidad de decimales o distinta
     const mismaCantidad = Math.random() > 0.5;
     let d1, d2;
     if (mismaCantidad) {
-        d1 = Math.floor(Math.random() * 2) + 1; // 1 o 2 decimales
+        d1 = Math.floor(Math.random() * 2) + 1;
         d2 = d1;
     } else {
-        d1 = Math.floor(Math.random() * 3); // 0, 1, 2
+        d1 = Math.floor(Math.random() * 3);
         do { d2 = Math.floor(Math.random() * 3); } while (d2 === d1);
     }
     return [generarNumero(cifras, d1), generarNumero(cifras, d2)];
@@ -57,9 +52,10 @@ const SumasPrimaria5 = () => {
     const plan = buildColumnPlan(ops, 2);
     setResultSlots(Array(plan.digitIndices.length).fill(''));
     setCarrySlots(Array(Math.max(0, plan.digitIndices.length - 1)).fill(''));
-    setActiveSlot(null);
     setFeedback({ text: '', cls: '' });
     setCheckInfo({ show: false });
+    // MEJORA: Selección automática
+    setActiveSlot({ type: 'result', index: plan.digitIndices.length - 1 });
   }, []);
 
   const handlePaletteClick = (val) => {
@@ -67,6 +63,10 @@ const SumasPrimaria5 = () => {
     const strVal = val.toString();
     if (activeSlot.type === 'result') {
       const n = [...resultSlots]; n[activeSlot.index] = strVal; setResultSlots(n);
+      // MEJORA: Auto-avance izquierda
+      const nextIndex = activeSlot.index - 1;
+      if (nextIndex >= 0) setActiveSlot({ type: 'result', index: nextIndex });
+      else setActiveSlot(null);
     } else {
       const n = [...carrySlots]; n[activeSlot.index] = strVal; setCarrySlots(n);
     }
@@ -79,7 +79,6 @@ const SumasPrimaria5 = () => {
     const sumStr = sumVal.toFixed(maxDec).replace('.', ',');
     const digitsStr = sumStr.replace(',', '').padStart(plan.digitIndices.length, '0');
     
-    // Cálculo de llevadas con alineación decimal
     const [e1, d1 = ''] = ops[0].replace(',', '.').split('.');
     const [e2, d2 = ''] = ops[1].replace(',', '.').split('.');
     const maxD = Math.max(d1.length, d2.length);
@@ -93,17 +92,14 @@ const SumasPrimaria5 = () => {
         carry = Math.floor(s / 10);
         expectedCarries[i - 1] = carry;
     }
-
     return { expectedResult: digitsStr.split(''), expectedCarries, solutionStr: sumStr };
   };
 
   const startPractice = () => prepareExercise(generateExercise());
-  
   const checkPractice = () => {
     const { expectedResult, expectedCarries } = calculateSolution(currentOperands);
     const firstNonZeroIdx = expectedResult.findIndex(d => d !== '0');
     setCheckInfo({ show: true, expectedResult, expectedCarries, firstNonZeroIdx });
-    
     const userStr = resultSlots.join('');
     const correctStr = expectedResult.join('');
     if (userStr === correctStr) {
@@ -129,13 +125,9 @@ const SumasPrimaria5 = () => {
     const plan = buildColumnPlan(currentOperands, 2);
     const userDigits = resultSlots.join('');
     const cut = userDigits.length - plan.maxDec;
-    const userFormatted = plan.maxDec > 0 
-        ? userDigits.slice(0, cut) + ',' + userDigits.slice(cut) 
-        : userDigits;
-
+    const userFormatted = plan.maxDec > 0 ? userDigits.slice(0, cut) + ',' + userDigits.slice(cut) : userDigits;
     const newAnswers = [...userAnswers, userFormatted];
     setUserAnswers(newAnswers);
-
     if (currentQuestionIndex < TOTAL_TEST_QUESTIONS - 1) {
         const nextIdx = currentQuestionIndex + 1;
         setCurrentQuestionIndex(nextIdx);
@@ -153,13 +145,6 @@ const SumasPrimaria5 = () => {
 
   useEffect(() => { startPractice(); }, []);
 
-  const withComma = (digits, q) => {
-     const maxDec = Math.max(...q.map(n => countDecimals(n)));
-     if (maxDec === 0) return digits;
-     const cut = digits.length - maxDec;
-     return digits.slice(0, cut) + ',' + digits.slice(cut);
-  };
-
   return (
     <SumasLayout
       title="Suma con decimales (5º)"
@@ -167,14 +152,7 @@ const SumasPrimaria5 = () => {
       setTestMode={setIsTestMode}
       testState={{ currentQuestionIndex, totalQuestions: TOTAL_TEST_QUESTIONS, showResults, score, testQuestions, userAnswers }}
       practiceState={{ feedback }}
-      actions={{ 
-        startPractice, 
-        startTest: () => { setIsTestMode(true); startTest(); },
-        checkPractice, 
-        nextQuestion, 
-        exitTest: () => { setIsTestMode(false); setShowResults(false); startPractice(); },
-        onPaletteClick: handlePaletteClick
-      }}
+      actions={{ startPractice, startTest: () => { setIsTestMode(true); startTest(); }, checkPractice, nextQuestion, exitTest: () => { setIsTestMode(false); setShowResults(false); startPractice(); }, onPaletteClick: handlePaletteClick }}
       options={{ showCarries, setShowCarries }}
     >
       <UniversalSumBoard
@@ -184,11 +162,7 @@ const SumasPrimaria5 = () => {
         resultSlots={resultSlots}
         carrySlots={carrySlots}
         activeSlot={activeSlot}
-        actions={{
-            updateResult: (i, v) => { const n=[...resultSlots]; n[i]=v; setResultSlots(n); },
-            updateCarry: (i, v) => { const n=[...carrySlots]; n[i]=v; setCarrySlots(n); },
-            setActiveSlot
-        }}
+        actions={{ updateResult: (i, v) => { const n=[...resultSlots]; n[i]=v; setResultSlots(n); }, updateCarry: (i, v) => { const n=[...carrySlots]; n[i]=v; setCarrySlots(n); }, setActiveSlot }}
         validation={checkInfo}
       />
     </SumasLayout>

@@ -6,28 +6,22 @@ import UniversalSumBoard, { buildColumnPlan } from '/src/apps/_shared/UniversalS
 const TOTAL_TEST_QUESTIONS = 5;
 
 const SumasPrimaria3 = () => {
-  // --- Estados ---
   const [currentOperands, setCurrentOperands] = useState(['0', '0']);
   const [showCarries, setShowCarries] = useState(true);
-  
-  // Estados del Tablero
   const [resultSlots, setResultSlots] = useState([]);
   const [carrySlots, setCarrySlots] = useState([]);
   const [activeSlot, setActiveSlot] = useState(null);
 
-  // Estados de Juego/Test
   const [isTestMode, setIsTestMode] = useState(false);
   const [feedback, setFeedback] = useState({ text: '', cls: '' });
   const [checkInfo, setCheckInfo] = useState({ show: false, expectedResult: [], expectedCarries: [], firstNonZeroIdx: -1 });
   
-  // Test Data
   const [testQuestions, setTestQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
 
-  // --- Lógica: 3 o 4 cifras ---
   const generateOperands = useCallback(() => {
     const cifras = Math.random() < 0.5 ? 3 : 4;
     const min = cifras === 3 ? 100 : 1000;
@@ -39,12 +33,13 @@ const SumasPrimaria3 = () => {
 
   const prepareExercise = useCallback((ops) => {
     setCurrentOperands(ops);
-    const plan = buildColumnPlan(ops, 3); // min 3 dígitos
+    const plan = buildColumnPlan(ops, 3);
     setResultSlots(Array(plan.digitIndices.length).fill(''));
     setCarrySlots(Array(Math.max(0, plan.digitIndices.length - 1)).fill(''));
-    setActiveSlot(null);
     setFeedback({ text: '', cls: '' });
     setCheckInfo({ show: false });
+    // MEJORA: Selección automática
+    setActiveSlot({ type: 'result', index: plan.digitIndices.length - 1 });
   }, []);
 
   const handlePaletteClick = (val) => {
@@ -52,6 +47,10 @@ const SumasPrimaria3 = () => {
     const strVal = val.toString();
     if (activeSlot.type === 'result') {
       const n = [...resultSlots]; n[activeSlot.index] = strVal; setResultSlots(n);
+      // MEJORA: Auto-avance izquierda
+      const nextIndex = activeSlot.index - 1;
+      if (nextIndex >= 0) setActiveSlot({ type: 'result', index: nextIndex });
+      else setActiveSlot(null);
     } else {
       const n = [...carrySlots]; n[activeSlot.index] = strVal; setCarrySlots(n);
     }
@@ -62,8 +61,6 @@ const SumasPrimaria3 = () => {
     const sum = ops.reduce((a, b) => a + parseInt(b), 0);
     const expectedStr = sum.toString().padStart(plan.digitIndices.length, '0');
     const expectedResult = expectedStr.split('');
-    
-    // Cálculo de llevadas
     const padded = ops.map(n => n.padStart(plan.digitIndices.length, '0'));
     const expectedCarries = Array(plan.digitIndices.length - 1).fill(0);
     let carry = 0;
@@ -73,17 +70,14 @@ const SumasPrimaria3 = () => {
         carry = Math.floor(colSum / 10);
         expectedCarries[i-1] = carry;
     }
-
     return { expectedResult, expectedCarries, solutionStr: sum.toString() };
   };
 
   const startPractice = () => prepareExercise(generateOperands());
-  
   const checkPractice = () => {
     const { expectedResult, expectedCarries } = calculateSolution(currentOperands);
     const firstNonZeroIdx = expectedResult.findIndex(d => d !== '0');
     setCheckInfo({ show: true, expectedResult, expectedCarries, firstNonZeroIdx });
-    
     const userStr = resultSlots.join('');
     if (parseInt(userStr || '0') === parseInt(expectedResult.join(''))) {
         setFeedback({ text: '¡Excelente! 🎉', cls: 'feedback-correct' });
@@ -108,7 +102,6 @@ const SumasPrimaria3 = () => {
     const userVal = parseInt(resultSlots.join('') || '0').toString();
     const newAnswers = [...userAnswers, userVal];
     setUserAnswers(newAnswers);
-
     if (currentQuestionIndex < TOTAL_TEST_QUESTIONS - 1) {
         const nextIdx = currentQuestionIndex + 1;
         setCurrentQuestionIndex(nextIdx);
@@ -133,14 +126,7 @@ const SumasPrimaria3 = () => {
       setTestMode={setIsTestMode}
       testState={{ currentQuestionIndex, totalQuestions: TOTAL_TEST_QUESTIONS, showResults, score, testQuestions, userAnswers }}
       practiceState={{ feedback }}
-      actions={{ 
-        startPractice, 
-        startTest: () => { setIsTestMode(true); startTest(); },
-        checkPractice, 
-        nextQuestion, 
-        exitTest: () => { setIsTestMode(false); setShowResults(false); startPractice(); },
-        onPaletteClick: handlePaletteClick
-      }}
+      actions={{ startPractice, startTest: () => { setIsTestMode(true); startTest(); }, checkPractice, nextQuestion, exitTest: () => { setIsTestMode(false); setShowResults(false); startPractice(); }, onPaletteClick: handlePaletteClick }}
       options={{ showCarries, setShowCarries }}
     >
       <UniversalSumBoard
@@ -150,11 +136,7 @@ const SumasPrimaria3 = () => {
         resultSlots={resultSlots}
         carrySlots={carrySlots}
         activeSlot={activeSlot}
-        actions={{
-            updateResult: (i, v) => { const n=[...resultSlots]; n[i]=v; setResultSlots(n); },
-            updateCarry: (i, v) => { const n=[...carrySlots]; n[i]=v; setCarrySlots(n); },
-            setActiveSlot
-        }}
+        actions={{ updateResult: (i, v) => { const n=[...resultSlots]; n[i]=v; setResultSlots(n); }, updateCarry: (i, v) => { const n=[...carrySlots]; n[i]=v; setCarrySlots(n); }, setActiveSlot }}
         validation={checkInfo}
       />
     </SumasLayout>
