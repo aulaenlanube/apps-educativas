@@ -1,11 +1,37 @@
 // UI unificada: si game.isTestMode muestra Test, si no, Práctica
-import React from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import './OrdenaLaHistoriaShared.css';
 
 const OrdenaLaHistoriaUI = ({ game }) => {
   const progressPct = ((game.currentStoryIndex + 1) / game.TOTAL_TEST_STORIES) * 100;
+  
+  // Refs para animación FLIP
+  const itemsRef = useRef(new Map());
+  const prevPositions = useRef(new Map());
 
-  // Cabecera común con slider de tipografía
+  // Lógica de Animación FLIP
+  useLayoutEffect(() => {
+    itemsRef.current.forEach((element, id) => {
+      if (!element) return;
+      
+      const newRect = element.getBoundingClientRect();
+      const oldRect = prevPositions.current.get(id);
+
+      if (oldRect) {
+        const deltaY = oldRect.top - newRect.top;
+        if (deltaY !== 0) {
+          element.style.transform = `translateY(${deltaY}px)`;
+          element.style.transition = 'none';
+          requestAnimationFrame(() => {
+            element.style.transform = '';
+            element.style.transition = 'transform 0.3s cubic-bezier(0.2, 0, 0.2, 1)';
+          });
+        }
+      }
+      prevPositions.current.set(id, newRect);
+    });
+  }, [game.frasesDesordenadas]);
+
   const Header = ({ titulo, subtitulo }) => (
     <>
       <h1 className="main-title text-5xl mb-2">
@@ -33,12 +59,61 @@ const OrdenaLaHistoriaUI = ({ game }) => {
     </>
   );
 
-  // Contenedor con clase de estilo visual
+  // Helper para renderizar la lista con los NUEVOS ICONOS SVG
+  const renderFrasesList = () => (
+    <div className="zona-frases" ref={game.dropZoneRef} onDrop={game.handleDrop} onDragOver={game.handleDragOver}>
+      {game.frasesDesordenadas.map((frase, index) => (
+        <div
+          key={frase.id}
+          data-id={frase.id}
+          ref={(el) => {
+            if (el) itemsRef.current.set(frase.id, el);
+            else itemsRef.current.delete(frase.id);
+          }}
+          className="frase"
+          draggable
+          onDragStart={(e) => game.handleDragStart(e, frase)}
+          onDragEnd={game.handleDragEnd}
+          onTouchStart={(e) => game.handleTouchStart(e, frase)}
+        >
+          <span className="frase-texto">{frase.texto}</span>
+          
+          <div className="frase-controls">
+            <button 
+                className="btn-move btn-up" 
+                onClick={(e) => { e.stopPropagation(); game.moveFrase(index, -1); }}
+                disabled={index === 0}
+                onTouchStart={(e) => e.stopPropagation()} 
+                aria-label="Subir frase"
+            >
+              {/* SVG Chevron Up */}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 15l-6-6-6 6"/>
+              </svg>
+            </button>
+            <button 
+                className="btn-move btn-down" 
+                onClick={(e) => { e.stopPropagation(); game.moveFrase(index, 1); }}
+                disabled={index === game.frasesDesordenadas.length - 1}
+                onTouchStart={(e) => e.stopPropagation()}
+                aria-label="Bajar frase"
+            >
+              {/* SVG Chevron Down */}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 9l6 6 6-6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
   const cls = `ordena-historia-container font-${game.fontStyle}`;
 
   if (game.isTestMode) {
-    // Modo test
     if (game.showResults) {
+      // ... (código de resultados igual) ...
       const correct = game.testQuestions.filter((story, i) => {
         const u = game.userAnswers[i].map(f => f.texto).join();
         const c = story.map(f => f.texto).join();
@@ -68,7 +143,13 @@ const OrdenaLaHistoriaUI = ({ game }) => {
     }
 
     return (
-      <div className={cls} onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd}>
+      // ... (código de test en curso igual) ...
+      <div 
+        className={cls} 
+        onTouchMove={game.handleTouchMove} 
+        onTouchEnd={game.handleTouchEnd}
+        onTouchCancel={game.handleTouchCancel}
+      >
         <Header titulo="Test de Historias" />
         <div className="test-header">
           <div>Historia {game.currentStoryIndex + 1} / {game.TOTAL_TEST_STORIES}</div>
@@ -78,21 +159,7 @@ const OrdenaLaHistoriaUI = ({ game }) => {
           <div className="progress-bar" style={{ width: `${progressPct}%` }} />
         </div>
 
-        <div className="zona-frases" ref={game.dropZoneRef} onDrop={game.handleDrop} onDragOver={game.handleDragOver}>
-          {game.frasesDesordenadas.map((frase) => (
-            <div
-              key={frase.id}
-              data-id={frase.id}
-              className="frase"
-              draggable
-              onDragStart={(e) => game.handleDragStart(e, frase)}
-              onDragEnd={game.handleDragEnd}
-              onTouchStart={(e) => game.handleTouchStart(e, frase)}
-            >
-              {frase.texto}
-            </div>
-          ))}
-        </div>
+        {renderFrasesList()}
 
         <div className="controles">
           <button onClick={game.handleNextStory} className="btn-test">
@@ -103,36 +170,46 @@ const OrdenaLaHistoriaUI = ({ game }) => {
     );
   }
 
-  // Modo práctica
+  // Modo práctica (CON NUEVOS CONTROLES)
   return (
-    <div className={cls} onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd}>
-      <Header titulo="Ordena la Historia" subtitulo="Arrastra las frases para ordenarlas y que la historia tenga sentido" />
+    <div 
+      className={cls} 
+      onTouchMove={game.handleTouchMove} 
+      onTouchEnd={game.handleTouchEnd}
+      onTouchCancel={game.handleTouchCancel}
+    >
+      <Header titulo="Ordena la Historia" subtitulo="Arrastra las frases o usa las flechas para ordenarlas" />
 
       <div className="mode-selection">
         <button className="btn-mode active">Práctica Libre</button>
         <button onClick={game.startTest} className="btn-mode">Iniciar Test</button>
       </div>
 
-      <div className="zona-frases" ref={game.dropZoneRef} onDrop={game.handleDrop} onDragOver={game.handleDragOver}>
-        {game.frasesDesordenadas.map((frase) => (
-          <div
-            key={frase.id}
-            data-id={frase.id}
-            className="frase"
-            draggable
-            onDragStart={(e) => game.handleDragStart(e, frase)}
-            onDragEnd={game.handleDragEnd}
-            onTouchStart={(e) => game.handleTouchStart(e, frase)}
-          >
-            {frase.texto}
-          </div>
-        ))}
-      </div>
+      {renderFrasesList()}
 
       <div className="controles">
         <button onClick={game.checkStory}>Comprobar</button>
         <button onClick={game.cargarSiguienteHistoria} className="btn-saltar">Otra Historia</button>
+        {/* NUEVO BOTÓN VER SOLUCIÓN */}
+        <button 
+          onClick={game.toggleSolution} 
+          className="btn-ver-solucion"
+        >
+          {game.showSolution ? 'Ocultar' : 'Solución'}
+        </button>
       </div>
+
+      {/* NUEVA CAJA DE SOLUCIÓN */}
+      {game.showSolution && (
+        <div className="caja-solucion-historia fade-in">
+          <p><strong>Orden Correcto:</strong></p>
+          <ol>
+            {game.historiaCorrecta.map(frase => (
+              <li key={frase.id}>{frase.texto}</li>
+            ))}
+          </ol>
+        </div>
+      )}
 
       <p id="feedback" className={game.feedback.clase}>{game.feedback.texto}</p>
     </div>

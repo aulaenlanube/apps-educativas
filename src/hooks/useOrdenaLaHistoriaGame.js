@@ -9,6 +9,9 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
   const [frasesDesordenadas, setFrasesDesordenadas] = useState([]);
   const [feedback, setFeedback] = useState({ texto: '', clase: '' });
   const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
+  
+  // NUEVO: Estado para la solución
+  const [showSolution, setShowSolution] = useState(false);
 
   const draggedItem = useRef(null);
   const dropZoneRef = useRef(null);
@@ -25,7 +28,7 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
 
-  // Firma estable del contenido para evitar depender de la referencia del array
+  // Firma estable del contenido
   const historiasKey = useMemo(() => {
     if (!Array.isArray(historias)) return '';
     return JSON.stringify(historias);
@@ -34,7 +37,7 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
   const mapToUniqueItems = (frasesArray) =>
     frasesArray.map((frase, index) => ({
       id: `frase-${Date.now()}-${index}`,
-      texto: frase // El estilo se aplica por CSS, no mutamos el texto
+      texto: frase 
     }));
 
   const handleFontStyleChange = (event) => {
@@ -42,8 +45,12 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     setFontStyle(FONT_STYLES[newIndex]);
   };
 
+  // NUEVO: Alternar visibilidad de solución
+  const toggleSolution = () => setShowSolution(prev => !prev);
+
   const cargarSiguienteHistoria = useCallback(() => {
     setFeedback({ texto: '', clase: '' });
+    setShowSolution(false); // Reiniciar al cargar nueva
 
     if (!historias || historias.length === 0) {
       setHistoriaCorrecta([]);
@@ -52,21 +59,15 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     }
 
     setHistoriaCorrecta((prevHistoria) => {
-      // Firma (contenido) de la historia previa
       const prevSig = JSON.stringify(prevHistoria.map(f => f.texto.toLowerCase()));
-
-      // Pool de candidatas con contenido distinto a la previa
       let candidatas = historias.filter(
         h => JSON.stringify(h.map(f => f.toLowerCase())) !== prevSig
       );
-
-      // Si todas son iguales a la previa, permitimos repetir para evitar bucle infinito
       if (candidatas.length === 0) candidatas = historias;
 
-      // Elegir aleatoria de las candidatas
       const nuevaHistoria = candidatas[Math.floor(Math.random() * candidatas.length)];
-
       const items = mapToUniqueItems(nuevaHistoria);
+      
       setFrasesDesordenadas([...items].sort(() => Math.random() - 0.5));
       return items;
     });
@@ -94,6 +95,7 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     setShowResults(false);
     setScore(0);
     setIsTestMode(true);
+    setShowSolution(false); // Asegurar que está oculta en el test
     if (withTimer) {
       setStartTime(Date.now());
       setElapsedTime(0);
@@ -157,14 +159,45 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     }
   };
 
-  const handleDragStart = (e, frase) => {
-    draggedItem.current = frase;
-    setTimeout(() => { if (e.target) e.target.classList.add('dragging'); }, 0);
+  // --- LÓGICA DE REORDENACIÓN POR BOTONES ---
+  const moveFrase = (index, direction) => {
+    const newIndex = index + direction;
+    if (newIndex < 0 || newIndex >= frasesDesordenadas.length) return;
+
+    const newFrases = [...frasesDesordenadas];
+    const temp = newFrases[index];
+    newFrases[index] = newFrases[newIndex];
+    newFrases[newIndex] = temp;
+    
+    setFrasesDesordenadas(newFrases);
   };
-  const handleDragEnd = (e) => {
-    if (e.target && e.target.classList) e.target.classList.remove('dragging');
+
+  // --- LÓGICA ARRASTRE (DND) ---
+  const cleanupDrag = () => {
+    if (draggedCloneRef.current) {
+        if(draggedCloneRef.current.parentNode) draggedCloneRef.current.remove();
+        draggedCloneRef.current = null;
+    }
+    document.body.classList.remove('no-scroll');
+    document.querySelectorAll('.frase.dragging').forEach(el => el.classList.remove('dragging'));
     draggedItem.current = null;
   };
+
+  useEffect(() => {
+    return () => cleanupDrag();
+  }, []);
+
+  const handleDragStart = (e, frase) => {
+    draggedItem.current = frase;
+    setTimeout(() => { 
+        if (e.target) e.target.classList.add('dragging'); 
+    }, 0);
+  };
+
+  const handleDragEnd = (e) => {
+    cleanupDrag();
+  };
+
   const getDragAfterElement = (container, y) => {
     const elements = [...container.querySelectorAll('.frase:not(.dragging)')];
     return elements.reduce((closest, child) => {
@@ -174,60 +207,97 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
       return closest;
     }, { offset: Number.NEGATIVE_INFINITY }).element;
   };
+
   const handleDrop = (e) => {
     e.preventDefault();
     if (!draggedItem.current) return;
+
     const container = e.currentTarget;
-    const after = getDragAfterElement(container, e.clientY);
-    let nueva = frasesDesordenadas.filter(f => f.id !== draggedItem.current.id);
-    if (after == null) nueva.push(draggedItem.current);
-    else {
-      const afterId = after.getAttribute('data-id');
-      const idx = nueva.findIndex(f => f.id === afterId);
-      nueva.splice(idx, 0, draggedItem.current);
+    const afterElement = getDragAfterElement(container, e.clientY);
+    
+    const nuevaLista = frasesDesordenadas.filter(f => f.id !== draggedItem.current.id);
+    
+    if (afterElement == null) {
+      nuevaLista.push(draggedItem.current);
+    } else {
+      const afterId = afterElement.getAttribute('data-id');
+      const index = nuevaLista.findIndex(f => f.id === afterId);
+      nuevaLista.splice(index, 0, draggedItem.current);
     }
-    setFrasesDesordenadas(nueva);
+    
+    setFrasesDesordenadas(nuevaLista);
+    cleanupDrag();
   };
+
   const handleDragOver = (e) => e.preventDefault();
 
   const handleTouchStart = (e, frase) => {
+    if (e.cancelable && !e.defaultPrevented) {
+        // e.preventDefault(); 
+    }
+    cleanupDrag(); 
+
     draggedItem.current = frase;
     const el = e.currentTarget;
     const rect = el.getBoundingClientRect();
+    
     const clone = el.cloneNode(true);
+    // Eliminar botones del clon
+    const controls = clone.querySelector('.frase-controls');
+    if (controls) controls.remove();
+
     clone.classList.add('frase-clone');
     clone.style.width = `${rect.width}px`;
     clone.style.height = `${rect.height}px`;
     clone.style.top = `${rect.top}px`;
     clone.style.left = `${rect.left}px`;
+    
     document.body.appendChild(clone);
     draggedCloneRef.current = clone;
+    
     el.classList.add('dragging');
     document.body.classList.add('no-scroll');
   };
+
   const handleTouchMove = (e) => {
     if (!draggedCloneRef.current || !e.touches[0]) return;
     const t = e.touches[0];
     const clone = draggedCloneRef.current;
-    clone.style.transform = `translate(${t.clientX - parseFloat(clonestyle.left) - clone.offsetWidth / 2}px, ${t.clientY - parseFloat(clonestyle.top) - clone.offsetHeight / 2}px)`;
+    
+    const x = t.clientX - parseFloat(clone.style.left) - clone.offsetWidth / 2;
+    const y = t.clientY - parseFloat(clone.style.top) - clone.offsetHeight / 2;
+    clone.style.transform = `translate(${x}px, ${y}px)`;
   };
+
   const handleTouchEnd = (e) => {
-    if (!draggedItem.current) return;
-    if (draggedCloneRef.current) {
-      draggedCloneRef.current.remove();
-      draggedCloneRef.current = null;
+    if (!draggedItem.current) {
+        cleanupDrag();
+        return;
     }
-    document.body.classList.remove('no-scroll');
-    document.querySelectorAll('.frase.dragging').forEach(el => el.classList.remove('dragging'));
+
     const touch = e.changedTouches[0];
     const dropZone = dropZoneRef.current;
-    if (!dropZone || !touch) { draggedItem.current = null; return; }
-    const r = dropZone.getBoundingClientRect();
-    if (touch.clientX >= r.left && touch.clientX <= r.right && touch.clientY >= r.top && touch.clientY <= r.bottom) {
-      const fake = { preventDefault: () => {}, currentTarget: dropZone, clientY: touch.clientY };
-      handleDrop(fake);
+    
+    if (dropZone && touch) {
+        const rect = dropZone.getBoundingClientRect();
+        if (touch.clientX >= rect.left && touch.clientX <= rect.right && 
+            touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+            
+            const fakeEvent = { 
+                preventDefault: () => {}, 
+                currentTarget: dropZone, 
+                clientY: touch.clientY 
+            };
+            handleDrop(fakeEvent);
+            return;
+        }
     }
-    draggedItem.current = null;
+    
+    cleanupDrag();
+  };
+
+  const handleTouchCancel = (e) => {
+    cleanupDrag();
   };
 
   const fontStyleIndex = FONT_STYLES.indexOf(fontStyle);
@@ -235,12 +305,15 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
   return {
     isTestMode, startTest, exitTestMode,
     frasesDesordenadas, feedback, historiaCorrecta,
-    checkStory, cargarSiguienteHistoria,
+    checkStory, cargarSiguienteHistoria, moveFrase,
     handleDragStart, handleDragEnd, handleDragOver, handleDrop,
-    handleTouchStart, handleTouchMove, handleTouchEnd, dropZoneRef,
+    handleTouchStart, handleTouchMove, handleTouchEnd, handleTouchCancel,
+    dropZoneRef,
     currentStoryIndex, TOTAL_TEST_STORIES, elapsedTime,
     showResults, score, testQuestions, userAnswers,
     handleNextStory,
-    fontStyle, fontStyleIndex, handleFontStyleChange
+    fontStyle, fontStyleIndex, handleFontStyleChange,
+    // NUEVO: Exportamos estado y función de solución
+    showSolution, toggleSolution 
   };
 };
