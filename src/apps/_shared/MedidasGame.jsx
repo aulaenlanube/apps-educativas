@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './Medidas.css';
 
 const TOTAL_TEST_QUESTIONS = 10;
+const MAX_DIGITS_LIMIT = 99999; // Límite de 5 cifras solicitado
 
 // --- CONFIGURACIÓN DE SISTEMAS DE UNIDADES ---
 const MEASURE_TYPES = {
@@ -9,8 +10,8 @@ const MEASURE_TYPES = {
         id: 'longitud',
         label: 'Longitud',
         icon: '📏',
-        baseUnit: 'mm', // Solo para cálculos internos
-        displayBase: 'm', // Para destacar en la UI
+        baseUnit: 'mm',
+        displayBase: 'm',
         units: { mm: 1, cm: 10, dm: 100, m: 1000, dam: 10000, hm: 100000, km: 1000000 },
         order: ['km', 'hm', 'dam', 'm', 'dm', 'cm', 'mm']
     },
@@ -42,7 +43,14 @@ const pickUnit = (list) => list[randomInt(0, list.length - 1)];
 const generateMeasurement = (typeConfig, allowedUnits, maxValBase) => {
     const unitStr = pickUnit(allowedUnits);
     const factor = typeConfig.units[unitStr];
-    const val = randomInt(1, Math.floor(maxValBase / factor) || 1);
+    
+    // Calculamos el máximo permitido respetando AMBOS límites:
+    // 1. La dificultad del nivel (maxValBase)
+    // 2. El límite visual de 5 cifras (MAX_DIGITS_LIMIT)
+    const maxAllowedByBase = Math.floor(maxValBase / factor) || 1;
+    const maxVal = Math.min(maxAllowedByBase, MAX_DIGITS_LIMIT);
+
+    const val = randomInt(1, maxVal);
 
     return {
         text: `${val} ${unitStr}`,
@@ -97,6 +105,7 @@ const generateProblemData = (level, typeId) => {
 
     // --- Generar Izquierda ---
     let left;
+    // Expresiones compuestas (ej: 2 km 500 m) - Estas son seguras porque los números individuales son pequeños
     if (level >= 5 && Math.random() > 0.6) {
         const possibleBigs = allowedUnits.filter(u => units[u] >= units[uMed]);
         const uBig = possibleBigs.length > 0 ? pickUnit(possibleBigs) : uMed;
@@ -124,10 +133,14 @@ const generateProblemData = (level, typeId) => {
     const relation = Math.random();
 
     if (relation < 0.3) {
-        // IGUALES (=)
-        const validEquivalents = allowedUnits.filter(u => targetBase % units[u] === 0);
+        // --- IGUALES (=) ---
+        // Buscamos unidades que permitan representar el valor SIN decimales Y con MENOS de 5 cifras
+        const validEquivalents = allowedUnits.filter(u => {
+            const val = targetBase / units[u];
+            return (targetBase % units[u] === 0) && (val <= MAX_DIGITS_LIMIT);
+        });
+
         let candidates = validEquivalents;
-        
         if (left.unit && !left.isComplex) {
             candidates = validEquivalents.filter(u => u !== left.unit);
         }
@@ -137,33 +150,62 @@ const generateProblemData = (level, typeId) => {
             const valR = targetBase / units[unitR];
             right = { text: `${valR} ${unitR}`, valueBase: targetBase };
         } else {
-            const uRef = left.unit || uMed;
+            // Si no hay unidad limpia o todas exceden 5 cifras, usamos Suma
+            // Aseguramos que la unidad de referencia no genere números gigantes
+            const uRef = left.unit || uMed; 
             const valRef = Math.floor(targetBase / units[uRef]) || targetBase;
-            const finalUnit = (targetBase % units[uRef] === 0) ? uRef : config.baseUnit;
-            const finalVal = (targetBase % units[uRef] === 0) ? valRef : targetBase;
+            
+            // Si incluso en la unidad original es muy grande, buscamos la mayor unidad posible
+            let finalUnit = uRef;
+            let finalVal = valRef;
+            
+            if (valRef > MAX_DIGITS_LIMIT) {
+                // Intentar encontrar una unidad más grande para reducir el número
+                const biggerUnits = allowedUnits.filter(u => (targetBase / units[u]) <= MAX_DIGITS_LIMIT);
+                if (biggerUnits.length > 0) {
+                    finalUnit = pickUnit(biggerUnits);
+                    finalVal = Math.floor(targetBase / units[finalUnit]); // Puede perder precisión en suma, aceptable como fallback
+                }
+            }
 
             const part1 = Math.floor(finalVal / 2);
             const part2 = finalVal - part1;
             right = { 
                 text: `${part1} + ${part2} ${finalUnit}`, 
-                valueBase: targetBase 
+                valueBase: targetBase // Mantener base exacta para comparación lógica
             };
         }
     } else {
-        // DIFERENTES
+        // --- DIFERENTES ---
         const variation = (Math.random() > 0.5 ? 1 : -1) * randomInt(1, Math.max(1, Math.floor(left.valueBase * 0.2)));
         let newBase = targetBase + variation;
         if (newBase <= 0) newBase = targetBase + Math.abs(variation);
 
-        const validUnits = allowedUnits.filter(u => newBase % units[u] === 0);
+        // Filtramos unidades que den números enteros y <= 5 cifras
+        const validUnits = allowedUnits.filter(u => {
+            const val = newBase / units[u];
+            return (newBase % units[u] === 0) && (val <= MAX_DIGITS_LIMIT);
+        });
+
         if (validUnits.length > 0) {
             const unitR = pickUnit(validUnits);
             const valR = newBase / units[unitR];
             right = { text: `${valR} ${unitR}`, valueBase: newBase };
         } else {
-            const smallestAvailable = allowedUnits.reduce((prev, curr) => units[curr] < units[prev] ? curr : prev, allowedUnits[0]);
-            const safeBase = Math.round(newBase / units[smallestAvailable]) * units[smallestAvailable];
-            right = { text: `${safeBase / units[smallestAvailable]} ${smallestAvailable}`, valueBase: safeBase };
+            // Fallback: buscamos la unidad más pequeña disponible que cumpla el límite
+            // Si 'mm' da un número de 8 cifras, probamos 'cm', etc.
+            let bestUnit = allowedUnits[0];
+            for (const u of allowedUnits) {
+                if (newBase / units[u] <= MAX_DIGITS_LIMIT) {
+                    bestUnit = u;
+                    break;
+                }
+            }
+            // Redondeamos para que sea entero en esa unidad
+            const safeBase = Math.round(newBase / units[bestUnit]) * units[bestUnit];
+            const displayVal = safeBase / units[bestUnit];
+            
+            right = { text: `${displayVal} ${bestUnit}`, valueBase: safeBase };
         }
     }
 

@@ -116,12 +116,47 @@ const appMayorMenor4 = { id: 'mayor-menor-4', name: 'Comparar Operaciones', desc
 const appMayorMenor5 = { id: 'mayor-menor-5', name: 'Comparar Decimales', description: 'Trabaja con números mayores y decimales.', component: MayorMenor5 };
 const appMayorMenor6 = { id: 'mayor-menor-6', name: 'Reto de Comparación', description: 'Expresiones matemáticas complejas.', component: MayorMenor6 };
 
-const appMedidas1 = { id: 'medidas-1', name: 'Comparar Longitudes', description: '¿Qué es más largo? Comparaciones sencillas.', component: Medidas1 };
-const appMedidas2 = { id: 'medidas-2', name: 'Metros y Centímetros', description: 'Practica con metros y centímetros.', component: Medidas2 };
-const appMedidas3 = { id: 'medidas-3', name: 'Kilómetros y Milímetros', description: 'Usa km, m, cm y mm. ¡Sin decimales!', component: Medidas3 };
-const appMedidas4 = { id: 'medidas-4', name: 'Conversión de Unidades', description: 'Domina la escalera de unidades de longitud.', component: Medidas4 };
-const appMedidas5 = { id: 'medidas-5', name: 'Expresiones Complejas', description: 'Compara medidas compuestas (ej. 2km 50m).', component: Medidas5 };
-const appMedidas6 = { id: 'medidas-6', name: 'Reto de Medidas', description: 'Compara distancias largas y conversiones difíciles.', component: Medidas6 };
+const appMedidas1 = { 
+  id: 'medidas-1', 
+  name: 'Medidas: Iniciación', 
+  description: 'Aprende a comparar medidas básicas de longitud, peso y capacidad.', 
+  component: Medidas1 
+};
+
+const appMedidas2 = { 
+  id: 'medidas-2', 
+  name: 'Medidas: Unidades Básicas', 
+  description: 'Practica con las unidades principales: metros, litros y gramos.', 
+  component: Medidas2 
+};
+
+const appMedidas3 = { 
+  id: 'medidas-3', 
+  name: 'Medidas: Conversión Simple', 
+  description: 'Empieza a convertir unidades de longitud, masa y capacidad.', 
+  component: Medidas3 
+};
+
+const appMedidas4 = { 
+  id: 'medidas-4', 
+  name: 'Medidas: Sistema Completo', 
+  description: 'Domina la escalera de unidades de todas las magnitudes.', 
+  component: Medidas4 
+};
+
+const appMedidas5 = { 
+  id: 'medidas-5', 
+  name: 'Medidas: Expresiones Complejas', 
+  description: 'Trabaja con medidas compuestas en cualquier magnitud (ej. 1kg 200g).', 
+  component: Medidas5 
+};
+
+const appMedidas6 = { 
+  id: 'medidas-6', 
+  name: 'Medidas: Reto Experto', 
+  description: 'Enfréntate a conversiones difíciles y números grandes en las 3 magnitudes.', 
+  component: Medidas6 
+};
 
 // exportamos las materias para primaria y ESO desde el JSON
 export const primariaSubjects = materiasData.primaria;
