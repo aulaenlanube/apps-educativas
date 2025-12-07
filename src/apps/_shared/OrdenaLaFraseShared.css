@@ -75,11 +75,17 @@ body.no-scroll {
     border: 1px solid #ddd;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     cursor: pointer;
-    user-select: none;
+    
     font-size: 18px;
     font-weight: 600;
     transition: all 0.2s;
-    touch-action: none; 
+    
+    /* --- CORRECCIÓN CRÍTICA PARA MÓVILES --- */
+    touch-action: none; /* Impide scroll/zoom nativo */
+    user-select: none;  /* Impide selección de texto */
+    -webkit-user-select: none; /* Safari */
+    -webkit-touch-callout: none; /* Impide menú contextual al mantener pulsado en iOS */
+    -webkit-tap-highlight-color: transparent; /* Quita el parpadeo azul al pulsar */
 }
 
 .ordena-frase-container .palabra:hover {
@@ -101,7 +107,7 @@ body.no-scroll {
     width: 20px !important;
     height: 20px !important;
     padding: 0 !important;
-    background-color: #dc3545 !important; /* Rojo */
+    background-color: #dc3545 !important; 
     color: white !important;
     border-radius: 50% !important;
     border: 1px solid #fff !important;
@@ -114,7 +120,6 @@ body.no-scroll {
     z-index: 10;
     margin: 0 !important;
     
-    /* Transiciones para hover y visibilidad */
     transition: transform 0.2s, background-color 0.2s, opacity 0.2s ease-in-out;
 }
 
@@ -123,24 +128,11 @@ body.no-scroll {
     transform: scale(1.1);
 }
 
-/* LÓGICA DE VISIBILIDAD */
-
-/* 1. Por defecto (Táctil): Siempre visible */
-.ordena-frase-container .btn-remove-word {
-    opacity: 1;
-}
-
-/* 2. En dispositivos con ratón (Desktop): Invisible hasta hover */
+/* VISIBILIDAD PAPELERA */
+.ordena-frase-container .btn-remove-word { opacity: 1; }
 @media (hover: hover) {
-    .ordena-frase-container .btn-remove-word {
-        opacity: 0;
-        pointer-events: none; /* Evita clics accidentales cuando está invisible */
-    }
-
-    .ordena-frase-container .palabra:hover .btn-remove-word {
-        opacity: 1;
-        pointer-events: auto;
-    }
+    .ordena-frase-container .btn-remove-word { opacity: 0; pointer-events: none; }
+    .ordena-frase-container .palabra:hover .btn-remove-word { opacity: 1; pointer-events: auto; }
 }
 
 /* CLONE PARA DND */
@@ -156,11 +148,18 @@ body.no-scroll {
     border: 1px solid #ddd;
     font-size: 18px;
     font-weight: 600;
+    /* Aseguramos que el clon tampoco interfiera */
+    opacity: 0.9;
 }
 
 /* --- BOTONES GENERALES --- */
 .ordena-frase-container .controles {
     margin: 25px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: 15px; 
 }
 
 .ordena-frase-container button:not(.btn-remove-word) {
@@ -173,12 +172,37 @@ body.no-scroll {
     cursor: pointer;
     background-color: #4a90e2;
     color: white;
-    margin: 0 10px;
     transition: background-color 0.2s;
+    white-space: nowrap; 
+    flex: 0 0 auto;
 }
 
 .ordena-frase-container button:not(.btn-remove-word):hover {
     background-color: #357ABD;
+}
+
+.ordena-frase-container .btn-ver-solucion {
+    background-color: #17a2b8 !important; 
+}
+.ordena-frase-container .btn-ver-solucion:hover {
+    background-color: #138496 !important;
+}
+
+.caja-solucion {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    color: #495057;
+    font-size: 1.1em;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .ordena-frase-container .mode-selection {

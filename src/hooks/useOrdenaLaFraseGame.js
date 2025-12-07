@@ -13,6 +13,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   const [showSolution, setShowSolution] = useState(false);
   const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
 
+  // Refs para gestión de arrastre
   const draggedItem = useRef(null);
   const dropZoneRef = useRef(null);
   const originZoneRef = useRef(null);
@@ -177,6 +178,29 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     });
   };
 
+  // --- LÓGICA ARRASTRE ---
+
+  const cleanupDrag = () => {
+    // 1. Eliminar clon visual
+    if (draggedCloneRef.current) {
+        if (draggedCloneRef.current.parentNode) {
+            document.body.removeChild(draggedCloneRef.current);
+        }
+        draggedCloneRef.current = null;
+    }
+    // 2. Restaurar scroll
+    document.body.classList.remove('no-scroll');
+    // 3. Quitar clase dragging de cualquier elemento
+    document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
+    // 4. Limpiar referencia del item
+    draggedItem.current = null;
+  };
+
+  // Limpieza al desmontar componente
+  useEffect(() => {
+    return () => cleanupDrag();
+  }, []);
+
   const getDropTarget = (container, x, y) => {
     const els = [...container.querySelectorAll('.palabra:not(.dragging)')];
     for (const el of els) {
@@ -186,15 +210,15 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     return null;
   };
 
+  // --- DRAG (RATÓN) ---
   const handleDragStart = (e, palabra) => {
     draggedItem.current = palabra;
     e.target.classList.add('dragging');
   };
   const handleDragEnd = () => {
-    document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
-    draggedItem.current = null;
+    cleanupDrag();
   };
-
+  const handleDragOver = (e) => e.preventDefault();
   const handleDrop = (e, targetZoneId) => {
     e.preventDefault();
     if (!draggedItem.current) return;
@@ -220,20 +244,18 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     setPalabrasDestino(nuevasDestino);
   };
 
-  const handleDragOver = (e) => e.preventDefault();
-
+  // --- TOUCH (MÓVIL) ---
   const handleTouchStart = (e, palabra) => {
-    // FIX: Evitar menú contextual o selección en pulsación larga
-    // Solo si es cancelable para no bloquear scroll innecesariamente (aunque touch-action lo hace)
-    if (e.cancelable && !e.defaultPrevented) {
-        // e.preventDefault(); // Opcional: Descomentar si aún hay problemas con menús nativos
-    }
+    // Seguridad: Limpiar cualquier residuo anterior antes de empezar uno nuevo
+    cleanupDrag();
 
     draggedItem.current = palabra;
     const el = e.currentTarget;
     const rect = el.getBoundingClientRect();
 
+    // Crear clon
     const clone = el.cloneNode(true);
+    // Ocultar botón X en el clon para que no se vea raro
     const btn = clone.querySelector('.btn-remove-word');
     if(btn) btn.style.display = 'none';
 
@@ -253,64 +275,48 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     if (!draggedCloneRef.current || !e.touches[0]) return;
     const t = e.touches[0];
     const clone = draggedCloneRef.current;
-    
-    // Mover el clon siguiendo el dedo
     const x = t.clientX - parseFloat(clone.style.left) - clone.offsetWidth / 2;
     const y = t.clientY - parseFloat(clone.style.top) - clone.offsetHeight / 2;
     clone.style.transform = `translate(${x}px, ${y}px)`;
   };
 
   const handleTouchEnd = (e) => {
-    if (!draggedItem.current) return;
-
-    // Limpiar clon
-    if (draggedCloneRef.current) {
-      if (draggedCloneRef.current.parentNode) {
-        document.body.removeChild(draggedCloneRef.current);
-      }
-      draggedCloneRef.current = null;
+    // Si no había item, limpiamos cualquier residuo visual por si acaso y salimos
+    if (!draggedItem.current) {
+        cleanupDrag();
+        return;
     }
-    document.body.classList.remove('no-scroll');
-    document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
 
     const touch = e.changedTouches[0];
     const dropZone = dropZoneRef.current;
     const item = draggedItem.current;
 
-    let nuevasOrigen = palabrasOrigen.filter(p => p.id !== item.id);
-    let nuevasDestino = palabrasDestino.filter(p => p.id !== item.id);
-
-    const rect = dropZone.getBoundingClientRect();
-    if (touch.clientX >= rect.left && touch.clientX <= rect.right &&
-        touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
-      const dropTarget = getDropTarget(dropZone, touch.clientX, touch.clientY);
-      if (dropTarget) {
-        const index = nuevasDestino.findIndex(p => p.id === dropTarget.dataset.id);
-        nuevasDestino.splice(index, 0, item);
-      } else {
-        nuevasDestino.push(item);
-      }
-    } else {
-      nuevasOrigen.push(item);
-      nuevasOrigen.sort((a, b) => parseInt(a.id.split('-')[2]) - parseInt(b.id.split('-')[2]));
+    // Solo procesamos lógica si soltamos dentro de la zona destino
+    if (dropZone) {
+        const rect = dropZone.getBoundingClientRect();
+        if (touch.clientX >= rect.left && touch.clientX <= rect.right &&
+            touch.clientY >= rect.top && touch.clientY <= rect.bottom) {
+            
+            let nuevasOrigen = palabrasOrigen.filter(p => p.id !== item.id);
+            let nuevasDestino = palabrasDestino.filter(p => p.id !== item.id);
+            
+            const dropTarget = getDropTarget(dropZone, touch.clientX, touch.clientY);
+            if (dropTarget) {
+                const index = nuevasDestino.findIndex(p => p.id === dropTarget.dataset.id);
+                nuevasDestino.splice(index, 0, item);
+            } else {
+                nuevasDestino.push(item);
+            }
+            setPalabrasOrigen(nuevasOrigen);
+            setPalabrasDestino(nuevasDestino);
+        }
     }
-
-    setPalabrasOrigen(nuevasOrigen);
-    setPalabrasDestino(nuevasDestino);
-    draggedItem.current = null;
+    // IMPORTANTE: Limpiar todo al final
+    cleanupDrag();
   };
 
-  // FIX: Manejador para cancelaciones (ej. scroll, menu contextual, salir de pantalla)
   const handleTouchCancel = (e) => {
-    if (draggedCloneRef.current) {
-        if (draggedCloneRef.current.parentNode) {
-            document.body.removeChild(draggedCloneRef.current);
-        }
-        draggedCloneRef.current = null;
-    }
-    document.body.classList.remove('no-scroll');
-    document.querySelectorAll('.palabra.dragging').forEach(el => el.classList.remove('dragging'));
-    draggedItem.current = null;
+    cleanupDrag();
   };
 
   const fontStyleIndex = FONT_STYLES.indexOf(fontStyle);
@@ -320,7 +326,7 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     mision, palabrasOrigen, palabrasDestino, feedback,
     checkPracticeAnswer, startPracticeMission,
     handleDragStart, handleDragEnd, handleDragOver, handleDrop,
-    handleTouchStart, handleTouchMove, handleTouchEnd, handleTouchCancel, // Exportado nuevo handler
+    handleTouchStart, handleTouchMove, handleTouchEnd, handleTouchCancel,
     handleOriginWordClick, handleRemoveWord,
     dropZoneRef, originZoneRef,
     currentQuestionIndex, TOTAL_TEST_QUESTIONS, elapsedTime,
