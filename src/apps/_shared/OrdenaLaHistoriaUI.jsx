@@ -9,14 +9,11 @@ const OrdenaLaHistoriaUI = ({ game }) => {
   const itemsRef = useRef(new Map());
   const prevPositions = useRef(new Map());
 
-  // Lógica de Animación FLIP
   useLayoutEffect(() => {
     itemsRef.current.forEach((element, id) => {
       if (!element) return;
-      
       const newRect = element.getBoundingClientRect();
       const oldRect = prevPositions.current.get(id);
-
       if (oldRect) {
         const deltaY = oldRect.top - newRect.top;
         if (deltaY !== 0) {
@@ -59,53 +56,86 @@ const OrdenaLaHistoriaUI = ({ game }) => {
     </>
   );
 
-  // Helper para renderizar la lista con los NUEVOS ICONOS SVG
   const renderFrasesList = () => (
     <div className="zona-frases" ref={game.dropZoneRef} onDrop={game.handleDrop} onDragOver={game.handleDragOver}>
-      {game.frasesDesordenadas.map((frase, index) => (
-        <div
-          key={frase.id}
-          data-id={frase.id}
-          ref={(el) => {
-            if (el) itemsRef.current.set(frase.id, el);
-            else itemsRef.current.delete(frase.id);
-          }}
-          className="frase"
-          draggable
-          onDragStart={(e) => game.handleDragStart(e, frase)}
-          onDragEnd={game.handleDragEnd}
-          onTouchStart={(e) => game.handleTouchStart(e, frase)}
-        >
-          <span className="frase-texto">{frase.texto}</span>
-          
-          <div className="frase-controls">
-            <button 
-                className="btn-move btn-up" 
-                onClick={(e) => { e.stopPropagation(); game.moveFrase(index, -1); }}
-                disabled={index === 0}
-                onTouchStart={(e) => e.stopPropagation()} 
-                aria-label="Subir frase"
-            >
-              {/* SVG Chevron Up */}
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 15l-6-6-6 6"/>
-              </svg>
-            </button>
-            <button 
-                className="btn-move btn-down" 
-                onClick={(e) => { e.stopPropagation(); game.moveFrase(index, 1); }}
-                disabled={index === game.frasesDesordenadas.length - 1}
-                onTouchStart={(e) => e.stopPropagation()}
-                aria-label="Bajar frase"
-            >
-              {/* SVG Chevron Down */}
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M6 9l6 6 6-6"/>
-              </svg>
-            </button>
+      {game.frasesDesordenadas.map((frase, index) => {
+        const isFirst = index === 0;
+        const isLast = index === game.frasesDesordenadas.length - 1;
+
+        return (
+          <div
+            key={frase.id}
+            data-id={frase.id}
+            ref={(el) => {
+              if (el) itemsRef.current.set(frase.id, el);
+              else itemsRef.current.delete(frase.id);
+            }}
+            className="frase"
+            draggable
+            onDragStart={(e) => game.handleDragStart(e, frase)}
+            onDragEnd={game.handleDragEnd}
+            onTouchStart={(e) => game.handleTouchStart(e, frase)}
+          >
+            <span className="frase-texto">{frase.texto}</span>
+            
+            <div className="frase-controls">
+              {/* BOTÓN SUPERIOR */}
+              {isFirst ? (
+                // Si es la primera: Botón "Ir al final" (Doble Flecha Abajo)
+                <button 
+                    className="btn-move btn-double-down" 
+                    onClick={(e) => { e.stopPropagation(); game.moveFraseToExtreme(index, 'bottom'); }}
+                    onTouchStart={(e) => e.stopPropagation()} 
+                    title="Mover al final"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M7 13l5 5 5-5 M7 6l5 5 5-5"/>
+                  </svg>
+                </button>
+              ) : (
+                // Si NO es la primera: Botón "Subir" (Flecha Arriba)
+                <button 
+                    className="btn-move btn-up" 
+                    onClick={(e) => { e.stopPropagation(); game.moveFrase(index, -1); }}
+                    onTouchStart={(e) => e.stopPropagation()} 
+                    title="Subir"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 15l-6-6-6 6"/>
+                  </svg>
+                </button>
+              )}
+
+              {/* BOTÓN INFERIOR */}
+              {isLast ? (
+                // Si es la última: Botón "Ir al inicio" (Doble Flecha Arriba)
+                <button 
+                    className="btn-move btn-double-up" 
+                    onClick={(e) => { e.stopPropagation(); game.moveFraseToExtreme(index, 'top'); }}
+                    onTouchStart={(e) => e.stopPropagation()} 
+                    title="Mover al principio"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17 11l-5-5-5 5 M17 18l-5-5-5 5"/>
+                  </svg>
+                </button>
+              ) : (
+                // Si NO es la última: Botón "Bajar" (Flecha Abajo)
+                <button 
+                    className="btn-move btn-down" 
+                    onClick={(e) => { e.stopPropagation(); game.moveFrase(index, 1); }}
+                    onTouchStart={(e) => e.stopPropagation()}
+                    title="Bajar"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 9l6 6 6-6"/>
+                  </svg>
+                </button>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 
@@ -113,7 +143,7 @@ const OrdenaLaHistoriaUI = ({ game }) => {
 
   if (game.isTestMode) {
     if (game.showResults) {
-      // ... (código de resultados igual) ...
+      // (Resultados del test...)
       const correct = game.testQuestions.filter((story, i) => {
         const u = game.userAnswers[i].map(f => f.texto).join();
         const c = story.map(f => f.texto).join();
@@ -143,7 +173,6 @@ const OrdenaLaHistoriaUI = ({ game }) => {
     }
 
     return (
-      // ... (código de test en curso igual) ...
       <div 
         className={cls} 
         onTouchMove={game.handleTouchMove} 
@@ -170,7 +199,7 @@ const OrdenaLaHistoriaUI = ({ game }) => {
     );
   }
 
-  // Modo práctica (CON NUEVOS CONTROLES)
+  // Modo práctica
   return (
     <div 
       className={cls} 
@@ -190,7 +219,6 @@ const OrdenaLaHistoriaUI = ({ game }) => {
       <div className="controles">
         <button onClick={game.checkStory}>Comprobar</button>
         <button onClick={game.cargarSiguienteHistoria} className="btn-saltar">Otra Historia</button>
-        {/* NUEVO BOTÓN VER SOLUCIÓN */}
         <button 
           onClick={game.toggleSolution} 
           className="btn-ver-solucion"
@@ -199,7 +227,6 @@ const OrdenaLaHistoriaUI = ({ game }) => {
         </button>
       </div>
 
-      {/* NUEVA CAJA DE SOLUCIÓN */}
       {game.showSolution && (
         <div className="caja-solucion-historia fade-in">
           <p><strong>Orden Correcto:</strong></p>

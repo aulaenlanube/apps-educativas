@@ -9,8 +9,6 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
   const [frasesDesordenadas, setFrasesDesordenadas] = useState([]);
   const [feedback, setFeedback] = useState({ texto: '', clase: '' });
   const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
-  
-  // NUEVO: Estado para la solución
   const [showSolution, setShowSolution] = useState(false);
 
   const draggedItem = useRef(null);
@@ -45,12 +43,11 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     setFontStyle(FONT_STYLES[newIndex]);
   };
 
-  // NUEVO: Alternar visibilidad de solución
   const toggleSolution = () => setShowSolution(prev => !prev);
 
   const cargarSiguienteHistoria = useCallback(() => {
     setFeedback({ texto: '', clase: '' });
-    setShowSolution(false); // Reiniciar al cargar nueva
+    setShowSolution(false);
 
     if (!historias || historias.length === 0) {
       setHistoriaCorrecta([]);
@@ -95,7 +92,7 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     setShowResults(false);
     setScore(0);
     setIsTestMode(true);
-    setShowSolution(false); // Asegurar que está oculta en el test
+    setShowSolution(false);
     if (withTimer) {
       setStartTime(Date.now());
       setElapsedTime(0);
@@ -159,7 +156,7 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     }
   };
 
-  // --- LÓGICA DE REORDENACIÓN POR BOTONES ---
+  // --- REORDENACIÓN PASO A PASO ---
   const moveFrase = (index, direction) => {
     const newIndex = index + direction;
     if (newIndex < 0 || newIndex >= frasesDesordenadas.length) return;
@@ -169,6 +166,23 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     newFrases[index] = newFrases[newIndex];
     newFrases[newIndex] = temp;
     
+    setFrasesDesordenadas(newFrases);
+  };
+
+  // --- REORDENACIÓN EXTREMA (NUEVO) ---
+  const moveFraseToExtreme = (index, position) => {
+    // position: 'top' (principio) | 'bottom' (final)
+    if (index < 0 || index >= frasesDesordenadas.length) return;
+
+    const newFrases = [...frasesDesordenadas];
+    // Sacamos el elemento
+    const [item] = newFrases.splice(index, 1);
+    
+    if (position === 'top') {
+        newFrases.unshift(item); // Insertar al principio
+    } else {
+        newFrases.push(item); // Insertar al final
+    }
     setFrasesDesordenadas(newFrases);
   };
 
@@ -232,9 +246,7 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
   const handleDragOver = (e) => e.preventDefault();
 
   const handleTouchStart = (e, frase) => {
-    if (e.cancelable && !e.defaultPrevented) {
-        // e.preventDefault(); 
-    }
+    if (e.cancelable && !e.defaultPrevented) {}
     cleanupDrag(); 
 
     draggedItem.current = frase;
@@ -242,7 +254,6 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     const rect = el.getBoundingClientRect();
     
     const clone = el.cloneNode(true);
-    // Eliminar botones del clon
     const controls = clone.querySelector('.frase-controls');
     if (controls) controls.remove();
 
@@ -292,7 +303,6 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
             return;
         }
     }
-    
     cleanupDrag();
   };
 
@@ -305,7 +315,8 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
   return {
     isTestMode, startTest, exitTestMode,
     frasesDesordenadas, feedback, historiaCorrecta,
-    checkStory, cargarSiguienteHistoria, moveFrase,
+    checkStory, cargarSiguienteHistoria, 
+    moveFrase, moveFraseToExtreme, // EXPORTAMOS LA NUEVA FUNCIÓN
     handleDragStart, handleDragEnd, handleDragOver, handleDrop,
     handleTouchStart, handleTouchMove, handleTouchEnd, handleTouchCancel,
     dropZoneRef,
@@ -313,7 +324,6 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     showResults, score, testQuestions, userAnswers,
     handleNextStory,
     fontStyle, fontStyleIndex, handleFontStyleChange,
-    // NUEVO: Exportamos estado y función de solución
-    showSolution, toggleSolution 
+    showSolution, toggleSolution
   };
 };
