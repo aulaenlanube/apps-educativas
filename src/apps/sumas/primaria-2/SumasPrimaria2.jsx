@@ -1,4 +1,3 @@
-// src/apps/sumas/SumasPrimaria2.jsx
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import '/src/apps/_shared/Sumas.css';
 
@@ -10,7 +9,8 @@ function ProblemBoard({
   showCarries,
   resultSlots, setResultSlots,        // ['','',''] -> centenas, decenas, unidades
   carrySlots, setCarrySlots,          // ['','']   -> [carry a centenas, carry a decenas]
-  checkInfo                           // { show:boolean, correctResult:'XYZ', correctCarries:[cHundreds,cTens] }
+  checkInfo,                          // { show:boolean, correctResult:'XYZ', correctCarries:[cHundreds,cTens] }
+  activeSlot, setActiveSlot           // { type: 'result'|'carry', index: number } | null
 }) {
   // Dígitos mostrados (3 columnas, con huecos en centenas si procede)
   const d1 = useMemo(() => num1.toString().padStart(3, ' ').split(''), [num1]);
@@ -27,6 +27,7 @@ function ProblemBoard({
       next[i] = data;
       return next;
     });
+    setActiveSlot({ type: 'result', index: i });
   };
   const clearResult = (i) => {
     setResultSlots(prev => {
@@ -34,6 +35,7 @@ function ProblemBoard({
       next[i] = '';
       return next;
     });
+    setActiveSlot({ type: 'result', index: i });
   };
 
   const dropCarry = (i, e) => {
@@ -45,6 +47,7 @@ function ProblemBoard({
       next[i] = data;
       return next;
     });
+    setActiveSlot({ type: 'carry', index: i });
   };
   const clearCarry = (i) => {
     setCarrySlots(prev => {
@@ -52,6 +55,17 @@ function ProblemBoard({
       next[i] = '';
       return next;
     });
+    setActiveSlot({ type: 'carry', index: i });
+  };
+
+  // Manejo de clic para selección
+  const handleSlotClick = (type, index, e) => {
+    e.stopPropagation();
+    if (activeSlot && activeSlot.type === type && activeSlot.index === index) {
+      setActiveSlot(null); // Deseleccionar
+    } else {
+      setActiveSlot({ type, index }); // Seleccionar
+    }
   };
 
   // Clases de corrección solo si checkInfo.show
@@ -69,6 +83,8 @@ function ProblemBoard({
     return ok ? 'correct' : 'incorrect';
   };
 
+  const isSelected = (type, index) => activeSlot?.type === type && activeSlot?.index === index;
+
   return (
     <div className="board">
       <div className="operator">+</div>
@@ -76,16 +92,18 @@ function ProblemBoard({
       {/* Centenas */}
       <div className="column">
         {showCarries ? (
-          <div className={`box carry-box ${carryCls(0)}`}
-               onDragOver={onDragOver} onDrop={(e)=>dropCarry(0,e)} onClick={()=>clearCarry(0)}>
+          <div className={`box carry-box ${carryCls(0)} ${isSelected('carry', 0) ? 'selected' : ''}`}
+               onDragOver={onDragOver} onDrop={(e)=>dropCarry(0,e)}
+               onClick={(e)=>handleSlotClick('carry', 0, e)}>
             {carrySlots[0]}
           </div>
         ) : (<div className="carry-placeholder" />)}
         <div className="digit-display">{d1[0]}</div>
         <div className="digit-display">{d2[0]}</div>
         <hr className="operation-line" />
-        <div className={`box result-box ${resultSlots[0] ? 'filled' : ''} ${resultCls(0)}`}
-             onDragOver={onDragOver} onDrop={(e)=>dropResult(0,e)} onClick={()=>clearResult(0)}>
+        <div className={`box result-box ${resultSlots[0] ? 'filled' : ''} ${resultCls(0)} ${isSelected('result', 0) ? 'selected' : ''}`}
+             onDragOver={onDragOver} onDrop={(e)=>dropResult(0,e)}
+             onClick={(e)=>handleSlotClick('result', 0, e)}>
           {resultSlots[0]}
         </div>
       </div>
@@ -93,16 +111,18 @@ function ProblemBoard({
       {/* Decenas */}
       <div className="column">
         {showCarries ? (
-          <div className={`box carry-box ${carryCls(1)}`}
-               onDragOver={onDragOver} onDrop={(e)=>dropCarry(1,e)} onClick={()=>clearCarry(1)}>
+          <div className={`box carry-box ${carryCls(1)} ${isSelected('carry', 1) ? 'selected' : ''}`}
+               onDragOver={onDragOver} onDrop={(e)=>dropCarry(1,e)}
+               onClick={(e)=>handleSlotClick('carry', 1, e)}>
             {carrySlots[1]}
           </div>
         ) : (<div className="carry-placeholder" />)}
         <div className="digit-display">{d1[1]}</div>
         <div className="digit-display">{d2[1]}</div>
         <hr className="operation-line" />
-        <div className={`box result-box ${resultSlots[1] ? 'filled' : ''} ${resultCls(1)}`}
-             onDragOver={onDragOver} onDrop={(e)=>dropResult(1,e)} onClick={()=>clearResult(1)}>
+        <div className={`box result-box ${resultSlots[1] ? 'filled' : ''} ${resultCls(1)} ${isSelected('result', 1) ? 'selected' : ''}`}
+             onDragOver={onDragOver} onDrop={(e)=>dropResult(1,e)}
+             onClick={(e)=>handleSlotClick('result', 1, e)}>
           {resultSlots[1]}
         </div>
       </div>
@@ -113,8 +133,9 @@ function ProblemBoard({
         <div className="digit-display">{d1[2]}</div>
         <div className="digit-display">{d2[2]}</div>
         <hr className="operation-line" />
-        <div className={`box result-box ${resultSlots[2] ? 'filled' : ''} ${resultCls(2)}`}
-             onDragOver={onDragOver} onDrop={(e)=>dropResult(2,e)} onClick={()=>clearResult(2)}>
+        <div className={`box result-box ${resultSlots[2] ? 'filled' : ''} ${resultCls(2)} ${isSelected('result', 2) ? 'selected' : ''}`}
+             onDragOver={onDragOver} onDrop={(e)=>dropResult(2,e)}
+             onClick={(e)=>handleSlotClick('result', 2, e)}>
           {resultSlots[2]}
         </div>
       </div>
@@ -133,6 +154,7 @@ const SumasPrimaria2 = () => {
   // Slots actuales del tablero
   const [resultSlots, setResultSlots] = useState(['','','']); // C,D,U
   const [carrySlots, setCarrySlots]   = useState(['','']);    // [carry a C, carry a D]
+  const [activeSlot, setActiveSlot] = useState(null);         // { type, index }
 
   // Feedback práctica
   const [feedback, setFeedback] = useState({ text: '', cls: '' });
@@ -162,12 +184,33 @@ const SumasPrimaria2 = () => {
     return [cHundreds, cTens];
   }, []);
 
+  const handlePaletteClick = (val) => {
+    if (!activeSlot) return;
+    const { type, index } = activeSlot;
+    const strVal = val.toString();
+
+    if (type === 'result') {
+      setResultSlots(prev => {
+        const n = [...prev];
+        n[index] = strVal;
+        return n;
+      });
+    } else if (type === 'carry') {
+      setCarrySlots(prev => {
+        const n = [...prev];
+        n[index] = strVal;
+        return n;
+      });
+    }
+  };
+
   /** Práctica: nueva suma */
   const startPractice = useCallback(() => {
     const { num1, num2 } = generateOperands();
     setCurrentOperands({ num1, num2 });
     setResultSlots(['','','']);
     setCarrySlots(['','']);
+    setActiveSlot(null);
     setFeedback({ text:'', cls:'' });
     const correct = (num1 + num2).toString().padStart(3,'0');
     const carries = computeCarries(num1, num2);
@@ -184,6 +227,7 @@ const SumasPrimaria2 = () => {
 
     if (user === correct) {
       setFeedback({ text:'¡Excelente! ¡Suma correcta! 🎉', cls:'feedback-correct' });
+      setActiveSlot(null);
     } else {
       setFeedback({ text:'Casi... ¡Revisa las casillas!', cls:'feedback-incorrect' });
     }
@@ -203,6 +247,7 @@ const SumasPrimaria2 = () => {
     setCurrentOperands({ num1, num2 });
     setResultSlots(['','','']);
     setCarrySlots(['','']);
+    setActiveSlot(null);
     setFeedback({ text:'', cls:'' });
 
     const correct = (num1 + num2).toString().padStart(3,'0');
@@ -224,6 +269,7 @@ const SumasPrimaria2 = () => {
       setCurrentOperands({ num1, num2 });
       setResultSlots(['','','']);
       setCarrySlots(['','']);
+      setActiveSlot(null);
       setFeedback({ text:'', cls:'' });
       const correct = (num1 + num2).toString().padStart(3,'0');
       const carries = computeCarries(num1, num2);
@@ -298,6 +344,7 @@ const SumasPrimaria2 = () => {
           resultSlots={resultSlots} setResultSlots={setResultSlots}
           carrySlots={carrySlots}   setCarrySlots={setCarrySlots}
           checkInfo={checkInfo}
+          activeSlot={activeSlot} setActiveSlot={setActiveSlot}
         />
       )}
 
@@ -324,7 +371,7 @@ const SumasPrimaria2 = () => {
       {/* Paleta de números en ambos modos salvo resultados */}
       {!showResults && (
         <div id="number-palette">
-          <h2>Arrastra los números 👇</h2>
+          <h2>Arrastra o pulsa los números 👇</h2>
           <div className="number-tiles-container">
             {[...Array(10).keys()].map(n => (
               <div
@@ -332,6 +379,7 @@ const SumasPrimaria2 = () => {
                 className="number-tile"
                 draggable="true"
                 onDragStart={(e) => e.dataTransfer.setData('text/plain', n)}
+                onClick={() => handlePaletteClick(n)}
               >
                 {n}
               </div>

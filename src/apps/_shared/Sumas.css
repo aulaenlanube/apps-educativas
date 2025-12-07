@@ -45,8 +45,17 @@
   display: flex; justify-content: center; align-items: center;
   border-radius: 5px; transition: all .2s ease; margin-bottom: 5px;
   user-select: none;
+  cursor: pointer; /* Indica que es clicable */
 }
 .box.filled { border-style: solid; }
+
+/* Nuevo: Estilo para la casilla seleccionada activamente */
+.box.selected {
+  border: 2px solid #007bff;
+  background-color: #e6f7ff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+  transform: scale(1.05);
+}
 
 /* Paleta */
 #number-palette { margin-top: 15px; padding: 15px; background-color: #f9f9f9; border-radius: 10px; }
@@ -57,6 +66,10 @@
   justify-content: center; align-items: center; transition: transform .1s;
 }
 .number-tile:active { cursor: grabbing; transform: scale(1.1); }
+/* Nuevo: Efecto hover para indicar clicabilidad en escritorio */
+.number-tile:hover {
+  background-color: #0056b3;
+}
 
 /* Botones y test */
 .mode-selection{ display:flex; gap:12px; justify-content:center; align-items:center; margin: 10px 0 16px; }

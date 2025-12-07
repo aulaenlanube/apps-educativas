@@ -1,4 +1,3 @@
-// src/apps/sumas/primaria-5/SumasPrimaria5.jsx
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import '/src/apps/_shared/Sumas.css';
 
@@ -19,7 +18,7 @@ const generarNumero = (cifrasEnteras, decimales) => {
   return `${entero},${parteDecimal}`;
 };
 
-/* Genera ejercicio con 2/3 cifras enteras y 0..2 decimales (siempre al menos uno con decimales) */
+/* Genera ejercicio con 2/3 cifras enteras y 0..2 decimales */
 const generarEjercicio = () => {
   const cifrasEnteras = Math.random() < 0.5 ? 2 : 3;
   const mismaCantidad = Math.random() > 0.3;
@@ -39,19 +38,18 @@ const generarEjercicio = () => {
   return { num1, num2, cifrasEnteras };
 };
 
-/* ---------- ¡IMPORTANTE!: función PURA (no hook) para construir el plan de columnas ---------- */
+/* ---------- ¡IMPORTANTE!: función PURA ---------- */
 function buildColumnPlan(num1, num2, cifrasEnteras) {
   const dec1 = countDecimals(num1);
   const dec2 = countDecimals(num2);
   const maxDec = Math.max(dec1, dec2);
 
-  // totalCols: [guardia] [enteros...] [,] [decimales...]
   const totalCols = 1 + cifrasEnteras + (maxDec > 0 ? (1 + maxDec) : 0);
 
   const padNumero = (num) => {
     const tieneComa = num.includes(',');
     const [entCruda, decCruda = ''] = tieneComa ? num.split(',') : [num, ''];
-    const entPad = entCruda.padStart(cifrasEnteras + 1, ' '); // +1 por la guardia
+    const entPad = entCruda.padStart(cifrasEnteras + 1, ' '); 
     if (maxDec > 0) {
       const decPad = decCruda.padEnd(maxDec, ' ');
       return `${entPad},${decPad}`;
@@ -68,7 +66,7 @@ function buildColumnPlan(num1, num2, cifrasEnteras) {
   return {
     totalCols,
     commaIndex,
-    digitIndices, // índices de columnas que son dígitos (sin la coma)
+    digitIndices,
     maxDec,
     chars1: str1.split(''),
     chars2: str2.split(''),
@@ -91,8 +89,8 @@ function ProblemBoard({
   resultSlots, setResultSlots,
   carrySlots, setCarrySlots,
   checkInfo,
+  activeSlot, setActiveSlot
 }) {
-  // Aquí SÍ usamos useMemo (dentro de un componente) para cachear el plan
   const plan = useMemo(() => buildColumnPlan(num1, num2, cifrasEnteras), [num1, num2, cifrasEnteras]);
 
   const onDragOver = (e) => e.preventDefault();
@@ -106,6 +104,7 @@ function ProblemBoard({
       next[digitIdx] = data;
       return next;
     });
+    setActiveSlot({ type: 'result', index: digitIdx });
   };
   const clearResult = (digitIdx) => {
     setResultSlots(prev => {
@@ -113,6 +112,7 @@ function ProblemBoard({
       next[digitIdx] = '';
       return next;
     });
+    setActiveSlot({ type: 'result', index: digitIdx });
   };
 
   const dropCarry = (digitIdx, e) => {
@@ -124,6 +124,7 @@ function ProblemBoard({
       next[digitIdx] = data;
       return next;
     });
+    setActiveSlot({ type: 'carry', index: digitIdx });
   };
   const clearCarry = (digitIdx) => {
     setCarrySlots(prev => {
@@ -131,12 +132,21 @@ function ProblemBoard({
       next[digitIdx] = '';
       return next;
     });
+    setActiveSlot({ type: 'carry', index: digitIdx });
+  };
+
+  const handleSlotClick = (type, index, e) => {
+    e.stopPropagation();
+    if (activeSlot && activeSlot.type === type && activeSlot.index === index) {
+      setActiveSlot(null);
+    } else {
+      setActiveSlot({ type, index });
+    }
   };
 
   const resultCls = (digitIdx) => {
     if (!checkInfo?.show) return '';
     const user = (resultSlots[digitIdx] || '0');
-    // regla de ceros a la izquierda → neutral si está vacío y el esperado es 0 antes del primer no-cero
     if ((resultSlots[digitIdx] || '') === '' &&
         checkInfo.expectedDigits[digitIdx] === '0' &&
         (checkInfo.firstNonZeroIdx === -1 || digitIdx < checkInfo.firstNonZeroIdx)) {
@@ -152,6 +162,8 @@ function ProblemBoard({
     const ok = user === '' ? expected === '0' : user === expected;
     return ok ? 'correct' : 'incorrect';
   };
+
+  const isSelected = (type, index) => activeSlot?.type === type && activeSlot?.index === index;
 
   let runningDigitIdx = 0;
 
@@ -173,10 +185,10 @@ function ProblemBoard({
           <div className="column" key={colIdx}>
             {showCarryBox ? (
               <div
-                className={`box carry-box ${carryCls(digitIdxThisCol)}`}
+                className={`box carry-box ${carryCls(digitIdxThisCol)} ${isSelected('carry', digitIdxThisCol) ? 'selected' : ''}`}
                 onDragOver={onDragOver}
                 onDrop={(e) => dropCarry(digitIdxThisCol, e)}
-                onClick={() => clearCarry(digitIdxThisCol)}
+                onClick={(e) => handleSlotClick('carry', digitIdxThisCol, e)}
               >
                 {carrySlots[digitIdxThisCol]}
               </div>
@@ -193,10 +205,10 @@ function ProblemBoard({
               <div className="box comma-box"><span>,</span></div>
             ) : (
               <div
-                className={`box result-box ${resultSlots[digitIdxThisCol] ? 'filled' : ''} ${resultCls(digitIdxThisCol)}`}
+                className={`box result-box ${resultSlots[digitIdxThisCol] ? 'filled' : ''} ${resultCls(digitIdxThisCol)} ${isSelected('result', digitIdxThisCol) ? 'selected' : ''}`}
                 onDragOver={onDragOver}
                 onDrop={(e) => dropResult(digitIdxThisCol, e)}
-                onClick={() => clearResult(digitIdxThisCol)}
+                onClick={(e) => handleSlotClick('result', digitIdxThisCol, e)}
               >
                 {resultSlots[digitIdxThisCol]}
               </div>
@@ -210,52 +222,43 @@ function ProblemBoard({
   );
 }
 
-/* ---------- App 5º Primaria: práctica + test con decimales ---------- */
+/* ---------- App 5º Primaria ---------- */
 const SumasPrimaria5 = () => {
   const [current, setCurrent] = useState({ num1: '10,0', num2: '10,0', cifrasEnteras: 2 });
   const [showCarries, setShowCarries] = useState(true);
 
-  // Plan del ejercicio actual (aquí SÍ usamos useMemo porque es dentro del componente)
   const plan = useMemo(
     () => buildColumnPlan(current.num1, current.num2, current.cifrasEnteras),
     [current.num1, current.num2, current.cifrasEnteras]
   );
 
-  // Slots de usuario (iniciales con el plan actual; se resetean en loadExercise)
   const [resultSlots, setResultSlots] = useState(Array(plan.digitIndices.length).fill(''));
   const [carrySlots, setCarrySlots] = useState(Array(Math.max(plan.digitIndices.length - 1, 0)).fill(''));
+  const [activeSlot, setActiveSlot] = useState(null);
 
-  // Feedback práctica
   const [feedback, setFeedback] = useState({ text: '', cls: '' });
   const [checkInfo, setCheckInfo] = useState({ show: false, expectedDigits: [], expectedCarries: [], firstNonZeroIdx: -1 });
 
-  // Test
   const [isTestMode, setIsTestMode] = useState(false);
-  const [testQuestions, setTestQuestions] = useState([]); // [{ num1, num2, cifrasEnteras }]
+  const [testQuestions, setTestQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [userAnswers, setUserAnswers] = useState([]); // ["cadena dígitos sin coma"]
+  const [userAnswers, setUserAnswers] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
 
-  /* Carga/Reseteo del ejercicio (usa la FUNCIÓN PURA buildColumnPlan, no hooks) */
   const loadExercise = useCallback(({ num1, num2, cifrasEnteras }) => {
     setCurrent({ num1, num2, cifrasEnteras });
-
     const plan2 = buildColumnPlan(num1, num2, cifrasEnteras);
     setResultSlots(Array(plan2.digitIndices.length).fill(''));
     setCarrySlots(Array(Math.max(plan2.digitIndices.length - 1, 0)).fill(''));
+    setActiveSlot(null);
     setFeedback({ text: '', cls: '' });
 
     const maxDec = Math.max(countDecimals(num1), countDecimals(num2));
     const expectedStr = (toFloat(num1) + toFloat(num2)).toFixed(maxDec).replace('.', ',');
-    const expectedDigits = expectedStr
-      .replace(',', '')
-      .padStart(plan2.digitIndices.length, '0')
-      .split('');
-
+    const expectedDigits = expectedStr.replace(',', '').padStart(plan2.digitIndices.length, '0').split('');
     const firstNonZeroIdx = expectedDigits.findIndex(d => d !== '0');
 
-    // Carries esperadas
     const [e1, d1 = ''] = num1.replace(',', '.').split('.');
     const [e2, d2 = ''] = num2.replace(',', '.').split('.');
     const maxD = Math.max(d1.length, d2.length);
@@ -273,7 +276,26 @@ const SumasPrimaria5 = () => {
     setCheckInfo({ show: false, expectedDigits, expectedCarries, firstNonZeroIdx });
   }, []);
 
-  /* PRÁCTICA */
+  const handlePaletteClick = (val) => {
+    if (!activeSlot) return;
+    const { type, index } = activeSlot;
+    const strVal = val.toString();
+
+    if (type === 'result') {
+      setResultSlots(prev => {
+        const n = [...prev];
+        n[index] = strVal;
+        return n;
+      });
+    } else if (type === 'carry') {
+      setCarrySlots(prev => {
+        const n = [...prev];
+        n[index] = strVal;
+        return n;
+      });
+    }
+  };
+
   const startPractice = useCallback(() => {
     loadExercise(generarEjercicio());
   }, [loadExercise]);
@@ -284,7 +306,7 @@ const SumasPrimaria5 = () => {
     const expectedDigits = expectedStr.replace(',', '').padStart(plan.digitIndices.length, '0').split('');
     const firstNonZeroIdx = expectedDigits.findIndex(d => d !== '0');
 
-    // carries esperadas
+    // carries calculation (duplicated for checking)
     const [e1, d1 = ''] = current.num1.replace(',', '.').split('.');
     const [e2, d2 = ''] = current.num2.replace(',', '.').split('.');
     const maxD = Math.max(d1.length, d2.length);
@@ -304,12 +326,12 @@ const SumasPrimaria5 = () => {
     const userDigits = resultSlots.map(x => x || '0').join('');
     if (userDigits === expectedDigits.join('')) {
       setFeedback({ text: '¡Excelente! ¡Suma correcta! 🎉', cls: 'feedback-correct' });
+      setActiveSlot(null);
     } else {
       setFeedback({ text: 'Casi... ¡Revisa las casillas!', cls: 'feedback-incorrect' });
     }
   }, [current, plan.digitIndices.length, resultSlots]);
 
-  /* TEST */
   const startTest = useCallback(() => {
     const qs = Array.from({ length: TOTAL_TEST_QUESTIONS }, () => generarEjercicio());
     setTestQuestions(qs);
@@ -337,8 +359,7 @@ const SumasPrimaria5 = () => {
         const planQ = buildColumnPlan(q.num1, q.num2, q.cifrasEnteras);
         const maxDec = Math.max(countDecimals(q.num1), countDecimals(q.num2));
         const expected = (toFloat(q.num1) + toFloat(q.num2))
-          .toFixed(maxDec)
-          .replace('.', ',')
+          .toFixed(maxDec).replace('.', ',')
           .replace(',', '')
           .padStart(planQ.digitIndices.length, '0');
         if (newAnswers[i] === expected) correctCount++;
@@ -354,16 +375,13 @@ const SumasPrimaria5 = () => {
     startPractice();
   }, [startPractice]);
 
-  // Arranque en práctica
   useEffect(() => { startPractice(); }, [startPractice]);
 
-  // Progreso test
   const progressPct = ((currentQuestionIndex + 1) / TOTAL_TEST_QUESTIONS) * 100;
-
   const formatUserAnswer = (digits, q) => {
     const maxDec = Math.max(countDecimals(q.num1), countDecimals(q.num2));
     return withComma(digits, maxDec);
-    };
+  };
 
   return (
     <div id="app-container">
@@ -372,7 +390,6 @@ const SumasPrimaria5 = () => {
         <span className="gradient-text">Suma con decimales</span>
       </h1>
 
-      {/* Botones de modo */}
       <div className="mode-selection">
         <button
           className={`btn-mode ${!isTestMode ? 'active' : ''}`}
@@ -383,21 +400,14 @@ const SumasPrimaria5 = () => {
         <button className="btn-mode" onClick={startTest}>Iniciar Test</button>
       </div>
 
-      {/* Toggle de llevadas */}
       <div id="options-area" style={{ display:'flex', alignItems:'center', gap:12, justifyContent:'center', marginBottom:8 }}>
         <label htmlFor="help-toggle">Ayuda con llevadas</label>
         <label className="switch">
-          <input
-            type="checkbox"
-            id="help-toggle"
-            checked={showCarries}
-            onChange={() => setShowCarries(v => !v)}
-          />
+          <input type="checkbox" id="help-toggle" checked={showCarries} onChange={() => setShowCarries(v => !v)} />
           <span className="slider round"></span>
         </label>
       </div>
 
-      {/* Cabecera y progreso Test */}
       {isTestMode && !showResults && (
         <>
           <div className="test-header">
@@ -409,9 +419,6 @@ const SumasPrimaria5 = () => {
         </>
       )}
 
-      
-
-      {/* Tablero (oculto en resultados) */}
       {!(isTestMode && showResults) && (
         <ProblemBoard
           num1={current.num1}
@@ -421,10 +428,10 @@ const SumasPrimaria5 = () => {
           resultSlots={resultSlots} setResultSlots={setResultSlots}
           carrySlots={carrySlots}   setCarrySlots={setCarrySlots}
           checkInfo={checkInfo}
+          activeSlot={activeSlot} setActiveSlot={setActiveSlot}
         />
       )}
 
-            {/* Controles Test */}
       {isTestMode && !showResults && (
         <div className="controles" style={{ marginTop: 16 }}>
           <button onClick={handleNextQuestion} className="btn-test">
@@ -433,7 +440,6 @@ const SumasPrimaria5 = () => {
         </div>
       )}
 
-      {/* Controles práctica */}
       {!isTestMode && (
         <>
           <div id="feedback-message" className={feedback.cls}>{feedback.text}</div>
@@ -444,10 +450,9 @@ const SumasPrimaria5 = () => {
         </>
       )}
 
-      {/* Paleta de números (oculta en resultados) */}
       {!showResults && (
         <div id="number-palette">
-          <h2>Arrastra los números 👇</h2>
+          <h2>Arrastra o pulsa los números 👇</h2>
           <div className="number-tiles-container">
             {[...Array(10).keys()].map(n => (
               <div
@@ -455,6 +460,7 @@ const SumasPrimaria5 = () => {
                 className="number-tile"
                 draggable="true"
                 onDragStart={(e) => e.dataTransfer.setData('text/plain', n)}
+                onClick={() => handlePaletteClick(n)}
               >
                 {n}
               </div>
@@ -463,13 +469,9 @@ const SumasPrimaria5 = () => {
         </div>
       )}
 
-
-
-      {/* Resultados del Test (sin mostrar la última operación en tablero) */}
       {isTestMode && showResults && (
         <div className="test-results" style={{ marginTop: 20 }}>
           <h2 className="score">Puntuación: <span>{score}</span></h2>
-
           <div className="results-summary" style={{ marginTop: 12 }}>
             {testQuestions.map((q, i) => {
               const planQ = buildColumnPlan(q.num1, q.num2, q.cifrasEnteras);
@@ -478,7 +480,6 @@ const SumasPrimaria5 = () => {
               const user = userAnswers[i] ? formatUserAnswer(userAnswers[i], q) : 'No contestada';
               const expectedDigits = correct.replace(',', '').padStart(planQ.digitIndices.length, '0');
               const ok = userAnswers[i] === expectedDigits;
-
               return (
                 <div key={i} className="result-item">
                   <p><strong>Suma {i + 1}:</strong> {q.num1} + {q.num2}</p>
@@ -488,7 +489,6 @@ const SumasPrimaria5 = () => {
               );
             })}
           </div>
-
           <div className="test-controls" style={{ display: 'flex', gap: 12, justifyContent: 'center', marginTop: 16 }}>
             <button onClick={startTest} className="btn-test">Volver a intentar</button>
             <button onClick={exitTestMode} className="btn-mode">Modo Práctica</button>

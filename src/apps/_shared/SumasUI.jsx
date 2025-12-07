@@ -1,47 +1,50 @@
-// src/apps/_shared/SumasUI.jsx
 import React, { useEffect, useState } from 'react';
 import '/src/apps/_shared/Sumas.css';
 
 // Tablero 100% React (sin innerHTML)
-function ProblemBoard({ num1, num2, answer, setAnswer }) {
-  // Dos casillas de resultado: decenas, unidades
-  const [slots, setSlots] = useState(['', '']);
-
-  // Reset al cambiar de sumandos
-  useEffect(() => {
-    setSlots(['', '']);
-    setAnswer('');
-  }, [num1, num2, setAnswer]);
-
-  // Construye la respuesta y la propaga al hook
-  useEffect(() => {
-    const val = (slots[0] || '0') + (slots[1] || '0');
-    setAnswer(val);
-  }, [slots, setAnswer]);
+// Ahora recibe slots y manejadores desde el padre para permitir interacción externa (paleta)
+function ProblemBoard({ num1, num2, slots, updateSlot, activeSlot, setActiveSlot }) {
 
   const onDropTo = (idx, e) => {
     e.preventDefault();
     const data = e.dataTransfer.getData('text/plain');
     if (!/^\d$/.test(data)) return;
-    setSlots(prev => {
-      const n = [...prev];
-      n[idx] = data;
-      return n;
-    });
+    updateSlot(idx, data);
+    setActiveSlot(idx); // Seleccionar la casilla donde se soltó
   };
 
   const onDragOver = (e) => e.preventDefault();
 
-  const clearSlot = (idx) => {
-    setSlots(prev => {
-      const n = [...prev];
-      n[idx] = '';
-      return n;
-    });
+  const handleBoxClick = (idx) => {
+    // Si ya está seleccionada, deseleccionamos. Si no, seleccionamos.
+    if (activeSlot === idx) {
+      setActiveSlot(null);
+    } else {
+      setActiveSlot(idx);
+    }
+  };
+
+  const clearSlot = (idx, e) => {
+    e.stopPropagation(); // Evitar disparar el click del padre si hubiera conflicto
+    updateSlot(idx, '');
+    setActiveSlot(idx); // Mantener foco
   };
 
   const n1 = num1.toString().padStart(2, '0').split('');
   const n2 = num2.toString().padStart(2, '0').split('');
+
+  // Función auxiliar para renderizar una caja de resultado
+  const renderResultBox = (idx) => (
+    <div
+      className={`box result-box ${slots[idx] ? 'filled' : ''} ${activeSlot === idx ? 'selected' : ''}`}
+      onDrop={(e) => onDropTo(idx, e)}
+      onDragOver={onDragOver}
+      onClick={() => handleBoxClick(idx)}
+      data-idx={idx}
+    >
+      {slots[idx]}
+    </div>
+  );
 
   return (
     <div className="board">
@@ -53,15 +56,7 @@ function ProblemBoard({ num1, num2, answer, setAnswer }) {
         <div className="digit-display">{n1[0]}</div>
         <div className="digit-display">{n2[0]}</div>
         <hr className="operation-line" />
-        <div
-          className={`box result-box ${slots[0] ? 'filled' : ''}`}
-          onDrop={(e) => onDropTo(0, e)}
-          onDragOver={onDragOver}
-          onClick={() => clearSlot(0)}
-          data-idx="0"
-        >
-          {slots[0]}
-        </div>
+        {renderResultBox(0)}
       </div>
 
       {/* Unidades */}
@@ -70,15 +65,7 @@ function ProblemBoard({ num1, num2, answer, setAnswer }) {
         <div className="digit-display">{n1[1]}</div>
         <div className="digit-display">{n2[1]}</div>
         <hr className="operation-line" />
-        <div
-          className={`box result-box ${slots[1] ? 'filled' : ''}`}
-          onDrop={(e) => onDropTo(1, e)}
-          onDragOver={onDragOver}
-          onClick={() => clearSlot(1)}
-          data-idx="1"
-        >
-          {slots[1]}
-        </div>
+        {renderResultBox(1)}
       </div>
 
       <div className="operator-spacer" />
@@ -95,11 +82,49 @@ const SumasUI = ({
   startTest
 }) => {
   const [feedback, setFeedback] = useState({ text: '', cls: '' });
+  
+  // Estado elevado del tablero
+  const [slots, setSlots] = useState(['', '']);
+  const [activeSlot, setActiveSlot] = useState(null); // null, 0, o 1
+
+  // Reset al cambiar de sumandos
+  useEffect(() => {
+    setSlots(['', '']);
+    setActiveSlot(null);
+    setFeedback({ text: '', cls: '' });
+  }, [currentOperands]);
+
+  // Construye la respuesta y la propaga al hook
+  useEffect(() => {
+    const val = (slots[0] || '0') + (slots[1] || '0');
+    setCurrentAnswer(val);
+  }, [slots, setCurrentAnswer]);
+
+  const updateSlot = (idx, val) => {
+    setSlots(prev => {
+      const n = [...prev];
+      n[idx] = val;
+      return n;
+    });
+  };
+
+  const handlePaletteClick = (number) => {
+    if (activeSlot !== null) {
+      updateSlot(activeSlot, number.toString());
+      // Opcional: Podríamos pasar al siguiente slot automáticamente, 
+      // pero a veces confunde si quieres corregir. Lo dejamos seleccionado.
+    }
+  };
 
   const handleCheck = () => {
     const { isCorrect } = checkPracticeAnswer();
-    if (isCorrect) setFeedback({ text: '¡Excelente! ¡Suma correcta! 🎉', cls: 'feedback-correct' });
-    else setFeedback({ text: 'Casi... ¡Revisa las casillas en rojo!', cls: 'feedback-incorrect' });
+    if (isCorrect) {
+      setFeedback({ text: '¡Excelente! ¡Suma correcta! 🎉', cls: 'feedback-correct' });
+      setActiveSlot(null); // Quitar selección al acertar
+    }
+    else {
+      setFeedback({ text: 'Casi... ¡Revisa las casillas en rojo!', cls: 'feedback-incorrect' });
+    }
   };
 
   return (
@@ -116,21 +141,23 @@ const SumasUI = ({
       <ProblemBoard
         num1={currentOperands.num1}
         num2={currentOperands.num2}
-        answer={currentAnswer}
-        setAnswer={setCurrentAnswer}
+        slots={slots}
+        updateSlot={updateSlot}
+        activeSlot={activeSlot}
+        setActiveSlot={setActiveSlot}
       />
 
       <div id="feedback-message" className={feedback.cls}>{feedback.text}</div>
 
       <div id="controls">
         <button id="check-button" onClick={handleCheck}>Comprobar</button>
-        <button id="new-problem-button" onClick={() => { setFeedback({ text: '', cls: '' }); startPracticeMission(); }}>
+        <button id="new-problem-button" onClick={() => { startPracticeMission(); }}>
           Nueva Suma
         </button>
       </div>
 
       <div id="number-palette">
-        <h2>Arrastra los números 👇</h2>
+        <h2>Arrastra o pulsa los números 👇</h2>
         <div className="number-tiles-container">
           {[...Array(10).keys()].map(number => (
             <div
@@ -138,6 +165,7 @@ const SumasUI = ({
               className="number-tile"
               draggable="true"
               onDragStart={(e) => e.dataTransfer.setData('text/plain', number)}
+              onClick={() => handlePaletteClick(number)}
             >
               {number}
             </div>

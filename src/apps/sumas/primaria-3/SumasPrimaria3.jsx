@@ -1,4 +1,3 @@
-// src/apps/sumas/SumasPrimaria3.jsx
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import '/src/apps/_shared/Sumas.css';
 
@@ -26,6 +25,7 @@ function ProblemBoard({
   resultSlots, setResultSlots,          // longitud = columnCount
   carrySlots, setCarrySlots,            // longitud = columnCount - 1
   checkInfo,                            // { show, correctResult, correctCarries[] }
+  activeSlot, setActiveSlot
 }) {
   const columnCount = cifras + 1; // añadimos columna extra a la izquierda
   const d1 = useMemo(() => num1.toString().padStart(columnCount, ' ').split(''), [num1, columnCount]);
@@ -42,6 +42,7 @@ function ProblemBoard({
       next[i] = data;
       return next;
     });
+    setActiveSlot({ type: 'result', index: i });
   };
   const clearResult = (i) => {
     setResultSlots(prev => {
@@ -49,6 +50,7 @@ function ProblemBoard({
       next[i] = '';
       return next;
     });
+    setActiveSlot({ type: 'result', index: i });
   };
 
   const dropCarry = (i, e) => {
@@ -60,6 +62,7 @@ function ProblemBoard({
       next[i] = data;
       return next;
     });
+    setActiveSlot({ type: 'carry', index: i });
   };
   const clearCarry = (i) => {
     setCarrySlots(prev => {
@@ -67,6 +70,16 @@ function ProblemBoard({
       next[i] = '';
       return next;
     });
+    setActiveSlot({ type: 'carry', index: i });
+  };
+
+  const handleSlotClick = (type, index, e) => {
+    e.stopPropagation();
+    if (activeSlot && activeSlot.type === type && activeSlot.index === index) {
+      setActiveSlot(null);
+    } else {
+      setActiveSlot({ type, index });
+    }
   };
 
   // Clases de corrección (solo cuando checkInfo.show)
@@ -84,6 +97,8 @@ function ProblemBoard({
     return ok ? 'correct' : 'incorrect';
   };
 
+  const isSelected = (type, index) => activeSlot?.type === type && activeSlot?.index === index;
+
   return (
     <div className={`board ${!showCarries ? 'carries-hidden' : ''}`}>
       <div className="operator">+</div>
@@ -93,10 +108,10 @@ function ProblemBoard({
           {/* Carry box en todas salvo la última (derecha/unidades) */}
           {i < columnCount - 1 ? (
             <div
-              className={`box carry-box ${carryCls(i)}`}
+              className={`box carry-box ${carryCls(i)} ${isSelected('carry', i) ? 'selected' : ''}`}
               onDragOver={onDragOver}
               onDrop={(e) => dropCarry(i, e)}
-              onClick={() => clearCarry(i)}
+              onClick={(e) => handleSlotClick('carry', i, e)}
             >
               {carrySlots[i]}
             </div>
@@ -109,10 +124,10 @@ function ProblemBoard({
           <hr className="operation-line" />
 
           <div
-            className={`box result-box ${resultSlots[i] ? 'filled' : ''} ${resultCls(i)}`}
+            className={`box result-box ${resultSlots[i] ? 'filled' : ''} ${resultCls(i)} ${isSelected('result', i) ? 'selected' : ''}`}
             onDragOver={onDragOver}
             onDrop={(e) => dropResult(i, e)}
-            onClick={() => clearResult(i)}
+            onClick={(e) => handleSlotClick('result', i, e)}
           >
             {resultSlots[i]}
           </div>
@@ -131,8 +146,9 @@ const SumasPrimaria3 = () => {
   const [showCarries, setShowCarries] = useState(true);
 
   // Slots del tablero (dependen de cifras)
-  const [resultSlots, setResultSlots] = useState(['', '', '', '']); // se ajustan al cambiar cifras
+  const [resultSlots, setResultSlots] = useState(['', '', '', '']); 
   const [carrySlots, setCarrySlots] = useState(['', '', '']);
+  const [activeSlot, setActiveSlot] = useState(null);
 
   // Feedback práctica
   const [feedback, setFeedback] = useState({ text: '', cls: '' });
@@ -162,12 +178,33 @@ const SumasPrimaria3 = () => {
     setCurrent({ num1, num2, cifras });
     setResultSlots(Array(columnCount).fill(''));
     setCarrySlots(Array(columnCount - 1).fill(''));
+    setActiveSlot(null);
     setFeedback({ text: '', cls: '' });
 
     const correctResult = (num1 + num2).toString().padStart(columnCount, '0');
     const correctCarries = computeCarriesGeneral(num1, num2, columnCount);
     setCheckInfo({ show: false, correctResult, correctCarries });
   }, []);
+
+  const handlePaletteClick = (val) => {
+    if (!activeSlot) return;
+    const { type, index } = activeSlot;
+    const strVal = val.toString();
+
+    if (type === 'result') {
+      setResultSlots(prev => {
+        const n = [...prev];
+        n[index] = strVal;
+        return n;
+      });
+    } else if (type === 'carry') {
+      setCarrySlots(prev => {
+        const n = [...prev];
+        n[index] = strVal;
+        return n;
+      });
+    }
+  };
 
   /** PRÁCTICA */
   const startPractice = useCallback(() => {
@@ -183,6 +220,7 @@ const SumasPrimaria3 = () => {
 
     if (user === correct) {
       setFeedback({ text: '¡Excelente! ¡Suma correcta! 🎉', cls: 'feedback-correct' });
+      setActiveSlot(null);
     } else {
       setFeedback({ text: 'Casi... ¡Revisa las casillas!', cls: 'feedback-incorrect' });
     }
@@ -287,6 +325,7 @@ const SumasPrimaria3 = () => {
           resultSlots={resultSlots} setResultSlots={setResultSlots}
           carrySlots={carrySlots}   setCarrySlots={setCarrySlots}
           checkInfo={checkInfo}
+          activeSlot={activeSlot} setActiveSlot={setActiveSlot}
         />
       )}
 
@@ -313,7 +352,7 @@ const SumasPrimaria3 = () => {
       {/* Paleta de números: oculta en resultados */}
       {!showResults && (
         <div id="number-palette">
-          <h2>Arrastra los números 👇</h2>
+          <h2>Arrastra o pulsa los números 👇</h2>
           <div className="number-tiles-container">
             {[...Array(10).keys()].map(n => (
               <div
@@ -321,6 +360,7 @@ const SumasPrimaria3 = () => {
                 className="number-tile"
                 draggable="true"
                 onDragStart={(e) => e.dataTransfer.setData('text/plain', n)}
+                onClick={() => handlePaletteClick(n)}
               >
                 {n}
               </div>

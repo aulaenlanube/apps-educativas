@@ -1,4 +1,3 @@
-// src/apps/sumas/SumasPrimaria4.jsx
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import '/src/apps/_shared/Sumas.css';
 
@@ -26,7 +25,8 @@ function ProblemBoard({
   showCarries,
   resultSlots, setResultSlots,     // length = columnCount
   carrySlots, setCarrySlots,       // length = columnCount - 1
-  checkInfo                        // { show, correctResult, correctCarries[] }
+  checkInfo,                       // { show, correctResult, correctCarries[] }
+  activeSlot, setActiveSlot
 }) {
   const columnCount = cifras + 1; // añadimos columna extra a la izquierda (posible llevada final)
   const digitRows = useMemo(
@@ -45,6 +45,7 @@ function ProblemBoard({
       next[i] = data;
       return next;
     });
+    setActiveSlot({ type: 'result', index: i });
   };
   const clearResult = (i) => {
     setResultSlots(prev => {
@@ -52,6 +53,7 @@ function ProblemBoard({
       next[i] = '';
       return next;
     });
+    setActiveSlot({ type: 'result', index: i });
   };
 
   const dropCarry = (i, e) => {
@@ -63,6 +65,7 @@ function ProblemBoard({
       next[i] = data;
       return next;
     });
+    setActiveSlot({ type: 'carry', index: i });
   };
   const clearCarry = (i) => {
     setCarrySlots(prev => {
@@ -70,6 +73,16 @@ function ProblemBoard({
       next[i] = '';
       return next;
     });
+    setActiveSlot({ type: 'carry', index: i });
+  };
+
+  const handleSlotClick = (type, index, e) => {
+    e.stopPropagation();
+    if (activeSlot && activeSlot.type === type && activeSlot.index === index) {
+      setActiveSlot(null);
+    } else {
+      setActiveSlot({ type, index });
+    }
   };
 
   const resultCls = (i) => {
@@ -86,6 +99,8 @@ function ProblemBoard({
     return ok ? 'correct' : 'incorrect';
   };
 
+  const isSelected = (type, index) => activeSlot?.type === type && activeSlot?.index === index;
+
   return (
     <div className={`board ${!showCarries ? 'carries-hidden' : ''}`}>
       <div className="operator">+</div>
@@ -95,10 +110,10 @@ function ProblemBoard({
           {/* Carry en todas menos la última (unidades) */}
           {colIdx < columnCount - 1 ? (
             <div
-              className={`box carry-box ${carryCls(colIdx)}`}
+              className={`box carry-box ${carryCls(colIdx)} ${isSelected('carry', colIdx) ? 'selected' : ''}`}
               onDragOver={onDragOver}
               onDrop={(e) => dropCarry(colIdx, e)}
-              onClick={() => clearCarry(colIdx)}
+              onClick={(e) => handleSlotClick('carry', colIdx, e)}
             >
               {carrySlots[colIdx]}
             </div>
@@ -114,10 +129,10 @@ function ProblemBoard({
           <hr className="operation-line" />
 
           <div
-            className={`box result-box ${resultSlots[colIdx] ? 'filled' : ''} ${resultCls(colIdx)}`}
+            className={`box result-box ${resultSlots[colIdx] ? 'filled' : ''} ${resultCls(colIdx)} ${isSelected('result', colIdx) ? 'selected' : ''}`}
             onDragOver={onDragOver}
             onDrop={(e) => dropResult(colIdx, e)}
-            onClick={() => clearResult(colIdx)}
+            onClick={(e) => handleSlotClick('result', colIdx, e)}
           >
             {resultSlots[colIdx]}
           </div>
@@ -137,6 +152,7 @@ const SumasPrimaria4 = () => {
   // Slots tablero
   const [resultSlots, setResultSlots] = useState(['','','','']); // se ajusta según cifras
   const [carrySlots, setCarrySlots]   = useState(['','','']);
+  const [activeSlot, setActiveSlot]   = useState(null);
 
   // Feedback práctica
   const [feedback, setFeedback] = useState({ text: '', cls: '' });
@@ -167,12 +183,33 @@ const SumasPrimaria4 = () => {
     setCurrent({ nums, cifras });
     setResultSlots(Array(columnCount).fill(''));
     setCarrySlots(Array(columnCount - 1).fill(''));
+    setActiveSlot(null);
     setFeedback({ text:'', cls:'' });
 
     const correctResult = nums.reduce((a,b)=>a+b,0).toString().padStart(columnCount, '0');
     const correctCarries = computeCarriesMany(nums, columnCount);
     setCheckInfo({ show:false, correctResult, correctCarries });
   }, []);
+
+  const handlePaletteClick = (val) => {
+    if (!activeSlot) return;
+    const { type, index } = activeSlot;
+    const strVal = val.toString();
+
+    if (type === 'result') {
+      setResultSlots(prev => {
+        const n = [...prev];
+        n[index] = strVal;
+        return n;
+      });
+    } else if (type === 'carry') {
+      setCarrySlots(prev => {
+        const n = [...prev];
+        n[index] = strVal;
+        return n;
+      });
+    }
+  };
 
   /** PRÁCTICA */
   const startPractice = useCallback(() => {
@@ -188,6 +225,7 @@ const SumasPrimaria4 = () => {
 
     if (user === correct) {
       setFeedback({ text:'¡Excelente! ¡Suma correcta! 🎉', cls:'feedback-correct' });
+      setActiveSlot(null);
     } else {
       setFeedback({ text:'Casi... ¡Revisa las casillas!', cls:'feedback-incorrect' });
     }
@@ -291,6 +329,7 @@ const SumasPrimaria4 = () => {
           resultSlots={resultSlots} setResultSlots={setResultSlots}
           carrySlots={carrySlots}   setCarrySlots={setCarrySlots}
           checkInfo={checkInfo}
+          activeSlot={activeSlot} setActiveSlot={setActiveSlot}
         />
       )}
 
@@ -317,7 +356,7 @@ const SumasPrimaria4 = () => {
       {/* Paleta de números: oculta en resultados */}
       {!showResults && (
         <div id="number-palette">
-          <h2>Arrastra los números 👇</h2>
+          <h2>Arrastra o pulsa los números 👇</h2>
           <div className="number-tiles-container">
             {[...Array(10).keys()].map(n => (
               <div
@@ -325,6 +364,7 @@ const SumasPrimaria4 = () => {
                 className="number-tile"
                 draggable="true"
                 onDragStart={(e) => e.dataTransfer.setData('text/plain', n)}
+                onClick={() => handlePaletteClick(n)}
               >
                 {n}
               </div>
@@ -333,7 +373,7 @@ const SumasPrimaria4 = () => {
         </div>
       )}
 
-      {/* Resultados del Test (no mostramos la última operación en el tablero) */}
+      {/* Resultados del Test */}
       {isTestMode && showResults && (
         <div className="test-results" style={{ marginTop: 20 }}>
           <h2 className="score">Puntuación: <span>{score}</span></h2>
