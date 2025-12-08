@@ -149,10 +149,18 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     const u = frasesDesordenadas.map(f => f.texto).join();
     const c = historiaCorrecta.map(f => f.texto).join();
     if (u === c) {
-      setFeedback({ texto: "¡Correcto! La historia tiene sentido", clase: 'correcta' });
+      setFeedback({ 
+        texto: "¡Correcto! La historia tiene sentido", 
+        clase: 'correcta',
+        timestamp: Date.now() // Añadido para forzar re-render
+      });
       // confeti()
     } else {
-      setFeedback({ texto: "Casi... Intenta ordenar las frases de otra manera", clase: 'incorrecta' });
+      setFeedback({ 
+        texto: "Casi... Intenta ordenar las frases de otra manera", 
+        clase: 'incorrecta',
+        timestamp: Date.now() // Añadido para forzar re-render
+      });
     }
   };
 
@@ -316,7 +324,7 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
     isTestMode, startTest, exitTestMode,
     frasesDesordenadas, feedback, historiaCorrecta,
     checkStory, cargarSiguienteHistoria, 
-    moveFrase, moveFraseToExtreme, // EXPORTAMOS LA NUEVA FUNCIÓN
+    moveFrase, moveFraseToExtreme, 
     handleDragStart, handleDragEnd, handleDragOver, handleDrop,
     handleTouchStart, handleTouchMove, handleTouchEnd, handleTouchCancel,
     dropZoneRef,

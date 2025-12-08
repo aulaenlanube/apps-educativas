@@ -217,7 +217,13 @@ const OrdenaLaHistoriaUI = ({ game }) => {
       {renderFrasesList()}
 
       {/* --- FEEDBACK MOVIDO AQUÍ (Justo debajo de las frases y antes de los botones) --- */}
-      <p id="feedback" className={game.feedback.clase}>{game.feedback.texto}</p>
+      <p 
+        id="feedback" 
+        key={game.feedback.timestamp} 
+        className={game.feedback.clase}
+      >
+        {game.feedback.texto}
+      </p>
 
       <div className="controles">
         <button onClick={game.checkStory}>Comprobar</button>
