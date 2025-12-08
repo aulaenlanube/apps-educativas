@@ -1,4 +1,4 @@
-// UI unificada: si game.isTestMode muestra Test, si no, Práctica
+// src/apps/_shared/OrdenaLaHistoriaUI.jsx
 import React, { useLayoutEffect, useRef } from 'react';
 import './OrdenaLaHistoriaShared.css';
 
@@ -216,6 +216,9 @@ const OrdenaLaHistoriaUI = ({ game }) => {
 
       {renderFrasesList()}
 
+      {/* --- FEEDBACK MOVIDO AQUÍ (Justo debajo de las frases y antes de los botones) --- */}
+      <p id="feedback" className={game.feedback.clase}>{game.feedback.texto}</p>
+
       <div className="controles">
         <button onClick={game.checkStory}>Comprobar</button>
         <button onClick={game.cargarSiguienteHistoria} className="btn-saltar">Otra Historia</button>
@@ -237,8 +240,6 @@ const OrdenaLaHistoriaUI = ({ game }) => {
           </ol>
         </div>
       )}
-
-      <p id="feedback" className={game.feedback.clase}>{game.feedback.texto}</p>
     </div>
   );
 };
