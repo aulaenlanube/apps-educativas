@@ -15,6 +15,8 @@
     margin: 0 auto;
 }
 
+/* ... resto de estilos anteriores sin cambios hasta detective-feedback ... */
+
 .detective-container .detective-title {
     font-family: 'Fredoka One', cursive;
 }
@@ -131,9 +133,9 @@ input[type="range"].font-slider::-moz-range-thumb {
 
 .detective-separador {
     display: inline-block;
-    width: 8px; /* Más grueso */
-    height: 45px; /* Más alto */
-    background-color: #e74c3c; /* Rojo más vivo */
+    width: 8px;
+    height: 45px;
+    background-color: #e74c3c;
     border-radius: 4px;
     vertical-align: middle;
     margin: 0 4px;
@@ -187,28 +189,42 @@ input[type="range"].font-slider::-moz-range-thumb {
 .detective-feedback {
     font-size: 1.2em;
     font-weight: bold;
-    margin-top: 20px;
+    /* Cambiamos el margen para que funcione mejor encima de los botones */
+    margin-top: 0;
+    margin-bottom: 20px; 
     min-height: 28px;
     
-    /* Nuevos estilos */
     padding: 10px;
     border-radius: 8px;
-    display: inline-block; /* Para que el fondo se ajuste al texto */
+    display: inline-block;
     transition: all 0.3s ease;
 }
 
 .detective-feedback:empty {
     padding: 0;
+    min-height: 0; /* Colapsar si está vacío para que no ocupe espacio visual */
+    margin-bottom: 10px;
 }
 
 .detective-feedback.correcto {
     color: #2e7d32;
-    background-color: #e8f5e9; /* Fondo verde claro */
+    background-color: #e8f5e9;
 }
 
 .detective-feedback.incorrecto {
     color: #c62828;
-    background-color: #ffebee; /* Fondo rojo claro */
+    background-color: #ffebee;
+}
+
+/* ANIMACIÓN DE VIBRACIÓN (SHAKE) */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.detective-feedback.shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
 }
 
 .detective-separador.correcto {

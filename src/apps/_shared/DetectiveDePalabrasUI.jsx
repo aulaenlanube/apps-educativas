@@ -1,4 +1,4 @@
-// UI unificada para práctica y test del Detective de Palabras
+// src/apps/_shared/DetectiveDePalabrasUI.jsx
 import React from 'react';
 import './DetectiveDePalabrasShared.css';
 
@@ -132,6 +132,17 @@ const DetectiveDePalabrasUI = ({ game }) => {
         ))}
       </div>
 
+      {/* CAMBIO REALIZADO: 
+          Movido el feedback aquí (antes estaba al final).
+          Añadido key={game.feedbackKey} para forzar re-render de animación en error repetido.
+      */}
+      <p 
+        key={game.feedbackKey} 
+        className={`detective-feedback ${game.feedback.clase}`}
+      >
+        {game.feedback.texto}
+      </p>
+
       <div className="controles">
         {!game.fraseResuelta ? (
           <>
@@ -143,7 +154,7 @@ const DetectiveDePalabrasUI = ({ game }) => {
         )}
       </div>
 
-      <p className={`detective-feedback ${game.feedback.clase}`}>{game.feedback.texto}</p>
+      {/* Feedback eliminado de aquí */}
     </div>
   );
 };

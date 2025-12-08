@@ -5,7 +5,6 @@ import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
 const TOTAL_TEST_QUESTIONS = 5;
 const FONT_STYLES = ['default', 'cursive', 'uppercase'];
 
-// Extrae texto de la frase (acepta string u objeto { solucion })
 const getTexto = (frase) =>
   typeof frase === 'string'
     ? frase
@@ -16,11 +15,12 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
   const [indiceFraseActual, setIndiceFraseActual] = useState(0);
   const [puntuacion, setPuntuacion] = useState(0);
   const [feedback, setFeedback] = useState({ texto: '', clase: '' });
+  // Añadimos un key para forzar la re-renderización de la animación
+  const [feedbackKey, setFeedbackKey] = useState(0); 
   const [letras, setLetras] = useState([]);
   const [fraseResuelta, setFraseResuelta] = useState(false);
   const { confeti } = useConfetti();
 
-  // Tipografía (sin hooks condicionales)
   const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
   const fontStyleIndex = FONT_STYLES.indexOf(fontStyle);
   const handleFontStyleChange = (e) => {
@@ -30,7 +30,6 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
     setFontStyle(next);
   };
 
-  // Modo test (sin hooks condicionales)
   const [isTestMode, setIsTestMode] = useState(false);
   const [testQuestions, setTestQuestions] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
@@ -60,7 +59,6 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
     [getTransformedSolution]
   );
 
-  // Prepara frase cuando cambian grado/estilo/índice
   useEffect(() => {
     if (!isTestMode && frasesJuego.length > 0) {
       prepararFrase(frasesJuego[indiceFraseActual]);
@@ -74,6 +72,7 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
       if (nuevas[index]) nuevas[index].separador = !nuevas[index].separador;
       return nuevas;
     });
+    // Limpiamos feedback al interactuar
     setFeedback({ texto: '', clase: '' });
   };
 
@@ -88,7 +87,6 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
     const solucionOriginal = getTexto(actual);
     const solucionTransformada = getTransformedSolution(solucionOriginal);
 
-    // Índices (en el array de letras SIN espacios) donde debe haber separador
     const posicionesEspaciosSolucion = [];
     let acumulado = 0;
     const palabras = solucionTransformada.split(' ');
@@ -120,11 +118,15 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
 
     if (esTotalmenteCorrecto) {
       setFeedback({ texto: '¡Correcto! ¡Caso resuelto!', clase: 'correcto' });
-      //confeti();
+      // confeti(); // Si quieres activar confeti descomenta esto
       setPuntuacion((p) => p + 10);
       setFraseResuelta(true);
+      // Actualizamos key también en acierto para consistencia (opcional)
+      setFeedbackKey(prev => prev + 1);
     } else {
-      setFeedback({ texto: '¡Casi! Revisa las marcas rojas.', clase: 'incorrecto' });
+      // AQUÍ: Añadimos la clase shake y actualizamos la key para reiniciar animación
+      setFeedback({ texto: '¡Casi! Revisa las marcas rojas.', clase: 'incorrecto shake' });
+      setFeedbackKey(prev => prev + 1);
     }
   };
 
@@ -147,7 +149,6 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
     }
   };
 
-  // Timer (no condicionar hooks: solo efectos)
   useEffect(() => {
     let timer;
     if (isTestMode && withTimer && !showResults) {
@@ -193,21 +194,17 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
   };
 
   return {
-    // Estado principal
     letras,
     puntuacion,
     feedback,
+    feedbackKey, // Exportamos la key
     fraseActual: isTestMode ? testQuestions[indiceFraseActual] : frasesJuego[indiceFraseActual],
     indiceFraseActual,
     totalFrases: isTestMode ? TOTAL_TEST_QUESTIONS : frasesJuego.length,
     fraseResuelta,
-
-    // Acciones
     toggleSeparador,
     comprobarFrase,
     siguienteFrase,
-
-    // Test
     isTestMode,
     startTest,
     exitTestMode,
@@ -217,8 +214,6 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
     elapsedTime,
     userAnswers,
     testQuestions,
-
-    // UI
     withTimer,
     fontStyle,
     fontStyleIndex,
