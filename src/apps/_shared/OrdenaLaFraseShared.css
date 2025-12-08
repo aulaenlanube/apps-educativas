@@ -81,11 +81,11 @@ body.no-scroll {
     transition: all 0.2s;
     
     /* --- CORRECCIÓN CRÍTICA PARA MÓVILES --- */
-    touch-action: none; /* Impide scroll/zoom nativo */
-    user-select: none;  /* Impide selección de texto */
-    -webkit-user-select: none; /* Safari */
-    -webkit-touch-callout: none; /* Impide menú contextual al mantener pulsado en iOS */
-    -webkit-tap-highlight-color: transparent; /* Quita el parpadeo azul al pulsar */
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .ordena-frase-container .palabra:hover {
@@ -148,7 +148,6 @@ body.no-scroll {
     border: 1px solid #ddd;
     font-size: 18px;
     font-weight: 600;
-    /* Aseguramos que el clon tampoco interfiera */
     opacity: 0.9;
 }
 
@@ -233,14 +232,62 @@ body.no-scroll {
     background-color: #935106 !important;
 }
 
+/* --- FEEDBACK ACTUALIZADO CON VIBRACIÓN Y FLECHAS --- */
+
+/* Animación de vibración para error */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+/* Animación de pop para acierto */
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Animación de rebote para las flechas iniciales */
+@keyframes arrow-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
 #feedback {
     font-size: 18px;
     font-weight: bold;
     min-height: 25px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 15px;
+    display: inline-block;
 }
 
-#feedback.correcta { color: #2e7d32; }
-#feedback.incorrecta { color: #c62828; }
+#feedback:empty {
+    padding: 0;
+}
+
+/* Estilo para las flechas iniciales */
+#feedback.feedback-inicial {
+    color: #cbd5e1; /* Gris suave */
+    font-size: 28px; /* Un poco más grandes */
+    background-color: transparent; /* Sin fondo */
+    letter-spacing: 15px; /* Separadas */
+    animation: arrow-bounce 1.5s infinite ease-in-out;
+    padding: 5px;
+}
+
+#feedback.correcta { 
+    color: #2e7d32; 
+    background-color: #e8f5e9;
+    animation: popIn 0.3s ease-out;
+}
+
+#feedback.incorrecta { 
+    color: #c62828; 
+    background-color: #ffebee;
+    animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
 
 /* --- PANTALLA DE RESULTADOS DEL TEST --- */
 .test-results .score {

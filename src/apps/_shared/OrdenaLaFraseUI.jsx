@@ -1,4 +1,4 @@
-// UI unificada para práctica y test
+// src/apps/_shared/OrdenaLaFraseUI.jsx
 import React, { useEffect, useState } from 'react';
 import './OrdenaLaFraseShared.css';
 
@@ -54,7 +54,6 @@ const OrdenaLaFraseUI = ({ game }) => {
         onDragStart={(e) => game.handleDragStart(e, p)} 
         onDragEnd={game.handleDragEnd}
         onTouchStart={(e) => game.handleTouchStart(e, p)}
-        // FIX: Añadido onTouchCancel para evitar que se queden flotando
         onTouchCancel={game.handleTouchCancel} 
         onClick={!isDestino ? () => game.handleOriginWordClick(p) : undefined}
       >
@@ -67,7 +66,6 @@ const OrdenaLaFraseUI = ({ game }) => {
               game.handleRemoveWord(p); 
             }}
             aria-label="Eliminar palabra"
-            // FIX: En táctil, evitar que el toque se propague y cause comportamientos raros
             onTouchEnd={(e) => e.stopPropagation()} 
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -161,6 +159,14 @@ const OrdenaLaFraseUI = ({ game }) => {
         {renderPalabras(game.palabrasDestino, true)}
       </div>
 
+      <p 
+        id="feedback" 
+        key={game.feedback.id || 'initial'} 
+        className={game.feedback.clase}
+      >
+        {game.feedback.texto}
+      </p>
+
       <div className="zona-origen" ref={game.originZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'origen')}>
         {renderPalabras(game.palabrasOrigen, false)}
       </div>
@@ -181,8 +187,6 @@ const OrdenaLaFraseUI = ({ game }) => {
           <strong>Solución:</strong> {game.mision.solucion}
         </div>
       )}
-
-      <p id="feedback" className={game.feedback.clase}>{game.feedback.texto}</p>
     </div>
   );
 };

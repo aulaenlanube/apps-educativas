@@ -181,7 +181,6 @@ body.no-scroll {
     background-color: #357ABD;
 }
 
-/* NUEVO: Estilo para botón Ver Solución (Cian) */
 .ordena-historia-container .btn-ver-solucion {
     background-color: #17a2b8 !important;
 }
@@ -225,6 +224,7 @@ body.no-scroll {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* --- FEEDBACK ACTUALIZADO --- */
 .ordena-historia-container #feedback {
     font-size: 18px;
     font-weight: bold;
@@ -232,6 +232,12 @@ body.no-scroll {
     padding: 10px;
     border-radius: 8px;
     margin-top: 15px;
+    display: inline-block; /* <-- ESTO HACE QUE SE AJUSTE AL CONTENIDO */
+}
+
+/* Opcional: para que no se vea el padding si está vacío */
+.ordena-historia-container #feedback:empty {
+    padding: 0;
 }
 
 .ordena-historia-container #feedback.correcta { 

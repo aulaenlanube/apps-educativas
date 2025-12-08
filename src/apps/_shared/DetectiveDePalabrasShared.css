@@ -131,7 +131,6 @@ input[type="range"].font-slider::-moz-range-thumb {
 
 .detective-separador {
     display: inline-block;
-    /* CAMBIOS AQUÍ */
     width: 8px; /* Más grueso */
     height: 45px; /* Más alto */
     background-color: #e74c3c; /* Rojo más vivo */
@@ -184,19 +183,32 @@ input[type="range"].font-slider::-moz-range-thumb {
     display: none;
 }
 
+/* --- FEEDBACK (ACTUALIZADO) --- */
 .detective-feedback {
     font-size: 1.2em;
     font-weight: bold;
     margin-top: 20px;
     min-height: 28px;
+    
+    /* Nuevos estilos */
+    padding: 10px;
+    border-radius: 8px;
+    display: inline-block; /* Para que el fondo se ajuste al texto */
+    transition: all 0.3s ease;
+}
+
+.detective-feedback:empty {
+    padding: 0;
 }
 
 .detective-feedback.correcto {
     color: #2e7d32;
+    background-color: #e8f5e9; /* Fondo verde claro */
 }
 
 .detective-feedback.incorrecto {
     color: #c62828;
+    background-color: #ffebee; /* Fondo rojo claro */
 }
 
 .detective-separador.correcto {

@@ -1,14 +1,24 @@
+// src/hooks/useOrdenaLaFraseGame.js
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
 
 const TOTAL_TEST_QUESTIONS = 5;
 const FONT_STYLES = ['default', 'cursive', 'uppercase'];
 
+// Definimos el feedback inicial con las flechas
+const INITIAL_FEEDBACK = { 
+  texto: '⬆️ ⬆️ ⬆️ ⬆️ ⬆️', 
+  clase: 'feedback-inicial',
+  id: 'initial' // ID fijo para el inicio
+};
+
 export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   const [mision, setMision] = useState({ texto: '', solucion: '' });
   const [palabrasOrigen, setPalabrasOrigen] = useState([]);
   const [palabrasDestino, setPalabrasDestino] = useState([]);
-  const [feedback, setFeedback] = useState({ texto: '', clase: '' });
+  
+  // Usamos INITIAL_FEEDBACK como estado inicial
+  const [feedback, setFeedback] = useState(INITIAL_FEEDBACK);
   
   const [showSolution, setShowSolution] = useState(false);
   const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
@@ -42,7 +52,8 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   const toggleSolution = () => setShowSolution(prev => !prev);
 
   const startPracticeMission = useCallback(() => {
-    setFeedback({ texto: '', clase: '' });
+    // Reseteamos al feedback inicial (flechas)
+    setFeedback(INITIAL_FEEDBACK);
     setShowSolution(false);
 
     if (!frases || frases.length === 0) {
@@ -90,7 +101,10 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     setMision(questions[0]);
     setPalabrasOrigen(palabras.map((p, i) => ({ id: `p-${ahora}-${i}`, texto: p })));
     setPalabrasDestino([]);
+    
+    // En modo test podemos limpiar el feedback o dejarlo neutro
     setFeedback({ texto: '', clase: '' });
+    
     setShowSolution(false);
     setShowResults(false);
     setScore(0);
@@ -154,10 +168,18 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   const checkPracticeAnswer = () => {
     const fraseUsuario = palabrasDestino.map(p => p.texto).join(' ');
     if (fraseUsuario === mision.solucion) {
-      setFeedback({ texto: "¡Correcto! ¡Muy bien!", clase: 'correcta' });
+      setFeedback({ 
+        texto: "¡Correcto! ¡Muy bien!", 
+        clase: 'correcta',
+        id: Date.now() 
+      });
       // confeti()
     } else {
-      setFeedback({ texto: "Casi... Revisa el orden de las palabras", clase: 'incorrecta' });
+      setFeedback({ 
+        texto: "Casi... Revisa el orden de las palabras", 
+        clase: 'incorrecta',
+        id: Date.now() 
+      });
     }
   };
 
@@ -246,16 +268,13 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
 
   // --- TOUCH (MÓVIL) ---
   const handleTouchStart = (e, palabra) => {
-    // Seguridad: Limpiar cualquier residuo anterior antes de empezar uno nuevo
     cleanupDrag();
 
     draggedItem.current = palabra;
     const el = e.currentTarget;
     const rect = el.getBoundingClientRect();
 
-    // Crear clon
     const clone = el.cloneNode(true);
-    // Ocultar botón X en el clon para que no se vea raro
     const btn = clone.querySelector('.btn-remove-word');
     if(btn) btn.style.display = 'none';
 
@@ -281,7 +300,6 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   };
 
   const handleTouchEnd = (e) => {
-    // Si no había item, limpiamos cualquier residuo visual por si acaso y salimos
     if (!draggedItem.current) {
         cleanupDrag();
         return;
@@ -291,7 +309,6 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
     const dropZone = dropZoneRef.current;
     const item = draggedItem.current;
 
-    // Solo procesamos lógica si soltamos dentro de la zona destino
     if (dropZone) {
         const rect = dropZone.getBoundingClientRect();
         if (touch.clientX >= rect.left && touch.clientX <= rect.right &&
@@ -311,7 +328,6 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
             setPalabrasDestino(nuevasDestino);
         }
     }
-    // IMPORTANTE: Limpiar todo al final
     cleanupDrag();
   };
 
