@@ -1,0 +1,87 @@
+[
+  {
+    "categoria": "Les Pays (Drapeaux)",
+    "correctos": [
+      "🇫🇷",
+      "🇪🇸",
+      "🇮🇹",
+      "🇩🇪",
+      "🇬🇧"
+    ],
+    "intrusos": [
+      "🌍",
+      "🗺️",
+      "✈️",
+      "🧳",
+      "🛳️"
+    ]
+  },
+  {
+    "categoria": "La Technologie",
+    "correctos": [
+      "💻",
+      "📱",
+      "🖱️",
+      "⌨️",
+      "🖥️"
+    ],
+    "intrusos": [
+      "📚",
+      "🖊️",
+      "🕯️",
+      "🕰️",
+      "🔨"
+    ]
+  },
+  {
+    "categoria": "Les Métiers (Mots)",
+    "correctos": [
+      "Professeur",
+      "Médecin",
+      "Policier",
+      "Pompier",
+      "Coiffeur"
+    ],
+    "intrusos": [
+      "École",
+      "Hôpital",
+      "Baguette",
+      "Croissant",
+      "Maison"
+    ]
+  },
+  {
+    "categoria": "Les Pays (Mots)",
+    "correctos": [
+      "France",
+      "Espagne",
+      "Italie",
+      "Allemagne",
+      "Belgique"
+    ],
+    "intrusos": [
+      "Paris",
+      "Madrid",
+      "Rome",
+      "Londres",
+      "Berlin"
+    ]
+  },
+  {
+    "categoria": "Possessifs",
+    "correctos": [
+      "Mon",
+      "Ma",
+      "Mes",
+      "Ton",
+      "Ta"
+    ],
+    "intrusos": [
+      "Je",
+      "Tu",
+      "Il",
+      "Elle",
+      "Nous"
+    ]
+  }
+]

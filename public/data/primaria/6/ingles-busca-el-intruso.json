@@ -1,0 +1,87 @@
+[
+  {
+    "categoria": "Digital World",
+    "correctos": [
+      "👾",
+      "💻",
+      "📱",
+      "📡",
+      "💾"
+    ],
+    "intrusos": [
+      "📚",
+      "🖊️",
+      "🚲",
+      "🌳",
+      "⚽"
+    ]
+  },
+  {
+    "categoria": "Environment",
+    "correctos": [
+      "♻️",
+      "🌍",
+      "🌱",
+      "🚮",
+      "🔋"
+    ],
+    "intrusos": [
+      "🏭",
+      "🛢️",
+      "🚬",
+      "🔥",
+      "☢️"
+    ]
+  },
+  {
+    "categoria": "Mixed Tenses",
+    "correctos": [
+      "Go",
+      "Went",
+      "Gone",
+      "Going",
+      "Will go"
+    ],
+    "intrusos": [
+      "To go",
+      "Me go",
+      "I",
+      "She",
+      "He"
+    ]
+  },
+  {
+    "categoria": "Materials (Words)",
+    "correctos": [
+      "Wood",
+      "Metal",
+      "Plastic",
+      "Glass",
+      "Paper"
+    ],
+    "intrusos": [
+      "Table",
+      "Chair",
+      "Window",
+      "Bottle",
+      "Shirt"
+    ]
+  },
+  {
+    "categoria": "Prepositions",
+    "correctos": [
+      "In",
+      "On",
+      "Under",
+      "Behind",
+      "Between"
+    ],
+    "intrusos": [
+      "Yesterday",
+      "Tomorrow",
+      "Run",
+      "Jump",
+      "Happy"
+    ]
+  }
+]

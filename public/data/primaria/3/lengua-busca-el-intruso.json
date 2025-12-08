@@ -1,0 +1,102 @@
+[
+  {
+    "categoria": "Animales Domésticos",
+    "correctos": [
+      "🐶",
+      "🐱",
+      "🐰",
+      "🐹",
+      "🦜"
+    ],
+    "intrusos": [
+      "🦁",
+      "🐯",
+      "🐻",
+      "🦈",
+      "🦕"
+    ]
+  },
+  {
+    "categoria": "Alimentos",
+    "correctos": [
+      "🍞",
+      "🧀",
+      "🍗",
+      "🍖",
+      "🥚"
+    ],
+    "intrusos": [
+      "⚽",
+      "🏀",
+      "🎾",
+      "🏓",
+      "🎮"
+    ]
+  },
+  {
+    "categoria": "Ropa de Invierno",
+    "correctos": [
+      "🧥",
+      "🧣",
+      "🧤",
+      "🧦",
+      "👢"
+    ],
+    "intrusos": [
+      "🩳",
+      "👙",
+      "🩴",
+      "🕶️",
+      "🧢"
+    ]
+  },
+  {
+    "categoria": "Palabras con B",
+    "correctos": [
+      "Barco",
+      "Bueno",
+      "Blanco",
+      "Buscar",
+      "Abuelo"
+    ],
+    "intrusos": [
+      "Vaca",
+      "Vela",
+      "Viento",
+      "Volar",
+      "Uva"
+    ]
+  },
+  {
+    "categoria": "Sinónimos de Feliz",
+    "correctos": [
+      "Contento",
+      "Alegre",
+      "Dichoso",
+      "Satisfecho"
+    ],
+    "intrusos": [
+      "Triste",
+      "Apenado",
+      "Lloroso",
+      "Enojado"
+    ]
+  },
+  {
+    "categoria": "Sustantivos (Cosas)",
+    "correctos": [
+      "Mesa",
+      "Silla",
+      "Libro",
+      "Lápiz",
+      "Coche"
+    ],
+    "intrusos": [
+      "Correr",
+      "Saltar",
+      "Rápido",
+      "Azul",
+      "Yo"
+    ]
+  }
+]

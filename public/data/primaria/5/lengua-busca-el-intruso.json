@@ -1,0 +1,87 @@
+[
+  {
+    "categoria": "Medios de Comunicación",
+    "correctos": [
+      "📧",
+      "📱",
+      "💻",
+      "🛰️",
+      "📡"
+    ],
+    "intrusos": [
+      "📜",
+      "🏺",
+      "🗿",
+      "🕊️",
+      "🚬"
+    ]
+  },
+  {
+    "categoria": "Tipos de Texto (Libros)",
+    "correctos": [
+      "📖",
+      "📚",
+      "📓",
+      "📒",
+      "📜"
+    ],
+    "intrusos": [
+      "💿",
+      "💾",
+      "📹",
+      "📺",
+      "🎮"
+    ]
+  },
+  {
+    "categoria": "Adverbios de Tiempo",
+    "correctos": [
+      "Ayer",
+      "Hoy",
+      "Mañana",
+      "Ahora",
+      "Después"
+    ],
+    "intrusos": [
+      "Aquí",
+      "Allí",
+      "Mucho",
+      "Poco",
+      "Bien"
+    ]
+  },
+  {
+    "categoria": "Determinantes",
+    "correctos": [
+      "Este",
+      "Esta",
+      "Ese",
+      "Esa",
+      "Aquel"
+    ],
+    "intrusos": [
+      "Mi",
+      "Tu",
+      "Su",
+      "Nuestro",
+      "El"
+    ]
+  },
+  {
+    "categoria": "Preposiciones",
+    "correctos": [
+      "A",
+      "Ante",
+      "Bajo",
+      "Cabe",
+      "Con"
+    ],
+    "intrusos": [
+      "Y",
+      "O",
+      "Pero",
+      "Porque",
+      "Aunque"
+    ]
+  }
+]

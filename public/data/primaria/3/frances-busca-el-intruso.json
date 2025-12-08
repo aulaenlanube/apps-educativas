@@ -1,0 +1,86 @@
+[
+  {
+    "categoria": "Les Animaux",
+    "correctos": [
+      "🐶",
+      "🐱",
+      "🐭",
+      "🐰",
+      "🦊"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "⚽",
+      "🏠",
+      "✏️"
+    ]
+  },
+  {
+    "categoria": "Les Fruits",
+    "correctos": [
+      "🍎",
+      "🍌",
+      "🍇",
+      "🍊",
+      "🍋"
+    ],
+    "intrusos": [
+      "🥦",
+      "🥕",
+      "🍔",
+      "🍕",
+      "🐶"
+    ]
+  },
+  {
+    "categoria": "Couleurs (Mots)",
+    "correctos": [
+      "Rouge",
+      "Bleu",
+      "Vert",
+      "Jaune",
+      "Noir"
+    ],
+    "intrusos": [
+      "Chien",
+      "Chat",
+      "Maison",
+      "Un",
+      "Deux"
+    ]
+  },
+  {
+    "categoria": "Nombres 1-5 (Mots)",
+    "correctos": [
+      "Un",
+      "Deux",
+      "Trois",
+      "Quatre",
+      "Cinq"
+    ],
+    "intrusos": [
+      "Bonjour",
+      "Merci",
+      "Oui",
+      "Non",
+      "Rouge"
+    ]
+  },
+  {
+    "categoria": "Salutations",
+    "correctos": [
+      "Bonjour",
+      "Salut",
+      "Au revoir",
+      "Bonsoir"
+    ],
+    "intrusos": [
+      "Rouge",
+      "Bleu",
+      "Chat",
+      "Chien",
+      "Pomme"
+    ]
+  }
+]

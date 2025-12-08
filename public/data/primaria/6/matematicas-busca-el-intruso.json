@@ -1,0 +1,87 @@
+[
+  {
+    "categoria": "Porcentajes y Estadística",
+    "correctos": [
+      "%",
+      "📊",
+      "📉",
+      "🥧",
+      "📈"
+    ],
+    "intrusos": [
+      "➕",
+      "➖",
+      "🔤",
+      "🎨",
+      "🎲"
+    ]
+  },
+  {
+    "categoria": "Potencias (Cuadrados y Cubos)",
+    "correctos": [
+      "📦",
+      "🎲",
+      "🟦",
+      "🟥",
+      "🧊"
+    ],
+    "intrusos": [
+      "📏",
+      "〰️",
+      "⭕",
+      "🎈",
+      "🐍"
+    ]
+  },
+  {
+    "categoria": "Números Enteros (Temperatura)",
+    "correctos": [
+      "🌡️",
+      "❄️",
+      "🧊",
+      "🥶",
+      "📉"
+    ],
+    "intrusos": [
+      "🔥",
+      "☀️",
+      "🥵",
+      "🌋",
+      "🏜️"
+    ]
+  },
+  {
+    "categoria": "Cuerpos Geométricos",
+    "correctos": [
+      "🪐",
+      "⛺",
+      "🏐",
+      "🥫",
+      "🧊"
+    ],
+    "intrusos": [
+      "🗺️",
+      "🃏",
+      "📐",
+      "📄",
+      "🖼️"
+    ]
+  },
+  {
+    "categoria": "Probabilidad (Azar)",
+    "correctos": [
+      "🎲",
+      "🪙",
+      "🃏",
+      "🎰",
+      "🎱"
+    ],
+    "intrusos": [
+      "⏱️",
+      "📅",
+      "📏",
+      "⚖️",
+      "💯"
+    ]
+  }
+]

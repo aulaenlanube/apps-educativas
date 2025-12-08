@@ -1,0 +1,87 @@
+[
+  {
+    "categoria": "Technology",
+    "correctos": [
+      "💻",
+      "📱",
+      "🖱️",
+      "⌨️",
+      "🖥️"
+    ],
+    "intrusos": [
+      "📜",
+      "✒️",
+      "🕯️",
+      "🕰️",
+      "🔨"
+    ]
+  },
+  {
+    "categoria": "Wild Animals",
+    "correctos": [
+      "🦁",
+      "🐯",
+      "🦓",
+      "🦒",
+      "🐘"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🐮",
+      "🐷",
+      "🐔"
+    ]
+  },
+  {
+    "categoria": "Irregular Verbs (Past)",
+    "correctos": [
+      "Went",
+      "Ate",
+      "Drank",
+      "Saw",
+      "Ran"
+    ],
+    "intrusos": [
+      "Played",
+      "Cooked",
+      "Walked",
+      "Jumped",
+      "Listened"
+    ]
+  },
+  {
+    "categoria": "Frequency Adverbs",
+    "correctos": [
+      "Always",
+      "Usually",
+      "Often",
+      "Never",
+      "Rarely"
+    ],
+    "intrusos": [
+      "Yesterday",
+      "Tomorrow",
+      "Now",
+      "House",
+      "Blue"
+    ]
+  },
+  {
+    "categoria": "Question Words",
+    "correctos": [
+      "What",
+      "Where",
+      "When",
+      "Who",
+      "Why"
+    ],
+    "intrusos": [
+      "Yes",
+      "No",
+      "Because",
+      "And",
+      "But"
+    ]
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "categoria": "Les Vêtements",
+    "correctos": [
+      "👕",
+      "👖",
+      "👗",
+      "🧥",
+      "👟"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "🏠",
+      "🐶",
+      "⚽"
+    ]
+  },
+  {
+    "categoria": "La Maison",
+    "correctos": [
+      "🏠",
+      "🚪",
+      "🪟",
+      "🛌",
+      "🛋️"
+    ],
+    "intrusos": [
+      "🚗",
+      "🏫",
+      "🌳",
+      "🐶",
+      "🌊"
+    ]
+  },
+  {
+    "categoria": "Les Jours",
+    "correctos": [
+      "Lundi",
+      "Mardi",
+      "Mercredi",
+      "Jeudi",
+      "Vendredi"
+    ],
+    "intrusos": [
+      "Janvier",
+      "Février",
+      "Mars",
+      "Noël",
+      "Pâques"
+    ]
+  },
+  {
+    "categoria": "La Famille",
+    "correctos": [
+      "Père",
+      "Mère",
+      "Frère",
+      "Sœur",
+      "Bébé"
+    ],
+    "intrusos": [
+      "Stylo",
+      "Gomme",
+      "Cahier",
+      "Professeur",
+      "École"
+    ]
+  },
+  {
+    "categoria": "Le Corps (Mots)",
+    "correctos": [
+      "Tête",
+      "Bras",
+      "Jambe",
+      "Main",
+      "Pied"
+    ],
+    "intrusos": [
+      "Stylo",
+      "Livre",
+      "Chien",
+      "Chat",
+      "Maison"
+    ]
+  }
+]

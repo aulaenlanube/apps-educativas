@@ -1,0 +1,87 @@
+[
+  {
+    "categoria": "Festes i Tradicions",
+    "correctos": [
+      "🔥",
+      "🎆",
+      "🥘",
+      "💃",
+      "🎺"
+    ],
+    "intrusos": [
+      "🎄",
+      "🎅",
+      "🎃",
+      "👻",
+      "🦃"
+    ]
+  },
+  {
+    "categoria": "Geografia (Paisatges)",
+    "correctos": [
+      "⛰️",
+      "🏖️",
+      "🌲",
+      "🏞️",
+      "🌅"
+    ],
+    "intrusos": [
+      "🏙️",
+      "🏭",
+      "🛣️",
+      "🚇",
+      "🏯"
+    ]
+  },
+  {
+    "categoria": "Pronoms Personals",
+    "correctos": [
+      "Jo",
+      "Tu",
+      "Ell",
+      "Ella",
+      "Nosaltres"
+    ],
+    "intrusos": [
+      "El",
+      "La",
+      "Els",
+      "Les",
+      "Un"
+    ]
+  },
+  {
+    "categoria": "Verbs (Passat)",
+    "correctos": [
+      "Vaig anar",
+      "Vas menjar",
+      "Van dormir",
+      "Vam jugar",
+      "Vareu llegir"
+    ],
+    "intrusos": [
+      "Aniré",
+      "Menjaré",
+      "Dorm",
+      "Juga",
+      "Llegint"
+    ]
+  },
+  {
+    "categoria": "Paraules Planes",
+    "correctos": [
+      "Casa",
+      "Finestra",
+      "Llibre",
+      "Taula",
+      "Examen"
+    ],
+    "intrusos": [
+      "Camió",
+      "Café",
+      "Pardal",
+      "Màquina",
+      "Música"
+    ]
+  }
+]

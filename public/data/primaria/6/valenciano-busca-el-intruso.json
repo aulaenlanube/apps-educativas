@@ -1,0 +1,87 @@
+[
+  {
+    "categoria": "Tecnologia",
+    "correctos": [
+      "💻",
+      "📱",
+      "🖱️",
+      "⌨️",
+      "🖥️"
+    ],
+    "intrusos": [
+      "📚",
+      "✏️",
+      "🕯️",
+      "🕰️",
+      "🔨"
+    ]
+  },
+  {
+    "categoria": "El Cos Humà",
+    "correctos": [
+      "🧠",
+      "🫀",
+      "🫁",
+      "🦴",
+      "🦷"
+    ],
+    "intrusos": [
+      "👕",
+      "👖",
+      "👓",
+      "🧢",
+      "💍"
+    ]
+  },
+  {
+    "categoria": "Paraules Esdrúixoles",
+    "correctos": [
+      "Música",
+      "Pàgina",
+      "Telèfon",
+      "Màquina",
+      "Plàtan"
+    ],
+    "intrusos": [
+      "Camisa",
+      "Taula",
+      "Camió",
+      "Paper",
+      "Ordinador"
+    ]
+  },
+  {
+    "categoria": "Temps Verbals",
+    "correctos": [
+      "Present",
+      "Passat",
+      "Futur",
+      "Imperfet",
+      "Condicional"
+    ],
+    "intrusos": [
+      "Subjecte",
+      "Predicat",
+      "Nom",
+      "Adjectiu",
+      "Article"
+    ]
+  },
+  {
+    "categoria": "Oficis",
+    "correctos": [
+      "Metge",
+      "Mestre",
+      "Advocat",
+      "Bomber",
+      "Policia"
+    ],
+    "intrusos": [
+      "Escola",
+      "Hospital",
+      "Comissaria",
+      "Cotxe",
+      "Llibre"
+    ]
+  }
+]

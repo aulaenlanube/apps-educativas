@@ -1,0 +1,88 @@
+[
+  {
+    "categoria": "Fruits",
+    "correctos": [
+      "🍎",
+      "🍌",
+      "🍇",
+      "🍊",
+      "🍓"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🚗",
+      "⚽",
+      "🏠"
+    ]
+  },
+  {
+    "categoria": "Colors (Red objects)",
+    "correctos": [
+      "🍎",
+      "❤️",
+      "🌹",
+      "🎒",
+      "🚗",
+      "🍄"
+    ],
+    "intrusos": [
+      "🍏",
+      "🚙",
+      "👖",
+      "🍋",
+      "🌑"
+    ]
+  },
+  {
+    "categoria": "Numbers (Words)",
+    "correctos": [
+      "One",
+      "Two",
+      "Three",
+      "Four",
+      "Five"
+    ],
+    "intrusos": [
+      "Red",
+      "Blue",
+      "Dog",
+      "Cat",
+      "Yes"
+    ]
+  },
+  {
+    "categoria": "Colors (Words)",
+    "correctos": [
+      "Red",
+      "Blue",
+      "Green",
+      "Yellow",
+      "Pink"
+    ],
+    "intrusos": [
+      "Table",
+      "Chair",
+      "Book",
+      "Pen",
+      "One"
+    ]
+  },
+  {
+    "categoria": "Family",
+    "correctos": [
+      "Mother",
+      "Father",
+      "Sister",
+      "Brother",
+      "Baby"
+    ],
+    "intrusos": [
+      "Teacher",
+      "Doctor",
+      "Apple",
+      "Car",
+      "Dog"
+    ]
+  }
+]

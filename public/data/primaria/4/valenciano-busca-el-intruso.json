@@ -1,0 +1,87 @@
+[
+  {
+    "categoria": "La Casa",
+    "correctos": [
+      "🏠",
+      "🚪",
+      "🪟",
+      "🛌",
+      "🛋️"
+    ],
+    "intrusos": [
+      "🚗",
+      "🏫",
+      "🌳",
+      "🐶",
+      "🌊"
+    ]
+  },
+  {
+    "categoria": "L'Escola",
+    "correctos": [
+      "🏫",
+      "🎒",
+      "📚",
+      "✏️",
+      "📏"
+    ],
+    "intrusos": [
+      "🛌",
+      "🛁",
+      "🍳",
+      "📺",
+      "🎮"
+    ]
+  },
+  {
+    "categoria": "La Família",
+    "correctos": [
+      "Pare",
+      "Mare",
+      "Germà",
+      "Germana",
+      "Iaio"
+    ],
+    "intrusos": [
+      "Mestre",
+      "Metge",
+      "Amic",
+      "Veí",
+      "Policia"
+    ]
+  },
+  {
+    "categoria": "Els Mesos",
+    "correctos": [
+      "Gener",
+      "Febrer",
+      "Març",
+      "Abril",
+      "Maig"
+    ],
+    "intrusos": [
+      "Dilluns",
+      "Dimarts",
+      "Estiu",
+      "Hivern",
+      "Setmana"
+    ]
+  },
+  {
+    "categoria": "Parts del Cos",
+    "correctos": [
+      "Cap",
+      "Braç",
+      "Cama",
+      "Mà",
+      "Peu"
+    ],
+    "intrusos": [
+      "Samarreta",
+      "Pantalons",
+      "Sabates",
+      "Barret",
+      "Ulleres"
+    ]
+  }
+]

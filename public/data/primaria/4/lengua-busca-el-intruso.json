@@ -1,0 +1,88 @@
+[
+  {
+    "categoria": "Objetos que empiezan por 'C'",
+    "correctos": [
+      "🏠",
+      "🚗",
+      "🐴",
+      "👕",
+      "🥄",
+      "🔑"
+    ],
+    "intrusos": [
+      "🍌",
+      "🍎",
+      "🐶",
+      "🐟",
+      "🐸"
+    ]
+  },
+  {
+    "categoria": "Herramientas de Escritura",
+    "correctos": [
+      "✏️",
+      "🖊️",
+      "🖍️",
+      "🖌️",
+      "✒️"
+    ],
+    "intrusos": [
+      "🔨",
+      "🔧",
+      "🥄",
+      "🍴",
+      "🥢"
+    ]
+  },
+  {
+    "categoria": "Palabras Llanas",
+    "correctos": [
+      "Árbol",
+      "Lápiz",
+      "Mesa",
+      "Silla",
+      "Casa"
+    ],
+    "intrusos": [
+      "Camión",
+      "Sofá",
+      "Pájaro",
+      "Teléfono",
+      "Café"
+    ]
+  },
+  {
+    "categoria": "Verbos (Futuro)",
+    "correctos": [
+      "Comeré",
+      "Saltarás",
+      "Viviremos",
+      "Jugarán",
+      "Dormirá"
+    ],
+    "intrusos": [
+      "Comí",
+      "Salto",
+      "Vivía",
+      "Jugaron",
+      "Estudian"
+    ]
+  },
+  {
+    "categoria": "Prefijos",
+    "correctos": [
+      "Deshacer",
+      "Prehistoria",
+      "Submarino",
+      "Imposible",
+      "Rehacer"
+    ],
+    "intrusos": [
+      "Mesa",
+      "Silla",
+      "Papel",
+      "Casa",
+      "Flor"
+    ]
+  }
+]

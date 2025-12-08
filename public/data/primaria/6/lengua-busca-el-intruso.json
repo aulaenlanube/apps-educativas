@@ -1,0 +1,87 @@
+[
+  {
+    "categoria": "Géneros Literarios",
+    "correctos": [
+      "🎭",
+      "📜",
+      "📖",
+      "🧛",
+      "👽"
+    ],
+    "intrusos": [
+      "🧪",
+      "🔢",
+      "📐",
+      "🍳",
+      "🏋️"
+    ]
+  },
+  {
+    "categoria": "Tecnología",
+    "correctos": [
+      "📧",
+      "💬",
+      "🤳",
+      "🌐",
+      "📶"
+    ],
+    "intrusos": [
+      "📠",
+      "📼",
+      "💾",
+      "🎞️",
+      "🕰️"
+    ]
+  },
+  {
+    "categoria": "Análisis Sintáctico",
+    "correctos": [
+      "Sujeto",
+      "Predicado",
+      "Núcleo",
+      "Atributo",
+      "Complemento"
+    ],
+    "intrusos": [
+      "Aguda",
+      "Llana",
+      "Esdrújula",
+      "Prefijo",
+      "Sufijo"
+    ]
+  },
+  {
+    "categoria": "Clases de Palabras",
+    "correctos": [
+      "Sustantivo",
+      "Adjetivo",
+      "Verbo",
+      "Adverbio",
+      "Preposición"
+    ],
+    "intrusos": [
+      "Sujeto",
+      "Predicado",
+      "Oración",
+      "Sílaba",
+      "Acento"
+    ]
+  },
+  {
+    "categoria": "Figuras Literarias",
+    "correctos": [
+      "Metáfora",
+      "Comparación",
+      "Hipérbole",
+      "Aliteración",
+      "Personificación"
+    ],
+    "intrusos": [
+      "Rima",
+      "Verso",
+      "Estrofa",
+      "Punto",
+      "Coma"
+    ]
+  }
+]

@@ -1,0 +1,87 @@
+[
+  {
+    "categoria": "Jobs (Icons)",
+    "correctos": [
+      "👮",
+      "👩‍⚕️",
+      "👨‍🏫",
+      "👨‍🚒",
+      "👩‍🚀"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🏠",
+      "🚗",
+      "🌳"
+    ]
+  },
+  {
+    "categoria": "Clothes (Icons)",
+    "correctos": [
+      "👕",
+      "👖",
+      "👗",
+      "🧥",
+      "👟"
+    ],
+    "intrusos": [
+      "🍎",
+      "🍌",
+      "🚙",
+      "⌚",
+      "👓"
+    ]
+  },
+  {
+    "categoria": "Jobs (Words)",
+    "correctos": [
+      "Teacher",
+      "Doctor",
+      "Nurse",
+      "Police",
+      "Pilot"
+    ],
+    "intrusos": [
+      "School",
+      "Hospital",
+      "Station",
+      "Park",
+      "House"
+    ]
+  },
+  {
+    "categoria": "Weather (Words)",
+    "correctos": [
+      "Sunny",
+      "Rainy",
+      "Cloudy",
+      "Windy",
+      "Snowy"
+    ],
+    "intrusos": [
+      "Monday",
+      "Summer",
+      "Blue",
+      "Happy",
+      "Sad"
+    ]
+  },
+  {
+    "categoria": "Action Verbs",
+    "correctos": [
+      "Run",
+      "Jump",
+      "Swim",
+      "Dance",
+      "Sing"
+    ],
+    "intrusos": [
+      "Happy",
+      "Sad",
+      "Big",
+      "Small",
+      "Red"
+    ]
+  }
+]

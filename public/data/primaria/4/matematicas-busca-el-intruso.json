@@ -1,0 +1,83 @@
+[
+  {
+    "categoria": "Ángulos y Formas",
+    "correctos": [
+      "📐",
+      "📏",
+      "🔺",
+      "⬜",
+      "🟡"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "🐶",
+      "🌧️"
+    ]
+  },
+  {
+    "categoria": "Fracciones (Comida partida)",
+    "correctos": [
+      "🍕",
+      "🍰",
+      "🍫",
+      "🍪",
+      "🍩"
+    ],
+    "intrusos": [
+      "🥛",
+      "🥤",
+      "🧉",
+      "🧊"
+    ]
+  },
+  {
+    "categoria": "Herramientas de Medida",
+    "correctos": [
+      "📏",
+      "📐",
+      "⚖️",
+      "⏱️",
+      "🌡️"
+    ],
+    "intrusos": [
+      "🔨",
+      "🔧",
+      "🪛",
+      "✂️",
+      "🗡️"
+    ]
+  },
+  {
+    "categoria": "Cuerpos Geométricos",
+    "correctos": [
+      "⚽",
+      "📦",
+      "🥫",
+      "⛺",
+      "🧊"
+    ],
+    "intrusos": [
+      "📄",
+      "🗺️",
+      "🖼️",
+      "🃏"
+    ]
+  },
+  {
+    "categoria": "Calculadora y Números",
+    "correctos": [
+      "🧮",
+      "🔢",
+      "➕",
+      "➖",
+      "✖️"
+    ],
+    "intrusos": [
+      "📝",
+      "🖌️",
+      "🔍",
+      "🔦"
+    ]
+  }
+]

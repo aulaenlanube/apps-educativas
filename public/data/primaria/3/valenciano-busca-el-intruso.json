@@ -1,0 +1,87 @@
+[
+  {
+    "categoria": "Animals de Granja",
+    "correctos": [
+      "🐮",
+      "🐷",
+      "🐔",
+      "🐑",
+      "🐴"
+    ],
+    "intrusos": [
+      "🦁",
+      "🐯",
+      "🐘",
+      "🦈",
+      "🚀"
+    ]
+  },
+  {
+    "categoria": "Fruites",
+    "correctos": [
+      "🍎",
+      "🍐",
+      "🍊",
+      "🍌",
+      "🍇"
+    ],
+    "intrusos": [
+      "🥦",
+      "🥕",
+      "🥔",
+      "🥩",
+      "🥚"
+    ]
+  },
+  {
+    "categoria": "Dies de la Setmana",
+    "correctos": [
+      "Dilluns",
+      "Dimarts",
+      "Dimecres",
+      "Dijous",
+      "Divendres"
+    ],
+    "intrusos": [
+      "Gener",
+      "Febrer",
+      "Estiu",
+      "Hivern",
+      "Matí"
+    ]
+  },
+  {
+    "categoria": "Colors (Paraules)",
+    "correctos": [
+      "Roig",
+      "Blau",
+      "Groc",
+      "Verd",
+      "Blanc"
+    ],
+    "intrusos": [
+      "Taula",
+      "Cadira",
+      "Gat",
+      "Gos",
+      "Llibre"
+    ]
+  },
+  {
+    "categoria": "L'Escola (Paraules)",
+    "correctos": [
+      "Llibre",
+      "Llapis",
+      "Goma",
+      "Mestra",
+      "Pissarra"
+    ],
+    "intrusos": [
+      "Platja",
+      "Muntanya",
+      "Piscina",
+      "Cinema",
+      "Sopa"
+    ]
+  }
+]
