@@ -1,0 +1,27 @@
+[
+  {
+    "categoria": "Les Couleurs",
+    "correctos": ["Rouge", "Bleu", "Vert", "Jaune", "Noir", "Blanc", "Rose", "Orange"],
+    "intrusos": ["Chat", "Chien", "Un", "Deux", "Maison", "École"]
+  },
+  {
+    "categoria": "Les Animaux",
+    "correctos": ["Chat", "Chien", "Lion", "Tigre", "Oiseau", "Poisson", "Vache"],
+    "intrusos": ["Rouge", "Bleu", "Crayon", "Livre", "Table"]
+  },
+  {
+    "categoria": "Les Nombres (1-10)",
+    "correctos": ["Un", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix"],
+    "intrusos": ["Rouge", "Chat", "Mère", "Père", "Bonjour", "Merci"]
+  },
+  {
+    "categoria": "La Famille",
+    "correctos": ["Mère", "Père", "Frère", "Sœur", "Grand-mère", "Grand-père", "Bébé"],
+    "intrusos": ["Professeur", "Chat", "Chien", "École", "Stylo"]
+  },
+  {
+    "categoria": "Salutations",
+    "correctos": ["Bonjour", "Salut", "Bonsoir", "Au revoir", "Merci", "À bientôt"],
+    "intrusos": ["Rouge", "Bleu", "Un", "Deux", "Chat", "Chien"]
+  }
+]

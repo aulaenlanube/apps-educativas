@@ -1,0 +1,27 @@
+[
+  {
+    "categoria": "Emociones Agradables",
+    "correctos": ["😀", "😁", "😂", "🥰", "😍", "🤩", "😊", "🥳"],
+    "intrusos": ["😢", "😭", "😡", "😠", "🤬", "😰", "😱"]
+  },
+  {
+    "categoria": "Emociones Desagradables",
+    "correctos": ["😢", "😭", "😡", "😠", "🤬", "😰", "😱", "😞"],
+    "intrusos": ["😀", "😁", "🥰", "😍", "🥳", "🎉"]
+  },
+  {
+    "categoria": "Comida Saludable",
+    "correctos": ["🥦", "🥕", "🌽", "🥗", "🍎", "🍌", "🍇", "🍊", "🐟", "💧"],
+    "intrusos": ["🍬", "🍭", "🍫", "🍩", "🥤", "🍰", "🍟"]
+  },
+  {
+    "categoria": "Buenos hábitos en clase",
+    "correctos": ["Escuchar", "Levantar la mano", "Compartir", "Ayudar", "Trabajar", "Respetar"],
+    "intrusos": ["Gritar", "Pegar", "Insultar", "Correr", "Dormir"]
+  },
+  {
+    "categoria": "Higiene Personal",
+    "correctos": ["🧼", "🪥", "🚿", "🛀", "🧴", "🧻"],
+    "intrusos": ["⚽", "🎮", "📺", "🍔", "🍟", "🖍️"]
+  }
+]

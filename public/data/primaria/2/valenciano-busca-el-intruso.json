@@ -1,0 +1,27 @@
+[
+  {
+    "categoria": "Els Colors",
+    "correctos": ["🔴", "🔵", "🟢", "🟡", "🟣", "🟠", "⚫", "⚪", "🟤"],
+    "intrusos": ["Gat", "Gos", "Taula", "Cadira", "Llibre", "U", "Dos"]
+  },
+  {
+    "categoria": "Animals",
+    "correctos": ["Gat", "Gos", "Lleó", "Tigre", "Ocell", "Peix", "Vaca", "Porc"],
+    "intrusos": ["Roig", "Blau", "Llapis", "Goma", "Cotxe"]
+  },
+  {
+    "categoria": "L'Escola",
+    "correctos": ["Llapis", "Goma", "Llibre", "Moxilla", "Regle", "Tisores", "Taula"],
+    "intrusos": ["Poma", "Plàtan", "Pilota", "Nina", "Llit"]
+  },
+  {
+    "categoria": "La Família",
+    "correctos": ["Mare", "Pare", "Germà", "Germana", "Iaia", "Iaio", "Oncle", "Tia"],
+    "intrusos": ["Mestre", "Metge", "Policia", "Escola", "Parc"]
+  },
+  {
+    "categoria": "Fruites",
+    "correctos": ["🍎", "🍐", "🍊", "🍋", "🍌", "🍉", "🍇", "🍓"],
+    "intrusos": ["🥦", "🥕", "🥔", "🍞", "🧀", "🍗"]
+  }
+]

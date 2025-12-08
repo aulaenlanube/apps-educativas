@@ -158,6 +158,14 @@ const appMedidas6 = {
   component: Medidas6 
 };
 
+
+const appBuscaElIntruso = {
+    id: 'busca-el-intruso', // El ID será prefijado o único según tu lógica de findAppById
+    name: 'Busca el Intruso',
+    description: 'Encuentra el concepto que no encaja con los demás.',
+    component: BuscaElIntruso
+};
+
 // exportamos las materias para primaria y ESO desde el JSON
 export const primariaSubjects = materiasData.primaria;
 export const esoSubjects = materiasData.eso;
@@ -272,6 +280,12 @@ export const primariaApps = {
   },
   '2': {
     'lengua': [
+      {
+        id: 'busca-el-intruso-lengua-2',
+        name: 'Busca el Intruso',
+        description: 'Identifica la palabra que no pertenece al grupo (gramática y vocabulario).',
+        component: BuscaElIntruso
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
@@ -280,6 +294,12 @@ export const primariaApps = {
       { id: 'sumas-primaria-2-drag', name: 'Sumas con llevadas', description: 'Resuelve sumas de dos cifras con llevadas.', component: SumasPrimaria2 },
       { id: 'restas-primaria-2', name: 'Restas con llevadas', description: 'Restas de 2 cifras con llevadas', component: RestasPrimaria2 },
       { id: 'supermercado-matematico-2', name: 'Supermercado Matemático (Sumas llevando)', description: 'Suma los precios de varios productos, ¡a veces tendrás que llevar!', component: SupermercadoMatematico2 },
+      {
+        id: 'busca-el-intruso-matematicas-2',
+        name: 'Busca el Intruso',
+        description: 'Encuentra el número o figura que no encaja.',
+        component: BuscaElIntruso
+      },
       appMedidas2,
       appMayorMenor2,
       appNumerosRomanos3,
@@ -288,16 +308,34 @@ export const primariaApps = {
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
     ],
     'ciencias-naturales': [
+      {
+        id: 'busca-el-intruso-naturales-2',
+        name: 'Busca el Intruso',
+        description: 'Distingue animales, plantas y elementos de la naturaleza.',
+        component: BuscaElIntruso
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
     ],
     'ciencias-sociales': [
+      {
+        id: 'busca-el-intruso-sociales-2',
+        name: 'Busca el Intruso',
+        description: 'Identifica elementos de la sociedad, profesiones y el entorno.',
+        component: BuscaElIntruso
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
     ],
     'ingles': [
+      {
+        id: 'busca-el-intruso-ingles-2',
+        name: 'Find the Odd One',
+        description: 'Find the word that does not belong (Vocabulary).',
+        component: BuscaElIntruso
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
@@ -305,16 +343,34 @@ export const primariaApps = {
     'tutoria': [
       appIslaDeLaCalma,
       appGeneradorPersonajes,
+      {
+        id: 'busca-el-intruso-tutoria-2',
+        name: 'Busca el Intruso',
+        description: 'Identifica emociones, valores y hábitos saludables.',
+        component: BuscaElIntruso
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
     ],
     'valenciano': [
+      {
+        id: 'busca-el-intruso-valenciano-2',
+        name: "Busca l'Intrus",
+        description: "Troba la paraula que no pertany al grup.",
+        component: BuscaElIntruso
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }
     ],
     'frances': [
+      {
+        id: 'busca-el-intruso-frances-2',
+        name: "Trouve l'Intrus",
+        description: 'Trouve le mot qui ne correspond pas.',
+        component: BuscaElIntruso
+      },
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' }

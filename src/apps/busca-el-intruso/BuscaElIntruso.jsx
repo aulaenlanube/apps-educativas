@@ -1,12 +1,3 @@
-// Nuevo componente unificado para el juego "Busca el Intruso".
-// Este componente carga la colección de emojis desde ficheros JSON
-// ubicados en ``public/data/primaria/1`` según la asignatura de primero
-// de primaria. El objetivo es disponer de un único fichero JSX que
-// implemente toda la lógica del juego; las asignaturas específicas se
-// definen mediante la prop ``tema`` que se pasa desde los componentes
-// envoltorios o rutas del sistema. El juego ofrece un modo libre y un
-// modo test con cronómetro y resumen de resultados.
-
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
@@ -14,28 +5,22 @@ import './BuscaElIntruso.css';
 
 /**
  * BuscaElIntruso
- *
- * @param {Object} props
- * @param {string} [props.tema] - identificador de la asignatura; si no se
- *   proporciona se intentará deducir desde los parámetros de ruta
- *   (`subjectId`). Si no existe asignatura se cargará el conjunto
- *   "general".
+ * Juego que alterna entre discriminación visual (emojis) y semántica (palabras/conceptos).
+ * La apariencia se adapta automáticamente celda por celda y según la densidad del tablero.
  */
 const BuscaElIntruso = ({ tema }) => {
-  // Extraer parámetros de la URL cuando el componente se utiliza a través
-  // de las rutas definidas en React Router. Esto permite que, en ausencia
-  // de la prop `tema`, se utilice el parámetro de ruta `subjectId` para
-  // determinar qué JSON cargar. Si tampoco existe, se emplea 'general'.
   const { level, grade: gradeParam, subjectId } = useParams();
-  // Normalizar el nivel a 'primaria' o 'eso'; esta app sólo utiliza
-  // recursos de primero de primaria pero se deja la lógica preparada.
   const nivel = level || 'primaria';
-  // Normalizar el curso; en caso de no estar definido se utiliza '1'.
   const curso = gradeParam || '1';
+  
+  // Datos crudos cargados del JSON
+  const [datosJuego, setDatosJuego] = useState(null);
+  
+  // MODO LÓGICO: 
+  // 'visual' = 1º Primaria (Grid denso 4x8)
+  // 'conceptual' = 2º-6º Primaria (Grid amplio 3x4)
+  const [modoLogico, setModoLogico] = useState('visual'); 
 
-  // Estado de los emojis que se cargan desde el JSON
-  const [emojis, setEmojis] = useState(null);
-  // Estados para el juego
   const [estado, setEstado] = useState({
     modo: 'libre',
     ronda: 0,
@@ -48,48 +33,46 @@ const BuscaElIntruso = ({ tema }) => {
     tablero: [],
     rows: 4,
     cols: 8,
-    mensaje: 'Pulsa el emoji distinto',
+    mensaje: 'Cargando...',
+    categoria: '', 
     mensajeClase: 'feedback-intruso',
     feedbackCellIndex: -1,
     feedbackCellStatus: ''
   });
+
   const [tiempoTranscurrido, setTiempoTranscurrido] = useState(0);
   const temporizadorRef = useRef(null);
   const [mostrarResumen, setMostrarResumen] = useState(false);
 
-  // Determinar la asignatura a cargar. Tiene prioridad la prop `tema`,
-  // después el parámetro de ruta `subjectId`, y finalmente 'general'.
   const asignatura = tema || (typeof subjectId === 'string' && subjectId.trim() ? subjectId.trim() : 'general');
 
-  // Cargar los emojis desde el fichero JSON correspondiente. Se intenta
-  // primero la variante específica de la asignatura, luego una genérica
-  // para el curso, y finalmente una genérica de primero si fallan las
-  // anteriores. El nombre de los ficheros sigue el patrón
-  // `${asignatura}-busca-el-intruso.json` para específicos y
-  // `busca-el-intruso.json` para la versión genérica.
+  // Helper: Detecta si un item debe tratarse como texto o como icono
+  const contieneLetras = (str) => {
+    if (!str) return false;
+    // Busca cualquier letra del alfabeto (incluyendo acentos, ñ, ç)
+    return /[a-zA-ZáéíóúÁÉÍÓÚñÑçÇàèìòùÀÈÌÒÙäëïöüÄËÏÖÜ]/.test(String(str));
+  };
+
+  // --- Carga de Datos ---
   useEffect(() => {
     let vivo = true;
-    setEmojis(null);
+    setDatosJuego(null);
     const base = import.meta.env.BASE_URL || '/';
-    // Construir URLs posibles en orden de preferencia
+    
     const urls = [];
     if (asignatura && asignatura !== 'general') {
       urls.push(`${base}data/${nivel}/${curso}/${asignatura}-busca-el-intruso.json`);
     }
-    // URL genérica del curso
     urls.push(`${base}data/${nivel}/${curso}/busca-el-intruso.json`);
-    // Fallback: primero de primaria genérico
-    urls.push(`${base}data/${nivel}/1/busca-el-intruso.json`);
+    
+    if (nivel === 'primaria' && curso === '1') {
+       urls.push(`${base}data/primaria/1/busca-el-intruso.json`); 
+    }
 
     const cargar = async (url) => {
-      const resp = await fetch(url, { cache: 'no-cache' });
+      const resp = await fetch(url);
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
-      const data = await resp.json();
-      // Validar que el contenido es un array de strings
-      if (Array.isArray(data) && data.every(it => typeof it === 'string')) {
-        return data;
-      }
-      throw new Error('Formato JSON inválido');
+      return await resp.json();
     };
 
     (async () => {
@@ -97,21 +80,26 @@ const BuscaElIntruso = ({ tema }) => {
         try {
           const datos = await cargar(url);
           if (vivo) {
-            setEmojis(datos);
+            // Determinar Modo Lógico (Juego)
+            if (Array.isArray(datos) && typeof datos[0] === 'string') {
+              setModoLogico('visual'); 
+            } else {
+              setModoLogico('conceptual');
+            }
+            setDatosJuego(datos);
             return;
           }
-        } catch {
-          // Continuar con la siguiente URL
+        } catch (e) {
+          console.warn(`No se pudo cargar ${url}`, e);
         }
       }
-      // Si ninguna carga ha funcionado
-      if (vivo) setEmojis([]);
+      if (vivo) setDatosJuego([]);
     })();
 
     return () => { vivo = false; };
   }, [asignatura, nivel, curso]);
 
-  // Control del cronómetro
+  // --- Cronómetro ---
   const iniciarCronometro = () => {
     detenerCronometro();
     const startTime = performance.now();
@@ -122,6 +110,7 @@ const BuscaElIntruso = ({ tema }) => {
     };
     temporizadorRef.current = requestAnimationFrame(tick);
   };
+  
   const detenerCronometro = () => {
     if (temporizadorRef.current) {
       cancelAnimationFrame(temporizadorRef.current);
@@ -129,40 +118,72 @@ const BuscaElIntruso = ({ tema }) => {
     }
   };
 
-  // Genera un tablero nuevo: selecciona un emoji base y otro intruso,
-  // coloca uno distinto en una celda aleatoria y actualiza el estado.
+  // --- Lógica del Juego ---
   const generarYRenderizarColeccion = () => {
-    if (!emojis || emojis.length < 2) return;
-    const rows = 4;
-    const cols = 8;
-    const total = rows * cols;
-    const { base, intruso } = elegirParEmojis();
-    const indiceIntruso = Math.floor(Math.random() * total);
-    const lista = Array.from({ length: total }, (_, i) => (i === indiceIntruso ? intruso : base));
+    if (!datosJuego || datosJuego.length === 0) return;
+
+    let nuevoTablero = [];
+    let indiceIntruso = -1;
+    let rows, cols;
+    let mensaje = '';
+    let categoria = '';
+
+    if (modoLogico === 'visual') {
+      rows = 4; cols = 8;
+      const total = rows * cols;
+      const { base, intruso } = elegirParEmojisVisual(datosJuego);
+      indiceIntruso = Math.floor(Math.random() * total);
+      nuevoTablero = Array.from({ length: total }, (_, i) => (i === indiceIntruso ? intruso : base));
+      mensaje = 'Pulsa el emoji distinto';
+    
+    } else {
+      // Modo Conceptual
+      rows = 3; cols = 4;
+      const total = rows * cols;
+      const desafio = datosJuego[Math.floor(Math.random() * datosJuego.length)];
+      const intruso = desafio.intrusos[Math.floor(Math.random() * desafio.intrusos.length)];
+      
+      const correctosNecesarios = total - 1;
+      let correctosElegidos = [];
+      const poolCorrectos = [...desafio.correctos].sort(() => Math.random() - 0.5);
+      
+      let i = 0;
+      while (correctosElegidos.length < correctosNecesarios) {
+        correctosElegidos.push(poolCorrectos[i % poolCorrectos.length]);
+        i++;
+      }
+
+      indiceIntruso = Math.floor(Math.random() * total);
+      nuevoTablero = [...correctosElegidos];
+      nuevoTablero.splice(indiceIntruso, 0, intruso);
+
+      mensaje = 'Pulsa lo que no debe estar ahí';
+      categoria = desafio.categoria;
+    }
+
     setEstado(prev => ({
       ...prev,
       rows,
       cols,
-      tablero: lista,
+      tablero: nuevoTablero,
       indiceIntruso,
       bloqueoClicks: false,
-      mensaje: 'Pulsa el emoji distinto',
+      mensaje: mensaje,
+      categoria: categoria,
       mensajeClase: 'feedback-intruso'
     }));
   };
 
-  // Escoge dos emojis distintos del conjunto cargado
-  const elegirParEmojis = () => {
-    const a = emojis[Math.floor(Math.random() * emojis.length)];
+  const elegirParEmojisVisual = (lista) => {
+    const a = lista[Math.floor(Math.random() * lista.length)];
     let b;
     do {
-      b = emojis[Math.floor(Math.random() * emojis.length)];
+      b = lista[Math.floor(Math.random() * lista.length)];
     } while (b === a);
     return { base: a, intruso: b };
   };
 
-  // Avanza a la siguiente ronda en modo test; finaliza cuando se
-  // completan todas las rondas
+  // --- Control de Flujo ---
   const siguienteRonda = () => {
     if (estado.ronda + 1 > estado.rondasTotales) {
       finalizarTest();
@@ -171,10 +192,12 @@ const BuscaElIntruso = ({ tema }) => {
       generarYRenderizarColeccion();
     }
   };
+
   const finalizarTest = () => {
     detenerCronometro();
     setMostrarResumen(true);
   };
+
   const activarModoLibre = () => {
     detenerCronometro();
     setTiempoTranscurrido(0);
@@ -186,8 +209,9 @@ const BuscaElIntruso = ({ tema }) => {
       aciertos: 0,
       errores: 0
     }));
-    generarYRenderizarColeccion();
+    setTimeout(() => generarYRenderizarColeccion(), 0);
   };
+
   const iniciarTest = () => {
     detenerCronometro();
     setTiempoTranscurrido(0);
@@ -200,29 +224,28 @@ const BuscaElIntruso = ({ tema }) => {
       errores: 0
     }));
     iniciarCronometro();
-    generarYRenderizarColeccion();
+    setTimeout(() => generarYRenderizarColeccion(), 0);
   };
 
-  // Reiniciar el tablero cuando cambie el conjunto de emojis o el tema
   useEffect(() => {
-    if (emojis && emojis.length >= 2) {
+    if (datosJuego && datosJuego.length > 0) {
       activarModoLibre();
     }
-    // limpiar temporizador al desmontar
     return () => detenerCronometro();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [emojis]);
+  }, [datosJuego]);
 
-  // Gestiona el clic en una celda del tablero
+  // --- Gestión de Interacción ---
   const gestionarClick = (indice) => {
     if (estado.bloqueoClicks) return;
     setEstado(prev => ({ ...prev, bloqueoClicks: true }));
     const esCorrecto = indice === estado.indiceIntruso;
+    
     if (esCorrecto) {
       setEstado(prev => ({
         ...prev,
         aciertos: prev.aciertos + 1,
-        mensaje: '¡Correcto!',
+        mensaje: '¡Muy bien!',
         mensajeClase: 'feedback-intruso ok-intruso',
         feedbackCellIndex: indice,
         feedbackCellStatus: 'ok'
@@ -231,14 +254,13 @@ const BuscaElIntruso = ({ tema }) => {
       setEstado(prev => ({
         ...prev,
         errores: prev.errores + 1,
-        mensaje: 'Incorrecto',
+        mensaje: '¡Oh, vaya!',
         mensajeClase: 'feedback-intruso ko-intruso',
         feedbackCellIndex: indice,
         feedbackCellStatus: 'ko'
       }));
     }
-    // Breve retraso para mostrar feedback y luego pasar a la siguiente ronda o
-    // regenerar el tablero en modo libre
+
     setTimeout(() => {
       setEstado(prev => ({
         ...prev,
@@ -250,71 +272,94 @@ const BuscaElIntruso = ({ tema }) => {
       } else {
         generarYRenderizarColeccion();
       }
-    }, 400);
+    }, 1000);
   };
 
-  // Precisión calculada como porcentaje
   const precision = estado.rondasTotales > 0 ? Math.round((estado.aciertos / estado.rondasTotales) * 100) : 0;
 
-  // Renderizado del componente
-  if (emojis === null) {
-    // Todavía cargando
-    return <div className="contenedor-intruso">Cargando…</div>;
-  }
-  if (!emojis || emojis.length < 2) {
-    return <div className="contenedor-intruso">No hay suficiente contenido disponible para este juego todavía.</div>;
-  }
+  if (!datosJuego) return <div className="contenedor-intruso">Cargando recursos...</div>;
+  if (datosJuego.length === 0) return <div className="contenedor-intruso">No hay datos para esta asignatura/curso.</div>;
+
   return (
     <div className="contenedor-intruso">
-
       <div className="encabezado-intruso">
-        <h1 className="text-5xl font-bold mb-4 text-center">
+        <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center">
           <span role="img" aria-label="Lupa">🔎</span> 
           <span className="gradient-text">Busca el intruso</span>
         </h1>
-        <div className="controles-intruso">
-          <button className="btn-intruso" onClick={activarModoLibre}>Modo libre</button>
-          <button className="btn-intruso" onClick={iniciarTest}>Modo test</button>
-          <button className="btn-intruso sec-intruso" onClick={generarYRenderizarColeccion}>Reiniciar</button>
+        <div className="controles-intruso flex flex-wrap justify-center gap-2">
+          <button className="btn-intruso" onClick={activarModoLibre}>Práctica</button>
+          <button className="btn-intruso" onClick={iniciarTest}>Examen</button>
         </div>
       </div>
-      <div className="panel-intruso">
-        <div className="barra-info-intruso">
-          <div className="chips-intruso">
-            <span className="chip-intruso"><strong>Modo:</strong> {estado.modo === 'test' ? 'Test' : 'Libre'}</span>
-            <span className="chip-intruso"><strong>Ronda:</strong> {estado.modo === 'test' ? `${Math.min(estado.ronda, estado.rondasTotales)} / ${estado.rondasTotales}` : '—'}</span>
-            <span className="chip-intruso"><strong>Aciertos:</strong> {estado.aciertos}</span>
-            <span className="chip-intruso"><strong>Errores:</strong> {estado.errores}</span>
+
+      <div className="panel-intruso mt-4">
+        <div className="barra-info-intruso mb-4">
+          <div className="chips-intruso flex flex-wrap justify-center gap-4">
+            <span className="chip-intruso bg-white/10 px-3 py-1 rounded-full"><strong>Modo:</strong> {estado.modo === 'test' ? 'Examen' : 'Práctica'}</span>
+            <span className="chip-intruso bg-white/10 px-3 py-1 rounded-full"><strong>Aciertos:</strong> {estado.aciertos}</span>
             {estado.modo === 'test' && (
-              <span className="chip-intruso"><strong>Tiempo:</strong> {tiempoTranscurrido.toFixed(1)} s</span>
+              <span className="chip-intruso bg-white/10 px-3 py-1 rounded-full"><strong>Ronda:</strong> {estado.ronda}/{estado.rondasTotales}</span>
             )}
           </div>
         </div>
+
         {!mostrarResumen ? (
           <>
-            <div className={estado.mensajeClase}>{estado.mensaje}</div>
+            {estado.categoria && (
+              <h2 className="text-xl md:text-3xl font-bold text-center mb-2 text-indigo-600 dark:text-indigo-300 drop-shadow-sm">
+                {estado.categoria}
+              </h2>
+            )}
+            
+            <div className={`${estado.mensajeClase} text-lg md:text-xl text-center mb-4 min-h-[30px]`}>
+                {estado.mensaje}
+            </div>
+            
             <div
-              className="tablero-intruso"
-              style={{ gridTemplateColumns: `repeat(${estado.cols}, 1fr)` }}
+              className="tablero-intruso grid gap-2 md:gap-4 mx-auto max-w-4xl"
+              style={{ 
+                  gridTemplateColumns: `repeat(${estado.cols}, minmax(0, 1fr))` 
+              }}
             >
-              {estado.tablero.map((emoji, idx) => (
-                <div
-                  key={idx}
-                  className={`celda-intruso ${idx === estado.feedbackCellIndex ? estado.feedbackCellStatus : ''}`}
-                  onClick={() => gestionarClick(idx)}
-                >
-                  {emoji}
-                </div>
-              ))}
+              {estado.tablero.map((item, idx) => {
+                const esTexto = contieneLetras(item);
+                // Si es un juego visual (1º primaria, 8 columnas), los iconos deben ser medianos.
+                // Si es un juego conceptual (2º primaria, 4 columnas), los iconos deben ser gigantes.
+                const styleIcono = modoLogico === 'visual' 
+                  ? { fontSize: 'clamp(1.5rem, 4vw, 2.8rem)' }  // Tamaño 1º Primaria
+                  : { fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }; // Tamaño 2º-6º Primaria
+
+                return (
+                  <div
+                    key={idx}
+                    className={`celda-intruso aspect-square cursor-pointer bg-white/40 hover:bg-white/60 rounded-xl transition-all duration-200 select-none border-4 border-transparent shadow-sm
+                      ${esTexto
+                        ? 'celda-texto font-bold text-indigo-950 drop-shadow-sm'
+                        : 'flex items-center justify-center' 
+                      }
+                      ${idx === estado.feedbackCellIndex ? (estado.feedbackCellStatus === 'ok' ? '!border-green-500 !bg-green-100 !text-black scale-105' : '!border-red-500 !bg-red-100 !text-black scale-95') : ''}
+                    `}
+                    // Solo forzamos tamaño inline si NO es texto
+                    style={ !esTexto ? styleIcono : {} }
+                    onClick={() => gestionarClick(idx)}
+                  >
+                    {item}
+                  </div>
+                );
+              })}
             </div>
           </>
         ) : (
-          <div className="resumen-intruso">
-            <div className="punt-intruso">Puntuación: {estado.aciertos}/{estado.rondasTotales}</div>
-            <div className="chip-intruso">Tiempo total: {tiempoTranscurrido.toFixed(1)} s</div>
-            <div className="chip-intruso">Precisión: {precision}%</div>
-            <button className="btn-intruso" onClick={iniciarTest}>Repetir test</button>
-            <button className="btn-intruso sec-intruso" onClick={activarModoLibre}>Volver a modo libre</button>
+          <div className="resumen-intruso text-center bg-white/10 p-8 rounded-2xl max-w-md mx-auto">
+            <h2 className="text-3xl font-bold mb-4">¡Resultado Final!</h2>
+            <div className="text-6xl font-black mb-6 text-yellow-300">{precision}%</div>
+            <p className="mb-2">Has encontrado {estado.aciertos} intrusos de {estado.rondasTotales}.</p>
+            <p className="mb-6">Tiempo: {tiempoTranscurrido.toFixed(1)} segundos</p>
+            <div className="flex flex-col gap-3">
+                <button className="btn-intruso w-full" onClick={iniciarTest}>Repetir Examen</button>
+                <button className="btn-intruso sec-intruso w-full bg-transparent border border-white" onClick={activarModoLibre}>Volver a Práctica</button>
+            </div>
           </div>
         )}
       </div>

@@ -1,0 +1,32 @@
+[
+  {
+    "categoria": "Colors",
+    "correctos": ["🔴", "🔵", "🟢", "🟡", "🟣", "🟠", "⚫", "⚪", "🟤"],
+    "intrusos": ["🐶", "🐱", "🚗", "🏠", "🍎", "One", "Two"]
+  },
+  {
+    "categoria": "Family Members",
+    "correctos": ["Mom", "Dad", "Sister", "Brother", "Grandma", "Grandpa", "Baby", "Uncle"],
+    "intrusos": ["Teacher", "Doctor", "Cat", "Dog", "School", "House"]
+  },
+  {
+    "categoria": "School Objects",
+    "correctos": ["Pencil", "Pen", "Book", "Bag", "Ruler", "Rubber", "Desk", "Chair"],
+    "intrusos": ["Apple", "Banana", "Lion", "Tiger", "Car", "Ball"]
+  },
+  {
+    "categoria": "Animals",
+    "correctos": ["Cat", "Dog", "Lion", "Tiger", "Bird", "Fish", "Cow", "Pig"],
+    "intrusos": ["Red", "Blue", "Table", "Chair", "Pencil", "One"]
+  },
+  {
+    "categoria": "Body Parts",
+    "correctos": ["👀", "👃", "👄", "👂", "✋", "🦶", "🦵", "💪", "🧠"],
+    "intrusos": ["👕", "👖", "👗", "👟", "🧢", "👓"]
+  },
+  {
+    "categoria": "Food",
+    "correctos": ["🍎", "🍌", "🍕", "🍔", "🍟", "🍞", "🧀", "🥗", "🥚"],
+    "intrusos": ["🐶", "⚽", "🚗", "✏️", "📱", "🏠"]
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "categoria": "Sustantivos (Nombres de cosas)",
+    "correctos": ["Casa", "Perro", "Lápiz", "Mesa", "Silla", "Coche", "Libro", "Flor", "Sol"],
+    "intrusos": ["Correr", "Saltar", "Comer", "Dormir", "Grande", "Rojo", "Bonito"]
+  },
+  {
+    "categoria": "Verbos (Acciones)",
+    "correctos": ["Correr", "Saltar", "Leer", "Escribir", "Cantar", "Bailar", "Jugar", "Comer"],
+    "intrusos": ["Gato", "Mesa", "Lápiz", "Azul", "Alto", "Niño", "Escuela"]
+  },
+  {
+    "categoria": "Adjetivos (Cualidades)",
+    "correctos": ["Grande", "Pequeño", "Rojo", "Guapo", "Lento", "Rápido", "Alto", "Bajo", "Feliz"],
+    "intrusos": ["Pedro", "Madrid", "Mesa", "Silla", "Correr", "Saltar"]
+  },
+  {
+    "categoria": "Palabras en Plural",
+    "correctos": ["Gatos", "Perros", "Mesas", "Niños", "Coches", "Libros", "Arboles", "Flores"],
+    "intrusos": ["Gato", "Perro", "Mesa", "Niño", "Sol", "Pan", "Pez"]
+  },
+  {
+    "categoria": "Palabras femeninas (La)",
+    "correctos": ["Mesa", "Silla", "Casa", "Luna", "Flor", "Vaca", "Niña", "Puerta"],
+    "intrusos": ["Coche", "Perro", "Gato", "Libro", "Suelo", "Sol", "Árbol"]
+  },
+  {
+    "categoria": "Material escolar",
+    "correctos": ["✏️", "🖊️", "🖍️", "📏", "✂️", "📚", "🎒", "📎"],
+    "intrusos": ["🍎", "🥪", "⚽", "🧸", "🚗", "🐶", "👕"]
+  }
+]
