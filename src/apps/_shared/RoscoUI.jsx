@@ -26,7 +26,7 @@ const RoscoUI = ({
         setInputValue('');
     };
 
-    // --- PANTALLA CONFIGURACIÓN (Mismo código, funcional) ---
+    // --- PANTALLA CONFIGURACIÓN ---
     if (gameState === 'config') {
         const handleConfigChange = (key, value) => {
             setConfig(prev => ({ ...prev, [key]: value }));
@@ -112,27 +112,50 @@ const RoscoUI = ({
         const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
         const winner = sortedPlayers[0];
         const isTie = players.length === 2 && players[0].score === players[1].score;
+        const isSinglePlayer = players.length === 1;
 
         return (
             <div className="rosco-container pt-10">
-                <h1 className="text-5xl font-extrabold mb-8 text-blue-600 font-fredoka">¡Juego Terminado!</h1>
+                <h1 className="text-5xl font-extrabold mb-8 text-blue-600 font-fredoka">
+                    {isSinglePlayer ? '¡Partida Completada!' : '¡Juego Terminado!'}
+                </h1>
+                
                 <div className="bg-white p-8 rounded-3xl shadow-xl max-w-md mx-auto">
-                    {isTie ? (
-                        <div className="text-4xl mb-6">🤝 ¡Empate!</div>
-                    ) : (
+                    
+                    {/* CONTENIDO PRINCIPAL RESULTADO */}
+                    {isSinglePlayer ? (
                         <div className="mb-8">
-                            <span className="text-6xl block mb-2">{winner.icon}</span>
-                            <h2 className="text-2xl font-bold text-gray-700">¡Ha ganado {winner.name}!</h2>
+                             <span className="text-6xl block mb-2">{winner.icon}</span>
+                             <h2 className="text-2xl font-bold text-gray-700 mb-2">Has conseguido</h2>
+                             <div className="text-5xl font-extrabold text-green-500">{winner.score} <span className="text-2xl text-gray-400">aciertos</span></div>
+                             {config.useTimer && winner.timeLeft > 0 && (
+                                 <p className="text-sm text-gray-400 mt-2 font-bold">¡Te sobraron {winner.timeLeft}s!</p>
+                             )}
+                        </div>
+                    ) : (
+                        // MODO 2 JUGADORES
+                        isTie ? (
+                            <div className="text-4xl mb-6">🤝 ¡Empate!</div>
+                        ) : (
+                            <div className="mb-8">
+                                <span className="text-6xl block mb-2">{winner.icon}</span>
+                                <h2 className="text-2xl font-bold text-gray-700">¡Ha ganado {winner.name}!</h2>
+                            </div>
+                        )
+                    )}
+
+                    {/* LISTA DE PUNTUACIONES (Solo si hay más de 1 jugador o para mostrar detalle) */}
+                    {!isSinglePlayer && (
+                        <div className="bg-gray-50 rounded-xl p-4 mb-8">
+                            {players.map(p => (
+                                <div key={p.id} className="flex justify-between items-center mb-2 last:mb-0 text-lg border-b last:border-0 border-gray-200 pb-2 last:pb-0">
+                                    <span className="font-bold">{p.icon} {p.name}</span>
+                                    <span className="font-extrabold text-blue-600">{p.score} aciertos</span>
+                                </div>
+                            ))}
                         </div>
                     )}
-                    <div className="bg-gray-50 rounded-xl p-4 mb-8">
-                        {players.map(p => (
-                            <div key={p.id} className="flex justify-between items-center mb-2 last:mb-0 text-lg border-b last:border-0 border-gray-200 pb-2 last:pb-0">
-                                <span className="font-bold">{p.icon} {p.name}</span>
-                                <span className="font-extrabold text-blue-600">{p.score} aciertos</span>
-                            </div>
-                        ))}
-                    </div>
+
                     <button onClick={restartGame} 
                         className="bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded-full shadow-lg w-full">
                         Nueva Partida
@@ -171,8 +194,8 @@ const RoscoUI = ({
                                 {p.timeLeft}s
                             </div>
                         )}
-                        {/* Indicador de turno explícito */}
-                        {activePlayerIndex === idx && (
+                        {/* Indicador de turno explícito (Solo si hay 2 jugadores) */}
+                        {players.length > 1 && activePlayerIndex === idx && (
                             <div className="absolute -top-3 -right-2 bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full font-bold animate-bounce">
                                 TU TURNO
                             </div>
