@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700&display=swap');
+
+.rosco-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* El círculo de letras */
+.rosco-circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 30px auto;
+    border-radius: 50%;
+}
+
+.rosco-letter {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-family: 'Fredoka One', cursive;
+    color: #555;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    /* Posicionamiento matemático simple en JS o variables CSS si son muchas, 
+       pero para pocas letras podemos ajustarlo o usar transform */
+}
+
+/* Estados de las letras */
+.rosco-letter.active {
+    background: #3b82f6;
+    color: white;
+    transform: scale(1.3);
+    z-index: 10;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    border: 2px solid white;
+}
+
+.rosco-letter.correct { background: #22c55e; color: white; }
+.rosco-letter.wrong { background: #ef4444; color: white; }
+.rosco-letter.pending { background: #d1d5db; }
+
+/* Centro del rosco (Definición) */
+.rosco-center {
+    margin-top: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rosco-definition-type {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #6366f1;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.rosco-definition-text {
+    font-size: 1.4rem;
+    color: #1f2937;
+    margin-bottom: 20px;
+}
+
+/* Input area */
+.rosco-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.rosco-input {
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+    outline: none;
+}
+
+.rosco-input:focus {
+    border-color: #3b82f6;
+}
+
+.btn-check {
+    background: #22c55e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-pasapalabra {
+    background: #f59e0b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Feedback flotante */
+.feedback-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    animation: popIn 0.5s ease;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.feedback-success { color: #22c55e; }
+.feedback-error { color: #ef4444; }
+.feedback-info { color: #f59e0b; }
+
+@keyframes popIn {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}

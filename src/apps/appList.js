@@ -41,6 +41,9 @@ import MultiplicacionesPrimaria6 from './multiplicaciones/primaria-6/Multiplicac
 
 import GeneradorPersonajes from './generador-personajes/GeneradorPersonajes';
 import BuscaElIntruso from './busca-el-intruso/BuscaElIntruso.jsx'
+import RoscoJuego from './rosco/RoscoJuego'; 
+
+
 
 // importamos los datos de materias (asignaturas) desde un archivo JSON
 // contiene la definición de asignaturas para cada nivel y curso
@@ -166,6 +169,13 @@ const appBuscaElIntruso = {
     component: BuscaElIntruso
 };
 
+const appRosco = { 
+    id: 'rosco-del-saber', 
+    name: 'El Rosco del Saber', 
+    description: 'Adivina la palabra que se esconde detrás de cada letra.', 
+    component: RoscoJuego 
+};
+
 // exportamos las materias para primaria y ESO desde el JSON
 export const primariaSubjects = materiasData.primaria;
 export const esoSubjects = materiasData.eso;
@@ -188,6 +198,7 @@ export const primariaApps = {
         description: 'Encuentra la letra diferente. ¡Practica tu atención con letras!',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }

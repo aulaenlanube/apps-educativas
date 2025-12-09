@@ -58,3 +58,31 @@ export async function getHistorias(nivel, curso, asignatura_id) {
     return [];
   }
 }
+
+export async function getRosco(nivel, curso, asignatura_id) {
+  try {
+    // Si es primaria y no especificamos asignatura, buscamos por defecto lengua o el nombre que le demos
+    // Para escalar, usaremos el patrón: asignatura-rosco.json
+    // En tu caso actual: public/data/primaria/1/lengua-rosco.json
+    
+    const subjectPrefix = asignatura_id ? asignatura_id : 'lengua'; 
+    const fileName = `${subjectPrefix}-rosco.json`;
+    
+    const response = await fetch(`/data/${nivel}/${curso}/${fileName}`);
+    
+    if (!response.ok) {
+        // Fallback por si en primaria solo lo llamamos 'rosco.json' en el futuro
+        if (nivel === 'primaria') {
+             const fallbackResponse = await fetch(`/data/${nivel}/${curso}/rosco.json`);
+             if (fallbackResponse.ok) return await fallbackResponse.json();
+        }
+        throw new Error(`Error HTTP! status: ${response.status}`);
+    }
+
+    return await response.json();
+
+  } catch (error) {
+    console.error(`Error al cargar 'rosco' para ${nivel}/${curso}:`, error);
+    return [];
+  }
+}
