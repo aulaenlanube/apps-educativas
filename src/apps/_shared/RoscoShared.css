@@ -302,3 +302,59 @@
 .scale-90 { transform: scale(0.9); }
 .animate-fadeIn { animation: fadeIn 0.5s ease-out; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ... [TODO EL CSS ANTERIOR SE MANTIENE, AÑADE O REEMPLAZA ESTO] ... */
+
+/* --- WEBCAM EN EL CÍRCULO --- */
+.rosco-webcam-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 220px; /* Tamaño del hueco interior aprox */
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 0; /* Detrás de las letras si se solapan, aunque es más pequeño */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5); /* Sombra interior para profundidad */
+    background: #000; /* Fondo negro mientras carga */
+}
+
+.rosco-webcam-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1); /* Efecto espejo */
+}
+
+/* --- BOTÓN TOGGLE WEBCAM --- */
+.btn-webcam-toggle {
+    position: absolute;
+    top: 10px;
+    left: 10px; /* Esquina opuesta al botón de salir */
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+}
+
+.btn-webcam-toggle:hover {
+    background: #e0f2fe;
+    color: #3b82f6;
+}
+
+.btn-webcam-toggle.active {
+    color: #3b82f6;
+    background: #eff6ff;
+    box-shadow: inset 0 0 5px rgba(59, 130, 246, 0.2);
+}
+
+/* ... Resto de estilos igual ... */

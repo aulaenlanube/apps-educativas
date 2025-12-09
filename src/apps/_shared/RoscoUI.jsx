@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaCheck, FaTimes } from 'react-icons/fa';
+import { FaCheck, FaForward, FaTimes, FaVideo, FaVideoSlash } from 'react-icons/fa';
 import '../_shared/RoscoShared.css';
 
 const ICONS = ['🐶', '🐱', '🐼', '🦊', '🦁', '🐯', '🦄', '🐸', '🤖', '👽', '👻', '🤡', '🤠', '👸', '🤴', '🦸'];
@@ -13,6 +13,11 @@ const RoscoUI = ({
 }) => {
     const [inputValue, setInputValue] = useState('');
     const inputRef = useRef(null);
+    
+    // --- ESTADO WEBCAM ---
+    const [isWebcamOn, setIsWebcamOn] = useState(false);
+    const videoRef = useRef(null);
+    const streamRef = useRef(null);
 
     // Auto-focus inteligente
     useEffect(() => {
@@ -21,6 +26,43 @@ const RoscoUI = ({
             setInputValue('');
         }
     }, [currentQuestion, feedback, gameState, activePlayerIndex, animState, showExitConfirm]);
+
+    // Gestión de Webcam
+    useEffect(() => {
+        const startWebcam = async () => {
+            if (isWebcamOn) {
+                try {
+                    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                    streamRef.current = stream;
+                    if (videoRef.current) {
+                        videoRef.current.srcObject = stream;
+                    }
+                } catch (err) {
+                    console.error("Error al acceder a la webcam:", err);
+                    setIsWebcamOn(false); // Desactivar si falla
+                }
+            } else {
+                // Parar webcam si se desactiva
+                if (streamRef.current) {
+                    streamRef.current.getTracks().forEach(track => track.stop());
+                    streamRef.current = null;
+                }
+            }
+        };
+
+        startWebcam();
+
+        // Cleanup al desmontar
+        return () => {
+            if (streamRef.current) {
+                streamRef.current.getTracks().forEach(track => track.stop());
+            }
+        };
+    }, [isWebcamOn]);
+
+    const toggleWebcam = () => {
+        setIsWebcamOn(prev => !prev);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,7 +79,6 @@ const RoscoUI = ({
             <div className="rosco-container pt-4">
                 <h1 className="text-4xl font-extrabold mb-4 text-blue-600 font-fredoka">El Rosco del Saber</h1>
                 <div className="bg-white p-6 rounded-3xl shadow-xl max-w-lg mx-auto text-left">
-                    {/* ... (Selectores de jugadores y config igual que antes) ... */}
                     <div className="mb-6 flex justify-center bg-gray-100 p-2 rounded-xl">
                         <button onClick={() => handleConfigChange('numPlayers', 1)} className={`flex-1 py-2 rounded-lg font-bold transition-all ${config.numPlayers === 1 ? 'bg-white shadow-md text-blue-600' : 'text-gray-400'}`}>1 Jugador</button>
                         <button onClick={() => handleConfigChange('numPlayers', 2)} className={`flex-1 py-2 rounded-lg font-bold transition-all ${config.numPlayers === 2 ? 'bg-white shadow-md text-orange-500' : 'text-gray-400'}`}>2 Jugadores</button>
@@ -174,7 +215,7 @@ const RoscoUI = ({
                 </div>
             )}
 
-            {/* FEEDBACK OVERLAY (Ahora fuera de la caja central para ser fullscreen) */}
+            {/* FEEDBACK FULLSCREEN */}
             {feedback && (
                 <div className={`feedback-overlay feedback-${feedback.type}`}>
                     <div className="feedback-content">
@@ -200,8 +241,16 @@ const RoscoUI = ({
                 ))}
             </div>
 
-            {/* Círculo */}
+            {/* CÍRCULO CON WEBCAM */}
             <div className="rosco-circle">
+                {/* WEBCAM EN EL CENTRO */}
+                {isWebcamOn && (
+                    <div className="rosco-webcam-container">
+                        <video ref={videoRef} autoPlay playsInline muted className="rosco-webcam-video" />
+                    </div>
+                )}
+
+                {/* LETRAS */}
                 {letters.map((letra, index) => {
                     const angle = (index / letters.length) * 2 * Math.PI - (Math.PI / 2);
                     const x = Math.cos(angle) * radius + 130; 
@@ -215,8 +264,18 @@ const RoscoUI = ({
             {/* UI Central */}
             <div className={`rosco-center-box relative transition-all duration-300 ${borderColorClass} ${animationClass}`}>
                 
+                {/* Botón Salir */}
                 <button onClick={requestExit} className="btn-exit-corner" title="Salir de la partida">
                     <FaTimes />
+                </button>
+
+                {/* Botón Toggle Webcam (Nuevo) */}
+                <button 
+                    onClick={toggleWebcam} 
+                    className={`btn-webcam-toggle ${isWebcamOn ? 'active' : ''}`} 
+                    title={isWebcamOn ? "Desactivar cámara" : "Activar cámara"}
+                >
+                    {isWebcamOn ? <FaVideo /> : <FaVideoSlash />}
                 </button>
                 
                 <div className="rosco-type-label">
@@ -243,9 +302,8 @@ const RoscoUI = ({
                         </button>
                     </form>
                     
-                    {/* BOTÓN CON TEXTO EXPLÍCITO */}
                     <button type="button" onClick={pasapalabra} className="btn-pasapalabra-text" disabled={!!feedback || animState !== 'none' || showExitConfirm} title="Pasapalabra">
-                        Pasapalabra
+                        PASAPALABRA
                     </button>
                 </div>
             </div>
