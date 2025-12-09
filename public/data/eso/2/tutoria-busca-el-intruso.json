@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "Emociones (Visual)",
+    "correctos": [
+      "😀",
+      "😢",
+      "😡",
+      "😱",
+      "😴",
+      "🤢"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "🏠",
+      "🐶",
+      "✏️"
+    ]
+  },
+  {
+    "categoria": "Convivencia (Visual)",
+    "correctos": [
+      "🤝",
+      "👂",
+      "🗣️",
+      "🫂",
+      "👐",
+      "🙋"
+    ],
+    "intrusos": [
+      "🥊",
+      "🖕",
+      "😤",
+      "🤬",
+      "💣"
+    ]
+  },
+  {
+    "categoria": "Habilidades Sociales",
+    "correctos": [
+      "Empatía",
+      "Asertividad",
+      "Escucha activa",
+      "Respeto",
+      "Tolerancia"
+    ],
+    "intrusos": [
+      "Egoísmo",
+      "Agresividad",
+      "Pasividad",
+      "Prejuicio",
+      "Odio"
+    ]
+  },
+  {
+    "categoria": "Técnicas de Estudio",
+    "correctos": [
+      "Subrayado",
+      "Esquema",
+      "Resumen",
+      "Mapa mental",
+      "Repaso"
+    ],
+    "intrusos": [
+      "Copiar",
+      "Memorizar",
+      "Distraerse",
+      "Hablar",
+      "Jugar"
+    ]
+  },
+  {
+    "categoria": "Valores",
+    "correctos": [
+      "Solidaridad",
+      "Justicia",
+      "Libertad",
+      "Igualdad",
+      "Responsabilidad"
+    ],
+    "intrusos": [
+      "Violencia",
+      "Discriminación",
+      "Mentira",
+      "Traición",
+      "Envidia"
+    ]
+  },
+  {
+    "categoria": "Resolución de Conflictos",
+    "correctos": [
+      "Diálogo",
+      "Negociación",
+      "Mediación",
+      "Acuerdo",
+      "Compromiso"
+    ],
+    "intrusos": [
+      "Pelea",
+      "Grito",
+      "Insulto",
+      "Amenaza",
+      "Venganza"
+    ]
+  },
+  {
+    "categoria": "Emociones",
+    "correctos": [
+      "Alegría",
+      "Tristeza",
+      "Miedo",
+      "Ira",
+      "Sorpresa"
+    ],
+    "intrusos": [
+      "Hambre",
+      "Sed",
+      "Sueño",
+      "Frío",
+      "Calor"
+    ]
+  }
+]

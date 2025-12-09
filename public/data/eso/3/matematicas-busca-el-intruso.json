@@ -1,0 +1,154 @@
+[
+  {
+    "categoria": "Gráficas Estadísticas (Visual)",
+    "correctos": [
+      "📊",
+      "📉",
+      "📈",
+      "🥧",
+      "💹"
+    ],
+    "intrusos": [
+      "📐",
+      "📝",
+      "🎲",
+      "🧱",
+      "🎨"
+    ]
+  },
+  {
+    "categoria": "Cuerpos Geométricos (Visual)",
+    "correctos": [
+      "🧊",
+      "📦",
+      "⚽",
+      "🥫",
+      "⛺",
+      "🏗️"
+    ],
+    "intrusos": [
+      "🟦",
+      "🔴",
+      "🔺",
+      "📏",
+      "🗺️"
+    ]
+  },
+  {
+    "categoria": "Azar y Probabilidad (Visual)",
+    "correctos": [
+      "🎲",
+      "🃏",
+      "🎰",
+      "🪙",
+      "🎱"
+    ],
+    "intrusos": [
+      "⏱️",
+      "🌡️",
+      "⚖️",
+      "🔢",
+      "➕"
+    ]
+  },
+  {
+    "categoria": "Tecnología Matemática (Visual)",
+    "correctos": [
+      "🧮",
+      "💻",
+      "📱",
+      "📐",
+      "📏"
+    ],
+    "intrusos": [
+      "🔨",
+      "🔧",
+      "🖌️",
+      "🧵",
+      "🍳"
+    ]
+  },
+  {
+    "categoria": "Sistemas de Ecuaciones",
+    "correctos": [
+      "Sustitución",
+      "Igualación",
+      "Reducción",
+      "Gráfico"
+    ],
+    "intrusos": [
+      "Ruffini",
+      "Pitágoras",
+      "Tales",
+      "Factorización",
+      "Mínimo"
+    ]
+  },
+  {
+    "categoria": "Tipos de Sucesiones",
+    "correctos": [
+      "Aritmética",
+      "Geométrica",
+      "Recurrente",
+      "Constante"
+    ],
+    "intrusos": [
+      "Aleatoria",
+      "Alfabética",
+      "Cuadrada",
+      "Triangular",
+      "Recta"
+    ]
+  },
+  {
+    "categoria": "Geometría del Espacio",
+    "correctos": [
+      "Poliedro",
+      "Prisma",
+      "Pirámide",
+      "Cilindro",
+      "Esfera"
+    ],
+    "intrusos": [
+      "Polígono",
+      "Cuadrado",
+      "Rombo",
+      "Trapecio",
+      "Círculo"
+    ]
+  },
+  {
+    "categoria": "Estadística Unidimensional",
+    "correctos": [
+      "Media",
+      "Mediana",
+      "Moda",
+      "Varianza",
+      "Desviación típica"
+    ],
+    "intrusos": [
+      "Seno",
+      "Coseno",
+      "Tangente",
+      "Hipotenusa",
+      "Cateto"
+    ]
+  },
+  {
+    "categoria": "Conjuntos Numéricos",
+    "correctos": [
+      "Naturales",
+      "Enteros",
+      "Racionales",
+      "Reales",
+      "Irracionales"
+    ],
+    "intrusos": [
+      "Primos",
+      "Pares",
+      "Impares",
+      "Romanos",
+      "Binarios"
+    ]
+  }
+]

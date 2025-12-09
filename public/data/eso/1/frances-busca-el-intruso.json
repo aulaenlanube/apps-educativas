@@ -1,0 +1,143 @@
+[
+  {
+    "categoria": "Les Pays (Drapeaux)",
+    "correctos": [
+      "🇫🇷",
+      "🇪🇸",
+      "🇮🇹",
+      "🇩🇪",
+      "🇬🇧",
+      "🇧🇪"
+    ],
+    "intrusos": [
+      "🌍",
+      "🗺️",
+      "✈️",
+      "🧳",
+      "🛳️"
+    ]
+  },
+  {
+    "categoria": "L'École (Visual)",
+    "correctos": [
+      "📚",
+      "✏️",
+      "🎒",
+      "📏",
+      "✂️",
+      "🖍️"
+    ],
+    "intrusos": [
+      "🛌",
+      "📺",
+      "🍔",
+      "🐶",
+      "🚗"
+    ]
+  },
+  {
+    "categoria": "Les Aliments (Visual)",
+    "correctos": [
+      "🥖",
+      "🧀",
+      "🍷",
+      "🥐",
+      "🥩",
+      "🥗"
+    ],
+    "intrusos": [
+      "⚽",
+      "🎮",
+      "🎸",
+      "🚗",
+      "📱"
+    ]
+  },
+  {
+    "categoria": "Les Jours de la Semaine",
+    "correctos": [
+      "Lundi",
+      "Mardi",
+      "Mercredi",
+      "Jeudi",
+      "Vendredi"
+    ],
+    "intrusos": [
+      "Janvier",
+      "Février",
+      "Mars",
+      "Noël",
+      "Pâques"
+    ]
+  },
+  {
+    "categoria": "Les Couleurs",
+    "correctos": [
+      "Rouge",
+      "Bleu",
+      "Vert",
+      "Jaune",
+      "Noir",
+      "Blanc"
+    ],
+    "intrusos": [
+      "Chien",
+      "Chat",
+      "Maison",
+      "Un",
+      "Deux"
+    ]
+  },
+  {
+    "categoria": "Les Nombres 1-20",
+    "correctos": [
+      "Un",
+      "Deux",
+      "Trois",
+      "Dix",
+      "Vingt",
+      "Quinze"
+    ],
+    "intrusos": [
+      "Rouge",
+      "Bleu",
+      "Lundi",
+      "Mardi",
+      "Janvier"
+    ]
+  },
+  {
+    "categoria": "La Famille",
+    "correctos": [
+      "Père",
+      "Mère",
+      "Frère",
+      "Sœur",
+      "Grand-père"
+    ],
+    "intrusos": [
+      "Stylo",
+      "Gomme",
+      "Cahier",
+      "Professeur",
+      "École"
+    ]
+  },
+  {
+    "categoria": "Salutations",
+    "correctos": [
+      "Bonjour",
+      "Salut",
+      "Au revoir",
+      "Bonsoir",
+      "Merci"
+    ],
+    "intrusos": [
+      "Rouge",
+      "Bleu",
+      "Chat",
+      "Chien",
+      "Pomme"
+    ]
+  }
+]

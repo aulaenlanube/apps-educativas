@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "Electrónica (Visual)",
+    "correctos": [
+      "🔌",
+      "🔋",
+      "💡",
+      "📟",
+      "💾",
+      "📡"
+    ],
+    "intrusos": [
+      "🔨",
+      "🔧",
+      "🪚",
+      "🧱",
+      "🪵"
+    ]
+  },
+  {
+    "categoria": "Programación (Visual)",
+    "correctos": [
+      "💻",
+      "⌨️",
+      "🖥️",
+      "🖱️",
+      "👾",
+      "🤖"
+    ],
+    "intrusos": [
+      "📚",
+      "🖊️",
+      "📝",
+      "🎨",
+      "🎭"
+    ]
+  },
+  {
+    "categoria": "Electrónica Analógica",
+    "correctos": [
+      "Resistencia",
+      "Condensador",
+      "Diodo",
+      "Transistor",
+      "LED"
+    ],
+    "intrusos": [
+      "Palanca",
+      "Polea",
+      "Engranaje",
+      "Tornillo",
+      "Rueda"
+    ]
+  },
+  {
+    "categoria": "Electrónica Digital",
+    "correctos": [
+      "Binario",
+      "Puerta lógica",
+      "Bit",
+      "Byte",
+      "Microchip"
+    ],
+    "intrusos": [
+      "Voltaje",
+      "Amperaje",
+      "Potencia",
+      "Resistencia",
+      "Energía"
+    ]
+  },
+  {
+    "categoria": "Neumática e Hidráulica",
+    "correctos": [
+      "Compresor",
+      "Válvula",
+      "Cilindro",
+      "Tubería",
+      "Presión"
+    ],
+    "intrusos": [
+      "Cable",
+      "Interruptor",
+      "Bombilla",
+      "Batería",
+      "Motor"
+    ]
+  },
+  {
+    "categoria": "Historia de la Tecnología",
+    "correctos": [
+      "Máquina de vapor",
+      "Electricidad",
+      "Transistor",
+      "Internet",
+      "IA"
+    ],
+    "intrusos": [
+      "Fuego",
+      "Rueda",
+      "Agricultura",
+      "Escritura",
+      "Moneda"
+    ]
+  },
+  {
+    "categoria": "Control y Robótica",
+    "correctos": [
+      "Sensor",
+      "Actuador",
+      "Controlador",
+      "Lazo abierto",
+      "Lazo cerrado"
+    ],
+    "intrusos": [
+      "Ratón",
+      "Teclado",
+      "Monitor",
+      "Altavoz",
+      "Impresora"
+    ]
+  }
+]

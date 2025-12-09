@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "La Edad Media",
+    "categoria": "La Edad Media (Visual)",
     "correctos": [
       "🏰",
       "👑",
       "🛡️",
       "⚔️",
-      "🐎"
+      "🐎",
+      "⚜️"
     ],
     "intrusos": [
       "📱",
@@ -17,13 +18,14 @@
     ]
   },
   {
-    "categoria": "El Universo",
+    "categoria": "El Universo (Visual)",
     "correctos": [
       "🪐",
       "🌌",
       "⭐",
       "☄️",
-      "🌑"
+      "🌑",
+      "🔭"
     ],
     "intrusos": [
       "✈️",
@@ -34,7 +36,7 @@
     ]
   },
   {
-    "categoria": "Símbolos de la Unión Europea",
+    "categoria": "Símbolos UE (Visual)",
     "correctos": [
       "🇪🇺",
       "💶",
@@ -51,13 +53,14 @@
     ]
   },
   {
-    "categoria": "Inventos Modernos",
+    "categoria": "Inventos (Visual)",
     "correctos": [
       "💡",
       "🚂",
       "🚗",
       "☎️",
-      "📷"
+      "📷",
+      "📻"
     ],
     "intrusos": [
       "🔨",
@@ -68,20 +71,103 @@
     ]
   },
   {
-    "categoria": "Climas del Mundo",
+    "categoria": "La Edad Media",
     "correctos": [
-      "🏜️",
-      "❄️",
-      "🌧️",
-      "🌴",
-      "🍂"
+      "Castillo",
+      "Rey",
+      "Caballero",
+      "Feudalismo",
+      "Muralla",
+      "Monasterio"
     ],
     "intrusos": [
-      "🏠",
-      "🚗",
-      "🏭",
-      "🏬",
-      "🚀"
+      "Fábrica",
+      "Coche",
+      "Teléfono",
+      "Imperio Romano",
+      "Pirámides"
+    ]
+  },
+  {
+    "categoria": "Climas de España",
+    "correctos": [
+      "Mediterráneo",
+      "Oceánico",
+      "De montaña",
+      "Subtropical"
+    ],
+    "intrusos": [
+      "Polar",
+      "Tropical",
+      "Desértico extremo",
+      "Monzónico"
+    ]
+  },
+  {
+    "categoria": "Instituciones de España",
+    "correctos": [
+      "Rey",
+      "Constitución",
+      "Parlamento",
+      "Gobierno",
+      "Tribunales"
+    ],
+    "intrusos": [
+      "Faraón",
+      "Emperador",
+      "Dictador",
+      "Pirata"
+    ]
+  },
+  {
+    "categoria": "Ríos Vertiente Atlántica",
+    "correctos": [
+      "Miño",
+      "Duero",
+      "Tajo",
+      "Guadiana",
+      "Guadalquivir"
+    ],
+    "intrusos": [
+      "Ebro",
+      "Júcar",
+      "Segura",
+      "Turia"
+    ]
+  },
+  {
+    "categoria": "Capas de la Atmósfera",
+    "correctos": [
+      "Troposfera",
+      "Estratosfera",
+      "Mesosfera",
+      "Termosfera",
+      "Exosfera"
+    ],
+    "intrusos": [
+      "Litosfera",
+      "Hidrosfera",
+      "Biosfera",
+      "Corteza",
+      "Manto"
+    ]
+  },
+  {
+    "categoria": "Planetas Sistema Solar",
+    "correctos": [
+      "Mercurio",
+      "Venus",
+      "Tierra",
+      "Marte",
+      "Júpiter",
+      "Saturno"
+    ],
+    "intrusos": [
+      "Plutón",
+      "Luna",
+      "Sol",
+      "Estrella Polar",
+      "Andrómeda"
     ]
   }
 ]

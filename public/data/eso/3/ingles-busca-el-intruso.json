@@ -1,0 +1,158 @@
+[
+  {
+    "categoria": "Environment (Icons)",
+    "correctos": [
+      "♻️",
+      "🌍",
+      "🌱",
+      "☀️",
+      "🚮",
+      "🔋"
+    ],
+    "intrusos": [
+      "🚗",
+      "🏭",
+      "🛢️",
+      "🚬",
+      "☢️"
+    ]
+  },
+  {
+    "categoria": "Technology (Icons)",
+    "correctos": [
+      "💻",
+      "📱",
+      "🖱️",
+      "⌨️",
+      "🎧",
+      "⌚"
+    ],
+    "intrusos": [
+      "📚",
+      "🖊️",
+      "🔨",
+      "🔧",
+      "🕯️"
+    ]
+  },
+  {
+    "categoria": "Health (Icons)",
+    "correctos": [
+      "🤕",
+      "🤒",
+      "🤢",
+      "💊",
+      "💉",
+      "🚑"
+    ],
+    "intrusos": [
+      "😀",
+      "💪",
+      "🏆",
+      "⚽",
+      "🎮"
+    ]
+  },
+  {
+    "categoria": "Travel (Icons)",
+    "correctos": [
+      "✈️",
+      "🧳",
+      "🗺️",
+      "🗽",
+      "🗼",
+      "🛂"
+    ],
+    "intrusos": [
+      "🏠",
+      "🛌",
+      "🧹",
+      "🚽",
+      "🛋️"
+    ]
+  },
+  {
+    "categoria": "Modal Verbs",
+    "correctos": [
+      "Can",
+      "Must",
+      "Should",
+      "Might",
+      "Could"
+    ],
+    "intrusos": [
+      "Do",
+      "Have",
+      "Be",
+      "Go",
+      "Play"
+    ]
+  },
+  {
+    "categoria": "Passive Voice",
+    "correctos": [
+      "Is done",
+      "Was made",
+      "Were built",
+      "Has been seen"
+    ],
+    "intrusos": [
+      "Doing",
+      "Making",
+      "Building",
+      "Seeing",
+      "Goes"
+    ]
+  },
+  {
+    "categoria": "Conditionals",
+    "correctos": [
+      "If",
+      "Unless",
+      "Would",
+      "Will",
+      "Provided that"
+    ],
+    "intrusos": [
+      "But",
+      "And",
+      "Because",
+      "So",
+      "Or"
+    ]
+  },
+  {
+    "categoria": "Environment Vocabulary",
+    "correctos": [
+      "Pollution",
+      "Recycling",
+      "Global warming",
+      "Waste",
+      "Energy"
+    ],
+    "intrusos": [
+      "School",
+      "Homework",
+      "Football",
+      "Music",
+      "Cinema"
+    ]
+  },
+  {
+    "categoria": "Personality Adjectives",
+    "correctos": [
+      "Shy",
+      "Outgoing",
+      "Generous",
+      "Selfish",
+      "Honest"
+    ],
+    "intrusos": [
+      "Tall",
+      "Short",
+      "Fat",
+      "Thin",
+      "Blonde"
+    ]
+  }
+]

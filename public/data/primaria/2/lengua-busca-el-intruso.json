@@ -1,32 +1,162 @@
 [
   {
-    "categoria": "Sustantivos (Nombres de cosas)",
-    "correctos": ["Casa", "Perro", "Lápiz", "Mesa", "Silla", "Coche", "Libro", "Flor", "Sol"],
-    "intrusos": ["Correr", "Saltar", "Comer", "Dormir", "Grande", "Rojo", "Bonito"]
+    "categoria": "Animales de Granja (Visual)",
+    "correctos": [
+      "🐮",
+      "🐷",
+      "🐔",
+      "🐑",
+      "🐴",
+      "🐥"
+    ],
+    "intrusos": [
+      "🦁",
+      "🐯",
+      "🐘",
+      "🦈",
+      "🦕"
+    ]
+  },
+  {
+    "categoria": "Frutas (Visual)",
+    "correctos": [
+      "🍎",
+      "🍐",
+      "🍊",
+      "🍌",
+      "🍇",
+      "🍓"
+    ],
+    "intrusos": [
+      "🥦",
+      "🥕",
+      "🌽",
+      "🍗",
+      "🧀"
+    ]
+  },
+  {
+    "categoria": "Ropa (Visual)",
+    "correctos": [
+      "👕",
+      "👖",
+      "👗",
+      "🧥",
+      "👟",
+      "🧢"
+    ],
+    "intrusos": [
+      "🚗",
+      "🏠",
+      "🐶",
+      "✏️",
+      "⌚"
+    ]
+  },
+  {
+    "categoria": "Transporte (Visual)",
+    "correctos": [
+      "🚗",
+      "🚌",
+      "🚑",
+      "🚒",
+      "🚕",
+      "🚜"
+    ],
+    "intrusos": [
+      "🏠",
+      "🏫",
+      "🌳",
+      "🐶",
+      "🍔"
+    ]
+  },
+  {
+    "categoria": "Sustantivos (Cosas)",
+    "correctos": [
+      "Mesa",
+      "Silla",
+      "Coche",
+      "Casa",
+      "Lápiz",
+      "Libro"
+    ],
+    "intrusos": [
+      "Correr",
+      "Saltar",
+      "Rápido",
+      "Azul",
+      "Grande"
+    ]
   },
   {
     "categoria": "Verbos (Acciones)",
-    "correctos": ["Correr", "Saltar", "Leer", "Escribir", "Cantar", "Bailar", "Jugar", "Comer"],
-    "intrusos": ["Gato", "Mesa", "Lápiz", "Azul", "Alto", "Niño", "Escuela"]
+    "correctos": [
+      "Cantar",
+      "Bailar",
+      "Comer",
+      "Dormir",
+      "Jugar",
+      "Saltar"
+    ],
+    "intrusos": [
+      "Gato",
+      "Perro",
+      "Niño",
+      "Bonito",
+      "Alto"
+    ]
   },
   {
     "categoria": "Adjetivos (Cualidades)",
-    "correctos": ["Grande", "Pequeño", "Rojo", "Guapo", "Lento", "Rápido", "Alto", "Bajo", "Feliz"],
-    "intrusos": ["Pedro", "Madrid", "Mesa", "Silla", "Correr", "Saltar"]
+    "correctos": [
+      "Alto",
+      "Bajo",
+      "Guapo",
+      "Feo",
+      "Grande",
+      "Pequeño"
+    ],
+    "intrusos": [
+      "Juan",
+      "Madrid",
+      "Mesa",
+      "Silla",
+      "Coche"
+    ]
+  },
+  {
+    "categoria": "Palabras Masculinas",
+    "correctos": [
+      "El gato",
+      "El perro",
+      "El coche",
+      "El niño",
+      "El libro"
+    ],
+    "intrusos": [
+      "La casa",
+      "La mesa",
+      "La silla",
+      "La niña",
+      "La flor"
+    ]
   },
   {
     "categoria": "Palabras en Plural",
-    "correctos": ["Gatos", "Perros", "Mesas", "Niños", "Coches", "Libros", "Arboles", "Flores"],
-    "intrusos": ["Gato", "Perro", "Mesa", "Niño", "Sol", "Pan", "Pez"]
-  },
-  {
-    "categoria": "Palabras femeninas (La)",
-    "correctos": ["Mesa", "Silla", "Casa", "Luna", "Flor", "Vaca", "Niña", "Puerta"],
-    "intrusos": ["Coche", "Perro", "Gato", "Libro", "Suelo", "Sol", "Árbol"]
-  },
-  {
-    "categoria": "Material escolar",
-    "correctos": ["✏️", "🖊️", "🖍️", "📏", "✂️", "📚", "🎒", "📎"],
-    "intrusos": ["🍎", "🥪", "⚽", "🧸", "🚗", "🐶", "👕"]
+    "correctos": [
+      "Gatos",
+      "Perros",
+      "Mesas",
+      "Sillas",
+      "Niños"
+    ],
+    "intrusos": [
+      "Gato",
+      "Perro",
+      "Mesa",
+      "Silla",
+      "Niño"
+    ]
   }
 ]

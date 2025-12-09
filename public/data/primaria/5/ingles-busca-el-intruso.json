@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "Technology",
+    "categoria": "Technology (Icons)",
     "correctos": [
       "💻",
       "📱",
       "🖱️",
       "⌨️",
-      "🖥️"
+      "🖥️",
+      "🔋"
     ],
     "intrusos": [
       "📜",
@@ -17,13 +18,14 @@
     ]
   },
   {
-    "categoria": "Wild Animals",
+    "categoria": "Wild Animals (Icons)",
     "correctos": [
       "🦁",
       "🐯",
       "🦓",
       "🦒",
-      "🐘"
+      "🐘",
+      "🐊"
     ],
     "intrusos": [
       "🐶",
@@ -34,13 +36,51 @@
     ]
   },
   {
+    "categoria": "Travel (Icons)",
+    "correctos": [
+      "✈️",
+      "🧳",
+      "🗺️",
+      "🗽",
+      "🗼",
+      "📸"
+    ],
+    "intrusos": [
+      "🏠",
+      "🛋️",
+      "🛌",
+      "📺",
+      "🧹"
+    ]
+  },
+  {
+    "categoria": "Feelings (Icons)",
+    "correctos": [
+      "😀",
+      "😢",
+      "😡",
+      "😴",
+      "🤔",
+      "😍"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "🏠",
+      "🐶",
+      "✏️"
+    ]
+  },
+  {
     "categoria": "Irregular Verbs (Past)",
     "correctos": [
       "Went",
       "Ate",
       "Drank",
       "Saw",
-      "Ran"
+      "Ran",
+      "Swam",
+      "Wrote"
     ],
     "intrusos": [
       "Played",
@@ -51,11 +91,30 @@
     ]
   },
   {
+    "categoria": "Wild Animals (Words)",
+    "correctos": [
+      "Rhino",
+      "Hippo",
+      "Cheetah",
+      "Gorilla",
+      "Eagle",
+      "Snake"
+    ],
+    "intrusos": [
+      "Dog",
+      "Cat",
+      "Cow",
+      "Chicken",
+      "Sheep"
+    ]
+  },
+  {
     "categoria": "Frequency Adverbs",
     "correctos": [
       "Always",
       "Usually",
       "Often",
+      "Sometimes",
       "Never",
       "Rarely"
     ],
@@ -74,7 +133,8 @@
       "Where",
       "When",
       "Who",
-      "Why"
+      "Why",
+      "How"
     ],
     "intrusos": [
       "Yes",
@@ -82,6 +142,42 @@
       "Because",
       "And",
       "But"
+    ]
+  },
+  {
+    "categoria": "Sports Equipment",
+    "correctos": [
+      "Ball",
+      "Racket",
+      "Bat",
+      "Helmet",
+      "Net",
+      "Gloves"
+    ],
+    "intrusos": [
+      "Piano",
+      "Guitar",
+      "Book",
+      "Pen",
+      "Sofa"
+    ]
+  },
+  {
+    "categoria": "Comparatives",
+    "correctos": [
+      "Bigger",
+      "Smaller",
+      "Faster",
+      "Slower",
+      "Taller",
+      "Better"
+    ],
+    "intrusos": [
+      "Big",
+      "Small",
+      "Fast",
+      "Slow",
+      "Tall"
     ]
   }
 ]

@@ -1,0 +1,158 @@
+[
+  {
+    "categoria": "Electricidad (Visual)",
+    "correctos": [
+      "⚡",
+      "🔋",
+      "💡",
+      "🔌",
+      "🔦",
+      "🛑"
+    ],
+    "intrusos": [
+      "💧",
+      "🔥",
+      "🌱",
+      "🐶",
+      "📚"
+    ]
+  },
+  {
+    "categoria": "Herramientas (Visual)",
+    "correctos": [
+      "🔨",
+      "🔧",
+      "🪛",
+      "🔩",
+      "📏",
+      "✂️"
+    ],
+    "intrusos": [
+      "✏️",
+      "🖊️",
+      "🥄",
+      "🍴",
+      "🧸"
+    ]
+  },
+  {
+    "categoria": "Informática (Visual)",
+    "correctos": [
+      "💻",
+      "🖱️",
+      "⌨️",
+      "🖥️",
+      "🖨️",
+      "💾"
+    ],
+    "intrusos": [
+      "📺",
+      "📻",
+      "📷",
+      "📹",
+      "🕰️"
+    ]
+  },
+  {
+    "categoria": "Mecanismos (Visual)",
+    "correctos": [
+      "⚙️",
+      "🚲",
+      "🏎️",
+      "🏗️",
+      "🕰️",
+      "🎢"
+    ],
+    "intrusos": [
+      "🧱",
+      "🪵",
+      "📄",
+      "🥪",
+      "🍎"
+    ]
+  },
+  {
+    "categoria": "Generación de Energía",
+    "correctos": [
+      "Térmica",
+      "Nuclear",
+      "Eólica",
+      "Hidráulica",
+      "Solar"
+    ],
+    "intrusos": [
+      "Eléctrica",
+      "Cinética",
+      "Potencial",
+      "Mecánica",
+      "Química"
+    ]
+  },
+  {
+    "categoria": "Materiales Plásticos",
+    "correctos": [
+      "PET",
+      "PVC",
+      "Poliestireno",
+      "Metacrilato",
+      "Caucho"
+    ],
+    "intrusos": [
+      "Acero",
+      "Cobre",
+      "Aluminio",
+      "Madera",
+      "Vidrio"
+    ]
+  },
+  {
+    "categoria": "Componentes de un Ordenador",
+    "correctos": [
+      "Microprocesador",
+      "Memoria RAM",
+      "Disco Duro",
+      "Placa Base",
+      "Tarjeta Gráfica"
+    ],
+    "intrusos": [
+      "Ratón",
+      "Teclado",
+      "Monitor",
+      "Impresora",
+      "Altavoz"
+    ]
+  },
+  {
+    "categoria": "Transmisión de Movimiento",
+    "correctos": [
+      "Engranajes",
+      "Poleas",
+      "Cadenas",
+      "Ruedas de fricción"
+    ],
+    "intrusos": [
+      "Biela-manivela",
+      "Leva",
+      "Tornillo-tuerca",
+      "Piñón-cremallera",
+      "Cigüeñal"
+    ]
+  },
+  {
+    "categoria": "Internet",
+    "correctos": [
+      "Servidor",
+      "Navegador",
+      "Buscador",
+      "Protocolo",
+      "Dominio"
+    ],
+    "intrusos": [
+      "Word",
+      "Excel",
+      "PowerPoint",
+      "Paint",
+      "Calculadora"
+    ]
+  }
+]

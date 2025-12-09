@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "Paris (Visual)",
+    "correctos": [
+      "🗼",
+      "🖼️",
+      "⛪",
+      "🥐",
+      "🥖",
+      "🍷"
+    ],
+    "intrusos": [
+      "🗽",
+      "🏯",
+      "⛩️",
+      "🕌",
+      "🕋"
+    ]
+  },
+  {
+    "categoria": "Météo (Visual)",
+    "correctos": [
+      "☀️",
+      "🌧️",
+      "❄️",
+      "🌬️",
+      "🌩️",
+      "🌤️"
+    ],
+    "intrusos": [
+      "🏠",
+      "🚗",
+      "🐶",
+      "📚",
+      "✏️"
+    ]
+  },
+  {
+    "categoria": "Verbes (Futur)",
+    "correctos": [
+      "Parlerai",
+      "Finiras",
+      "Prendra",
+      "Irons",
+      "Aurez"
+    ],
+    "intrusos": [
+      "Parle",
+      "Finis",
+      "Prends",
+      "Vais",
+      "Ai"
+    ]
+  },
+  {
+    "categoria": "Prépositions de Lieu",
+    "correctos": [
+      "Sur",
+      "Sous",
+      "Devant",
+      "Derrière",
+      "Dans"
+    ],
+    "intrusos": [
+      "Hier",
+      "Demain",
+      "Maintenant",
+      "Toujours",
+      "Jamais"
+    ]
+  },
+  {
+    "categoria": "Aliments (Petit Déjeuner)",
+    "correctos": [
+      "Croissant",
+      "Pain",
+      "Beurre",
+      "Confiture",
+      "Café"
+    ],
+    "intrusos": [
+      "Poulet",
+      "Poisson",
+      "Viande",
+      "Pâtes",
+      "Riz"
+    ]
+  },
+  {
+    "categoria": "Vêtements",
+    "correctos": [
+      "Pantalon",
+      "Chemise",
+      "Robe",
+      "Jupe",
+      "Manteau"
+    ],
+    "intrusos": [
+      "Stylo",
+      "Livre",
+      "Cahier",
+      "Gomme",
+      "Règle"
+    ]
+  },
+  {
+    "categoria": "Pays Francophones",
+    "correctos": [
+      "France",
+      "Belgique",
+      "Suisse",
+      "Canada",
+      "Sénégal"
+    ],
+    "intrusos": [
+      "Espagne",
+      "Italie",
+      "Allemagne",
+      "Angleterre",
+      "Chine"
+    ]
+  }
+]

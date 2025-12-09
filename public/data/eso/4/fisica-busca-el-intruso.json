@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "Fuerzas (Visual)",
+    "correctos": [
+      "🏋️",
+      "🏹",
+      "🧲",
+      "🍏",
+      "🚀",
+      "⚖️"
+    ],
+    "intrusos": [
+      "💡",
+      "🔋",
+      "🌡️",
+      "🦠",
+      "🧬"
+    ]
+  },
+  {
+    "categoria": "Cinemática (Visual)",
+    "correctos": [
+      "🏎️",
+      "🎢",
+      "⏱️",
+      "🚲",
+      "🏃",
+      "✈️"
+    ],
+    "intrusos": [
+      "🛑",
+      "🛌",
+      "🧘",
+      "🖼️",
+      "📚"
+    ]
+  },
+  {
+    "categoria": "Cinemática",
+    "correctos": [
+      "Velocidad",
+      "Aceleración",
+      "Trayectoria",
+      "Desplazamiento",
+      "Posición"
+    ],
+    "intrusos": [
+      "Fuerza",
+      "Masa",
+      "Energía",
+      "Potencia",
+      "Trabajo"
+    ]
+  },
+  {
+    "categoria": "Dinámica (Fuerzas)",
+    "correctos": [
+      "Newton",
+      "Gravedad",
+      "Rozamiento",
+      "Normal",
+      "Tensión"
+    ],
+    "intrusos": [
+      "Voltio",
+      "Amperio",
+      "Ohmio",
+      "Vatio",
+      "Julio"
+    ]
+  },
+  {
+    "categoria": "Energía",
+    "correctos": [
+      "Cinética",
+      "Potencial",
+      "Mecánica",
+      "Trabajo",
+      "Potencia"
+    ],
+    "intrusos": [
+      "Velocidad",
+      "Aceleración",
+      "Tiempo",
+      "Espacio",
+      "Distancia"
+    ]
+  },
+  {
+    "categoria": "Presión y Fluidos",
+    "correctos": [
+      "Pascal",
+      "Arquímedes",
+      "Densidad",
+      "Presión",
+      "Empuje"
+    ],
+    "intrusos": [
+      "Ohm",
+      "Volt",
+      "Ampere",
+      "Hertz",
+      "Newton"
+    ]
+  },
+  {
+    "categoria": "Ondas",
+    "correctos": [
+      "Frecuencia",
+      "Longitud",
+      "Amplitud",
+      "Periodo",
+      "Sonido"
+    ],
+    "intrusos": [
+      "Masa",
+      "Peso",
+      "Volumen",
+      "Densidad",
+      "Temperatura"
+    ]
+  }
+]

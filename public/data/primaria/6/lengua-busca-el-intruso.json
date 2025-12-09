@@ -1,12 +1,49 @@
 [
   {
-    "categoria": "Géneros Literarios",
+    "categoria": "Teatro y Cine (Visual)",
     "correctos": [
       "🎭",
-      "📜",
+      "🎟️",
+      "🎬",
+      "🍿",
+      "📹",
+      "🎪"
+    ],
+    "intrusos": [
+      "⚽",
+      "🏊",
+      "🚜",
+      "🏔️",
+      "🏥"
+    ]
+  },
+  {
+    "categoria": "Tecnología (Visual)",
+    "correctos": [
+      "📧",
+      "💬",
+      "🤳",
+      "🌐",
+      "📶",
+      "💻"
+    ],
+    "intrusos": [
+      "📠",
+      "📼",
+      "💾",
+      "🎞️",
+      "🕰️"
+    ]
+  },
+  {
+    "categoria": "Géneros Literarios (Visual)",
+    "correctos": [
       "📖",
+      "📜",
       "🧛",
-      "👽"
+      "👽",
+      "🧚",
+      "🏰"
     ],
     "intrusos": [
       "🧪",
@@ -17,20 +54,39 @@
     ]
   },
   {
-    "categoria": "Tecnología",
+    "categoria": "Sentimientos Intensos (Visual)",
     "correctos": [
-      "📧",
-      "💬",
-      "🤳",
-      "🌐",
-      "📶"
+      "😍",
+      "😭",
+      "🤯",
+      "😡",
+      "😱",
+      "🥰"
     ],
     "intrusos": [
-      "📠",
-      "📼",
-      "💾",
-      "🎞️",
-      "🕰️"
+      "😐",
+      "😶",
+      "🥱",
+      "😴",
+      "🤥"
+    ]
+  },
+  {
+    "categoria": "Géneros Literarios",
+    "correctos": [
+      "Narrativa",
+      "Lírica",
+      "Teatro",
+      "Cuento",
+      "Novela",
+      "Poesía"
+    ],
+    "intrusos": [
+      "Matemáticas",
+      "Noticia",
+      "Receta",
+      "Instrucciones",
+      "Diccionario"
     ]
   },
   {
@@ -48,6 +104,23 @@
       "Esdrújula",
       "Prefijo",
       "Sufijo"
+    ]
+  },
+  {
+    "categoria": "Tipos de Estrofas",
+    "correctos": [
+      "Pareado",
+      "Terceto",
+      "Cuarteto",
+      "Redondilla",
+      "Soneto"
+    ],
+    "intrusos": [
+      "Capítulo",
+      "Párrafo",
+      "Título",
+      "Índice",
+      "Portada"
     ]
   },
   {
@@ -82,6 +155,23 @@
       "Estrofa",
       "Punto",
       "Coma"
+    ]
+  },
+  {
+    "categoria": "Palabras con H intercalada",
+    "correctos": [
+      "Búho",
+      "Zanahoria",
+      "Almohada",
+      "Ahorrar",
+      "Cohete"
+    ],
+    "intrusos": [
+      "Huevo",
+      "Hielo",
+      "Hierba",
+      "Hueso",
+      "Huerto"
     ]
   }
 ]

@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "Medios de Comunicación",
+    "categoria": "Medios de Comunicación (Visual)",
     "correctos": [
       "📧",
       "📱",
       "💻",
       "🛰️",
-      "📡"
+      "📡",
+      "📰"
     ],
     "intrusos": [
       "📜",
@@ -17,20 +18,76 @@
     ]
   },
   {
-    "categoria": "Tipos de Texto (Libros)",
+    "categoria": "Símbolos de Escritura (Visual)",
     "correctos": [
-      "📖",
-      "📚",
-      "📓",
-      "📒",
-      "📜"
+      "🖊️",
+      "📝",
+      "🖍️",
+      "✒️",
+      "⌨️",
+      "📖"
     ],
     "intrusos": [
-      "💿",
-      "💾",
-      "📹",
-      "📺",
-      "🎮"
+      "🔨",
+      "🔪",
+      "🔫",
+      "💊",
+      "🧪"
+    ]
+  },
+  {
+    "categoria": "El Tiempo Atmosférico (Visual)",
+    "correctos": [
+      "🌤️",
+      "⛈️",
+      "🌨️",
+      "🌪️",
+      "🌈",
+      "☔"
+    ],
+    "intrusos": [
+      "🏠",
+      "🚗",
+      "🥪",
+      "👠",
+      "⚽"
+    ]
+  },
+  {
+    "categoria": "Deportes (Visual)",
+    "correctos": [
+      "⚽",
+      "🏀",
+      "🎾",
+      "🏐",
+      "🏉",
+      "🎱"
+    ],
+    "intrusos": [
+      "🍔",
+      "🍟",
+      "🍕",
+      "🎮",
+      "📺"
+    ]
+  },
+  {
+    "categoria": "Sustantivos Colectivos",
+    "correctos": [
+      "Rebaño",
+      "Jauría",
+      "Bosque",
+      "Flota",
+      "Ejército",
+      "Orquesta"
+    ],
+    "intrusos": [
+      "Oveja",
+      "Perro",
+      "Árbol",
+      "Barco",
+      "Soldado",
+      "Músico"
     ]
   },
   {
@@ -40,31 +97,72 @@
       "Hoy",
       "Mañana",
       "Ahora",
-      "Después"
+      "Después",
+      "Pronto"
     ],
     "intrusos": [
       "Aquí",
       "Allí",
       "Mucho",
       "Poco",
-      "Bien"
+      "Bien",
+      "Mal"
     ]
   },
   {
-    "categoria": "Determinantes",
+    "categoria": "Determinantes Demostrativos",
     "correctos": [
       "Este",
       "Esta",
       "Ese",
       "Esa",
-      "Aquel"
+      "Aquel",
+      "Aquella"
     ],
     "intrusos": [
       "Mi",
       "Tu",
       "Su",
       "Nuestro",
-      "El"
+      "El",
+      "Un"
+    ]
+  },
+  {
+    "categoria": "Verbos en Pasado",
+    "correctos": [
+      "Comí",
+      "Jugaba",
+      "Vivió",
+      "Saltado",
+      "Escribiste",
+      "Fue"
+    ],
+    "intrusos": [
+      "Jugaré",
+      "Como",
+      "Viviré",
+      "Saltaré",
+      "Escribo"
+    ]
+  },
+  {
+    "categoria": "Palabras con Hiato",
+    "correctos": [
+      "Aéreo",
+      "Teatro",
+      "Cacao",
+      "Poeta",
+      "Caer",
+      "Leer"
+    ],
+    "intrusos": [
+      "Reina",
+      "Aire",
+      "Cielo",
+      "Fuego",
+      "Agua",
+      "Hielo"
     ]
   },
   {
@@ -74,14 +172,17 @@
       "Ante",
       "Bajo",
       "Cabe",
-      "Con"
+      "Con",
+      "Contra",
+      "De"
     ],
     "intrusos": [
       "Y",
       "O",
       "Pero",
       "Porque",
-      "Aunque"
+      "Aunque",
+      "Si"
     ]
   }
 ]

@@ -1,0 +1,118 @@
+[
+  {
+    "categoria": "Instrumentos (Visual)",
+    "correctos": [
+      "🎻",
+      "🎺",
+      "🎷",
+      "🎸",
+      "🎹",
+      "🥁"
+    ],
+    "intrusos": [
+      "🎤",
+      "🎧",
+      "🔈",
+      "🔨",
+      "🔧"
+    ]
+  },
+  {
+    "categoria": "Notas (Visual)",
+    "correctos": [
+      "🎵",
+      "🎶",
+      "🎼",
+      "🎹",
+      "𝄞"
+    ],
+    "intrusos": [
+      "🅰️",
+      "🅱️",
+      "💲",
+      "💯",
+      "➕"
+    ]
+  },
+  {
+    "categoria": "Cualidades del Sonido",
+    "correctos": [
+      "Altura",
+      "Duración",
+      "Intensidad",
+      "Timbre"
+    ],
+    "intrusos": [
+      "Ruido",
+      "Silencio",
+      "Eco",
+      "Música",
+      "Ritmo"
+    ]
+  },
+  {
+    "categoria": "Familias Instrumentales",
+    "correctos": [
+      "Cuerda",
+      "Viento",
+      "Percusión"
+    ],
+    "intrusos": [
+      "Metal",
+      "Madera",
+      "Plástico",
+      "Aire",
+      "Agua"
+    ]
+  },
+  {
+    "categoria": "Matices de Intensidad",
+    "correctos": [
+      "Pianissimo",
+      "Piano",
+      "Mezzoforte",
+      "Forte",
+      "Fortissimo"
+    ],
+    "intrusos": [
+      "Adagio",
+      "Andante",
+      "Allegro",
+      "Presto",
+      "Lento"
+    ]
+  },
+  {
+    "categoria": "Voces",
+    "correctos": [
+      "Soprano",
+      "Contralto",
+      "Tenor",
+      "Bajo"
+    ],
+    "intrusos": [
+      "Violín",
+      "Viola",
+      "Violonchelo",
+      "Contrabajo",
+      "Guitarra"
+    ]
+  },
+  {
+    "categoria": "Grandes Compositores",
+    "correctos": [
+      "Bach",
+      "Mozart",
+      "Beethoven",
+      "Vivaldi",
+      "Chopin"
+    ],
+    "intrusos": [
+      "Picasso",
+      "Dalí",
+      "Cervantes",
+      "Shakespeare",
+      "Newton"
+    ]
+  }
+]

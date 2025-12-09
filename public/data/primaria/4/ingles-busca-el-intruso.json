@@ -6,7 +6,8 @@
       "👩‍⚕️",
       "👨‍🏫",
       "👨‍🚒",
-      "👩‍🚀"
+      "👩‍🚀",
+      "👨‍🍳"
     ],
     "intrusos": [
       "🐶",
@@ -23,7 +24,8 @@
       "👖",
       "👗",
       "🧥",
-      "👟"
+      "👟",
+      "🧢"
     ],
     "intrusos": [
       "🍎",
@@ -34,13 +36,50 @@
     ]
   },
   {
+    "categoria": "Weather (Icons)",
+    "correctos": [
+      "☀️",
+      "☁️",
+      "🌧️",
+      "❄️",
+      "⛈️",
+      "🌬️"
+    ],
+    "intrusos": [
+      "🏠",
+      "🚗",
+      "🐶",
+      "📚",
+      "✏️"
+    ]
+  },
+  {
+    "categoria": "Food (Icons)",
+    "correctos": [
+      "🍕",
+      "🍔",
+      "🥗",
+      "🍝",
+      "🍦",
+      "🍎"
+    ],
+    "intrusos": [
+      "⚽",
+      "🏀",
+      "🚗",
+      "✏️",
+      "👕"
+    ]
+  },
+  {
     "categoria": "Jobs (Words)",
     "correctos": [
       "Teacher",
       "Doctor",
       "Nurse",
       "Police",
-      "Pilot"
+      "Firefighter",
+      "Vet"
     ],
     "intrusos": [
       "School",
@@ -51,30 +90,14 @@
     ]
   },
   {
-    "categoria": "Weather (Words)",
-    "correctos": [
-      "Sunny",
-      "Rainy",
-      "Cloudy",
-      "Windy",
-      "Snowy"
-    ],
-    "intrusos": [
-      "Monday",
-      "Summer",
-      "Blue",
-      "Happy",
-      "Sad"
-    ]
-  },
-  {
     "categoria": "Action Verbs",
     "correctos": [
       "Run",
       "Jump",
       "Swim",
       "Dance",
-      "Sing"
+      "Sing",
+      "Read"
     ],
     "intrusos": [
       "Happy",
@@ -82,6 +105,60 @@
       "Big",
       "Small",
       "Red"
+    ]
+  },
+  {
+    "categoria": "Places in Town",
+    "correctos": [
+      "School",
+      "Park",
+      "Hospital",
+      "Cinema",
+      "Supermarket",
+      "Library"
+    ],
+    "intrusos": [
+      "Teacher",
+      "Doctor",
+      "Book",
+      "Apple",
+      "Car"
+    ]
+  },
+  {
+    "categoria": "Clothes (Words)",
+    "correctos": [
+      "T-shirt",
+      "Jeans",
+      "Dress",
+      "Skirt",
+      "Shoes",
+      "Coat"
+    ],
+    "intrusos": [
+      "Leg",
+      "Arm",
+      "Head",
+      "Hand",
+      "Foot"
+    ]
+  },
+  {
+    "categoria": "Weather (Words)",
+    "correctos": [
+      "Sunny",
+      "Rainy",
+      "Cloudy",
+      "Windy",
+      "Snowy",
+      "Hot"
+    ],
+    "intrusos": [
+      "Monday",
+      "Summer",
+      "Blue",
+      "Happy",
+      "Sad"
     ]
   }
 ]

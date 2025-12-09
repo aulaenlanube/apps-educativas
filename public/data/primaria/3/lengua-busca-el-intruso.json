@@ -1,53 +1,168 @@
 [
   {
-    "categoria": "Animales Domésticos",
+    "categoria": "Animales (Visual)",
     "correctos": [
       "🐶",
       "🐱",
       "🐰",
       "🐹",
-      "🦜"
+      "🦊",
+      "🐻"
     ],
     "intrusos": [
-      "🦁",
-      "🐯",
-      "🐻",
-      "🦈",
-      "🦕"
-    ]
-  },
-  {
-    "categoria": "Alimentos",
-    "correctos": [
-      "🍞",
-      "🧀",
-      "🍗",
-      "🍖",
-      "🥚"
-    ],
-    "intrusos": [
+      "🍎",
+      "🚗",
       "⚽",
-      "🏀",
-      "🎾",
-      "🏓",
-      "🎮"
+      "🏠",
+      "👠"
     ]
   },
   {
-    "categoria": "Ropa de Invierno",
+    "categoria": "Ropa (Visual)",
     "correctos": [
+      "👕",
+      "👖",
+      "👗",
       "🧥",
-      "🧣",
-      "🧤",
-      "🧦",
-      "👢"
+      "👟",
+      "🧢"
     ],
     "intrusos": [
-      "🩳",
-      "👙",
-      "🩴",
-      "🕶️",
-      "🧢"
+      "🍌",
+      "🚙",
+      "⏰",
+      "👓",
+      "🗝️"
+    ]
+  },
+  {
+    "categoria": "Frutas (Visual)",
+    "correctos": [
+      "🍎",
+      "🍐",
+      "🍊",
+      "🍋",
+      "🍌",
+      "🍇",
+      "🍓"
+    ],
+    "intrusos": [
+      "🥦",
+      "🥕",
+      "🌽",
+      "🍗",
+      "🧀"
+    ]
+  },
+  {
+    "categoria": "Transporte (Visual)",
+    "correctos": [
+      "🚗",
+      "🚌",
+      "🚑",
+      "🚒",
+      "🚕",
+      "🚜"
+    ],
+    "intrusos": [
+      "🏠",
+      "🏫",
+      "🏥",
+      "🌳",
+      "🐕"
+    ]
+  },
+  {
+    "categoria": "Verbos (Acciones)",
+    "correctos": [
+      "Correr",
+      "Saltar",
+      "Leer",
+      "Escribir",
+      "Dormir",
+      "Comer",
+      "Jugar"
+    ],
+    "intrusos": [
+      "Mesa",
+      "Silla",
+      "Perro",
+      "Gato",
+      "Casa",
+      "Lápiz"
+    ]
+  },
+  {
+    "categoria": "Sustantivos (Cosas)",
+    "correctos": [
+      "Mesa",
+      "Libro",
+      "Coche",
+      "Árbol",
+      "Ordenador",
+      "Zapato"
+    ],
+    "intrusos": [
+      "Rápido",
+      "Feliz",
+      "Verde",
+      "Cantando",
+      "Ayer"
+    ]
+  },
+  {
+    "categoria": "Adjetivos (Cualidades)",
+    "correctos": [
+      "Guapo",
+      "Alto",
+      "Grande",
+      "Pequeño",
+      "Rojo",
+      "Amable",
+      "Fuerte"
+    ],
+    "intrusos": [
+      "Pedro",
+      "España",
+      "Madrid",
+      "Saltar",
+      "Comer"
+    ]
+  },
+  {
+    "categoria": "Palabras Agudas",
+    "correctos": [
+      "Camión",
+      "Papá",
+      "Sofá",
+      "Café",
+      "Ratón",
+      "Avión",
+      "Jardín"
+    ],
+    "intrusos": [
+      "Mesa",
+      "Silla",
+      "Libro",
+      "Árbol",
+      "Lápiz"
+    ]
+  },
+  {
+    "categoria": "Sinónimos de 'Feliz'",
+    "correctos": [
+      "Contento",
+      "Alegre",
+      "Dichoso",
+      "Satisfecho",
+      "Radiante"
+    ],
+    "intrusos": [
+      "Triste",
+      "Enojado",
+      "Lloroso",
+      "Preocupado",
+      "Enfadado"
     ]
   },
   {
@@ -57,7 +172,8 @@
       "Bueno",
       "Blanco",
       "Buscar",
-      "Abuelo"
+      "Abuelo",
+      "Nube"
     ],
     "intrusos": [
       "Vaca",
@@ -65,38 +181,6 @@
       "Viento",
       "Volar",
       "Uva"
-    ]
-  },
-  {
-    "categoria": "Sinónimos de Feliz",
-    "correctos": [
-      "Contento",
-      "Alegre",
-      "Dichoso",
-      "Satisfecho"
-    ],
-    "intrusos": [
-      "Triste",
-      "Apenado",
-      "Lloroso",
-      "Enojado"
-    ]
-  },
-  {
-    "categoria": "Sustantivos (Cosas)",
-    "correctos": [
-      "Mesa",
-      "Silla",
-      "Libro",
-      "Lápiz",
-      "Coche"
-    ],
-    "intrusos": [
-      "Correr",
-      "Saltar",
-      "Rápido",
-      "Azul",
-      "Yo"
     ]
   }
 ]

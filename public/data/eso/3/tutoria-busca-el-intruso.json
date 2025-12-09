@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "Emociones (Visual)",
+    "correctos": [
+      "😀",
+      "😢",
+      "😡",
+      "😱",
+      "😴",
+      "🤢"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "🏠",
+      "🐶",
+      "✏️"
+    ]
+  },
+  {
+    "categoria": "Convivencia (Visual)",
+    "correctos": [
+      "🤝",
+      "👂",
+      "🗣️",
+      "🫂",
+      "🛑",
+      "⚖️"
+    ],
+    "intrusos": [
+      "🥊",
+      "🖕",
+      "😤",
+      "🤬",
+      "💣"
+    ]
+  },
+  {
+    "categoria": "Orientación Académica",
+    "correctos": [
+      "Bachillerato",
+      "Ciclo Formativo",
+      "Universidad",
+      "Grado",
+      "Máster"
+    ],
+    "intrusos": [
+      "Primaria",
+      "Infantil",
+      "Guardería",
+      "Jubilación",
+      "Paro"
+    ]
+  },
+  {
+    "categoria": "Habilidades Sociales",
+    "correctos": [
+      "Empatía",
+      "Asertividad",
+      "Escucha",
+      "Respeto",
+      "Tolerancia"
+    ],
+    "intrusos": [
+      "Egoísmo",
+      "Agresividad",
+      "Pasividad",
+      "Insulto",
+      "Grito"
+    ]
+  },
+  {
+    "categoria": "Técnicas de Estudio",
+    "correctos": [
+      "Planificación",
+      "Lectura",
+      "Subrayado",
+      "Esquema",
+      "Resumen"
+    ],
+    "intrusos": [
+      "Improvisación",
+      "Copia",
+      "Chuleta",
+      "Distracción",
+      "Sueño"
+    ]
+  },
+  {
+    "categoria": "Valores",
+    "correctos": [
+      "Igualdad",
+      "Libertad",
+      "Justicia",
+      "Solidaridad",
+      "Paz"
+    ],
+    "intrusos": [
+      "Violencia",
+      "Odio",
+      "Racismo",
+      "Machismo",
+      "Guerra"
+    ]
+  },
+  {
+    "categoria": "Toma de Decisiones",
+    "correctos": [
+      "Información",
+      "Análisis",
+      "Alternativas",
+      "Elección",
+      "Consecuencias"
+    ],
+    "intrusos": [
+      "Azar",
+      "Suerte",
+      "Impulso",
+      "Miedo",
+      "Presión"
+    ]
+  }
+]

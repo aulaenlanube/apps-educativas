@@ -1,0 +1,159 @@
+[
+  {
+    "categoria": "Descubrimientos (Visual)",
+    "correctos": [
+      "⛵",
+      "🗺️",
+      "🧭",
+      "🌍",
+      "⚓",
+      "📜"
+    ],
+    "intrusos": [
+      "🏭",
+      "🚂",
+      "💻",
+      "🚀",
+      "🏙️"
+    ]
+  },
+  {
+    "categoria": "Reyes y Reinas (Visual)",
+    "correctos": [
+      "👑",
+      "🤴",
+      "👸",
+      "🏰",
+      "⚜️",
+      "🗡️"
+    ],
+    "intrusos": [
+      "🎩",
+      "👔",
+      "🗳️",
+      "⚖️",
+      "📢"
+    ]
+  },
+  {
+    "categoria": "Arte Renacimiento (Visual)",
+    "correctos": [
+      "🎨",
+      "🏛️",
+      "🖌️",
+      "🖼️",
+      "⛪",
+      "🗿"
+    ],
+    "intrusos": [
+      "🕌",
+      "🕋",
+      "⛺",
+      "🛖",
+      "🏭"
+    ]
+  },
+  {
+    "categoria": "Comercio (Visual)",
+    "correctos": [
+      "💰",
+      "⚖️",
+      "🛳️",
+      "🪙",
+      "🤝",
+      "📦"
+    ],
+    "intrusos": [
+      "🏹",
+      "⚔️",
+      "🛡️",
+      "🏰",
+      "🚜"
+    ]
+  },
+  {
+    "categoria": "Reyes Católicos",
+    "correctos": [
+      "Isabel",
+      "Fernando",
+      "Unión Dinástica",
+      "Inquisición",
+      "Granada"
+    ],
+    "intrusos": [
+      "Carlos I",
+      "Felipe II",
+      "Borbones",
+      "República",
+      "Constitución"
+    ]
+  },
+  {
+    "categoria": "Edad Moderna",
+    "correctos": [
+      "Renacimiento",
+      "Barroco",
+      "Humanismo",
+      "Ilustración",
+      "Absolutismo"
+    ],
+    "intrusos": [
+      "Románico",
+      "Gótico",
+      "Feudalismo",
+      "Cruzadas",
+      "Califato"
+    ]
+  },
+  {
+    "categoria": "Imperio Español",
+    "correctos": [
+      "América",
+      "Flandes",
+      "Italia",
+      "Filipinas",
+      "Portugal"
+    ],
+    "intrusos": [
+      "Australia",
+      "India",
+      "Canadá",
+      "Rusia",
+      "Japón"
+    ]
+  },
+  {
+    "categoria": "Sectores Económicos",
+    "correctos": [
+      "Primario",
+      "Secundario",
+      "Terciario",
+      "Agricultura",
+      "Industria"
+    ],
+    "intrusos": [
+      "Feudal",
+      "Gremial",
+      "Esclavista",
+      "Trueque",
+      "Subsistencia"
+    ]
+  },
+  {
+    "categoria": "Países de la UE",
+    "correctos": [
+      "Francia",
+      "Alemania",
+      "Italia",
+      "Portugal",
+      "Grecia"
+    ],
+    "intrusos": [
+      "Suiza",
+      "Noruega",
+      "Reino Unido",
+      "Rusia",
+      "Turquía"
+    ]
+  }
+]

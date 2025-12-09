@@ -1,32 +1,160 @@
 [
   {
-    "categoria": "Medios de Transporte",
-    "correctos": ["🚗", "🚌", "🚑", "🚒", "🚓", "🚕", "🚛", "🚜", "🚂", "✈️", "🚢"],
-    "intrusos": ["🏠", "🏫", "🏥", "🚦", "🛑", "🚶", "🐕"]
+    "categoria": "Medios de Transporte (Visual)",
+    "correctos": [
+      "🚗",
+      "🚌",
+      "🚂",
+      "✈️",
+      "🚢",
+      "🚲"
+    ],
+    "intrusos": [
+      "🏠",
+      "🏫",
+      "🌳",
+      "🐶",
+      "🍔"
+    ]
+  },
+  {
+    "categoria": "Profesiones (Visual)",
+    "correctos": [
+      "👨‍⚕️",
+      "👩‍🏫",
+      "👮‍♂️",
+      "👨‍🚒",
+      "👩‍🍳",
+      "👨‍🌾"
+    ],
+    "intrusos": [
+      "👻",
+      "👽",
+      "🤖",
+      "🐵",
+      "🗽"
+    ]
+  },
+  {
+    "categoria": "La Ciudad (Visual)",
+    "correctos": [
+      "🚦",
+      "🏢",
+      "🚌",
+      "⛲",
+      "🏬",
+      "🏥"
+    ],
+    "intrusos": [
+      "🚜",
+      "🌻",
+      "🐄",
+      "🐑",
+      "🏔️"
+    ]
+  },
+  {
+    "categoria": "El Colegio (Visual)",
+    "correctos": [
+      "🎒",
+      "📚",
+      "✏️",
+      "📏",
+      "✂️",
+      "🖍️"
+    ],
+    "intrusos": [
+      "🛌",
+      "🛁",
+      "🍳",
+      "📺",
+      "🎮"
+    ]
+  },
+  {
+    "categoria": "Miembros de la Familia",
+    "correctos": [
+      "Padre",
+      "Madre",
+      "Hermano",
+      "Abuelo",
+      "Tío",
+      "Primo"
+    ],
+    "intrusos": [
+      "Profesor",
+      "Médico",
+      "Vecino",
+      "Amigo",
+      "Policía"
+    ]
+  },
+  {
+    "categoria": "Partes de la Casa",
+    "correctos": [
+      "Cocina",
+      "Salón",
+      "Baño",
+      "Dormitorio",
+      "Comedor"
+    ],
+    "intrusos": [
+      "Colegio",
+      "Parque",
+      "Tienda",
+      "Cine",
+      "Calle"
+    ]
+  },
+  {
+    "categoria": "Servicios de la Calle",
+    "correctos": [
+      "Semáforo",
+      "Papelera",
+      "Farola",
+      "Banco",
+      "Paso de cebra"
+    ],
+    "intrusos": [
+      "Sofá",
+      "Cama",
+      "Ducha",
+      "Televisión",
+      "Nevera"
+    ]
   },
   {
     "categoria": "Profesiones",
-    "correctos": ["👨‍⚕️", "👩‍🏫", "👨‍🍳", "👮‍♀️", "👨‍🚒", "👩‍🚀", "👨‍🌾", "👩‍🔧", "👨‍🎨"],
-    "intrusos": ["🤴", "👸", "👶", "👹", "👽", "🤖", "🧛"]
-  },
-  {
-    "categoria": "Elementos de la Ciudad",
-    "correctos": ["🏫", "🏥", "🏦", "🏨", "🏬", "🚦", "🚏", "🚌", "🏭"],
-    "intrusos": ["🚜", "🐄", "🐑", "🐖", "🏕️", "🌲", "⛰️"]
-  },
-  {
-    "categoria": "Días de la semana",
-    "correctos": ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
-    "intrusos": ["Enero", "Marzo", "Verano", "Invierno", "Ayer", "Hoy"]
-  },
-  {
-    "categoria": "Meses del año",
-    "correctos": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Diciembre"],
-    "intrusos": ["Lunes", "Martes", "Primavera", "Otoño", "Navidad", "Semana"]
+    "correctos": [
+      "Médico",
+      "Profesor",
+      "Policía",
+      "Bombero",
+      "Panadero"
+    ],
+    "intrusos": [
+      "Niño",
+      "Alumno",
+      "Bebé",
+      "Perro",
+      "Gato"
+    ]
   },
   {
     "categoria": "Medios de Comunicación",
-    "correctos": ["📱", "📞", "💻", "🖥️", "📻", "📺", "✉️", "📰"],
-    "intrusos": ["🚗", "🚲", "🛴", "🛋️", "🪑", "🍔"]
+    "correctos": [
+      "Teléfono",
+      "Televisión",
+      "Radio",
+      "Carta",
+      "Ordenador"
+    ],
+    "intrusos": [
+      "Coche",
+      "Bicicleta",
+      "Tren",
+      "Avión",
+      "Barco"
+    ]
   }
 ]

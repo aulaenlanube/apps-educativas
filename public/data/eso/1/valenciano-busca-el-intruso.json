@@ -1,0 +1,144 @@
+[
+  {
+    "categoria": "L'Escola (Visual)",
+    "correctos": [
+      "📚",
+      "✏️",
+      "🎒",
+      "🏫",
+      "📏",
+      "🖍️"
+    ],
+    "intrusos": [
+      "🛌",
+      "🛁",
+      "🍳",
+      "📺",
+      "🎮"
+    ]
+  },
+  {
+    "categoria": "Aliments (Visual)",
+    "correctos": [
+      "🥘",
+      "🍊",
+      "🥖",
+      "🧀",
+      "🐟",
+      "🍇"
+    ],
+    "intrusos": [
+      "🍽️",
+      "🔪",
+      "🧂",
+      "🍷",
+      "🥤"
+    ]
+  },
+  {
+    "categoria": "Natura (Visual)",
+    "correctos": [
+      "⛰️",
+      "🏖️",
+      "🌲",
+      "🌊",
+      "🦅",
+      "🍄"
+    ],
+    "intrusos": [
+      "🏙️",
+      "🏭",
+      "🛣️",
+      "🚇",
+      "🏯"
+    ]
+  },
+  {
+    "categoria": "Categories Gramaticals",
+    "correctos": [
+      "Substantiu",
+      "Adjectiu",
+      "Verb",
+      "Determinant",
+      "Pronom"
+    ],
+    "intrusos": [
+      "Subjecte",
+      "Predicat",
+      "Síl·laba",
+      "Accent",
+      "Diftong"
+    ]
+  },
+  {
+    "categoria": "Els Dies de la Setmana",
+    "correctos": [
+      "Dilluns",
+      "Dimarts",
+      "Dimecres",
+      "Dijous",
+      "Divendres"
+    ],
+    "intrusos": [
+      "Gener",
+      "Febrer",
+      "Març",
+      "Abril",
+      "Estiu"
+    ]
+  },
+  {
+    "categoria": "Lèxic de la Família",
+    "correctos": [
+      "Pare",
+      "Mare",
+      "Germà",
+      "Germana",
+      "Avi",
+      "Àvia"
+    ],
+    "intrusos": [
+      "Mestre",
+      "Metge",
+      "Amic",
+      "Veí",
+      "Policia"
+    ]
+  },
+  {
+    "categoria": "Animals",
+    "correctos": [
+      "Gos",
+      "Gat",
+      "Cavall",
+      "Ocell",
+      "Peix",
+      "Lleó"
+    ],
+    "intrusos": [
+      "Taula",
+      "Cadira",
+      "Llibre",
+      "Llapis",
+      "Ordinador"
+    ]
+  },
+  {
+    "categoria": "Colors",
+    "correctos": [
+      "Roig",
+      "Blau",
+      "Groc",
+      "Verd",
+      "Blanc",
+      "Negre"
+    ],
+    "intrusos": [
+      "Gran",
+      "Petit",
+      "Alt",
+      "Baix",
+      "Gros"
+    ]
+  }
+]

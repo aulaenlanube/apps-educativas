@@ -1,0 +1,160 @@
+[
+  {
+    "categoria": "Herramientas (Visual)",
+    "correctos": [
+      "🔨",
+      "🔧",
+      "🪛",
+      "🔩",
+      "🗜️",
+      "📏"
+    ],
+    "intrusos": [
+      "✏️",
+      "🖊️",
+      "🧸",
+      "🍎",
+      "🥄"
+    ]
+  },
+  {
+    "categoria": "Dispositivos Digitales (Visual)",
+    "correctos": [
+      "💻",
+      "📱",
+      "🖥️",
+      "🖱️",
+      "⌨️",
+      "🖨️"
+    ],
+    "intrusos": [
+      "🏺",
+      "📜",
+      "🕯️",
+      "🕰️",
+      "🧹"
+    ]
+  },
+  {
+    "categoria": "Materiales (Visual)",
+    "correctos": [
+      "🪵",
+      "🧱",
+      "🪨",
+      "🧻",
+      "🔩",
+      "🛢️"
+    ],
+    "intrusos": [
+      "🍞",
+      "🧀",
+      "🍖",
+      "🥗",
+      "🍰"
+    ]
+  },
+  {
+    "categoria": "Energía (Visual)",
+    "correctos": [
+      "🔋",
+      "🔌",
+      "💡",
+      "⚡",
+      "☀️",
+      "🌬️"
+    ],
+    "intrusos": [
+      "💧",
+      "🌱",
+      "🦋",
+      "🐶",
+      "🐱"
+    ]
+  },
+  {
+    "categoria": "Fases del Proyecto",
+    "correctos": [
+      "Necesidad",
+      "Idea",
+      "Diseño",
+      "Planificación",
+      "Construcción",
+      "Evaluación"
+    ],
+    "intrusos": [
+      "Jugar",
+      "Dormir",
+      "Comer",
+      "Viajar",
+      "Comprar"
+    ]
+  },
+  {
+    "categoria": "Materiales Tecnológicos",
+    "correctos": [
+      "Madera",
+      "Metal",
+      "Plástico",
+      "Cerámica",
+      "Textil"
+    ],
+    "intrusos": [
+      "Agua",
+      "Aire",
+      "Fuego",
+      "Tierra",
+      "Carne"
+    ]
+  },
+  {
+    "categoria": "Herramientas de Medida",
+    "correctos": [
+      "Regla",
+      "Metro",
+      "Escuadra",
+      "Cartabón",
+      "Calibre"
+    ],
+    "intrusos": [
+      "Martillo",
+      "Alicates",
+      "Destornillador",
+      "Sierra",
+      "Lima"
+    ]
+  },
+  {
+    "categoria": "Operadores Mecánicos",
+    "correctos": [
+      "Palanca",
+      "Polea",
+      "Rueda",
+      "Engranaje",
+      "Tornillo"
+    ],
+    "intrusos": [
+      "Motor",
+      "Batería",
+      "Cable",
+      "Interruptor",
+      "Bombilla"
+    ]
+  },
+  {
+    "categoria": "Propiedades Materiales",
+    "correctos": [
+      "Dureza",
+      "Tenacidad",
+      "Elasticidad",
+      "Conductividad",
+      "Maleabilidad"
+    ],
+    "intrusos": [
+      "Belleza",
+      "Precio",
+      "Marca",
+      "Color",
+      "Olor"
+    ]
+  }
+]

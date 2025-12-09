@@ -1,0 +1,122 @@
+[
+  {
+    "categoria": "Dinero (Visual)",
+    "correctos": [
+      "💶",
+      "💵",
+      "💷",
+      "💴",
+      "💳",
+      "🏧"
+    ],
+    "intrusos": [
+      "🎫",
+      "🎟️",
+      "🏷️",
+      "🔖",
+      "📜"
+    ]
+  },
+  {
+    "categoria": "Mercado (Visual)",
+    "correctos": [
+      "📉",
+      "📈",
+      "📊",
+      "🛒",
+      "🛍️",
+      "🏭"
+    ],
+    "intrusos": [
+      "🏖️",
+      "🏞️",
+      "🏕️",
+      "🏟️",
+      "🎪"
+    ]
+  },
+  {
+    "categoria": "Conceptos Básicos",
+    "correctos": [
+      "Escasez",
+      "Coste de oportunidad",
+      "Oferta",
+      "Demanda",
+      "Precio"
+    ],
+    "intrusos": [
+      "Abundancia",
+      "Gratuidad",
+      "Infinito",
+      "Ilimitado",
+      "Eterno"
+    ]
+  },
+  {
+    "categoria": "Sectores Económicos",
+    "correctos": [
+      "Primario",
+      "Secundario",
+      "Terciario",
+      "Cuaternario"
+    ],
+    "intrusos": [
+      "Primero",
+      "Segundo",
+      "Tercero",
+      "Cuarto",
+      "Quinto"
+    ]
+  },
+  {
+    "categoria": "Macroeconomía",
+    "correctos": [
+      "PIB",
+      "IPC",
+      "Inflación",
+      "Desempleo",
+      "Déficit"
+    ],
+    "intrusos": [
+      "Factura",
+      "Ticket",
+      "Recibo",
+      "Nómina",
+      "Presupuesto"
+    ]
+  },
+  {
+    "categoria": "Tipos de Empresa",
+    "correctos": [
+      "S.A.",
+      "S.L.",
+      "Cooperativa",
+      "Autónomo",
+      "Pyme"
+    ],
+    "intrusos": [
+      "ONG",
+      "Fundación",
+      "Club",
+      "Asociación",
+      "Partido"
+    ]
+  },
+  {
+    "categoria": "Sistema Financiero",
+    "correctos": [
+      "Banco",
+      "Bolsa",
+      "Crédito",
+      "Interés",
+      "Ahorro"
+    ],
+    "intrusos": [
+      "Supermercado",
+      "Tienda",
+      "Fábrica",
+      "Granja",
+      "Mina"
+    ]
+  }
+]

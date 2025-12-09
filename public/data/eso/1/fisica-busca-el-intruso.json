@@ -1,0 +1,155 @@
+[
+  {
+    "categoria": "Laboratorio (Visual)",
+    "correctos": [
+      "🧪",
+      "🔬",
+      "🌡️",
+      "⚖️",
+      "🔥",
+      "🥽"
+    ],
+    "intrusos": [
+      "🔨",
+      "🔧",
+      "🎸",
+      "⚽",
+      "🎮"
+    ]
+  },
+  {
+    "categoria": "Estados de la Materia (Visual)",
+    "correctos": [
+      "🧊",
+      "💧",
+      "🌫️",
+      "🌬️",
+      "🔥"
+    ],
+    "intrusos": [
+      "🧱",
+      "🪵",
+      "📄",
+      "🥪",
+      "🍎"
+    ]
+  },
+  {
+    "categoria": "Energía (Visual)",
+    "correctos": [
+      "⚡",
+      "🔋",
+      "💡",
+      "☀️",
+      "🔥",
+      "🔌"
+    ],
+    "intrusos": [
+      "💧",
+      "🌱",
+      "🦋",
+      "🐶",
+      "🐱"
+    ]
+  },
+  {
+    "categoria": "Átomos (Visual)",
+    "correctos": [
+      "⚛️",
+      "🧬",
+      "🔬",
+      "⚗️",
+      "🧪"
+    ],
+    "intrusos": [
+      "🪐",
+      "🚀",
+      "🔭",
+      "🌍",
+      "🌙"
+    ]
+  },
+  {
+    "categoria": "Propiedades de la Materia",
+    "correctos": [
+      "Masa",
+      "Volumen",
+      "Densidad",
+      "Temperatura"
+    ],
+    "intrusos": [
+      "Amor",
+      "Tiempo",
+      "Velocidad",
+      "Fuerza",
+      "Alegría"
+    ]
+  },
+  {
+    "categoria": "Estados de Agregación",
+    "correctos": [
+      "Sólido",
+      "Líquido",
+      "Gaseoso",
+      "Plasma"
+    ],
+    "intrusos": [
+      "Duro",
+      "Blando",
+      "Áspero",
+      "Suave",
+      "Caliente"
+    ]
+  },
+  {
+    "categoria": "Tipos de Energía",
+    "correctos": [
+      "Cinética",
+      "Potencial",
+      "Térmica",
+      "Química",
+      "Eléctrica"
+    ],
+    "intrusos": [
+      "Rápida",
+      "Alta",
+      "Fuerte",
+      "Lenta",
+      "Baja"
+    ]
+  },
+  {
+    "categoria": "Cambios de Estado",
+    "correctos": [
+      "Fusión",
+      "Solidificación",
+      "Vaporización",
+      "Condensación",
+      "Sublimación"
+    ],
+    "intrusos": [
+      "Mezcla",
+      "Disolución",
+      "Oxidación",
+      "Combustión",
+      "Reacción"
+    ]
+  },
+  {
+    "categoria": "Fuerzas",
+    "correctos": [
+      "Gravedad",
+      "Rozamiento",
+      "Eléctrica",
+      "Magnética",
+      "Normal"
+    ],
+    "intrusos": [
+      "Masa",
+      "Densidad",
+      "Volumen",
+      "Color",
+      "Olor"
+    ]
+  }
+]

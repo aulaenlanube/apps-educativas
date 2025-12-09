@@ -1,0 +1,141 @@
+[
+  {
+    "categoria": "Siglo XX (Visual)",
+    "correctos": [
+      "🏭",
+      "🪖",
+      "🚂",
+      "📻",
+      "✈️",
+      "🗳️"
+    ],
+    "intrusos": [
+      "🏰",
+      "👑",
+      "🗡️",
+      "🛡️",
+      "🕯️"
+    ]
+  },
+  {
+    "categoria": "Guerra Fría (Visual)",
+    "correctos": [
+      "🚀",
+      "🛰️",
+      "🧱",
+      "☢️",
+      "🕵️",
+      "🇺🇸"
+    ],
+    "intrusos": [
+      "⚔️",
+      "🏹",
+      "🏇",
+      "🏺",
+      "📜"
+    ]
+  },
+  {
+    "categoria": "Arte Contemporáneo (Visual)",
+    "correctos": [
+      "🎨",
+      "🏢",
+      "🖌️",
+      "🖼️",
+      "🎥",
+      "📷"
+    ],
+    "intrusos": [
+      "⛪",
+      "🕌",
+      "🏛️",
+      "🗿",
+      "🕍"
+    ]
+  },
+  {
+    "categoria": "Revoluciones",
+    "correctos": [
+      "Industrial",
+      "Francesa",
+      "Rusa",
+      "Americana",
+      "Liberal"
+    ],
+    "intrusos": [
+      "Neolítica",
+      "Urbana",
+      "Cognitiva",
+      "Científica",
+      "Agrícola"
+    ]
+  },
+  {
+    "categoria": "Ideologías Siglo XIX",
+    "correctos": [
+      "Liberalismo",
+      "Marxismo",
+      "Anarquismo",
+      "Nacionalismo",
+      "Socialismo"
+    ],
+    "intrusos": [
+      "Feudalismo",
+      "Absolutismo",
+      "Humanismo",
+      "Renacimiento",
+      "Teocentrismo"
+    ]
+  },
+  {
+    "categoria": "Guerras Mundiales",
+    "correctos": [
+      "Trincheras",
+      "Aliados",
+      "Eje",
+      "Holocausto",
+      "Bomba atómica"
+    ],
+    "intrusos": [
+      "Cruzadas",
+      "Reconquista",
+      "Imperio Romano",
+      "Vikingos",
+      "Samuráis"
+    ]
+  },
+  {
+    "categoria": "Guerra Fría",
+    "correctos": [
+      "Muro de Berlín",
+      "Telón de Acero",
+      "Carrera espacial",
+      "Crisis misiles",
+      "Vietnam"
+    ],
+    "intrusos": [
+      "Napoleón",
+      "Colón",
+      "César",
+      "Carlomagno",
+      "Reyes Católicos"
+    ]
+  },
+  {
+    "categoria": "Arte Siglo XX",
+    "correctos": [
+      "Cubismo",
+      "Surrealismo",
+      "Expresionismo",
+      "Dadaísmo",
+      "Pop Art"
+    ],
+    "intrusos": [
+      "Barroco",
+      "Gótico",
+      "Románico",
+      "Renacimiento",
+      "Neoclásico"
+    ]
+  }
+]

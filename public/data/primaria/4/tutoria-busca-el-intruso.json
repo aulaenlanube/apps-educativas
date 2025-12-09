@@ -1,29 +1,31 @@
 [
   {
-    "categoria": "Trabajo en Equipo",
+    "categoria": "Emociones (Visual)",
     "correctos": [
-      "🤝",
-      "👩‍👩‍👧‍👦",
-      "🫂",
-      "👐",
-      "⛹️‍♀️"
+      "😀",
+      "😢",
+      "😡",
+      "😱",
+      "😴",
+      "🤢"
     ],
     "intrusos": [
-      "🥊",
-      "🤺",
-      "😡",
-      "😤",
-      "🤬"
+      "🍎",
+      "🚗",
+      "🏠",
+      "🐶",
+      "✏️"
     ]
   },
   {
-    "categoria": "Vida Activa",
+    "categoria": "Vida Activa (Visual)",
     "correctos": [
       "🚴",
       "🏊",
       "🏃",
       "🤸",
-      "🧗"
+      "🧗",
+      "⚽"
     ],
     "intrusos": [
       "🛋️",
@@ -34,30 +36,14 @@
     ]
   },
   {
-    "categoria": "Naturaleza y Relax",
+    "categoria": "Peligros (Visual)",
     "correctos": [
-      "🌳",
-      "🌿",
-      "🧘",
-      "🏞️",
-      "🌅"
-    ],
-    "intrusos": [
-      "📣",
-      "📢",
-      "🏗️",
-      "🚦",
-      "🏢"
-    ]
-  },
-  {
-    "categoria": "Objetos Peligrosos",
-    "correctos": [
-      "🔪",
       "🔥",
       "🔌",
+      "🔪",
+      "💊",
       "🧪",
-      "💊"
+      "✂️"
     ],
     "intrusos": [
       "🧸",
@@ -65,6 +51,74 @@
       "⚽",
       "🍎",
       "👕"
+    ]
+  },
+  {
+    "categoria": "Cualidades de un Amigo",
+    "correctos": [
+      "Leal",
+      "Sincero",
+      "Divertido",
+      "Amable",
+      "Generoso"
+    ],
+    "intrusos": [
+      "Mentiroso",
+      "Egoísta",
+      "Envidioso",
+      "Violento",
+      "Cruel"
+    ]
+  },
+  {
+    "categoria": "Resolución de Conflictos",
+    "correctos": [
+      "Hablar",
+      "Escuchar",
+      "Pedir perdón",
+      "Negociar",
+      "Calmarse"
+    ],
+    "intrusos": [
+      "Gritar",
+      "Pegar",
+      "Insultar",
+      "Ignorar",
+      "Amenazar"
+    ]
+  },
+  {
+    "categoria": "Derechos del Niño",
+    "correctos": [
+      "Educación",
+      "Salud",
+      "Juego",
+      "Familia",
+      "Protección"
+    ],
+    "intrusos": [
+      "Trabajar",
+      "Guerra",
+      "Hambre",
+      "Violencia",
+      "Abandono"
+    ]
+  },
+  {
+    "categoria": "Emociones Básicas",
+    "correctos": [
+      "Alegría",
+      "Tristeza",
+      "Miedo",
+      "Ira",
+      "Sorpresa"
+    ],
+    "intrusos": [
+      "Hambre",
+      "Sed",
+      "Sueño",
+      "Dolor",
+      "Frío"
     ]
   }
 ]

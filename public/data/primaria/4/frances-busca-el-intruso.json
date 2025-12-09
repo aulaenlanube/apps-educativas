@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "Les Vêtements",
+    "categoria": "Les Vêtements (Visual)",
     "correctos": [
       "👕",
       "👖",
       "👗",
       "🧥",
-      "👟"
+      "👟",
+      "🧢"
     ],
     "intrusos": [
       "🍎",
@@ -17,13 +18,14 @@
     ]
   },
   {
-    "categoria": "La Maison",
+    "categoria": "La Maison (Visual)",
     "correctos": [
       "🏠",
       "🚪",
       "🪟",
       "🛌",
-      "🛋️"
+      "🛋️",
+      "🛁"
     ],
     "intrusos": [
       "🚗",
@@ -34,13 +36,86 @@
     ]
   },
   {
-    "categoria": "Les Jours",
+    "categoria": "Le Corps (Visual)",
+    "correctos": [
+      "👀",
+      "👂",
+      "👃",
+      "👄",
+      "🤚",
+      "🦶"
+    ],
+    "intrusos": [
+      "👕",
+      "👖",
+      "👟",
+      "🧢",
+      "👓"
+    ]
+  },
+  {
+    "categoria": "Les Parties du Corps",
+    "correctos": [
+      "Tête",
+      "Bras",
+      "Jambe",
+      "Main",
+      "Pied",
+      "Nez"
+    ],
+    "intrusos": [
+      "Stylo",
+      "Livre",
+      "Chien",
+      "Chat",
+      "Maison"
+    ]
+  },
+  {
+    "categoria": "Les Vêtements (Mots)",
+    "correctos": [
+      "Pantalon",
+      "Robe",
+      "Jupe",
+      "Pull",
+      "Chemise",
+      "Manteau"
+    ],
+    "intrusos": [
+      "Pomme",
+      "Poire",
+      "Banane",
+      "Rouge",
+      "Bleu"
+    ]
+  },
+  {
+    "categoria": "La Nourriture",
+    "correctos": [
+      "Pain",
+      "Fromage",
+      "Pomme",
+      "Lait",
+      "Eau",
+      "Poulet"
+    ],
+    "intrusos": [
+      "Chien",
+      "Chat",
+      "Maison",
+      "Voiture",
+      "École"
+    ]
+  },
+  {
+    "categoria": "Les Jours de la Semaine",
     "correctos": [
       "Lundi",
       "Mardi",
       "Mercredi",
       "Jeudi",
-      "Vendredi"
+      "Vendredi",
+      "Samedi"
     ],
     "intrusos": [
       "Janvier",
@@ -51,37 +126,21 @@
     ]
   },
   {
-    "categoria": "La Famille",
+    "categoria": "Les Nombres 10-20",
     "correctos": [
-      "Père",
-      "Mère",
-      "Frère",
-      "Sœur",
-      "Bébé"
+      "Dix",
+      "Onze",
+      "Douze",
+      "Treize",
+      "Quatorze",
+      "Vingt"
     ],
     "intrusos": [
-      "Stylo",
-      "Gomme",
-      "Cahier",
-      "Professeur",
-      "École"
-    ]
-  },
-  {
-    "categoria": "Le Corps (Mots)",
-    "correctos": [
-      "Tête",
-      "Bras",
-      "Jambe",
-      "Main",
-      "Pied"
-    ],
-    "intrusos": [
-      "Stylo",
-      "Livre",
-      "Chien",
-      "Chat",
-      "Maison"
+      "Un",
+      "Deux",
+      "Trois",
+      "Rouge",
+      "Vert"
     ]
   }
 ]

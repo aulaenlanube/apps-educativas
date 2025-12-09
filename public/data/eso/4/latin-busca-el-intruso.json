@@ -1,0 +1,141 @@
+[
+  {
+    "categoria": "Roma Antigua (Visual)",
+    "correctos": [
+      "🏛️",
+      "🏟️",
+      "🏺",
+      "🍇",
+      "🦅",
+      "⚔️"
+    ],
+    "intrusos": [
+      "🕌",
+      "🏯",
+      "🏗️",
+      "💻",
+      "🚀"
+    ]
+  },
+  {
+    "categoria": "Mitología (Visual)",
+    "correctos": [
+      "⚡",
+      "🔱",
+      "🦉",
+      "🍷",
+      "🏹",
+      "🔥"
+    ],
+    "intrusos": [
+      "✝️",
+      "☪️",
+      "🕉️",
+      "✡️",
+      "☸️"
+    ]
+  },
+  {
+    "categoria": "Números Romanos (Visual)",
+    "correctos": [
+      "Ⅰ",
+      "Ⅴ",
+      "Ⅹ",
+      "Ⅼ",
+      "Ⅽ",
+      "Ⅾ"
+    ],
+    "intrusos": [
+      "1",
+      "5",
+      "10",
+      "50",
+      "100"
+    ]
+  },
+  {
+    "categoria": "Casos Latinos",
+    "correctos": [
+      "Nominativo",
+      "Acusativo",
+      "Genitivo",
+      "Dativo",
+      "Ablativo"
+    ],
+    "intrusos": [
+      "Sujeto",
+      "Predicado",
+      "Directo",
+      "Indirecto",
+      "Agente"
+    ]
+  },
+  {
+    "categoria": "Dioses Romanos",
+    "correctos": [
+      "Júpiter",
+      "Juno",
+      "Marte",
+      "Venus",
+      "Neptuno"
+    ],
+    "intrusos": [
+      "Zeus",
+      "Hera",
+      "Ares",
+      "Afrodita",
+      "Poseidón"
+    ]
+  },
+  {
+    "categoria": "Instituciones Romanas",
+    "correctos": [
+      "Senado",
+      "Cónsul",
+      "Tribuno",
+      "Pretor",
+      "Edil"
+    ],
+    "intrusos": [
+      "Presidente",
+      "Ministro",
+      "Alcalde",
+      "Diputado",
+      "Concejal"
+    ]
+  },
+  {
+    "categoria": "Legado Romano",
+    "correctos": [
+      "Derecho",
+      "Calzadas",
+      "Acueductos",
+      "Latín",
+      "Calendario"
+    ],
+    "intrusos": [
+      "Brújula",
+      "Pólvora",
+      "Papel",
+      "Imprenta",
+      "Internet"
+    ]
+  },
+  {
+    "categoria": "Declinaciones",
+    "correctos": [
+      "Rosa",
+      "Dominus",
+      "Templum",
+      "Rex",
+      "Manus"
+    ],
+    "intrusos": [
+      "Amar",
+      "Tener",
+      "Ser",
+      "Oír",
+      "Venir"
+    ]
+  }
+]

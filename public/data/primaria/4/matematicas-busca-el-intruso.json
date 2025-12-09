@@ -1,83 +1,178 @@
 [
   {
-    "categoria": "Ángulos y Formas",
+    "categoria": "Ángulos (Visual)",
     "correctos": [
       "📐",
-      "📏",
-      "🔺",
-      "⬜",
-      "🟡"
+      "L",
+      "V",
+      "⊿",
+      "🔲"
     ],
     "intrusos": [
-      "🍎",
-      "🚗",
-      "🐶",
-      "🌧️"
+      "🔴",
+      "🔵",
+      "〰️",
+      "🎈",
+      "🐶"
     ]
   },
   {
-    "categoria": "Fracciones (Comida partida)",
-    "correctos": [
-      "🍕",
-      "🍰",
-      "🍫",
-      "🍪",
-      "🍩"
-    ],
-    "intrusos": [
-      "🥛",
-      "🥤",
-      "🧉",
-      "🧊"
-    ]
-  },
-  {
-    "categoria": "Herramientas de Medida",
+    "categoria": "Instrumentos de Medida (Visual)",
     "correctos": [
       "📏",
       "📐",
       "⚖️",
       "⏱️",
-      "🌡️"
+      "🌡️",
+      "⏲️"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🪛",
       "✂️",
-      "🗡️"
+      "🖍️"
     ]
   },
   {
-    "categoria": "Cuerpos Geométricos",
+    "categoria": "Cuerpos Redondos (Visual)",
     "correctos": [
       "⚽",
-      "📦",
+      "🍊",
       "🥫",
-      "⛺",
-      "🧊"
+      "🕯️",
+      "🍦",
+      "🌍"
     ],
     "intrusos": [
-      "📄",
-      "🗺️",
-      "🖼️",
-      "🃏"
+      "📦",
+      "🎲",
+      "🧱",
+      "📺",
+      "🧃"
     ]
   },
   {
-    "categoria": "Calculadora y Números",
+    "categoria": "Fracciones: Mitades (Visual)",
     "correctos": [
-      "🧮",
-      "🔢",
-      "➕",
-      "➖",
-      "✖️"
+      "🌗",
+      "🌓",
+      "🍕",
+      "🍰",
+      "🍋"
     ],
     "intrusos": [
-      "📝",
-      "🖌️",
-      "🔍",
-      "🔦"
+      "🌕",
+      "🌑",
+      "🟦",
+      "🟩",
+      "🔟"
+    ]
+  },
+  {
+    "categoria": "Números Decimales",
+    "correctos": [
+      "0.5",
+      "1.2",
+      "3.14",
+      "0.05",
+      "10.5",
+      "7.8"
+    ],
+    "intrusos": [
+      "100",
+      "50",
+      "25",
+      "1",
+      "500",
+      "Mil"
+    ]
+  },
+  {
+    "categoria": "Tipos de Ángulos",
+    "correctos": [
+      "Agudo",
+      "Recto",
+      "Obtuso",
+      "Llano",
+      "Completo"
+    ],
+    "intrusos": [
+      "Triángulo",
+      "Cuadrado",
+      "Círculo",
+      "Vértice",
+      "Lado"
+    ]
+  },
+  {
+    "categoria": "Términos de la División",
+    "correctos": [
+      "Dividendo",
+      "Divisor",
+      "Cociente",
+      "Resto"
+    ],
+    "intrusos": [
+      "Sumando",
+      "Factor",
+      "Producto",
+      "Minuendo",
+      "Resta"
+    ]
+  },
+  {
+    "categoria": "Unidades de Masa",
+    "correctos": [
+      "Kilogramo",
+      "Gramo",
+      "Miligramo",
+      "Hectogramo",
+      "Decagramo"
+    ],
+    "intrusos": [
+      "Litro",
+      "Metro",
+      "Segundo",
+      "Grado",
+      "Euro"
+    ]
+  },
+  {
+    "categoria": "Clasificación de Triángulos",
+    "correctos": [
+      "Equilátero",
+      "Isósceles",
+      "Escaleno",
+      "Rectángulo"
+    ],
+    "intrusos": [
+      "Cuadrado",
+      "Rombo",
+      "Pentágono",
+      "Círculo",
+      "Prisma"
+    ]
+  },
+  {
+    "categoria": "Números Romanos (decenas)",
+    "correctos": [
+      "X",
+      "XX",
+      "XXX",
+      "XL",
+      "L",
+      "LX",
+      "XC"
+    ],
+    "intrusos": [
+      "I",
+      "V",
+      "10",
+      "20",
+      "A",
+      "B",
+      "Cien"
     ]
   }
 ]

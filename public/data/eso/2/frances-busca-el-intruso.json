@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "La Ville (Visual)",
+    "correctos": [
+      "🏥",
+      "🏫",
+      "🏦",
+      "📫",
+      "⛲",
+      "🏬"
+    ],
+    "intrusos": [
+      "🏜️",
+      "🏝️",
+      "🌋",
+      "🌲",
+      "🐄"
+    ]
+  },
+  {
+    "categoria": "Les Vêtements (Visual)",
+    "correctos": [
+      "👕",
+      "👖",
+      "👗",
+      "🧥",
+      "👟",
+      "🧢"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "🏠",
+      "🐶",
+      "⚽"
+    ]
+  },
+  {
+    "categoria": "Les Métiers",
+    "correctos": [
+      "Professeur",
+      "Médecin",
+      "Policier",
+      "Pompier",
+      "Boulanger"
+    ],
+    "intrusos": [
+      "École",
+      "Hôpital",
+      "Baguette",
+      "Croissant",
+      "Maison"
+    ]
+  },
+  {
+    "categoria": "Les Verbes (Actions)",
+    "correctos": [
+      "Parler",
+      "Manger",
+      "Finir",
+      "Aller",
+      "Faire"
+    ],
+    "intrusos": [
+      "Grand",
+      "Petit",
+      "Rouge",
+      "Bleu",
+      "Rapide"
+    ]
+  },
+  {
+    "categoria": "La Maison",
+    "correctos": [
+      "Salon",
+      "Cuisine",
+      "Chambre",
+      "Salle de bain",
+      "Jardin"
+    ],
+    "intrusos": [
+      "Cinéma",
+      "Parc",
+      "Musée",
+      "Gare",
+      "Aéroport"
+    ]
+  },
+  {
+    "categoria": "Les Nombres 10-20",
+    "correctos": [
+      "Dix",
+      "Onze",
+      "Douze",
+      "Treize",
+      "Vingt"
+    ],
+    "intrusos": [
+      "Un",
+      "Deux",
+      "Trois",
+      "Quatre",
+      "Cinq"
+    ]
+  },
+  {
+    "categoria": "Les Adjectifs",
+    "correctos": [
+      "Grand",
+      "Petit",
+      "Joli",
+      "Triste",
+      "Heureux"
+    ],
+    "intrusos": [
+      "Table",
+      "Chaise",
+      "Livre",
+      "Stylo",
+      "Pomme"
+    ]
+  }
+]

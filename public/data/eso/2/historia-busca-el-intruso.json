@@ -1,0 +1,158 @@
+[
+  {
+    "categoria": "Edad Media (Visual)",
+    "correctos": [
+      "🏰",
+      "👑",
+      "🛡️",
+      "⚔️",
+      "🐎",
+      "⚜️"
+    ],
+    "intrusos": [
+      "🏭",
+      "🚂",
+      "💻",
+      "📱",
+      "🚀"
+    ]
+  },
+  {
+    "categoria": "Arte Islámico (Visual)",
+    "correctos": [
+      "🕌",
+      "🕋",
+      "☪️",
+      "⛲",
+      "🌴",
+      "🐎"
+    ],
+    "intrusos": [
+      "⛪",
+      "✝️",
+      "🔔",
+      "🏛️",
+      "🏟️"
+    ]
+  },
+  {
+    "categoria": "Mapas (Visual)",
+    "correctos": [
+      "🗺️",
+      "🌍",
+      "🧭",
+      "🌐",
+      "📍",
+      "🗾"
+    ],
+    "intrusos": [
+      "🕰️",
+      "🌡️",
+      "⚖️",
+      "🔭",
+      "🔬"
+    ]
+  },
+  {
+    "categoria": "Símbolos Reales (Visual)",
+    "correctos": [
+      "👑",
+      "🤴",
+      "👸",
+      "🏰",
+      "⚔️",
+      "📜"
+    ],
+    "intrusos": [
+      "👔",
+      "💼",
+      "👨‍💼",
+      "🏭",
+      "🚆"
+    ]
+  },
+  {
+    "categoria": "La Edad Media",
+    "correctos": [
+      "Feudalismo",
+      "Vasallaje",
+      "Gremio",
+      "Monasterio",
+      "Cruzadas"
+    ],
+    "intrusos": [
+      "Democracia",
+      "República",
+      "Parlamento",
+      "Sufragio",
+      "Constitución"
+    ]
+  },
+  {
+    "categoria": "Al-Ándalus",
+    "correctos": [
+      "Califato",
+      "Emirato",
+      "Taifas",
+      "Mezquita",
+      "Alcazaba"
+    ],
+    "intrusos": [
+      "Catedral",
+      "Castillo",
+      "Monasterio",
+      "Iglesia",
+      "Abadía"
+    ]
+  },
+  {
+    "categoria": "Arte Románico",
+    "correctos": [
+      "Arco de medio punto",
+      "Bóveda de cañón",
+      "Muros gruesos",
+      "Oscuridad"
+    ],
+    "intrusos": [
+      "Arco apuntado",
+      "Vidrieras",
+      "Luminosidad",
+      "Rosetón",
+      "Altura"
+    ]
+  },
+  {
+    "categoria": "Demografía",
+    "correctos": [
+      "Natalidad",
+      "Mortalidad",
+      "Esperanza de vida",
+      "Migración",
+      "Censo"
+    ],
+    "intrusos": [
+      "Relieve",
+      "Clima",
+      "Ríos",
+      "Montañas",
+      "Vegetación"
+    ]
+  },
+  {
+    "categoria": "Sociedad Estamental",
+    "correctos": [
+      "Nobleza",
+      "Clero",
+      "Campesinos",
+      "Rey",
+      "Privilegiados"
+    ],
+    "intrusos": [
+      "Ciudadanos",
+      "Votantes",
+      "Obreros",
+      "Clase media",
+      "Sindicatos"
+    ]
+  }
+]

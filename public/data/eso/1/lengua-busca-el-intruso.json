@@ -1,0 +1,157 @@
+[
+  {
+    "categoria": "Medios de Comunicación (Visual)",
+    "correctos": [
+      "📰",
+      "📺",
+      "📻",
+      "💻",
+      "📱",
+      "📡"
+    ],
+    "intrusos": [
+      "🚗",
+      "🚲",
+      "🛹",
+      "🍔",
+      "⚽"
+    ]
+  },
+  {
+    "categoria": "Símbolos de Puntuación (Visual)",
+    "correctos": [
+      "❗",
+      "❓",
+      "❞",
+      "...",
+      "—"
+    ],
+    "intrusos": [
+      "➕",
+      "➖",
+      "💲",
+      "©️",
+      "®️"
+    ]
+  },
+  {
+    "categoria": "Tipos de Texto (Visual)",
+    "correctos": [
+      "📖",
+      "📜",
+      "📨",
+      "📑",
+      "📓",
+      "📝"
+    ],
+    "intrusos": [
+      "🎥",
+      "💿",
+      "💾",
+      "🖱️",
+      "🔌"
+    ]
+  },
+  {
+    "categoria": "Categorías Gramaticales",
+    "correctos": [
+      "Sustantivo",
+      "Adjetivo",
+      "Verbo",
+      "Determinante",
+      "Pronombre",
+      "Adverbio"
+    ],
+    "intrusos": [
+      "Sujeto",
+      "Predicado",
+      "Sílaba",
+      "Acento",
+      "Diptongo"
+    ]
+  },
+  {
+    "categoria": "Géneros Literarios",
+    "correctos": [
+      "Narrativa",
+      "Lírica",
+      "Teatro",
+      "Didáctica"
+    ],
+    "intrusos": [
+      "Matemáticas",
+      "Ciencias",
+      "Historia",
+      "Diccionario",
+      "Atlas"
+    ]
+  },
+  {
+    "categoria": "Funciones del Lenguaje",
+    "correctos": [
+      "Representativa",
+      "Expresiva",
+      "Apelativa",
+      "Poética",
+      "Fática",
+      "Metalingüística"
+    ],
+    "intrusos": [
+      "Narrativa",
+      "Descriptiva",
+      "Dialogada",
+      "Expositiva",
+      "Argumentativa"
+    ]
+  },
+  {
+    "categoria": "Tipos de Determinantes",
+    "correctos": [
+      "Artículos",
+      "Demostrativos",
+      "Posesivos",
+      "Numerales",
+      "Indefinidos"
+    ],
+    "intrusos": [
+      "Propios",
+      "Comunes",
+      "Concretos",
+      "Abstractos",
+      "Agudos"
+    ]
+  },
+  {
+    "categoria": "Sinónimos de 'Rápido'",
+    "correctos": [
+      "Veloz",
+      "Ágil",
+      "Ligero",
+      "Presto",
+      "Célebre"
+    ],
+    "intrusos": [
+      "Lento",
+      "Pausado",
+      "Tranquilo",
+      "Calmado",
+      "Despacio"
+    ]
+  },
+  {
+    "categoria": "Palabras Invariables",
+    "correctos": [
+      "Adverbio",
+      "Preposición",
+      "Conjunción",
+      "Interjección"
+    ],
+    "intrusos": [
+      "Sustantivo",
+      "Adjetivo",
+      "Verbo",
+      "Pronombre",
+      "Determinante"
+    ]
+  }
+]

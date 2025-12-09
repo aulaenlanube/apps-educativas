@@ -1,0 +1,141 @@
+[
+  {
+    "categoria": "Instrumentos (Visual)",
+    "correctos": [
+      "🎸",
+      "🎹",
+      "🎺",
+      "🎻",
+      "🥁",
+      "🎷"
+    ],
+    "intrusos": [
+      "🎤",
+      "🎧",
+      "🔈",
+      "🔨",
+      "🔧"
+    ]
+  },
+  {
+    "categoria": "Notas y Símbolos (Visual)",
+    "correctos": [
+      "🎵",
+      "🎶",
+      "🎼",
+      "🎹",
+      "𝄞",
+      "𝄢"
+    ],
+    "intrusos": [
+      "🅰️",
+      "🅱️",
+      "💲",
+      "💯",
+      "➕"
+    ]
+  },
+  {
+    "categoria": "Aparatos de Audio (Visual)",
+    "correctos": [
+      "🎧",
+      "🎤",
+      "📻",
+      "🔈",
+      "🔉",
+      "🔊"
+    ],
+    "intrusos": [
+      "📺",
+      "💻",
+      "📱",
+      "📷",
+      "📹"
+    ]
+  },
+  {
+    "categoria": "Cualidades del Sonido",
+    "correctos": [
+      "Altura",
+      "Duración",
+      "Intensidad",
+      "Timbre"
+    ],
+    "intrusos": [
+      "Ruido",
+      "Silencio",
+      "Eco",
+      "Música",
+      "Ritmo"
+    ]
+  },
+  {
+    "categoria": "Familias de Instrumentos",
+    "correctos": [
+      "Cuerda",
+      "Viento",
+      "Percusión",
+      "Electrófonos"
+    ],
+    "intrusos": [
+      "Madera",
+      "Metal",
+      "Plástico",
+      "Aire",
+      "Agua"
+    ]
+  },
+  {
+    "categoria": "Figuras Musicales",
+    "correctos": [
+      "Redonda",
+      "Blanca",
+      "Negra",
+      "Corchea",
+      "Semicorchea"
+    ],
+    "intrusos": [
+      "Do",
+      "Re",
+      "Mi",
+      "Fa",
+      "Sol"
+    ]
+  },
+  {
+    "categoria": "Notas Musicales",
+    "correctos": [
+      "Do",
+      "Re",
+      "Mi",
+      "Fa",
+      "Sol",
+      "La",
+      "Si"
+    ],
+    "intrusos": [
+      "Clave",
+      "Pentagrama",
+      "Compás",
+      "Tempo",
+      "Ritmo"
+    ]
+  },
+  {
+    "categoria": "Voces Humanas",
+    "correctos": [
+      "Soprano",
+      "Contralto",
+      "Tenor",
+      "Barítono",
+      "Bajo"
+    ],
+    "intrusos": [
+      "Piano",
+      "Forte",
+      "Allegro",
+      "Adagio",
+      "Andante"
+    ]
+  }
+]

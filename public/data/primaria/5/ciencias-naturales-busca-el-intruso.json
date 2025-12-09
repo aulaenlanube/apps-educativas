@@ -1,40 +1,41 @@
 [
   {
-    "categoria": "Aparato Digestivo (Alimentos)",
+    "categoria": "Reino Fungi (Visual)",
     "correctos": [
-      "🍎",
-      "🍞",
+      "🍄",
+      "🥖",
       "🧀",
-      "🍗",
-      "🥛"
+      "🍺"
     ],
     "intrusos": [
-      "💨",
-      "👃",
-      "👀",
-      "🧠",
-      "🦴"
-    ]
-  },
-  {
-    "categoria": "Ecosistemas",
-    "correctos": [
+      "🌻",
       "🌲",
+      "🌹",
       "🌵",
-      "🏞️",
-      "🏝️",
-      "🏔️"
-    ],
-    "intrusos": [
-      "🏙️",
-      "🏭",
-      "🛣️",
-      "🏪",
-      "🏟️"
+      "🐶",
+      "🐱"
     ]
   },
   {
-    "categoria": "La Célula y Microorganismos",
+    "categoria": "Energías (Visual)",
+    "correctos": [
+      "☀️",
+      "🌬️",
+      "🌊",
+      "🔥",
+      "⚡",
+      "🔋"
+    ],
+    "intrusos": [
+      "🛌",
+      "🧸",
+      "📚",
+      "🎨",
+      "🧊"
+    ]
+  },
+  {
+    "categoria": "Microorganismos (Visual)",
     "correctos": [
       "🦠",
       "🧫",
@@ -51,36 +52,126 @@
     ]
   },
   {
-    "categoria": "Fuentes de Energía",
+    "categoria": "Alimentos (Visual)",
     "correctos": [
-      "☀️",
-      "🌬️",
-      "🪵",
-      "🔥",
-      "⚡"
+      "🍎",
+      "🍞",
+      "🧀",
+      "🍗",
+      "🥛",
+      "🥚"
     ],
     "intrusos": [
-      "🛌",
-      "🧸",
-      "📚",
-      "🎨",
-      "🧊"
+      "💨",
+      "👃",
+      "👀",
+      "🧠",
+      "🦴"
     ]
   },
   {
-    "categoria": "Reino Fungi (Hongos)",
+    "categoria": "Los Cinco Reinos",
     "correctos": [
-      "🍄",
-      "🥖",
-      "🧀",
-      "🍺"
+      "Animales",
+      "Plantas",
+      "Hongos",
+      "Moneras",
+      "Protoctistas"
     ],
     "intrusos": [
-      "🌻",
-      "🌲",
-      "🌹",
-      "🌵",
-      "🐶"
+      "Minerales",
+      "Rocas",
+      "Virus",
+      "Plásticos",
+      "Gases"
+    ]
+  },
+  {
+    "categoria": "Aparato Respiratorio",
+    "correctos": [
+      "Fosas nasales",
+      "Faringe",
+      "Laringe",
+      "Tráquea",
+      "Bronquios",
+      "Pulmones"
+    ],
+    "intrusos": [
+      "Estómago",
+      "Corazón",
+      "Hígado",
+      "Riñón",
+      "Intestino"
+    ]
+  },
+  {
+    "categoria": "Aparato Circulatorio",
+    "correctos": [
+      "Corazón",
+      "Arterias",
+      "Venas",
+      "Capilares",
+      "Sangre"
+    ],
+    "intrusos": [
+      "Pulmón",
+      "Cerebro",
+      "Nervios",
+      "Huesos",
+      "Músculos"
+    ]
+  },
+  {
+    "categoria": "Tipos de Energía",
+    "correctos": [
+      "Mecánica",
+      "Lumínica",
+      "Calorífica",
+      "Eléctrica",
+      "Química",
+      "Nuclear"
+    ],
+    "intrusos": [
+      "Feliz",
+      "Rápida",
+      "Verde",
+      "Dura",
+      "Suave"
+    ]
+  },
+  {
+    "categoria": "Partes de la Célula",
+    "correctos": [
+      "Membrana",
+      "Citoplasma",
+      "Núcleo",
+      "Orgánulos",
+      "Pared celular"
+    ],
+    "intrusos": [
+      "Tejido",
+      "Órgano",
+      "Sistema",
+      "Hueso",
+      "Piel"
+    ]
+  },
+  {
+    "categoria": "Máquinas Simples",
+    "correctos": [
+      "Palanca",
+      "Polea",
+      "Plano inclinado",
+      "Rueda",
+      "Tornillo",
+      "Cuña"
+    ],
+    "intrusos": [
+      "Motor",
+      "Ordenador",
+      "Robot",
+      "Lavadora",
+      "Coche"
     ]
   }
 ]

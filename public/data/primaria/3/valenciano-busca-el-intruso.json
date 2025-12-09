@@ -1,63 +1,50 @@
 [
   {
-    "categoria": "Animals de Granja",
+    "categoria": "Animals (Visual)",
     "correctos": [
-      "🐮",
-      "🐷",
-      "🐔",
-      "🐑",
-      "🐴"
-    ],
-    "intrusos": [
+      "🐶",
+      "🐱",
       "🦁",
       "🐯",
-      "🐘",
-      "🦈",
-      "🚀"
-    ]
-  },
-  {
-    "categoria": "Fruites",
-    "correctos": [
+      "🐬",
+      "🦅"
+    ],
+    "intrusos": [
       "🍎",
-      "🍐",
-      "🍊",
-      "🍌",
-      "🍇"
-    ],
-    "intrusos": [
-      "🥦",
-      "🥕",
-      "🥔",
-      "🥩",
-      "🥚"
+      "🚗",
+      "🏠",
+      "✏️",
+      "⚽"
     ]
   },
   {
-    "categoria": "Dies de la Setmana",
+    "categoria": "L'Escola (Visual)",
     "correctos": [
-      "Dilluns",
-      "Dimarts",
-      "Dimecres",
-      "Dijous",
-      "Divendres"
+      "🎒",
+      "📚",
+      "✏️",
+      "📏",
+      "✂️",
+      "🖍️"
     ],
     "intrusos": [
-      "Gener",
-      "Febrer",
-      "Estiu",
-      "Hivern",
-      "Matí"
+      "🛌",
+      "🛁",
+      "🍳",
+      "📺",
+      "🎮"
     ]
   },
   {
-    "categoria": "Colors (Paraules)",
+    "categoria": "Els Colors",
     "correctos": [
       "Roig",
       "Blau",
       "Groc",
       "Verd",
-      "Blanc"
+      "Blanc",
+      "Negre",
+      "Morat"
     ],
     "intrusos": [
       "Taula",
@@ -68,20 +55,76 @@
     ]
   },
   {
-    "categoria": "L'Escola (Paraules)",
+    "categoria": "Dies de la Setmana",
     "correctos": [
-      "Llibre",
-      "Llapis",
-      "Goma",
-      "Mestra",
-      "Pissarra"
+      "Dilluns",
+      "Dimarts",
+      "Dimecres",
+      "Dijous",
+      "Divendres",
+      "Dissabte"
     ],
     "intrusos": [
-      "Platja",
-      "Muntanya",
-      "Piscina",
-      "Cinema",
-      "Sopa"
+      "Gener",
+      "Febrer",
+      "Estiu",
+      "Hivern",
+      "Matí"
+    ]
+  },
+  {
+    "categoria": "La Família",
+    "correctos": [
+      "Pare",
+      "Mare",
+      "Germà",
+      "Germana",
+      "Iaio",
+      "Oncle"
+    ],
+    "intrusos": [
+      "Mestre",
+      "Metge",
+      "Amic",
+      "Veí",
+      "Policia"
+    ]
+  },
+  {
+    "categoria": "Fruites",
+    "correctos": [
+      "Poma",
+      "Pera",
+      "Taronja",
+      "Plàtan",
+      "Raïm",
+      "Maduixa"
+    ],
+    "intrusos": [
+      "Pa",
+      "Llet",
+      "Carn",
+      "Peix",
+      "Ou"
+    ]
+  },
+  {
+    "categoria": "El Cos",
+    "correctos": [
+      "Cap",
+      "Braç",
+      "Cama",
+      "Mà",
+      "Peu",
+      "Nas",
+      "Boca"
+    ],
+    "intrusos": [
+      "Samarreta",
+      "Pantalons",
+      "Sabates",
+      "Jaqueta",
+      "Barret"
     ]
   }
 ]

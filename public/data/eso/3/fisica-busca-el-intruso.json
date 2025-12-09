@@ -1,0 +1,156 @@
+[
+  {
+    "categoria": "Tabla Periódica (Visual)",
+    "correctos": [
+      "⚛️",
+      "🧪",
+      "⚗️",
+      "🔬",
+      "🧬",
+      "🧊"
+    ],
+    "intrusos": [
+      "🪐",
+      "🔭",
+      "🌍",
+      "🚀",
+      "🛰️"
+    ]
+  },
+  {
+    "categoria": "Electricidad (Visual)",
+    "correctos": [
+      "⚡",
+      "🔋",
+      "🔌",
+      "💡",
+      "🔦",
+      "🧲"
+    ],
+    "intrusos": [
+      "💧",
+      "🌱",
+      "🔥",
+      "💨",
+      "🌊"
+    ]
+  },
+  {
+    "categoria": "Fuerzas y Movimiento (Visual)",
+    "correctos": [
+      "🚀",
+      "🏎️",
+      "🎢",
+      "🏋️",
+      "🏹",
+      "⚽"
+    ],
+    "intrusos": [
+      "🛌",
+      "🧘",
+      "📚",
+      "🎨",
+      "🖼️"
+    ]
+  },
+  {
+    "categoria": "Símbolos de Peligro (Visual)",
+    "correctos": [
+      "☢️",
+      "☣️",
+      "☠️",
+      "⚠️",
+      "🔥"
+    ],
+    "intrusos": [
+      "♻️",
+      "♿",
+      "🚹",
+      "🚺",
+      "🅿️"
+    ]
+  },
+  {
+    "categoria": "Elementos Químicos",
+    "correctos": [
+      "Hidrógeno",
+      "Oxígeno",
+      "Carbono",
+      "Hierro",
+      "Oro"
+    ],
+    "intrusos": [
+      "Agua",
+      "Aire",
+      "Acero",
+      "Bronce",
+      "Plástico"
+    ]
+  },
+  {
+    "categoria": "Modelos Atómicos",
+    "correctos": [
+      "Dalton",
+      "Thomson",
+      "Rutherford",
+      "Bohr"
+    ],
+    "intrusos": [
+      "Newton",
+      "Einstein",
+      "Galileo",
+      "Darwin",
+      "Mendel"
+    ]
+  },
+  {
+    "categoria": "Tipos de Fuerzas",
+    "correctos": [
+      "Gravedad",
+      "Rozamiento",
+      "Eléctrica",
+      "Magnética",
+      "Nuclear"
+    ],
+    "intrusos": [
+      "Velocidad",
+      "Aceleración",
+      "Tiempo",
+      "Espacio",
+      "Masa"
+    ]
+  },
+  {
+    "categoria": "Reacciones Químicas",
+    "correctos": [
+      "Combustión",
+      "Oxidación",
+      "Fermentación",
+      "Neutralización"
+    ],
+    "intrusos": [
+      "Evaporación",
+      "Fusión",
+      "Solidificación",
+      "Filtración",
+      "Decantación"
+    ]
+  },
+  {
+    "categoria": "Magnitudes Físicas",
+    "correctos": [
+      "Masa",
+      "Tiempo",
+      "Longitud",
+      "Temperatura",
+      "Intensidad"
+    ],
+    "intrusos": [
+      "Litro",
+      "Metro",
+      "Segundo",
+      "Grado",
+      "Amperio"
+    ]
+  }
+]

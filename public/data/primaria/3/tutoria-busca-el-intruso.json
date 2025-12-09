@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "Emociones Positivas",
+    "categoria": "Emociones (Visual)",
     "correctos": [
       "😀",
       "😁",
       "😂",
       "🥰",
-      "😍"
+      "😍",
+      "🙂"
     ],
     "intrusos": [
       "😢",
@@ -17,13 +18,14 @@
     ]
   },
   {
-    "categoria": "Higiene Personal",
+    "categoria": "Higiene (Visual)",
     "correctos": [
       "🚿",
       "🛁",
       "🧼",
       "🪥",
-      "🧴"
+      "🧴",
+      "🧻"
     ],
     "intrusos": [
       "🎮",
@@ -34,13 +36,14 @@
     ]
   },
   {
-    "categoria": "Comida Saludable",
+    "categoria": "Comida Sana (Visual)",
     "correctos": [
       "🥗",
       "🍎",
       "🥦",
       "🥕",
-      "🍇"
+      "🍇",
+      "🍊"
     ],
     "intrusos": [
       "🍔",
@@ -51,20 +54,74 @@
     ]
   },
   {
-    "categoria": "Deportes de Equipo",
+    "categoria": "Emociones Agradables",
     "correctos": [
-      "⚽",
-      "🏀",
-      "🏐",
-      "🏉",
-      "⚾"
+      "Alegría",
+      "Felicidad",
+      "Calma",
+      "Amor",
+      "Ilusión",
+      "Paz"
     ],
     "intrusos": [
-      "🎮",
-      "🛌",
-      "📺",
-      "📱",
-      "🛋️"
+      "Miedo",
+      "Tristeza",
+      "Ira",
+      "Enfado",
+      "Asco",
+      "Vergüenza"
+    ]
+  },
+  {
+    "categoria": "Buenos Modales",
+    "correctos": [
+      "Gracias",
+      "Por favor",
+      "Perdón",
+      "Hola",
+      "Adiós",
+      "Permiso"
+    ],
+    "intrusos": [
+      "Tonto",
+      "Cállate",
+      "Fuera",
+      "Empujar",
+      "Insultar"
+    ]
+  },
+  {
+    "categoria": "Valores",
+    "correctos": [
+      "Respeto",
+      "Amistad",
+      "Sinceridad",
+      "Generosidad",
+      "Esfuerzo"
+    ],
+    "intrusos": [
+      "Mentira",
+      "Egoísmo",
+      "Pereza",
+      "Violencia",
+      "Odio"
+    ]
+  },
+  {
+    "categoria": "Hábitos Saludables",
+    "correctos": [
+      "Dormir bien",
+      "Comer fruta",
+      "Hacer deporte",
+      "Beber agua",
+      "Leer"
+    ],
+    "intrusos": [
+      "Comer chuches",
+      "Ver mucha tele",
+      "Gritar",
+      "Pegar",
+      "Fumar"
     ]
   }
 ]

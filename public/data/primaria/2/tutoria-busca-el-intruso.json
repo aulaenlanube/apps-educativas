@@ -1,27 +1,124 @@
 [
   {
-    "categoria": "Emociones Agradables",
-    "correctos": ["😀", "😁", "😂", "🥰", "😍", "🤩", "😊", "🥳"],
-    "intrusos": ["😢", "😭", "😡", "😠", "🤬", "😰", "😱"]
+    "categoria": "Caras Felices (Visual)",
+    "correctos": [
+      "😀",
+      "😁",
+      "😂",
+      "🥰",
+      "😍",
+      "🙂"
+    ],
+    "intrusos": [
+      "😢",
+      "😭",
+      "😡",
+      "🤬",
+      "😱"
+    ]
   },
   {
-    "categoria": "Emociones Desagradables",
-    "correctos": ["😢", "😭", "😡", "😠", "🤬", "😰", "😱", "😞"],
-    "intrusos": ["😀", "😁", "🥰", "😍", "🥳", "🎉"]
+    "categoria": "Higiene (Visual)",
+    "correctos": [
+      "🚿",
+      "🛁",
+      "🧼",
+      "🪥",
+      "🧴",
+      "🧻"
+    ],
+    "intrusos": [
+      "🎮",
+      "📺",
+      "🍔",
+      "⚽",
+      "🗑️"
+    ]
   },
   {
-    "categoria": "Comida Saludable",
-    "correctos": ["🥦", "🥕", "🌽", "🥗", "🍎", "🍌", "🍇", "🍊", "🐟", "💧"],
-    "intrusos": ["🍬", "🍭", "🍫", "🍩", "🥤", "🍰", "🍟"]
+    "categoria": "Juegos (Visual)",
+    "correctos": [
+      "⚽",
+      "🏀",
+      "🪁",
+      "🧩",
+      "🎲",
+      "🧸"
+    ],
+    "intrusos": [
+      "📚",
+      "✏️",
+      "🧹",
+      "🍳",
+      "🔨"
+    ]
   },
   {
-    "categoria": "Buenos hábitos en clase",
-    "correctos": ["Escuchar", "Levantar la mano", "Compartir", "Ayudar", "Trabajar", "Respetar"],
-    "intrusos": ["Gritar", "Pegar", "Insultar", "Correr", "Dormir"]
+    "categoria": "Emociones Buenas",
+    "correctos": [
+      "Alegría",
+      "Amor",
+      "Calma",
+      "Diversión",
+      "Felicidad"
+    ],
+    "intrusos": [
+      "Miedo",
+      "Tristeza",
+      "Enfado",
+      "Ira",
+      "Dolor"
+    ]
   },
   {
-    "categoria": "Higiene Personal",
-    "correctos": ["🧼", "🪥", "🚿", "🛀", "🧴", "🧻"],
-    "intrusos": ["⚽", "🎮", "📺", "🍔", "🍟", "🖍️"]
+    "categoria": "Palabras Mágicas",
+    "correctos": [
+      "Gracias",
+      "Por favor",
+      "Perdón",
+      "Hola",
+      "Adiós"
+    ],
+    "intrusos": [
+      "Tonto",
+      "Feo",
+      "Malo",
+      "Fuera",
+      "No"
+    ]
+  },
+  {
+    "categoria": "Cosas Buenas",
+    "correctos": [
+      "Abrazar",
+      "Besar",
+      "Ayudar",
+      "Compartir",
+      "Jugar"
+    ],
+    "intrusos": [
+      "Pegar",
+      "Gritar",
+      "Empujar",
+      "Romper",
+      "Insultar"
+    ]
+  },
+  {
+    "categoria": "Hábitos Sanos",
+    "correctos": [
+      "Dormir",
+      "Comer fruta",
+      "Lavarse",
+      "Jugar",
+      "Leer"
+    ],
+    "intrusos": [
+      "Comer chuches",
+      "Ver mucha tele",
+      "No bañarse",
+      "Pegar",
+      "Llorar"
+    ]
   }
 ]

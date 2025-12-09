@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "Derechos del Niño",
+    "categoria": "Derechos (Visual)",
     "correctos": [
       "🎓",
       "🏠",
       "⚕️",
       "🍲",
-      "👪"
+      "👪",
+      "☮️"
     ],
     "intrusos": [
       "🔫",
@@ -17,13 +18,14 @@
     ]
   },
   {
-    "categoria": "Resolución de Conflictos",
+    "categoria": "Paz y Diálogo (Visual)",
     "correctos": [
       "🤝",
       "🗣️",
       "👂",
       "⚖️",
-      "☮️"
+      "☮️",
+      "🫂"
     ],
     "intrusos": [
       "🥊",
@@ -34,13 +36,14 @@
     ]
   },
   {
-    "categoria": "Seguridad en Internet",
+    "categoria": "Seguridad (Visual)",
     "correctos": [
       "🔒",
       "🛡️",
       "🔑",
       "🔞",
-      "🤐"
+      "🤐",
+      "🚦"
     ],
     "intrusos": [
       "📣",
@@ -51,20 +54,71 @@
     ]
   },
   {
-    "categoria": "Valores",
+    "categoria": "Habilidades Sociales",
     "correctos": [
-      "❤️",
-      "⚖️",
-      "🕊️",
-      "🤝",
-      "🤲"
+      "Escucha activa",
+      "Asertividad",
+      "Empatía",
+      "Respeto",
+      "Paciencia"
     ],
     "intrusos": [
-      "💰",
-      "👑",
-      "🗡️",
-      "💣",
-      "🤥"
+      "Agresividad",
+      "Gritos",
+      "Insultos",
+      "Ignorar",
+      "Interrumpir"
+    ]
+  },
+  {
+    "categoria": "Técnicas de Estudio",
+    "correctos": [
+      "Resumen",
+      "Esquema",
+      "Subrayado",
+      "Lectura",
+      "Repaso"
+    ],
+    "intrusos": [
+      "Copiar",
+      "Dormir",
+      "Jugar",
+      "Hablar",
+      "Gritar"
+    ]
+  },
+  {
+    "categoria": "Valores Democráticos",
+    "correctos": [
+      "Libertad",
+      "Igualdad",
+      "Justicia",
+      "Solidaridad",
+      "Tolerancia"
+    ],
+    "intrusos": [
+      "Dictadura",
+      "Esclavitud",
+      "Injusticia",
+      "Discriminación",
+      "Odio"
+    ]
+  },
+  {
+    "categoria": "Alimentación Equilibrada",
+    "correctos": [
+      "Frutas",
+      "Verduras",
+      "Legumbres",
+      "Pescado",
+      "Agua"
+    ],
+    "intrusos": [
+      "Bollería",
+      "Refrescos",
+      "Golosinas",
+      "Comida rápida",
+      "Fritos"
     ]
   }
 ]

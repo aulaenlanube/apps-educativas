@@ -1,0 +1,138 @@
+[
+  {
+    "categoria": "Teatro (Visual)",
+    "correctos": [
+      "🎭",
+      "🎟️",
+      "🎬",
+      "👏",
+      "🔦",
+      "🎪"
+    ],
+    "intrusos": [
+      "⚽",
+      "🏊",
+      "🚜",
+      "🏔️",
+      "🏥"
+    ]
+  },
+  {
+    "categoria": "Libros y Escritura (Visual)",
+    "correctos": [
+      "📖",
+      "📚",
+      "🖊️",
+      "📝",
+      "📜",
+      "📓"
+    ],
+    "intrusos": [
+      "📺",
+      "📻",
+      "📱",
+      "💿",
+      "🔌"
+    ]
+  },
+  {
+    "categoria": "Comunicación Digital (Visual)",
+    "correctos": [
+      "📧",
+      "💬",
+      "📱",
+      "💻",
+      "🌐",
+      "📶"
+    ],
+    "intrusos": [
+      "📠",
+      "📼",
+      "📮",
+      "🕊️",
+      "🚬"
+    ]
+  },
+  {
+    "categoria": "Funciones Sintácticas",
+    "correctos": [
+      "Sujeto",
+      "Predicado",
+      "Complemento Directo",
+      "Atributo",
+      "Suplemento"
+    ],
+    "intrusos": [
+      "Sustantivo",
+      "Verbo",
+      "Adjetivo",
+      "Aguda",
+      "Llana"
+    ]
+  },
+  {
+    "categoria": "Géneros Literarios",
+    "correctos": [
+      "Novela",
+      "Cuento",
+      "Poema",
+      "Teatro",
+      "Ensayo"
+    ],
+    "intrusos": [
+      "Noticia",
+      "Reportaje",
+      "Entrevista",
+      "Crónica",
+      "Anuncio"
+    ]
+  },
+  {
+    "categoria": "Tipos de Palabras",
+    "correctos": [
+      "Adverbio",
+      "Preposición",
+      "Conjunción",
+      "Interjección"
+    ],
+    "intrusos": [
+      "Sujeto",
+      "Predicado",
+      "Sintagma",
+      "Oración",
+      "Frase"
+    ]
+  },
+  {
+    "categoria": "Figuras Literarias",
+    "correctos": [
+      "Metáfora",
+      "Símil",
+      "Personificación",
+      "Hipérbole",
+      "Anáfora"
+    ],
+    "intrusos": [
+      "Rima",
+      "Verso",
+      "Estrofa",
+      "Punto",
+      "Coma"
+    ]
+  },
+  {
+    "categoria": "Modos Verbales",
+    "correctos": [
+      "Indicativo",
+      "Subjuntivo",
+      "Imperativo"
+    ],
+    "intrusos": [
+      "Presente",
+      "Pasado",
+      "Futuro",
+      "Infinitivo",
+      "Gerundio"
+    ]
+  }
+]

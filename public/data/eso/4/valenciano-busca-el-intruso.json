@@ -1,0 +1,105 @@
+[
+  {
+    "categoria": "Cultura (Visual)",
+    "correctos": [
+      "🔥",
+      "🥘",
+      "🎆",
+      "🏰",
+      "🦇",
+      "🍊"
+    ],
+    "intrusos": [
+      "🗽",
+      "🗼",
+      "🏯",
+      "🌵",
+      "🥥"
+    ]
+  },
+  {
+    "categoria": "Sociolingüística",
+    "correctos": [
+      "Bilingüisme",
+      "Diglòssia",
+      "Normalització",
+      "Llengua minoritzada",
+      "Prejudici"
+    ],
+    "intrusos": [
+      "Gramàtica",
+      "Ortografia",
+      "Sintaxi",
+      "Morfologia",
+      "Lèxic"
+    ]
+  },
+  {
+    "categoria": "Literatura Renaixença",
+    "correctos": [
+      "Teodor Llorente",
+      "Jacint Verdaguer",
+      "Jocs Florals",
+      "Pàtria",
+      "Llengua"
+    ],
+    "intrusos": [
+      "Ausiàs March",
+      "Joanot Martorell",
+      "Jaume Roig",
+      "Isabel de Villena",
+      "Segle d'Or"
+    ]
+  },
+  {
+    "categoria": "Pronoms Febles",
+    "correctos": [
+      "En",
+      "Hi",
+      "Ho",
+      "Li",
+      "Els"
+    ],
+    "intrusos": [
+      "Jo",
+      "Tu",
+      "Ell",
+      "Nosaltres",
+      "Vosaltres"
+    ]
+  },
+  {
+    "categoria": "Oracions Compostes",
+    "correctos": [
+      "Coordinada",
+      "Subordinada",
+      "Juxtaposada",
+      "Copulativa",
+      "Adversativa"
+    ],
+    "intrusos": [
+      "Simple",
+      "Subjecte",
+      "Predicat",
+      "Nominal",
+      "Verbal"
+    ]
+  },
+  {
+    "categoria": "Varietats Geogràfiques",
+    "correctos": [
+      "Valencià",
+      "Mallorquí",
+      "Menorquí",
+      "Eivissenc",
+      "Central"
+    ],
+    "intrusos": [
+      "Francès",
+      "Italià",
+      "Portuguès",
+      "Romanès",
+      "Grec"
+    ]
+  }
+]

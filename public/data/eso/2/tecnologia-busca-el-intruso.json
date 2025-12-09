@@ -1,0 +1,141 @@
+[
+  {
+    "categoria": "Herramientas (Visual)",
+    "correctos": [
+      "🔨",
+      "🔧",
+      "🪛",
+      "🔩",
+      "🗜️",
+      "📏"
+    ],
+    "intrusos": [
+      "✏️",
+      "🖊️",
+      "🧸",
+      "🍎",
+      "🥄"
+    ]
+  },
+  {
+    "categoria": "Electricidad (Visual)",
+    "correctos": [
+      "🔋",
+      "💡",
+      "🔌",
+      "⚡",
+      "🔦",
+      "🛑"
+    ],
+    "intrusos": [
+      "💧",
+      "🌱",
+      "🦋",
+      "🐶",
+      "🐱"
+    ]
+  },
+  {
+    "categoria": "Informática (Visual)",
+    "correctos": [
+      "💻",
+      "🖱️",
+      "⌨️",
+      "🖥️",
+      "🖨️",
+      "💾"
+    ],
+    "intrusos": [
+      "🧱",
+      "🪵",
+      "🔨",
+      "🔧",
+      "🔩"
+    ]
+  },
+  {
+    "categoria": "Materiales de Uso Técnico",
+    "correctos": [
+      "Madera",
+      "Metal",
+      "Plástico",
+      "Pétreos",
+      "Cerámicos"
+    ],
+    "intrusos": [
+      "Agua",
+      "Aire",
+      "Fuego",
+      "Tierra",
+      "Carne"
+    ]
+  },
+  {
+    "categoria": "Propiedades Mecánicas",
+    "correctos": [
+      "Dureza",
+      "Tenacidad",
+      "Elasticidad",
+      "Plasticidad",
+      "Maleabilidad"
+    ],
+    "intrusos": [
+      "Color",
+      "Olor",
+      "Sabor",
+      "Brillo",
+      "Textura"
+    ]
+  },
+  {
+    "categoria": "Componentes Eléctricos",
+    "correctos": [
+      "Generador",
+      "Conductor",
+      "Receptor",
+      "Elemento de control",
+      "Protección"
+    ],
+    "intrusos": [
+      "Martillo",
+      "Sierra",
+      "Alicates",
+      "Destornillador",
+      "Lima"
+    ]
+  },
+  {
+    "categoria": "Estructuras",
+    "correctos": [
+      "Cimentación",
+      "Columna",
+      "Viga",
+      "Arco",
+      "Tirante"
+    ],
+    "intrusos": [
+      "Motor",
+      "Engranaje",
+      "Polea",
+      "Palanca",
+      "Rueda"
+    ]
+  },
+  {
+    "categoria": "Máquinas Simples",
+    "correctos": [
+      "Palanca",
+      "Plano inclinado",
+      "Polea",
+      "Torno",
+      "Cuña"
+    ],
+    "intrusos": [
+      "Ordenador",
+      "Móvil",
+      "Tablet",
+      "Televisión",
+      "Robot"
+    ]
+  }
+]

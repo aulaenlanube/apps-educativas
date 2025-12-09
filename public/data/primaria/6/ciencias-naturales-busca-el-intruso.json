@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "Energía Eléctrica",
+    "categoria": "Electricidad (Visual)",
     "correctos": [
       "⚡",
       "💡",
       "🔋",
       "🔌",
-      "🔦"
+      "🔦",
+      "📺"
     ],
     "intrusos": [
       "🕯️",
@@ -17,47 +18,32 @@
     ]
   },
   {
-    "categoria": "Reproducción Humana",
-    "correctos": [
-      "🤰",
-      "👶",
-      "🍼",
-      "👪",
-      "🧬"
-    ],
-    "intrusos": [
-      "🦾",
-      "🤖",
-      "👽",
-      "🦴",
-      "🧠"
-    ]
-  },
-  {
-    "categoria": "Virus y Salud",
+    "categoria": "Salud y Medicina (Visual)",
     "correctos": [
       "🦠",
       "💉",
       "💊",
       "😷",
-      "🌡️"
+      "🌡️",
+      "🚑"
     ],
     "intrusos": [
-      "🤕",
-      "🦶",
-      "🦵",
-      "💪",
-      "🦴"
+      "⚽",
+      "🥊",
+      "🎮",
+      "🍔",
+      "🍩"
     ]
   },
   {
-    "categoria": "Máquinas y Tecnología",
+    "categoria": "Tecnología y Máquinas (Visual)",
     "correctos": [
       "🦾",
       "🤖",
       "⚙️",
       "🏭",
-      "🔧"
+      "🔧",
+      "🔩"
     ],
     "intrusos": [
       "🌿",
@@ -68,13 +54,14 @@
     ]
   },
   {
-    "categoria": "El Sistema Nervioso",
+    "categoria": "Sistema Nervioso (Visual)",
     "correctos": [
       "🧠",
       "👀",
       "👂",
       "👃",
-      "✋"
+      "✋",
+      "👅"
     ],
     "intrusos": [
       "🦴",
@@ -82,6 +69,92 @@
       "🦷",
       "💇",
       "💅"
+    ]
+  },
+  {
+    "categoria": "La Electricidad",
+    "correctos": [
+      "Conductor",
+      "Aislante",
+      "Circuito",
+      "Interruptor",
+      "Pila",
+      "Corriente"
+    ],
+    "intrusos": [
+      "Imán",
+      "Brújula",
+      "Gravedad",
+      "Sonido",
+      "Eco"
+    ]
+  },
+  {
+    "categoria": "El Magnetismo",
+    "correctos": [
+      "Imán",
+      "Polo Norte",
+      "Polo Sur",
+      "Atracción",
+      "Repulsión"
+    ],
+    "intrusos": [
+      "Electricidad",
+      "Enchufe",
+      "Interruptor",
+      "Madera",
+      "Plástico"
+    ]
+  },
+  {
+    "categoria": "Reproducción Humana",
+    "correctos": [
+      "Óvulo",
+      "Espermatozoide",
+      "Fecundación",
+      "Embarazo",
+      "Parto"
+    ],
+    "intrusos": [
+      "Digestión",
+      "Respiración",
+      "Corazón",
+      "Cerebro",
+      "Estómago"
+    ]
+  },
+  {
+    "categoria": "Fuentes de Energía No Renovables",
+    "correctos": [
+      "Petróleo",
+      "Carbón",
+      "Gas natural",
+      "Uranio",
+      "Plutonio"
+    ],
+    "intrusos": [
+      "Sol",
+      "Viento",
+      "Agua",
+      "Biomasa",
+      "Geotérmica"
+    ]
+  },
+  {
+    "categoria": "Ecosistemas",
+    "correctos": [
+      "Productor",
+      "Consumidor",
+      "Descomponedor",
+      "Depredador",
+      "Presa"
+    ],
+    "intrusos": [
+      "Célula",
+      "Tejido",
+      "Órgano",
+      "Aparato",
+      "Sistema"
     ]
   }
 ]

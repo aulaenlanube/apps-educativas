@@ -1,0 +1,139 @@
+[
+  {
+    "categoria": "Deportes con Balón (Visual)",
+    "correctos": [
+      "⚽",
+      "🏀",
+      "🏐",
+      "🏉",
+      "⚾",
+      "🎾"
+    ],
+    "intrusos": [
+      "🏊",
+      "🏃",
+      "🤸",
+      "🚴",
+      "🥊"
+    ]
+  },
+  {
+    "categoria": "Deportes Acuáticos (Visual)",
+    "correctos": [
+      "🏊",
+      "🤽",
+      "🚣",
+      "🏄",
+      "🛶"
+    ],
+    "intrusos": [
+      "🏃",
+      "🚴",
+      "🧗",
+      "🏇",
+      "🏌️"
+    ]
+  },
+  {
+    "categoria": "Material Deportivo (Visual)",
+    "correctos": [
+      "👟",
+      "🎽",
+      "🥅",
+      "🏓",
+      "🏸",
+      "🛹"
+    ],
+    "intrusos": [
+      "📚",
+      "✏️",
+      "🎒",
+      "💻",
+      "📱"
+    ]
+  },
+  {
+    "categoria": "Capacidades Físicas",
+    "correctos": [
+      "Resistencia",
+      "Fuerza",
+      "Velocidad",
+      "Flexibilidad"
+    ],
+    "intrusos": [
+      "Inteligencia",
+      "Memoria",
+      "Altura",
+      "Peso",
+      "Edad"
+    ]
+  },
+  {
+    "categoria": "Partes del Calentamiento",
+    "correctos": [
+      "Movilidad articular",
+      "Carrera continua",
+      "Estiramientos",
+      "Juegos"
+    ],
+    "intrusos": [
+      "Ducha",
+      "Comida",
+      "Siesta",
+      "Partido",
+      "Examen"
+    ]
+  },
+  {
+    "categoria": "Deportes de Equipo",
+    "correctos": [
+      "Fútbol",
+      "Baloncesto",
+      "Voleibol",
+      "Balonmano",
+      "Rugby"
+    ],
+    "intrusos": [
+      "Tenis",
+      "Bádminton",
+      "Atletismo",
+      "Natación",
+      "Ciclismo"
+    ]
+  },
+  {
+    "categoria": "Hábitos Saludables",
+    "correctos": [
+      "Ejercicio",
+      "Dieta equilibrada",
+      "Descanso",
+      "Higiene",
+      "Hidratación"
+    ],
+    "intrusos": [
+      "Sedentarismo",
+      "Tabaco",
+      "Alcohol",
+      "Estrés",
+      "Comida basura"
+    ]
+  },
+  {
+    "categoria": "Huesos del Cuerpo",
+    "correctos": [
+      "Fémur",
+      "Húmero",
+      "Tibia",
+      "Peroné",
+      "Radio",
+      "Cúbito"
+    ],
+    "intrusos": [
+      "Bíceps",
+      "Tríceps",
+      "Cuádriceps",
+      "Abdominales",
+      "Gemelos"
+    ]
+  }
+]

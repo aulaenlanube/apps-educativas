@@ -1,0 +1,122 @@
+[
+  {
+    "categoria": "Francophonie (Visual)",
+    "correctos": [
+      "🇫🇷",
+      "🇧🇪",
+      "🇨🇭",
+      "🇨🇦",
+      "🇸🇳",
+      "🥐"
+    ],
+    "intrusos": [
+      "🇪🇸",
+      "🇮🇹",
+      "🇩🇪",
+      "🇬🇧",
+      "🇺🇸"
+    ]
+  },
+  {
+    "categoria": "Paris (Visual)",
+    "correctos": [
+      "🗼",
+      "⛪",
+      "🖼️",
+      "🚇",
+      "🚢",
+      "🥖"
+    ],
+    "intrusos": [
+      "🗽",
+      "🏯",
+      "🕌",
+      "🕋",
+      "⛩️"
+    ]
+  },
+  {
+    "categoria": "Temps du Passé",
+    "correctos": [
+      "Passé Composé",
+      "Imparfait",
+      "Plus-que-parfait",
+      "Passé Simple"
+    ],
+    "intrusos": [
+      "Présent",
+      "Futur",
+      "Conditionnel",
+      "Impératif",
+      "Subjonctif"
+    ]
+  },
+  {
+    "categoria": "Pronoms Relatifs",
+    "correctos": [
+      "Qui",
+      "Que",
+      "Où",
+      "Dont",
+      "Lequel"
+    ],
+    "intrusos": [
+      "Je",
+      "Tu",
+      "Il",
+      "Mon",
+      "Ton"
+    ]
+  },
+  {
+    "categoria": "Mode Subjonctif",
+    "correctos": [
+      "Il faut que",
+      "Bien que",
+      "Pour que",
+      "Avant que",
+      "Afin que"
+    ],
+    "intrusos": [
+      "Quand",
+      "Si",
+      "Parce que",
+      "Car",
+      "Donc"
+    ]
+  },
+  {
+    "categoria": "La Francophonie",
+    "correctos": [
+      "Québec",
+      "Sénégal",
+      "Belgique",
+      "Suisse",
+      "Maroc"
+    ],
+    "intrusos": [
+      "Espagne",
+      "Italie",
+      "Allemagne",
+      "Chine",
+      "Japon"
+    ]
+  },
+  {
+    "categoria": "Culture Française",
+    "correctos": [
+      "Molière",
+      "Victor Hugo",
+      "Marie Curie",
+      "Zidane",
+      "Edith Piaf"
+    ],
+    "intrusos": [
+      "Shakespeare",
+      "Cervantes",
+      "Beethoven",
+      "Da Vinci",
+      "Picasso"
+    ]
+  }
+]

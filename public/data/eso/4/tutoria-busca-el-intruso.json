@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "Futuro (Visual)",
+    "correctos": [
+      "🎓",
+      "💼",
+      "🔬",
+      "🚀",
+      "⚖️",
+      "👨‍🎓"
+    ],
+    "intrusos": [
+      "🍼",
+      "🧸",
+      "🚼",
+      "🏰",
+      "🎠"
+    ]
+  },
+  {
+    "categoria": "Valores (Visual)",
+    "correctos": [
+      "🤝",
+      "☮️",
+      "⚖️",
+      "🌱",
+      "❤️",
+      "🫂"
+    ],
+    "intrusos": [
+      "💣",
+      "🔫",
+      "💸",
+      "🦠",
+      "🥊"
+    ]
+  },
+  {
+    "categoria": "Orientación Académica",
+    "correctos": [
+      "Bachillerato",
+      "Grado Medio",
+      "Universidad",
+      "Selectividad",
+      "Nota de corte"
+    ],
+    "intrusos": [
+      "Primaria",
+      "Infantil",
+      "Guardería",
+      "Recreo",
+      "Juguetes"
+    ]
+  },
+  {
+    "categoria": "Habilidades Blandas",
+    "correctos": [
+      "Liderazgo",
+      "Trabajo en equipo",
+      "Creatividad",
+      "Adaptabilidad",
+      "Comunicación"
+    ],
+    "intrusos": [
+      "Fuerza",
+      "Altura",
+      "Peso",
+      "Velocidad",
+      "Edad"
+    ]
+  },
+  {
+    "categoria": "Mundo Laboral",
+    "correctos": [
+      "Currículum",
+      "Entrevista",
+      "Contrato",
+      "Nómina",
+      "Seguridad Social"
+    ],
+    "intrusos": [
+      "Examen",
+      "Boletín",
+      "Deberes",
+      "Recreo",
+      "Comedor"
+    ]
+  },
+  {
+    "categoria": "Salud Mental",
+    "correctos": [
+      "Autoestima",
+      "Ansiedad",
+      "Estrés",
+      "Asertividad",
+      "Resiliencia"
+    ],
+    "intrusos": [
+      "Fiebre",
+      "Tos",
+      "Gripe",
+      "Fractura",
+      "Herida"
+    ]
+  },
+  {
+    "categoria": "Ciudadanía Global",
+    "correctos": [
+      "Sostenibilidad",
+      "Derechos Humanos",
+      "Igualdad",
+      "Ecología",
+      "Solidaridad"
+    ],
+    "intrusos": [
+      "Consumismo",
+      "Egoísmo",
+      "Contaminación",
+      "Despilfarro",
+      "Odio"
+    ]
+  }
+]

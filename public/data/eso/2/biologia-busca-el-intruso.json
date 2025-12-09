@@ -1,0 +1,157 @@
+[
+  {
+    "categoria": "Célula (Visual)",
+    "correctos": [
+      "🦠",
+      "🧫",
+      "🧬",
+      "🩸",
+      "🔬",
+      "🧪"
+    ],
+    "intrusos": [
+      "🪐",
+      "🚀",
+      "🌋",
+      "🏔️",
+      "🏗️"
+    ]
+  },
+  {
+    "categoria": "Órganos (Visual)",
+    "correctos": [
+      "🧠",
+      "🫀",
+      "🫁",
+      "🦴",
+      "🦷",
+      "👀"
+    ],
+    "intrusos": [
+      "👕",
+      "🧢",
+      "💍",
+      "👓",
+      "👟"
+    ]
+  },
+  {
+    "categoria": "Energía (Visual)",
+    "correctos": [
+      "☀️",
+      "🌬️",
+      "🌊",
+      "🔥",
+      "⚡",
+      "🌱"
+    ],
+    "intrusos": [
+      "🚗",
+      "🏭",
+      "🛢️",
+      "🚬",
+      "☢️"
+    ]
+  },
+  {
+    "categoria": "Geología (Visual)",
+    "correctos": [
+      "🌋",
+      "🏔️",
+      "🪨",
+      "🏜️",
+      "💎",
+      "⛰️"
+    ],
+    "intrusos": [
+      "🌊",
+      "🌳",
+      "🌻",
+      "☁️",
+      "🌧️"
+    ]
+  },
+  {
+    "categoria": "Funciones Vitales",
+    "correctos": [
+      "Nutrición",
+      "Relación",
+      "Reproducción"
+    ],
+    "intrusos": [
+      "Digestión",
+      "Respiración",
+      "Circulación",
+      "Excreción",
+      "Movimiento"
+    ]
+  },
+  {
+    "categoria": "Procesos Geológicos",
+    "correctos": [
+      "Volcán",
+      "Terremoto",
+      "Erosión",
+      "Sedimentación",
+      "Transporte"
+    ],
+    "intrusos": [
+      "Fotosíntesis",
+      "Digestión",
+      "Respiración",
+      "Fecundación",
+      "Mitosis"
+    ]
+  },
+  {
+    "categoria": "Ecosistemas",
+    "correctos": [
+      "Biotopo",
+      "Biocenosis",
+      "Productor",
+      "Consumidor",
+      "Descomponedor"
+    ],
+    "intrusos": [
+      "Célula",
+      "Tejido",
+      "Órgano",
+      "Aparato",
+      "Sistema"
+    ]
+  },
+  {
+    "categoria": "La Célula",
+    "correctos": [
+      "Núcleo",
+      "Citoplasma",
+      "Membrana",
+      "Mitocondria",
+      "Cloroplasto"
+    ],
+    "intrusos": [
+      "Corazón",
+      "Pulmón",
+      "Estómago",
+      "Hueso",
+      "Sangre"
+    ]
+  },
+  {
+    "categoria": "Nutrición",
+    "correctos": [
+      "Autótrofa",
+      "Heterótrofa",
+      "Fotosíntesis",
+      "Ingestión",
+      "Absorción"
+    ],
+    "intrusos": [
+      "Relación",
+      "Reproducción",
+      "División",
+      "Crecimiento",
+      "Evolución"
+    ]
+  }
+]

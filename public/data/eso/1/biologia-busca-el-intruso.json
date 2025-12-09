@@ -1,0 +1,160 @@
+[
+  {
+    "categoria": "Vertebrados (Visual)",
+    "correctos": [
+      "🦁",
+      "🦅",
+      "🐸",
+      "🐍",
+      "🐟",
+      "🐒"
+    ],
+    "intrusos": [
+      "🦋",
+      "🐌",
+      "🐙",
+      "🦀",
+      "🕷️",
+      "🦠"
+    ]
+  },
+  {
+    "categoria": "El Sistema Solar (Visual)",
+    "correctos": [
+      "☀️",
+      "🌍",
+      "🌕",
+      "🪐",
+      "⭐",
+      "☄️"
+    ],
+    "intrusos": [
+      "✈️",
+      "🚀",
+      "🛰️",
+      "🛸",
+      "☁️"
+    ]
+  },
+  {
+    "categoria": "Reino Vegetal (Visual)",
+    "correctos": [
+      "🌲",
+      "🌵",
+      "🌴",
+      "🍄",
+      "🌹",
+      "🌻"
+    ],
+    "intrusos": [
+      "🦓",
+      "🚗",
+      "🏠",
+      "🧸",
+      "💎"
+    ]
+  },
+  {
+    "categoria": "Laboratorio (Visual)",
+    "correctos": [
+      "🔬",
+      "🧪",
+      "🧫",
+      "🧬",
+      "🌡️",
+      "🩸"
+    ],
+    "intrusos": [
+      "🔨",
+      "🔧",
+      "🎤",
+      "🎧",
+      "🎮"
+    ]
+  },
+  {
+    "categoria": "Los 5 Reinos",
+    "correctos": [
+      "Moneras",
+      "Protoctistas",
+      "Hongos",
+      "Plantas",
+      "Animales"
+    ],
+    "intrusos": [
+      "Virus",
+      "Minerales",
+      "Rocas",
+      "Gases",
+      "Líquidos"
+    ]
+  },
+  {
+    "categoria": "Capas de la Tierra",
+    "correctos": [
+      "Atmósfera",
+      "Hidrosfera",
+      "Geosfera",
+      "Biosfera"
+    ],
+    "intrusos": [
+      "Estratosfera",
+      "Troposfera",
+      "Litosfera",
+      "Núcleo",
+      "Manto"
+    ]
+  },
+  {
+    "categoria": "Partes de la Célula",
+    "correctos": [
+      "Membrana",
+      "Citoplasma",
+      "Núcleo",
+      "Mitocondria",
+      "Vacuola"
+    ],
+    "intrusos": [
+      "Corazón",
+      "Pulmón",
+      "Estómago",
+      "Hueso",
+      "Músculo"
+    ]
+  },
+  {
+    "categoria": "Clasificación de Invertebrados",
+    "correctos": [
+      "Poríferos",
+      "Cnidarios",
+      "Anélidos",
+      "Moluscos",
+      "Artrópodos",
+      "Equinodermos"
+    ],
+    "intrusos": [
+      "Mamíferos",
+      "Aves",
+      "Reptiles",
+      "Anfibios",
+      "Peces"
+    ]
+  },
+  {
+    "categoria": "Minerales (Propiedades)",
+    "correctos": [
+      "Dureza",
+      "Brillo",
+      "Color",
+      "Raya",
+      "Exfoliación"
+    ],
+    "intrusos": [
+      "Tamaño",
+      "Precio",
+      "Peso",
+      "Edad",
+      "Nombre"
+    ]
+  }
+]

@@ -1,88 +1,158 @@
 [
   {
-    "categoria": "Banderas de Europa",
+    "categoria": "Medios de Transporte (Visual)",
     "correctos": [
-      "🇪🇸",
-      "🇫🇷",
-      "🇮🇹",
-      "🇩🇪",
-      "🇵🇹",
-      "🇬🇧"
+      "🚗",
+      "🚌",
+      "🚂",
+      "✈️",
+      "🚢",
+      "🚇",
+      "🚁"
     ],
     "intrusos": [
-      "🇺🇸",
-      "🇯🇵",
-      "🇧🇷",
-      "🇨🇳",
-      "🇦🇺"
-    ]
-  },
-  {
-    "categoria": "Edificios Históricos",
-    "correctos": [
-      "🏰",
-      "🕌",
-      "⛩️",
-      "🏛️",
-      "⛪"
-    ],
-    "intrusos": [
-      "🏢",
-      "🏪",
-      "🏭",
-      "⛽",
-      "🏟️"
-    ]
-  },
-  {
-    "categoria": "El Relieve",
-    "correctos": [
-      "🏔️",
-      "⛰️",
-      "🌋",
-      "🏜️",
-      "🏝️"
-    ],
-    "intrusos": [
-      "🏙️",
-      "🛣️",
-      "🏭",
       "🏠",
-      "🌉"
+      "🏫",
+      "🌳",
+      "🐶",
+      "🍔"
     ]
   },
   {
-    "categoria": "Sectores Económicos: Primario",
+    "categoria": "El Tiempo Histórico (Visual)",
+    "correctos": [
+      "🦕",
+      "🏺",
+      "🏰",
+      "🏭",
+      "🚀",
+      "📜"
+    ],
+    "intrusos": [
+      "📱",
+      "💻",
+      "🎮",
+      "📺",
+      "🎧"
+    ]
+  },
+  {
+    "categoria": "Sector Primario (Visual)",
     "correctos": [
       "🚜",
       "🎣",
       "⛏️",
       "🌾",
-      "🐄"
+      "🐄",
+      "🐑"
     ],
     "intrusos": [
       "🏭",
       "💻",
       "🚚",
       "👨‍🏫",
-      "👨‍⚕️"
+      "🏥"
     ]
   },
   {
-    "categoria": "El Tiempo Histórico",
+    "categoria": "Banderas (Países)",
     "correctos": [
-      "🦕",
-      "🦖",
-      "🏺",
-      "📜",
-      "⚔️"
+      "🇪🇸",
+      "🇫🇷",
+      "🇵🇹",
+      "🇮🇹",
+      "🇩🇪",
+      "🇬🇧"
     ],
     "intrusos": [
-      "📱",
-      "💻",
-      "🚀",
-      "🛰️",
-      "🤖"
+      "⚽",
+      "🏀",
+      "🏁",
+      "🚩",
+      "🏴‍☠️"
+    ]
+  },
+  {
+    "categoria": "Sector Primario",
+    "correctos": [
+      "Agricultura",
+      "Ganadería",
+      "Pesca",
+      "Minería",
+      "Silvicultura"
+    ],
+    "intrusos": [
+      "Industria",
+      "Comercio",
+      "Turismo",
+      "Transporte",
+      "Sanidad"
+    ]
+  },
+  {
+    "categoria": "Sector Terciario (Servicios)",
+    "correctos": [
+      "Comercio",
+      "Turismo",
+      "Transporte",
+      "Sanidad",
+      "Educación"
+    ],
+    "intrusos": [
+      "Agricultura",
+      "Fábrica",
+      "Pesca",
+      "Construcción",
+      "Artesanía"
+    ]
+  },
+  {
+    "categoria": "Ríos de España",
+    "correctos": [
+      "Ebro",
+      "Tajo",
+      "Duero",
+      "Guadiana",
+      "Guadalquivir"
+    ],
+    "intrusos": [
+      "Amazonas",
+      "Nilo",
+      "Misisipi",
+      "Danubio",
+      "Sena"
+    ]
+  },
+  {
+    "categoria": "Sistemas Montañosos",
+    "correctos": [
+      "Pirineos",
+      "Sistema Central",
+      "Cordillera Cantábrica",
+      "Sistema Ibérico"
+    ],
+    "intrusos": [
+      "Alpes",
+      "Himalaya",
+      "Andes",
+      "Rocosas",
+      "Teide"
+    ]
+  },
+  {
+    "categoria": "Etapas de la Historia",
+    "correctos": [
+      "Prehistoria",
+      "Edad Antigua",
+      "Edad Media",
+      "Edad Moderna"
+    ],
+    "intrusos": [
+      "Edad de Hielo",
+      "Jurásico",
+      "Futuro",
+      "Año pasado",
+      "Ayer"
     ]
   }
 ]

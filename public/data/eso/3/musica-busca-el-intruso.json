@@ -1,0 +1,121 @@
+[
+  {
+    "categoria": "Instrumentos (Visual)",
+    "correctos": [
+      "🎸",
+      "🎻",
+      "🎷",
+      "🎹",
+      "🎺",
+      "🥁"
+    ],
+    "intrusos": [
+      "🎤",
+      "🎧",
+      "🔈",
+      "🔨",
+      "🔧"
+    ]
+  },
+  {
+    "categoria": "Notas (Visual)",
+    "correctos": [
+      "🎼",
+      "🎶",
+      "🎵",
+      "🎹",
+      "𝄞"
+    ],
+    "intrusos": [
+      "💯",
+      "💲",
+      "➕",
+      "➖",
+      "🔣"
+    ]
+  },
+  {
+    "categoria": "Historia de la Música",
+    "correctos": [
+      "Edad Media",
+      "Renacimiento",
+      "Barroco",
+      "Clasicismo",
+      "Romanticismo"
+    ],
+    "intrusos": [
+      "Jazz",
+      "Rock",
+      "Pop",
+      "Rap",
+      "Reggaeton"
+    ]
+  },
+  {
+    "categoria": "Compositores Clásicos",
+    "correctos": [
+      "Bach",
+      "Mozart",
+      "Beethoven",
+      "Vivaldi",
+      "Haydn"
+    ],
+    "intrusos": [
+      "Elvis",
+      "Beatles",
+      "Queen",
+      "Jackson",
+      "Madonna"
+    ]
+  },
+  {
+    "categoria": "Géneros Musicales",
+    "correctos": [
+      "Ópera",
+      "Sinfonía",
+      "Concierto",
+      "Sonata",
+      "Oratorio"
+    ],
+    "intrusos": [
+      "Canción",
+      "Videoclip",
+      "Single",
+      "Álbum",
+      "Playlist"
+    ]
+  },
+  {
+    "categoria": "Agrupaciones",
+    "correctos": [
+      "Orquesta",
+      "Banda",
+      "Coro",
+      "Cuarteto",
+      "Dúo"
+    ],
+    "intrusos": [
+      "Solista",
+      "Cantante",
+      "DJ",
+      "Productor",
+      "Técnico"
+    ]
+  },
+  {
+    "categoria": "Cualidades del Sonido",
+    "correctos": [
+      "Altura",
+      "Duración",
+      "Intensidad",
+      "Timbre"
+    ],
+    "intrusos": [
+      "Ritmo",
+      "Melodía",
+      "Armonía",
+      "Textura",
+      "Forma"
+    ]
+  }
+]

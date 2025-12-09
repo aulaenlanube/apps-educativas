@@ -1,0 +1,156 @@
+[
+  {
+    "categoria": "Cuerpos Geométricos (Visual)",
+    "correctos": [
+      "🧊",
+      "📦",
+      "🥫",
+      "🍦",
+      "⛺",
+      "⚽"
+    ],
+    "intrusos": [
+      "🟦",
+      "🔴",
+      "📐",
+      "📏",
+      "🗺️"
+    ]
+  },
+  {
+    "categoria": "Gráficas de Funciones (Visual)",
+    "correctos": [
+      "📈",
+      "📉",
+      "📊",
+      "💹",
+      "📉"
+    ],
+    "intrusos": [
+      "🥧",
+      "🔢",
+      "🎲",
+      "🎰",
+      "🧱"
+    ]
+  },
+  {
+    "categoria": "Álgebra (Símbolos)",
+    "correctos": [
+      "✖️",
+      "➕",
+      "➖",
+      "➗",
+      "🟰",
+      "♾️"
+    ],
+    "intrusos": [
+      "📝",
+      "🖊️",
+      "📏",
+      "✂️",
+      "📌"
+    ]
+  },
+  {
+    "categoria": "Fracciones (Visual)",
+    "correctos": [
+      "🍕",
+      "🍰",
+      "🍫",
+      "🧀",
+      "🍪"
+    ],
+    "intrusos": [
+      "🥤",
+      "🧃",
+      "🍎",
+      "🍐",
+      "1️⃣"
+    ]
+  },
+  {
+    "categoria": "Expresiones Algebraicas",
+    "correctos": [
+      "Monomio",
+      "Polinomio",
+      "Coeficiente",
+      "Parte literal",
+      "Grado"
+    ],
+    "intrusos": [
+      "Suma",
+      "Resta",
+      "Número",
+      "Cifra",
+      "Dígito"
+    ]
+  },
+  {
+    "categoria": "Ecuaciones",
+    "correctos": [
+      "Incógnita",
+      "Igualdad",
+      "Miembro",
+      "Solución",
+      "Término"
+    ],
+    "intrusos": [
+      "Ángulo",
+      "Vértice",
+      "Lado",
+      "Cara",
+      "Arista"
+    ]
+  },
+  {
+    "categoria": "Proporcionalidad",
+    "correctos": [
+      "Razón",
+      "Proporción",
+      "Directa",
+      "Inversa",
+      "Porcentaje"
+    ],
+    "intrusos": [
+      "Potencia",
+      "Raíz",
+      "Suma",
+      "Resta",
+      "Producto"
+    ]
+  },
+  {
+    "categoria": "Cuerpos de Revolución",
+    "correctos": [
+      "Cilindro",
+      "Cono",
+      "Esfera",
+      "Tronco de cono"
+    ],
+    "intrusos": [
+      "Prisma",
+      "Pirámide",
+      "Cubo",
+      "Poliedro",
+      "Octaedro"
+    ]
+  },
+  {
+    "categoria": "Estadística",
+    "correctos": [
+      "Población",
+      "Muestra",
+      "Variable",
+      "Frecuencia",
+      "Media"
+    ],
+    "intrusos": [
+      "Metro",
+      "Litro",
+      "Kilo",
+      "Segundo",
+      "Grado"
+    ]
+  }
+]

@@ -1,35 +1,21 @@
 [
   {
-    "categoria": "Figuras Geométricas",
+    "categoria": "Figuras Geométricas (Visual)",
     "correctos": [
-      "🔺",
-      "🟥",
+      "🔴",
       "🟦",
+      "🔺",
       "🔶",
-      "🟢",
+      "🟩",
+      "⭕",
       "🔷"
     ],
     "intrusos": [
       "🧸",
       "🚗",
       "🍎",
-      "🐱"
-    ]
-  },
-  {
-    "categoria": "Números del 1 al 5",
-    "correctos": [
-      "1️⃣",
-      "2️⃣",
-      "3️⃣",
-      "4️⃣",
-      "5️⃣"
-    ],
-    "intrusos": [
-      "🔟",
-      "💯",
-      "🅰️",
-      "🅱️"
+      "🐱",
+      "🐶"
     ]
   },
   {
@@ -40,45 +26,166 @@
       "🕑",
       "🕒",
       "🕓",
-      "🕔"
+      "🕔",
+      "🕕"
     ],
     "intrusos": [
-      "🕝",
-      "🕟",
-      "🕢",
       "📅",
-      "⏳"
+      "⏳",
+      "📆",
+      "🗓️",
+      "🕶️"
     ]
   },
   {
-    "categoria": "Dinero (Euros)",
+    "categoria": "Monedas y Billetes (Euros)",
     "correctos": [
       "💶",
       "💵",
-      "🪙",
-      "💰"
+      "💰",
+      "🪙"
     ],
     "intrusos": [
       "💳",
       "💎",
       "🎒",
-      "🍬"
+      "🎫",
+      "🧾"
     ]
   },
   {
-    "categoria": "Frutas (No números)",
+    "categoria": "Fracciones (Comida)",
     "correctos": [
-      "🍎",
-      "🍐",
-      "🍊",
-      "🍋",
-      "🍌"
+      "🍕",
+      "🍰",
+      "🍩",
+      "🍪",
+      "🍫"
     ],
     "intrusos": [
-      "1️⃣",
-      "2️⃣",
-      "3️⃣",
-      "📏"
+      "🥤",
+      "🧃",
+      "🥛",
+      "🧊",
+      "🥄"
+    ]
+  },
+  {
+    "categoria": "Números Pares",
+    "correctos": [
+      "2",
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "20",
+      "44",
+      "100"
+    ],
+    "intrusos": [
+      "1",
+      "3",
+      "5",
+      "7",
+      "11",
+      "33",
+      "99"
+    ]
+  },
+  {
+    "categoria": "Números Impares",
+    "correctos": [
+      "1",
+      "3",
+      "5",
+      "7",
+      "9",
+      "11",
+      "13",
+      "25",
+      "99"
+    ],
+    "intrusos": [
+      "2",
+      "4",
+      "10",
+      "20",
+      "40",
+      "100",
+      "8"
+    ]
+  },
+  {
+    "categoria": "Sumas que dan 10",
+    "correctos": [
+      "5+5",
+      "6+4",
+      "7+3",
+      "8+2",
+      "9+1"
+    ],
+    "intrusos": [
+      "5+4",
+      "6+5",
+      "7+4",
+      "2+2",
+      "1+1"
+    ]
+  },
+  {
+    "categoria": "Instrumentos de Medida",
+    "correctos": [
+      "Regla",
+      "Metro",
+      "Balanza",
+      "Reloj",
+      "Termómetro",
+      "Calendario"
+    ],
+    "intrusos": [
+      "Lápiz",
+      "Goma",
+      "Martillo",
+      "Cuchara",
+      "Silla"
+    ]
+  },
+  {
+    "categoria": "Cuerpos Geométricos (Nombres)",
+    "correctos": [
+      "Cubo",
+      "Esfera",
+      "Pirámide",
+      "Cilindro",
+      "Prisma",
+      "Cono"
+    ],
+    "intrusos": [
+      "Cuadrado",
+      "Triángulo",
+      "Círculo",
+      "Rectángulo",
+      "Rombo"
+    ]
+  },
+  {
+    "categoria": "Unidades de Tiempo",
+    "correctos": [
+      "Segundo",
+      "Minuto",
+      "Hora",
+      "Día",
+      "Semana",
+      "Mes",
+      "Año"
+    ],
+    "intrusos": [
+      "Metro",
+      "Litro",
+      "Gramo",
+      "Kilo",
+      "Euro"
     ]
   }
 ]

@@ -1,0 +1,163 @@
+[
+  {
+    "categoria": "Daily Routine (Visual)",
+    "correctos": [
+      "🛌",
+      "🚿",
+      "🥣",
+      "🏫",
+      "📚",
+      "🚌"
+    ],
+    "intrusos": [
+      "🚀",
+      "🌋",
+      "🦁",
+      "🏰",
+      "🏴‍☠️"
+    ]
+  },
+  {
+    "categoria": "Food (Visual)",
+    "correctos": [
+      "🥗",
+      "🍝",
+      "🍔",
+      "🍟",
+      "🍕",
+      "🥩"
+    ],
+    "intrusos": [
+      "⚽",
+      "🎮",
+      "🎸",
+      "🚗",
+      "📱"
+    ]
+  },
+  {
+    "categoria": "Jobs (Visual)",
+    "correctos": [
+      "👨‍⚕️",
+      "👮",
+      "👩‍🏫",
+      "👨‍🍳",
+      "👨‍🚒",
+      "👩‍🚀"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🏠",
+      "🚗",
+      "🌳"
+    ]
+  },
+  {
+    "categoria": "Places (Visual)",
+    "correctos": [
+      "🏥",
+      "🏫",
+      "🏦",
+      "🏬",
+      "🏟️",
+      "🏰"
+    ],
+    "intrusos": [
+      "🍎",
+      "🐶",
+      "🚙",
+      "👟",
+      "👕"
+    ]
+  },
+  {
+    "categoria": "Verbs (Infinitive)",
+    "correctos": [
+      "To be",
+      "To have",
+      "To do",
+      "To make",
+      "To go",
+      "To play"
+    ],
+    "intrusos": [
+      "Am",
+      "Is",
+      "Are",
+      "Was",
+      "Were"
+    ]
+  },
+  {
+    "categoria": "Adverbs of Frequency",
+    "correctos": [
+      "Always",
+      "Usually",
+      "Often",
+      "Sometimes",
+      "Never"
+    ],
+    "intrusos": [
+      "Yesterday",
+      "Tomorrow",
+      "Now",
+      "Next week",
+      "Last year"
+    ]
+  },
+  {
+    "categoria": "Question Words",
+    "correctos": [
+      "What",
+      "Where",
+      "When",
+      "Who",
+      "Why",
+      "How"
+    ],
+    "intrusos": [
+      "Yes",
+      "No",
+      "Because",
+      "And",
+      "But"
+    ]
+  },
+  {
+    "categoria": "Family Members",
+    "correctos": [
+      "Mother",
+      "Father",
+      "Sister",
+      "Brother",
+      "Uncle",
+      "Aunt"
+    ],
+    "intrusos": [
+      "Teacher",
+      "Doctor",
+      "Friend",
+      "Neighbor",
+      "Driver"
+    ]
+  },
+  {
+    "categoria": "School Subjects",
+    "correctos": [
+      "Maths",
+      "Science",
+      "History",
+      "English",
+      "Art",
+      "Music"
+    ],
+    "intrusos": [
+      "Table",
+      "Chair",
+      "Pen",
+      "Pencil",
+      "Book"
+    ]
+  }
+]

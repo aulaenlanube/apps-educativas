@@ -1,0 +1,162 @@
+[
+  {
+    "categoria": "Holidays (Icons)",
+    "correctos": [
+      "🎄",
+      "🎃",
+      "🎁",
+      "🎅",
+      "🎆",
+      "👻"
+    ],
+    "intrusos": [
+      "🏫",
+      "📚",
+      "✏️",
+      "🛌",
+      "🚿"
+    ]
+  },
+  {
+    "categoria": "Free Time (Icons)",
+    "correctos": [
+      "🎮",
+      "⚽",
+      "🎧",
+      "🎬",
+      "📚",
+      "🚴"
+    ],
+    "intrusos": [
+      "🧹",
+      "🧽",
+      "🗑️",
+      "🚽",
+      "👔"
+    ]
+  },
+  {
+    "categoria": "Travel (Icons)",
+    "correctos": [
+      "✈️",
+      "🧳",
+      "🗺️",
+      "🗽",
+      "🗼",
+      "📸"
+    ],
+    "intrusos": [
+      "🏠",
+      "🛋️",
+      "🛌",
+      "📺",
+      "🧹"
+    ]
+  },
+  {
+    "categoria": "Food (Icons)",
+    "correctos": [
+      "🍕",
+      "🍔",
+      "🍣",
+      "🌮",
+      "🍝",
+      "🍩"
+    ],
+    "intrusos": [
+      "⚽",
+      "🏀",
+      "🚗",
+      "✏️",
+      "👕"
+    ]
+  },
+  {
+    "categoria": "Past Simple Verbs",
+    "correctos": [
+      "Went",
+      "Saw",
+      "Did",
+      "Had",
+      "Was",
+      "Were"
+    ],
+    "intrusos": [
+      "Go",
+      "See",
+      "Do",
+      "Have",
+      "Am"
+    ]
+  },
+  {
+    "categoria": "Comparative Adjectives",
+    "correctos": [
+      "Better",
+      "Worse",
+      "Bigger",
+      "Smaller",
+      "Faster",
+      "More interesting"
+    ],
+    "intrusos": [
+      "Good",
+      "Bad",
+      "Big",
+      "Small",
+      "Fast"
+    ]
+  },
+  {
+    "categoria": "Irregular Verbs",
+    "correctos": [
+      "Buy",
+      "Eat",
+      "Drink",
+      "Sleep",
+      "Run",
+      "Swim"
+    ],
+    "intrusos": [
+      "Play",
+      "Watch",
+      "Listen",
+      "Cook",
+      "Walk"
+    ]
+  },
+  {
+    "categoria": "Rooms in a House",
+    "correctos": [
+      "Kitchen",
+      "Bathroom",
+      "Bedroom",
+      "Living room",
+      "Garden"
+    ],
+    "intrusos": [
+      "School",
+      "Park",
+      "Hospital",
+      "Cinema",
+      "Shop"
+    ]
+  },
+  {
+    "categoria": "Time Expressions",
+    "correctos": [
+      "Yesterday",
+      "Last week",
+      "Two days ago",
+      "In 1990",
+      "Last summer"
+    ],
+    "intrusos": [
+      "Tomorrow",
+      "Next week",
+      "In the future",
+      "Soon",
+      "Now"
+    ]
+  }
+]

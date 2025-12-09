@@ -1,0 +1,141 @@
+[
+  {
+    "categoria": "Funciones (Visual)",
+    "correctos": [
+      "📈",
+      "📉",
+      "📊",
+      "💹",
+      "🎢",
+      "🔄"
+    ],
+    "intrusos": [
+      "🎲",
+      "🧱",
+      "🎨",
+      "📝",
+      "🧩"
+    ]
+  },
+  {
+    "categoria": "Vectores y Geometría (Visual)",
+    "correctos": [
+      "↗️",
+      "↘️",
+      "⬅️",
+      "⬆️",
+      "📐",
+      "📍"
+    ],
+    "intrusos": [
+      "⏰",
+      "⚖️",
+      "💡",
+      "💰",
+      "🩺"
+    ]
+  },
+  {
+    "categoria": "Probabilidad (Visual)",
+    "correctos": [
+      "🎲",
+      "🃏",
+      "🎰",
+      "🪙",
+      "🎱",
+      "🎳"
+    ],
+    "intrusos": [
+      "📏",
+      "🔭",
+      "🔬",
+      "🖊️",
+      "🔨"
+    ]
+  },
+  {
+    "categoria": "Trigonometría",
+    "correctos": [
+      "Seno",
+      "Coseno",
+      "Tangente",
+      "Secante",
+      "Cosecante"
+    ],
+    "intrusos": [
+      "Radio",
+      "Diámetro",
+      "Área",
+      "Volumen",
+      "Perímetro"
+    ]
+  },
+  {
+    "categoria": "Tipos de Funciones",
+    "correctos": [
+      "Lineal",
+      "Cuadrática",
+      "Exponencial",
+      "Logarítmica",
+      "Racional"
+    ],
+    "intrusos": [
+      "Aleatoria",
+      "Caótica",
+      "Imaginaria",
+      "Estadística",
+      "Probable"
+    ]
+  },
+  {
+    "categoria": "Inecuaciones",
+    "correctos": [
+      "Mayor que",
+      "Menor que",
+      "Intervalo",
+      "Semirrecta",
+      "Desigualdad"
+    ],
+    "intrusos": [
+      "Igualdad",
+      "Ecuación",
+      "Identidad",
+      "Solución única",
+      "Exacto"
+    ]
+  },
+  {
+    "categoria": "Logaritmos",
+    "correctos": [
+      "Base",
+      "Argumento",
+      "Exponente",
+      "Neperiano",
+      "Decimal"
+    ],
+    "intrusos": [
+      "Suma",
+      "Resta",
+      "Matriz",
+      "Vector",
+      "Polinomio"
+    ]
+  },
+  {
+    "categoria": "Estadística Bidimensional",
+    "correctos": [
+      "Correlación",
+      "Nube de puntos",
+      "Regresión",
+      "Covarianza",
+      "Dependencia"
+    ],
+    "intrusos": [
+      "Media",
+      "Moda",
+      "Mediana",
+      "Cuartil",
+      "Rango"
+    ]
+  }
+]

@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "Les Animaux",
+    "categoria": "Animaux (Visual)",
     "correctos": [
       "🐶",
       "🐱",
       "🐭",
       "🐰",
-      "🦊"
+      "🦊",
+      "🐻"
     ],
     "intrusos": [
       "🍎",
@@ -17,20 +18,21 @@
     ]
   },
   {
-    "categoria": "Les Fruits",
+    "categoria": "École (Visual)",
     "correctos": [
-      "🍎",
-      "🍌",
-      "🍇",
-      "🍊",
-      "🍋"
+      "📚",
+      "✏️",
+      "🎒",
+      "📏",
+      "✂️",
+      "🖍️"
     ],
     "intrusos": [
-      "🥦",
-      "🥕",
+      "🛌",
+      "📺",
       "🍔",
-      "🍕",
-      "🐶"
+      "🐶",
+      "🚗"
     ]
   },
   {
@@ -40,7 +42,8 @@
       "Bleu",
       "Vert",
       "Jaune",
-      "Noir"
+      "Noir",
+      "Blanc"
     ],
     "intrusos": [
       "Chien",
@@ -51,13 +54,15 @@
     ]
   },
   {
-    "categoria": "Nombres 1-5 (Mots)",
+    "categoria": "Nombres 1-10",
     "correctos": [
       "Un",
       "Deux",
       "Trois",
       "Quatre",
-      "Cinq"
+      "Cinq",
+      "Six",
+      "Dix"
     ],
     "intrusos": [
       "Bonjour",
@@ -73,7 +78,8 @@
       "Bonjour",
       "Salut",
       "Au revoir",
-      "Bonsoir"
+      "Bonsoir",
+      "Merci"
     ],
     "intrusos": [
       "Rouge",
@@ -81,6 +87,40 @@
       "Chat",
       "Chien",
       "Pomme"
+    ]
+  },
+  {
+    "categoria": "La Famille",
+    "correctos": [
+      "Père",
+      "Mère",
+      "Frère",
+      "Sœur",
+      "Bébé"
+    ],
+    "intrusos": [
+      "Stylo",
+      "Gomme",
+      "Cahier",
+      "Professeur",
+      "École"
+    ]
+  },
+  {
+    "categoria": "Les Jours",
+    "correctos": [
+      "Lundi",
+      "Mardi",
+      "Mercredi",
+      "Jeudi",
+      "Vendredi"
+    ],
+    "intrusos": [
+      "Janvier",
+      "Février",
+      "Mars",
+      "Noël",
+      "Pâques"
     ]
   }
 ]

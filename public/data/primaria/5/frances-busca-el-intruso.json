@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "La Ville",
+    "categoria": "La Ville (Visual)",
     "correctos": [
       "🏥",
       "🏫",
       "🏦",
       "📫",
-      "⛲"
+      "⛲",
+      "🏬"
     ],
     "intrusos": [
       "🏜️",
@@ -17,13 +18,14 @@
     ]
   },
   {
-    "categoria": "Les Métiers",
+    "categoria": "Les Métiers (Visual)",
     "correctos": [
       "👨‍🍳",
       "👨‍⚕️",
       "👮",
       "👩‍🏫",
-      "👨‍🚒"
+      "👨‍🚒",
+      "👩‍🎤"
     ],
     "intrusos": [
       "🐶",
@@ -34,13 +36,32 @@
     ]
   },
   {
-    "categoria": "Les Mois",
+    "categoria": "La Météo (Visual)",
+    "correctos": [
+      "☀️",
+      "🌧️",
+      "❄️",
+      "🌬️",
+      "🌩️",
+      "🌤️"
+    ],
+    "intrusos": [
+      "🏠",
+      "🚗",
+      "🐶",
+      "🍎",
+      "⌚"
+    ]
+  },
+  {
+    "categoria": "Les Mois de l'Année",
     "correctos": [
       "Janvier",
       "Février",
       "Mars",
       "Avril",
-      "Mai"
+      "Mai",
+      "Juin"
     ],
     "intrusos": [
       "Lundi",
@@ -51,13 +72,50 @@
     ]
   },
   {
+    "categoria": "La Maison (Mots)",
+    "correctos": [
+      "Salon",
+      "Cuisine",
+      "Chambre",
+      "Salle de bain",
+      "Jardin",
+      "Garage"
+    ],
+    "intrusos": [
+      "École",
+      "Parc",
+      "Cinéma",
+      "Hôpital",
+      "Rue"
+    ]
+  },
+  {
+    "categoria": "Les Transports",
+    "correctos": [
+      "Voiture",
+      "Bus",
+      "Train",
+      "Avion",
+      "Bateau",
+      "Vélo"
+    ],
+    "intrusos": [
+      "Chaise",
+      "Table",
+      "Maison",
+      "Chien",
+      "Chat"
+    ]
+  },
+  {
     "categoria": "Verbes (Actions)",
     "correctos": [
       "Parler",
       "Manger",
       "Finir",
       "Aller",
-      "Être"
+      "Être",
+      "Avoir"
     ],
     "intrusos": [
       "Grand",
@@ -73,6 +131,7 @@
       "Grand",
       "Petit",
       "Joli",
+      "Intelligent",
       "Triste",
       "Heureux"
     ],

@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "Medios Audiovisuales (Visual)",
+    "correctos": [
+      "🎬",
+      "🎥",
+      "📺",
+      "📹",
+      "🎞️",
+      "🎙️"
+    ],
+    "intrusos": [
+      "📚",
+      "📰",
+      "🖌️",
+      "🗿",
+      "🏛️"
+    ]
+  },
+  {
+    "categoria": "Redes y Comunicación (Visual)",
+    "correctos": [
+      "📱",
+      "📧",
+      "💬",
+      "🌐",
+      "📶",
+      "🤳"
+    ],
+    "intrusos": [
+      "📠",
+      "📜",
+      "🕊️",
+      "📮",
+      "🚬"
+    ]
+  },
+  {
+    "categoria": "Literatura del Siglo XX",
+    "correctos": [
+      "Generación del 98",
+      "Generación del 27",
+      "Modernismo",
+      "Novecentismo",
+      "Vanguardias"
+    ],
+    "intrusos": [
+      "Renacimiento",
+      "Barroco",
+      "Ilustración",
+      "Romanticismo",
+      "Realismo"
+    ]
+  },
+  {
+    "categoria": "Oración Compuesta",
+    "correctos": [
+      "Subordinada",
+      "Coordinada",
+      "Yuxtapuesta",
+      "Principal",
+      "Nexo"
+    ],
+    "intrusos": [
+      "Sujeto",
+      "Predicado",
+      "Simple",
+      "Sintagma",
+      "Núcleo"
+    ]
+  },
+  {
+    "categoria": "Tipos de Se",
+    "correctos": [
+      "Reflexivo",
+      "Recíproco",
+      "Impersonal",
+      "Pasiva refleja",
+      "Dativo ético"
+    ],
+    "intrusos": [
+      "Posesivo",
+      "Demostrativo",
+      "Numeral",
+      "Indefinido",
+      "Relativo"
+    ]
+  },
+  {
+    "categoria": "Perífrasis Verbales",
+    "correctos": [
+      "Obligación",
+      "Probabilidad",
+      "Posibilidad",
+      "Ingresiva",
+      "Durativa"
+    ],
+    "intrusos": [
+      "Copulativa",
+      "Transitiva",
+      "Intransitiva",
+      "Impersonal",
+      "Activa"
+    ]
+  },
+  {
+    "categoria": "Autores del 27",
+    "correctos": [
+      "Lorca",
+      "Alberti",
+      "Cernuda",
+      "Aleixandre",
+      "Salinas"
+    ],
+    "intrusos": [
+      "Unamuno",
+      "Machado",
+      "Baroja",
+      "Valle-Inclán",
+      "Azorín"
+    ]
+  }
+]

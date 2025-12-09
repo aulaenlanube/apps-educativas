@@ -1,0 +1,122 @@
+[
+  {
+    "categoria": "Deportes (Visual)",
+    "correctos": [
+      "⚽",
+      "🏀",
+      "🏐",
+      "🏉",
+      "⚾",
+      "🎾"
+    ],
+    "intrusos": [
+      "🎮",
+      "📺",
+      "🛌",
+      "🍔",
+      "🍟"
+    ]
+  },
+  {
+    "categoria": "Material (Visual)",
+    "correctos": [
+      "👟",
+      "🎽",
+      "🥅",
+      "🏓",
+      "🏸",
+      "🛹"
+    ],
+    "intrusos": [
+      "📚",
+      "✏️",
+      "🎒",
+      "💻",
+      "📱"
+    ]
+  },
+  {
+    "categoria": "Cualidades Físicas Básicas",
+    "correctos": [
+      "Resistencia",
+      "Fuerza",
+      "Velocidad",
+      "Flexibilidad"
+    ],
+    "intrusos": [
+      "Equilibrio",
+      "Coordinación",
+      "Agilidad",
+      "Potencia",
+      "Ritmo"
+    ]
+  },
+  {
+    "categoria": "Deportes Colectivos",
+    "correctos": [
+      "Fútbol",
+      "Baloncesto",
+      "Voleibol",
+      "Balonmano",
+      "Rugby"
+    ],
+    "intrusos": [
+      "Tenis",
+      "Bádminton",
+      "Atletismo",
+      "Natación",
+      "Ciclismo"
+    ]
+  },
+  {
+    "categoria": "Huesos",
+    "correctos": [
+      "Fémur",
+      "Húmero",
+      "Tibia",
+      "Peroné",
+      "Radio"
+    ],
+    "intrusos": [
+      "Bíceps",
+      "Tríceps",
+      "Cuádriceps",
+      "Pectoral",
+      "Dorsal"
+    ]
+  },
+  {
+    "categoria": "Músculos",
+    "correctos": [
+      "Bíceps",
+      "Abdominales",
+      "Cuádriceps",
+      "Gemelos",
+      "Deltoides"
+    ],
+    "intrusos": [
+      "Cráneo",
+      "Costillas",
+      "Columna",
+      "Pelvis",
+      "Esternón"
+    ]
+  },
+  {
+    "categoria": "Hábitos Saludables",
+    "correctos": [
+      "Ejercicio",
+      "Dieta",
+      "Descanso",
+      "Higiene",
+      "Postura"
+    ],
+    "intrusos": [
+      "Tabaco",
+      "Alcohol",
+      "Sedentarismo",
+      "Estrés",
+      "Drogas"
+    ]
+  }
+]

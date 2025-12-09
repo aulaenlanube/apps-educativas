@@ -1,46 +1,47 @@
 [
   {
-    "categoria": "Porcentajes y Estadística",
+    "categoria": "Estadística y Azar (Visual)",
     "correctos": [
-      "%",
       "📊",
       "📉",
+      "📈",
       "🥧",
-      "📈"
+      "🎲",
+      "🎰"
     ],
     "intrusos": [
-      "➕",
-      "➖",
-      "🔤",
-      "🎨",
-      "🎲"
+      "📐",
+      "📏",
+      "🖌️",
+      "📝",
+      "🧱"
     ]
   },
   {
-    "categoria": "Potencias (Cuadrados y Cubos)",
+    "categoria": "Potencias: Cuadrados y Cubos (Visual)",
     "correctos": [
       "📦",
-      "🎲",
-      "🟦",
+      "🧊",
       "🟥",
-      "🧊"
+      "🟦",
+      "🟨"
     ],
     "intrusos": [
-      "📏",
+      "🔴",
+      "🔵",
       "〰️",
-      "⭕",
-      "🎈",
-      "🐍"
+      "🐍",
+      "🎈"
     ]
   },
   {
-    "categoria": "Números Enteros (Temperatura)",
+    "categoria": "Temperatura y Enteros (Visual)",
     "correctos": [
       "🌡️",
       "❄️",
       "🧊",
       "🥶",
-      "📉"
+      "⛄"
     ],
     "intrusos": [
       "🔥",
@@ -51,37 +52,123 @@
     ]
   },
   {
-    "categoria": "Cuerpos Geométricos",
+    "categoria": "Cuerpos Geométricos (Visual)",
     "correctos": [
       "🪐",
       "⛺",
       "🏐",
       "🥫",
-      "🧊"
+      "🧱"
     ],
     "intrusos": [
       "🗺️",
       "🃏",
-      "📐",
       "📄",
-      "🖼️"
+      "🖼️",
+      "📏"
     ]
   },
   {
-    "categoria": "Probabilidad (Azar)",
+    "categoria": "Potencias",
     "correctos": [
-      "🎲",
-      "🪙",
-      "🃏",
-      "🎰",
-      "🎱"
+      "Base",
+      "Exponente",
+      "Cuadrado",
+      "Cubo",
+      "Elevado"
     ],
     "intrusos": [
-      "⏱️",
-      "📅",
-      "📏",
-      "⚖️",
-      "💯"
+      "Raíz",
+      "Suma",
+      "Resto",
+      "Divisor",
+      "Cociente"
+    ]
+  },
+  {
+    "categoria": "Números Enteros",
+    "correctos": [
+      "Positivo",
+      "Negativo",
+      "Cero",
+      "Bajo cero",
+      "Deuda"
+    ],
+    "intrusos": [
+      "Decimal",
+      "Fracción",
+      "Medio",
+      "Mitad",
+      "Doble"
+    ]
+  },
+  {
+    "categoria": "Unidades de Volumen",
+    "correctos": [
+      "Metro cúbico",
+      "Litro",
+      "Decímetro cúbico",
+      "Centilitro",
+      "Mililitro"
+    ],
+    "intrusos": [
+      "Metro cuadrado",
+      "Hectárea",
+      "Kilómetro",
+      "Segundo",
+      "Gramo"
+    ]
+  },
+  {
+    "categoria": "Estadística",
+    "correctos": [
+      "Media",
+      "Moda",
+      "Rango",
+      "Frecuencia",
+      "Datos"
+    ],
+    "intrusos": [
+      "Vértice",
+      "Arista",
+      "Radio",
+      "Diámetro",
+      "Área"
+    ]
+  },
+  {
+    "categoria": "Múltiplos de 12",
+    "correctos": [
+      "12",
+      "24",
+      "36",
+      "48",
+      "60",
+      "72"
+    ],
+    "intrusos": [
+      "6",
+      "10",
+      "15",
+      "18",
+      "50",
+      "100"
+    ]
+  },
+  {
+    "categoria": "Porcentajes y Fracciones",
+    "correctos": [
+      "50% y 1/2",
+      "25% y 1/4",
+      "75% y 3/4",
+      "10% y 1/10",
+      "20% y 1/5"
+    ],
+    "intrusos": [
+      "50% y 1/5",
+      "25% y 1/2",
+      "10% y 1/2",
+      "30% y 1/4"
     ]
   }
 ]

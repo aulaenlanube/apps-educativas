@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Fracciones (Representación)",
+    "categoria": "Fracciones (Gráficas)",
     "correctos": [
       "🌗",
       "🌖",
@@ -13,51 +13,19 @@
       "1️⃣",
       "2️⃣",
       "🔢",
-      "🔣"
+      "🔣",
+      "#️⃣"
     ]
   },
   {
-    "categoria": "Geometría 3D",
-    "correctos": [
-      "🧊",
-      "📦",
-      "⚽",
-      "🪵",
-      "🧱"
-    ],
-    "intrusos": [
-      "🟦",
-      "🔴",
-      "🔺",
-      "🔶",
-      "📏"
-    ]
-  },
-  {
-    "categoria": "Instrumentos de Laboratorio/Medida",
-    "correctos": [
-      "🧪",
-      "🔬",
-      "🔭",
-      "🌡️",
-      "⚖️"
-    ],
-    "intrusos": [
-      "🔨",
-      "🔧",
-      "🪚",
-      "🗡️",
-      "🏹"
-    ]
-  },
-  {
-    "categoria": "Símbolos Matemáticos",
+    "categoria": "Símbolos Matemáticos (Visual)",
     "correctos": [
       "➕",
       "➖",
       "✖️",
       "➗",
-      "🟰"
+      "🟰",
+      "♾️"
     ],
     "intrusos": [
       "🔠",
@@ -68,20 +36,152 @@
     ]
   },
   {
-    "categoria": "Gráficas y Datos",
+    "categoria": "Geometría 3D (Visual)",
     "correctos": [
-      "📊",
-      "📉",
-      "📈",
-      "📋",
-      "🗂️"
+      "🧊",
+      "📦",
+      "⚽",
+      "🪵",
+      "🧱",
+      "🛢️"
     ],
     "intrusos": [
-      "🎨",
-      "🎭",
-      "🎬",
-      "🎤",
-      "🎧"
+      "🟦",
+      "🔴",
+      "🔺",
+      "🔶",
+      "📏"
+    ]
+  },
+  {
+    "categoria": "Instrumentos de Medida (Visual)",
+    "correctos": [
+      "🌡️",
+      "⚖️",
+      "📐",
+      "⏱️",
+      "📏",
+      "⏲️"
+    ],
+    "intrusos": [
+      "🔨",
+      "🔧",
+      "🪚",
+      "🗡️",
+      "🏹"
+    ]
+  },
+  {
+    "categoria": "Fracciones Propias",
+    "correctos": [
+      "1/2",
+      "2/3",
+      "3/4",
+      "4/5",
+      "2/10",
+      "5/8"
+    ],
+    "intrusos": [
+      "3/2",
+      "5/4",
+      "8/5",
+      "10/2",
+      "7/3"
+    ]
+  },
+  {
+    "categoria": "Números Primos",
+    "correctos": [
+      "2",
+      "3",
+      "5",
+      "7",
+      "11",
+      "13",
+      "17",
+      "19"
+    ],
+    "intrusos": [
+      "4",
+      "6",
+      "8",
+      "9",
+      "10",
+      "12",
+      "15"
+    ]
+  },
+  {
+    "categoria": "Unidades de Capacidad",
+    "correctos": [
+      "Litro",
+      "Decilitro",
+      "Centilitro",
+      "Mililitro",
+      "Hectolitro"
+    ],
+    "intrusos": [
+      "Metro",
+      "Gramo",
+      "Segundo",
+      "Kilo",
+      "Grado"
+    ]
+  },
+  {
+    "categoria": "Tipos de Cuadriláteros",
+    "correctos": [
+      "Cuadrado",
+      "Rectángulo",
+      "Rombo",
+      "Romboide",
+      "Trapecio"
+    ],
+    "intrusos": [
+      "Triángulo",
+      "Pentágono",
+      "Hexágono",
+      "Círculo",
+      "Elipse"
+    ]
+  },
+  {
+    "categoria": "Múltiplos de 3",
+    "correctos": [
+      "3",
+      "6",
+      "9",
+      "12",
+      "15",
+      "30",
+      "33",
+      "60"
+    ],
+    "intrusos": [
+      "1",
+      "2",
+      "4",
+      "5",
+      "7",
+      "8",
+      "10"
+    ]
+  },
+  {
+    "categoria": "Elementos de la Circunferencia",
+    "correctos": [
+      "Centro",
+      "Radio",
+      "Diámetro",
+      "Cuerda",
+      "Arco"
+    ],
+    "intrusos": [
+      "Vértice",
+      "Lado",
+      "Ángulo",
+      "Base",
+      "Altura"
     ]
   }
 ]

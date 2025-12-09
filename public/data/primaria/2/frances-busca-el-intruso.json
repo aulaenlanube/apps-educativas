@@ -1,27 +1,141 @@
 [
   {
-    "categoria": "Les Couleurs",
-    "correctos": ["Rouge", "Bleu", "Vert", "Jaune", "Noir", "Blanc", "Rose", "Orange"],
-    "intrusos": ["Chat", "Chien", "Un", "Deux", "Maison", "École"]
+    "categoria": "Animaux (Visual)",
+    "correctos": [
+      "🐶",
+      "🐱",
+      "🐭",
+      "🐰",
+      "🦊",
+      "🐻"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "⚽",
+      "🏠",
+      "✏️"
+    ]
   },
   {
-    "categoria": "Les Animaux",
-    "correctos": ["Chat", "Chien", "Lion", "Tigre", "Oiseau", "Poisson", "Vache"],
-    "intrusos": ["Rouge", "Bleu", "Crayon", "Livre", "Table"]
+    "categoria": "Fruits (Visual)",
+    "correctos": [
+      "🍎",
+      "🍌",
+      "🍇",
+      "🍊",
+      "🍋",
+      "🍓"
+    ],
+    "intrusos": [
+      "🥦",
+      "🥕",
+      "🍔",
+      "🍕",
+      "🌭"
+    ]
   },
   {
-    "categoria": "Les Nombres (1-10)",
-    "correctos": ["Un", "Deux", "Trois", "Quatre", "Cinq", "Six", "Sept", "Huit", "Neuf", "Dix"],
-    "intrusos": ["Rouge", "Chat", "Mère", "Père", "Bonjour", "Merci"]
+    "categoria": "Couleurs (Visual)",
+    "correctos": [
+      "🔴",
+      "🔵",
+      "🟢",
+      "🟡",
+      "⚫",
+      "⚪"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🚗",
+      "🏠",
+      "✏️"
+    ]
   },
   {
-    "categoria": "La Famille",
-    "correctos": ["Mère", "Père", "Frère", "Sœur", "Grand-mère", "Grand-père", "Bébé"],
-    "intrusos": ["Professeur", "Chat", "Chien", "École", "Stylo"]
+    "categoria": "Couleurs (Mots)",
+    "correctos": [
+      "Rouge",
+      "Bleu",
+      "Vert",
+      "Jaune",
+      "Noir",
+      "Blanc"
+    ],
+    "intrusos": [
+      "Chien",
+      "Chat",
+      "Maison",
+      "Un",
+      "Deux"
+    ]
+  },
+  {
+    "categoria": "Nombres 1-5",
+    "correctos": [
+      "Un",
+      "Deux",
+      "Trois",
+      "Quatre",
+      "Cinq"
+    ],
+    "intrusos": [
+      "Bonjour",
+      "Merci",
+      "Oui",
+      "Non",
+      "Rouge"
+    ]
   },
   {
     "categoria": "Salutations",
-    "correctos": ["Bonjour", "Salut", "Bonsoir", "Au revoir", "Merci", "À bientôt"],
-    "intrusos": ["Rouge", "Bleu", "Un", "Deux", "Chat", "Chien"]
+    "correctos": [
+      "Bonjour",
+      "Salut",
+      "Au revoir",
+      "Bonsoir"
+    ],
+    "intrusos": [
+      "Rouge",
+      "Bleu",
+      "Chat",
+      "Chien",
+      "Pomme"
+    ]
+  },
+  {
+    "categoria": "La Famille",
+    "correctos": [
+      "Père",
+      "Mère",
+      "Frère",
+      "Sœur",
+      "Bébé"
+    ],
+    "intrusos": [
+      "Stylo",
+      "Gomme",
+      "Cahier",
+      "Professeur",
+      "École"
+    ]
+  },
+  {
+    "categoria": "Animaux (Mots)",
+    "correctos": [
+      "Chien",
+      "Chat",
+      "Lion",
+      "Tigre",
+      "Poisson"
+    ],
+    "intrusos": [
+      "Table",
+      "Chaise",
+      "Livre",
+      "Stylo",
+      "Pomme"
+    ]
   }
 ]

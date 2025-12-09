@@ -1,88 +1,167 @@
 [
   {
-    "categoria": "Fruits",
+    "categoria": "Animals (Icons)",
+    "correctos": [
+      "🐶",
+      "🐱",
+      "🦁",
+      "🐯",
+      "🐷",
+      "🐸"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "🏠",
+      "✏️",
+      "⚽"
+    ]
+  },
+  {
+    "categoria": "Fruits (Icons)",
     "correctos": [
       "🍎",
       "🍌",
       "🍇",
       "🍊",
-      "🍓"
+      "🍓",
+      "🍍"
     ],
     "intrusos": [
-      "🐶",
-      "🐱",
-      "🚗",
-      "⚽",
-      "🏠"
+      "🥦",
+      "🥕",
+      "🍔",
+      "🍕",
+      "🌭"
     ]
   },
   {
-    "categoria": "Colors (Red objects)",
+    "categoria": "Weather (Icons)",
     "correctos": [
-      "🍎",
-      "❤️",
-      "🌹",
-      "🎒",
-      "🚗",
-      "🍄"
+      "☀️",
+      "☁️",
+      "🌧️",
+      "❄️",
+      "⛈️",
+      "🌬️"
     ],
     "intrusos": [
-      "🍏",
-      "🚙",
-      "👖",
-      "🍋",
-      "🌑"
+      "🏠",
+      "🚗",
+      "🐶",
+      "📚",
+      "👓"
     ]
   },
   {
-    "categoria": "Numbers (Words)",
+    "categoria": "Sports (Icons)",
+    "correctos": [
+      "⚽",
+      "🏀",
+      "🏈",
+      "⚾",
+      "🎾",
+      "🏐"
+    ],
+    "intrusos": [
+      "🍔",
+      "🍟",
+      "🍕",
+      "🎮",
+      "📺"
+    ]
+  },
+  {
+    "categoria": "Numbers 1-10",
     "correctos": [
       "One",
       "Two",
       "Three",
       "Four",
-      "Five"
+      "Five",
+      "Six",
+      "Seven"
     ],
     "intrusos": [
       "Red",
       "Blue",
       "Dog",
       "Cat",
-      "Yes"
+      "Yes",
+      "No"
     ]
   },
   {
-    "categoria": "Colors (Words)",
+    "categoria": "Colors",
     "correctos": [
       "Red",
       "Blue",
       "Green",
       "Yellow",
-      "Pink"
+      "Pink",
+      "Black",
+      "White"
     ],
     "intrusos": [
       "Table",
       "Chair",
       "Book",
       "Pen",
-      "One"
+      "Car"
     ]
   },
   {
-    "categoria": "Family",
+    "categoria": "Family Members",
     "correctos": [
       "Mother",
       "Father",
       "Sister",
       "Brother",
+      "Grandma",
       "Baby"
     ],
     "intrusos": [
       "Teacher",
       "Doctor",
-      "Apple",
-      "Car",
-      "Dog"
+      "Driver",
+      "Police",
+      "School"
+    ]
+  },
+  {
+    "categoria": "Days of the Week",
+    "correctos": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Sunday"
+    ],
+    "intrusos": [
+      "January",
+      "March",
+      "May",
+      "Spring",
+      "Winter"
+    ]
+  },
+  {
+    "categoria": "Action Verbs",
+    "correctos": [
+      "Run",
+      "Jump",
+      "Swim",
+      "Dance",
+      "Sing",
+      "Play"
+    ],
+    "intrusos": [
+      "Happy",
+      "Sad",
+      "Big",
+      "Small",
+      "Fat"
     ]
   }
 ]

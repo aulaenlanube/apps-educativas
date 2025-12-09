@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "Festes (Visual)",
+    "correctos": [
+      "🔥",
+      "🎆",
+      "🥘",
+      "💃",
+      "🎺",
+      "🥁"
+    ],
+    "intrusos": [
+      "🎄",
+      "🎅",
+      "🎃",
+      "👻",
+      "🦃"
+    ]
+  },
+  {
+    "categoria": "Geografia (Visual)",
+    "correctos": [
+      "⛰️",
+      "🏖️",
+      "🌲",
+      "🏞️",
+      "🌅",
+      "🌊"
+    ],
+    "intrusos": [
+      "🏙️",
+      "🏭",
+      "🛣️",
+      "🚇",
+      "🏯"
+    ]
+  },
+  {
+    "categoria": "Comarques",
+    "correctos": [
+      "Horta",
+      "Ribera",
+      "Safor",
+      "Marina",
+      "Vall d'Albaida"
+    ],
+    "intrusos": [
+      "Madrid",
+      "Barcelona",
+      "Sevilla",
+      "Bilbao",
+      "Saragossa"
+    ]
+  },
+  {
+    "categoria": "Gramàtica",
+    "correctos": [
+      "Substantiu",
+      "Adjectiu",
+      "Verb",
+      "Pronom",
+      "Adverbi"
+    ],
+    "intrusos": [
+      "Subjecte",
+      "Predicat",
+      "Oració",
+      "Frase",
+      "Text"
+    ]
+  },
+  {
+    "categoria": "Lèxic de la Casa",
+    "correctos": [
+      "Cuina",
+      "Menjador",
+      "Habitació",
+      "Bany",
+      "Rebedor"
+    ],
+    "intrusos": [
+      "Escola",
+      "Parc",
+      "Botiga",
+      "Cinema",
+      "Carrer"
+    ]
+  },
+  {
+    "categoria": "Animals",
+    "correctos": [
+      "Gos",
+      "Gat",
+      "Cavall",
+      "Ocell",
+      "Peix"
+    ],
+    "intrusos": [
+      "Taula",
+      "Cadira",
+      "Llibre",
+      "Llapis",
+      "Ordinador"
+    ]
+  },
+  {
+    "categoria": "Temps Verbals",
+    "correctos": [
+      "Present",
+      "Passat",
+      "Futur",
+      "Imperfet",
+      "Condicional"
+    ],
+    "intrusos": [
+      "Indicatiu",
+      "Subjuntiu",
+      "Imperatiu",
+      "Infinitiu",
+      "Gerundi"
+    ]
+  }
+]

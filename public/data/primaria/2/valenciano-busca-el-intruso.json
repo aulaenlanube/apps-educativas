@@ -1,27 +1,144 @@
 [
   {
+    "categoria": "Animals (Visual)",
+    "correctos": [
+      "🐶",
+      "🐱",
+      "🐭",
+      "🐰",
+      "🦊",
+      "🐻"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "⚽",
+      "🏠",
+      "✏️"
+    ]
+  },
+  {
+    "categoria": "Fruites (Visual)",
+    "correctos": [
+      "🍎",
+      "🍐",
+      "🍊",
+      "🍌",
+      "🍇",
+      "🍓"
+    ],
+    "intrusos": [
+      "🥦",
+      "🥕",
+      "🥔",
+      "🥩",
+      "🥚"
+    ]
+  },
+  {
+    "categoria": "L'Escola (Visual)",
+    "correctos": [
+      "🎒",
+      "📚",
+      "✏️",
+      "📏",
+      "✂️",
+      "🖍️"
+    ],
+    "intrusos": [
+      "🛌",
+      "🛁",
+      "🍳",
+      "📺",
+      "🎮"
+    ]
+  },
+  {
     "categoria": "Els Colors",
-    "correctos": ["🔴", "🔵", "🟢", "🟡", "🟣", "🟠", "⚫", "⚪", "🟤"],
-    "intrusos": ["Gat", "Gos", "Taula", "Cadira", "Llibre", "U", "Dos"]
+    "correctos": [
+      "Roig",
+      "Blau",
+      "Groc",
+      "Verd",
+      "Blanc",
+      "Negre"
+    ],
+    "intrusos": [
+      "Taula",
+      "Cadira",
+      "Gat",
+      "Gos",
+      "Llibre"
+    ]
   },
   {
-    "categoria": "Animals",
-    "correctos": ["Gat", "Gos", "Lleó", "Tigre", "Ocell", "Peix", "Vaca", "Porc"],
-    "intrusos": ["Roig", "Blau", "Llapis", "Goma", "Cotxe"]
-  },
-  {
-    "categoria": "L'Escola",
-    "correctos": ["Llapis", "Goma", "Llibre", "Moxilla", "Regle", "Tisores", "Taula"],
-    "intrusos": ["Poma", "Plàtan", "Pilota", "Nina", "Llit"]
+    "categoria": "Nombres 1-10",
+    "correctos": [
+      "U",
+      "Dos",
+      "Tres",
+      "Quatre",
+      "Cinc",
+      "Deu"
+    ],
+    "intrusos": [
+      "Roig",
+      "Blau",
+      "Dilluns",
+      "Gener",
+      "Estiu"
+    ]
   },
   {
     "categoria": "La Família",
-    "correctos": ["Mare", "Pare", "Germà", "Germana", "Iaia", "Iaio", "Oncle", "Tia"],
-    "intrusos": ["Mestre", "Metge", "Policia", "Escola", "Parc"]
+    "correctos": [
+      "Pare",
+      "Mare",
+      "Germà",
+      "Germana",
+      "Iaio"
+    ],
+    "intrusos": [
+      "Mestre",
+      "Metge",
+      "Amic",
+      "Veí",
+      "Policia"
+    ]
   },
   {
-    "categoria": "Fruites",
-    "correctos": ["🍎", "🍐", "🍊", "🍋", "🍌", "🍉", "🍇", "🍓"],
-    "intrusos": ["🥦", "🥕", "🥔", "🍞", "🧀", "🍗"]
+    "categoria": "Dies de la Setmana",
+    "correctos": [
+      "Dilluns",
+      "Dimarts",
+      "Dimecres",
+      "Dijous",
+      "Divendres"
+    ],
+    "intrusos": [
+      "Gener",
+      "Febrer",
+      "Estiu",
+      "Hivern",
+      "Matí"
+    ]
+  },
+  {
+    "categoria": "Parts del Cos",
+    "correctos": [
+      "Cap",
+      "Braç",
+      "Cama",
+      "Mà",
+      "Peu",
+      "Nas"
+    ],
+    "intrusos": [
+      "Samarreta",
+      "Pantalons",
+      "Sabates",
+      "Barret",
+      "Ulleres"
+    ]
   }
 ]

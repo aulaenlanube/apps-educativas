@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "Festes i Tradicions",
+    "categoria": "Festes (Visual)",
     "correctos": [
       "🔥",
       "🎆",
       "🥘",
       "💃",
-      "🎺"
+      "🎺",
+      "🥁"
     ],
     "intrusos": [
       "🎄",
@@ -17,13 +18,14 @@
     ]
   },
   {
-    "categoria": "Geografia (Paisatges)",
+    "categoria": "Geografia (Visual)",
     "correctos": [
       "⛰️",
       "🏖️",
       "🌲",
       "🏞️",
-      "🌅"
+      "🌅",
+      "🌊"
     ],
     "intrusos": [
       "🏙️",
@@ -34,24 +36,43 @@
     ]
   },
   {
-    "categoria": "Pronoms Personals",
+    "categoria": "La Ciutat (Visual)",
     "correctos": [
-      "Jo",
-      "Tu",
-      "Ell",
-      "Ella",
-      "Nosaltres"
+      "🚦",
+      "🏢",
+      "🚌",
+      "⛲",
+      "🏬",
+      "🏥"
     ],
     "intrusos": [
-      "El",
-      "La",
-      "Els",
-      "Les",
-      "Un"
+      "🚜",
+      "🌻",
+      "🐄",
+      "🐑",
+      "🏔️"
     ]
   },
   {
-    "categoria": "Verbs (Passat)",
+    "categoria": "Paraules Planes",
+    "correctos": [
+      "Casa",
+      "Finestra",
+      "Llibre",
+      "Taula",
+      "Examen",
+      "Difícil"
+    ],
+    "intrusos": [
+      "Camió",
+      "Café",
+      "Pardal",
+      "Màquina",
+      "Música"
+    ]
+  },
+  {
+    "categoria": "Verbs en Passat",
     "correctos": [
       "Vaig anar",
       "Vas menjar",
@@ -68,20 +89,57 @@
     ]
   },
   {
-    "categoria": "Paraules Planes",
+    "categoria": "La Natura",
     "correctos": [
-      "Casa",
-      "Finestra",
-      "Llibre",
-      "Taula",
-      "Examen"
+      "Muntanya",
+      "Riu",
+      "Bosc",
+      "Platja",
+      "Mar",
+      "Vall"
     ],
     "intrusos": [
-      "Camió",
-      "Café",
-      "Pardal",
-      "Màquina",
-      "Música"
+      "Ciutat",
+      "Edifici",
+      "Cotxe",
+      "Carretera",
+      "Fàbrica"
+    ]
+  },
+  {
+    "categoria": "Pronoms Personals",
+    "correctos": [
+      "Jo",
+      "Tu",
+      "Ell",
+      "Ella",
+      "Nosaltres",
+      "Vosaltres"
+    ],
+    "intrusos": [
+      "El",
+      "La",
+      "Els",
+      "Les",
+      "Un"
+    ]
+  },
+  {
+    "categoria": "Animals Marins",
+    "correctos": [
+      "Balena",
+      "Dofí",
+      "Tauró",
+      "Polp",
+      "Gamba",
+      "Cranc"
+    ],
+    "intrusos": [
+      "Gos",
+      "Gat",
+      "Lleó",
+      "Àguila",
+      "Gallina"
     ]
   }
 ]

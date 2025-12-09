@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "La Casa",
+    "categoria": "La Casa (Visual)",
     "correctos": [
       "🏠",
       "🚪",
       "🪟",
       "🛌",
-      "🛋️"
+      "🛋️",
+      "🛁"
     ],
     "intrusos": [
       "🚗",
@@ -17,13 +18,32 @@
     ]
   },
   {
-    "categoria": "L'Escola",
+    "categoria": "Menjar (Visual)",
+    "correctos": [
+      "🥘",
+      "🥗",
+      "🍝",
+      "🍊",
+      "🥖",
+      "🧀"
+    ],
+    "intrusos": [
+      "⚽",
+      "🚗",
+      "✏️",
+      "👕",
+      "🐶"
+    ]
+  },
+  {
+    "categoria": "L'Escola (Visual)",
     "correctos": [
       "🏫",
       "🎒",
       "📚",
       "✏️",
-      "📏"
+      "📏",
+      "✂️"
     ],
     "intrusos": [
       "🛌",
@@ -34,13 +54,32 @@
     ]
   },
   {
+    "categoria": "Paraules Agudes",
+    "correctos": [
+      "Camió",
+      "Café",
+      "Arròs",
+      "Paper",
+      "Meló",
+      "Ratolí"
+    ],
+    "intrusos": [
+      "Casa",
+      "Arbre",
+      "Llapis",
+      "Música",
+      "Pàgina"
+    ]
+  },
+  {
     "categoria": "La Família",
     "correctos": [
       "Pare",
       "Mare",
       "Germà",
       "Germana",
-      "Iaio"
+      "Iaio",
+      "Oncle"
     ],
     "intrusos": [
       "Mestre",
@@ -51,13 +90,14 @@
     ]
   },
   {
-    "categoria": "Els Mesos",
+    "categoria": "Els Mesos de l'Any",
     "correctos": [
       "Gener",
       "Febrer",
       "Març",
       "Abril",
-      "Maig"
+      "Maig",
+      "Juny"
     ],
     "intrusos": [
       "Dilluns",
@@ -74,7 +114,8 @@
       "Braç",
       "Cama",
       "Mà",
-      "Peu"
+      "Peu",
+      "Nas"
     ],
     "intrusos": [
       "Samarreta",
@@ -82,6 +123,24 @@
       "Sabates",
       "Barret",
       "Ulleres"
+    ]
+  },
+  {
+    "categoria": "Animals Salvatges",
+    "correctos": [
+      "Lleó",
+      "Tigre",
+      "Elefant",
+      "Girafa",
+      "Zebra",
+      "Mone"
+    ],
+    "intrusos": [
+      "Gos",
+      "Gat",
+      "Gallina",
+      "Vaca",
+      "Ovelha"
     ]
   }
 ]

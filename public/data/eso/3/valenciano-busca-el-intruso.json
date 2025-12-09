@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "Festes (Visual)",
+    "correctos": [
+      "🔥",
+      "🎆",
+      "🥘",
+      "💃",
+      "🎺",
+      "🥁"
+    ],
+    "intrusos": [
+      "🎄",
+      "🎅",
+      "🎃",
+      "👻",
+      "🦃"
+    ]
+  },
+  {
+    "categoria": "Geografia (Visual)",
+    "correctos": [
+      "⛰️",
+      "🏖️",
+      "🌲",
+      "🌊",
+      "🦅",
+      "🌅"
+    ],
+    "intrusos": [
+      "🏙️",
+      "🏭",
+      "🛣️",
+      "🚇",
+      "🏯"
+    ]
+  },
+  {
+    "categoria": "Autors Clàssics",
+    "correctos": [
+      "Ausiàs March",
+      "Joanot Martorell",
+      "Jaume Roig",
+      "Isabel de Villena"
+    ],
+    "intrusos": [
+      "Cervantes",
+      "Shakespeare",
+      "Dante",
+      "Homer",
+      "Virgili"
+    ]
+  },
+  {
+    "categoria": "Comarques del Nord",
+    "correctos": [
+      "Els Ports",
+      "El Maestrat",
+      "La Plana",
+      "L'Alcalatén"
+    ],
+    "intrusos": [
+      "La Safor",
+      "La Marina",
+      "L'Alcoià",
+      "El Comtat",
+      "La Ribera"
+    ]
+  },
+  {
+    "categoria": "Pronoms Febles",
+    "correctos": [
+      "Em",
+      "Et",
+      "Es",
+      "Ens",
+      "Us",
+      "Els"
+    ],
+    "intrusos": [
+      "Jo",
+      "Tu",
+      "Ell",
+      "Nosaltres",
+      "Vosaltres"
+    ]
+  },
+  {
+    "categoria": "Determinants",
+    "correctos": [
+      "El",
+      "La",
+      "Els",
+      "Les",
+      "Un",
+      "Una"
+    ],
+    "intrusos": [
+      "De",
+      "A",
+      "En",
+      "Amb",
+      "Per"
+    ]
+  },
+  {
+    "categoria": "Lèxic de la Roba",
+    "correctos": [
+      "Camisa",
+      "Pantalons",
+      "Sabates",
+      "Mitjons",
+      "Jersei"
+    ],
+    "intrusos": [
+      "Taula",
+      "Cadira",
+      "Llit",
+      "Armari",
+      "Sofà"
+    ]
+  }
+]

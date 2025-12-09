@@ -1,0 +1,141 @@
+[
+  {
+    "categoria": "Genética (Visual)",
+    "correctos": [
+      "🧬",
+      "🔬",
+      "🧫",
+      "🩸",
+      "🐁",
+      "🌱"
+    ],
+    "intrusos": [
+      "🔭",
+      "🪐",
+      "🌋",
+      "🏗️",
+      "🚄"
+    ]
+  },
+  {
+    "categoria": "Evolución (Visual)",
+    "correctos": [
+      "🦕",
+      "🦴",
+      "🐒",
+      "🚶",
+      "🐚",
+      "🐊"
+    ],
+    "intrusos": [
+      "🤖",
+      "🚀",
+      "🏭",
+      "📱",
+      "🚗"
+    ]
+  },
+  {
+    "categoria": "Ecología (Visual)",
+    "correctos": [
+      "♻️",
+      "🌍",
+      "🌲",
+      "🐝",
+      "🌊",
+      "☀️"
+    ],
+    "intrusos": [
+      "☢️",
+      "🛢️",
+      "🚬",
+      "🏢",
+      "⛽"
+    ]
+  },
+  {
+    "categoria": "Genética Molecular",
+    "correctos": [
+      "ADN",
+      "ARN",
+      "Gen",
+      "Cromosoma",
+      "Mutación"
+    ],
+    "intrusos": [
+      "Célula",
+      "Tejido",
+      "Órgano",
+      "Hueso",
+      "Músculo"
+    ]
+  },
+  {
+    "categoria": "Evolución",
+    "correctos": [
+      "Darwin",
+      "Selección natural",
+      "Adaptación",
+      "Fósil",
+      "Especie"
+    ],
+    "intrusos": [
+      "Newton",
+      "Einstein",
+      "Gravedad",
+      "Átomo",
+      "Energía"
+    ]
+  },
+  {
+    "categoria": "Dinámica Terrestre",
+    "correctos": [
+      "Placa tectónica",
+      "Deriva continental",
+      "Seísmo",
+      "Volcán",
+      "Orogénesis"
+    ],
+    "intrusos": [
+      "Clima",
+      "Tiempo",
+      "Lluvia",
+      "Viento",
+      "Nube"
+    ]
+  },
+  {
+    "categoria": "Ecología",
+    "correctos": [
+      "Ecosistema",
+      "Biodiversidad",
+      "Trófica",
+      "Biomasa",
+      "Hábitat"
+    ],
+    "intrusos": [
+      "Genotipo",
+      "Fenotipo",
+      "Alelo",
+      "Mitosis",
+      "Meiosis"
+    ]
+  },
+  {
+    "categoria": "División Celular",
+    "correctos": [
+      "Mitosis",
+      "Meiosis",
+      "Profase",
+      "Metafase",
+      "Anafase"
+    ],
+    "intrusos": [
+      "Digestión",
+      "Respiración",
+      "Circulación",
+      "Excreción",
+      "Sinapsis"
+    ]
+  }
+]

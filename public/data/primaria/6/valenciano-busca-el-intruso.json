@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "Tecnologia",
+    "categoria": "Tecnologia (Visual)",
     "correctos": [
       "💻",
       "📱",
       "🖱️",
       "⌨️",
-      "🖥️"
+      "🖥️",
+      "🔋"
     ],
     "intrusos": [
       "📚",
@@ -17,20 +18,39 @@
     ]
   },
   {
-    "categoria": "El Cos Humà",
+    "categoria": "Aliments (Visual)",
     "correctos": [
-      "🧠",
-      "🫀",
-      "🫁",
-      "🦴",
-      "🦷"
+      "🥘",
+      "🍊",
+      "🥖",
+      "🧀",
+      "🐟",
+      "🍇"
     ],
     "intrusos": [
-      "👕",
-      "👖",
-      "👓",
-      "🧢",
-      "💍"
+      "🍽️",
+      "🔪",
+      "🧂",
+      "🍷",
+      "🥤"
+    ]
+  },
+  {
+    "categoria": "Natura (Visual)",
+    "correctos": [
+      "🌳",
+      "🌊",
+      "🏔️",
+      "🦅",
+      "🍄",
+      "🌻"
+    ],
+    "intrusos": [
+      "🏭",
+      "🚗",
+      "🏙️",
+      "🏢",
+      "⛽"
     ]
   },
   {
@@ -40,7 +60,8 @@
       "Pàgina",
       "Telèfon",
       "Màquina",
-      "Plàtan"
+      "Plàtan",
+      "Fàbrica"
     ],
     "intrusos": [
       "Camisa",
@@ -74,7 +95,8 @@
       "Mestre",
       "Advocat",
       "Bomber",
-      "Policia"
+      "Policia",
+      "Fuster"
     ],
     "intrusos": [
       "Escola",
@@ -82,6 +104,24 @@
       "Comissaria",
       "Cotxe",
       "Llibre"
+    ]
+  },
+  {
+    "categoria": "Geografia Valenciana",
+    "correctos": [
+      "Albufera",
+      "Túria",
+      "Xúquer",
+      "Penyagolosa",
+      "Aitana",
+      "Montgó"
+    ],
+    "intrusos": [
+      "Pirineus",
+      "Ebre",
+      "Teide",
+      "Amazones",
+      "Everest"
     ]
   }
 ]

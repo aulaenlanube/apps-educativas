@@ -1,0 +1,141 @@
+[
+  {
+    "categoria": "Convivencia (Visual)",
+    "correctos": [
+      "🤝",
+      "👂",
+      "🗣️",
+      "🫂",
+      "👐",
+      "🙋"
+    ],
+    "intrusos": [
+      "🥊",
+      "🖕",
+      "😤",
+      "🤬",
+      "💣"
+    ]
+  },
+  {
+    "categoria": "Emociones (Visual)",
+    "correctos": [
+      "😀",
+      "😢",
+      "😡",
+      "😱",
+      "😴",
+      "🤔"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "🏠",
+      "🐶",
+      "✏️"
+    ]
+  },
+  {
+    "categoria": "Objetivos (Visual)",
+    "correctos": [
+      "🎯",
+      "🏆",
+      "🥇",
+      "📈",
+      "🎓",
+      "🏅"
+    ],
+    "intrusos": [
+      "📉",
+      "🗑️",
+      "💤",
+      "📺",
+      "🎮"
+    ]
+  },
+  {
+    "categoria": "Normas de Convivencia",
+    "correctos": [
+      "Respeto",
+      "Puntualidad",
+      "Silencio",
+      "Orden",
+      "Limpieza"
+    ],
+    "intrusos": [
+      "Gritos",
+      "Correr",
+      "Insultar",
+      "Desorden",
+      "Suciedad"
+    ]
+  },
+  {
+    "categoria": "Técnicas de Estudio",
+    "correctos": [
+      "Subrayar",
+      "Resumir",
+      "Esquema",
+      "Mapa mental",
+      "Repaso"
+    ],
+    "intrusos": [
+      "Copiar",
+      "Memorizar sin entender",
+      "Distraerse",
+      "Hablar",
+      "Jugar"
+    ]
+  },
+  {
+    "categoria": "Valores",
+    "correctos": [
+      "Tolerancia",
+      "Solidaridad",
+      "Responsabilidad",
+      "Sinceridad",
+      "Empatía"
+    ],
+    "intrusos": [
+      "Egoísmo",
+      "Mentira",
+      "Pereza",
+      "Violencia",
+      "Envidia"
+    ]
+  },
+  {
+    "categoria": "Habilidades Sociales",
+    "correctos": [
+      "Escucha activa",
+      "Asertividad",
+      "Diálogo",
+      "Negociación",
+      "Cooperación"
+    ],
+    "intrusos": [
+      "Agresividad",
+      "Pasividad",
+      "Imposición",
+      "Aislamiento",
+      "Rechazo"
+    ]
+  },
+  {
+    "categoria": "Resolución de Conflictos",
+    "correctos": [
+      "Calma",
+      "Hablar",
+      "Escuchar",
+      "Pedir perdón",
+      "Acordar"
+    ],
+    "intrusos": [
+      "Gritar",
+      "Insultar",
+      "Pegar",
+      "Amenazar",
+      "Vengarse"
+    ]
+  }
+]

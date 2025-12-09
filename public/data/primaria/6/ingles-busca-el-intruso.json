@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "Digital World",
+    "categoria": "Digital World (Icons)",
     "correctos": [
-      "👾",
       "💻",
       "📱",
       "📡",
-      "💾"
+      "💾",
+      "🖱️",
+      "⌨️"
     ],
     "intrusos": [
       "📚",
@@ -17,13 +18,14 @@
     ]
   },
   {
-    "categoria": "Environment",
+    "categoria": "Environment (Icons)",
     "correctos": [
       "♻️",
       "🌍",
       "🌱",
       "🚮",
-      "🔋"
+      "🔋",
+      "☀️"
     ],
     "intrusos": [
       "🏭",
@@ -34,30 +36,67 @@
     ]
   },
   {
-    "categoria": "Mixed Tenses",
+    "categoria": "Health (Icons)",
     "correctos": [
-      "Go",
-      "Went",
-      "Gone",
-      "Going",
-      "Will go"
+      "🤒",
+      "🤕",
+      "🤢",
+      "🤧",
+      "😷",
+      "🌡️"
     ],
     "intrusos": [
-      "To go",
-      "Me go",
-      "I",
-      "She",
-      "He"
+      "😀",
+      "😎",
+      "🥳",
+      "🤠",
+      "💪"
     ]
   },
   {
-    "categoria": "Materials (Words)",
+    "categoria": "Future (Icons)",
+    "correctos": [
+      "🤖",
+      "🚀",
+      "🛸",
+      "🦾",
+      "🧬",
+      "🔭"
+    ],
+    "intrusos": [
+      "🦕",
+      "🕯️",
+      "📜",
+      "🏰",
+      "🛡️"
+    ]
+  },
+  {
+    "categoria": "Mixed Tenses",
+    "correctos": [
+      "I go",
+      "I went",
+      "I have gone",
+      "I am going",
+      "I will go"
+    ],
+    "intrusos": [
+      "I to go",
+      "Me go",
+      "Going I",
+      "I gone",
+      "Go I"
+    ]
+  },
+  {
+    "categoria": "Materials",
     "correctos": [
       "Wood",
       "Metal",
       "Plastic",
       "Glass",
-      "Paper"
+      "Fabric",
+      "Leather"
     ],
     "intrusos": [
       "Table",
@@ -68,13 +107,14 @@
     ]
   },
   {
-    "categoria": "Prepositions",
+    "categoria": "Prepositions of Place",
     "correctos": [
       "In",
       "On",
       "Under",
       "Behind",
-      "Between"
+      "Between",
+      "Next to"
     ],
     "intrusos": [
       "Yesterday",
@@ -82,6 +122,41 @@
       "Run",
       "Jump",
       "Happy"
+    ]
+  },
+  {
+    "categoria": "Health Problems",
+    "correctos": [
+      "Headache",
+      "Stomachache",
+      "Cold",
+      "Cough",
+      "Fever",
+      "Flu"
+    ],
+    "intrusos": [
+      "Happy",
+      "Hungry",
+      "Thirsty",
+      "Tired",
+      "Excited"
+    ]
+  },
+  {
+    "categoria": "Famous Cities",
+    "correctos": [
+      "London",
+      "New York",
+      "Manchester",
+      "Liverpool",
+      "Los Angeles"
+    ],
+    "intrusos": [
+      "Paris",
+      "Madrid",
+      "Rome",
+      "Berlin",
+      "Tokyo"
     ]
   }
 ]

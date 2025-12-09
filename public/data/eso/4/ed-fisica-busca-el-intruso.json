@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "Deportes (Visual)",
+    "correctos": [
+      "🧗",
+      "🚴",
+      "🏊",
+      "🚣",
+      "🤺",
+      "🤸"
+    ],
+    "intrusos": [
+      "🎮",
+      "📺",
+      "📱",
+      "🍔",
+      "🛋️"
+    ]
+  },
+  {
+    "categoria": "Material (Visual)",
+    "correctos": [
+      "👟",
+      "⏱️",
+      "🥅",
+      "🎱",
+      "🏓",
+      "🥊"
+    ],
+    "intrusos": [
+      "📚",
+      "🖊️",
+      "🔭",
+      "🔬",
+      "🎻"
+    ]
+  },
+  {
+    "categoria": "Sistemas de Entrenamiento",
+    "correctos": [
+      "Fartlek",
+      "Interval Training",
+      "Circuitos",
+      "Aeróbico",
+      "Anaeróbico"
+    ],
+    "intrusos": [
+      "Partido",
+      "Torneo",
+      "Liga",
+      "Copa",
+      "Amistoso"
+    ]
+  },
+  {
+    "categoria": "Primeros Auxilios",
+    "correctos": [
+      "RCP",
+      "PLS",
+      "Heimlich",
+      "Hemorragia",
+      "Esguince"
+    ],
+    "intrusos": [
+      "Operación",
+      "Trasplante",
+      "Biopsia",
+      "TAC",
+      "Resonancia"
+    ]
+  },
+  {
+    "categoria": "Nutrición Deportiva",
+    "correctos": [
+      "Hidratos",
+      "Proteínas",
+      "Grasas",
+      "Vitaminas",
+      "Minerales"
+    ],
+    "intrusos": [
+      "Bollería",
+      "Alcohol",
+      "Refrescos",
+      "Chuches",
+      "Fritos"
+    ]
+  },
+  {
+    "categoria": "Deportes Individuales",
+    "correctos": [
+      "Atletismo",
+      "Gimnasia",
+      "Natación",
+      "Judo",
+      "Tenis"
+    ],
+    "intrusos": [
+      "Fútbol",
+      "Baloncesto",
+      "Balonmano",
+      "Voleibol",
+      "Rugby"
+    ]
+  },
+  {
+    "categoria": "Expresión Corporal",
+    "correctos": [
+      "Ritmo",
+      "Danza",
+      "Mimo",
+      "Dramatización",
+      "Coreografía"
+    ],
+    "intrusos": [
+      "Fuerza",
+      "Velocidad",
+      "Resistencia",
+      "Potencia",
+      "Agilidad"
+    ]
+  }
+]

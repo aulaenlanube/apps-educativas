@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Medios de Transporte Aéreo",
+    "categoria": "Transporte Aéreo (Visual)",
     "correctos": [
       "✈️",
       "🚁",
@@ -17,13 +17,50 @@
     ]
   },
   {
-    "categoria": "Profesiones",
+    "categoria": "El Universo (Visual)",
+    "correctos": [
+      "☀️",
+      "🌍",
+      "🌕",
+      "🪐",
+      "⭐",
+      "☄️"
+    ],
+    "intrusos": [
+      "✈️",
+      "🦅",
+      "🪁",
+      "🚁",
+      "☁️"
+    ]
+  },
+  {
+    "categoria": "Señales (Visual)",
+    "correctos": [
+      "🛑",
+      "⛔",
+      "🚸",
+      "🅿️",
+      "♿",
+      "🚳"
+    ],
+    "intrusos": [
+      "🏁",
+      "🚩",
+      "🖼️",
+      "📸",
+      "🎨"
+    ]
+  },
+  {
+    "categoria": "Profesiones (Visual)",
     "correctos": [
       "👨‍⚕️",
       "👩‍🏫",
       "👮‍♂️",
       "👨‍🚒",
-      "👩‍🍳"
+      "👩‍🍳",
+      "👨‍🌾"
     ],
     "intrusos": [
       "👻",
@@ -34,54 +71,91 @@
     ]
   },
   {
-    "categoria": "La Ciudad",
+    "categoria": "Planetas del Sistema Solar",
     "correctos": [
-      "🏢",
-      "🏥",
-      "🏦",
-      "🏫",
-      "🏪"
+      "Mercurio",
+      "Venus",
+      "Tierra",
+      "Marte",
+      "Júpiter",
+      "Saturno"
     ],
     "intrusos": [
-      "🏔️",
-      "🏜️",
-      "🏝️",
-      "🌋",
-      "🚜"
+      "Luna",
+      "Sol",
+      "Cometa",
+      "Estrella",
+      "Nube"
     ]
   },
   {
-    "categoria": "Señales de Tráfico",
+    "categoria": "Medios de Transporte",
     "correctos": [
-      "🛑",
-      "⛔",
-      "🚸",
-      "🅿️",
-      "♿"
+      "Coche",
+      "Autobús",
+      "Tren",
+      "Avión",
+      "Barco",
+      "Bicicleta"
     ],
     "intrusos": [
-      "🏁",
-      "🚩",
-      "🏴‍☠️",
-      "🏳️",
-      "🖼️"
+      "Zapato",
+      "Casa",
+      "Colegio",
+      "Puente",
+      "Semáforo"
     ]
   },
   {
-    "categoria": "El Colegio",
+    "categoria": "Profesiones",
     "correctos": [
-      "🎒",
-      "📚",
-      "✏️",
-      "📏",
-      "✂️"
+      "Médico",
+      "Profesor",
+      "Policía",
+      "Bombero",
+      "Agricultor",
+      "Cocinero"
     ],
     "intrusos": [
-      "📺",
-      "🎮",
-      "🛌",
-      "🛁",
-      "🍳"
+      "Estudiante",
+      "Paciente",
+      "Cliente",
+      "Turista",
+      "Ladrón"
+    ]
+  },
+  {
+    "categoria": "Tipos de Paisaje",
+    "correctos": [
+      "Montaña",
+      "Llanura",
+      "Costa",
+      "Valle",
+      "Meseta",
+      "Playa"
+    ],
+    "intrusos": [
+      "Edificio",
+      "Carretera",
+      "Fábrica",
+      "Semáforo",
+      "Tienda"
+    ]
+  },
+  {
+    "categoria": "Servicios Municipales",
+    "correctos": [
+      "Limpieza",
+      "Bomberos",
+      "Policía",
+      "Jardinería",
+      "Transporte"
+    ],
+    "intrusos": [
+      "Cine",
+      "Restaurante",
+      "Discoteca",
+      "Gimnasio privado"
     ]
   }
 ]

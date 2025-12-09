@@ -1,0 +1,161 @@
+[
+  {
+    "categoria": "Prehistoria (Visual)",
+    "correctos": [
+      "🔥",
+      "🦴",
+      "🏹",
+      "🪨",
+      "🦕",
+      "🏺"
+    ],
+    "intrusos": [
+      "📱",
+      "🚗",
+      "🏰",
+      "🏭",
+      "🚆"
+    ]
+  },
+  {
+    "categoria": "Egipto Antiguo (Visual)",
+    "correctos": [
+      "🔺",
+      "🐫",
+      "🏜️",
+      "🐈",
+      "👑",
+      "🛶"
+    ],
+    "intrusos": [
+      "🏟️",
+      "🏛️",
+      "🏰",
+      "🏯",
+      "⛩️"
+    ]
+  },
+  {
+    "categoria": "Mapas y Geografía (Visual)",
+    "correctos": [
+      "🗺️",
+      "🌍",
+      "🧭",
+      "🌐",
+      "📍",
+      "🗾"
+    ],
+    "intrusos": [
+      "🕰️",
+      "🌡️",
+      "⚖️",
+      "🔭",
+      "🔬"
+    ]
+  },
+  {
+    "categoria": "Climas (Visual)",
+    "correctos": [
+      "🏜️",
+      "❄️",
+      "🌧️",
+      "🌴",
+      "🌲",
+      "🍂"
+    ],
+    "intrusos": [
+      "🏭",
+      "🚗",
+      "🏠",
+      "🛣️",
+      "🏢"
+    ]
+  },
+  {
+    "categoria": "Etapas de la Historia",
+    "correctos": [
+      "Prehistoria",
+      "Edad Antigua",
+      "Edad Media",
+      "Edad Moderna",
+      "Edad Contemporánea"
+    ],
+    "intrusos": [
+      "Jurásico",
+      "Cretácico",
+      "Edad de Hielo",
+      "Futuro",
+      "Presente"
+    ]
+  },
+  {
+    "categoria": "Continentes",
+    "correctos": [
+      "África",
+      "América",
+      "Asia",
+      "Europa",
+      "Oceanía",
+      "Antártida"
+    ],
+    "intrusos": [
+      "Atlántico",
+      "Pacífico",
+      "Índico",
+      "Ártico",
+      "España"
+    ]
+  },
+  {
+    "categoria": "Civilizaciones Antiguas",
+    "correctos": [
+      "Mesopotamia",
+      "Egipto",
+      "Grecia",
+      "Roma",
+      "China",
+      "India"
+    ],
+    "intrusos": [
+      "EEUU",
+      "Unión Europea",
+      "Brasil",
+      "Alemania",
+      "Francia"
+    ]
+  },
+  {
+    "categoria": "Elementos del Clima",
+    "correctos": [
+      "Temperatura",
+      "Precipitaciones",
+      "Presión",
+      "Viento",
+      "Humedad"
+    ],
+    "intrusos": [
+      "Termómetro",
+      "Barómetro",
+      "Anemómetro",
+      "Pluviómetro",
+      "Mapa"
+    ]
+  },
+  {
+    "categoria": "Océanos",
+    "correctos": [
+      "Pacífico",
+      "Atlántico",
+      "Índico",
+      "Glacial Ártico",
+      "Glacial Antártico"
+    ],
+    "intrusos": [
+      "Mediterráneo",
+      "Cantábrico",
+      "Caribe",
+      "Rojo",
+      "Muerto"
+    ]
+  }
+]

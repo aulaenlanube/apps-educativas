@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "Historia Contemporánea",
+    "categoria": "Historia Contemporánea (Visual)",
     "correctos": [
       "🏭",
       "🚂",
       "✈️",
       "🚀",
-      "💻"
+      "💻",
+      "🏙️"
     ],
     "intrusos": [
       "🏰",
@@ -17,13 +18,14 @@
     ]
   },
   {
-    "categoria": "La Unión Europea",
+    "categoria": "Unión Europea (Visual)",
     "correctos": [
       "🇪🇺",
       "💶",
       "🏦",
       "🛂",
-      "🚄"
+      "🚄",
+      "🗳️"
     ],
     "intrusos": [
       "🏯",
@@ -34,13 +36,14 @@
     ]
   },
   {
-    "categoria": "Democracia",
+    "categoria": "Democracia (Visual)",
     "correctos": [
       "🗳️",
       "⚖️",
       "🗣️",
       "🤝",
-      "🏛️"
+      "🏛️",
+      "📜"
     ],
     "intrusos": [
       "👑",
@@ -51,13 +54,14 @@
     ]
   },
   {
-    "categoria": "Cambio Climático",
+    "categoria": "Cambio Climático (Visual)",
     "correctos": [
       "🏭",
       "🔥",
       "🏜️",
       "🌡️",
-      "💨"
+      "💨",
+      "🌫️"
     ],
     "intrusos": [
       "♻️",
@@ -68,20 +72,90 @@
     ]
   },
   {
-    "categoria": "Economía y Empresa",
+    "categoria": "Historia Contemporánea",
     "correctos": [
-      "🏭",
-      "💼",
-      "💹",
-      "💳",
-      "📊"
+      "Revolución Francesa",
+      "Constitución",
+      "Democracia",
+      "Derechos Humanos",
+      "Internet"
     ],
     "intrusos": [
-      "🏖️",
-      "🎠",
-      "🎮",
-      "⚽",
-      "🎨"
+      "Descubrimiento de América",
+      "Edad Media",
+      "Imperio Romano",
+      "Castillos",
+      "Faraones"
+    ]
+  },
+  {
+    "categoria": "La Unión Europea",
+    "correctos": [
+      "Euro",
+      "Bruselas",
+      "Parlamento",
+      "Tratado",
+      "Fronteras"
+    ],
+    "intrusos": [
+      "Dólar",
+      "Yen",
+      "Rey",
+      "Emperador",
+      "Dictador"
+    ]
+  },
+  {
+    "categoria": "Sectores Económicos",
+    "correctos": [
+      "Agricultura",
+      "Industria",
+      "Servicios",
+      "Turismo",
+      "Comercio"
+    ],
+    "intrusos": [
+      "Colegio",
+      "Hospital",
+      "Ocio",
+      "Deporte",
+      "Cine"
+    ]
+  },
+  {
+    "categoria": "Ríos de Europa",
+    "correctos": [
+      "Danubio",
+      "Rin",
+      "Volga",
+      "Sena",
+      "Támesis",
+      "Tíber"
+    ],
+    "intrusos": [
+      "Nilo",
+      "Amazonas",
+      "Misisipi",
+      "Yangtsé",
+      "Ebro"
+    ]
+  },
+  {
+    "categoria": "Capitales Europeas",
+    "correctos": [
+      "Madrid",
+      "París",
+      "Roma",
+      "Berlín",
+      "Londres",
+      "Lisboa"
+    ],
+    "intrusos": [
+      "Nueva York",
+      "Tokio",
+      "Pekín",
+      "Buenos Aires",
+      "El Cairo"
     ]
   }
 ]

@@ -1,0 +1,140 @@
+[
+  {
+    "categoria": "Herramientas de Arte (Visual)",
+    "correctos": [
+      "🎨",
+      "🖌️",
+      "🖍️",
+      "✏️",
+      "📏",
+      "✂️"
+    ],
+    "intrusos": [
+      "🔨",
+      "🔧",
+      "🥄",
+      "🍴",
+      "👓"
+    ]
+  },
+  {
+    "categoria": "Colores (Visual)",
+    "correctos": [
+      "🔴",
+      "🔵",
+      "🟡",
+      "🟢",
+      "🟠",
+      "🟣"
+    ],
+    "intrusos": [
+      "🔳",
+      "🔲",
+      "🏁",
+      "🏳️",
+      "🏴"
+    ]
+  },
+  {
+    "categoria": "Formas Geométricas (Visual)",
+    "correctos": [
+      "🟥",
+      "🟧",
+      "🟨",
+      "🟩",
+      "🟦",
+      "🟪"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "🐶",
+      "🌳",
+      "🏠"
+    ]
+  },
+  {
+    "categoria": "Elementos Visuales",
+    "correctos": [
+      "Punto",
+      "Línea",
+      "Plano",
+      "Textura",
+      "Color",
+      "Luz"
+    ],
+    "intrusos": [
+      "Sonido",
+      "Olor",
+      "Sabor",
+      "Tiempo",
+      "Velocidad"
+    ]
+  },
+  {
+    "categoria": "Colores Primarios (Luz)",
+    "correctos": [
+      "Rojo",
+      "Verde",
+      "Azul"
+    ],
+    "intrusos": [
+      "Amarillo",
+      "Cian",
+      "Magenta",
+      "Blanco",
+      "Negro"
+    ]
+  },
+  {
+    "categoria": "Técnicas Artísticas",
+    "correctos": [
+      "Dibujo",
+      "Pintura",
+      "Escultura",
+      "Grabado",
+      "Collage"
+    ],
+    "intrusos": [
+      "Música",
+      "Danza",
+      "Teatro",
+      "Cine",
+      "Literatura"
+    ]
+  },
+  {
+    "categoria": "Materiales de Dibujo",
+    "correctos": [
+      "Lápiz",
+      "Carboncillo",
+      "Tinta",
+      "Acuarela",
+      "Cera"
+    ],
+    "intrusos": [
+      "Martillo",
+      "Clavo",
+      "Sierra",
+      "Destornillador",
+      "Llave"
+    ]
+  },
+  {
+    "categoria": "Geometría Plana",
+    "correctos": [
+      "Polígonos",
+      "Circunferencia",
+      "Triángulos",
+      "Cuadriláteros",
+      "Tangencias"
+    ],
+    "intrusos": [
+      "Cubo",
+      "Esfera",
+      "Prisma",
+      "Cilindro",
+      "Cono"
+    ]
+  }
+]

@@ -1,0 +1,123 @@
+[
+  {
+    "categoria": "Landmarks (Visual)",
+    "correctos": [
+      "🗽",
+      "🗼",
+      "🌉",
+      "🎡",
+      "🏰",
+      "🏙️"
+    ],
+    "intrusos": [
+      "🛖",
+      "⛺",
+      "🏚️",
+      "🪵",
+      "🪨"
+    ]
+  },
+  {
+    "categoria": "Technology (Visual)",
+    "correctos": [
+      "📱",
+      "💻",
+      "📡",
+      "🛰️",
+      "🤖",
+      "🎮"
+    ],
+    "intrusos": [
+      "📜",
+      "🏺",
+      "🕯️",
+      "🧹",
+      "🪣"
+    ]
+  },
+  {
+    "categoria": "Conditionals",
+    "correctos": [
+      "Zero",
+      "First",
+      "Second",
+      "Third",
+      "Mixed"
+    ],
+    "intrusos": [
+      "Present",
+      "Past",
+      "Future",
+      "Continuous",
+      "Perfect"
+    ]
+  },
+  {
+    "categoria": "Passive Voice",
+    "correctos": [
+      "By",
+      "Was done",
+      "Is made",
+      "Will be sent",
+      "Has been"
+    ],
+    "intrusos": [
+      "Doing",
+      "Making",
+      "Sending",
+      "Being",
+      "Going"
+    ]
+  },
+  {
+    "categoria": "Reported Speech",
+    "correctos": [
+      "Said",
+      "Told",
+      "Asked",
+      "That",
+      "Previous day"
+    ],
+    "intrusos": [
+      "Says",
+      "Tells",
+      "Asks",
+      "Now",
+      "Tomorrow"
+    ]
+  },
+  {
+    "categoria": "Phrasal Verbs",
+    "correctos": [
+      "Give up",
+      "Look for",
+      "Get on",
+      "Turn off",
+      "Carry on"
+    ],
+    "intrusos": [
+      "Give",
+      "Look",
+      "Get",
+      "Turn",
+      "Carry"
+    ]
+  },
+  {
+    "categoria": "Modal Verbs",
+    "correctos": [
+      "Should",
+      "Must",
+      "Might",
+      "Could",
+      "Ought to"
+    ],
+    "intrusos": [
+      "Do",
+      "Did",
+      "Does",
+      "Done",
+      "Doing"
+    ]
+  }
+]

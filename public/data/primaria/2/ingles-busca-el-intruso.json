@@ -1,32 +1,163 @@
 [
   {
-    "categoria": "Colors",
-    "correctos": ["🔴", "🔵", "🟢", "🟡", "🟣", "🟠", "⚫", "⚪", "🟤"],
-    "intrusos": ["🐶", "🐱", "🚗", "🏠", "🍎", "One", "Two"]
+    "categoria": "Colors (Visual)",
+    "correctos": [
+      "🔴",
+      "🔵",
+      "🟢",
+      "🟡",
+      "🟣",
+      "⚫"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🚗",
+      "🏠",
+      "✏️"
+    ]
+  },
+  {
+    "categoria": "Animals (Visual)",
+    "correctos": [
+      "🐶",
+      "🐱",
+      "🐭",
+      "🐰",
+      "🦊",
+      "🐻"
+    ],
+    "intrusos": [
+      "🍎",
+      "🚗",
+      "⚽",
+      "🏠",
+      "✏️"
+    ]
+  },
+  {
+    "categoria": "School Objects (Visual)",
+    "correctos": [
+      "🎒",
+      "📚",
+      "✏️",
+      "📏",
+      "✂️",
+      "🖍️"
+    ],
+    "intrusos": [
+      "🛌",
+      "🛁",
+      "🍳",
+      "📺",
+      "🎮"
+    ]
+  },
+  {
+    "categoria": "Food (Visual)",
+    "correctos": [
+      "🍎",
+      "🍌",
+      "🍕",
+      "🍔",
+      "🍦",
+      "🍪"
+    ],
+    "intrusos": [
+      "⚽",
+      "🏀",
+      "🚗",
+      "✏️",
+      "👕"
+    ]
+  },
+  {
+    "categoria": "Numbers 1-10",
+    "correctos": [
+      "One",
+      "Two",
+      "Three",
+      "Four",
+      "Five",
+      "Ten"
+    ],
+    "intrusos": [
+      "Red",
+      "Blue",
+      "Dog",
+      "Cat",
+      "Yes"
+    ]
+  },
+  {
+    "categoria": "Colors (Words)",
+    "correctos": [
+      "Red",
+      "Blue",
+      "Green",
+      "Yellow",
+      "Pink",
+      "Black"
+    ],
+    "intrusos": [
+      "Table",
+      "Chair",
+      "Book",
+      "Pen",
+      "Car"
+    ]
+  },
+  {
+    "categoria": "Animals (Words)",
+    "correctos": [
+      "Dog",
+      "Cat",
+      "Lion",
+      "Tiger",
+      "Fish",
+      "Bird"
+    ],
+    "intrusos": [
+      "Apple",
+      "Banana",
+      "Car",
+      "Bus",
+      "Pen"
+    ]
   },
   {
     "categoria": "Family Members",
-    "correctos": ["Mom", "Dad", "Sister", "Brother", "Grandma", "Grandpa", "Baby", "Uncle"],
-    "intrusos": ["Teacher", "Doctor", "Cat", "Dog", "School", "House"]
-  },
-  {
-    "categoria": "School Objects",
-    "correctos": ["Pencil", "Pen", "Book", "Bag", "Ruler", "Rubber", "Desk", "Chair"],
-    "intrusos": ["Apple", "Banana", "Lion", "Tiger", "Car", "Ball"]
-  },
-  {
-    "categoria": "Animals",
-    "correctos": ["Cat", "Dog", "Lion", "Tiger", "Bird", "Fish", "Cow", "Pig"],
-    "intrusos": ["Red", "Blue", "Table", "Chair", "Pencil", "One"]
+    "correctos": [
+      "Mum",
+      "Dad",
+      "Sister",
+      "Brother",
+      "Granny"
+    ],
+    "intrusos": [
+      "Teacher",
+      "Doctor",
+      "School",
+      "Park",
+      "House"
+    ]
   },
   {
     "categoria": "Body Parts",
-    "correctos": ["👀", "👃", "👄", "👂", "✋", "🦶", "🦵", "💪", "🧠"],
-    "intrusos": ["👕", "👖", "👗", "👟", "🧢", "👓"]
-  },
-  {
-    "categoria": "Food",
-    "correctos": ["🍎", "🍌", "🍕", "🍔", "🍟", "🍞", "🧀", "🥗", "🥚"],
-    "intrusos": ["🐶", "⚽", "🚗", "✏️", "📱", "🏠"]
+    "correctos": [
+      "Head",
+      "Hand",
+      "Leg",
+      "Foot",
+      "Nose",
+      "Eye"
+    ],
+    "intrusos": [
+      "Pen",
+      "Pencil",
+      "Book",
+      "Bag",
+      "Desk"
+    ]
   }
 ]

@@ -1,12 +1,13 @@
 [
   {
-    "categoria": "Adolescencia",
+    "categoria": "Adolescencia (Visual)",
     "correctos": [
       "👫",
       "📱",
       "🎧",
       "🛹",
-      "🎒"
+      "🎒",
+      "👟"
     ],
     "intrusos": [
       "👶",
@@ -17,13 +18,32 @@
     ]
   },
   {
-    "categoria": "Peligros de las Redes",
+    "categoria": "Redes Sociales (Visual)",
+    "correctos": [
+      "👍",
+      "❤️",
+      "💬",
+      "🔔",
+      "📸",
+      "🤳"
+    ],
+    "intrusos": [
+      "📚",
+      "✏️",
+      "🧹",
+      "🍳",
+      "🔨"
+    ]
+  },
+  {
+    "categoria": "Peligros Red (Visual)",
     "correctos": [
       "😈",
       "🚫",
       "🕵️",
       "🦠",
-      "💔"
+      "💔",
+      "💣"
     ],
     "intrusos": [
       "🔒",
@@ -34,37 +54,71 @@
     ]
   },
   {
-    "categoria": "Igualdad",
+    "categoria": "El Paso a Secundaria",
     "correctos": [
-      "⚖️",
-      "🤝",
-      "👩‍🔧",
-      "👨‍🍳",
-      "⚧"
+      "Instituto",
+      "Profesores",
+      "Horario",
+      "Compañeros",
+      "Exámenes"
     ],
     "intrusos": [
-      "🥊",
-      "⛓️",
-      "🤬",
-      "😤",
-      "👎"
+      "Guardería",
+      "Jugar",
+      "Siesta",
+      "Columpios",
+      "Juguetes"
     ]
   },
   {
-    "categoria": "Futuro Profesional",
+    "categoria": "Uso de Internet",
     "correctos": [
-      "🎓",
-      "💼",
-      "🔬",
-      "🚀",
-      "🎨"
+      "Privacidad",
+      "Contraseña",
+      "Respeto",
+      "Bloquear",
+      "Reportar"
     ],
     "intrusos": [
-      "🎮",
-      "🛌",
-      "📺",
-      "🍿",
-      "🏖️"
+      "Insultar",
+      "Compartir todo",
+      "Desconocidos",
+      "Bullying",
+      "Virus"
+    ]
+  },
+  {
+    "categoria": "Emociones Complejas",
+    "correctos": [
+      "Nostalgia",
+      "Euforia",
+      "Frustración",
+      "Empatía",
+      "Ansiedad"
+    ],
+    "intrusos": [
+      "Hambre",
+      "Sed",
+      "Frío",
+      "Calor",
+      "Sueño"
+    ]
+  },
+  {
+    "categoria": "Habilidades Sociales",
+    "correctos": [
+      "Escuchar",
+      "Dialogar",
+      "Negociar",
+      "Perdonar",
+      "Agradecer"
+    ],
+    "intrusos": [
+      "Gritar",
+      "Pegar",
+      "Ignorar",
+      "Mentir",
+      "Odiar"
     ]
   }
 ]

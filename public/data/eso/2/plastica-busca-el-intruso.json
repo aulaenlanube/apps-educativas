@@ -1,0 +1,120 @@
+[
+  {
+    "categoria": "Colores (Visual)",
+    "correctos": [
+      "🔴",
+      "🔵",
+      "🟡",
+      "🟢",
+      "🟠",
+      "🟣"
+    ],
+    "intrusos": [
+      "🔳",
+      "🔲",
+      "🏁",
+      "🏳️",
+      "🏴"
+    ]
+  },
+  {
+    "categoria": "Herramientas (Visual)",
+    "correctos": [
+      "🎨",
+      "🖌️",
+      "🖍️",
+      "✏️",
+      "📏",
+      "✂️"
+    ],
+    "intrusos": [
+      "🔨",
+      "🔧",
+      "🥄",
+      "🍴",
+      "👓"
+    ]
+  },
+  {
+    "categoria": "Elementos de la Imagen",
+    "correctos": [
+      "Punto",
+      "Línea",
+      "Plano",
+      "Textura",
+      "Color"
+    ],
+    "intrusos": [
+      "Sonido",
+      "Olor",
+      "Sabor",
+      "Tiempo",
+      "Velocidad"
+    ]
+  },
+  {
+    "categoria": "Colores Primarios (Pigmento)",
+    "correctos": [
+      "Cian",
+      "Magenta",
+      "Amarillo"
+    ],
+    "intrusos": [
+      "Rojo",
+      "Verde",
+      "Azul",
+      "Blanco",
+      "Negro"
+    ]
+  },
+  {
+    "categoria": "Técnicas Secas",
+    "correctos": [
+      "Lápiz",
+      "Carboncillo",
+      "Sanguina",
+      "Pastel",
+      "Ceras"
+    ],
+    "intrusos": [
+      "Acuarela",
+      "Óleo",
+      "Témpera",
+      "Acrílico",
+      "Tinta"
+    ]
+  },
+  {
+    "categoria": "Géneros Pictóricos",
+    "correctos": [
+      "Retrato",
+      "Paisaje",
+      "Bodegón",
+      "Marina",
+      "Histórico"
+    ],
+    "intrusos": [
+      "Escultura",
+      "Arquitectura",
+      "Cine",
+      "Fotografía",
+      "Cómic"
+    ]
+  },
+  {
+    "categoria": "Sistemas de Representación",
+    "correctos": [
+      "Diédrico",
+      "Axonométrico",
+      "Cónico",
+      "Perspectiva"
+    ],
+    "intrusos": [
+      "Suma",
+      "Resta",
+      "Multiplicación",
+      "División",
+      "Raíz"
+    ]
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "categoria": "Herramientas (Visual)",
+    "correctos": [
+      "🎨",
+      "🖌️",
+      "✏️",
+      "📏",
+      "📐",
+      "✂️"
+    ],
+    "intrusos": [
+      "🔨",
+      "🔧",
+      "🥄",
+      "🍴",
+      "🕶️"
+    ]
+  },
+  {
+    "categoria": "Colores (Visual)",
+    "correctos": [
+      "🔴",
+      "🔵",
+      "🟡",
+      "🟢",
+      "🟠",
+      "🟣"
+    ],
+    "intrusos": [
+      "🏁",
+      "🏳️",
+      "🏴",
+      "🔳",
+      "🔲"
+    ]
+  },
+  {
+    "categoria": "Sistemas de Representación",
+    "correctos": [
+      "Diédrico",
+      "Axonométrico",
+      "Caballera",
+      "Isométrica",
+      "Cónica"
+    ],
+    "intrusos": [
+      "Boceto",
+      "Croquis",
+      "Plano",
+      "Mapa",
+      "Dibujo"
+    ]
+  },
+  {
+    "categoria": "Técnicas Artísticas",
+    "correctos": [
+      "Óleo",
+      "Acuarela",
+      "Pastel",
+      "Grabado",
+      "Escultura"
+    ],
+    "intrusos": [
+      "Fotografía",
+      "Cine",
+      "Cómic",
+      "Diseño",
+      "Publicidad"
+    ]
+  },
+  {
+    "categoria": "Elementos del Lenguaje Visual",
+    "correctos": [
+      "Punto",
+      "Línea",
+      "Plano",
+      "Textura",
+      "Color"
+    ],
+    "intrusos": [
+      "Sonido",
+      "Movimiento",
+      "Tiempo",
+      "Espacio",
+      "Ritmo"
+    ]
+  },
+  {
+    "categoria": "Colores Fríos",
+    "correctos": [
+      "Azul",
+      "Verde",
+      "Violeta",
+      "Turquesa"
+    ],
+    "intrusos": [
+      "Rojo",
+      "Naranja",
+      "Amarillo",
+      "Marrón",
+      "Ocre"
+    ]
+  },
+  {
+    "categoria": "Movimientos Artísticos",
+    "correctos": [
+      "Impresionismo",
+      "Cubismo",
+      "Surrealismo",
+      "Pop Art",
+      "Abstracción"
+    ],
+    "intrusos": [
+      "Renacimiento",
+      "Barroco",
+      "Gótico",
+      "Románico",
+      "Neoclásico"
+    ]
+  }
+]

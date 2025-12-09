@@ -1,0 +1,178 @@
+[
+  {
+    "categoria": "Polígonos Regulares (Visual)",
+    "correctos": [
+      "🔺",
+      "🟦",
+      "🛑",
+      "🔶",
+      "⬡",
+      "⬛"
+    ],
+    "intrusos": [
+      "⚪",
+      "🔵",
+      "🍕",
+      "🌙",
+      "☁️"
+    ]
+  },
+  {
+    "categoria": "Fracciones y Porcentajes (Visual)",
+    "correctos": [
+      "🍰",
+      "🍕",
+      "🌗",
+      "🧀",
+      "🍫",
+      "📊"
+    ],
+    "intrusos": [
+      "1️⃣",
+      "💯",
+      "🔟",
+      "🔢",
+      "#️⃣"
+    ]
+  },
+  {
+    "categoria": "Herramientas de Geometría (Visual)",
+    "correctos": [
+      "📐",
+      "📏",
+      "✏️",
+      "✂️",
+      "🖇️"
+    ],
+    "intrusos": [
+      "🔨",
+      "🔧",
+      "🔩",
+      "🧱",
+      "🔦"
+    ]
+  },
+  {
+    "categoria": "Ángulos (Visual)",
+    "correctos": [
+      "∟",
+      "⊿",
+      "📐",
+      "🔷",
+      "⚠️"
+    ],
+    "intrusos": [
+      "🔴",
+      "〰️",
+      "⭕",
+      "🔗",
+      "➰"
+    ]
+  },
+  {
+    "categoria": "Números Enteros",
+    "correctos": [
+      "-5",
+      "+3",
+      "0",
+      "-10",
+      "15",
+      "-1"
+    ],
+    "intrusos": [
+      "0.5",
+      "1/2",
+      "3.14",
+      "2/3",
+      "4,5"
+    ]
+  },
+  {
+    "categoria": "Divisibilidad (Números Primos)",
+    "correctos": [
+      "2",
+      "3",
+      "5",
+      "7",
+      "11",
+      "13",
+      "17"
+    ],
+    "intrusos": [
+      "4",
+      "6",
+      "8",
+      "9",
+      "10",
+      "15"
+    ]
+  },
+  {
+    "categoria": "Elementos de la Geometría",
+    "correctos": [
+      "Punto",
+      "Recta",
+      "Semirrecta",
+      "Segmento",
+      "Plano",
+      "Ángulo"
+    ],
+    "intrusos": [
+      "Litro",
+      "Kilo",
+      "Segundo",
+      "Hora",
+      "Gramo"
+    ]
+  },
+  {
+    "categoria": "Tipos de Triángulos (Lados)",
+    "correctos": [
+      "Equilátero",
+      "Isósceles",
+      "Escaleno"
+    ],
+    "intrusos": [
+      "Acutángulo",
+      "Rectángulo",
+      "Obtusángulo",
+      "Cuadrado",
+      "Rombo"
+    ]
+  },
+  {
+    "categoria": "Unidades de Medida (SI)",
+    "correctos": [
+      "Metro",
+      "Kilogramo",
+      "Segundo",
+      "Litro",
+      "Metro cuadrado"
+    ],
+    "intrusos": [
+      "Docena",
+      "Par",
+      "Decena",
+      "Palmo",
+      "Pie"
+    ]
+  },
+  {
+    "categoria": "Operaciones Básicas",
+    "correctos": [
+      "Suma",
+      "Resta",
+      "Multiplicación",
+      "División",
+      "Potencia",
+      "Raíz"
+    ],
+    "intrusos": [
+      "Igual",
+      "Mayor que",
+      "Menor que",
+      "Paréntesis",
+      "Corchete"
+    ]
+  }
+]

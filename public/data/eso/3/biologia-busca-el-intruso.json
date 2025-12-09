@@ -1,0 +1,158 @@
+[
+  {
+    "categoria": "Órganos del Cuerpo (Visual)",
+    "correctos": [
+      "🧠",
+      "🫀",
+      "🫁",
+      "🦴",
+      "👀",
+      "👂"
+    ],
+    "intrusos": [
+      "👕",
+      "🧣",
+      "👓",
+      "🎒",
+      "💍"
+    ]
+  },
+  {
+    "categoria": "Alimentos Saludables (Visual)",
+    "correctos": [
+      "🥦",
+      "🥕",
+      "🍎",
+      "🐟",
+      "🍗",
+      "🥜"
+    ],
+    "intrusos": [
+      "🍭",
+      "🍩",
+      "🍟",
+      "🥤",
+      "🍦"
+    ]
+  },
+  {
+    "categoria": "Medicina y Salud (Visual)",
+    "correctos": [
+      "💉",
+      "💊",
+      "🩺",
+      "🩹",
+      "🧬",
+      "🚑"
+    ],
+    "intrusos": [
+      "🔨",
+      "🔧",
+      "🎮",
+      "⚽",
+      "🔭"
+    ]
+  },
+  {
+    "categoria": "Geología (Visual)",
+    "correctos": [
+      "🌋",
+      "🏔️",
+      "🏜️",
+      "🪨",
+      "🌊",
+      "⛏️"
+    ],
+    "intrusos": [
+      "🌲",
+      "🌻",
+      "🐶",
+      "🏠",
+      "🚗"
+    ]
+  },
+  {
+    "categoria": "Aparatos y Sistemas",
+    "correctos": [
+      "Digestivo",
+      "Respiratorio",
+      "Circulatorio",
+      "Excretor",
+      "Nervioso"
+    ],
+    "intrusos": [
+      "Mitocondria",
+      "Núcleo",
+      "Ribosoma",
+      "Tejido",
+      "Célula"
+    ]
+  },
+  {
+    "categoria": "Enfermedades Infecciosas",
+    "correctos": [
+      "Gripe",
+      "Varicela",
+      "Tuberculosis",
+      "SIDA",
+      "Malaria"
+    ],
+    "intrusos": [
+      "Diabetes",
+      "Cáncer",
+      "Asma",
+      "Alergia",
+      "Miopía"
+    ]
+  },
+  {
+    "categoria": "Nutrientes",
+    "correctos": [
+      "Glúcidos",
+      "Lípidos",
+      "Proteínas",
+      "Vitaminas",
+      "Sales minerales"
+    ],
+    "intrusos": [
+      "Agua",
+      "Oxígeno",
+      "Sangre",
+      "Hueso",
+      "Músculo"
+    ]
+  },
+  {
+    "categoria": "Procesos Geológicos Externos",
+    "correctos": [
+      "Erosión",
+      "Transporte",
+      "Sedimentación",
+      "Meteorización"
+    ],
+    "intrusos": [
+      "Vulcanismo",
+      "Sismicidad",
+      "Magmatismo",
+      "Metamorfismo",
+      "Tectónica"
+    ]
+  },
+  {
+    "categoria": "Hábitos Saludables",
+    "correctos": [
+      "Ejercicio",
+      "Dieta",
+      "Higiene",
+      "Descanso",
+      "Postura"
+    ],
+    "intrusos": [
+      "Tabaco",
+      "Alcohol",
+      "Drogas",
+      "Estrés",
+      "Sedentarismo"
+    ]
+  }
+]

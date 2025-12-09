@@ -1,0 +1,141 @@
+[
+  {
+    "categoria": "Prensa y Medios (Visual)",
+    "correctos": [
+      "📰",
+      "🗞️",
+      "📺",
+      "📻",
+      "💻",
+      "📡"
+    ],
+    "intrusos": [
+      "🚗",
+      "🍔",
+      "⚽",
+      "🎸",
+      "💊"
+    ]
+  },
+  {
+    "categoria": "Teatro Clásico (Visual)",
+    "correctos": [
+      "🎭",
+      "👑",
+      "🗡️",
+      "💀",
+      "🏰",
+      "📜"
+    ],
+    "intrusos": [
+      "🚀",
+      "📱",
+      "🚆",
+      "🎧",
+      "👟"
+    ]
+  },
+  {
+    "categoria": "Escritura (Visual)",
+    "correctos": [
+      "✍️",
+      "🖊️",
+      "⌨️",
+      "📝",
+      "📖",
+      "✒️"
+    ],
+    "intrusos": [
+      "🔨",
+      "🥄",
+      "🧵",
+      "🔭",
+      "🔬"
+    ]
+  },
+  {
+    "categoria": "Sintaxis: Oración Compuesta",
+    "correctos": [
+      "Coordinada",
+      "Subordinada",
+      "Yuxtapuesta",
+      "Copulativa",
+      "Adversativa"
+    ],
+    "intrusos": [
+      "Sujeto",
+      "Predicado",
+      "Atributo",
+      "Simple",
+      "Impersonal"
+    ]
+  },
+  {
+    "categoria": "Literatura: Siglo de Oro",
+    "correctos": [
+      "Garcilaso",
+      "Cervantes",
+      "Góngora",
+      "Quevedo",
+      "Lope de Vega"
+    ],
+    "intrusos": [
+      "Bécquer",
+      "Lorca",
+      "Machado",
+      "Unamuno",
+      "Rosalía"
+    ]
+  },
+  {
+    "categoria": "Tipos de Textos",
+    "correctos": [
+      "Argumentativo",
+      "Expositivo",
+      "Narrativo",
+      "Descriptivo",
+      "Instructivo"
+    ],
+    "intrusos": [
+      "Sustantivo",
+      "Adjetivo",
+      "Verbo",
+      "Aguda",
+      "Llana"
+    ]
+  },
+  {
+    "categoria": "Figuras Retóricas",
+    "correctos": [
+      "Metáfora",
+      "Metonimia",
+      "Hipérbaton",
+      "Paradoja",
+      "Ironía"
+    ],
+    "intrusos": [
+      "Rima",
+      "Estrofa",
+      "Verso",
+      "Sinalefa",
+      "Acento"
+    ]
+  },
+  {
+    "categoria": "Funciones del Lenguaje",
+    "correctos": [
+      "Referencial",
+      "Emotiva",
+      "Conativa",
+      "Fática",
+      "Poética"
+    ],
+    "intrusos": [
+      "Narrador",
+      "Personaje",
+      "Tiempo",
+      "Espacio",
+      "Tema"
+    ]
+  }
+]

@@ -1,43 +1,43 @@
 [
   {
-    "categoria": "Seres Vivos",
+    "categoria": "Vertebrados (Visual)",
     "correctos": [
-      "👶",
-      "👧",
       "🐶",
-      "🌳",
-      "🌻",
-      "🐜"
-    ],
-    "intrusos": [
-      "🗿",
-      "🏔️",
-      "🚗",
-      "📱",
-      "🧸"
-    ]
-  },
-  {
-    "categoria": "Animales Marinos",
-    "correctos": [
-      "🐟",
-      "🐠",
-      "🐡",
-      "🦈",
-      "🐙",
-      "🐬",
-      "🐳"
-    ],
-    "intrusos": [
+      "🐱",
       "🦁",
       "🦅",
-      "🐪",
-      "🐿️",
-      "🐕"
+      "🐍",
+      "🐸",
+      "🐟"
+    ],
+    "intrusos": [
+      "🐜",
+      "🦋",
+      "🕷️",
+      "🦟",
+      "🐌"
     ]
   },
   {
-    "categoria": "El Clima: Lluvia",
+    "categoria": "Insectos (Visual)",
+    "correctos": [
+      "🐜",
+      "🐝",
+      "🐞",
+      "🦋",
+      "🦗",
+      "🦟"
+    ],
+    "intrusos": [
+      "🐍",
+      "🐢",
+      "🐊",
+      "🦈",
+      "🐈"
+    ]
+  },
+  {
+    "categoria": "El Tiempo: Lluvia",
     "correctos": [
       "🌧️",
       "⛈️",
@@ -54,37 +54,111 @@
     ]
   },
   {
-    "categoria": "Frutas",
+    "categoria": "Plantas y Flores",
     "correctos": [
-      "🍎",
-      "🍌",
-      "🍇",
-      "🍓",
-      "🍒"
+      "🌳",
+      "🌲",
+      "🌴",
+      "🌵",
+      "🌻",
+      "🌹",
+      "🌷"
     ],
     "intrusos": [
-      "🥦",
-      "🥕",
-      "🌽",
-      "🥔",
-      "🍗"
+      "🦓",
+      "🚗",
+      "🏠",
+      "🧸",
+      "⚽"
     ]
   },
   {
-    "categoria": "Insectos",
+    "categoria": "Partes del Cuerpo",
     "correctos": [
-      "🐜",
-      "🐝",
-      "🐞",
-      "🦋",
-      "🦗"
+      "Cabeza",
+      "Tronco",
+      "Extremidades",
+      "Brazo",
+      "Pierna",
+      "Mano",
+      "Pie"
     ],
     "intrusos": [
-      "🐍",
-      "🐢",
-      "🐊",
-      "🦈",
-      "🐈"
+      "Camisa",
+      "Pantalón",
+      "Zapato",
+      "Gorro",
+      "Reloj"
+    ]
+  },
+  {
+    "categoria": "Los 5 Sentidos",
+    "correctos": [
+      "Vista",
+      "Oído",
+      "Olfato",
+      "Gusto",
+      "Tacto"
+    ],
+    "intrusos": [
+      "Hambre",
+      "Sueño",
+      "Miedo",
+      "Alegría",
+      "Sed"
+    ]
+  },
+  {
+    "categoria": "Alimentos Saludables",
+    "correctos": [
+      "Manzana",
+      "Lechuga",
+      "Pescado",
+      "Pollo",
+      "Lentejas",
+      "Agua"
+    ],
+    "intrusos": [
+      "Golosinas",
+      "Refrescos",
+      "Bollería",
+      "Fritos",
+      "Azúcar"
+    ]
+  },
+  {
+    "categoria": "Partes de la Planta",
+    "correctos": [
+      "Raíz",
+      "Tallo",
+      "Hoja",
+      "Flor",
+      "Fruto",
+      "Semilla"
+    ],
+    "intrusos": [
+      "Pata",
+      "Cola",
+      "Hocico",
+      "Ala",
+      "Aleta"
+    ]
+  },
+  {
+    "categoria": "Estados del Agua",
+    "correctos": [
+      "Sólido",
+      "Líquido",
+      "Gaseoso",
+      "Hielo",
+      "Vapor"
+    ],
+    "intrusos": [
+      "Tierra",
+      "Fuego",
+      "Madera",
+      "Plástico",
+      "Metal"
     ]
   }
 ]

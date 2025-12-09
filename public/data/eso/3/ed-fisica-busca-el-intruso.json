@@ -1,0 +1,122 @@
+[
+  {
+    "categoria": "Deportes (Visual)",
+    "correctos": [
+      "⚽",
+      "🏀",
+      "🏐",
+      "🏉",
+      "🎾",
+      "🏓"
+    ],
+    "intrusos": [
+      "🎮",
+      "📺",
+      "🍔",
+      "🛌",
+      "📱"
+    ]
+  },
+  {
+    "categoria": "Salud (Visual)",
+    "correctos": [
+      "🥗",
+      "🍎",
+      "💧",
+      "🧘",
+      "🛌",
+      "🚴"
+    ],
+    "intrusos": [
+      "🚬",
+      "🍺",
+      "🍬",
+      "🛋️",
+      "🎮"
+    ]
+  },
+  {
+    "categoria": "Cualidades Físicas",
+    "correctos": [
+      "Resistencia",
+      "Fuerza",
+      "Velocidad",
+      "Flexibilidad"
+    ],
+    "intrusos": [
+      "Habilidad",
+      "Destreza",
+      "Equilibrio",
+      "Coordinación",
+      "Agilidad"
+    ]
+  },
+  {
+    "categoria": "Deportes Individuales",
+    "correctos": [
+      "Atletismo",
+      "Natación",
+      "Ciclismo",
+      "Gimnasia",
+      "Tenis"
+    ],
+    "intrusos": [
+      "Fútbol",
+      "Baloncesto",
+      "Voleibol",
+      "Balonmano",
+      "Rugby"
+    ]
+  },
+  {
+    "categoria": "Beneficios del Ejercicio",
+    "correctos": [
+      "Salud",
+      "Bienestar",
+      "Diversión",
+      "Amistad",
+      "Superación"
+    ],
+    "intrusos": [
+      "Lesión",
+      "Cansancio",
+      "Dolor",
+      "Estrés",
+      "Aburrimiento"
+    ]
+  },
+  {
+    "categoria": "Primeros Auxilios",
+    "correctos": [
+      "RCP",
+      "Vendaje",
+      "Desinfección",
+      "Hielo",
+      "Reposo"
+    ],
+    "intrusos": [
+      "Operación",
+      "Radiografía",
+      "Análisis",
+      "Pastilla",
+      "Inyección"
+    ]
+  },
+  {
+    "categoria": "Músculos",
+    "correctos": [
+      "Pectoral",
+      "Dorsal",
+      "Abdominal",
+      "Bíceps",
+      "Tríceps"
+    ],
+    "intrusos": [
+      "Fémur",
+      "Húmero",
+      "Radio",
+      "Tibia",
+      "Peroné"
+    ]
+  }
+]

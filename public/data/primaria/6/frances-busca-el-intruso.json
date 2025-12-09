@@ -6,7 +6,8 @@
       "🇪🇸",
       "🇮🇹",
       "🇩🇪",
-      "🇬🇧"
+      "🇬🇧",
+      "🇧🇪"
     ],
     "intrusos": [
       "🌍",
@@ -17,13 +18,14 @@
     ]
   },
   {
-    "categoria": "La Technologie",
+    "categoria": "La Technologie (Visual)",
     "correctos": [
       "💻",
       "📱",
       "🖱️",
       "⌨️",
-      "🖥️"
+      "🖥️",
+      "🎧"
     ],
     "intrusos": [
       "📚",
@@ -34,13 +36,32 @@
     ]
   },
   {
-    "categoria": "Les Métiers (Mots)",
+    "categoria": "La Ville (Visual)",
+    "correctos": [
+      "🏥",
+      "🏫",
+      "🏦",
+      "📫",
+      "⛲",
+      "🏬"
+    ],
+    "intrusos": [
+      "🏜️",
+      "🏝️",
+      "🌋",
+      "🌲",
+      "🐄"
+    ]
+  },
+  {
+    "categoria": "Les Métiers",
     "correctos": [
       "Professeur",
       "Médecin",
       "Policier",
       "Pompier",
-      "Coiffeur"
+      "Coiffeur",
+      "Boulanger"
     ],
     "intrusos": [
       "École",
@@ -51,13 +72,14 @@
     ]
   },
   {
-    "categoria": "Les Pays (Mots)",
+    "categoria": "Les Pays",
     "correctos": [
       "France",
       "Espagne",
       "Italie",
       "Allemagne",
-      "Belgique"
+      "Belgique",
+      "Angleterre"
     ],
     "intrusos": [
       "Paris",
@@ -68,13 +90,14 @@
     ]
   },
   {
-    "categoria": "Possessifs",
+    "categoria": "Les Adjectifs Possessifs",
     "correctos": [
       "Mon",
       "Ma",
       "Mes",
       "Ton",
-      "Ta"
+      "Ta",
+      "Tes"
     ],
     "intrusos": [
       "Je",
@@ -82,6 +105,24 @@
       "Il",
       "Elle",
       "Nous"
+    ]
+  },
+  {
+    "categoria": "Verbe Avoir",
+    "correctos": [
+      "J'ai",
+      "Tu as",
+      "Il a",
+      "Nous avons",
+      "Vous avez",
+      "Ils ont"
+    ],
+    "intrusos": [
+      "Je suis",
+      "Tu es",
+      "Il est",
+      "Nous sommes",
+      "Vous êtes"
     ]
   }
 ]
