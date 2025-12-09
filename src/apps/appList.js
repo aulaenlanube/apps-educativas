@@ -213,6 +213,7 @@ export const primariaApps = {
         description: 'Encuentra el número diferente. ¡Entrena tu vista con números!',
         component: BuscaElIntruso
       },
+      appRosco,
       appMedidas1,
       appMayorMenor1,
       appNumerosRomanos3,
@@ -227,6 +228,7 @@ export const primariaApps = {
         description: 'Encuentra el elemento diferente. ¡Aprende sobre la naturaleza jugando!',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
@@ -238,6 +240,7 @@ export const primariaApps = {
         description: 'Encuentra el elemento diferente.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
@@ -249,11 +252,13 @@ export const primariaApps = {
         description: 'Find the different letter.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'tutoria': [
+      appRosco,
       appIslaDeLaCalma,
       appGeneradorPersonajes,
       {
@@ -273,6 +278,7 @@ export const primariaApps = {
         description: 'Troba la lletra diferent!',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
@@ -284,6 +290,7 @@ export const primariaApps = {
         description: 'Trouve le symbole différent de la culture française!',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
