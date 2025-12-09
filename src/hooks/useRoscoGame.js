@@ -7,7 +7,7 @@ export const useRoscoGame = (rawData) => {
     const [gameState, setGameState] = useState('config'); // 'config', 'playing', 'finished'
     const [feedback, setFeedback] = useState(null);
     const [animState, setAnimState] = useState('none'); // 'none', 'pasapalabra-out', 'pasapalabra-in', 'turn-change'
-    const [showExitConfirm, setShowExitConfirm] = useState(false); // NUEVO ESTADO
+    const [showExitConfirm, setShowExitConfirm] = useState(false);
     
     // Semáforo para evitar dobles acciones
     const isProcessing = useRef(false);
@@ -34,7 +34,6 @@ export const useRoscoGame = (rawData) => {
 
     // --- TEMPORIZADOR ---
     useEffect(() => {
-        // AÑADIDO: !showExitConfirm para pausar si está el modal abierto
         if (gameState === 'playing' && config.useTimer && !showExitConfirm) {
             timerRef.current = setInterval(() => {
                 setPlayers(prevPlayers => {
@@ -59,7 +58,7 @@ export const useRoscoGame = (rawData) => {
             }, 1000);
         }
         return () => clearInterval(timerRef.current);
-    }, [gameState, activePlayerIndex, config.useTimer, showExitConfirm]); // Dependencia añadida
+    }, [gameState, activePlayerIndex, config.useTimer, showExitConfirm]);
 
     // --- HELPER: NORMALIZAR TEXTO ---
     const cleanText = (text) => {
@@ -131,7 +130,7 @@ export const useRoscoGame = (rawData) => {
 
     // --- COMPROBAR RESPUESTA ---
     const checkAnswer = useCallback((userAnswer) => {
-        if (isProcessing.current || showExitConfirm) return; // Bloquear si modal abierto
+        if (isProcessing.current || showExitConfirm) return;
         isProcessing.current = true;
 
         let isAnswerCorrect = false;
@@ -146,6 +145,7 @@ export const useRoscoGame = (rawData) => {
             const p = newPlayers[activePlayerIndex];
             const currentQ = p.questions[p.currentParams.index];
             
+            // Validación flexible: ignora acentos y mayúsculas
             isAnswerCorrect = cleanText(userAnswer) === cleanText(currentQ.solucion);
             
             p.letterStatus[currentQ.letra] = isAnswerCorrect ? 'correct' : 'wrong';
@@ -158,12 +158,17 @@ export const useRoscoGame = (rawData) => {
             const currentPlayer = players[activePlayerIndex];
             const currentQ = currentPlayer.questions[currentPlayer.currentParams.index];
             
-            if (userAnswer.trim() !== currentQ.solucion.trim()) {
-                setFeedback({ type: 'success', text: `¡Bien! Se escribe: ${currentQ.solucion}` });
-                setTimeout(() => finishCorrectAnswerAnim(), 2000);
-            } else {
+            // Lógica de Feedback Refinada:
+            // Comparamos usando toLowerCase() para ver si hay diferencias de acentos.
+            // Si son iguales (ej: "avión" === "avión" o "Avión" === "avión"), está PERFECTO.
+            // Si son diferentes (ej: "avion" !== "avión"), faltan acentos -> Feedback educativo.
+            if (userAnswer.trim().toLowerCase() === currentQ.solucion.trim().toLowerCase()) {
                 setFeedback({ type: 'success', text: '¡Correcto!' });
                 setTimeout(() => finishCorrectAnswerAnim(), 1000);
+            } else {
+                // Es correcto pero tiene faltas de ortografía (acentos)
+                setFeedback({ type: 'success', text: `¡Bien! Se escribe: ${currentQ.solucion}` });
+                setTimeout(() => finishCorrectAnswerAnim(), 2000);
             }
         } else {
             const currentPlayer = players[activePlayerIndex];
@@ -174,7 +179,7 @@ export const useRoscoGame = (rawData) => {
                 handleTurnChange(); 
             }, 1500);
         }
-    }, [players, activePlayerIndex, showExitConfirm]); // Dependency added
+    }, [players, activePlayerIndex, showExitConfirm]);
 
     // Helper animación acierto
     const finishCorrectAnswerAnim = () => {
@@ -324,7 +329,6 @@ export const useRoscoGame = (rawData) => {
         checkAnswer, pasapalabra, restartGame, startGame, config, setConfig,
         maxQuestions: rawData ? Object.keys(rawData.reduce((acc,v)=>{acc[v.letra]=1;return acc},{})).length : 26,
         animState,
-        // Nuevas props para la UI
         showExitConfirm, requestExit, cancelExit, confirmExit
     };
 };
