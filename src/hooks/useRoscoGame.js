@@ -19,7 +19,7 @@ export const useRoscoGame = (rawData) => {
         useTimer: false,
         timeLimit: 150,
         player1: { name: 'Jugador 1', icon: '🦊' },
-        player2: { name: 'Jugador 2', icon: 'panda' }
+        player2: { name: 'Jugador 2', icon: '🐼' }
     });
 
     const timerRef = useRef(null);
@@ -88,7 +88,9 @@ export const useRoscoGame = (rawData) => {
 
         for (let i = 0; i < gameConfig.numPlayers; i++) {
             let selectedQuestions = [];
-            const availableLetters = Object.keys(grouped).sort();
+            
+            // CORRECCIÓN: Usar localeCompare para ordenar correctamente la Ñ en español
+            const availableLetters = Object.keys(grouped).sort((a, b) => a.localeCompare(b, 'es'));
             
             availableLetters.forEach(letra => {
                 const options = grouped[letra];
@@ -128,18 +130,17 @@ export const useRoscoGame = (rawData) => {
         setGameState('playing');
     };
 
-    // --- COMPROBAR RESPUESTA (CORREGIDO) ---
+    // --- COMPROBAR RESPUESTA ---
     const checkAnswer = useCallback((userAnswer) => {
         if (isProcessing.current || showExitConfirm) return;
         isProcessing.current = true;
 
-        // 1. CALCULAMOS LA CORRECCIÓN ANTES DE ACTUALIZAR EL ESTADO
-        // Esto garantiza que 'isAnswerCorrect' tenga el valor correcto inmediatamente
         const currentPlayer = players[activePlayerIndex];
         const currentQ = currentPlayer.questions[currentPlayer.currentParams.index];
+        
+        // Calculamos la corrección ANTES de actualizar el estado
         const isAnswerCorrect = cleanText(userAnswer) === cleanText(currentQ.solucion);
         
-        // 2. ACTUALIZAMOS EL ESTADO BASÁNDONOS EN EL CÁLCULO PREVIO
         setPlayers(prev => {
             const newPlayers = prev.map(p => ({
                 ...p,
@@ -156,9 +157,8 @@ export const useRoscoGame = (rawData) => {
             return newPlayers;
         });
 
-        // 3. USAMOS LA VARIABLE CALCULADA PARA EL FLUJO LÓGICO
         if (isAnswerCorrect) {
-            // Lógica de Feedback Refinada:
+            // Comparación laxa para el feedback (si solo fallan acentos/mayúsculas es verde)
             if (userAnswer.trim().toLowerCase() === currentQ.solucion.trim().toLowerCase()) {
                 setFeedback({ type: 'success', text: '¡Correcto!' });
                 setTimeout(() => finishCorrectAnswerAnim(), 1000);
