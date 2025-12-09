@@ -99,7 +99,7 @@
   { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Número que va después del catorce.", "solucion": "quince" },
   { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Lugar donde vamos al parque o a pasear.", "solucion": "parque" },
   { "id": "q4", "letra": "Q", "tipo": "empieza", "definicion": "Lo que hacemos si acercamos la mano al fuego.", "solucion": "quemar" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Vehículo grande para transportar cosas pesadas.", "solucion": "camión" },
+  { "id": "q5", "letra": "Q", "tipo": "empieza", "definicion": "Alimento lácteo derivado de la leche y que hay de muchos tipos.", "solucion": "queso" },
 
   { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Animal pequeño que come queso y huye del gato.", "solucion": "ratón" },
   { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Color de la sangre y de las fresas.", "solucion": "rojo" },

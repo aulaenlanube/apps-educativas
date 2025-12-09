@@ -26,15 +26,16 @@ const RoscoUI = ({
     const [hasAutoRecorded, setHasAutoRecorded] = useState(false);
     const recognitionRef = useRef(null);
 
-    // Referencias para acceder al estado actual dentro de los callbacks de voz
+    // Referencias
     const autoRecordRef = useRef(autoRecord);
     const checkAnswerRef = useRef(checkAnswer);
+    const pasapalabraRef = useRef(pasapalabra);
 
-    // Sincronizar referencias
     useEffect(() => {
         autoRecordRef.current = autoRecord;
         checkAnswerRef.current = checkAnswer;
-    }, [autoRecord, checkAnswer]);
+        pasapalabraRef.current = pasapalabra;
+    }, [autoRecord, checkAnswer, pasapalabra]);
 
     // Inicializar Reconocimiento de Voz
     useEffect(() => {
@@ -43,8 +44,8 @@ const RoscoUI = ({
         if (SpeechRecognition) {
             setVoiceSupported(true);
             const recognition = new SpeechRecognition();
-            recognition.continuous = false; // Parar al detectar silencio
-            recognition.interimResults = false; // Solo resultados finales
+            recognition.continuous = false;
+            recognition.interimResults = false;
             recognition.lang = 'es-ES';
 
             recognition.onstart = () => setIsListening(true);
@@ -53,16 +54,21 @@ const RoscoUI = ({
 
             recognition.onresult = (event) => {
                 const transcript = event.results[0][0].transcript;
-                // Limpiar puntuación final si la hay
                 const cleanTranscript = transcript.replace(/\.$/, "").trim();
                 
+                if (cleanTranscript.toLowerCase() === 'pasapalabra') {
+                    setInputValue(''); 
+                    setIsListening(false);
+                    pasapalabraRef.current(); 
+                    return;
+                }
+
                 setInputValue(cleanTranscript);
                 setIsListening(false);
 
-                // --- LÓGICA DE ENVÍO AUTOMÁTICO ---
-                // Si el modo Auto está activo, enviamos la respuesta directamente
                 if (autoRecordRef.current) {
                     checkAnswerRef.current(cleanTranscript);
+                    setInputValue(''); // Limpiar también en modo automático
                 }
             };
 
@@ -75,7 +81,7 @@ const RoscoUI = ({
         }
     }, []);
 
-    // Funciones de control del micro
+    // Control del micro
     const startListening = () => {
         if (!recognitionRef.current || isListening) return;
         try {
@@ -102,7 +108,7 @@ const RoscoUI = ({
         if (autoRecord && isListening) stopListening();
     };
 
-    // --- LÓGICA AUTO-RECORD (Disparo) ---
+    // Lógica Auto-Record
     useEffect(() => {
         setHasAutoRecorded(false);
     }, [currentQuestion]);
@@ -121,13 +127,13 @@ const RoscoUI = ({
             const timer = setTimeout(() => {
                 startListening();
                 setHasAutoRecorded(true); 
-            }, 200); // Pequeño delay para asegurar transición
+            }, 200);
             return () => clearTimeout(timer);
         }
     }, [autoRecord, voiceSupported, isListening, hasAutoRecorded, gameState, animState, feedback, showExitConfirm]);
 
 
-    // Auto-focus inteligente
+    // Auto-focus y limpieza
     useEffect(() => {
         if (gameState === 'playing' && inputRef.current && !feedback && animState !== 'pasapalabra-out' && !showExitConfirm && !isListening) {
             inputRef.current.focus();
@@ -135,7 +141,7 @@ const RoscoUI = ({
         }
     }, [currentQuestion, feedback, gameState, activePlayerIndex, animState, showExitConfirm, isListening]);
 
-    // Gestión de Webcam
+    // Webcam
     useEffect(() => {
         const startWebcam = async () => {
             if (isWebcamOn) {
@@ -162,13 +168,15 @@ const RoscoUI = ({
 
     const toggleWebcam = () => setIsWebcamOn(prev => !prev);
 
+    // --- CORRECCIÓN AQUÍ: Limpiar input al enviar ---
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!inputValue.trim() || !!feedback || animState !== 'none' || showExitConfirm) return;
         checkAnswer(inputValue);
+        setInputValue(''); // ¡Esto faltaba!
     };
 
-    // --- PANTALLAS CONFIG Y FINAL ---
+    // --- UI ---
     if (gameState === 'config') {
         const handleConfigChange = (key, value) => setConfig(prev => ({ ...prev, [key]: value }));
         const handlePlayerChange = (key, field, value) => setConfig(prev => ({ ...prev, [key]: { ...prev[key], [field]: value } }));
@@ -271,7 +279,6 @@ const RoscoUI = ({
 
     if (gameState === 'loading' || !activePlayer || !currentQuestion) return <div className="text-center p-10 text-2xl font-bold text-gray-400">Cargando...</div>;
 
-    // --- PANTALLA JUEGO ---
     const radius = 135; 
     const letters = Object.keys(activePlayer.letterStatus);
     
@@ -284,7 +291,6 @@ const RoscoUI = ({
 
     return (
         <div className="rosco-container">
-            {/* MODAL SALIDA */}
             {showExitConfirm && (
                 <div className="exit-modal-overlay">
                     <div className="exit-modal-box">
@@ -298,14 +304,12 @@ const RoscoUI = ({
                 </div>
             )}
 
-            {/* FEEDBACK */}
             {feedback && (
                 <div className={`feedback-overlay feedback-${feedback.type}`}>
                     <div className="feedback-content">{feedback.text}</div>
                 </div>
             )}
 
-            {/* Marcadores */}
             <div className="flex justify-center gap-4 mb-2 max-w-3xl mx-auto">
                 {players.map((p, idx) => (
                     <div key={p.id} 
@@ -322,7 +326,6 @@ const RoscoUI = ({
                 ))}
             </div>
 
-            {/* CÍRCULO */}
             <div className="rosco-circle">
                 {isWebcamOn && (
                     <div className="rosco-webcam-container">
@@ -339,30 +342,19 @@ const RoscoUI = ({
                 })}
             </div>
 
-            {/* UI Central */}
             <div className={`rosco-center-box relative transition-all duration-300 ${borderColorClass} ${animationClass}`}>
                 
                 <button onClick={requestExit} className="btn-exit-corner" title="Salir de la partida">
                     <FaTimes />
                 </button>
 
-                {/* CONTROLES MODO */}
                 <div className="absolute top-2 left-2 flex gap-2 z-20">
-                    <button 
-                        onClick={toggleWebcam} 
-                        className={`btn-webcam-toggle ${isWebcamOn ? 'active' : ''}`} 
-                        title={isWebcamOn ? "Apagar cámara" : "Encender cámara"}
-                    >
+                    <button onClick={toggleWebcam} className={`btn-webcam-toggle ${isWebcamOn ? 'active' : ''}`} title={isWebcamOn ? "Apagar cámara" : "Encender cámara"}>
                         {isWebcamOn ? <FaVideo /> : <FaVideoSlash />}
                     </button>
                     
-                    {/* BOTÓN AUTO-RECORD */}
                     {voiceSupported && (
-                        <button 
-                            onClick={toggleAutoRecord} 
-                            className={`btn-auto-mic ${autoRecord ? 'active' : ''}`} 
-                            title={autoRecord ? "Desactivar modo auto-voz" : "Activar modo auto-voz"}
-                        >
+                        <button onClick={toggleAutoRecord} className={`btn-auto-mic ${autoRecord ? 'active' : ''}`} title={autoRecord ? "Desactivar modo auto-voz" : "Activar modo auto-voz"}>
                             <FaHeadset />
                         </button>
                     )}
@@ -377,19 +369,11 @@ const RoscoUI = ({
                 
                 <div className="rosco-input-group">
                     <form onSubmit={handleSubmit} className="rosco-form-inner">
-                        
                         {voiceSupported && (
-                            <button 
-                                type="button" 
-                                onClick={toggleMic} 
-                                className={`btn-mic-inline ${isListening ? 'listening' : ''}`}
-                                title="Dictar respuesta"
-                                disabled={!!feedback || animState !== 'none' || showExitConfirm}
-                            >
+                            <button type="button" onClick={toggleMic} className={`btn-mic-inline ${isListening ? 'listening' : ''}`} title="Dictar respuesta" disabled={!!feedback || animState !== 'none' || showExitConfirm}>
                                 <FaMicrophone />
                             </button>
                         )}
-
                         <input 
                             ref={inputRef}
                             type="text" 
