@@ -7,6 +7,7 @@ export const useRoscoGame = (rawData) => {
     const [gameState, setGameState] = useState('config'); // 'config', 'playing', 'finished'
     const [feedback, setFeedback] = useState(null);
     const [animState, setAnimState] = useState('none'); // 'none', 'pasapalabra-out', 'pasapalabra-in', 'turn-change'
+    const [showExitConfirm, setShowExitConfirm] = useState(false); // NUEVO ESTADO
     
     // Semáforo para evitar dobles acciones
     const isProcessing = useRef(false);
@@ -28,11 +29,13 @@ export const useRoscoGame = (rawData) => {
         if (rawData) setGameState('config');
         isProcessing.current = false;
         setAnimState('none');
+        setShowExitConfirm(false);
     }, [rawData]);
 
     // --- TEMPORIZADOR ---
     useEffect(() => {
-        if (gameState === 'playing' && config.useTimer) {
+        // AÑADIDO: !showExitConfirm para pausar si está el modal abierto
+        if (gameState === 'playing' && config.useTimer && !showExitConfirm) {
             timerRef.current = setInterval(() => {
                 setPlayers(prevPlayers => {
                     const newPlayers = prevPlayers.map(p => ({
@@ -56,7 +59,7 @@ export const useRoscoGame = (rawData) => {
             }, 1000);
         }
         return () => clearInterval(timerRef.current);
-    }, [gameState, activePlayerIndex, config.useTimer]);
+    }, [gameState, activePlayerIndex, config.useTimer, showExitConfirm]); // Dependencia añadida
 
     // --- HELPER: NORMALIZAR TEXTO ---
     const cleanText = (text) => {
@@ -75,6 +78,7 @@ export const useRoscoGame = (rawData) => {
         setConfig(gameConfig);
         isProcessing.current = false;
         setAnimState('none');
+        setShowExitConfirm(false);
 
         const newPlayers = [];
         const grouped = rawData.reduce((acc, curr) => {
@@ -127,7 +131,7 @@ export const useRoscoGame = (rawData) => {
 
     // --- COMPROBAR RESPUESTA ---
     const checkAnswer = useCallback((userAnswer) => {
-        if (isProcessing.current) return;
+        if (isProcessing.current || showExitConfirm) return; // Bloquear si modal abierto
         isProcessing.current = true;
 
         let isAnswerCorrect = false;
@@ -154,7 +158,6 @@ export const useRoscoGame = (rawData) => {
             const currentPlayer = players[activePlayerIndex];
             const currentQ = currentPlayer.questions[currentPlayer.currentParams.index];
             
-            // Si es correcto pero la escritura no es exacta (acentos/mayúsculas)
             if (userAnswer.trim() !== currentQ.solucion.trim()) {
                 setFeedback({ type: 'success', text: `¡Bien! Se escribe: ${currentQ.solucion}` });
                 setTimeout(() => finishCorrectAnswerAnim(), 2000);
@@ -169,10 +172,9 @@ export const useRoscoGame = (rawData) => {
             setFeedback({ type: 'error', text: `¡Era "${currentQ.solucion}"!` });
             setTimeout(() => {
                 handleTurnChange(); 
-                // El desbloqueo isProcessing se hace al terminar la animación de cambio de turno
             }, 1500);
         }
-    }, [players, activePlayerIndex]);
+    }, [players, activePlayerIndex, showExitConfirm]); // Dependency added
 
     // Helper animación acierto
     const finishCorrectAnswerAnim = () => {
@@ -187,7 +189,7 @@ export const useRoscoGame = (rawData) => {
 
     // --- PASAPALABRA ---
     const pasapalabra = useCallback(() => {
-        if (isProcessing.current) return;
+        if (isProcessing.current || showExitConfirm) return;
         isProcessing.current = true;
 
         setFeedback({ type: 'info', text: '¡Pasapalabra!' });
@@ -196,7 +198,7 @@ export const useRoscoGame = (rawData) => {
         setTimeout(() => {
             handleTurnChange();
         }, 400);
-    }, [activePlayerIndex]);
+    }, [activePlayerIndex, showExitConfirm]);
 
     // --- AVANZAR ÍNDICE ---
     const advancePlayerIndex = (playerIdx) => {
@@ -239,7 +241,6 @@ export const useRoscoGame = (rawData) => {
             const nextIdx = (activePlayerIndex + 1) % newPlayers.length;
             const nextP = newPlayers[nextIdx];
 
-            // Avanzar índice del actual si no ha terminado
             if (!currentP.finished) {
                 advancePlayerIndexInternal(currentP);
             }
@@ -264,14 +265,12 @@ export const useRoscoGame = (rawData) => {
             return newPlayers;
         });
 
-        // Configurar animación de entrada
         if (playerChanged) {
             setAnimState('turn-change');
         } else {
             setAnimState('pasapalabra-in');
         }
 
-        // Resetear animación y desbloquear
         setTimeout(() => {
             setAnimState('none');
             isProcessing.current = false;
@@ -300,6 +299,17 @@ export const useRoscoGame = (rawData) => {
         }
     };
 
+    // --- GESTIÓN DE SALIDA ---
+    const requestExit = () => setShowExitConfirm(true);
+    const cancelExit = () => setShowExitConfirm(false);
+    
+    const confirmExit = () => {
+        setShowExitConfirm(false);
+        setGameState('config');
+        setAnimState('none');
+        isProcessing.current = false;
+    };
+
     const restartGame = () => {
         setGameState('config');
         setAnimState('none');
@@ -313,6 +323,8 @@ export const useRoscoGame = (rawData) => {
         gameState, players, activePlayer, activePlayerIndex, currentQuestion, feedback,
         checkAnswer, pasapalabra, restartGame, startGame, config, setConfig,
         maxQuestions: rawData ? Object.keys(rawData.reduce((acc,v)=>{acc[v.letra]=1;return acc},{})).length : 26,
-        animState
+        animState,
+        // Nuevas props para la UI
+        showExitConfirm, requestExit, cancelExit, confirmExit
     };
 };

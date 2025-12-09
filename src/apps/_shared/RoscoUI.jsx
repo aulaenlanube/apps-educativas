@@ -8,22 +8,23 @@ const RoscoUI = ({
     gameState, players, activePlayer, activePlayerIndex, currentQuestion, 
     checkAnswer, pasapalabra, restartGame, feedback,
     startGame, config, setConfig, maxQuestions,
-    animState
+    animState,
+    showExitConfirm, requestExit, cancelExit, confirmExit
 }) => {
     const [inputValue, setInputValue] = useState('');
     const inputRef = useRef(null);
 
     // Auto-focus inteligente
     useEffect(() => {
-        if (gameState === 'playing' && inputRef.current && !feedback && animState !== 'pasapalabra-out') {
+        if (gameState === 'playing' && inputRef.current && !feedback && animState !== 'pasapalabra-out' && !showExitConfirm) {
             inputRef.current.focus();
             setInputValue('');
         }
-    }, [currentQuestion, feedback, gameState, activePlayerIndex, animState]);
+    }, [currentQuestion, feedback, gameState, activePlayerIndex, animState, showExitConfirm]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!inputValue.trim() || !!feedback || animState !== 'none') return;
+        if (!inputValue.trim() || !!feedback || animState !== 'none' || showExitConfirm) return;
         checkAnswer(inputValue);
     };
 
@@ -150,7 +151,6 @@ const RoscoUI = ({
     const radius = 135; 
     const letters = Object.keys(activePlayer.letterStatus);
     
-    // Clase de animación dinámica
     let animationClass = '';
     if (animState === 'pasapalabra-out') animationClass = 'animate-pasapalabra-out animating';
     else if (animState === 'pasapalabra-in') animationClass = 'animate-pasapalabra-in animating';
@@ -160,6 +160,20 @@ const RoscoUI = ({
 
     return (
         <div className="rosco-container">
+            {/* MODAL SALIDA */}
+            {showExitConfirm && (
+                <div className="exit-modal-overlay">
+                    <div className="exit-modal-box">
+                        <h2 className="text-2xl font-bold mb-2 text-gray-700">¿Abandonar partida?</h2>
+                        <p className="text-gray-500 mb-6">El progreso actual se perderá.</p>
+                        <div className="exit-modal-buttons">
+                            <button onClick={cancelExit} className="btn-cancel-exit">Cancelar</button>
+                            <button onClick={confirmExit} className="btn-confirm-exit">Sí, salir</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Marcadores */}
             <div className="flex justify-center gap-4 mb-2 max-w-3xl mx-auto">
                 {players.map((p, idx) => (
@@ -192,7 +206,8 @@ const RoscoUI = ({
             {/* UI Central */}
             <div className={`rosco-center-box relative transition-all duration-300 ${borderColorClass} ${animationClass}`}>
                 
-                <button onClick={restartGame} className="btn-exit-corner" title="Salir de la partida">
+                {/* Botón Salir (Llama a requestExit en vez de restartGame) */}
+                <button onClick={requestExit} className="btn-exit-corner" title="Salir de la partida">
                     <FaTimes />
                 </button>
 
@@ -219,14 +234,14 @@ const RoscoUI = ({
                             className="rosco-input"
                             placeholder={`${activePlayer.name}...`}
                             autoComplete="off"
-                            disabled={!!feedback || animState !== 'none'}
+                            disabled={!!feedback || animState !== 'none' || showExitConfirm}
                         />
-                        <button type="submit" className="btn-check-inline" disabled={!!feedback || animState !== 'none' || !inputValue.trim()}>
+                        <button type="submit" className="btn-check-inline" disabled={!!feedback || animState !== 'none' || !inputValue.trim() || showExitConfirm}>
                             <FaCheck />
                         </button>
                     </form>
                     
-                    <button type="button" onClick={pasapalabra} className="btn-skip-round" disabled={!!feedback || animState !== 'none'} title="Pasapalabra">
+                    <button type="button" onClick={pasapalabra} className="btn-skip-round" disabled={!!feedback || animState !== 'none' || showExitConfirm} title="Pasapalabra">
                         <FaForward />
                     </button>
                 </div>
