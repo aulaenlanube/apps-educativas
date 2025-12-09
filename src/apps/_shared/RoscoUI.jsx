@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaCheck, FaForward, FaTimes } from 'react-icons/fa';
+import { FaCheck, FaTimes } from 'react-icons/fa';
 import '../_shared/RoscoShared.css';
 
 const ICONS = ['🐶', '🐱', '🐼', '🦊', '🦁', '🐯', '🦄', '🐸', '🤖', '👽', '👻', '🤡', '🤠', '👸', '🤴', '🦸'];
@@ -36,8 +36,8 @@ const RoscoUI = ({
         return (
             <div className="rosco-container pt-4">
                 <h1 className="text-4xl font-extrabold mb-4 text-blue-600 font-fredoka">El Rosco del Saber</h1>
-                
                 <div className="bg-white p-6 rounded-3xl shadow-xl max-w-lg mx-auto text-left">
+                    {/* ... (Selectores de jugadores y config igual que antes) ... */}
                     <div className="mb-6 flex justify-center bg-gray-100 p-2 rounded-xl">
                         <button onClick={() => handleConfigChange('numPlayers', 1)} className={`flex-1 py-2 rounded-lg font-bold transition-all ${config.numPlayers === 1 ? 'bg-white shadow-md text-blue-600' : 'text-gray-400'}`}>1 Jugador</button>
                         <button onClick={() => handleConfigChange('numPlayers', 2)} className={`flex-1 py-2 rounded-lg font-bold transition-all ${config.numPlayers === 2 ? 'bg-white shadow-md text-orange-500' : 'text-gray-400'}`}>2 Jugadores</button>
@@ -174,6 +174,15 @@ const RoscoUI = ({
                 </div>
             )}
 
+            {/* FEEDBACK OVERLAY (Ahora fuera de la caja central para ser fullscreen) */}
+            {feedback && (
+                <div className={`feedback-overlay feedback-${feedback.type}`}>
+                    <div className="feedback-content">
+                        {feedback.text}
+                    </div>
+                </div>
+            )}
+
             {/* Marcadores */}
             <div className="flex justify-center gap-4 mb-2 max-w-3xl mx-auto">
                 {players.map((p, idx) => (
@@ -206,16 +215,9 @@ const RoscoUI = ({
             {/* UI Central */}
             <div className={`rosco-center-box relative transition-all duration-300 ${borderColorClass} ${animationClass}`}>
                 
-                {/* Botón Salir (Llama a requestExit en vez de restartGame) */}
                 <button onClick={requestExit} className="btn-exit-corner" title="Salir de la partida">
                     <FaTimes />
                 </button>
-
-                {feedback && (
-                    <div className={`feedback-overlay feedback-${feedback.type}`}>
-                        {feedback.text}
-                    </div>
-                )}
                 
                 <div className="rosco-type-label">
                     {currentQuestion.tipo === 'empieza' ? 'Empieza por' : 'Contiene la'} 
@@ -241,8 +243,9 @@ const RoscoUI = ({
                         </button>
                     </form>
                     
-                    <button type="button" onClick={pasapalabra} className="btn-skip-round" disabled={!!feedback || animState !== 'none' || showExitConfirm} title="Pasapalabra">
-                        <FaForward />
+                    {/* BOTÓN CON TEXTO EXPLÍCITO */}
+                    <button type="button" onClick={pasapalabra} className="btn-pasapalabra-text" disabled={!!feedback || animState !== 'none' || showExitConfirm} title="Pasapalabra">
+                        Pasapalabra
                     </button>
                 </div>
             </div>

@@ -22,45 +22,46 @@
     border-radius: 50%;
 }
 
-/* Cada letra individual */
+/* Cada letra individual - SIN BORDES */
 .rosco-letter {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 42px; /* Un poco más grandes */
+    height: 42px;
     border-radius: 50%;
     background: #e5e7eb;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
+    font-weight: 900; /* Extra bold */
     font-family: 'Fredoka One', cursive;
-    color: #374151;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    color: #4b5563;
+    /* Eliminado el border: 2px solid white; */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.15); 
     transition: all 0.3s ease;
-    border: 2px solid white;
+    font-size: 1.2rem;
 }
 
 /* Estados visuales */
 .rosco-letter.active {
     background: #3b82f6;
     color: white;
-    transform: scale(1.4);
+    transform: scale(1.5); /* Más grandes al estar activas */
     z-index: 10;
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5);
 }
 
-.rosco-letter.correct { background: #22c55e; color: white; border-color: #16a34a; }
-.rosco-letter.wrong { background: #ef4444; color: white; border-color: #dc2626; }
-.rosco-letter.pending { background: #e5e7eb; }
+.rosco-letter.correct { background: #22c55e; color: white; }
+.rosco-letter.wrong { background: #ef4444; color: white; }
+.rosco-letter.pending { background: #d1d5db; color: #6b7280; } /* Un gris un poco más oscuro para pending */
 
-/* Caja central de definición */
+/* Caja central */
 .rosco-center-box {
     margin-top: -20px;
     background: white;
     padding: 25px;
     border-radius: 20px;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    min-height: 220px;
+    min-height: 240px; /* Un poco más alto para acomodar el botón nuevo */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,41 +71,41 @@
     margin-right: auto;
     border: 4px solid transparent; 
     position: relative;
-    overflow: hidden; 
+    /* Quitamos overflow: hidden para que no corte sombras, la animación se maneja con opacidad */
 }
 
-/* Tipografía y Textos */
+/* Tipografía */
 .rosco-type-label {
     font-size: 0.9rem;
     text-transform: uppercase;
     color: #6366f1;
     font-weight: 800;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     letter-spacing: 1.5px;
 }
 
 .rosco-definition {
     font-size: 1.4rem;
     color: #1f2937;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     line-height: 1.4;
     padding: 0 10px;
 }
 
-/* --- NUEVOS CONTROLES (Input + Botones) --- */
+/* --- CONTROLES --- */
 .rosco-input-group {
     display: flex;
+    flex-direction: column; /* Cambiado a columna para poner Pasapalabra debajo */
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     width: 100%;
     max-width: 340px;
-    justify-content: center;
 }
 
 .rosco-form-inner {
     display: flex;
     position: relative;
-    flex-grow: 1;
+    width: 100%;
     align-items: center;
 }
 
@@ -114,7 +115,6 @@
     border: 3px solid #e5e7eb;
     border-radius: 30px;
     width: 100%;
-    text-align: left;
     outline: none;
     transition: all 0.3s ease;
     font-weight: bold;
@@ -126,11 +126,6 @@
     border-color: #3b82f6;
     background: white;
     box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-}
-
-.rosco-input:disabled {
-    background: #f3f4f6;
-    color: #9ca3af;
 }
 
 .btn-check-inline {
@@ -149,52 +144,47 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     font-size: 1rem;
 }
 
-.btn-check-inline:hover:not(:disabled) {
-    background: #16a34a;
-    transform: translateY(-50%) scale(1.1);
-}
+.btn-check-inline:hover:not(:disabled) { background: #16a34a; transform: translateY(-50%) scale(1.1); }
+.btn-check-inline:disabled { background: #d1d5db; cursor: not-allowed; opacity: 0.6; }
 
-.btn-check-inline:disabled {
-    background: #d1d5db;
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-.btn-skip-round {
+/* BOTÓN PASAPALABRA (Texto explícito) */
+.btn-pasapalabra-text {
     background: #f59e0b;
     color: white;
     border: none;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 12px 0;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    border-radius: 30px;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    font-size: 1.2rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 6px rgba(245, 158, 11, 0.3);
+    text-transform: uppercase;
+    font-family: 'Fredoka One', cursive;
 }
 
-.btn-skip-round:hover:not(:disabled) {
+.btn-pasapalabra-text:hover:not(:disabled) {
     background: #d97706;
-    transform: scale(1.1) rotate(10deg);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(245, 158, 11, 0.4);
 }
 
-.btn-skip-round:active:not(:disabled) {
-    transform: scale(0.95);
+.btn-pasapalabra-text:active:not(:disabled) {
+    transform: translateY(0);
 }
 
-.btn-skip-round:disabled {
+.btn-pasapalabra-text:disabled {
     background: #fcd34d;
     cursor: not-allowed;
     opacity: 0.6;
     box-shadow: none;
 }
+
 
 .btn-exit-corner {
     position: absolute;
@@ -208,48 +198,47 @@
     padding: 8px;
     border-radius: 50%;
     transition: all 0.2s;
+}
+.btn-exit-corner:hover { color: #ef4444; background: #fee2e2; transform: rotate(90deg); }
+
+/* --- FEEDBACK FULLSCREEN --- */
+.feedback-overlay {
+    position: fixed; /* Fijo a la ventana */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.85); /* Fondo blanco semitransparente */
+    backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10000; /* Muy por encima de todo */
+    text-align: center;
+    animation: fadeInOverlay 0.2s ease-out;
 }
 
-.btn-exit-corner:hover {
-    color: #ef4444;
-    background: #fee2e2;
-    transform: rotate(90deg);
-}
-
-/* Feedback Overlay */
-.feedback-overlay {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3.5rem;
+.feedback-content {
+    font-size: 3rem; /* Texto muy grande */
     font-weight: 900;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    pointer-events: none;
-    z-index: 50;
-    white-space: nowrap;
-    width: 100%;
+    padding: 40px;
+    border-radius: 30px;
+    background: white;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    max-width: 90%;
+    animation: popInFeedback 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.feedback-success { color: #22c55e; -webkit-text-stroke: 2px white; }
-.feedback-error { color: #ef4444; font-size: 2.2rem; -webkit-text-stroke: 2px white; }
-.feedback-info { color: #f59e0b; -webkit-text-stroke: 2px white; }
+.feedback-success .feedback-content { color: #22c55e; border: 5px solid #22c55e; }
+.feedback-error .feedback-content { color: #ef4444; border: 5px solid #ef4444; }
+.feedback-info .feedback-content { color: #f59e0b; border: 5px solid #f59e0b; }
 
-@keyframes popIn {
-    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-    60% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-}
+@keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popInFeedback { from { transform: scale(0.5); } to { transform: scale(1); } }
 
-/* --- ANIMACIONES DE JUEGO --- */
 
-.rosco-center-box.animating {
-    pointer-events: none;
-}
+/* --- ANIMACIONES --- */
+.rosco-center-box.animating { pointer-events: none; }
 
 @keyframes slideOutLeft {
     0% { transform: translateX(0); opacity: 1; }
@@ -262,27 +251,20 @@
 
 .animate-pasapalabra-out .rosco-definition,
 .animate-pasapalabra-out .rosco-input-group,
-.animate-pasapalabra-out .rosco-type-label {
-    animation: slideOutLeft 0.4s ease-in forwards;
-}
+.animate-pasapalabra-out .rosco-type-label { animation: slideOutLeft 0.4s ease-in forwards; }
 
 .animate-pasapalabra-in .rosco-definition,
 .animate-pasapalabra-in .rosco-input-group,
-.animate-pasapalabra-in .rosco-type-label {
-    animation: slideInRight 0.4s ease-out forwards;
-}
+.animate-pasapalabra-in .rosco-type-label { animation: slideInRight 0.4s ease-out forwards; }
 
 @keyframes pulseSwap {
     0% { transform: scale(1); }
     50% { transform: scale(0.96); opacity: 0.7; }
     100% { transform: scale(1); opacity: 1; }
 }
+.animate-turn-change { animation: pulseSwap 0.6s ease-in-out; }
 
-.animate-turn-change {
-    animation: pulseSwap 0.6s ease-in-out;
-}
-
-/* --- MODAL CONFIRMACIÓN SALIDA --- */
+/* MODAL CONFIRMACIÓN */
 .exit-modal-overlay {
     position: fixed;
     top: 0;
@@ -297,7 +279,6 @@
     z-index: 9999;
     animation: fadeIn 0.2s ease-out;
 }
-
 .exit-modal-box {
     background: white;
     padding: 30px;
@@ -306,50 +287,16 @@
     text-align: center;
     max-width: 90%;
     width: 400px;
-    transform: scale(1);
     animation: popInModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
-@keyframes popInModal {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.exit-modal-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 25px;
-}
-
-.btn-confirm-exit {
-    background: #ef4444;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 1rem;
-    flex: 1;
-}
+@keyframes popInModal { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.exit-modal-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 25px; }
+.btn-confirm-exit { background: #ef4444; color: white; padding: 10px 20px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; flex: 1; }
 .btn-confirm-exit:hover { background: #dc2626; }
-
-.btn-cancel-exit {
-    background: #e5e7eb;
-    color: #374151;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 1rem;
-    flex: 1;
-}
+.btn-cancel-exit { background: #e5e7eb; color: #374151; padding: 10px 20px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; flex: 1; }
 .btn-cancel-exit:hover { background: #d1d5db; }
 
-
-/* Utilidades extra */
+/* Utilidades */
 .grayscale { filter: grayscale(100%); opacity: 0.6; }
 .scale-110 { transform: scale(1.1); }
 .scale-90 { transform: scale(0.9); }
