@@ -22,9 +22,19 @@ const RoscoUI = ({
     // --- ESTADO VOZ ---
     const [isListening, setIsListening] = useState(false);
     const [voiceSupported, setVoiceSupported] = useState(false);
-    const [autoRecord, setAutoRecord] = useState(false); // NUEVO: Modo Auto
-    const [hasAutoRecorded, setHasAutoRecorded] = useState(false); // Control para no repetir en la misma palabra
+    const [autoRecord, setAutoRecord] = useState(false); 
+    const [hasAutoRecorded, setHasAutoRecorded] = useState(false);
     const recognitionRef = useRef(null);
+
+    // Referencias para acceder al estado actual dentro de los callbacks de voz
+    const autoRecordRef = useRef(autoRecord);
+    const checkAnswerRef = useRef(checkAnswer);
+
+    // Sincronizar referencias
+    useEffect(() => {
+        autoRecordRef.current = autoRecord;
+        checkAnswerRef.current = checkAnswer;
+    }, [autoRecord, checkAnswer]);
 
     // Inicializar Reconocimiento de Voz
     useEffect(() => {
@@ -33,8 +43,8 @@ const RoscoUI = ({
         if (SpeechRecognition) {
             setVoiceSupported(true);
             const recognition = new SpeechRecognition();
-            recognition.continuous = false;
-            recognition.interimResults = false;
+            recognition.continuous = false; // Parar al detectar silencio
+            recognition.interimResults = false; // Solo resultados finales
             recognition.lang = 'es-ES';
 
             recognition.onstart = () => setIsListening(true);
@@ -43,9 +53,17 @@ const RoscoUI = ({
 
             recognition.onresult = (event) => {
                 const transcript = event.results[0][0].transcript;
-                const cleanTranscript = transcript.replace(/\.$/, "");
+                // Limpiar puntuación final si la hay
+                const cleanTranscript = transcript.replace(/\.$/, "").trim();
+                
                 setInputValue(cleanTranscript);
                 setIsListening(false);
+
+                // --- LÓGICA DE ENVÍO AUTOMÁTICO ---
+                // Si el modo Auto está activo, enviamos la respuesta directamente
+                if (autoRecordRef.current) {
+                    checkAnswerRef.current(cleanTranscript);
+                }
             };
 
             recognition.onerror = (event) => {
@@ -79,43 +97,37 @@ const RoscoUI = ({
         else startListening();
     };
 
-    // Toggle para el modo Auto
     const toggleAutoRecord = () => {
         setAutoRecord(prev => !prev);
-        // Si lo desactivamos, paramos de escuchar por si acaso
         if (autoRecord && isListening) stopListening();
     };
 
-    // --- LÓGICA AUTO-RECORD ---
-    
-    // 1. Resetear el flag cuando cambia la pregunta (nueva palabra)
+    // --- LÓGICA AUTO-RECORD (Disparo) ---
     useEffect(() => {
         setHasAutoRecorded(false);
     }, [currentQuestion]);
 
-    // 2. Activar micro automáticamente si se cumplen las condiciones
     useEffect(() => {
         if (
-            autoRecord &&               // Modo activado
-            voiceSupported &&           // Navegador compatible
-            !isListening &&             // No está escuchando ya
-            !hasAutoRecorded &&         // No hemos intentado grabar ya para esta palabra
-            gameState === 'playing' &&  // Juego activo
-            animState === 'none' &&     // Animaciones terminadas (turno listo)
-            !feedback &&                // No hay mensajes en pantalla
-            !showExitConfirm            // No hay modal abierto
+            autoRecord &&               
+            voiceSupported &&           
+            !isListening &&             
+            !hasAutoRecorded &&         
+            gameState === 'playing' &&  
+            animState === 'none' &&     
+            !feedback &&                
+            !showExitConfirm            
         ) {
-            // Pequeño delay para asegurar que la UI está lista
             const timer = setTimeout(() => {
                 startListening();
-                setHasAutoRecorded(true); // Marcamos como "intentado" para esta palabra
-            }, 100);
+                setHasAutoRecorded(true); 
+            }, 200); // Pequeño delay para asegurar transición
             return () => clearTimeout(timer);
         }
     }, [autoRecord, voiceSupported, isListening, hasAutoRecorded, gameState, animState, feedback, showExitConfirm]);
 
 
-    // Auto-focus inteligente (input teclado)
+    // Auto-focus inteligente
     useEffect(() => {
         if (gameState === 'playing' && inputRef.current && !feedback && animState !== 'pasapalabra-out' && !showExitConfirm && !isListening) {
             inputRef.current.focus();
@@ -123,7 +135,7 @@ const RoscoUI = ({
         }
     }, [currentQuestion, feedback, gameState, activePlayerIndex, animState, showExitConfirm, isListening]);
 
-    // Gestión de Webcam (Igual)
+    // Gestión de Webcam
     useEffect(() => {
         const startWebcam = async () => {
             if (isWebcamOn) {
@@ -156,7 +168,7 @@ const RoscoUI = ({
         checkAnswer(inputValue);
     };
 
-    // --- PANTALLAS CONFIG Y FINAL (Se mantienen igual) ---
+    // --- PANTALLAS CONFIG Y FINAL ---
     if (gameState === 'config') {
         const handleConfigChange = (key, value) => setConfig(prev => ({ ...prev, [key]: value }));
         const handlePlayerChange = (key, field, value) => setConfig(prev => ({ ...prev, [key]: { ...prev[key], [field]: value } }));
