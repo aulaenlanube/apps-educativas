@@ -128,13 +128,18 @@ export const useRoscoGame = (rawData) => {
         setGameState('playing');
     };
 
-    // --- COMPROBAR RESPUESTA ---
+    // --- COMPROBAR RESPUESTA (CORREGIDO) ---
     const checkAnswer = useCallback((userAnswer) => {
         if (isProcessing.current || showExitConfirm) return;
         isProcessing.current = true;
 
-        let isAnswerCorrect = false;
+        // 1. CALCULAMOS LA CORRECCIÓN ANTES DE ACTUALIZAR EL ESTADO
+        // Esto garantiza que 'isAnswerCorrect' tenga el valor correcto inmediatamente
+        const currentPlayer = players[activePlayerIndex];
+        const currentQ = currentPlayer.questions[currentPlayer.currentParams.index];
+        const isAnswerCorrect = cleanText(userAnswer) === cleanText(currentQ.solucion);
         
+        // 2. ACTUALIZAMOS EL ESTADO BASÁNDONOS EN EL CÁLCULO PREVIO
         setPlayers(prev => {
             const newPlayers = prev.map(p => ({
                 ...p,
@@ -143,37 +148,25 @@ export const useRoscoGame = (rawData) => {
             }));
 
             const p = newPlayers[activePlayerIndex];
-            const currentQ = p.questions[p.currentParams.index];
+            const q = p.questions[p.currentParams.index];
             
-            // Validación flexible: ignora acentos y mayúsculas
-            isAnswerCorrect = cleanText(userAnswer) === cleanText(currentQ.solucion);
-            
-            p.letterStatus[currentQ.letra] = isAnswerCorrect ? 'correct' : 'wrong';
+            p.letterStatus[q.letra] = isAnswerCorrect ? 'correct' : 'wrong';
             if (isAnswerCorrect) p.score += 1;
             
             return newPlayers;
         });
 
+        // 3. USAMOS LA VARIABLE CALCULADA PARA EL FLUJO LÓGICO
         if (isAnswerCorrect) {
-            const currentPlayer = players[activePlayerIndex];
-            const currentQ = currentPlayer.questions[currentPlayer.currentParams.index];
-            
             // Lógica de Feedback Refinada:
-            // Comparamos usando toLowerCase() para ver si hay diferencias de acentos.
-            // Si son iguales (ej: "avión" === "avión" o "Avión" === "avión"), está PERFECTO.
-            // Si son diferentes (ej: "avion" !== "avión"), faltan acentos -> Feedback educativo.
             if (userAnswer.trim().toLowerCase() === currentQ.solucion.trim().toLowerCase()) {
                 setFeedback({ type: 'success', text: '¡Correcto!' });
                 setTimeout(() => finishCorrectAnswerAnim(), 1000);
             } else {
-                // Es correcto pero tiene faltas de ortografía (acentos)
                 setFeedback({ type: 'success', text: `¡Bien! Se escribe: ${currentQ.solucion}` });
                 setTimeout(() => finishCorrectAnswerAnim(), 2000);
             }
         } else {
-            const currentPlayer = players[activePlayerIndex];
-            const currentQ = currentPlayer.questions[currentPlayer.currentParams.index];
-            
             setFeedback({ type: 'error', text: `¡Era "${currentQ.solucion}"!` });
             setTimeout(() => {
                 handleTurnChange(); 
