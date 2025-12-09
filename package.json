@@ -3,12 +3,12 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
-"scripts": {
-  "dev": "node tools/generate-llms.js && vite",
-  "build": "node tools/generate-llms.js && vite build",
-  "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-  "preview": "vite preview"
-},
+  "scripts": {
+    "dev": "node tools/generate-llms.js && vite",
+    "build": "node tools/generate-llms.js && vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.3",
@@ -29,6 +29,7 @@
     "react-confetti": "^6.4.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "^2.0.4",
+    "react-icons": "^5.5.0",
     "react-router-dom": "^7.8.2",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7"

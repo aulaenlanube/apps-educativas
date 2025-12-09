@@ -6,170 +6,291 @@
     padding: 20px;
     text-align: center;
     font-family: 'Nunito', sans-serif;
-}
-
-/* El círculo de letras */
-.rosco-circle {
     position: relative;
-    width: 300px;
-    height: 300px;
-    margin: 30px auto;
-    border-radius: 50%;
 }
 
-.rosco-letter {
-    position: absolute;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background: #e0e0e0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-family: 'Fredoka One', cursive;
-    color: #555;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-    /* Posicionamiento matemático simple en JS o variables CSS si son muchas, 
-       pero para pocas letras podemos ajustarlo o usar transform */
-}
-
-/* Estados de las letras */
-.rosco-letter.active {
-    background: #3b82f6;
-    color: white;
-    transform: scale(1.3);
-    z-index: 10;
-    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-    border: 2px solid white;
-}
-
-.rosco-letter.correct { background: #22c55e; color: white; }
-.rosco-letter.wrong { background: #ef4444; color: white; }
-.rosco-letter.pending { background: #d1d5db; }
-
-/* Centro del rosco (Definición) */
-.rosco-center {
-    margin-top: 20px;
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    min-height: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.rosco-definition-type {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    color: #6366f1;
-    font-weight: bold;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
-}
-
-.rosco-definition-text {
-    font-size: 1.4rem;
-    color: #1f2937;
-    margin-bottom: 20px;
-}
-
-/* Input area */
-.rosco-controls {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.rosco-input {
-    padding: 10px 15px;
-    font-size: 1.2rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 8px;
-    width: 200px;
-    text-align: center;
-    outline: none;
-}
-
-.rosco-input:focus {
-    border-color: #3b82f6;
-}
-
-.btn-check {
-    background: #22c55e;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.btn-pasapalabra {
-    background: #f59e0b;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* Feedback flotante */
-.feedback-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3rem;
-    font-weight: bold;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    animation: popIn 0.5s ease;
-    pointer-events: none;
-    z-index: 100;
-}
-
-.feedback-success { color: #22c55e; }
-.feedback-error { color: #ef4444; }
-.feedback-info { color: #f59e0b; }
-
-@keyframes popIn {
-    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-    100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
-}
-
-/* ... Todo lo que tenías antes ... */
-
-/* Añadir o asegurar que esto existe */
 .font-fredoka {
     font-family: 'Fredoka One', cursive;
 }
 
-/* Animación para el menú de config */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* El círculo contenedor */
+.rosco-circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 40px auto;
+    border-radius: 50%;
 }
 
-.animate-fadeIn {
-    animation: fadeIn 0.3s ease-out forwards;
-}
-
-/* Ajustes para el scoreboard */
-.grayscale {
-    filter: grayscale(100%);
-}
-
-.rosco-controls {
+/* Cada letra individual */
+.rosco-letter {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e5e7eb;
     display: flex;
-    gap: 8px; /* Reduce un poco el gap para que quepa en móviles */
-    width: 100%;
+    align-items: center;
     justify-content: center;
-    flex-wrap: wrap; /* Permitir wrap en pantallas muy pequeñas */
+    font-weight: bold;
+    font-family: 'Fredoka One', cursive;
+    color: #374151;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: 2px solid white;
 }
+
+/* Estados visuales */
+.rosco-letter.active {
+    background: #3b82f6;
+    color: white;
+    transform: scale(1.4);
+    z-index: 10;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+}
+
+.rosco-letter.correct { background: #22c55e; color: white; border-color: #16a34a; }
+.rosco-letter.wrong { background: #ef4444; color: white; border-color: #dc2626; }
+.rosco-letter.pending { background: #e5e7eb; }
+
+/* Caja central de definición */
+.rosco-center-box {
+    margin-top: -20px;
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid transparent; /* Para evitar saltos al añadir borde de color */
+    position: relative;
+    overflow: hidden; /* Importante para animaciones de salida */
+}
+
+/* Tipografía y Textos */
+.rosco-type-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #6366f1;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: 1.5px;
+}
+
+.rosco-definition {
+    font-size: 1.4rem;
+    color: #1f2937;
+    margin-bottom: 25px;
+    line-height: 1.4;
+    padding: 0 10px;
+}
+
+/* --- NUEVOS CONTROLES (Input + Botones) --- */
+
+.rosco-input-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 340px;
+    justify-content: center;
+}
+
+.rosco-form-inner {
+    display: flex;
+    position: relative;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.rosco-input {
+    padding: 12px 50px 12px 20px; /* Espacio derecha para botón check */
+    font-size: 1.2rem;
+    border: 3px solid #e5e7eb;
+    border-radius: 30px;
+    width: 100%;
+    text-align: left;
+    outline: none;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    color: #374151;
+    background: #f9fafb;
+}
+
+.rosco-input:focus {
+    border-color: #3b82f6;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.rosco-input:disabled {
+    background: #f3f4f6;
+    color: #9ca3af;
+}
+
+/* Botón CHECK integrado */
+.btn-check-inline {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #22c55e;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-size: 1rem;
+}
+
+.btn-check-inline:hover:not(:disabled) {
+    background: #16a34a;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.btn-check-inline:disabled {
+    background: #d1d5db;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Botón PASAPALABRA Circular */
+.btn-skip-round {
+    background: #f59e0b;
+    color: white;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+}
+
+.btn-skip-round:hover:not(:disabled) {
+    background: #d97706;
+    transform: scale(1.1) rotate(10deg);
+}
+
+.btn-skip-round:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.btn-skip-round:disabled {
+    background: #fcd34d;
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+}
+
+/* Botón SALIR (Esquina) */
+.btn-exit-corner {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-exit-corner:hover {
+    color: #ef4444;
+    background: #fee2e2;
+    transform: rotate(90deg);
+}
+
+/* Feedback Overlay */
+.feedback-overlay {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    z-index: 50;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.feedback-success { color: #22c55e; -webkit-text-stroke: 2px white; }
+.feedback-error { color: #ef4444; font-size: 2.2rem; -webkit-text-stroke: 2px white; }
+.feedback-info { color: #f59e0b; -webkit-text-stroke: 2px white; }
+
+@keyframes popIn {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    60% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+/* --- ANIMACIONES DE JUEGO --- */
+
+.rosco-center-box.animating {
+    pointer-events: none;
+}
+
+/* Animación Pasapalabra */
+@keyframes slideOutLeft {
+    0% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(-50px); opacity: 0; }
+}
+@keyframes slideInRight {
+    0% { transform: translateX(50px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+.animate-pasapalabra-out .rosco-definition,
+.animate-pasapalabra-out .rosco-input-group,
+.animate-pasapalabra-out .rosco-type-label {
+    animation: slideOutLeft 0.4s ease-in forwards;
+}
+
+.animate-pasapalabra-in .rosco-definition,
+.animate-pasapalabra-in .rosco-input-group,
+.animate-pasapalabra-in .rosco-type-label {
+    animation: slideInRight 0.4s ease-out forwards;
+}
+
+/* Animación Cambio de Turno */
+@keyframes pulseSwap {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.96); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-turn-change {
+    animation: pulseSwap 0.6s ease-in-out;
+}
+
+/* Utilidades extra */
+.grayscale { filter: grayscale(100%); opacity: 0.6; }
+.scale-110 { transform: scale(1.1); }
+.scale-90 { transform: scale(0.9); }
+.animate-fadeIn { animation: fadeIn 0.5s ease-out; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }

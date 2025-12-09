@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { FaCheck, FaForward, FaTimes } from 'react-icons/fa';
 import '../_shared/RoscoShared.css';
 
 const ICONS = ['🐶', '🐱', '🐼', '🦊', '🦁', '🐯', '🦄', '🐸', '🤖', '👽', '👻', '🤡', '🤠', '👸', '🤴', '🦸'];
@@ -6,37 +7,30 @@ const ICONS = ['🐶', '🐱', '🐼', '🦊', '🦁', '🐯', '🦄', '🐸', '
 const RoscoUI = ({ 
     gameState, players, activePlayer, activePlayerIndex, currentQuestion, 
     checkAnswer, pasapalabra, restartGame, feedback,
-    startGame, config, setConfig, maxQuestions
+    startGame, config, setConfig, maxQuestions,
+    animState
 }) => {
     const [inputValue, setInputValue] = useState('');
     const inputRef = useRef(null);
 
-    // Auto-focus cada vez que cambia la pregunta o el jugador
+    // Auto-focus inteligente
     useEffect(() => {
-        if (gameState === 'playing' && inputRef.current && !feedback) {
+        if (gameState === 'playing' && inputRef.current && !feedback && animState !== 'pasapalabra-out') {
             inputRef.current.focus();
-            setInputValue(''); // Limpiar input al cambiar turno
+            setInputValue('');
         }
-    }, [currentQuestion, feedback, gameState, activePlayerIndex]);
+    }, [currentQuestion, feedback, gameState, activePlayerIndex, animState]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!inputValue.trim()) return;
+        if (!inputValue.trim() || !!feedback || animState !== 'none') return;
         checkAnswer(inputValue);
-        setInputValue('');
     };
 
     // --- PANTALLA CONFIGURACIÓN ---
     if (gameState === 'config') {
-        const handleConfigChange = (key, value) => {
-            setConfig(prev => ({ ...prev, [key]: value }));
-        };
-        const handlePlayerChange = (playerKey, field, value) => {
-            setConfig(prev => ({ 
-                ...prev, 
-                [playerKey]: { ...prev[playerKey], [field]: value } 
-            }));
-        };
+        const handleConfigChange = (key, value) => setConfig(prev => ({ ...prev, [key]: value }));
+        const handlePlayerChange = (key, field, value) => setConfig(prev => ({ ...prev, [key]: { ...prev[key], [field]: value } }));
 
         return (
             <div className="rosco-container pt-4">
@@ -44,19 +38,15 @@ const RoscoUI = ({
                 
                 <div className="bg-white p-6 rounded-3xl shadow-xl max-w-lg mx-auto text-left">
                     <div className="mb-6 flex justify-center bg-gray-100 p-2 rounded-xl">
-                        <button onClick={() => handleConfigChange('numPlayers', 1)}
-                            className={`flex-1 py-2 rounded-lg font-bold transition-all ${config.numPlayers === 1 ? 'bg-white shadow-md text-blue-600' : 'text-gray-400'}`}>1 Jugador</button>
-                        <button onClick={() => handleConfigChange('numPlayers', 2)}
-                            className={`flex-1 py-2 rounded-lg font-bold transition-all ${config.numPlayers === 2 ? 'bg-white shadow-md text-orange-500' : 'text-gray-400'}`}>2 Jugadores</button>
+                        <button onClick={() => handleConfigChange('numPlayers', 1)} className={`flex-1 py-2 rounded-lg font-bold transition-all ${config.numPlayers === 1 ? 'bg-white shadow-md text-blue-600' : 'text-gray-400'}`}>1 Jugador</button>
+                        <button onClick={() => handleConfigChange('numPlayers', 2)} className={`flex-1 py-2 rounded-lg font-bold transition-all ${config.numPlayers === 2 ? 'bg-white shadow-md text-orange-500' : 'text-gray-400'}`}>2 Jugadores</button>
                     </div>
 
                     <div className="mb-4">
                         <label className="block text-gray-700 font-bold mb-1 text-sm">Jugador 1</label>
                         <div className="flex gap-2">
-                            <input type="text" value={config.player1.name} onChange={(e) => handlePlayerChange('player1', 'name', e.target.value)}
-                                className="border-2 border-gray-200 rounded-lg px-3 py-2 w-full font-bold" />
-                            <select value={config.player1.icon} onChange={(e) => handlePlayerChange('player1', 'icon', e.target.value)}
-                                className="border-2 border-gray-200 rounded-lg px-2 text-2xl">
+                            <input type="text" value={config.player1.name} onChange={(e) => handlePlayerChange('player1', 'name', e.target.value)} className="border-2 border-gray-200 rounded-lg px-3 py-2 w-full font-bold" />
+                            <select value={config.player1.icon} onChange={(e) => handlePlayerChange('player1', 'icon', e.target.value)} className="border-2 border-gray-200 rounded-lg px-2 text-2xl">
                                 {ICONS.map(i => <option key={i} value={i}>{i}</option>)}
                             </select>
                         </div>
@@ -66,40 +56,34 @@ const RoscoUI = ({
                         <div className="mb-6 animate-fadeIn">
                             <label className="block text-gray-700 font-bold mb-1 text-sm">Jugador 2</label>
                             <div className="flex gap-2">
-                                <input type="text" value={config.player2.name} onChange={(e) => handlePlayerChange('player2', 'name', e.target.value)}
-                                    className="border-2 border-orange-200 rounded-lg px-3 py-2 w-full font-bold text-orange-600" />
-                                <select value={config.player2.icon} onChange={(e) => handlePlayerChange('player2', 'icon', e.target.value)}
-                                    className="border-2 border-orange-200 rounded-lg px-2 text-2xl">
+                                <input type="text" value={config.player2.name} onChange={(e) => handlePlayerChange('player2', 'name', e.target.value)} className="border-2 border-orange-200 rounded-lg px-3 py-2 w-full font-bold text-orange-600" />
+                                <select value={config.player2.icon} onChange={(e) => handlePlayerChange('player2', 'icon', e.target.value)} className="border-2 border-orange-200 rounded-lg px-2 text-2xl">
                                     {ICONS.map(i => <option key={i} value={i}>{i}</option>)}
                                 </select>
                             </div>
                         </div>
                     )}
-
+                    
                     <hr className="my-4 border-gray-100"/>
-
+                    
                     <div className="grid grid-cols-2 gap-4 mb-6">
                         <div>
                             <label className="block text-gray-700 font-bold text-xs mb-2">PREGUNTAS: {config.questionCount}</label>
-                            <input type="range" min="5" max={maxQuestions} value={config.questionCount} onChange={(e) => handleConfigChange('questionCount', parseInt(e.target.value))}
-                                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600" />
+                            <input type="range" min="5" max={maxQuestions} value={config.questionCount} onChange={(e) => handleConfigChange('questionCount', parseInt(e.target.value))} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600" />
                         </div>
                         <div>
                             <div className="flex justify-between items-center mb-2">
                                 <label className="block text-gray-700 font-bold text-xs">TIEMPO</label>
-                                <input type="checkbox" checked={config.useTimer} onChange={(e) => handleConfigChange('useTimer', e.target.checked)}
-                                    className="w-5 h-5 accent-blue-600 rounded cursor-pointer" />
+                                <input type="checkbox" checked={config.useTimer} onChange={(e) => handleConfigChange('useTimer', e.target.checked)} className="w-5 h-5 accent-blue-600 rounded cursor-pointer" />
                             </div>
                             {config.useTimer && (
-                                <input type="range" min="30" max="300" step="10" value={config.timeLimit} onChange={(e) => handleConfigChange('timeLimit', parseInt(e.target.value))}
-                                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-500" />
+                                <input type="range" min="30" max="300" step="10" value={config.timeLimit} onChange={(e) => handleConfigChange('timeLimit', parseInt(e.target.value))} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-green-500" />
                             )}
                             {config.useTimer && <p className="text-xs text-right text-gray-400 mt-1">{config.timeLimit} seg</p>}
                         </div>
                     </div>
 
-                    <button onClick={() => startGame(config)}
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-6 rounded-2xl transition-transform transform hover:scale-105 shadow-lg">
+                    <button onClick={() => startGame(config)} className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-6 rounded-2xl transition-transform transform hover:scale-105 shadow-lg">
                         ¡Empezar Partida!
                     </button>
                 </div>
@@ -121,19 +105,16 @@ const RoscoUI = ({
                 </h1>
                 
                 <div className="bg-white p-8 rounded-3xl shadow-xl max-w-md mx-auto">
-                    
-                    {/* CONTENIDO PRINCIPAL RESULTADO */}
                     {isSinglePlayer ? (
                         <div className="mb-8">
                              <span className="text-6xl block mb-2">{winner.icon}</span>
-                             <h2 className="text-2xl font-bold text-gray-700 mb-2">Has conseguido</h2>
+                             <h2 className="text-2xl font-bold text-gray-700 mb-2">Resultados</h2>
                              <div className="text-5xl font-extrabold text-green-500">{winner.score} <span className="text-2xl text-gray-400">aciertos</span></div>
                              {config.useTimer && winner.timeLeft > 0 && (
                                  <p className="text-sm text-gray-400 mt-2 font-bold">¡Te sobraron {winner.timeLeft}s!</p>
                              )}
                         </div>
                     ) : (
-                        // MODO 2 JUGADORES
                         isTie ? (
                             <div className="text-4xl mb-6">🤝 ¡Empate!</div>
                         ) : (
@@ -144,7 +125,6 @@ const RoscoUI = ({
                         )
                     )}
 
-                    {/* LISTA DE PUNTUACIONES (Solo si hay más de 1 jugador o para mostrar detalle) */}
                     {!isSinglePlayer && (
                         <div className="bg-gray-50 rounded-xl p-4 mb-8">
                             {players.map(p => (
@@ -156,8 +136,7 @@ const RoscoUI = ({
                         </div>
                     )}
 
-                    <button onClick={restartGame} 
-                        className="bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded-full shadow-lg w-full">
+                    <button onClick={restartGame} className="bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-8 rounded-full shadow-lg w-full">
                         Nueva Partida
                     </button>
                 </div>
@@ -165,69 +144,58 @@ const RoscoUI = ({
         );
     }
 
-    if (gameState === 'loading' || !activePlayer || !currentQuestion) {
-        return <div className="text-center p-10 text-2xl font-bold text-gray-400">Cargando...</div>;
-    }
+    if (gameState === 'loading' || !activePlayer || !currentQuestion) return <div className="text-center p-10 text-2xl font-bold text-gray-400">Cargando...</div>;
 
     // --- PANTALLA JUEGO ---
     const radius = 135; 
     const letters = Object.keys(activePlayer.letterStatus);
     
+    // Clase de animación dinámica
+    let animationClass = '';
+    if (animState === 'pasapalabra-out') animationClass = 'animate-pasapalabra-out animating';
+    else if (animState === 'pasapalabra-in') animationClass = 'animate-pasapalabra-in animating';
+    else if (animState === 'turn-change') animationClass = 'animate-turn-change animating';
+
+    const borderColorClass = activePlayerIndex === 0 ? 'border-blue-100' : 'border-orange-100';
+
     return (
         <div className="rosco-container">
-            {/* MARCADORES */}
+            {/* Marcadores */}
             <div className="flex justify-center gap-4 mb-2 max-w-3xl mx-auto">
                 {players.map((p, idx) => (
                     <div key={p.id} 
                          className={`relative flex items-center gap-3 px-4 py-2 rounded-2xl transition-all duration-300 border-2
-                         ${activePlayerIndex === idx 
-                            ? 'bg-white shadow-xl scale-110 border-blue-500 z-10 ring-4 ring-blue-100' 
-                            : 'bg-gray-100 opacity-60 scale-90 border-transparent grayscale'}`}
-                    >
+                         ${activePlayerIndex === idx ? 'bg-white shadow-xl scale-110 border-blue-500 z-10 ring-4 ring-blue-100' : 'bg-gray-100 opacity-60 scale-90 border-transparent grayscale'}`}>
                         <span className="text-3xl">{p.icon}</span>
                         <div className="text-left">
                             <p className="font-bold text-sm leading-tight">{p.name}</p>
-                            <p className="text-xs font-bold text-green-600">{p.score} aciertos</p>
+                            <p className="text-xs font-bold text-green-600">{p.score}</p>
                         </div>
-                        {config.useTimer && (
-                            <div className={`ml-2 text-xl font-mono font-bold ${p.timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-gray-600'}`}>
-                                {p.timeLeft}s
-                            </div>
-                        )}
-                        {/* Indicador de turno explícito (Solo si hay 2 jugadores) */}
-                        {players.length > 1 && activePlayerIndex === idx && (
-                            <div className="absolute -top-3 -right-2 bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full font-bold animate-bounce">
-                                TU TURNO
-                            </div>
-                        )}
+                        {config.useTimer && (<div className={`ml-2 text-xl font-mono font-bold ${p.timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-gray-600'}`}>{p.timeLeft}s</div>)}
+                        {players.length > 1 && activePlayerIndex === idx && (<div className="absolute -top-3 -right-2 bg-blue-500 text-white text-xs px-2 py-0.5 rounded-full font-bold animate-bounce">TU TURNO</div>)}
                     </div>
                 ))}
             </div>
 
-            {/* CÍRCULO */}
+            {/* Círculo */}
             <div className="rosco-circle">
                 {letters.map((letra, index) => {
                     const angle = (index / letters.length) * 2 * Math.PI - (Math.PI / 2);
-                    const x = Math.cos(angle) * radius + 150 - 20;
-                    const y = Math.sin(angle) * radius + 150 - 20;
-                    
+                    const x = Math.cos(angle) * radius + 130; 
+                    const y = Math.sin(angle) * radius + 130;
                     const isCurrent = currentQuestion.letra === letra;
                     const statusClass = activePlayer.letterStatus[letra]; 
-
-                    return (
-                        <div 
-                            key={letra} 
-                            className={`rosco-letter ${statusClass} ${isCurrent ? 'active' : ''}`}
-                            style={{ left: `${x}px`, top: `${y}px` }}
-                        >
-                            {letra}
-                        </div>
-                    );
+                    return (<div key={letra} className={`rosco-letter ${statusClass} ${isCurrent ? 'active' : ''}`} style={{ left: `${x}px`, top: `${y}px` }}>{letra}</div>);
                 })}
             </div>
 
-            {/* PREGUNTA Y INPUT */}
-            <div className={`rosco-center-box relative transition-all duration-300 ${activePlayerIndex === 0 ? 'border-blue-100' : 'border-orange-100'}`}>
+            {/* UI Central */}
+            <div className={`rosco-center-box relative transition-all duration-300 ${borderColorClass} ${animationClass}`}>
+                
+                <button onClick={restartGame} className="btn-exit-corner" title="Salir de la partida">
+                    <FaTimes />
+                </button>
+
                 {feedback && (
                     <div className={`feedback-overlay feedback-${feedback.type}`}>
                         {feedback.text}
@@ -241,23 +209,26 @@ const RoscoUI = ({
                 
                 <p className="rosco-definition">{currentQuestion.definicion}</p>
                 
-                <form onSubmit={handleSubmit} className="rosco-controls">
-                    <input 
-                        ref={inputRef}
-                        type="text" 
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        className="rosco-input"
-                        placeholder={`${activePlayer.name}, responde...`}
-                        autoComplete="off"
-                        disabled={!!feedback}
-                    />
-                    <button type="submit" className="btn-check" disabled={!!feedback}>✓</button>
-                    <button type="button" onClick={pasapalabra} className="btn-pass" disabled={!!feedback}>Pasapalabra</button>
-                </form>
-                
-                <div className="mt-4 text-xs text-gray-300 font-bold uppercase tracking-widest cursor-pointer hover:text-red-400" onClick={restartGame}>
-                    Salir
+                <div className="rosco-input-group">
+                    <form onSubmit={handleSubmit} className="rosco-form-inner">
+                        <input 
+                            ref={inputRef}
+                            type="text" 
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            className="rosco-input"
+                            placeholder={`${activePlayer.name}...`}
+                            autoComplete="off"
+                            disabled={!!feedback || animState !== 'none'}
+                        />
+                        <button type="submit" className="btn-check-inline" disabled={!!feedback || animState !== 'none' || !inputValue.trim()}>
+                            <FaCheck />
+                        </button>
+                    </form>
+                    
+                    <button type="button" onClick={pasapalabra} className="btn-skip-round" disabled={!!feedback || animState !== 'none'} title="Pasapalabra">
+                        <FaForward />
+                    </button>
                 </div>
             </div>
         </div>
