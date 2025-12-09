@@ -847,6 +847,7 @@ export const esoApps = {
         description: 'Refuerza gramática, comunicación y literatura.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
     ],
@@ -857,6 +858,7 @@ export const esoApps = {
         description: 'Repasa números enteros, geometría y fracciones.',
         component: BuscaElIntruso
       },
+      appRosco,      
       appOrdenaLaFrase,
       appOrdenaLaHistoria
     ],
@@ -867,6 +869,7 @@ export const esoApps = {
         description: 'Prehistoria, Edad Antigua y Geografía.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
     ],
@@ -877,6 +880,7 @@ export const esoApps = {
         description: 'Vocabulary and grammar review.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-1', name: 'Detective de Palabras' }
@@ -888,6 +892,7 @@ export const esoApps = {
         description: 'Los seres vivos y el planeta Tierra.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
     ],
@@ -898,6 +903,7 @@ export const esoApps = {
         description: 'Introducción a la materia y la energía.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
     ],
@@ -908,6 +914,7 @@ export const esoApps = {
         description: 'Lenguaje musical e instrumentos.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
     ],
@@ -918,6 +925,7 @@ export const esoApps = {
         description: 'Elementos visuales y color.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
     ],
@@ -938,6 +946,7 @@ export const esoApps = {
         description: 'Deportes y salud.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
     ],
@@ -950,6 +959,7 @@ export const esoApps = {
         description: 'Convivencia y técnicas de estudio.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
     ],
@@ -960,6 +970,7 @@ export const esoApps = {
         description: 'Gramàtica i vocabulari bàsic.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-1', name: 'Detective de Palabras' }
@@ -971,6 +982,7 @@ export const esoApps = {
         description: 'Vocabulaire de base.',
         component: BuscaElIntruso
       },
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-1', name: 'Detective de Palabras' }
