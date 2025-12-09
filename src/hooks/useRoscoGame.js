@@ -1,144 +1,315 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 export const useRoscoGame = (rawData) => {
-    // rawData contiene las 130 preguntas. 
-    // questions contendrá solo las seleccionadas para esta partida.
-    const [questions, setQuestions] = useState([]); 
-    
-    const [currentParams, setCurrentParams] = useState({ index: 0, letterStatus: {} }); 
-    const [gameState, setGameState] = useState('config'); // 'config', 'loading', 'playing', 'finished'
-    const [score, setScore] = useState(0);
+    // --- ESTADO ---
+    const [players, setPlayers] = useState([]);
+    const [activePlayerIndex, setActivePlayerIndex] = useState(0);
+    const [gameState, setGameState] = useState('config'); // 'config', 'playing', 'finished'
     const [feedback, setFeedback] = useState(null);
-    const [configCount, setConfigCount] = useState(26); // Por defecto el rosco completo
+    
+    // Semáforo para evitar dobles clics
+    const isProcessing = useRef(false);
+    
+    // --- CONFIGURACIÓN ---
+    const [config, setConfig] = useState({
+        numPlayers: 1,
+        questionCount: 26,
+        useTimer: false,
+        timeLimit: 150,
+        player1: { name: 'Jugador 1', icon: '🦊' },
+        player2: { name: 'Jugador 2', icon: 'panda' }
+    });
 
-    // Cuando llega la data, ponemos el juego en modo configuración
+    const timerRef = useRef(null);
+
+    // Reiniciar al cargar nuevos datos
     useEffect(() => {
-        if (rawData && rawData.length > 0) {
-            setGameState('config');
-        } else if (rawData && rawData.length === 0) {
-             // Manejo de error si quieres
-        }
+        if (rawData) setGameState('config');
+        isProcessing.current = false;
     }, [rawData]);
 
-    // Función auxiliar para normalizar texto
-    const normalizeText = (text) => {
-        return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+    // --- TEMPORIZADOR ---
+    useEffect(() => {
+        if (gameState === 'playing' && config.useTimer) {
+            timerRef.current = setInterval(() => {
+                setPlayers(prevPlayers => {
+                    // Copia PROFUNDA necesaria
+                    const newPlayers = prevPlayers.map(p => ({
+                        ...p,
+                        currentParams: { ...p.currentParams } 
+                    }));
+                    
+                    const activeP = newPlayers[activePlayerIndex];
+                    
+                    if (!activeP.finished && activeP.timeLeft > 0) {
+                        activeP.timeLeft -= 1;
+                    } 
+                    
+                    if (activeP.timeLeft === 0 && !activeP.finished) {
+                        activeP.finished = true;
+                        setTimeout(() => handleTurnChange(), 0);
+                    }
+                    
+                    return newPlayers;
+                });
+            }, 1000);
+        }
+        return () => clearInterval(timerRef.current);
+    }, [gameState, activePlayerIndex, config.useTimer]);
+
+    // --- HELPER: NORMALIZAR TEXTO ---
+    // Esto quita acentos y pone todo en minúsculas para la COMPARACIÓN
+    const cleanText = (text) => {
+        return text
+            .toString()
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "") // Quitar tildes
+            .trim();
     };
 
-    // FUNCIÓN PRINCIPAL: Iniciar partida con la configuración deseada
-    const startGame = (count) => {
+    // --- INICIAR JUEGO ---
+    const startGame = (gameConfig) => {
         if (!rawData || rawData.length === 0) return;
+        setConfig(gameConfig);
+        isProcessing.current = false;
 
-        // 1. Agrupar preguntas por letra
+        const newPlayers = [];
         const grouped = rawData.reduce((acc, curr) => {
             if (!acc[curr.letra]) acc[curr.letra] = [];
             acc[curr.letra].push(curr);
             return acc;
         }, {});
 
-        // 2. Seleccionar UNA pregunta aleatoria por cada letra disponible
-        let selectedQuestions = [];
-        const availableLetters = Object.keys(grouped).sort(); // A, B, C...
-
-        availableLetters.forEach(letra => {
-            const options = grouped[letra];
-            const randomOption = options[Math.floor(Math.random() * options.length)];
-            selectedQuestions.push(randomOption);
-        });
-
-        // 3. Filtrar según la cantidad (count)
-        // Si el usuario quiere menos de 26, elegimos 'count' letras aleatorias del set seleccionado
-        // Si quiere completo (o más de las que hay), dejamos todas.
-        if (count < selectedQuestions.length) {
-            // Barajar el array de letras seleccionadas para coger un subconjunto aleatorio
-            // O mantener orden alfabético pero saltando letras.
-            // Para "Rosco", visualmente queda mejor A-Z, así que elegimos N letras aleatorias pero las ordenamos.
+        for (let i = 0; i < gameConfig.numPlayers; i++) {
+            let selectedQuestions = [];
+            const availableLetters = Object.keys(grouped).sort();
             
-            // Índices aleatorios
-            const indices = new Set();
-            while(indices.size < count) {
-                indices.add(Math.floor(Math.random() * selectedQuestions.length));
+            availableLetters.forEach(letra => {
+                const options = grouped[letra];
+                const randIndex = Math.floor(Math.random() * options.length);
+                selectedQuestions.push(options[randIndex]);
+            });
+
+            if (gameConfig.questionCount < selectedQuestions.length) {
+                const indices = new Set();
+                while(indices.size < gameConfig.questionCount) {
+                    indices.add(Math.floor(Math.random() * selectedQuestions.length));
+                }
+                selectedQuestions = selectedQuestions.filter((_, idx) => indices.has(idx));
             }
+
+            const initialStatus = {};
+            selectedQuestions.forEach(q => initialStatus[q.letra] = 'pending');
+
+            const pInfo = i === 0 ? gameConfig.player1 : gameConfig.player2;
             
-            // Filtramos y mantenemos el orden original (alfabético)
-            selectedQuestions = selectedQuestions.filter((_, idx) => indices.has(idx));
+            newPlayers.push({
+                id: i,
+                name: pInfo.name,
+                icon: pInfo.icon,
+                score: 0,
+                questions: selectedQuestions,
+                letterStatus: initialStatus,
+                currentParams: { index: 0 },
+                timeLeft: gameConfig.useTimer ? gameConfig.timeLimit : null,
+                finished: false
+            });
         }
 
-        // 4. Inicializar estado de juego
-        setQuestions(selectedQuestions);
-        const initialStatus = {};
-        selectedQuestions.forEach(q => initialStatus[q.letra] = 'pending');
-        
-        setCurrentParams({ index: 0, letterStatus: initialStatus });
-        setScore(0);
+        setPlayers(newPlayers);
+        setActivePlayerIndex(0);
         setFeedback(null);
         setGameState('playing');
     };
 
+    // --- COMPROBAR RESPUESTA ---
     const checkAnswer = useCallback((userAnswer) => {
-        const currentQ = questions[currentParams.index];
-        const isCorrect = normalizeText(userAnswer) === normalizeText(currentQ.solucion);
-        
-        const newStatus = { ...currentParams.letterStatus };
-        newStatus[currentQ.letra] = isCorrect ? 'correct' : 'wrong';
+        if (isProcessing.current) return;
+        isProcessing.current = true;
 
-        if (isCorrect) {
-            setScore(s => s + 1);
-            setFeedback({ type: 'success', text: '¡Correcto!' });
+        let isAnswerCorrect = false;
+        
+        setPlayers(prev => {
+            const newPlayers = prev.map(p => ({
+                ...p,
+                letterStatus: { ...p.letterStatus }, 
+                currentParams: { ...p.currentParams }
+            }));
+
+            const p = newPlayers[activePlayerIndex];
+            const currentQ = p.questions[p.currentParams.index];
+            
+            // 1. Comparamos usando la versión "limpia" (sin acentos, minúsculas)
+            // Esto asegura que "avion" == "avión" sea TRUE
+            isAnswerCorrect = cleanText(userAnswer) === cleanText(currentQ.solucion);
+            
+            p.letterStatus[currentQ.letra] = isAnswerCorrect ? 'correct' : 'wrong';
+            if (isAnswerCorrect) p.score += 1;
+            
+            return newPlayers;
+        });
+
+        // 2. Gestionamos el Feedback Educativo
+        if (isAnswerCorrect) {
+            const currentPlayer = players[activePlayerIndex];
+            const currentQ = currentPlayer.questions[currentPlayer.currentParams.index];
+            
+            // Verificamos si lo escribió EXACTO (teniendo en cuenta acentos/mayúsculas del original)
+            // Si el original es "árbol" y escribió "arbol", entra aquí.
+            if (userAnswer.trim() !== currentQ.solucion.trim()) {
+                // Es correcto (gana punto), pero mostramos la forma perfecta
+                setFeedback({ type: 'success', text: `¡Bien! Se escribe: ${currentQ.solucion}` });
+                // Damos un poco más de tiempo (2s) para que lea la corrección
+                setTimeout(() => {
+                    setFeedback(null);
+                    advancePlayerIndex(activePlayerIndex); 
+                    isProcessing.current = false; 
+                }, 2000);
+
+            } else {
+                // Perfecto
+                setFeedback({ type: 'success', text: '¡Correcto!' });
+                setTimeout(() => {
+                    setFeedback(null);
+                    advancePlayerIndex(activePlayerIndex); 
+                    isProcessing.current = false; 
+                }, 1000);
+            }
+
         } else {
-            setFeedback({ type: 'error', text: `¡Vaya! Era "${currentQ.solucion}"` });
+            // Fallo
+            const currentPlayer = players[activePlayerIndex];
+            const currentQ = currentPlayer.questions[currentPlayer.currentParams.index];
+            
+            setFeedback({ type: 'error', text: `¡Era "${currentQ.solucion}"!` });
+            
+            setTimeout(() => {
+                handleTurnChange(); 
+                isProcessing.current = false; 
+            }, 1500);
         }
 
-        moveToNextQuestion(newStatus, currentParams.index);
-    }, [questions, currentParams]);
+    }, [players, activePlayerIndex]);
 
+    // --- PASAPALABRA ---
     const pasapalabra = useCallback(() => {
+        if (isProcessing.current) return;
+        isProcessing.current = true;
+
         setFeedback({ type: 'info', text: '¡Pasapalabra!' });
-        moveToNextQuestion(currentParams.letterStatus, currentParams.index);
-    }, [questions, currentParams]);
+        
+        setTimeout(() => {
+            handleTurnChange();
+            isProcessing.current = false; 
+        }, 1000);
+    }, [activePlayerIndex]);
 
-    const moveToNextQuestion = (currentStatus, currentIndex) => {
-        let nextIndex = currentIndex + 1;
-        let loopCount = 0;
-
-        while (loopCount < questions.length) {
-            if (nextIndex >= questions.length) nextIndex = 0;
+    // --- AVANZAR ÍNDICE ---
+    const advancePlayerIndex = (playerIdx) => {
+        setPlayers(prev => {
+            const newPlayers = prev.map(p => ({
+                ...p,
+                currentParams: { ...p.currentParams }
+            }));
             
-            const nextLetter = questions[nextIndex].letra;
-            if (currentStatus[nextLetter] === 'pending') {
-                setTimeout(() => {
-                    setCurrentParams({ index: nextIndex, letterStatus: currentStatus });
-                    setFeedback(null);
-                }, 1000); 
-                return;
+            const p = newPlayers[playerIdx];
+            advancePlayerIndexInternal(p);
+            
+            if (p.finished) {
+                 setTimeout(() => handleTurnChange(), 0);
+            }
+            return newPlayers;
+        });
+    };
+
+    // --- CAMBIAR DE TURNO ---
+    const handleTurnChange = () => {
+        setFeedback(null);
+        
+        setPlayers(prevPlayers => {
+            const newPlayers = prevPlayers.map(p => ({
+                ...p,
+                currentParams: { ...p.currentParams }
+            }));
+            
+            const allFinished = newPlayers.every(p => p.finished || (config.useTimer && p.timeLeft <= 0));
+            if (allFinished) {
+                setGameState('finished');
+                return newPlayers;
+            }
+
+            const currentP = newPlayers[activePlayerIndex];
+            const nextIdx = (activePlayerIndex + 1) % newPlayers.length;
+            const nextP = newPlayers[nextIdx];
+
+            if (!currentP.finished) {
+                advancePlayerIndexInternal(currentP);
+            }
+
+            if (newPlayers.length > 1) {
+                if (!nextP.finished && (!config.useTimer || nextP.timeLeft > 0)) {
+                    setActivePlayerIndex(nextIdx);
+                } else {
+                    if (!currentP.finished && (!config.useTimer || currentP.timeLeft > 0)) {
+                        // Sigo yo
+                    } else {
+                        setGameState('finished');
+                    }
+                }
+            } else {
+                if (currentP.finished || (config.useTimer && currentP.timeLeft <= 0)) {
+                    setGameState('finished');
+                }
+            }
+
+            return newPlayers;
+        });
+    };
+
+    const advancePlayerIndexInternal = (p) => {
+        let nextIndex = p.currentParams.index + 1;
+        let loopCount = 0;
+        let foundPending = false;
+
+        while (loopCount < p.questions.length) {
+            if (nextIndex >= p.questions.length) nextIndex = 0;
+            const nextLetter = p.questions[nextIndex].letra;
+            
+            if (p.letterStatus[nextLetter] === 'pending') {
+                p.currentParams.index = nextIndex;
+                foundPending = true;
+                break;
             }
             nextIndex++;
             loopCount++;
         }
 
-        setCurrentParams({ index: currentIndex, letterStatus: currentStatus });
-        setGameState('finished');
+        if (!foundPending) {
+            p.finished = true;
+        }
     };
 
     const restartGame = () => {
-        // Volvemos a la pantalla de configuración para elegir nuevo número si se quiere
         setGameState('config');
-        setFeedback(null);
     };
+
+    const activePlayer = players[activePlayerIndex];
+    const currentQuestion = activePlayer ? activePlayer.questions[activePlayer.currentParams.index] : null;
 
     return {
         gameState,
-        currentQuestion: questions[currentParams.index],
-        letterStatus: currentParams.letterStatus,
-        score,
-        total: questions.length,
+        players,
+        activePlayer,
+        activePlayerIndex,
+        currentQuestion,
         feedback,
         checkAnswer,
         pasapalabra,
         restartGame,
-        startGame, // Exponemos la función para iniciar desde la UI
-        configCount, 
-        setConfigCount,
+        startGame,
+        config,
+        setConfig,
         maxQuestions: rawData ? Object.keys(rawData.reduce((acc,v)=>{acc[v.letra]=1;return acc},{})).length : 26
     };
 };
