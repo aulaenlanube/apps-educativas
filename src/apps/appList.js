@@ -42,6 +42,7 @@ import MultiplicacionesPrimaria6 from './multiplicaciones/primaria-6/Multiplicac
 import GeneradorPersonajes from './generador-personajes/GeneradorPersonajes';
 import BuscaElIntruso from './busca-el-intruso/BuscaElIntruso.jsx'
 import RoscoJuego from './rosco/RoscoJuego'; 
+import OrdenaBolas from '@/apps/ordena-bolas/OrdenaBolas';
 
 
 
@@ -176,6 +177,13 @@ const appRosco = {
     component: RoscoJuego 
 };
 
+const appOrdenaBolas = {
+    id: 'ordena-bolas',
+    name: 'Ordena las Bolas',
+    description: 'Juego de física. Pulsa las bolas de menor a mayor peso. ¡Puedes lanzarlas!',
+    component: OrdenaBolas
+};
+
 // exportamos las materias para primaria y ESO desde el JSON
 export const primariaSubjects = materiasData.primaria;
 export const esoSubjects = materiasData.eso;
@@ -213,6 +221,7 @@ export const primariaApps = {
         description: 'Encuentra el número diferente. ¡Entrena tu vista con números!',
         component: BuscaElIntruso
       },
+      appOrdenaBolas,
       appRosco,
       appMedidas1,
       appMayorMenor1,
