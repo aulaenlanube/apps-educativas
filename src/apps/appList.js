@@ -44,6 +44,7 @@ import BuscaElIntruso from './busca-el-intruso/BuscaElIntruso.jsx'
 import RoscoJuego from './rosco/RoscoJuego'; 
 import OrdenaBolas from '@/apps/ordena-bolas/OrdenaBolas';
 import RunnerAcentuacion from './runner-acentuacion/RunnerAcentuacion';
+import RunnerMatematicas from './runner-matematicas/RunnerMatematicas';
 
 
 
@@ -192,6 +193,13 @@ const appRunnerAcentuacion = {
     component: RunnerAcentuacion
 };
 
+const appRunnerMatematicas = { 
+    id: 'runner-matematicas', 
+    name: 'Math Dash (Runner)', 
+    description: 'Salta obstáculos y atrapa los números correctos en este juego de plataformas.', 
+    component: RunnerMatematicas 
+};
+
 // exportamos las materias para primaria y ESO desde el JSON
 export const primariaSubjects = materiasData.primaria;
 export const esoSubjects = materiasData.eso;
@@ -229,6 +237,7 @@ export const primariaApps = {
         description: 'Encuentra el número diferente. ¡Entrena tu vista con números!',
         component: BuscaElIntruso
       },
+      appRunnerMatematicas,      
       appOrdenaBolas,
       appRosco,
       appMedidas1,
@@ -336,6 +345,7 @@ export const primariaApps = {
         description: 'Encuentra el número o figura que no encaja.',
         component: BuscaElIntruso
       },
+      appRunnerMatematicas,
       appOrdenaBolas,
       appRosco,
       appMedidas2,
@@ -430,8 +440,7 @@ export const primariaApps = {
         description: 'Identifica la palabra intrusa por su categoría gramatical o significado.',
         component: BuscaElIntruso
       },
-      appRunnerAcentuacion,
-      appRosco,
+            appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
@@ -447,6 +456,7 @@ export const primariaApps = {
       { id: 'restas-primaria-3', name: 'Restas con llevadas', description: 'Restas de 3 y 4 cifras con llevadas', component: RestasPrimaria3 },
       { id: 'multiplicaciones-primaria-3', name: 'Multiplicaciones', description: 'Multiplicaciones de 1 cifra en el multiplicador', component: MultiplicacionesPrimaria3 },
       { id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', description: 'Calcula el coste de comprar varias unidades del mismo producto.', component: SupermercadoMatematico3 },
+      appRunnerMatematicas,
       appOrdenaBolas,
       appRosco,
       appMedidas3,
@@ -538,6 +548,7 @@ export const primariaApps = {
         description: 'Análisis morfológico y semántico.',
         component: BuscaElIntruso
       },
+      appRunnerAcentuacion,      
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -554,6 +565,7 @@ export const primariaApps = {
       { id: 'restas-primaria-4', name: 'Restas con un decimal', description: 'Restas con 1 decimal', component: RestasPrimaria4 },
       { id: 'multiplicaciones-primaria-4', name: 'Multiplicaciones', description: 'Multiplica por más de 1 cifra', component: MultiplicacionesPrimaria4 },
       { id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 },
+      appRunnerMatematicas,
       appOrdenaBolas,
       appRosco,
       appMedidas4,
@@ -662,6 +674,7 @@ export const primariaApps = {
       { id: 'restas-primaria-5', name: 'Restas con decimales', description: 'Restas con varios decimales', component: RestasPrimaria5 },
       { id: 'multiplicaciones-primaria-5', name: 'Multiplicaciones', description: 'Multiplica por varios dígitos', component: MultiplicacionesPrimaria5 },
       { id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 },
+      appRunnerMatematicas,
       appOrdenaBolas,
       appRosco,
       appMedidas5,
@@ -770,6 +783,7 @@ export const primariaApps = {
       { id: 'restas-primaria-6', name: 'Restas a completar', description: 'Completa cualquier parte de la resta', component: RestasPrimaria6 },
       { id: 'multiplicaciones-primaria-6', name: 'Multiplicaciones', description: 'Multiplicaciones con decimales', component: MultiplicacionesPrimaria6 },
       { id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 },
+      appRunnerMatematicas,
       appOrdenaBolas,
       appRosco,
       appMedidas6,
@@ -881,6 +895,7 @@ export const esoApps = {
         description: 'Repasa números enteros, geometría y fracciones.',
         component: BuscaElIntruso
       },
+      appRunnerMatematicas,
       appOrdenaBolas,
       appRosco,      
       appOrdenaLaFrase,
@@ -1031,6 +1046,7 @@ export const esoApps = {
         description: 'Álgebra, funciones y geometría.',
         component: BuscaElIntruso
       },
+      appRunnerMatematicas,
       appOrdenaBolas,
       appRosco,
       appOrdenaLaFrase,
@@ -1171,6 +1187,7 @@ export const esoApps = {
         description: 'Literatura clásica y sintaxis.',
         component: BuscaElIntruso
       },
+      appRunnerMatematicas,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1333,6 +1350,7 @@ export const esoApps = {
         description: 'Funciones, probabilidad y trigonometría.',
         component: BuscaElIntruso
       },
+      appRunnerMatematicas,
       appOrdenaBolas,
       appRosco,
       appOrdenaLaFrase,

@@ -1,0 +1,18 @@
+{
+  "logaritmos_exactos": [
+    "log(10)", "log(100)", "log2(4)", "log2(8)", "ln(e)", "log(1)",
+    "1", "2", "3", "0", "log3(9)", "log5(25)"
+  ],
+  "trigonometria_valor_1": [
+    "sin(90)", "cos(0)", "tan(45)", "sin^2+cos^2", "1",
+    "sen(pi/2)", "cos(0 rad)", "sec(0)", "cosec(90)"
+  ],
+  "intervalos_x_mayor_0": [
+    "(0, +inf)", "x > 0", "Positivos", "1", "100", "π", "e",
+    "Valor Absoluto", "|-5|", "√4", "1/2"
+  ],
+  "funciones_lineales": [
+    "y=x", "y=2x+1", "y=-x", "f(x)=3x", "Recta",
+    "Grado 1", "mx+n", "y=5", "Pendiente 2"
+  ]
+}
