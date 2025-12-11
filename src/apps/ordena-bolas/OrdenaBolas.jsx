@@ -23,11 +23,14 @@ const OrdenaBolas = () => {
             add: false,
             sub: false,
             mul: false,
-            div: false
+            div: false,
+            pow: false,
+            sqrt: false,
+            eq: false
         }
     });
 
-    // Cronómetro (con centésimas)
+    // Cronómetro
     useEffect(() => {
         let interval;
         if (gameState === 'playing') {
@@ -49,7 +52,6 @@ const OrdenaBolas = () => {
 
     const toggleOp = (op) => {
         const newOps = { ...config.ops, [op]: !config.ops[op] };
-        // Evitar desactivar todas las opciones
         if (!Object.values(newOps).some(v => v)) return; 
         setConfig({ ...config, ops: newOps });
     };
@@ -63,7 +65,7 @@ const OrdenaBolas = () => {
     const backToConfig = () => {
         setGameState('config');
         setTimeElapsed(0);
-        setKey(prev => prev + 1); // Forzamos reinicio para limpiar el motor físico
+        setKey(prev => prev + 1);
     };
 
     const restartGame = () => {
@@ -72,7 +74,7 @@ const OrdenaBolas = () => {
         setKey(prev => prev + 1);
     };
 
-    // --- GENERADOR DE OPERACIONES ---
+    // --- GENERADOR AVANZADO ---
     const generateBallData = (count, options) => {
         const activeTypes = Object.keys(options).filter(k => options[k]);
         const ballsData = [];
@@ -113,10 +115,42 @@ const OrdenaBolas = () => {
                     const a4 = val * b4;
                     label = `${a4} ÷ ${b4}`;
                     break;
+                case 'pow':
+                    const base = Math.floor(Math.random() * 5) + 2; // Base 2-6
+                    const exp = Math.floor(Math.random() * 2) + 2;  // Exp 2-3
+                    val = Math.pow(base, exp);
+                    // Usamos caracteres unicode para exponentes comunes si es posible, o notación ^
+                    label = exp === 2 ? `${base}²` : (exp === 3 ? `${base}³` : `${base}^${exp}`);
+                    break;
+                case 'sqrt':
+                    val = Math.floor(Math.random() * 10) + 2; // Raíz resultante 2-11
+                    const sq = val * val;
+                    label = `√${sq}`;
+                    break;
+                case 'eq':
+                    const eqType = Math.floor(Math.random() * 3);
+                    if (eqType === 0) { // x + a = b
+                         const x = Math.floor(Math.random() * 15) + 1;
+                         const a = Math.floor(Math.random() * 10) + 1;
+                         val = x;
+                         label = `x + ${a} = ${x + a}`;
+                    } else if (eqType === 1) { // x - a = b
+                         const x = Math.floor(Math.random() * 15) + 5;
+                         const a = Math.floor(Math.random() * 5) + 1;
+                         val = x;
+                         label = `x - ${a} = ${x - a}`;
+                    } else { // ax = b
+                         const x = Math.floor(Math.random() * 10) + 2;
+                         const a = Math.floor(Math.random() * 4) + 2;
+                         val = x;
+                         label = `${a}x = ${x * a}`;
+                    }
+                    break;
                 default:
                     val = 0; label = "?";
             }
 
+            // Evitamos valores duplicados para no confundir el orden estricto
             if (!usedValues.has(val) && val > 0) {
                 usedValues.add(val);
                 ballsData.push({ value: val, label });
@@ -125,9 +159,8 @@ const OrdenaBolas = () => {
         return ballsData;
     };
 
-    // --- MOTOR FÍSICO (MATTER.JS) ---
+    // --- MOTOR FÍSICO ---
     useEffect(() => {
-        // Si estamos en configuración, no iniciamos el motor
         if (gameState === 'config') return;
 
         const Engine = Matter.Engine,
@@ -159,27 +192,29 @@ const OrdenaBolas = () => {
             }
         });
 
-        // Configuración del escenario
+        // --- CAJA "PERFECTA" ---
         const boxSize = 450; 
         const wallThickness = 40;
         const centerX = width / 2;
         const centerY = height / 2;
-        const wallOptions = { isStatic: true, render: { fillStyle: '#334155' }, friction: 1, restitution: 0.2 };
+        const wallStyle = { fillStyle: '#334155', strokeStyle: '#334155', lineWidth: 1 };
+        const wallOptions = { isStatic: true, render: wallStyle, friction: 1, restitution: 0.2 };
+
+        const offset = (boxSize - wallThickness) / 2;
+        const floor = Bodies.rectangle(centerX, centerY + offset, boxSize, wallThickness, wallOptions);
+        const ceiling = Bodies.rectangle(centerX, centerY - offset, boxSize, wallThickness, wallOptions);
+        const sideHeight = boxSize - (2 * wallThickness);
+        const leftWall = Bodies.rectangle(centerX - offset, centerY, wallThickness, sideHeight, wallOptions);
+        const rightWall = Bodies.rectangle(centerX + offset, centerY, wallThickness, sideHeight, wallOptions);
 
         const boxContainer = Composite.create();
-        Composite.add(boxContainer, [
-            Bodies.rectangle(centerX, centerY + boxSize/2, boxSize, wallThickness, wallOptions),
-            Bodies.rectangle(centerX, centerY - boxSize/2, boxSize, wallThickness, wallOptions),
-            Bodies.rectangle(centerX - boxSize/2, centerY, wallThickness, boxSize, wallOptions),
-            Bodies.rectangle(centerX + boxSize/2, centerY, wallThickness, boxSize, wallOptions)
-        ]);
+        Composite.add(boxContainer, [floor, ceiling, leftWall, rightWall]);
         Composite.add(engine.world, boxContainer);
 
-        // Crear Bolas
+        // --- BOLAS ---
         const ballsData = generateBallData(config.ballCount, config.ops);
         const sortedValues = [...ballsData].map(b => b.value).sort((a, b) => a - b);
         
-        // Estado mutable local para evitar closures obsoletos en eventos
         const gameLogic = {
             targetIndex: 0,
             isGameOver: false,
@@ -224,7 +259,7 @@ const OrdenaBolas = () => {
 
         Composite.add(engine.world, balls);
 
-        // Confetti
+        // --- CONFETTI ---
         const lanzarConfetti = (x, y) => {
             const confettiParticles = [];
             const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
@@ -240,7 +275,7 @@ const OrdenaBolas = () => {
             Composite.add(engine.world, confettiParticles);
         };
 
-        // Manejador de Clics
+        // --- CLIC ---
         const handleCanvasClick = (event) => {
             if (gameLogic.isGameOver || gameLogic.isVictory) return;
 
@@ -258,7 +293,6 @@ const OrdenaBolas = () => {
                 const correctValue = sortedValues[gameLogic.targetIndex];
 
                 if (clickedValue === correctValue) {
-                    // ¡Correcto!
                     clickedBall.plugin.isCorrect = true;
                     clickedBall.render.fillStyle = '#ef4444'; 
                     clickedBall.render.strokeStyle = '#b91c1c';
@@ -267,11 +301,10 @@ const OrdenaBolas = () => {
 
                     if (gameLogic.targetIndex >= sortedValues.length) {
                         gameLogic.isVictory = true;
-                        setGameState('won'); // Actualizamos UI
-                        lanzarConfetti(centerX, centerY - 200); // Lanzamos confetti en el mundo FÍSICO existente
+                        setGameState('won');
+                        lanzarConfetti(centerX, centerY - 200);
                     }
                 } else {
-                    // ¡Fallo!
                     gameLogic.isGameOver = true;
                     setGameState('lost');
                 }
@@ -280,13 +313,13 @@ const OrdenaBolas = () => {
 
         render.canvas.addEventListener('pointerdown', handleCanvasClick);
 
-        // Rotación continua
+        // --- ROTACIÓN ---
         Events.on(engine, 'beforeUpdate', () => {
             const rotation = config.rotationSpeed * 0.001; 
             if (rotation > 0) Composite.rotate(boxContainer, rotation, { x: centerX, y: centerY });
         });
 
-        // Renderizado de texto en las bolas
+        // --- TEXTOS ---
         Events.on(render, 'afterRender', () => {
             const context = render.context;
             if (!context) return;
@@ -318,10 +351,21 @@ const OrdenaBolas = () => {
                  Engine.clear(engineRef.current);
             }
         };
-    }, [key]); // CORRECCIÓN: Quitamos 'gameState' de las dependencias para que el confetti persista
+    }, [key]);
 
-    // --- RENDERIZADO DEL MENÚ DE CONFIGURACIÓN ---
+    // --- MENÚ DE CONFIGURACIÓN ---
     if (gameState === 'config') {
+        const operations = [
+            { id: 'numbers', label: 'Números' },
+            { id: 'add', label: 'Sumas' },
+            { id: 'sub', label: 'Restas' },
+            { id: 'mul', label: 'Multiplicación' },
+            { id: 'div', label: 'División' },
+            { id: 'pow', label: 'Potencias' },
+            { id: 'sqrt', label: 'Raíces' },
+            { id: 'eq', label: 'Ecuaciones' }
+        ];
+
         return (
             <div className="flex flex-col items-center justify-center p-6 max-w-2xl mx-auto animate-in fade-in zoom-in duration-300">
                 <div className="bg-white rounded-2xl shadow-xl p-8 w-full border border-purple-100">
@@ -331,6 +375,7 @@ const OrdenaBolas = () => {
                     </div>
 
                     <div className="space-y-6">
+                        {/* Sliders */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="font-medium text-gray-700 text-sm">Cantidad de bolas: {config.ballCount}</label>
@@ -342,28 +387,24 @@ const OrdenaBolas = () => {
                             </div>
                         </div>
 
+                        {/* Operaciones */}
                         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                            <h3 className="font-medium text-gray-700 mb-3">Tipos de Operaciones</h3>
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                {[
-                                    { id: 'numbers', label: 'Números' },
-                                    { id: 'add', label: 'Sumas' },
-                                    { id: 'sub', label: 'Restas' },
-                                    { id: 'mul', label: 'Multiplicación' },
-                                    { id: 'div', label: 'División' }
-                                ].map(op => (
+                            <h3 className="font-medium text-gray-700 mb-3">Tipos de Contenido</h3>
+                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                {operations.map(op => (
                                     <div 
                                         key={op.id}
                                         onClick={() => toggleOp(op.id)}
                                         className={`flex items-center space-x-2 p-2 rounded-lg cursor-pointer transition-colors ${config.ops[op.id] ? 'bg-white shadow-sm border border-blue-200' : 'hover:bg-slate-100'}`}
                                     >
-                                        {config.ops[op.id] ? <CheckSquare className="w-5 h-5 text-blue-600" /> : <Square className="w-5 h-5 text-gray-400" />}
+                                        {config.ops[op.id] ? <CheckSquare className="w-4 h-4 text-blue-600" /> : <Square className="w-4 h-4 text-gray-400" />}
                                         <span className={`text-sm ${config.ops[op.id] ? 'font-semibold text-blue-900' : 'text-gray-600'}`}>{op.label}</span>
                                     </div>
                                 ))}
                             </div>
                         </div>
 
+                        {/* Tamaño */}
                         <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer" onClick={() => setConfig({...config, randomSize: !config.randomSize})}>
                             <div className="flex-1">
                                 <span className="font-medium text-gray-700 text-sm block">Tamaño engañoso</span>
@@ -383,7 +424,7 @@ const OrdenaBolas = () => {
         );
     }
 
-    // --- RENDERIZADO DEL JUEGO ---
+    // --- PANTALLA JUEGO ---
     return (
         <div className="flex flex-col items-center justify-center space-y-4 p-4">
             <div className="w-full max-w-4xl flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-gray-100">
@@ -410,7 +451,7 @@ const OrdenaBolas = () => {
                     <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
                         <div className="bg-white p-8 rounded-xl shadow-2xl text-center space-y-4 animate-in zoom-in max-w-sm mx-4">
                             <h3 className="text-2xl font-bold text-red-500">¡Fallaste!</h3>
-                            <p>El orden era incorrecto.</p>
+                            <p className="font-medium text-gray-800">Debes marcar las bolas de menor a mayor valor.</p>
                             <div className="text-xl font-mono text-gray-600">Tiempo: {formatTime(timeElapsed)}</div>
                             <div className="flex space-x-2 mt-4">
                                 <Button onClick={backToConfig} variant="outline" className="flex-1">Menú</Button>
