@@ -27,7 +27,7 @@ const OrdenaBolas = () => {
         }
     });
 
-    // Cronómetro
+    // Cronómetro (con centésimas)
     useEffect(() => {
         let interval;
         if (gameState === 'playing') {
@@ -49,7 +49,7 @@ const OrdenaBolas = () => {
 
     const toggleOp = (op) => {
         const newOps = { ...config.ops, [op]: !config.ops[op] };
-        // Evitar desactivar todas
+        // Evitar desactivar todas las opciones
         if (!Object.values(newOps).some(v => v)) return; 
         setConfig({ ...config, ops: newOps });
     };
@@ -63,6 +63,7 @@ const OrdenaBolas = () => {
     const backToConfig = () => {
         setGameState('config');
         setTimeElapsed(0);
+        setKey(prev => prev + 1); // Forzamos reinicio para limpiar el motor físico
     };
 
     const restartGame = () => {
@@ -71,7 +72,7 @@ const OrdenaBolas = () => {
         setKey(prev => prev + 1);
     };
 
-    // --- GENERADOR DE PROBLEMAS MATEMÁTICOS ---
+    // --- GENERADOR DE OPERACIONES ---
     const generateBallData = (count, options) => {
         const activeTypes = Object.keys(options).filter(k => options[k]);
         const ballsData = [];
@@ -95,7 +96,7 @@ const OrdenaBolas = () => {
                     label = `${a1} + ${b1}`;
                     break;
                 case 'sub':
-                    val = Math.floor(Math.random() * 40) + 1; // Resultado positivo
+                    val = Math.floor(Math.random() * 40) + 1; 
                     const b2 = Math.floor(Math.random() * 20) + 1;
                     const a2 = val + b2;
                     label = `${a2} - ${b2}`;
@@ -107,7 +108,7 @@ const OrdenaBolas = () => {
                     label = `${a3} × ${b3}`;
                     break;
                 case 'div':
-                    val = Math.floor(Math.random() * 9) + 2; // Resultado
+                    val = Math.floor(Math.random() * 9) + 2;
                     const b4 = Math.floor(Math.random() * 9) + 2;
                     const a4 = val * b4;
                     label = `${a4} ÷ ${b4}`;
@@ -116,7 +117,6 @@ const OrdenaBolas = () => {
                     val = 0; label = "?";
             }
 
-            // Evitar valores repetidos para no confundir el orden
             if (!usedValues.has(val) && val > 0) {
                 usedValues.add(val);
                 ballsData.push({ value: val, label });
@@ -125,8 +125,9 @@ const OrdenaBolas = () => {
         return ballsData;
     };
 
-    // --- MOTOR FÍSICO ---
+    // --- MOTOR FÍSICO (MATTER.JS) ---
     useEffect(() => {
+        // Si estamos en configuración, no iniciamos el motor
         if (gameState === 'config') return;
 
         const Engine = Matter.Engine,
@@ -158,7 +159,7 @@ const OrdenaBolas = () => {
             }
         });
 
-        // Caja
+        // Configuración del escenario
         const boxSize = 450; 
         const wallThickness = 40;
         const centerX = width / 2;
@@ -174,11 +175,11 @@ const OrdenaBolas = () => {
         ]);
         Composite.add(engine.world, boxContainer);
 
-        // Generar Bolas
+        // Crear Bolas
         const ballsData = generateBallData(config.ballCount, config.ops);
-        // Ordenamos por valor numérico para saber el objetivo, pero las bolas se crean desordenadas
         const sortedValues = [...ballsData].map(b => b.value).sort((a, b) => a - b);
         
+        // Estado mutable local para evitar closures obsoletos en eventos
         const gameLogic = {
             targetIndex: 0,
             isGameOver: false,
@@ -186,12 +187,10 @@ const OrdenaBolas = () => {
         };
 
         const balls = ballsData.map(data => {
-            // Tamaño
             let size;
             if (config.randomSize) {
                 size = 25 + Math.random() * 30; 
             } else {
-                // Escalar tamaño relativo a los valores presentes
                 const minVal = sortedValues[0];
                 const maxVal = sortedValues[sortedValues.length - 1];
                 const range = maxVal - minVal || 1;
@@ -210,8 +209,8 @@ const OrdenaBolas = () => {
                     density: 0.04,
                     label: 'ball',
                     plugin: {
-                        value: data.value, // Valor numérico para la lógica
-                        text: data.label,  // Texto a mostrar (operación o número)
+                        value: data.value,
+                        text: data.label,
                         isCorrect: false 
                     },
                     render: {
@@ -224,68 +223,6 @@ const OrdenaBolas = () => {
         });
 
         Composite.add(engine.world, balls);
-
-        // Clic
-        const handleCanvasClick = (event) => {
-            if (gameLogic.isGameOver || gameLogic.isVictory) return;
-
-            const rect = render.canvas.getBoundingClientRect();
-            const clickX = event.clientX - rect.left;
-            const clickY = event.clientY - rect.top;
-
-            const bodiesUnderMouse = Query.point(balls, { x: clickX, y: clickY });
-            const clickedBall = bodiesUnderMouse.find(b => b.label === 'ball');
-
-            if (clickedBall) {
-                if (clickedBall.plugin.isCorrect) return;
-
-                const clickedValue = clickedBall.plugin.value;
-                const correctValue = sortedValues[gameLogic.targetIndex];
-
-                if (clickedValue === correctValue) {
-                    // Acierto
-                    clickedBall.plugin.isCorrect = true;
-                    clickedBall.render.fillStyle = '#ef4444'; 
-                    clickedBall.render.strokeStyle = '#b91c1c';
-                    
-                    gameLogic.targetIndex++;
-
-                    if (gameLogic.targetIndex >= sortedValues.length) {
-                        gameLogic.isVictory = true;
-                        setGameState('won');
-                        lanzarConfetti(centerX, centerY - 200);
-                    }
-                } else {
-                    // Fallo
-                    gameLogic.isGameOver = true;
-                    setGameState('lost');
-                }
-            }
-        };
-
-        render.canvas.addEventListener('pointerdown', handleCanvasClick);
-
-        // Rotación
-        Events.on(engine, 'beforeUpdate', () => {
-            const rotation = config.rotationSpeed * 0.001; 
-            if (rotation > 0) Composite.rotate(boxContainer, rotation, { x: centerX, y: centerY });
-        });
-
-        // Render Texto
-        Events.on(render, 'afterRender', () => {
-            const context = render.context;
-            if (!context) return;
-            
-            context.font = 'bold 18px Arial';
-            context.textAlign = 'center';
-            context.textBaseline = 'middle';
-
-            balls.forEach(ball => {
-                const { x, y } = ball.position;
-                context.fillStyle = 'white';
-                context.fillText(ball.plugin.text, x, y);
-            });
-        });
 
         // Confetti
         const lanzarConfetti = (x, y) => {
@@ -303,6 +240,68 @@ const OrdenaBolas = () => {
             Composite.add(engine.world, confettiParticles);
         };
 
+        // Manejador de Clics
+        const handleCanvasClick = (event) => {
+            if (gameLogic.isGameOver || gameLogic.isVictory) return;
+
+            const rect = render.canvas.getBoundingClientRect();
+            const clickX = event.clientX - rect.left;
+            const clickY = event.clientY - rect.top;
+
+            const bodiesUnderMouse = Query.point(balls, { x: clickX, y: clickY });
+            const clickedBall = bodiesUnderMouse.find(b => b.label === 'ball');
+
+            if (clickedBall) {
+                if (clickedBall.plugin.isCorrect) return;
+
+                const clickedValue = clickedBall.plugin.value;
+                const correctValue = sortedValues[gameLogic.targetIndex];
+
+                if (clickedValue === correctValue) {
+                    // ¡Correcto!
+                    clickedBall.plugin.isCorrect = true;
+                    clickedBall.render.fillStyle = '#ef4444'; 
+                    clickedBall.render.strokeStyle = '#b91c1c';
+                    
+                    gameLogic.targetIndex++;
+
+                    if (gameLogic.targetIndex >= sortedValues.length) {
+                        gameLogic.isVictory = true;
+                        setGameState('won'); // Actualizamos UI
+                        lanzarConfetti(centerX, centerY - 200); // Lanzamos confetti en el mundo FÍSICO existente
+                    }
+                } else {
+                    // ¡Fallo!
+                    gameLogic.isGameOver = true;
+                    setGameState('lost');
+                }
+            }
+        };
+
+        render.canvas.addEventListener('pointerdown', handleCanvasClick);
+
+        // Rotación continua
+        Events.on(engine, 'beforeUpdate', () => {
+            const rotation = config.rotationSpeed * 0.001; 
+            if (rotation > 0) Composite.rotate(boxContainer, rotation, { x: centerX, y: centerY });
+        });
+
+        // Renderizado de texto en las bolas
+        Events.on(render, 'afterRender', () => {
+            const context = render.context;
+            if (!context) return;
+            
+            context.font = 'bold 18px Arial';
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+
+            balls.forEach(ball => {
+                const { x, y } = ball.position;
+                context.fillStyle = 'white';
+                context.fillText(ball.plugin.text, x, y);
+            });
+        });
+
         Render.run(render);
         const runner = Runner.create();
         Runner.run(runner, engine);
@@ -319,9 +318,9 @@ const OrdenaBolas = () => {
                  Engine.clear(engineRef.current);
             }
         };
-    }, [key, gameState]); 
+    }, [key]); // CORRECCIÓN: Quitamos 'gameState' de las dependencias para que el confetti persista
 
-    // --- RENDER CONFIG ---
+    // --- RENDERIZADO DEL MENÚ DE CONFIGURACIÓN ---
     if (gameState === 'config') {
         return (
             <div className="flex flex-col items-center justify-center p-6 max-w-2xl mx-auto animate-in fade-in zoom-in duration-300">
@@ -332,7 +331,6 @@ const OrdenaBolas = () => {
                     </div>
 
                     <div className="space-y-6">
-                        {/* Sliders */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="font-medium text-gray-700 text-sm">Cantidad de bolas: {config.ballCount}</label>
@@ -344,7 +342,6 @@ const OrdenaBolas = () => {
                             </div>
                         </div>
 
-                        {/* Operaciones */}
                         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
                             <h3 className="font-medium text-gray-700 mb-3">Tipos de Operaciones</h3>
                             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -367,7 +364,6 @@ const OrdenaBolas = () => {
                             </div>
                         </div>
 
-                        {/* Toggle Tamaño */}
                         <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer" onClick={() => setConfig({...config, randomSize: !config.randomSize})}>
                             <div className="flex-1">
                                 <span className="font-medium text-gray-700 text-sm block">Tamaño engañoso</span>
@@ -387,7 +383,7 @@ const OrdenaBolas = () => {
         );
     }
 
-    // --- RENDER GAME ---
+    // --- RENDERIZADO DEL JUEGO ---
     return (
         <div className="flex flex-col items-center justify-center space-y-4 p-4">
             <div className="w-full max-w-4xl flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-gray-100">
