@@ -1,10 +1,14 @@
 // src/apps/ordena-bolas/OrdenaBolas.jsx
 import React, { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Matter from 'matter-js';
 import { Button } from '@/components/ui/button';
 import { RefreshCw, Trophy, Timer, Play, Settings, CheckSquare, Square } from 'lucide-react';
 
 const OrdenaBolas = () => {
+    // Obtenemos nivel y curso de la URL
+    const { level, grade } = useParams();
+    
     const sceneRef = useRef(null);
     const engineRef = useRef(null);
     
@@ -30,6 +34,32 @@ const OrdenaBolas = () => {
         }
     });
 
+    // --- LÓGICA DE FILTRADO POR CURSO ---
+    const getAllowedOperations = () => {
+        // ESO: Todo permitido
+        if (level === 'eso') {
+            return ['numbers', 'add', 'sub', 'mul', 'div', 'pow', 'sqrt', 'eq'];
+        }
+
+        // PRIMARIA
+        if (level === 'primaria') {
+            const gradeNum = parseInt(grade);
+            
+            // 1º, 2º y 3º de Primaria: Solo Sumas y Restas (y números básicos)
+            if (gradeNum >= 1 && gradeNum <= 3) {
+                return ['numbers', 'add', 'sub'];
+            }
+            
+            // 4º, 5º y 6º de Primaria: Añadimos Multiplicación y División
+            return ['numbers', 'add', 'sub', 'mul', 'div'];
+        }
+
+        // Fallback por seguridad
+        return ['numbers']; 
+    };
+
+    const allowedOps = getAllowedOperations();
+
     // Cronómetro
     useEffect(() => {
         let interval;
@@ -52,7 +82,10 @@ const OrdenaBolas = () => {
 
     const toggleOp = (op) => {
         const newOps = { ...config.ops, [op]: !config.ops[op] };
-        if (!Object.values(newOps).some(v => v)) return; 
+        // Validamos que al menos una opción válida para el nivel actual quede activa
+        const hasActiveAllowedOp = allowedOps.some(allowed => newOps[allowed]);
+        
+        if (!hasActiveAllowedOp) return; 
         setConfig({ ...config, ops: newOps });
     };
 
@@ -74,9 +107,13 @@ const OrdenaBolas = () => {
         setKey(prev => prev + 1);
     };
 
-    // --- GENERADOR AVANZADO ---
+    // --- GENERADOR ---
     const generateBallData = (count, options) => {
-        const activeTypes = Object.keys(options).filter(k => options[k]);
+        // Solo usamos los tipos que estén activos Y permitidos por el nivel/curso
+        const activeTypes = Object.keys(options).filter(k => options[k] && allowedOps.includes(k));
+        
+        if (activeTypes.length === 0) activeTypes.push('numbers');
+
         const ballsData = [];
         const usedValues = new Set();
         let attempts = 0;
@@ -116,14 +153,13 @@ const OrdenaBolas = () => {
                     label = `${a4} ÷ ${b4}`;
                     break;
                 case 'pow':
-                    const base = Math.floor(Math.random() * 5) + 2; // Base 2-6
-                    const exp = Math.floor(Math.random() * 2) + 2;  // Exp 2-3
+                    const base = Math.floor(Math.random() * 5) + 2; 
+                    const exp = Math.floor(Math.random() * 2) + 2;
                     val = Math.pow(base, exp);
-                    // Usamos caracteres unicode para exponentes comunes si es posible, o notación ^
                     label = exp === 2 ? `${base}²` : (exp === 3 ? `${base}³` : `${base}^${exp}`);
                     break;
                 case 'sqrt':
-                    val = Math.floor(Math.random() * 10) + 2; // Raíz resultante 2-11
+                    val = Math.floor(Math.random() * 10) + 2; 
                     const sq = val * val;
                     label = `√${sq}`;
                     break;
@@ -150,7 +186,6 @@ const OrdenaBolas = () => {
                     val = 0; label = "?";
             }
 
-            // Evitamos valores duplicados para no confundir el orden estricto
             if (!usedValues.has(val) && val > 0) {
                 usedValues.add(val);
                 ballsData.push({ value: val, label });
@@ -192,7 +227,7 @@ const OrdenaBolas = () => {
             }
         });
 
-        // --- CAJA "PERFECTA" ---
+        // Caja perfecta
         const boxSize = 450; 
         const wallThickness = 40;
         const centerX = width / 2;
@@ -211,7 +246,7 @@ const OrdenaBolas = () => {
         Composite.add(boxContainer, [floor, ceiling, leftWall, rightWall]);
         Composite.add(engine.world, boxContainer);
 
-        // --- BOLAS ---
+        // Bolas
         const ballsData = generateBallData(config.ballCount, config.ops);
         const sortedValues = [...ballsData].map(b => b.value).sort((a, b) => a - b);
         
@@ -259,7 +294,7 @@ const OrdenaBolas = () => {
 
         Composite.add(engine.world, balls);
 
-        // --- CONFETTI ---
+        // Confetti
         const lanzarConfetti = (x, y) => {
             const confettiParticles = [];
             const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
@@ -275,7 +310,7 @@ const OrdenaBolas = () => {
             Composite.add(engine.world, confettiParticles);
         };
 
-        // --- CLIC ---
+        // Clic
         const handleCanvasClick = (event) => {
             if (gameLogic.isGameOver || gameLogic.isVictory) return;
 
@@ -313,13 +348,13 @@ const OrdenaBolas = () => {
 
         render.canvas.addEventListener('pointerdown', handleCanvasClick);
 
-        // --- ROTACIÓN ---
+        // Rotación
         Events.on(engine, 'beforeUpdate', () => {
             const rotation = config.rotationSpeed * 0.001; 
             if (rotation > 0) Composite.rotate(boxContainer, rotation, { x: centerX, y: centerY });
         });
 
-        // --- TEXTOS ---
+        // Textos
         Events.on(render, 'afterRender', () => {
             const context = render.context;
             if (!context) return;
@@ -353,9 +388,9 @@ const OrdenaBolas = () => {
         };
     }, [key]);
 
-    // --- MENÚ DE CONFIGURACIÓN ---
+    // --- RENDER CONFIG ---
     if (gameState === 'config') {
-        const operations = [
+        const allOperations = [
             { id: 'numbers', label: 'Números' },
             { id: 'add', label: 'Sumas' },
             { id: 'sub', label: 'Restas' },
@@ -366,12 +401,27 @@ const OrdenaBolas = () => {
             { id: 'eq', label: 'Ecuaciones' }
         ];
 
+        // Filtramos las operaciones que se mostrarán en la UI según el curso
+        const visibleOperations = allOperations.filter(op => allowedOps.includes(op.id));
+        
+        // Texto dinámico para el nivel
+        const getLevelTitle = () => {
+            if (level === 'eso') return 'Nivel Secundaria (ESO)';
+            if (level === 'primaria') {
+                 const g = parseInt(grade);
+                 if (g >= 1 && g <= 3) return `Primaria (${grade}º) - Básico`;
+                 return `Primaria (${grade}º) - Avanzado`;
+            }
+            return 'Configuración';
+        };
+
         return (
             <div className="flex flex-col items-center justify-center p-6 max-w-2xl mx-auto animate-in fade-in zoom-in duration-300">
                 <div className="bg-white rounded-2xl shadow-xl p-8 w-full border border-purple-100">
                     <div className="text-center mb-6">
                         <h2 className="text-3xl font-bold text-purple-700 mb-2">Configuración</h2>
-                        <p className="text-gray-500">Personaliza tu desafío matemático</p>
+                        <p className="text-gray-500 font-medium">{getLevelTitle()}</p>
+                        <p className="text-sm text-gray-400">Personaliza tu desafío matemático</p>
                     </div>
 
                     <div className="space-y-6">
@@ -387,21 +437,25 @@ const OrdenaBolas = () => {
                             </div>
                         </div>
 
-                        {/* Operaciones */}
+                        {/* Operaciones (Filtradas por Nivel) */}
                         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
                             <h3 className="font-medium text-gray-700 mb-3">Tipos de Contenido</h3>
-                            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                {operations.map(op => (
-                                    <div 
-                                        key={op.id}
-                                        onClick={() => toggleOp(op.id)}
-                                        className={`flex items-center space-x-2 p-2 rounded-lg cursor-pointer transition-colors ${config.ops[op.id] ? 'bg-white shadow-sm border border-blue-200' : 'hover:bg-slate-100'}`}
-                                    >
-                                        {config.ops[op.id] ? <CheckSquare className="w-4 h-4 text-blue-600" /> : <Square className="w-4 h-4 text-gray-400" />}
-                                        <span className={`text-sm ${config.ops[op.id] ? 'font-semibold text-blue-900' : 'text-gray-600'}`}>{op.label}</span>
-                                    </div>
-                                ))}
-                            </div>
+                            {visibleOperations.length > 0 ? (
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                                    {visibleOperations.map(op => (
+                                        <div 
+                                            key={op.id}
+                                            onClick={() => toggleOp(op.id)}
+                                            className={`flex items-center space-x-2 p-2 rounded-lg cursor-pointer transition-colors ${config.ops[op.id] ? 'bg-white shadow-sm border border-blue-200' : 'hover:bg-slate-100'}`}
+                                        >
+                                            {config.ops[op.id] ? <CheckSquare className="w-4 h-4 text-blue-600" /> : <Square className="w-4 h-4 text-gray-400" />}
+                                            <span className={`text-sm ${config.ops[op.id] ? 'font-semibold text-blue-900' : 'text-gray-600'}`}>{op.label}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                <p className="text-sm text-red-500">Error: No hay operaciones disponibles para este nivel.</p>
+                            )}
                         </div>
 
                         {/* Tamaño */}

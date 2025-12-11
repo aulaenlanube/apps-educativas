@@ -180,7 +180,7 @@ const appRosco = {
 const appOrdenaBolas = {
     id: 'ordena-bolas',
     name: 'Ordena las Bolas',
-    description: 'Juego de física. Pulsa las bolas de menor a mayor peso. ¡Puedes lanzarlas!',
+    description: 'Juego de física. Pulsa las bolas de menor a mayor peso.',
     component: OrdenaBolas
 };
 
@@ -328,6 +328,7 @@ export const primariaApps = {
         description: 'Encuentra el número o figura que no encaja.',
         component: BuscaElIntruso
       },
+      appOrdenaBolas,
       appRosco,
       appMedidas2,
       appMayorMenor2,
@@ -437,6 +438,7 @@ export const primariaApps = {
       { id: 'restas-primaria-3', name: 'Restas con llevadas', description: 'Restas de 3 y 4 cifras con llevadas', component: RestasPrimaria3 },
       { id: 'multiplicaciones-primaria-3', name: 'Multiplicaciones', description: 'Multiplicaciones de 1 cifra en el multiplicador', component: MultiplicacionesPrimaria3 },
       { id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', description: 'Calcula el coste de comprar varias unidades del mismo producto.', component: SupermercadoMatematico3 },
+      appOrdenaBolas,
       appRosco,
       appMedidas3,
       appMayorMenor3,
@@ -543,6 +545,7 @@ export const primariaApps = {
       { id: 'restas-primaria-4', name: 'Restas con un decimal', description: 'Restas con 1 decimal', component: RestasPrimaria4 },
       { id: 'multiplicaciones-primaria-4', name: 'Multiplicaciones', description: 'Multiplica por más de 1 cifra', component: MultiplicacionesPrimaria4 },
       { id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 },
+      appOrdenaBolas,
       appRosco,
       appMedidas4,
       appMayorMenor4,
@@ -650,6 +653,7 @@ export const primariaApps = {
       { id: 'restas-primaria-5', name: 'Restas con decimales', description: 'Restas con varios decimales', component: RestasPrimaria5 },
       { id: 'multiplicaciones-primaria-5', name: 'Multiplicaciones', description: 'Multiplica por varios dígitos', component: MultiplicacionesPrimaria5 },
       { id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 },
+      appOrdenaBolas,
       appRosco,
       appMedidas5,
       appMayorMenor5,
@@ -757,6 +761,7 @@ export const primariaApps = {
       { id: 'restas-primaria-6', name: 'Restas a completar', description: 'Completa cualquier parte de la resta', component: RestasPrimaria6 },
       { id: 'multiplicaciones-primaria-6', name: 'Multiplicaciones', description: 'Multiplicaciones con decimales', component: MultiplicacionesPrimaria6 },
       { id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 },
+      appOrdenaBolas,
       appRosco,
       appMedidas6,
       appMayorMenor6,
@@ -867,6 +872,7 @@ export const esoApps = {
         description: 'Repasa números enteros, geometría y fracciones.',
         component: BuscaElIntruso
       },
+      appOrdenaBolas,
       appRosco,      
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1016,6 +1022,7 @@ export const esoApps = {
         description: 'Álgebra, funciones y geometría.',
         component: BuscaElIntruso
       },
+      appOrdenaBolas,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1166,6 +1173,7 @@ export const esoApps = {
         description: 'Estadística, ecuaciones y geometría.',
         component: BuscaElIntruso
       },
+      appOrdenaBolas,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1316,6 +1324,7 @@ export const esoApps = {
         description: 'Funciones, probabilidad y trigonometría.',
         component: BuscaElIntruso
       },
+      appOrdenaBolas,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
