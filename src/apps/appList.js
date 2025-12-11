@@ -43,6 +43,7 @@ import GeneradorPersonajes from './generador-personajes/GeneradorPersonajes';
 import BuscaElIntruso from './busca-el-intruso/BuscaElIntruso.jsx'
 import RoscoJuego from './rosco/RoscoJuego'; 
 import OrdenaBolas from '@/apps/ordena-bolas/OrdenaBolas';
+import RunnerAcentuacion from './runner-acentuacion/RunnerAcentuacion';
 
 
 
@@ -182,6 +183,13 @@ const appOrdenaBolas = {
     name: 'Ordena las Bolas',
     description: 'Juego de física. Pulsa las bolas de menor a mayor peso.',
     component: OrdenaBolas
+};
+
+const appRunnerAcentuacion = {
+    id: 'lengua-runner-acentuacion',
+    name: 'Runner de Acentuación',
+    description: 'Corre, salta y rompe las palabras según su acentuación (agudas, llanas o esdrújulas).',
+    component: RunnerAcentuacion
 };
 
 // exportamos las materias para primaria y ESO desde el JSON
@@ -422,6 +430,7 @@ export const primariaApps = {
         description: 'Identifica la palabra intrusa por su categoría gramatical o significado.',
         component: BuscaElIntruso
       },
+      appRunnerAcentuacion,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,

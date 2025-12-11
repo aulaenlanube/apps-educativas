@@ -1,0 +1,14 @@
+{
+  "agudas": [
+    "camión", "papá", "sofá", "avión", "bebé", "café", "botón", "jardín", "autobús", "compás",
+    "reloj", "vivir", "amor", "tambor", "azul", "pared", "nariz", "cartel", "baile", "animal"
+  ],
+  "llanas": [
+    "lápiz", "árbol", "fácil", "fútbol", "cárcel", "ángel", "trébol", "débil", "mármol", "azúcar",
+    "mesa", "silla", "libro", "gato", "perro", "casa", "verde", "lunes", "cama", "vaso"
+  ],
+  "esdrujulas": [
+    "pájaro", "música", "médico", "brújula", "círculo", "rápido", "lámpara", "plátano", "número", "página",
+    "teléfono", "sábado", "túnica", "lágrima", "máquina", "fábrica", "público", "bóveda", "cálido", "héroe"
+  ]
+}
