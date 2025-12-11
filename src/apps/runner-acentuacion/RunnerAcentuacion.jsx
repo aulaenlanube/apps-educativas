@@ -4,13 +4,44 @@ import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/components/ui/use-toast";
 import { ConfettiProvider } from "../_shared/ConfettiProvider";
-import { RotateCcw, Settings2, ArrowUpFromLine, Shuffle } from 'lucide-react';
+import { RotateCcw, Settings2, ArrowUpFromLine, Shuffle, User } from 'lucide-react';
 
 // --- CONFIGURACIÓN POR DEFECTO ---
 const DEFAULT_GRAVITY = 1.0;           
-const DEFAULT_JUMP_FORCE = 18; // Valor base ajustable         
+const DEFAULT_JUMP_FORCE = 18;        
 const CUBE_SIZE = 40;          
 const BASE_SPAWN_DISTANCE = 600; 
+
+// --- DEFINICIÓN DE PERSONAJES (SKINS) ---
+const CHARACTERS = [
+  {
+    id: 0,
+    name: "Clásico",
+    mainColor: "bg-yellow-400",
+    borderColor: "border-black",
+    eyeColor: "bg-black",
+    eyeBorder: "border-white",
+    glow: "shadow-[0_0_20px_rgba(250,204,21,0.6)]"
+  },
+  {
+    id: 1,
+    name: "Neon",
+    mainColor: "bg-cyan-400",
+    borderColor: "border-white",
+    eyeColor: "bg-pink-500",
+    eyeBorder: "border-white",
+    glow: "shadow-[0_0_20px_rgba(34,211,238,0.9)]"
+  },
+  {
+    id: 2,
+    name: "Dark",
+    mainColor: "bg-purple-700",
+    borderColor: "border-emerald-400",
+    eyeColor: "bg-emerald-400",
+    eyeBorder: "border-black",
+    glow: "shadow-[0_0_20px_rgba(16,185,129,0.8)]"
+  }
+];
 
 const RunnerAcentuacion = () => {
   const { toast } = useToast();
@@ -21,7 +52,8 @@ const RunnerAcentuacion = () => {
   
   // --- CONFIGURACIÓN DE USUARIO ---
   const [configSpeed, setConfigSpeed] = useState([4]); 
-  const [configJump, setConfigJump] = useState([DEFAULT_JUMP_FORCE]); // Nuevo slider de salto
+  const [configJump, setConfigJump] = useState([DEFAULT_JUMP_FORCE]);
+  const [selectedChar, setSelectedChar] = useState(0); // Índice del personaje seleccionado
 
   const [tick, setTick] = useState(0); 
   
@@ -35,7 +67,6 @@ const RunnerAcentuacion = () => {
   const gameContainerRef = useRef(null);
   const targetTypeRef = useRef(null);
   
-  // Refs para configuración activa en el loop
   const speedRef = useRef(4);
   const jumpForceRef = useRef(DEFAULT_JUMP_FORCE);
 
@@ -45,7 +76,6 @@ const RunnerAcentuacion = () => {
       .then(res => res.json())
       .then(data => {
         setWordData(data);
-        // Seleccionar primera misión aleatoria al cargar
         randomizeMission();
       })
       .catch(err => {
@@ -53,14 +83,12 @@ const RunnerAcentuacion = () => {
       });
   }, []);
 
-  // Función para elegir misión aleatoria
   const randomizeMission = useCallback(() => {
     const types = ['agudas', 'llanas', 'esdrujulas'];
     const random = types[Math.floor(Math.random() * types.length)];
     setTargetType(random);
   }, []);
 
-  // Cuando volvemos al menú, nueva misión
   useEffect(() => {
     if (gameState === 'start') {
       randomizeMission();
@@ -75,7 +103,6 @@ const RunnerAcentuacion = () => {
     setGameState('playing');
     isPlayingRef.current = true;
     
-    // Aplicar configuraciones
     speedRef.current = configSpeed[0];
     jumpForceRef.current = configJump[0];
 
@@ -91,7 +118,6 @@ const RunnerAcentuacion = () => {
   const jump = useCallback(() => {
     if (!isPlayingRef.current) return;
     
-    // Saltar usando la fuerza configurada
     if (playerRef.current.y <= 0.5 || playerRef.current.onPlatform) {
       playerRef.current.velocityY = jumpForceRef.current; 
       playerRef.current.isJumping = true;
@@ -122,7 +148,6 @@ const RunnerAcentuacion = () => {
     const word = wordData[randomType][Math.floor(Math.random() * wordData[randomType].length)];
 
     if (pattern === 0) { 
-        // PINCHO SUELO
         entitiesRef.current.push({
             id: Date.now(),
             type: 'spike',
@@ -132,7 +157,6 @@ const RunnerAcentuacion = () => {
             height: 40
         });
     } else if (pattern === 1) { 
-        // PLATAFORMA MEDIA
         entitiesRef.current.push({
             id: Date.now(),
             type: 'platform',
@@ -153,7 +177,6 @@ const RunnerAcentuacion = () => {
         });
 
     } else if (pattern === 2) { 
-        // PLATAFORMA ALTA
         entitiesRef.current.push({
             id: Date.now(),
             type: 'platform',
@@ -182,7 +205,6 @@ const RunnerAcentuacion = () => {
         });
 
     } else { 
-        // PALABRA SUELTA BAJA
         entitiesRef.current.push({
             id: Date.now(),
             type: 'word',
@@ -222,11 +244,11 @@ const RunnerAcentuacion = () => {
 
     const currentSpeed = speedRef.current;
 
-    // 1. Fondo
+    // Fondo
     bgOffsetRef.current -= currentSpeed * 0.5;
     if (bgOffsetRef.current <= -100) bgOffsetRef.current = 0;
 
-    // 2. Físicas Jugador
+    // Físicas
     playerRef.current.velocityY -= DEFAULT_GRAVITY;
     playerRef.current.y += playerRef.current.velocityY;
 
@@ -237,7 +259,7 @@ const RunnerAcentuacion = () => {
        playerRef.current.onPlatform = false;
     }
 
-    // 3. Generar Entidades
+    // Spawn
     frameRef.current++;
     const spawnRate = Math.floor(BASE_SPAWN_DISTANCE / currentSpeed);
     
@@ -245,7 +267,7 @@ const RunnerAcentuacion = () => {
       spawnEntities();
     }
 
-    // 4. Mover y Colisiones
+    // Colisiones
     const pRect = {
         x: playerRef.current.x + 8,
         y: playerRef.current.y,
@@ -262,7 +284,6 @@ const RunnerAcentuacion = () => {
             
             const eRect = { x: ent.x, y: ent.y, width: ent.width, height: ent.height };
 
-            // PINCHOS
             if (ent.type === 'spike') {
                 const spikeRect = { x: ent.x + 12, y: ent.y, width: ent.width - 24, height: ent.height - 20 };
                 if (checkAABB(pRect, spikeRect)) {
@@ -271,7 +292,6 @@ const RunnerAcentuacion = () => {
                 }
             }
 
-            // PLATAFORMAS
             if (ent.type === 'platform') {
                 if (
                     playerRef.current.velocityY <= 0 && 
@@ -288,7 +308,6 @@ const RunnerAcentuacion = () => {
                 }
             }
 
-            // PALABRAS
             if (ent.type === 'word' && !ent.collected) {
                 if (checkAABB(pRect, eRect)) {
                     if (ent.wordType === targetTypeRef.current) {
@@ -320,8 +339,27 @@ const RunnerAcentuacion = () => {
     };
   }, []);
 
+  // --- RENDERIZADO DEL PERSONAJE ---
+  // Helper para renderizar el personaje seleccionado (se usa tanto en menú como en juego)
+  const renderCharacter = (charIndex, isPreview = false) => {
+    const char = CHARACTERS[charIndex];
+    // En preview no rota, en juego rota si salta
+    const shouldRotate = !isPreview && playerRef.current.y > 0.5 && !playerRef.current.onPlatform;
+    
+    return (
+        <div className={`w-full h-full ${char.mainColor} border-[3px] ${char.borderColor} relative ${char.glow} ${shouldRotate ? 'cube-rotating' : ''}`}>
+            {/* Ojo Izquierdo */}
+            <div className={`absolute top-2 left-2 w-3 h-3 ${char.eyeColor} border-[2px] ${char.eyeBorder} rounded-sm`}></div>
+            {/* Ojo Derecho */}
+            <div className={`absolute top-2 right-2 w-3 h-3 ${char.eyeColor} border-[2px] ${char.eyeBorder} rounded-sm`}></div>
+            {/* Boca (común) */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-6 h-1 bg-black/50 rounded-full"></div>
+        </div>
+    );
+  };
 
-  // --- RENDERIZADO ---
+
+  // --- UI PRINCIPAL ---
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] bg-slate-900 p-4 select-none touch-none font-mono">
       {gameState === 'gameover' && <ConfettiProvider />} 
@@ -344,68 +382,84 @@ const RunnerAcentuacion = () => {
 
         {/* --- MENÚ DE INICIO --- */}
         {gameState === 'start' && (
-          <div className="absolute inset-0 z-40 bg-black/90 flex flex-col items-center justify-center text-white p-6">
+          <div className="absolute inset-0 z-40 bg-black/95 flex flex-col items-center justify-center text-white p-4 overflow-y-auto">
             
             {/* MISIÓN ALEATORIA */}
-            <div className="mb-8 text-center animate-in zoom-in duration-300">
-                <p className="text-gray-400 font-bold mb-2 uppercase tracking-widest">Tu misión es cazar:</p>
-                <div className="flex items-center justify-center gap-3">
-                    <Shuffle className="w-8 h-8 text-yellow-400" />
-                    <h2 className="text-5xl font-black text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)] uppercase">
-                        {targetType || "Cargando..."}
-                    </h2>
+            <div className="mb-4 text-center animate-in zoom-in duration-300">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                    <Shuffle className="w-5 h-5 text-yellow-400" />
+                    <span className="text-gray-400 font-bold text-sm uppercase tracking-widest">Tu misión:</span>
                 </div>
+                <h2 className="text-4xl font-black text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.5)] uppercase">
+                    {targetType || "Cargando..."}
+                </h2>
             </div>
             
-            {/* CONFIGURACIÓN (Sliders) */}
-            <div className="bg-slate-800 p-6 border-4 border-white w-full max-w-md mb-8 space-y-6 shadow-[8px_8px_0_black]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
                 
-                {/* Velocidad */}
-                <div>
-                    <div className="flex justify-between mb-2 font-bold text-lg">
-                        <label className="flex items-center gap-2 text-cyan-400">
-                            <Settings2 className="w-5 h-5"/> VELOCIDAD
-                        </label>
-                        <span className="bg-black px-3 py-1 border border-white text-cyan-400 font-mono">
-                            {configSpeed[0]}
-                        </span>
+                {/* COLUMNA 1: PERSONAJE */}
+                <div className="bg-slate-800 p-4 border-4 border-white shadow-[6px_6px_0_black]">
+                    <div className="flex items-center gap-2 mb-3 text-cyan-400 font-bold border-b border-white/20 pb-2">
+                        <User className="w-5 h-5"/> SELECCIONA PERSONAJE
                     </div>
-                    <Slider 
-                        defaultValue={[4]} max={8} min={2} step={1} 
-                        value={configSpeed} onValueChange={setConfigSpeed}
-                        className="cursor-pointer"
-                    />
+                    <div className="flex justify-around items-center h-24">
+                        {CHARACTERS.map((char) => (
+                            <div 
+                                key={char.id}
+                                onClick={() => setSelectedChar(char.id)}
+                                className={`w-14 h-14 cursor-pointer transition-all hover:scale-110 ${selectedChar === char.id ? 'scale-125 ring-4 ring-white z-10' : 'opacity-60 grayscale-[0.5]'}`}
+                            >
+                                {renderCharacter(char.id, true)}
+                            </div>
+                        ))}
+                    </div>
+                    <p className="text-center text-xs text-gray-400 mt-2 font-bold uppercase">{CHARACTERS[selectedChar].name}</p>
                 </div>
 
-                {/* Potencia de Salto */}
-                <div>
-                    <div className="flex justify-between mb-2 font-bold text-lg">
-                        <label className="flex items-center gap-2 text-green-400">
-                            <ArrowUpFromLine className="w-5 h-5"/> SALTO
-                        </label>
-                        <span className="bg-black px-3 py-1 border border-white text-green-400 font-mono">
-                            {configJump[0]}
-                        </span>
+                {/* COLUMNA 2: CONFIGURACIÓN */}
+                <div className="bg-slate-800 p-4 border-4 border-white shadow-[6px_6px_0_black] space-y-4">
+                    {/* Velocidad */}
+                    <div>
+                        <div className="flex justify-between mb-1 font-bold text-sm">
+                            <label className="flex items-center gap-2 text-cyan-400">
+                                <Settings2 className="w-4 h-4"/> VELOCIDAD
+                            </label>
+                            <span className="bg-black px-2 border border-white text-cyan-400 font-mono">
+                                {configSpeed[0]}
+                            </span>
+                        </div>
+                        <Slider 
+                            defaultValue={[4]} max={8} min={2} step={1} 
+                            value={configSpeed} onValueChange={setConfigSpeed}
+                            className="cursor-pointer"
+                        />
                     </div>
-                    <Slider 
-                        defaultValue={[DEFAULT_JUMP_FORCE]} max={25} min={15} step={0.5} 
-                        value={configJump} onValueChange={setConfigJump}
-                        className="cursor-pointer"
-                    />
-                    <div className="flex justify-between text-xs text-gray-400 mt-1 font-bold uppercase">
-                        <span>Corto</span>
-                        <span>Alto</span>
+
+                    {/* Salto */}
+                    <div>
+                        <div className="flex justify-between mb-1 font-bold text-sm">
+                            <label className="flex items-center gap-2 text-green-400">
+                                <ArrowUpFromLine className="w-4 h-4"/> SALTO
+                            </label>
+                            <span className="bg-black px-2 border border-white text-green-400 font-mono">
+                                {configJump[0]}
+                            </span>
+                        </div>
+                        <Slider 
+                            defaultValue={[DEFAULT_JUMP_FORCE]} max={25} min={15} step={0.5} 
+                            value={configJump} onValueChange={setConfigJump}
+                            className="cursor-pointer"
+                        />
                     </div>
                 </div>
-
             </div>
             
             {/* BOTÓN JUGAR */}
             {!wordData ? (
-                <p className="animate-pulse font-bold text-xl">CARGANDO...</p>
+                <p className="mt-8 animate-pulse font-bold text-xl">CARGANDO...</p>
             ) : (
                 <Button onClick={startGame} 
-                    className="w-full max-w-xs bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-black text-3xl py-8 rounded-none border-b-[8px] border-r-[8px] border-yellow-800 active:border-0 active:translate-y-2 active:translate-x-2 font-black tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(234,179,8,0.4)]">
+                    className="mt-8 w-full max-w-xs bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-black text-3xl py-8 rounded-none border-b-[8px] border-r-[8px] border-yellow-800 active:border-0 active:translate-y-2 active:translate-x-2 font-black tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(234,179,8,0.4)]">
                     JUGAR
                 </Button>
             )}
@@ -453,13 +507,7 @@ const RunnerAcentuacion = () => {
                         transition: 'none', 
                     }}
                 >
-                    <div className={`w-full h-full ${playerRef.current.y > 0.5 && !playerRef.current.onPlatform ? 'cube-rotating' : ''}`}>
-                        <div className="w-full h-full bg-yellow-400 border-[3px] border-black relative shadow-[0_0_15px_rgba(250,204,21,0.6)]">
-                            <div className="absolute top-2 left-2 w-3 h-3 bg-black border border-white"></div>
-                            <div className="absolute top-2 right-2 w-3 h-3 bg-black border border-white"></div>
-                            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-6 h-1 bg-black"></div>
-                        </div>
-                    </div>
+                    {renderCharacter(selectedChar)}
                 </div>
 
                 {/* ENTIDADES */}
@@ -534,7 +582,6 @@ const RunnerAcentuacion = () => {
           100% { transform: rotate(180deg); }
         }
         .cube-rotating {
-          /* Rotación más lenta acorde al salto flotante */
           animation: spin 0.8s linear infinite;
         }
       `}</style>
