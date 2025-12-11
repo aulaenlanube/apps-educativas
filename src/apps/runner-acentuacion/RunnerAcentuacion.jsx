@@ -4,13 +4,11 @@ import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { useToast } from "@/components/ui/use-toast";
 import { ConfettiProvider } from "../_shared/ConfettiProvider";
-import { RotateCcw, Settings2 } from 'lucide-react';
+import { RotateCcw, Settings2, ArrowUpFromLine, Shuffle } from 'lucide-react';
 
-// --- CONFIGURACIÓN DE FÍSICAS MÁS AMABLES ---
-// Gravedad 1.0: Caída más lenta, da sensación de control
-const GRAVITY = 1.0;           
-// Fuerza 18: Con gravedad 1.0, esto permite un salto muy alto y seguro
-const JUMP_FORCE = 18;         
+// --- CONFIGURACIÓN POR DEFECTO ---
+const DEFAULT_GRAVITY = 1.0;           
+const DEFAULT_JUMP_FORCE = 18; // Valor base ajustable         
 const CUBE_SIZE = 40;          
 const BASE_SPAWN_DISTANCE = 600; 
 
@@ -21,8 +19,9 @@ const RunnerAcentuacion = () => {
   const [targetType, setTargetType] = useState(null); 
   const [wordData, setWordData] = useState(null);
   
-  // Velocidad inicial por defecto en 4 (bastante tranquila)
+  // --- CONFIGURACIÓN DE USUARIO ---
   const [configSpeed, setConfigSpeed] = useState([4]); 
+  const [configJump, setConfigJump] = useState([DEFAULT_JUMP_FORCE]); // Nuevo slider de salto
 
   const [tick, setTick] = useState(0); 
   
@@ -35,26 +34,50 @@ const RunnerAcentuacion = () => {
   const reqRef = useRef(null);
   const gameContainerRef = useRef(null);
   const targetTypeRef = useRef(null);
+  
+  // Refs para configuración activa en el loop
   const speedRef = useRef(4);
+  const jumpForceRef = useRef(DEFAULT_JUMP_FORCE);
 
   // Cargar datos
   useEffect(() => {
     fetch('/data/primaria/4/lengua-runner-acentuacion.json')
       .then(res => res.json())
-      .then(data => setWordData(data))
+      .then(data => {
+        setWordData(data);
+        // Seleccionar primera misión aleatoria al cargar
+        randomizeMission();
+      })
       .catch(err => {
         console.error("Error cargando palabras:", err);
       });
   }, []);
 
-  const startGame = (type) => {
-    setTargetType(type);
-    targetTypeRef.current = type;
+  // Función para elegir misión aleatoria
+  const randomizeMission = useCallback(() => {
+    const types = ['agudas', 'llanas', 'esdrujulas'];
+    const random = types[Math.floor(Math.random() * types.length)];
+    setTargetType(random);
+  }, []);
+
+  // Cuando volvemos al menú, nueva misión
+  useEffect(() => {
+    if (gameState === 'start') {
+      randomizeMission();
+    }
+  }, [gameState, randomizeMission]);
+
+  const startGame = () => {
+    if (!targetType) return;
+    
+    targetTypeRef.current = targetType;
     setScore(0);
     setGameState('playing');
     isPlayingRef.current = true;
     
+    // Aplicar configuraciones
     speedRef.current = configSpeed[0];
+    jumpForceRef.current = configJump[0];
 
     playerRef.current = { x: 100, y: 0, velocityY: 0, isJumping: false, onPlatform: false };
     entitiesRef.current = [];
@@ -68,10 +91,9 @@ const RunnerAcentuacion = () => {
   const jump = useCallback(() => {
     if (!isPlayingRef.current) return;
     
-    // Permitimos saltar si está en el suelo o sobre plataforma
-    // Margen de 0.5 para asegurar que el contacto con el suelo se detecta bien
+    // Saltar usando la fuerza configurada
     if (playerRef.current.y <= 0.5 || playerRef.current.onPlatform) {
-      playerRef.current.velocityY = JUMP_FORCE; 
+      playerRef.current.velocityY = jumpForceRef.current; 
       playerRef.current.isJumping = true;
       playerRef.current.onPlatform = false;
     }
@@ -110,7 +132,7 @@ const RunnerAcentuacion = () => {
             height: 40
         });
     } else if (pattern === 1) { 
-        // PLATAFORMA MEDIA (Bajada a 50 para que sea un escalón fácil)
+        // PLATAFORMA MEDIA
         entitiesRef.current.push({
             id: Date.now(),
             type: 'platform',
@@ -131,7 +153,7 @@ const RunnerAcentuacion = () => {
         });
 
     } else if (pattern === 2) { 
-        // PLATAFORMA ALTA (Bajada a 100, salto muy asequible ahora)
+        // PLATAFORMA ALTA
         entitiesRef.current.push({
             id: Date.now(),
             type: 'platform',
@@ -205,7 +227,7 @@ const RunnerAcentuacion = () => {
     if (bgOffsetRef.current <= -100) bgOffsetRef.current = 0;
 
     // 2. Físicas Jugador
-    playerRef.current.velocityY -= GRAVITY;
+    playerRef.current.velocityY -= DEFAULT_GRAVITY;
     playerRef.current.y += playerRef.current.velocityY;
 
     if (playerRef.current.y < 0) {
@@ -242,7 +264,6 @@ const RunnerAcentuacion = () => {
 
             // PINCHOS
             if (ent.type === 'spike') {
-                // Hitbox del pincho un poco más pequeña para perdonar roces
                 const spikeRect = { x: ent.x + 12, y: ent.y, width: ent.width - 24, height: ent.height - 20 };
                 if (checkAABB(pRect, spikeRect)) {
                     gameOver("Te has pinchado con un obstáculo.");
@@ -255,7 +276,6 @@ const RunnerAcentuacion = () => {
                 if (
                     playerRef.current.velocityY <= 0 && 
                     pRect.y >= ent.y + ent.height - 15 && 
-                    // Margen superior generoso para facilitar aterrizaje
                     pRect.y <= ent.y + ent.height + 25 && 
                     pRect.x + pRect.width > ent.x && 
                     pRect.x < ent.x + ent.width
@@ -316,54 +336,78 @@ const RunnerAcentuacion = () => {
         <div className="absolute top-4 right-4 z-30 bg-black/60 text-white px-4 py-2 font-bold text-xl border-2 border-white backdrop-blur-sm">
           SCORE: {score.toString().padStart(3, '0')}
         </div>
-        {targetType && (
+        {targetType && gameState === 'playing' && (
           <div className="absolute top-4 left-4 z-30 bg-yellow-400 text-black px-4 py-2 font-black border-4 border-black animate-pulse uppercase tracking-wide shadow-[4px_4px_0_black]">
-            Objetivo: {targetType}
+            Misión: {targetType}
           </div>
         )}
 
         {/* --- MENÚ DE INICIO --- */}
         {gameState === 'start' && (
           <div className="absolute inset-0 z-40 bg-black/90 flex flex-col items-center justify-center text-white p-6">
-            <h2 className="text-5xl font-black mb-6 text-center text-yellow-400 drop-shadow-[2px_2px_0_red]">
-              CONFIGURA TU PARTIDA
-            </h2>
             
-            {/* Slider de Velocidad */}
-            <div className="bg-slate-800 p-6 border-4 border-white w-full max-w-md mb-8 space-y-6 shadow-[8px_8px_0_black]">
-                <div>
-                    <div className="flex justify-between mb-4 font-bold text-lg">
-                        <label className="flex items-center gap-2 text-cyan-400">
-                            <Settings2 className="w-6 h-6"/> VELOCIDAD
-                        </label>
-                        <span className="bg-black px-3 py-1 border border-white text-cyan-400 font-mono text-xl">
-                            {configSpeed[0]}
-                        </span>
-                    </div>
-                    {/* Rango desde 2 (muy lento) a 8 */}
-                    <Slider 
-                        defaultValue={[4]} max={8} min={2} step={1} 
-                        value={configSpeed} onValueChange={setConfigSpeed}
-                        className="cursor-pointer py-4"
-                    />
-                    <div className="flex justify-between text-xs text-gray-400 mt-2 font-bold uppercase">
-                        <span>Paseo (Muy Fácil)</span>
-                        <span>Corriendo (Difícil)</span>
-                    </div>
+            {/* MISIÓN ALEATORIA */}
+            <div className="mb-8 text-center animate-in zoom-in duration-300">
+                <p className="text-gray-400 font-bold mb-2 uppercase tracking-widest">Tu misión es cazar:</p>
+                <div className="flex items-center justify-center gap-3">
+                    <Shuffle className="w-8 h-8 text-yellow-400" />
+                    <h2 className="text-5xl font-black text-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.5)] uppercase">
+                        {targetType || "Cargando..."}
+                    </h2>
                 </div>
             </div>
             
+            {/* CONFIGURACIÓN (Sliders) */}
+            <div className="bg-slate-800 p-6 border-4 border-white w-full max-w-md mb-8 space-y-6 shadow-[8px_8px_0_black]">
+                
+                {/* Velocidad */}
+                <div>
+                    <div className="flex justify-between mb-2 font-bold text-lg">
+                        <label className="flex items-center gap-2 text-cyan-400">
+                            <Settings2 className="w-5 h-5"/> VELOCIDAD
+                        </label>
+                        <span className="bg-black px-3 py-1 border border-white text-cyan-400 font-mono">
+                            {configSpeed[0]}
+                        </span>
+                    </div>
+                    <Slider 
+                        defaultValue={[4]} max={8} min={2} step={1} 
+                        value={configSpeed} onValueChange={setConfigSpeed}
+                        className="cursor-pointer"
+                    />
+                </div>
+
+                {/* Potencia de Salto */}
+                <div>
+                    <div className="flex justify-between mb-2 font-bold text-lg">
+                        <label className="flex items-center gap-2 text-green-400">
+                            <ArrowUpFromLine className="w-5 h-5"/> SALTO
+                        </label>
+                        <span className="bg-black px-3 py-1 border border-white text-green-400 font-mono">
+                            {configJump[0]}
+                        </span>
+                    </div>
+                    <Slider 
+                        defaultValue={[DEFAULT_JUMP_FORCE]} max={25} min={15} step={0.5} 
+                        value={configJump} onValueChange={setConfigJump}
+                        className="cursor-pointer"
+                    />
+                    <div className="flex justify-between text-xs text-gray-400 mt-1 font-bold uppercase">
+                        <span>Corto</span>
+                        <span>Alto</span>
+                    </div>
+                </div>
+
+            </div>
+            
+            {/* BOTÓN JUGAR */}
             {!wordData ? (
                 <p className="animate-pulse font-bold text-xl">CARGANDO...</p>
             ) : (
-                <div className="flex flex-wrap justify-center gap-6">
-                    {['agudas', 'llanas', 'esdrujulas'].map(mode => (
-                        <Button key={mode} onClick={() => startGame(mode)} 
-                            className="bg-yellow-400 hover:bg-yellow-300 text-black text-2xl py-8 px-10 rounded-none border-b-[8px] border-r-[8px] border-yellow-700 active:border-0 active:translate-y-2 active:translate-x-2 font-black tracking-wider uppercase transition-all">
-                            {mode}
-                        </Button>
-                    ))}
-                </div>
+                <Button onClick={startGame} 
+                    className="w-full max-w-xs bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-black text-3xl py-8 rounded-none border-b-[8px] border-r-[8px] border-yellow-800 active:border-0 active:translate-y-2 active:translate-x-2 font-black tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(234,179,8,0.4)]">
+                    JUGAR
+                </Button>
             )}
           </div>
         )}
@@ -378,7 +422,7 @@ const RunnerAcentuacion = () => {
                 <p className="text-4xl font-bold text-center text-yellow-400 font-mono">PTS: {score}</p>
             </div>
             <Button onClick={() => setGameState('start')} className="gap-2 text-2xl px-12 py-8 rounded-none bg-white text-black border-b-[8px] border-gray-400 active:border-b-0 active:translate-y-2 font-black hover:bg-gray-100">
-              <RotateCcw className="w-8 h-8" /> REINTENTAR
+              <RotateCcw className="w-8 h-8" /> MENÚ
             </Button>
           </div>
         )}
