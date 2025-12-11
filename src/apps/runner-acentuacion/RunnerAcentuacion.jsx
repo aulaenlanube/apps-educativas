@@ -53,13 +53,16 @@ const RunnerAcentuacion = () => {
   // --- CONFIGURACIÓN DE USUARIO ---
   const [configSpeed, setConfigSpeed] = useState([4]); 
   const [configJump, setConfigJump] = useState([DEFAULT_JUMP_FORCE]);
-  const [selectedChar, setSelectedChar] = useState(0); // Índice del personaje seleccionado
+  const [selectedChar, setSelectedChar] = useState(0); 
 
   const [tick, setTick] = useState(0); 
   
   // REFERENCIAS
   const isPlayingRef = useRef(false);
   const playerRef = useRef({ x: 100, y: 0, velocityY: 0, isJumping: false, onPlatform: false });
+  // Nueva referencia para la rotación acumulada
+  const rotationRef = useRef(0);
+  
   const entitiesRef = useRef([]); 
   const bgOffsetRef = useRef(0);
   const frameRef = useRef(0);
@@ -107,6 +110,7 @@ const RunnerAcentuacion = () => {
     jumpForceRef.current = configJump[0];
 
     playerRef.current = { x: 100, y: 0, velocityY: 0, isJumping: false, onPlatform: false };
+    rotationRef.current = 0; // Reiniciar rotación
     entitiesRef.current = [];
     frameRef.current = 0;
     bgOffsetRef.current = 0;
@@ -122,6 +126,8 @@ const RunnerAcentuacion = () => {
       playerRef.current.velocityY = jumpForceRef.current; 
       playerRef.current.isJumping = true;
       playerRef.current.onPlatform = false;
+      // Rotar 90 grados exactos en cada salto
+      rotationRef.current += 90;
     }
   }, []);
 
@@ -141,7 +147,6 @@ const RunnerAcentuacion = () => {
     if (!wordData) return;
     
     const startX = 1000; 
-    
     const pattern = Math.floor(Math.random() * 4);
     const types = ['agudas', 'llanas', 'esdrujulas'];
     const randomType = types[Math.floor(Math.random() * types.length)];
@@ -149,71 +154,28 @@ const RunnerAcentuacion = () => {
 
     if (pattern === 0) { 
         entitiesRef.current.push({
-            id: Date.now(),
-            type: 'spike',
-            x: startX,
-            y: 0,
-            width: 40,
-            height: 40
+            id: Date.now(), type: 'spike', x: startX, y: 0, width: 40, height: 40
         });
     } else if (pattern === 1) { 
         entitiesRef.current.push({
-            id: Date.now(),
-            type: 'platform',
-            x: startX,
-            y: 50, 
-            width: 160,
-            height: 40
+            id: Date.now(), type: 'platform', x: startX, y: 50, width: 160, height: 40
         });
         entitiesRef.current.push({
-            id: Date.now() + 1,
-            type: 'word',
-            text: word,
-            wordType: randomType,
-            x: startX + 20,
-            y: 130, 
-            width: 120,
-            height: 40
+            id: Date.now() + 1, type: 'word', text: word, wordType: randomType, x: startX + 20, y: 130, width: 120, height: 40
         });
-
     } else if (pattern === 2) { 
         entitiesRef.current.push({
-            id: Date.now(),
-            type: 'platform',
-            x: startX,
-            y: 100, 
-            width: 160,
-            height: 40
+            id: Date.now(), type: 'platform', x: startX, y: 100, width: 160, height: 40
         });
         entitiesRef.current.push({
-            id: Date.now() + 2,
-            type: 'spike',
-            x: startX + 60,
-            y: 0,
-            width: 40,
-            height: 40
+            id: Date.now() + 2, type: 'spike', x: startX + 60, y: 0, width: 40, height: 40
         });
          entitiesRef.current.push({
-            id: Date.now() + 1,
-            type: 'word',
-            text: word,
-            wordType: randomType,
-            x: startX + 20,
-            y: 180, 
-            width: 120,
-            height: 40
+            id: Date.now() + 1, type: 'word', text: word, wordType: randomType, x: startX + 20, y: 180, width: 120, height: 40
         });
-
     } else { 
         entitiesRef.current.push({
-            id: Date.now(),
-            type: 'word',
-            text: word,
-            wordType: randomType,
-            x: startX,
-            y: 60, 
-            width: 120,
-            height: 40
+            id: Date.now(), type: 'word', text: word, wordType: randomType, x: startX, y: 60, width: 120, height: 40
         });
     }
   };
@@ -244,11 +206,9 @@ const RunnerAcentuacion = () => {
 
     const currentSpeed = speedRef.current;
 
-    // Fondo
     bgOffsetRef.current -= currentSpeed * 0.5;
     if (bgOffsetRef.current <= -100) bgOffsetRef.current = 0;
 
-    // Físicas
     playerRef.current.velocityY -= DEFAULT_GRAVITY;
     playerRef.current.y += playerRef.current.velocityY;
 
@@ -259,7 +219,6 @@ const RunnerAcentuacion = () => {
        playerRef.current.onPlatform = false;
     }
 
-    // Spawn
     frameRef.current++;
     const spawnRate = Math.floor(BASE_SPAWN_DISTANCE / currentSpeed);
     
@@ -267,7 +226,6 @@ const RunnerAcentuacion = () => {
       spawnEntities();
     }
 
-    // Colisiones
     const pRect = {
         x: playerRef.current.x + 8,
         y: playerRef.current.y,
@@ -281,7 +239,6 @@ const RunnerAcentuacion = () => {
         ent.x -= currentSpeed;
 
         if (ent.x > -200 && ent.x < 200) {
-            
             const eRect = { x: ent.x, y: ent.y, width: ent.width, height: ent.height };
 
             if (ent.type === 'spike') {
@@ -340,20 +297,23 @@ const RunnerAcentuacion = () => {
   }, []);
 
   // --- RENDERIZADO DEL PERSONAJE ---
-  // Helper para renderizar el personaje seleccionado (se usa tanto en menú como en juego)
   const renderCharacter = (charIndex, isPreview = false) => {
     const char = CHARACTERS[charIndex];
-    // En preview no rota, en juego rota si salta
-    const shouldRotate = !isPreview && playerRef.current.y > 0.5 && !playerRef.current.onPlatform;
+    // En el juego usamos el estilo de rotación directo, en preview no
     
     return (
-        <div className={`w-full h-full ${char.mainColor} border-[3px] ${char.borderColor} relative ${char.glow} ${shouldRotate ? 'cube-rotating' : ''}`}>
-            {/* Ojo Izquierdo */}
-            <div className={`absolute top-2 left-2 w-3 h-3 ${char.eyeColor} border-[2px] ${char.eyeBorder} rounded-sm`}></div>
-            {/* Ojo Derecho */}
-            <div className={`absolute top-2 right-2 w-3 h-3 ${char.eyeColor} border-[2px] ${char.eyeBorder} rounded-sm`}></div>
-            {/* Boca (común) */}
-            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-6 h-1 bg-black/50 rounded-full"></div>
+        <div 
+            className={`w-full h-full ${char.mainColor} border-[3px] ${char.borderColor} relative ${char.glow}`}
+            style={ !isPreview ? {
+                // Rotación suave a la nueva posición
+                transform: `rotate(${rotationRef.current}deg)`,
+                transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' // Efecto suave
+            } : {}}
+        >
+            {/* Ojos y Boca posicionados con porcentajes para escalar bien */}
+            <div className={`absolute top-[15%] left-[15%] w-[25%] h-[25%] ${char.eyeColor} border-[2px] ${char.eyeBorder} rounded-sm`}></div>
+            <div className={`absolute top-[15%] right-[15%] w-[25%] h-[25%] ${char.eyeColor} border-[2px] ${char.eyeBorder} rounded-sm`}></div>
+            <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[40%] h-[10%] bg-black/50 rounded-full"></div>
         </div>
     );
   };
@@ -384,7 +344,6 @@ const RunnerAcentuacion = () => {
         {gameState === 'start' && (
           <div className="absolute inset-0 z-40 bg-black/95 flex flex-col items-center justify-center text-white p-4 overflow-y-auto">
             
-            {/* MISIÓN ALEATORIA */}
             <div className="mb-4 text-center animate-in zoom-in duration-300">
                 <div className="flex items-center justify-center gap-2 mb-1">
                     <Shuffle className="w-5 h-5 text-yellow-400" />
@@ -397,7 +356,7 @@ const RunnerAcentuacion = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
                 
-                {/* COLUMNA 1: PERSONAJE */}
+                {/* SELECCIÓN PERSONAJE */}
                 <div className="bg-slate-800 p-4 border-4 border-white shadow-[6px_6px_0_black]">
                     <div className="flex items-center gap-2 mb-3 text-cyan-400 font-bold border-b border-white/20 pb-2">
                         <User className="w-5 h-5"/> SELECCIONA PERSONAJE
@@ -416,9 +375,8 @@ const RunnerAcentuacion = () => {
                     <p className="text-center text-xs text-gray-400 mt-2 font-bold uppercase">{CHARACTERS[selectedChar].name}</p>
                 </div>
 
-                {/* COLUMNA 2: CONFIGURACIÓN */}
+                {/* CONFIGURACIÓN */}
                 <div className="bg-slate-800 p-4 border-4 border-white shadow-[6px_6px_0_black] space-y-4">
-                    {/* Velocidad */}
                     <div>
                         <div className="flex justify-between mb-1 font-bold text-sm">
                             <label className="flex items-center gap-2 text-cyan-400">
@@ -435,7 +393,6 @@ const RunnerAcentuacion = () => {
                         />
                     </div>
 
-                    {/* Salto */}
                     <div>
                         <div className="flex justify-between mb-1 font-bold text-sm">
                             <label className="flex items-center gap-2 text-green-400">
@@ -454,7 +411,6 @@ const RunnerAcentuacion = () => {
                 </div>
             </div>
             
-            {/* BOTÓN JUGAR */}
             {!wordData ? (
                 <p className="mt-8 animate-pulse font-bold text-xl">CARGANDO...</p>
             ) : (
@@ -575,16 +531,6 @@ const RunnerAcentuacion = () => {
             SALTAR
          </Button>
       </div>
-
-      <style jsx>{`
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(180deg); }
-        }
-        .cube-rotating {
-          animation: spin 0.8s linear infinite;
-        }
-      `}</style>
     </div>
   );
 };
