@@ -2,9 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
-import { useToast } from "@/components/ui/use-toast";
 import { ConfettiProvider } from "../_shared/ConfettiProvider";
-import { RotateCcw, Settings2, ArrowUpFromLine, Shuffle, User } from 'lucide-react';
+import { RotateCcw, Settings2, ArrowUpFromLine, Shuffle, User, ListChecks, Eye, EyeOff } from 'lucide-react';
 
 // --- CONFIGURACIÓN POR DEFECTO ---
 const DEFAULT_GRAVITY = 1.0;           
@@ -44,7 +43,6 @@ const CHARACTERS = [
 ];
 
 const RunnerAcentuacion = () => {
-  const { toast } = useToast();
   const [gameState, setGameState] = useState('start'); 
   const [score, setScore] = useState(0);
   const [targetType, setTargetType] = useState(null); 
@@ -54,14 +52,15 @@ const RunnerAcentuacion = () => {
   const [configSpeed, setConfigSpeed] = useState([4]); 
   const [configJump, setConfigJump] = useState([DEFAULT_JUMP_FORCE]);
   const [selectedChar, setSelectedChar] = useState(0); 
+  const [showHints, setShowHints] = useState(true); 
 
   const [tick, setTick] = useState(0); 
   
   // REFERENCIAS
   const isPlayingRef = useRef(false);
   const playerRef = useRef({ x: 100, y: 0, velocityY: 0, isJumping: false, onPlatform: false });
-  // Nueva referencia para la rotación acumulada
   const rotationRef = useRef(0);
+  const collectedWordsRef = useRef([]); 
   
   const entitiesRef = useRef([]); 
   const bgOffsetRef = useRef(0);
@@ -72,6 +71,7 @@ const RunnerAcentuacion = () => {
   
   const speedRef = useRef(4);
   const jumpForceRef = useRef(DEFAULT_JUMP_FORCE);
+  const showHintsRef = useRef(true); 
 
   // Cargar datos
   useEffect(() => {
@@ -108,10 +108,12 @@ const RunnerAcentuacion = () => {
     
     speedRef.current = configSpeed[0];
     jumpForceRef.current = configJump[0];
+    showHintsRef.current = showHints; 
 
     playerRef.current = { x: 100, y: 0, velocityY: 0, isJumping: false, onPlatform: false };
-    rotationRef.current = 0; // Reiniciar rotación
+    rotationRef.current = 0; 
     entitiesRef.current = [];
+    collectedWordsRef.current = []; 
     frameRef.current = 0;
     bgOffsetRef.current = 0;
     
@@ -126,7 +128,6 @@ const RunnerAcentuacion = () => {
       playerRef.current.velocityY = jumpForceRef.current; 
       playerRef.current.isJumping = true;
       playerRef.current.onPlatform = false;
-      // Rotar 90 grados exactos en cada salto
       rotationRef.current += 90;
     }
   }, []);
@@ -180,15 +181,10 @@ const RunnerAcentuacion = () => {
     }
   };
 
-  const gameOver = (reason) => {
+  const gameOver = () => {
     isPlayingRef.current = false;
     setGameState('gameover');
     if (reqRef.current) cancelAnimationFrame(reqRef.current);
-    toast({
-      title: "¡Has fallado!",
-      description: reason,
-      variant: "destructive",
-    });
   };
 
   const checkAABB = (r1, r2) => {
@@ -244,7 +240,7 @@ const RunnerAcentuacion = () => {
             if (ent.type === 'spike') {
                 const spikeRect = { x: ent.x + 12, y: ent.y, width: ent.width - 24, height: ent.height - 20 };
                 if (checkAABB(pRect, spikeRect)) {
-                    gameOver("Te has pinchado con un obstáculo.");
+                    gameOver();
                     return;
                 }
             }
@@ -269,9 +265,10 @@ const RunnerAcentuacion = () => {
                 if (checkAABB(pRect, eRect)) {
                     if (ent.wordType === targetTypeRef.current) {
                         ent.collected = true;
+                        collectedWordsRef.current.push(ent.text);
                         setScore(prev => prev + 1);
                     } else {
-                        gameOver(`¡Cuidado! Esa palabra era ${ent.wordType}.`);
+                        gameOver();
                         return;
                     }
                 }
@@ -296,21 +293,16 @@ const RunnerAcentuacion = () => {
     };
   }, []);
 
-  // --- RENDERIZADO DEL PERSONAJE ---
   const renderCharacter = (charIndex, isPreview = false) => {
     const char = CHARACTERS[charIndex];
-    // En el juego usamos el estilo de rotación directo, en preview no
-    
     return (
         <div 
             className={`w-full h-full ${char.mainColor} border-[3px] ${char.borderColor} relative ${char.glow}`}
             style={ !isPreview ? {
-                // Rotación suave a la nueva posición
                 transform: `rotate(${rotationRef.current}deg)`,
-                transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' // Efecto suave
+                transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' 
             } : {}}
         >
-            {/* Ojos y Boca posicionados con porcentajes para escalar bien */}
             <div className={`absolute top-[15%] left-[15%] w-[25%] h-[25%] ${char.eyeColor} border-[2px] ${char.eyeBorder} rounded-sm`}></div>
             <div className={`absolute top-[15%] right-[15%] w-[25%] h-[25%] ${char.eyeColor} border-[2px] ${char.eyeBorder} rounded-sm`}></div>
             <div className="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-[40%] h-[10%] bg-black/50 rounded-full"></div>
@@ -377,6 +369,7 @@ const RunnerAcentuacion = () => {
 
                 {/* CONFIGURACIÓN */}
                 <div className="bg-slate-800 p-4 border-4 border-white shadow-[6px_6px_0_black] space-y-4">
+                    {/* Velocidad */}
                     <div>
                         <div className="flex justify-between mb-1 font-bold text-sm">
                             <label className="flex items-center gap-2 text-cyan-400">
@@ -393,6 +386,7 @@ const RunnerAcentuacion = () => {
                         />
                     </div>
 
+                    {/* Salto */}
                     <div>
                         <div className="flex justify-between mb-1 font-bold text-sm">
                             <label className="flex items-center gap-2 text-green-400">
@@ -408,9 +402,25 @@ const RunnerAcentuacion = () => {
                             className="cursor-pointer"
                         />
                     </div>
+
+                    {/* Toggle Pistas Visuales */}
+                    <div className="pt-2 border-t border-white/20">
+                        <Button 
+                            onClick={() => setShowHints(!showHints)}
+                            className={`w-full flex justify-between items-center border-2 rounded-none h-8 transition-all font-bold text-xs uppercase ${
+                                showHints 
+                                ? "bg-emerald-600/50 border-emerald-400 hover:bg-emerald-600 text-white" 
+                                : "bg-red-600/50 border-red-400 hover:bg-red-600 text-white"
+                            }`}
+                        >
+                            <span>{showHints ? "Pistas: SÍ" : "Pistas: NO"}</span>
+                            {showHints ? <Eye className="w-4 h-4"/> : <EyeOff className="w-4 h-4"/>}
+                        </Button>
+                    </div>
                 </div>
             </div>
             
+            {/* BOTÓN JUGAR */}
             {!wordData ? (
                 <p className="mt-8 animate-pulse font-bold text-xl">CARGANDO...</p>
             ) : (
@@ -424,13 +434,32 @@ const RunnerAcentuacion = () => {
 
         {/* GAME OVER */}
         {gameState === 'gameover' && (
-          <div className="absolute inset-0 z-40 bg-red-900/95 flex flex-col items-center justify-center text-white">
-            <h2 className="text-8xl font-black mb-4 text-white drop-shadow-[8px_8px_0_black] tracking-widest -rotate-6">
-              ¡CRASH!
+          <div className="absolute inset-0 z-40 bg-red-900/95 flex flex-col items-center justify-center text-white animate-in zoom-in duration-300 p-4">
+            
+            <h2 className="text-4xl md:text-5xl font-black mb-4 text-white drop-shadow-[4px_4px_0_black] text-center uppercase leading-tight">
+                {score > 0 
+                    ? `Has conseguido ${score} palabras ${targetType}` 
+                    : "No has conseguido ninguna palabra"
+                }
             </h2>
-            <div className="bg-black p-6 border-4 border-white mb-8 transform rotate-3">
-                <p className="text-4xl font-bold text-center text-yellow-400 font-mono">PTS: {score}</p>
+
+            <div className="w-full max-w-lg bg-black/50 border-2 border-white/30 rounded-none p-4 mb-6 backdrop-blur-sm">
+                <h3 className="text-cyan-400 font-bold flex items-center gap-2 mb-3 border-b border-white/20 pb-2">
+                    <ListChecks className="w-5 h-5"/> PALABRAS CONSEGUIDAS:
+                </h3>
+                {collectedWordsRef.current.length > 0 ? (
+                    <div className="flex flex-wrap gap-2 justify-center max-h-40 overflow-y-auto pr-2 custom-scrollbar">
+                        {collectedWordsRef.current.map((w, i) => (
+                            <span key={i} className="bg-green-600 text-white px-3 py-1 text-sm font-bold border-b-4 border-green-800 rounded-sm animate-in fade-in slide-in-from-bottom-2" style={{animationDelay: `${i * 50}ms`}}>
+                                {w}
+                            </span>
+                        ))}
+                    </div>
+                ) : (
+                    <p className="text-center text-gray-400 italic">Ánimo, la próxima vez lo harás mejor.</p>
+                )}
             </div>
+
             <Button onClick={() => setGameState('start')} className="gap-2 text-2xl px-12 py-8 rounded-none bg-white text-black border-b-[8px] border-gray-400 active:border-b-0 active:translate-y-2 font-black hover:bg-gray-100">
               <RotateCcw className="w-8 h-8" /> MENÚ
             </Button>
@@ -498,11 +527,19 @@ const RunnerAcentuacion = () => {
                     if (ent.type === 'word') {
                         if (ent.collected) return null;
                         const isTarget = ent.wordType === targetTypeRef.current;
+                        
+                        // Lógica de visualización de colores
+                        let wordStyle = "bg-indigo-600/80 border-indigo-400 shadow-[0_0_10px_indigo]"; // Estilo neutro (Difícil)
+                        
+                        if (showHintsRef.current) {
+                            wordStyle = isTarget 
+                                ? 'bg-green-600 border-green-400 shadow-[0_0_15px_green]' 
+                                : 'bg-red-900/50 border-red-800 opacity-80';
+                        }
+
                         return (
                             <div key={ent.id} 
-                                className={`absolute z-10 flex items-center justify-center font-black text-white px-2 py-1 rounded border-2 uppercase tracking-wider
-                                    ${isTarget ? 'bg-green-600 border-green-400 shadow-[0_0_15px_green]' : 'bg-red-900/50 border-red-800 opacity-80'}
-                                `}
+                                className={`absolute z-10 flex items-center justify-center font-black text-white px-2 py-1 rounded border-2 uppercase tracking-wider ${wordStyle}`}
                                 style={{
                                     left: `${ent.x}px`,
                                     bottom: `${60 + ent.y}px`,
