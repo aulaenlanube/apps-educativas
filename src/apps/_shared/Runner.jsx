@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { ConfettiProvider } from "./ConfettiProvider";
-import { RotateCcw, Settings2, ArrowUpFromLine, Shuffle, User, ListChecks, Eye, EyeOff } from 'lucide-react';
+import { RotateCcw, Settings2, Shuffle, User, ListChecks, Eye, EyeOff, Weight } from 'lucide-react';
 
 // --- CONFIGURACIÓN BASE ---
-const DEFAULT_GRAVITY = 1.0;
+const DEFAULT_GRAVITY = 1.2; // Gravedad por defecto 1.2
 const DEFAULT_JUMP_FORCE = 18; 
 const CUBE_SIZE = 40;
-const BASE_SPAWN_DISTANCE = 600; // Distancia en píxeles para generar obstáculos
+const BASE_SPAWN_DISTANCE = 600; 
 
 // --- PERSONAJES ---
 const CHARACTERS = [
@@ -26,7 +26,9 @@ const Runner = ({ level, grade, subjectId }) => {
   const [loadingError, setLoadingError] = useState(false);
 
   // Configuración de usuario
-  const [configSpeed, setConfigSpeed] = useState([4]); 
+  const [configSpeed, setConfigSpeed] = useState([8]); // Velocidad por defecto 8
+  const [configGravity, setConfigGravity] = useState([DEFAULT_GRAVITY]); 
+  const [showSettings, setShowSettings] = useState(false); // Checkbox oculto por defecto
   const [selectedChar, setSelectedChar] = useState(0);
   const [showHints, setShowHints] = useState(true);
 
@@ -43,15 +45,16 @@ const Runner = ({ level, grade, subjectId }) => {
   const reqRef = useRef(null);
   const gameContainerRef = useRef(null);
 
-  // --- NUEVAS REFS PARA CONTROL DE TIEMPO (DELTA TIME) ---
+  // --- REFS PARA CONTROL DE TIEMPO (DELTA TIME) ---
   const lastTimeRef = useRef(0);
-  const distanceTraveledRef = useRef(0); // Para controlar el spawn por distancia, no por frames
+  const distanceTraveledRef = useRef(0);
 
   // Refs de acceso rápido
   const targetTypeRef = useRef(null);
   const gameDataRef = useRef(null); 
-  const speedRef = useRef(4);
+  const speedRef = useRef(8); // Ref inicializada en 8
   const jumpForceRef = useRef(DEFAULT_JUMP_FORCE);
+  const gravityRef = useRef(DEFAULT_GRAVITY);
   const showHintsRef = useRef(true);
 
   // 1. CARGA DE DATOS DINÁMICA
@@ -115,6 +118,7 @@ const Runner = ({ level, grade, subjectId }) => {
     isPlayingRef.current = true;
 
     speedRef.current = configSpeed[0];
+    gravityRef.current = configGravity[0]; 
     jumpForceRef.current = DEFAULT_JUMP_FORCE; 
     showHintsRef.current = showHints;
 
@@ -124,7 +128,6 @@ const Runner = ({ level, grade, subjectId }) => {
     collectedWordsRef.current = [];
     bgOffsetRef.current = 0;
     
-    // Resetear contadores de tiempo y distancia
     lastTimeRef.current = 0;
     distanceTraveledRef.current = 0;
 
@@ -135,7 +138,6 @@ const Runner = ({ level, grade, subjectId }) => {
   const jump = useCallback(() => {
     if (!isPlayingRef.current) return;
 
-    // Permitimos salto si está en el suelo o sobre una plataforma
     if (playerRef.current.y <= 0.5 || playerRef.current.onPlatform) {
       playerRef.current.velocityY = jumpForceRef.current;
       playerRef.current.isJumping = true;
@@ -207,38 +209,29 @@ const Runner = ({ level, grade, subjectId }) => {
     );
   };
 
-  // 4. BUCLE DE JUEGO OPTIMIZADO (DELTA TIME)
+  // 4. BUCLE DE JUEGO OPTIMIZADO
   const gameLoop = (timestamp) => {
     if (!isPlayingRef.current) return;
 
-    // Inicializar el tiempo en el primer frame
     if (!lastTimeRef.current) lastTimeRef.current = timestamp;
     
-    // Calcular el tiempo transcurrido desde el último frame
     const deltaTime = timestamp - lastTimeRef.current;
     lastTimeRef.current = timestamp;
 
-    // Protección contra saltos grandes de tiempo (ej. cambiar de pestaña)
     if (deltaTime > 100) {
         reqRef.current = requestAnimationFrame(gameLoop);
         return;
     }
 
-    // Normalizar a 60 FPS (16.67ms por frame)
-    // Si el juego va a 60fps, timeScale será ~1. Si va a 120fps, será ~0.5.
     const timeScale = deltaTime / 16.67;
-
     const currentSpeed = speedRef.current * timeScale;
 
-    // Mover fondo
     bgOffsetRef.current -= currentSpeed * 0.5;
     if (bgOffsetRef.current <= -100) bgOffsetRef.current = 0;
 
-    // Física del jugador (Gravedad y Movimiento) escalada por tiempo
-    playerRef.current.velocityY -= DEFAULT_GRAVITY * timeScale;
+    playerRef.current.velocityY -= gravityRef.current * timeScale; 
     playerRef.current.y += playerRef.current.velocityY * timeScale;
 
-    // Comprobar suelo
     if (playerRef.current.y < 0) {
       playerRef.current.y = 0;
       playerRef.current.velocityY = 0;
@@ -246,12 +239,10 @@ const Runner = ({ level, grade, subjectId }) => {
       playerRef.current.onPlatform = false;
     }
 
-    // --- LÓGICA DE SPAWN BASADA EN DISTANCIA ---
-    // En lugar de contar frames, acumulamos la distancia recorrida
     distanceTraveledRef.current += currentSpeed;
     if (distanceTraveledRef.current >= BASE_SPAWN_DISTANCE) {
         spawnEntities();
-        distanceTraveledRef.current = 0; // Reiniciar contador de distancia parcial
+        distanceTraveledRef.current = 0;
     }
 
     const pRect = {
@@ -262,13 +253,11 @@ const Runner = ({ level, grade, subjectId }) => {
     let landedOnPlatform = false;
 
     entitiesRef.current.forEach(ent => {
-      // Mover entidad escalado por tiempo
       ent.x -= currentSpeed;
 
       if (ent.x > -200 && ent.x < 200) {
         const eRect = { x: ent.x, y: ent.y, width: ent.width, height: ent.height };
 
-        // Colisión con pinchos
         if (ent.type === 'spike') {
           const spikeRect = { x: ent.x + 12, y: ent.y, width: ent.width - 24, height: ent.height - 20 };
           if (checkAABB(pRect, spikeRect)) {
@@ -276,7 +265,6 @@ const Runner = ({ level, grade, subjectId }) => {
           }
         }
 
-        // Colisión con plataformas
         if (ent.type === 'platform') {
           if (
             playerRef.current.velocityY <= 0 &&
@@ -293,7 +281,6 @@ const Runner = ({ level, grade, subjectId }) => {
           }
         }
 
-        // Colisión con items (palabras/números)
         if (ent.type === 'item' && !ent.collected) {
           if (checkAABB(pRect, eRect)) {
             const targetList = gameDataRef.current[targetTypeRef.current];
@@ -316,7 +303,6 @@ const Runner = ({ level, grade, subjectId }) => {
     }
 
     entitiesRef.current = entitiesRef.current.filter(ent => ent.x > -200);
-    
     setTick(prev => prev + 1);
     reqRef.current = requestAnimationFrame(gameLoop);
   };
@@ -415,16 +401,46 @@ const Runner = ({ level, grade, subjectId }) => {
               </div>
 
               {/* Configuración */}
-              <div className="bg-slate-800 p-4 border-4 border-white shadow-[6px_6px_0_black] space-y-4">
-                <div>
-                  <div className="flex justify-between mb-1 font-bold text-sm">
-                    <label className="flex items-center gap-2 text-cyan-400"><Settings2 className="w-4 h-4" /> VELOCIDAD</label>
-                    <span className="bg-black px-2 border border-white text-cyan-400 font-mono">{configSpeed[0]}</span>
-                  </div>
-                  <Slider defaultValue={[4]} max={16} min={2} step={1} value={configSpeed} onValueChange={setConfigSpeed} className="cursor-pointer" />
-                </div>
+              <div className="bg-slate-800 p-4 border-4 border-white shadow-[6px_6px_0_black]">
                 
-                <div className="pt-2 border-t border-white/20">
+                {/* Checkbox para mostrar ajustes avanzados */}
+                <div className="flex items-center gap-2 mb-2 pb-2">
+                    <input 
+                      type="checkbox" 
+                      id="advancedSettings" 
+                      checked={showSettings} 
+                      onChange={(e) => setShowSettings(e.target.checked)}
+                      className="w-5 h-5 cursor-pointer accent-yellow-400 bg-slate-700 border-white/50 rounded-sm"
+                    />
+                    <label htmlFor="advancedSettings" className="text-white font-bold text-sm cursor-pointer select-none">
+                      CONFIGURACIÓN AVANZADA
+                    </label>
+                </div>
+
+                {/* Sliders Condicionales */}
+                {showSettings && (
+                  <div className="space-y-4 mb-4 animate-in slide-in-from-top-2 duration-300 bg-black/20 p-2 border border-white/10">
+                    {/* Velocidad */}
+                    <div>
+                      <div className="flex justify-between mb-1 font-bold text-sm">
+                        <label className="flex items-center gap-2 text-cyan-400"><Settings2 className="w-4 h-4" /> VELOCIDAD</label>
+                        <span className="bg-black px-2 border border-white text-cyan-400 font-mono">{configSpeed[0]}</span>
+                      </div>
+                      <Slider defaultValue={[8]} max={16} min={2} step={1} value={configSpeed} onValueChange={setConfigSpeed} className="cursor-pointer" />
+                    </div>
+
+                    {/* Gravedad */}
+                    <div>
+                      <div className="flex justify-between mb-1 font-bold text-sm">
+                        <label className="flex items-center gap-2 text-purple-400"><Weight className="w-4 h-4" /> GRAVEDAD</label>
+                        <span className="bg-black px-2 border border-white text-purple-400 font-mono">{configGravity[0]}</span>
+                      </div>
+                      <Slider defaultValue={[DEFAULT_GRAVITY]} max={2.0} min={0.5} step={0.1} value={configGravity} onValueChange={setConfigGravity} className="cursor-pointer" />
+                    </div>
+                  </div>
+                )}
+                
+                <div className="pt-2 border-t border-white/20 mt-2">
                   <Button onClick={() => setShowHints(!showHints)} className={`w-full flex justify-between items-center border-2 rounded-none h-8 transition-all font-bold text-xs uppercase ${showHints ? "bg-emerald-600/50 border-emerald-400 hover:bg-emerald-600 text-white" : "bg-red-600/50 border-red-400 hover:bg-red-600 text-white"}`}>
                     <span>{showHints ? "Pistas: SÍ" : "Pistas: NO"}</span>
                     {showHints ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
