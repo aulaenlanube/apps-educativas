@@ -1,0 +1,17 @@
+{
+  "la_familia": [
+    "mamá", "papá", "abuelo", "abuela", "tío", 
+    "tía", "primo", "prima", "bebé", "hermano"
+  ],
+  "la_casa": [
+    "baño", "salón", "cocina", "cama", "mesa", 
+    "silla", "sofá", "puerta", "suelo", "techo"
+  ],
+  "el_colegio": [
+    "lápiz", "goma", "libro", "mesa", "patio", 
+    "clase", "profe", "tiza", "papel", "babi"
+  ],
+  "dias_semana": [
+    "lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"
+  ]
+}

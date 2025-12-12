@@ -1,0 +1,14 @@
+{
+  "les_couleurs": [
+    "rouge", "bleu", "vert", "jaune", "noir", "blanc", "rose", "orange", "gris", "violet"
+  ],
+  "les_nombres": [
+    "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix"
+  ],
+  "les_animaux": [
+    "chat", "chien", "lion", "poisson", "oiseau", "vache", "cochon", "cheval", "lapin", "poule"
+  ],
+  "les_salutations": [
+    "bonjour", "salut", "au revoir", "merci", "pardon", "bonsoir", "bonne nuit", "à bientôt"
+  ]
+}

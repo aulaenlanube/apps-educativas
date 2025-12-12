@@ -43,8 +43,7 @@ import GeneradorPersonajes from './generador-personajes/GeneradorPersonajes';
 import BuscaElIntruso from './busca-el-intruso/BuscaElIntruso.jsx'
 import RoscoJuego from './rosco/RoscoJuego'; 
 import OrdenaBolas from '@/apps/ordena-bolas/OrdenaBolas';
-import RunnerAcentuacion from './runner-acentuacion/RunnerAcentuacion';
-import RunnerMatematicas from './runner-matematicas/RunnerMatematicas';
+import Runner from './_shared/Runner';
 
 
 
@@ -186,18 +185,11 @@ const appOrdenaBolas = {
     component: OrdenaBolas
 };
 
-const appRunnerAcentuacion = {
-    id: 'lengua-runner-acentuacion',
-    name: 'Runner de Acentuación',
-    description: 'Corre, salta y rompe las palabras según su acentuación (agudas, llanas o esdrújulas).',
-    component: RunnerAcentuacion
-};
-
-const appRunnerMatematicas = { 
-    id: 'runner-matematicas', 
-    name: 'Math Dash (Runner)', 
-    description: 'Salta obstáculos y atrapa los números correctos en este juego de plataformas.', 
-    component: RunnerMatematicas 
+const appRunner = {
+    id: 'runner', 
+    name: 'Edu Dash',
+    description: 'Corre, salta y atrapa los elementos correctos.',
+    component: Runner
 };
 
 // exportamos las materias para primaria y ESO desde el JSON
@@ -222,6 +214,7 @@ export const primariaApps = {
         description: 'Encuentra la letra diferente. ¡Practica tu atención con letras!',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -237,7 +230,7 @@ export const primariaApps = {
         description: 'Encuentra el número diferente. ¡Entrena tu vista con números!',
         component: BuscaElIntruso
       },
-      appRunnerMatematicas,      
+      appRunner,            
       appOrdenaBolas,
       appRosco,
       appMedidas1,
@@ -254,6 +247,7 @@ export const primariaApps = {
         description: 'Encuentra el elemento diferente. ¡Aprende sobre la naturaleza jugando!',
         component: BuscaElIntruso
       },
+      appRunner,      
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -266,6 +260,7 @@ export const primariaApps = {
         description: 'Encuentra el elemento diferente.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -278,12 +273,14 @@ export const primariaApps = {
         description: 'Find the different letter.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' }
     ],
     'tutoria': [
+      appRunner,
       appRosco,
       appIslaDeLaCalma,
       appGeneradorPersonajes,
@@ -304,6 +301,7 @@ export const primariaApps = {
         description: 'Troba la lletra diferent!',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -316,6 +314,7 @@ export const primariaApps = {
         description: 'Trouve le symbole différent de la culture française!',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -330,6 +329,7 @@ export const primariaApps = {
         description: 'Identifica la palabra que no pertenece al grupo (gramática y vocabulario).',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -345,7 +345,7 @@ export const primariaApps = {
         description: 'Encuentra el número o figura que no encaja.',
         component: BuscaElIntruso
       },
-      appRunnerMatematicas,
+      appRunner,
       appOrdenaBolas,
       appRosco,
       appMedidas2,
@@ -362,6 +362,7 @@ export const primariaApps = {
         description: 'Distingue animales, plantas y elementos de la naturaleza.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -374,6 +375,7 @@ export const primariaApps = {
         description: 'Identifica elementos de la sociedad, profesiones y el entorno.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -386,6 +388,7 @@ export const primariaApps = {
         description: 'Find the word that does not belong (Vocabulary).',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -400,6 +403,7 @@ export const primariaApps = {
         description: 'Identifica emociones, valores y hábitos saludables.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -412,6 +416,7 @@ export const primariaApps = {
         description: "Troba la paraula que no pertany al grup.",
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -424,6 +429,7 @@ export const primariaApps = {
         description: 'Trouve le mot qui ne correspond pas.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -440,7 +446,8 @@ export const primariaApps = {
         description: 'Identifica la palabra intrusa por su categoría gramatical o significado.',
         component: BuscaElIntruso
       },
-            appRosco,
+      appRunner,
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
@@ -456,7 +463,7 @@ export const primariaApps = {
       { id: 'restas-primaria-3', name: 'Restas con llevadas', description: 'Restas de 3 y 4 cifras con llevadas', component: RestasPrimaria3 },
       { id: 'multiplicaciones-primaria-3', name: 'Multiplicaciones', description: 'Multiplicaciones de 1 cifra en el multiplicador', component: MultiplicacionesPrimaria3 },
       { id: 'supermercado-matematico-3', name: 'Supermercado Matemático (Multiplicación)', description: 'Calcula el coste de comprar varias unidades del mismo producto.', component: SupermercadoMatematico3 },
-      appRunnerMatematicas,
+      appRunner,            
       appOrdenaBolas,
       appRosco,
       appMedidas3,
@@ -473,6 +480,7 @@ export const primariaApps = {
         description: 'Clasifica animales, plantas y ecosistemas.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -485,6 +493,7 @@ export const primariaApps = {
         description: 'Geografía, relieve y sociedad.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -497,6 +506,7 @@ export const primariaApps = {
         description: 'Find the word that does not belong (Vocabulary & Grammar).',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -511,6 +521,8 @@ export const primariaApps = {
         description: 'Valores, emociones y convivencia.',
         component: BuscaElIntruso
       },
+      appRunner,
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' }
@@ -522,6 +534,7 @@ export const primariaApps = {
         description: 'Gramàtica i vocabulari.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -534,6 +547,7 @@ export const primariaApps = {
         description: 'Vocabulaire et grammaire.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -547,8 +561,8 @@ export const primariaApps = {
         name: 'Busca el Intruso',
         description: 'Análisis morfológico y semántico.',
         component: BuscaElIntruso
-      },
-      appRunnerAcentuacion,      
+      },     
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -565,7 +579,7 @@ export const primariaApps = {
       { id: 'restas-primaria-4', name: 'Restas con un decimal', description: 'Restas con 1 decimal', component: RestasPrimaria4 },
       { id: 'multiplicaciones-primaria-4', name: 'Multiplicaciones', description: 'Multiplica por más de 1 cifra', component: MultiplicacionesPrimaria4 },
       { id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 },
-      appRunnerMatematicas,
+      appRunner,      
       appOrdenaBolas,
       appRosco,
       appMedidas4,
@@ -582,6 +596,7 @@ export const primariaApps = {
         description: 'Los ecosistemas, la materia y la energía.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -594,6 +609,7 @@ export const primariaApps = {
         description: 'Historia, población y territorio.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -606,6 +622,7 @@ export const primariaApps = {
         description: 'Intermediate vocabulary & grammar challenge.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -620,6 +637,7 @@ export const primariaApps = {
         description: 'Resolución de conflictos y emociones.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -632,6 +650,7 @@ export const primariaApps = {
         description: 'Reforç de vocabulari i gramàtica.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -644,6 +663,7 @@ export const primariaApps = {
         description: 'Exercices de vocabulaire.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -658,6 +678,7 @@ export const primariaApps = {
         description: 'Sintaxis, morfología y literatura.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -674,7 +695,7 @@ export const primariaApps = {
       { id: 'restas-primaria-5', name: 'Restas con decimales', description: 'Restas con varios decimales', component: RestasPrimaria5 },
       { id: 'multiplicaciones-primaria-5', name: 'Multiplicaciones', description: 'Multiplica por varios dígitos', component: MultiplicacionesPrimaria5 },
       { id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 },
-      appRunnerMatematicas,
+      appRunner,      
       appOrdenaBolas,
       appRosco,
       appMedidas5,
@@ -691,6 +712,7 @@ export const primariaApps = {
         description: 'El cuerpo humano, la célula y los reinos.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -703,6 +725,7 @@ export const primariaApps = {
         description: 'La Edad Media, el universo y el clima.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -715,6 +738,7 @@ export const primariaApps = {
         description: 'Advanced vocabulary & grammar.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -729,6 +753,7 @@ export const primariaApps = {
         description: 'Dinámicas de grupo y autoconocimiento.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -741,6 +766,7 @@ export const primariaApps = {
         description: 'Perfeccionament de la llengua.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -753,6 +779,7 @@ export const primariaApps = {
         description: 'Vocabulaire avancé.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -767,6 +794,7 @@ export const primariaApps = {
         description: 'Repaso general de primaria.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -783,7 +811,7 @@ export const primariaApps = {
       { id: 'restas-primaria-6', name: 'Restas a completar', description: 'Completa cualquier parte de la resta', component: RestasPrimaria6 },
       { id: 'multiplicaciones-primaria-6', name: 'Multiplicaciones', description: 'Multiplicaciones con decimales', component: MultiplicacionesPrimaria6 },
       { id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 },
-      appRunnerMatematicas,
+      appRunner,      
       appOrdenaBolas,
       appRosco,
       appMedidas6,
@@ -800,6 +828,7 @@ export const primariaApps = {
         description: 'Electricidad, magnetismo y salud.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -812,6 +841,7 @@ export const primariaApps = {
         description: 'Historia contemporánea y Europa.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -824,6 +854,7 @@ export const primariaApps = {
         description: 'Challenge your English skills.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -838,6 +869,7 @@ export const primariaApps = {
         description: 'Transición a la secundaria.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -850,6 +882,7 @@ export const primariaApps = {
         description: 'Repàs general.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -862,6 +895,7 @@ export const primariaApps = {
         description: 'Challenge de français.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -884,6 +918,7 @@ export const esoApps = {
         description: 'Refuerza gramática, comunicación y literatura.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -895,7 +930,7 @@ export const esoApps = {
         description: 'Repasa números enteros, geometría y fracciones.',
         component: BuscaElIntruso
       },
-      appRunnerMatematicas,
+      appRunner,      
       appOrdenaBolas,
       appRosco,      
       appOrdenaLaFrase,
@@ -908,6 +943,7 @@ export const esoApps = {
         description: 'Prehistoria, Edad Antigua y Geografía.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -919,6 +955,7 @@ export const esoApps = {
         description: 'Vocabulary and grammar review.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -931,6 +968,7 @@ export const esoApps = {
         description: 'Los seres vivos y el planeta Tierra.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -942,6 +980,7 @@ export const esoApps = {
         description: 'Introducción a la materia y la energía.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -953,6 +992,7 @@ export const esoApps = {
         description: 'Lenguaje musical e instrumentos.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -964,6 +1004,7 @@ export const esoApps = {
         description: 'Elementos visuales y color.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -975,6 +1016,8 @@ export const esoApps = {
         description: 'Materiales, herramientas y proceso tecnológico.',
         component: BuscaElIntruso
       },
+      appRunner,
+      appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
     ],
@@ -985,6 +1028,7 @@ export const esoApps = {
         description: 'Deportes y salud.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -998,6 +1042,7 @@ export const esoApps = {
         description: 'Convivencia y técnicas de estudio.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1009,6 +1054,7 @@ export const esoApps = {
         description: 'Gramàtica i vocabulari bàsic.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -1021,6 +1067,7 @@ export const esoApps = {
         description: 'Vocabulaire de base.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -1035,6 +1082,7 @@ export const esoApps = {
         description: 'Sintaxis y géneros literarios.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1046,7 +1094,7 @@ export const esoApps = {
         description: 'Álgebra, funciones y geometría.',
         component: BuscaElIntruso
       },
-      appRunnerMatematicas,
+      appRunner,      
       appOrdenaBolas,
       appRosco,
       appOrdenaLaFrase,
@@ -1059,6 +1107,7 @@ export const esoApps = {
         description: 'La Edad Media y el Arte.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1070,6 +1119,7 @@ export const esoApps = {
         description: 'Grammar and irregular verbs.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -1082,6 +1132,7 @@ export const esoApps = {
         description: 'Funciones vitales y ecosistemas.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1093,6 +1144,7 @@ export const esoApps = {
         description: 'Materia, energía y fuerzas.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1104,6 +1156,7 @@ export const esoApps = {
         description: 'Historia de la música.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1115,6 +1168,7 @@ export const esoApps = {
         description: 'Técnicas artísticas y geometría.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1126,6 +1180,7 @@ export const esoApps = {
         description: 'Electricidad y mecanismos.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1137,6 +1192,7 @@ export const esoApps = {
         description: 'Cualidades físicas y deporte.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1150,6 +1206,7 @@ export const esoApps = {
         description: 'Valores y habilidades sociales.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1161,6 +1218,7 @@ export const esoApps = {
         description: 'Lèxic i comarques.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -1173,6 +1231,7 @@ export const esoApps = {
         description: 'La ville et les vêtements.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -1187,7 +1246,7 @@ export const esoApps = {
         description: 'Literatura clásica y sintaxis.',
         component: BuscaElIntruso
       },
-      appRunnerMatematicas,
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1199,6 +1258,7 @@ export const esoApps = {
         description: 'Estadística, ecuaciones y geometría.',
         component: BuscaElIntruso
       },
+      appRunner,
       appOrdenaBolas,
       appRosco,
       appOrdenaLaFrase,
@@ -1211,6 +1271,7 @@ export const esoApps = {
         description: 'Edad Moderna y geografía política.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1222,6 +1283,7 @@ export const esoApps = {
         description: 'Advanced vocabulary and tenses.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -1234,6 +1296,7 @@ export const esoApps = {
         description: 'Cuerpo humano y salud.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1245,6 +1308,7 @@ export const esoApps = {
         description: 'Química, átomos y tabla periódica.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1256,6 +1320,7 @@ export const esoApps = {
         description: 'Estilos y épocas musicales.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1267,6 +1332,7 @@ export const esoApps = {
         description: 'Diseño y perspectiva.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1278,6 +1344,7 @@ export const esoApps = {
         description: 'Mecanismos y energía.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1289,6 +1356,7 @@ export const esoApps = {
         description: 'Entrenamiento y primeros auxilios.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1302,6 +1370,7 @@ export const esoApps = {
         description: 'Orientación académica y emociones.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1313,6 +1382,7 @@ export const esoApps = {
         description: 'Sociolingüística i literatura.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -1325,6 +1395,7 @@ export const esoApps = {
         description: 'Culture et grammaire avancée.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -1339,6 +1410,7 @@ export const esoApps = {
         description: 'Literatura contemporánea.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1350,7 +1422,7 @@ export const esoApps = {
         description: 'Funciones, probabilidad y trigonometría.',
         component: BuscaElIntruso
       },
-      appRunnerMatematicas,
+      appRunner,
       appOrdenaBolas,
       appRosco,
       appOrdenaLaFrase,
@@ -1363,6 +1435,7 @@ export const esoApps = {
         description: 'Historia del Mundo Contemporáneo.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1374,6 +1447,7 @@ export const esoApps = {
         description: 'Complex grammar and idioms.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -1386,6 +1460,7 @@ export const esoApps = {
         description: 'Actividad física y salud.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1397,6 +1472,7 @@ export const esoApps = {
         description: 'Genética y evolución.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1408,6 +1484,7 @@ export const esoApps = {
         description: 'Cinemática, dinámica y fuerzas.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1419,6 +1496,7 @@ export const esoApps = {
         description: 'Cultura romana y declinaciones.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1430,6 +1508,7 @@ export const esoApps = {
         description: 'Conceptos económicos básicos.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1441,6 +1520,7 @@ export const esoApps = {
         description: 'Electrónica y robótica.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1454,6 +1534,7 @@ export const esoApps = {
         description: 'Orientación profesional y futuro.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
@@ -1465,6 +1546,7 @@ export const esoApps = {
         description: 'Literatura i cultura.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,
@@ -1477,6 +1559,7 @@ export const esoApps = {
         description: 'Francophonie et culture.',
         component: BuscaElIntruso
       },
+      appRunner,
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria,

@@ -1,0 +1,18 @@
+{
+  "colors": [
+    "red", "blue", "green", "pink", "yellow", 
+    "black", "white", "orange", "purple", "brown"
+  ],
+  "numbers": [
+    "one", "two", "three", "four", "five", 
+    "six", "seven", "eight", "nine", "ten"
+  ],
+  "animals": [
+    "dog", "cat", "pig", "cow", "duck", 
+    "bird", "fish", "lion", "snake", "bear"
+  ],
+  "body": [
+    "head", "nose", "eye", "mouth", "ear", 
+    "hand", "leg", "foot", "arm", "knee"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "els_colors": [
+    "roig", "blau", "verd", "groc", "negre", "blanc", "rosa", "taronja", "marró", "lila"
+  ],
+  "els_nombres": [
+    "u", "dos", "tres", "quatre", "cinc", "sis", "set", "huit", "nou", "deu"
+  ],
+  "el_cos_huma": [
+    "cap", "mà", "peu", "panxa", "braç", "cama", "ull", "nas", "boca", "orella"
+  ],
+  "la_familia": [
+    "mare", "pare", "iaia", "iaio", "tieta", "oncle", "germà", "germana", "cosí", "cosina"
+  ]
+}

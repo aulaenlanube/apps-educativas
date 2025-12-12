@@ -1,0 +1,14 @@
+{
+  "emociones_agradables": [
+    "alegría", "calma", "amor", "ilusión", "paz", "gozo", "felicidad", "cariño"
+  ],
+  "emociones_desagradables": [
+    "miedo", "ira", "tristeza", "asco", "enfado", "vergüenza", "celos", "dolor"
+  ],
+  "valores_escolares": [
+    "respeto", "ayuda", "amistad", "esfuerzo", "orden", "verdad", "compartir", "escuchar"
+  ],
+  "higiene_personal": [
+    "jabón", "ducha", "cepillo", "agua", "toalla", "peine", "baño", "lavarse"
+  ]
+}

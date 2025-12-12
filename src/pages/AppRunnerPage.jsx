@@ -6,10 +6,6 @@ import { Button } from '@/components/ui/button';
 import { findAppById } from '@/apps/appList';
 import Header from '@/components/layout/Header';
 
-/**
- * Componente encargado de renderizar una aplicación concreta.
- * Determina la ruta de regreso dependiendo de si la app pertenece a una materia.
- */
 const AppRunnerPage = () => {
   const { level, grade, subjectId, appId } = useParams();
   const navigate = useNavigate();
@@ -19,14 +15,16 @@ const AppRunnerPage = () => {
     return (
       <div className="container mx-auto my-8 px-4 text-center">
         <h1 className="text-2xl font-bold mb-4">App no encontrada</h1>
-        <p className="text-gray-600 mb-6">No hemos podido encontrar la aplicación que buscas. Revisa la configuración en appList.js</p>
+        <p className="text-gray-600 mb-6">No hemos podido encontrar la aplicación que buscas.</p>
         <Button onClick={() => navigate('/')} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
           <ArrowLeft className="mr-2 w-4 h-4" /> Inicio
         </Button>
       </div>
     );
   }
-  const { app } = result;
+
+  // IMPORTANTE: Extraemos también el subjectId del resultado por si no venía en la URL (caso Primaria)
+  const { app, level: contextLevel, grade: contextGrade, subjectId: contextSubjectId } = result;
   const AppToRender = app.component;
 
   const backPath = subjectId ? `/curso/${level}/${grade}/${subjectId}` : `/curso/${level}/${grade}`;
@@ -48,7 +46,8 @@ const AppRunnerPage = () => {
           </Button>
         </Header>
         <div className="container mx-auto p-4 flex-grow">
-          <AppToRender />
+          {/* Pasamos el contexto completo al componente */}
+          <AppToRender level={contextLevel} grade={contextGrade} subjectId={contextSubjectId} />
         </div>
       </div>
     </>

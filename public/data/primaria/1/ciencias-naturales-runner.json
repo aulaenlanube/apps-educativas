@@ -1,0 +1,17 @@
+{
+  "animales": [
+    "perro", "gato", "león", "pato", "vaca", 
+    "pez", "oso", "lobo", "ratón", "tigre"
+  ],
+  "partes_del_cuerpo": [
+    "mano", "pie", "ojo", "nariz", "boca", 
+    "pelo", "cara", "dedo", "codo", "rodilla"
+  ],
+  "frutas": [
+    "pera", "uva", "limón", "fresa", "kiwi", 
+    "melón", "coco", "higo", "piña", "mora"
+  ],
+  "el_tiempo": [
+    "sol", "lluvia", "nube", "nieve", "viento", "rayo", "frío", "calor"
+  ]
+}
