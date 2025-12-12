@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { ConfettiProvider } from "./ConfettiProvider";
-import { RotateCcw, Settings2, Shuffle, User, ListChecks, Eye, EyeOff } from 'lucide-react';
+import { RotateCcw, Settings2, ArrowUpFromLine, Shuffle, User, ListChecks, Eye, EyeOff } from 'lucide-react';
 
 // --- CONFIGURACIÓN BASE ---
 const DEFAULT_GRAVITY = 1.0;
-const DEFAULT_JUMP_FORCE = 18; // Salto fijo perfecto
+const DEFAULT_JUMP_FORCE = 18; 
 const CUBE_SIZE = 40;
-const BASE_SPAWN_DISTANCE = 600;
+const BASE_SPAWN_DISTANCE = 600; // Distancia en píxeles para generar obstáculos
 
 // --- PERSONAJES ---
 const CHARACTERS = [
@@ -26,25 +26,28 @@ const Runner = ({ level, grade, subjectId }) => {
   const [loadingError, setLoadingError] = useState(false);
 
   // Configuración de usuario
-  const [configSpeed, setConfigSpeed] = useState([4]); // Inicio en 4
+  const [configSpeed, setConfigSpeed] = useState([4]); 
   const [selectedChar, setSelectedChar] = useState(0);
   const [showHints, setShowHints] = useState(true);
 
   // Tick para forzar renderizado en React
   const [tick, setTick] = useState(0);
 
-  // Refs para el bucle de juego (estado mutable sin re-render)
+  // Refs para el bucle de juego
   const isPlayingRef = useRef(false);
   const playerRef = useRef({ x: 100, y: 0, velocityY: 0, isJumping: false, onPlatform: false });
   const rotationRef = useRef(0);
   const collectedWordsRef = useRef([]);
   const entitiesRef = useRef([]);
   const bgOffsetRef = useRef(0);
-  const frameRef = useRef(0);
   const reqRef = useRef(null);
   const gameContainerRef = useRef(null);
 
-  // Refs de acceso rápido para el loop
+  // --- NUEVAS REFS PARA CONTROL DE TIEMPO (DELTA TIME) ---
+  const lastTimeRef = useRef(0);
+  const distanceTraveledRef = useRef(0); // Para controlar el spawn por distancia, no por frames
+
+  // Refs de acceso rápido
   const targetTypeRef = useRef(null);
   const gameDataRef = useRef(null); 
   const speedRef = useRef(4);
@@ -112,23 +115,27 @@ const Runner = ({ level, grade, subjectId }) => {
     isPlayingRef.current = true;
 
     speedRef.current = configSpeed[0];
-    jumpForceRef.current = DEFAULT_JUMP_FORCE; // Valor fijo
+    jumpForceRef.current = DEFAULT_JUMP_FORCE; 
     showHintsRef.current = showHints;
 
     playerRef.current = { x: 100, y: 0, velocityY: 0, isJumping: false, onPlatform: false };
     rotationRef.current = 0;
     entitiesRef.current = [];
     collectedWordsRef.current = [];
-    frameRef.current = 0;
     bgOffsetRef.current = 0;
+    
+    // Resetear contadores de tiempo y distancia
+    lastTimeRef.current = 0;
+    distanceTraveledRef.current = 0;
 
     if (reqRef.current) cancelAnimationFrame(reqRef.current);
-    gameLoop();
+    reqRef.current = requestAnimationFrame(gameLoop);
   };
 
   const jump = useCallback(() => {
     if (!isPlayingRef.current) return;
 
+    // Permitimos salto si está en el suelo o sobre una plataforma
     if (playerRef.current.y <= 0.5 || playerRef.current.onPlatform) {
       playerRef.current.velocityY = jumpForceRef.current;
       playerRef.current.isJumping = true;
@@ -200,18 +207,38 @@ const Runner = ({ level, grade, subjectId }) => {
     );
   };
 
-  // 4. BUCLE DE JUEGO
-  const gameLoop = () => {
+  // 4. BUCLE DE JUEGO OPTIMIZADO (DELTA TIME)
+  const gameLoop = (timestamp) => {
     if (!isPlayingRef.current) return;
 
-    const currentSpeed = speedRef.current;
+    // Inicializar el tiempo en el primer frame
+    if (!lastTimeRef.current) lastTimeRef.current = timestamp;
+    
+    // Calcular el tiempo transcurrido desde el último frame
+    const deltaTime = timestamp - lastTimeRef.current;
+    lastTimeRef.current = timestamp;
 
+    // Protección contra saltos grandes de tiempo (ej. cambiar de pestaña)
+    if (deltaTime > 100) {
+        reqRef.current = requestAnimationFrame(gameLoop);
+        return;
+    }
+
+    // Normalizar a 60 FPS (16.67ms por frame)
+    // Si el juego va a 60fps, timeScale será ~1. Si va a 120fps, será ~0.5.
+    const timeScale = deltaTime / 16.67;
+
+    const currentSpeed = speedRef.current * timeScale;
+
+    // Mover fondo
     bgOffsetRef.current -= currentSpeed * 0.5;
     if (bgOffsetRef.current <= -100) bgOffsetRef.current = 0;
 
-    playerRef.current.velocityY -= DEFAULT_GRAVITY;
-    playerRef.current.y += playerRef.current.velocityY;
+    // Física del jugador (Gravedad y Movimiento) escalada por tiempo
+    playerRef.current.velocityY -= DEFAULT_GRAVITY * timeScale;
+    playerRef.current.y += playerRef.current.velocityY * timeScale;
 
+    // Comprobar suelo
     if (playerRef.current.y < 0) {
       playerRef.current.y = 0;
       playerRef.current.velocityY = 0;
@@ -219,11 +246,12 @@ const Runner = ({ level, grade, subjectId }) => {
       playerRef.current.onPlatform = false;
     }
 
-    frameRef.current++;
-    const spawnRate = Math.floor(BASE_SPAWN_DISTANCE / currentSpeed);
-
-    if (frameRef.current % spawnRate === 0) {
-      spawnEntities();
+    // --- LÓGICA DE SPAWN BASADA EN DISTANCIA ---
+    // En lugar de contar frames, acumulamos la distancia recorrida
+    distanceTraveledRef.current += currentSpeed;
+    if (distanceTraveledRef.current >= BASE_SPAWN_DISTANCE) {
+        spawnEntities();
+        distanceTraveledRef.current = 0; // Reiniciar contador de distancia parcial
     }
 
     const pRect = {
@@ -234,11 +262,13 @@ const Runner = ({ level, grade, subjectId }) => {
     let landedOnPlatform = false;
 
     entitiesRef.current.forEach(ent => {
+      // Mover entidad escalado por tiempo
       ent.x -= currentSpeed;
 
       if (ent.x > -200 && ent.x < 200) {
         const eRect = { x: ent.x, y: ent.y, width: ent.width, height: ent.height };
 
+        // Colisión con pinchos
         if (ent.type === 'spike') {
           const spikeRect = { x: ent.x + 12, y: ent.y, width: ent.width - 24, height: ent.height - 20 };
           if (checkAABB(pRect, spikeRect)) {
@@ -246,6 +276,7 @@ const Runner = ({ level, grade, subjectId }) => {
           }
         }
 
+        // Colisión con plataformas
         if (ent.type === 'platform') {
           if (
             playerRef.current.velocityY <= 0 &&
@@ -262,6 +293,7 @@ const Runner = ({ level, grade, subjectId }) => {
           }
         }
 
+        // Colisión con items (palabras/números)
         if (ent.type === 'item' && !ent.collected) {
           if (checkAABB(pRect, eRect)) {
             const targetList = gameDataRef.current[targetTypeRef.current];
@@ -284,6 +316,7 @@ const Runner = ({ level, grade, subjectId }) => {
     }
 
     entitiesRef.current = entitiesRef.current.filter(ent => ent.x > -200);
+    
     setTick(prev => prev + 1);
     reqRef.current = requestAnimationFrame(gameLoop);
   };
@@ -388,7 +421,6 @@ const Runner = ({ level, grade, subjectId }) => {
                     <label className="flex items-center gap-2 text-cyan-400"><Settings2 className="w-4 h-4" /> VELOCIDAD</label>
                     <span className="bg-black px-2 border border-white text-cyan-400 font-mono">{configSpeed[0]}</span>
                   </div>
-                  {/* SLIDER MODIFICADO: Max 16, Min 2, Default 4 */}
                   <Slider defaultValue={[4]} max={16} min={2} step={1} value={configSpeed} onValueChange={setConfigSpeed} className="cursor-pointer" />
                 </div>
                 
