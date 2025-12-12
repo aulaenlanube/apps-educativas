@@ -157,12 +157,13 @@ const Runner = ({ level, grade, subjectId }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [jump]);
 
-  // 3. GENERADOR DE OBSTÁCULOS
+// 3. GENERADOR DE OBSTÁCULOS
   const spawnEntities = () => {
     const data = gameDataRef.current; 
     if (!data) return;
 
     const startX = 1000;
+    // Elegimos un patrón aleatorio (0: Pinchos, 1: Plataforma baja, 2: Plataforma alta+pincho, 3: Item flotante)
     const pattern = Math.floor(Math.random() * 4);
 
     const types = Object.keys(data);
@@ -178,7 +179,44 @@ const Runner = ({ level, grade, subjectId }) => {
     };
 
     if (pattern === 0) {
-      entitiesRef.current.push({ id: Date.now(), type: 'spike', x: startX, y: 0, width: 40, height: 40 });
+      // --- LÓGICA DE PINCHOS MODIFICADA ---
+      const spikeRandom = Math.random(); // Número entre 0.0 y 1.0
+
+      // 1. Siempre añadimos el primer pincho base
+      entitiesRef.current.push({ 
+        id: Date.now(), 
+        type: 'spike', 
+        x: startX, 
+        y: 0, 
+        width: 40, 
+        height: 40 
+      });
+
+      // 2. Probabilidad de PINCHO DOBLE (si > 0.75, es decir, un 25% de las veces)
+      if (spikeRandom > 0.5) {
+        entitiesRef.current.push({ 
+          id: Date.now() + 1, 
+          type: 'spike', 
+          x: startX + 40, // Pegado 40px a la derecha
+          y: 0, 
+          width: 40, 
+          height: 40 
+        });
+      }
+
+      // 3. Probabilidad de PINCHO TRIPLE (si > 0.95, es decir, un 5% de las veces)
+      // Nota: Como 0.96 es mayor que 0.75 y mayor que 0.95, se añadirán ambos (total 3)
+      if (spikeRandom > 0.75) {
+        entitiesRef.current.push({ 
+          id: Date.now() + 2, 
+          type: 'spike', 
+          x: startX + 80, // Pegado 80px a la derecha (40+40)
+          y: 0, 
+          width: 40, 
+          height: 40 
+        });
+      }
+
     } else if (pattern === 1) {
       entitiesRef.current.push({ id: Date.now(), type: 'platform', x: startX, y: 50, width: 160, height: 40 });
       itemEntity.x += 20; itemEntity.y = 130;
