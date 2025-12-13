@@ -51,6 +51,8 @@
       { "id": "historia", "nombre": "Geografía e Historia", "icon": "🌍" },
       { "id": "biologia", "nombre": "Biología y Geología", "icon": "🔬" },
       { "id": "fisica", "nombre": "Física y Química", "icon": "🧪" },
+      { "id": "musica", "nombre": "Música", "icon": "🎵" }, 
+      { "id": "plastica", "nombre": "Educación Plástica y Visual", "icon": "🎨" },
       { "id": "latin", "nombre": "Latín", "icon": "🏛️" },
       { "id": "economia", "nombre": "Economía", "icon": "📈" },
       { "id": "tecnologia", "nombre": "Tecnología", "icon": "💻" },

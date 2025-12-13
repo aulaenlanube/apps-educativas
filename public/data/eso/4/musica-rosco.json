@@ -18,8 +18,7 @@
   { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Estilo de baile urbano que incluye acrobacias en el suelo (Break...).", "solucion": "breakdance", "materia": "musica" },
   { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Golpe o pulso rítmico en música electrónica.", "solucion": "beat", "materia": "musica" },
   { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Canción lenta y sentimental, común en el pop y rock.", "solucion": "balada", "materia": "musica" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Ciudad inglesa cuna de The Beatles.", "solucion": "liverpool", "materia": "musica" }, 
-  { "id": "b9_fix", "letra": "B", "tipo": "empieza", "definicion": "Grupo de Liverpool más famoso de la historia.", "solucion": "beatles", "materia": "musica" },
+  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Grupo de Liverpool más famoso de la historia.", "solucion": "beatles", "materia": "musica" },
   { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Repetición de una pieza al final del concierto a petición del público.", "solucion": "bis", "materia": "musica" },
 
   { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Arte e industria que impulsó la música en el siglo XX.", "solucion": "cine", "materia": "musica" },
@@ -150,8 +149,7 @@
   { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Estilo de música relajante (... Age).", "solucion": "new", "materia": "musica" },
   { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Ciudad cuna del Jazz (... Orleans).", "solucion": "nueva", "materia": "musica" },
   { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Tipo de música folclórica (Música...).", "solucion": "nativa", "materia": "musica" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Canción más vendida o escuchada (Número...).", "solucion": "no", "materia": "musica" }, 
-  { "id": "n8_fix", "letra": "N", "tipo": "empieza", "definicion": "Posición de éxito en listas (Número 1).", "solucion": "número", "materia": "musica" },
+  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Posición de éxito en listas (Número 1).", "solucion": "número", "materia": "musica" },
   { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Almacenamiento de música online.", "solucion": "nube", "materia": "musica" },
   { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Ruido o estilo musical ruidoso.", "solucion": "noise", "materia": "musica" },
 
