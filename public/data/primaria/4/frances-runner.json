@@ -1,0 +1,17 @@
+{
+  "la_ville": [
+    "école", "parc", "cinéma", "hôpital", "gare", "musée", "poste", "mairie", "église", "marché"
+  ],
+  "la_maison": [
+    "cuisine", "salon", "chambre", "salle de bain", "jardin", "garage", "toilette", "couloir", "balcon", "toit"
+  ],
+  "les_vetements": [
+    "pantalon", "robe", "jupe", "chemise", "pull", "manteau", "chaussures", "chapeau", "écharpe", "bottes"
+  ],
+  "la_nourriture": [
+    "pain", "fromage", "pomme", "lait", "viande", "poisson", "gâteau", "salade", "chocolat", "beurre"
+  ],
+  "les_sports": [
+    "football", "tennis", "basket", "natation", "judo", "vélo", "danse", "ski", "rugby", "golf"
+  ]
+}

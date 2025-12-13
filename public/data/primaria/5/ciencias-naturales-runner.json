@@ -1,0 +1,17 @@
+{
+  "reino_hongos": [
+    "seta", "moho", "levadura", "champiñón", "trufa", "níscalo", "boletus", "hongo", "penicillium", "rebozuelo"
+  ],
+  "reino_plantas": [
+    "musgo", "helecho", "pino", "abeto", "rosal", "encina", "tulipán", "olivo", "trigo", "cactus"
+  ],
+  "partes_celula": [
+    "núcleo", "citoplasma", "membrana", "mitocondria", "cloroplasto", "vacuola", "pared celular", "orgánulo", "aparato golgi", "ribosoma"
+  ],
+  "ecosistemas_terrestres": [
+    "bosque", "desierto", "selva", "tundra", "taiga", "pradera", "sabana", "estepa", "montaña", "polar"
+  ],
+  "ecosistemas_acuaticos": [
+    "río", "lago", "mar", "océano", "arrecife", "laguna", "charca", "estuario", "marisma", "manglar"
+  ]
+}

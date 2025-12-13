@@ -1,0 +1,17 @@
+{
+  "mamiferos": [
+    "delfín", "murciélago", "canguro", "jirafa", "ballena", "humano", "leopardo", "oso", "rinoceronte", "cebra"
+  ],
+  "aves": [
+    "colibrí", "pingüino", "avestruz", "flamenco", "loro", "águila", "golondrina", "pavo", "pato", "cisne"
+  ],
+  "reptiles": [
+    "cocodrilo", "serpiente", "tortuga", "iguana", "lagarto", "camaleón", "víbora", "caimán", "dragón", "geco"
+  ],
+  "anfibios": [
+    "rana", "sapo", "salamandra", "tritón", "cecilia", "gallipato", "ajolote", "renacuajo", "sapo partero", "rana verde"
+  ],
+  "peces": [
+    "tiburón", "pez espada", "salmón", "atún", "trucha", "sardina", "raya", "anguila", "mero", "lucio"
+  ]
+}

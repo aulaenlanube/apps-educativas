@@ -1,0 +1,17 @@
+{
+  "verbos_accion": [
+    "correr", "saltar", "comer", "dormir", "escribir", "leer", "cantar", "bailar", "jugar", "beber"
+  ],
+  "sustantivos_objetos": [
+    "mesa", "silla", "lápiz", "libro", "ventana", "puerta", "coche", "pelota", "cama", "zapato"
+  ],
+  "adjetivos_calificativos": [
+    "guapo", "alto", "rojo", "grande", "pequeño", "suave", "rápido", "lento", "fuerte", "dulce"
+  ],
+  "nombres_propios": [
+    "España", "Madrid", "Laura", "Pedro", "Ana", "Luis", "Ebro", "Francia", "María", "Pablo"
+  ],
+  "determinantes": [
+    "el", "la", "los", "las", "un", "una", "unos", "unas", "este", "esta"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "irregular_verbs_past": [
+    "went", "saw", "ate", "drank", "bought", "swam", "ran", "had", "made", "came"
+  ],
+  "regular_verbs_past": [
+    "played", "walked", "visited", "cooked", "listened", "watched", "cleaned", "studied", "lived", "liked"
+  ],
+  "health_problems": [
+    "headache", "toothache", "cold", "cough", "fever", "cut", "bruise", "broken leg", "earache", "flu"
+  ],
+  "technology": [
+    "laptop", "screen", "keyboard", "mouse", "wifi", "tablet", "password", "website", "email", "app"
+  ],
+  "frequency_adverbs": [
+    "always", "usually", "often", "sometimes", "never", "hardly ever", "rarely", "daily", "weekly", "monthly"
+  ]
+}

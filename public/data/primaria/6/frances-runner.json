@@ -1,0 +1,17 @@
+{
+  "les_metiers": [
+    "médecin", "professeur", "policier", "pompier", "acteur", "chanteur", "boulanger", "cuisinier", "infirmier", "juge"
+  ],
+  "adjectifs_physiques": [
+    "grand", "petit", "mince", "gros", "blond", "brun", "roux", "jeune", "vieux", "fort"
+  ],
+  "les_vetements_hiver": [
+    "manteau", "écharpe", "gants", "bonnet", "bottes", "pull", "veste", "pantalon", "chaussettes", "blouson"
+  ],
+  "moyens_transport": [
+    "train", "avion", "voiture", "bus", "bateau", "métro", "vélo", "moto", "taxi", "tramway"
+  ],
+  "nature_et_paysage": [
+    "montagne", "rivière", "plage", "forêt", "lac", "mer", "campagne", "fleur", "arbre", "jardin"
+  ]
+}

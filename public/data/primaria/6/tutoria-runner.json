@@ -1,0 +1,17 @@
+{
+  "seguridad_internet": [
+    "contraseña", "privacidad", "bloqueo", "antivirus", "reporte", "perfil", "desconectar", "cuidar", "respetar", "intimidad"
+  ],
+  "valores_sociales": [
+    "tolerancia", "igualdad", "solidaridad", "respeto", "justicia", "paz", "diálogo", "cooperación", "empatía", "gratitud"
+  ],
+  "habilidades_personales": [
+    "liderazgo", "esfuerzo", "constancia", "creatividad", "organización", "atención", "memoria", "autonomía", "confianza", "calma"
+  ],
+  "riesgos_digitales": [
+    "ciberacoso", "adicción", "estafa", "virus", "falsedad", "rumor", "insulto", "engaño", "desconocido", "exceso"
+  ],
+  "metas_futuro": [
+    "instituto", "estudios", "profesión", "carrera", "trabajo", "viaje", "sueño", "proyecto", "ilusión", "aprender"
+  ]
+}

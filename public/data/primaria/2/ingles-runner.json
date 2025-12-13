@@ -1,0 +1,17 @@
+{
+  "numbers": [
+    "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"
+  ],
+  "colors": [
+    "red", "blue", "green", "yellow", "pink", "black", "white", "orange", "purple", "brown"
+  ],
+  "animals": [
+    "dog", "cat", "lion", "bird", "fish", "horse", "snake", "rabbit", "mouse", "cow"
+  ],
+  "food": [
+    "apple", "banana", "bread", "milk", "cheese", "egg", "water", "cake", "orange", "pizza"
+  ],
+  "family": [
+    "mum", "dad", "brother", "sister", "baby", "grandpa", "grandma", "uncle", "aunt", "cousin"
+  ]
+}

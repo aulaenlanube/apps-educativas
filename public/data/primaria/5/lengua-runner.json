@@ -1,0 +1,17 @@
+{
+  "determinantes_posesivos": [
+    "mi", "tu", "su", "nuestro", "vuestro", "mis", "tus", "sus", "nuestras", "vuestras"
+  ],
+  "determinantes_demostrativos": [
+    "este", "ese", "aquel", "esta", "esa", "aquella", "estos", "esos", "aquellos", "estas"
+  ],
+  "adverbios_tiempo": [
+    "ayer", "hoy", "mañana", "ahora", "después", "pronto", "tarde", "nunca", "siempre", "jamás"
+  ],
+  "adverbios_lugar": [
+    "aquí", "allí", "cerca", "lejos", "arriba", "abajo", "delante", "detrás", "fuera", "dentro"
+  ],
+  "palabras_con_hiato": [
+    "teatro", "aéreo", "caoba", "león", "baúl", "país", "maíz", "poeta", "héroe", "canoa"
+  ]
+}

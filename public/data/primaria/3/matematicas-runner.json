@@ -1,18 +1,17 @@
 {
-  "multiplos_de_3": [
-    "3", "6", "9", "12", "15", "18", "21", "24", "27", "30",
-    "3x1", "3x2", "3x3", "3x4", "3x5", "3x6", "3x7", "3x8", "3x9", "3x10", "1+2", "15+15"
+  "figuras_planas": [
+    "triángulo", "cuadrado", "círculo", "rectángulo", "rombo", "pentágono", "hexágono", "octógono", "trapecio", "óvalo"
   ],
-  "multiplos_de_4": [
-    "4", "8", "12", "16", "20", "24", "28", "32", "36", "40",
-    "4x1", "4x2", "4x3", "4x4", "4x5", "4x6", "4x7", "4x8", "4x9", "4x10", "2+2", "20+20"
+  "cuerpos_geometricos": [
+    "cubo", "esfera", "cilindro", "cono", "pirámide", "prisma", "prisma", "hemisferio"
   ],
-  "multiplos_de_6": [
-    "6", "12", "18", "24", "30", "36", "42", "48", "54", "60",
-    "6x1", "6x2", "6x3", "6x4", "6x5", "6x6", "6x7", "6x8", "6x9", "6x10", "30+30"
+  "tipos_de_lineas": [
+    "recta", "curva", "ondulada", "quebrada", "espiral", "paralela", "secante", "perpendicular", "vertical", "horizontal"
   ],
-  "dobles": [
-    "2", "4", "6", "8", "10", "12", "14", "16", "18", "20", "40", "100",
-    "1+1", "2+2", "3+3", "4+4", "5+5", "10+10", "20+20", "50+50", "Dob(1)", "Dob(2)"
+  "numeros_ordinales": [
+    "primero", "segundo", "tercero", "cuarto", "quinto", "sexto", "séptimo", "octavo", "noveno", "décimo"
+  ],
+  "conceptos_operaciones": [
+    "suma", "resta", "multiplicación", "división", "doble", "triple", "mitad", "tercio", "total", "producto"
   ]
 }

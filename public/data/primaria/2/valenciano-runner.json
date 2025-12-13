@@ -1,0 +1,17 @@
+{
+  "els_colors": [
+    "roig", "blau", "verd", "groc", "negre", "blanc", "taronja", "rosa", "lila", "marró"
+  ],
+  "els_animals": [
+    "gos", "gat", "cavall", "ocell", "peix", "conill", "lleó", "vaca", "ovella", "porc"
+  ],
+  "la_familia": [
+    "mare", "pare", "germà", "germana", "avi", "àvia", "oncle", "tia", "cosí", "nebot"
+  ],
+  "fruites": [
+    "poma", "pera", "plàtan", "taronja", "raïm", "maduixa", "meló", "llimó", "cirera", "pruna"
+  ],
+  "material_escolar": [
+    "llapis", "llibre", "goma", "taula", "cadira", "paper", "tisores", "motxilla", "estoig", "colors"
+  ]
+}

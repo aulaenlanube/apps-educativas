@@ -1,0 +1,17 @@
+{
+  "palabras_compuestas": [
+    "sacapuntas", "girasol", "lavavajillas", "paraguas", "rascacielos", "cortauñas", "espantapájaros", "saltamontes", "rompecabezas", "salvavidas"
+  ],
+  "sustantivos_abstractos": [
+    "esperanza", "libertad", "justicia", "bondad", "sabiduría", "felicidad", "nostalgia", "paciencia", "valentía", "belleza"
+  ],
+  "adjetivos_superlativos": [
+    "buenísimo", "altísimo", "paupérrimo", "fortísimo", "rapidísimo", "blanquísimo", "celebérrimo", "amabilísimo", "novísimo", "tardísimo"
+  ],
+  "verbos_condicional": [
+    "cantaría", "comería", "viviría", "saltaría", "bebería", "estudiaría", "viajaría", "tendría", "saldría", "haría"
+  ],
+  "prefijos_cultos": [
+    "biografía", "televisión", "hidroavión", "geografía", "microscopio", "teléfono", "cronómetro", "fotografía", "kilómetro", "autobiografía"
+  ]
+}

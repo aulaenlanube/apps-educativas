@@ -1,0 +1,17 @@
+{
+  "les_jours": [
+    "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"
+  ],
+  "les_mois": [
+    "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre"
+  ],
+  "les_couleurs": [
+    "rouge", "jaune", "bleu", "vert", "orange", "violet", "rose", "marron", "gris", "blanc"
+  ],
+  "matériel_scolaire": [
+    "stylo", "crayon", "gomme", "livre", "cahier", "règle", "cartable", "ciseaux", "colle", "trousse"
+  ],
+  "les_nombres": [
+    "onze", "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf", "vingt"
+  ]
+}

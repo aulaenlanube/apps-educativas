@@ -1,0 +1,17 @@
+{
+  "paises_union_europea": [
+    "Francia", "Alemania", "Italia", "Portugal", "España", "Bélgica", "Grecia", "Suecia", "Austria", "Polonia"
+  ],
+  "capitales_europa": [
+    "París", "Roma", "Berlín", "Lisboa", "Madrid", "Atenas", "Viena", "Bruselas", "Estocolmo", "Dublín"
+  ],
+  "rios_europa": [
+    "Danubio", "Rin", "Volga", "Sena", "Támesis", "Loira", "Elba", "Po", "Vístula", "Tíber"
+  ],
+  "historia_contemporanea": [
+    "democracia", "constitución", "dictadura", "república", "monarquía", "guerra", "elecciones", "parlamento", "transición", "sufragio"
+  ],
+  "instituciones_estado": [
+    "rey", "presidente", "congreso", "senado", "tribunal", "ministro", "alcalde", "gobierno", "juez", "diputado"
+  ]
+}

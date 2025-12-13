@@ -1,0 +1,17 @@
+{
+  "rios_espana": [
+    "Ebro", "Tajo", "Duero", "Guadiana", "Guadalquivir", "Miño", "Júcar", "Segura", "Nalón", "Bidasoa"
+  ],
+  "relieve_costa": [
+    "cabo", "golfo", "bahía", "península", "isla", "archipiélago", "acantilado", "playa", "delta", "ría"
+  ],
+  "sector_primario": [
+    "agricultura", "ganadería", "pesca", "minería", "silvicultura", "apicultura", "caza", "pastoreo", "cultivo", "explotación"
+  ],
+  "sector_terciario": [
+    "turismo", "comercio", "transporte", "sanidad", "educación", "banca", "hostelería", "seguridad", "comunicaciones", "ocio"
+  ],
+  "etapas_historia": [
+    "prehistoria", "edad antigua", "edad media", "edad moderna", "edad contemporánea", "paleolítico", "neolítico", "edad metales", "romanización", "actualidad"
+  ]
+}

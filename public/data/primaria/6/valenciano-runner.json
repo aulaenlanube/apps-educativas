@@ -1,0 +1,17 @@
+{
+  "pronoms_febles": [
+    "em", "et", "es", "ens", "us", "el", "la", "els", "les", "ho"
+  ],
+  "adjectius_caracter": [
+    "simpàtic", "amable", "valent", "poruc", "trist", "alegre", "nerviós", "tranquil", "treballador", "gandul"
+  ],
+  "animals_salvatges": [
+    "llop", "ós", "rabosa", "senglar", "àguila", "voltor", "dofí", "balena", "tauró", "eriçó"
+  ],
+  "connectors_textuals": [
+    "primer", "després", "finalment", "també", "però", "perquè", "encara que", "aleshores", "a més", "per tant"
+  ],
+  "professions": [
+    "metge", "mestre", "advocat", "bomber", "policia", "fuster", "llaurador", "pescador", "escriptor", "jutge"
+  ]
+}

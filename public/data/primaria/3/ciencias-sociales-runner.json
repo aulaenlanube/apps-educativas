@@ -1,0 +1,17 @@
+{
+  "planetas": [
+    "Mercurio", "Venus", "Tierra", "Marte", "Júpiter", "Saturno", "Urano", "Neptuno"
+  ],
+  "continentes": [
+    "Europa", "Asia", "África", "América", "Oceanía", "Antártida"
+  ],
+  "oceanos": [
+    "Atlántico", "Pacífico", "Índico", "Ártico", "Antártico"
+  ],
+  "relieve_interior": [
+    "montaña", "valle", "meseta", "llanura", "sierra", "cordillera", "colina", "depresión", "macizo", "volcán"
+  ],
+  "relieve_costa": [
+    "isla", "cabo", "golfo", "bahía", "península", "playa", "acantilado", "archipiélago", "delta", "ría"
+  ]
+}

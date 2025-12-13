@@ -1,0 +1,17 @@
+{
+  "sustantivos": [
+    "bicicleta", "montaña", "río", "ordenador", "libertad", "botella", "pizarra", "elefante", "colegio", "ciudad"
+  ],
+  "verbos_infinitivo": [
+    "aprender", "estudiar", "compartir", "descubrir", "viajar", "reciclar", "inventar", "proteger", "observar", "decidir"
+  ],
+  "adjetivos": [
+    "inteligente", "amable", "valiente", "curioso", "antiguo", "moderno", "brillante", "nublado", "inmenso", "pequeño"
+  ],
+  "pronombres_personales": [
+    "yo", "tú", "él", "ella", "nosotros", "nosotras", "vosotros", "vosotras", "ellos", "ellas"
+  ],
+  "determinantes_articulos": [
+    "el", "la", "los", "las", "un", "una", "unos", "unas", "lo", "al"
+  ]
+}

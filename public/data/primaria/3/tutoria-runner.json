@@ -1,0 +1,17 @@
+{
+  "derechos_del_niño": [
+    "educación", "salud", "juego", "familia", "igualdad", "protección", "nombre", "nacionalidad", "amor", "alimentación"
+  ],
+  "valores_positivos": [
+    "tolerancia", "solidaridad", "paz", "justicia", "libertad", "responsabilidad", "honestidad", "gratitud", "humildad", "lealtad"
+  ],
+  "emociones_basicas": [
+    "alegría", "tristeza", "ira", "miedo", "asco", "sorpresa", "vergüenza", "culpa", "entusiasmo", "aburrimiento"
+  ],
+  "habitos_saludables": [
+    "fruta", "verdura", "agua", "ejercicio", "descanso", "higiene", "vacunas", "lavarse", "postura", "dentista"
+  ],
+  "normas_aula": [
+    "levantar la mano", "escuchar", "respetar", "compartir", "limpiar", "puntualidad", "silencio", "cuidar", "ordenar", "trabajar"
+  ]
+}

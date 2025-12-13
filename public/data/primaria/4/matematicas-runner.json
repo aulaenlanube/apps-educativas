@@ -1,18 +1,17 @@
 {
-  "multiplos_de_3": [
-    "3", "6", "9", "12", "15", "18", "21", "30", "33", "60", "90",
-    "1+2", "3x1", "3x10", "9x1", "33/1", "12+3", "27", "15+15"
+  "tipos_angulos": [
+    "agudo", "recto", "obtuso", "llano", "completo", "nulo", "cóncavo", "convexo", "adyacente", "opuesto"
   ],
-  "multiplos_de_5": [
-    "5", "10", "15", "20", "25", "30", "35", "40", "50", "100",
-    "5x1", "5x5", "5x8", "10+10", "25+25", "100/2", "30-5", "55"
+  "triangulos": [
+    "equilátero", "isósceles", "escaleno", "acutángulo", "rectángulo", "obtusángulo"
   ],
-  "multiplos_de_7": [
-    "7", "14", "21", "28", "35", "42", "49", "70", "77",
-    "7x1", "7x2", "7x3", "7x7", "7x10", "49/7", "14+7"
+  "terminos_fracciones": [
+    "numerador", "denominador", "medio", "tercio", "cuarto", "quinto", "sexto", "décimo", "mitad", "unidad"
   ],
-  "primos": [
-    "2", "3", "5", "7", "11", "13", "17", "19", "23", "29", "31",
-    "1+1", "2+1", "5x1", "11x1", "17x1", "10-3", "29x1"
+  "unidades_longitud": [
+    "kilómetro", "hectómetro", "decámetro", "metro", "decímetro", "centímetro", "milímetro"
+  ],
+  "elementos_circulo": [
+    "centro", "radio", "diámetro", "cuerda", "arco", "semicírculo", "sector", "tangente", "secante", "circunferencia"
   ]
 }

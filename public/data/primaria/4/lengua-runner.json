@@ -1,0 +1,17 @@
+{
+  "palabras_agudas": [
+    "camión", "sofá", "perdiz", "café", "tambor", "compás", "pared", "reloj", "ratón", "avión"
+  ],
+  "palabras_llanas": [
+    "árbol", "mesa", "lápiz", "silla", "cama", "césped", "libro", "trébol", "azúcar", "chandal"
+  ],
+  "palabras_esdrujulas": [
+    "pájaro", "música", "plátano", "brújula", "lágrima", "número", "círculo", "médico", "sábado", "túneles"
+  ],
+  "preposiciones": [
+    "ante", "bajo", "contra", "desde", "entre", "hacia", "hasta", "para", "según", "sobre"
+  ],
+  "adverbios": [
+    "ayer", "mañana", "aquí", "allí", "cerca", "lejos", "despacio", "aprisa", "quizás", "bastante"
+  ]
+}

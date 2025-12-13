@@ -1,0 +1,17 @@
+{
+  "daily_routine": [
+    "wake up", "get up", "shower", "breakfast", "go to school", "have lunch", "do homework", "dinner", "go to bed", "brush teeth"
+  ],
+  "places_in_town": [
+    "library", "hospital", "park", "cinema", "museum", "supermarket", "restaurant", "bank", "station", "zoo"
+  ],
+  "feelings": [
+    "happy", "sad", "angry", "tired", "hungry", "thirsty", "bored", "excited", "scared", "surprised"
+  ],
+  "wild_animals": [
+    "tiger", "elephant", "giraffe", "monkey", "zebra", "crocodile", "hippo", "lion", "snake", "bear"
+  ],
+  "verbs_past_simple": [
+    "played", "walked", "cooked", "watched", "listened", "visited", "wanted", "cleaned", "jumped", "painted"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "habilidades_sociales": [
+    "escuchar", "dialogar", "negociar", "cooperar", "compartir", "disculparse", "agradecer", "ayudar", "respetar", "empatizar"
+  ],
+  "tecnicas_estudio": [
+    "subrayar", "resumir", "esquema", "lectura", "repaso", "atención", "planificar", "memorizar", "preguntar", "organizar"
+  ],
+  "valores_convivencia": [
+    "tolerancia", "solidaridad", "igualdad", "justicia", "paz", "libertad", "responsabilidad", "honestidad", "amistad", "lealtad"
+  ],
+  "sentimientos_dificiles": [
+    "frustración", "ira", "celos", "miedo", "tristeza", "vergüenza", "culpa", "soledad", "nervios", "envidia"
+  ],
+  "normas_clase": [
+    "puntualidad", "silencio", "orden", "limpieza", "cuidado", "turno", "mano alzada", "trabajo", "atención", "respeto"
+  ]
+}

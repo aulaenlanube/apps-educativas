@@ -1,0 +1,17 @@
+{
+  "parts_del_cos": [
+    "cap", "braç", "cama", "mà", "peu", "panxa", "esquena", "genoll", "colze", "dits"
+  ],
+  "la_roba": [
+    "samarreta", "pantalons", "sabates", "faldilla", "jersei", "abric", "bufanda", "mitjons", "vestit", "barret"
+  ],
+  "elements_natura": [
+    "muntanya", "riu", "arbre", "flor", "bosc", "mar", "pluja", "sol", "núvol", "pedra"
+  ],
+  "animals_granja": [
+    "vaca", "porc", "gallina", "conill", "cavall", "ovella", "ase", "cabra", "pato", "gall"
+  ],
+  "aliments": [
+    "pa", "llet", "ou", "peix", "carn", "arròs", "enciam", "tomaca", "formatge", "aigua"
+  ]
+}

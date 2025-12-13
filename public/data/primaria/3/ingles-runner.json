@@ -1,0 +1,17 @@
+{
+  "clothes": [
+    "t-shirt", "jeans", "skirt", "dress", "shoes", "socks", "hat", "coat", "scarf", "gloves"
+  ],
+  "weather": [
+    "sunny", "rainy", "cloudy", "snowy", "windy", "stormy", "foggy", "hot", "cold", "warm"
+  ],
+  "professions": [
+    "teacher", "doctor", "nurse", "pilot", "chef", "artist", "driver", "farmer", "vet", "singer"
+  ],
+  "rooms_in_house": [
+    "kitchen", "bedroom", "bathroom", "living room", "garden", "garage", "hall", "dining room", "attic", "balcony"
+  ],
+  "verbs_action": [
+    "run", "swim", "jump", "dance", "read", "write", "sing", "play", "eat", "drink"
+  ]
+}

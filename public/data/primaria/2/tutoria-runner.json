@@ -1,0 +1,17 @@
+{
+  "emociones_agradables": [
+    "alegría", "felicidad", "calma", "amor", "ilusión", "sorpresa", "diversión", "paz", "orgullo", "cariño"
+  ],
+  "valores": [
+    "respeto", "amistad", "ayuda", "verdad", "esfuerzo", "bondad", "paciencia", "generosidad", "orden", "empatía"
+  ],
+  "normas_convivencia": [
+    "saludar", "pedir", "gracias", "esperar", "compartir", "escuchar", "perdonar", "silencio", "recoger", "cuidar"
+  ],
+  "higiene_salud": [
+    "ducha", "jabón", "cepillo", "pasta", "peine", "fruta", "deporte", "dormir", "agua", "lavarse"
+  ],
+  "hobbies": [
+    "leer", "pintar", "bailar", "fútbol", "música", "viajar", "nadar", "patinar", "dibujar", "cine"
+  ]
+}

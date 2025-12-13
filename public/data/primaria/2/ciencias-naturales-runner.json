@@ -1,0 +1,17 @@
+{
+  "mamiferos": [
+    "perro", "gato", "león", "vaca", "elefante", "ballena", "caballo", "oveja", "conejo", "humano"
+  ],
+  "aves": [
+    "águila", "loro", "gallina", "pato", "pingüino", "paloma", "búho", "cigüeña", "avestruz", "gaviota"
+  ],
+  "insectos": [
+    "hormiga", "mosca", "abeja", "mariposa", "grillo", "mosquito", "escarabajo", "libélula", "avispa", "saltamontes"
+  ],
+  "plantas_y_flores": [
+    "rosa", "pino", "roble", "margarita", "tulipán", "clavel", "césped", "cactus", "girasol", "arbusto"
+  ],
+  "partes_cuerpo": [
+    "cabeza", "brazo", "pierna", "mano", "pie", "nariz", "ojos", "boca", "rodilla", "codo"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "electricidad_magnetismo": [
+    "imán", "batería", "circuito", "cable", "interruptor", "bombilla", "generador", "corriente", "polo", "carga"
+  ],
+  "aparato_reproductor": [
+    "ovario", "testículo", "útero", "espermatozoide", "óvulo", "vagina", "uretra", "próstata", "trompas", "feto"
+  ],
+  "fuentes_energia_renovable": [
+    "solar", "eólica", "hidráulica", "geotérmica", "biomasa", "mareomotriz", "bioetanol", "biogás", "olas", "sol"
+  ],
+  "enfermedades_infecciosas": [
+    "gripe", "varicela", "sarampión", "tétanos", "malaria", "neumonía", "bronquitis", "anginas", "covid", "salmonelosis"
+  ],
+  "componentes_ecosistema": [
+    "productor", "consumidor", "descomponedor", "depredador", "presa", "población", "comunidad", "hábitat", "nicho", "biotopo"
+  ]
+}

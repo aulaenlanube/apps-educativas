@@ -1,0 +1,17 @@
+{
+  "les_nombres": [
+    "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix"
+  ],
+  "les_couleurs": [
+    "rouge", "bleu", "vert", "jaune", "noir", "blanc", "gris", "rose", "orange", "violet"
+  ],
+  "les_animaux": [
+    "chien", "chat", "lion", "poisson", "cheval", "lapin", "souris", "vache", "tigre", "oiseau"
+  ],
+  "la_famille": [
+    "maman", "papa", "frère", "soeur", "bébé", "grand-père", "grand-mère", "oncle", "tante", "cousin"
+  ],
+  "salutations": [
+    "bonjour", "salut", "au revoir", "merci", "pardon", "bonsoir", "bonne nuit", "adieu", "ça va", "bienvenue"
+  ]
+}

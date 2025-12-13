@@ -1,0 +1,17 @@
+{
+  "fuentes_energia": [
+    "sol", "viento", "agua", "carbón", "petróleo", "gas", "uranio", "biomasa", "olas", "calor"
+  ],
+  "maquinas_simples": [
+    "polea", "palanca", "rueda", "plano inclinado", "cuña", "tornillo", "torno", "tijeras", "balanza", "pinzas"
+  ],
+  "partes_planta": [
+    "raíz", "tallo", "hoja", "flor", "fruto", "semilla", "pétalo", "sépalo", "estambre", "pistilo"
+  ],
+  "aparatos_cuerpo": [
+    "digestivo", "respiratorio", "circulatorio", "excretor", "locomotor", "reproductor", "nervioso", "muscular", "óseo", "sentidos"
+  ],
+  "propiedades_materia": [
+    "masa", "volumen", "dureza", "brillo", "color", "densidad", "elasticidad", "fragilidad", "transparencia", "textura"
+  ]
+}

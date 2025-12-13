@@ -1,0 +1,17 @@
+{
+  "irregular_verbs_participle": [
+    "gone", "seen", "eaten", "drunk", "written", "spoken", "driven", "taken", "flown", "done"
+  ],
+  "materials": [
+    "wood", "metal", "plastic", "glass", "paper", "cotton", "wool", "leather", "gold", "silver"
+  ],
+  "digital_world": [
+    "internet", "screen", "keyboard", "mouse", "wifi", "password", "website", "folder", "file", "download"
+  ],
+  "geographical_features": [
+    "mountain", "river", "ocean", "desert", "island", "volcano", "valley", "forest", "cliff", "lake"
+  ],
+  "jobs_and_occupations": [
+    "engineer", "scientist", "journalist", "lawyer", "architect", "writer", "actor", "pilot", "vet", "nurse"
+  ]
+}

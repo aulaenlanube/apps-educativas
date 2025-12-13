@@ -1,0 +1,17 @@
+{
+  "la_ciutat": [
+    "carrer", "plaça", "semàfor", "vorera", "fanal", "botiga", "parc", "edifici", "font", "banc"
+  ],
+  "la_natura": [
+    "bosc", "riu", "muntanya", "platja", "arbre", "pedra", "flor", "núvol", "vent", "pluja"
+  ],
+  "els_oficis": [
+    "metge", "mestre", "forner", "bomber", "policia", "pintor", "fuster", "llaurador", "cambrer", "periodista"
+  ],
+  "adjectius_qualificatius": [
+    "gran", "xicotet", "alt", "baix", "llarg", "curt", "nou", "vell", "bonic", "lleig"
+  ],
+  "vehicles": [
+    "cotxe", "autobús", "tren", "bicicleta", "moto", "camió", "vaixell", "avió", "patinet", "metro"
+  ]
+}

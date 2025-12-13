@@ -1,0 +1,17 @@
+{
+  "determinants_possessius": [
+    "meu", "teu", "seu", "nostre", "vostre", "meua", "teua", "seua", "nostra", "vostra"
+  ],
+  "adverbis_temps": [
+    "ahir", "hui", "demà", "adés", "ara", "després", "prompte", "tard", "mai", "sempre"
+  ],
+  "animals_invertebrats": [
+    "cuc", "aranya", "papallona", "caragol", "mosca", "abella", "formiga", "polp", "medusa", "cranc"
+  ],
+  "elements_del_poble": [
+    "ajuntament", "església", "mercat", "escola", "poliesportiu", "biblioteca", "plaça", "font", "castell", "pont"
+  ],
+  "fenomens_atmosferics": [
+    "pluja", "vent", "neu", "tempesta", "boira", "calamarsa", "llamp", "tro", "arc de sant martí", "núvol"
+  ]
+}

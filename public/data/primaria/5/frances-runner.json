@@ -1,0 +1,17 @@
+{
+  "les_repas": [
+    "petit-déjeuner", "déjeuner", "dîner", "goûter", "repas", "dessert", "entrée", "plat", "boisson", "menu"
+  ],
+  "lieux_de_ville": [
+    "boulangerie", "pharmacie", "bibliothèque", "piscine", "stade", "musée", "parc", "école", "cinéma", "gare"
+  ],
+  "moyens_transport": [
+    "voiture", "bus", "train", "avion", "métro", "vélo", "moto", "bateau", "taxi", "tramway"
+  ],
+  "prepositions_lieu": [
+    "devant", "derrière", "sur", "sous", "dans", "entre", "à côté de", "en face de", "près de", "loin de"
+  ],
+  "adjectifs_description": [
+    "grand", "petit", "fort", "rapide", "lent", "triste", "heureux", "jeune", "vieux", "joli"
+  ]
+}

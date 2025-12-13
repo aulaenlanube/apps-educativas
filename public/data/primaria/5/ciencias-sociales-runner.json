@@ -1,0 +1,17 @@
+{
+  "rios_vertiente_atlantica": [
+    "Tajo", "Duero", "Guadiana", "Guadalquivir", "Miño", "Tambre", "Ulla", "Guadalete", "Tinto", "Odiel"
+  ],
+  "rios_vertiente_mediterranea": [
+    "Ebro", "Júcar", "Segura", "Turia", "Llobregat", "Ter", "Mijares", "Almanzora", "Guadalhorce", "Andarax"
+  ],
+  "sistemas_montanosos": [
+    "Pirineos", "Sistema Central", "Sistema Ibérico", "Cordillera Cantábrica", "Sistemas Béticos", "Sierra Morena", "Montes de Toledo", "Macizo Galaico", "Montes Vascos", "Sierra Nevada"
+  ],
+  "sociedad_medieval": [
+    "rey", "noble", "caballero", "clero", "monje", "campesino", "siervo", "artesano", "obispo", "vasallo"
+  ],
+  "climas_españa": [
+    "oceánico", "mediterráneo", "de montaña", "subtropical", "continental", "árido", "alpino", "litoral", "interior", "seco"
+  ]
+}

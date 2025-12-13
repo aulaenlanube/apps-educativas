@@ -1,0 +1,17 @@
+{
+  "medios_transporte": [
+    "coche", "autobús", "avión", "tren", "barco", "bicicleta", "moto", "metro", "camión", "taxi"
+  ],
+  "profesiones": [
+    "médico", "maestra", "policía", "bombero", "panadero", "granjero", "dentista", "juez", "pintor", "conductor"
+  ],
+  "paisaje_montana": [
+    "montaña", "valle", "cumbre", "cueva", "río", "nieve", "bosque", "sendero", "ladera", "pico"
+  ],
+  "paisaje_costa": [
+    "playa", "mar", "faro", "acantilado", "isla", "puerto", "arena", "olas", "bahía", "malecón"
+  ],
+  "tiempo_cronologico": [
+    "hora", "minuto", "día", "semana", "mes", "año", "siglo", "ayer", "hoy", "mañana"
+  ]
+}

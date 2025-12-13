@@ -1,0 +1,17 @@
+{
+  "cualidades_positivas": [
+    "optimista", "sincero", "creativo", "generoso", "leal", "valiente", "paciente", "responsable", "humilde", "resiliente"
+  ],
+  "derechos_humanos": [
+    "libertad", "igualdad", "seguridad", "dignidad", "justicia", "vida", "educación", "salud", "vivienda", "trabajo"
+  ],
+  "roles_acoso_escolar": [
+    "agresor", "víctima", "espectador", "defensor", "testigo", "cómplice", "observador", "acosador", "ayudante", "reforzador"
+  ],
+  "comunicacion_no_verbal": [
+    "gesto", "mirada", "postura", "sonrisa", "tono", "silencio", "contacto", "expresión", "movimiento", "señal"
+  ],
+  "emociones_complejas": [
+    "euforia", "melancolía", "ansiedad", "gratitud", "esperanza", "nostalgia", "frustración", "celos", "orgullo", "empatía"
+  ]
+}
