@@ -1,0 +1,17 @@
+{
+  "revoluciones": [
+    "francesa", "industrial", "rusa", "americana", "burguesía", "proletariado", "fábrica", "máquina de vapor", "guillotina", "sindicato"
+  ],
+  "guerras_mundiales": [
+    "trinchera", "aliados", "potencias centrales", "eje", "nazismo", "fascismo", "holocausto", "bomba atómica", "guerra fría", "muro de berlín"
+  ],
+  "siglo_xix_espana": [
+    "guerra independencia", "fernando vii", "isabel ii", "carlismo", "restauración", "desamortización", "turno pacífico", "caciquismo", "anarquismo", "constitución"
+  ],
+  "arte_contemporaneo": [
+    "romanticismo", "realismo", "impresionismo", "modernismo", "cubismo", "surrealismo", "vanguardia", "goya", "picasso", "dalí"
+  ],
+  "conceptos_politicos": [
+    "sufragio", "soberanía", "constitución", "parlamento", "democracia", "liberalismo", "nacionalismo", "imperialismo", "colonialismo", "república"
+  ]
+}

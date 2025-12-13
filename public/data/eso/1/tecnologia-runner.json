@@ -1,0 +1,17 @@
+{
+  "fases_proyecto": [
+    "necesidad", "idea", "boceto", "diseño", "planificación", "presupuesto", "construcción", "evaluación", "memoria", "divulgación"
+  ],
+  "materiales_madera": [
+    "pino", "roble", "haya", "contrachapado", "aglomerado", "tablero", "listón", "chapa", "corcho", "papel"
+  ],
+  "herramientas_taller": [
+    "sierra", "martillo", "destornillador", "gato", "lima", "escofina", "taladro", "pincel", "regla", "escuadra"
+  ],
+  "hardware_ordenador": [
+    "cpu", "memoria ram", "disco duro", "placa base", "tarjeta gráfica", "teclado", "ratón", "monitor", "impresora", "altavoz"
+  ],
+  "internet_seguridad": [
+    "navegador", "buscador", "contraseña", "virus", "antivirus", "wifi", "nube", "correo", "red social", "descarga"
+  ]
+}

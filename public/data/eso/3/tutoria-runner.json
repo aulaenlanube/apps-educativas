@@ -1,0 +1,17 @@
+{
+  "orientacion_academica": [
+    "bachillerato", "formación profesional", "grado medio", "universidad", "nota de corte", "optativa", "itinerario", "beca", "selectividad", "título"
+  ],
+  "habilidades_sociales": [
+    "empatía", "asertividad", "resiliencia", "escucha activa", "negociación", "liderazgo", "trabajo en equipo", "paciencia", "comunicación", "autoestima"
+  ],
+  "tecnicas_estudio": [
+    "resumen", "esquema", "mapa conceptual", "subrayado", "mnemotecnia", "planificación", "repaso", "concentración", "cronograma", "apuntes"
+  ],
+  "valores_civicos": [
+    "solidaridad", "respeto", "tolerancia", "igualdad", "justicia", "libertad", "responsabilidad", "ecología", "cooperación", "democracia"
+  ],
+  "riesgos_adolescencia": [
+    "adicción", "acoso", "presión de grupo", "ansiedad", "estrés", "sedentarismo", "juego patológico", "redes sociales", "imagen corporal", "consumismo"
+  ]
+}

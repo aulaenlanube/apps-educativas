@@ -1,0 +1,17 @@
+{
+  "etapas_prehistoria": [
+    "paleolítico", "neolítico", "edad de cobre", "edad de bronce", "edad de hierro", "bipedismo", "sedentarismo", "nómada", "pintura rupestre", "megalitismo"
+  ],
+  "civilizacion_egipcia": [
+    "faraón", "pirámide", "nilo", "jeroglífico", "momia", "sarcófago", "esfinge", "papiro", "templo", "politeísmo"
+  ],
+  "rios_espana": [
+    "ebro", "tajo", "duero", "guadiana", "guadalquivir", "miño", "júcar", "segura", "nalón", "bidasoa"
+  ],
+  "continentes_oceanos": [
+    "europa", "asia", "áfrica", "américa", "oceanía", "antártida", "atlántico", "pacífico", "índico", "ártico"
+  ],
+  "relieve_terrestre": [
+    "montaña", "valle", "meseta", "llanura", "depresión", "golfo", "cabo", "península", "isla", "dorsal"
+  ]
+}

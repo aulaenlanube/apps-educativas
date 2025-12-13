@@ -1,0 +1,17 @@
+{
+  "professions": [
+    "metge", "advocat", "mestre", "arquitecte", "infermer", "periodista", "enginyer", "fuster", "electricista", "lampista"
+  ],
+  "el_temps_atmosferic": [
+    "pluja", "neu", "calamarsa", "vent", "boira", "tempesta", "llamp", "tro", "núvol", "sol"
+  ],
+  "la_familia": [
+    "pare", "mare", "germà", "germana", "avi", "àvia", "oncle", "tia", "cosí", "nebot"
+  ],
+  "connectors": [
+    "però", "perquè", "encara que", "doncs", "mentre", "també", "a més", "finalment", "aleshores", "tanmateix"
+  ],
+  "geografia_fisica": [
+    "muntanya", "vall", "riu", "llac", "illa", "platja", "cova", "barranc", "serra", "cim"
+  ]
+}

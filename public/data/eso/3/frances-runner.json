@@ -1,0 +1,17 @@
+{
+  "monde_travail": [
+    "métier", "bureau", "salaire", "chômage", "entreprise", "chef", "collègue", "stage", "grève", "retraite"
+  ],
+  "medias_communication": [
+    "journal", "internet", "télévision", "radio", "publicité", "nouvelles", "réseaux sociaux", "magazine", "écran", "message"
+  ],
+  "environnement": [
+    "pollution", "recyclage", "nature", "écologie", "déchets", "climat", "réchauffement", "énergie", "protection", "planète"
+  ],
+  "sentiments": [
+    "amour", "haine", "joie", "peur", "tristesse", "colère", "surprise", "honte", "bonheur", "jalousie"
+  ],
+  "sante": [
+    "maladie", "fièvre", "médicament", "douleur", "hôpital", "médecin", "pharmacie", "grippe", "rhume", "santé"
+  ]
+}

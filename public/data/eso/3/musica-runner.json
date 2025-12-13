@@ -1,0 +1,17 @@
+{
+  "musica_escenica": [
+    "ópera", "zarzuela", "musical", "ballet", "aria", "recitativo", "libreto", "obertura", "coro", "escenario"
+  ],
+  "musica_urbana_moderna": [
+    "jazz", "rock", "pop", "blues", "rap", "reguetón", "heavy metal", "punk", "electrónica", "indie"
+  ],
+  "musica_cine": [
+    "banda sonora", "leimotiv", "música incidental", "música diegética", "créditos", "efectos sonoros", "doblaje", "foley", "ambientación", "tema"
+  ],
+  "texturas_musicales": [
+    "monodia", "polifonía", "homofonía", "melodía acompañada", "contrapunto", "canon", "fuga", "unísono", "acorde", "armonía"
+  ],
+  "profesiones_musicales": [
+    "compositor", "director", "intérprete", "productor", "técnico de sonido", "luthier", "musicólogo", "crítico", "dj", "arreglista"
+  ]
+}

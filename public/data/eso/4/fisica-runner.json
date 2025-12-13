@@ -1,0 +1,17 @@
+{
+  "cinematica": [
+    "velocidad", "aceleración", "trayectoria", "desplazamiento", "posición", "tiempo", "mru", "mrua", "caída libre", "gráfica"
+  ],
+  "dinamica_fuerzas": [
+    "newton", "inercia", "rozamiento", "peso", "gravedad", "normal", "tensión", "equilibrio", "acción-reacción", "fuerza resultante"
+  ],
+  "trabajo_energia": [
+    "julio", "cinética", "potencial", "mecánica", "potencia", "vatio", "conservación", "calor", "temperatura", "trabajo"
+  ],
+  "quimica_organica": [
+    "carbono", "hidrocarburo", "metano", "alcohol", "plástico", "petróleo", "combustión", "polímero", "enlace covalente", "cadena"
+  ],
+  "tabla_periodica": [
+    "alcalinos", "alcalinotérreos", "halógenos", "gases nobles", "periodo", "grupo", "metal", "no metal", "semimetal", "electronegatividad"
+  ]
+}

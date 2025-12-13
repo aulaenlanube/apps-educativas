@@ -1,0 +1,17 @@
+{
+  "clases_palabras": [
+    "sustantivo", "adjetivo", "verb", "adverbio", "preposición", "conjunción", "determinante", "pronombre", "interjección", "artículo"
+  ],
+  "funciones_sintacticas": [
+    "sujeto", "predicado", "núcleo", "complemento directo", "complemento indirecto", "atributo", "complemento circunstancial", "agente", "predicativo", "régimen"
+  ],
+  "figuras_literarias": [
+    "metáfora", "símil", "personificación", "hipérbole", "anáfora", "aliteración", "antítesis", "hipérbaton", "encabalgamiento", "paradoja"
+  ],
+  "generos_literarios": [
+    "novela", "cuento", "poema", "tragedia", "comedia", "drama", "epopeya", "romance", "fábula", "leyenda"
+  ],
+  "prefijos_sufijos": [
+    "pre", "ante", "sub", "bi", "tele", "cracia", "logía", "fobia", "filia", "geo"
+  ]
+}

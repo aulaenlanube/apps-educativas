@@ -1,0 +1,17 @@
+{
+  "generos_modernos": [
+    "jazz", "blues", "rock", "pop", "punk", "metal", "reggae", "hip hop", "electrónica", "indie"
+  ],
+  "historia_siglo_xx": [
+    "impresionismo", "expresionismo", "dodecafonismo", "minimalismo", "música concreta", "nacionalismo", "neoclasicismo", "vanguardia", "serialismo", "futurismo"
+  ],
+  "tecnologia_musical": [
+    "micrófono", "mesa de mezclas", "amplificador", "altavoz", "sintetizador", "sampler", "midi", "secuenciador", "grabación", "ecualizador"
+  ],
+  "industria_musical": [
+    "discográfica", "productor", "copyright", "streaming", "concierto", "festival", "manager", "videoclip", "royalties", "plataforma"
+  ],
+  "profesiones": [
+    "compositor", "intérprete", "arreglista", "técnico de sonido", "dj", "luthier", "musicoterapeuta", "crítico", "director", "editor"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "categories_gramaticals": [
+    "substantiu", "adjectiu", "verb", "pronom", "determinant", "adverbi", "preposició", "conjunció", "interjecció", "article"
+  ],
+  "elements_natura": [
+    "muntanya", "riu", "platja", "bosc", "núvol", "pluja", "vent", "sol", "lluna", "estrela"
+  ],
+  "parts_casa": [
+    "cuina", "menjador", "habitació", "bany", "rebedor", "passadís", "balcó", "jardí", "garatge", "traster"
+  ],
+  "aliments_tipics": [
+    "arròs", "paella", "taronja", "orxata", "fartó", "oli", "vi", "ametla", "tomata", "peix"
+  ],
+  "pronoms_personals": [
+    "jo", "tu", "ell", "ella", "nosaltres", "vosaltres", "ells", "elles", "vostè", "vostés"
+  ]
+}

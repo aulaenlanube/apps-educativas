@@ -1,0 +1,17 @@
+{
+  "phrasal_verbs": [
+    "give up", "look for", "carry on", "get along", "turn on", "put off", "break down", "run out", "set up", "find out"
+  ],
+  "work_and_jobs": [
+    "salary", "resume", "interview", "boss", "employee", "full-time", "part-time", "retirement", "unemployment", "skill"
+  ],
+  "global_issues": [
+    "poverty", "hunger", "war", "pollution", "disease", "racism", "equality", "rights", "climate change", "peace"
+  ],
+  "personality_adjectives": [
+    "ambitious", "stubborn", "reliable", "generous", "selfish", "polite", "brave", "honest", "sensible", "sensitive"
+  ],
+  "technology_terms": [
+    "browser", "app", "download", "upload", "wifi", "device", "gadget", "software", "hardware", "network"
+  ]
+}

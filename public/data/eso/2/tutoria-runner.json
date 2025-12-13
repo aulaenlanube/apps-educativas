@@ -1,0 +1,17 @@
+{
+  "valores_convivencia": [
+    "respeto", "tolerancia", "empatía", "solidaridad", "cooperación", "responsabilidad", "justicia", "igualdad", "libertad", "honestidad"
+  ],
+  "habilidades_sociales": [
+    "escucha activa", "asertividad", "negociación", "liderazgo", "paciencia", "comunicación", "autocontrol", "persuasión", "crítica constructiva", "decisión"
+  ],
+  "emociones": [
+    "alegría", "tristeza", "ira", "miedo", "sorpresa", "asco", "vergüenza", "culpa", "envidia", "orgullo"
+  ],
+  "tecnicas_estudio": [
+    "planificación", "subrayado", "resumen", "esquema", "mapa mental", "reglas mnemotécnicas", "repaso", "lectura comprensiva", "toma de apuntes", "descanso"
+  ],
+  "resolucion_conflictos": [
+    "diálogo", "mediación", "acuerdo", "disculpa", "perdón", "reparación", "consenso", "arbitraje", "paz", "comprensión"
+  ]
+}

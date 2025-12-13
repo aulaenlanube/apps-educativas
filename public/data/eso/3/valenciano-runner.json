@@ -1,0 +1,17 @@
+{
+  "sociolinguistica": [
+    "bilingüisme", "diglòssia", "llengua minoritària", "normalització", "dialecte", "estàndard", "registre", "parlants", "prejudici", "llengua oficial"
+  ],
+  "categories_invariables": [
+    "adverbi", "preposició", "conjunció", "interjecció", "locució", "connector", "nexe", "partícula", "afixe", "mot"
+  ],
+  "literatura_medieval": [
+    "Ausiàs March", "Joanot Martorell", "Tirant lo Blanc", "Jaume Roig", "Sor Isabel de Villena", "segle d'or", "poesia", "novel·la de cavalleries", "prosa", "sàtira"
+  ],
+  "mitjans_comunicacio": [
+    "notícia", "reportatge", "editorial", "crònica", "entrevista", "ràdio", "premsa", "televisió", "internet", "xarxes"
+  ],
+  "formacio_paraules": [
+    "derivadació", "composició", "prefix", "sufix", "parasíntesi", "sigla", "acrònim", "préstec", "neologisme", "família lèxica"
+  ]
+}

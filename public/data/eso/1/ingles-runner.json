@@ -1,0 +1,17 @@
+{
+  "irregular_verbs": [
+    "go", "see", "eat", "drink", "buy", "swim", "run", "have", "make", "come"
+  ],
+  "adjectives_personality": [
+    "shy", "friendly", "funny", "clever", "lazy", "hardworking", "polite", "rude", "kind", "serious"
+  ],
+  "clothes": [
+    "t-shirt", "jeans", "skirt", "dress", "shoes", "socks", "jumper", "coat", "scarf", "gloves"
+  ],
+  "food_and_drink": [
+    "bread", "cheese", "chicken", "salad", "water", "juice", "milk", "coffee", "tea", "cake"
+  ],
+  "parts_of_house": [
+    "kitchen", "bedroom", "bathroom", "living room", "dining room", "garden", "garage", "hall", "attic", "stairs"
+  ]
+}

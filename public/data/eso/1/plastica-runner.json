@@ -1,0 +1,17 @@
+{
+  "elementos_visuales": [
+    "punto", "línea", "plano", "textura", "color", "forma", "espacio", "luz", "sombra", "volumen"
+  ],
+  "colores_teoria": [
+    "cian", "magenta", "amarillo", "rojo", "verde", "azul", "círculo cromático", "primario", "secundario", "complementario"
+  ],
+  "tecnicas_secas": [
+    "lápiz grafito", "carboncillo", "pastel", "cera", "sanguina", "tiza", "creta", "bolígrafo", "rotulador", "difumino"
+  ],
+  "tecnicas_humedas": [
+    "acuarela", "témpera", "acrílico", "óleo", "tinta china", "aguada", "fresco", "spray", "barniz", "disolvente"
+  ],
+  "poligonos_regulares": [
+    "triángulo equilátero", "cuadrado", "pentágono regular", "hexágono regular", "heptágono", "octógono", "eneágono", "decágono", "radio", "apotema"
+  ]
+}

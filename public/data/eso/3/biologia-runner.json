@@ -1,0 +1,17 @@
+{
+  "sistema_nervioso": [
+    "cerebro", "neurona", "médula espinal", "nervio", "cerebelo", "sinapsis", "axón", "dendrita", "hipotálamo", "bulbo raquídeo"
+  ],
+  "sistema_endocrino": [
+    "hormona", "tiroides", "páncreas", "insulina", "adrenalina", "hipófisis", "glándula", "testosterona", "estrógenos", "cortisol"
+  ],
+  "enfermedades_infecciosas": [
+    "gripe", "sarampión", "tuberculosis", "malaria", "sida", "hepatitis", "salmonelosis", "covid", "tétanos", "varicela"
+  ],
+  "sistema_inmune": [
+    "anticuerpo", "leucocito", "vacuna", "linfocito", "macrófago", "antígeno", "inmunidad", "suero", "fagocitosis", "inflamación"
+  ],
+  "drogas_y_salud": [
+    "alcohol", "tabaco", "nicotina", "adicción", "dependencia", "sobredosis", "tolerancia", "abstinencia", "sedante", "estimulante"
+  ]
+}

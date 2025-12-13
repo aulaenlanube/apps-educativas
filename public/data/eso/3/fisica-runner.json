@@ -1,0 +1,17 @@
+{
+  "particulas_atomicas": [
+    "protón", "neutrón", "electrón", "núcleo", "nube electrónica", "catión", "anión", "isótopo", "ión", "carga"
+  ],
+  "tabla_periodica_metales": [
+    "hierro", "oro", "plata", "cobre", "litio", "sodio", "potasio", "calcio", "magnesio", "aluminio"
+  ],
+  "tabla_periodica_no_metales": [
+    "oxígeno", "hidrógeno", "carbono", "nitrógeno", "flúor", "cloro", "azufre", "fósforo", "yodo", "helio"
+  ],
+  "enlaces_quimicos": [
+    "iónico", "covalente", "metálico", "fuerzas de van der waals", "puente de hidrógeno", "red cristalina", "molécula", "octeto", "valencia", "compartir"
+  ],
+  "reacciones_quimicas": [
+    "oxidación", "combustión", "fermentación", "neutralización", "síntesis", "descomposición", "reactivo", "producto", "ajuste", "precipitación"
+  ]
+}

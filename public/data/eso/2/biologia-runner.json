@@ -1,0 +1,17 @@
+{
+  "aparato_digestivo": [
+    "estómago", "esófago", "intestino", "páncreas", "hígado", "boca", "faringe", "recto", "duodeno", "vesícula"
+  ],
+  "aparato_respiratorio": [
+    "pulmones", "tráquea", "bronquios", "laringe", "alvéolos", "fosas nasales", "diafragma", "bronquiolos", "faringe", "pleura"
+  ],
+  "sistema_circulatorio": [
+    "corazón", "arteria", "vena", "capilar", "aurícula", "ventrículo", "aorta", "sangre", "glóbulos rojos", "plaquetas"
+  ],
+  "tipos_ecosistemas": [
+    "bosque", "desierto", "tundra", "selva", "arrecife", "estuario", "sabana", "taiga", "marisma", "lago"
+  ],
+  "relaciones_troficas": [
+    "depredación", "parasitismo", "simbiosis", "mutualismo", "comensalismo", "competencia", "inquilinismo", "herbivoría", "carroñeo", "canibalismo"
+  ]
+}

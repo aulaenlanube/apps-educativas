@@ -1,0 +1,17 @@
+{
+  "elementos_geometria": [
+    "mediatriz", "bisectriz", "radio", "diámetro", "cuerda", "tangente", "secante", "arco", "vértice", "lado"
+  ],
+  "poligonos": [
+    "triángulo", "cuadrado", "pentágono", "hexágono", "heptágono", "octógono", "eneágono", "decágono", "trapecio", "rombo"
+  ],
+  "perspectiva": [
+    "punto de fuga", "línea de horizonte", "plano de tierra", "línea de tierra", "punto de vista", "profundidad", "escorzo", "superposición", "disminución", "convergencia"
+  ],
+  "tecnicas_artisticas": [
+    "acuarela", "óleo", "témpera", "carboncillo", "collage", "grabado", "escultura", "mosaico", "fresco", "pastel"
+  ],
+  "colores_propiedades": [
+    "matiz", "saturación", "brillo", "luminosidad", "tono", "valor", "contraste", "gama", "frío", "cálido"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "sector_primario": [
+    "agricultura", "ganadería", "pesca", "minería", "silvicultura", "secano", "regadío", "latifundio", "minifundio", "transgénico"
+  ],
+  "sector_secundario": [
+    "industria", "fábrica", "construcción", "artesanía", "materia prima", "energía", "manufactura", "siderurgia", "textil", "polígono"
+  ],
+  "sector_terciario": [
+    "turismo", "comercio", "transporte", "sanidad", "educación", "finanzas", "banca", "servicios", "hostelería", "ocio"
+  ],
+  "organizacion_politica": [
+    "estado", "democracia", "monarquía", "república", "dictadura", "constitución", "parlamento", "frontera", "nación", "gobierno"
+  ],
+  "demografia": [
+    "natalidad", "mortalidad", "migración", "censo", "padrón", "envejecimiento", "densidad", "población activa", "éxodo rural", "esperanza de vida"
+  ]
+}

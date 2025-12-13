@@ -1,0 +1,17 @@
+{
+  "orientacion_futuro": [
+    "bachillerato", "formación profesional", "universidad", "nota de corte", "carrera", "grado", "oficio", "mercado laboral", "emprendimiento", "vocación"
+  ],
+  "habilidades_sociales": [
+    "asertividad", "empatía", "escucha activa", "resiliencia", "negociación", "liderazgo", "trabajo en equipo", "comunicación", "respeto", "tolerancia"
+  ],
+  "gestion_emocional": [
+    "autoestima", "ansiedad", "estrés", "motivación", "frustración", "autocontrol", "confianza", "optimismo", "miedo", "superación"
+  ],
+  "valores_civicos": [
+    "igualdad", "justicia", "solidaridad", "libertad", "responsabilidad", "ecología", "derechos humanos", "ciudadanía", "democracia", "diversidad"
+  ],
+  "tecnicas_estudio": [
+    "organización", "horario", "concentración", "resumen", "esquema", "mapa mental", "memoria", "repaso", "descanso", "objetivos"
+  ]
+}

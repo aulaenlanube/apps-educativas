@@ -1,0 +1,17 @@
+{
+  "conceptos_basicos_economicos": [
+    "escasez", "necesidad", "coste de oportunidad", "bienes", "servicios", "consumo", "producción", "distribución", "agente económico", "incentivo"
+  ],
+  "mercado": [
+    "oferta", "demanda", "precio", "equilibrio", "competencia", "monopolio", "oligopolio", "consumidor", "empresa", "mercado laboral"
+  ],
+  "indicadores_economicos": [
+    "pib", "ipc", "inflación", "desempleo", "crecimiento", "renta per cápita", "déficit", "superávit", "deuda pública", "tipos de interés"
+  ],
+  "finanzas_personales": [
+    "ahorro", "inversión", "presupuesto", "nómina", "impuesto", "préstamo", "hipoteca", "tarjeta", "banco", "seguro"
+  ],
+  "tipos_empresa": [
+    "pyme", "multinacional", "cooperativa", "sociedad anónima", "sociedad limitada", "franquicia", "autónomo", "pública", "privada", "mixta"
+  ]
+}

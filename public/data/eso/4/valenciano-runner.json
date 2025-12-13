@@ -1,0 +1,17 @@
+{
+  "sociolinguistica": [
+    "bilingüisme", "diglòssia", "llengua minoritzada", "normalització", "estandardització", "dialecte", "registre", "prejudici", "ús social", "llei d'ús"
+  ],
+  "historia_llengua": [
+    "llatí", "àrab", "mossàrab", "jaume i", "repoblació", "segle d'or", "decadència", "renaixença", "normes de castelló", "pompeu fabra"
+  ],
+  "gramatica": [
+    "pronom feble", "accentuació", "dièresi", "apostrofació", "guió", "verb", "adjectiu", "conjunció", "preposició", "perífrasi"
+  ],
+  "literatura_autors": [
+    "ausiàs march", "joanot martorell", "jaume roig", "isabel de villena", "vicent andrés estellés", "carles salvador", "sanchis guarner", "joan fuster", "enric valor", "mrcel·la de juan"
+  ],
+  "connectors_textuals": [
+    "tanmateix", "aleshores", "doncs", "per tant", "així que", "en canvi", "d'altra banda", "finalment", "primerament", "conseqüentment"
+  ]
+}

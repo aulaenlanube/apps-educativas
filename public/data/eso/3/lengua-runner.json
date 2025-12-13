@@ -1,0 +1,17 @@
+{
+  "literatura_renacimiento": [
+    "Garcilaso", "soneto", "égloga", "lira", "humanismo", "carpe diem", "locus amoenus", "Fray Luis", "San Juan", "Lazarillo"
+  ],
+  "literatura_barroco": [
+    "Góngora", "Quevedo", "Lope de Vega", "Cervantes", "culteranismo", "conceptismo", "teatro nacional", "desengaño", "Calderón", "Tirso"
+  ],
+  "sintaxis_oracion": [
+    "sujeto", "predicado", "núcleo", "complemento directo", "complemento indirecto", "atributo", "circunstancial", "agente", "predicativo", "vocativo"
+  ],
+  "tipos_de_texto": [
+    "narrativo", "descriptivo", "dialogado", "expositivo", "argumentativo", "instructivo", "periodístico", "publicitario", "científico", "literario"
+  ],
+  "generos_periodisticos": [
+    "noticia", "reportaje", "entrevista", "crónica", "editorial", "columna", "artículo", "carta al director", "crítica", "titular"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "genetica": [
+    "adn", "cromosoma", "gen", "alelo", "mutación", "clonación", "biotecnología", "transgénico", "herencia", "genotipo"
+  ],
+  "evolucion": [
+    "darwinismo", "selección natural", "adaptación", "fósil", "especie", "hominización", "ancestro", "biodiversidad", "neodarwinismo", "variabilidad"
+  ],
+  "tectonica_placas": [
+    "litosfera", "dorsal", "zona de subducción", "falla", "volcán", "terremoto", "orogénesis", "pangea", "corteza", "manto"
+  ],
+  "historia_tierra": [
+    "precámbrico", "paleozoico", "mesozoico", "cenozoico", "jurásico", "extinción", "sedimentación", "estrato", "glaciación", "fósil guía"
+  ],
+  "ecologia_global": [
+    "biosfera", "ecosistema", "ciclo del carbono", "efecto invernadero", "cambio climático", "sostenibilidad", "recurso", "impacto ambiental", "huella ecológica", "bioma"
+  ]
+}

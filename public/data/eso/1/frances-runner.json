@@ -1,0 +1,17 @@
+{
+  "salutations": [
+    "bonjour", "bonsoir", "salut", "au revoir", "bonne nuit", "à bientôt", "à demain", "adieu", "enchanté", "coucou"
+  ],
+  "jours_semaine": [
+    "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche", "weekend", "jour", "semaine"
+  ],
+  "mois_annee": [
+    "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "décembre"
+  ],
+  "nombres_1_20": [
+    "un", "deux", "trois", "quatre", "cinq", "dix", "onze", "douze", "treize", "vingt"
+  ],
+  "fournitures_scolaires": [
+    "stylo", "crayon", "gomme", "cahier", "livre", "règle", "trousse", "sac à dos", "ciseaux", "colle"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "pieces_maison": [
+    "cuisine", "salon", "chambre", "salle de bain", "toilettes", "jardin", "garage", "balcon", "couloir", "grenier"
+  ],
+  "meubles": [
+    "lit", "table", "chaise", "armoire", "canapé", "fauteuil", "bureau", "étagère", "lampe", "tapis"
+  ],
+  "vetements": [
+    "pantalon", "robe", "jupe", "chemise", "pull", "manteau", "chaussures", "chapeau", "écharpe", "bottes"
+  ],
+  "nourriture": [
+    "pain", "fromage", "pomme", "lait", "viande", "poisson", "gâteau", "salade", "chocolat", "beurre"
+  ],
+  "magasins": [
+    "boulangerie", "pharmacie", "librairie", "supermarché", "boucherie", "poissonnerie", "épicerie", "fleuriste", "bijouterie", "kiosque"
+  ]
+}

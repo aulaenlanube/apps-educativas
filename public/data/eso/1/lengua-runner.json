@@ -1,0 +1,17 @@
+{
+  "generos_literarios": [
+    "narrativa", "lírica", "teatro", "cuento", "novela", "poema", "fábula", "mito", "leyenda", "comedia"
+  ],
+  "tipos_sustantivos": [
+    "común", "propio", "concreto", "abstracto", "individual", "colectivo", "contable", "incontable", "animado", "inanimado"
+  ],
+  "tiempos_verbales": [
+    "presente", "pasado", "futuro", "pretérito perfecto", "pretérito imperfecto", "condicional", "imperativo", "infinitivo", "gerundio", "participio"
+  ],
+  "elementos_comunicacion": [
+    "emisor", "receptor", "mensaje", "código", "canal", "contexto", "ruido", "retroalimentación", "signo", "lenguaje"
+  ],
+  "reglas_acentuacion": [
+    "aguda", "llana", "esdrújula", "sobreesdrújula", "tilde", "sílaba tónica", "sílaba átona", "diptongo", "hiato", "triptongo"
+  ]
+}

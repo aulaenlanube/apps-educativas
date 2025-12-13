@@ -1,0 +1,17 @@
+{
+  "atletismo": [
+    "maratón", "jabalina", "relevos", "vallas", "salto de altura", "pértiga", "peso", "disco", "velocidad", "salida"
+  ],
+  "baloncesto": [
+    "triple", "tiro libre", "pívot", "base", "alero", "rebote", "mate", "pasos", "dobles", "tapón"
+  ],
+  "futbol": [
+    "penalti", "córner", "fuera de juego", "portero", "delantero", "defensa", "tarjeta", "saque de banda", "prórroga", "gol"
+  ],
+  "musculos_pierna": [
+    "cuádriceps", "gemelo", "isquiotibial", "sóleo", "abductor", "glúteo", "tibial", "sartorio", "peroneo", "aductor"
+  ],
+  "huesos_tronco": [
+    "esternón", "costilla", "clavícula", "omóplato", "vértebra", "sacro", "cóccix", "ilion", "pubis", "isquion"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "cualidades_fisicas": [
+    "fuerza explosiva", "resistencia aeróbica", "flexibilidad", "velocidad de reacción", "agilidad", "equilibrio dinámico", "coordinación", "potencia", "resistencia anaeróbica", "ritmo"
+  ],
+  "deportes_colectivos": [
+    "baloncesto", "balonmano", "voleibol", "fútbol", "rugby", "hockey", "waterpolo", "beisbol", "fútbol sala", "ultimate frisbee"
+  ],
+  "actividades_naturaleza": [
+    "senderismo", "escalada", "orientación", "piragüismo", "rápel", "acampada", "brújula", "mapa", "trekking", "barranquismo"
+  ],
+  "primeros_auxilios": [
+    "rcp", "posición lateral", "hemorragia", "vendaje", "botiquín", "lesión", "esguince", "lipotimia", "quemadura", "fractura"
+  ],
+  "anatomia_deportiva": [
+    "pectoral", "dorsal", "trapecio", "deltoides", "bíceps", "tríceps", "abdominales", "cuádriceps", "isquios", "gemelos"
+  ]
+}

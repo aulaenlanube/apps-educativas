@@ -1,0 +1,17 @@
+{
+  "tipos_fuerzas": [
+    "gravedad", "rozamiento", "magnética", "eléctrica", "nuclear", "tensión", "normal", "empuje", "centrípeta", "elástica"
+  ],
+  "magnitudes_fisicas": [
+    "velocidad", "aceleración", "tiempo", "masa", "distancia", "fuerza", "energía", "potencia", "temperatura", "densidad"
+  ],
+  "metodos_separacion": [
+    "filtración", "decantación", "destilación", "evaporación", "cristalización", "cromatografía", "imantación", "tamizado", "centrifugación", "electrólisis"
+  ],
+  "simbolos_quimicos": [
+    "Fe", "Au", "Ag", "O", "H", "Na", "Cl", "C", "N", "Ca"
+  ],
+  "fuentes_energia": [
+    "petróleo", "carbón", "gas natural", "uranio", "sol", "viento", "agua", "biomasa", "geotérmica", "hidrógeno"
+  ]
+}

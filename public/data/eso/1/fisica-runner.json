@@ -1,0 +1,17 @@
+{
+  "material_laboratorio": [
+    "probeta", "pipeta", "bisturí", "microscopio", "matraz", "vaso precipitado", "tubo ensayo", "embudo", "bureta", "termómetro"
+  ],
+  "estados_materia": [
+    "sólido", "líquido", "gaseoso", "plasma", "condensación", "vaporización", "fusión", "solidificación", "sublimación", "ebullición"
+  ],
+  "elementos_quimicos": [
+    "hidrógeno", "oxígeno", "carbono", "nitrógeno", "hierro", "oro", "plata", "cloro", "sodio", "calcio"
+  ],
+  "tipos_energia": [
+    "cinética", "potencial", "térmica", "química", "eléctrica", "nuclear", "lumínica", "sonora", "eólica", "solar"
+  ],
+  "unidades_medida": [
+    "metro", "kilogramo", "segundo", "litro", "kelvin", "amperio", "julio", "metro cúbico", "gramo", "centímetro"
+  ]
+}

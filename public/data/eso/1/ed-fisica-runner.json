@@ -1,0 +1,17 @@
+{
+  "fases_calentamiento": [
+    "movilidad articular", "carrera continua", "estiramientos", "activación", "desplazamientos", "juegos previos", "vuelta a la calma", "trote suave", "skipping", "talones glúteo"
+  ],
+  "deportes_colectivos": [
+    "baloncesto", "balonmano", "fútbol", "voleibol", "rugby", "waterpolo", "hockey", "beisbol", "fútbol sala", "ultimate"
+  ],
+  "huesos_cuerpo": [
+    "fémur", "húmero", "tibia", "peroné", "radio", "cúbito", "cráneo", "costilla", "esternón", "pelvis"
+  ],
+  "musculos_cuerpo": [
+    "bíceps", "tríceps", "cuádriceps", "pectoral", "abdominal", "gemelo", "dorsal", "trapecio", "deltoides", "glúteo"
+  ],
+  "capacidades_fisicas": [
+    "resistencia", "fuerza", "velocidad", "flexibilidad", "agilidad", "coordinación", "equilibrio", "potencia", "ritmo", "reacción"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "movimientos_literarios": [
+    "romanticismo", "realismo", "naturalismo", "modernismo", "generación del 98", "generación del 27", "vanguardias", "posguerra", "realismo mágico", "literatura actual"
+  ],
+  "autores_destacados": [
+    "Bécquer", "Galdós", "Clarín", "Machado", "Lorca", "Alberti", "Cernuda", "Miguel Hernández", "Cela", "Delibes"
+  ],
+  "sintaxis_oracion_compuesta": [
+    "coordinada", "subordinada", "yuxtapuesta", "copulativa", "disyuntiva", "adversativa", "sustantiva", "adjetiva", "adverbial", "nexo"
+  ],
+  "tipologia_textual": [
+    "argumentativo", "expositivo", "narrativo", "descriptivo", "instructivo", "periodístico", "científico", "humanístico", "jurídico", "publicitario"
+  ],
+  "figuras_retoricas": [
+    "metáfora", "símil", "hipérbole", "personificación", "anáfora", "metonimia", "sinestesia", "hipérbaton", "ironía", "paradoja"
+  ]
+}

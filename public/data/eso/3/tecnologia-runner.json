@@ -1,0 +1,17 @@
+{
+  "electricidad": [
+    "voltaje", "intensidad", "resistencia", "ley de ohm", "circuito", "serie", "paralelo", "generador", "multímetro", "potencia"
+  ],
+  "materiales_plasticos": [
+    "termoplástico", "termoestable", "elastómero", "pvc", "pet", "polietileno", "caucho", "latex", "nailon", "poliestireno"
+  ],
+  "materiales_construccion": [
+    "cemento", "hormigón", "yeso", "ladrillo", "cerámica", "vidrio", "arena", "grava", "asfalto", "viga"
+  ],
+  "informatica": [
+    "hardware", "software", "sistema operativo", "redes", "algoritmo", "programación", "código binario", "base de datos", "servidor", "nube"
+  ],
+  "generacion_energia": [
+    "central térmica", "central nuclear", "placa solar", "aerogenerador", "turbina", "alternador", "presa", "biomasa", "geotermia", "red eléctrica"
+  ]
+}

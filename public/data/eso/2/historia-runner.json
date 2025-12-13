@@ -1,0 +1,17 @@
+{
+  "sociedad_feudal": [
+    "rey", "noble", "caballero", "vasallo", "siervo", "campesino", "clero", "obispo", "monje", "señor"
+  ],
+  "arte_romanico": [
+    "arco de medio punto", "bóveda de cañón", "contrafuerte", "absidiolo", "pantocrátor", "gruros muros", "oscuridad", "planta cruz latina", "capitel", "portada"
+  ],
+  "arte_gotico": [
+    "arco apuntado", "bóveda de crucería", "arbotante", "vidriera", "rosetón", "pináculo", "gárgola", "verticalidad", "luminosidad", "catedral"
+  ],
+  "conceptos_demografia": [
+    "natalidad", "mortalidad", "esperanza de vida", "migración", "inmigrante", "emigrante", "censo", "padrón", "densidad", "envejecimiento"
+  ],
+  "islam_alandalus": [
+    "mezquita", "califa", "emir", "corán", "alcazaba", "zoco", "medina", "alhambra", "arco de herradura", "minarete"
+  ]
+}

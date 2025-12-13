@@ -1,0 +1,17 @@
+{
+  "travel_vocabulary": [
+    "passport", "luggage", "ticket", "airport", "station", "flight", "hotel", "tourist", "platform", "customs"
+  ],
+  "technology": [
+    "screen", "keyboard", "mouse", "laptop", "password", "website", "download", "wifi", "battery", "charger"
+  ],
+  "irregular_verbs_past": [
+    "went", "saw", "bought", "thought", "caught", "drove", "flew", "swam", "broke", "spoke"
+  ],
+  "feelings_emotions": [
+    "excited", "bored", "worried", "surprised", "tired", "angry", "frightened", "embarrassed", "proud", "confused"
+  ],
+  "weather_conditions": [
+    "sunny", "rainy", "cloudy", "windy", "stormy", "foggy", "snowy", "hail", "freezing", "humid"
+  ]
+}

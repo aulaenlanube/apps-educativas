@@ -1,0 +1,17 @@
+{
+  "partes_celula": [
+    "núcleo", "citoplasma", "membrana", "mitocondria", "vacuola", "cloroplasto", "ribosoma", "lisosoma", "pared celular", "centriolo"
+  ],
+  "invertebrados": [
+    "esponja", "medusa", "lombriz", "caracol", "pulpo", "araña", "cangrejo", "mariposa", "estrella de mar", "erizo"
+  ],
+  "vertebrados": [
+    "tiburón", "rana", "salamandra", "cocodrilo", "águila", "pingüino", "lobo", "murciélago", "atún", "lagarto"
+  ],
+  "capas_atmosfera": [
+    "troposfera", "estratosfera", "mesosfera", "termosfera", "exosfera", "ozonosfera", "ionosfera", "homosfera", "heterosfera", "magnetosfera"
+  ],
+  "reino_plantas": [
+    "musgo", "helecho", "pino", "ciprés", "rosal", "encina", "tulipán", "girasol", "trigo", "almendro"
+  ]
+}

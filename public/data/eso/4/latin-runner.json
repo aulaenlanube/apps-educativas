@@ -1,0 +1,17 @@
+{
+  "mitologia_dioses": [
+    "Júpiter", "Juno", "Minerva", "Marte", "Venus", "Apolo", "Diana", "Mercurio", "Neptuno", "Plutón"
+  ],
+  "casos_declinacion": [
+    "nominativo", "vocativo", "acusativo", "genitivo", "dativo", "ablativo", "singular", "plural", "masculino", "femenino"
+  ],
+  "instituciones_romanas": [
+    "senado", "cónsul", "pretor", "censor", "tribuno", "patricio", "plebeyo", "esclavo", "liberto", "república"
+  ],
+  "urbanismo_romano": [
+    "foro", "termas", "teatro", "anfiteatro", "circo", "acueducto", "domus", "villa", "calzada", "arco de triunfo"
+  ],
+  "expresiones_latinas": [
+    "carpe diem", "curriculum vitae", "alter ego", "a priori", "ipso facto", "grosso modo", "mare magnum", "in situ", "per se", "alma mater"
+  ]
+}

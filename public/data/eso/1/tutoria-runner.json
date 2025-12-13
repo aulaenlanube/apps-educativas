@@ -1,0 +1,17 @@
+{
+  "tecnicas_estudio": [
+    "subrayado", "resumen", "esquema", "mapa mental", "lectura rápida", "memorización", "repaso", "planificación", "agenda", "apuntes"
+  ],
+  "emociones_sociales": [
+    "empatía", "asertividad", "respeto", "tolerancia", "solidaridad", "cooperación", "escucha activa", "diálogo", "paciencia", "gratitud"
+  ],
+  "normas_convivencia": [
+    "puntualidad", "silencio", "orden", "limpieza", "turno de palabra", "cuidado del material", "ayuda", "respeto al profesor", "no agredir", "no insultar"
+  ],
+  "habitos_saludables": [
+    "desayuno", "fruta", "deporte", "dormir 8h", "higiene", "postura correcta", "agua", "evitar azúcar", "lavar dientes", "ducha"
+  ],
+  "riesgos_redes": [
+    "ciberbullying", "adicción", "privacidad", "fake news", "sexting", "groming", "identidad falsa", "estafa", "virus", "phishing"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "electronica_analogica": [
+    "resistencia", "condensador", "diodo", "led", "transistor", "potenciómetro", "circuito", "placa", "soldadura", "sensor"
+  ],
+  "electronica_digital": [
+    "puerta lógica", "sistema binario", "bit", "byte", "microchip", "procesador", "memoria", "álgebra de boole", "código", "señal"
+  ],
+  "control_y_robotica": [
+    "sensor", "actuador", "servomotor", "microcontrolador", "arduino", "lazo abierto", "lazo cerrado", "automatismo", "robot", "programación"
+  ],
+  "neumatica_hidraulica": [
+    "compresor", "válvula", "cilindro", "pistón", "tubería", "presión", "caudal", "fluido", "aire", "aceite"
+  ],
+  "tecnologia_comunicacion": [
+    "wifi", "bluetooth", "fibra óptica", "satélite", "radiofrecuencia", "cobertura", "datos", "ancho de banda", "protocolo", "red"
+  ]
+}

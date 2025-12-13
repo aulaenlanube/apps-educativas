@@ -1,0 +1,17 @@
+{
+  "fotografia_cine": [
+    "encuadre", "plano", "picado", "contrapicado", "zoom", "enfoque", "guion", "montaje", "secuencia", "iluminación"
+  ],
+  "diseno_grafico": [
+    "logotipo", "marca", "tipografía", "cartel", "packaging", "boceto", "maquetación", "vector", "píxel", "resolución"
+  ],
+  "dibujo_tecnico": [
+    "diédrico", "alzado", "planta", "perfil", "isométrica", "caballera", "acotación", "escala", "perspectiva", "vistas"
+  ],
+  "elementos_imagen": [
+    "punto", "línea", "plano", "textura", "color", "composición", "ritmo", "equilibrio", "contraste", "simetría"
+  ],
+  "historia_arte_sXX": [
+    "cubismo", "surrealismo", "expresionismo", "pop art", "abstracción", "fauvismo", "dadaísmo", "bauhaus", "graffiti", "performance"
+  ]
+}

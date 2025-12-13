@@ -1,0 +1,17 @@
+{
+  "environment": [
+    "pollution", "recycling", "global warming", "waste", "climate change", "flood", "drought", "endangered", "greenhouse", "energy"
+  ],
+  "crime_and_law": [
+    "thief", "murder", "prison", "judge", "lawyer", "police", "witness", "trial", "robbery", "detective"
+  ],
+  "health_and_body": [
+    "disease", "injury", "treatment", "medicine", "surgeon", "pain", "flu", "recovery", "symptom", "virus"
+  ],
+  "media_and_tech": [
+    "network", "software", "download", "keyboard", "screen", "broadcast", "journalist", "newspaper", "channel", "headline"
+  ],
+  "education": [
+    "subject", "degree", "exam", "homework", "teacher", "headmaster", "library", "classroom", "grade", "student"
+  ]
+}

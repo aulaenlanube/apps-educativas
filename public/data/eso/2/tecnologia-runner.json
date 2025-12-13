@@ -1,0 +1,17 @@
+{
+  "mecanismos": [
+    "palanca", "polea", "engranaje", "tornillo sin fin", "biela", "cigüeñal", "leva", "rueda dentada", "piñón", "cremallera"
+  ],
+  "materiales_metales": [
+    "hierro", "acero", "cobre", "aluminio", "bronce", "latón", "cinc", "plomo", "estaño", "titanio"
+  ],
+  "componentes_electricos": [
+    "pila", "batería", "interruptor", "pulsador", "conmutador", "bombilla", "motor", "zumbador", "resistencia", "fusible"
+  ],
+  "herramientas": [
+    "alicates", "destornillador", "llave inglesa", "sierra de metal", "martillo", "lima", "broca", "taladro", "soldador", "metro"
+  ],
+  "informatica_hardware": [
+    "procesador", "disco duro", "memoria ram", "placa base", "fuente de alimentación", "ventilador", "tarjeta gráfica", "puerto usb", "periférico", "chip"
+  ]
+}

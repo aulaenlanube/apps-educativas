@@ -1,18 +1,17 @@
 {
-  "numeros_irracionales": [
-    "π", "e", "√2", "√3", "√5", "√7", "Phi",
-    "pi", "3.14159...", "1.4142...", "No Racional", "No Fracción"
+  "algebra": [
+    "polinomio", "monomio", "ecuación", "incógnita", "coeficiente", "identidad notable", "grado", "factorizar", "raíz", "sistema"
   ],
-  "identidades_notables": [
-    "(a+b)^2", "a^2+2ab+b^2", "(a-b)^2", "a^2-2ab+b^2", "(a+b)(a-b)", "a^2-b^2",
-    "Suma al cuadrado", "Diferencia cuadrados", "(x+1)^2"
+  "sucesiones_y_progresiones": [
+    "término general", "diferencia", "razón", "aritmética", "geométrica", "suma", "infinito", "límite", "serie", "patrón"
   ],
-  "notacion_cientifica": [
-    "1.2x10^3", "3x10^5", "5x10^-2", "10^6", "2.5x10^4",
-    "1200", "300000", "0.05", "Un millón", "25000"
+  "geometria_plana": [
+    "teorema de tales", "pitágoras", "semejanza", "escala", "área", "perímetro", "triángulo", "polígono", "circunferencia", "apotema"
   ],
-  "progresion_aritmetica_diferencia_2": [
-    "2, 4, 6...", "1, 3, 5...", "3, 5, 7...", "10, 12, 14...",
-    "an=2n", "an=2n+1", "Pares", "Impares"
+  "funciones": [
+    "pendiente", "ordenada en el origen", "recta", "parábola", "dominio", "recorrido", "crecimiento", "máximo", "mínimo", "continuidad"
+  ],
+  "estadistica": [
+    "variable", "frecuencia", "media", "moda", "mediana", "desviación típica", "varianza", "histograma", "población", "muestra"
   ]
 }

@@ -1,0 +1,17 @@
+{
+  "sistemas_entrenamiento": [
+    "fartlek", "interval training", "crossfit", "circuitos", "series", "aeróbico", "anaeróbico", "cuestas", "pliometría", "hiit"
+  ],
+  "nutricion_deportiva": [
+    "proteína", "carbohidrato", "grasa", "vitamina", "mineral", "hidratación", "calorías", "fibra", "glucosa", "metabolismo"
+  ],
+  "lesiones_deportivas": [
+    "esguince", "fractura", "luxación", "contractura", "tendinitis", "agujetas", "rotura fibrilar", "calambre", "contusión", "hemorragia"
+  ],
+  "deportes_raqueta": [
+    "tenis", "pádel", "bádminton", "ping pong", "squash", "frontón", "pelota valenciana", "pickeball", "raquetbol", "tenis playa"
+  ],
+  "expresion_corporal": [
+    "mimo", "danza", "coreografía", "ritmo", "gesto", "postura", "dramatización", "improvización", "escenario", "baile"
+  ]
+}

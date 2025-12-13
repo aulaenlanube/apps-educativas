@@ -1,0 +1,17 @@
+{
+  "projets_avenir": [
+    "université", "travail", "voyage", "métier", "indépendance", "appartement", "permis", "bouse", "stage", "carrière"
+  ],
+  "sentiments_opinions": [
+    "doute", "certitude", "avis", "point de vue", "accord", "désaccord", "joie", "tristesse", "peur", "espoir"
+  ],
+  "environnement": [
+    "pollution", "recyclage", "déchets", "réchauffement", "énergie", "écologie", "protection", "nature", "climat", "planète"
+  ],
+  "connecteurs_logiques": [
+    "pourtant", "donc", "parce que", "cependant", "alors", "en plus", "d'abord", "ensuite", "enfin", "car"
+  ],
+  "technologie_media": [
+    "internet", "réseau social", "ordinateur", "portable", "écran", "message", "journal", "publicité", "information", "téléchargement"
+  ]
+}

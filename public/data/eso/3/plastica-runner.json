@@ -1,0 +1,17 @@
+{
+  "sistemas_representacion": [
+    "diédrico", "axonométrico", "cónica", "alzado", "planta", "perfil", "isométrica", "caballera", "punto de fuga", "proyección"
+  ],
+  "diseno_grafico": [
+    "logotipo", "tipografía", "maquetación", "cartel", "branding", "imagotipo", "boceto", "diagramación", "icono", "vector"
+  ],
+  "lenguaje_visual": [
+    "signo", "símbolo", "icono", "indicio", "código", "emisor", "receptor", "mensaje", "canal", "contexto"
+  ],
+  "publicidad": [
+    "eslogan", "marca", "anuncio", "consumidor", "target", "campaña", "spot", "valla", "marketing", "persuasión"
+  ],
+  "elementos_composicion": [
+    "ritmo", "equilibrio", "simetría", "peso visual", "contraste", "proporción", "regla de tercios", "encuadre", "fondo", "figura"
+  ]
+}

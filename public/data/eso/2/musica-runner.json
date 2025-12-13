@@ -1,0 +1,17 @@
+{
+  "periodos_musicales": [
+    "edad media", "renacimiento", "barroco", "clasicismo", "romanticismo", "nacionalismo", "siglo xx", "contemporánea", "prehistoria", "antigüedad"
+  ],
+  "voces_humanas": [
+    "soprano", "mezzosoprano", "contralto", "tenor", "barítono", "bajo", "blanca", "aguda", "grave", "castrato"
+  ],
+  "matices_intensidad": [
+    "pianissimo", "piano", "mezzopiano", "mezzoforte", "forte", "fortissimo", "crescendo", "diminuendo", "sforzando", "calderón"
+  ],
+  "tempos_velocidad": [
+    "largo", "adagio", "andante", "moderato", "allegro", "presto", "vivace", "accelerando", "ritardando", "lento"
+  ],
+  "signos_musicales": [
+    "clave de sol", "clave de fa", "becuadro", "sostenido", "bemol", "pentagrama", "compás", "barra de repetición", "ligadura", "puntillo"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "figuras_musicales": [
+    "redonda", "blanca", "negra", "corchea", "semicorchea", "fusa", "semifusa", "puntillo", "ligadura", "calderón"
+  ],
+  "notas_musicales": [
+    "do", "re", "mi", "fa", "sol", "la", "si", "agudo", "grave", "bemol"
+  ],
+  "familias_instrumentos": [
+    "cuerda frotada", "cuerda pulsada", "cuerda percutida", "viento madera", "viento metal", "percusión afinada", "percusión no afinada", "electrófonos", "membranófonos", "idiófonos"
+  ],
+  "cualidades_sonido": [
+    "altura", "duración", "intensidad", "timbre", "fuerte", "piano", "largo", "corto", "pentagrama", "clave"
+  ],
+  "agrupaciones_vocales": [
+    "soprano", "mezzosoprano", "contralto", "tenor", "barítono", "bajo", "coro mixto", "escolanía", "dúo", "solista"
+  ]
+}
