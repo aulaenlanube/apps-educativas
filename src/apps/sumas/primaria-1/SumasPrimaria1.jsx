@@ -1,5 +1,6 @@
 // src/apps/sumas/primaria-1/SumasPrimaria1.jsx
 import React, { useCallback, useEffect, useState } from 'react';
+import confetti from 'canvas-confetti'; // Importamos confetti
 import SumasLayout from '/src/apps/_shared/SumasLayout';
 import UniversalSumBoard, { buildColumnPlan } from '/src/apps/_shared/UniversalSumBoard';
 
@@ -8,7 +9,6 @@ const TOTAL_TEST_QUESTIONS = 5;
 const SumasPrimaria1 = () => {
   // --- Estados ---
   const [currentOperands, setCurrentOperands] = useState(['0', '0']);
-  // Eliminamos el estado showCarries ya que no habrá toggle
   
   // Estados del Tablero
   const [resultSlots, setResultSlots] = useState([]);
@@ -45,7 +45,7 @@ const SumasPrimaria1 = () => {
     setCurrentOperands(ops);
     const plan = buildColumnPlan(ops, 2); // Mínimo 2 columnas
     setResultSlots(Array(plan.digitIndices.length).fill(''));
-    setCarrySlots(Array(Math.max(0, plan.digitIndices.length - 1)).fill('')); // Inicializamos aunque no se usen
+    setCarrySlots(Array(Math.max(0, plan.digitIndices.length - 1)).fill('')); 
     setFeedback({ text: '', cls: '' });
     setCheckInfo({ show: false });
     
@@ -70,7 +70,6 @@ const SumasPrimaria1 = () => {
         setActiveSlot(null); // Terminado
       }
     } 
-    // No gestionamos 'carry' aquí porque no hay llevadas visibles
   };
 
   const calculateSolution = (ops) => {
@@ -96,6 +95,14 @@ const SumasPrimaria1 = () => {
     if (parseInt(userStr || '0') === parseInt(correctStr)) {
         setFeedback({ text: '¡Excelente! ¡Suma correcta! 🎉', cls: 'feedback-correct' });
         setActiveSlot(null);
+        
+        // LANZAMOS CONFETTI SI ES CORRECTO
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+
     } else {
         setFeedback({ text: 'Casi... ¡Revisa las casillas en rojo!', cls: 'feedback-incorrect' });
     }
@@ -149,12 +156,11 @@ const SumasPrimaria1 = () => {
         exitTest: () => { setIsTestMode(false); setShowResults(false); startPractice(); }, 
         onPaletteClick: handlePaletteClick 
       }}
-      // AL QUITAR LA PROP 'options', EL SLIDER DESAPARECE
     >
       <UniversalSumBoard
         nums={currentOperands}
         minIntegerDigits={2}
-        showCarries={false} // Forzamos siempre oculto
+        showCarries={false} 
         resultSlots={resultSlots}
         carrySlots={carrySlots}
         activeSlot={activeSlot}
