@@ -1,0 +1,172 @@
+/* Heredamos la fuente y estilos base */
+.division-grid {
+  display: grid;
+  font-family: 'Lexend', sans-serif;
+  font-size: 2.5rem;
+  line-height: 1.5;
+  column-gap: 8px; 
+  row-gap: 8px;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  /* Eliminamos el margin auto aquí porque ahora lo controlará el contenedor padre */
+}
+
+/* -- Celdas y Cajas -- */
+.digit-display, 
+.division-box,
+.brought-down-digit {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  box-sizing: border-box;
+  position: relative; 
+}
+
+/* -- Caja del Divisor -- */
+.divisor-container {
+  border-left: 3px solid #333;
+  border-bottom: 3px solid #333;
+  padding-left: 12px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+
+.divisor-number {
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+/* -- Área del Cociente -- */
+.quotient-area {
+  padding-left: 12px;
+  margin-left: 5px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* -- Cajas interactivas -- */
+.division-box {
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+  color: #333;
+  transition: all 0.2s ease;
+}
+
+.division-box.filled {
+  border-style: solid;
+  border-color: #94a3b8;
+}
+
+.division-box.selected {
+  border: 2px solid #3b82f6;
+  background-color: #eff6ff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.division-box.correct {
+  background-color: #dcfce7;
+  border: 2px solid #22c55e;
+  color: #15803d;
+  border-style: solid;
+}
+
+.division-box.incorrect {
+  background-color: #fee2e2;
+  border: 2px solid #ef4444;
+  color: #b91c1c;
+  border-style: solid;
+}
+
+/* -- Flecha de ayuda -- */
+.arrow-helper {
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.5em;
+  color: #3b82f6;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* -- Highlight Azul -- */
+.operand-highlight {
+  background-color: #bae6fd !important;
+  border-radius: 6px;
+  color: #0c4a6e;
+  transition: background-color 0.3s ease;
+}
+
+.division-box.operand-highlight {
+  background-color: #e0f2fe !important;
+  border-color: #3b82f6 !important;
+}
+
+/* === NUEVOS ESTILOS PARA EL PANEL LATERAL === */
+
+/* Contenedor que agrupa la rejilla y la tabla */
+.game-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px; /* Espacio entre la división y la tabla */
+  margin: 20px auto;
+  flex-wrap: wrap; /* Para pantallas pequeñas */
+}
+
+/* Panel de la Tabla de Multiplicar */
+.multiplication-table-panel {
+  background-color: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 160px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  font-family: 'Lexend', sans-serif;
+  text-align: left;
+  animation: slideIn 0.3s ease-out;
+}
+
+.multiplication-table-panel h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 12px;
+  text-align: center;
+  border-bottom: 2px solid #cbd5e1;
+  padding-bottom: 8px;
+}
+
+.table-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 1rem;
+  color: #475569;
+  border-bottom: 1px dashed #f1f5f9;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-row strong {
+  color: #0f172a;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}

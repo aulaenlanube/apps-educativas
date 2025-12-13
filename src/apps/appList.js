@@ -36,8 +36,8 @@ import MultiplicacionesPrimaria4 from './multiplicaciones/primaria-4/Multiplicac
 import MultiplicacionesPrimaria5 from './multiplicaciones/primaria-5/MultiplicacionesPrimaria5';
 import MultiplicacionesPrimaria6 from './multiplicaciones/primaria-6/MultiplicacionesPrimaria6';
 
-
-
+import DivisionesPrimaria4 from './divisiones/primaria-4/DivisionesPrimaria4';
+import DivisionesPrimaria5 from './divisiones/primaria-5/DivisionesPrimaria5';
 
 import GeneradorPersonajes from './generador-personajes/GeneradorPersonajes';
 import BuscaElIntruso from './busca-el-intruso/BuscaElIntruso.jsx'
@@ -578,7 +578,13 @@ export const primariaApps = {
       { id: 'sumas-primaria-4-drag', name: 'Sumas triples', description: 'Resuelve sumas triples de 3 y 4 cifras con llevadas.', component: SumasPrimaria4 },
       { id: 'restas-primaria-4', name: 'Restas con un decimal', description: 'Restas con 1 decimal', component: RestasPrimaria4 },
       { id: 'multiplicaciones-primaria-4', name: 'Multiplicaciones', description: 'Multiplica por más de 1 cifra', component: MultiplicacionesPrimaria4 },
-      { id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 },
+      { 
+  id: 'divisiones-primaria-4', 
+  name: 'Divisiones (Iniciación)', 
+  description: 'Aprende a dividir: Dividendo de 2-3 cifras y divisor de 1 cifra.', 
+  component: DivisionesPrimaria4 
+},
+{ id: 'supermercado-matematico-4', name: 'Supermercado Matemático (Decimales)', description: 'Practica sumas y restas con precios con céntimos.', component: SupermercadoMatematico4 },
       appRunner,      
       appOrdenaBolas,
       appRosco,
@@ -695,6 +701,12 @@ export const primariaApps = {
       { id: 'restas-primaria-5', name: 'Restas con decimales', description: 'Restas con varios decimales', component: RestasPrimaria5 },
       { id: 'multiplicaciones-primaria-5', name: 'Multiplicaciones', description: 'Multiplica por varios dígitos', component: MultiplicacionesPrimaria5 },
       { id: 'supermercado-matematico-5', name: 'Supermercado Matemático (El Cambio)', description: 'Calcula el cambio correcto al pagar con billetes.', component: SupermercadoMatematico5 },
+      { 
+  id: 'divisiones-primaria-5', 
+  name: 'Divisiones (2 y 3 cifras)', 
+  description: 'Practica divisiones con divisores de dos y tres cifras.', 
+  component: DivisionesPrimaria5 
+},
       appRunner,      
       appOrdenaBolas,
       appRosco,
