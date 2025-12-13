@@ -1,27 +1,23 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
+import confetti from 'canvas-confetti';
 import "/src/apps/_shared/Multiplicaciones.css";
 
-/* Componente: MultiplicacionesPrimaria3
-   - Multiplicaciones con multiplicador de 1 cifra (2..9)
-   - Multiplicando de 2 a 3 cifras (sin ceros a la izquierda)
-   - Lógica y comportamiento equivalentes al HTML/JS original proporcionado
-   - Drag & drop de dígitos, casillas de producto y llevadas, ayuda con llevadas opcional
-*/
 export default function MultiplicacionesPrimaria3() {
-  // Estado principal de la app
+  // --- Estados ---
   const [multiplicando, setMultiplicando] = useState(0);
   const [multiplicador, setMultiplicador] = useState(0);
-  const [filaEsperada, setFilaEsperada] = useState({ digitos: [], llevadas: [] }); // { digitos[], llevadas[] }
+  const [filaEsperada, setFilaEsperada] = useState({ digitos: [], llevadas: [] }); 
   const [ayudaLlevadas, setAyudaLlevadas] = useState(true);
 
-  // Entradas del usuario por tipo y columna
+  // Estados de entrada
   const [entradas, setEntradas] = useState({ producto: [], llevada: [] });
-  // Clases de corrección por casilla y tipo
   const [clases, setClases] = useState({ producto: [], llevada: [] });
-  // Mensaje de feedback
   const [feedback, setFeedback] = useState({ texto: "", tipo: "" });
+  
+  // Estado para el foco activo (escritura rápida)
+  const [activeSlot, setActiveSlot] = useState(null); // { type: 'producto'|'llevada', index: number }
 
-  // Genera un número con longitud dada, sin ceros a la izquierda
+  // --- Lógica de Generación ---
   const generarNumero = (longitud) => {
     if (longitud === 1) return Math.floor(Math.random() * 9) + 1;
     const min = Math.pow(10, longitud - 1);
@@ -29,10 +25,9 @@ export default function MultiplicacionesPrimaria3() {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  // Calcula fila de producto y llevadas (idéntico a lógica original)
-  const calcularFilaProducto = (mulcdo, mulcdr) => {
+  const calcularFilaProducto = useCallback((mulcdo, mulcdr) => {
     const tMulcdo = mulcdo.toString();
-    const tMulcdr = mulcdr.toString(); // 1 cifra
+    const tMulcdr = mulcdr.toString(); 
     const ancho = tMulcdo.length + 1;
 
     const mulcdoRelleno = new Array(ancho).fill(0);
@@ -41,11 +36,11 @@ export default function MultiplicacionesPrimaria3() {
     }
 
     const digMult = parseInt(tMulcdr, 10);
-
     const digitos = new Array(ancho).fill("");
     const llevadasCrudas = new Array(ancho).fill(0);
 
     let acarreo = 0;
+    // Calculamos de derecha a izquierda
     for (let c = ancho - 1; c >= 0; c--) {
       const prod = mulcdoRelleno[c] * digMult + acarreo;
       const d = prod % 10;
@@ -55,222 +50,217 @@ export default function MultiplicacionesPrimaria3() {
       acarreo = nuevaLlevada;
     }
 
-    // Llevadas visibles en la columna de la izquierda de donde se generan
+    // Alinear llevadas: La llevada generada en 'c' se muestra en 'c-1'
     const llevadas = new Array(ancho).fill("");
     for (let c = 0; c < ancho; c++) {
-      const origen = c + 1;
+      const origen = c + 1; 
       const valor = origen < ancho ? llevadasCrudas[origen] : 0;
+      // Guardamos la llevada si es > 0 (o si queremos ser explícitos 0)
       if (valor > 0) llevadas[c] = valor.toString();
     }
 
-    // Limpiar ceros a la izquierda en la fila de producto
+    // Limpiar ceros a la izquierda en producto
     let encontrado = false;
     for (let c = 0; c < ancho; c++) {
-      const val = digitos[c];
       if (!encontrado) {
-        if (val === "0") {
-          digitos[c] = "";
-        } else if (val !== "") {
-          encontrado = true;
-        }
+        if (digitos[c] === "0") digitos[c] = "";
+        else if (digitos[c] !== "") encontrado = true;
       }
     }
 
     return { digitos, llevadas };
-  };
+  }, []);
 
-  // Construye y arranca una nueva multiplicación (multiplicando: 2..3 cifras, multiplicador: 2..9)
-  const generarNueva = () => {
-    const longitudMultiplicando = 2 + Math.floor(Math.random() * 2); // [2..3]
+  const generarNueva = useCallback(() => {
+    const longitudMultiplicando = 2 + Math.floor(Math.random() * 2); // 2 o 3 cifras
     const nuevoMultiplicando = generarNumero(longitudMultiplicando);
-    const nuevoMultiplicador = 2 + Math.floor(Math.random() * 8); // [2..9]
+    const nuevoMultiplicador = 2 + Math.floor(Math.random() * 8); // 2 a 9
 
     const nuevaFila = calcularFilaProducto(nuevoMultiplicando, nuevoMultiplicador);
 
     setMultiplicando(nuevoMultiplicando);
     setMultiplicador(nuevoMultiplicador);
     setFilaEsperada(nuevaFila);
-    setEntradas({
-      producto: new Array(nuevaFila.digitos.length).fill(""),
-      llevada: new Array(nuevaFila.digitos.length).fill(""),
-    });
-    setClases({
-      producto: new Array(nuevaFila.digitos.length).fill(""),
-      llevada: new Array(nuevaFila.digitos.length).fill(""),
-    });
+    
+    const ancho = nuevaFila.digitos.length;
+    setEntradas({ producto: new Array(ancho).fill(""), llevada: new Array(ancho).fill("") });
+    setClases({ producto: new Array(ancho).fill(""), llevada: new Array(ancho).fill("") });
     setFeedback({ texto: "", tipo: "" });
-  };
+    
+    // Auto-foco en la última cifra del producto
+    setActiveSlot({ type: 'producto', index: ancho - 1 });
+  }, [calcularFilaProducto]);
 
-  // Genera al cargar el componente
   useEffect(() => {
     generarNueva();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [generarNueva]);
 
-  // Alineaciones a derecha para pintar operandos en columnas
-  const ancho = filaEsperada.digitos.length;
-  const mulcdoRelleno = useMemo(() => {
-    const t = multiplicando.toString();
-    const arr = new Array(ancho).fill("");
-    for (let i = 0; i < t.length; i++) arr[ancho - t.length + i] = t[i];
-    return arr;
-  }, [multiplicando, ancho]);
+  // --- Handlers de Interacción ---
 
-  const mulcdrRelleno = useMemo(() => {
-    const t = multiplicador.toString();
-    const arr = new Array(ancho).fill("");
-    for (let i = 0; i < t.length; i++) arr[ancho - t.length + i] = t[i];
-    return arr;
-  }, [multiplicador, ancho]);
-
-  // Handlers de drag & drop
-  const onDragStartNumero = (e, valor) => {
-    e.dataTransfer.setData("text/plain", valor);
+  const handleSlotClick = (type, index) => {
+    setActiveSlot({ type, index });
   };
 
-  const onDragOver = (e) => {
-    e.preventDefault();
-  };
+  const handlePaletteClick = (val) => {
+    if (!activeSlot) return;
+    const strVal = val.toString();
+    const { type, index } = activeSlot;
 
-  const onDrop = (e, tipo, col) => {
-    e.preventDefault();
-    const valor = e.dataTransfer.getData("text/plain");
     setEntradas((prev) => {
-      const nuevo = { ...prev, [tipo]: [...prev[tipo]] };
-      nuevo[tipo][col] = valor;
+      const nuevo = { ...prev };
+      nuevo[type] = [...prev[type]];
+      nuevo[type][index] = strVal;
       return nuevo;
     });
+
+    // Limpiar clase de error si existía
     setClases((prev) => {
-      const nuevo = { ...prev, [tipo]: [...prev[tipo]] };
-      // Quita marcas anteriores al soltar
-      nuevo[tipo][col] = "";
+      const nuevo = { ...prev };
+      nuevo[type] = [...prev[type]];
+      nuevo[type][index] = "";
       return nuevo;
     });
+
+    // --- LÓGICA AUTO-LLEVADA ---
+    // Si estamos en producto y el valor es correcto, rellenamos la llevada de la siguiente columna (izquierda)
+    if (type === 'producto' && ayudaLlevadas) {
+        if (strVal === filaEsperada.digitos[index]) {
+            const leftIndex = index - 1;
+            if (leftIndex >= 0) {
+                // Comprobar si esa columna espera llevada
+                const expectedCarry = filaEsperada.llevadas[leftIndex];
+                if (expectedCarry) {
+                    setEntradas(prev => {
+                        const n = { ...prev, llevada: [...prev.llevada] };
+                        n.llevada[leftIndex] = expectedCarry;
+                        return n;
+                    });
+                } else {
+                    // Opcional: Poner '0' si no hay llevada para confirmar que no lleva nada
+                    // setEntradas(prev => { ... n.llevada[leftIndex] = '0'; ... });
+                }
+            }
+        }
+    }
+
+    // --- AUTO-AVANCE ---
+    // Avanzar hacia la izquierda
+    const nextIndex = index - 1;
+    if (nextIndex >= 0) {
+        setActiveSlot({ type, index: nextIndex });
+    } else {
+        setActiveSlot(null);
+    }
   };
 
-  // Comprobación de la respuesta (idéntica a la lógica original en resultado y criterios)
   const comprobarRespuesta = () => {
     let todoCorrecto = true;
     let llevadasCorrectas = true;
+    const ancho = filaEsperada.digitos.length;
 
-    const clasesNuevo = { producto: [...clases.producto], llevada: [...clases.llevada] };
+    const nuevasClases = { producto: [...clases.producto], llevada: [...clases.llevada] };
 
-    // Recorre casillas de producto
+    // Validar Producto
     for (let c = 0; c < ancho; c++) {
       const esperado = filaEsperada.digitos[c];
-      if (esperado === "") {
-        // Casilla deshabilitada (no objetivo)
-        clasesNuevo.producto[c] = "";
-        continue;
-      }
+      if (esperado === "") continue; // Casilla vacía (ceros izq)
+      
       const escrito = (entradas.producto[c] || "").trim();
       if (escrito === esperado) {
-        clasesNuevo.producto[c] = "correct";
+        nuevasClases.producto[c] = "correct";
       } else {
-        clasesNuevo.producto[c] = "incorrect";
+        nuevasClases.producto[c] = "incorrect";
         todoCorrecto = false;
       }
     }
 
-    // Recorre casillas de llevadas (solo si ayuda visible)
+    // Validar Llevadas (si están activas)
     for (let c = 0; c < ancho; c++) {
       const esperado = filaEsperada.llevadas[c];
-      if (esperado === "") {
-        // Casilla deshabilitada
-        clasesNuevo.llevada[c] = "";
-        continue;
-      }
-      if (!ayudaLlevadas) {
-        // Si la ayuda está desactivada, no se evalúan llevadas
-        clasesNuevo.llevada[c] = "";
-        continue;
-      }
+      if (!ayudaLlevadas || esperado === "") continue;
+
       const escrito = (entradas.llevada[c] || "").trim();
-      if (escrito === "") {
-        // No penalizar si no escribe nada
-        clasesNuevo.llevada[c] = "";
-        continue;
-      }
+      // Si no escribe nada y se esperaba algo, mal (o ignorar según preferencia, aquí estricto si ayuda activada)
       if (escrito === esperado) {
-        clasesNuevo.llevada[c] = "correct";
-      } else {
-        clasesNuevo.llevada[c] = "incorrect";
+        nuevasClases.llevada[c] = "correct";
+      } else if (escrito !== "") {
+        nuevasClases.llevada[c] = "incorrect";
         llevadasCorrectas = false;
+      } else {
+         // Si se esperaba y está vacío, contamos como mal si queremos ser estrictos, 
+         // o lo dejamos pasar. En Sumas solíamos pedir revisarlo.
+         // Aquí si el usuario no pone la llevada pero saca el producto bien, a veces se perdona.
+         // Pero para "comportamiento igual", validamos.
+         nuevasClases.llevada[c] = "incorrect"; 
+         llevadasCorrectas = false;
       }
     }
 
-    setClases(clasesNuevo);
+    setClases(nuevasClases);
 
     if (todoCorrecto) {
       if (!ayudaLlevadas || llevadasCorrectas) {
         setFeedback({ texto: "¡Multiplicación correcta! 🎉", tipo: "feedback-correct" });
+        setActiveSlot(null);
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
       } else {
-        setFeedback({ texto: "El producto es correcto, revisa las llevadas", tipo: "feedback-incorrect" });
+        setFeedback({ texto: "El producto es correcto, pero revisa las llevadas", tipo: "feedback-incorrect" });
       }
     } else {
       setFeedback({ texto: "Revisa las casillas en rojo", tipo: "feedback-incorrect" });
     }
   };
 
-  // Render de una columna
-  let operadorColocado = false;
+  // --- Renderizado ---
+  const ancho = filaEsperada.digitos.length;
+  
+  // Arrays para pintar operandos alineados
+  const mulcdoStr = multiplicando.toString().padStart(ancho, ' '); // Rellenar con espacios para alinear
+  const mulcdrStr = multiplicador.toString().padStart(ancho, ' ');
+
+  // Construcción de columnas
   const columnas = [];
+  let operadorPintado = false;
+
   for (let c = 0; c < ancho; c++) {
-    const valorLlevada = filaEsperada.llevadas[c];
-    const targetLlevada = valorLlevada !== "";
-    const valorProducto = filaEsperada.digitos[c];
-    const targetProducto = valorProducto !== "";
-    const dMulcdr = mulcdrRelleno[c];
+    const tieneLlevada = filaEsperada.llevadas[c] !== "";
+    const tieneProducto = filaEsperada.digitos[c] !== "";
+    const digitoMult = mulcdrStr[c]; // Caracter del multiplicador en esta posición
+
+    // Detectar si hay que pintar el 'x' (en el primer dígito no vacío del multiplicador)
+    let contenidoMultiplicador = digitoMult;
+    if (digitoMult !== ' ' && !operadorPintado) {
+        contenidoMultiplicador = (
+            <>
+                <span className="cross-inline">×</span>
+                <span>{digitoMult}</span>
+            </>
+        );
+        operadorPintado = true;
+    }
 
     columnas.push(
-      <div className="column" key={`col-${c}`}>
-        {/* Fila de llevadas */}
+      <div className="column" key={c}>
+        {/* Llevada */}
         <div
-          className={[
-            "box",
-            "carry-box",
-            !targetLlevada ? "disabled" : "",
-            ayudaLlevadas ? "" : "hidden-by-toggle",
-            clases.llevada[c] || "",
-          ].join(" ")}
-          data-tipo="llevada"
-          data-col={c}
-          onDragOver={onDragOver}
-          onDrop={(e) => targetLlevada && onDrop(e, "llevada", c)}
+          className={`box carry-box ${!tieneLlevada ? 'disabled' : ''} ${ayudaLlevadas ? '' : 'hidden-by-toggle'} ${clases.llevada[c] || ''} ${activeSlot?.type === 'llevada' && activeSlot?.index === c ? 'selected' : ''}`}
+          onClick={() => tieneLlevada && handleSlotClick('llevada', c)}
         >
           {entradas.llevada[c]}
         </div>
 
         {/* Multiplicando */}
-        <div className="digit-display">{mulcdoRelleno[c] || ""}</div>
+        <div className="digit-display">{mulcdoStr[c]}</div>
 
-        {/* Multiplicador con símbolo × en la primera cifra visible */}
-        <div className="digit-display">
-          {dMulcdr ? (
-            !operadorColocado ? (
-              <>
-                <span className="cross-inline">×</span>
-                <span>{dMulcdr}</span>
-              </>
-            ) : (
-              dMulcdr
-            )
-          ) : (
-            ""
-          )}
-        </div>
-        {dMulcdr && !operadorColocado ? (operadorColocado = true) : null}
+        {/* Multiplicador */}
+        <div className="digit-display">{contenidoMultiplicador}</div>
 
-        {/* Línea separadora */}
         <hr className="operation-line" />
 
-        {/* Fila de producto */}
+        {/* Producto */}
         <div
-          className={["box", "result-box", "parcial-box", !targetProducto ? "disabled" : "", clases.producto[c] || ""].join(" ")}
-          data-tipo="producto"
-          data-col={c}
-          onDragOver={onDragOver}
-          onDrop={(e) => targetProducto && onDrop(e, "producto", c)}
+          className={`box result-box ${!tieneProducto ? 'disabled' : ''} ${clases.producto[c] || ''} ${activeSlot?.type === 'producto' && activeSlot?.index === c ? 'selected' : ''}`}
+          onClick={() => tieneProducto && handleSlotClick('producto', c)}
         >
           {entradas.producto[c]}
         </div>
@@ -281,8 +271,8 @@ export default function MultiplicacionesPrimaria3() {
   return (
     <div id="app-container">
       <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-        <span role="img" aria-label="Resta">📝</span>{' '}
-        <span className="gradient-text">Multiplica como en el cole</span>
+        <span role="img" aria-label="Multiplicar">✖️</span>{' '}
+        <span className="gradient-text">Multiplica por 1 cifra</span>
       </h1>
 
       <div id="options-area">
@@ -305,23 +295,20 @@ export default function MultiplicacionesPrimaria3() {
       <div id="feedback-message" className={feedback.tipo}>{feedback.texto}</div>
 
       <div id="controls">
-        <button id="check-button" onClick={comprobarRespuesta}>
-          Comprobar
-        </button>
-        <button id="new-problem-button" onClick={generarNueva}>
-          Nueva multiplicación
-        </button>
+        <button id="check-button" onClick={comprobarRespuesta}>Comprobar</button>
+        <button id="new-problem-button" onClick={generarNueva}>Nueva</button>
       </div>
 
       <div id="number-palette">
-        <h2>Arrastra los números 👇</h2>
+        <h2>Toca los números 👇</h2>
         <div className="number-tiles-container">
           {Array.from({ length: 10 }, (_, d) => (
             <div
-              key={`tile-${d}`}
+              key={d}
               className="number-tile"
+              onClick={() => handlePaletteClick(d)}
               draggable
-              onDragStart={(e) => onDragStartNumero(e, String(d))}
+              onDragStart={(e) => e.dataTransfer.setData("text/plain", d)}
             >
               {d}
             </div>

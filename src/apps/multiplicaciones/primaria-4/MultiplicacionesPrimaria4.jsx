@@ -1,397 +1,427 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import confetti from 'canvas-confetti';
 import "/src/apps/_shared/Multiplicaciones.css";
 
-/* Componente: MultiplicacionesPrimaria4
-   - Multiplicaciones en papel con multiplicador de 2 cifras (según lógica original adjunta)
-   - Genera productos parciales (una fila por cada dígito del multiplicador) y una fila de suma final
-   - Arrastrar y soltar dígitos, ayuda opcional con llevadas, tolerancia de ceros a la izquierda en el resultado final
-   - Lógica portadísima del index.html/script.js/style.css adjuntos
-*/
 export default function MultiplicacionesPrimaria4() {
-  // Estado principal
+  // --- Estados del Juego ---
   const [multiplicando, setMultiplicando] = useState(0);
   const [multiplicador, setMultiplicador] = useState(0);
-  const [parcialesEsperados, setParcialesEsperados] = useState([]); // [{digitos:[], llevadas:[]}]
-  const [resultadoFinalEsperado, setResultadoFinalEsperado] = useState([]);
+  
+  // Soluciones esperadas
+  const [solucion, setSolucion] = useState({
+    fila1: [], // Producto unidades
+    llevadas1: [],
+    fila2: [], // Producto decenas
+    llevadas2: [],
+    suma: [],  // Resultado final
+    llevadasSuma: []
+  });
+
   const [ayudaLlevadas, setAyudaLlevadas] = useState(true);
 
   // Entradas del usuario
-  const [entradasParciales, setEntradasParciales] = useState([]); // matriz [fila][col]
-  const [entradasLlevadas, setEntradasLlevadas] = useState([]);   // matriz [fila][col]
-  const [entradasFinal, setEntradasFinal] = useState([]);         // array [col]
+  const [entradas, setEntradas] = useState({
+    fila1: [],
+    fila2: [],
+    filaSuma: [],
+    llevadasMul: [], // Llevadas compartidas para la multiplicación
+    llevadasSuma: [] // Llevadas de la suma final
+  });
 
-  // Clases de corrección
-  const [clasesParciales, setClasesParciales] = useState([]);
-  const [clasesLlevadas, setClasesLlevadas] = useState([]);
-  const [clasesFinal, setClasesFinal] = useState([]);
+  const [clases, setClases] = useState({
+    fila1: [],
+    fila2: [],
+    filaSuma: [],
+    llevadasMul: [],
+    llevadasSuma: []
+  });
 
   const [feedback, setFeedback] = useState({ texto: "", tipo: "" });
+  const [activeSlot, setActiveSlot] = useState(null);
 
-  // === Utilidades (idénticas en resultado a tu JS) ===
-  const generarNumeroAleatorio = (longitud) => {
-    if (longitud === 1) return Math.floor(Math.random() * 9) + 1;
-    const min = Math.pow(10, longitud - 1);
-    const max = Math.pow(10, longitud) - 1;
+  // --- Lógica de Negocio ---
+
+  const generarNumero = (cifras) => {
+    const min = Math.pow(10, cifras - 1);
+    const max = Math.pow(10, cifras) - 1;
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
-  // Calcula productos parciales y llevadas por fila (como en el JS adjunto)
-  const calcularParciales = (m1, m2) => {
-    const textoMultiplicando = m1.toString();
-    const textoMultiplicador = m2.toString();
-    const ancho = textoMultiplicando.length + textoMultiplicador.length;
-
-    const multiplicandoRellenado = new Array(ancho).fill(0);
-    for (let i = 0; i < textoMultiplicando.length; i++) {
-      multiplicandoRellenado[ancho - textoMultiplicando.length + i] = parseInt(textoMultiplicando[i], 10);
-    }
-
-    const digitosMultiplicador = textoMultiplicador.split("").map(d => parseInt(d, 10)).reverse();
-    const parciales = [];
-
-    for (let r = 0; r < digitosMultiplicador.length; r++) {
-      const digMult = digitosMultiplicador[r];
-      const digitosFila = new Array(ancho).fill("");
-      const llevadasCrudas = new Array(ancho).fill(0);
-      let acarreo = 0;
-
-      for (let c = ancho - 1; c >= 0; c--) {
-        const indiceMultiplicando = c + r;
-        const digMultiplicando = indiceMultiplicando < ancho ? multiplicandoRellenado[indiceMultiplicando] : 0;
-        const producto = digMultiplicando * digMult + acarreo;
-        const resultadoDigito = producto % 10;
-        const nuevaLlevada = Math.floor(producto / 10);
-        digitosFila[c] = resultadoDigito.toString();
-        llevadasCrudas[c] = nuevaLlevada;
-        acarreo = nuevaLlevada;
-      }
-
-      const llevadasFinales = new Array(ancho).fill("");
-      for (let c = 0; c < ancho; c++) {
-        const origen = c + 1;
-        const valor = origen < ancho ? llevadasCrudas[origen] : 0;
-        llevadasFinales[c] = valor > 0 ? valor.toString() : "";
-      }
-
-      // Desplazamiento de r columnas a la derecha (vacías)
-      for (let c = ancho - r; c < ancho; c++) {
-        if (c >= 0 && c < ancho) {
-          digitosFila[c] = "";
-          llevadasFinales[c] = "";
-        }
-      }
-
-      // Limpiar ceros a la izquierda en la fila parcial
-      let encontradoNoCero = false;
-      for (let c = 0; c < ancho; c++) {
-        const val = digitosFila[c];
-        if (!encontradoNoCero) {
-          if (val === "0" || val === "") {
-            digitosFila[c] = "";
-          } else {
-            encontradoNoCero = true;
-          }
-        }
-      }
-
-      parciales.push({ digitos: digitosFila, llevadas: llevadasFinales });
-    }
-    return parciales;
-  };
-
-  const sumarParciales = (parciales) => {
-    if (!parciales || parciales.length === 0) return [];
-    const ancho = parciales[0].digitos.length;
-    const resultado = new Array(ancho).fill("0");
+  const calcularFilaProducto = (mulcdo, digito) => {
+    const tMulcdo = mulcdo.toString();
+    const ancho = tMulcdo.length + 1;
+    
+    const digitos = new Array(ancho).fill("");
+    const llevadas = new Array(ancho).fill(0); 
+    
     let acarreo = 0;
-    for (let c = ancho - 1; c >= 0; c--) {
-      let sumaColumna = acarreo;
-      parciales.forEach((fila) => {
-        const digStr = fila.digitos[c];
-        const dig = digStr === "" ? 0 : parseInt(digStr, 10);
-        sumaColumna += dig;
-      });
-      const digFinal = sumaColumna % 10;
-      acarreo = Math.floor(sumaColumna / 10);
-      resultado[c] = digFinal.toString();
+    for (let i = tMulcdo.length - 1; i >= 0; i--) {
+        const val = parseInt(tMulcdo[i]);
+        const prod = val * digito + acarreo;
+        const res = prod % 10;
+        acarreo = Math.floor(prod / 10);
+        
+        const pos = i + 1; 
+        digitos[pos] = res.toString();
+        
+        if (i >= 0) llevadas[i] = acarreo;
     }
-    return resultado;
+    if (acarreo > 0) digitos[0] = acarreo.toString();
+
+    const llevadasStr = llevadas.map(l => l > 0 ? l.toString() : ""); 
+    return { digitos, llevadas: llevadasStr };
   };
 
-  // Genera una nueva multiplicación (con la lógica de longitudes del JS adjunto)
-  const generarNueva = () => {
-    const longitudMultiplicando = Math.floor(Math.random() * 2) + 2; // 2..3
-    const minMul = 2;
-    const maxMul = longitudMultiplicando;
-    const longitudMultiplicador = minMul + Math.floor(Math.random() * (maxMul - minMul + 1));
+  const generarNueva = useCallback(() => {
+    const n1 = generarNumero(3); 
+    const n2 = generarNumero(2);
+    
+    const digitoUnidades = n2 % 10;
+    const digitoDecenas = Math.floor(n2 / 10);
 
-    const m1 = generarNumeroAleatorio(longitudMultiplicando);
-    const m2 = generarNumeroAleatorio(longitudMultiplicador);
+    const prod1 = calcularFilaProducto(n1, digitoUnidades); 
+    const prod2 = calcularFilaProducto(n1, digitoDecenas);
 
-    const parciales = calcularParciales(m1, m2);
-    const resultado = sumarParciales(parciales);
+    const total = n1 * n2;
+    const totalStr = total.toString();
+    
+    const anchoTotal = 6; 
+    
+    const alinear = (arr, shiftRight) => {
+        const res = new Array(anchoTotal).fill("");
+        for(let i = 0; i < arr.length; i++) {
+            const val = arr[arr.length - 1 - i];
+            if (val !== undefined && val !== "") {
+                res[anchoTotal - 1 - shiftRight - i] = val;
+            }
+        }
+        return res;
+    };
 
-    setMultiplicando(m1);
-    setMultiplicador(m2);
-    setParcialesEsperados(parciales);
-    setResultadoFinalEsperado(resultado);
+    const fila1Alineada = alinear(prod1.digitos, 0);
+    const fila2Alineada = alinear(prod2.digitos, 1); 
+    const sumaAlineada = alinear(totalStr.split(''), 0);
 
-    // Inicializa entradas y clases
-    const filas = parciales.length;
-    const cols = parciales[0]?.digitos.length || 0;
-    setEntradasParciales(Array.from({ length: filas }, () => new Array(cols).fill("")));
-    setEntradasLlevadas(Array.from({ length: filas }, () => new Array(cols).fill("")));
-    setEntradasFinal(new Array(cols).fill(""));
-    setClasesParciales(Array.from({ length: filas }, () => new Array(cols).fill("")));
-    setClasesLlevadas(Array.from({ length: filas }, () => new Array(cols).fill("")));
-    setClasesFinal(new Array(cols).fill(""));
+    const llevadasSuma = new Array(anchoTotal).fill("");
+    let acarreoSuma = 0;
+    for (let i = anchoTotal - 1; i > 0; i--) {
+        const v1 = parseInt(fila1Alineada[i] || "0");
+        const v2 = parseInt(fila2Alineada[i] || "0");
+        const s = v1 + v2 + acarreoSuma;
+        acarreoSuma = Math.floor(s / 10);
+        if (acarreoSuma > 0) llevadasSuma[i - 1] = acarreoSuma.toString();
+    }
+
+    setMultiplicando(n1);
+    setMultiplicador(n2);
+    setSolucion({
+        fila1: fila1Alineada,
+        llevadas1: prod1.llevadas, 
+        fila2: fila2Alineada,
+        llevadas2: prod2.llevadas,
+        suma: sumaAlineada,
+        llevadasSuma: llevadasSuma
+    });
+
+    const vacio = () => new Array(anchoTotal).fill("");
+    const vacioMul = () => new Array(4).fill(""); 
+
+    setEntradas({ fila1: vacio(), fila2: vacio(), filaSuma: vacio(), llevadasMul: vacioMul(), llevadasSuma: vacio() });
+    setClases({ fila1: vacio(), fila2: vacio(), filaSuma: vacio(), llevadasMul: vacioMul(), llevadasSuma: vacio() });
     setFeedback({ texto: "", tipo: "" });
-  };
+    
+    setActiveSlot({ type: 'fila1', index: anchoTotal - 1 });
 
-  useEffect(() => {
-    generarNueva();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const ancho = useMemo(() => resultadoFinalEsperado.length || 0, [resultadoFinalEsperado]);
+  useEffect(() => { generarNueva(); }, [generarNueva]);
 
-  // Preparar render de operandos alineados a la derecha
-  const mulcdoRelleno = useMemo(() => {
-    const t = multiplicando.toString();
-    const arr = new Array(ancho).fill("");
-    for (let i = 0; i < t.length; i++) arr[ancho - t.length + i] = t[i];
-    return arr;
-  }, [multiplicando, ancho]);
+  // --- Manejadores ---
 
-  const mulcdrRelleno = useMemo(() => {
-    const t = multiplicador.toString();
-    const arr = new Array(ancho).fill("");
-    for (let i = 0; i < t.length; i++) arr[ancho - t.length + i] = t[i];
-    return arr;
-  }, [multiplicador, ancho]);
-
-  // Drag & Drop
-  const onDragStartNumero = (e, valor) => {
-    e.dataTransfer.setData("text/plain", valor);
+  const handleSlotClick = (type, index) => {
+    setActiveSlot({ type, index });
   };
-  const onDragOver = (e) => e.preventDefault();
 
-  const onDrop = (e, tipo, fila, col) => {
-    e.preventDefault();
-    const valor = e.dataTransfer.getData("text/plain");
+  const handlePaletteClick = (val) => {
+    if (!activeSlot) return;
+    const strVal = val.toString();
+    const { type, index } = activeSlot;
 
-    if (tipo === "parcial") {
-      setEntradasParciales((prev) => {
-        const nuevo = prev.map((filaArr) => [...filaArr]);
-        nuevo[fila][col] = valor;
-        return nuevo;
-      });
-      setClasesParciales((prev) => {
-        const nuevo = prev.map((filaArr) => [...filaArr]);
-        nuevo[fila][col] = "";
-        return nuevo;
-      });
-    } else if (tipo === "llevada") {
-      setEntradasLlevadas((prev) => {
-        const nuevo = prev.map((filaArr) => [...filaArr]);
-        nuevo[fila][col] = valor;
-        return nuevo;
-      });
-      setClasesLlevadas((prev) => {
-        const nuevo = prev.map((filaArr) => [...filaArr]);
-        nuevo[fila][col] = "";
-        return nuevo;
-      });
-    } else if (tipo === "final") {
-      setEntradasFinal((prev) => {
-        const nuevo = [...prev];
-        nuevo[col] = valor;
-        return nuevo;
-      });
-      setClasesFinal((prev) => {
-        const nuevo = [...prev];
-        nuevo[col] = "";
-        return nuevo;
-      });
+    // Actualizar valor
+    setEntradas(prev => {
+        const n = { ...prev };
+        n[type] = [...prev[type]];
+        n[type][index] = strVal;
+        return n;
+    });
+    // Limpiar error
+    setClases(prev => {
+        const n = { ...prev };
+        n[type] = [...prev[type]];
+        n[type][index] = "";
+        return n;
+    });
+
+    // --- AUTO-LLEVADA ---
+    if (ayudaLlevadas) {
+        if (type === 'fila1') {
+            const targetValue = solucion.fila1[index];
+            const posDesdeDerecha = 5 - index; 
+            const idxLlevada = 3 - posDesdeDerecha; 
+            
+            if (strVal === targetValue && idxLlevada > 0) {
+                const llevadaReal = solucion.llevadas1[idxLlevada - 1] || "0"; 
+                setEntradas(prev => {
+                    const n = [...prev.llevadasMul];
+                    n[idxLlevada - 1] = llevadaReal;
+                    return { ...prev, llevadasMul: n };
+                });
+            }
+        }
+        else if (type === 'fila2') {
+            const targetValue = solucion.fila2[index];
+            const posDesdeDerecha = (5 - index) - 1; 
+            const idxLlevada = 3 - posDesdeDerecha; 
+
+            if (strVal === targetValue && idxLlevada > 0) {
+                const llevadaReal = solucion.llevadas2[idxLlevada - 1] || "0";
+                setEntradas(prev => {
+                    const n = [...prev.llevadasMul]; 
+                    n[idxLlevada - 1] = llevadaReal;
+                    return { ...prev, llevadasMul: n };
+                });
+            }
+        }
+        else if (type === 'filaSuma') {
+            const targetValue = solucion.suma[index];
+            if (strVal === targetValue) {
+                const prevIndex = index - 1;
+                if (prevIndex >= 0) {
+                    const llevadaSuma = solucion.llevadasSuma[prevIndex] || "0";
+                    setEntradas(prev => {
+                        const n = [...prev.llevadasSuma];
+                        n[prevIndex] = llevadaSuma;
+                        return { ...prev, llevadasSuma: n };
+                    });
+                }
+            }
+        }
     }
+
+    // --- AUTO-AVANCE ---
+    const avanzar = () => {
+        const jumpToNextRow = (nextType, startIdx) => {
+             setActiveSlot({ type: nextType, index: startIdx });
+        };
+
+        const prevIndex = index - 1;
+        let hasMoreInRow = false;
+        if (type === 'fila1' && solucion.fila1[prevIndex]) hasMoreInRow = true;
+        if (type === 'fila2' && solucion.fila2[prevIndex]) hasMoreInRow = true;
+        if (type === 'filaSuma' && solucion.suma[prevIndex]) hasMoreInRow = true;
+
+        if (hasMoreInRow) {
+            setActiveSlot({ type, index: prevIndex });
+        } else {
+            // Salto de fila con limpieza
+            if (type === 'fila1') {
+                setEntradas(prev => ({ ...prev, llevadasMul: new Array(4).fill("") }));
+                jumpToNextRow('fila2', 4);
+            }
+            else if (type === 'fila2') {
+                setEntradas(prev => ({ ...prev, llevadasMul: new Array(4).fill("") }));
+                jumpToNextRow('filaSuma', 5); 
+            }
+            else setActiveSlot(null); 
+        }
+    };
+    avanzar();
   };
 
-  // Comprobación (idéntica en criterios a tu JS)
   const comprobarRespuesta = () => {
-    let todasCorrectas = true;
-    let todasLlevadasCorrectas = true;
+    let correcto = true;
+    const nuevasClases = { ...clases };
 
-    const clasesPar = parcialesEsperados.map((fila, r) => fila.digitos.map((_d, c) => ""));
-    const clasesLev = parcialesEsperados.map((fila, r) => fila.llevadas.map((_d, c) => ""));
-    const clasesFin = resultadoFinalEsperado.map(() => "");
+    solucion.fila1.forEach((val, i) => {
+        if (!val) return;
+        if (entradas.fila1[i] === val) nuevasClases.fila1[i] = 'correct';
+        else { nuevasClases.fila1[i] = 'incorrect'; correcto = false; }
+    });
 
-    // Índice primera columna no-cero del resultado final
-    const indicePrimeraNoCeroFinal = resultadoFinalEsperado.findIndex((d) => d !== "0");
+    solucion.fila2.forEach((val, i) => {
+        if (!val) return;
+        if (entradas.fila2[i] === val) nuevasClases.fila2[i] = 'correct';
+        else { nuevasClases.fila2[i] = 'incorrect'; correcto = false; }
+    });
 
-    // Llevadas (solo si ayuda activada)
-    for (let r = 0; r < parcialesEsperados.length; r++) {
-      for (let c = 0; c < ancho; c++) {
-        const esperado = parcialesEsperados[r].llevadas[c];
-        if (esperado === "") continue; // casilla no objetivo
-        if (!ayudaLlevadas) continue;  // no se evalúa
-        const escrito = (entradasLlevadas[r][c] || "").trim();
-        if (escrito === "") continue;  // si no escribe nada, no penaliza
-        if (escrito === esperado) {
-          clasesLev[r][c] = "correct";
-        } else {
-          clasesLev[r][c] = "incorrect";
-          todasLlevadasCorrectas = false;
-        }
-      }
-    }
+    solucion.suma.forEach((val, i) => {
+        if (!val) return;
+        if (entradas.filaSuma[i] === val) nuevasClases.filaSuma[i] = 'correct';
+        else { nuevasClases.filaSuma[i] = 'incorrect'; correcto = false; }
+    });
 
-    // Parciales
-    for (let r = 0; r < parcialesEsperados.length; r++) {
-      for (let c = 0; c < ancho; c++) {
-        const esperado = parcialesEsperados[r].digitos[c];
-        if (esperado === "") continue; // no es objetivo
-        const escrito = (entradasParciales[r][c] || "").trim();
-        if (escrito === esperado) {
-          clasesPar[r][c] = "correct";
-        } else {
-          clasesPar[r][c] = "incorrect";
-          todasCorrectas = false;
-        }
-      }
-    }
+    setClases(nuevasClases);
 
-    // Final (tolerando ceros a la izquierda)
-    for (let c = 0; c < ancho; c++) {
-      const esperado = resultadoFinalEsperado[c];
-      const escrito = (entradasFinal[c] || "").trim();
-      const esZonaIzquierda = indicePrimeraNoCeroFinal === -1 || c < indicePrimeraNoCeroFinal;
-      if (esZonaIzquierda) {
-        if (escrito === "" || escrito === esperado) {
-          clasesFin[c] = "correct";
-        } else {
-          clasesFin[c] = "incorrect";
-          todasCorrectas = false;
-        }
-      } else {
-        if (escrito === esperado) {
-          clasesFin[c] = "correct";
-        } else {
-          clasesFin[c] = "incorrect";
-          todasCorrectas = false;
-        }
-      }
-    }
-
-    setClasesParciales(clasesPar);
-    setClasesLlevadas(clasesLev);
-    setClasesFinal(clasesFin);
-
-    if (todasCorrectas) {
-      if (!ayudaLlevadas || todasLlevadasCorrectas) {
-        setFeedback({ texto: "¡Multiplicación correcta! 🎉", tipo: "feedback-correct" });
-      } else {
-        setFeedback({ texto: "El resultado es correcto, pero revisa las llevadas", tipo: "feedback-incorrect" });
-      }
+    if (correcto) {
+        setFeedback({ texto: "¡Excelente! Operación completa y correcta 🎉", tipo: "feedback-correct" });
+        setActiveSlot(null);
+        confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
     } else {
-      setFeedback({ texto: "Revisa las casillas en rojo", tipo: "feedback-incorrect" });
+        setFeedback({ texto: "Hay errores en las casillas rojas. Revisa paso a paso.", tipo: "feedback-incorrect" });
     }
   };
 
-  // Render
-  let operadorColocado = false;
-  const filasParciales = parcialesEsperados.length;
-  const columnas = [];
-  for (let c = 0; c < ancho; c++) {
-    const col = c;
-    const dMulcdr = mulcdrRelleno[c];
+  // --- UI Highlight Logic ---
+  const ancho = 6;
+  const n1Str = multiplicando.toString().padStart(ancho, ' ');
+  const n2Str = multiplicador.toString().padStart(ancho, ' ');
 
-    columnas.push(
-      <div className="column" key={`col-${c}`}>
-        {/* Filas de llevadas (una por fila parcial) */}
-        {parcialesEsperados.map((fila, r) => {
-          const target = fila.llevadas[col] !== "";
-          return (
-            <div
-              key={`carry-${r}-${col}`}
-              className={[
-                "box",
-                "carry-box",
-                !target ? "disabled" : "",
-                ayudaLlevadas ? "" : "hidden-by-toggle",
-                clasesLlevadas[r]?.[col] || "",
-              ].join(" ")}
-              onDragOver={onDragOver}
-              onDrop={(e) => target && onDrop(e, "llevada", r, col)}
-            >
-              {entradasLlevadas[r]?.[col] || ""}
+  const getHighlightStyle = (section, c) => {
+    if (!ayudaLlevadas || !activeSlot) return {};
+    
+    // Color de resaltado (Azul claro suave)
+    const style = { backgroundColor: '#e0f2fe', transition: 'background-color 0.2s', borderRadius: '4px' };
+    
+    // 1. Fase Multiplicación - Fila 1 (Unidades)
+    if (activeSlot.type === 'fila1') {
+        // Multiplicando (digit correspondiente a la columna activa)
+        if (section === 'n1' && c === activeSlot.index && n1Str[c] !== ' ') return style;
+        // Multiplicador (siempre las unidades: col 5)
+        if (section === 'n2' && c === 5) return style;
+    }
+    
+    // 2. Fase Multiplicación - Fila 2 (Decenas)
+    if (activeSlot.type === 'fila2') {
+        // Multiplicando (digit desplazado 1 a la derecha respecto al input)
+        // Como la fila2 está desplazada 1 a la izquierda, el índice input I corresponde al multiplicando I+1
+        if (section === 'n1' && c === activeSlot.index + 1 && n1Str[c] !== ' ') return style;
+        // Multiplicador (siempre las decenas: col 4)
+        if (section === 'n2' && c === 4) return style;
+    }
+
+    // 3. Fase Suma
+    if (activeSlot.type === 'filaSuma') {
+        // Resaltar las celdas de las filas parciales que se están sumando
+        if ((section === 'fila1' || section === 'fila2') && c === activeSlot.index) {
+             // Solo si esa casilla tiene contenido (es parte del número)
+             if (section === 'fila1' && solucion.fila1[c] !== "") return style;
+             if (section === 'fila2' && solucion.fila2[c] !== "") return style;
+        }
+    }
+
+    return {};
+  };
+
+  // --- Renderizado Grid ---
+  const colStyle = { display: 'grid', gridTemplateColumns: `repeat(${ancho}, 1fr)`, gap: '5px', maxWidth: '300px', margin: '0 auto' };
+
+  const renderCells = () => {
+    const cells = [];
+    
+    // Fila 1: Llevadas Multiplicación
+    for(let c=0; c<ancho; c++) {
+        const idxArr = c - 2; 
+        const visible = idxArr >= 0 && idxArr < 4; 
+        
+        cells.push(
+            <div key={`carryMul-${c}`} className={`box carry-box ${!visible ? 'invisible' : ''} ${ayudaLlevadas ? '' : 'hidden-by-toggle'} ${activeSlot?.type === 'llevadaMul' && activeSlot?.index === idxArr ? 'selected' : ''}`}
+                 onClick={() => visible && handleSlotClick('llevadaMul', idxArr)}
+                 style={{ gridRow: 1, gridColumn: c+1 }}>
+                 {visible ? entradas.llevadasMul[idxArr] : ''}
             </div>
-          );
-        })}
+        );
+    }
 
-        {/* Multiplicando */}
-        <div className="digit-display">{mulcdoRelleno[col] || ""}</div>
-
-        {/* Multiplicador con × en su primer dígito visible */}
-        <div className="digit-display">
-          {dMulcdr ? (
-            !operadorColocado ? (
-              <>
-                <span className="cross-inline">×</span>
-                <span>{dMulcdr}</span>
-              </>
-            ) : (
-              dMulcdr
-            )
-          ) : (
-            ""
-          )}
-        </div>
-        {dMulcdr && !operadorColocado ? (operadorColocado = true) : null}
-
-        {/* Línea antes de parciales */}
-        <hr className="operation-line" />
-
-        {/* Filas de parciales */}
-        {parcialesEsperados.map((fila, r) => {
-          const target = fila.digitos[col] !== "";
-          return (
-            <div
-              key={`parcial-${r}-${col}`}
-              className={[
-                "box",
-                "result-box",
-                "parcial-box",
-                !target ? "disabled" : "",
-                clasesParciales[r]?.[col] || "",
-              ].join(" ")}
-              onDragOver={onDragOver}
-              onDrop={(e) => target && onDrop(e, "parcial", r, col)}
-            >
-              {entradasParciales[r]?.[col] || ""}
+    // Fila 2: Multiplicando
+    for(let c=0; c<ancho; c++) {
+        cells.push(
+            <div key={`n1-${c}`} className="digit-display" style={{ gridRow: 2, gridColumn: c+1, ...getHighlightStyle('n1', c) }}>
+                {n1Str[c]}
             </div>
-          );
-        })}
+        );
+    }
 
-        {/* Línea antes del resultado final */}
-        <hr className="operation-line" />
+    // Fila 3: Multiplicador (con X)
+    let xPuesto = false;
+    for(let c=0; c<ancho; c++) {
+        let content = n2Str[c];
+        if (content !== ' ' && !xPuesto) {
+            content = <><span className="cross-inline" style={{position:'absolute', left:'-15px'}}>×</span>{n2Str[c]}</>;
+            xPuesto = true;
+        }
+        cells.push(
+            <div key={`n2-${c}`} className="digit-display" style={{ gridRow: 3, gridColumn: c+1, position: 'relative', ...getHighlightStyle('n2', c) }}>
+                {content}
+            </div>
+        );
+    }
 
-        {/* Resultado final */}
-        <div
-          className={["box", "result-box", "final-box", clasesFinal[col] || ""].join(" ")}
-          onDragOver={onDragOver}
-          onDrop={(e) => onDrop(e, "final", 0, col)}
-        >
-          {entradasFinal[col] || ""}
-        </div>
-      </div>
-    );
-  }
+    // Fila 4: HR
+    cells.push(<hr key="hr1" className="operation-line" style={{ gridRow: 4, gridColumn: `1 / -1` }} />);
+
+    // Fila 5: Producto 1
+    for(let c=0; c<ancho; c++) {
+        const enabled = solucion.fila1[c] !== "";
+        cells.push(
+            <div key={`p1-${c}`} 
+                 className={`box result-box ${!enabled ? 'disabled' : ''} ${clases.fila1[c] || ''} ${activeSlot?.type === 'fila1' && activeSlot?.index === c ? 'selected' : ''}`}
+                 onClick={() => enabled && handleSlotClick('fila1', c)}
+                 style={{ gridRow: 5, gridColumn: c+1, ...getHighlightStyle('fila1', c) }}>
+                 {entradas.fila1[c]}
+            </div>
+        );
+    }
+
+    // Fila 6: Producto 2
+    for(let c=0; c<ancho; c++) {
+        const enabled = solucion.fila2[c] !== "";
+        cells.push(
+            <div key={`p2-${c}`} 
+                 className={`box result-box ${!enabled ? 'disabled' : ''} ${clases.fila2[c] || ''} ${activeSlot?.type === 'fila2' && activeSlot?.index === c ? 'selected' : ''}`}
+                 onClick={() => enabled && handleSlotClick('fila2', c)}
+                 style={{ gridRow: 6, gridColumn: c+1, ...getHighlightStyle('fila2', c) }}>
+                 {entradas.fila2[c]}
+            </div>
+        );
+    }
+
+    // Fila 7: HR
+    cells.push(<hr key="hr2" className="operation-line" style={{ gridRow: 7, gridColumn: `1 / -1` }} />);
+
+    // Fila 8: Llevadas Suma
+    for(let c=0; c<ancho; c++) {
+        const visible = c < 5; 
+        cells.push(
+            <div key={`carrySum-${c}`} 
+                 className={`box carry-box ${!visible ? 'invisible' : ''} ${ayudaLlevadas ? '' : 'hidden-by-toggle'} ${activeSlot?.type === 'llevadaSuma' && activeSlot?.index === c ? 'selected' : ''}`}
+                 onClick={() => visible && handleSlotClick('llevadaSuma', c)}
+                 style={{ gridRow: 8, gridColumn: c+1 }}>
+                 {entradas.llevadasSuma[c]}
+            </div>
+        );
+    }
+
+    // Fila 9: Suma Final
+    for(let c=0; c<ancho; c++) {
+        const enabled = solucion.suma[c] !== "";
+        cells.push(
+            <div key={`sum-${c}`} 
+                 className={`box result-box ${!enabled ? 'disabled' : ''} ${clases.filaSuma[c] || ''} ${activeSlot?.type === 'filaSuma' && activeSlot?.index === c ? 'selected' : ''}`}
+                 onClick={() => enabled && handleSlotClick('filaSuma', c)}
+                 style={{ gridRow: 9, gridColumn: c+1 }}>
+                 {entradas.filaSuma[c]}
+            </div>
+        );
+    }
+
+    return cells;
+  };
 
   return (
     <div id="app-container">
       <h1 className="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-        <span role="img" aria-label="Resta">📝</span>{' '}
-        <span className="gradient-text">Multiplica como en el cole</span>
+        <span role="img" aria-label="Multiplicar">✖️</span>{' '}
+        <span className="gradient-text">Multiplicaciones de 2 cifras</span>
       </h1>
 
       <div id="options-area">
@@ -407,26 +437,27 @@ export default function MultiplicacionesPrimaria4() {
         </label>
       </div>
 
-      <div id="problem-area" className={ayudaLlevadas ? "" : "carries-hidden"}>
-        {columnas}
+      <div id="problem-area" style={{ ...colStyle, gridTemplateRows: 'repeat(9, auto)' }}>
+        {renderCells()}
       </div>
 
       <div id="feedback-message" className={feedback.tipo}>{feedback.texto}</div>
 
       <div id="controls">
         <button id="check-button" onClick={comprobarRespuesta}>Comprobar</button>
-        <button id="new-problem-button" onClick={generarNueva}>Nueva multiplicación</button>
+        <button id="new-problem-button" onClick={generarNueva}>Nueva</button>
       </div>
 
       <div id="number-palette">
-        <h2>Arrastra los números 👇</h2>
+        <h2>Toca los números 👇</h2>
         <div className="number-tiles-container">
           {Array.from({ length: 10 }, (_, d) => (
             <div
-              key={`tile-${d}`}
+              key={d}
               className="number-tile"
+              onClick={() => handlePaletteClick(d)}
               draggable
-              onDragStart={(e) => onDragStartNumero(e, String(d))}
+              onDragStart={(e) => e.dataTransfer.setData("text/plain", d)}
             >
               {d}
             </div>
