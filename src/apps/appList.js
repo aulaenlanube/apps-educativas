@@ -38,6 +38,7 @@ import MultiplicacionesPrimaria6 from './multiplicaciones/primaria-6/Multiplicac
 
 import DivisionesPrimaria4 from './divisiones/primaria-4/DivisionesPrimaria4';
 import DivisionesPrimaria5 from './divisiones/primaria-5/DivisionesPrimaria5';
+import DivisionesPrimaria6 from './divisiones/primaria-6/DivisionesPrimaria6';
 
 import GeneradorPersonajes from './generador-personajes/GeneradorPersonajes';
 import BuscaElIntruso from './busca-el-intruso/BuscaElIntruso.jsx'
@@ -822,7 +823,13 @@ export const primariaApps = {
       { id: 'sumas-primaria-6-drag', name: 'Sumas triples con Decimales', description: 'Resuelve sumas triples con hasta 3 decimales.', component: SumasPrimaria6 },
       { id: 'restas-primaria-6', name: 'Restas a completar', description: 'Completa cualquier parte de la resta', component: RestasPrimaria6 },
       { id: 'multiplicaciones-primaria-6', name: 'Multiplicaciones', description: 'Multiplicaciones con decimales', component: MultiplicacionesPrimaria6 },
-      { id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 },
+      { 
+  id: 'divisiones-primaria-6', 
+  name: 'Divisiones con Decimales', 
+  description: 'Aprende a dividir cuando hay decimales en el dividendo.', 
+  component: DivisionesPrimaria6 
+},
+{ id: 'supermercado-matematico-6', name: 'Supermercado Matemático (Descuentos)', description: 'Aplica descuentos y calcula el precio final de la compra.', component: SupermercadoMatematico6 },
       appRunner,      
       appOrdenaBolas,
       appRosco,

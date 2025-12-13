@@ -9,7 +9,6 @@
   justify-content: center;
   align-items: center;
   user-select: none;
-  /* Eliminamos el margin auto aquí porque ahora lo controlará el contenedor padre */
 }
 
 /* -- Celdas y Cajas -- */
@@ -48,18 +47,20 @@
   padding-left: 12px;
   margin-left: 5px;
   display: flex;
-  gap: 8px;
+  gap: 0; /* Gap 0 para que las comas queden pegadas a los números */
   align-items: center;
 }
 
-/* -- Cajas interactivas -- */
+/* -- Cajas interactivas (Números) -- */
 .division-box {
+  width: 50px; /* Aseguramos ancho */
   border: 2px dashed #cbd5e1;
   border-radius: 8px;
   background-color: #fff;
   cursor: pointer;
   color: #333;
   transition: all 0.2s ease;
+  margin: 0 2px; /* Pequeño margen lateral */
 }
 
 .division-box.filled {
@@ -114,19 +115,59 @@
   border-color: #3b82f6 !important;
 }
 
-/* === NUEVOS ESTILOS PARA EL PANEL LATERAL === */
+/* === RANURAS PARA LA COMA (MODIFICADO) === */
+.comma-slot {
+  width: 20px; /* Un poco más ancho para facilitar el clic */
+  height: 50px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-family: 'Lexend', sans-serif;
+  font-size: 2.5rem; 
+  font-weight: bold;
+  line-height: 1;
+  
+  /* AQUÍ EL CAMBIO: Color visible pero suave */
+  color: #e2e8f0; 
+  
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  position: relative;
+  top: -5px;
+}
 
-/* Contenedor que agrupa la rejilla y la tabla */
+/* Hover: Se oscurece para indicar interactividad */
+.comma-slot:hover {
+  color: #94a3b8; 
+  transform: scale(1.2); /* Efecto pop */
+}
+
+/* Activa: Negra y visible */
+.comma-slot.active {
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* Feedback */
+.comma-slot.correct {
+  color: #22c55e; /* Verde */
+}
+
+.comma-slot.incorrect {
+  color: #ef4444; /* Rojo */
+}
+
+/* === PANEL LATERAL === */
 .game-content {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 40px; /* Espacio entre la división y la tabla */
+  gap: 40px;
   margin: 20px auto;
-  flex-wrap: wrap; /* Para pantallas pequeñas */
+  flex-wrap: wrap;
 }
 
-/* Panel de la Tabla de Multiplicar */
 .multiplication-table-panel {
   background-color: #f8fafc;
   border: 2px solid #e2e8f0;
