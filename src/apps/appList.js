@@ -1524,6 +1524,30 @@ export const esoApps = {
       appRosco,
       appOrdenaLaFrase,
       appOrdenaLaHistoria
+    ],     
+    'musica': [
+      {
+        id: 'busca-el-intruso-musica-eso-4',
+        name: 'Busca el Intruso',
+        description: 'Estilos y épocas musicales.',
+        component: BuscaElIntruso
+      },
+      appRunner,
+      appRosco,
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria
+    ],   
+    'plastica': [
+      {
+        id: 'busca-el-intruso-plastica-eso-4',
+        name: 'Busca el Intruso',
+        description: 'Diseño y perspectiva.',
+        component: BuscaElIntruso
+      },
+      appRunner,
+      appRosco,
+      appOrdenaLaFrase,
+      appOrdenaLaHistoria
     ],
     'tutoria': [
       appIslaDeLaCalma,
