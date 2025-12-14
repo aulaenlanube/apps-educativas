@@ -3,13 +3,14 @@ import confetti from 'canvas-confetti';
 import '/src/apps/_shared/Divisiones.css';
 
 const DivisionesPrimaria6 = () => {
+  // --- Estados ---
   const [operands, setOperands] = useState({ dividend: '0', divisor: 1 });
   const [steps, setSteps] = useState([]); 
   const [userInputs, setUserInputs] = useState({});
   const [activeSlot, setActiveSlot] = useState(null); 
   const [feedback, setFeedback] = useState({ text: '', className: '' });
   
-  // Estado para la posición de la coma en el cociente
+  // Posición de la coma en el cociente
   const [userCommaIndex, setUserCommaIndex] = useState(null);
   const [expectedCommaIndex, setExpectedCommaIndex] = useState(-1);
 
@@ -50,14 +51,20 @@ const DivisionesPrimaria6 = () => {
         const r = currentVal % d;
         quotientDigitsCount++;
 
+        // Restos (Alineación saltando comas)
         const r_str = r.toString();
         const remainderDigits = [];
-        for (let k = 0; k < r_str.length; k++) {
-            const digitVal = r_str[k];
-            const colPos = idx - (r_str.length - 1 - k);
-            remainderDigits.push({ val: digitVal, col: colPos });
+        let pointer = idx; 
+        
+        for (let k = r_str.length - 1; k >= 0; k--) {
+            while (pointer >= 0 && digits[pointer] === ',') {
+                pointer--;
+            }
+            remainderDigits.unshift({ val: r_str[k], col: pointer });
+            pointer--; 
         }
 
+        // Bajar cifra
         let broughtDown = null;
         let nextIdx = idx + 1;
         if (nextIdx < digits.length && digits[nextIdx] === ',') {
@@ -110,7 +117,6 @@ const DivisionesPrimaria6 = () => {
       const order = [];
       steps.forEach((step, sIdx) => {
           order.push(`q-${sIdx}`);
-          // Resto: Derecha a Izquierda
           [...step.remainderDigits].reverse().forEach(rd => {
               order.push(`r-${sIdx}-${rd.col}`);
           });
@@ -121,7 +127,6 @@ const DivisionesPrimaria6 = () => {
   const handlePaletteClick = (val) => {
     if (!activeSlot) return;
     const valStr = val.toString();
-    
     setUserInputs(prev => ({ ...prev, [activeSlot]: valStr }));
 
     const currentIndex = inputOrder.indexOf(activeSlot);
@@ -133,17 +138,12 @@ const DivisionesPrimaria6 = () => {
   };
 
   const handleCommaClick = (index) => {
-      if (userCommaIndex === index) {
-          setUserCommaIndex(null);
-      } else {
-          setUserCommaIndex(index);
-      }
+      if (userCommaIndex === index) setUserCommaIndex(null);
+      else setUserCommaIndex(index);
   };
 
   const checkAnswer = () => {
     let allCorrect = true;
-    
-    // Verificar números
     for (const key of inputOrder) {
         const userVal = userInputs[key];
         let expectedVal = '';
@@ -163,10 +163,7 @@ const DivisionesPrimaria6 = () => {
         }
     }
 
-    // Verificar Coma (Obligatorio marcarla)
-    if (userCommaIndex !== expectedCommaIndex) {
-        allCorrect = false;
-    }
+    if (userCommaIndex !== expectedCommaIndex) allCorrect = false;
 
     if (allCorrect) {
       setFeedback({ text: '¡Fantástico! Dominas los decimales 🌟', className: 'feedback-correct' });
@@ -177,7 +174,6 @@ const DivisionesPrimaria6 = () => {
     }
   };
 
-  // --- 4. Renderizado ---
   const getSlotClass = (key, expectedVal) => {
     const currentVal = userInputs[key];
     const isFilled = currentVal !== undefined && currentVal !== '';
@@ -193,11 +189,10 @@ const DivisionesPrimaria6 = () => {
   const getCommaClass = (index) => {
       let cls = 'comma-slot';
       if (userCommaIndex === index) cls += ' active';
-      
       if (feedback.text !== '') {
           if (userCommaIndex === index && userCommaIndex === expectedCommaIndex) cls += ' correct';
           else if (userCommaIndex === index && userCommaIndex !== expectedCommaIndex) cls += ' incorrect';
-          else if (index === expectedCommaIndex && userCommaIndex !== expectedCommaIndex) cls += ' incorrect'; 
+          else if (index === expectedCommaIndex) cls += ' incorrect'; 
       }
       return cls;
   };
@@ -219,8 +214,16 @@ const DivisionesPrimaria6 = () => {
   };
   const activeStepIdx = getActiveStepIndex();
 
+  // --- RENDERIZADO GRID ---
   const dividendChars = operands.dividend.split('');
-  const gridTemplateCols = `repeat(${dividendChars.length}, 50px) 20px auto`;
+  
+  // CAMBIO AQUÍ: Ancho de columna de la coma aumentado a 30px
+  let gridColsCSS = "";
+  dividendChars.forEach(char => {
+      if (char === ',') gridColsCSS += "30px "; 
+      else gridColsCSS += "50px ";
+  });
+  gridColsCSS += "20px auto";
 
   return (
     <div id="app-container">
@@ -251,7 +254,7 @@ const DivisionesPrimaria6 = () => {
 
       <div className="game-content">
         
-        <div className="division-grid" style={{ gridTemplateColumns: gridTemplateCols }}>
+        <div className="division-grid" style={{ gridTemplateColumns: gridColsCSS }}>
           
           {/* Fila 1: Dividendo */}
           {dividendChars.map((char, i) => {
@@ -259,7 +262,7 @@ const DivisionesPrimaria6 = () => {
             return (
               <div 
                 key={`div-${i}`} 
-                className={`digit-display ${isHighlighted ? 'operand-highlight' : ''}`}
+                className={`digit-display ${char === ',' ? 'dividend-comma' : ''} ${isHighlighted ? 'operand-highlight' : ''}`}
                 style={{ gridRow: 1, gridColumn: i + 1 }}
               >
                 {char}
@@ -275,12 +278,9 @@ const DivisionesPrimaria6 = () => {
             <span className="divisor-number">{operands.divisor}</span>
           </div>
 
-          {/* Fila 2: Cociente (Dígitos y Comas) */}
+          {/* Fila 2: Cociente */}
           <div style={{ gridRow: 2, gridColumn: dividendChars.length + 2 }} className="quotient-area">
-            
-            {/* Coma inicial */}
             <div className={getCommaClass(0)} onClick={() => handleCommaClick(0)}>,</div>
-
             {steps.map((step, i) => {
               if (!isStepVisible(i)) return null;
               const key = `q-${i}`;
@@ -292,7 +292,6 @@ const DivisionesPrimaria6 = () => {
                     >
                       {userInputs[key]}
                     </div>
-                    {/* Coma posterior */}
                     <div className={getCommaClass(i + 1)} onClick={() => handleCommaClick(i + 1)}>,</div>
                 </React.Fragment>
               );
@@ -346,7 +345,6 @@ const DivisionesPrimaria6 = () => {
           })}
         </div>
 
-        {/* Tabla Lateral */}
         {showTable && (
           <div className="multiplication-table-panel">
             <h3>Tabla del {operands.divisor}</h3>

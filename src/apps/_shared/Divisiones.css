@@ -4,7 +4,7 @@
   font-family: 'Lexend', sans-serif;
   font-size: 2.5rem;
   line-height: 1.5;
-  column-gap: 8px; 
+  column-gap: 4px; 
   row-gap: 8px;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@
 .digit-display, 
 .division-box,
 .brought-down-digit {
-  width: 50px;
+  width: 100%; 
   height: 50px;
   display: flex;
   justify-content: center;
@@ -47,20 +47,19 @@
   padding-left: 12px;
   margin-left: 5px;
   display: flex;
-  gap: 0; /* Gap 0 para que las comas queden pegadas a los números */
+  gap: 0;
   align-items: center;
 }
 
-/* -- Cajas interactivas (Números) -- */
+/* -- Cajas interactivas -- */
 .division-box {
-  width: 50px; /* Aseguramos ancho */
   border: 2px dashed #cbd5e1;
   border-radius: 8px;
   background-color: #fff;
   cursor: pointer;
   color: #333;
   transition: all 0.2s ease;
-  margin: 0 2px; /* Pequeño margen lateral */
+  min-width: 0;
 }
 
 .division-box.filled {
@@ -93,7 +92,7 @@
 /* -- Flecha de ayuda -- */
 .arrow-helper {
   position: absolute;
-  right: -12px;
+  right: -10px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.5em;
@@ -115,9 +114,24 @@
   border-color: #3b82f6 !important;
 }
 
-/* === RANURAS PARA LA COMA (MODIFICADO) === */
+/* === ESTILOS MEJORADOS PARA LA COMA DEL DIVIDENDO === */
+.dividend-comma {
+  display: flex;
+  align-items: flex-end; /* Alinear abajo */
+  justify-content: center; /* Centrado horizontal */
+  padding-bottom: 12px;
+  font-family: 'Lexend', sans-serif;
+  color: #333;
+  font-weight: bold;
+  
+  /* AJUSTE VISUAL FINO: Desplazamos la coma a la izquierda */
+  /* Esto compensa si la fuente la pinta muy a la derecha */
+  transform: translateX(-4px); 
+}
+
+/* === RANURAS PARA LA COMA (COCIENTE) === */
 .comma-slot {
-  width: 20px; /* Un poco más ancho para facilitar el clic */
+  width: 20px;
   height: 50px;
   display: flex;
   align-items: flex-end;
@@ -126,10 +140,7 @@
   font-size: 2.5rem; 
   font-weight: bold;
   line-height: 1;
-  
-  /* AQUÍ EL CAMBIO: Color visible pero suave */
   color: #e2e8f0; 
-  
   cursor: pointer;
   user-select: none;
   transition: all 0.2s ease;
@@ -137,26 +148,10 @@
   top: -5px;
 }
 
-/* Hover: Se oscurece para indicar interactividad */
-.comma-slot:hover {
-  color: #94a3b8; 
-  transform: scale(1.2); /* Efecto pop */
-}
-
-/* Activa: Negra y visible */
-.comma-slot.active {
-  color: #000;
-  transform: scale(1.1);
-}
-
-/* Feedback */
-.comma-slot.correct {
-  color: #22c55e; /* Verde */
-}
-
-.comma-slot.incorrect {
-  color: #ef4444; /* Rojo */
-}
+.comma-slot:hover { color: #94a3b8; transform: scale(1.2); }
+.comma-slot.active { color: #000; transform: scale(1.1); }
+.comma-slot.correct { color: #22c55e; }
+.comma-slot.incorrect { color: #ef4444; }
 
 /* === PANEL LATERAL === */
 .game-content {
@@ -198,14 +193,8 @@
   color: #475569;
   border-bottom: 1px dashed #f1f5f9;
 }
-
-.table-row:last-child {
-  border-bottom: none;
-}
-
-.table-row strong {
-  color: #0f172a;
-}
+.table-row:last-child { border-bottom: none; }
+.table-row strong { color: #0f172a; }
 
 @keyframes slideIn {
   from { opacity: 0; transform: translateX(20px); }
