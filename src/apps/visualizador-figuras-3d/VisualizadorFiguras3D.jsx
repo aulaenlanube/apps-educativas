@@ -17,11 +17,11 @@ const PRESETS_MATERIAL = {
 const DATOS_FIGURAS = {
   cubo: { 
     nombre: 'Cubo', 
-    tipo: 'tamano',
+    tipo: 'tamano', // tamano = arista
     formulaVolumen: 'V = a³',
     formulaArea: 'A = 6a²',
     calc: (d) => ({ v: Math.pow(d.tamano, 3), a: 6 * Math.pow(d.tamano, 2) }),
-    info: 'Poliedro regular de 6 caras cuadradas.' 
+    info: 'Hexaedro regular limitado por 6 cuadrados iguales.' 
   },
   esfera: { 
     nombre: 'Esfera', 
@@ -49,6 +49,73 @@ const DATOS_FIGURAS = {
         return { v: (1/3) * Math.PI * Math.pow(d.radio, 2) * d.altura, a: Math.PI * d.radio * (d.radio + g) };
     },
     info: 'Sólido de revolución generado por un triángulo rectángulo.'
+  },
+  // --- NUEVAS FIGURAS ---
+  tetraedro: {
+    nombre: 'Tetraedro',
+    tipo: 'tamano', // Arista
+    formulaVolumen: 'V = (√2/12)a³',
+    formulaArea: 'A = √3a²',
+    calc: (d) => ({ v: (Math.sqrt(2)/12) * Math.pow(d.tamano, 3), a: Math.sqrt(3) * Math.pow(d.tamano, 2) }),
+    info: 'Poliedro regular con 4 caras triangulares equiláteras.'
+  },
+  octaedro: {
+    nombre: 'Octaedro',
+    tipo: 'tamano', // Arista
+    formulaVolumen: 'V = (√2/3)a³',
+    formulaArea: 'A = 2√3a²',
+    calc: (d) => ({ v: (Math.sqrt(2)/3) * Math.pow(d.tamano, 3), a: 2 * Math.sqrt(3) * Math.pow(d.tamano, 2) }),
+    info: 'Poliedro regular con 8 caras triangulares.'
+  },
+  dodecaedro: {
+    nombre: 'Dodecaedro',
+    tipo: 'tamano', // Arista
+    formulaVolumen: 'V ≈ 7.66a³',
+    formulaArea: 'A ≈ 20.64a²',
+    calc: (d) => ({ 
+        v: ((15 + 7 * Math.sqrt(5)) / 4) * Math.pow(d.tamano, 3), 
+        a: 3 * Math.sqrt(25 + 10 * Math.sqrt(5)) * Math.pow(d.tamano, 2) 
+    }),
+    info: 'Poliedro regular con 12 caras pentagonales.'
+  },
+  icosaedro: {
+    nombre: 'Icosaedro',
+    tipo: 'tamano', // Arista
+    formulaVolumen: 'V ≈ 2.18a³',
+    formulaArea: 'A = 5√3a²',
+    calc: (d) => ({ 
+        v: (5 * (3 + Math.sqrt(5)) / 12) * Math.pow(d.tamano, 3), 
+        a: 5 * Math.sqrt(3) * Math.pow(d.tamano, 2) 
+    }),
+    info: 'Poliedro regular con 20 caras triangulares.'
+  },
+  'prisma-tri': {
+    nombre: 'Prisma Triangular',
+    tipo: 'tamano-altura', // Lado base - Altura
+    formulaVolumen: 'V = (√3/4)l²h',
+    formulaArea: 'A = 3lh + 2Ab',
+    calc: (d) => {
+        const areaBase = (Math.sqrt(3)/4) * Math.pow(d.tamano, 2);
+        return { 
+            v: areaBase * d.altura, 
+            a: (3 * d.tamano * d.altura) + (2 * areaBase)
+        };
+    },
+    info: 'Prisma cuyas bases son triángulos equiláteros.'
+  },
+  'prisma-hex': {
+    nombre: 'Prisma Hexagonal',
+    tipo: 'tamano-altura', // Lado base (radio) - Altura
+    formulaVolumen: 'V = (3√3/2)l²h',
+    formulaArea: 'A = 6lh + 2Ab',
+    calc: (d) => {
+        const areaBase = (3 * Math.sqrt(3) / 2) * Math.pow(d.tamano, 2);
+        return { 
+            v: areaBase * d.altura, 
+            a: (6 * d.tamano * d.altura) + (2 * areaBase)
+        };
+    },
+    info: 'Prisma cuyas bases son hexágonos regulares.'
   },
   piramide: { 
     nombre: 'Pirámide (Base Cuad.)', 
@@ -85,6 +152,12 @@ const FiguraDinamica = ({ tipo, dims, autoRotar, wireframe, color, materialSetti
 
   const material = <meshPhysicalMaterial color={color} wireframe={wireframe} {...materialSettings} />;
 
+  // Conversiones auxiliares de Arista (a) a Radio (r) para Three.js
+  // Tetraedro: r = a * sqrt(6)/4
+  // Octaedro: r = a * sqrt(2)/2
+  // Dodecaedro: r = a * (sqrt(3)*(1+sqrt(5)))/4  (aprox 1.40a, Threejs usa radio circunscrito)
+  // Icosaedro: r = a * sin(2pi/5) ... aprox a * 0.951 para la arista
+  
   return (
     <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
         <mesh ref={meshRef} castShadow receiveShadow>
@@ -92,6 +165,18 @@ const FiguraDinamica = ({ tipo, dims, autoRotar, wireframe, color, materialSetti
             {tipo === 'esfera' && <sphereGeometry args={[dims.radio, 64, 64]} />}
             {tipo === 'cilindro' && <cylinderGeometry args={[dims.radio, dims.radio, dims.altura, 32]} />}
             {tipo === 'cono' && <coneGeometry args={[dims.radio, dims.altura, 32]} />}
+            
+            {/* Figuras Nuevas */}
+            {tipo === 'tetraedro' && <tetrahedronGeometry args={[dims.tamano * 0.612, 0]} />}
+            {tipo === 'octaedro' && <octahedronGeometry args={[dims.tamano * 0.707, 0]} />}
+            {tipo === 'dodecaedro' && <dodecahedronGeometry args={[dims.tamano * 1.4, 0]} />}
+            {tipo === 'icosaedro' && <icosahedronGeometry args={[dims.tamano * 0.951, 0]} />}
+            
+            {/* Prismas */}
+            {tipo === 'prisma-tri' && <cylinderGeometry args={[dims.tamano / Math.sqrt(3), dims.tamano / Math.sqrt(3), dims.altura, 3]} />}
+            {tipo === 'prisma-hex' && <cylinderGeometry args={[dims.tamano, dims.tamano, dims.altura, 6]} />}
+
+            {/* Compuestas */}
             {tipo === 'piramide' && <cylinderGeometry args={[0, dims.tamano / Math.sqrt(2), dims.altura, 4]} />}
             {tipo === 'toro' && <torusGeometry args={[dims.radio, dims.tubo, 32, 100]} />}
             
@@ -111,7 +196,7 @@ const VisualizadorFiguras3D = () => {
   const [tipoMaterial, setTipoMaterial] = useState('plastico');
   const [colorFigura, setColorFigura] = useState('#6366f1');
   const [colorFondo, setColorFondo] = useState('#1e293b');
-  const [mostrarGrid] = useState(true); // Se mantiene pero sin setter si no se usa
+  const [mostrarGrid] = useState(true);
 
   const datos = DATOS_FIGURAS[figuraActual];
   const materialActual = PRESETS_MATERIAL[tipoMaterial].settings;
@@ -123,11 +208,9 @@ const VisualizadorFiguras3D = () => {
   };
 
   return (
-    // CAMBIO CLAVE: overflow-hidden para que no haya scroll en la página general, el scroll será interno en el panel
     <div className="flex flex-col lg:flex-row gap-4 p-4 w-full h-[calc(100vh-140px)] overflow-hidden">
       
-      {/* 1. PANEL DE CONTROL */}
-      {/* CAMBIO CLAVE: h-[45%] en móvil fuerza a que ocupe menos de la mitad. lg:h-full restaura la altura completa en escritorio. */}
+      {/* 1. PANEL DE CONTROL (45% altura en móvil) */}
       <div className="w-full lg:w-96 h-[45%] lg:h-full flex-none flex flex-col gap-3 overflow-y-auto pr-2 custom-scrollbar">
         
         {/* Selector de Figuras */}
@@ -142,7 +225,8 @@ const VisualizadorFiguras3D = () => {
                     variant={figuraActual === key ? "default" : "outline"}
                     onClick={() => setFiguraActual(key)}
                     size="sm"
-                    className="text-[10px] h-8 px-1"
+                    className="text-[10px] h-8 px-1 overflow-hidden"
+                    title={DATOS_FIGURAS[key].nombre}
                 >
                     {DATOS_FIGURAS[key].nombre}
                 </Button>
@@ -156,14 +240,14 @@ const VisualizadorFiguras3D = () => {
         {/* CONTROLES MÉTRICOS */}
         <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
             <h2 className="text-sm font-bold mb-4 text-slate-800 flex items-center gap-2">
-                <Ruler size={16} className="text-indigo-600"/> Dimensiones (Metros)
+                <Ruler size={16} className="text-indigo-600"/> Dimensiones
             </h2>
             
             <div className="space-y-4">
                 {(datos.tipo.includes('tamano')) && (
                     <div className="space-y-1">
                         <div className="flex justify-between text-xs">
-                            <Label>Lado / Tamaño</Label>
+                            <Label>Arista / Lado (a/l)</Label>
                             <span className="font-mono text-slate-500">{dimensiones.tamano}m</span>
                         </div>
                         <input type="range" min="0.5" max="3" step="0.1" value={dimensiones.tamano} 
@@ -254,8 +338,7 @@ const VisualizadorFiguras3D = () => {
         </div>
       </div>
 
-      {/* 2. ESCENARIO 3D DINÁMICO */}
-      {/* CAMBIO CLAVE: flex-1 ocupa todo el espacio restante (55% en móvil). min-h-0 evita que flexbox lo expanda más de la cuenta. */}
+      {/* 2. ESCENARIO 3D (Ocupa el resto: 55% en móvil, 100% ancho en escritorio) */}
       <div className="flex-1 min-h-0 bg-slate-900 rounded-xl overflow-hidden shadow-2xl relative border-4 border-slate-800">
         <Canvas shadows camera={{ position: [5, 3, 7], fov: 45 }}>
             <color attach="background" args={[colorFondo]} />
