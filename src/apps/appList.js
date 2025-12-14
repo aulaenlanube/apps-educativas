@@ -47,6 +47,9 @@ import OrdenaBolas from '@/apps/ordena-bolas/OrdenaBolas';
 import Runner from './_shared/Runner';
 
 
+import VisualizadorFiguras3D from './visualizador-figuras-3d/VisualizadorFiguras3D';
+
+
 
 // importamos los datos de materias (asignaturas) desde un archivo JSON
 // contiene la definición de asignaturas para cada nivel y curso
@@ -191,6 +194,13 @@ const appRunner = {
     name: 'Edu Dash',
     description: 'Corre, salta y atrapa los elementos correctos.',
     component: Runner
+};
+
+const appVisualizador3D = { 
+    id: 'visualizador-3d', 
+    name: 'Laboratorio de Figuras 3D', 
+    description: 'Explora, rota y analiza las principales figuras geométricas en 3D.', 
+    component: VisualizadorFiguras3D 
 };
 
 // exportamos las materias para primaria y ESO desde el JSON
@@ -949,6 +959,7 @@ export const esoApps = {
         description: 'Repasa números enteros, geometría y fracciones.',
         component: BuscaElIntruso
       },
+      appVisualizador3D,
       appRunner,      
       appOrdenaBolas,
       appRosco,      
