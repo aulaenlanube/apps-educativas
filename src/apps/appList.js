@@ -1124,6 +1124,7 @@ export const esoApps = {
         description: 'Álgebra, funciones y geometría.',
         component: BuscaElIntruso
       },
+      appVisualizador3D,
       appRunner,      
       appOrdenaBolas,
       appRosco,
@@ -1288,6 +1289,7 @@ export const esoApps = {
         description: 'Estadística, ecuaciones y geometría.',
         component: BuscaElIntruso
       },
+      appVisualizador3D,
       appRunner,
       appOrdenaBolas,
       appRosco,
@@ -1452,6 +1454,7 @@ export const esoApps = {
         description: 'Funciones, probabilidad y trigonometría.',
         component: BuscaElIntruso
       },
+      appVisualizador3D,
       appRunner,
       appOrdenaBolas,
       appRosco,

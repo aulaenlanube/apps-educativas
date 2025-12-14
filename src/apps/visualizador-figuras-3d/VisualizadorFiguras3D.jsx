@@ -189,18 +189,19 @@ const VisualizadorFiguras3D = () => {
     <div className="flex w-full h-[calc(100vh-140px)] overflow-hidden bg-slate-100 relative rounded-xl border border-slate-300">
       
       {/* 1. BARRA LATERAL (SIDEBAR) */}
+      {/* NOTA: Cambiado breakpoint 'md' -> 'lg' para que TABLET se comporte como MÓVIL */}
       <div 
         className={`
             bg-white shadow-2xl z-20 flex flex-col transition-all duration-500 ease-in-out border-r border-slate-200
-            ${sidebarOpen ? 'w-full md:w-[420px] opacity-100' : 'w-0 opacity-0 md:w-0'} 
+            ${sidebarOpen ? 'w-full lg:w-[420px] opacity-100' : 'w-0 opacity-0 lg:w-0'} 
             overflow-hidden
-            absolute md:relative h-full
+            absolute lg:relative h-full
         `}
       >
         <div className="p-4 overflow-y-auto h-full custom-scrollbar min-w-[320px]">
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-slate-800">Laboratorio 3D</h2>
-                <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(false)} className="md:hidden">
+                <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(false)} className="lg:hidden">
                     <X size={24} />
                 </Button>
             </div>
@@ -348,24 +349,28 @@ const VisualizadorFiguras3D = () => {
 
       {/* 2. ESCENARIO 3D (CANVAS) */}
       <div className="flex-1 h-full relative bg-slate-900 w-full">
-        {/* Botón flotante para abrir panel si está cerrado */}
+        
+        {/* BOTONES DE APERTURA: Lógica separada para Móvil/Tablet y Escritorio */}
+        
+        {/* A) ESCRITORIO (>= lg): Icono Settings */}
         {!sidebarOpen && (
             <Button 
                 onClick={() => setSidebarOpen(true)}
-                className="absolute top-4 left-4 z-10 shadow-lg bg-white text-slate-900 hover:bg-slate-100 h-12 w-12 rounded-full"
+                className="hidden lg:flex absolute top-4 left-4 z-10 shadow-lg bg-white text-slate-900 hover:bg-slate-100 h-12 w-12 rounded-full"
             >
                 <Settings2 size={24} />
             </Button>
         )}
         
-        {/* Botón menú móvil (si está cerrado) */}
-        <div className="md:hidden absolute top-4 left-4 z-10">
-             {!sidebarOpen && (
-                 <Button onClick={() => setSidebarOpen(true)} className="shadow-lg h-12 w-12 rounded-full p-0 bg-white text-slate-900 border-none">
-                    <Menu size={24} />
-                 </Button>
-             )}
-        </div>
+        {/* B) MÓVIL Y TABLET (< lg): Icono Hamburguesa */}
+        {!sidebarOpen && (
+             <Button 
+                onClick={() => setSidebarOpen(true)} 
+                className="lg:hidden absolute top-4 left-4 z-10 shadow-lg h-12 w-12 rounded-full p-0 bg-white text-slate-900 border-none flex items-center justify-center"
+             >
+                <Menu size={24} />
+             </Button>
+        )}
 
         <Canvas shadows camera={{ position: [5, 4, 7], fov: 45 }}>
             <color attach="background" args={[colorFondo]} />
