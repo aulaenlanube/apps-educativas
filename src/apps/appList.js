@@ -191,7 +191,7 @@ const appOrdenaBolas = {
 
 const appRunner = {
     id: 'runner', 
-    name: 'Edu Dash',
+    name: 'Education Dash',
     description: 'Corre, salta y atrapa los elementos correctos.',
     component: Runner
 };

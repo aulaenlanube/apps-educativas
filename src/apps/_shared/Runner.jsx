@@ -6,7 +6,7 @@ import { ConfettiProvider } from "./ConfettiProvider";
 import { RotateCcw, Settings2, Shuffle, User, ListChecks, Eye, EyeOff, Weight } from 'lucide-react';
 
 // --- CONFIGURACIÓN BASE ---
-const DEFAULT_GRAVITY = 1.2; // Gravedad por defecto 1.2
+const DEFAULT_GRAVITY = 1; // Gravedad ajustada a 1
 const DEFAULT_JUMP_FORCE = 18; 
 const CUBE_SIZE = 40;
 const BASE_SPAWN_DISTANCE = 600; 
@@ -163,8 +163,8 @@ const Runner = ({ level, grade, subjectId }) => {
     if (!data) return;
 
     const startX = 1000;
-    // Elegimos un patrón aleatorio (0: Pinchos, 1: Plataforma baja, 2: Plataforma alta+pincho, 3: Item flotante)
-    const pattern = Math.floor(Math.random() * 4);
+    // Patrones: 0: Pinchos vario, 1: Plataforma baja, 2: Alta+pincho, 3: Item flotante, 4: Plataformas encadenadas
+    const pattern = Math.floor(Math.random() * 5); 
 
     const types = Object.keys(data);
     const randomType = types[Math.floor(Math.random() * types.length)];
@@ -179,55 +179,76 @@ const Runner = ({ level, grade, subjectId }) => {
     };
 
     if (pattern === 0) {
-      // --- LÓGICA DE PINCHOS MODIFICADA ---
-      const spikeRandom = Math.random(); // Número entre 0.0 y 1.0
+      // --- PINCHOS CON ALTURAS VARIABLES ---
+      const spikeRandom = Math.random(); 
 
-      // 1. Siempre añadimos el primer pincho base
+      const getSpikeDims = () => {
+        const r = Math.random();
+        if (r < 0.20) return { w: 30, h: 30 }; // Pequeño
+        if (r > 0.85) return { w: 50, h: 60 }; // Grande
+        return { w: 40, h: 40 }; // Estándar
+      };
+
+      // 1. Primer pincho (siempre)
+      const s1 = getSpikeDims();
       entitiesRef.current.push({ 
-        id: Date.now(), 
-        type: 'spike', 
-        x: startX, 
-        y: 0, 
-        width: 40, 
-        height: 40 
+        id: Date.now(), type: 'spike', 
+        x: startX, y: 0, width: s1.w, height: s1.h 
       });
 
-      // 2. Probabilidad de PINCHO DOBLE (si > 0.75, es decir, un 25% de las veces)
+      // 2. Doble
       if (spikeRandom > 0.5) {
+        const s2 = getSpikeDims();
         entitiesRef.current.push({ 
-          id: Date.now() + 1, 
-          type: 'spike', 
-          x: startX + 40, // Pegado 40px a la derecha
-          y: 0, 
-          width: 40, 
-          height: 40 
+          id: Date.now() + 1, type: 'spike', 
+          x: startX + 40, y: 0, width: s2.w, height: s2.h 
         });
       }
 
-      // 3. Probabilidad de PINCHO TRIPLE (si > 0.95, es decir, un 5% de las veces)
-      // Nota: Como 0.96 es mayor que 0.75 y mayor que 0.95, se añadirán ambos (total 3)
+      // 3. Triple
       if (spikeRandom > 0.75) {
+        const s3 = getSpikeDims();
         entitiesRef.current.push({ 
-          id: Date.now() + 2, 
-          type: 'spike', 
-          x: startX + 80, // Pegado 80px a la derecha (40+40)
-          y: 0, 
-          width: 40, 
-          height: 40 
+          id: Date.now() + 2, type: 'spike', 
+          x: startX + 80, y: 0, width: s3.w, height: s3.h 
         });
       }
 
     } else if (pattern === 1) {
+      // Plataforma simple baja
       entitiesRef.current.push({ id: Date.now(), type: 'platform', x: startX, y: 50, width: 160, height: 40 });
       itemEntity.x += 20; itemEntity.y = 130;
       entitiesRef.current.push(itemEntity);
+
     } else if (pattern === 2) {
+      // Plataforma alta con pincho debajo
       entitiesRef.current.push({ id: Date.now(), type: 'platform', x: startX, y: 100, width: 160, height: 40 });
       entitiesRef.current.push({ id: Date.now() + 2, type: 'spike', x: startX + 60, y: 0, width: 40, height: 40 });
       itemEntity.x += 20; itemEntity.y = 180;
       entitiesRef.current.push(itemEntity);
-    } else {
+
+    } else if (pattern === 3) {
+      // Item flotante bajo
       itemEntity.y = 60;
+      entitiesRef.current.push(itemEntity);
+
+    } else if (pattern === 4) {
+      // --- PLATAFORMAS ENCADENADAS ---
+      // Plataforma 1: Baja para tomar impulso
+      entitiesRef.current.push({ 
+        id: Date.now() + 'p1', type: 'platform', 
+        x: startX, y: 50, width: 120, height: 40 
+      });
+
+      // Plataforma 2: Alta y lejos (requiere salto desde la 1)
+      entitiesRef.current.push({ 
+        id: Date.now() + 'p2', type: 'platform', 
+        x: startX + 160, y: 170, width: 140, height: 40 
+      });
+
+      // Item en la cima
+      itemEntity.x = startX + 180;
+      itemEntity.y = 250;
       entitiesRef.current.push(itemEntity);
     }
   };
@@ -297,7 +318,13 @@ const Runner = ({ level, grade, subjectId }) => {
         const eRect = { x: ent.x, y: ent.y, width: ent.width, height: ent.height };
 
         if (ent.type === 'spike') {
-          const spikeRect = { x: ent.x + 12, y: ent.y, width: ent.width - 24, height: ent.height - 20 };
+          // Ajuste de hitbox basado en el tamaño variable
+          const spikeRect = { 
+            x: ent.x + (ent.width * 0.25), 
+            y: ent.y, 
+            width: ent.width * 0.5, 
+            height: ent.height * 0.6 
+          };
           if (checkAABB(pRect, spikeRect)) {
             gameOver(); return;
           }
@@ -451,7 +478,7 @@ const Runner = ({ level, grade, subjectId }) => {
                       className="w-5 h-5 cursor-pointer accent-yellow-400 bg-slate-700 border-white/50 rounded-sm"
                     />
                     <label htmlFor="advancedSettings" className="text-white font-bold text-sm cursor-pointer select-none">
-                      CONFIGURACIÓN AVANZADA
+                      CONFIGURAR VELOCIDAD Y GRAVEDAD
                     </label>
                 </div>
 
@@ -534,7 +561,16 @@ const Runner = ({ level, grade, subjectId }) => {
             </div>
             {entitiesRef.current.map(ent => {
               if (ent.type === 'spike') {
-                return <div key={ent.id} className="absolute z-10" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: 0, height: 0, borderLeft: '20px solid transparent', borderRight: '20px solid transparent', borderBottom: '40px solid #ef4444', filter: 'drop-shadow(0 0 5px red)' }} />;
+                return <div key={ent.id} className="absolute z-10" style={{ 
+                  left: `${ent.x}px`, 
+                  bottom: `${60 + ent.y}px`, 
+                  width: 0, 
+                  height: 0, 
+                  borderLeft: `${ent.width / 2}px solid transparent`,
+                  borderRight: `${ent.width / 2}px solid transparent`,
+                  borderBottom: `${ent.height}px solid #ef4444`, 
+                  filter: 'drop-shadow(0 0 5px red)' 
+                }} />;
               }
               if (ent.type === 'platform') {
                 return <div key={ent.id} className="absolute z-10 bg-slate-800 border-2 border-cyan-500 shadow-[0_0_10px_cyan]" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px` }} />;
