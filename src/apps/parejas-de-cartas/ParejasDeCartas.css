@@ -11,7 +11,6 @@
 
 /* MENÚ DE DIFICULTAD - REDISEÑADO */
 .btn-dificultad {
-  /* Gradiente vibrante para que resalte sobre fondo claro */
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   @apply text-white p-8 rounded-3xl transition-all duration-300 transform hover:scale-105 shadow-lg flex flex-col items-center justify-center gap-2 border-4 border-white/10;
 }
@@ -24,7 +23,6 @@
 /* El tablero es transparente y dinámico */
 .tablero-parejas {
   display: grid;
-  /* grid-template-columns se define inline en el JSX */
   gap: 1rem;
   width: 100%;
   max-width: 1000px;
@@ -59,6 +57,21 @@
   transform: rotateY(180deg);
 }
 
+/* ESTADO PEEKING (TRANSPARENCIA / AYUDA) */
+.carta.peeking .carta-dorso {
+  opacity: 0.1; /* El dorso casi desaparece */
+}
+
+.carta.peeking .carta-frente {
+  /* Forzamos que el frente mire al usuario sin girar el contenedor 3D */
+  transform: rotateY(0deg) !important; 
+  opacity: 0.6; /* Efecto fantasma */
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), inset 0 0 20px rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+/* Cartas acertadas */
 .carta.matched {
   transform: rotateY(180deg) scale(0.95);
   cursor: default;
@@ -74,6 +87,7 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Transiciones suaves para el efecto peek */
 }
 
 .carta-frente {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import confetti from 'canvas-confetti';
 import './ParejasDeCartas.css';
@@ -11,7 +11,7 @@ const ParejasDeCartas = ({ tema }) => {
 
   // Estados del juego
   const [fase, setFase] = useState('menu'); // 'menu', 'juego', 'resumen'
-  const [config, setConfig] = useState({ filas: 4, columnas: 3, parejas: 6 });
+  const [config, setConfig] = useState({ filas: 4, columnas: 3, parejas: 6, ayudas: false });
   
   // Datos y lógica
   const [datosCrudos, setDatosCrudos] = useState([]);
@@ -22,13 +22,17 @@ const ParejasDeCartas = ({ tema }) => {
   const [turnos, setTurnos] = useState(0);
   const [cargando, setCargando] = useState(false);
 
+  // Referencias para limpiar timeouts/intervals
+  const peekTimeoutRef = useRef(null);
+  const peekIntervalRef = useRef(null);
+
   // Helper: Detecta si un string contiene letras
   const contieneLetras = (str) => {
     if (!str) return false;
     return /[a-zA-ZáéíóúÁÉÍÓÚñÑçÇàèìòùÀÈÌÒÙäëïöüÄËÏÖÜ]/.test(String(str));
   };
 
-  // Cargar datos al montar el componente (solo una vez)
+  // Cargar datos al montar
   useEffect(() => {
     const cargarDatos = async () => {
       setCargando(true);
@@ -59,7 +63,7 @@ const ParejasDeCartas = ({ tema }) => {
     cargarDatos();
   }, [nivel, curso, asignatura]);
 
-  // Opciones de dificultad disponibles
+  // Opciones de dificultad
   const opcionesDificultad = [
     { nombre: 'Fácil', filas: 2, columnas: 4, parejas: 4 }, // 8 cartas
     { nombre: 'Normal', filas: 3, columnas: 4, parejas: 6 }, // 12 cartas
@@ -71,7 +75,8 @@ const ParejasDeCartas = ({ tema }) => {
     const parejasDisponibles = datosCrudos.length;
     const parejasReales = Math.min(opcion.parejas, parejasDisponibles);
     
-    setConfig({ ...opcion, parejas: parejasReales });
+    // Mantenemos la configuración de ayudas seleccionada en el menú
+    setConfig(prev => ({ ...opcion, parejas: parejasReales, ayudas: prev.ayudas }));
     
     mezclarCartas(parejasReales);
     setFase('juego');
@@ -87,7 +92,7 @@ const ParejasDeCartas = ({ tema }) => {
       ...datosSeleccionados.map(item => ({ ...item, contenido: item.b, pairId: item.id, uniqueId: Math.random() }))
     ]
     .sort(() => Math.random() - 0.5)
-    .map(carta => ({ ...carta, matched: false }));
+    .map(carta => ({ ...carta, matched: false, peeking: false }));
 
     setEleccionUno(null);
     setEleccionDos(null);
@@ -95,6 +100,55 @@ const ParejasDeCartas = ({ tema }) => {
     setTurnos(0);
     setBloqueado(false);
   };
+
+  // --- LÓGICA DE AYUDAS (GHOST PEEK) ---
+  useEffect(() => {
+    // Limpiar intervalos anteriores si existen
+    if (peekIntervalRef.current) clearInterval(peekIntervalRef.current);
+    if (peekTimeoutRef.current) clearTimeout(peekTimeoutRef.current);
+
+    if (fase === 'juego' && config.ayudas) {
+      // Función para activar el efecto fantasma
+      const activarPeek = () => {
+        setCartas(currentCartas => {
+          // Filtrar cartas que no están giradas ni acertadas
+          const disponibles = currentCartas.map((c, i) => ({ ...c, index: i }))
+            .filter(c => !c.matched && c !== eleccionUno && c !== eleccionDos);
+          
+          if (disponibles.length < 2) return currentCartas;
+
+          // Elegir 1 o 2 cartas aleatorias
+          const numPeeks = Math.random() > 0.7 ? 2 : 1;
+          const elegidas = [];
+          for (let i = 0; i < numPeeks; i++) {
+            if (disponibles.length > 0) {
+              const r = Math.floor(Math.random() * disponibles.length);
+              elegidas.push(disponibles[r].index);
+              disponibles.splice(r, 1);
+            }
+          }
+
+          // Activar peeking
+          return currentCartas.map((c, i) => 
+            elegidas.includes(i) ? { ...c, peeking: true } : c
+          );
+        });
+
+        // Desactivar después de 1.5 segundos
+        peekTimeoutRef.current = setTimeout(() => {
+          setCartas(prev => prev.map(c => ({ ...c, peeking: false })));
+        }, 1500);
+      };
+
+      // Intervalo aleatorio entre 5 y 8 segundos
+      peekIntervalRef.current = setInterval(activarPeek, 5000);
+    }
+
+    return () => {
+      if (peekIntervalRef.current) clearInterval(peekIntervalRef.current);
+      if (peekTimeoutRef.current) clearTimeout(peekTimeoutRef.current);
+    };
+  }, [fase, config.ayudas, eleccionUno, eleccionDos]); // Dependencias para reiniciar si cambia el estado del turno
 
   const handleEleccion = (carta) => {
     if (eleccionUno) {
@@ -112,7 +166,7 @@ const ParejasDeCartas = ({ tema }) => {
         setCartas(prevCartas => {
           return prevCartas.map(carta => {
             if (carta.pairId === eleccionUno.pairId) {
-              return { ...carta, matched: true };
+              return { ...carta, matched: true, peeking: false };
             }
             return carta;
           });
@@ -151,6 +205,10 @@ const ParejasDeCartas = ({ tema }) => {
     iniciarJuego(config);
   };
 
+  const toggleAyudas = () => {
+    setConfig(prev => ({ ...prev, ayudas: !prev.ayudas }));
+  };
+
   if (cargando) return <div className="contenedor-parejas text-2xl font-bold text-slate-500">Cargando cartas... 🃏</div>;
 
   return (
@@ -158,11 +216,24 @@ const ParejasDeCartas = ({ tema }) => {
       
       {/* --- FASE 1: MENÚ DE SELECCIÓN --- */}
       {fase === 'menu' && (
-        <div className="menu-dificultad text-center z-10 animate-fade-in">
-          <h1 className="text-4xl md:text-6xl font-bold mb-8 text-indigo-900 drop-shadow-sm">
+        <div className="menu-dificultad text-center z-10 animate-fade-in flex flex-col items-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-indigo-900 drop-shadow-sm">
             Elige la dificultad
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto px-4">
+          
+          {/* Toggle de Ayudas */}
+          <button 
+            onClick={toggleAyudas}
+            className={`mb-8 px-6 py-3 rounded-full font-bold text-lg transition-all shadow-md border-2 
+              ${config.ayudas 
+                ? 'bg-emerald-500 border-emerald-400 text-white' 
+                : 'bg-white/50 border-slate-300 text-slate-600 hover:bg-white/80'
+              }`}
+          >
+            {config.ayudas ? '✨ Ayudas Visuales: ACTIVADAS' : 'Ayudas Visuales: Desactivadas'}
+          </button>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl w-full px-4">
             {opcionesDificultad.map((opcion, idx) => (
               <button
                 key={idx}
@@ -190,21 +261,21 @@ const ParejasDeCartas = ({ tema }) => {
               const esImagen = typeof carta.contenido === 'string' && (carta.contenido.includes('.png') || carta.contenido.includes('.webp') || carta.contenido.includes('.jpg'));
               const esTexto = typeof carta.contenido === 'string' && contieneLetras(carta.contenido);
               
-              // --- AJUSTE DE TAMAÑO DE ICONOS ---
-              // Valores base mucho más grandes
               const baseSizeRem = config.columnas >= 6 ? 4.5 : config.columnas >= 5 ? 5.5 : 7;
-              // Factor de viewport más agresivo
               const vwFactor = 25 / config.columnas; 
               
               const estiloContenido = !esImagen && !esTexto 
                 ? { fontSize: `clamp(3.5rem, ${vwFactor}vw, ${baseSizeRem}rem)`, lineHeight: '1' } 
                 : {};
-              // ----------------------------------
+
+              // Clase adicional si está en modo "peeking"
+              const claseEstado = carta.matched ? 'matched' : (carta === eleccionUno || carta === eleccionDos ? 'flipped' : '');
+              const clasePeek = carta.peeking && !carta.matched && !claseEstado ? 'peeking' : '';
 
               return (
                 <div 
                   key={carta.uniqueId} 
-                  className={`carta ${carta === eleccionUno || carta === eleccionDos || carta.matched ? 'flipped' : ''} ${carta.matched ? 'matched' : ''}`}
+                  className={`carta ${claseEstado} ${clasePeek}`}
                   onClick={() => !bloqueado && !carta.matched && carta !== eleccionUno && handleEleccion(carta)}
                 >
                   <div className="carta-cara carta-frente">
