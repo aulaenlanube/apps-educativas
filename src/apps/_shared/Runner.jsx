@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { ConfettiProvider } from "./ConfettiProvider";
-import { RotateCcw, Settings2, Shuffle, User, ListChecks, Eye, EyeOff, Weight } from 'lucide-react';
+import { RotateCcw, Settings2, Shuffle, User, ListChecks, Eye, EyeOff, Weight, Star } from 'lucide-react';
 
 // --- CONFIGURACIÓN BASE ---
-const DEFAULT_GRAVITY = 1; // Gravedad ajustada a 1
+const DEFAULT_GRAVITY = 1; 
 const DEFAULT_JUMP_FORCE = 18; 
 const CUBE_SIZE = 40;
 const BASE_SPAWN_DISTANCE = 600; 
@@ -26,11 +26,14 @@ const Runner = ({ level, grade, subjectId }) => {
   const [loadingError, setLoadingError] = useState(false);
 
   // Configuración de usuario
-  const [configSpeed, setConfigSpeed] = useState([8]); // Velocidad por defecto 8
+  const [configSpeed, setConfigSpeed] = useState([8]); 
   const [configGravity, setConfigGravity] = useState([DEFAULT_GRAVITY]); 
-  const [showSettings, setShowSettings] = useState(false); // Checkbox oculto por defecto
+  const [showSettings, setShowSettings] = useState(false); 
   const [selectedChar, setSelectedChar] = useState(0);
   const [showHints, setShowHints] = useState(true);
+
+  // Estado visual para la invencibilidad
+  const [isInvincible, setIsInvincible] = useState(false);
 
   // Tick para forzar renderizado en React
   const [tick, setTick] = useState(0);
@@ -41,6 +44,7 @@ const Runner = ({ level, grade, subjectId }) => {
   const rotationRef = useRef(0);
   const collectedWordsRef = useRef([]);
   const entitiesRef = useRef([]);
+  const explosionsRef = useRef([]); 
   const bgOffsetRef = useRef(0);
   const reqRef = useRef(null);
   const gameContainerRef = useRef(null);
@@ -48,11 +52,12 @@ const Runner = ({ level, grade, subjectId }) => {
   // --- REFS PARA CONTROL DE TIEMPO (DELTA TIME) ---
   const lastTimeRef = useRef(0);
   const distanceTraveledRef = useRef(0);
+  const invincibleUntilRef = useRef(0); 
 
   // Refs de acceso rápido
   const targetTypeRef = useRef(null);
   const gameDataRef = useRef(null); 
-  const speedRef = useRef(8); // Ref inicializada en 8
+  const speedRef = useRef(8); 
   const jumpForceRef = useRef(DEFAULT_JUMP_FORCE);
   const gravityRef = useRef(DEFAULT_GRAVITY);
   const showHintsRef = useRef(true);
@@ -126,6 +131,9 @@ const Runner = ({ level, grade, subjectId }) => {
     rotationRef.current = 0;
     entitiesRef.current = [];
     collectedWordsRef.current = [];
+    explosionsRef.current = []; 
+    invincibleUntilRef.current = 0; 
+    setIsInvincible(false);
     bgOffsetRef.current = 0;
     
     lastTimeRef.current = 0;
@@ -163,8 +171,17 @@ const Runner = ({ level, grade, subjectId }) => {
     if (!data) return;
 
     const startX = 1000;
-    // Patrones: 0: Pinchos vario, 1: Plataforma baja, 2: Alta+pincho, 3: Item flotante, 4: Plataformas encadenadas
-    const pattern = Math.floor(Math.random() * 5); 
+    // Patrones: 0: Pinchos, 1: Plataforma baja, 2: Alta+pincho, 3: Item flotante, 4: Encadenadas, 5: ESTRELLA
+    const rand = Math.random();
+    let pattern = 0;
+    
+    // Probabilidad de Estrella reducida al 5% (antes 10%)
+    if (rand < 0.25) pattern = 0;
+    else if (rand < 0.45) pattern = 1;
+    else if (rand < 0.65) pattern = 2;
+    else if (rand < 0.80) pattern = 3;
+    else if (rand < 0.95) pattern = 4; // Aumentamos probabilidad de encadenadas
+    else pattern = 5; // 5% Estrella
 
     const types = Object.keys(data);
     const randomType = types[Math.floor(Math.random() * types.length)];
@@ -181,76 +198,71 @@ const Runner = ({ level, grade, subjectId }) => {
     if (pattern === 0) {
       // --- PINCHOS CON ALTURAS VARIABLES ---
       const spikeRandom = Math.random(); 
-
       const getSpikeDims = () => {
         const r = Math.random();
-        if (r < 0.20) return { w: 30, h: 30 }; // Pequeño
-        if (r > 0.85) return { w: 50, h: 60 }; // Grande
-        return { w: 40, h: 40 }; // Estándar
+        if (r < 0.20) return { w: 30, h: 30 }; 
+        if (r > 0.85) return { w: 50, h: 60 }; 
+        return { w: 40, h: 40 }; 
       };
 
-      // 1. Primer pincho (siempre)
       const s1 = getSpikeDims();
-      entitiesRef.current.push({ 
-        id: Date.now(), type: 'spike', 
-        x: startX, y: 0, width: s1.w, height: s1.h 
-      });
+      entitiesRef.current.push({ id: Date.now(), type: 'spike', x: startX, y: 0, width: s1.w, height: s1.h });
 
-      // 2. Doble
       if (spikeRandom > 0.5) {
         const s2 = getSpikeDims();
-        entitiesRef.current.push({ 
-          id: Date.now() + 1, type: 'spike', 
-          x: startX + 40, y: 0, width: s2.w, height: s2.h 
-        });
+        entitiesRef.current.push({ id: Date.now() + 1, type: 'spike', x: startX + 40, y: 0, width: s2.w, height: s2.h });
       }
-
-      // 3. Triple
       if (spikeRandom > 0.75) {
         const s3 = getSpikeDims();
-        entitiesRef.current.push({ 
-          id: Date.now() + 2, type: 'spike', 
-          x: startX + 80, y: 0, width: s3.w, height: s3.h 
-        });
+        entitiesRef.current.push({ id: Date.now() + 2, type: 'spike', x: startX + 80, y: 0, width: s3.w, height: s3.h });
       }
 
     } else if (pattern === 1) {
-      // Plataforma simple baja
       entitiesRef.current.push({ id: Date.now(), type: 'platform', x: startX, y: 50, width: 160, height: 40 });
       itemEntity.x += 20; itemEntity.y = 130;
       entitiesRef.current.push(itemEntity);
 
     } else if (pattern === 2) {
-      // Plataforma alta con pincho debajo
       entitiesRef.current.push({ id: Date.now(), type: 'platform', x: startX, y: 100, width: 160, height: 40 });
       entitiesRef.current.push({ id: Date.now() + 2, type: 'spike', x: startX + 60, y: 0, width: 40, height: 40 });
       itemEntity.x += 20; itemEntity.y = 180;
       entitiesRef.current.push(itemEntity);
 
     } else if (pattern === 3) {
-      // Item flotante bajo
       itemEntity.y = 60;
       entitiesRef.current.push(itemEntity);
 
     } else if (pattern === 4) {
-      // --- PLATAFORMAS ENCADENADAS ---
-      // Plataforma 1: Baja para tomar impulso
-      entitiesRef.current.push({ 
-        id: Date.now() + 'p1', type: 'platform', 
-        x: startX, y: 50, width: 120, height: 40 
-      });
-
-      // Plataforma 2: Alta y lejos (requiere salto desde la 1)
-      entitiesRef.current.push({ 
-        id: Date.now() + 'p2', type: 'platform', 
-        x: startX + 160, y: 170, width: 140, height: 40 
-      });
-
-      // Item en la cima
-      itemEntity.x = startX + 180;
-      itemEntity.y = 250;
+      entitiesRef.current.push({ id: Date.now() + 'p1', type: 'platform', x: startX, y: 50, width: 120, height: 40 });
+      entitiesRef.current.push({ id: Date.now() + 'p2', type: 'platform', x: startX + 160, y: 170, width: 140, height: 40 });
+      itemEntity.x = startX + 180; itemEntity.y = 250;
       entitiesRef.current.push(itemEntity);
+
+    } else if (pattern === 5) {
+      // --- PATRÓN ESTRELLA ALTA ---
+      // Plataforma 1 para impulso
+      entitiesRef.current.push({ id: Date.now() + 'pstar1', type: 'platform', x: startX, y: 50, width: 120, height: 40 });
+      
+      // Plataforma 2 MUY ALTA
+      entitiesRef.current.push({ id: Date.now() + 'pstar2', type: 'platform', x: startX + 160, y: 200, width: 140, height: 40 });
+      
+      entitiesRef.current.push({
+        id: Date.now() + 'star',
+        type: 'star',
+        x: startX + 210, // Centrada en la plataforma alta
+        y: 280, // Encima de la plataforma alta (200 + 40 + margen)
+        width: 40, height: 40
+      });
     }
+  };
+
+  const spawnExplosion = (x, y) => {
+    explosionsRef.current.push({
+      id: Date.now() + Math.random(),
+      x: x,
+      y: y,
+      timestamp: Date.now()
+    });
   };
 
   const gameOver = () => {
@@ -285,9 +297,11 @@ const Runner = ({ level, grade, subjectId }) => {
     const timeScale = deltaTime / 16.67;
     const currentSpeed = speedRef.current * timeScale;
 
+    // Actualizar fondo
     bgOffsetRef.current -= currentSpeed * 0.5;
     if (bgOffsetRef.current <= -100) bgOffsetRef.current = 0;
 
+    // Actualizar jugador
     playerRef.current.velocityY -= gravityRef.current * timeScale; 
     playerRef.current.y += playerRef.current.velocityY * timeScale;
 
@@ -298,10 +312,19 @@ const Runner = ({ level, grade, subjectId }) => {
       playerRef.current.onPlatform = false;
     }
 
+    // Spawn de entidades
     distanceTraveledRef.current += currentSpeed;
     if (distanceTraveledRef.current >= BASE_SPAWN_DISTANCE) {
         spawnEntities();
         distanceTraveledRef.current = 0;
+    }
+
+    // Limpiar explosiones viejas (duran 500ms)
+    explosionsRef.current = explosionsRef.current.filter(exp => Date.now() - exp.timestamp < 500);
+
+    // Revisar fin de invencibilidad visual
+    if (isInvincible && Date.now() > invincibleUntilRef.current) {
+        setIsInvincible(false);
     }
 
     const pRect = {
@@ -314,11 +337,18 @@ const Runner = ({ level, grade, subjectId }) => {
     entitiesRef.current.forEach(ent => {
       ent.x -= currentSpeed;
 
-      if (ent.x > -200 && ent.x < 200) {
+      if (ent.x > -200 && ent.x < 200 && !ent.collected) {
         const eRect = { x: ent.x, y: ent.y, width: ent.width, height: ent.height };
 
+        if (ent.type === 'star') {
+            if (checkAABB(pRect, eRect)) {
+                ent.collected = true;
+                invincibleUntilRef.current = Date.now() + 10000; // 10 segundos
+                setIsInvincible(true);
+            }
+        }
+
         if (ent.type === 'spike') {
-          // Ajuste de hitbox basado en el tamaño variable
           const spikeRect = { 
             x: ent.x + (ent.width * 0.25), 
             y: ent.y, 
@@ -326,7 +356,12 @@ const Runner = ({ level, grade, subjectId }) => {
             height: ent.height * 0.6 
           };
           if (checkAABB(pRect, spikeRect)) {
-            gameOver(); return;
+            if (Date.now() < invincibleUntilRef.current) {
+                spawnExplosion(ent.x, ent.y);
+                ent.collected = true; 
+            } else {
+                gameOver(); return;
+            }
           }
         }
 
@@ -346,7 +381,7 @@ const Runner = ({ level, grade, subjectId }) => {
           }
         }
 
-        if (ent.type === 'item' && !ent.collected) {
+        if (ent.type === 'item') {
           if (checkAABB(pRect, eRect)) {
             const targetList = gameDataRef.current[targetTypeRef.current];
             const isValid = targetList.includes(ent.text);
@@ -356,7 +391,12 @@ const Runner = ({ level, grade, subjectId }) => {
               collectedWordsRef.current.push(ent.text);
               setScore(prev => prev + 1);
             } else {
-              gameOver(); return;
+              if (Date.now() < invincibleUntilRef.current) {
+                  spawnExplosion(ent.x, ent.y);
+                  ent.collected = true; 
+              } else {
+                  gameOver(); return;
+              }
             }
           }
         }
@@ -378,9 +418,11 @@ const Runner = ({ level, grade, subjectId }) => {
 
   const renderCharacter = (charIndex, isPreview = false) => {
     const char = CHARACTERS[charIndex];
+    const invincibleGlow = (isInvincible && !isPreview) ? "drop-shadow-[0_0_15px_rgba(255,215,0,1)] border-yellow-200" : "";
+    
     return (
       <div
-        className={`w-full h-full ${char.mainColor} border-[3px] ${char.borderColor} relative ${char.glow}`}
+        className={`w-full h-full ${char.mainColor} border-[3px] ${char.borderColor} relative ${char.glow} ${invincibleGlow}`}
         style={!isPreview ? { transform: `rotate(${rotationRef.current}deg)`, transition: 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)' } : {}}
       >
         <div className={`absolute top-[15%] left-[15%] w-[25%] h-[25%] ${char.eyeColor} border-[2px] ${char.eyeBorder} rounded-sm`}></div>
@@ -389,6 +431,10 @@ const Runner = ({ level, grade, subjectId }) => {
       </div>
     );
   };
+
+  // Cálculo del tiempo restante de invencibilidad para el HUD
+  const now = Date.now();
+  const timeLeft = isInvincible ? Math.max(0, Math.ceil((invincibleUntilRef.current - now) / 1000)) : 0;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh] bg-transparent p-4 select-none touch-none font-mono">
@@ -416,8 +462,20 @@ const Runner = ({ level, grade, subjectId }) => {
           SCORE: {score.toString().padStart(3, '0')}
         </div>
         {targetType && gameState === 'playing' && (
-          <div className="absolute top-4 left-4 z-30 bg-yellow-400 text-black px-4 py-2 font-black border-4 border-black animate-pulse uppercase tracking-wide shadow-[4px_4px_0_black]">
-            Misión: {formatMissionName(targetType)}
+          <div className="absolute top-4 left-4 z-30 flex flex-col gap-2 items-start">
+            <div className="bg-yellow-400 text-black px-4 py-2 font-black border-4 border-black animate-pulse uppercase tracking-wide shadow-[4px_4px_0_black]">
+                Misión: {formatMissionName(targetType)}
+            </div>
+            {isInvincible && (
+                <div className="flex flex-col items-center animate-pulse">
+                    <span className="text-4xl font-black text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]">
+                        {timeLeft}s
+                    </span>
+                    <div className="bg-yellow-500 text-white px-2 py-1 font-bold border-2 border-white text-xs shadow-[0_0_10px_gold]">
+                        ★ INVENCIBLE ★
+                    </div>
+                </div>
+            )}
           </div>
         )}
 
@@ -556,10 +614,31 @@ const Runner = ({ level, grade, subjectId }) => {
           <>
             <div className="absolute inset-0 z-0 opacity-20" style={{ backgroundImage: `linear-gradient(to right, #4f46e5 1px, transparent 1px), linear-gradient(to bottom, #4f46e5 1px, transparent 1px)`, backgroundSize: '50px 50px', transform: `translateX(${bgOffsetRef.current}px)` }}></div>
             <div className="absolute bottom-0 w-full h-[60px] bg-black border-t-[4px] border-cyan-400 z-10 shadow-[0_-5px_20px_rgba(34,211,238,0.4)]"></div>
+            
             <div className="absolute z-20 flex items-center justify-center" style={{ left: `${playerRef.current.x}px`, bottom: `${60 + playerRef.current.y}px`, width: `${CUBE_SIZE}px`, height: `${CUBE_SIZE}px`, transition: 'none' }}>
               {renderCharacter(selectedChar)}
             </div>
+
+            {/* EXPLOSIONES */}
+            {explosionsRef.current.map(exp => (
+                <div key={exp.id} 
+                     className="absolute z-50 flex items-center justify-center pointer-events-none animate-ping" 
+                     style={{ left: exp.x, bottom: 60 + exp.y, width: 60, height: 60 }}>
+                    <div className="w-full h-full bg-orange-500 rounded-full opacity-75"></div>
+                </div>
+            ))}
+
             {entitiesRef.current.map(ent => {
+              if (ent.collected) return null; // No renderizar si ya se ha recogido/destruido
+
+              if (ent.type === 'star') {
+                  return (
+                    <div key={ent.id} className="absolute z-10 animate-bounce" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px` }}>
+                        <Star className="w-10 h-10 text-yellow-400 fill-yellow-400 drop-shadow-[0_0_10px_gold]" />
+                    </div>
+                  );
+              }
+
               if (ent.type === 'spike') {
                 return <div key={ent.id} className="absolute z-10" style={{ 
                   left: `${ent.x}px`, 
@@ -576,8 +655,6 @@ const Runner = ({ level, grade, subjectId }) => {
                 return <div key={ent.id} className="absolute z-10 bg-slate-800 border-2 border-cyan-500 shadow-[0_0_10px_cyan]" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px` }} />;
               }
               if (ent.type === 'item') {
-                if (ent.collected) return null;
-
                 const isTarget = gameDataRef.current && targetTypeRef.current && gameDataRef.current[targetTypeRef.current] 
                   ? gameDataRef.current[targetTypeRef.current].includes(ent.text)
                   : false;
