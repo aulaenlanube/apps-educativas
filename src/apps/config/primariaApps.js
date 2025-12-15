@@ -61,7 +61,7 @@ export const primariaApps = {
       { id: 'busca-el-intruso-lengua-1', name: 'Busca el Intruso', description: 'Encuentra la letra diferente.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-lengua-1', name: 'Parejas: Material Escolar' }
+      appParejas      
     ],
     'matematicas': [
       { id: 'sumas-primaria-1', name: 'Sumas sin llevadas', description: 'Aprende a sumar números de dos cifras.', component: SumasPrimaria1 },
@@ -70,44 +70,44 @@ export const primariaApps = {
       { id: 'busca-el-intruso-matematicas-1', name: 'Busca el Intruso', description: 'Encuentra el número diferente.', component: appBuscaElIntruso.component },
       appRunner, appOrdenaBolas, appRosco, appMedidas1, appMayorMenor1, appNumerosRomanos3, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-matematicas-1', name: 'Parejas: Números y Formas' }
+      appParejas
     ],
     'ciencias-naturales': [
       { id: 'busca-el-intruso-naturales-1', name: 'Busca el Intruso', description: 'Encuentra el elemento diferente.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-naturales-1', name: 'Parejas: Seres Vivos' }
+      appParejas
     ],
     'ciencias-sociales': [
       { id: 'busca-el-intruso-sociales-1', name: 'Busca el Intruso', description: 'Encuentra el elemento diferente.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-sociales-1', name: 'Parejas: Ciudad y Oficios' }
+      appParejas
     ],
     'ingles': [
       { id: 'busca-el-intruso-ingles-1', name: 'Find the Odd One', description: 'Find the different letter.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-ingles-1', name: 'Pairs: Toys & Food' }
+      appParejas
     ],
     'tutoria': [
       appRunner, appRosco, appIslaDeLaCalma, appGeneradorPersonajes,
       { id: 'busca-el-intruso-tutoria-1', name: 'Busca el Intruso', description: 'Encuentra la emoción diferente.', component: appBuscaElIntruso.component },
       appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-tutoria-1', name: 'Parejas: Emociones' }
+      appParejas
     ],
     'valenciano': [
       { id: 'busca-el-intruso-valenciano-1', name: "Busca l'Intrus", description: 'Troba la lletra diferent!', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-valenciano-1', name: 'Parelles: Cultura' }
+      appParejas
     ],
     'frances': [
       { id: 'busca-el-intruso-frances-1', name: "Trouve l'Intrus", description: 'Trouve le symbole différent!', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-frances-1', name: 'Paires: Symboles' }
+      appParejas
     ]
   },
   '2': {
@@ -115,7 +115,7 @@ export const primariaApps = {
       { id: 'busca-el-intruso-lengua-2', name: 'Busca el Intruso', description: 'Gramática y vocabulario.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-lengua-2', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'matematicas': [
       { id: 'sumas-primaria-2-drag', name: 'Sumas con llevadas', description: 'Resuelve sumas de dos cifras.', component: SumasPrimaria2 },
@@ -124,44 +124,44 @@ export const primariaApps = {
       { id: 'busca-el-intruso-matematicas-2', name: 'Busca el Intruso', description: 'Encuentra el intruso.', component: appBuscaElIntruso.component },
       appRunner, appOrdenaBolas, appRosco, appMedidas2, appMayorMenor2, appNumerosRomanos3, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-matematicas-2', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ciencias-naturales': [
       { id: 'busca-el-intruso-naturales-2', name: 'Busca el Intruso', description: 'Animales y plantas.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-naturales-2', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ciencias-sociales': [
       { id: 'busca-el-intruso-sociales-2', name: 'Busca el Intruso', description: 'Sociedad y entorno.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-sociales-2', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ingles': [
       { id: 'busca-el-intruso-ingles-2', name: 'Find the Odd One', description: 'Vocabulary check.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-ingles-2', name: 'Memory Game' }
+      appParejas
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
       { id: 'busca-el-intruso-tutoria-2', name: 'Busca el Intruso', description: 'Valores y hábitos.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-tutoria-2', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'valenciano': [
       { id: 'busca-el-intruso-valenciano-2', name: "Busca l'Intrus", description: "Vocabulari.", component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-valenciano-2', name: 'Parelles de Cartes' }
+      appParejas
     ],
     'frances': [
       { id: 'busca-el-intruso-frances-2', name: "Trouve l'Intrus", description: 'Vocabulaire.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-2', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-frances-2', name: 'Jeu de Paires' }
+      appParejas
     ]
   },
   '3': {
@@ -169,7 +169,7 @@ export const primariaApps = {
       { id: 'busca-el-intruso-lengua-3', name: 'Busca el Intruso', description: 'Categorías gramaticales.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-lengua-3', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'matematicas': [
       { id: 'busca-el-intruso-matematicas-3', name: 'Busca el Intruso', description: 'Cálculo mental.', component: appBuscaElIntruso.component },
@@ -179,44 +179,44 @@ export const primariaApps = {
       { id: 'supermercado-matematico-3', name: 'Supermercado Matemático', description: 'Multiplicaciones.', component: SupermercadoMatematico3 },
       appRunner, appOrdenaBolas, appRosco, appMedidas3, appMayorMenor3, appNumerosRomanos3, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-matematicas-3', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ciencias-naturales': [
       { id: 'busca-el-intruso-naturales-3', name: 'Busca el Intruso', description: 'Ecosistemas.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-naturales-3', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ciencias-sociales': [
       { id: 'busca-el-intruso-sociales-3', name: 'Busca el Intruso', description: 'Geografía y sociedad.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-sociales-3', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ingles': [
       { id: 'busca-el-intruso-ingles-3', name: 'Find the Odd One', description: 'Vocabulary & Grammar.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-ingles-3', name: 'Memory Game' }
+      appParejas
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
       { id: 'busca-el-intruso-tutoria-3', name: 'Busca el Intruso', description: 'Convivencia.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-tutoria-3', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'valenciano': [
       { id: 'busca-el-intruso-valenciano-3', name: "Busca l'Intrus", description: 'Gramàtica.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-valenciano-3', name: 'Parelles de Cartes' }
+      appParejas
     ],
     'frances': [
       { id: 'busca-el-intruso-frances-3', name: "Trouve l'Intrus", description: 'Vocabulaire et grammaire.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-3', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-frances-3', name: 'Jeu de Paires' }
+      appParejas
     ]
   },
   '4': {
@@ -224,7 +224,7 @@ export const primariaApps = {
       { id: 'busca-el-intruso-lengua-4', name: 'Busca el Intruso', description: 'Morfología y semántica.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-lengua-4', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'matematicas': [
       { id: 'busca-el-intruso-matematicas-4', name: 'Busca el Intruso', description: 'Operaciones y medidas.', component: appBuscaElIntruso.component },
@@ -235,44 +235,44 @@ export const primariaApps = {
       { id: 'supermercado-matematico-4', name: 'Supermercado Matemático', description: 'Decimales.', component: SupermercadoMatematico4 },
       appRunner, appOrdenaBolas, appRosco, appMedidas4, appMayorMenor4, appNumerosRomanos4, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-matematicas-4', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ciencias-naturales': [
       { id: 'busca-el-intruso-naturales-4', name: 'Busca el Intruso', description: 'Materia y energía.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-naturales-4', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ciencias-sociales': [
       { id: 'busca-el-intruso-sociales-4', name: 'Busca el Intruso', description: 'Población y territorio.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-sociales-4', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ingles': [
       { id: 'busca-el-intruso-ingles-4', name: 'Find the Odd One', description: 'Intermediate challenge.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-ingles-4', name: 'Memory Game' }
+      appParejas
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
       { id: 'busca-el-intruso-tutoria-4', name: 'Busca el Intruso', description: 'Resolución de conflictos.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-tutoria-4', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'valenciano': [
       { id: 'busca-el-intruso-valenciano-4', name: "Busca l'Intrus", description: 'Reforç.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-valenciano-4', name: 'Parelles de Cartes' }
+      appParejas
     ],
     'frances': [
       { id: 'busca-el-intruso-frances-4', name: "Trouve l'Intrus", description: 'Exercices de vocabulaire.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-4', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-frances-4', name: 'Jeu de Paires' }
+      appParejas
     ]
   },
   '5': {
@@ -280,7 +280,7 @@ export const primariaApps = {
       { id: 'busca-el-intruso-lengua-5', name: 'Busca el Intruso', description: 'Sintaxis y morfología.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-lengua-5', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'matematicas': [
       { id: 'busca-el-intruso-matematicas-5', name: 'Busca el Intruso', description: 'Fracciones y decimales.', component: appBuscaElIntruso.component },
@@ -291,44 +291,44 @@ export const primariaApps = {
       { id: 'divisiones-primaria-5', name: 'Divisiones', description: 'Divisores de 2 y 3 cifras.', component: DivisionesPrimaria5 },
       appRunner, appOrdenaBolas, appRosco, appMedidas5, appMayorMenor5, appNumerosRomanosAdvanced, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-matematicas-5', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ciencias-naturales': [
       { id: 'busca-el-intruso-naturales-5', name: 'Busca el Intruso', description: 'Cuerpo humano y células.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-naturales-5', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ciencias-sociales': [
       { id: 'busca-el-intruso-sociales-5', name: 'Busca el Intruso', description: 'Universo y Edad Media.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-sociales-5', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ingles': [
       { id: 'busca-el-intruso-ingles-5', name: 'Find the Odd One', description: 'Advanced vocabulary.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-ingles-5', name: 'Memory Game' }
+      appParejas
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
       { id: 'busca-el-intruso-tutoria-5', name: 'Busca el Intruso', description: 'Autoconocimiento.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-tutoria-5', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'valenciano': [
       { id: 'busca-el-intruso-valenciano-5', name: "Busca l'Intrus", description: 'Perfeccionament.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-valenciano-5', name: 'Parelles de Cartes' }
+      appParejas
     ],
     'frances': [
       { id: 'busca-el-intruso-frances-5', name: "Trouve l'Intrus", description: 'Vocabulaire avancé.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-5', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-frances-5', name: 'Jeu de Paires' }
+      appParejas
     ]
   },
   '6': {
@@ -336,7 +336,7 @@ export const primariaApps = {
       { id: 'busca-el-intruso-lengua-6', name: 'Busca el Intruso', description: 'Repaso general.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-lengua-6', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'matematicas': [
       { id: 'busca-el-intruso-matematicas-6', name: 'Busca el Intruso', description: 'Lógica matemática.', component: appBuscaElIntruso.component },
@@ -347,7 +347,7 @@ export const primariaApps = {
       { id: 'supermercado-matematico-6', name: 'Supermercado Matemático', description: 'Descuentos.', component: SupermercadoMatematico6 },
       appRunner, appOrdenaBolas, appRosco, appMedidas6, appMayorMenor6, appNumerosRomanosAdvanced, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-matematicas-6', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ciencias-naturales': [
       { id: 'busca-el-intruso-naturales-6', name: 'Busca el Intruso', description: 'Salud y energía.', component: appBuscaElIntruso.component },
@@ -359,32 +359,32 @@ export const primariaApps = {
       { id: 'busca-el-intruso-sociales-6', name: 'Busca el Intruso', description: 'Historia contemporánea.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-sociales-6', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'ingles': [
       { id: 'busca-el-intruso-ingles-6', name: 'Find the Odd One', description: 'Challenge.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-ingles-6', name: 'Memory Game' }
+      appParejas
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
       { id: 'busca-el-intruso-tutoria-6', name: 'Busca el Intruso', description: 'Transición a secundaria.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-tutoria-6', name: 'Parejas de Cartas' }
+      appParejas
     ],
     'valenciano': [
       { id: 'busca-el-intruso-valenciano-6', name: "Busca l'Intrus", description: 'Repàs general.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-valenciano-6', name: 'Parelles de Cartes' }
+      appParejas
     ],
     'frances': [
       { id: 'busca-el-intruso-frances-6', name: "Trouve l'Intrus", description: 'Challenge.', component: appBuscaElIntruso.component },
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-6', name: 'Detective de Palabras' },
-      { ...appParejas, id: 'parejas-frances-6', name: 'Jeu de Paires' }
+      appParejas
     ]
   }
 };
