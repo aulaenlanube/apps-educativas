@@ -103,21 +103,17 @@ const ParejasDeCartas = ({ tema }) => {
 
   // --- LÓGICA DE AYUDAS (GHOST PEEK) ---
   useEffect(() => {
-    // Limpiar intervalos anteriores si existen
     if (peekIntervalRef.current) clearInterval(peekIntervalRef.current);
     if (peekTimeoutRef.current) clearTimeout(peekTimeoutRef.current);
 
     if (fase === 'juego' && config.ayudas) {
-      // Función para activar el efecto fantasma
       const activarPeek = () => {
         setCartas(currentCartas => {
-          // Filtrar cartas que no están giradas ni acertadas
           const disponibles = currentCartas.map((c, i) => ({ ...c, index: i }))
             .filter(c => !c.matched && c !== eleccionUno && c !== eleccionDos);
           
           if (disponibles.length < 2) return currentCartas;
 
-          // Elegir 1 o 2 cartas aleatorias
           const numPeeks = Math.random() > 0.7 ? 2 : 1;
           const elegidas = [];
           for (let i = 0; i < numPeeks; i++) {
@@ -128,19 +124,16 @@ const ParejasDeCartas = ({ tema }) => {
             }
           }
 
-          // Activar peeking
           return currentCartas.map((c, i) => 
             elegidas.includes(i) ? { ...c, peeking: true } : c
           );
         });
 
-        // Desactivar después de 1.5 segundos
         peekTimeoutRef.current = setTimeout(() => {
           setCartas(prev => prev.map(c => ({ ...c, peeking: false })));
         }, 1500);
       };
 
-      // Intervalo aleatorio entre 5 y 8 segundos
       peekIntervalRef.current = setInterval(activarPeek, 5000);
     }
 
@@ -148,7 +141,7 @@ const ParejasDeCartas = ({ tema }) => {
       if (peekIntervalRef.current) clearInterval(peekIntervalRef.current);
       if (peekTimeoutRef.current) clearTimeout(peekTimeoutRef.current);
     };
-  }, [fase, config.ayudas, eleccionUno, eleccionDos]); // Dependencias para reiniciar si cambia el estado del turno
+  }, [fase, config.ayudas, eleccionUno, eleccionDos]);
 
   const handleEleccion = (carta) => {
     if (eleccionUno) {
@@ -221,7 +214,6 @@ const ParejasDeCartas = ({ tema }) => {
             Elige la dificultad
           </h1>
           
-          {/* Toggle de Ayudas */}
           <button 
             onClick={toggleAyudas}
             className={`mb-8 px-6 py-3 rounded-full font-bold text-lg transition-all shadow-md border-2 
@@ -261,14 +253,25 @@ const ParejasDeCartas = ({ tema }) => {
               const esImagen = typeof carta.contenido === 'string' && (carta.contenido.includes('.png') || carta.contenido.includes('.webp') || carta.contenido.includes('.jpg'));
               const esTexto = typeof carta.contenido === 'string' && contieneLetras(carta.contenido);
               
+              // Variables base para Emojis/Iconos
               const baseSizeRem = config.columnas >= 6 ? 4.5 : config.columnas >= 5 ? 5.5 : 7;
               const vwFactor = 25 / config.columnas; 
               
-              const estiloContenido = !esImagen && !esTexto 
-                ? { fontSize: `clamp(3.5rem, ${vwFactor}vw, ${baseSizeRem}rem)`, lineHeight: '1' } 
-                : {};
+              let estiloContenido = {};
 
-              // Clase adicional si está en modo "peeking"
+              if (!esImagen) {
+                if (esTexto) {
+                   // LOGICA NUEVA: Si es texto largo (> 5 caracteres), reducimos el tamaño
+                   if (String(carta.contenido).length > 5) {
+                      estiloContenido = { fontSize: 'clamp(1.2rem, 2.5vw, 2rem)', lineHeight: '1.1' };
+                   }
+                   // Si es texto corto (<= 5), usará el tamaño por defecto de CSS (text-3xl md:text-5xl)
+                } else {
+                   // Si es Emoji/Número
+                   estiloContenido = { fontSize: `clamp(3.5rem, ${vwFactor}vw, ${baseSizeRem}rem)`, lineHeight: '1' };
+                }
+              }
+
               const claseEstado = carta.matched ? 'matched' : (carta === eleccionUno || carta === eleccionDos ? 'flipped' : '');
               const clasePeek = carta.peeking && !carta.matched && !claseEstado ? 'peeking' : '';
 
