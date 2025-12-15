@@ -60,3 +60,17 @@ body {
   from { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
   to { box-shadow: 0 0 40px rgba(59, 130, 246, 0.8); }
 }
+
+/* Utilidades para el efecto Flip de cartas */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
