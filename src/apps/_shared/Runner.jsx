@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { ConfettiProvider } from "./ConfettiProvider";
 import { RotateCcw, Settings2, Shuffle, User, ListChecks, Eye, EyeOff, Weight, Star } from 'lucide-react';
+import './Runner.css';
 
 // --- CONFIGURACIÓN BASE ---
 const DEFAULT_GRAVITY = 1; 
@@ -48,6 +49,9 @@ const Runner = ({ level, grade, subjectId }) => {
   const bgOffsetRef = useRef(0);
   const reqRef = useRef(null);
   const gameContainerRef = useRef(null);
+  
+  // Ref para el contenedor del jugador (posición, no rotación)
+  const playerWrapperRef = useRef(null);
 
   // --- REFS PARA CONTROL DE TIEMPO (DELTA TIME) ---
   const lastTimeRef = useRef(0);
@@ -175,13 +179,12 @@ const Runner = ({ level, grade, subjectId }) => {
     const rand = Math.random();
     let pattern = 0;
     
-    // Probabilidad de Estrella reducida al 5% (antes 10%)
     if (rand < 0.25) pattern = 0;
     else if (rand < 0.45) pattern = 1;
     else if (rand < 0.65) pattern = 2;
     else if (rand < 0.80) pattern = 3;
-    else if (rand < 0.95) pattern = 4; // Aumentamos probabilidad de encadenadas
-    else pattern = 5; // 5% Estrella
+    else if (rand < 0.95) pattern = 4; 
+    else pattern = 5; 
 
     const types = Object.keys(data);
     const randomType = types[Math.floor(Math.random() * types.length)];
@@ -196,7 +199,6 @@ const Runner = ({ level, grade, subjectId }) => {
     };
 
     if (pattern === 0) {
-      // --- PINCHOS CON ALTURAS VARIABLES ---
       const spikeRandom = Math.random(); 
       const getSpikeDims = () => {
         const r = Math.random();
@@ -239,18 +241,14 @@ const Runner = ({ level, grade, subjectId }) => {
       entitiesRef.current.push(itemEntity);
 
     } else if (pattern === 5) {
-      // --- PATRÓN ESTRELLA ALTA ---
-      // Plataforma 1 para impulso
       entitiesRef.current.push({ id: Date.now() + 'pstar1', type: 'platform', x: startX, y: 50, width: 120, height: 40 });
-      
-      // Plataforma 2 MUY ALTA
       entitiesRef.current.push({ id: Date.now() + 'pstar2', type: 'platform', x: startX + 160, y: 200, width: 140, height: 40 });
       
       entitiesRef.current.push({
         id: Date.now() + 'star',
         type: 'star',
-        x: startX + 210, // Centrada en la plataforma alta
-        y: 280, // Encima de la plataforma alta (200 + 40 + margen)
+        x: startX + 210, 
+        y: 280, 
         width: 40, height: 40
       });
     }
@@ -301,10 +299,11 @@ const Runner = ({ level, grade, subjectId }) => {
     bgOffsetRef.current -= currentSpeed * 0.5;
     if (bgOffsetRef.current <= -100) bgOffsetRef.current = 0;
 
-    // Actualizar jugador
+    // Actualizar jugador (gravedad)
     playerRef.current.velocityY -= gravityRef.current * timeScale; 
     playerRef.current.y += playerRef.current.velocityY * timeScale;
 
+    // Colisión con suelo
     if (playerRef.current.y < 0) {
       playerRef.current.y = 0;
       playerRef.current.velocityY = 0;
@@ -323,7 +322,8 @@ const Runner = ({ level, grade, subjectId }) => {
     explosionsRef.current = explosionsRef.current.filter(exp => Date.now() - exp.timestamp < 500);
 
     // Revisar fin de invencibilidad visual
-    if (isInvincible && Date.now() > invincibleUntilRef.current) {
+    if (invincibleUntilRef.current > 0 && Date.now() > invincibleUntilRef.current) {
+        invincibleUntilRef.current = 0;
         setIsInvincible(false);
     }
 
@@ -356,7 +356,7 @@ const Runner = ({ level, grade, subjectId }) => {
             height: ent.height * 0.6 
           };
           if (checkAABB(pRect, spikeRect)) {
-            if (Date.now() < invincibleUntilRef.current) {
+            if (invincibleUntilRef.current > 0) { // Check ref
                 spawnExplosion(ent.x, ent.y);
                 ent.collected = true; 
             } else {
@@ -391,7 +391,7 @@ const Runner = ({ level, grade, subjectId }) => {
               collectedWordsRef.current.push(ent.text);
               setScore(prev => prev + 1);
             } else {
-              if (Date.now() < invincibleUntilRef.current) {
+              if (invincibleUntilRef.current > 0) { // Check ref
                   spawnExplosion(ent.x, ent.y);
                   ent.collected = true; 
               } else {
@@ -405,6 +405,18 @@ const Runner = ({ level, grade, subjectId }) => {
 
     if (!landedOnPlatform && playerRef.current.y > 0) {
       playerRef.current.onPlatform = false;
+    }
+
+    // --- ANIMACIÓN DE DERRAPE (SKID) ---
+    // Si el jugador está en el suelo o en una plataforma, activamos la clase CSS
+    // Usamos playerWrapperRef para que el efecto no rote
+    const isGrounded = playerRef.current.y <= 0.1 || playerRef.current.onPlatform;
+    if (playerWrapperRef.current) {
+        if (isGrounded) {
+            playerWrapperRef.current.classList.add('on-ground');
+        } else {
+            playerWrapperRef.current.classList.remove('on-ground');
+        }
     }
 
     entitiesRef.current = entitiesRef.current.filter(ent => ent.x > -200);
@@ -615,7 +627,18 @@ const Runner = ({ level, grade, subjectId }) => {
             <div className="absolute inset-0 z-0 opacity-20" style={{ backgroundImage: `linear-gradient(to right, #4f46e5 1px, transparent 1px), linear-gradient(to bottom, #4f46e5 1px, transparent 1px)`, backgroundSize: '50px 50px', transform: `translateX(${bgOffsetRef.current}px)` }}></div>
             <div className="absolute bottom-0 w-full h-[60px] bg-black border-t-[4px] border-cyan-400 z-10 shadow-[0_-5px_20px_rgba(34,211,238,0.4)]"></div>
             
-            <div className="absolute z-20 flex items-center justify-center" style={{ left: `${playerRef.current.x}px`, bottom: `${60 + playerRef.current.y}px`, width: `${CUBE_SIZE}px`, height: `${CUBE_SIZE}px`, transition: 'none' }}>
+            {/* WRAPPER DEL JUGADOR: Aquí aplicamos el ref para detectar suelo y la partícula */}
+            <div 
+              ref={playerWrapperRef}
+              className="absolute z-20 flex items-center justify-center" 
+              style={{ left: `${playerRef.current.x}px`, bottom: `${60 + playerRef.current.y}px`, width: `${CUBE_SIZE}px`, height: `${CUBE_SIZE}px`, transition: 'none' }}
+            >
+              {/* Partículas fuera del renderCharacter para no rotar. 3 DIVS para efecto más intenso */}
+              <div className="skid-particles">
+                <div className="p1"></div>
+                <div className="p2"></div>
+                <div className="p3"></div>
+              </div>
               {renderCharacter(selectedChar)}
             </div>
 

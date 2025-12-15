@@ -1,0 +1,73 @@
+/* src/apps/_shared/Runner.css */
+
+/* ============================
+   Efecto de Derrape (Skidding) - MEJORADO
+   ============================ */
+
+/* Contenedor principal de partículas */
+.skid-particles {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 20px;
+    height: 10px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+    z-index: 5;
+}
+
+/* Solo visible cuando está en el suelo */
+.on-ground .skid-particles {
+    opacity: 1;
+}
+
+/* Estilo común para todas las partículas */
+.skid-particles div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 2px;
+    /* Animación base */
+    animation: skidAnimation 0.5s infinite linear;
+}
+
+/* Partícula 1: Grande y rápida */
+.skid-particles .p1 {
+    width: 8px;
+    height: 8px;
+    animation-delay: 0s;
+}
+
+/* Partícula 2: Mediana y retrasada */
+.skid-particles .p2 {
+    width: 6px;
+    height: 6px;
+    left: 4px;
+    bottom: 2px;
+    background-color: rgba(255, 255, 255, 0.7);
+    animation-delay: 0.15s;
+}
+
+/* Partícula 3: Pequeña y más retrasada */
+.skid-particles .p3 {
+    width: 5px;
+    height: 5px;
+    left: 2px;
+    bottom: 1px;
+    background-color: rgba(255, 255, 255, 0.6);
+    animation-delay: 0.3s;
+}
+
+@keyframes skidAnimation {
+    0% {
+      transform: translate(0, 0) scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      /* Se mueven hacia atrás (izquierda) y un poco hacia arriba */
+      transform: translate(-35px, -15px) scale(0) rotate(-90deg);
+      opacity: 0;
+    }
+}
