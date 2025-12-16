@@ -44,11 +44,12 @@
   position: relative;
   cursor: pointer;
   transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1), box-shadow 0.3s ease;
+  /* Añadimos una transición más elástica para el efecto pop */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
   border-radius: 1rem;
 }
 
-.carta:not(.flipped):not(.matched):hover {
+.carta:not(.flipped):not(.matched):not(.peeking):hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
@@ -57,19 +58,33 @@
   transform: rotateY(180deg);
 }
 
-/* ESTADO PEEKING (TRANSPARENCIA / AYUDA) */
-.carta.peeking .carta-dorso {
-  opacity: 0.1; /* El dorso casi desaparece */
+/* --- NUEVO ESTADO PEEKING (EFECTO POP SUTIL) --- */
+
+.carta.peeking {
+  /* CAMBIO AQUÍ: Reducido de 1.15 a 1.03 para un aumento muy ligero */
+  transform: scale(1.03) !important; 
+  z-index: 50; /* Aseguramos que quede por encima de todas */
+  /* Brillo dorado intenso para destacar */
+  box-shadow: 0 0 30px rgba(250, 204, 21, 0.9), 0 0 15px rgba(250, 204, 21, 0.6) !important;
 }
 
-.carta.peeking .carta-frente {
-  /* Forzamos que el frente mire al usuario sin girar el contenedor 3D */
-  transform: rotateY(0deg) !important; 
-  opacity: 0.6; /* Efecto fantasma */
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.8), inset 0 0 20px rgba(99, 102, 241, 0.2);
-  border-color: rgba(99, 102, 241, 0.5);
+/* El dorso desaparece instantáneamente para el reveal */
+.carta.peeking .carta-dorso {
+  opacity: 0;
+  transition: opacity 0.1s ease-in;
 }
+
+/* El frente se hace visible "mágicamente" sin girar */
+.carta.peeking .carta-frente {
+  transform: rotateY(0deg) !important; /* Forzamos que mire al frente */
+  opacity: 1;
+  z-index: -1;
+  /* Borde dorado para indicar que es una pista */
+  border: 3px solid rgba(250, 204, 21, 0.8);
+  background-color: #fffbeb; /* Fondo ligeramente cálido */
+}
+
+/* ----------------------------------------- */
 
 /* Cartas acertadas */
 .carta.matched {
@@ -87,7 +102,8 @@
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: opacity 0.5s ease, transform 0.5s ease; /* Transiciones suaves para el efecto peek */
+  /* Transiciones suaves para opacity y transform */
+  transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
 }
 
 .carta-frente {
@@ -151,3 +167,4 @@
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
+
