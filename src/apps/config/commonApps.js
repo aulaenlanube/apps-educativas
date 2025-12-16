@@ -16,6 +16,7 @@ import Runner from '../_shared/Runner';
 import VisualizadorFiguras3D from '../visualizador-figuras-3d/VisualizadorFiguras3D';
 import ParejasDeCartas from '../parejas-de-cartas/ParejasDeCartas';
 import LluviaDePalabras from '../lluvia-de-palabras/LluviaDePalabras';
+import Clasificador from '../_shared/Clasificador'; 
 
 // Apps Comunes
 export const appIslaDeLaCalma = {
@@ -100,6 +101,13 @@ export const appParejas = {
   name: 'Parejas de Cartas',
   description: 'Entrena tu memoria visual encontrando las parejas.',
   component: ParejasDeCartas
+};
+
+export const appClasificador = { 
+  id: 'clasificador', 
+  name: 'Clasificador', 
+  description: 'Clasifica los conceptos en su categoría correcta.', 
+  component: Clasificador 
 };
 
 // Apps de Matemáticas compartidas (Romanos, MayorMenor, Medidas)

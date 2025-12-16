@@ -7,7 +7,7 @@ import {
     appGeneradorPersonajes, appBuscaElIntruso, appRosco, appOrdenaBolas, appRunner,
     appNumerosRomanos3, appNumerosRomanos4, appNumerosRomanosAdvanced,
     appMayorMenor1, appMayorMenor2, appMayorMenor3, appMayorMenor4, appMayorMenor5, appMayorMenor6,
-    appMedidas1, appMedidas2, appMedidas3, appMedidas4, appMedidas5, appMedidas6, appLluviaDePalabras, appParejas
+    appMedidas1, appMedidas2, appMedidas3, appMedidas4, appMedidas5, appMedidas6, appLluviaDePalabras, appParejas, appClasificador
 } from './commonApps';
 
 // Importaciones específicas de Primaria
@@ -51,7 +51,8 @@ export const primariaApps = {
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'matematicas': [
       { id: 'sumas-primaria-1', name: 'Sumas sin llevadas', description: 'Aprende a sumar números de dos cifras.', component: SumasPrimaria1 },
@@ -61,28 +62,32 @@ export const primariaApps = {
       appRunner, appOrdenaBolas, appRosco, appMedidas1, appMayorMenor1, appNumerosRomanos3, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ciencias-naturales': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ciencias-sociales': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ingles': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'tutoria': [
       appRunner, appRosco, appIslaDeLaCalma, appGeneradorPersonajes,
@@ -90,21 +95,24 @@ export const primariaApps = {
       appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'valenciano': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'frances': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ]
   },
   '2': {
@@ -113,7 +121,8 @@ export const primariaApps = {
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'matematicas': [
       { id: 'sumas-primaria-2-drag', name: 'Sumas con llevadas', description: 'Resuelve sumas de dos cifras.', component: SumasPrimaria2 },
@@ -123,28 +132,32 @@ export const primariaApps = {
       appRunner, appOrdenaBolas, appRosco, appMedidas2, appMayorMenor2, appNumerosRomanos3, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ciencias-naturales': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ciencias-sociales': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ingles': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
@@ -152,21 +165,24 @@ export const primariaApps = {
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'valenciano': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'frances': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ]
   },
   '3': {
@@ -175,7 +191,8 @@ export const primariaApps = {
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'matematicas': [
       appBuscaElIntruso,
@@ -186,28 +203,32 @@ export const primariaApps = {
       appRunner, appOrdenaBolas, appRosco, appMedidas3, appMayorMenor3, appNumerosRomanos3, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ciencias-naturales': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ciencias-sociales': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ingles': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
@@ -215,21 +236,24 @@ export const primariaApps = {
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'valenciano': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'frances': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ]
   },
   '4': {
@@ -238,7 +262,8 @@ export const primariaApps = {
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'matematicas': [
       appBuscaElIntruso,
@@ -250,28 +275,32 @@ export const primariaApps = {
       appRunner, appOrdenaBolas, appRosco, appMedidas4, appMayorMenor4, appNumerosRomanos4, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ciencias-naturales': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ciencias-sociales': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ingles': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
@@ -279,21 +308,24 @@ export const primariaApps = {
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'valenciano': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'frances': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ]
   },
   '5': {
@@ -302,7 +334,8 @@ export const primariaApps = {
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'matematicas': [
       appBuscaElIntruso,
@@ -314,28 +347,32 @@ export const primariaApps = {
       appRunner, appOrdenaBolas, appRosco, appMedidas5, appMayorMenor5, appNumerosRomanosAdvanced, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ciencias-naturales': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ciencias-sociales': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ingles': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
@@ -343,21 +380,24 @@ export const primariaApps = {
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'valenciano': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'frances': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ]
   },
   '6': {
@@ -366,7 +406,8 @@ export const primariaApps = {
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'matematicas': [
       appBuscaElIntruso,
@@ -378,28 +419,32 @@ export const primariaApps = {
       appRunner, appOrdenaBolas, appRosco, appMedidas6, appMayorMenor6, appNumerosRomanosAdvanced, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ciencias-naturales': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       { ...appParejas, id: 'parejas-naturales-6', name: 'Parejas de Cartas' },
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ciencias-sociales': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'ingles': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
@@ -407,21 +452,24 @@ export const primariaApps = {
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'valenciano': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ],
     'frances': [
       appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
-      appLluviaDePalabras
+      appLluviaDePalabras,
+      appClasificador
     ]
   }
 };

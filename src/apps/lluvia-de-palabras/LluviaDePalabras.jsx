@@ -10,8 +10,27 @@ const INITIAL_SPEED = 0.15;
 const SPEED_INCREMENT_PER_LEVEL = 0.001; 
 const SPAWN_DECREMENT_PER_LEVEL = 25;    
 
-// Colores fijos
-const CATEGORY_COLORS = ['bg-red-500', 'bg-green-500', 'bg-blue-500'];
+// Colores fijos para las categorías
+const CATEGORY_COLORS = ['bg-red-500', 'bg-green-500', 'bg-blue-500', 'bg-purple-500'];
+
+// --- ESTILOS ACTUALIZADOS ---
+const gridStyles = `
+  @keyframes moveGrid {
+    0% { background-position: 0 0; }
+    /* CAMBIO: Valor negativo (-80px) para invertir la dirección (hacia arriba) */
+    100% { background-position: 0 -80px; } 
+  }
+  .scrolling-grid {
+    width: 100%;
+    height: 100%;
+    background-size: 80px 80px; 
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    animation: moveGrid 0.8s linear infinite;
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  }
+`;
 
 const LluviaDePalabras = () => {
     const { toast } = useToast();
@@ -49,8 +68,16 @@ const LluviaDePalabras = () => {
         const loadGameData = async () => {
             setGamePhase('loading');
             try {
-                if (!subjectId) throw new Error("No asignatura");
-                // CAMBIO: Ahora usamos el fichero runner para obtener los datos
+                if (!subjectId) {
+                    const mockData = {
+                        "Sustantivos": ["Casa", "Perro", "Árbol", "Mesa"],
+                        "Verbos": ["Correr", "Saltar", "Comer", "Dormir"],
+                        "Adjetivos": ["Rojo", "Grande", "Rápido", "Feliz"]
+                    };
+                    setConfigData({ title: "Prueba de Gramática", ...mockData });
+                    setGamePhase('menu');
+                    return;
+                }
                 const fileName = `${subjectId}-runner.json`;
                 const response = await fetch(`/data/${level}/${grade}/${fileName}`);
                 if (!response.ok) throw new Error(`Error loading ${fileName}`);
@@ -59,6 +86,8 @@ const LluviaDePalabras = () => {
                 setGamePhase('menu'); 
             } catch (error) {
                 console.error("Error:", error);
+                 setConfigData({ "Cat A": ["A1"], "Cat B": ["B1"] });
+                 setGamePhase('menu');
             }
         };
         loadGameData();
@@ -78,34 +107,28 @@ const LluviaDePalabras = () => {
         lastSpawnTime.current = performance.now();
         setBoxAnimation({ col: null, type: null });
 
-        // CAMBIO: Adaptación para leer el formato runner (Clave -> Array de palabras)
-        const allCategoriesKeys = Object.keys(configData);
-        
-        // Mezclamos las categorías disponibles para que sea variado
+        const allCategoriesKeys = Object.keys(configData).filter(k => k !== 'title' && k !== 'instructions');
         const shuffledKeys = [...allCategoriesKeys].sort(() => 0.5 - Math.random());
-
-        const numCategories = selectedDifficulty === 'easy' ? 2 : 3;
-        // Nos aseguramos de no pedir más categorías de las que existen
-        const selectedKeys = shuffledKeys.slice(0, Math.min(numCategories, shuffledKeys.length));
+        const numCategories = selectedDifficulty === 'easy' ? 2 : Math.min(3, shuffledKeys.length);
+        const selectedKeys = shuffledKeys.slice(0, numCategories);
         
         const processedCategories = selectedKeys.map((key, index) => ({
             id: `cat-${index}`, 
             originalId: index,
-            // Formateamos el nombre: primera mayúscula y guiones bajos por espacios
             name: key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' '),
             color: CATEGORY_COLORS[index % CATEGORY_COLORS.length]
         }));
 
         const processedWords = [];
         selectedKeys.forEach((key, index) => {
-            const catId = `cat-${index}`;
+            const currentCat = processedCategories.find(c => c.name === key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' '));
             const wordsList = configData[key];
             
-            if (wordsList && Array.isArray(wordsList)) {
+            if (wordsList && Array.isArray(wordsList) && currentCat) {
                 wordsList.forEach(wordText => {
                     processedWords.push({
                         text: wordText,
-                        categoryId: catId
+                        categoryId: currentCat.id
                     });
                 });
             }
@@ -155,15 +178,14 @@ const LluviaDePalabras = () => {
         if (time - lastSpawnTime.current > currentSpawnRate) {
             if (availableWords.length > 0) {
                 const randomWord = availableWords[Math.floor(Math.random() * availableWords.length)];
-                const numCols = categories.length;
-                const randomCol = Math.floor(Math.random() * numCols);
+                const randomCol = Math.floor(Math.random() * categories.length);
                 
                 const newWord = {
                     id: Date.now() + Math.random(),
                     text: randomWord.text,
                     categoryId: randomWord.categoryId,
                     colIndex: randomCol,
-                    y: -10 
+                    y: -15 
                 };
                 setFallingWords(prev => [...prev, newWord]);
             }
@@ -251,7 +273,6 @@ const LluviaDePalabras = () => {
         return (
             <div className="flex flex-col items-center justify-center h-[65vh] gap-8 text-center px-4 max-w-2xl mx-auto">
                 <div>
-                    {/* CAMBIO: Usamos textos por defecto porque el runner.json no tiene title/instructions */}
                     <h2 className="text-4xl font-bold text-slate-800 mb-2">
                         {configData.title || "Lluvia de Palabras"}
                     </h2>
@@ -324,16 +345,22 @@ const LluviaDePalabras = () => {
 
     // 3. JUEGO
     const numCols = categories.length;
+    // Ancho exacto de columna para centrado
     const colWidthPercent = 100 / numCols; 
 
     return (
-        <div className="relative w-full max-w-lg mx-auto h-[75vh] bg-slate-50 overflow-hidden rounded-xl border-2 border-slate-200 shadow-inner select-none touch-none">
+        <div className="relative w-full max-w-lg mx-auto h-[75vh] bg-slate-900 overflow-hidden rounded-xl border-2 border-slate-700 shadow-2xl select-none touch-none">
             
+            <style>{gridStyles}</style>
+
+            {/* Capa de rejilla animada */}
+            <div className="absolute inset-0 scrolling-grid pointer-events-none"></div>
+
             {/* HUD SUPERIOR */}
             <div className="absolute top-4 w-full px-4 grid grid-cols-3 items-start z-10">
                 <div className="flex justify-start">
                     <div 
-                        className="bg-white/90 w-10 h-10 rounded-full border shadow-sm flex items-center justify-center cursor-pointer hover:bg-slate-50 text-slate-600 transition-transform active:scale-95"
+                        className="bg-white/90 w-10 h-10 rounded-full border shadow-sm flex items-center justify-center cursor-pointer hover:bg-slate-100 text-slate-700 transition-transform active:scale-95"
                         onClick={togglePause}
                     >
                         {gamePhase === 'paused' ? <Play className="w-5 h-5 ml-1" /> : <Pause className="w-5 h-5" />}
@@ -343,7 +370,7 @@ const LluviaDePalabras = () => {
                 <div className="flex justify-center">
                     {difficulty !== 'hard' && (
                          <div 
-                            className="bg-white/90 px-3 py-1.5 rounded-full border shadow-sm flex items-center gap-2 cursor-pointer transition-colors hover:bg-slate-50"
+                            className="bg-white/90 px-3 py-1.5 rounded-full border shadow-sm flex items-center gap-2 cursor-pointer transition-colors hover:bg-slate-100"
                             onClick={() => setShowHelp(!showHelp)}
                         >
                             <Lightbulb className={`w-4 h-4 ${showHelp ? 'text-yellow-500 fill-yellow-500' : 'text-slate-400'}`} />
@@ -355,88 +382,125 @@ const LluviaDePalabras = () => {
                 </div>
 
                 <div className="flex flex-col items-end gap-2">
-                    <div className="bg-white/90 px-4 py-1 rounded-full border shadow-sm font-bold text-slate-700">
+                    <div className="bg-white/90 px-4 py-1 rounded-full border shadow-sm font-bold text-slate-800">
                         {score} pts
                     </div>
                     <div className="flex gap-1">
                         {[...Array(3)].map((_, i) => (
-                            <span key={i} className={`text-xl ${i < lives ? 'opacity-100' : 'opacity-20'}`}>❤️</span>
+                            <span key={i} className={`text-xl drop-shadow-md ${i < lives ? 'opacity-100' : 'opacity-20 grayscale'}`}>❤️</span>
                         ))}
                     </div>
                 </div>
             </div>
 
             {/* PAUSA */}
-            {gamePhase === 'paused' && (
-                <div className="absolute inset-0 bg-white/60 backdrop-blur-sm z-50 flex flex-col items-center justify-center gap-4">
-                    <h2 className="text-3xl font-bold text-slate-800">Juego Pausado</h2>
-                    <Button size="lg" onClick={togglePause} className="gap-2 w-48 shadow-lg">
-                        <Play className="w-5 h-5" /> Continuar
-                    </Button>
-                    <Button 
-                        variant="secondary" 
-                        onClick={returnToMenu} 
-                        className="gap-2 w-48 bg-white border border-slate-200 shadow-md text-slate-700 font-bold"
+            <AnimatePresence>
+                {gamePhase === 'paused' && (
+                    <motion.div 
+                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                        className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex flex-col items-center justify-center gap-4"
                     >
-                        <Home className="w-5 h-5" /> Elegir dificultad
-                    </Button>
-                </div>
-            )}
-
-            {/* GRID */}
-            <div className={`absolute inset-0 grid w-full h-full pointer-events-none`} style={{ gridTemplateColumns: `repeat(${numCols}, 1fr)`}}>
-                {[...Array(numCols - 1)].map((_, i) => (
-                    <div key={i} className="border-r border-slate-200 dashed opacity-50 h-full w-full"></div>
-                ))}
-            </div>
+                        <h2 className="text-3xl font-bold text-white mb-4">Juego Pausado</h2>
+                        <Button size="lg" onClick={togglePause} className="gap-2 w-48 shadow-lg bg-yellow-500 hover:bg-yellow-600 text-yellow-950 font-bold border-none">
+                            <Play className="w-5 h-5" /> Continuar
+                        </Button>
+                        <Button 
+                            variant="secondary" 
+                            onClick={returnToMenu} 
+                            className="gap-2 w-48 bg-slate-700 hover:bg-slate-600 text-white border-slate-600 shadow-md"
+                        >
+                            <Home className="w-5 h-5" /> Elegir dificultad
+                        </Button>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* PALABRAS */}
-            {fallingWords.map(word => {
-                const targetCategory = categories.find(c => c.id === word.categoryId);
-                const canShowHelp = showHelp && difficulty !== 'hard';
-                const helperColor = (canShowHelp && targetCategory) ? targetCategory.color : '';
+            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                 <AnimatePresence>
+                    {fallingWords.map(word => {
+                        const targetCategory = categories.find(c => c.id === word.categoryId);
+                        const canShowHelp = showHelp && difficulty !== 'hard';
+                        const helperColor = (canShowHelp && targetCategory) ? targetCategory.color : '';
 
-                return (
-                    <div
-                        key={word.id}
-                        className={`absolute transform -translate-x-1/2 px-3 py-1 rounded-md shadow-md border-2 
-                            ${helperColor ? helperColor + ' border-white text-white' : 'bg-white border-slate-300 text-slate-800'}
-                            font-bold text-sm md:text-base whitespace-nowrap z-0 transition-colors duration-300`}
-                        style={{
-                            left: `${(word.colIndex * colWidthPercent) + (colWidthPercent / 2)}%`,
-                            top: `${word.y}%`
-                        }}
-                    >
-                        {word.text}
-                    </div>
-                );
-            })}
-
-            {/* CAJAS Y BOTONES DE INTERCAMBIO MEJORADOS */}
-            <div className="absolute bottom-0 w-full h-[18%] bg-slate-100 border-t-2 border-slate-300 flex items-center justify-around px-2 pb-2 z-20">
-                {categories.map((cat, index) => (
-                    <React.Fragment key={cat.id}>
-                        {/* Caja */}
-                        <motion.div 
-                            animate={getBoxAnimation(index)}
-                            className={`h-[85%] ${cat.color} rounded-xl shadow-lg flex items-center justify-center text-white transition-colors p-2 text-center relative border-2 border-transparent`}
-                            style={{ width: `${90 / numCols}%` }} 
-                        >
-                            <span className="font-bold text-sm md:text-lg leading-tight drop-shadow-md">{cat.name}</span>
-                        </motion.div>
-
-                        {/* Botón Swap: Más grande, centrado y superpuesto */}
-                        {index < numCols - 1 && (
-                            <Button 
-                                variant="outline" size="icon" 
-                                className="rounded-full w-12 h-12 md:w-16 md:h-16 bg-yellow-400 hover:bg-yellow-500 border-4 border-white shadow-xl shrink-0 z-50 -mx-6"
-                                onClick={() => swapCategories(index, index + 1)}
+                        return (
+                            <motion.div
+                                key={word.id}
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0 }}
+                                className={`absolute transform -translate-x-1/2 px-3 py-1.5 rounded-lg shadow-lg border-2 
+                                    ${helperColor ? helperColor + ' border-white text-white' : 'bg-white border-slate-200 text-slate-800'}
+                                    font-bold text-sm md:text-base whitespace-nowrap z-0 transition-colors duration-300`}
+                                style={{
+                                    left: `${(word.colIndex * colWidthPercent) + (colWidthPercent / 2)}%`,
+                                    top: `${word.y}%`
+                                }}
                             >
-                                <ArrowLeftRight className="h-6 w-6 md:h-8 md:w-8 text-yellow-950" />
-                            </Button>
-                        )}
-                    </React.Fragment>
-                ))}
+                                {word.text}
+                            </motion.div>
+                        );
+                    })}
+                </AnimatePresence>
+            </div>
+
+            {/* CONTENEDOR DE CAJAS (GRID) */}
+            <div 
+                className="absolute bottom-0 w-full h-[18%] bg-slate-100 border-t-4 border-slate-300 grid items-center z-20 pb-2"
+                style={{ 
+                    // Grid con columnas exactamente iguales
+                    gridTemplateColumns: `repeat(${numCols}, 1fr)`,
+                    // Eliminado cualquier padding horizontal que cause desalineación
+                    paddingLeft: 0,
+                    paddingRight: 0 
+                }}
+            >
+                <AnimatePresence mode='popLayout'>
+                    {categories.map((cat, index) => (
+                        <React.Fragment key={cat.id}>
+                            {/* CAJA DE CATEGORÍA */}
+                            <motion.div 
+                                layout
+                                layoutId={cat.id}
+                                animate={getBoxAnimation(index)}
+                                className={`h-[85%] ${cat.color} rounded-2xl shadow-xl flex items-center justify-center text-white transition-colors p-2 text-center relative border-4 border-white/20`}
+                                // Al estar en un Grid, 'justify-self-center' centra la caja en su columna
+                                style={{ width: '90%', justifySelf: 'center' }} 
+                            >
+                                <span className="font-black text-base md:text-xl leading-tight drop-shadow-md tracking-wide uppercase">{cat.name}</span>
+                            </motion.div>
+
+                            {/* BOTÓN DE INTERCAMBIO (Posicionado Absolutamente) */}
+                            {index < numCols - 1 && (
+                                <div 
+                                    className="absolute z-50 flex items-center justify-center w-12 h-12 pointer-events-auto"
+                                    style={{
+                                        // Se coloca exactamente en el borde derecho de la columna actual
+                                        left: `${(index + 1) * colWidthPercent}%`,
+                                        transform: 'translateX(-50%)' // Se centra sobre la línea
+                                    }}
+                                >
+                                     <Button 
+                                        variant="outline" size="icon" 
+                                        className="
+                                            rounded-full w-12 h-12 md:w-16 md:h-16 
+                                            bg-gradient-to-br from-yellow-400 to-amber-500 
+                                            hover:from-yellow-300 hover:to-amber-400
+                                            border-4 border-white 
+                                            shadow-[0_4px_15px_rgba(234,179,8,0.5)] 
+                                            hover:shadow-[0_6px_20px_rgba(234,179,8,0.7)]
+                                            hover:scale-110 active:scale-95 transition-all duration-200
+                                            group
+                                        "
+                                        onClick={() => swapCategories(index, index + 1)}
+                                    >
+                                        <ArrowLeftRight className="h-6 w-6 md:h-8 md:w-8 text-white drop-shadow-sm group-hover:rotate-180 transition-transform duration-300" />
+                                    </Button>
+                                </div>
+                            )}
+                        </React.Fragment>
+                    ))}
+                </AnimatePresence>
             </div>
         </div>
     );
