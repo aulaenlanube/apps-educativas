@@ -7,7 +7,7 @@ import {
     appGeneradorPersonajes, appBuscaElIntruso, appRosco, appOrdenaBolas, appRunner,
     appNumerosRomanos3, appNumerosRomanos4, appNumerosRomanosAdvanced,
     appMayorMenor1, appMayorMenor2, appMayorMenor3, appMayorMenor4, appMayorMenor5, appMayorMenor6,
-    appMedidas1, appMedidas2, appMedidas3, appMedidas4, appMedidas5, appMedidas6
+    appMedidas1, appMedidas2, appMedidas3, appMedidas4, appMedidas5, appMedidas6, appLluviaDePalabras, appParejas
 } from './commonApps';
 
 // Importaciones específicas de Primaria
@@ -17,9 +17,6 @@ import SupermercadoMatematico3 from '../supermercado-matematico/primaria-3/Super
 import SupermercadoMatematico4 from '../supermercado-matematico/primaria-4/SupermercadoMatematico4';
 import SupermercadoMatematico5 from '../supermercado-matematico/primaria-5/SupermercadoMatematico5';
 import SupermercadoMatematico6 from '../supermercado-matematico/primaria-6/SupermercadoMatematico6';
-
-// Nueva App: Parejas de Cartas
-import ParejasDeCartas from '../parejas-de-cartas/ParejasDeCartas';
 
 // Apps de Matemáticas específicas (Rutas absolutas o alias)
 import SumasPrimaria1 from '@/apps/sumas/primaria-1/SumasPrimaria1';
@@ -47,21 +44,14 @@ import DivisionesPrimaria6 from '../divisiones/primaria-6/DivisionesPrimaria6';
 
 export const primariaSubjects = materiasData.primaria;
 
-// Definición base de la app Parejas
-const appParejas = {
-  id: 'parejas',
-  name: 'Parejas de Cartas',
-  description: 'Entrena tu memoria visual encontrando las parejas.',
-  component: ParejasDeCartas
-};
-
 export const primariaApps = {
   '1': {
     'lengua': [
-      { id: 'busca-el-intruso-lengua-1', name: 'Busca el Intruso', description: 'Encuentra la letra diferente.', component: appBuscaElIntruso.component },
+      appBuscaElIntruso,
       appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-1', name: 'Detective de Palabras' },
-      appParejas      
+      appParejas,
+      appLluviaDePalabras
     ],
     'matematicas': [
       { id: 'sumas-primaria-1', name: 'Sumas sin llevadas', description: 'Aprende a sumar números de dos cifras.', component: SumasPrimaria1 },

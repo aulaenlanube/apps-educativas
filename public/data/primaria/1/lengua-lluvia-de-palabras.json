@@ -1,0 +1,19 @@
+{
+  "title": "Lluvia de Palabras: Conceptos Básicos",
+  "instructions": "Usa los botones amarillos para cambiar el orden de las cajas. Activa la ayuda si lo necesitas.",
+  "gameType": "lluvia-de-clasificacion",
+  "config": [
+    {
+      "category": "Animales",
+      "items": ["Perro", "Gato", "León", "Elefante"]
+    },
+    {
+      "category": "Cuerpo",
+      "items": ["Mano", "Pie", "Cabeza", "Nariz"]
+    },
+    {
+      "category": "Colores",
+      "items": ["Rojo", "Azul", "Verde", "Amarillo"]
+    }
+  ]
+}

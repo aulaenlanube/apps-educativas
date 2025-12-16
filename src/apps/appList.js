@@ -3,10 +3,6 @@ import { lazy } from 'react';
 import { primariaApps, primariaSubjects } from './config/primariaApps';
 import { esoApps, esoSubjects } from './config/esoApps';
 
-
-
-const MemoryMatchGame = lazy(() => import('./_shared/MemoryMatchGame')); // Importa el nuevo componente
-
 // Re-exportamos todo
 export { primariaApps, esoApps, primariaSubjects, esoSubjects };
 

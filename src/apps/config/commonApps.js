@@ -14,6 +14,8 @@ import RoscoJuego from '../rosco/RoscoJuego';
 import OrdenaBolas from '@/apps/ordena-bolas/OrdenaBolas';
 import Runner from '../_shared/Runner';
 import VisualizadorFiguras3D from '../visualizador-figuras-3d/VisualizadorFiguras3D';
+import ParejasDeCartas from '../parejas-de-cartas/ParejasDeCartas';
+import LluviaDePalabras from '../lluvia-de-palabras/LluviaDePalabras';
 
 // Apps Comunes
 export const appIslaDeLaCalma = {
@@ -84,6 +86,20 @@ export const appVisualizador3D = {
     name: 'Laboratorio de Figuras 3D', 
     description: 'Explora, rota y analiza las principales figuras geométricas en 3D.', 
     component: VisualizadorFiguras3D 
+};
+
+export const appLluviaDePalabras = {
+    id: 'lluvia-de-palabras',
+    name: 'Lluvia de Palabras',
+    description: 'Atrapa las palabras correctas que caen del cielo.',
+    component: LluviaDePalabras
+};
+
+export const appParejas = {
+  id: 'parejas',
+  name: 'Parejas de Cartas',
+  description: 'Entrena tu memoria visual encontrando las parejas.',
+  component: ParejasDeCartas
 };
 
 // Apps de Matemáticas compartidas (Romanos, MayorMenor, Medidas)
