@@ -8,12 +8,15 @@ import { findAppById } from '@/apps/appList';
 import DonationModal from '@/components/ui/DonationModal';
 
 const AppRunnerPage = () => {
-    const { level, grade, appId } = useParams();
+    // FUSIÓN: Extraemos subjectId directamente de la URL para asegurar el retorno correcto
+    const { level, grade, subjectId, appId } = useParams();
     const navigate = useNavigate();
 
     const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
 
-    const result = findAppById(appId, level, grade);
+    // Buscamos la app. Nota: Aunque pasemos 4 argumentos, si tu función solo acepta 3, ignorará el último.
+    // Lo importante es que tenemos 'subjectId' de la URL para el botón de volver.
+    const result = findAppById(appId, level, grade, subjectId);
 
     if (!result) {
         return (
@@ -27,15 +30,17 @@ const AppRunnerPage = () => {
         );
     }
 
-    const { app, subjectId } = result;
+    // Extraemos datos del resultado. 
+    // Usamos alias para evitar conflictos con las variables de useParams si fuera necesario.
+    const { app } = result;
     const AppToRender = app.component;
 
-    const hasSubject = subjectId && subjectId !== 'general';
-    const backPath = hasSubject
+    // FUSIÓN: Lógica de botón "Volver" usando el subjectId de la URL (más robusto)
+    const backPath = subjectId 
         ? `/curso/${level}/${grade}/${subjectId}` 
         : `/curso/${level}/${grade}`;
     
-    const backButtonText = hasSubject ? 'Volver a la Asignatura' : 'Volver al Curso';
+    const backButtonText = subjectId ? 'Volver a la Asignatura' : 'Volver al Curso';
     
     const backgroundClass = app.id.startsWith('isla-de-la-calma')
         ? 'bg-[#f0f7f8]'
@@ -52,12 +57,7 @@ const AppRunnerPage = () => {
                 onOpenChange={setIsDonationModalOpen} 
             />
 
-            {/* CAMBIO: 
-                - 'pt-2': Muy poco espacio arriba (aprox 8px).
-                - 'px-4': Espacio a los lados.
-                - 'pb-4': Espacio abajo.
-                Esto debería subirlo lo máximo posible manteniendo la estética.
-            */}
+            {/* ESTILO: Se mantiene el estilo ajustado (pt-2, px-4) del segundo código */}
             <div className={`min-h-screen flex flex-col items-center justify-start pt-2 px-4 pb-4 ${backgroundClass}`}>
                 
                 <div className="w-full max-w-4xl flex justify-start items-center gap-3 mb-4">
@@ -80,7 +80,13 @@ const AppRunnerPage = () => {
                 </div>
 
                 <div className="w-full max-w-4xl relative">
-                    <AppToRender isPaused={isDonationModalOpen} />
+                    {/* FUSIÓN: Pasamos tanto isPaused como los datos de contexto (level, grade, subjectId) */}
+                    <AppToRender 
+                        isPaused={isDonationModalOpen} 
+                        level={level} 
+                        grade={grade} 
+                        subjectId={subjectId} 
+                    />
                 </div>
             </div>
         </>
