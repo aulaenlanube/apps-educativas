@@ -12,61 +12,48 @@ export const esoSubjects = materiasData.eso;
 export const esoApps = {
   '1': {
     'lengua': [
-      { id: 'busca-el-intruso-lengua-eso-1', name: 'Busca el Intruso', description: 'Refuerza gramática, comunicación y literatura.', component: appBuscaElIntruso.component },
-      appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
+      appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
     ],
     'matematicas': [
-      { id: 'busca-el-intruso-matematicas-eso-1', name: 'Busca el Intruso', description: 'Repasa números enteros, geometría y fracciones.', component: appBuscaElIntruso.component },
-      appVisualizador3D, appRunner, appOrdenaBolas, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
+      appBuscaElIntruso, appVisualizador3D, appRunner, appOrdenaBolas, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
     ],
     'historia': [
-      { id: 'busca-el-intruso-historia-eso-1', name: 'Busca el Intruso', description: 'Prehistoria, Edad Antigua y Geografía.', component: appBuscaElIntruso.component },
-      appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
+      appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
     ],
     'ingles': [
-      { id: 'busca-el-intruso-ingles-eso-1', name: 'Find the Odd One', description: 'Vocabulary and grammar review.', component: appBuscaElIntruso.component },
-      appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
+      appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-1', name: 'Detective de Palabras' },
       appParejas,
       appLluviaDePalabras
     ],
     'biologia': [
-      { id: 'busca-el-intruso-biologia-eso-1', name: 'Busca el Intruso', description: 'Los seres vivos y el planeta Tierra.', component: appBuscaElIntruso.component },
-      appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
+      appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
     ],
     'fisica': [
-      { id: 'busca-el-intruso-fisica-eso-1', name: 'Busca el Intruso', description: 'Introducción a la materia y la energía.', component: appBuscaElIntruso.component },
-      appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
+      appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
     ],
     'musica': [
-      { id: 'busca-el-intruso-musica-eso-1', name: 'Busca el Intruso', description: 'Lenguaje musical e instrumentos.', component: appBuscaElIntruso.component },
-      appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
+      appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
     ],
     'plastica': [
-      { id: 'busca-el-intruso-plastica-eso-1', name: 'Busca el Intruso', description: 'Elementos visuales y color.', component: appBuscaElIntruso.component },
-      appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
+      appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
     ],
     'tecnologia': [
-      { id: 'busca-el-intruso-tecnologia-eso-1', name: 'Busca el Intruso', description: 'Materiales, herramientas y proceso tecnológico.', component: appBuscaElIntruso.component },
-      appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
+      appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
     ],
     'ed-fisica': [
-      { id: 'busca-el-intruso-ed-fisica-eso-1', name: 'Busca el Intruso', description: 'Deportes y salud.', component: appBuscaElIntruso.component },
-      appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
+      appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
-      { id: 'busca-el-intruso-tutoria-eso-1', name: 'Busca el Intruso', description: 'Convivencia y técnicas de estudio.', component: appBuscaElIntruso.component },
-      appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
+      appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras
     ],
     'valenciano': [
-      { id: 'busca-el-intruso-valenciano-eso-1', name: "Busca l'Intrus", description: 'Gramàtica i vocabulari bàsic.', component: appBuscaElIntruso.component },
-      appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,, appParejas, appLluviaDePalabras,
+      appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria,, appParejas, appLluviaDePalabras,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-1', name: 'Detective de Palabras' }
     ],
     'frances': [
-      { id: 'busca-el-intruso-frances-eso-1', name: "Trouve l'Intrus", description: 'Vocabulaire de base.', component: appBuscaElIntruso.component },
-      appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
+      appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       { ...appDetectiveDePalabras, id: 'detective-de-palabras-eso-1', name: 'Detective de Palabras' }
     ]
   },
