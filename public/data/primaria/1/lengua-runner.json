@@ -2,6 +2,5 @@
   "monosilabas": ["Sol", "Sal", "Pan", "Pez", "Luz", "Dos", "Tres", "Gol", "Pie", "Flor", "Tren", "Mes"],
   "bisilabas": ["Casa", "Pato", "Mesa", "Silla", "Perro", "Gato", "Lápiz", "Libro", "Mano", "Boca"],
   "trisilabas": ["Tomate", "Pelota", "Zapato", "Ventana", "Camisa", "Plátano", "Estrella", "Cabeza"],
-  "nombres_propios": ["Ana", "Luis", "España", "Madrid", "Pedro", "María", "Ebro", "Duero", "Europa"],
-  "articulos": ["el", "la", "los", "las", "un", "una", "unos", "unas"]
+  "nombres_propios": ["Ana", "Luis", "España", "Madrid", "Pedro", "María", "Ebro", "Duero", "Europa"]  
 }
