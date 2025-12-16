@@ -50,7 +50,8 @@ const LluviaDePalabras = () => {
             setGamePhase('loading');
             try {
                 if (!subjectId) throw new Error("No asignatura");
-                const fileName = `${subjectId}-lluvia-de-palabras.json`;
+                // CAMBIO: Ahora usamos el fichero runner para obtener los datos
+                const fileName = `${subjectId}-runner.json`;
                 const response = await fetch(`/data/${level}/${grade}/${fileName}`);
                 if (!response.ok) throw new Error(`Error loading ${fileName}`);
                 const json = await response.json();
@@ -65,7 +66,7 @@ const LluviaDePalabras = () => {
 
     // --- INICIAR PARTIDA ---
     const startGame = (selectedDifficulty) => {
-        if (!configData?.config) return;
+        if (!configData) return;
 
         setDifficulty(selectedDifficulty);
         setScore(0);
@@ -77,21 +78,31 @@ const LluviaDePalabras = () => {
         lastSpawnTime.current = performance.now();
         setBoxAnimation({ col: null, type: null });
 
-        const numCategories = selectedDifficulty === 'easy' ? 2 : 3;
-        const rawCategories = configData.config.slice(0, numCategories);
+        // CAMBIO: Adaptación para leer el formato runner (Clave -> Array de palabras)
+        const allCategoriesKeys = Object.keys(configData);
         
-        const processedCategories = rawCategories.map((item, index) => ({
+        // Mezclamos las categorías disponibles para que sea variado
+        const shuffledKeys = [...allCategoriesKeys].sort(() => 0.5 - Math.random());
+
+        const numCategories = selectedDifficulty === 'easy' ? 2 : 3;
+        // Nos aseguramos de no pedir más categorías de las que existen
+        const selectedKeys = shuffledKeys.slice(0, Math.min(numCategories, shuffledKeys.length));
+        
+        const processedCategories = selectedKeys.map((key, index) => ({
             id: `cat-${index}`, 
             originalId: index,
-            name: item.category,
+            // Formateamos el nombre: primera mayúscula y guiones bajos por espacios
+            name: key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' '),
             color: CATEGORY_COLORS[index % CATEGORY_COLORS.length]
         }));
 
         const processedWords = [];
-        rawCategories.forEach((item, index) => {
+        selectedKeys.forEach((key, index) => {
             const catId = `cat-${index}`;
-            if (item.items && Array.isArray(item.items)) {
-                item.items.forEach(wordText => {
+            const wordsList = configData[key];
+            
+            if (wordsList && Array.isArray(wordsList)) {
+                wordsList.forEach(wordText => {
                     processedWords.push({
                         text: wordText,
                         categoryId: catId
@@ -240,8 +251,13 @@ const LluviaDePalabras = () => {
         return (
             <div className="flex flex-col items-center justify-center h-[65vh] gap-8 text-center px-4 max-w-2xl mx-auto">
                 <div>
-                    <h2 className="text-4xl font-bold text-slate-800 mb-2">{configData.title}</h2>
-                    <p className="text-lg text-slate-600">{configData.instructions}</p>
+                    {/* CAMBIO: Usamos textos por defecto porque el runner.json no tiene title/instructions */}
+                    <h2 className="text-4xl font-bold text-slate-800 mb-2">
+                        {configData.title || "Lluvia de Palabras"}
+                    </h2>
+                    <p className="text-lg text-slate-600">
+                        {configData.instructions || "Usa los botones amarillos para cambiar el orden de las cajas y clasificar las palabras que caen."}
+                    </p>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
