@@ -12,14 +12,16 @@ const ParejasDeCartas = ({ tema }) => {
   // Estados del juego
   const [fase, setFase] = useState('menu'); 
   const [config, setConfig] = useState({ filas: 4, columnas: 3, parejas: 6, ayudas: false });
+  const [restarting, setRestarting] = useState(false); // Controla la animación de sacudida
+  const [revealing, setRevealing] = useState(false);   // NUEVO: Controla el giro previo al reinicio
   
   // Datos
   const [datosCrudos, setDatosCrudos] = useState([]);
   const [cartas, setCartas] = useState([]);
   
   // Lógica de selección
-  const [eleccionUno, setEleccionUno] = useState(null); // Guardará uniqueId
-  const [eleccionDos, setEleccionDos] = useState(null); // Guardará uniqueId
+  const [eleccionUno, setEleccionUno] = useState(null); 
+  const [eleccionDos, setEleccionDos] = useState(null); 
   
   const [bloqueado, setBloqueado] = useState(false);
   const [turnos, setTurnos] = useState(0);
@@ -29,6 +31,8 @@ const ParejasDeCartas = ({ tema }) => {
   const peekTimeoutRef = useRef(null);
   const peekIntervalRef = useRef(null);
   const colaAyudasRef = useRef([]); 
+  
+  const randomDelaysRef = useRef({});
 
   // Helper: Detecta letras
   const contieneLetras = (str) => {
@@ -65,7 +69,7 @@ const ParejasDeCartas = ({ tema }) => {
     { nombre: 'Fácil', filas: 2, columnas: 4, parejas: 4 },
     { nombre: 'Normal', filas: 3, columnas: 4, parejas: 6 },
     { nombre: 'Difícil', filas: 4, columnas: 5, parejas: 10 },
-    { nombre: 'Experto', filas: 4, columnas: 6, parejas: 12 }
+    { nombre: 'PRO', filas: 4, columnas: 6, parejas: 12 }
   ];
 
   const iniciarJuego = (opcion) => {
@@ -75,6 +79,7 @@ const ParejasDeCartas = ({ tema }) => {
     mezclarCartas(parejasReales);
     setFase('juego');
     colaAyudasRef.current = []; 
+    randomDelaysRef.current = {}; 
   };
 
   const mezclarCartas = (cantidadParejas) => {
@@ -199,10 +204,39 @@ const ParejasDeCartas = ({ tema }) => {
   const volverAlMenu = () => {
     setFase('menu');
     setCartas([]);
+    setRestarting(false);
+    setRevealing(false);
   };
 
-  const reiniciarNivel = () => iniciarJuego(config);
+  // --- LÓGICA DE REINICIO CON REVELADO Y VIBRACIÓN ---
+  const reiniciarNivel = () => {
+    if (restarting || revealing) return; // Evitar clicks múltiples
+    
+    // 1. Mostrar todas las cartas
+    setRevealing(true);
+    
+    // 2. Esperar 400ms para que se giren y se vean
+    setTimeout(() => {
+      // 3. Activar la vibración
+      setRestarting(true);
+      
+      // 4. Esperar a que termine la vibración (600ms) para barajar
+      setTimeout(() => {
+        iniciarJuego(config); // Esto reseteará cartas y el estado revealing implícitamente
+        setRestarting(false);
+        setRevealing(false);
+      }, 700); 
+    }, 400); 
+  };
+
   const toggleAyudas = () => setConfig(prev => ({ ...prev, ayudas: !prev.ayudas }));
+
+  const getRandomDelay = (id) => {
+    if (!randomDelaysRef.current[id]) {
+      randomDelaysRef.current[id] = Math.random() * 0.2;
+    }
+    return randomDelaysRef.current[id];
+  };
 
   if (cargando) return <div className="contenedor-parejas text-2xl font-bold text-slate-500">Cargando... 🃏</div>;
 
@@ -211,13 +245,7 @@ const ParejasDeCartas = ({ tema }) => {
       {fase === 'menu' && (
         <div className="menu-dificultad text-center z-10 animate-fade-in flex flex-col items-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-indigo-900 drop-shadow-sm">Elige la dificultad</h1>
-          <button 
-            onClick={toggleAyudas}
-            className={`mb-8 px-6 py-3 rounded-full font-bold text-lg transition-all shadow-md border-2 
-              ${config.ayudas ? 'bg-emerald-500 border-emerald-400 text-white' : 'bg-white/50 border-slate-300 text-slate-600 hover:bg-white/80'}`}
-          >
-            {config.ayudas ? '✨ Ayudas Visuales: ACTIVADAS' : 'Ayudas Visuales: Desactivadas'}
-          </button>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl w-full px-4">
             {opcionesDificultad.map((op, idx) => (
               <button key={idx} className="btn-dificultad" onClick={() => iniciarJuego(op)}>
@@ -232,20 +260,31 @@ const ParejasDeCartas = ({ tema }) => {
       {(fase === 'juego' || fase === 'resumen') && (
         <div className="juego-area relative w-full flex flex-col justify-center items-center animate-fade-in gap-4">
           
-          {/* --- BARRA DE CONTROLES SUPERIOR (MODIFICADA) --- */}
-          <div className="w-full max-w-[1000px] flex justify-center items-center px-2 z-20 gap-6">
+          {/* --- BARRA DE CONTROLES SUPERIOR --- */}
+          <div className="w-full max-w-[1000px] flex flex-wrap justify-center items-center px-2 z-20 gap-4 md:gap-6 mb-2">
             <button 
               onClick={volverAlMenu}
-              className="px-6 py-3 bg-white/90 backdrop-blur-sm text-indigo-700 text-lg font-bold rounded-2xl shadow-md border-2 border-indigo-200 hover:bg-white hover:scale-105 transition-all flex items-center gap-2"
+              disabled={restarting || revealing}
+              className="px-4 py-2 md:px-6 md:py-3 bg-white/90 backdrop-blur-sm text-indigo-700 text-base md:text-lg font-bold rounded-2xl shadow-md border-2 border-indigo-200 hover:bg-white hover:scale-105 transition-all flex items-center gap-2 disabled:opacity-50"
             >
-              ⬅️ Configurar partida
+              ⬅️ <span className="hidden sm:inline">Dificultad</span>
             </button>
             
             <button 
-              onClick={reiniciarNivel}
-              className="px-6 py-3 bg-indigo-600 text-white text-lg font-bold rounded-2xl shadow-md border-2 border-indigo-400 hover:bg-indigo-700 hover:scale-105 transition-all flex items-center gap-2"
+              onClick={toggleAyudas}
+              disabled={restarting || revealing}
+              className={`px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-base md:text-lg transition-all shadow-md border-2 flex items-center gap-2 hover:scale-105 disabled:opacity-50
+                ${config.ayudas ? 'bg-emerald-500 border-emerald-400 text-white' : 'bg-white/90 backdrop-blur-sm border-slate-300 text-slate-600 hover:bg-white'}`}
             >
-              🔄 Reiniciar
+              {config.ayudas ? '✨ Ayudas: ON' : '👁️ Ayudas: OFF'}
+            </button>
+
+            <button 
+              onClick={reiniciarNivel}
+              disabled={restarting || revealing}
+              className="px-4 py-2 md:px-6 md:py-3 bg-indigo-600 text-white text-base md:text-lg font-bold rounded-2xl shadow-md border-2 border-indigo-400 hover:bg-indigo-700 hover:scale-105 transition-all flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              {restarting || revealing ? '🔄 Barajando...' : <>🔄 <span className="hidden sm:inline">Reiniciar</span></>}
             </button>
           </div>
           
@@ -269,16 +308,26 @@ const ParejasDeCartas = ({ tema }) => {
               }
 
               const estaSeleccionada = carta.uniqueId === eleccionUno || carta.uniqueId === eleccionDos;
-              const estaGirada = estaSeleccionada || carta.matched;
+              
+              // --- CAMBIO CLAVE AQUÍ ---
+              // La carta se gira si está seleccionada, matcheada O si estamos en modo 'revealing'
+              const estaGirada = estaSeleccionada || carta.matched || revealing;
+              
               const clasePeek = carta.peeking && !estaGirada ? 'peeking' : '';
               const claseFlip = estaGirada ? 'flipped' : '';
               const claseMatch = carta.matched ? 'matched' : '';
+              const claseShake = restarting ? 'shaking' : '';
+              
+              const estiloAnimacion = restarting 
+                ? { animationDelay: `${getRandomDelay(carta.uniqueId)}s` } 
+                : {};
 
               return (
                 <div 
                   key={carta.uniqueId} 
-                  className={`carta ${claseFlip} ${claseMatch} ${clasePeek}`}
-                  onClick={() => !bloqueado && !carta.matched && carta.uniqueId !== eleccionUno && handleEleccion(carta)}
+                  className={`carta ${claseFlip} ${claseMatch} ${clasePeek} ${claseShake}`}
+                  style={estiloAnimacion}
+                  onClick={() => !bloqueado && !restarting && !revealing && !carta.matched && carta.uniqueId !== eleccionUno && handleEleccion(carta)}
                 >
                   <div className="carta-cara carta-frente">
                     {esImagen ? (
@@ -295,7 +344,7 @@ const ParejasDeCartas = ({ tema }) => {
             })}
           </div>
 
-          {fase === 'resumen' && (
+          {fase === 'resumen' && !restarting && !revealing && (
             <div className="overlay-resumen">
               <div className="resumen-parejas">
                 <h2 className="text-4xl font-bold mb-4 text-indigo-900">¡Fantástico! 🎉</h2>
