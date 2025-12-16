@@ -42,7 +42,7 @@ const DonationModal = ({ open, onOpenChange }) => {
                 <a href="https://instagram.com/edutorregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-pink-600 transition-colors transform hover:scale-110">
                   <Instagram size={28} />
                 </a>
-                <a href="https://youtube.com/c/aulaenlanube" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-600 transition-colors transform hover:scale-110">
+                <a href="https://www.youtube.com/@ia-para-docentes" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-600 transition-colors transform hover:scale-110">
                   <Youtube size={32} />
                 </a>
                 <a href="https://x.com/_edu_torregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors transform hover:scale-110">

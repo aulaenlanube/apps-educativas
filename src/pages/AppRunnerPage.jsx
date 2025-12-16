@@ -1,6 +1,6 @@
 // src/pages/AppRunnerPage.jsx
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,15 +8,15 @@ import { findAppById } from '@/apps/appList';
 import DonationModal from '@/components/ui/DonationModal';
 
 const AppRunnerPage = () => {
-    // FUSIÓN: Extraemos subjectId directamente de la URL para asegurar el retorno correcto
-    const { level, grade, subjectId, appId } = useParams();
+    // 1. Obtenemos parámetros de la URL.
+    // 'subjectId' vendrá aquí si configuraste la ruta nueva en main.jsx
+    const { level, grade, subjectId: paramSubjectId, appId } = useParams();
     const navigate = useNavigate();
+    const location = useLocation(); 
 
     const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
 
-    // Buscamos la app. Nota: Aunque pasemos 4 argumentos, si tu función solo acepta 3, ignorará el último.
-    // Lo importante es que tenemos 'subjectId' de la URL para el botón de volver.
-    const result = findAppById(appId, level, grade, subjectId);
+    const result = findAppById(appId, level, grade);
 
     if (!result) {
         return (
@@ -30,17 +30,22 @@ const AppRunnerPage = () => {
         );
     }
 
-    // Extraemos datos del resultado. 
-    // Usamos alias para evitar conflictos con las variables de useParams si fuera necesario.
-    const { app } = result;
+    const { app, subjectId: defaultSubjectId } = result;
     const AppToRender = app.component;
 
-    // FUSIÓN: Lógica de botón "Volver" usando el subjectId de la URL (más robusto)
-    const backPath = subjectId 
-        ? `/curso/${level}/${grade}/${subjectId}` 
+    // --- LÓGICA DE RETORNO INTELIGENTE ---
+    // Prioridad: 
+    // 1. URL (si existe el parámetro en la ruta).
+    // 2. State (si venimos de hacer clic en la tarjeta).
+    // 3. Default (lo que diga la app por defecto, ej. Lengua).
+    const activeSubjectId = paramSubjectId || location.state?.fromSubjectId || defaultSubjectId;
+    
+    const hasSubject = activeSubjectId && activeSubjectId !== 'general';
+    const backPath = hasSubject
+        ? `/curso/${level}/${grade}/${activeSubjectId}` 
         : `/curso/${level}/${grade}`;
     
-    const backButtonText = subjectId ? 'Volver a la Asignatura' : 'Volver al Curso';
+    const backButtonText = hasSubject ? 'Volver a la Asignatura' : 'Volver al Curso';
     
     const backgroundClass = app.id.startsWith('isla-de-la-calma')
         ? 'bg-[#f0f7f8]'
@@ -57,14 +62,14 @@ const AppRunnerPage = () => {
                 onOpenChange={setIsDonationModalOpen} 
             />
 
-            {/* ESTILO: Se mantiene el estilo ajustado (pt-2, px-4) del segundo código */}
             <div className={`min-h-screen flex flex-col items-center justify-start pt-2 px-4 pb-4 ${backgroundClass}`}>
                 
                 <div className="w-full max-w-4xl flex justify-start items-center gap-3 mb-4">
+                    
+                    {/* CAMBIO: Botón con DEGRADADO como color principal */}
                     <Button 
                         onClick={() => navigate(backPath)} 
-                        variant="outline" 
-                        className="bg-white/80 backdrop-blur-sm hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 hover:text-white hover:border-transparent transition-all duration-300"
+                        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 hover:shadow-lg transition-all duration-300 shadow-md border-0"
                     >
                         <ArrowLeft className="mr-2 h-4 w-4" /> {backButtonText}
                     </Button>
@@ -80,12 +85,11 @@ const AppRunnerPage = () => {
                 </div>
 
                 <div className="w-full max-w-4xl relative">
-                    {/* FUSIÓN: Pasamos tanto isPaused como los datos de contexto (level, grade, subjectId) */}
                     <AppToRender 
                         isPaused={isDonationModalOpen} 
                         level={level} 
                         grade={grade} 
-                        subjectId={subjectId} 
+                        subjectId={activeSubjectId} 
                     />
                 </div>
             </div>

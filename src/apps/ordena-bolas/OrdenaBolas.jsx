@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { RefreshCw, Trophy, Timer, Play, Settings, CheckSquare, Square } from 'lucide-react';
 
 const OrdenaBolas = () => {
-    // Obtenemos nivel y curso de la URL
     const { level, grade } = useParams();
     
     const sceneRef = useRef(null);
@@ -36,31 +35,28 @@ const OrdenaBolas = () => {
 
     // --- LÓGICA DE FILTRADO POR CURSO ---
     const getAllowedOperations = () => {
-        // ESO: Todo permitido
         if (level === 'eso') {
             return ['numbers', 'add', 'sub', 'mul', 'div', 'pow', 'sqrt', 'eq'];
         }
 
-        // PRIMARIA
         if (level === 'primaria') {
             const gradeNum = parseInt(grade);
             
-            // 1º, 2º y 3º de Primaria: Solo Sumas y Restas (y números básicos)
+            // 1º, 2º y 3º de Primaria
             if (gradeNum >= 1 && gradeNum <= 3) {
                 return ['numbers', 'add', 'sub'];
             }
             
-            // 4º, 5º y 6º de Primaria: Añadimos Multiplicación y División
+            // 4º, 5º y 6º de Primaria
             return ['numbers', 'add', 'sub', 'mul', 'div'];
         }
 
-        // Fallback por seguridad
         return ['numbers']; 
     };
 
     const allowedOps = getAllowedOperations();
 
-    // Cronómetro
+    // Cronómetro CORREGIDO: Añadida 'key' a las dependencias
     useEffect(() => {
         let interval;
         if (gameState === 'playing') {
@@ -70,7 +66,7 @@ const OrdenaBolas = () => {
             }, 10); 
         }
         return () => clearInterval(interval);
-    }, [gameState]);
+    }, [gameState, key]); // <--- 'key' asegura que el timer se reinicie al pulsar reiniciar
 
     const formatTime = (ms) => {
         const totalSeconds = Math.floor(ms / 1000);
@@ -82,7 +78,6 @@ const OrdenaBolas = () => {
 
     const toggleOp = (op) => {
         const newOps = { ...config.ops, [op]: !config.ops[op] };
-        // Validamos que al menos una opción válida para el nivel actual quede activa
         const hasActiveAllowedOp = allowedOps.some(allowed => newOps[allowed]);
         
         if (!hasActiveAllowedOp) return; 
@@ -109,7 +104,6 @@ const OrdenaBolas = () => {
 
     // --- GENERADOR ---
     const generateBallData = (count, options) => {
-        // Solo usamos los tipos que estén activos Y permitidos por el nivel/curso
         const activeTypes = Object.keys(options).filter(k => options[k] && allowedOps.includes(k));
         
         if (activeTypes.length === 0) activeTypes.push('numbers');
@@ -165,17 +159,17 @@ const OrdenaBolas = () => {
                     break;
                 case 'eq':
                     const eqType = Math.floor(Math.random() * 3);
-                    if (eqType === 0) { // x + a = b
+                    if (eqType === 0) {
                          const x = Math.floor(Math.random() * 15) + 1;
                          const a = Math.floor(Math.random() * 10) + 1;
                          val = x;
                          label = `x + ${a} = ${x + a}`;
-                    } else if (eqType === 1) { // x - a = b
+                    } else if (eqType === 1) {
                          const x = Math.floor(Math.random() * 15) + 5;
                          const a = Math.floor(Math.random() * 5) + 1;
                          val = x;
                          label = `x - ${a} = ${x - a}`;
-                    } else { // ax = b
+                    } else {
                          const x = Math.floor(Math.random() * 10) + 2;
                          const a = Math.floor(Math.random() * 4) + 2;
                          val = x;
@@ -227,7 +221,7 @@ const OrdenaBolas = () => {
             }
         });
 
-        // Caja perfecta
+        // Caja
         const boxSize = 450; 
         const wallThickness = 40;
         const centerX = width / 2;
@@ -294,7 +288,6 @@ const OrdenaBolas = () => {
 
         Composite.add(engine.world, balls);
 
-        // Confetti
         const lanzarConfetti = (x, y) => {
             const confettiParticles = [];
             const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
@@ -310,7 +303,6 @@ const OrdenaBolas = () => {
             Composite.add(engine.world, confettiParticles);
         };
 
-        // Clic
         const handleCanvasClick = (event) => {
             if (gameLogic.isGameOver || gameLogic.isVictory) return;
 
@@ -348,13 +340,11 @@ const OrdenaBolas = () => {
 
         render.canvas.addEventListener('pointerdown', handleCanvasClick);
 
-        // Rotación
         Events.on(engine, 'beforeUpdate', () => {
             const rotation = config.rotationSpeed * 0.001; 
             if (rotation > 0) Composite.rotate(boxContainer, rotation, { x: centerX, y: centerY });
         });
 
-        // Textos
         Events.on(render, 'afterRender', () => {
             const context = render.context;
             if (!context) return;
@@ -388,7 +378,6 @@ const OrdenaBolas = () => {
         };
     }, [key]);
 
-    // --- RENDER CONFIG ---
     if (gameState === 'config') {
         const allOperations = [
             { id: 'numbers', label: 'Números' },
@@ -401,10 +390,8 @@ const OrdenaBolas = () => {
             { id: 'eq', label: 'Ecuaciones' }
         ];
 
-        // Filtramos las operaciones que se mostrarán en la UI según el curso
         const visibleOperations = allOperations.filter(op => allowedOps.includes(op.id));
         
-        // Texto dinámico para el nivel
         const getLevelTitle = () => {
             if (level === 'eso') return 'Nivel Secundaria (ESO)';
             if (level === 'primaria') {
@@ -425,7 +412,6 @@ const OrdenaBolas = () => {
                     </div>
 
                     <div className="space-y-6">
-                        {/* Sliders */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="font-medium text-gray-700 text-sm">Cantidad de bolas: {config.ballCount}</label>
@@ -437,7 +423,6 @@ const OrdenaBolas = () => {
                             </div>
                         </div>
 
-                        {/* Operaciones (Filtradas por Nivel) */}
                         <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
                             <h3 className="font-medium text-gray-700 mb-3">Tipos de Contenido</h3>
                             {visibleOperations.length > 0 ? (
@@ -458,7 +443,6 @@ const OrdenaBolas = () => {
                             )}
                         </div>
 
-                        {/* Tamaño */}
                         <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer" onClick={() => setConfig({...config, randomSize: !config.randomSize})}>
                             <div className="flex-1">
                                 <span className="font-medium text-gray-700 text-sm block">Tamaño engañoso</span>
@@ -478,7 +462,6 @@ const OrdenaBolas = () => {
         );
     }
 
-    // --- PANTALLA JUEGO ---
     return (
         <div className="flex flex-col items-center justify-center space-y-4 p-4">
             <div className="w-full max-w-4xl flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-gray-100">
