@@ -1,13 +1,12 @@
+// src/apps/supermercado-matematico/primaria-1/SupermercadoMatematico1.jsx
 import React from 'react';
 import '@/apps/_shared/SupermercadoShared.css';
 import { useSupermercadoGame } from '@/hooks/useSupermercadoGame';
 import TestScreen from '@/apps/_shared/TestScreen';
 
-
 const productos = [ { nombre: "Leche", emoji: "🥛", precio: 1 }, { nombre: "Pan", emoji: "🍞", precio: 1 }, { nombre: "Manzana", emoji: "🍎", precio: 1 }, { nombre: "Huevo", emoji: "🥚", precio: 2 }, { nombre: "Zumo", emoji: "🧃", precio: 2 }, { nombre: "Queso", emoji: "🧀", precio: 3 }];
 
 const generarNuevaMision = () => {
-    
     const numProductos = 2;
     const productosMezclados = [...productos].sort(() => 0.5 - Math.random());
     let listaDeCompra = [];
@@ -39,7 +38,12 @@ const SupermercadoMatematico1 = () => {
                 <button onClick={game.startTest} className="btn-mode">Iniciar Test</button>
             </div>
 
-            <div className="mision"><h2>¡Tu Misión!</h2><p id="textoMision">{game.mision.texto}</p></div>
+            {/* AÑADIDO ref={game.containerRef} AQUÍ */}
+            <div className="mision" ref={game.containerRef}>
+                <h2>¡Tu Misión!</h2>
+                <p id="textoMision">{game.mision.texto}</p>
+            </div>
+
             <div className="respuesta-usuario">
                 <label htmlFor="respuesta">¿Cuánto cuesta en total? (€)</label>
                 <input type="number" value={game.respuesta} onChange={(e) => game.setRespuesta(e.target.value)} />

@@ -1,3 +1,4 @@
+// src/apps/supermercado-matematico/primaria-2/SupermercadoMatematico2.jsx
 import React from 'react';
 import '@/apps/_shared/SupermercadoShared.css';
 import { useSupermercadoGame } from '@/hooks/useSupermercadoGame';
@@ -43,7 +44,12 @@ const SupermercadoMatematico2 = () => {
                 <button onClick={game.startTest} className="btn-mode">Iniciar Test</button>
             </div>
 
-            <div className="mision"><h2>¡Tu Misión!</h2><p id="textoMision">{game.mision.texto}</p></div>
+            {/* AÑADIDO ref={game.containerRef} AQUÍ */}
+            <div className="mision" ref={game.containerRef}>
+                <h2>¡Tu Misión!</h2>
+                <p id="textoMision">{game.mision.texto}</p>
+            </div>
+
             <div className="respuesta-usuario">
                 <label htmlFor="respuesta">¿Cuánto cuesta en total? (€)</label>
                 <input type="number" value={game.respuesta} onChange={(e) => game.setRespuesta(e.target.value)} />

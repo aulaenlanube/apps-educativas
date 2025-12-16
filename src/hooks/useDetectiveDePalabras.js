@@ -1,6 +1,6 @@
 // src/hooks/useDetectiveDePalabras.js
-import { useState, useCallback, useEffect } from 'react';
-import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
+import { useState, useCallback, useEffect, useRef } from 'react';
+import confetti from 'canvas-confetti'; // IMPORTANTE: Importamos la librería
 
 const TOTAL_TEST_QUESTIONS = 5;
 const FONT_STYLES = ['default', 'cursive', 'uppercase'];
@@ -19,7 +19,9 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
   const [feedbackKey, setFeedbackKey] = useState(0); 
   const [letras, setLetras] = useState([]);
   const [fraseResuelta, setFraseResuelta] = useState(false);
-  const { confeti } = useConfetti();
+  
+  // Referencia para saber dónde está la frase y lanzar el confetti desde ahí
+  const containerRef = useRef(null);
 
   const [fontStyle, setFontStyle] = useState(FONT_STYLES[0]);
   const fontStyleIndex = FONT_STYLES.indexOf(fontStyle);
@@ -118,7 +120,23 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
 
     if (esTotalmenteCorrecto) {
       setFeedback({ texto: '¡Correcto! ¡Caso resuelto!', clase: 'correcto' });
-      // confeti(); // Si quieres activar confeti descomenta esto
+      
+      // --- CONFETTI ---
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        // Coordenadas relativas al viewport (0 a 1)
+        const x = (rect.left + rect.width / 2) / window.innerWidth;
+        const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+        confetti({
+            origin: { x, y },
+            particleCount: 150,
+            spread: 70,
+            startVelocity: 30,
+            zIndex: 1000
+        });
+      }
+
       setPuntuacion((p) => p + 10);
       setFraseResuelta(true);
       // Actualizamos key también en acierto para consistencia (opcional)
@@ -197,7 +215,7 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
     letras,
     puntuacion,
     feedback,
-    feedbackKey, // Exportamos la key
+    feedbackKey,
     fraseActual: isTestMode ? testQuestions[indiceFraseActual] : frasesJuego[indiceFraseActual],
     indiceFraseActual,
     totalFrases: isTestMode ? TOTAL_TEST_QUESTIONS : frasesJuego.length,
@@ -218,6 +236,7 @@ export const useDetectiveDePalabras = (frasesJuego = [], withTimer = false) => {
     fontStyle,
     fontStyleIndex,
     handleFontStyleChange,
-    getTransformedSolution
+    getTransformedSolution,
+    containerRef // IMPORTANTE: Devolvemos la referencia para usarla en la UI
   };
 };

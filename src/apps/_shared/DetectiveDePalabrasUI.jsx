@@ -119,7 +119,8 @@ const DetectiveDePalabrasUI = ({ game }) => {
         <button onClick={game.startTest} className="btn-mode">Iniciar Test</button>
       </div>
 
-      <div className="detective-frase-container">
+      {/* AQUÍ SE HA AÑADIDO ref={game.containerRef} */}
+      <div className="detective-frase-container" ref={game.containerRef}>
         {game.letras.map((letra, index) => (
           <React.Fragment key={index}>
             <span className="detective-letra" onClick={() => game.toggleSeparador(index)}>
@@ -132,10 +133,6 @@ const DetectiveDePalabrasUI = ({ game }) => {
         ))}
       </div>
 
-      {/* CAMBIO REALIZADO: 
-          Movido el feedback aquí (antes estaba al final).
-          Añadido key={game.feedbackKey} para forzar re-render de animación en error repetido.
-      */}
       <p 
         key={game.feedbackKey} 
         className={`detective-feedback ${game.feedback.clase}`}
@@ -153,8 +150,6 @@ const DetectiveDePalabrasUI = ({ game }) => {
           <button onClick={game.siguienteFrase} className="btn-siguiente">Siguiente Frase</button>
         )}
       </div>
-
-      {/* Feedback eliminado de aquí */}
     </div>
   );
 };

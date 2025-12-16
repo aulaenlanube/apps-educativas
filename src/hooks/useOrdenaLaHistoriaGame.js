@@ -1,5 +1,6 @@
+// src/hooks/useOrdenaLaHistoriaGame.js
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
+import confetti from 'canvas-confetti'; // IMPORTANTE: Importamos la librería
 
 const TOTAL_TEST_STORIES = 5;
 const FONT_STYLES = ['default', 'cursive', 'uppercase'];
@@ -15,7 +16,8 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
   const dropZoneRef = useRef(null);
   const draggedCloneRef = useRef(null);
 
-  const { confeti } = useConfetti();
+  // Eliminamos useConfetti
+  // const { confeti } = useConfetti();
 
   const [isTestMode, setIsTestMode] = useState(false);
   const [testQuestions, setTestQuestions] = useState([]);
@@ -152,14 +154,30 @@ export const useOrdenaLaHistoriaGame = (historias, withTimer = false) => {
       setFeedback({ 
         texto: "¡Correcto! La historia tiene sentido", 
         clase: 'correcta',
-        timestamp: Date.now() // Añadido para forzar re-render
+        timestamp: Date.now() 
       });
-      // confeti()
+      
+      // --- LÓGICA DE CONFETTI AÑADIDA ---
+      if (dropZoneRef.current) {
+        const rect = dropZoneRef.current.getBoundingClientRect();
+        // Calculamos el centro relativo a la ventana (valores entre 0 y 1)
+        const x = (rect.left + rect.width / 2) / window.innerWidth;
+        const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+        confetti({
+            origin: { x, y },
+            particleCount: 150,
+            spread: 70,
+            startVelocity: 30,
+            zIndex: 1000 
+        });
+      }
+
     } else {
       setFeedback({ 
         texto: "Casi... Intenta ordenar las frases de otra manera", 
         clase: 'incorrecta',
-        timestamp: Date.now() // Añadido para forzar re-render
+        timestamp: Date.now() 
       });
     }
   };

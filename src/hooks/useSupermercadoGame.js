@@ -1,7 +1,6 @@
 // src/hooks/useSupermercadoGame.js
-
-import { useState, useEffect, useCallback } from 'react';
-import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
+import { useState, useEffect, useCallback, useRef } from 'react';
+import confetti from 'canvas-confetti'; // 1. Importamos la librería
 
 const TOTAL_TEST_QUESTIONS = 5;
 
@@ -17,7 +16,9 @@ export const useSupermercadoGame = ({ generarNuevaMision, withTimer = false }) =
     const [elapsedTime, setElapsedTime] = useState(0);
     const [score, setScore] = useState(0);
     const [showResults, setShowResults] = useState(false);
-    const { confeti } = useConfetti();
+
+    // 2. Creamos la referencia
+    const containerRef = useRef(null);
 
     // Genera una misión para el modo práctica
     const startPracticeMission = useCallback(() => {
@@ -113,7 +114,22 @@ export const useSupermercadoGame = ({ generarNuevaMision, withTimer = false }) =
         }
         if (Math.abs(respuestaNum - mision.solucion) < 0.001) {
             setFeedback({ texto: "¡Correcto! ¡Muy bien!", clase: 'correcta' });
-            //confeti();
+            
+            // 3. Lógica del confetti
+            if (containerRef.current) {
+                const rect = containerRef.current.getBoundingClientRect();
+                const x = (rect.left + rect.width / 2) / window.innerWidth;
+                const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+                confetti({
+                    origin: { x, y },
+                    particleCount: 150,
+                    spread: 70,
+                    startVelocity: 30,
+                    zIndex: 1000
+                });
+            }
+
         } else {
             setFeedback({ texto: `Casi... La respuesta correcta era ${mision.solucion.toFixed(2).replace('.', ',')}€. ¡Inténtalo de nuevo!`, clase: 'incorrecta' });
         }
@@ -136,6 +152,7 @@ export const useSupermercadoGame = ({ generarNuevaMision, withTimer = false }) =
         userAnswers,
         handleNextQuestion,
         checkPracticeAnswer,
-        startPracticeMission
+        startPracticeMission,
+        containerRef // 4. Devolvemos la referencia
     };
 };

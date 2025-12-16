@@ -1,6 +1,6 @@
 // src/hooks/useOrdenaLaFraseGame.js
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import { useConfetti } from "/src/apps/_shared/ConfettiProvider";
+import confetti from 'canvas-confetti'; // IMPORTANTE: Importamos la librería aquí
 
 const TOTAL_TEST_QUESTIONS = 5;
 const FONT_STYLES = ['default', 'cursive', 'uppercase'];
@@ -28,7 +28,9 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
   const dropZoneRef = useRef(null);
   const originZoneRef = useRef(null);
   const draggedCloneRef = useRef(null);
-  const { confeti } = useConfetti();
+  
+  // Eliminamos useConfetti para usar canvas-confetti directamente y controlar la posición
+  // const { confeti } = useConfetti(); 
 
   const [isTestMode, setIsTestMode] = useState(false);
   const [testQuestions, setTestQuestions] = useState([]);
@@ -173,7 +175,26 @@ export const useOrdenaLaFraseGame = (frases, withTimer = false) => {
         clase: 'correcta',
         id: Date.now() 
       });
-      // confeti()
+      
+      // --- LÓGICA DE CONFETTI AÑADIDA ---
+      if (dropZoneRef.current) {
+        // Obtenemos la posición de la caja de destino
+        const rect = dropZoneRef.current.getBoundingClientRect();
+        
+        // Calculamos el centro relativo a la ventana (valores entre 0 y 1)
+        const x = (rect.left + rect.width / 2) / window.innerWidth;
+        const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+        // Lanzamos el confetti desde esa posición
+        confetti({
+            origin: { x, y },
+            particleCount: 150,
+            spread: 70,
+            startVelocity: 30,
+            zIndex: 1000 // Aseguramos que se vea por encima de todo
+        });
+      }
+
     } else {
       setFeedback({ 
         texto: "Casi... Revisa el orden de las palabras", 
