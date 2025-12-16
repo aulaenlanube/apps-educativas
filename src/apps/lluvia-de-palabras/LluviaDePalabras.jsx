@@ -200,7 +200,8 @@ const LluviaDePalabras = () => {
             prevWords.forEach(word => {
                 const newY = word.y + speedRef.current;
                 
-                if (newY >= 82) {
+                // Ajuste de colisión considerando la altura de la caja
+                if (newY >= 80) { // Un poco antes para que "entre" en la caja visualmente
                     const targetCategory = categories[word.colIndex];
                     
                     if (targetCategory && targetCategory.id === word.categoryId) {
@@ -249,18 +250,16 @@ const LluviaDePalabras = () => {
         if (boxAnimation.col !== index) return {};
         if (boxAnimation.type === 'success') {
             return {
-                scale: [1, 1.15, 1],
-                borderColor: ["#ffffff", "#fbbf24", "#ffffff"],
-                boxShadow: ["0 0 0px rgba(0,0,0,0)", "0 0 25px rgba(251, 191, 36, 0.8)", "0 0 0px rgba(0,0,0,0)"],
-                transition: { duration: 0.3 }
+                scale: [1, 1.1, 1],
+                y: [0, 5, 0], // Pequeño rebote hacia abajo
+                transition: { duration: 0.2 }
             };
         }
         if (boxAnimation.type === 'error') {
             return {
-                rotate: [0, -15, 15, -10, 10, 0], 
-                scale: [1, 0.85, 1],
-                opacity: [1, 0.5, 1],
-                transition: { duration: 0.4 }
+                rotate: [0, -10, 10, -5, 5, 0], 
+                scale: [1, 0.9, 1],
+                transition: { duration: 0.3 }
             };
         }
     };
@@ -446,11 +445,10 @@ const LluviaDePalabras = () => {
 
             {/* CONTENEDOR DE CAJAS (GRID) */}
             <div 
-                className="absolute bottom-0 w-full h-[18%] bg-slate-100 border-t-4 border-slate-300 grid items-center z-20 pb-2"
+                className="absolute bottom-0 w-full h-[18%] bg-slate-800/50 border-t-2 border-slate-600 grid items-end z-20 pb-2"
                 style={{ 
                     // Grid con columnas exactamente iguales
                     gridTemplateColumns: `repeat(${numCols}, 1fr)`,
-                    // Eliminado cualquier padding horizontal que cause desalineación
                     paddingLeft: 0,
                     paddingRight: 0 
                 }}
@@ -458,16 +456,32 @@ const LluviaDePalabras = () => {
                 <AnimatePresence mode='popLayout'>
                     {categories.map((cat, index) => (
                         <React.Fragment key={cat.id}>
-                            {/* CAJA DE CATEGORÍA */}
+                            {/* CAJA DE CATEGORÍA REDISEÑADA */}
                             <motion.div 
                                 layout
                                 layoutId={cat.id}
                                 animate={getBoxAnimation(index)}
-                                className={`h-[85%] ${cat.color} rounded-2xl shadow-xl flex items-center justify-center text-white transition-colors p-2 text-center relative border-4 border-white/20`}
-                                // Al estar en un Grid, 'justify-self-center' centra la caja en su columna
-                                style={{ width: '90%', justifySelf: 'center' }} 
+                                className={`
+                                    relative
+                                    h-[90%] 
+                                    w-24 md:w-32 
+                                    ${cat.color} 
+                                    rounded-b-2xl rounded-t-sm 
+                                    shadow-xl 
+                                    flex items-center justify-center 
+                                    text-white 
+                                    transition-colors 
+                                    text-center 
+                                    border-b-8 border-x-4 border-t-0 border-black/20
+                                `}
+                                style={{ justifySelf: 'center' }} 
                             >
-                                <span className="font-black text-base md:text-xl leading-tight drop-shadow-md tracking-wide uppercase">{cat.name}</span>
+                                {/* Sombra interior para dar profundidad */}
+                                <div className="absolute inset-0 rounded-b-xl bg-gradient-to-b from-black/10 to-transparent pointer-events-none"></div>
+                                
+                                <span className="font-bold text-xs md:text-sm leading-tight drop-shadow-sm tracking-wide uppercase px-1 z-10">
+                                    {cat.name}
+                                </span>
                             </motion.div>
 
                             {/* BOTÓN DE INTERCAMBIO (Posicionado Absolutamente) */}
@@ -477,25 +491,25 @@ const LluviaDePalabras = () => {
                                     style={{
                                         // Se coloca exactamente en el borde derecho de la columna actual
                                         left: `${(index + 1) * colWidthPercent}%`,
+                                        bottom: '30%', // Ajuste vertical
                                         transform: 'translateX(-50%)' // Se centra sobre la línea
                                     }}
                                 >
                                      <Button 
-                                        variant="outline" size="icon" 
-                                        className="
-                                            rounded-full w-12 h-12 md:w-16 md:h-16 
+                                         variant="outline" size="icon" 
+                                         className="
+                                            rounded-full w-10 h-10 md:w-12 md:h-12 
                                             bg-gradient-to-br from-yellow-400 to-amber-500 
                                             hover:from-yellow-300 hover:to-amber-400
-                                            border-4 border-white 
-                                            shadow-[0_4px_15px_rgba(234,179,8,0.5)] 
-                                            hover:shadow-[0_6px_20px_rgba(234,179,8,0.7)]
+                                            border-2 border-white 
+                                            shadow-[0_2px_10px_rgba(234,179,8,0.5)] 
                                             hover:scale-110 active:scale-95 transition-all duration-200
                                             group
-                                        "
-                                        onClick={() => swapCategories(index, index + 1)}
-                                    >
-                                        <ArrowLeftRight className="h-6 w-6 md:h-8 md:w-8 text-white drop-shadow-sm group-hover:rotate-180 transition-transform duration-300" />
-                                    </Button>
+                                         "
+                                         onClick={() => swapCategories(index, index + 1)}
+                                     >
+                                         <ArrowLeftRight className="h-5 w-5 md:h-6 md:w-6 text-white drop-shadow-sm group-hover:rotate-180 transition-transform duration-300" />
+                                     </Button>
                                 </div>
                             )}
                         </React.Fragment>
