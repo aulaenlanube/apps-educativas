@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { RefreshCcw, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, Play, Star } from 'lucide-react';
@@ -9,8 +10,14 @@ const GRID_SIZE = 20;
 const SPEED_INITIAL = 300;
 const SPEED_MIN = 150;
 
-const SnakeDePalabras = () => {
+const SnakeDePalabras = (props) => {
   const { toast } = useToast();
+  
+  // Obtenemos parámetros de la URL o de las props (prioridad a las props si se pasan desde el padre)
+  const params = useParams();
+  const level = props.level || params.level;
+  const grade = props.grade || params.grade;
+  const subjectId = props.subjectId || params.subjectId;
   
   // Estados del juego
   const [snake, setSnake] = useState([{ x: 10, y: 10 }]);
@@ -25,6 +32,7 @@ const SnakeDePalabras = () => {
   const [categories, setCategories] = useState([]); // Las claves: ["monosilabas", "bisilabas"...]
   const [currentCatIndex, setCurrentCatIndex] = useState(0); // Índice de la categoría actual
   const [loading, setLoading] = useState(true);
+  const [loadingError, setLoadingError] = useState(false); // Nuevo estado para errores
 
   // Referencias
   const savedCallback = useRef();
@@ -35,21 +43,39 @@ const SnakeDePalabras = () => {
     return name.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
   };
 
-  // 1. Cargar Datos
+  // 1. Cargar Datos (Dinámico)
   useEffect(() => {
-    fetch('/data/primaria/1/lengua-runner.json')
-      .then(res => res.json())
+    // Esperamos a tener todos los datos necesarios
+    if (!level || !grade || !subjectId) return;
+
+    setLoading(true);
+    const dataPath = `/data/${level}/${grade}/${subjectId}-runner.json`;
+
+    fetch(dataPath)
+      .then(res => {
+        if (!res.ok) throw new Error("Archivo no encontrado");
+        return res.json();
+      })
       .then(jsonData => {
         setData(jsonData);
         // Extraemos las claves del objeto para saber qué categorías existen
-        setCategories(Object.keys(jsonData));
+        const newCategories = Object.keys(jsonData);
+        setCategories(newCategories);
+        setCurrentCatIndex(0); // Reiniciamos la categoría al cargar nuevos datos
+        setLoadingError(false);
         setLoading(false);
       })
       .catch(err => {
-        console.error("Error cargando datos:", err);
+        console.error("Error cargando runner data:", err);
+        setLoadingError(true);
         setLoading(false);
+        toast({
+            variant: "destructive",
+            title: "Error de carga",
+            description: "No se pudieron cargar los datos del juego para esta asignatura.",
+        });
       });
-  }, []);
+  }, [level, grade, subjectId, toast]);
 
   // 2. Generar Comida/Palabras
   const generateFoodItem = useCallback((currentSnake, currentFood, catIndex) => {
@@ -250,6 +276,7 @@ const SnakeDePalabras = () => {
   };
 
   if (loading) return <div className="p-10 text-center">Cargando juego...</div>;
+  if (loadingError) return <div className="p-10 text-center text-red-500">Error cargando los datos. Comprueba la URL o el archivo JSON.</div>;
 
   const currentCategoryName = categories.length > 0 ? formatName(categories[currentCatIndex]) : '';
 
@@ -259,7 +286,7 @@ const SnakeDePalabras = () => {
       {/* Header Info */}
       <Card className="w-full p-4 flex justify-between items-center bg-white shadow-sm border-2 border-slate-100">
         <div>
-          <h2 className="text-xl font-bold text-slate-800">Snake de Lengua</h2>
+          <h2 className="text-xl font-bold text-slate-800">Snake de Palabras</h2>
           <p className="text-sm text-slate-500">
             Busca: <span className="font-bold text-blue-600 text-lg uppercase">{currentCategoryName}</span>
           </p>
@@ -345,7 +372,7 @@ const SnakeDePalabras = () => {
              
              {item.word && (
                  <span className={`absolute -top-6 whitespace-nowrap px-2 py-0.5 rounded-md text-[10px] font-bold shadow-md border pointer-events-none z-30
-                    ${item.type === 'valid' ? 'bg-white text-blue-700 border-blue-200' : 'bg-white text-red-700 border-red-200'}
+                   ${item.type === 'valid' ? 'bg-white text-blue-700 border-blue-200' : 'bg-white text-red-700 border-red-200'}
                  `}>
                      {item.word}
                  </span>
