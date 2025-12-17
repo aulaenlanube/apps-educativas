@@ -51,6 +51,7 @@ import VisualizadorFiguras3D from '../visualizador-figuras-3d/VisualizadorFigura
 import ParejasDeCartas from '../parejas-de-cartas/ParejasDeCartas';
 import LluviaDePalabras from '../lluvia-de-palabras/LluviaDePalabras';
 import Clasificador from '../_shared/Clasificador'; 
+import Snake from '../snake/SnakePalabras.jsx';
 
 // Apps Comunes
 export const appIslaDeLaCalma = {
@@ -142,6 +143,14 @@ export const appClasificador = {
   name: '🗂️ Clasificador', 
   description: 'Clasifica los conceptos en su categoría correcta.', 
   component: Clasificador 
+};
+
+export const appSnake = {
+  id: 'snake', 
+  name: '🐍 Snake', 
+  description: 'Guía a la serpiente para comer las palabras del tema correcto.', 
+  component: Snake 
+
 };
 
 // Apps de Matemáticas compartidas (Romanos, MayorMenor, Medidas)
