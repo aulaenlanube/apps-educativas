@@ -1,0 +1,51 @@
+{
+  "hardware": [
+    "ratón",
+    "teclado",
+    "pantalla",
+    "altavoz",
+    "cámara",
+    "cpu",
+    "portátil",
+    "pc",
+    "impresora",
+    "mando",
+    "teléfono"
+  ],
+  "ordenes_al_robot": [
+    "avanzar",
+    "retroceder",
+    "girar",
+    "saltar",
+    "esperar",
+    "parar",
+    "correr",
+    "frenar",
+    "subir",
+    "bajar"
+  ],
+  "software": [
+    "windows",
+    "linux",
+    "google",
+    "chatgpt",
+    "Excel",
+    "Word",
+    "Photoshop",
+    "Navegador web",
+    "email",
+    "sistema operativo"
+  ],
+  "signos_de_escritura": [
+    "punto",
+    "coma",
+    "letra",
+    "número",
+    "flecha",
+    "suma",
+    "resta",
+    "comillas",
+    "raya",
+    "estrella"
+  ]
+}

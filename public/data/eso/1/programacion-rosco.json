@@ -1,0 +1,136 @@
+[
+  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Pasos ordenados para resolver un problema.", "solucion": "algoritmo" },
+  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Parte del ordenador que saca el sonido.", "solucion": "altavoz" },
+  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Lo contrario de encendido.", "solucion": "apagado" },
+  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Documento o juego guardado en el PC.", "solucion": "archivo" },
+
+  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Un error o fallo en un programa.", "solucion": "bug" },
+  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Lo que da energía a la tablet sin cables.", "solucion": "batería" },
+  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Pieza que pulsamos para dar una orden.", "solucion": "botón" },
+  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Quitar lo que hemos escrito o dibujado.", "solucion": "borrar" },
+
+  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Instrucciones escritas para el ordenador.", "solucion": "código" },
+  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Pulsar el botón del ratón.", "solucion": "clic" },
+  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Lugar amarillo donde guardamos archivos.", "solucion": "carpeta" },
+  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Palabra secreta para entrar en tu cuenta.", "solucion": "contraseña" },
+
+  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Información que usa el ordenador.", "solucion": "datos" },
+  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Lo que usamos para tocar la tablet.", "solucion": "dedo" },
+  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Bajar un juego de internet.", "solucion": "descargar" },
+  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Imagen hecha en el ordenador.", "solucion": "dibujo" },
+
+  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Poner en marcha el ordenador.", "solucion": "encender" },
+  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Fallo en el programa.", "solucion": "error" },
+  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Carita divertida que usamos en mensajes.", "solucion": "emoji" },
+  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Conectar el cable a la pared.", "solucion": "enchufar" },
+
+  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Imagen capturada con una cámara.", "solucion": "foto" },
+  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Imagen decorativa detrás de los iconos.", "solucion": "fondo" },
+  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Símbolo que indica dirección.", "solucion": "flecha" },
+  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Cuando se acaba el juego.", "solucion": "fin" },
+
+  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Salvar tu trabajo para no perderlo.", "solucion": "guardar" },
+  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Lugar donde se ven todas tus fotos.", "solucion": "galería" },
+  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Persona que juega a videojuegos.", "solucion": "gamer" },
+  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Moverse dando vueltas.", "solucion": "girar" },
+
+  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Utensilio para arreglar o crear cosas.", "solucion": "herramienta" },
+  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Lo que marca el reloj de la pantalla.", "solucion": "hora" },
+  { "id": "h3", "letra": "H", "tipo": "contiene", "definicion": "Hablar por escrito en el ordenador.", "solucion": "chat" },
+  { "id": "h4", "letra": "H", "tipo": "contiene", "definicion": "Lo contrario de guardar.", "solucion": "deshacer" },
+
+  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Dibujo pequeño que se puede pulsar.", "solucion": "icono" },
+  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Máquina para pasar dibujos a papel.", "solucion": "impresora" },
+  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Red mundial de ordenadores.", "solucion": "internet" },
+  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Botón o pantalla principal.", "solucion": "inicio" },
+
+  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Aplicación para divertirse.", "solucion": "juego" },
+  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Acción de divertirse con el PC.", "solucion": "jugar" },
+  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Mando con palanca para jugar.", "solucion": "joystick" },
+  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Persona que participa en la partida.", "solucion": "jugador" },
+
+  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Aplicación para cantar con música.", "solucion": "karaoke" },
+  { "id": "k2", "letra": "K", "tipo": "contiene", "definicion": "Pegatina digital divertida.", "solucion": "sticker" },
+  { "id": "k3", "letra": "K", "tipo": "contiene", "definicion": "Pirata informático.", "solucion": "hacker" },
+  { "id": "k4", "letra": "K", "tipo": "contiene", "definicion": "Enlace para ir a otra web.", "solucion": "link" },
+
+  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Idiomas que entiende el ordenador.", "solucion": "lenguaje" },
+  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Lo que sale de la pantalla y brilla.", "solucion": "luz" },
+  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Ordenador que va muy despacio.", "solucion": "lento" },
+  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Herramienta de zoom para ver mejor.", "solucion": "lupa" },
+
+  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Teléfono que llevamos en el bolsillo.", "solucion": "móvil" },
+  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Sirve para que el ordenador te escuche.", "solucion": "micrófono" },
+  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Lista de opciones para elegir.", "solucion": "menú" },
+  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Donde el ordenador guarda las cosas.", "solucion": "memoria" },
+
+  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Internet, como si fuera el cielo.", "solucion": "nube" },
+  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Programa para visitar webs.", "solucion": "navegador" },
+  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Mensaje corto de texto o voz.", "solucion": "nota" },
+  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Palabra para identificarte (Usuario).", "solucion": "nombre" },
+
+  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Clave secreta.", "solucion": "contraseña" },
+  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Lo que nos permite tener Wifi.", "solucion": "señal" },
+  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Dibujo o creación artística.", "solucion": "diseño" },
+  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Ventana pequeña del navegador.", "solucion": "pestaña" },
+
+  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Máquina inteligente.", "solucion": "ordenador" },
+  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Instrucción que damos.", "solucion": "orden" },
+  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Estar conectado a internet.", "solucion": "online" },
+  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Cosas que podemos elegir.", "solucion": "opciones" },
+
+  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Parte del PC donde ves las imágenes.", "solucion": "pantalla" },
+  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Crear código para el ordenador.", "solucion": "programar" },
+  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Cubo de basura del ordenador.", "solucion": "papelera" },
+  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Tu foto y nombre en un juego.", "solucion": "perfil" },
+
+  { "id": "q1", "letra": "Q", "tipo": "contiene", "definicion": "Conjunto de aparatos informáticos.", "solucion": "equipo" },
+  { "id": "q2", "letra": "Q", "tipo": "contiene", "definicion": "Pieza de código como un ladrillo.", "solucion": "bloque" },
+  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Dirección contraria a la derecha.", "solucion": "izquierda" },
+  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Investigar algo en Google.", "solucion": "búsqueda" },
+
+  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Dispositivo para mover el cursor.", "solucion": "ratón" },
+  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Máquina que se mueve sola.", "solucion": "robot" },
+  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Wifi o conexión de cables.", "solucion": "red" },
+  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Volver a hacer lo mismo.", "solucion": "repetir" },
+
+  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Cerrar el programa o juego.", "solucion": "salir" },
+  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Lo que oímos por los altavoces.", "solucion": "sonido" },
+  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Acción de elevarse del suelo.", "solucion": "saltar" },
+  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Respuesta a un problema.", "solucion": "solución" },
+
+  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Tiene muchas teclas y letras.", "solucion": "teclado" },
+  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Ordenador plano sin teclado físico.", "solucion": "tablet" },
+  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Cada botón del teclado.", "solucion": "tecla" },
+  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Pantalla que se puede tocar.", "solucion": "táctil" },
+
+  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Persona que usa el ordenador.", "solucion": "usuario" },
+  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Lápiz de memoria pequeño.", "solucion": "usb" },
+  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Juntar dos bloques.", "solucion": "unir" },
+  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Saber dónde estás en el mapa.", "solucion": "ubicación" },
+
+  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Recuadro donde se abre un programa.", "solucion": "ventana" },
+  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Película en el ordenador.", "solucion": "vídeo" },
+  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Programa malo que estropea el PC.", "solucion": "virus" },
+  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Hablarle al móvil o tablet.", "solucion": "voz" },
+
+  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Internet sin cables.", "solucion": "wifi" },
+  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Página de internet.", "solucion": "web" },
+  { "id": "w3", "letra": "W", "tipo": "empieza", "definicion": "Cámara de vídeo del ordenador.", "solucion": "webcam" },
+  { "id": "w4", "letra": "W", "tipo": "empieza", "definicion": "Programa famoso para escribir.", "solucion": "word" },
+
+  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Palabras escritas.", "solucion": "texto" },
+  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Puntito de luz en la pantalla.", "solucion": "píxel" },
+  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Unión entre dos ordenadores.", "solucion": "conexión" },
+  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Programa para ver carpetas.", "solucion": "explorador" },
+
+  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Web famosa de vídeos.", "solucion": "youtube" },
+  { "id": "y2", "letra": "Y", "tipo": "contiene", "definicion": "Botón triangular para ver un vídeo.", "solucion": "play" },
+  { "id": "y3", "letra": "Y", "tipo": "contiene", "definicion": "Pedir socorro o asistencia.", "solucion": "ayuda" },
+  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Palanca de juego.", "solucion": "joystick" },
+
+  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Acercar la imagen para verla grande.", "solucion": "zoom" },
+  { "id": "z2", "letra": "Z", "tipo": "contiene", "definicion": "Aparato que saca el sonido.", "solucion": "altavoz" },
+  { "id": "z3", "letra": "Z", "tipo": "contiene", "definicion": "Ir hacia delante.", "solucion": "avanzar" },
+  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Pantalla blanca digital del cole.", "solucion": "pizarra" }
+]

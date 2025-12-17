@@ -1,0 +1,161 @@
+[
+  {
+    "categoria": "Hardware: Cosas que toco (Visual)",
+    "correctos": [
+      "💻",
+      "⌨️",
+      "🖱️",
+      "🖨️",
+      "📱",
+      "🖥️"
+    ],
+    "intrusos": [
+      "🍎",
+      "🐶",
+      "⚽",
+      "🧸",
+      "🚗",
+      "🍕"
+    ]
+  },
+  {
+    "categoria": "Robótica (Visual)",
+    "correctos": [
+      "🤖",
+      "⚙️",
+      "🔋",
+      "🔌",
+      "💡",
+      "🛠️"
+    ],
+    "intrusos": [
+      "🌸",
+      "🍦",
+      "🐱",
+      "☁️",
+      "🎨"
+    ]
+  },
+  {
+    "categoria": "Iconos de la pantalla (Visual)",
+    "correctos": [
+      "📁",
+      "🗑️",
+      "🔍",
+      "✉️",
+      "🖼️",
+      "🎬"
+    ],
+    "intrusos": [
+      "🚲",
+      "🦒",
+      "🍔",
+      "🎸",
+      "👞"
+    ]
+  },
+  {
+    "categoria": "Símbolos de Código (Visual)",
+    "correctos": [
+      "➡️",
+      "⬅️",
+      "⬆️",
+      "⬇️",
+      "➕",
+      "➖"
+    ],
+    "intrusos": [
+      "🏠",
+      "🚗",
+      "🐶",
+      "🌲",
+      "🍎"
+    ]
+  },
+  {
+    "categoria": "Órdenes para un Robot",
+    "correctos": [
+      "Avanzar",
+      "Girar",
+      "Saltar",
+      "Parar",
+      "Esperar"
+    ],
+    "intrusos": [
+      "Comer",
+      "Dormir",
+      "Llorar",
+      "Cantar",
+      "Soñar"
+    ]
+  },
+  {
+    "categoria": "Partes de un Ordenador",
+    "correctos": [
+      "Teclado",
+      "Ratón",
+      "Pantalla",
+      "Altavoz",
+      "Cámara",
+      "Batería"
+    ],
+    "intrusos": [
+      "Zapato",
+      "Cuchara",
+      "Libreta",
+      "Lápiz",
+      "Gorra"
+    ]
+  },
+  {
+    "categoria": "Cosas que hay en Internet",
+    "correctos": [
+      "Web",
+      "Vídeo",
+      "Juego",
+      "Correo",
+      "Foto",
+      "Mensaje"
+    ],
+    "intrusos": [
+      "Piedra",
+      "Árbol",
+      "Bocadillo",
+      "Pelota",
+      "Libro"
+    ]
+  },
+  {
+    "categoria": "Acciones con el Ratón",
+    "correctos": [
+      "Clic",
+      "Doble clic",
+      "Arrastrar",
+      "Soltar"
+    ],
+    "intrusos": [
+      "Pintar",
+      "Recortar",
+      "Pegar",
+      "Doblar",
+      "Escribir"
+    ]
+  },
+  {
+    "categoria": "Conceptos de Programación",
+    "correctos": [
+      "Código",
+      "Bucle",
+      "Algoritmo",
+      "Instrucción",
+      "Condicional"
+    ],
+    "intrusos": [
+      "Cuento",
+      "Canción",
+      "Receta",
+      "Dibujo",
+      "Poesía"
+    ]
+  }
+]
