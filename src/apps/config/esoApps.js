@@ -67,7 +67,8 @@ export const esoApps = {
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
       appClasificador
-    ]
+    ],
+    'programacion': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador]
   },
   '2': {
     'lengua': [
@@ -125,7 +126,8 @@ export const esoApps = {
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
       appClasificador
-    ]
+    ],
+    'programacion': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador]
   },
   '3': {
     'lengua': [
@@ -183,7 +185,8 @@ export const esoApps = {
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
       appClasificador
-    ]
+    ],
+    'programacion': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador]
   },
   '4': {
     'lengua': [
@@ -249,6 +252,7 @@ export const esoApps = {
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
       appClasificador
-    ]
+    ],
+    'programacion': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador]
   }
 };

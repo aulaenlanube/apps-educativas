@@ -8,15 +8,53 @@ import { Button } from '@/components/ui/button';
 // IMPORTANTE: Asegúrate de importar también primariaApps
 import { esoApps, esoSubjects, primariaApps } from '@/apps/appList';
 
-// --- NUEVO COMPONENTE: Selector de App Aleatoria (Sin cambios) ---
+// src/pages/AppListPage.jsx (Solo la parte del RandomAppSelector)
+
 const RandomAppSelector = ({ apps, onAppSelected }) => {
     const [isSpinning, setIsSpinning] = useState(false);
     const [currentAppIndex, setCurrentAppIndex] = useState(0);
-    const intervalRef = useRef(null);
+    const spinIntervalRef = useRef(null);
 
+    // Función auxiliar para separar el Emoji del texto
+    const splitEmojiAndTitle = (title) => {
+        if (!title) return { emoji: '', text: '' };
+        
+        // Regex básica para detectar si empieza por un carácter que parece un emoji/símbolo
+        // Asumimos que tus apps tienen el formato "EMOJI + ESPACIO + TITULO"
+        const emojiRegex = /^(\p{Emoji_Presentation}|\p{Extended_Pictographic})/u;
+        const match = title.match(emojiRegex);
+
+        if (match) {
+            // Si encontramos un emoji al principio, intentamos cortar por el primer espacio
+            // para no cortar emojis compuestos si fuera el caso, o simplemente usamos el match.
+            // Dado tu formato "🏝️ Isla...", el emoji suele ocupar los primeros caracteres hasta el espacio.
+            const firstSpaceIndex = title.indexOf(' ');
+            if (firstSpaceIndex !== -1) {
+                return {
+                    emoji: title.substring(0, firstSpaceIndex),
+                    text: title.substring(firstSpaceIndex) // Incluye el espacio inicial para separación
+                };
+            }
+        }
+        // Si no hay emoji o formato esperado, devolvemos todo como texto
+        return { emoji: '', text: title };
+    };
+
+    // 1. Efecto para la animación automática en reposo (Idle)
+    useEffect(() => {
+        if (isSpinning) return;
+
+        const idleInterval = setInterval(() => {
+            setCurrentAppIndex((prev) => (prev + 1) % apps.length);
+        }, 1500); // Un poco más lento en reposo para que sea elegante
+
+        return () => clearInterval(idleInterval);
+    }, [isSpinning, apps.length]);
+
+    // 2. Limpieza
     useEffect(() => {
         return () => {
-            if (intervalRef.current) clearInterval(intervalRef.current);
+            if (spinIntervalRef.current) clearInterval(spinIntervalRef.current);
         };
     }, []);
 
@@ -24,18 +62,20 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
         if (isSpinning || apps.length === 0) return;
 
         setIsSpinning(true);
+        
         let spins = 0;
-        const maxSpins = 25;
-        const speed = 80;
+        const maxSpins = 30; // Un poco más de vueltas
+        const speed = 30; // VELOCIDAD: 30ms es muy rápido (aceleración fuerte)
 
-        intervalRef.current = setInterval(() => {
+        spinIntervalRef.current = setInterval(() => {
             setCurrentAppIndex((prev) => (prev + 1) % apps.length);
             spins++;
 
             if (spins >= maxSpins) {
-                clearInterval(intervalRef.current);
+                clearInterval(spinIntervalRef.current);
                 const winnerIndex = Math.floor(Math.random() * apps.length);
                 setCurrentAppIndex(winnerIndex);
+                
                 setTimeout(() => {
                     setIsSpinning(false);
                     onAppSelected(apps[winnerIndex]);
@@ -46,6 +86,9 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
 
     if (apps.length < 2) return null;
 
+    // Preparamos el título actual separado
+    const { emoji, text } = splitEmojiAndTitle(apps[currentAppIndex]?.name);
+
     return (
         <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
@@ -54,11 +97,13 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
         >
             <div className="bg-white/90 backdrop-blur-sm border-2 border-indigo-100 rounded-3xl p-1 shadow-xl overflow-hidden relative">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500" />
+                
                 <div className="p-6 md:p-8 text-center flex flex-col items-center">
                     <h3 className="text-lg font-semibold text-gray-600 mb-6 flex items-center gap-2">
                         <Dices className="w-5 h-5 text-purple-500" />
                         ¿Indeciso? ¡Deja que el azar elija por ti!
                     </h3>
+
                     <div className="w-full h-24 mb-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl border border-indigo-100 flex items-center justify-center relative overflow-hidden shadow-inner">
                         <AnimatePresence mode="wait">
                             <motion.div
@@ -66,20 +111,43 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 exit={{ y: -20, opacity: 0 }}
-                                transition={{ duration: 0.05 }}
+                                // TRANSICIÓN DINÁMICA: Muy rápida si está girando, suave si está en reposo
+                                transition={{ duration: isSpinning ? 0.03 : 0.5 }}
                                 className="absolute inset-0 flex items-center justify-center px-4"
                             >
-                                <span className={`text-2xl md:text-3xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r ${isSpinning ? 'from-gray-400 to-gray-600' : 'from-indigo-600 to-purple-600'}`}>
-                                    {apps[currentAppIndex]?.name}
-                                </span>
+                                <div className="text-2xl md:text-3xl font-bold text-center flex justify-center items-center flex-wrap">
+                                    {/* Renderizado condicional: Emoji normal + Texto Gradiente */}
+                                    {emoji && (
+                                        <span className="text-gray-800 mr-1 filter drop-shadow-sm">
+                                            {emoji}
+                                        </span>
+                                    )}
+                                    <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isSpinning ? 'from-gray-400 to-gray-600' : 'from-indigo-600 to-purple-600'}`}>
+                                        {text}
+                                    </span>
+                                </div>
                             </motion.div>
                         </AnimatePresence>
                     </div>
-                    <Button onClick={handleSpin} disabled={isSpinning} size="lg" className={`w-full md:w-auto min-w-[200px] text-lg rounded-xl transition-all duration-300 ${isSpinning ? 'bg-gray-100 text-gray-400 border border-gray-200 shadow-none' : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-1'}`}>
+
+                    <Button 
+                        onClick={handleSpin} 
+                        disabled={isSpinning}
+                        size="lg"
+                        className={`w-full md:w-auto min-w-[200px] text-lg rounded-xl transition-all duration-300 ${
+                            isSpinning 
+                            ? 'bg-gray-100 text-gray-400 border border-gray-200 shadow-none' 
+                            : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-1'
+                        }`}
+                    >
                         {isSpinning ? (
-                            <span className="flex items-center gap-2"><Sparkles className="animate-spin w-5 h-5" /> Elegiendo...</span>
+                            <span className="flex items-center gap-2">
+                                <Sparkles className="animate-spin w-5 h-5" /> Elegiendo...
+                            </span>
                         ) : (
-                            <span className="flex items-center gap-2"><Zap className="w-5 h-5 fill-current" /> ¡Elegir App Aleatoria!</span>
+                            <span className="flex items-center gap-2">
+                                <Zap className="w-5 h-5 fill-current" /> ¡Elegir App Aleatoria!
+                            </span>
                         )}
                     </Button>
                 </div>
@@ -149,6 +217,10 @@ const AppListPage = () => {
 
     const fullTitle = `${subjectName} - ${grade}º ${level.toUpperCase()}`;
 
+    // Calculamos el texto para el subtítulo del logo
+    const levelDisplay = level === 'eso' ? 'ESO' : 'Primaria';
+    const headerSubtitle = `${grade}º ${levelDisplay}`;
+
     const handleRandomSelection = (app) => {
         navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`);
     };
@@ -168,7 +240,7 @@ const AppListPage = () => {
                          </div>
                          <div>
                            <h1 className="text-2xl font-bold gradient-text">EduApps</h1>
-                           <p className="text-sm text-gray-600">Apps Educativas</p>
+                           <p className="text-sm text-gray-600">{headerSubtitle}</p>
                          </div>
                        </div>
                        {/* CORRECCIÓN 3: El botón de volver ahora usa la variable 'level' */}

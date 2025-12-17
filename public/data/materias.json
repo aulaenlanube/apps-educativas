@@ -13,7 +13,8 @@
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" },
       { "id": "valenciano", "nombre": "Valenciano", "icon": "🍊" },
       { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
-      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" }
+      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" },
+      { "id": "programacion", "nombre": "Programación", "icon": "💻" }
     ],
     "2": [
       { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
@@ -28,7 +29,8 @@
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" },
       { "id": "valenciano", "nombre": "Valenciano", "icon": "🍊" },      
       { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
-      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" }
+      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" },
+      { "id": "programacion", "nombre": "Programación", "icon": "💻" }
     ],
     "3": [
       { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
@@ -43,7 +45,8 @@
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" },
       { "id": "valenciano", "nombre": "Valenciano", "icon": "🍊" },
       { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
-      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" }
+      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" },
+      { "id": "programacion", "nombre": "Programación", "icon": "💻" }
     ],
     "4": [
       { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
@@ -60,7 +63,8 @@
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" },
       { "id": "valenciano", "nombre": "Valenciano", "icon": "🍊" },
       { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
-      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" }
+      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" },
+      { "id": "programacion", "nombre": "Programación", "icon": "💻" }
     ]
   },
   "primaria": {
@@ -72,7 +76,8 @@
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" },
       { "id": "valenciano", "nombre": "Valenciano", "icon": "🍊" },      
       { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
-      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" }
+      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" },
+      { "id": "programacion", "nombre": "Programación", "icon": "💻" }
     ],
     "2": [
       { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
@@ -82,7 +87,8 @@
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" },
       { "id": "valenciano", "nombre": "Valenciano", "icon": "🍊" },
       { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
-      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" }
+      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" },
+      { "id": "programacion", "nombre": "Programación", "icon": "💻" }
     ],
     "3": [
       { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
@@ -92,7 +98,8 @@
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" },
       { "id": "valenciano", "nombre": "Valenciano", "icon": "🍊" },
       { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
-      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" }
+      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" },
+      { "id": "programacion", "nombre": "Programación", "icon": "💻" }
     ],
     "4": [
       { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
@@ -102,7 +109,8 @@
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" },
       { "id": "valenciano", "nombre": "Valenciano", "icon": "🍊" },
       { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
-      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" }
+      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" },
+      { "id": "programacion", "nombre": "Programación", "icon": "💻" }
     ],
     "5": [
       { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
@@ -112,7 +120,8 @@
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" },
       { "id": "valenciano", "nombre": "Valenciano", "icon": "🍊" },
       { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
-      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" }
+      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" },
+      { "id": "programacion", "nombre": "Programación", "icon": "💻" }
     ],
     "6": [
       { "id": "lengua", "nombre": "Lengua Castellana y Literatura", "icon": "✍️" },
@@ -122,7 +131,8 @@
       { "id": "tutoria", "nombre": "Tutoría", "icon": "🤝" },
       { "id": "valenciano", "nombre": "Valenciano", "icon": "🍊" },
       { "id": "ingles", "nombre": "Inglés", "icon": "🇬🇧" },
-      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" }
+      { "id": "frances", "nombre": "Francés", "icon": "🇫🇷" },
+      { "id": "programacion", "nombre": "Programación", "icon": "💻" }
     ]
   }
 }

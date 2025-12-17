@@ -183,7 +183,7 @@ const RoscoUI = ({
 
         return (
             <div className="rosco-container pt-4">
-                <h1 className="text-4xl font-extrabold mb-4 text-blue-600 font-fredoka">El Rosco del Saber</h1>
+                <h1 className="text-5xl font-extrabold mb-4 text-blue-600 font-fredoka">Pasapalabra</h1>
                 <div className="bg-white p-6 rounded-3xl shadow-xl max-w-lg mx-auto text-left">
                     <div className="mb-6 flex justify-center bg-gray-100 p-2 rounded-xl">
                         <button onClick={() => handleConfigChange('numPlayers', 1)} className={`flex-1 py-2 rounded-lg font-bold transition-all ${config.numPlayers === 1 ? 'bg-white shadow-md text-blue-600' : 'text-gray-400'}`}>1 Jugador</button>
