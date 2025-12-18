@@ -53,8 +53,8 @@ import LluviaDePalabras from '../lluvia-de-palabras/LluviaDePalabras';
 import Clasificador from '../_shared/Clasificador'; 
 import Snake from '../snake/SnakePalabras.jsx';
 // ... imports existentes
-import LenguaComprensionEscrita from '../comprension/LenguaComprensionEscrita';
-import LenguaComprensionOral from '../comprension/LenguaComprensionOral';
+import LenguaComprensionEscrita from '../comprension/ComprensionEscrita.jsx';
+import LenguaComprensionOral from '../comprension/ComprensionOral.jsx';
 
 // Apps Comunes
 export const appIslaDeLaCalma = {
