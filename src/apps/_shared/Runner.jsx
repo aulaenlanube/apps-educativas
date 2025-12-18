@@ -577,7 +577,7 @@ const Runner = ({ level, grade, subjectId }) => {
                 
                 <div className="pt-2 border-t border-white/20 mt-2">
                   <Button onClick={() => setShowHints(!showHints)} className={`w-full flex justify-between items-center border-2 rounded-none h-8 transition-all font-bold text-xs uppercase ${showHints ? "bg-emerald-600/50 border-emerald-400 hover:bg-emerald-600 text-white" : "bg-red-600/50 border-red-400 hover:bg-red-600 text-white"}`}>
-                    <span>{showHints ? "Pistas: SÍ" : "Pistas: NO"}</span>
+                    <span>{showHints ? "Examen: NO" : "Examen: SÍ"}</span>
                     {showHints ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
                   </Button>
                 </div>

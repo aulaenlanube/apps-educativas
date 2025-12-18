@@ -304,7 +304,7 @@ const LluviaDePalabras = () => {
                     {[
                         { id: 'easy', emoji: '🌱', label: 'Fácil', sub: '2 Cajas', accent: 'bg-green-500', shadow: 'shadow-green-200' },
                         { id: 'medium', emoji: '🚀', label: 'Medio', sub: '3 Cajas + Ayuda', accent: 'bg-blue-500', shadow: 'shadow-blue-200' },
-                        { id: 'hard', emoji: '🔥', label: 'PRO', sub: '3 Cajas sin Ayudas', accent: 'bg-red-500', shadow: 'shadow-red-200' }
+                        { id: 'hard', emoji: '🔥', label: 'EXAMEN', sub: '3 Cajas sin Ayudas', accent: 'bg-red-500', shadow: 'shadow-red-200' }
                     ].map((mode) => (
                         <motion.button 
                             key={mode.id} 

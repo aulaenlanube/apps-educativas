@@ -47,7 +47,7 @@ const DetectiveDePalabrasUI = ({ game }) => {
 
       return (
         <div className={`${cls} test-results`}>
-          <Header titulo="¡Test Completado!" />
+          <Header titulo="Examen Completado!" />
           <div className="score">Tu puntuación: <span>{game.score}</span></div>
           <p>Has acertado {correct} de {TOTAL_TEST_QUESTIONS} frases</p>
           {game.elapsedTime > 0 && <p>Tiempo total: {game.elapsedTime} segundos</p>}
@@ -77,7 +77,7 @@ const DetectiveDePalabrasUI = ({ game }) => {
     // Test en curso
     return (
       <div className={cls}>
-        <Header titulo="Test del Detective" />
+        <Header titulo="Examen" />
 
         <div className="test-header">
           <div>Frase {game.indiceFraseActual + 1} / {TOTAL_TEST_QUESTIONS}</div>
@@ -116,7 +116,9 @@ const DetectiveDePalabrasUI = ({ game }) => {
 
       <div className="mode-selection">
         <button className="btn-mode active">Práctica Libre</button>
-        <button onClick={game.startTest} className="btn-mode">Iniciar Test</button>
+        <button onClick={game.startTest} className="btn-mode">
+          Examen
+        </button>
       </div>
 
       {/* AQUÍ SE HA AÑADIDO ref={game.containerRef} */}

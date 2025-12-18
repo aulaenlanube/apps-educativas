@@ -292,7 +292,7 @@ const Clasificador = () => {
                         `}
                     >
                         <Clock className="h-6 w-6" />
-                        Modo Test ({TEST_QUESTION_COUNT} Preguntas)
+                        Examen
                     </Button>
                     {!isTestPossible && (
                         <p className="text-center text-sm text-red-500 mt-2">
@@ -321,7 +321,7 @@ const Clasificador = () => {
     if (percentage >= 70) stars = 2;
     if (percentage >= 90) stars = 3;
 
-    const title = isPerfectScore ? '¡10/10! ¡PERFECTO!' : (gameMode === 'test' ? 'Test Completado' : 'Fin de la Práctica');
+    const title = isPerfectScore ? '¡10/10! ¡PERFECTO!' : (gameMode === 'test' ? 'Examen Completado' : 'Fin de la Práctica');
     const subTitle = gameMode === 'test' 
         ? `Has acertado ${correctAnswersCount}/${totalQuestions} preguntas.` 
         : `Has revisado ${totalQuestions} palabras.`;

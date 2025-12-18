@@ -85,7 +85,7 @@ const OrdenaLaFraseUI = ({ game }) => {
 
     return (
       <div className={`${cls} test-results`}>
-        <Header titulo="¡Test Completado!" />
+        <Header titulo="Examen Completado!" />
         <div className="score">Tu puntuación: <span>{game.score}</span></div>
         <p>Has acertado {correct} de {game.TOTAL_TEST_QUESTIONS} frases</p>
         {game.elapsedTime > 0 && <p>Tiempo total: {game.elapsedTime} segundos</p>}
@@ -116,7 +116,7 @@ const OrdenaLaFraseUI = ({ game }) => {
   if (game.isTestMode) {
     return (
       <div className={cls} onTouchMove={game.handleTouchMove} onTouchEnd={game.handleTouchEnd} onTouchCancel={game.handleTouchCancel}>
-        <Header titulo="Test de Frases" />
+        <Header titulo="Examen" />
         <div className="test-header">
           <div>Frase {game.currentQuestionIndex + 1} / {game.TOTAL_TEST_QUESTIONS}</div>
           {game.elapsedTime > 0 && <div className="timer">Tiempo: {game.elapsedTime}s</div>}
@@ -152,7 +152,7 @@ const OrdenaLaFraseUI = ({ game }) => {
 
       <div className="mode-selection">
         <button className="btn-mode active">Práctica Libre</button>
-        <button onClick={game.startTest} className="btn-mode">Iniciar Test</button>
+        <button onClick={game.startTest} className="btn-mode">Examen</button>
       </div>
 
       <div className="zona-destino" ref={game.dropZoneRef} onDragOver={game.handleDragOver} onDrop={(e) => game.handleDrop(e, 'destino')}>

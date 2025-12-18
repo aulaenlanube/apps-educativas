@@ -3,9 +3,8 @@ import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
   RefreshCcw, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, 
-  Play, Pause, Star, Settings, Lightbulb, LightbulbOff, Skull, ShieldCheck, AlertTriangle 
+  Play, Pause, Star, Lightbulb, LightbulbOff, AlertTriangle, Zap 
 } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast'; // Mantenemos toast por si quieres usarlo para errores de carga, pero no para juego
 import { cn } from "@/lib/utils";
 
 // Configuración del tablero y tiempos
@@ -16,7 +15,6 @@ const ITEM_LIFESPAN = 15000;
 const ITEM_BLINK_TIME = 5000; 
 
 const SnakeDePalabras = (props) => {
-  // const { toast } = useToast(); // Ya no usamos toasts para gameplay
   const params = useParams();
   const level = props.level || params.level;
   const grade = props.grade || params.grade;
@@ -28,9 +26,16 @@ const SnakeDePalabras = (props) => {
   const [food, setFood] = useState([]); 
   const [score, setScore] = useState(0);
   
+  // Estados de Racha (Combos)
+  const [combo, setCombo] = useState(0); // Racha de palabras correctas
+  const [starCombo, setStarCombo] = useState(0); // Racha de estrellas
+  
+  // Estado para el crecimiento acumulado (Power-up)
+  const [pendingGrowth, setPendingGrowth] = useState(0); 
+  
   // Estados visuales (Feedback)
-  // null | 'error' | 'success' | 'bonus'
   const [headAnim, setHeadAnim] = useState(null); 
+  const [textSize, setTextSize] = useState(12);
 
   // Estados de flujo
   const [gameState, setGameState] = useState('menu'); 
@@ -95,8 +100,6 @@ const SnakeDePalabras = (props) => {
       if (gameState !== 'playing' || isPaused) return;
 
       const now = Date.now();
-
-      // --- GESTIÓN DE CADUCIDAD ---
       setFood(prevFood => prevFood.filter(item => item.expiresAt > now));
 
       setSnake(prevSnake => {
@@ -132,23 +135,40 @@ const SnakeDePalabras = (props) => {
         if (eatenFoodIndex !== -1) {
           const eatenItem = food[eatenFoodIndex];
           handleEat(eatenItem);
-          const newFoodList = [...food];
-          newFoodList.splice(eatenFoodIndex, 1);
-          setFood(newFoodList);
+          
+          if (eatenItem.type !== 'bonus') {
+             const newFoodList = [...food];
+             newFoodList.splice(eatenFoodIndex, 1);
+             setFood(newFoodList);
+          }
         } else {
-          newSnake.pop();
+          // Si NO hemos comido
+          if (pendingGrowth > 0) {
+             // Crecimiento por Power-up: no borramos cola
+             setPendingGrowth(prev => prev - 1);
+          } else {
+             // Normal: borramos cola para mantener tamaño
+             newSnake.pop();
+          }
         }
 
         return newSnake;
       });
     };
-  }, [gameState, isPaused, direction, food, difficulty]);
+  }); 
+
+  // Trigger ref updates
+  useEffect(() => {
+     savedCallback.current = savedCallback.current; 
+  }, [gameState, isPaused, direction, food, difficulty, currentCatIndex, pendingGrowth, combo, starCombo]);
 
   // Timer del Loop
   useEffect(() => {
     if (gameState !== 'playing' || isPaused) return;
     const tickTime = Math.max(SPEED_MIN, SPEED_INITIAL - (score * 2));
-    const id = setInterval(() => savedCallback.current(), tickTime);
+    const id = setInterval(() => {
+        if (savedCallback.current) savedCallback.current();
+    }, tickTime);
     return () => clearInterval(id);
   }, [gameState, isPaused, score]);
 
@@ -218,7 +238,6 @@ const SnakeDePalabras = (props) => {
     }
   }, [food.length, gameState, isPaused, data, snake, currentCatIndex, generateFoodItem]);
 
-  // TRIGGER DE ANIMACIONES
   const triggerAnim = (type) => {
     setHeadAnim(type);
     setTimeout(() => setHeadAnim(null), 500);
@@ -256,19 +275,39 @@ const SnakeDePalabras = (props) => {
     setDirection({ x, y });
   };
 
+  // --- LÓGICA DE PUNTUACIÓN Y COMBOS ---
   const handleEat = (item) => {
     if (item.type === 'bonus') {
+      // BONUS (Estrella)
+      const newStarCombo = starCombo + 1;
+      setStarCombo(newStarCombo);
+      
+      const points = newStarCombo * 500; // 500, 1000, 1500...
+      setScore(s => s + points);
+      
+      // Efectos extra
       const nextIndex = (currentCatIndex + 1) % categories.length;
       setCurrentCatIndex(nextIndex);
-      setScore(s => s + 50);
       setFood([]); 
-      triggerAnim('bonus'); // Animación Amarilla
+      setPendingGrowth(p => p + 10); // Crecer 10
+      triggerAnim('bonus');
+
     } else if (item.type === 'valid') {
-      setScore(s => s + 10);
-      triggerAnim('success'); // Animación Verde
+      // PALABRA CORRECTA
+      const newCombo = combo + 1;
+      setCombo(newCombo);
+      
+      const points = newCombo * 50; // 50, 100, 150...
+      setScore(s => s + points);
+      triggerAnim('success');
+
     } else {
-      setScore(s => Math.max(0, s - 15));
-      triggerAnim('error'); // Animación Roja
+      // PALABRA INCORRECTA (Fallo)
+      setCombo(0); // Reiniciar racha
+      setStarCombo(0); // Reiniciar racha de estrellas también
+      
+      setScore(s => Math.max(0, s - 15)); // Pequeña penalización fija
+      triggerAnim('error');
     }
   };
 
@@ -284,6 +323,9 @@ const SnakeDePalabras = (props) => {
     setDirection({ x: 1, y: 0 }); 
     setFood([]);
     setScore(0);
+    setPendingGrowth(0);
+    setCombo(0);
+    setStarCombo(0);
     setGameState('playing');
     setIsPaused(false);
     setShowConfirmRestart(false);
@@ -320,17 +362,15 @@ const SnakeDePalabras = (props) => {
       setPendingDifficulty(null);
   };
 
-  // --- RENDER ---
-
-  if (loading) return <div className="text-white text-center p-10 animate-pulse">Cargando base de datos...</div>;
-  if (loadingError) return <div className="text-red-400 text-center p-10">Error cargando datos.</div>;
+  if (loading) return <div className="text-slate-500 text-center p-10 animate-pulse font-bold">Cargando juego...</div>;
+  if (loadingError) return <div className="text-red-400 text-center p-10 font-bold">Error cargando datos.</div>;
 
   const currentCategoryName = categories.length > 0 ? formatName(categories[currentCatIndex]) : '';
 
   return (
-    <div className="flex flex-col items-center w-full max-w-5xl mx-auto p-4 gap-6 font-sans relative">
+    <div className="flex flex-col items-center w-full max-w-5xl mx-auto p-4 gap-6 relative">
       
-      {/* Estilos para animaciones de la cabeza */}
+      {/* Estilos Animaciones y Cola */}
       <style>{`
         @keyframes shake {
           0%, 100% { transform: translateX(0); }
@@ -350,46 +390,75 @@ const SnakeDePalabras = (props) => {
         .animate-head-error { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
         .animate-head-success { animation: popGreen 0.4s ease-out both; }
         .animate-head-bonus { animation: popGold 0.5s ease-out both; }
+
+        .tail-up { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+        .tail-down { clip-path: polygon(0% 0%, 100% 0%, 50% 100%); }
+        .tail-left { clip-path: polygon(100% 0%, 100% 100%, 0% 50%); }
+        .tail-right { clip-path: polygon(0% 0%, 0% 100%, 100% 50%); }
       `}</style>
 
-      {/* Header HUD */}
-      <div className="w-full flex justify-between items-end px-4">
-        <div>
-           <h1 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400" style={{ textShadow: '0px 0px 10px rgba(100,100,255,0.5)' }}>
+      {/* HEADER CENTRADO */}
+      <div className="w-full max-w-[600px] flex flex-col sm:flex-row justify-between items-end sm:items-end gap-4">
+        <div className="text-center sm:text-left w-full sm:w-auto">
+           <h1 className="text-4xl md:text-5xl font-black gradient-text pb-2">
              NEON SNAKE
            </h1>
            {gameState === 'playing' && (
-             <div className="flex items-center gap-2 mt-2">
-                <span className="text-slate-400 text-sm">Objetivo:</span>
-                <span className="text-yellow-400 font-bold text-lg uppercase tracking-wider animate-pulse">
+             <div className="flex items-center justify-center sm:justify-start gap-2 mt-1">
+                <span className="text-slate-400 text-sm font-bold">Objetivo:</span>
+                <span className="text-yellow-600 font-bold text-lg uppercase tracking-wider animate-pulse">
                     {currentCategoryName}
                 </span>
              </div>
            )}
         </div>
 
-        <div className="flex items-center gap-4">
-             <div className="flex flex-col items-end">
-                <div className="text-slate-400 text-xs uppercase tracking-widest mb-1">Puntuación</div>
-                <div className="text-4xl font-mono font-black text-green-400 drop-shadow-lg">
+        <div className="flex items-center gap-3 w-full sm:w-auto justify-center sm:justify-end">
+             <div className="flex flex-col items-end mr-2 relative">
+                {/* Indicador de Combo */}
+                {combo > 1 && (
+                    <div className="absolute -top-6 right-0 text-yellow-500 font-bold text-sm animate-bounce">
+                        x{combo} Racha!
+                    </div>
+                )}
+                
+                <div className="text-slate-400 text-xs uppercase tracking-widest mb-0 font-bold">Puntuación</div>
+                <div className="text-4xl font-black text-green-600 drop-shadow-sm leading-none">
                     {score.toString().padStart(4, '0')}
                 </div>
              </div>
              
+             {gameState === 'playing' && difficulty !== 'hard' && (
+                <Button 
+                    variant="outline" 
+                    size="icon" 
+                    className={cn(
+                        "h-12 w-12 rounded-full border-2 transition-all shadow-sm",
+                        showHelp 
+                            ? "bg-white border-yellow-400 text-yellow-500 hover:bg-yellow-50" 
+                            : "bg-slate-100 border-slate-300 text-slate-400 hover:bg-slate-200"
+                    )}
+                    onClick={toggleHelp}
+                    title="Ayuda de color"
+                >
+                    {showHelp ? <Lightbulb className="h-6 w-6" /> : <LightbulbOff className="h-6 w-6" />}
+                </Button>
+             )}
+
              {gameState === 'playing' && (
                  <Button 
                     variant="outline"
-                    className="h-12 w-12 rounded-full border-2 border-slate-600 bg-slate-800 hover:bg-slate-700 text-white ml-4"
+                    className="h-12 w-12 rounded-full border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 shadow-sm"
                     onClick={togglePause}
                  >
-                     {isPaused ? <Play className="fill-current" /> : <Pause className="fill-current" />}
+                     {isPaused ? <Play className="fill-current h-5 w-5" /> : <Pause className="fill-current h-5 w-5" />}
                  </Button>
              )}
         </div>
       </div>
 
-      {/* Main Container */}
-      <div className="relative w-full max-w-[600px] aspect-square bg-slate-900 border-4 border-slate-700 rounded-xl shadow-2xl overflow-hidden ring-4 ring-black/20">
+      {/* CONTENEDOR PRINCIPAL */}
+      <div className="relative w-full max-w-[600px] aspect-square bg-slate-900 border-4 border-slate-700 rounded-xl shadow-2xl overflow-hidden ring-4 ring-black/10">
         
         <div className="absolute inset-0 opacity-10 pointer-events-none" 
              style={{ 
@@ -398,48 +467,87 @@ const SnakeDePalabras = (props) => {
              }}>
         </div>
 
-        {/* --- PANTALLA: MENU --- */}
+        {/* MENÚ */}
         {gameState === 'menu' && (
             <div className="absolute inset-0 z-40 bg-slate-900/95 flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-300">
-                <h2 className="text-4xl font-bold text-white mb-8">Elige Dificultad</h2>
-                <div className="grid gap-4 w-full max-w-xs">
+                <h2 className="text-4xl font-black text-white mb-6 tracking-wide">Elige Dificultad</h2>
+                
+                {/* Selector Dificultad */}
+                <div className="grid gap-4 w-full max-w-xs mb-8">
                     <DifficultyButtons onSelect={handleDifficultyRequest} currentDifficulty={difficulty} />
+                </div>
+
+                {/* Slider Texto */}
+                <div className="w-full max-w-xs bg-slate-800/50 p-4 rounded-xl border border-slate-700">
+                    <div className="flex justify-between text-slate-300 text-sm font-bold mb-2">
+                        <span>Tamaño Texto</span>
+                        <span>{textSize}px</span>
+                    </div>
+                    <input
+                        type="range"
+                        min="10"
+                        max="24"
+                        step="1"
+                        value={textSize}
+                        onChange={(e) => setTextSize(parseInt(e.target.value))}
+                        className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400"
+                    />
                 </div>
             </div>
         )}
 
-        {/* --- PANTALLA: PAUSA --- */}
+        {/* PAUSA */}
         {isPaused && !showConfirmRestart && gameState === 'playing' && (
-             <div className="absolute inset-0 z-40 bg-slate-900/90 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-200">
-                <h2 className="text-3xl font-black text-white mb-6 tracking-widest">PAUSA</h2>
+             <div className="absolute inset-0 z-40 bg-slate-900/95 backdrop-blur-sm flex flex-col items-center justify-center p-8 text-center animate-in fade-in duration-200">
+                <h2 className="text-4xl font-black text-white mb-6 tracking-wide">PAUSA</h2>
                 
-                <Button onClick={togglePause} className="w-full max-w-xs h-14 text-xl bg-blue-600 hover:bg-blue-500 mb-8 font-bold shadow-lg shadow-blue-900/50">
-                    <Play className="mr-2 h-5 w-5 fill-current" /> CONTINUAR
+                <Button onClick={togglePause} className="w-full max-w-xs h-14 text-xl bg-blue-600 hover:bg-blue-500 mb-6 font-bold shadow-lg shadow-blue-900/50 rounded-xl">
+                    <Play className="mr-2 h-6 w-6 fill-current" /> CONTINUAR
                 </Button>
 
-                <div className="w-full max-w-xs border-t border-slate-700 pt-6">
-                    <p className="text-slate-400 text-sm mb-4 uppercase tracking-wider">Cambiar Dificultad (Reiniciará)</p>
-                    <div className="grid gap-3">
-                         <DifficultyButtons onSelect={handleDifficultyRequest} currentDifficulty={difficulty} />
+                <div className="w-full max-w-xs border-t border-slate-700 pt-6 space-y-6">
+                    
+                    {/* Slider Texto */}
+                    <div className="bg-slate-800/50 p-4 rounded-xl border border-slate-700">
+                         <div className="flex justify-between text-slate-300 text-sm font-bold mb-2">
+                             <span>Tamaño Texto</span>
+                             <span>{textSize}px</span>
+                         </div>
+                         <input
+                             type="range"
+                             min="10"
+                             max="24"
+                             step="1"
+                             value={textSize}
+                             onChange={(e) => setTextSize(parseInt(e.target.value))}
+                             className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400"
+                         />
+                    </div>
+
+                    <div>
+                        <p className="text-slate-400 text-sm mb-4 font-bold uppercase tracking-wider">Cambiar Dificultad</p>
+                        <div className="grid gap-3">
+                             <DifficultyButtons onSelect={handleDifficultyRequest} currentDifficulty={difficulty} />
+                        </div>
                     </div>
                 </div>
              </div>
         )}
 
-        {/* --- MODAL: CONFIRMACIÓN --- */}
+        {/* CONFIRMACIÓN REINICIO */}
         {showConfirmRestart && (
             <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center animate-in zoom-in-95 duration-200">
-                 <div className="bg-slate-800 border-2 border-yellow-600 p-6 rounded-xl max-w-sm w-full shadow-2xl">
+                 <div className="bg-slate-800 border-2 border-yellow-600 p-6 rounded-2xl max-w-sm w-full shadow-2xl">
                     <AlertTriangle className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
-                    <h3 className="text-xl font-bold text-white mb-2">¿Reiniciar Partida?</h3>
-                    <p className="text-slate-300 mb-6 text-sm">
-                        Cambiar la dificultad iniciará una nueva partida.
+                    <h3 className="text-2xl font-black text-white mb-2">¿Reiniciar?</h3>
+                    <p className="text-slate-300 mb-6 font-medium">
+                        Perderás tu progreso actual.
                     </p>
                     <div className="flex gap-3 justify-center">
-                        <Button variant="outline" onClick={cancelRestart} className="border-slate-600 text-slate-300 hover:bg-slate-700">
+                        <Button variant="outline" onClick={cancelRestart} className="border-slate-600 text-slate-300 hover:bg-slate-700 font-bold">
                             Cancelar
                         </Button>
-                        <Button onClick={confirmRestart} className="bg-yellow-600 hover:bg-yellow-500 text-white">
+                        <Button onClick={confirmRestart} className="bg-yellow-600 hover:bg-yellow-500 text-white font-bold">
                             Sí, Reiniciar
                         </Button>
                     </div>
@@ -447,34 +555,34 @@ const SnakeDePalabras = (props) => {
             </div>
         )}
 
-        {/* --- PANTALLA: GAME OVER --- */}
+        {/* GAME OVER */}
         {gameState === 'gameover' && (
-             <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-red-900/90 backdrop-blur-sm text-white animate-in zoom-in duration-300">
-                <h2 className="text-6xl font-black mb-2 tracking-tighter drop-shadow-xl text-red-200">GAME OVER</h2>
-                <div className="bg-black/30 p-6 rounded-xl mb-8 border border-white/10">
-                    <p className="text-xl font-mono text-center">Puntuación Final</p>
-                    <p className="text-5xl font-bold text-center text-yellow-400">{score}</p>
+             <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-red-900/95 backdrop-blur-sm text-white animate-in zoom-in duration-300">
+                <h2 className="text-6xl font-black mb-2 tracking-tighter drop-shadow-xl text-red-100">GAME OVER</h2>
+                <div className="bg-black/20 p-6 rounded-2xl mb-8 border border-white/10 w-64 text-center">
+                    <p className="text-lg font-bold text-red-200 mb-1">Puntuación Final</p>
+                    <p className="text-5xl font-black text-yellow-400">{score}</p>
                 </div>
                 <div className="flex gap-4">
                     <Button 
                         size="lg" 
                         onClick={() => setGameState('menu')} 
-                        className="gap-2 px-6 py-6 text-lg bg-slate-800 text-white hover:bg-slate-700 border border-slate-600"
+                        className="gap-2 px-6 py-6 text-lg bg-slate-800 text-white hover:bg-slate-700 border border-slate-600 rounded-xl font-bold"
                     >
-                        <Settings className="w-5 h-5"/> Menú
+                        Menú
                     </Button>
                     <Button 
                         size="lg" 
                         onClick={() => startGame()} 
-                        className="gap-2 px-6 py-6 text-lg bg-white text-red-900 hover:bg-gray-200 font-bold shadow-xl"
+                        className="gap-2 px-6 py-6 text-lg bg-white text-red-900 hover:bg-red-50 font-black shadow-xl rounded-xl"
                     >
-                        <RefreshCcw className="w-5 h-5" /> Reintentar
+                        <RefreshCcw className="w-6 h-6 mr-2" /> Reintentar
                     </Button>
                 </div>
              </div>
         )}
 
-        {/* --- TABLERO --- */}
+        {/* TABLERO */}
         <div 
             className="w-full h-full relative"
             style={{ 
@@ -487,36 +595,46 @@ const SnakeDePalabras = (props) => {
             {/* Snake */}
             {snake.map((segment, i) => {
                 const isHead = i === 0;
+                const isTail = i === snake.length - 1 && snake.length > 1;
                 
-                // Determinamos clases para la cabeza según el estado de la animación
                 let headClasses = "bg-cyan-400 z-20 shadow-[0_0_15px_rgba(34,211,238,0.6)] scale-110";
-                
+                let tailClass = '';
+
                 if (isHead) {
                     if (headAnim === 'error') headClasses = "bg-red-500 shadow-[0_0_20px_rgba(239,68,68,0.9)] animate-head-error";
                     else if (headAnim === 'success') headClasses = "bg-green-500 shadow-[0_0_20px_rgba(34,197,94,0.9)] animate-head-success";
                     else if (headAnim === 'bonus') headClasses = "bg-yellow-400 shadow-[0_0_30px_rgba(250,204,21,0.9)] animate-head-bonus";
+                } else if (isTail) {
+                    // Determinar dirección de la cola
+                    const prev = snake[i-1];
+                    if (prev.y < segment.y) tailClass = 'tail-down';
+                    else if (prev.y > segment.y) tailClass = 'tail-up';
+                    else if (prev.x < segment.x) tailClass = 'tail-right';
+                    else if (prev.x > segment.x) tailClass = 'tail-left';
                 }
 
                 return (
                     <div
                         key={i}
                         className={cn(
-                            "relative rounded-sm transition-all duration-75",
-                            isHead ? headClasses : "bg-cyan-600/80 z-10"
+                            "relative transition-all duration-75",
+                            !isTail && "rounded-sm", // La cola no es redondeada
+                            isHead ? headClasses : (isTail ? `bg-cyan-600/80 z-10 ${tailClass}` : "bg-cyan-600/80 z-10")
                         )}
                         style={{ gridColumnStart: segment.x + 1, gridRowStart: segment.y + 1 }}
                     >
                         {isHead && (
+                            // Cabeza Original (Puntos)
                             <div className="w-full h-full flex items-center justify-center gap-[1px]">
-                                <div className="bg-black w-[20%] h-[20%] rounded-full"></div>
-                                <div className="bg-black w-[20%] h-[20%] rounded-full"></div>
+                                <div className="bg-black w-[20%] h-[20%] rounded-full opacity-60"></div>
+                                <div className="bg-black w-[20%] h-[20%] rounded-full opacity-60"></div>
                             </div>
                         )}
                     </div>
                 )
             })}
 
-            {/* Comida / Palabras */}
+            {/* Comida */}
             {food.map((item) => {
                 let colorClass = "bg-slate-700 border-slate-500 text-slate-200"; 
                 
@@ -545,10 +663,13 @@ const SnakeDePalabras = (props) => {
                         )}
 
                         {item.word && (
-                            <span className={cn(
-                                "absolute -top-5 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-0.5 rounded text-[10px] font-bold border pointer-events-none z-30 transition-colors duration-300",
-                                colorClass
-                            )}>
+                            <span 
+                                className={cn(
+                                    "absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-0.5 rounded font-bold border pointer-events-none z-30 transition-colors duration-300 shadow-md",
+                                    colorClass
+                                )}
+                                style={{ fontSize: `${textSize}px` }}
+                            >
                                 {item.word}
                             </span>
                         )}
@@ -556,32 +677,16 @@ const SnakeDePalabras = (props) => {
                 )
             })}
         </div>
-
-        {/* Botón Ayuda */}
-        {gameState === 'playing' && !isPaused && difficulty !== 'hard' && (
-            <Button 
-                variant="outline" 
-                size="icon" 
-                className={cn(
-                    "absolute top-4 right-4 z-30 bg-slate-800 border-slate-600 hover:bg-slate-700 transition-colors",
-                    showHelp ? "text-yellow-400 shadow-[0_0_10px_rgba(250,204,21,0.3)]" : "text-slate-500"
-                )}
-                onClick={toggleHelp}
-                title="Activar/Desactivar pistas de color"
-            >
-                {showHelp ? <Lightbulb className="h-5 w-5" /> : <LightbulbOff className="h-5 w-5" />}
-            </Button>
-        )}
       </div>
 
-      {/* Controles Móvil */}
-      <div className="grid grid-cols-3 gap-2 w-full max-w-xs sm:hidden mt-2">
+      {/* Controles Móvil/Tablet (visible hasta 2xl) */}
+      <div className="grid grid-cols-3 gap-2 w-full max-w-xs 2xl:hidden mt-2">
         <div />
-        <Button variant="secondary" className="h-16 bg-slate-800 text-white rounded-xl active:scale-95 transition-transform" onPointerDown={() => changeDir(0, -1)}><ArrowUp /></Button>
+        <Button variant="secondary" className="h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(0, -1)}><ArrowUp /></Button>
         <div />
-        <Button variant="secondary" className="h-16 bg-slate-800 text-white rounded-xl active:scale-95 transition-transform" onPointerDown={() => changeDir(-1, 0)}><ArrowLeft /></Button>
-        <Button variant="secondary" className="h-16 bg-slate-800 text-white rounded-xl active:scale-95 transition-transform" onPointerDown={() => changeDir(0, 1)}><ArrowDown /></Button>
-        <Button variant="secondary" className="h-16 bg-slate-800 text-white rounded-xl active:scale-95 transition-transform" onPointerDown={() => changeDir(1, 0)}><ArrowRight /></Button>
+        <Button variant="secondary" className="h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(-1, 0)}><ArrowLeft /></Button>
+        <Button variant="secondary" className="h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(0, 1)}><ArrowDown /></Button>
+        <Button variant="secondary" className="h-16 bg-slate-800 text-white rounded-2xl active:scale-95 transition-transform" onPointerDown={() => changeDir(1, 0)}><ArrowRight /></Button>
       </div>
     </div>
   );
@@ -592,29 +697,29 @@ const DifficultyButtons = ({ onSelect, currentDifficulty }) => (
         <Button 
             onClick={() => onSelect('easy')}
             className={cn(
-                "h-14 text-lg bg-green-600 hover:bg-green-500 border-b-4 border-green-800 hover:border-green-700 active:border-b-0 active:mt-1 transition-all",
-                currentDifficulty === 'easy' && "ring-2 ring-white"
+                "h-14 text-xl font-bold bg-green-600 hover:bg-green-500 border-b-4 border-green-800 hover:border-green-700 active:border-b-0 active:mt-1 transition-all rounded-xl",
+                currentDifficulty === 'easy' && "ring-4 ring-white"
             )}
         >
-            <ShieldCheck className="mr-2 h-5 w-5" /> FÁCIL
+            <span className="mr-3 text-2xl">🐣</span> FÁCIL
         </Button>
         <Button 
             onClick={() => onSelect('medium')}
             className={cn(
-                "h-14 text-lg bg-yellow-600 hover:bg-yellow-500 border-b-4 border-yellow-800 hover:border-yellow-700 active:border-b-0 active:mt-1 transition-all text-white",
-                currentDifficulty === 'medium' && "ring-2 ring-white"
+                "h-14 text-xl font-bold bg-yellow-600 hover:bg-yellow-500 border-b-4 border-yellow-800 hover:border-yellow-700 active:border-b-0 active:mt-1 transition-all text-white rounded-xl",
+                currentDifficulty === 'medium' && "ring-4 ring-white"
             )}
         >
-            <Settings className="mr-2 h-5 w-5" /> MEDIO
+            <span className="mr-3 text-2xl">🤓</span> MEDIO
         </Button>
         <Button 
             onClick={() => onSelect('hard')}
             className={cn(
-                "h-14 text-lg bg-red-600 hover:bg-red-500 border-b-4 border-red-800 hover:border-red-700 active:border-b-0 active:mt-1 transition-all",
-                currentDifficulty === 'hard' && "ring-2 ring-white"
+                "h-14 text-xl font-bold bg-red-600 hover:bg-red-500 border-b-4 border-red-800 hover:border-red-700 active:border-b-0 active:mt-1 transition-all rounded-xl",
+                currentDifficulty === 'hard' && "ring-4 ring-white"
             )}
         >
-            <Skull className="mr-2 h-5 w-5" /> DIFÍCIL
+            <span className="mr-3 text-2xl">😈</span> EXAMEN
         </Button>
     </>
 );

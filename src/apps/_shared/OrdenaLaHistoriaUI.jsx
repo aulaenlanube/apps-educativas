@@ -179,7 +179,7 @@ const OrdenaLaHistoriaUI = ({ game }) => {
         onTouchEnd={game.handleTouchEnd}
         onTouchCancel={game.handleTouchCancel}
       >
-        <Header titulo="Test de Historias" />
+        <Header titulo="Examen" />
         <div className="test-header">
           <div>Historia {game.currentStoryIndex + 1} / {game.TOTAL_TEST_STORIES}</div>
           {game.elapsedTime > 0 && <div className="timer">Tiempo: {game.elapsedTime}s</div>}
@@ -211,7 +211,7 @@ const OrdenaLaHistoriaUI = ({ game }) => {
 
       <div className="mode-selection">
         <button className="btn-mode active">Práctica Libre</button>
-        <button onClick={game.startTest} className="btn-mode">Iniciar Test</button>
+        <button onClick={game.startTest} className="btn-mode">Examen</button>
       </div>
 
       {renderFrasesList()}
