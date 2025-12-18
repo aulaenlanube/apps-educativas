@@ -1,0 +1,322 @@
+[
+  {
+    "id": "1",
+    "titulo": "Compartir es divertido",
+    "texto": "Juan tiene un balón nuevo. Su amigo Luis quiere jugar también, pero solo hay un balón. Juan piensa un poco y decide que es más divertido jugar los dos juntos pasándose la pelota. Se ríen mucho en el patio.",
+    "preguntas": [
+      {
+        "pregunta": "¿Juan tiene un balón nuevo?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Juegan cada uno por su lado?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué deciden hacer?",
+        "opciones": ["Pelearse", "Jugar juntos", "Guardar el balón", "Romperlo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se lo pasan?",
+        "opciones": ["Mal", "Aburridos", "Tristes", "Muy bien"],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Qué valor aprenden?",
+        "opciones": ["A gritar", "A compartir", "A pegar", "A correr"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "La niña nueva",
+    "texto": "Hoy ha llegado una niña nueva a clase que se llama Aila. Viene de otro país y no conoce a nadie. Al principio estaba sola en el recreo. María y sus amigas la han visto y la han invitado a saltar a la comba con ellas.",
+    "preguntas": [
+      {
+        "pregunta": "¿Aila es nueva en el colegio?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Tenía muchos amigos al principio?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De dónde viene Aila?",
+        "opciones": ["De su casa", "De otro país", "Del parque", "De la tienda"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A qué la invitan a jugar?",
+        "opciones": ["Al fútbol", "Al escondite", "A la comba", "A las cartas"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué han hecho María y sus amigas?",
+        "opciones": ["Ignorarla", "Molestarla", "Integrarla", "Gritarle"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "titulo": "Saber pedir perdón",
+    "texto": "Carlos corría por la clase y sin querer ha tirado el estuche de Ana al suelo. Todos los lápices se han desperdigado. Carlos se ha parado, le ha pedido perdón a Ana y le ha ayudado a recogerlos todos rápidamente.",
+    "preguntas": [
+      {
+        "pregunta": "¿Carlos quería tirar el estuche?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Se han caído los lápices?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué ha hecho Carlos primero?",
+        "opciones": ["Reírse", "Irse corriendo", "Pedir perdón", "Gritar"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué han hecho después?",
+        "opciones": ["Recogerlos", "Pisarlos", "Dejarlos ahí", "Llorar"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cómo se ha comportado Carlos?",
+        "opciones": ["Mal", "Bien", "Regular", "Fatal"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "titulo": "Cuando estoy enfadado",
+    "texto": "A veces, cuando las cosas no salen bien, nos enfadamos. Dani estaba haciendo un dibujo y se le ha roto la punta del lápiz. Se ha enfadado mucho, pero ha respirado hondo tres veces para calmarse. Luego le ha sacado punta tranquilamente.",
+    "preguntas": [
+      {
+        "pregunta": "¿Dani estaba haciendo un puzle?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Se le rompió el lápiz?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué hizo para calmarse?",
+        "opciones": ["Gritar", "Pegar a la mesa", "Romper el papel", "Respirar hondo"],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Qué emoción sentía Dani?",
+        "opciones": ["Alegría", "Enfado", "Miedo", "Sueño"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hizo al final?",
+        "opciones": ["Sacar punta", "Irse a casa", "Llorar", "Dormir"],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "titulo": "Las palabras mágicas",
+    "texto": "En clase usamos las palabras mágicas para llevarnos bien. Si queremos pedir algo, decimos 'por favor'. Cuando alguien nos ayuda o nos da algo, decimos 'gracias'. Si queremos pasar y hay gente, decimos 'permiso'.",
+    "preguntas": [
+      {
+        "pregunta": "¿Existen palabras mágicas?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Decimos 'gracias' para pedir algo?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué decimos para pedir algo?",
+        "opciones": ["Dámelo", "Lo quiero", "Por favor", "Tonto"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué decimos cuando nos ayudan?",
+        "opciones": ["Adiós", "Gracias", "Hola", "Nada"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirven estas palabras?",
+        "opciones": ["Para volar", "Para convivir mejor", "Para comer", "Para correr"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "titulo": "Trabajo en equipo",
+    "texto": "La clase estaba muy desordenada después de hacer manualidades. Había papeles y pegamento por todas partes. La profesora dijo: '¡Equipo de limpieza!'. Todos los niños ayudaron a recoger y en cinco minutos la clase estaba perfecta.",
+    "preguntas": [
+      {
+        "pregunta": "¿La clase estaba limpia al principio?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Ayudaron todos los niños?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué habían hecho antes?",
+        "opciones": ["Gimnasia", "Música", "Manualidades", "Matemáticas"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuánto tardaron en limpiar?",
+        "opciones": ["Una hora", "Un día", "Cinco minutos", "Nada"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo es mejor trabajar?",
+        "opciones": ["Solos", "En equipo", "Peleando", "Mirando"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "titulo": "Todos somos diferentes",
+    "texto": "En mi grupo de amigos todos somos diferentes. Pablo es muy alto. Sara lleva gafas y lee muy bien. A mí se me da bien dibujar. Cada uno tiene cosas buenas y lo importante es que nos queremos tal como somos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Son todos iguales?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Pablo es bajo?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué lleva Sara?",
+        "opciones": ["Gorra", "Gafas", "Coleta", "Bufanda"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué se le da bien al narrador?",
+        "opciones": ["Cantar", "Bailar", "Dibujar", "Correr"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es lo importante?",
+        "opciones": ["Ser guapos", "Quererse y respetarse", "Tener juguetes", "Ser rápidos"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "Decir la verdad",
+    "texto": "Elena ha roto sin querer un vaso de agua en la cocina. Su mamá ha preguntado quién ha sido. Elena tenía miedo de que la riñeran, pero ha dicho la verdad: 'He sido yo'. Su mamá no se ha enfadado porque Elena ha sido sincera.",
+    "preguntas": [
+      {
+        "pregunta": "¿Elena rompió un plato?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Elena dijo la verdad?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué se rompió?",
+        "opciones": ["Una taza", "Un vaso", "Una ventana", "Una botella"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué no se enfadó mamá?",
+        "opciones": ["Porque fue sincera", "Porque no lo vio", "Porque era viejo", "Porque no estaba"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cómo se sentía Elena al principio?",
+        "opciones": ["Feliz", "Con miedo", "Enfadada", "Cansada"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "titulo": "Cuidamos los libros",
+    "texto": "Los libros de la biblioteca del colegio son de todos. No podemos pintar en ellos ni romper las hojas. Hay que tratarlos con cuidado. Si cuidamos los cuentos, otros niños podrán leerlos y disfrutar de las historias después de nosotros.",
+    "preguntas": [
+      {
+        "pregunta": "¿Los libros son solo míos?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Podemos pintar en los libros?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo hay que tratar los libros?",
+        "opciones": ["Mal", "Con fuerza", "Con cuidado", "Arrugándolos"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿De dónde son los libros?",
+        "opciones": ["De la biblioteca", "De la tienda", "Del parque", "De la basura"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Para qué los cuidamos?",
+        "opciones": ["Para que estén bonitos", "Para otros niños", "Para que pesen más", "Para nada"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "titulo": "Ayudar a los demás",
+    "texto": "En el recreo, Lucas se ha tropezado y se ha hecho daño en la rodilla. Estaba llorando en el suelo. Su amiga Inés ha ido corriendo a ayudarle. Le ha dado la mano para levantarse y le ha acompañado a buscar a la profesora.",
+    "preguntas": [
+      {
+        "pregunta": "¿Lucas se ha caído?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Inés se ha reído de él?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué le dolía a Lucas?",
+        "opciones": ["La cabeza", "El brazo", "La rodilla", "El pie"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué ha hecho Inés?",
+        "opciones": ["Empujarle", "Ayudarle", "Gritarle", "Ignorarle"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A quién han buscado?",
+        "opciones": ["Al director", "A la profesora", "A la policía", "Al médico"],
+        "correcta": 1
+      }
+    ]
+  }
+]

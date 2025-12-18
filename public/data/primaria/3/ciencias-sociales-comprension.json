@@ -1,0 +1,322 @@
+[
+  {
+    "id": "1",
+    "titulo": "Mi familia",
+    "texto": "Vivo con mi familia en una casa pequeña. Mi familia está formada por mi mamá, mi papá y mi hermano mayor que se llama Luis. Los domingos viene mi abuela a comer paella con nosotros. Todos nos queremos mucho y nos ayudamos en casa.",
+    "preguntas": [
+      {
+        "pregunta": "¿El hermano es mayor o pequeño?",
+        "opciones": ["Mayor", "Pequeño"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuándo viene la abuela?",
+        "opciones": ["Los lunes", "Los domingos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llama el hermano?",
+        "opciones": ["Juan", "Pedro", "Luis", "Carlos"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué comen los domingos?",
+        "opciones": ["Pizza", "Sopa", "Ensalada", "Paella"],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Dónde viven?",
+        "opciones": ["En un castillo", "En una casa", "En un barco", "En una tienda"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "El colegio",
+    "texto": "En mi colegio aprendemos muchas cosas. Mi profesora se llama Elena y nos enseña a leer y a sumar. Tenemos un patio muy grande con una pista de baloncesto. Cuando suena el timbre, salimos al recreo a jugar con los amigos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo se llama la profesora?",
+        "opciones": ["María", "Elena"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Tienen piscina en el patio?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hay en el patio?",
+        "opciones": ["Un huerto", "Una pista de baloncesto", "Un columpio", "Un tobogán"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hacen cuando suena el timbre?",
+        "opciones": ["Se duermen", "Comen", "Salen al recreo", "Se van a casa"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué aprenden en clase?",
+        "opciones": ["A leer y sumar", "A cocinar", "A conducir", "A nadar"],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "titulo": "Las partes de la casa",
+    "texto": "Las casas tienen diferentes habitaciones. En la cocina preparamos la comida y guardamos los alimentos en la nevera. En el dormitorio dormimos por la noche en nuestra cama. En el baño nos lavamos los dientes y nos duchamos para estar limpios.",
+    "preguntas": [
+      {
+        "pregunta": "¿Dónde dormimos?",
+        "opciones": ["En la cocina", "En el dormitorio"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde nos duchamos?",
+        "opciones": ["En el baño", "En el salón"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué hay en la cocina?",
+        "opciones": ["Una cama", "Una nevera", "Un sofá", "Una ducha"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuándo dormimos?",
+        "opciones": ["Por la mañana", "Por la tarde", "Por la noche", "A mediodía"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué hacemos en el baño?",
+        "opciones": ["Cocinar", "Jugar", "Dormir", "Lavarnos los dientes"],
+        "correcta": 3
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "titulo": "Educación vial",
+    "texto": "Para cruzar la calle debemos tener cuidado. Siempre hay que cruzar por el paso de peatones, que tiene rayas blancas en el suelo. También debemos mirar el semáforo. Si el muñeco está en verde podemos pasar, pero si está en rojo debemos esperar.",
+    "preguntas": [
+      {
+        "pregunta": "¿Podemos cruzar con el semáforo en rojo?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De qué color son las rayas del suelo?",
+        "opciones": ["Blancas", "Azules"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Por dónde cruzamos?",
+        "opciones": ["Por el parque", "Por el paso de peatones", "Por la carretera", "Por donde queramos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué significa el muñeco verde?",
+        "opciones": ["Parar", "Correr", "Pasar", "Saltar"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué hacemos si está en rojo?",
+        "opciones": ["Esperar", "Cruzar rápido", "Gritar", "Bailar"],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "titulo": "El pueblo y la ciudad",
+    "texto": "Lucas vive en un pueblo pequeño. Allí las casas son bajas y hay pocos coches, todo es muy tranquilo. Su prima vive en la ciudad, donde hay edificios muy altos, muchas tiendas, semáforos y mucho ruido de tráfico.",
+    "preguntas": [
+      {
+        "pregunta": "¿Dónde vive Lucas?",
+        "opciones": ["En el pueblo", "En la ciudad"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿En la ciudad hay mucho ruido?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cómo son las casas del pueblo?",
+        "opciones": ["Muy altas", "Bajas", "De cristal", "Flotantes"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hay en la ciudad?",
+        "opciones": ["Pocas personas", "Edificios altos", "Muchos tractores", "Solo parques"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo es el pueblo?",
+        "opciones": ["Ruidoso", "Grande", "Tranquilo", "Peligroso"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "titulo": "Los trabajos",
+    "texto": "Cada persona tiene un oficio diferente. El médico cura a los enfermos en el hospital. El bombero apaga los fuegos con su manguera y el camión rojo. El panadero hace pan y pasteles ricos en la panadería.",
+    "preguntas": [
+      {
+        "pregunta": "¿El médico apaga fuegos?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde trabaja el panadero?",
+        "opciones": ["En el hospital", "En la panadería"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quién cura a los enfermos?",
+        "opciones": ["El policía", "El médico", "El profesor", "El cartero"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué usa el bombero?",
+        "opciones": ["Una manguera", "Un horno", "Un termómetro", "Una pizarra"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿De qué color es el camión de bomberos?",
+        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "titulo": "Los medios de transporte",
+    "texto": "Para viajar usamos medios de transporte. El coche y el autobús van por la tierra (carretera). El barco navega por el agua del mar. El avión vuela muy alto por el aire para llevarnos a sitios lejanos rápidamente.",
+    "preguntas": [
+      {
+        "pregunta": "¿El barco va por la carretera?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿El avión va por el aire?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué transporte va por tierra?",
+        "opciones": ["El barco", "El avión", "El coche", "El helicóptero"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Para qué sirve el avión?",
+        "opciones": ["Para ir despacio", "Para ir lejos", "Para navegar", "Para ir al colegio"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por dónde va el autobús?",
+        "opciones": ["Por el mar", "Por el cielo", "Por la carretera", "Por el río"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "El paisaje de montaña",
+    "texto": "En la montaña el aire es muy puro. Vemos montañas altas con nieve en la cima. En los valles hay ríos con agua fría y bosques llenos de árboles. En invierno hace mucho frío y podemos esquiar o jugar con la nieve.",
+    "preguntas": [
+      {
+        "pregunta": "¿Hace calor en la montaña en invierno?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Hay ríos en los valles?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué hay en la cima de la montaña?",
+        "opciones": ["Arena", "Nieve", "Coches", "Mar"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo es el aire?",
+        "opciones": ["Sucio", "Puro", "Caliente", "Malo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué podemos hacer en invierno?",
+        "opciones": ["Nadar", "Tomar el sol", "Esquiar", "Pescar"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "titulo": "Los días de la semana",
+    "texto": "La semana tiene siete días. De lunes a viernes vamos al colegio para aprender. El sábado y el domingo es fin de semana y nos quedamos en casa para descansar o jugar con la familia. El lunes es el primer día de la semana.",
+    "preguntas": [
+      {
+        "pregunta": "¿La semana tiene cinco días?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Vamos al colegio el domingo?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el primer día?",
+        "opciones": ["Martes", "Viernes", "Lunes", "Domingo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué días descansamos?",
+        "opciones": ["Lunes y martes", "Jueves y viernes", "Sábado y domingo", "Miércoles y jueves"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos días vamos al cole?",
+        "opciones": ["Dos", "Cinco", "Siete", "Tres"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "titulo": "El Sol y la Tierra",
+    "texto": "Vivimos en el planeta Tierra, que es redondo como una pelota. El Sol es una estrella muy grande que nos da luz y calor. Cuando el Sol se esconde, llega la noche y sale la Luna. La Tierra gira alrededor del Sol.",
+    "preguntas": [
+      {
+        "pregunta": "¿La Tierra es plana?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿El Sol nos da frío?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué nos da el Sol?",
+        "opciones": ["Luz y calor", "Lluvia", "Viento", "Nieve"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué sale por la noche?",
+        "opciones": ["El Sol", "La Luna", "El arcoíris", "Las nubes"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo es la Tierra?",
+        "opciones": ["Cuadrada", "Redonda", "Pequeña", "Caliente"],
+        "correcta": 1
+      }
+    ]
+  }
+]

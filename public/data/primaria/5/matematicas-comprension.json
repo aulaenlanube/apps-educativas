@@ -1,0 +1,322 @@
+[
+  {
+    "id": "1",
+    "titulo": "Las manzanas de Ana",
+    "texto": "Ana ha ido al mercado con su cesta. Ha comprado tres manzanas rojas y dos manzanas verdes. Cuando iba camino a casa, le ha entrado hambre y se ha comido una manzana roja. Ahora su cesta pesa un poco menos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Ana ha comprado peras?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Ha comprado más manzanas rojas que verdes?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuántas manzanas rojas compró al principio?",
+        "opciones": ["Una", "Dos", "Tres", "Cuatro"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántas manzanas verdes compró?",
+        "opciones": ["Una", "Dos", "Tres", "Cinco"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántas manzanas le quedan en total al final?",
+        "opciones": ["Tres", "Cuatro", "Cinco", "Seis"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "El autobús escolar",
+    "texto": "El autobús del colegio lleva a diez niños sentados. En la primera parada se bajan tres niños que ya han llegado a su casa. El conductor cierra la puerta y sigue conduciendo hasta la siguiente parada.",
+    "preguntas": [
+      {
+        "pregunta": "¿El autobús va lleno de abuelos?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Se bajan niños en la primera parada?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuántos niños había al principio?",
+        "opciones": ["Ocho", "Nueve", "Diez", "Once"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos niños se bajan?",
+        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos niños quedan en el autobús?",
+        "opciones": ["Cinco", "Seis", "Siete", "Ocho"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "titulo": "Figuras en el parque",
+    "texto": "En el parque hay muchas formas diferentes. Las ruedas de las bicicletas son círculos redondos. El banco para sentarse es un rectángulo largo de madera. La señal de tráfico tiene forma de triángulo con el borde rojo.",
+    "preguntas": [
+      {
+        "pregunta": "¿Las ruedas son cuadradas?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿La señal es un triángulo?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué forma tienen las ruedas?",
+        "opciones": ["Cuadrado", "Círculo", "Triángulo", "Rombo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es un rectángulo?",
+        "opciones": ["La señal", "La rueda", "El banco", "El árbol"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿De qué color es el borde de la señal?",
+        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "titulo": "La hucha de Pablo",
+    "texto": "Pablo está ahorrando dinero en su hucha de cerdito. Tiene una moneda de dos euros y dos monedas de un euro. Quiere comprarse un coche de juguete que cuesta cinco euros. Tendrá que ahorrar un poco más.",
+    "preguntas": [
+      {
+        "pregunta": "¿La hucha tiene forma de perro?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Pablo quiere comprar chuches?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántas monedas de un euro tiene?",
+        "opciones": ["Una", "Dos", "Tres", "Ninguna"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuánto dinero tiene en total?",
+        "opciones": ["Dos euros", "Tres euros", "Cuatro euros", "Cinco euros"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuánto cuesta el coche?",
+        "opciones": ["Tres euros", "Cuatro euros", "Cinco euros", "Seis euros"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "titulo": "La torre de bloques",
+    "texto": "Sara está construyendo una torre muy alta. Ha puesto cuatro bloques azules en la base. Encima ha puesto tres bloques rojos. Y arriba del todo ha puesto un bloque amarillo. La torre no se cae.",
+    "preguntas": [
+      {
+        "pregunta": "¿La torre se ha caído?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Hay bloques verdes?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De qué color son los bloques de abajo?",
+        "opciones": ["Rojos", "Amarillos", "Azules", "Naranjas"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos bloques rojos hay?",
+        "opciones": ["Dos", "Tres", "Cuatro", "Cinco"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántos bloques hay en total?",
+        "opciones": ["Siete", "Ocho", "Nueve", "Diez"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "titulo": "El reloj de pared",
+    "texto": "En la clase hay un reloj redondo en la pared. La aguja pequeña marca las horas y la aguja grande marca los minutos. Ahora la aguja pequeña señala el nueve y la grande el doce. ¡Es la hora de entrar a clase!",
+    "preguntas": [
+      {
+        "pregunta": "¿El reloj es cuadrado?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿La aguja pequeña marca los minutos?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué número señala la aguja pequeña?",
+        "opciones": ["El seis", "El doce", "El tres", "El nueve"],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Qué hora es?",
+        "opciones": ["Las ocho", "Las nueve", "Las diez", "Las once"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué toca hacer ahora?",
+        "opciones": ["Irse a casa", "Comer", "Entrar a clase", "Dormir"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "titulo": "Izquierda y derecha",
+    "texto": "Luis está aprendiendo los lados. En su mano derecha lleva una pulsera de colores. Con su mano izquierda sujeta un balón. Su perro Toby está sentado a su derecha, moviendo la cola.",
+    "preguntas": [
+      {
+        "pregunta": "¿Toby es un gato?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Luis lleva una pulsera?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿En qué mano lleva la pulsera?",
+        "opciones": ["Izquierda", "Derecha", "En las dos", "En ninguna"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tiene en la mano izquierda?",
+        "opciones": ["Un lápiz", "Una manzana", "Un balón", "Un libro"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Dónde está el perro?",
+        "opciones": ["A la izquierda", "A la derecha", "Delante", "Detrás"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "La carrera de caracoles",
+    "texto": "Tres caracoles hacen una carrera. El caracol Rayo ha llegado el primero a la meta. El caracol Lento ha llegado el último. El caracol Fiti ha llegado entre los dos, en segunda posición.",
+    "preguntas": [
+      {
+        "pregunta": "¿Son caracoles rápidos?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Han hecho una carrera?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Quién ha ganado (primero)?",
+        "opciones": ["Lento", "Fiti", "Rayo", "Turbo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿En qué puesto quedó Fiti?",
+        "opciones": ["Primero", "Segundo", "Tercero", "Cuarto"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quién llegó el último?",
+        "opciones": ["Rayo", "Fiti", "Lento", "Bob"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "titulo": "Repartiendo caramelos",
+    "texto": "Tengo seis caramelos de fresa y quiero repartirlos con mi amigo. Le doy tres caramelos a él y yo me quedo con los otros tres. Ahora los dos tenemos la misma cantidad. ¡Qué ricos están!",
+    "preguntas": [
+      {
+        "pregunta": "¿Los caramelos son de limón?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Tenemos la misma cantidad?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuántos caramelos tenía al principio?",
+        "opciones": ["Cuatro", "Cinco", "Seis", "Ocho"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos le doy a mi amigo?",
+        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿De qué sabor son?",
+        "opciones": ["Menta", "Fresa", "Naranja", "Cola"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "titulo": "El calendario",
+    "texto": "El mes de enero tiene treinta y un días. Es el primer mes del año y hace frío. En el calendario he marcado en rojo el día de mi cumpleaños, que es el día quince. ¡Haré una fiesta!",
+    "preguntas": [
+      {
+        "pregunta": "¿Enero es el último mes?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Hace calor en enero?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántos días tiene enero?",
+        "opciones": ["Veinte", "Treinta", "Treinta y uno", "Veintiocho"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué día es el cumpleaños?",
+        "opciones": ["El uno", "El diez", "El quince", "El veinte"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿De qué color marcó el día?",
+        "opciones": ["Azul", "Verde", "Rojo", "Negro"],
+        "correcta": 2
+      }
+    ]
+  }
+]

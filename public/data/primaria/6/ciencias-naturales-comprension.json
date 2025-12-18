@@ -1,0 +1,322 @@
+[
+  {
+    "id": "1",
+    "titulo": "Seres vivos y objetos",
+    "texto": "En el parque hay muchas cosas diferentes. Las palomas y los árboles son seres vivos porque nacen, crecen y se alimentan. El banco de madera y los columpios son objetos inertes, no tienen vida. La piedra del camino tampoco tiene vida, es un objeto.",
+    "preguntas": [
+      {
+        "pregunta": "¿El banco tiene vida?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Las palomas son seres vivos?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué hacen los seres vivos?",
+        "opciones": ["Nacen y crecen", "No hacen nada", "Son de plástico", "Siempre están quietos"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuál es un objeto inerte?",
+        "opciones": ["El árbol", "La paloma", "El niño", "La piedra"],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Qué hay en el parque?",
+        "opciones": ["Solo piedras", "Solo animales", "Seres vivos y objetos", "Nada"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "Las partes del cuerpo",
+    "texto": "Nuestro cuerpo tiene tres partes principales: la cabeza, el tronco y las extremidades. En la cabeza tenemos la cara y el cerebro. El tronco es la parte central del cuerpo. Las extremidades son los brazos y las piernas, que nos sirven para movernos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cuántas partes principales tiene el cuerpo?",
+        "opciones": ["Dos", "Tres"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Las piernas son extremidades?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Dónde está la cara?",
+        "opciones": ["En el tronco", "En la cabeza", "En las piernas", "En los brazos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la parte central del cuerpo?",
+        "opciones": ["La mano", "El pie", "El tronco", "El pelo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Para qué sirven las piernas?",
+        "opciones": ["Para pensar", "Para comer", "Para oler", "Para moverse"],
+        "correcta": 3
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "titulo": "Los cinco sentidos",
+    "texto": "Tenemos cinco sentidos para conocer el mundo. Con los ojos vemos los colores (vista). Con los oídos escuchamos música (oído). Con la nariz olemos las flores (olfato). Con la lengua saboreamos la comida (gusto). Y con la piel tocamos las cosas suaves (tacto).",
+    "preguntas": [
+      {
+        "pregunta": "¿Cuántos sentidos tenemos?",
+        "opciones": ["Cinco", "Siete"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Usamos la nariz para ver?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué sentido usamos para escuchar música?",
+        "opciones": ["El gusto", "El tacto", "El oído", "La vista"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Con qué saboreamos la comida?",
+        "opciones": ["Con la lengua", "Con el ojo", "Con la oreja", "Con el dedo"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué sentido está en la piel?",
+        "opciones": ["Olfato", "Vista", "Gusto", "Tacto"],
+        "correcta": 3
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "titulo": "Animales domésticos y salvajes",
+    "texto": "Los animales pueden ser domésticos o salvajes. Los animales domésticos, como el perro y el gato, viven con las personas y nos hacen compañía. Los animales salvajes, como el león y el elefante, viven libres en la naturaleza y buscan su propia comida.",
+    "preguntas": [
+      {
+        "pregunta": "¿El gato es un animal doméstico?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿El león vive en una casa?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde viven los animales salvajes?",
+        "opciones": ["En la granja", "En un piso", "En la naturaleza", "En la tienda"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué animal es salvaje?",
+        "opciones": ["La vaca", "El perro", "El elefante", "La gallina"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué hacen los animales domésticos?",
+        "opciones": ["Viven con personas", "Viven en la selva", "Cazan leones", "Vuelan alto"],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "titulo": "Cómo nacen los animales",
+    "texto": "Los animales pueden nacer de dos formas. Los vivíparos nacen de la barriga de su mamá, como los perros, los gatos y las personas. Los ovíparos nacen de un huevo, como las gallinas, los patos, las tortugas y los peces.",
+    "preguntas": [
+      {
+        "pregunta": "¿Las personas somos vivíparas?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Los perros ponen huevos?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De dónde nacen los ovíparos?",
+        "opciones": ["De una semilla", "De un huevo", "De una flor", "De la barriga"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué animal es ovíparo?",
+        "opciones": ["El gato", "El caballo", "La gallina", "La vaca"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué animal es vivíparo?",
+        "opciones": ["El pez", "El pato", "La tortuga", "El perro"],
+        "correcta": 3
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "titulo": "Las partes de una planta",
+    "texto": "Las plantas son seres vivos que no se pueden mover. Tienen tres partes importantes. La raíz está bajo tierra y sujeta la planta. El tallo crece hacia arriba y sostiene las hojas. Las hojas son verdes y sirven para que la planta respire.",
+    "preguntas": [
+      {
+        "pregunta": "¿Las plantas se pueden mover?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De qué color suelen ser las hojas?",
+        "opciones": ["Verdes", "Azules"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué parte está bajo tierra?",
+        "opciones": ["La flor", "La hoja", "El tallo", "La raíz"],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Qué sostiene las hojas?",
+        "opciones": ["El sol", "El agua", "El tallo", "La tierra"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Para qué sirven las hojas?",
+        "opciones": ["Para respirar", "Para andar", "Para oír", "Para comer tierra"],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "titulo": "Carnívoros y herbívoros",
+    "texto": "Los animales comen cosas diferentes. Los animales que comen carne de otros animales se llaman carnívoros, como el tigre o el lobo. Los animales que comen plantas, hierba o frutas se llaman herbívoros, como la vaca, el conejo o la jirafa.",
+    "preguntas": [
+      {
+        "pregunta": "¿El tigre come carne?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿La vaca es carnívora?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué comen los herbívoros?",
+        "opciones": ["Piedras", "Plantas", "Carne", "Peces"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué animal es carnívoro?",
+        "opciones": ["La oveja", "El caballo", "El lobo", "El conejo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué animal es herbívoro?",
+        "opciones": ["El león", "La jirafa", "El tiburón", "El águila"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "El agua en la naturaleza",
+    "texto": "El agua es necesaria para la vida. La podemos encontrar en muchos sitios. En el mar el agua es salada. En los ríos y en los lagos el agua es dulce. También cae agua dulce del cielo cuando llueve o cuando nieva en las montañas.",
+    "preguntas": [
+      {
+        "pregunta": "¿El agua es necesaria para vivir?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿El agua del mar es dulce?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde hay agua salada?",
+        "opciones": ["En el río", "En el lago", "En el mar", "En el grifo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué cae del cielo?",
+        "opciones": ["Piedras", "Lluvia", "Sal", "Peces"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo es el agua del río?",
+        "opciones": ["Dulce", "Salada", "Picante", "Amarga"],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "titulo": "Los materiales",
+    "texto": "Las cosas están hechas de diferentes materiales. La madera sale de los troncos de los árboles. La lana viene de las ovejas. El plástico y el cristal se fabrican en las fábricas. El papel también se hace con madera de los árboles.",
+    "preguntas": [
+      {
+        "pregunta": "¿La madera sale de los árboles?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿El plástico crece en el campo?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De dónde viene la lana?",
+        "opciones": ["De la vaca", "De la oveja", "Del cerdo", "Del perro"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué se hace con madera?",
+        "opciones": ["Coches", "Papel", "Cristal", "Lana"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde se hace el cristal?",
+        "opciones": ["En el mar", "En el bosque", "En la fábrica", "En la granja"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "titulo": "Cuidamos el planeta",
+    "texto": "Para cuidar la Tierra tenemos que reciclar la basura. Tiramos el papel en el contenedor azul. El plástico y los envases van al contenedor amarillo. El vidrio y las botellas de cristal van al contenedor verde. Así ensuciamos menos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Hay que reciclar la basura?",
+        "opciones": ["Sí", "No"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿El papel va al contenedor verde?",
+        "opciones": ["Sí", "No"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué va al contenedor azul?",
+        "opciones": ["Vidrio", "Papel", "Plástico", "Comida"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué va al contenedor amarillo?",
+        "opciones": ["Papel", "Cristal", "Plástico", "Cartón"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué va al contenedor verde?",
+        "opciones": ["Vidrio", "Latas", "Revistas", "Juguetes"],
+        "correcta": 0
+      }
+    ]
+  }
+]

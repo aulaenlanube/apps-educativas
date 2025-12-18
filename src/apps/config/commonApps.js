@@ -53,8 +53,8 @@ import LluviaDePalabras from '../lluvia-de-palabras/LluviaDePalabras';
 import Clasificador from '../_shared/Clasificador'; 
 import Snake from '../snake/SnakePalabras.jsx';
 // ... imports existentes
-import LenguaComprensionEscrita1 from '../comprension/LenguaComprensionEscrita1';
-import LenguaComprensionOral1 from '../comprension/LenguaComprensionOral1';
+import LenguaComprensionEscrita from '../comprension/LenguaComprensionEscrita';
+import LenguaComprensionOral from '../comprension/LenguaComprensionOral';
 
 // Apps Comunes
 export const appIslaDeLaCalma = {
@@ -156,18 +156,18 @@ export const appSnake = {
 
 };
 
-export const appComprensionEscrita1 = {
-  id: 'comprension-escrita-1',
+export const appComprensionEscrita = {
+  id: 'comprension-escrita',
   name: '📖 Comprensión Escrita',
   description: 'Mejora tu comprensión escrita con textos y preguntas.',
-  component: LenguaComprensionEscrita1
+  component: LenguaComprensionEscrita
 };
 
-export const appComprensionOral1 = {
-  id: 'comprension-oral-1',
+export const appComprensionOral = {
+  id: 'comprension-oral',
   name: '🎧 Comprensión Oral',
   description: 'Desarrolla tus habilidades de comprensión auditiva con ejercicios prácticos.',
-  component: LenguaComprensionOral1
+  component: LenguaComprensionOral
 };
 
 // Apps de Matemáticas compartidas (Romanos, MayorMenor, Medidas)
