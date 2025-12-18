@@ -1,0 +1,66 @@
+[
+  {
+    "id": "1",
+    "titulo": "El cumpleaños de Leo",
+    "texto": "Hoy es un día muy especial porque es el cumpleaños de Leo. Su mamá le ha preparado una tarta de chocolate con seis velas. Leo ha invitado a sus amigos del colegio a jugar al parque por la tarde. Su abuela le ha regalado un balón de fútbol nuevo de color rojo.",
+    "preguntas": [
+      {
+        "pregunta": "¿De qué sabor es la tarta?",
+        "opciones": ["De fresa", "De chocolate"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántas velas tiene la tarta?",
+        "opciones": ["Seis velas", "Ocho velas"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Quién le regaló el balón?",
+        "opciones": ["Su papá", "Su tía", "Su abuela", "Su hermano"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿De qué color es el balón?",
+        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Dónde van a jugar?",
+        "opciones": ["En el cine", "En el parque", "En la playa", "En la escuela"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "La mariposa Lola",
+    "texto": "Lola es una mariposa de muchos colores que vive en el jardín. Le gusta volar de flor en flor cuando sale el sol. Cuando llueve, Lola se esconde debajo de una hoja grande para no mojarse las alas. Su mejor amiga es una abeja que se llama Pepi.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo se llama la mariposa?",
+        "opciones": ["Lola", "Pepi"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué hace cuando llueve?",
+        "opciones": ["Sigue volando", "Se esconde"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde vive Lola?",
+        "opciones": ["En una casa", "En el bosque", "En el mar", "En el jardín"],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Quién es su mejor amiga?",
+        "opciones": ["Una hormiga", "Una abeja", "Una mariquita", "Un grillo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuándo le gusta volar?",
+        "opciones": ["Cuando es de noche", "Cuando nieva", "Cuando sale el sol", "Cuando hay viento"],
+        "correcta": 2
+      }
+    ]
+  }
+]

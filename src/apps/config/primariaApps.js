@@ -6,7 +6,7 @@ import {
     // Generales
     appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras,
     appGeneradorPersonajes, appBuscaElIntruso, appRosco, appOrdenaBolas, appRunner,
-    appLluviaDePalabras, appParejas, appClasificador, appSnake,
+    appLluviaDePalabras, appParejas, appClasificador, appSnake, appComprensionEscrita1, appComprensionOral1,
     
     // Matemáticas Generales
     appNumerosRomanos3, appNumerosRomanos4, appNumerosRomanosAdvanced,
@@ -33,7 +33,9 @@ export const primariaApps = {
       appParejas,
       appLluviaDePalabras,
       appClasificador,
-      appSnake
+      appSnake,
+      appComprensionEscrita1,
+      appComprensionOral1
     ],
     'matematicas': [
       appSumasPrimaria1,

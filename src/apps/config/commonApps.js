@@ -52,6 +52,9 @@ import ParejasDeCartas from '../parejas-de-cartas/ParejasDeCartas';
 import LluviaDePalabras from '../lluvia-de-palabras/LluviaDePalabras';
 import Clasificador from '../_shared/Clasificador'; 
 import Snake from '../snake/SnakePalabras.jsx';
+// ... imports existentes
+import LenguaComprensionEscrita1 from '../comprension/LenguaComprensionEscrita1';
+import LenguaComprensionOral1 from '../comprension/LenguaComprensionOral1';
 
 // Apps Comunes
 export const appIslaDeLaCalma = {
@@ -151,6 +154,20 @@ export const appSnake = {
   description: 'Guía a la serpiente para comer las palabras del tema correcto.', 
   component: Snake 
 
+};
+
+export const appComprensionEscrita1 = {
+  id: 'comprension-escrita-1',
+  name: '📖 Comprensión Escrita',
+  description: 'Mejora tu comprensión escrita con textos y preguntas.',
+  component: LenguaComprensionEscrita1
+};
+
+export const appComprensionOral1 = {
+  id: 'comprension-oral-1',
+  name: '🎧 Comprensión Oral',
+  description: 'Desarrolla tus habilidades de comprensión auditiva con ejercicios prácticos.',
+  component: LenguaComprensionOral1
 };
 
 // Apps de Matemáticas compartidas (Romanos, MayorMenor, Medidas)

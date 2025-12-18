@@ -1,0 +1,445 @@
+/* src/apps/_shared/ComprensionShared.css */
+
+/* --- IMPORTACIÓN DE FUENTES --- */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+ES:wght@100..400&display=swap');
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.comprension-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #334155;
+    /* Fuente base: Lexend */
+    font-family: 'Lexend', sans-serif; 
+}
+
+/* --- TÍTULO PRINCIPAL --- */
+.main-title {
+    font-family: 'Fredoka One', cursive;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+/* Texto con gradiente */
+.gradient-text {
+    background: linear-gradient(90deg, #2563eb, #0ea5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 400;
+}
+
+/* --- TIPOGRAFÍAS DINÁMICAS --- */
+.font-print {
+    font-family: 'Lexend', sans-serif;
+}
+
+.font-cursive {
+    font-family: 'Playwrite ES', cursive;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+.font-uppercase {
+    text-transform: uppercase;
+    font-family: 'Lexend', sans-serif;
+    letter-spacing: 1.5px;
+}
+
+/* Evitar mayúsculas forzadas en UI */
+.header-zone, .actions-group, .actions-center, .card-footer {
+    text-transform: none !important;
+}
+
+/* --- HEADER Y CONFIGURACIÓN (NUEVO DISEÑO GRID) --- */
+.header-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.config-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.config-item {
+    background: #f8fafc;
+    padding: 15px 20px;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    min-width: 280px;
+    text-align: center;
+}
+
+.config-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #475569;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Estilos de los Sliders */
+.slider-container {
+    width: 100%;
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 8px;
+    padding: 0 2px;
+}
+
+input[type="range"].custom-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #cbd5e1;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Slider de Fuente (Morado) */
+input[type="range"].font-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    background: #8b5cf6;
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    margin-top: -7px; 
+}
+
+/* Slider de Velocidad (Azul) */
+input[type="range"].speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    background: #3b82f6;
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    margin-top: -7px; 
+}
+
+/* --- TARJETAS --- */
+.card-principal {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+}
+
+.card-header {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.titulo-historia {
+    font-family: 'Fredoka One', cursive;
+    color: #4a90e2;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.card-body {
+    padding: 2.5rem;
+}
+
+.texto-lectura {
+    font-size: 1.5rem;
+    line-height: 2;
+    color: #334155;
+    text-align: justify;
+    white-space: pre-wrap;
+}
+
+/* --- ZONA AUDIO (LIMPIA Y VIBRANTE) --- */
+.zona-audio-vibrante {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-radius: 24px;
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 3px dashed #bfdbfe;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.instruccion-oral {
+    font-size: 1.5rem;
+    margin: 0;
+    color: #1e40af;
+    font-weight: 700;
+}
+
+/* Botón Audio: Estados y Estilos */
+.btn-big-audio {
+    background: white;
+    border: none;
+    color: #3b82f6;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem;
+    padding: 1.2rem 3.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-big-audio:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(59, 130, 246, 0.35);
+}
+
+.btn-big-audio:active {
+    transform: translateY(0);
+}
+
+/* Estado Pausado (Naranja) */
+.btn-big-audio.paused {
+    color: #d97706;
+    background: #fffbeb;
+    box-shadow: 0 8px 20px rgba(217, 119, 6, 0.25);
+}
+
+/* Estado Reproduciendo (Azul Oscuro / Activo) */
+.btn-big-audio.playing {
+    color: #1e3a8a;
+    background: #dbeafe;
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.25);
+}
+
+/* --- PREGUNTAS --- */
+.pregunta-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    position: relative;
+}
+
+.pregunta-badge {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    background: #6366f1;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: 'Lexend', sans-serif;
+}
+
+.enunciado {
+    font-size: 1.3rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.opciones-grid {
+    display: grid;
+    gap: 12px;
+}
+.cols-2 { grid-template-columns: 1fr 1fr; }
+.cols-4 { grid-template-columns: 1fr 1fr; }
+@media (max-width: 600px) { .cols-4 { grid-template-columns: 1fr; } }
+
+.btn-opcion {
+    font-family: 'Lexend', sans-serif;
+    background: #f8fafc;
+    border: 2px solid #cbd5e1;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #475569;
+}
+
+.btn-opcion:hover {
+    background: #e2e8f0;
+    transform: translateX(5px);
+}
+
+.btn-opcion.seleccionada {
+    background: #eff6ff;
+    border-color: #3b82f6;
+    color: #1e40af;
+    font-weight: 600;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* --- BOTONES DE ACCIÓN --- */
+.card-footer {
+    padding: 2rem;
+    background: #f8fafc;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.btn-primary-action {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem 2.5rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    transition: transform 0.2s;
+}
+
+.btn-primary-action:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+.btn-secondary-action {
+    background: white;
+    color: #64748b;
+    border: 2px solid #cbd5e1;
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-secondary-action:hover {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.btn-finalizar {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    color: white;
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 1rem 3rem;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(22, 163, 74, 0.4);
+    transition: transform 0.2s;
+}
+.btn-finalizar:hover { transform: scale(1.05); }
+
+/* --- RESULTADOS --- */
+.resultado-card {
+    background: white;
+    border-radius: 24px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.score-circle {
+    width: 150px;
+    height: 150px;
+    background: #eff6ff;
+    border-radius: 50%;
+    border: 8px solid #3b82f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2rem;
+}
+
+.score-number { 
+    font-family: 'Fredoka One', cursive; 
+    font-size: 4rem; 
+    color: #3b82f6; 
+    line-height: 1; 
+}
+.score-total { font-size: 1.2rem; color: #94a3b8; font-weight: 600; }
+
+.mensaje-motivacional { font-size: 1.8rem; font-weight: bold; color: #1e293b; margin-bottom: 2rem; }
+
+.revision-panel {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.review-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 1.2rem;
+}
+
+.row-correct { color: #15803d; }
+.row-incorrect { color: #dc2626; }
+
+.btn-restart {
+    background: #0f172a;
+    color: white;
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-restart:hover { background: #334155; }
+
+/* --- ANIMACIONES --- */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+@keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+.fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
+.fade-out { animation: fadeOut 0.3s ease-out forwards; }
+.pop-in { animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; }
+.pop-in-bouncy { animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards; }
+.pulse-animation { animation: pulse 2s infinite; }
+.bounce-on-hover:hover { animation: pulse 1s infinite; }
