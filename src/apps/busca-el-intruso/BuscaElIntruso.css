@@ -1,212 +1,381 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap');
+
 :root {
-  --bg-intruso: #f8fafc;
-  --panel-intruso: #ffffff;
-  --texto-intruso: #1f2937;
-  --muted-intruso: #6b7280;
-  --ok-intruso: #22c55e;
-  --ko-intruso: #ef4444;
-  --borde-intruso: #e2e8f0;
-  --boton-intruso: #2563eb;
-  --boton-h-intruso: #1d4ed8;
+  --primary-color: #6366f1; /* Indigo */
+  --secondary-color: #8b5cf6; /* Violet */
+  --accent-color: #f43f5e; /* Rose */
+  --success-color: #10b981; /* Emerald */
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --text-light: #f8fafc;
 }
 
-.contenedor-intruso {
+/* --- Layout Principal --- */
+.game-wrapper {
+  min-height: 80vh; /* Ocupa buena parte de la pantalla */
   width: 100%;
-  max-width: 700px;
-  margin: auto;
-  display: grid;
-  gap: 16px;
-  font-family: system-ui, Segoe UI, Roboto, Ubuntu, Arial, sans-serif;
-  color: var(--texto-intruso);
-  background: var(--bg-intruso);
-  padding: 16px;
-  border-radius: 14px;
-}
-
-.encabezado-intruso {
   display: flex;
-  font-family: 'Fredoka One';
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
   justify-content: center;
-}
-
-.titulo-intruso {
-  font-family: 'Fredoka One';
-  font-size: clamp(1.25rem, 2.2vw, 1.8rem);
-  font-weight: 500;
-  letter-spacing: .3px;
-  flex-grow: 1;
-  text-align: center;
-}
-
-.controles-intruso {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
   align-items: center;
-  justify-content: center;
-}
-
-.btn-intruso {
-  font-family: 'Fredoka One';
-  border: none;
-  background: var(--boton-intruso);
-  color: white;
-  padding: 10px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 200;
-}
-
-.btn-intruso:hover {
-  background: var(--boton-h-intruso);
-}
-
-.btn-intruso.sec-intruso {
-  background: #374151;
-}
-
-.panel-intruso {
-  background: var(--panel-intruso);
-  border: 1px solid var(--borde-intruso);
-  border-radius: 14px;
-  padding: 12px;
-}
-
-.barra-info-intruso {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.chips-intruso {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.chip-intruso {
-  background: #e2e8f0;
-  border: 1px solid var(--borde-intruso);
-  color: var(--muted-intruso);
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: .92rem;
-}
-
-.chip-intruso strong {
-  color: var(--texto-intruso);
-}
-
-.tablero-intruso {
-  display: grid;
-  gap: 6px;
-  padding: 6px;
-  place-items: center;
-}
-
-/* --- CAMBIO CRÍTICO: Eliminado 'font-size' de aquí --- */
-.celda-intruso {
-  width: 100%;
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  /* Ya no hay font-size aquí, ahora lo controla el JSX */
-  cursor: pointer;
-  border-radius: 8px;
-  background: #f1f5f9;
-  border: 1px solid var(--borde-intruso);
-  user-select: none;
-  transition: transform .06s ease;
-}
-
-/* Clase específica para cuando hay texto */
-.celda-texto {
-  font-size: clamp(0.85rem, 1.5vw, 1.25rem);
-  line-height: 1.2;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  word-break: break-word;
-  overflow-wrap: break-word;
+  position: relative;
   overflow: hidden;
+  font-family: 'Nunito', sans-serif;
+  color: var(--text-light);
+  background: var(--bg-gradient);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Partículas de Fondo Animadas */
+.background-particles span {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  animation: floatUp 15s linear infinite;
+  bottom: -50px;
+  pointer-events: none;
+}
+.background-particles span:nth-child(1) { left: 10%; width: 60px; height: 60px; animation-duration: 10s; }
+.background-particles span:nth-child(2) { left: 20%; width: 20px; height: 20px; animation-duration: 12s; animation-delay: 2s; }
+.background-particles span:nth-child(3) { left: 35%; width: 40px; height: 40px; animation-duration: 15s; animation-delay: 4s; }
+/* ... más partículas generadas visualmente ... */
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+.game-container {
   width: 100%;
-  height: 100%;
-}
-
-.celda-intruso:active {
-  transform: scale(.96);
-}
-
-.feedback-intruso {
-  min-height: 28px;
-  color: var(--muted-intruso);
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.ok-intruso {
-  color: var(--ok-intruso);
-}
-
-.ko-intruso {
-  color: var(--ko-intruso);
-}
-
-.resumen-intruso {
+  max-width: 900px;
+  z-index: 10;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+/* Efecto Glassmorphism */
+.glass-panel {
+  /* Fondo transparente manejado por el wrapper, esto es solo estructura */
+}
+
+/* --- HUD (Cabecera) --- */
+.game-hud {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.game-title {
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.8rem;
+  margin: 0;
+  background: linear-gradient(to right, #a78bfa, #2dd4bf);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
   text-align: center;
-  padding: 20px;
+  text-shadow: 0 0 20px rgba(167, 139, 250, 0.5);
 }
 
-.punt-intruso {
+.category-badge {
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.15);
+  padding: 2px 10px;
+  border-radius: 12px;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.hud-btn {
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.7);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
   font-family: 'Fredoka One';
-  font-size: 2.2rem;
-  font-weight: 800;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+  margin: 5px;
 }
 
-.progreso-intruso {
-  height: 10px;
-  background: #0b1220;
-  border: 1px solid var(--borde-intruso);
-  border-radius: 999px;
+.hud-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.hud-btn.active {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+}
+
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0,0,0,0.4);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.stat-pill .icon { font-size: 1.2rem; }
+.stat-pill .value { font-family: 'Fredoka One'; font-size: 1.2rem; color: #fbbf24; }
+
+/* --- Tablero y Banner --- */
+.game-board-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message-banner {
+  text-align: center;
+  font-family: 'Fredoka One';
+  font-size: 1.5rem;
+  min-height: 40px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.message-banner.ok { color: #4ade80; transform: scale(1.1); }
+.message-banner.ko { color: #f87171; transform: scale(1.05); }
+
+.combo-counter {
+  background: #f59e0b;
+  color: white;
+  font-size: 0.8rem;
+  padding: 2px 8px;
+  border-radius: 8px;
+  transform: rotate(-5deg);
+  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.grid-board {
+  display: grid;
+  gap: 12px;
+  padding: 10px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.grid-cell {
+  aspect-ratio: 1;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.1s, background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 0 #cbd5e1; /* Efecto 3D botón */
+  user-select: none;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
   overflow: hidden;
-  flex-grow: 1;
 }
 
-.progreso-intruso>div {
-  height: 100%;
-  background: linear-gradient(90deg, #22c55e, #10b981);
+.grid-cell:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #cbd5e1;
 }
 
-@keyframes parpadeoOK {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, .0) }
-  50% { box-shadow: 0 0 0 6px rgba(34, 197, 94, .15) }
+.grid-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #cbd5e1;
+  z-index: 2;
 }
 
-@keyframes sacudir {
-  10%, 90% { transform: translateX(-2px) }
-  20%, 80% { transform: translateX(4px) }
-  30%, 50%, 70% { transform: translateX(-6px) }
-  40%, 60% { transform: translateX(6px) }
+/* Modos Específicos */
+.grid-cell.text-mode {
+  font-size: clamp(0.9rem, 1.8vw, 1.4rem);
+  font-weight: 800;
+  color: #1e293b;
+  text-align: center;
+  padding: 8px;
+  line-height: 1.1;
+  word-break: break-word;
 }
 
-.celda-intruso.ok {
-  outline: 2px solid var(--ok-intruso);
-  animation: parpadeoOK .35s ease;
+.grid-cell.icon-mode {
+  font-size: clamp(2rem, 5vw, 4rem);
 }
 
-.celda-intruso.ko {
-  outline: 2px solid var(--ko-intruso);
-  animation: sacudir .28s ease;
+/* Estados de Feedback en Celda */
+.grid-cell.ok {
+  background: #86efac;
+  box-shadow: 0 4px 0 #22c55e;
+  animation: correctBounce 0.5s;
+  color: #064e3b;
+}
+
+.grid-cell.ko {
+  background: #fca5a5;
+  box-shadow: 0 4px 0 #ef4444;
+  animation: shake 0.4s;
+  color: #7f1d1d;
+}
+
+.sparkle-effect, .cross-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  opacity: 0;
+  pointer-events: none;
+  animation: fadeUpOut 0.8s ease-out forwards;
+}
+
+/* --- Pantalla de Resultados --- */
+.results-card {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1e293b;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: popIn 0.5s;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.results-card h2 {
+  font-family: 'Fredoka One';
+  color: var(--primary-color);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.score-circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 2rem;
+}
+
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  max-height: 250px;
+}
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3.8;
+}
+.circle {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke: var(--success-color);
+  animation: progress 1s ease-out forwards;
+}
+.score-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Fredoka One';
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+.stat-box {
+  display: flex;
+  flex-direction: column;
+}
+.stat-box .label { font-size: 0.9rem; color: #64748b; font-weight: bold; }
+.stat-box .val { font-size: 1.5rem; font-family: 'Fredoka One'; color: #333; }
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.primary-action, .secondary-action {
+  padding: 12px;
+  border-radius: 12px;
+  font-family: 'Fredoka One';
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: transform 0.1s;
+  border: none;
+}
+.primary-action {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 4px 0 #4338ca;
+}
+.primary-action:active { transform: translateY(4px); box-shadow: none; }
+.secondary-action {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+/* --- Animaciones Keyframes --- */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes correctBounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+@keyframes fadeUpOut {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
+  100% { opacity: 0; transform: translate(-50%, -150%) scale(1.5); }
+}
+
+@keyframes progress {
+  0% { stroke-dasharray: 0 100; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .game-hud { justify-content: center; }
+  .hud-left { order: 2; width: 100%; display: flex; justify-content: center; margin-top: 10px; }
+  .hud-center { order: 1; width: 100%; text-align: center; }
+  .hud-right { order: 3; display: none; } /* Ocultar stats secundarios en móvil muy pequeño si molesta */
+  .grid-cell.icon-mode { font-size: 2.2rem; }
 }
