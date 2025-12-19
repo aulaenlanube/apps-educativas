@@ -100,8 +100,8 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
                 
                 <div className="p-6 md:p-8 text-center flex flex-col items-center">
                     <h3 className="text-lg font-semibold text-gray-600 mb-6 flex items-center gap-2">
-                        <Dices className="w-5 h-5 text-purple-500" />
-                        ¿Indeciso? ¡Deja que el azar elija por ti!
+                        <Zap className="w-5 h-5 text-purple-500 fill-current" />
+                        ¡Deja que el azar elija por ti!
                     </h3>
 
                     <div className="w-full h-24 mb-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl border border-indigo-100 flex items-center justify-center relative overflow-hidden shadow-inner">
@@ -142,11 +142,11 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
                     >
                         {isSpinning ? (
                             <span className="flex items-center gap-2">
-                                <Sparkles className="animate-spin w-5 h-5" /> Elegiendo...
+                                <Dices className="animate-spin w-5 h-5" /> Elegiendo...
                             </span>
                         ) : (
                             <span className="flex items-center gap-2">
-                                <Zap className="w-5 h-5 fill-current" /> ¡Elegir App Aleatoria!
+                                <Dices className="w-5 h-5 " /> ¡Elegir App Aleatoria!
                             </span>
                         )}
                     </Button>

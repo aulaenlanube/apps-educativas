@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import confetti from 'canvas-confetti';
 import './ComprensionShared.css';
 
 const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }) => {
@@ -11,16 +12,27 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
     const [score, setScore] = useState(0);
     const [animacionFase, setAnimacionFase] = useState('fade-in-up');
 
+    // --- NUEVO ESTADO PARA EL DESPLEGABLE ---
+    const [showReview, setShowReview] = useState(false);
+
     // --- Audio States ---
     const [speechRate, setSpeechRate] = useState(1);
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
 
-    // --- Font States ---
+    // --- Visual Settings ---
     const fontStyles = ['print', 'cursive', 'uppercase'];
     const [fontStyleIndex, setFontStyleIndex] = useState(0);
+    const [fontSizeIndex, setFontSizeIndex] = useState(1);
+    const sizeClasses = ['size-xs', 'size-md', 'size-lg', 'size-xl', 'size-xxl'];
+    
+    // --- Guía de Lectura ---
+    const [showRuler, setShowRuler] = useState(false);
+    const [rulerY, setRulerY] = useState(0);
+    const textRef = useRef(null);
 
     const handleFontStyleChange = (e) => setFontStyleIndex(parseInt(e.target.value));
+    const handleFontSizeChange = (e) => setFontSizeIndex(parseInt(e.target.value));
 
     const handleSpeedChange = (e) => {
         const newRate = parseFloat(e.target.value);
@@ -28,20 +40,24 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
         if (isSpeaking || isPaused) detenerAudio();
     };
 
-    // --- CARGA DINÁMICA DE DATOS ---
+    const handleMouseMove = (e) => {
+        if (showRuler && textRef.current) {
+            const rect = textRef.current.getBoundingClientRect();
+            const y = e.clientY - rect.top;
+            setRulerY(y);
+        }
+    };
+
+    // --- CARGA DE DATOS ---
     useEffect(() => {
         let finalPath = dataUrl;
-
-        // Si no hay URL fija, la construimos dinámicamente
         if (!finalPath) {
             if (level && grade && subjectId) {
                 finalPath = `/data/${level}/${grade}/${subjectId}-comprension.json`;
             } else {
-                return; // Faltan datos para construir la ruta
+                return; 
             }
         }
-
-        console.log("Cargando datos desde:", finalPath); // Para depuración
 
         setLoading(true);
         setError(false);
@@ -53,21 +69,19 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
             })
             .then(jsonData => {
                 if (!jsonData || jsonData.length === 0) throw new Error("JSON vacío");
-                // Mezclamos las historias
                 const shuffled = jsonData.sort(() => 0.5 - Math.random());
                 setData(shuffled);
                 setLoading(false);
             })
             .catch(err => {
-                console.error("Error cargando comprensión:", err);
+                console.error("Error cargando:", err);
                 setError(true);
                 setLoading(false);
             });
         
         return () => detenerAudio();
-    }, [level, grade, subjectId, dataUrl]); // Se actualiza si cambian estos valores
+    }, [level, grade, subjectId, dataUrl]);
 
-    // ... (RESTO DE FUNCIONES IGUAL: leerTexto, toggleAudio, etc.) ...
     const detenerAudio = () => {
         if ('speechSynthesis' in window) {
             window.speechSynthesis.cancel();
@@ -80,7 +94,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
         window.speechSynthesis.cancel();
         if ('speechSynthesis' in window) {
             const utterance = new SpeechSynthesisUtterance(data[currentIndex].texto);
-            utterance.lang = 'es-ES'; // Ojo: Si fuera inglés, deberías pasar una prop "lang"
+            utterance.lang = 'es-ES'; 
             utterance.rate = speechRate; 
             utterance.onstart = () => { setIsSpeaking(true); setIsPaused(false); };
             utterance.onend = () => { setIsSpeaking(false); setIsPaused(false); };
@@ -106,23 +120,36 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
 
     const finalizar = () => {
         let aciertos = 0;
+        const total = data[currentIndex].preguntas.length;
         data[currentIndex].preguntas.forEach((p, idx) => {
             if (respuestas[idx] === p.correcta) aciertos++;
         });
         setScore(aciertos);
+        
+        const notaCalculada = Math.round((aciertos / total) * 10);
+        if (notaCalculada >= 5) {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#2563eb', '#f59e0b', '#10b981', '#ec4899']
+            });
+        }
         cambiarFase('resultado');
     };
 
     const siguienteEjercicio = () => {
         detenerAudio();
-        setRespuestas({});
-        setScore(0);
-        setAnimacionFase('fade-out');
+        setAnimacionFase('shake-exit');
+        
         setTimeout(() => {
+            setRespuestas({});
+            setScore(0);
+            setShowReview(false); // <--- RESETEAMOS EL DESPLEGABLE
             setCurrentIndex((prev) => (prev + 1) % data.length);
             setMode('lectura');
-            setAnimacionFase('fade-in-up');
-        }, 300);
+            setAnimacionFase('bounce-in'); 
+        }, 600); 
     };
     
     const cambiarFase = (nuevaFase) => {
@@ -133,20 +160,21 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
         }, 300);
     };
 
-    // --- RENDER ---
     if (loading) return <div className="loading-spinner">Cargando historias... ⏳</div>;
-    if (error) return (
-        <div className="error-message p-8 text-center text-red-500">
-            <h3 className="text-xl font-bold">⚠️ Error al cargar</h3>
-            <p>No se ha encontrado el archivo de historias.</p>
-        </div>
-    );
+    if (error) return <div className="error-message">⚠️ Error al cargar historia.</div>;
     if (!data.length) return <div>No hay historias disponibles.</div>;
 
     const ejercicioActual = data[currentIndex];
-    const currentFontStyle = fontStyles[fontStyleIndex]; 
+    const currentFontStyle = fontStyles[fontStyleIndex];
+    const currentSizeClass = sizeClasses[fontSizeIndex]; 
 
-    // Clases dinámicas botones
+    const totalPreguntas = ejercicioActual.preguntas.length;
+    const nota = Math.round((score / totalPreguntas) * 10);
+    let estrellas = 0;
+    if (nota >= 9) estrellas = 3;
+    else if (nota >= 5) estrellas = 2;
+    else if (nota >= 3) estrellas = 1;
+
     const getButtonClass = () => isSpeaking ? (isPaused ? "btn-big-audio paused" : "btn-big-audio playing") : "btn-big-audio";
     const getButtonText = () => isSpeaking ? (isPaused ? "▶️ Continuar" : "⏸️ Pausar") : "🔊 Escuchar Historia";
 
@@ -162,26 +190,53 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                     </span>
                 </h1>
 
-                <div className="config-grid">
-                    {tipo === "escrita" && (
-                        <div className="config-item">
-                            <label className="config-label">✍️ Letra</label>
-                            <div className="slider-container">
-                                <div className="slider-labels"><span>Imprenta</span><span>Ligada</span><span>Mayús.</span></div>
-                                <input type="range" min="0" max="2" step="1" value={fontStyleIndex} onChange={handleFontStyleChange} className="custom-slider font-slider"/>
+                {mode === 'lectura' && (
+                    <div className="config-grid pop-in">
+                        {tipo === "escrita" && (
+                            <>
+                                <div className="config-item item-wide item-grouped">
+                                    <div className="group-left">
+                                        <label className="config-label">✍️ Letra</label>
+                                        <div className="slider-container">
+                                            <div className="slider-labels"><span>Imp.</span><span>Lig.</span><span>May.</span></div>
+                                            <input type="range" min="0" max="2" step="1" value={fontStyleIndex} onChange={handleFontStyleChange} className="custom-slider font-slider"/>
+                                        </div>
+                                    </div>
+                                    <div className="group-divider"></div>
+                                    <div className="group-right">
+                                        <label className="config-label">📏 Guía</label>
+                                        <div className="toggle-container">
+                                            <label className="switch">
+                                                <input type="checkbox" checked={showRuler} onChange={(e) => setShowRuler(e.target.checked)} />
+                                                <span className="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="config-item item-wide">
+                                    <label className="config-label">🔍 Tamaño</label>
+                                    <div className="slider-container">
+                                        <div className="slider-labels">
+                                            <span style={{fontSize:'0.8rem'}}>Aa</span>
+                                            <span style={{fontSize:'1.2rem', fontWeight:'bold'}}>Aa</span>
+                                        </div>
+                                        <input type="range" min="0" max="4" step="1" value={fontSizeIndex} onChange={handleFontSizeChange} className="custom-slider size-slider"/>
+                                    </div>
+                                </div>
+                            </>
+                        )}
+                        {tipo === "oral" && (
+                            <div className="config-item item-full">
+                                <label className="config-label">🐢 Velocidad 🐇</label>
+                                <div className="slider-container">
+                                    <div className="slider-labels"><span>Lento</span><span>Normal</span><span>Rápido</span></div>
+                                    <input type="range" min="0.5" max="1.5" step="0.5" value={speechRate} onChange={handleSpeedChange} className="custom-slider speed-slider"/>
+                                </div>
                             </div>
-                        </div>
-                    )}
-                    {tipo === "oral" && (
-                        <div className="config-item">
-                            <label className="config-label">🐢 Velocidad 🐇</label>
-                            <div className="slider-container">
-                                <div className="slider-labels"><span>Lento</span><span>Normal</span><span>Rápido</span></div>
-                                <input type="range" min="0.5" max="1.5" step="0.5" value={speechRate} onChange={handleSpeedChange} className="custom-slider speed-slider"/>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                        )}
+                    </div>
+                )}
             </div>
             
             <div className={`game-content ${animacionFase}`}>
@@ -191,7 +246,14 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                             <h3 className="titulo-historia">{ejercicioActual.titulo}</h3>
                         </div>
                         <div className="card-body">
-                            {tipo === "escrita" && <p className="texto-lectura">{ejercicioActual.texto}</p>}
+                            {tipo === "escrita" && (
+                                <div className="text-container-relative" ref={textRef} onMouseMove={handleMouseMove} onMouseLeave={() => setRulerY(-1000)}>
+                                    {showRuler && <div className={`reading-ruler ${currentSizeClass}`} style={{ top: rulerY }} />}
+                                    <p className={`texto-lectura ${currentSizeClass}`}>
+                                        {ejercicioActual.texto}
+                                    </p>
+                                </div>
+                            )}
                             {tipo === "oral" && (
                                 <div className="zona-audio-vibrante">
                                     <p className="instruccion-oral">Escucha atentamente:</p>
@@ -230,20 +292,80 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                     </div>
                 )}
 
+                {/* --- PANTALLA DE RESULTADOS --- */}
                 {mode === 'resultado' && (
-                    <div className="resultado-card pop-in-bouncy">
-                        <h3>Resultado</h3>
-                        <div className="score-circle"><span className="score-number">{score}</span><span className="score-total">/ {ejercicioActual.preguntas.length}</span></div>
-                        <p className="mensaje-motivacional">{score === 5 ? "¡INCREÍBLE! 🏆" : "¡Bien hecho! 👍"}</p>
-                        <div className="revision-panel">
-                            {ejercicioActual.preguntas.map((p, idx) => (
-                                <div key={idx} className={`review-row ${respuestas[idx] === p.correcta ? 'row-correct' : 'row-incorrect'}`}>
-                                    <span className="icon-status">{respuestas[idx] === p.correcta ? '✅' : '❌'}</span>
-                                    <span className="review-text">Pregunta {idx + 1}</span>
-                                </div>
-                            ))}
+                    <div className="card-principal pop-in-bouncy results-container">
+                        <div className="card-header">
+                            <h3 className="titulo-historia">¡Completado!</h3>
                         </div>
-                        <button onClick={siguienteEjercicio} className="btn-restart">Siguiente 🚀</button>
+                        
+                        <div className="card-body text-center">
+                            {/* Premios visuales inmediatos */}
+                            <div className="stars-container-integrated">
+                                {[...Array(3)].map((_, i) => (
+                                    <span key={i} className={`star ${i < estrellas ? 'filled' : 'empty'}`} style={{animationDelay: `${i * 0.2}s`}}>★</span>
+                                ))}
+                            </div>
+
+                            <div className="nota-display-simple">
+                                <span className={`nota-value-simple ${nota >= 5 ? 'text-ok' : 'text-bad'}`}>{nota}</span>
+                                <span className="nota-total">/ 10</span>
+                            </div>
+
+                            <p className="mensaje-motivacional-simple">
+                                {nota === 10 ? "¡TRABAJO EXCELENTE! 🌟🏆" : 
+                                 nota >= 7 ? "¡FANTÁSTICO! 😎" :
+                                 nota >= 5 ? "¡BIEN JUGADO! 👍" : 
+                                 "¡BUEN INTENTO! 💪"}
+                            </p>
+
+                            {/* Botón para Desplegar Revisión */}
+                            <button 
+                                className={`btn-toggle-review ${showReview ? 'active' : ''}`} 
+                                onClick={() => setShowReview(!showReview)}
+                            >
+                                {showReview ? 'Ocultar Corrección 🔼' : 'Ver Corrección 🔽'}
+                            </button>
+
+                            {/* SECCIÓN DE REVISIÓN (Desplegable) */}
+                            {showReview && (
+                                <div className="review-section pop-in">
+                                    <h4 className="review-title">Revisión de Respuestas</h4>
+                                    <div className="review-list">
+                                        {ejercicioActual.preguntas.map((pregunta, idx) => {
+                                            const esCorrecta = respuestas[idx] === pregunta.correcta;
+                                            return (
+                                                <div key={idx} className={`review-item ${esCorrecta ? 'correct-item' : 'incorrect-item'}`}>
+                                                    <div className="review-question">
+                                                        <span className="review-icon">{esCorrecta ? '✅' : '❌'}</span>
+                                                        <span className="review-text-q">{pregunta.pregunta}</span>
+                                                    </div>
+                                                    
+                                                    {!esCorrecta && (
+                                                        <div className="correction-box">
+                                                            <div className="correction-row user-bad">
+                                                                <span className="correction-label">Tú:</span>
+                                                                <span>{pregunta.opciones[respuestas[idx]]}</span>
+                                                            </div>
+                                                            <div className="correction-row correct-good">
+                                                                <span className="correction-label">Correcta:</span>
+                                                                <span>{pregunta.opciones[pregunta.correcta]}</span>
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="card-footer actions-group">
+                            <button onClick={siguienteEjercicio} className="btn-primary-action bounce-on-hover">
+                                Siguiente Historia 🚀
+                            </button>
+                        </div>
                     </div>
                 )}
             </div>
