@@ -11,10 +11,14 @@ const ParejasDeCartas = ({ tema }) => {
 
   // Estados del juego
   const [fase, setFase] = useState('menu'); 
-  const [config, setConfig] = useState({ filas: 4, columnas: 3, parejas: 6, ayudas: false });
-  const [restarting, setRestarting] = useState(false); // Controla la animación de sacudida
-  const [revealing, setRevealing] = useState(false);   // NUEVO: Controla el giro previo al reinicio
+  // Añadimos isExam a la config inicial
+  const [config, setConfig] = useState({ filas: 4, columnas: 3, parejas: 6, ayudas: false, isExam: false });
+  const [restarting, setRestarting] = useState(false); 
+  const [revealing, setRevealing] = useState(false);   
   
+  // Nuevo estado para vidas
+  const [vidas, setVidas] = useState(3);
+
   // Datos
   const [datosCrudos, setDatosCrudos] = useState([]);
   const [cartas, setCartas] = useState([]);
@@ -27,11 +31,10 @@ const ParejasDeCartas = ({ tema }) => {
   const [turnos, setTurnos] = useState(0);
   const [cargando, setCargando] = useState(false);
 
-  // Referencias para la lógica de ayudas
+  // Referencias
   const peekTimeoutRef = useRef(null);
   const peekIntervalRef = useRef(null);
   const colaAyudasRef = useRef([]); 
-  
   const randomDelaysRef = useRef({});
 
   // Helper: Detecta letras
@@ -65,17 +68,28 @@ const ParejasDeCartas = ({ tema }) => {
     cargarDatos();
   }, [nivel, curso, asignatura]);
 
+  // MODIFICADO: Cambiado PRO por EXAMEN y añadido flag isExam
   const opcionesDificultad = [
-    { nombre: 'Fácil', filas: 2, columnas: 4, parejas: 4 },
-    { nombre: 'Normal', filas: 3, columnas: 4, parejas: 6 },
-    { nombre: 'Difícil', filas: 4, columnas: 5, parejas: 10 },
-    { nombre: 'PRO', filas: 4, columnas: 6, parejas: 12 }
+    { nombre: 'Fácil', filas: 2, columnas: 4, parejas: 4, isExam: false },
+    { nombre: 'Normal', filas: 3, columnas: 4, parejas: 6, isExam: false },
+    { nombre: 'Difícil', filas: 4, columnas: 5, parejas: 10, isExam: false },
+    { nombre: 'EXAMEN', filas: 4, columnas: 6, parejas: 12, isExam: true }
   ];
 
   const iniciarJuego = (opcion) => {
     const parejasDisponibles = datosCrudos.length;
     const parejasReales = Math.min(opcion.parejas, parejasDisponibles);
-    setConfig(prev => ({ ...opcion, parejas: parejasReales, ayudas: prev.ayudas }));
+    
+    // Si es examen, forzamos ayudas a true, si no, mantenemos lo que hubiera o false
+    const ayudasActivas = opcion.isExam ? true : (opcion.ayudas || false);
+
+    setConfig({ ...opcion, parejas: parejasReales, ayudas: ayudasActivas });
+    
+    // Reiniciar vidas si es examen
+    if (opcion.isExam) {
+        setVidas(3);
+    }
+
     mezclarCartas(parejasReales);
     setFase('juego');
     colaAyudasRef.current = []; 
@@ -137,20 +151,22 @@ const ParejasDeCartas = ({ tema }) => {
 
           peekTimeoutRef.current = setTimeout(() => {
             setCartas(curr => curr.map(c => c.peeking ? { ...c, peeking: false } : c));
-          }, 1000);
+          }, 1000); // Duración del 'peek'
 
           return nuevas;
         });
       };
 
-      peekIntervalRef.current = setInterval(cicloAyuda, 2000);
+      // En modo examen quizás queramos que las ayudas salgan un poco más rápido o igual
+      const intervaloAyudas = config.isExam ? 1500 : 2000;
+      peekIntervalRef.current = setInterval(cicloAyuda, intervaloAyudas);
     }
 
     return () => {
       if (peekIntervalRef.current) clearInterval(peekIntervalRef.current);
       if (peekTimeoutRef.current) clearTimeout(peekTimeoutRef.current);
     };
-  }, [fase, config.ayudas, eleccionUno, bloqueado]); 
+  }, [fase, config.ayudas, config.isExam, eleccionUno, bloqueado]); 
 
   // --- LÓGICA DEL JUEGO ---
   const handleEleccion = (carta) => {
@@ -171,6 +187,7 @@ const ParejasDeCartas = ({ tema }) => {
 
       if (carta1 && carta2) {
         if (carta1.pairId === carta2.pairId) {
+          // Acierto
           setCartas(prev => prev.map(c => {
             if (c.pairId === carta1.pairId) {
               return { ...c, matched: true, peeking: false };
@@ -179,7 +196,24 @@ const ParejasDeCartas = ({ tema }) => {
           }));
           resetearTurno();
         } else {
-          setTimeout(() => resetearTurno(), 1000);
+          // Fallo
+          if (config.isExam) {
+            // Restar vida y comprobar muerte
+            if (vidas > 1) {
+                setVidas(v => v - 1);
+                setTimeout(() => resetearTurno(), 1000);
+            } else {
+                setVidas(0);
+                // Game Over por vidas
+                setTimeout(() => {
+                    setFase('resumen');
+                    // No tiramos confeti si suspende
+                }, 1000);
+            }
+          } else {
+             // Modo normal
+             setTimeout(() => resetearTurno(), 1000);
+          }
         }
       } else {
         resetearTurno();
@@ -188,6 +222,7 @@ const ParejasDeCartas = ({ tema }) => {
   }, [eleccionUno, eleccionDos]);
 
   useEffect(() => {
+    // Victoria completa
     if (fase === 'juego' && cartas.length > 0 && cartas.every(carta => carta.matched)) {
       setFase('resumen');
       confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
@@ -208,34 +243,39 @@ const ParejasDeCartas = ({ tema }) => {
     setRevealing(false);
   };
 
-  // --- LÓGICA DE REINICIO CON REVELADO Y VIBRACIÓN ---
   const reiniciarNivel = () => {
-    if (restarting || revealing) return; // Evitar clicks múltiples
-    
-    // 1. Mostrar todas las cartas
+    if (restarting || revealing) return; 
     setRevealing(true);
-    
-    // 2. Esperar 400ms para que se giren y se vean
     setTimeout(() => {
-      // 3. Activar la vibración
       setRestarting(true);
-      
-      // 4. Esperar a que termine la vibración (600ms) para barajar
       setTimeout(() => {
-        iniciarJuego(config); // Esto reseteará cartas y el estado revealing implícitamente
+        iniciarJuego(config); 
         setRestarting(false);
         setRevealing(false);
       }, 700); 
     }, 400); 
   };
 
-  const toggleAyudas = () => setConfig(prev => ({ ...prev, ayudas: !prev.ayudas }));
+  // Toggle ayudas bloqueado en modo examen
+  const toggleAyudas = () => {
+      if (!config.isExam) {
+          setConfig(prev => ({ ...prev, ayudas: !prev.ayudas }));
+      }
+  };
 
   const getRandomDelay = (id) => {
     if (!randomDelaysRef.current[id]) {
       randomDelaysRef.current[id] = Math.random() * 0.2;
     }
     return randomDelaysRef.current[id];
+  };
+
+  // CALCULO DE NOTA PARA EXAMEN
+  const calcularNota = () => {
+      const totalParejas = config.parejas;
+      const parejasEncontradas = cartas.filter(c => c.matched).length / 2;
+      const nota = (parejasEncontradas / totalParejas) * 10;
+      return nota.toFixed(1); // Un decimal
   };
 
   if (cargando) return <div className="contenedor-parejas text-2xl font-bold text-slate-500">Cargando... 🃏</div>;
@@ -248,9 +288,18 @@ const ParejasDeCartas = ({ tema }) => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl w-full px-4">
             {opcionesDificultad.map((op, idx) => (
-              <button key={idx} className="btn-dificultad" onClick={() => iniciarJuego(op)}>
-                <div className="text-3xl font-bold mb-2">{op.nombre}</div>
-                <div className="text-lg opacity-90">{op.filas} x {op.columnas} ({op.parejas} parejas)</div>
+              <button 
+                key={idx} 
+                className={`btn-dificultad ${op.isExam ? 'btn-examen' : ''}`} 
+                onClick={() => iniciarJuego(op)}
+              >
+                <div className="text-3xl font-bold mb-2">
+                    {op.isExam ? '📝 ' + op.nombre : op.nombre}
+                </div>
+                <div className="text-lg opacity-90">
+                    {op.filas} x {op.columnas} 
+                    {op.isExam ? ' (3 Vidas)' : ` (${op.parejas} parejas)`}
+                </div>
               </button>
             ))}
           </div>
@@ -270,21 +319,30 @@ const ParejasDeCartas = ({ tema }) => {
               ⬅️ <span className="hidden sm:inline">Dificultad</span>
             </button>
             
-            <button 
-              onClick={toggleAyudas}
-              disabled={restarting || revealing}
-              className={`px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-base md:text-lg transition-all shadow-md border-2 flex items-center gap-2 hover:scale-105 disabled:opacity-50
-                ${config.ayudas ? 'bg-emerald-500 border-emerald-400 text-white' : 'bg-white/90 backdrop-blur-sm border-slate-300 text-slate-600 hover:bg-white'}`}
-            >
-              {config.ayudas ? '✨ Ayudas: ON' : '👁️ Ayudas: OFF'}
-            </button>
+            {/* Si es examen mostramos VIDAS, si no, botón de ayudas */}
+            {config.isExam ? (
+                 <div className="px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-base md:text-lg shadow-md border-2 bg-red-100 border-red-300 text-red-600 flex items-center gap-2">
+                    Vidas: {Array(3).fill(0).map((_, i) => (
+                        <span key={i} className={i < vidas ? 'opacity-100' : 'opacity-30 grayscale'}>❤️</span>
+                    ))}
+                 </div>
+            ) : (
+                <button 
+                onClick={toggleAyudas}
+                disabled={restarting || revealing}
+                className={`px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-base md:text-lg transition-all shadow-md border-2 flex items-center gap-2 hover:scale-105 disabled:opacity-50
+                    ${config.ayudas ? 'bg-emerald-500 border-emerald-400 text-white' : 'bg-white/90 backdrop-blur-sm border-slate-300 text-slate-600 hover:bg-white'}`}
+                >
+                {config.ayudas ? '✨ Ayudas: ON' : '👁️ Ayudas: OFF'}
+                </button>
+            )}
 
             <button 
               onClick={reiniciarNivel}
               disabled={restarting || revealing}
               className="px-4 py-2 md:px-6 md:py-3 bg-indigo-600 text-white text-base md:text-lg font-bold rounded-2xl shadow-md border-2 border-indigo-400 hover:bg-indigo-700 hover:scale-105 transition-all flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              {restarting || revealing ? '🔄 Barajando...' : <>🔄 <span className="hidden sm:inline">Reiniciar</span></>}
+              {restarting || revealing ? '🔄 ...' : <>🔄 <span className="hidden sm:inline">Reiniciar</span></>}
             </button>
           </div>
           
@@ -308,9 +366,6 @@ const ParejasDeCartas = ({ tema }) => {
               }
 
               const estaSeleccionada = carta.uniqueId === eleccionUno || carta.uniqueId === eleccionDos;
-              
-              // --- CAMBIO CLAVE AQUÍ ---
-              // La carta se gira si está seleccionada, matcheada O si estamos en modo 'revealing'
               const estaGirada = estaSeleccionada || carta.matched || revealing;
               
               const clasePeek = carta.peeking && !estaGirada ? 'peeking' : '';
@@ -347,10 +402,30 @@ const ParejasDeCartas = ({ tema }) => {
           {fase === 'resumen' && !restarting && !revealing && (
             <div className="overlay-resumen">
               <div className="resumen-parejas">
-                <h2 className="text-4xl font-bold mb-4 text-indigo-900">¡Fantástico! 🎉</h2>
-                <p className="text-lg text-gray-700 mb-6">Completado en <span className="font-bold text-indigo-600 text-2xl">{turnos}</span> turnos.</p>
+                {config.isExam ? (
+                    // RESUMEN MODO EXAMEN
+                    <>
+                        <h2 className="text-4xl font-bold mb-2 text-indigo-900">
+                            {vidas > 0 ? '¡Examen Aprobado! 🎓' : 'Examen Finalizado 🔔'}
+                        </h2>
+                        <div className="my-6 py-4 bg-slate-50 rounded-xl border-2 border-indigo-100">
+                            <p className="text-lg text-gray-600 mb-1">Tu nota es</p>
+                            <span className={`text-6xl font-black ${vidas > 0 ? 'text-emerald-500' : 'text-red-500'}`}>
+                                {calcularNota()}
+                            </span>
+                            {vidas === 0 && <p className="text-sm text-red-400 mt-2 font-bold">(Te quedaste sin vidas)</p>}
+                        </div>
+                    </>
+                ) : (
+                    // RESUMEN MODO NORMAL
+                    <>
+                        <h2 className="text-4xl font-bold mb-4 text-indigo-900">¡Fantástico! 🎉</h2>
+                        <p className="text-lg text-gray-700 mb-6">Completado en <span className="font-bold text-indigo-600 text-2xl">{turnos}</span> turnos.</p>
+                    </>
+                )}
+                
                 <div className="flex flex-col gap-3">
-                  <button onClick={reiniciarNivel} className="px-8 py-3 bg-indigo-600 text-white rounded-full font-bold hover:bg-indigo-700 shadow-lg">Jugar otra vez</button>
+                  <button onClick={reiniciarNivel} className="px-8 py-3 bg-indigo-600 text-white rounded-full font-bold hover:bg-indigo-700 shadow-lg">Intentar de nuevo</button>
                   <button onClick={volverAlMenu} className="px-8 py-3 bg-transparent border-2 border-indigo-600 text-indigo-600 rounded-full font-bold hover:bg-indigo-50">Cambiar dificultad</button>
                 </div>
               </div>
