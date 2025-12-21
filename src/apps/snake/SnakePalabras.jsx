@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { 
   RefreshCcw, ArrowUp, ArrowDown, ArrowLeft, ArrowRight, 
-  Play, Pause, Star, Lightbulb, LightbulbOff, AlertTriangle, Zap 
+  Play, Pause, Star, Lightbulb, LightbulbOff, AlertTriangle, Zap, Sparkles
 } from 'lucide-react';
 import { cn } from "@/lib/utils";
 
@@ -38,8 +38,9 @@ const SnakeDePalabras = (props) => {
   const [textSize, setTextSize] = useState(12);
 
   // Estados de flujo
-  const [gameState, setGameState] = useState('menu'); 
+  const [gameState, setGameState] = useState('menu'); // 'menu', 'playing', 'paused', 'gameover', 'levelup'
   const [isPaused, setIsPaused] = useState(false);
+  const [nextTopic, setNextTopic] = useState(''); // Para mostrar en el popup
   
   // Configuración
   const [difficulty, setDifficulty] = useState('medium'); 
@@ -97,6 +98,7 @@ const SnakeDePalabras = (props) => {
   // 3. LOGICA DEL JUEGO (Tick)
   useEffect(() => {
     savedCallback.current = () => {
+      // Detenemos el loop si no está jugando o está pausado (incluye estado 'levelup')
       if (gameState !== 'playing' || isPaused) return;
 
       const now = Date.now();
@@ -136,6 +138,8 @@ const SnakeDePalabras = (props) => {
           const eatenItem = food[eatenFoodIndex];
           handleEat(eatenItem);
           
+          // Si es bonus, handleEat se encarga de la lógica especial (pausa, cambio de nivel)
+          // Si NO es bonus, eliminamos la comida aquí
           if (eatenItem.type !== 'bonus') {
              const newFoodList = [...food];
              newFoodList.splice(eatenFoodIndex, 1);
@@ -159,11 +163,12 @@ const SnakeDePalabras = (props) => {
 
   // Trigger ref updates
   useEffect(() => {
-     savedCallback.current = savedCallback.current; 
+      savedCallback.current = savedCallback.current; 
   }, [gameState, isPaused, direction, food, difficulty, currentCatIndex, pendingGrowth, combo, starCombo]);
 
   // Timer del Loop
   useEffect(() => {
+    // El timer solo corre si estamos en 'playing'
     if (gameState !== 'playing' || isPaused) return;
     const tickTime = Math.max(SPEED_MIN, SPEED_INITIAL - (score * 2));
     const id = setInterval(() => {
@@ -251,6 +256,7 @@ const SnakeDePalabras = (props) => {
           return;
       }
 
+      // Bloquear controles si no estamos jugando (ej. durante levelup)
       if (gameState !== 'playing' || isPaused) return;
       
       if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
@@ -270,7 +276,7 @@ const SnakeDePalabras = (props) => {
   }, [gameState, isPaused, direction]);
 
   const changeDir = (x, y) => {
-    if (isPaused) return;
+    if (isPaused || gameState !== 'playing') return;
     if ((x !== 0 && direction.x !== 0) || (y !== 0 && direction.y !== 0)) return;
     setDirection({ x, y });
   };
@@ -282,31 +288,46 @@ const SnakeDePalabras = (props) => {
       const newStarCombo = starCombo + 1;
       setStarCombo(newStarCombo);
       
-      const points = newStarCombo * 500; // 500, 1000, 1500...
+      const points = newStarCombo * 500; 
       setScore(s => s + points);
       
-      // Efectos extra
-      const nextIndex = (currentCatIndex + 1) % categories.length;
-      setCurrentCatIndex(nextIndex);
-      setFood([]); 
-      setPendingGrowth(p => p + 10); // Crecer 10
+      // Animación inmediata
       triggerAnim('bonus');
+
+      // --- TRANSICIÓN DE TEMA ---
+      const nextIndex = (currentCatIndex + 1) % categories.length;
+      const nextCatName = categories.length > 0 ? formatName(categories[nextIndex]) : '';
+
+      // 1. Preparamos datos para el popup
+      setNextTopic(nextCatName);
+      // 2. Cambiamos estado para detener el juego y mostrar popup
+      setGameState('levelup');
+      
+      // 3. Temporizador de 3 segundos
+      setTimeout(() => {
+        // Acciones al terminar la transición
+        setCurrentCatIndex(nextIndex);
+        setFood([]); // Limpiar comida vieja
+        setPendingGrowth(p => p + 10); // Crecer
+        setGameState('playing'); // Reanudar juego
+        setNextTopic(''); // Limpiar popup
+      }, 3000);
 
     } else if (item.type === 'valid') {
       // PALABRA CORRECTA
       const newCombo = combo + 1;
       setCombo(newCombo);
       
-      const points = newCombo * 50; // 50, 100, 150...
+      const points = newCombo * 50; 
       setScore(s => s + points);
       triggerAnim('success');
 
     } else {
-      // PALABRA INCORRECTA (Fallo)
-      setCombo(0); // Reiniciar racha
-      setStarCombo(0); // Reiniciar racha de estrellas también
+      // PALABRA INCORRECTA
+      setCombo(0); 
+      setStarCombo(0); 
       
-      setScore(s => Math.max(0, s - 15)); // Pequeña penalización fija
+      setScore(s => Math.max(0, s - 15)); 
       triggerAnim('error');
     }
   };
@@ -387,9 +408,20 @@ const SnakeDePalabras = (props) => {
            50% { transform: scale(1.4) rotate(180deg); filter: brightness(1.5); box-shadow: 0 0 30px rgba(250, 204, 21, 0.9); }
            100% { transform: scale(1) rotate(360deg); filter: brightness(1); }
         }
+        @keyframes zoomInUp {
+            0% { opacity: 0; transform: scale(0.5) translateY(50px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
         .animate-head-error { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
         .animate-head-success { animation: popGreen 0.4s ease-out both; }
         .animate-head-bonus { animation: popGold 0.5s ease-out both; }
+        .animate-popup-in { animation: zoomInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
 
         .tail-up { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
         .tail-down { clip-path: polygon(0% 0%, 100% 0%, 50% 100%); }
@@ -450,9 +482,9 @@ const SnakeDePalabras = (props) => {
                     variant="outline"
                     className="h-12 w-12 rounded-full border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 shadow-sm"
                     onClick={togglePause}
-                 >
-                     {isPaused ? <Play className="fill-current h-5 w-5" /> : <Pause className="fill-current h-5 w-5" />}
-                 </Button>
+                  >
+                      {isPaused ? <Play className="fill-current h-5 w-5" /> : <Pause className="fill-current h-5 w-5" />}
+                  </Button>
              )}
         </div>
       </div>
@@ -466,6 +498,32 @@ const SnakeDePalabras = (props) => {
                  backgroundSize: `${100/GRID_SIZE}% ${100/GRID_SIZE}%`
              }}>
         </div>
+
+        {/* POPUP DE NIVEL (NUEVO) */}
+        {gameState === 'levelup' && (
+            <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-300">
+                <div className="animate-popup-in flex flex-col items-center text-center p-6 rounded-3xl bg-black/40 border border-yellow-500/30 shadow-[0_0_50px_rgba(234,179,8,0.2)]">
+                    <div className="relative mb-4 animate-float">
+                        <Star className="w-24 h-24 text-yellow-400 fill-yellow-400 drop-shadow-[0_0_15px_rgba(250,204,21,0.6)]" />
+                        <Sparkles className="absolute -top-2 -right-4 w-10 h-10 text-yellow-200 animate-pulse" />
+                    </div>
+                    
+                    <h2 className="text-3xl font-black text-white mb-2 tracking-wide uppercase drop-shadow-md">
+                        ¡Nueva Temática!
+                    </h2>
+                    
+                    <div className="h-1 w-20 bg-gradient-to-r from-transparent via-yellow-500 to-transparent mb-4"></div>
+                    
+                    <p className="text-4xl md:text-5xl font-black bg-gradient-to-br from-yellow-300 via-yellow-100 to-yellow-500 bg-clip-text text-transparent drop-shadow-sm tracking-tight px-4 py-2">
+                        {nextTopic}
+                    </p>
+                    
+                    <p className="text-yellow-200/60 font-bold mt-4 text-sm uppercase tracking-widest animate-pulse">
+                        Preparando tablero...
+                    </p>
+                </div>
+            </div>
+        )}
 
         {/* MENÚ */}
         {gameState === 'menu' && (
