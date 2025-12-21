@@ -25,28 +25,18 @@ const generateMinecraftTexture = (r, g, b) => {
   return texture;
 };
 
-// === SUB-COMPONENTE: Partículas ===
+// Partículas (Igual que antes)
 const BlockParticles = ({ position, texture }) => {
     const particles = useMemo(() => {
         return Array.from({ length: 8 }).map(() => ({
-            velocity: new THREE.Vector3(
-                (Math.random() - 0.5) * 0.1,
-                (Math.random() * 0.1) + 0.05, 
-                (Math.random() - 0.5) * 0.1
-            ),
-            offset: new THREE.Vector3(
-                (Math.random() - 0.5) * 0.5,
-                (Math.random() - 0.5) * 0.5,
-                (Math.random() - 0.5) * 0.5
-            ),
+            velocity: new THREE.Vector3((Math.random()-0.5)*0.2, (Math.random()*0.2)+0.1, (Math.random()-0.5)*0.2),
+            offset: new THREE.Vector3((Math.random()-0.5)*0.5, (Math.random()-0.5)*0.5, (Math.random()-0.5)*0.5),
             rotationAxis: new THREE.Vector3(Math.random(), Math.random(), Math.random()).normalize(),
             rotationSpeed: Math.random() * 0.2 + 0.1
         }));
     }, []);
-    
     const groupRef = useRef();
-
-    useFrame((state, delta) => {
+    useFrame(() => {
        if (!groupRef.current) return;
        groupRef.current.children.forEach((mesh, i) => {
            const data = particles[i];
@@ -56,40 +46,50 @@ const BlockParticles = ({ position, texture }) => {
            mesh.scale.multiplyScalar(0.95);
        });
     });
-
     return (
         <group ref={groupRef} position={position}>
             {particles.map((p, i) => (
                 <mesh key={i} position={p.offset}>
                     <boxGeometry args={[0.25, 0.25, 0.25]} />
-                    <meshStandardMaterial map={texture} color="#888" />
+                    <meshStandardMaterial map={texture} color="#fff" />
                 </mesh>
             ))}
         </group>
     );
 };
 
-
-// === COMPONENTE PRINCIPAL ===
 export function Bloque3D({ position, text, onMine, onDestructionComplete, setHoverState, isTarget }) {
   const meshRef = useRef();
   const isHoveredRef = useRef(false);
   const [isClose, setIsClose] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isDestroying, setIsDestroying] = useState(false);
-  
   const { camera } = useThree();
 
-  const initialPosVector = useMemo(() => new THREE.Vector3(...position), [position]);
+  // === DETECTAR SI ES BLOQUE ESTRELLA ===
+  const isStarBlock = text === "★";
+
+  // Texturas
+  // Normal (Marrón tierra)
   const textureNormal = useMemo(() => generateMinecraftTexture(140, 80, 40), []);
   const textureHover = useMemo(() => generateMinecraftTexture(180, 120, 70), []);
+  
+  // ESTRELLA (Dorado)
+  const textureGold = useMemo(() => generateMinecraftTexture(255, 215, 0), []);     // Oro
+  const textureGoldHover = useMemo(() => generateMinecraftTexture(255, 235, 100), []); // Oro brillante
 
-  useEffect(() => {
-    return () => setHoverState('crosshair');
-  }, [setHoverState]);
+  const initialPosVector = useMemo(() => new THREE.Vector3(...position), [position]);
 
-  useFrame(() => {
+  useEffect(() => { return () => setHoverState('crosshair'); }, [setHoverState]);
+
+  useFrame((state) => {
     if (isDestroying || !meshRef.current) return;
+
+    // Animación de rotación suave SOLO para la estrella
+    if (isStarBlock) {
+        meshRef.current.rotation.y += 0.01;
+        meshRef.current.position.y = initialPosVector.y + Math.sin(state.clock.elapsedTime * 2) * 0.1;
+    }
 
     const distance = camera.position.distanceTo(meshRef.current.position);
     const closeEnough = distance < 5;
@@ -101,9 +101,9 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
 
     if (isError) {
         meshRef.current.position.x = initialPosVector.x + (Math.random() - 0.5) * 0.2;
-        meshRef.current.position.y = initialPosVector.y + (Math.random() - 0.5) * 0.2;
         meshRef.current.position.z = initialPosVector.z + (Math.random() - 0.5) * 0.2;
-    } else {
+    } else if (!isStarBlock) {
+        // Reset posición si no es error ni estrella (la estrella se mueve sola)
         meshRef.current.position.copy(initialPosVector);
     }
   });
@@ -115,14 +115,11 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
     e.stopPropagation();
     if (!isClose || isError || isDestroying) return;
 
-    if (isTarget) {
+    if (isTarget) { // La estrella siempre es isTarget=true
       setHoverState('crosshair');
       onMine(); 
       setIsDestroying(true);
-      setTimeout(() => {
-          onDestructionComplete(); 
-      }, 400);
-
+      setTimeout(() => onDestructionComplete(), 400);
     } else {
       setIsError(true);
       setHoverState('crosshair');
@@ -130,26 +127,24 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
     }
   };
 
+  // Determinar textura final
+  let finalTexture = isStarBlock ? textureGold : textureNormal;
+  
+  if (!isError && isHoveredRef.current && isClose) {
+      finalTexture = isStarBlock ? textureGoldHover : textureHover;
+  }
+  
+  // Color de error o neutro
+  let finalColor = isError ? '#ff4444' : 'white'; 
+
+  // Partículas
   if (isDestroying) {
-      return <BlockParticles position={position} texture={textureNormal} />;
+      return <BlockParticles position={position} texture={finalTexture} />;
   }
 
-  let finalColor = 'white';
-  let finalTexture = textureNormal;
-  if (isError) {
-      finalColor = '#ff4444';
-      finalTexture = null;
-  } else if (isHoveredRef.current && !isClose) {
-      finalColor = '#888';
-  } else if (isHoveredRef.current && isClose) {
-      finalTexture = textureHover;
-  }
-
-  // === CONFIGURACIÓN DE TEXTO (SIN FUENTE EXTERNA) ===
   const textProps = {
-      // font: ... <--- ELIMINADO PARA QUE NO BLOQUEE LA CARGA
-      fontSize: 0.3, 
-      color: "white",
+      fontSize: isStarBlock ? 0.5 : 0.3, // Estrella más grande
+      color: isStarBlock ? "#FFFF00" : "white", // Texto amarillo si es estrella
       outlineWidth: 0.03,
       outlineColor: "#3d2817",
       anchorX: "center",
@@ -168,7 +163,7 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
       <meshStandardMaterial map={finalTexture} color={finalColor} roughness={1} />
       <Edges scale={1} threshold={15} color={isError ? "#ff0000" : "#2a1a0a"} linewidth={isError ? 4 : 2} />
 
-      {/* Textos */}
+      {/* Renderizar texto en las caras */}
       <Text position={[0, 0.51, 0]} rotation={[-Math.PI / 2, 0, 0]} {...textProps}>{text}</Text>
       <Text position={[0, 0, 0.51]} {...textProps}>{text}</Text>
       <Text position={[0, 0, -0.51]} rotation={[0, Math.PI, 0]} {...textProps}>{text}</Text>

@@ -12,14 +12,14 @@ import { Button } from '@/components/ui/button';
 import { Tablet, MousePointer2 } from 'lucide-react'; 
 import './ExcavacionSelectiva.css';
 
-// === ICONO DE CRUZ ===
+// === ICONO DE CRUZ (SVG Inline) ===
 const CrosshairIcon = () => (
     <svg width="32" height="32" viewBox="0 0 32 32" className="drop-shadow-md filter drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
         <path d="M16 8v16M8 16h16" stroke="white" strokeWidth="3" fill="none" strokeLinecap="square"/>
     </svg>
 );
 
-// === TEXTURA CÉSPED ===
+// === TEXTURA DE CÉSPED ===
 const generateGrassTexture = () => {
   const width = 16;
   const height = 16;
@@ -51,22 +51,22 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   
-  const { blocks, timeLeft, score, gameState, mission, mineBlock } = useExcavacionSelectiva(data);
+  // Extraemos la lógica del juego, incluyendo isSuddenDeath
+  const { blocks, timeLeft, score, gameState, mission, mineBlock, isSuddenDeath } = useExcavacionSelectiva(data);
   
+  // Estados de control y visuales
   const [isLocked, setIsLocked] = useState(false);
-  const [cursorType, setCursorType] = useState('crosshair'); 
+  const [cursorType, setCursorType] = useState('crosshair'); // 'crosshair' | 'pickaxe'
   const [isSwinging, setIsSwinging] = useState(false);
+  const [showSuddenDeathMsg, setShowSuddenDeathMsg] = useState(false);
 
-  // Estados de control
-  const [controlMode, setControlMode] = useState(null); 
-  
-  // Joystick Izquierdo (Movimiento)
+  // Estados para control Móvil vs PC
+  const [controlMode, setControlMode] = useState(null); // 'pc' | 'mobile' | null
   const [joystickMove, setJoystickMove] = useState(null); 
-  // Joystick Derecho (Mirada)
   const [joystickLook, setJoystickLook] = useState(null);
 
+  // Recursos memoizados
   const grassTexture = useMemo(() => generateGrassTexture(), []);
-  
   const trees = useMemo(() => {
       const tempTrees = [];
       for (let i = 0; i < 40; i++) { 
@@ -79,6 +79,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
       return tempTrees;
   }, []);
 
+  // Carga de datos
   useEffect(() => {
     setData(null);
     setError(null);
@@ -88,17 +89,24 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
       .catch(e => setError(e));
   }, [dataPath]);
 
+  // Efecto para mostrar el mensaje de Muerte Súbita
+  useEffect(() => {
+      if (isSuddenDeath) {
+          setShowSuddenDeathMsg(true);
+          setTimeout(() => setShowSuddenDeathMsg(false), 2000);
+      }
+  }, [isSuddenDeath]);
+
+  // Animación del pico en UI
   const triggerSwing = () => {
       if (isSwinging) return;
       setIsSwinging(true);
       setTimeout(() => setIsSwinging(false), 300);
   };
 
-  // Handlers Joystick Izquierdo (Mover)
+  // Handlers del Joystick
   const handleMoveStart = (evt) => setJoystickMove(evt);
   const handleMoveStop = () => setJoystickMove(null);
-
-  // Handlers Joystick Derecho (Mirar)
   const handleLookStart = (evt) => setJoystickLook(evt);
   const handleLookStop = () => setJoystickLook(null);
 
@@ -106,9 +114,10 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
   if (!data) return <div className="p-10 text-center text-white font-pixel">Cargando chunks...</div>;
 
   return (
-    <div className="excavacion-container relative w-full h-[80vh] bg-slate-900 rounded-xl overflow-hidden shadow-2xl border-4 border-slate-700">
+    // Agregamos la clase 'sudden-death-mode' si estamos en esa fase (necesita el CSS)
+    <div className={`excavacion-container relative w-full h-[80vh] bg-slate-900 rounded-xl overflow-hidden shadow-2xl border-4 border-slate-700 ${isSuddenDeath ? 'sudden-death-mode' : ''}`}>
       
-      {/* 1. SELECCIÓN DE DISPOSITIVO */}
+      {/* === 1. SELECCIÓN DE DISPOSITIVO === */}
       {!controlMode && (
          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-900/95 text-white pixel-text backdrop-blur-md p-4">
              <h1 className="text-2xl md:text-3xl text-yellow-400 mb-8 text-center animate-pulse">
@@ -134,11 +143,24 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
          </div>
       )}
 
-      {/* HUD SUPERIOR */}
+      {/* === MENSAJE FLASH DE MUERTE SÚBITA === */}
+      {showSuddenDeathMsg && (
+          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center pointer-events-none">
+              <h1 className="text-4xl md:text-6xl text-red-600 font-bold animate-ping pixel-text text-center drop-shadow-[0_5px_5px_rgba(0,0,0,1)]">
+                  ¡MUERTE SÚBITA!
+              </h1>
+              <p className="text-xl md:text-2xl text-yellow-400 mt-8 animate-bounce pixel-text bg-black/50 p-2 rounded">
+                  ¡CORRE!
+              </p>
+          </div>
+      )}
+
+      {/* === HUD SUPERIOR === */}
       <div className="absolute top-4 left-4 z-10 text-white bg-black/60 p-4 rounded border-2 border-white/20 pixel-text pointer-events-none select-none w-[95%] flex justify-between items-center">
         <div>
-            <h2 className="text-sm md:text-base text-yellow-400 mb-1 tracking-widest uppercase shadow-black drop-shadow-md">
-            {mission}
+            {/* Si es muerte súbita, cambiamos el color a rojo */}
+            <h2 className={`text-sm md:text-base mb-1 tracking-widest uppercase shadow-black drop-shadow-md ${isSuddenDeath ? 'text-red-500 animate-pulse' : 'text-yellow-400'}`}>
+               {isSuddenDeath ? "¡SOBREVIVE!" : mission}
             </h2>
             <p className="text-xs text-gray-300">
                 {controlMode === 'pc' ? "WASD mover | SHIFT correr" : "Usa los Joysticks"}
@@ -147,25 +169,33 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
         
         <div className="flex items-center gap-6 text-sm md:text-lg font-bold">
             <span className="text-green-400 drop-shadow-sm">XP: {score}</span>
-            <div className={`flex items-center drop-shadow-sm ${timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-white'}`}>
+            
+            {/* TEMPORIZADOR DINÁMICO */}
+            <div className={`flex items-center drop-shadow-sm transition-all duration-200 ${
+                isSuddenDeath ? 'text-red-600 scale-110' : (timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-white')
+            }`}>
                <span className="mr-2">⏰</span>
-               <span>{timeLeft}s</span>
+               {/* Usamos toFixed(1) para mostrar decimales */}
+               <span className="min-w-[4ch] text-right">{Math.max(0, timeLeft).toFixed(1)}s</span>
             </div>
         </div>
       </div>
 
-      {/* CURSOR VIRTUAL */}
+      {/* === CURSOR VIRTUAL (CENTRO) === */}
       {( (controlMode === 'pc' && isLocked) || controlMode === 'mobile' ) && gameState === 'playing' && (
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
             {cursorType === 'pickaxe' ? (
-                <span className={`text-6xl select-none ${isSwinging ? 'swing-animation' : ''}`}>⛏️</span>
+                // Animación swing
+                <span className={`text-6xl select-none ${isSwinging ? 'swing-animation' : ''}`}>
+                    ⛏️
+                </span>
             ) : (
                 <CrosshairIcon />
             )}
         </div>
       )}
 
-      {/* === CONTROLES TÁCTILES DOBLE JOYSTICK === */}
+      {/* === CONTROLES TÁCTILES DOBLE JOYSTICK (MÓVIL) === */}
       {controlMode === 'mobile' && gameState === 'playing' && (
           <>
             {/* IZQUIERDA: MOVIMIENTO */}
@@ -180,29 +210,21 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
                 />
             </div>
 
-            {/* DERECHA: CÁMARA */}
+            {/* DERECHA: CÁMARA (MIRAR) */}
             <div className="absolute bottom-8 right-8 z-40 opacity-80">
                 <Joystick 
                     size={100} 
                     sticky={false} 
                     baseColor="rgba(255, 255, 255, 0.2)" 
-                    stickColor="rgba(200, 50, 50, 0.5)" // Un color un poco diferente para distinguir
+                    stickColor="rgba(200, 50, 50, 0.5)"
                     move={handleLookStart} 
                     stop={handleLookStop}
                 />
             </div>
-            
-            {/* Aviso visual pequeño */}
-            <div className="absolute bottom-36 right-10 z-10 text-white/40 text-[10px] pointer-events-none">
-                Mirar
-            </div>
-            <div className="absolute bottom-36 left-10 z-10 text-white/40 text-[10px] pointer-events-none">
-                Mover
-            </div>
           </>
       )}
 
-      {/* MENÚ INICIO PC */}
+      {/* === MENÚ INICIO (PC) === */}
       {controlMode === 'pc' && !isLocked && gameState === 'playing' && (
           <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/60 text-white pixel-text backdrop-blur-sm cursor-pointer"
                onClick={() => {}}
@@ -212,11 +234,11 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
           </div>
       )}
 
-      {/* PANTALLA FINAL */}
+      {/* === PANTALLA FINAL === */}
       {gameState !== 'playing' && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/85 text-white pixel-text text-center p-4">
           <h1 className="text-3xl md:text-5xl text-yellow-500 mb-6 drop-shadow-md animate-bounce">
-            ¡TIEMPO AGOTADO!
+            ¡FIN DE LA PARTIDA!
           </h1>
           <p className="text-xl mb-8 text-gray-200">Puntuación Final: <span className="text-green-400">{score}</span></p>
           <Button 
@@ -228,7 +250,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
         </div>
       )}
 
-      {/* ESCENA 3D */}
+      {/* === ESCENA 3D === */}
       <Canvas shadows camera={{ position: [0, 1.7, 0], fov: 70 }}>
         
         <color attach="background" args={['#87CEEB']} /> 
@@ -237,7 +259,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
         <ambientLight intensity={1.5} />
         <directionalLight position={[20, 50, 10]} intensity={1.5} castShadow />
 
-        {/* Controles PC */}
+        {/* Controles PC: PointerLock */}
         {controlMode === 'pc' && (
             <PointerLockControls 
                 onLock={() => setIsLocked(true)} 
@@ -245,19 +267,21 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
             />
         )}
 
-        {/* Controles Móvil (Lógica de rotación con Joystick) */}
+        {/* Controles Móvil: Lógica de cámara con Joystick */}
         {controlMode === 'mobile' && (
             <MobileLookControls isEnabled={gameState === 'playing'} joystickData={joystickLook} />
         )}
 
-        {/* Jugador (Movimiento) */}
+        {/* Jugador: Movimiento (Teclado + Joystick Izq) */}
         <Player isLocked={isLocked || controlMode === 'mobile'} joystickMove={joystickMove} />
 
+        {/* Suelo */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
             <planeGeometry args={[200, 200]} />
             <meshStandardMaterial map={grassTexture} />
         </mesh>
 
+        {/* Objetos del Juego */}
         <Suspense fallback={null}>
           <group>
             {blocks.map(block => (
@@ -268,7 +292,9 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
                   text={block.text}
                   isTarget={block.isTarget}
                   setHoverState={setCursorType}
+                  // Callback para iniciar la animación visual (UI)
                   onMine={() => triggerSwing()}
+                  // Callback para ejecutar la lógica de borrado y puntos
                   onDestructionComplete={() => mineBlock(block.id)}
                 />
               )

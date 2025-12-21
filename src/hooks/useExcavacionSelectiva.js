@@ -1,114 +1,145 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 
+// ... (GAME_MODES se mantiene igual que antes) ...
+const GAME_MODES = [
+  { id: 'evens', mission: '¡Busca los números PARES!', check: (n) => n % 2 === 0 },
+  { id: 'odds', mission: '¡Busca los números IMPARES!', check: (n) => n % 2 !== 0 },
+  { id: 'mult5', mission: '¡Busca múltiplos de 5!', check: (n) => n % 5 === 0 },
+  { id: 'mult10', mission: '¡Busca múltiplos de 10!', check: (n) => n % 10 === 0 },
+  { id: 'over50', mission: '¡Busca números MAYORES de 50!', check: (n) => n > 50 }
+];
+
 export const useExcavacionSelectiva = (initialData) => {
   const [blocks, setBlocks] = useState([]);
   const [timeLeft, setTimeLeft] = useState(60); 
   const [score, setScore] = useState(0);
   const [gameState, setGameState] = useState('playing'); 
   const [mission, setMission] = useState('');
+  
+  // === NUEVO ESTADO: MUERTE SÚBITA ===
+  const [isSuddenDeath, setIsSuddenDeath] = useState(false);
+  
+  // Referencia para saber cuál es el límite actual (empieza en 5s y baja)
+  const suddenDeathCapRef = useRef(5.0);
 
-  const poolRef = useRef({ targets: [], distractors: [] });
+  const currentModeRef = useRef(GAME_MODES[0]);
+  const streakRef = useRef(0);
 
-  const generateRandomBlock = (isTarget) => {
-    const pool = isTarget ? poolRef.current.targets : poolRef.current.distractors;
-    if (pool.length === 0) return null;
-
-    const randomText = pool[Math.floor(Math.random() * pool.length)];
+  // ... (createBlock y regenerateMap se mantienen IGUAL que antes) ...
+  const createBlock = (type, mode) => {
+    const id = Date.now() + Math.random();
+    const x = (Math.random() * 60) - 30;
+    const z = (Math.random() * 60) - 30;
     
-    return {
-      id: Date.now() + Math.random(), 
-      x: (Math.random() * 60) - 30,   
-      y: 0.5,
-      z: (Math.random() * 60) - 30,
-      text: randomText,
-      isTarget: isTarget,
-      visible: true
-    };
+    if (type === 'star') {
+        return { id, x, y: 3.5, z, text: "★", isTarget: true, isStar: true, visible: true };
+    }
+    let number, isValid, attempts = 0;
+    do {
+        number = Math.floor(Math.random() * 100) + 1;
+        isValid = mode.check(number);
+        attempts++;
+    } while ( (type === 'target' ? !isValid : isValid) && attempts < 50 );
+
+    return { id, x, y: 0.5, z, text: number.toString(), isTarget: type === 'target', isStar: false, visible: true };
   };
 
-  // Inicializar nivel
-  useEffect(() => {
-    if (initialData) {
-      setMission(initialData.mission);
-      setScore(0);
-      setTimeLeft(60); // SIEMPRE 1 minuto al empezar
-      setGameState('playing');
-
-      const targets = [];
-      const distractors = [];
-      
-      initialData.wallData.forEach(item => {
-        if (item.isTarget) targets.push(item.text);
-        else distractors.push(item.text);
-      });
-
-      poolRef.current = { targets, distractors };
-
-      const newBlocks = initialData.wallData.map((item, index) => ({
-        id: index,
-        x: (Math.random() * 40) - 20, 
-        y: 0.5,
-        z: (Math.random() * 40) - 20,
-        text: item.text,
-        isTarget: item.isTarget,
-        visible: true
-      }));
-
+  const regenerateMap = (mode) => {
+      streakRef.current = 0;
+      const newBlocks = [];
+      for(let i=0; i<15; i++) newBlocks.push(createBlock('target', mode));
+      for(let i=0; i<15; i++) newBlocks.push(createBlock('distractor', mode));
       setBlocks(newBlocks);
-    }
+      setMission(mode.mission);
+      currentModeRef.current = mode;
+  };
+
+  useEffect(() => {
+      const startMode = GAME_MODES[Math.floor(Math.random() * GAME_MODES.length)];
+      setScore(0);
+      setTimeLeft(60);
+      setGameState('playing');
+      setIsSuddenDeath(false); // Reset al empezar
+      suddenDeathCapRef.current = 5.0; // Reset cap
+      regenerateMap(startMode);
   }, [initialData]);
 
-  // Cronómetro (Cuenta atrás simple)
+  // === CRONÓMETRO MEJORADO (PRECISIÓN 0.1s) ===
   useEffect(() => {
     if (gameState !== 'playing') return;
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
-        if (prev <= 1) {
-          setGameState('lost'); // Fin del tiempo
-          return 0;
+        // Reducimos 0.1s cada vez
+        const newVal = prev - 0.1;
+
+        if (newVal <= 0) {
+          // Si el tiempo se acaba...
+          if (!isSuddenDeath) {
+              // FASE 1 -> FASE 2: Activar Muerte Súbita
+              setIsSuddenDeath(true);
+              return 5.0; // Empezamos con 5 segundos
+          } else {
+              // FASE 2 -> FIN: Game Over real
+              setGameState('lost');
+              return 0;
+          }
         }
-        return prev - 1;
+        return newVal;
       });
-    }, 1000);
+    }, 100); // Ejecutar cada 100ms para tener decimales
 
     return () => clearInterval(timer);
-  }, [gameState]);
+  }, [gameState, isSuddenDeath]); // Añadimos isSuddenDeath a dependencias
 
   const mineBlock = useCallback((id) => {
     if (gameState !== 'playing') return;
 
     setBlocks((prev) => {
-      const blockIndex = prev.findIndex((b) => b.id === id);
-      const block = prev[blockIndex];
-
+      const block = prev.find((b) => b.id === id);
       if (!block || !block.visible) return prev;
 
+      if (block.isStar) {
+          setScore(s => s + 50);
+          let newMode;
+          do { newMode = GAME_MODES[Math.floor(Math.random() * GAME_MODES.length)]; } while (newMode.id === currentModeRef.current.id);
+          setTimeout(() => regenerateMap(newMode), 0);
+          
+          // NOTA: En muerte súbita, coger una estrella también te reinicia el tiempo
+          if (isSuddenDeath) {
+             setTimeLeft(suddenDeathCapRef.current);
+          }
+          return []; 
+      }
+
       if (block.isTarget) {
-        // === ACIERTO ===
         const remainingBlocks = prev.filter(b => b.id !== id);
+        streakRef.current += 1;
 
-        // Generamos bloques infinitos para reponer
-        const newTarget = generateRandomBlock(true);      
-        const newDistractor = generateRandomBlock(false); 
+        const newItems = [createBlock('target', currentModeRef.current), createBlock('distractor', currentModeRef.current)];
+        if (streakRef.current >= 3) {
+            newItems.push(createBlock('star', currentModeRef.current));
+            streakRef.current = 0; 
+        }
 
-        // CAMBIO: Solo sumamos puntos, NO tiempo.
+        // === LÓGICA DE MUERTE SÚBITA ===
+        if (isSuddenDeath) {
+            // 1. Reducimos el tiempo máximo permitido (mínimo 0.5s)
+            suddenDeathCapRef.current = Math.max(0.5, suddenDeathCapRef.current - 0.1);
+            // 2. Reseteamos el reloj al nuevo límite
+            setTimeLeft(suddenDeathCapRef.current);
+        }
+
         setScore(s => s + 10);
-
-        return [
-            ...remainingBlocks, 
-            newTarget, 
-            newDistractor
-        ].filter(Boolean);
-
+        return [...remainingBlocks, ...newItems];
       } else {
-        // === ERROR ===
-        // CAMBIO: Restamos PUNTOS en lugar de tiempo para mantener la duración de 1 minuto exacta.
         setScore(s => Math.max(0, s - 5)); 
+        // En muerte súbita, fallar un bloque penaliza mucho: Quitamos 1 segundo
+        if (isSuddenDeath) setTimeLeft(t => Math.max(0, t - 1.0));
         return prev;
       }
     });
-  }, [gameState]);
+  }, [gameState, isSuddenDeath]); // Añadimos isSuddenDeath a dependencias
 
-  return { blocks, timeLeft, score, gameState, mission, mineBlock };
+  return { blocks, timeLeft, score, gameState, mission, mineBlock, isSuddenDeath };
 };

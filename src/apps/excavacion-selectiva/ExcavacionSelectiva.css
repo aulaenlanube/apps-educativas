@@ -36,3 +36,15 @@
     text-shadow: 2px 2px 0px #000000;
     line-height: 1.5;
 }
+
+/* Añadir al final del archivo CSS */
+
+@keyframes panic-border {
+    0% { border-color: #ef4444; box-shadow: 0 0 10px #ef4444 inset; }
+    50% { border-color: #7f1d1d; box-shadow: 0 0 30px #ef4444 inset; }
+    100% { border-color: #ef4444; box-shadow: 0 0 10px #ef4444 inset; }
+}
+
+.sudden-death-mode {
+    animation: panic-border 0.5s infinite;
+}
