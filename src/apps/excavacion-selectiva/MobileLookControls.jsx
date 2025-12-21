@@ -1,54 +1,39 @@
-import { useEffect } from 'react';
-import { useThree } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 
-export const MobileLookControls = ({ isEnabled }) => {
-  const { camera, gl } = useThree();
-  
-  useEffect(() => {
-    if (!isEnabled) return;
+export const MobileLookControls = ({ isEnabled, joystickData }) => {
+  const { camera } = useThree();
 
-    let previousTouchX = 0;
-    let previousTouchY = 0;
-    const SENSITIVITY = 0.005;
+  // Velocidad de giro (ajusta según prefieras)
+  const ROTATION_SPEED = 0.03;
 
-    const handleTouchStart = (e) => {
-      // Solo nos interesa si toca en la mitad derecha de la pantalla (para no interferir con el joystick)
-      if (e.touches[0].clientX > window.innerWidth / 2) {
-        previousTouchX = e.touches[0].clientX;
-        previousTouchY = e.touches[0].clientY;
-      }
-    };
+  useFrame(() => {
+    if (!isEnabled || !joystickData) return;
 
-    const handleTouchMove = (e) => {
-      if (e.touches[0].clientX > window.innerWidth / 2) {
-        const touchX = e.touches[0].clientX;
-        const touchY = e.touches[0].clientY;
+    // joystickData trae { x, y } con valores entre -1 y 1 aproximadamente
+    
+    // 1. ROTACIÓN HORIZONTAL (EJE Y)
+    // joystickData.x: Derecha (+), Izquierda (-)
+    // Restamos para que girar a la derecha sea rotación negativa en Y (estándar three.js)
+    if (joystickData.x) {
+        camera.rotation.y -= joystickData.x * ROTATION_SPEED;
+    }
 
-        const deltaX = touchX - previousTouchX;
-        const deltaY = touchY - previousTouchY;
+    // 2. ROTACIÓN VERTICAL (EJE X)
+    // joystickData.y: Arriba (+), Abajo (-)
+    // Invertimos el signo según prefieras (Natural vs Invertido)
+    // Aquí: Arriba sube la mirada (Natural) -> Restar en X
+    if (joystickData.y) {
+        camera.rotation.x -= joystickData.y * ROTATION_SPEED;
+    }
 
-        // Rotar cámara (Y es horizontal, X es vertical)
-        // Restamos para invertir el eje y que se sienta natural
-        camera.rotation.y -= deltaX * SENSITIVITY;
-        camera.rotation.x -= deltaY * SENSITIVITY;
-        
-        // Limitar ángulo vertical para no dar la vuelta completa (opcional)
-        camera.rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, camera.rotation.x));
+    // 3. LIMITAR ÁNGULO VERTICAL (Clamp)
+    // Evitar dar la vuelta completa con la cabeza
+    const LIMIT = Math.PI / 2 - 0.1; // Casi 90 grados
+    camera.rotation.x = Math.max(-LIMIT, Math.min(LIMIT, camera.rotation.x));
 
-        previousTouchX = touchX;
-        previousTouchY = touchY;
-      }
-    };
-
-    const canvas = gl.domElement;
-    canvas.addEventListener('touchstart', handleTouchStart, { passive: false });
-    canvas.addEventListener('touchmove', handleTouchMove, { passive: false });
-
-    return () => {
-      canvas.removeEventListener('touchstart', handleTouchStart);
-      canvas.removeEventListener('touchmove', handleTouchMove);
-    };
-  }, [camera, gl, isEnabled]);
+    // Asegurar orden de rotación
+    camera.rotation.order = 'YXZ';
+  });
 
   return null;
 };

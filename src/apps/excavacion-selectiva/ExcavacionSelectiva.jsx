@@ -12,14 +12,14 @@ import { Button } from '@/components/ui/button';
 import { Tablet, MousePointer2 } from 'lucide-react'; 
 import './ExcavacionSelectiva.css';
 
-// === ICONO DE CRUZ (SVG Inline) ===
+// === ICONO DE CRUZ ===
 const CrosshairIcon = () => (
     <svg width="32" height="32" viewBox="0 0 32 32" className="drop-shadow-md filter drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
         <path d="M16 8v16M8 16h16" stroke="white" strokeWidth="3" fill="none" strokeLinecap="square"/>
     </svg>
 );
 
-// === TEXTURA DE CÉSPED ===
+// === TEXTURA CÉSPED ===
 const generateGrassTexture = () => {
   const width = 16;
   const height = 16;
@@ -54,12 +54,16 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
   const { blocks, timeLeft, score, gameState, mission, mineBlock } = useExcavacionSelectiva(data);
   
   const [isLocked, setIsLocked] = useState(false);
-  const [cursorType, setCursorType] = useState('crosshair'); // 'crosshair' | 'pickaxe'
+  const [cursorType, setCursorType] = useState('crosshair'); 
   const [isSwinging, setIsSwinging] = useState(false);
 
-  // Estados para control Móvil vs PC
-  const [controlMode, setControlMode] = useState(null); // 'pc' | 'mobile' | null
+  // Estados de control
+  const [controlMode, setControlMode] = useState(null); 
+  
+  // Joystick Izquierdo (Movimiento)
   const [joystickMove, setJoystickMove] = useState(null); 
+  // Joystick Derecho (Mirada)
+  const [joystickLook, setJoystickLook] = useState(null);
 
   const grassTexture = useMemo(() => generateGrassTexture(), []);
   
@@ -90,9 +94,13 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
       setTimeout(() => setIsSwinging(false), 300);
   };
 
-  // Handlers del Joystick
-  const handleJoystickMove = (evt) => { setJoystickMove(evt); };
-  const handleJoystickStop = () => { setJoystickMove(null); };
+  // Handlers Joystick Izquierdo (Mover)
+  const handleMoveStart = (evt) => setJoystickMove(evt);
+  const handleMoveStop = () => setJoystickMove(null);
+
+  // Handlers Joystick Derecho (Mirar)
+  const handleLookStart = (evt) => setJoystickLook(evt);
+  const handleLookStop = () => setJoystickLook(null);
 
   if (error) return <div className="p-10 text-red-500 font-pixel">Error: No encuentro el mapa</div>;
   if (!data) return <div className="p-10 text-center text-white font-pixel">Cargando chunks...</div>;
@@ -100,7 +108,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
   return (
     <div className="excavacion-container relative w-full h-[80vh] bg-slate-900 rounded-xl overflow-hidden shadow-2xl border-4 border-slate-700">
       
-      {/* === 1. SELECCIÓN DE DISPOSITIVO === */}
+      {/* 1. SELECCIÓN DE DISPOSITIVO */}
       {!controlMode && (
          <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-900/95 text-white pixel-text backdrop-blur-md p-4">
              <h1 className="text-2xl md:text-3xl text-yellow-400 mb-8 text-center animate-pulse">
@@ -126,17 +134,14 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
          </div>
       )}
 
-      {/* === HUD SUPERIOR === */}
+      {/* HUD SUPERIOR */}
       <div className="absolute top-4 left-4 z-10 text-white bg-black/60 p-4 rounded border-2 border-white/20 pixel-text pointer-events-none select-none w-[95%] flex justify-between items-center">
         <div>
             <h2 className="text-sm md:text-base text-yellow-400 mb-1 tracking-widest uppercase shadow-black drop-shadow-md">
             {mission}
             </h2>
             <p className="text-xs text-gray-300">
-                {controlMode === 'pc' 
-                    ? "W,A,S,D mover | SHIFT correr"
-                    : "Joystick: Mover | Desliza Der: Mirar"
-                }
+                {controlMode === 'pc' ? "WASD mover | SHIFT correr" : "Usa los Joysticks"}
             </p>
         </div>
         
@@ -149,40 +154,55 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
         </div>
       </div>
 
-      {/* === CURSOR VIRTUAL (CRUZ o PICO ANIMADO) === */}
+      {/* CURSOR VIRTUAL */}
       {( (controlMode === 'pc' && isLocked) || controlMode === 'mobile' ) && gameState === 'playing' && (
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
             {cursorType === 'pickaxe' ? (
-                // Restauramos el Pico Emoji con animación CSS
-                <span className={`text-6xl select-none ${isSwinging ? 'swing-animation' : ''}`}>
-                    ⛏️
-                </span>
+                <span className={`text-6xl select-none ${isSwinging ? 'swing-animation' : ''}`}>⛏️</span>
             ) : (
                 <CrosshairIcon />
             )}
         </div>
       )}
 
-      {/* === CONTROLES TÁCTILES (SOLO MÓVIL) === */}
+      {/* === CONTROLES TÁCTILES DOBLE JOYSTICK === */}
       {controlMode === 'mobile' && gameState === 'playing' && (
           <>
-            <div className="absolute bottom-8 left-8 z-40">
+            {/* IZQUIERDA: MOVIMIENTO */}
+            <div className="absolute bottom-8 left-8 z-40 opacity-80">
                 <Joystick 
                     size={100} 
                     sticky={false} 
                     baseColor="rgba(255, 255, 255, 0.2)" 
                     stickColor="rgba(255, 255, 255, 0.5)"
-                    move={handleJoystickMove} 
-                    stop={handleJoystickStop}
+                    move={handleMoveStart} 
+                    stop={handleMoveStop}
                 />
             </div>
-            <div className="absolute top-1/2 right-4 z-10 text-white/30 text-xs pointer-events-none">
-                <p>Desliza aquí ➡️</p>
+
+            {/* DERECHA: CÁMARA */}
+            <div className="absolute bottom-8 right-8 z-40 opacity-80">
+                <Joystick 
+                    size={100} 
+                    sticky={false} 
+                    baseColor="rgba(255, 255, 255, 0.2)" 
+                    stickColor="rgba(200, 50, 50, 0.5)" // Un color un poco diferente para distinguir
+                    move={handleLookStart} 
+                    stop={handleLookStop}
+                />
+            </div>
+            
+            {/* Aviso visual pequeño */}
+            <div className="absolute bottom-36 right-10 z-10 text-white/40 text-[10px] pointer-events-none">
+                Mirar
+            </div>
+            <div className="absolute bottom-36 left-10 z-10 text-white/40 text-[10px] pointer-events-none">
+                Mover
             </div>
           </>
       )}
 
-      {/* === MENÚ INICIO (SOLO PC) === */}
+      {/* MENÚ INICIO PC */}
       {controlMode === 'pc' && !isLocked && gameState === 'playing' && (
           <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/60 text-white pixel-text backdrop-blur-sm cursor-pointer"
                onClick={() => {}}
@@ -192,7 +212,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
           </div>
       )}
 
-      {/* === PANTALLA FINAL === */}
+      {/* PANTALLA FINAL */}
       {gameState !== 'playing' && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/85 text-white pixel-text text-center p-4">
           <h1 className="text-3xl md:text-5xl text-yellow-500 mb-6 drop-shadow-md animate-bounce">
@@ -208,7 +228,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
         </div>
       )}
 
-      {/* === ESCENA 3D === */}
+      {/* ESCENA 3D */}
       <Canvas shadows camera={{ position: [0, 1.7, 0], fov: 70 }}>
         
         <color attach="background" args={['#87CEEB']} /> 
@@ -225,9 +245,9 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
             />
         )}
 
-        {/* Controles Móvil (Mirar) */}
+        {/* Controles Móvil (Lógica de rotación con Joystick) */}
         {controlMode === 'mobile' && (
-            <MobileLookControls isEnabled={gameState === 'playing'} />
+            <MobileLookControls isEnabled={gameState === 'playing'} joystickData={joystickLook} />
         )}
 
         {/* Jugador (Movimiento) */}
