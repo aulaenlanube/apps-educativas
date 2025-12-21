@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import confetti from 'canvas-confetti';
 import './Medidas.css';
 
 const TOTAL_TEST_QUESTIONS = 10;
-const MAX_DIGITS_LIMIT = 99999; // Límite de 5 cifras solicitado
+const MAX_DIGITS_LIMIT = 99999; 
 
 // --- CONFIGURACIÓN DE SISTEMAS DE UNIDADES ---
 const MEASURE_TYPES = {
@@ -44,9 +45,6 @@ const generateMeasurement = (typeConfig, allowedUnits, maxValBase) => {
     const unitStr = pickUnit(allowedUnits);
     const factor = typeConfig.units[unitStr];
     
-    // Calculamos el máximo permitido respetando AMBOS límites:
-    // 1. La dificultad del nivel (maxValBase)
-    // 2. El límite visual de 5 cifras (MAX_DIGITS_LIMIT)
     const maxAllowedByBase = Math.floor(maxValBase / factor) || 1;
     const maxVal = Math.min(maxAllowedByBase, MAX_DIGITS_LIMIT);
 
@@ -105,7 +103,6 @@ const generateProblemData = (level, typeId) => {
 
     // --- Generar Izquierda ---
     let left;
-    // Expresiones compuestas (ej: 2 km 500 m) - Estas son seguras porque los números individuales son pequeños
     if (level >= 5 && Math.random() > 0.6) {
         const possibleBigs = allowedUnits.filter(u => units[u] >= units[uMed]);
         const uBig = possibleBigs.length > 0 ? pickUnit(possibleBigs) : uMed;
@@ -133,8 +130,6 @@ const generateProblemData = (level, typeId) => {
     const relation = Math.random();
 
     if (relation < 0.3) {
-        // --- IGUALES (=) ---
-        // Buscamos unidades que permitan representar el valor SIN decimales Y con MENOS de 5 cifras
         const validEquivalents = allowedUnits.filter(u => {
             const val = targetBase / units[u];
             return (targetBase % units[u] === 0) && (val <= MAX_DIGITS_LIMIT);
@@ -150,21 +145,17 @@ const generateProblemData = (level, typeId) => {
             const valR = targetBase / units[unitR];
             right = { text: `${valR} ${unitR}`, valueBase: targetBase };
         } else {
-            // Si no hay unidad limpia o todas exceden 5 cifras, usamos Suma
-            // Aseguramos que la unidad de referencia no genere números gigantes
             const uRef = left.unit || uMed; 
             const valRef = Math.floor(targetBase / units[uRef]) || targetBase;
             
-            // Si incluso en la unidad original es muy grande, buscamos la mayor unidad posible
             let finalUnit = uRef;
             let finalVal = valRef;
             
             if (valRef > MAX_DIGITS_LIMIT) {
-                // Intentar encontrar una unidad más grande para reducir el número
                 const biggerUnits = allowedUnits.filter(u => (targetBase / units[u]) <= MAX_DIGITS_LIMIT);
                 if (biggerUnits.length > 0) {
                     finalUnit = pickUnit(biggerUnits);
-                    finalVal = Math.floor(targetBase / units[finalUnit]); // Puede perder precisión en suma, aceptable como fallback
+                    finalVal = Math.floor(targetBase / units[finalUnit]); 
                 }
             }
 
@@ -172,16 +163,14 @@ const generateProblemData = (level, typeId) => {
             const part2 = finalVal - part1;
             right = { 
                 text: `${part1} + ${part2} ${finalUnit}`, 
-                valueBase: targetBase // Mantener base exacta para comparación lógica
+                valueBase: targetBase 
             };
         }
     } else {
-        // --- DIFERENTES ---
         const variation = (Math.random() > 0.5 ? 1 : -1) * randomInt(1, Math.max(1, Math.floor(left.valueBase * 0.2)));
         let newBase = targetBase + variation;
         if (newBase <= 0) newBase = targetBase + Math.abs(variation);
 
-        // Filtramos unidades que den números enteros y <= 5 cifras
         const validUnits = allowedUnits.filter(u => {
             const val = newBase / units[u];
             return (newBase % units[u] === 0) && (val <= MAX_DIGITS_LIMIT);
@@ -192,8 +181,6 @@ const generateProblemData = (level, typeId) => {
             const valR = newBase / units[unitR];
             right = { text: `${valR} ${unitR}`, valueBase: newBase };
         } else {
-            // Fallback: buscamos la unidad más pequeña disponible que cumpla el límite
-            // Si 'mm' da un número de 8 cifras, probamos 'cm', etc.
             let bestUnit = allowedUnits[0];
             for (const u of allowedUnits) {
                 if (newBase / units[u] <= MAX_DIGITS_LIMIT) {
@@ -201,7 +188,6 @@ const generateProblemData = (level, typeId) => {
                     break;
                 }
             }
-            // Redondeamos para que sea entero en esa unidad
             const safeBase = Math.round(newBase / units[bestUnit]) * units[bestUnit];
             const displayVal = safeBase / units[bestUnit];
             
@@ -262,6 +248,36 @@ const MedidasGame = ({ level, title }) => {
         setFeedback({ text: '', type: '' });
     }, [generateProblem]);
 
+    // --- NUEVO: Efecto Confetti al terminar Test con éxito ---
+    useEffect(() => {
+        if (isTestMode && testStats.finished && testStats.score >= 5) {
+            const duration = 3000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#3b82f6', '#10b981', '#f59e0b']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#3b82f6', '#10b981', '#f59e0b']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    }, [isTestMode, testStats.finished, testStats.score]);
+
+
     const handleSignSelect = (sign) => {
         setSelectedSign(sign);
         if (!isTestMode) setFeedback({ text: '', type: '' });
@@ -281,6 +297,14 @@ const MedidasGame = ({ level, title }) => {
             handleTestNext(isCorrect, correct);
         } else {
             if (isCorrect) {
+                // --- NUEVO: Confetti al acertar en práctica ---
+                confetti({
+                    particleCount: 80,
+                    spread: 60,
+                    origin: { y: 0.6 },
+                    colors: ['#22c55e', '#86efac', '#166534'] // Verdes
+                });
+
                 setFeedback({ text: '¡Correcto! 🎉', type: 'feedback-correct' });
                 setTimeout(startPractice, 1500);
             } else {
@@ -325,6 +349,12 @@ const MedidasGame = ({ level, title }) => {
             <div className={`medidas-container theme-${measureType}`}>
                 <h1><span className="gradient-text">Resultados</span></h1>
                 <h2 className="text-2xl font-bold mb-4">Puntuación: {testStats.score} / {TOTAL_TEST_QUESTIONS}</h2>
+                
+                {testStats.score >= 5 ? 
+                    <p className="text-green-600 font-bold animate-bounce mb-2">¡Aprobado! 🎉</p> : 
+                    <p className="text-red-500 font-bold mb-2">¡Sigue practicando!</p>
+                }
+
                 <div className="text-left overflow-y-auto mb-6" style={{maxHeight: '300px'}}>
                     {testStats.answers.map((ans, idx) => (
                         <div key={idx} className={`p-3 mb-2 rounded border ${ans.isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}`}>
@@ -336,7 +366,7 @@ const MedidasGame = ({ level, title }) => {
                     ))}
                 </div>
                 <div className="controles">
-                    <button onClick={startTest}>Repetir Test</button>
+                    <button onClick={startTest}>Repetir Examen</button>
                     <button onClick={() => { setIsTestMode(false); startPractice(); }} className="btn-saltar">Salir</button>
                 </div>
             </div>
@@ -364,7 +394,7 @@ const MedidasGame = ({ level, title }) => {
             <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4 px-4">
                 <div className="mode-selection mb-0">
                     <button className={`btn-mode ${!isTestMode ? 'active' : ''}`} onClick={() => {setIsTestMode(false); startPractice();}}>Práctica</button>
-                    <button className={`btn-mode ${isTestMode ? 'active' : ''}`} onClick={startTest}>Test</button>
+                    <button className={`btn-mode ${isTestMode ? 'active' : ''}`} onClick={startTest}>Examen</button>
                 </div>
                 
                 <div className="flex items-center gap-2 bg-gray-50 p-2 rounded-lg border border-gray-200">

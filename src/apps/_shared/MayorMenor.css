@@ -152,3 +152,27 @@
     .sign-drop-zone { width: 60px; height: 60px; font-size: 2rem; }
     .sign-btn { width: 55px; height: 55px; font-size: 2rem; }
 }
+
+/* Animación de error (Shake) */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake-animation {
+  animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+  border-color: #ef4444 !important; /* Rojo */
+  background-color: #fef2f2;
+}
+
+/* Opcional: Mejorar visualización del modo test resultados */
+.confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}

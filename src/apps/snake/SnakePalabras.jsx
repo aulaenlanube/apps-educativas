@@ -562,6 +562,16 @@ const SnakeDePalabras = (props) => {
                 <div className="bg-black/20 p-6 rounded-2xl mb-8 border border-white/10 w-64 text-center">
                     <p className="text-lg font-bold text-red-200 mb-1">Puntuación Final</p>
                     <p className="text-5xl font-black text-yellow-400">{score}</p>
+                    {difficulty === 'hard' && (
+                        <div className="mt-4 pt-4 border-t border-white/10 animate-in slide-in-from-bottom-2 fade-in duration-700">
+                            <p className="text-xs font-bold text-red-200 mb-1 uppercase tracking-widest">Nota Examen</p>
+                            <div className="text-4xl font-black text-white flex items-center justify-center gap-1">
+                                {/* Cálculo: 100,000 = 10. Máximo 10. 2 decimales. */}
+                                {Math.min(score / 5000, 10).toFixed(2)}
+                                <span className="text-lg text-white/50 font-bold mt-2">/10</span>
+                            </div>
+                        </div>
+                    )}
                 </div>
                 <div className="flex gap-4">
                     <Button 
@@ -701,7 +711,7 @@ const DifficultyButtons = ({ onSelect, currentDifficulty }) => (
                 currentDifficulty === 'easy' && "ring-4 ring-white"
             )}
         >
-            <span className="mr-3 text-2xl">🐣</span> FÁCIL
+            <span className="mr-3 text-2xl">🌱</span> FÁCIL
         </Button>
         <Button 
             onClick={() => onSelect('medium')}
@@ -710,7 +720,7 @@ const DifficultyButtons = ({ onSelect, currentDifficulty }) => (
                 currentDifficulty === 'medium' && "ring-4 ring-white"
             )}
         >
-            <span className="mr-3 text-2xl">🤓</span> MEDIO
+            <span className="mr-3 text-2xl">🤖</span> MEDIO
         </Button>
         <Button 
             onClick={() => onSelect('hard')}
@@ -719,7 +729,7 @@ const DifficultyButtons = ({ onSelect, currentDifficulty }) => (
                 currentDifficulty === 'hard' && "ring-4 ring-white"
             )}
         >
-            <span className="mr-3 text-2xl">😈</span> EXAMEN
+            <span className="mr-3 text-2xl">💀</span> EXAMEN
         </Button>
     </>
 );

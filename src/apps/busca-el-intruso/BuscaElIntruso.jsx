@@ -288,13 +288,46 @@ const BuscaElIntruso = ({ tema }) => {
         {/* CABECERA / HUD */}
         <div className="game-hud">
             <div className="hud-left">
-                <button className={`hud-btn ${estado.modo === 'libre' ? 'active' : ''}`} onClick={activarModoLibre}>PRÁCTICA</button>
-                <button className={`hud-btn ${estado.modo === 'test' ? 'active' : ''}`} onClick={iniciarTest}>EXAMEN</button>
+                {/* LÓGICA DE BOTONES: Cambia según si es modo TEST o LIBRE */}
+                {estado.modo === 'test' ? (
+                    <>
+                        <button className="hud-btn" onClick={iniciarTest} style={{border: '1px solid rgba(255,255,255,0.3)'}}>
+                            ↻ Reiniciar Examen
+                        </button>
+                        <button className="hud-btn" onClick={activarModoLibre} style={{border: '1px solid rgba(255,255,255,0.3)'}}>
+                            ↩ Volver a Práctica
+                        </button>
+                    </>
+                ) : (
+                    <>
+                        <button className={`hud-btn ${estado.modo === 'libre' ? 'active' : ''}`} onClick={activarModoLibre}>PRÁCTICA</button>
+                        <button className={`hud-btn ${estado.modo === 'test' ? 'active' : ''}`} onClick={iniciarTest}>EXAMEN</button>
+                    </>
+                )}
             </div>
+            
             <div className="hud-center">
                 <h1 className="game-title">BUSCA EL INTRUSO</h1>
+                
+                {/* INDICADOR DE PROGRESO DEL EXAMEN */}
+                {estado.modo === 'test' && (
+                    <div style={{
+                        background: 'rgba(255, 255, 255, 0.2)',
+                        padding: '4px 12px',
+                        borderRadius: '20px',
+                        fontSize: '0.9rem',
+                        fontWeight: 'bold',
+                        color: '#fff',
+                        marginBottom: '4px',
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                    }}>
+                        Pregunta {estado.ronda} de {estado.rondasTotales}
+                    </div>
+                )}
+
                 {estado.categoria && <div className="category-badge">{estado.categoria}</div>}
             </div>
+            
             <div className="hud-right">
                 <div className="stat-pill">
                     <span className="icon">🏆</span>
