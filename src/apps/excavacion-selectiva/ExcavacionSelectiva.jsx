@@ -1,0 +1,267 @@
+import React, { useState, useEffect, useMemo, Suspense } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { PointerLockControls } from '@react-three/drei';
+import { Joystick } from 'react-joystick-component'; 
+import * as THREE from 'three';
+import { useExcavacionSelectiva } from '../../hooks/useExcavacionSelectiva';
+import { Bloque3D } from './Bloque3D';
+import { Arbol3D } from './Arbol3D';
+import { Player } from './Player';
+import { MobileLookControls } from './MobileLookControls';
+import { Button } from '@/components/ui/button';
+import { Tablet, MousePointer2 } from 'lucide-react'; 
+import './ExcavacionSelectiva.css';
+
+// === ICONO DE CRUZ (SVG Inline) ===
+const CrosshairIcon = () => (
+    <svg width="32" height="32" viewBox="0 0 32 32" className="drop-shadow-md filter drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+        <path d="M16 8v16M8 16h16" stroke="white" strokeWidth="3" fill="none" strokeLinecap="square"/>
+    </svg>
+);
+
+// === TEXTURA DE CÉSPED ===
+const generateGrassTexture = () => {
+  const width = 16;
+  const height = 16;
+  const size = width * height;
+  const data = new Uint8Array(4 * size);
+  for (let i = 0; i < size; i++) {
+    const stride = i * 4;
+    const variation = Math.random() * 20 - 10;
+    data[stride] = Math.max(0, Math.min(255, 86 + variation));
+    data[stride + 1] = Math.max(0, Math.min(255, 176 + variation));
+    data[stride + 2] = Math.max(0, Math.min(255, 76 + variation));
+    data[stride + 3] = 255;
+  }
+  const texture = new THREE.DataTexture(data, width, height, THREE.RGBAFormat);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(50, 50);
+  texture.magFilter = THREE.NearestFilter;
+  texture.minFilter = THREE.NearestFilter;
+  if (THREE.SRGBColorSpace) texture.colorSpace = THREE.SRGBColorSpace;
+  texture.needsUpdate = true;
+  return texture;
+};
+
+const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
+  const subjectPrefix = subjectId ? subjectId : 'general';
+  const dataPath = `/data/${level}/${grade}/${subjectPrefix}-excavacion.json`;
+
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+  
+  const { blocks, timeLeft, score, gameState, mission, mineBlock } = useExcavacionSelectiva(data);
+  
+  const [isLocked, setIsLocked] = useState(false);
+  const [cursorType, setCursorType] = useState('crosshair'); // 'crosshair' | 'pickaxe'
+  const [isSwinging, setIsSwinging] = useState(false);
+
+  // Estados para control Móvil vs PC
+  const [controlMode, setControlMode] = useState(null); // 'pc' | 'mobile' | null
+  const [joystickMove, setJoystickMove] = useState(null); 
+
+  const grassTexture = useMemo(() => generateGrassTexture(), []);
+  
+  const trees = useMemo(() => {
+      const tempTrees = [];
+      for (let i = 0; i < 40; i++) { 
+          tempTrees.push({
+              id: i,
+              x: (Math.random() * 100) - 50, 
+              z: (Math.random() * 100) - 50,
+          });
+      }
+      return tempTrees;
+  }, []);
+
+  useEffect(() => {
+    setData(null);
+    setError(null);
+    fetch(dataPath)
+      .then(res => res.ok ? res.json() : Promise.reject("Archivo no encontrado"))
+      .then(setData)
+      .catch(e => setError(e));
+  }, [dataPath]);
+
+  const triggerSwing = () => {
+      if (isSwinging) return;
+      setIsSwinging(true);
+      setTimeout(() => setIsSwinging(false), 300);
+  };
+
+  // Handlers del Joystick
+  const handleJoystickMove = (evt) => { setJoystickMove(evt); };
+  const handleJoystickStop = () => { setJoystickMove(null); };
+
+  if (error) return <div className="p-10 text-red-500 font-pixel">Error: No encuentro el mapa</div>;
+  if (!data) return <div className="p-10 text-center text-white font-pixel">Cargando chunks...</div>;
+
+  return (
+    <div className="excavacion-container relative w-full h-[80vh] bg-slate-900 rounded-xl overflow-hidden shadow-2xl border-4 border-slate-700">
+      
+      {/* === 1. SELECCIÓN DE DISPOSITIVO === */}
+      {!controlMode && (
+         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-slate-900/95 text-white pixel-text backdrop-blur-md p-4">
+             <h1 className="text-2xl md:text-3xl text-yellow-400 mb-8 text-center animate-pulse">
+                 SELECCIONA TU MODO
+             </h1>
+             <div className="flex flex-col md:flex-row gap-6">
+                 <Button 
+                    onClick={() => setControlMode('mobile')}
+                    className="flex flex-col h-40 w-40 gap-4 bg-slate-800 hover:bg-slate-700 border-4 border-slate-600 hover:border-green-500 transition-all"
+                 >
+                     <Tablet size={48} className="text-green-400" />
+                     <span>TÁCTIL</span>
+                 </Button>
+                 
+                 <Button 
+                    onClick={() => setControlMode('pc')}
+                    className="flex flex-col h-40 w-40 gap-4 bg-slate-800 hover:bg-slate-700 border-4 border-slate-600 hover:border-blue-500 transition-all"
+                 >
+                     <MousePointer2 size={48} className="text-blue-400" />
+                     <span>ORDENADOR</span>
+                 </Button>
+             </div>
+         </div>
+      )}
+
+      {/* === HUD SUPERIOR === */}
+      <div className="absolute top-4 left-4 z-10 text-white bg-black/60 p-4 rounded border-2 border-white/20 pixel-text pointer-events-none select-none w-[95%] flex justify-between items-center">
+        <div>
+            <h2 className="text-sm md:text-base text-yellow-400 mb-1 tracking-widest uppercase shadow-black drop-shadow-md">
+            {mission}
+            </h2>
+            <p className="text-xs text-gray-300">
+                {controlMode === 'pc' 
+                    ? "W,A,S,D mover | SHIFT correr"
+                    : "Joystick: Mover | Desliza Der: Mirar"
+                }
+            </p>
+        </div>
+        
+        <div className="flex items-center gap-6 text-sm md:text-lg font-bold">
+            <span className="text-green-400 drop-shadow-sm">XP: {score}</span>
+            <div className={`flex items-center drop-shadow-sm ${timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-white'}`}>
+               <span className="mr-2">⏰</span>
+               <span>{timeLeft}s</span>
+            </div>
+        </div>
+      </div>
+
+      {/* === CURSOR VIRTUAL (CRUZ o PICO ANIMADO) === */}
+      {( (controlMode === 'pc' && isLocked) || controlMode === 'mobile' ) && gameState === 'playing' && (
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 pointer-events-none drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+            {cursorType === 'pickaxe' ? (
+                // Restauramos el Pico Emoji con animación CSS
+                <span className={`text-6xl select-none ${isSwinging ? 'swing-animation' : ''}`}>
+                    ⛏️
+                </span>
+            ) : (
+                <CrosshairIcon />
+            )}
+        </div>
+      )}
+
+      {/* === CONTROLES TÁCTILES (SOLO MÓVIL) === */}
+      {controlMode === 'mobile' && gameState === 'playing' && (
+          <>
+            <div className="absolute bottom-8 left-8 z-40">
+                <Joystick 
+                    size={100} 
+                    sticky={false} 
+                    baseColor="rgba(255, 255, 255, 0.2)" 
+                    stickColor="rgba(255, 255, 255, 0.5)"
+                    move={handleJoystickMove} 
+                    stop={handleJoystickStop}
+                />
+            </div>
+            <div className="absolute top-1/2 right-4 z-10 text-white/30 text-xs pointer-events-none">
+                <p>Desliza aquí ➡️</p>
+            </div>
+          </>
+      )}
+
+      {/* === MENÚ INICIO (SOLO PC) === */}
+      {controlMode === 'pc' && !isLocked && gameState === 'playing' && (
+          <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-black/60 text-white pixel-text backdrop-blur-sm cursor-pointer"
+               onClick={() => {}}
+          >
+              <h1 className="text-4xl text-yellow-400 mb-4 animate-bounce">HAZ CLICK PARA JUGAR</h1>
+              <p className="text-lg">Capturaremos tu ratón. Pulsa ESC para salir.</p>
+          </div>
+      )}
+
+      {/* === PANTALLA FINAL === */}
+      {gameState !== 'playing' && (
+        <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-black/85 text-white pixel-text text-center p-4">
+          <h1 className="text-3xl md:text-5xl text-yellow-500 mb-6 drop-shadow-md animate-bounce">
+            ¡TIEMPO AGOTADO!
+          </h1>
+          <p className="text-xl mb-8 text-gray-200">Puntuación Final: <span className="text-green-400">{score}</span></p>
+          <Button 
+            onClick={() => window.location.reload()} 
+            className="bg-gray-700 hover:bg-gray-600 border-b-4 border-black text-white font-bold py-4 px-8 rounded-none font-[inherit] active:border-b-0 active:mt-1 pointer-events-auto"
+          >
+            JUGAR OTRA VEZ
+          </Button>
+        </div>
+      )}
+
+      {/* === ESCENA 3D === */}
+      <Canvas shadows camera={{ position: [0, 1.7, 0], fov: 70 }}>
+        
+        <color attach="background" args={['#87CEEB']} /> 
+        <fog attach="fog" args={['#87CEEB', 10, 50]} /> 
+
+        <ambientLight intensity={1.5} />
+        <directionalLight position={[20, 50, 10]} intensity={1.5} castShadow />
+
+        {/* Controles PC */}
+        {controlMode === 'pc' && (
+            <PointerLockControls 
+                onLock={() => setIsLocked(true)} 
+                onUnlock={() => setIsLocked(false)}
+            />
+        )}
+
+        {/* Controles Móvil (Mirar) */}
+        {controlMode === 'mobile' && (
+            <MobileLookControls isEnabled={gameState === 'playing'} />
+        )}
+
+        {/* Jugador (Movimiento) */}
+        <Player isLocked={isLocked || controlMode === 'mobile'} joystickMove={joystickMove} />
+
+        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
+            <planeGeometry args={[200, 200]} />
+            <meshStandardMaterial map={grassTexture} />
+        </mesh>
+
+        <Suspense fallback={null}>
+          <group>
+            {blocks.map(block => (
+              block.visible && (
+                <Bloque3D
+                  key={block.id}
+                  position={[block.x, block.y, block.z]}
+                  text={block.text}
+                  isTarget={block.isTarget}
+                  setHoverState={setCursorType}
+                  onMine={() => triggerSwing()}
+                  onDestructionComplete={() => mineBlock(block.id)}
+                />
+              )
+            ))}
+            {trees.map(tree => (
+                <Arbol3D key={tree.id} position={[tree.x, 0, tree.z]} />
+            ))}
+          </group>
+        </Suspense>
+
+      </Canvas>
+    </div>
+  );
+};
+
+export default ExcavacionSelectiva;

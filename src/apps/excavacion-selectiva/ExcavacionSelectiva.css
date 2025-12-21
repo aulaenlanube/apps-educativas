@@ -1,0 +1,46 @@
+/* src/apps/excavacion-selectiva/ExcavacionSelectiva.css */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.excavacion-container {
+    width: 100%;
+    height: 80vh; 
+    border-radius: 0.5rem;
+    overflow: hidden;
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* === NUEVO: Cursor en cruz para el contenedor del juego === */
+.crosshair-cursor {
+    cursor: crosshair;
+}
+/* ========================================================== */
+
+.pixel-text {
+    text-shadow: 2px 2px 0px #000000;
+    line-height: 1.5;
+}
+
+/* === NUEVO: Asegura que las imágenes pequeñas se vean pixeladas y no borrosas === */
+.pixelated-img {
+    image-rendering: pixelated;
+    /* Soporte para diferentes navegadores */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+/* ============================================================================= */
+
+
+/* --- Animación de golpe del pico --- */
+@keyframes swing {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(-20deg); } /* Echar hacia atrás */
+    50% { transform: rotate(45deg); }  /* Golpe hacia adelante */
+    100% { transform: rotate(0deg); }  /* Volver a posición original */
+}
+
+.swing-animation {
+    display: inline-block; /* Necesario para que transform funcione en un span */
+    animation: swing 0.3s ease-in-out; /* Duración rápida */
+    transform-origin: bottom right; /* El punto de pivote del giro */
+}

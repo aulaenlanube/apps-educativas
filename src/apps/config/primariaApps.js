@@ -18,7 +18,8 @@ import {
     appRestasPrimaria1, appRestasPrimaria2, appRestasPrimaria3, appRestasPrimaria4, appRestasPrimaria5, appRestasPrimaria6,
     appMultiplicacionesPrimaria3, appMultiplicacionesPrimaria4, appMultiplicacionesPrimaria5, appMultiplicacionesPrimaria6,
     appDivisionesPrimaria4, appDivisionesPrimaria5, appDivisionesPrimaria6,
-    appSupermercadoMatematico1, appSupermercadoMatematico2, appSupermercadoMatematico3, appSupermercadoMatematico4, appSupermercadoMatematico5, appSupermercadoMatematico6
+    appSupermercadoMatematico1, appSupermercadoMatematico2, appSupermercadoMatematico3, appSupermercadoMatematico4, appSupermercadoMatematico5, appSupermercadoMatematico6,
+    appExcavacionSelectiva
 
 } from './commonApps';
 
@@ -198,7 +199,8 @@ export const primariaApps = {
       appDetectiveDePalabras,
       appParejas,
       appLluviaDePalabras,
-      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral,
+      appExcavacionSelectiva
     ],
     'ciencias-naturales': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'ciencias-sociales': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],

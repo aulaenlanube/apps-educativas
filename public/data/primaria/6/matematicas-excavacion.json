@@ -1,0 +1,15 @@
+{
+  "mission": "Rompe solo los números PRIMOS",
+  "wallData": [
+    { "text": "2", "isTarget": true },
+    { "text": "4", "isTarget": false },
+    { "text": "7", "isTarget": true },
+    { "text": "9", "isTarget": false },
+    { "text": "11", "isTarget": true },
+    { "text": "15", "isTarget": false },
+    { "text": "10", "isTarget": false },
+    { "text": "13", "isTarget": true },
+    { "text": "21", "isTarget": false },
+    { "text": "5", "isTarget": true }
+  ]
+}

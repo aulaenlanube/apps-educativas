@@ -56,6 +56,8 @@ import Snake from '../snake/SnakePalabras.jsx';
 import LenguaComprensionEscrita from '../comprension/ComprensionEscrita.jsx';
 import LenguaComprensionOral from '../comprension/ComprensionOral.jsx';
 
+import ExcavacionSelectiva from '../excavacion-selectiva/ExcavacionSelectiva.jsx';
+
 // Apps Comunes
 export const appIslaDeLaCalma = {
   id: 'isla-de-la-calma',
@@ -168,6 +170,13 @@ export const appComprensionOral = {
   name: '🎧 Comprensión Oral',
   description: 'Desarrolla tus habilidades de comprensión auditiva con ejercicios prácticos.',
   component: LenguaComprensionOral
+};
+
+export const appExcavacionSelectiva = {
+  id: 'excavacion-selectiva',
+  name: '⛏️ Excavación Selectiva',
+  description: 'Aprende mientras excavas selectivamente.',
+  component: ExcavacionSelectiva
 };
 
 // Apps de Matemáticas compartidas (Romanos, MayorMenor, Medidas)
