@@ -30,7 +30,7 @@ const Footer = () => {
                     <a href="https://www.instagram.com/edutorregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                         <Instagram size={24} />
                     </a>
-                    <a href="https://youtube.com/c/aulaenlanube" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                    <a href="https://www.youtube.com/@ia-para-docentes" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                         <Youtube size={28} />
                     </a>
                     <a href="https://x.com/_edu_torregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">

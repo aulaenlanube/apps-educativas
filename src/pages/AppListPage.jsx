@@ -1,57 +1,43 @@
-// src/pages/AppListPage.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GraduationCap, ArrowLeft, Sparkles, Folder, Dices, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-// IMPORTANTE: Asegúrate de importar también primariaApps
-import { esoApps, esoSubjects, primariaApps } from '@/apps/appList';
+// CORRECCIÓN 1: Importamos también 'primariaSubjects'
+import { esoApps, esoSubjects, primariaApps, primariaSubjects } from '@/apps/appList';
 
-// src/pages/AppListPage.jsx (Solo la parte del RandomAppSelector)
-
+// --- INICIO RANDOMAPPSELECTOR (Se mantiene igual, lo incluyo para que el fichero esté completo) ---
 const RandomAppSelector = ({ apps, onAppSelected }) => {
     const [isSpinning, setIsSpinning] = useState(false);
     const [currentAppIndex, setCurrentAppIndex] = useState(0);
     const spinIntervalRef = useRef(null);
 
-    // Función auxiliar para separar el Emoji del texto
     const splitEmojiAndTitle = (title) => {
         if (!title) return { emoji: '', text: '' };
-        
-        // Regex básica para detectar si empieza por un carácter que parece un emoji/símbolo
-        // Asumimos que tus apps tienen el formato "EMOJI + ESPACIO + TITULO"
         const emojiRegex = /^(\p{Emoji_Presentation}|\p{Extended_Pictographic})/u;
         const match = title.match(emojiRegex);
 
         if (match) {
-            // Si encontramos un emoji al principio, intentamos cortar por el primer espacio
-            // para no cortar emojis compuestos si fuera el caso, o simplemente usamos el match.
-            // Dado tu formato "🏝️ Isla...", el emoji suele ocupar los primeros caracteres hasta el espacio.
             const firstSpaceIndex = title.indexOf(' ');
             if (firstSpaceIndex !== -1) {
                 return {
                     emoji: title.substring(0, firstSpaceIndex),
-                    text: title.substring(firstSpaceIndex) // Incluye el espacio inicial para separación
+                    text: title.substring(firstSpaceIndex) 
                 };
             }
         }
-        // Si no hay emoji o formato esperado, devolvemos todo como texto
         return { emoji: '', text: title };
     };
 
-    // 1. Efecto para la animación automática en reposo (Idle)
     useEffect(() => {
         if (isSpinning) return;
-
         const idleInterval = setInterval(() => {
             setCurrentAppIndex((prev) => (prev + 1) % apps.length);
-        }, 1500); // Un poco más lento en reposo para que sea elegante
-
+        }, 1500);
         return () => clearInterval(idleInterval);
     }, [isSpinning, apps.length]);
 
-    // 2. Limpieza
     useEffect(() => {
         return () => {
             if (spinIntervalRef.current) clearInterval(spinIntervalRef.current);
@@ -60,12 +46,10 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
 
     const handleSpin = () => {
         if (isSpinning || apps.length === 0) return;
-
         setIsSpinning(true);
-        
         let spins = 0;
-        const maxSpins = 30; // Un poco más de vueltas
-        const speed = 30; // VELOCIDAD: 30ms es muy rápido (aceleración fuerte)
+        const maxSpins = 30;
+        const speed = 30;
 
         spinIntervalRef.current = setInterval(() => {
             setCurrentAppIndex((prev) => (prev + 1) % apps.length);
@@ -85,8 +69,6 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
     };
 
     if (apps.length < 2) return null;
-
-    // Preparamos el título actual separado
     const { emoji, text } = splitEmojiAndTitle(apps[currentAppIndex]?.name);
 
     return (
@@ -97,7 +79,6 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
         >
             <div className="bg-white/90 backdrop-blur-sm border-2 border-indigo-100 rounded-3xl p-1 shadow-xl overflow-hidden relative">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500" />
-                
                 <div className="p-6 md:p-8 text-center flex flex-col items-center">
                     <h3 className="text-lg font-semibold text-gray-600 mb-6 flex items-center gap-2">
                         <Zap className="w-5 h-5 text-purple-500 fill-current" />
@@ -111,16 +92,12 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
                                 initial={{ y: 20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 exit={{ y: -20, opacity: 0 }}
-                                // TRANSICIÓN DINÁMICA: Muy rápida si está girando, suave si está en reposo
                                 transition={{ duration: isSpinning ? 0.03 : 0.5 }}
                                 className="absolute inset-0 flex items-center justify-center px-4"
                             >
                                 <div className="text-2xl md:text-3xl font-bold text-center flex justify-center items-center flex-wrap">
-                                    {/* Renderizado condicional: Emoji normal + Texto Gradiente */}
                                     {emoji && (
-                                        <span className="text-gray-800 mr-1 filter drop-shadow-sm">
-                                            {emoji}
-                                        </span>
+                                        <span className="text-gray-800 mr-1 filter drop-shadow-sm">{emoji}</span>
                                     )}
                                     <span className={`bg-clip-text text-transparent bg-gradient-to-r ${isSpinning ? 'from-gray-400 to-gray-600' : 'from-indigo-600 to-purple-600'}`}>
                                         {text}
@@ -155,8 +132,7 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
         </motion.div>
     );
 };
-
-// --- FIN NUEVO COMPONENTE ---
+// --- FIN RANDOMAPPSELECTOR ---
 
 const AppList = ({ apps, level, grade, subjectId }) => {
     const navigate = useNavigate();
@@ -181,43 +157,44 @@ const AppList = ({ apps, level, grade, subjectId }) => {
 };
 
 const AppListPage = () => {
-    // CORRECCIÓN 1: Obtenemos el nivel (level) de la URL, en lugar de fijarlo a 'eso'.
-    // Si por alguna razón no viene en la URL, usamos 'eso' como fallback.
     const params = useParams();
     const { grade, subjectId } = params;
-    const level = params.level || 'eso';
+    // Si la URL no tiene level (rutas antiguas), asumimos 'eso', pero tu router debería pasarlo.
+    const level = params.level || 'eso'; 
     const navigate = useNavigate();
 
-    // CORRECCIÓN 2: Selección dinámica de la fuente de datos (ESO vs Primaria)
     let appsForSubject = [];
     let subjectName = subjectId;
 
+    // CORRECCIÓN 2: Lógica unificada para obtener el nombre correcto con acentos
     if (level === 'eso') {
         const subjectInfo = esoSubjects[grade]?.find(s => s.id === subjectId);
-        subjectName = subjectInfo ? subjectInfo.nombre : subjectId;
-        appsForSubject = esoApps[grade]?.[subjectId] || [];
-    } else {
-        // Lógica para Primaria
-        // Asumimos que si hay subjectId es porque has estructurado primariaApps similar a esoApps
-        // Si primariaApps es solo una lista por curso (sin asignaturas), esto necesitaría ajustarse,
-        // pero dado tu mensaje sobre "asignaturas en primaria", esta lógica debería funcionar:
-        const primaryCourseData = primariaApps[grade];
+        // Si encontramos la asignatura en la lista, usamos su nombre "bonito"
+        if (subjectInfo) subjectName = subjectInfo.nombre;
         
-        // Verificamos si los datos de ese curso son un objeto (tienen asignaturas) o un array (apps directas)
+        appsForSubject = esoApps[grade]?.[subjectId] || [];
+
+    } else { // Primaria
+        // Buscamos el nombre en primariaSubjects
+        const subjectInfo = primariaSubjects[grade]?.find(s => s.id === subjectId);
+        if (subjectInfo) subjectName = subjectInfo.nombre;
+        
+        // Obtenemos las apps
+        const primaryCourseData = primariaApps[grade];
         if (primaryCourseData && !Array.isArray(primaryCourseData)) {
             appsForSubject = primaryCourseData[subjectId] || [];
-            // Aquí podrías tener un mapa de nombres de asignaturas para primaria si lo deseas, 
-            // por defecto usamos el ID capitalizado o el mismo ID.
-            subjectName = subjectId.charAt(0).toUpperCase() + subjectId.slice(1);
         } else {
-            // Fallback por si acaso es un array directo
+            // Fallback si la estructura de primaria fuera un array plano (sin asignaturas)
             appsForSubject = Array.isArray(primaryCourseData) ? primaryCourseData : [];
         }
     }
 
-    const fullTitle = `${subjectName} - ${grade}º ${level.toUpperCase()}`;
+    // Capitalizar la primera letra si no se encontró nombre (fallback) y no es un nombre compuesto
+    if (subjectName === subjectId) {
+        subjectName = subjectId.charAt(0).toUpperCase() + subjectId.slice(1);
+    }
 
-    // Calculamos el texto para el subtítulo del logo
+    const fullTitle = `${subjectName} - ${grade}º ${level === 'eso' ? 'ESO' : 'Primaria'}`;
     const levelDisplay = level === 'eso' ? 'ESO' : 'Primaria';
     const headerSubtitle = `${grade}º ${levelDisplay}`;
 
@@ -232,23 +209,22 @@ const AppListPage = () => {
             </Helmet>
             <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
                 <header className="bg-white/80 backdrop-blur-md shadow-lg border-b border-purple-100 sticky top-0 z-50">
-                  <div className="container mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
-                         <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
-                           <GraduationCap className="w-7 h-7 text-white" />
-                         </div>
-                         <div>
-                           <h1 className="text-2xl font-bold gradient-text">EduApps</h1>
-                           <p className="text-sm text-gray-600">{headerSubtitle}</p>
-                         </div>
-                       </div>
-                       {/* CORRECCIÓN 3: El botón de volver ahora usa la variable 'level' */}
-                       <Button onClick={() => navigate(`/curso/${level}/${grade}`)} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-                         <ArrowLeft className="mr-2 h-4 w-4" /> Volver a Asignaturas
-                       </Button>
-                     </div>
-                   </div>
+                    <div className="container mx-auto px-6 py-4">
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate('/')}>
+                                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                                    <GraduationCap className="w-7 h-7 text-white" />
+                                </div>
+                                <div>
+                                    <h1 className="text-2xl font-bold gradient-text">EduApps</h1>
+                                    <p className="text-sm text-gray-600">{headerSubtitle}</p>
+                                </div>
+                            </div>
+                            <Button onClick={() => navigate(`/curso/${level}/${grade}`)} className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+                                <ArrowLeft className="mr-2 h-4 w-4" /> Volver a Asignaturas
+                            </Button>
+                        </div>
+                    </div>
                 </header>
                 <main className="container mx-auto px-6 py-16">
                     <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center mb-12">
