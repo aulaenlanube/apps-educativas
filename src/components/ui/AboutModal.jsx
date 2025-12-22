@@ -33,10 +33,10 @@ const AboutModal = ({ open, onOpenChange }) => {
                 className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-purple-200"
               />
               <p className="text-gray-600 leading-relaxed">
-                Profesor de Informática con más de 15 años de experiencia. Tengo varios canales de YouTube, uno de videotutoriales y cursos gratuitos (Aula en la nube), y otro donde enseño a docentes a usar la IA en el aula (IA para docentes).
+                Profesor de Informática con más de 15 años de experiencia en ESO, bachillerato y FP. Tengo varios canales de YouTube, uno de videotutoriales y cursos gratuitos (Aula en la nube), y otro donde enseño a docentes a usar la IA en el aula (IA para docentes).
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Mi propósito: mejorar la educación, y de paso... monetizar todo este tinglado 🤣🤣
+                Mi propósito: aportar mi granito de arena en mejorar la educación.
               </p>
               <div className="flex justify-center items-center space-x-6 my-6">
                 <a href="https://instagram.com/edutorregrosa" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-pink-600 transition-colors">
