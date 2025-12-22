@@ -1,0 +1,322 @@
+[
+  {
+    "id": "1",
+    "titulo": "El Origen del Universo y el Big Bang",
+    "texto": "La teoría más aceptada sobre el origen del universo es el Big Bang, ocurrida hace unos 13.800 millones de años. Según esta teoría, toda la materia y la energía estaban concentradas en un punto infinitamente pequeño que explotó y comenzó a expandirse. A medida que el universo se enfriaba, se formaron los primeros átomos, estrellas y galaxias. Nuestra galaxia, la Vía Láctea, es solo una de los cientos de miles de millones que existen. En uno de sus brazos, el de Orión, se encuentra el Sistema Solar. Comprender este origen nos ayuda a entender que el universo no es estático, sino que continúa expandiéndose y enfriándose en la actualidad.",
+    "preguntas": [
+      {
+        "pregunta": "¿Hace cuánto tiempo se estima que ocurrió el Big Bang?",
+        "opciones": ["2.000 millones de años", "13.800 millones de años", "5.000 millones de años", "un billón de años"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué brazo de la Vía Láctea se sitúa nuestro Sistema Solar?",
+        "opciones": ["Brazo de Perseo", "Brazo de Sagitario", "Brazo de Orión", "Brazo de Andrómeda"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué ocurrió inmediatamente después de la gran explosión?",
+        "opciones": ["El universo se calentó más", "El universo comenzó a expandirse", "Se formaron los humanos", "El universo se detuvo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el estado actual del universo según el texto?",
+        "opciones": ["Se está encogiendo", "Está estático", "Se expande y enfría", "Se está calentando rápidamente"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué se formó primero tras el enfriamiento inicial?",
+        "opciones": ["Planetas rocosos", "Primeros átomos", "Seres vivos", "Agujeros negros"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "Las Capas de la Tierra: La Geosfera",
+    "texto": "La Geosfera es la parte sólida de nuestro planeta y se divide en capas concéntricas según su composición y propiedades físicas. La corteza es la capa más externa y delgada, donde vivimos. Debajo se encuentra el manto, que representa el 82% del volumen terrestre y está compuesto por rocas en estado sólido pero con cierta plasticidad debido a las altas temperaturas. Finalmente, el núcleo es la capa más profunda, compuesta principalmente por hierro y níquel. El núcleo externo es líquido y su movimiento genera el campo magnético terrestre, mientras que el núcleo interno es sólido debido a la enorme presión que soporta.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál es la capa que ocupa la mayor parte del volumen terrestre?",
+        "opciones": ["Corteza", "Manto", "Núcleo externo", "Núcleo interno"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué metales componen principalmente el núcleo?",
+        "opciones": ["Cobre y Zinc", "Oro y Plata", "Hierro y Níquel", "Aluminio y Silicio"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué el núcleo interno es sólido a pesar del calor?",
+        "opciones": ["Porque no hace calor allí", "Por la altísima presión", "Porque es de piedra", "Por el agua subterránea"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué fenómeno genera el núcleo externo líquido?",
+        "opciones": ["Los terremotos", "La gravedad", "El campo magnético terrestre", "Las mareas"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se define la corteza terrestre?",
+        "opciones": ["La capa más gruesa", "La capa líquida", "La capa más externa y delgada", "El centro de la Tierra"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "titulo": "La Atmósfera y el Efecto Invernadero",
+    "texto": "La atmósfera es la capa gaseosa que rodea la Tierra, compuesta principalmente por nitrógeno (78%) y oxígeno (21%). Además de permitir la respiración, filtra las radiaciones solares dañinas y regula la temperatura. El efecto invernadero es un proceso natural por el cual ciertos gases como el CO2 retienen parte del calor del Sol, manteniendo una temperatura media de 15ºC que permite la vida. Sin embargo, la quema de combustibles fósiles ha aumentado estos gases, intensificando el efecto y provocando el calentamiento global. Sin atmósfera, la Tierra sería un lugar gélido y sin protección contra los meteoritos, que se desintegran por fricción en la mesosfera.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál es el gas más abundante en la atmósfera?",
+        "opciones": ["Oxígeno", "Dióxido de carbono", "Nitrógeno", "Argón"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué función vital cumple el efecto invernadero natural?",
+        "opciones": ["Causar el cambio climático", "Mantener la temperatura apta para la vida", "Enfriar los polos", "Crear nubes de lluvia"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué capa de la atmósfera se desintegran la mayoría de meteoritos?",
+        "opciones": ["Troposfera", "Estratosfera", "Mesosfera", "Exosfera"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué ha aumentado el efecto invernadero en los últimos años?",
+        "opciones": ["Por falta de sol", "Por el uso de energías limpias", "Por la quema de combustibles fósiles", "Por el crecimiento de las plantas"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué porcentaje de oxígeno contiene aproximadamente el aire?",
+        "opciones": ["10%", "21%", "50%", "78%"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "titulo": "La Hidrosfera y el Ciclo del Agua",
+    "texto": "La hidrosfera comprende todo el agua de la Tierra en sus tres estados. Aunque el 71% de la superficie terrestre es agua, el 97% es agua salada de los océanos. El agua dulce representa solo el 3%, y la mayor parte está congelada en glaciares o es subterránea. El agua se mueve continuamente en el ciclo hidrológico. El Sol evapora el agua; el vapor sube y se condensa en nubes; finalmente, el agua vuelve a la superficie por precipitación. Este proceso es vital para purificar el agua y distribuirla por los continentes, permitiendo que la vida terrestre acceda a este recurso limitado y esencial.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué porcentaje del agua total de la Tierra es dulce?",
+        "opciones": ["97%", "71%", "3%", "50%"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Dónde se encuentra la mayor parte del agua dulce del planeta?",
+        "opciones": ["Ríos y lagos", "Glaciares y polos", "Océanos", "Nubes"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué motor impulsa el ciclo del agua?",
+        "opciones": ["La gravedad", "La rotación terrestre", "La energía solar", "El viento"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llama el paso de vapor de agua a líquido en las nubes?",
+        "opciones": ["Evaporación", "Precipitación", "Condensación", "Infiltración"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué porcentaje de la superficie de la Tierra está cubierta por agua?",
+        "opciones": ["25%", "50%", "71%", "90%"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "titulo": "La Célula: Unidad de la Vida",
+    "texto": "Todos los seres vivos están formados por células. Existen dos tipos principales: procariotas y eucariotas. Las células procariotas son simples, pequeñas y no tienen un núcleo definido; su ADN está libre en el citoplasma (ejemplo: bacterias). Las células eucariotas son más complejas, tienen un núcleo que protege el material genético y orgánulos especializados. Dentro de las eucariotas diferenciamos la célula animal y la vegetal. Esta última posee una pared celular rígida y cloroplastos para realizar la fotosíntesis, estructuras de las que carece la célula animal. Ambas comparten la membrana plasmática, el citoplasma y los ribosomas.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué caracteriza a una célula procariota?",
+        "opciones": ["Tener muchos núcleos", "Ser muy grande", "No tener núcleo definido", "Tener cloroplastos"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué orgánulo es exclusivo de la célula vegetal para la fotosíntesis?",
+        "opciones": ["Mitocondria", "Ribosoma", "Cloroplasto", "Lisosoma"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Dónde se encuentra el material genético en una célula eucariota?",
+        "opciones": ["Membrana", "Núcleo", "Pared celular", "Vacuolas"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué estructura da rigidez a la célula vegetal?",
+        "opciones": ["Membrana plasmática", "Pared celular", "Núcleo", "Citoplasma"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es un ejemplo de organismo con células procariotas?",
+        "opciones": ["Una planta", "Un perro", "Una bacteria", "Un hongo"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "titulo": "Biodiversidad y Taxonomía",
+    "texto": "La biodiversidad es la variedad de especies que habitan la Tierra. Para estudiar esta enorme diversidad, la Taxonomía clasifica a los seres vivos en grupos jerárquicos llamados taxones: Reino, Filo, Clase, Orden, Familia, Género y Especie. El nombre científico de un organismo sigue la nomenclatura binomial de Linneo, usando el Género y la Especie en latín (ej. Homo sapiens). Una especie se define como un grupo de individuos capaces de reproducirse entre sí y tener descendencia fértil. La conservación de la biodiversidad es crítica, ya que la extinción de una especie puede desestabilizar todo un ecosistema.",
+    "preguntas": [
+      {
+        "pregunta": "¿Quién inventó el sistema de nomenclatura binomial?",
+        "opciones": ["Darwin", "Linneo", "Mendel", "Newton"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué define a los individuos de una misma especie?",
+        "opciones": ["Vivir en el mismo sitio", "Ser del mismo color", "Tener descendencia fértil", "Comer lo mismo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es el taxón más amplio de los mencionados?",
+        "opciones": ["Especie", "Familia", "Orden", "Reino"],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Cómo se escribe correctamente un nombre científico?",
+        "opciones": ["Solo la especie", "Género y Especie", "Reino y Filo", "Nombre común en latín"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ciencia se encarga de clasificar a los seres vivos?",
+        "opciones": ["Geología", "Taxonomía", "Ecología", "Física"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "titulo": "Moneras, Protoctistas y Hongos",
+    "texto": "Más allá de animales y plantas, existen otros tres reinos vitales. El Reino Monera incluye a las bacterias, seres unicelulares procariotas que pueden ser beneficiosos (como los de la flora intestinal) o patógenos. El Reino Protoctista incluye a los protozoos (heterótrofos) y las algas (autótrofos), que viven en medios acuáticos. El Reino Hongos (Fungi) agrupa organismos eucariotas, la mayoría pluricelulares, que son heterótrofos descomponedores. A diferencia de las plantas, los hongos no realizan la fotosíntesis y sus paredes celulares son de quitina. Son esenciales para reciclar la materia orgánica en los ecosistemas.",
+    "preguntas": [
+      {
+        "pregunta": "¿Por qué los hongos no son plantas?",
+        "opciones": ["Porque no tienen raíces", "Porque son heterótrofos y no hacen fotosíntesis", "Porque viven en la oscuridad", "Porque son unicelulares"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A qué reino pertenecen las algas?",
+        "opciones": ["Plantas", "Hongos", "Protoctistas", "Moneras"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es la función principal de los hongos en el ecosistema?",
+        "opciones": ["Producir oxígeno", "Ser depredadores", "Descomponer materia orgánica", "Filtrar agua"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué tipo de célula tienen las bacterias?",
+        "opciones": ["Eucariota animal", "Eucariota vegetal", "Procariota", "No tienen células"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿De qué material es la pared celular de los hongos?",
+        "opciones": ["Celulosa", "Quitina", "Proteína", "Calcio"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "El Reino de las Plantas: Adaptación al Medio",
+    "texto": "Las plantas son organismos eucariotas pluricelulares autótrofos. Se dividen en dos grandes grupos: plantas sin semillas (briofitas como los musgos y pteridofitas como los helechos) y plantas con semillas (espermatofitas). Dentro de estas últimas, las gimnospermas tienen semillas desnudas, a menudo en piñas (ej. pinos), mientras que las angiospermas producen flores y frutos que protegen la semilla. Las plantas han desarrollado tejidos conductores (xilema y floema) para transportar agua y nutrientes a grandes alturas, permitiéndoles colonizar casi todos los ambientes terrestres de la Tierra.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué grupo de plantas produce flores y frutos?",
+        "opciones": ["Briofitas", "Gimnospermas", "Angiospermas", "Helechos"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué caracteriza a los musgos (briofitas)?",
+        "opciones": ["Tienen grandes flores", "No tienen vasos conductores y son pequeños", "Tienen semillas en piñas", "Viven en el desierto"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la función del xilema y floema?",
+        "opciones": ["Realizar la fotosíntesis", "Transportar sustancias (vasos conductores)", "Proteger la semilla", "Atraer insectos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué son las gimnospermas?",
+        "opciones": ["Plantas sin raíz", "Plantas con flores vistosas", "Plantas con semillas desnudas", "Algas marinas"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se alimentan las plantas?",
+        "opciones": ["Comiendo insectos", "Absorbiendo materia orgánica", "Fabricando su alimento (autótrofas)", "Bebiendo solo agua"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "titulo": "Invertebrados: Los dueños del planeta",
+    "texto": "Los invertebrados representan el 95% de las especies animales. Carecen de columna vertebral y suelen ser pequeños. El grupo más diverso es el de los artrópodos, caracterizados por tener un exoesqueleto de quitina y patas articuladas; incluye insectos, arácnidos, crustáceos y miriápodos. Otros grupos importantes son los moluscos (cuerpo blando, a menudo con concha), los anélidos (gusanos segmentados), los equinodermos (como estrellas de mar con simetría radial) y los cnidarios (medusas con células urticantes). Muchos invertebrados sufren metamorfosis, un proceso de cambio drástico en su forma de vida y anatomía.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué porcentaje de animales son aproximadamente invertebrados?",
+        "opciones": ["5%", "50%", "75%", "95%"],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Qué característica define a los artrópodos?",
+        "opciones": ["Piel húmeda", "Exoesqueleto y patas articuladas", "Concha interna", "Sangre caliente"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A qué grupo pertenece un pulpo?",
+        "opciones": ["Artrópodos", "Moluscos", "Equinodermos", "Anélidos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llama el cambio de forma que sufren insectos como la mariposa?",
+        "opciones": ["Evolución", "Fotosíntesis", "Metamorfosis", "Reproducción"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué animal tiene células urticantes?",
+        "opciones": ["Estrella de mar", "Lombriz", "Medusa", "Caracol"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "titulo": "Vertebrados: Adaptaciones Avanzadas",
+    "texto": "Los vertebrados poseen un esqueleto interno con columna vertebral que protege la médula espinal y permite un mayor tamaño corporal. Se dividen en cinco clases. Los peces son acuáticos con escamas y branquias. Los anfibios tienen doble vida (agua y tierra) y piel desnuda. Los reptiles poseen escamas impermeables y huevos con cáscara. Las aves tienen plumas, huesos huecos y son homeotermas (sangre caliente). Finalmente, los mamíferos tienen pelo, producen leche y son vivíparos (excepto el ornitorrinco). Cada grupo ha desarrollado adaptaciones específicas para conquistar el aire, el agua o la tierra firme.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué significa que un animal sea homeotermo?",
+        "opciones": ["Que vive en cuevas", "Que mantiene su temperatura constante (sangre caliente)", "Que pone huevos", "Que tiene escamas"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué grupo de vertebrados tiene la piel desnuda y necesita humedad?",
+        "opciones": ["Reptiles", "Anfibios", "Peces", "Aves"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la función principal de la columna vertebral?",
+        "opciones": ["Digiere comida", "Produce oxígeno", "Protege la médula espinal y sostiene el cuerpo", "Almacena grasa"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál de estos es un rasgo exclusivo de los mamíferos?",
+        "opciones": ["Tener cuatro patas", "Poner huevos", "Alimentar a las crías con leche", "Vivir en la tierra"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué las aves tienen huesos huecos?",
+        "opciones": ["Porque están enfermas", "Para ser más ligeras y facilitar el vuelo", "Para nadar mejor", "Para almacenar aire"],
+        "correcta": 1
+      }
+    ]
+  }
+]

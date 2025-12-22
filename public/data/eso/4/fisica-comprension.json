@@ -1,0 +1,322 @@
+[
+  {
+    "id": "1",
+    "titulo": "El Mol y la Estequiometría",
+    "texto": "En química, las cantidades son fundamentales. El mol es la unidad de cantidad de sustancia y contiene 6,022 x 10²³ partículas (Número de Avogadro). La estequiometría estudia las relaciones cuantitativas en las reacciones. Gracias a ella, podemos calcular exactamente cuánto reactivo necesitamos para obtener una cantidad de producto. Por ejemplo, si conocemos la masa atómica del carbono (12) y del oxígeno (16), sabemos que 12g de carbono reaccionan con 32g de oxígeno para dar 44g de CO2. Estos cálculos son la base de la industria farmacéutica y de materiales, donde la precisión es cuestión de éxito o fracaso.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué valor tiene el Número de Avogadro?",
+        "opciones": ["3,14", "9,8", "6,022 x 10²³", "100.000"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué estudia la estequiometría?",
+        "opciones": ["Los colores de las llamas", "Las relaciones de cantidad en las reacciones químicas", "El movimiento de los planetas", "La historia de la química"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es el mol?",
+        "opciones": ["Una unidad de peso", "Una unidad de volumen", "La unidad de cantidad de sustancia en el SI", "Un tipo de átomo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se calcula la masa molecular del agua (H2O)? (H=1, O=16)",
+        "opciones": ["17 g/mol", "18 g/mol", "16 g/mol", "2 g/mol"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué permite predecir la estequiometría?",
+        "opciones": ["El clima", "La cantidad de producto que se formará", "La dureza de un metal", "La velocidad de la luz"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "Configuración Electrónica y Orbitales",
+    "texto": "El modelo atómico actual se basa en la mecánica cuántica. Los electrones no están en órbitas, sino en orbitales, regiones donde es probable encontrarlos. Se distribuyen siguiendo el principio de mínima energía (Diagrama de Moeller). La configuración electrónica nos dice cómo se reparten los electrones en los niveles (1, 2, 3...) y subniveles (s, p, d, f). El número de electrones en la capa más externa se llaman electrones de valencia y son los responsables de cómo el átomo se enlaza. Los elementos de un mismo grupo tienen configuraciones externas similares, lo que explica por qué tienen propiedades químicas parecidas.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué indica el Diagrama de Moeller?",
+        "opciones": ["La masa del núcleo", "El orden de llenado de los orbitales por energía", "El color del átomo", "La velocidad del electrón"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántos electrones caben como máximo en un subnivel 'p'?",
+        "opciones": ["2", "6", "10", "14"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué son los electrones de valencia?",
+        "opciones": ["Los que están en el núcleo", "Los de la capa más interna", "Los de la capa más externa", "Los neutrones"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué forma tiene un orbital de tipo 's'?",
+        "opciones": ["Doble lóbulo", "Esférica", "Cuadrada", "Irregular"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué los gases nobles son tan estables?",
+        "opciones": ["Porque son pesados", "Porque tienen su última capa completa", "Porque no tienen electrones", "Porque son fríos"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "titulo": "Introducción a la Química Orgánica",
+    "texto": "La química orgánica es la química del carbono. El átomo de carbono es especial porque puede formar cuatro enlaces covalentes muy estables consigo mismo y con otros elementos, creando cadenas y anillos de gran complejidad. Los compuestos más sencillos son los hidrocarburos (formados solo por C e H). Se dividen en alcanos (enlaces sencillos), alquenos (dobles enlaces) y alquinos (triples enlaces). Además de los hidrocarburos, existen grupos funcionales como alcoholes, ácidos carboxílicos o aminas. Esta química es la base de la vida (proteínas, ADN) y de materiales modernos como los plásticos, las medicinas y los combustibles.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cuántos enlaces forma el carbono habitualmente?",
+        "opciones": ["Dos", "Tres", "Cuatro", "Seis"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es un hidrocarburo?",
+        "opciones": ["Agua con carbono", "Compuesto formado solo por carbono e hidrógeno", "Un tipo de metal", "Un gas noble"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué caracteriza a un alqueno?",
+        "opciones": ["Solo enlaces sencillos", "Al menos un doble enlace carbono-carbono", "Un triple enlace", "No tiene carbono"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llama el alcano de un solo carbono?",
+        "opciones": ["Etano", "Propano", "Metano", "Butano"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es la base de la química orgánica?",
+        "opciones": ["El oxígeno", "El silicio", "El carbono", "El hierro"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "titulo": "Cinemática avanzada: Movimiento Circular",
+    "texto": "No todos los movimientos son rectilíneos. El Movimiento Circular Uniforme (MCU) es aquel cuya trayectoria es una circunferencia y su velocidad angular es constante. Aunque la rapidez sea constante, existe una aceleración centrípeta dirigida hacia el centro, que es la que hace que el cuerpo cambie de dirección continuamente. Las magnitudes que usamos son el radián (unidad de ángulo), el período (tiempo en dar una vuelta) y la frecuencia (vueltas por segundo). El MCU se encuentra en la rotación de los planetas, las aspas de un aerogenerador o el giro de un disco. Entenderlo es clave para la ingeniería y la astronomía.",
+    "preguntas": [
+      {
+        "pregunta": "¿Hacia dónde apunta la aceleración centrípeta?",
+        "opciones": ["Hacia afuera", "Tangente a la curva", "Hacia el centro de la trayectoria", "Hacia atrás"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es el período en un MCU?",
+        "opciones": ["El número de vueltas", "El tiempo que tarda en dar una vuelta completa", "La velocidad angular", "El radio de la curva"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la unidad de ángulo en el Sistema Internacional?",
+        "opciones": ["Grado", "Minuto", "Radián", "Metro"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué ocurre con la velocidad en el MCU?",
+        "opciones": ["Es constante en módulo pero cambia de dirección", "Es constante en todo", "Es variable en módulo", "Es cero"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué magnitud mide las vueltas por segundo?",
+        "opciones": ["Período", "Frecuencia", "Radio", "Masa"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "titulo": "Dinámica: Fuerzas de rozamiento y Planos Inclinados",
+    "texto": "En 4º de ESO resolvemos problemas de fuerzas más realistas. El rozamiento es una fuerza disipativa que depende de la fuerza normal y del coeficiente de rozamiento (μ). En un plano inclinado, el peso del cuerpo se descompone en dos: una componente paralela al plano (que lo hace caer) y otra perpendicular (que lo presiona contra el plano). La aceleración del objeto dependerá del ángulo de inclinación y de si hay o no rozamiento. Estos principios se aplican desde el diseño de rampas para sillas de ruedas hasta el cálculo de la seguridad en carreteras de montaña y puentes.",
+    "preguntas": [
+      {
+        "pregunta": "¿De qué depende la fuerza de rozamiento?",
+        "opciones": ["Solo de la velocidad", "De la fuerza normal y el coeficiente de rozamiento", "Del color del objeto", "Del tiempo que lleve moviéndose"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué componente del peso hace que un objeto baje por una rampa?",
+        "opciones": ["La perpendicular", "La normal", "La paralela al plano", "La centrípeta"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es la fuerza normal?",
+        "opciones": ["El peso", "La fuerza de reacción de la superficie perpendicular a ella", "El rozamiento", "La gravedad"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre si el coeficiente de rozamiento es cero?",
+        "opciones": ["No hay rozamiento (superficie ideal)", "El cuerpo se pega al suelo", "El peso desaparece", "El ángulo se vuelve recto"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cómo influye el ángulo de una rampa en la aceleración?",
+        "opciones": ["A mayor ángulo, menor aceleración", "A mayor ángulo, mayor aceleración de bajada", "No influye", "La aceleración siempre es 9,8"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "titulo": "Energía Mecánica y su Conservación",
+    "texto": "La Energía Mecánica (Em) es la suma de la Energía Cinética (Ec) y la Energía Potencial (Ep). Si solo actúan fuerzas conservativas (como la gravedad) y no hay rozamiento, la Energía Mecánica se mantiene constante en todo el trayecto. Esto significa que si un objeto pierde altura, gana velocidad de forma proporcional. Sin embargo, en la vida real hay rozamiento, y parte de la energía mecánica se transforma en calor (trabajo de la fuerza de rozamiento). El concepto de trabajo (W = F · d · cosα) es fundamental para entender cómo transferimos energía mediante fuerzas y cómo funcionan los motores y las máquinas térmicas.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es la Energía Mecánica?",
+        "opciones": ["Solo la cinética", "La suma de Cinética y Potencial", "El calor", "La electricidad"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuándo se conserva la Energía Mecánica?",
+        "opciones": ["Siempre", "Cuando no hay fuerzas no conservativas como el rozamiento", "Cuando el cuerpo está parado", "Nunca"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué sucede con la energía cinética de un coche al frenar por rozamiento?",
+        "opciones": ["Se destruye", "Se transforma en calor", "Se vuelve potencial", "Se duplica"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la unidad de trabajo y energía en el SI?",
+        "opciones": ["Newton", "Vatio", "Julio (J)", "Pascal"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué fórmula define la Energía Potencial Gravitatoria?",
+        "opciones": ["Ec = 1/2 m·v²", "Ep = m·g·h", "W = F·d", "P = W/t"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "titulo": "Gravitación Universal",
+    "texto": "Isaac Newton descubrió que la misma fuerza que hace caer una manzana es la que mantiene a la Luna en órbita. La Ley de Gravitación Universal establece que dos cuerpos se atraen con una fuerza proporcional al producto de sus masas e inversamente proporcional al cuadrado de la distancia que los separa. Esta fuerza es siempre atractiva. Gracias a esta ley, podemos calcular la masa de los planetas, las órbitas de los satélites artificiales y entender las mareas. La gravedad no es solo algo de la Tierra, es una propiedad de toda la materia en el universo, aunque solo se hace evidente cuando las masas son gigantescas como estrellas o planetas.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo varía la fuerza de gravedad con la distancia?",
+        "opciones": ["Aumenta con la distancia", "Disminuye con el cuadrado de la distancia", "No varía", "Es aleatoria"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué cuerpos tienen gravedad?",
+        "opciones": ["Solo la Tierra", "Solo el Sol", "Todos los cuerpos con masa", "Solo los que tienen imanes"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué mantiene a los planetas girando alrededor del Sol?",
+        "opciones": ["El viento espacial", "La fuerza de atracción gravitatoria", "La luz", "Nada, es pura suerte"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quién formuló la Ley de Gravitación Universal?",
+        "opciones": ["Einstein", "Newton", "Galileo", "Bohr"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre si duplicamos la masa de uno de los cuerpos?",
+        "opciones": ["La fuerza de atracción se duplica", "La fuerza se divide", "La fuerza se cuadriplica", "La fuerza desaparece"],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "Presión Atmosférica y Experimento de Torricelli",
+    "texto": "Vivimos en el fondo de un océano de aire. El peso de la atmósfera sobre nosotros genera la presión atmosférica. Evangelista Torricelli fue el primero en medirla en 1643 usando un tubo de mercurio. Descubrió que al nivel del mar, la atmósfera es capaz de sostener una columna de 760 mm de mercurio (1 atm). La presión atmosférica disminuye con la altitud porque hay menos aire encima. Por eso, a los alpinistas les cuesta más respirar y el agua hierve a menos de 100ºC en las montañas. Los barómetros son los instrumentos que miden esta presión y son esenciales para la predicción meteorológica.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué valor tiene la presión atmosférica normal a nivel del mar?",
+        "opciones": ["100 Pa", "760 mmHg (1 atm)", "10 mmHg", "500 atm"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre con la presión atmosférica al subir a una montaña?",
+        "opciones": ["Aumenta", "Se mantiene igual", "Disminuye", "Se vuelve líquida"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué líquido usó Torricelli en su famoso experimento?",
+        "opciones": ["Agua", "Alcohol", "Mercurio", "Aceite"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llama el instrumento que mide la presión atmosférica?",
+        "opciones": ["Termómetro", "Barómetro", "Dinamómetro", "Voltímetro"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué disminuye la presión con la altura?",
+        "opciones": ["Porque hace más frío", "Porque hay menos columna de aire sobre nosotros", "Porque la gravedad es mayor", "Por el viento"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "titulo": "Calorimetría y Equilibrio Térmico",
+    "texto": "La calorimetría estudia la medición del calor. Cuando mezclamos dos sustancias a distintas temperaturas, la energía fluye del cuerpo caliente al frío. El calor cedido por uno es igual al calor absorbido por el otro (Q_ganado = -Q_cedido). Usamos la fórmula Q = m · Ce · ΔT. Además del cambio de temperatura, el calor puede producir cambios de estado (fusión, ebullición). Durante el cambio de estado, la temperatura no varía; toda la energía se usa para romper los enlaces entre partículas. Esta energía se llama calor latente. Es por esto que una mezcla de agua y hielo se mantiene exactamente a 0ºC hasta que todo el hielo se ha derretido.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué sucede con la temperatura durante la fusión del hielo?",
+        "opciones": ["Sube sin parar", "Se mantiene constante en 0ºC", "Baja", "Desaparece"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llama la energía necesaria para cambiar de estado sin variar la temperatura?",
+        "opciones": ["Calor específico", "Calor latente", "Energía cinética", "Temperatura crítica"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la unidad de calor en el SI?",
+        "opciones": ["Caloría", "Julio (J)", "Grado Celsius", "Vatio"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué mide el calor específico?",
+        "opciones": ["La temperatura máxima", "La resistencia de un material a cambiar su temperatura", "La masa de un cuerpo", "La velocidad de la luz"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Si mezclamos agua a 80ºC y agua a 20ºC, en qué rango estará la temperatura final?",
+        "opciones": ["A 100ºC", "A 10ºC", "Entre 20ºC y 80ºC", "A 0ºC"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "titulo": "Ondas: Sonido y Luz",
+    "texto": "Una onda es una perturbación que transporta energía sin transportar materia. El sonido es una onda mecánica (necesita un medio como aire o agua) y longitudinal. Su velocidad depende del medio (340 m/s en el aire, mucho más rápido en el agua y sólidos). La luz es una onda electromagnética (puede viajar por el vacío) y transversal. Las ondas se caracterizan por su frecuencia (tonos agudos o graves en sonido; colores en luz) y su longitud de onda. El efecto Doppler explica por qué el sonido de una ambulancia cambia de tono al acercarse o alejarse. El estudio de las ondas permite desde las telecomunicaciones modernas hasta la medicina (ecografías y rayos X).",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué transporta una onda?",
+        "opciones": ["Materia", "Energía", "Aire", "Agua"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué no se oyen explosiones en el espacio?",
+        "opciones": ["Porque no hay luz", "Porque el sonido necesita un medio material (vacío)", "Porque hace mucho frío", "Porque están muy lejos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué fenómeno explica el cambio de tono de una sirena en movimiento?",
+        "opciones": ["Efecto Doppler", "Refracción", "Reflexión", "Difracción"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué tipo de onda es la luz?",
+        "opciones": ["Mecánica", "Longitudinal", "Electromagnética y transversal", "Sonora"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿De qué depende que un sonido sea agudo o grave?",
+        "opciones": ["De su amplitud", "De su frecuencia", "De su color", "De la distancia"],
+        "correcta": 1
+      }
+    ]
+  }
+]

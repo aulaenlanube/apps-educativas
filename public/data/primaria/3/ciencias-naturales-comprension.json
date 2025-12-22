@@ -1,321 +1,321 @@
 [
   {
     "id": "1",
-    "titulo": "Seres vivos y objetos",
-    "texto": "En el parque hay muchas cosas diferentes. Las palomas y los árboles son seres vivos porque nacen, crecen y se alimentan. El banco de madera y los columpios son objetos inertes, no tienen vida. La piedra del camino tampoco tiene vida, es un objeto.",
+    "titulo": "La función de nutrición",
+    "texto": "Para vivir necesitamos energía. En la función de nutrición intervienen cuatro aparatos importantes. El digestivo transforma los alimentos. El respiratorio toma el oxígeno del aire. El circulatorio reparte la sangre por todo el cuerpo. El excretor limpia la sangre y expulsa los desechos.",
     "preguntas": [
       {
-        "pregunta": "¿El banco tiene vida?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué aparato toma el oxígeno?",
+        "opciones": ["Digestivo", "Respiratorio", "Circulatorio", "Excretor"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Las palomas son seres vivos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué hace el aparato circulatorio?",
+        "opciones": ["Mueve los huesos", "Reparte la sangre", "Digiere la comida", "Expulsa orina"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve la nutrición?",
+        "opciones": ["Para conseguir energía", "Para dormir mejor", "Para oír música", "Para nada"],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué hacen los seres vivos?",
-        "opciones": ["Nacen y crecen", "No hacen nada", "Son de plástico", "Siempre están quietos"],
-        "correcta": 0
+        "pregunta": "¿Qué aparato transforma los alimentos?",
+        "opciones": ["El excretor", "El respiratorio", "El digestivo", "El nervioso"],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Cuál es un objeto inerte?",
-        "opciones": ["El árbol", "La paloma", "El niño", "La piedra"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué hay en el parque?",
-        "opciones": ["Solo piedras", "Solo animales", "Seres vivos y objetos", "Nada"],
+        "pregunta": "¿Cuántos aparatos intervienen principalmente?",
+        "opciones": ["Uno", "Dos", "Cuatro", "Veinte"],
         "correcta": 2
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Las partes del cuerpo",
-    "texto": "Nuestro cuerpo tiene tres partes principales: la cabeza, el tronco y las extremidades. En la cabeza tenemos la cara y el cerebro. El tronco es la parte central del cuerpo. Las extremidades son los brazos y las piernas, que nos sirven para movernos.",
+    "titulo": "Clasificación de vertebrados",
+    "texto": "Los vertebrados se dividen en cinco grupos. Los mamíferos son vivíparos y tienen pelo. Las aves tienen plumas. Los reptiles tienen escamas y sangre fría. Los anfibios tienen la piel desnuda y sufren metamorfosis. Los peces tienen escamas y respiran por branquias.",
     "preguntas": [
       {
-        "pregunta": "¿Cuántas partes principales tiene el cuerpo?",
-        "opciones": ["Dos", "Tres"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Las piernas son extremidades?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Dónde está la cara?",
-        "opciones": ["En el tronco", "En la cabeza", "En las piernas", "En los brazos"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuál es la parte central del cuerpo?",
-        "opciones": ["La mano", "El pie", "El tronco", "El pelo"],
+        "pregunta": "¿Qué grupo tiene la piel desnuda?",
+        "opciones": ["Reptiles", "Aves", "Anfibios", "Peces"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Para qué sirven las piernas?",
-        "opciones": ["Para pensar", "Para comer", "Para oler", "Para moverse"],
-        "correcta": 3
+        "pregunta": "¿Cómo respiran los peces?",
+        "opciones": ["Por pulmones", "Por branquias", "Por la nariz", "No respiran"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Los mamíferos son ovíparos?",
+        "opciones": ["Sí", "No, son vivíparos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué cubre el cuerpo de las aves?",
+        "opciones": ["Pelo", "Escamas", "Plumas", "Conchas"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué animales tienen sangre fría y escamas?",
+        "opciones": ["Mamíferos", "Reptiles", "Aves", "Perros"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Los cinco sentidos",
-    "texto": "Tenemos cinco sentidos para conocer el mundo. Con los ojos vemos los colores (vista). Con los oídos escuchamos música (oído). Con la nariz olemos las flores (olfato). Con la lengua saboreamos la comida (gusto). Y con la piel tocamos las cosas suaves (tacto).",
+    "titulo": "Los animales invertebrados",
+    "texto": "Los invertebrados no tienen columna vertebral. El grupo más numeroso son los artrópodos (insectos, arañas), que tienen patas articuladas y un caparazón externo. Los moluscos tienen cuerpo blando y a veces concha (caracol). Otros grupos son los gusanos, las medusas y las esponjas.",
     "preguntas": [
       {
-        "pregunta": "¿Cuántos sentidos tenemos?",
-        "opciones": ["Cinco", "Siete"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Usamos la nariz para ver?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Los invertebrados tienen huesos?",
+        "opciones": ["Sí, muchos", "No tienen columna vertebral", "Solo en las patas", "A veces"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué sentido usamos para escuchar música?",
-        "opciones": ["El gusto", "El tacto", "El oído", "La vista"],
+        "pregunta": "¿Cuál es el grupo más numeroso?",
+        "opciones": ["Moluscos", "Artrópodos", "Gusanos", "Esponjas"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué animal es un molusco?",
+        "opciones": ["La mosca", "La araña", "El caracol", "El perro"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Con qué saboreamos la comida?",
-        "opciones": ["Con la lengua", "Con el ojo", "Con la oreja", "Con el dedo"],
-        "correcta": 0
+        "pregunta": "¿Cómo es el cuerpo de los moluscos?",
+        "opciones": ["Duro y peludo", "Blando", "De metal", "Cuadrado"],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué sentido está en la piel?",
-        "opciones": ["Olfato", "Vista", "Gusto", "Tacto"],
-        "correcta": 3
+        "pregunta": "¿La medusa es vertebrado o invertebrado?",
+        "opciones": ["Vertebrado", "Invertebrado"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Animales domésticos y salvajes",
-    "texto": "Los animales pueden ser domésticos o salvajes. Los animales domésticos, como el perro y el gato, viven con las personas y nos hacen compañía. Los animales salvajes, como el león y el elefante, viven libres en la naturaleza y buscan su propia comida.",
+    "titulo": "Las plantas y la fotosíntesis",
+    "texto": "Las plantas fabrican su propio alimento. Absorben agua y sales minerales por la raíz. Toman dióxido de carbono por las hojas. Gracias a la luz del Sol, realizan la fotosíntesis para alimentarse y expulsan oxígeno, que es bueno para nosotros.",
     "preguntas": [
       {
-        "pregunta": "¿El gato es un animal doméstico?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿El león vive en una casa?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo se llama el proceso de alimentación?",
+        "opciones": ["Digestión", "Fotosíntesis", "Respiración", "Circulación"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde viven los animales salvajes?",
-        "opciones": ["En la granja", "En un piso", "En la naturaleza", "En la tienda"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué animal es salvaje?",
-        "opciones": ["La vaca", "El perro", "El elefante", "La gallina"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué hacen los animales domésticos?",
-        "opciones": ["Viven con personas", "Viven en la selva", "Cazan leones", "Vuelan alto"],
+        "pregunta": "¿Qué necesitan del cielo?",
+        "opciones": ["Lluvia y luz del Sol", "Viento fuerte", "Nubes negras", "Truenos"],
         "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué expulsan las plantas?",
+        "opciones": ["Humo", "Oxígeno", "Fuego", "Dióxido de carbono"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por dónde absorben el agua?",
+        "opciones": ["Por las flores", "Por las hojas", "Por la raíz", "Por el tallo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Las plantas comen carne?",
+        "opciones": ["Sí", "No, fabrican su alimento", "A veces hamburguesas", "Solo los domingos"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Cómo nacen los animales",
-    "texto": "Los animales pueden nacer de dos formas. Los vivíparos nacen de la barriga de su mamá, como los perros, los gatos y las personas. Los ovíparos nacen de un huevo, como las gallinas, los patos, las tortugas y los peces.",
+    "titulo": "La materia: Masa y Volumen",
+    "texto": "Todo lo que nos rodea es materia. La materia tiene dos propiedades generales. La masa es la cantidad de materia que tiene un objeto y se mide en kilogramos (kg). El volumen es el espacio que ocupa ese objeto y se mide en litros (L).",
     "preguntas": [
       {
-        "pregunta": "¿Las personas somos vivíparas?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Los perros ponen huevos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es la masa?",
+        "opciones": ["El color del objeto", "La cantidad de materia", "El espacio que ocupa", "El sabor"],
         "correcta": 1
       },
       {
-        "pregunta": "¿De dónde nacen los ovíparos?",
-        "opciones": ["De una semilla", "De un huevo", "De una flor", "De la barriga"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué animal es ovíparo?",
-        "opciones": ["El gato", "El caballo", "La gallina", "La vaca"],
+        "pregunta": "¿En qué se mide el volumen?",
+        "opciones": ["Metros", "Kilogramos", "Litros", "Segundos"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué animal es vivíparo?",
-        "opciones": ["El pez", "El pato", "La tortuga", "El perro"],
-        "correcta": 3
+        "pregunta": "¿Qué es el volumen?",
+        "opciones": ["Lo que pesa", "El espacio que ocupa", "La dureza", "El brillo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué se mide la masa?",
+        "opciones": ["Kilogramos", "Litros", "Grados", "Horas"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿El aire es materia?",
+        "opciones": ["Sí, tiene masa y volumen", "No, no se ve", "Es magia", "Es energía"],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Las partes de una planta",
-    "texto": "Las plantas son seres vivos que no se pueden mover. Tienen tres partes importantes. La raíz está bajo tierra y sujeta la planta. El tallo crece hacia arriba y sostiene las hojas. Las hojas son verdes y sirven para que la planta respire.",
+    "titulo": "Fuentes de energía",
+    "texto": "La energía hace que las cosas cambien. Las fuentes de energía renovables no se agotan nunca, como el Sol, el viento o el agua. Las fuentes no renovables se pueden gastar y contaminan más, como el carbón, el petróleo y el gas natural.",
     "preguntas": [
       {
-        "pregunta": "¿Las plantas se pueden mover?",
+        "pregunta": "¿El viento es una fuente renovable?",
         "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De qué color suelen ser las hojas?",
-        "opciones": ["Verdes", "Azules"],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué parte está bajo tierra?",
-        "opciones": ["La flor", "La hoja", "El tallo", "La raíz"],
-        "correcta": 3
+        "pregunta": "¿El petróleo es renovable?",
+        "opciones": ["Sí", "No, se puede agotar"],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué sostiene las hojas?",
-        "opciones": ["El sol", "El agua", "El tallo", "La tierra"],
+        "pregunta": "¿Qué fuente contamina más?",
+        "opciones": ["El Sol", "El viento", "El carbón", "El agua"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Para qué sirven las hojas?",
-        "opciones": ["Para respirar", "Para andar", "Para oír", "Para comer tierra"],
+        "pregunta": "¿Qué hace la energía?",
+        "opciones": ["Nada", "Provoca cambios", "Duerme", "Desaparece"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es una energía limpia?",
+        "opciones": ["La del Sol", "La del petróleo", "La del gas", "Ninguna"],
         "correcta": 0
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Carnívoros y herbívoros",
-    "texto": "Los animales comen cosas diferentes. Los animales que comen carne de otros animales se llaman carnívoros, como el tigre o el lobo. Los animales que comen plantas, hierba o frutas se llaman herbívoros, como la vaca, el conejo o la jirafa.",
+    "titulo": "El ciclo del agua",
+    "texto": "El agua de la Tierra cambia de estado. Con el calor del Sol, el agua de mares y ríos se evapora (vapor). Luego se enfría y forma nubes (condensación). Después cae a la tierra como lluvia o nieve (precipitación) y vuelve a los ríos (retorno).",
     "preguntas": [
       {
-        "pregunta": "¿El tigre come carne?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿La vaca es carnívora?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué pasa cuando el agua se calienta?",
+        "opciones": ["Se congela", "Se evapora", "Se vuelve verde", "Desaparece para siempre"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué comen los herbívoros?",
-        "opciones": ["Piedras", "Plantas", "Carne", "Peces"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué animal es carnívoro?",
-        "opciones": ["La oveja", "El caballo", "El lobo", "El conejo"],
+        "pregunta": "¿Qué son las nubes?",
+        "opciones": ["Algodón", "Humo", "Gotitas de agua condensada", "Polvo"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué animal es herbívoro?",
-        "opciones": ["El león", "La jirafa", "El tiburón", "El águila"],
+        "pregunta": "¿Qué es la precipitación?",
+        "opciones": ["La subida del agua", "La caída de lluvia o nieve", "El calor del sol", "El viento"],
         "correcta": 1
+      },
+      {
+        "pregunta": "¿El agua se mueve en un ciclo?",
+        "opciones": ["Sí, siempre", "No, está quieta", "Solo en verano", "Solo en el mar"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿A dónde vuelve el agua de los ríos?",
+        "opciones": ["A la Luna", "Al espacio", "Al mar", "A las casas"],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El agua en la naturaleza",
-    "texto": "El agua es necesaria para la vida. La podemos encontrar en muchos sitios. En el mar el agua es salada. En los ríos y en los lagos el agua es dulce. También cae agua dulce del cielo cuando llueve o cuando nieva en las montañas.",
+    "titulo": "Máquinas simples y compuestas",
+    "texto": "Usamos máquinas para trabajar mejor. Las máquinas simples tienen pocas piezas, como la rueda, la palanca, la polea o el plano inclinado. Las máquinas compuestas están formadas por muchas piezas y mecanismos, como una bicicleta, un reloj o un coche.",
     "preguntas": [
       {
-        "pregunta": "¿El agua es necesaria para vivir?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿La polea es una máquina simple?",
+        "opciones": ["Sí", "No, es compuesta"],
         "correcta": 0
       },
       {
-        "pregunta": "¿El agua del mar es dulce?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Dónde hay agua salada?",
-        "opciones": ["En el río", "En el lago", "En el mar", "En el grifo"],
+        "pregunta": "¿Qué máquina es compuesta?",
+        "opciones": ["Una tijera", "Una rampa", "Un coche", "Un martillo"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué cae del cielo?",
-        "opciones": ["Piedras", "Lluvia", "Sal", "Peces"],
+        "pregunta": "¿Cuántas piezas tienen las máquinas simples?",
+        "opciones": ["Pocas", "Miles", "Millones", "Ninguna"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿La bicicleta es simple o compuesta?",
+        "opciones": ["Simple", "Compuesta"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es el agua del río?",
-        "opciones": ["Dulce", "Salada", "Picante", "Amarga"],
+        "pregunta": "¿Para qué sirve el plano inclinado?",
+        "opciones": ["Para subir cosas rodando", "Para cortar", "Para volar", "Para pegar"],
         "correcta": 0
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Los materiales",
-    "texto": "Las cosas están hechas de diferentes materiales. La madera sale de los troncos de los árboles. La lana viene de las ovejas. El plástico y el cristal se fabrican en las fábricas. El papel también se hace con madera de los árboles.",
+    "titulo": "Los ecosistemas",
+    "texto": "Un ecosistema es el conjunto de seres vivos y el lugar donde viven (medio físico). En un ecosistema hay productores (plantas), consumidores (animales herbívoros y carnívoros) y descomponedores, que se alimentan de restos de otros seres vivos.",
     "preguntas": [
       {
-        "pregunta": "¿La madera sale de los árboles?",
+        "pregunta": "¿Qué son las plantas en un ecosistema?",
+        "opciones": ["Consumidores", "Productores", "Descomponedores", "Piedras"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quiénes son los consumidores?",
+        "opciones": ["Las plantas", "El sol", "Los animales", "El agua"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué forma un ecosistema?",
+        "opciones": ["Solo animales", "Solo plantas", "Seres vivos y medio físico", "Solo rocas"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué comen los herbívoros?",
+        "opciones": ["Carne", "Plantas", "Plástico", "Aire"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Los hongos son descomponedores?",
         "opciones": ["Sí", "No"],
         "correcta": 0
-      },
-      {
-        "pregunta": "¿El plástico crece en el campo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De dónde viene la lana?",
-        "opciones": ["De la vaca", "De la oveja", "Del cerdo", "Del perro"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué se hace con madera?",
-        "opciones": ["Coches", "Papel", "Cristal", "Lana"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Dónde se hace el cristal?",
-        "opciones": ["En el mar", "En el bosque", "En la fábrica", "En la granja"],
-        "correcta": 2
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Cuidamos el planeta",
-    "texto": "Para cuidar la Tierra tenemos que reciclar la basura. Tiramos el papel en el contenedor azul. El plástico y los envases van al contenedor amarillo. El vidrio y las botellas de cristal van al contenedor verde. Así ensuciamos menos.",
+    "titulo": "El sistema solar",
+    "texto": "Vivimos en el Sistema Solar. El Sol es una estrella que nos da luz y calor. A su alrededor giran 8 planetas. La Tierra tarda 365 días (un año) en dar una vuelta completa al Sol. La Luna es el satélite de la Tierra y gira alrededor de ella.",
     "preguntas": [
       {
-        "pregunta": "¿Hay que reciclar la basura?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿El papel va al contenedor verde?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántos planetas hay en el Sistema Solar?",
+        "opciones": ["Cinco", "Ocho", "Doce", "Cien"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué va al contenedor azul?",
-        "opciones": ["Vidrio", "Papel", "Plástico", "Comida"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué va al contenedor amarillo?",
-        "opciones": ["Papel", "Cristal", "Plástico", "Cartón"],
+        "pregunta": "¿Qué es el Sol?",
+        "opciones": ["Un planeta", "Un satélite", "Una estrella", "Un cometa"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué va al contenedor verde?",
-        "opciones": ["Vidrio", "Latas", "Revistas", "Juguetes"],
-        "correcta": 0
+        "pregunta": "¿Cuánto tarda la Tierra en girar al Sol?",
+        "opciones": ["Un día", "Un mes", "Un año", "Una hora"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es la Luna?",
+        "opciones": ["Una estrella", "Un planeta", "Un satélite", "Un asteroide"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Los planetas tienen luz propia?",
+        "opciones": ["Sí, brillan mucho", "No, reflejan la del Sol", "A veces", "Solo Marte"],
+        "correcta": 1
       }
     ]
   }

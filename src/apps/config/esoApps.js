@@ -5,7 +5,7 @@ import materiasData from '../../../public/data/materias.json'; // Ajuste de ruta
 import {
   appIslaDeLaCalma, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras,
   appGeneradorPersonajes, appBuscaElIntruso, appRosco, appOrdenaBolas, appRunner, 
-  appVisualizador3D, appLluviaDePalabras, appParejas, appClasificador, appSnake
+  appVisualizador3D, appLluviaDePalabras, appParejas, appClasificador, appSnake, appComprensionEscrita, appComprensionOral
 } from './commonApps';
 
 export const esoSubjects = materiasData.eso;
@@ -14,245 +14,245 @@ export const esoApps = {
   '1': {
     'lengua': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'matematicas': [
       appBuscaElIntruso, appVisualizador3D, appRunner, appOrdenaBolas, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'historia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ingles': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'biologia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'fisica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'musica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'plastica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'tecnologia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ed-fisica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'valenciano': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'frances': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'programacion': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake]
+    'programacion': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
   },
   '2': {
     'lengua': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'matematicas': [
       appBuscaElIntruso, appVisualizador3D, appRunner, appOrdenaBolas, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'historia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ingles': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'biologia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'fisica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'musica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'plastica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'tecnologia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ed-fisica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'valenciano': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'frances': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'programacion': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake]
   },
   '3': {
     'lengua': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'matematicas': [
       appBuscaElIntruso, appVisualizador3D, appRunner, appOrdenaBolas, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'historia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ingles': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'biologia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'fisica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'musica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'plastica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'tecnologia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ed-fisica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'valenciano': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'frances': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'programacion': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake]
+    'programacion': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
   },
   '4': {
     'lengua': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'matematicas': [
       appBuscaElIntruso, appVisualizador3D, appRunner, appOrdenaBolas, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'historia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ingles': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'ed-fisica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'biologia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'fisica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'latin': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'economia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'tecnologia': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],    
     'musica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],   
     'plastica': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'tutoria': [
       appIslaDeLaCalma, appGeneradorPersonajes,
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'valenciano': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
     'frances': [
       appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appDetectiveDePalabras,
-      appClasificador, appSnake
+      appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'programacion': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake]
+    'programacion': [appBuscaElIntruso, appRunner, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
   }
 };

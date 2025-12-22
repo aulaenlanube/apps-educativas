@@ -1,0 +1,322 @@
+[
+  {
+    "id": "1",
+    "titulo": "El Átomo: De Bohr al Modelo Mecano-Cuántico",
+    "texto": "La comprensión del átomo cambió radicalmente en el siglo XX. Niels Bohr propuso en 1913 que los electrones giran en órbitas circulares de energía fija. Sin embargo, este modelo no explicaba átomos complejos. Posteriormente, gracias a científicos como Schrödinger y Heisenberg, surgió el modelo mecano-cuántico. Este modelo establece que no podemos conocer la trayectoria exacta del electrón, sino solo la probabilidad de encontrarlo en una región llamada orbital. Los orbitales tienen diferentes formas (s, p, d, f) y se organizan en niveles de energía. Esta estructura es la que determina cómo los átomos interactúan entre sí para formar toda la materia que conocemos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué diferencia principal hay entre una órbita y un orbital?",
+        "opciones": ["Son lo mismo", "La órbita es una trayectoria fija; el orbital es una zona de probabilidad", "El orbital es más grande que la órbita", "La órbita es para protones"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quién propuso el modelo de órbitas circulares de energía fija?",
+        "opciones": ["Dalton", "Rutherford", "Niels Bohr", "Thomson"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué formas pueden tener los orbitales atómicos?",
+        "opciones": ["Solo circulares", "Solo cuadradas", "s, p, d y f", "No tienen forma"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué científico planteó que no se puede conocer la posición y velocidad exacta del electrón al mismo tiempo?",
+        "opciones": ["Heisenberg", "Lavoisier", "Newton", "Mendeléyev"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuál es la base del modelo atómico actual?",
+        "opciones": ["La mecánica clásica", "La mecánica cuántica", "La teoría de la relatividad", "El modelo del pudin"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "Enlace Químico: La búsqueda de la estabilidad",
+    "texto": "Los átomos rara vez se encuentran aislados; tienden a unirse para alcanzar una configuración electrónica estable, similar a la de los gases nobles (regla del octeto). Existen tres tipos de enlaces principales. El enlace iónico ocurre por la transferencia de electrones entre un metal y un no metal, formando redes cristalinas de iones (como la sal común). El enlace covalente sucede entre no metales que comparten parejas de electrones para completar su última capa. Finalmente, el enlace metálico se da entre metales, donde los electrones forman una 'nube' común que permite la gran conductividad eléctrica y térmica de estos materiales.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué establece la regla del octeto?",
+        "opciones": ["Que los átomos quieren tener 8 protones", "Que los átomos buscan tener 8 electrones en su última capa", "Que solo existen 8 elementos", "Que los átomos se dividen en 8"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tipo de enlace forma redes cristalinas por transferencia de electrones?",
+        "opciones": ["Covalente", "Iónico", "Metálico", "De hidrógeno"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué enlace se comparten electrones entre no metales?",
+        "opciones": ["Iónico", "Metálico", "Covalente", "Nuclear"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué los metales conducen tan bien la electricidad?",
+        "opciones": ["Porque son duros", "Debido a la nube de electrones libres en su enlace", "Porque tienen muchos neutrones", "Porque no tienen electrones"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué enlace es característico del cloruro de sodio (sal)?",
+        "opciones": ["Iónico", "Covalente", "Metálico", "Orgánico"],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "titulo": "Cinemática: MRU y MRUA",
+    "texto": "El movimiento se describe mediante magnitudes como posición, velocidad y aceleración. El Movimiento Rectilíneo Uniforme (MRU) ocurre cuando la velocidad es constante y la trayectoria es una recta. Sin embargo, en la realidad es común el Movimiento Rectilíneo Uniformemente Acelerado (MRUA), donde la velocidad cambia de forma constante debido a una aceleración. Un ejemplo clásico es la caída libre, donde los objetos caen con una aceleración de aproximadamente 9,8 m/s² causada por la gravedad terrestre. En el MRUA, la distancia recorrida no aumenta de forma lineal con el tiempo, sino de forma cuadrática, lo que significa que el móvil recorre cada vez más espacio en el mismo intervalo de tiempo.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué magnitud es constante en un MRU?",
+        "opciones": ["Aceleración", "Velocidad", "Posición", "Fuerza"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre con la velocidad en un MRUA?",
+        "opciones": ["Es siempre cero", "Es constante", "Cambia de forma constante debido a la aceleración", "Cambia aleatoriamente"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es el valor aproximado de la aceleración de la gravedad en la Tierra?",
+        "opciones": ["5 m/s²", "9,8 m/s²", "15 m/s²", "300.000 km/s"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tipo de movimiento es una piedra que cae desde un puente?",
+        "opciones": ["MRU", "MRUA (Caída libre)", "Circular uniforme", "Estático"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué unidad se mide la aceleración en el SI?",
+        "opciones": ["m/s", "km/h", "m/s²", "Newtons"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "titulo": "Las Fuerzas y la Dinámica",
+    "texto": "La dinámica explica por qué se mueven los cuerpos. Isaac Newton formuló tres leyes fundamentales. La primera ley o principio de inercia establece que un cuerpo no cambiará su estado de movimiento a menos que una fuerza neta actúe sobre él. La segunda ley relaciona la fuerza con la aceleración (F = m·a). La tercera ley o principio de acción y reacción indica que si un cuerpo A ejerce una fuerza sobre B, B ejerce una fuerza igual pero opuesta sobre A. Una fuerza muy común es el rozamiento, que siempre se opone al movimiento y depende de la rugosidad de las superficies en contacto. Sin rozamiento, no podríamos caminar ni los coches podrían frenar.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué ley explica que necesitemos cinturón de seguridad en el coche?",
+        "opciones": ["3ª Ley", "Ley de Gravitación", "1ª Ley (Inercia)", "Ley de Ohm"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es la fórmula fundamental de la dinámica?",
+        "opciones": ["F = m / a", "F = v · t", "F = m · a", "P = m / V"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Hacia dónde apunta siempre la fuerza de rozamiento?",
+        "opciones": ["Hacia arriba", "Hacia abajo", "En sentido opuesto al movimiento", "En el mismo sentido que la velocidad"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué dice la 3ª Ley de Newton?",
+        "opciones": ["A toda acción corresponde una reacción igual y opuesta", "La energía se conserva", "Los polos iguales se atraen", "F = m·a"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué ocurre si la fuerza neta sobre un cuerpo es cero?",
+        "opciones": ["El cuerpo explota", "El cuerpo acelera", "El cuerpo mantiene su velocidad constante (o reposo)", "El cuerpo se para siempre"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "titulo": "La Presión y los Fluidos",
+    "texto": "La presión es la fuerza aplicada por unidad de superficie (P = F/S). En los fluidos (líquidos y gases), la presión actúa en todas las direcciones. El Principio de Pascal afirma que una presión aplicada en un punto de un fluido encerrado se transmite con la misma intensidad a todo el fluido; esto es la base de las prensas hidráulicas y los frenos de los coches. Por otro lado, el Principio de Arquímedes explica por qué flotan los barcos: todo cuerpo sumergido en un fluido experimenta un empuje vertical hacia arriba igual al peso del fluido desalojado. Si el empuje es mayor que el peso del objeto, este flotará.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué principio explica el funcionamiento de un elevador hidráulico?",
+        "opciones": ["Principio de Arquímedes", "Principio de Pascal", "Ley de Newton", "Ley de Boyle"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es el empuje según Arquímedes?",
+        "opciones": ["Una fuerza hacia abajo", "Una fuerza horizontal", "Una fuerza vertical hacia arriba igual al peso del fluido desalojado", "La presión atmosférica"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿En qué unidades se mide la presión en el SI?",
+        "opciones": ["Newtons", "Julios", "Pascales (Pa)", "Vatios"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo afecta el área a la presión si la fuerza es la misma?",
+        "opciones": ["A menor área, menor presión", "A menor área, mayor presión", "No afecta", "El área no importa"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué un submarino puede hundirse o flotar?",
+        "opciones": ["Porque cambia de color", "Porque varía su peso llenando o vaciando tanques de agua", "Porque apaga el motor", "Porque el mar es profundo"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "titulo": "Electricidad: Ley de Ohm y Circuitos",
+    "texto": "La corriente eléctrica es el flujo de electrones a través de un conductor. Tres magnitudes definen un circuito: el Voltaje o tensión (V), la Intensidad (I) y la Resistencia (R). La Ley de Ohm establece que V = I · R. Los componentes de un circuito pueden conectarse en serie o en paralelo. En serie, la corriente tiene un solo camino y si un componente falla, el circuito se abre. En paralelo, la corriente se divide en varias ramas, lo que permite que los dispositivos funcionen de forma independiente, como ocurre en las instalaciones eléctricas de nuestras casas. Es fundamental conocer la potencia eléctrica (P = V · I) para calcular el consumo de energía.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál es la fórmula de la Ley de Ohm?",
+        "opciones": ["V = I + R", "V = I / R", "V = I · R", "R = V · I"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿En qué unidad se mide la intensidad de corriente?",
+        "opciones": ["Voltios", "Ohmios", "Amperios", "Vatios"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué ocurre en un circuito en serie si se funde una bombilla?",
+        "opciones": ["Las demás brillan más", "Las demás siguen encendidas", "Se apagan todas", "El cable se quema"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué mide la resistencia?",
+        "opciones": ["La fuerza del electrón", "La oposición al paso de la corriente", "La cantidad de energía", "La velocidad de la luz"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo están conectados los enchufes de una casa?",
+        "opciones": ["En serie", "En paralelo", "No están conectados", "Con imanes"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "titulo": "Reacciones Químicas y Energía",
+    "texto": "En toda reacción química hay un intercambio de energía con el entorno. Las reacciones exotérmicas liberan energía en forma de calor (como una combustión). Las reacciones endotérmicas necesitan absorber energía para ocurrir (como la fotosíntesis). Para que una reacción comience, hace falta una energía mínima llamada energía de activación. Además, la velocidad de una reacción puede alterarse mediante catalizadores, sustancias que aceleran el proceso sin consumirse en él. En la industria, esto es vital para producir materiales de forma eficiente. También es importante el concepto de mol, la unidad que usan los químicos para contar átomos y moléculas.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es una reacción exotérmica?",
+        "opciones": ["La que absorbe calor", "La que libera energía en forma de calor", "La que no cambia", "La que ocurre en el vacío"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve un catalizador?",
+        "opciones": ["Para detener la reacción", "Para enfriar el sistema", "Para aumentar la velocidad de la reacción", "Para cambiar los productos"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es la energía de activación?",
+        "opciones": ["La energía total liberada", "La energía mínima para que empiece la reacción", "La energía de los imanes", "La energía eléctrica"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es un ejemplo de reacción endotérmica?",
+        "opciones": ["Quemar madera", "La fotosíntesis", "Explotar un petardo", "Oxidar un clavo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué unidad se usa para medir la cantidad de sustancia en química?",
+        "opciones": ["Litro", "Gramo", "Mol", "Metro"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "Sustancias Químicas e Impacto Ambiental",
+    "texto": "La química está presente en todo, pero su uso irresponsable tiene consecuencias. La lluvia ácida se produce cuando óxidos de azufre y nitrógeno de las fábricas reaccionan con el agua de las nubes, dañando bosques y monumentos. El aumento del CO2 potencia el efecto invernadero, causando el calentamiento global. Por otro lado, la capa de ozono (O3) nos protege de la radiación ultravioleta, pero fue dañada por los gases CFC. Hoy en día, la Química Verde busca procesos más limpios, reduciendo residuos y usando materias primas renovables para proteger la biosfera y la salud humana.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué causa la lluvia ácida?",
+        "opciones": ["El exceso de oxígeno", "Óxidos de azufre y nitrógeno", "El polvo del desierto", "El vapor de agua puro"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué función tiene el ozono en la estratosfera?",
+        "opciones": ["Causar lluvia", "Filtrar la radiación ultravioleta", "Producir oxígeno para respirar", "Calentar el planeta"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué gas es el principal responsable del efecto invernadero antropogénico?",
+        "opciones": ["Argón", "Nitrógeno", "Dióxido de carbono (CO2)", "Helio"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué objetivo tiene la Química Verde?",
+        "opciones": ["Pintar los laboratorios de verde", "Crear procesos químicos más sostenibles y menos contaminantes", "Hacer bombas más potentes", "Estudiar solo las plantas"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué gases dañaron gravemente la capa de ozono?",
+        "opciones": ["CFC", "CO2", "H2O", "O2"],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "titulo": "La Energía Térmica y el Calor específico",
+    "texto": "El calor es energía en tránsito. Cuando dos cuerpos se tocan, el calor pasa del de mayor temperatura al de menor. Pero no todas las sustancias se calientan igual de rápido. El calor específico es la cantidad de energía necesaria para elevar un grado la temperatura de un gramo de sustancia. El agua tiene un calor específico muy alto, lo que significa que le cuesta mucho calentarse y enfriarse. Por eso, el mar actúa como regulador térmico: en invierno desprende calor lentamente y en verano se mantiene fresco, suavizando las temperaturas de las ciudades costeras frente a las del interior.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es el calor específico?",
+        "opciones": ["La temperatura de ebullición", "La energía para cambiar de estado", "La energía necesaria para elevar la temperatura de una sustancia", "El calor de una estufa"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué las zonas costeras tienen climas más suaves?",
+        "opciones": ["Por la arena", "Por el viento", "Por el alto calor específico del agua del mar", "Porque el sol brilla más"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿En qué unidad se mide el calor en el SI?",
+        "opciones": ["Caloría", "Grado Celsius", "Julio (J)", "Grado Kelvin"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué sucede cuando dos cuerpos alcanzan la misma temperatura?",
+        "opciones": ["Siguen intercambiando calor", "Llegan al equilibrio térmico y cesa el flujo de calor", "Se funden", "Uno se enfría más"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se transmite el calor en los metales?",
+        "opciones": ["Convección", "Radiación", "Conducción", "Sublimación"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "titulo": "Los Cambios Químicos en la Vida Cotidiana",
+    "texto": "Estamos rodeados de química. La oxidación es una reacción lenta con el oxígeno (como el hierro oxidado). La combustión es una oxidación rápida con desprendimiento de luz y calor (fuego). La corrosión es el deterioro de metales por agentes químicos. En nuestro cuerpo, la respiración celular es una reacción química donde la glucosa reacciona con el oxígeno para darnos energía. También la cocina es un laboratorio: al hacer un bizcocho, la levadura produce CO2 que hace que la masa suba. Entender la química nos permite mejorar materiales, medicinas y entender cómo funciona nuestro propio organismo.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué tipo de reacción es la combustión?",
+        "opciones": ["Endotérmica", "Lenta", "Oxidación rápida con luz y calor", "Física"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué gas produce la levadura en la cocina?",
+        "opciones": ["Oxígeno", "Dióxido de carbono", "Butano", "Cloro"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la reacción química que nos da energía en las células?",
+        "opciones": ["Fotosíntesis", "Respiración celular", "Combustión externa", "Fermentación láctica"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es la corrosión?",
+        "opciones": ["El crecimiento de una planta", "El deterioro de los metales", "La limpieza de un cristal", "Un tipo de mezcla"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué se necesita para que haya fuego?",
+        "opciones": ["Solo madera", "Combustible, comburente (oxígeno) y energía de activación", "Solo calor", "Agua y sol"],
+        "correcta": 1
+      }
+    ]
+  }
+]

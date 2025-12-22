@@ -1,320 +1,320 @@
 [
   {
     "id": "1",
-    "titulo": "Seres vivos y objetos",
-    "texto": "En el parque hay muchas cosas diferentes. Las palomas y los árboles son seres vivos porque nacen, crecen y se alimentan. El banco de madera y los columpios son objetos inertes, no tienen vida. La piedra del camino tampoco tiene vida, es un objeto.",
+    "titulo": "La célula y los seres vivos",
+    "texto": "Todos los seres vivos están formados por células. La célula es la parte más pequeña de un ser vivo capaz de realizar las funciones vitales. Los seres unicelulares, como las bacterias, tienen una sola célula. Los seres pluricelulares, como los animales y las plantas, están formados por millones de células organizadas en tejidos y órganos.",
     "preguntas": [
       {
-        "pregunta": "¿El banco tiene vida?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es la célula?",
+        "opciones": ["Una parte de una roca", "La parte más pequeña de un ser vivo", "Un tipo de energía", "Un animal pequeño"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Las palomas son seres vivos?",
+        "pregunta": "¿Cómo son los seres unicelulares?",
+        "options": ["Tienen muchas células", "No tienen células", "Tienen una sola célula", "Solo viven en el fuego"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué forman las células en los seres pluricelulares?",
+        "opciones": ["Tejidos y órganos", "Solo huesos", "Piedras", "Nubes"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Un árbol es un ser pluricelular?",
         "opciones": ["Sí", "No"],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué hacen los seres vivos?",
-        "opciones": ["Nacen y crecen", "No hacen nada", "Son de plástico", "Siempre están quietos"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cuál es un objeto inerte?",
-        "opciones": ["El árbol", "La paloma", "El niño", "La piedra"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué hay en el parque?",
-        "opciones": ["Solo piedras", "Solo animales", "Seres vivos y objetos", "Nada"],
-        "correcta": 2
+        "pregunta": "¿Las bacterias son seres vivos?",
+        "opciones": ["No", "Sí, son unicelulares", "Solo si se mueven", "Son robots"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Las partes del cuerpo",
-    "texto": "Nuestro cuerpo tiene tres partes principales: la cabeza, el tronco y las extremidades. En la cabeza tenemos la cara y el cerebro. El tronco es la parte central del cuerpo. Las extremidades son los brazos y las piernas, que nos sirven para movernos.",
+    "titulo": "El sistema nervioso",
+    "texto": "El sistema nervioso recibe información del exterior a través de los sentidos y decide cómo reaccionar. Está formado por los nervios, la médula espinal y el cerebro. Los nervios llevan la información al cerebro, que la procesa y envía órdenes a los músculos para que el cuerpo se mueva.",
     "preguntas": [
       {
-        "pregunta": "¿Cuántas partes principales tiene el cuerpo?",
-        "opciones": ["Dos", "Tres"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Las piernas son extremidades?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Dónde está la cara?",
-        "opciones": ["En el tronco", "En la cabeza", "En las piernas", "En los brazos"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuál es la parte central del cuerpo?",
-        "opciones": ["La mano", "El pie", "El tronco", "El pelo"],
+        "pregunta": "¿Qué órgano procesa la información y envía órdenes?",
+        "opciones": ["El estómago", "El pulmón", "El cerebro", "El corazón"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Para qué sirven las piernas?",
-        "opciones": ["Para pensar", "Para comer", "Para oler", "Para moverse"],
-        "correcta": 3
+        "pregunta": "¿Qué partes forman el sistema nervioso?",
+        "opciones": ["Huesos y músculos", "Cerebro, médula y nervios", "Boca y nariz", "Venas y arterias"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo llega la información al cerebro?",
+        "opciones": ["Por la sangre", "Por los nervios", "Por el aire", "Por la comida"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve el sistema nervioso?",
+        "opciones": ["Para digerir", "Para respirar", "Para recibir información y reaccionar", "Para nada"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Dónde se encuentra la médula espinal?",
+        "opciones": ["En el brazo", "En la columna vertebral", "En el pie", "En el ojo"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Los cinco sentidos",
-    "texto": "Tenemos cinco sentidos para conocer el mundo. Con los ojos vemos los colores (vista). Con los oídos escuchamos música (oído). Con la nariz olemos las flores (olfato). Con la lengua saboreamos la comida (gusto). Y con la piel tocamos las cosas suaves (tacto).",
+    "titulo": "Nutrientes y alimentación",
+    "texto": "Los alimentos contienen nutrientes necesarios para la salud. Los hidratos de carbono y las grasas nos dan energía. Las proteínas sirven para crecer y reparar el cuerpo. Las vitaminas y minerales, presentes en frutas y verduras, ayudan a que el cuerpo funcione correctamente y nos protegen de enfermedades.",
     "preguntas": [
       {
-        "pregunta": "¿Cuántos sentidos tenemos?",
-        "opciones": ["Cinco", "Siete"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Usamos la nariz para ver?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué nos dan los hidratos de carbono?",
+        "opciones": ["Sueño", "Energía", "Sed", "Frío"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué sentido usamos para escuchar música?",
-        "opciones": ["El gusto", "El tacto", "El oído", "La vista"],
+        "pregunta": "¿Para qué sirven las proteínas?",
+        "opciones": ["Para nada", "Para dar color a la piel", "Para crecer y reparar el cuerpo", "Para dormir"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Con qué saboreamos la comida?",
-        "opciones": ["Con la lengua", "Con el ojo", "Con la oreja", "Con el dedo"],
+        "pregunta": "¿Dónde encontramos muchas vitaminas?",
+        "opciones": ["En los caramelos", "En las frutas y verduras", "En el agua salada", "En el pan"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Las grasas son necesarias?",
+        "opciones": ["Sí, dan energía de reserva", "No, nunca", "Solo para los animales", "Son veneno"],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué sentido está en la piel?",
-        "opciones": ["Olfato", "Vista", "Gusto", "Tacto"],
-        "correcta": 3
+        "pregunta": "¿Qué nutriente ayuda a prevenir enfermedades?",
+        "opciones": ["El azúcar", "Las vitaminas", "La sal", "El aceite"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Animales domésticos y salvajes",
-    "texto": "Los animales pueden ser domésticos o salvajes. Los animales domésticos, como el perro y el gato, viven con las personas y nos hacen compañía. Los animales salvajes, como el león y el elefante, viven libres en la naturaleza y buscan su propia comida.",
+    "titulo": "Los artrópodos",
+    "texto": "Los artrópodos son invertebrados con patas articuladas y un esqueleto externo duro. Se dividen en cuatro grupos principales: los insectos (6 patas), los arácnidos (8 patas), los crustáceos (10 patas o más) y los miriápodos (muchas patas, como el ciempiés).",
     "preguntas": [
       {
-        "pregunta": "¿El gato es un animal doméstico?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿El león vive en una casa?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántas patas tienen los insectos?",
+        "opciones": ["Cuatro", "Seis", "Ocho", "Diez"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde viven los animales salvajes?",
-        "opciones": ["En la granja", "En un piso", "En la naturaleza", "En la tienda"],
+        "pregunta": "¿A qué grupo pertenece la araña?",
+        "opciones": ["Insectos", "Crustáceos", "Arácnidos", "Miriápodos"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué animal es salvaje?",
-        "opciones": ["La vaca", "El perro", "El elefante", "La gallina"],
+        "pregunta": "¿Qué tienen los artrópodos para protegerse?",
+        "opciones": ["Piel suave", "Un esqueleto externo duro", "Plumas", "Escamas de pez"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es un crustáceo?",
+        "opciones": ["La hormiga", "El ciempiés", "El cangrejo", "La abeja"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué hacen los animales domésticos?",
-        "opciones": ["Viven con personas", "Viven en la selva", "Cazan leones", "Vuelan alto"],
-        "correcta": 0
+        "pregunta": "¿Cuántas patas tiene un arácnido?",
+        "opciones": ["6", "8", "10", "100"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Cómo nacen los animales",
-    "texto": "Los animales pueden nacer de dos formas. Los vivíparos nacen de la barriga de su mamá, como los perros, los gatos y las personas. Los ovíparos nacen de un huevo, como las gallinas, los patos, las tortugas y los peces.",
+    "titulo": "La reproducción de las plantas",
+    "texto": "Muchas plantas se reproducen mediante flores. En los estambres se fabrica el polen. La polinización ocurre cuando el polen llega al pistilo de otra flor, gracias al viento o a los insectos. Tras la polinización, el ovario se transforma en fruto y los óvulos en semillas, de las que nacerá una nueva planta.",
     "preguntas": [
       {
-        "pregunta": "¿Las personas somos vivíparas?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Los perros ponen huevos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Dónde se fabrica el polen?",
+        "opciones": ["En la raíz", "En los estambres", "En las hojas", "En el fruto"],
         "correcta": 1
       },
       {
-        "pregunta": "¿De dónde nacen los ovíparos?",
-        "opciones": ["De una semilla", "De un huevo", "De una flor", "De la barriga"],
+        "pregunta": "¿Qué transporta el polen en la polinización?",
+        "opciones": ["El agua del grifo", "El viento y los insectos", "Los coches", "Las piedras"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué animal es ovíparo?",
-        "opciones": ["El gato", "El caballo", "La gallina", "La vaca"],
-        "correcta": 2
+        "pregunta": "¿En qué se convierte el óvulo?",
+        "opciones": ["En raíz", "En semilla", "En hoja", "En tallo"],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué animal es vivíparo?",
-        "opciones": ["El pez", "El pato", "La tortuga", "El perro"],
-        "correcta": 3
+        "pregunta": "¿Qué parte de la flor se convierte en fruto?",
+        "opciones": ["El pétalo", "El ovario", "La espina", "El polen"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Las abejas ayudan a las plantas?",
+        "opciones": ["No, las molestan", "Sí, ayudan a la polinización", "Solo comen hojas", "No hacen nada"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Las partes de una planta",
-    "texto": "Las plantas son seres vivos que no se pueden mover. Tienen tres partes importantes. La raíz está bajo tierra y sujeta la planta. El tallo crece hacia arriba y sostiene las hojas. Las hojas son verdes y sirven para que la planta respire.",
+    "titulo": "Mezclas homogéneas y heterogéneas",
+    "texto": "Una mezcla es la unión de dos o más sustancias. En las mezclas homogéneas no se pueden distinguir sus componentes a simple vista, como el aire o el agua con sal. En las mezclas heterogéneas sí se distinguen los componentes, como una ensalada o agua con arena.",
     "preguntas": [
       {
-        "pregunta": "¿Las plantas se pueden mover?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué tipo de mezcla es el agua con sal?",
+        "opciones": ["Heterogénea", "Homogénea", "Sólida", "Espacial"],
         "correcta": 1
       },
       {
-        "pregunta": "¿De qué color suelen ser las hojas?",
-        "opciones": ["Verdes", "Azules"],
+        "pregunta": "¿Se ven los componentes en una mezcla heterogénea?",
+        "opciones": ["Sí", "No"],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué parte está bajo tierra?",
-        "opciones": ["La flor", "La hoja", "El tallo", "La raíz"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué sostiene las hojas?",
-        "opciones": ["El sol", "El agua", "El tallo", "La tierra"],
+        "pregunta": "¿Cuál es un ejemplo de mezcla heterogénea?",
+        "opciones": ["El aire", "Batido de chocolate", "Ensalada", "Agua del mar"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Para qué sirven las hojas?",
-        "opciones": ["Para respirar", "Para andar", "Para oír", "Para comer tierra"],
+        "pregunta": "¿El aire es una mezcla?",
+        "opciones": ["No, es solo gas", "Sí, es una mezcla homogénea", "Es una mezcla heterogénea", "Es un líquido"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llama la unión de varias sustancias?",
+        "opciones": ["Mezcla", "Separación", "Átomo", "Célula"],
         "correcta": 0
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Carnívoros y herbívoros",
-    "texto": "Los animales comen cosas diferentes. Los animales que comen carne de otros animales se llaman carnívoros, como el tigre o el lobo. Los animales que comen plantas, hierba o frutas se llaman herbívoros, como la vaca, el conejo o la jirafa.",
+    "titulo": "La flotabilidad y la densidad",
+    "texto": "La densidad es la relación entre la masa de un objeto y su volumen. Un objeto flota en el agua si su densidad es menor que la del agua. Si su densidad es mayor, el objeto se hunde. Por eso, una bola de acero se hunde, pero un barco de acero flota porque tiene mucho aire dentro.",
     "preguntas": [
       {
-        "pregunta": "¿El tigre come carne?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuándo flota un objeto?",
+        "opciones": ["Cuando es muy grande", "Cuando es menos denso que el agua", "Cuando es de metal", "Cuando no tiene color"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué pasa si un objeto es más denso que el agua?",
+        "opciones": ["Flota", "Se hunde", "Explota", "Se vuelve invisible"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué flota un barco de metal?",
+        "opciones": ["Porque el metal siempre flota", "Porque tiene mucho aire en su interior", "Porque los peces lo empujan", "Por arte de magia"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es la densidad?",
+        "opciones": ["La relación entre masa y volumen", "El color de un objeto", "El nombre de un científico", "Lo que mide un termómetro"],
         "correcta": 0
       },
       {
-        "pregunta": "¿La vaca es carnívora?",
+        "pregunta": "¿Una piedra suele ser más densa que el agua?",
         "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué comen los herbívoros?",
-        "opciones": ["Piedras", "Plantas", "Carne", "Peces"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué animal es carnívoro?",
-        "opciones": ["La oveja", "El caballo", "El lobo", "El conejo"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué animal es herbívoro?",
-        "opciones": ["El león", "La jirafa", "El tiburón", "El águila"],
-        "correcta": 1
+        "correcta": 0
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El agua en la naturaleza",
-    "texto": "El agua es necesaria para la vida. La podemos encontrar en muchos sitios. En el mar el agua es salada. En los ríos y en los lagos el agua es dulce. También cae agua dulce del cielo cuando llueve o cuando nieva en las montañas.",
+    "titulo": "Formas de energía",
+    "texto": "La energía se manifiesta de muchas formas. La energía mecánica es la de los objetos en movimiento. La energía térmica es el calor. La energía luminosa es la luz. La energía eléctrica es la que usan los electrodomésticos. La energía química está en los alimentos, las pilas y los combustibles.",
     "preguntas": [
       {
-        "pregunta": "¿El agua es necesaria para vivir?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿El agua del mar es dulce?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Dónde hay agua salada?",
-        "opciones": ["En el río", "En el lago", "En el mar", "En el grifo"],
+        "pregunta": "¿Qué energía tiene un coche en marcha?",
+        "opciones": ["Térmica", "Luminosa", "Mecánica", "Sonora"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué cae del cielo?",
-        "opciones": ["Piedras", "Lluvia", "Sal", "Peces"],
+        "pregunta": "¿Dónde encontramos energía química?",
+        "opciones": ["En el sol", "En las pilas y alimentos", "En el viento", "En un espejo"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es el agua del río?",
-        "opciones": ["Dulce", "Salada", "Picante", "Amarga"],
+        "pregunta": "¿Cómo se llama la energía de la luz?",
+        "opciones": ["Eléctrica", "Luminosa", "Química", "Atómica"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué energía usa una tostadora?",
+        "opciones": ["Mecánica", "Eléctrica y Térmica", "Química", "Nuclear"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿El calor es una forma de energía?",
+        "opciones": ["Sí, es energía térmica", "No"],
         "correcta": 0
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Los materiales",
-    "texto": "Las cosas están hechas de diferentes materiales. La madera sale de los troncos de los árboles. La lana viene de las ovejas. El plástico y el cristal se fabrican en las fábricas. El papel también se hace con madera de los árboles.",
+    "titulo": "Imanes y magnetismo",
+    "texto": "El magnetismo es la capacidad de algunos materiales de atraer al hierro. Los imanes tienen dos polos: norte y sur. Los polos opuestos se atraen, mientras que los polos iguales se repelen. La Tierra se comporta como un imán gigante con dos polos magnéticos.",
     "preguntas": [
       {
-        "pregunta": "¿La madera sale de los árboles?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué material atraen los imanes?",
+        "opciones": ["Plástico", "Madera", "Hierro", "Vidrio"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué pasa si juntas dos polos iguales?",
+        "opciones": ["Se atraen", "Se repelen (se alejan)", "Se rompen", "Se calientan"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántos polos tiene un imán?",
+        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué pasa si juntas un polo norte y un polo sur?",
+        "opciones": ["Se atraen", "Se repelen", "Nada", "Desaparecen"],
         "correcta": 0
       },
       {
-        "pregunta": "¿El plástico crece en el campo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿La Tierra tiene magnetismo?",
+        "opciones": ["No", "Sí, es como un imán gigante", "Solo en el mar", "Solo en el espacio"],
         "correcta": 1
-      },
-      {
-        "pregunta": "¿De dónde viene la lana?",
-        "opciones": ["De la vaca", "De la oveja", "Del cerdo", "Del perro"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué se hace con madera?",
-        "opciones": ["Coches", "Papel", "Cristal", "Lana"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Dónde se hace el cristal?",
-        "opciones": ["En el mar", "En el bosque", "En la fábrica", "En la granja"],
-        "correcta": 2
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Cuidamos el planeta",
-    "texto": "Para cuidar la Tierra tenemos que reciclar la basura. Tiramos el papel en el contenedor azul. El plástico y los envases van al contenedor amarillo. El vidrio y las botellas de cristal van al contenedor verde. Así ensuciamos menos.",
+    "titulo": "Los componentes de las máquinas",
+    "texto": "Las máquinas complejas están formadas por muchas piezas. La estructura es el chasis que sostiene la máquina. El motor produce el movimiento. Los operadores mecánicos, como engranajes o ruedas, transmiten el movimiento. Los circuitos eléctricos y sensores controlan su funcionamiento.",
     "preguntas": [
       {
-        "pregunta": "¿Hay que reciclar la basura?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué parte de la máquina produce movimiento?",
+        "opciones": ["La estructura", "El motor", "La pintura", "El tornillo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirven los engranajes?",
+        "opciones": ["Para decorar", "Para transmitir movimiento", "Para enfriar", "Para iluminar"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es la estructura de una máquina?",
+        "opciones": ["Lo que le da energía", "La parte que sostiene las piezas", "El humo que suelta", "El cable"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué controla las máquinas modernas?",
+        "opciones": ["Circuitos y sensores", "Solo cuerdas", "Velas", "Comida"],
         "correcta": 0
       },
       {
-        "pregunta": "¿El papel va al contenedor verde?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué va al contenedor azul?",
-        "opciones": ["Vidrio", "Papel", "Plástico", "Comida"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué va al contenedor amarillo?",
-        "opciones": ["Papel", "Cristal", "Plástico", "Cartón"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué va al contenedor verde?",
-        "opciones": ["Vidrio", "Latas", "Revistas", "Juguetes"],
+        "pregunta": "¿Una bicicleta tiene operadores mecánicos?",
+        "opciones": ["Sí, como la cadena y los piñones", "No, no tiene nada"],
         "correcta": 0
       }
     ]

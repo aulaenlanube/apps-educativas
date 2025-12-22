@@ -1,321 +1,321 @@
 [
   {
     "id": "1",
-    "titulo": "Seres vivos y objetos",
-    "texto": "En el parque hay muchas cosas diferentes. Las palomas y los árboles son seres vivos porque nacen, crecen y se alimentan. El banco de madera y los columpios son objetos inertes, no tienen vida. La piedra del camino tampoco tiene vida, es un objeto.",
+    "titulo": "El esqueleto y los músculos",
+    "texto": "Nuestro cuerpo tiene una estructura dura en su interior llamada esqueleto, formada por todos los huesos. Los huesos sostienen el cuerpo y protegen órganos delicados como el corazón o el cerebro. Para movernos usamos los músculos, que son blandos y elásticos, y tiran de los huesos.",
     "preguntas": [
       {
-        "pregunta": "¿El banco tiene vida?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo son los huesos?",
+        "opciones": ["Blandos y elásticos", "Duros y rígidos"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Las palomas son seres vivos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué hacen los músculos?",
+        "opciones": ["Nos ayudan a movernos", "No hacen nada", "Son duros como piedras", "Protegen la piel"],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué hacen los seres vivos?",
-        "opciones": ["Nacen y crecen", "No hacen nada", "Son de plástico", "Siempre están quietos"],
-        "correcta": 0
+        "pregunta": "¿Qué protege el cerebro?",
+        "opciones": ["Los músculos", "El pelo", "Los huesos del cráneo", "Las piernas"],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Cuál es un objeto inerte?",
-        "opciones": ["El árbol", "La paloma", "El niño", "La piedra"],
-        "correcta": 3
+        "pregunta": "¿El esqueleto está fuera del cuerpo?",
+        "opciones": ["Sí", "No, está en el interior", "A veces", "Solo en los brazos"],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué hay en el parque?",
-        "opciones": ["Solo piedras", "Solo animales", "Seres vivos y objetos", "Nada"],
+        "pregunta": "¿Cómo son los músculos?",
+        "opciones": ["Duros", "De madera", "Blandos y elásticos", "De plástico"],
         "correcta": 2
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Las partes del cuerpo",
-    "texto": "Nuestro cuerpo tiene tres partes principales: la cabeza, el tronco y las extremidades. En la cabeza tenemos la cara y el cerebro. El tronco es la parte central del cuerpo. Las extremidades son los brazos y las piernas, que nos sirven para movernos.",
+    "titulo": "Vertebrados e invertebrados",
+    "texto": "Los animales se clasifican en dos grandes grupos. Los animales vertebrados son los que tienen un esqueleto interno con columna vertebral, como los perros, los pájaros o los peces. Los animales invertebrados no tienen huesos ni columna vertebral, como las mariposas, los gusanos o las arañas.",
     "preguntas": [
       {
-        "pregunta": "¿Cuántas partes principales tiene el cuerpo?",
-        "opciones": ["Dos", "Tres"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Las piernas son extremidades?",
+        "pregunta": "¿El perro es vertebrado?",
         "opciones": ["Sí", "No"],
         "correcta": 0
       },
       {
-        "pregunta": "¿Dónde está la cara?",
-        "opciones": ["En el tronco", "En la cabeza", "En las piernas", "En los brazos"],
+        "pregunta": "¿Qué tienen los vertebrados?",
+        "opciones": ["Solo piel", "Columna vertebral y huesos", "Alas de metal", "Hojas"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuál es la parte central del cuerpo?",
-        "opciones": ["La mano", "El pie", "El tronco", "El pelo"],
+        "pregunta": "¿La mariposa tiene huesos?",
+        "opciones": ["Sí, muchos", "No, es invertebrada", "Solo en las alas", "Sí, en la cabeza"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es un animal invertebrado?",
+        "opciones": ["El gato", "El caballo", "El gusano", "El león"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Para qué sirven las piernas?",
-        "opciones": ["Para pensar", "Para comer", "Para oler", "Para moverse"],
-        "correcta": 3
+        "pregunta": "¿Los peces son vertebrados?",
+        "opciones": ["Sí", "No", "Depende del día", "Solo los naranjas"],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Los cinco sentidos",
-    "texto": "Tenemos cinco sentidos para conocer el mundo. Con los ojos vemos los colores (vista). Con los oídos escuchamos música (oído). Con la nariz olemos las flores (olfato). Con la lengua saboreamos la comida (gusto). Y con la piel tocamos las cosas suaves (tacto).",
+    "titulo": "Mamíferos, aves y reptiles",
+    "texto": "Dentro de los vertebrados hay grupos diferentes. Los mamíferos tienen pelo y las crías toman leche de su madre. Las aves tienen el cuerpo cubierto de plumas y nacen de huevos. Los reptiles tienen escamas duras y reptan por el suelo, como las serpientes y los lagartos.",
     "preguntas": [
       {
-        "pregunta": "¿Cuántos sentidos tenemos?",
-        "opciones": ["Cinco", "Siete"],
-        "correcta": 0
+        "pregunta": "¿Qué tienen los mamíferos en el cuerpo?",
+        "opciones": ["Plumas", "Escamas", "Pelo", "Conchas"],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Usamos la nariz para ver?",
+        "pregunta": "¿Las aves toman leche?",
         "opciones": ["Sí", "No"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué sentido usamos para escuchar música?",
-        "opciones": ["El gusto", "El tacto", "El oído", "La vista"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Con qué saboreamos la comida?",
-        "opciones": ["Con la lengua", "Con el ojo", "Con la oreja", "Con el dedo"],
+        "pregunta": "¿Cómo nacen las aves?",
+        "opciones": ["De huevos", "De la barriga", "De semillas", "Del agua"],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué sentido está en la piel?",
-        "opciones": ["Olfato", "Vista", "Gusto", "Tacto"],
-        "correcta": 3
+        "pregunta": "¿Qué animal es un reptil?",
+        "opciones": ["El perro", "La gallina", "La serpiente", "La vaca"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué cubre el cuerpo de los reptiles?",
+        "opciones": ["Pelo suave", "Plumas de colores", "Escamas duras", "Ropa"],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Animales domésticos y salvajes",
-    "texto": "Los animales pueden ser domésticos o salvajes. Los animales domésticos, como el perro y el gato, viven con las personas y nos hacen compañía. Los animales salvajes, como el león y el elefante, viven libres en la naturaleza y buscan su propia comida.",
+    "titulo": "Árboles, arbustos y hierbas",
+    "texto": "Las plantas pueden ser de tres tipos según su tallo. Los árboles tienen un tallo grueso y duro llamado tronco, y son altos. Los arbustos tienen tallos duros pero son más bajos y sus ramas salen cerca del suelo. Las hierbas tienen tallos finos, verdes y flexibles.",
     "preguntas": [
       {
-        "pregunta": "¿El gato es un animal doméstico?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Cómo es el tallo de los árboles?",
+        "opciones": ["Fino y verde", "Grueso y duro (tronco)", "No tienen tallo", "De plástico"],
+        "correcta": 1
       },
       {
-        "pregunta": "¿El león vive en una casa?",
+        "pregunta": "¿Las hierbas tienen tronco de madera?",
         "opciones": ["Sí", "No"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde viven los animales salvajes?",
-        "opciones": ["En la granja", "En un piso", "En la naturaleza", "En la tienda"],
+        "pregunta": "¿Dónde salen las ramas de los arbustos?",
+        "opciones": ["Muy alto", "Cerca del suelo", "Bajo tierra", "No tienen ramas"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué planta tiene tallo flexible?",
+        "opciones": ["El roble", "El pino", "La hierba", "El arbusto"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué animal es salvaje?",
-        "opciones": ["La vaca", "El perro", "El elefante", "La gallina"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué hacen los animales domésticos?",
-        "opciones": ["Viven con personas", "Viven en la selva", "Cazan leones", "Vuelan alto"],
-        "correcta": 0
+        "pregunta": "¿Los árboles son bajos?",
+        "opciones": ["Sí", "No, suelen ser altos", "Son invisibles", "Son del tamaño de una hormiga"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Cómo nacen los animales",
-    "texto": "Los animales pueden nacer de dos formas. Los vivíparos nacen de la barriga de su mamá, como los perros, los gatos y las personas. Los ovíparos nacen de un huevo, como las gallinas, los patos, las tortugas y los peces.",
+    "titulo": "Hoja caduca y perenne",
+    "texto": "Los árboles se comportan diferente en otoño. Los árboles de hoja caduca pierden sus hojas cuando hace frío y se quedan con las ramas desnudas en invierno. Los árboles de hoja perenne no pierden todas sus hojas a la vez y se mantienen verdes durante todo el año, como el pino.",
     "preguntas": [
       {
-        "pregunta": "¿Las personas somos vivíparas?",
+        "pregunta": "¿Los árboles de hoja caduca pierden las hojas?",
+        "opciones": ["Sí, en otoño e invierno", "No, nunca"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cómo están los árboles de hoja perenne en invierno?",
+        "opciones": ["Sin hojas", "Verdes y con hojas", "Secos", "Azules"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿El pino es de hoja perenne?",
         "opciones": ["Sí", "No"],
         "correcta": 0
       },
       {
-        "pregunta": "¿Los perros ponen huevos?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De dónde nacen los ovíparos?",
-        "opciones": ["De una semilla", "De un huevo", "De una flor", "De la barriga"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué animal es ovíparo?",
-        "opciones": ["El gato", "El caballo", "La gallina", "La vaca"],
+        "pregunta": "¿Cuándo se caen las hojas caducas?",
+        "opciones": ["En verano", "En primavera", "En otoño", "Nunca"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué animal es vivíparo?",
-        "opciones": ["El pez", "El pato", "La tortuga", "El perro"],
-        "correcta": 3
+        "pregunta": "¿Qué significa perenne?",
+        "opciones": ["Que dura todo el año", "Que se muere rápido", "Que no tiene hojas", "Que es pequeño"],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Las partes de una planta",
-    "texto": "Las plantas son seres vivos que no se pueden mover. Tienen tres partes importantes. La raíz está bajo tierra y sujeta la planta. El tallo crece hacia arriba y sostiene las hojas. Las hojas son verdes y sirven para que la planta respire.",
+    "titulo": "Los alimentos y la salud",
+    "texto": "Para estar sanos hay que comer un poco de todo. Los alimentos de origen animal vienen de los animales, como la carne, el pescado, los huevos y la leche. Los alimentos de origen vegetal vienen de las plantas, como las frutas, las verduras, las legumbres y los cereales.",
     "preguntas": [
       {
-        "pregunta": "¿Las plantas se pueden mover?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿La manzana es de origen animal?",
+        "opciones": ["Sí", "No, es vegetal"],
         "correcta": 1
       },
       {
-        "pregunta": "¿De qué color suelen ser las hojas?",
-        "opciones": ["Verdes", "Azules"],
-        "correcta": 0
+        "pregunta": "¿De dónde viene la leche?",
+        "opciones": ["De las plantas", "De los animales", "De las piedras", "Del sol"],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué parte está bajo tierra?",
-        "opciones": ["La flor", "La hoja", "El tallo", "La raíz"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué sostiene las hojas?",
-        "opciones": ["El sol", "El agua", "El tallo", "La tierra"],
+        "pregunta": "¿Qué es un alimento vegetal?",
+        "opciones": ["El pollo", "El huevo", "La lechuga", "El jamón"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Para qué sirven las hojas?",
-        "opciones": ["Para respirar", "Para andar", "Para oír", "Para comer tierra"],
+        "pregunta": "¿Hay que comer solo chuches?",
+        "opciones": ["Sí, es lo mejor", "No, hay que comer de todo", "Solo chocolate", "Nada"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿El pescado es de origen animal?",
+        "opciones": ["Sí", "No"],
         "correcta": 0
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Carnívoros y herbívoros",
-    "texto": "Los animales comen cosas diferentes. Los animales que comen carne de otros animales se llaman carnívoros, como el tigre o el lobo. Los animales que comen plantas, hierba o frutas se llaman herbívoros, como la vaca, el conejo o la jirafa.",
+    "titulo": "Los estados del agua",
+    "texto": "El agua puede estar en tres estados. En estado líquido es como la bebemos o la encontramos en los ríos. En estado sólido es hielo o nieve, cuando hace mucho frío. En estado gaseoso es vapor de agua, como cuando el agua hierve en una olla y sale humo.",
     "preguntas": [
       {
-        "pregunta": "¿El tigre come carne?",
+        "pregunta": "¿El hielo es agua sólida?",
         "opciones": ["Sí", "No"],
         "correcta": 0
       },
       {
-        "pregunta": "¿La vaca es carnívora?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo está el agua de los ríos?",
+        "opciones": ["Sólida", "Líquida", "Gaseosa", "Seca"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué comen los herbívoros?",
-        "opciones": ["Piedras", "Plantas", "Carne", "Peces"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué animal es carnívoro?",
-        "opciones": ["La oveja", "El caballo", "El lobo", "El conejo"],
+        "pregunta": "¿Qué es el vapor?",
+        "opciones": ["Agua líquida", "Agua sólida", "Agua en estado gaseoso", "Hielo"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué animal es herbívoro?",
-        "opciones": ["El león", "La jirafa", "El tiburón", "El águila"],
+        "pregunta": "¿Cuándo se convierte el agua en hielo?",
+        "opciones": ["Cuando hace calor", "Cuando hace mucho frío", "Cuando la bebemos", "Nunca"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Podemos beber el hielo directamente?",
+        "opciones": ["Sí, es fácil", "No, está duro y frío", "Es vapor", "Es aire"],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El agua en la naturaleza",
-    "texto": "El agua es necesaria para la vida. La podemos encontrar en muchos sitios. En el mar el agua es salada. En los ríos y en los lagos el agua es dulce. También cae agua dulce del cielo cuando llueve o cuando nieva en las montañas.",
+    "titulo": "Las máquinas nos ayudan",
+    "texto": "Las máquinas son inventos que nos ayudan a trabajar con menos esfuerzo. Hay máquinas simples que tienen pocas piezas. La rueda nos ayuda a transportar cosas. La rampa nos ayuda a subir objetos pesados. La palanca nos sirve para levantar cosas con poca fuerza.",
     "preguntas": [
       {
-        "pregunta": "¿El agua es necesaria para vivir?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿El agua del mar es dulce?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Para qué sirven las máquinas?",
+        "opciones": ["Para dormir", "Para trabajar con menos esfuerzo", "Para comer más", "Para nada"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde hay agua salada?",
-        "opciones": ["En el río", "En el lago", "En el mar", "En el grifo"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué cae del cielo?",
-        "opciones": ["Piedras", "Lluvia", "Sal", "Peces"],
+        "pregunta": "¿La rueda es una máquina compleja?",
+        "opciones": ["Sí, tiene motor", "No, es una máquina simple", "Es un animal", "Es una planta"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es el agua del río?",
-        "opciones": ["Dulce", "Salada", "Picante", "Amarga"],
+        "pregunta": "¿Qué nos ayuda a subir cosas pesadas?",
+        "opciones": ["La rampa", "El papel", "La cuchara", "El lápiz"],
         "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué hace una palanca?",
+        "opciones": ["Sirve para pintar", "Ayuda a levantar cosas", "Sirve para volar", "Da música"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Las máquinas simples tienen muchas piezas?",
+        "opciones": ["Sí, miles", "No, tienen pocas piezas", "Tienen ordenadores", "Son mágicas"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Los materiales",
-    "texto": "Las cosas están hechas de diferentes materiales. La madera sale de los troncos de los árboles. La lana viene de las ovejas. El plástico y el cristal se fabrican en las fábricas. El papel también se hace con madera de los árboles.",
+    "titulo": "El Sol y la Tierra",
+    "texto": "La Tierra es el planeta donde vivimos. Se mueve de dos formas: gira sobre sí misma, lo que produce el día y la noche; y gira alrededor del Sol, tardando un año entero. El Sol es una estrella gigante que nos da luz y calor.",
     "preguntas": [
       {
-        "pregunta": "¿La madera sale de los árboles?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿El Sol es un planeta?",
+        "opciones": ["Sí", "No, es una estrella"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué nos da el Sol?",
+        "opciones": ["Agua y comida", "Luz y calor", "Frío y lluvia", "Juguetes"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿La Tierra se mueve?",
+        "opciones": ["Sí, gira sobre sí misma y alrededor del Sol", "No, está quieta", "Solo salta", "Se cae"],
         "correcta": 0
       },
       {
-        "pregunta": "¿El plástico crece en el campo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
+        "pregunta": "¿Qué pasa cuando la Tierra gira sobre sí misma?",
+        "opciones": ["Se hace de día y de noche", "Cambian los años", "Llueve fuego", "No pasa nada"],
+        "correcta": 0
       },
       {
-        "pregunta": "¿De dónde viene la lana?",
-        "opciones": ["De la vaca", "De la oveja", "Del cerdo", "Del perro"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué se hace con madera?",
-        "opciones": ["Coches", "Papel", "Cristal", "Lana"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Dónde se hace el cristal?",
-        "opciones": ["En el mar", "En el bosque", "En la fábrica", "En la granja"],
-        "correcta": 2
+        "pregunta": "¿Cuánto tarda la Tierra en dar la vuelta al Sol?",
+        "opciones": ["Un día", "Una semana", "Un mes", "Un año"],
+        "correcta": 3
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Cuidamos el planeta",
-    "texto": "Para cuidar la Tierra tenemos que reciclar la basura. Tiramos el papel en el contenedor azul. El plástico y los envases van al contenedor amarillo. El vidrio y las botellas de cristal van al contenedor verde. Así ensuciamos menos.",
+    "titulo": "Las tres R: Reducir, Reutilizar, Reciclar",
+    "texto": "Para cuidar el planeta usamos la regla de las tres R. Reducir significa gastar menos cosas, como cerrar el grifo. Reutilizar es usar algo viejo para otra cosa, como hacer un lapicero con una botella. Reciclar es separar la basura en los contenedores de colores.",
     "preguntas": [
       {
-        "pregunta": "¿Hay que reciclar la basura?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué significa Reducir?",
+        "opciones": ["Comprar más cosas", "Gastar menos", "Tirar todo", "Romper juguetes"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es Reutilizar?",
+        "opciones": ["Dar un nuevo uso a algo viejo", "Tirar a la basura", "Comprar nuevo", "Quemar"],
         "correcta": 0
       },
       {
-        "pregunta": "¿El papel va al contenedor verde?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Para qué sirven los contenedores de colores?",
+        "opciones": ["Para decorar la calle", "Para reciclar", "Para jugar al escondite", "Para sentarse"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué va al contenedor azul?",
-        "opciones": ["Vidrio", "Papel", "Plástico", "Comida"],
-        "correcta": 1
+        "pregunta": "¿Cerrar el grifo ayuda al planeta?",
+        "opciones": ["Sí, ahorramos agua", "No, da igual", "Es malo", "El agua sobra"],
+        "correcta": 0
       },
       {
-        "pregunta": "¿Qué va al contenedor amarillo?",
-        "opciones": ["Papel", "Cristal", "Plástico", "Cartón"],
+        "pregunta": "¿Cuántas R hay en la regla?",
+        "opciones": ["Una", "Dos", "Tres", "Diez"],
         "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué va al contenedor verde?",
-        "opciones": ["Vidrio", "Latas", "Revistas", "Juguetes"],
-        "correcta": 0
       }
     ]
   }

@@ -1,0 +1,322 @@
+[
+  {
+    "id": "1",
+    "titulo": "La Célula Eucariota Animal y sus Orgánulos",
+    "texto": "El cuerpo humano está compuesto por billones de células eucariotas animales. A diferencia de las procariotas, poseen un núcleo diferenciado que alberga el material genético (ADN). En el citoplasma se encuentran orgánulos especializados: las mitocondrias, responsables de la respiración celular y obtención de ATP; el retículo endoplasmático (rugoso y liso), encargado de la síntesis de proteínas y lípidos; el aparato de Golgi, que empaqueta sustancias; y los lisosomas, que realizan la digestión celular. La membrana plasmática no es solo una barrera, sino una estructura dinámica que regula el intercambio de sustancias mediante transporte activo y pasivo, manteniendo el medio interno celular estable.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál es la función principal de las mitocondrias?",
+        "opciones": ["Sintetizar proteínas", "Realizar la respiración celular para obtener energía", "Almacenar agua", "Dividir el núcleo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué orgánulo contiene ribosomas asociados y sintetiza proteínas?",
+        "opciones": ["Aparato de Golgi", "Retículo endoplasmático liso", "Retículo endoplasmático rugoso", "Lisosoma"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué molécula contiene la información genética en el núcleo?",
+        "opciones": ["ATP", "Lípidos", "ADN", "Glucosa"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es la función de los lisosomas?",
+        "opciones": ["Digestión de sustancias y estructuras celulares", "Producción de energía", "Protección externa", "Movimiento celular"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cómo se llama el modelo de membrana que regula el paso de sustancias?",
+        "opciones": ["Pared rígida", "Membrana plasmática", "Cápsula bacteriana", "Citoplasma"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "Tejidos Humanos: Especialización Celular",
+    "texto": "Las células se agrupan en tejidos para realizar funciones específicas. Existen cuatro tipos fundamentales. El tejido epitelial reviste superficies externas (piel) e internas (mucosas) y forma glándulas. El tejido conectivo (que incluye el adiposo, óseo, cartilaginoso y la sangre) sirve de unión y soporte. El tejido muscular, formado por miocitos, es capaz de contraerse para generar movimiento; se divide en estriado esquelético (voluntario), estriado cardíaco e liso (involuntario). Por último, el tejido nervioso está especializado en la transmisión de impulsos bioeléctricos mediante neuronas y células de glía, permitiendo la comunicación rápida entre todas las partes del organismo.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué tejido forma la capa externa de la piel y las glándulas?",
+        "opciones": ["Conectivo", "Muscular", "Epitelial", "Nervioso"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál de estos es un tipo de tejido conectivo?",
+        "opciones": ["Mucosa", "Sangre", "Neurona", "Músculo liso"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué característica distingue al tejido muscular?",
+        "opciones": ["Produce hormonas", "Es rígido", "Capacidad de contracción", "No tiene células"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué tipo de músculo es el encargado de los movimientos voluntarios?",
+        "opciones": ["Músculo liso", "Músculo cardíaco", "Músculo estriado esquelético", "Tejido adiposo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué células acompañan a las neuronas en el tejido nervioso?",
+        "opciones": ["Miocitos", "Glía", "Osteocitos", "Glóbulos blancos"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "titulo": "Digestión y Absorción de Nutrientes",
+    "texto": "El aparato digestivo transforma los polímeros de los alimentos en monómeros absorbibles. Tras la digestión mecánica en la boca y la química en el estómago (ácido clorhídrico y pepsina), el quimo pasa al duodeno. Allí, el páncreas vierte enzimas y el hígado vierte la bilis para emulsionar grasas. La mayor parte de la absorción ocurre en el yeyuno e íleon a través de las vellosidades intestinales, que pasan los nutrientes a los capilares sanguíneos (glúcidos y aminoácidos) o linfáticos (lípidos). Finalmente, en el intestino grueso se reabsorbe agua y sales minerales, y la microbiota intestinal sintetiza vitaminas esenciales antes de la formación de las heces.",
+    "preguntas": [
+      {
+        "pregunta": "¿Dónde se produce la mayor parte de la absorción de nutrientes?",
+        "opciones": ["Estómago", "Intestino grueso", "Intestino delgado", "Esófago"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es la función de la bilis?",
+        "opciones": ["Digerir proteínas", "Emulsionar las grasas", "Absorber agua", "Matar bacterias"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué órgano produce enzimas digestivas y bicarbonato?",
+        "opciones": ["Hígado", "Páncreas", "Bazo", "Riñón"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre principalmente en el intestino grueso?",
+        "opciones": ["Digestión de proteínas", "Absorción de agua y sales", "Absorción de grasas", "Producción de ácido"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llaman las estructuras que aumentan la superficie de absorción intestinal?",
+        "opciones": ["Alvéolos", "Nefronas", "Vellosidades intestinales", "Neuronas"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "titulo": "Intercambio de Gases en los Alvéolos",
+    "texto": "El aparato respiratorio permite la hematosis o intercambio de gases entre el aire y la sangre. El aire viaja por las vías respiratorias hasta los alvéolos pulmonares, pequeñas bolsas rodeadas de capilares. El intercambio ocurre por difusión simple a favor de gradiente: el oxígeno, más concentrado en el alvéolo, pasa a la sangre y se une a la hemoglobina; el dióxido de carbono, más concentrado en la sangre, pasa al alvéolo para ser exhalado. Este proceso depende de la ventilación pulmonar (inspiración y espiración), controlada por el diafragma y los músculos intercostales. Sin este suministro constante de oxígeno, las mitocondrias no podrían realizar la respiración celular necesaria para la vida.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo se llama el proceso de intercambio de gases en los pulmones?",
+        "opciones": ["Digestión", "Hematosis", "Filtración", "Ósmosis"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué proteína transporta el oxígeno en los glóbulos rojos?",
+        "opciones": ["Insulina", "Colágeno", "Hemoglobina", "Fibrina"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué mecanismo físico pasan los gases a través de la membrana?",
+        "opciones": ["Transporte activo", "Difusión simple", "Bomba de sodio", "Succión"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el principal músculo responsable de la ventilación?",
+        "opciones": ["Corazón", "Bíceps", "Diafragma", "Abdominales"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué gas es un desecho del metabolismo celular que expulsamos?",
+        "opciones": ["Oxígeno", "Nitrógeno", "Dióxido de carbono", "Metano"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "titulo": "El Sistema Circulatorio y la Sangre",
+    "texto": "El sistema circulatorio humano es cerrado, doble y completo. Consta de un corazón con cuatro cavidades (dos aurículas y dos ventrículos) que actúa como bomba. La sangre oxigenada sale del ventrículo izquierdo por la arteria aorta hacia todo el organismo (circulación mayor). La sangre pobre en oxígeno regresa por las venas cavas a la aurícula derecha, pasa al ventrículo derecho y de ahí a los pulmones (circulación menor). El plasma sanguíneo transporta nutrientes y desechos, mientras que los elementos formes cumplen funciones críticas: los eritrocitos transportan gases, los leucocitos defienden el cuerpo y las plaquetas (trombocitos) inician la coagulación ante heridas.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué cavidad del corazón bombea sangre oxigenada a todo el cuerpo?",
+        "opciones": ["Aurícula derecha", "Ventrículo derecho", "Ventrículo izquierdo", "Aurícula izquierda"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llama la circulación que va del corazón a los pulmones?",
+        "opciones": ["Circulación mayor", "Circulación menor o pulmonar", "Circulación cerrada", "Circulación linfática"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué elemento de la sangre es responsable de la coagulación?",
+        "opciones": ["Glóbulos rojos", "Glóbulos blancos", "Plaquetas", "Plasma"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué se dice que nuestra circulación es 'completa'?",
+        "opciones": ["Porque llega a los pies", "Porque la sangre oxigenada y la carboxigenada no se mezclan", "Porque el corazón nunca para", "Porque tiene muchas arterias"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la función principal de los leucocitos?",
+        "opciones": ["Transporte de CO2", "Defensa del organismo", "Cerrar heridas", "Dar color a la sangre"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "titulo": "Excreción y Funcionamiento Renal",
+    "texto": "El aparato urinario mantiene la homeostasis regulando la composición química de la sangre. Los riñones filtran el plasma en las nefronas. El proceso consta de tres fases: filtración glomerular (pasa agua y solutos al túbulo), reabsorción tubular (se recuperan sustancias útiles como glucosa y agua hacia la sangre) y secreción (se añaden desechos adicionales a la orina). La orina resultante viaja por los uréteres hasta la vejiga y se expulsa por la uretra. Además de eliminar urea y ácido úrico, los riñones son vitales para regular la presión arterial y el equilibrio hídrico. El fallo renal requiere tratamientos complejos como la hemodiálisis para limpiar la sangre artificialmente.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo se llama la unidad funcional del riñón?",
+        "opciones": ["Neurona", "Nefrona", "Alvéolo", "Vellosidad"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre durante la reabsorción tubular?",
+        "opciones": ["Se pierde toda el agua", "Se recuperan sustancias útiles para la sangre", "Se fabrican proteínas", "Se eliminan glóbulos rojos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué conducto lleva la orina desde el riñón a la vejiga?",
+        "opciones": ["Uretra", "Arteria renal", "Uréter", "Esófago"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es el principal desecho nitrogenado eliminado en la orina?",
+        "opciones": ["Glucosa", "Urea", "Oxígeno", "Hierro"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve la hemodiálisis?",
+        "opciones": ["Para curar la gripe", "Para sustituir la función de filtración de los riñones", "Para fortalecer los huesos", "Para digerir grasas"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "titulo": "El Sistema Nervioso y la Neurona",
+    "texto": "El sistema nervioso coordina las respuestas del organismo mediante señales electroquímicas. La neurona es la unidad básica, formada por el soma (cuerpo), dendritas (reciben señal) y axón (envía señal). El impulso nervioso viaja por el axón hasta el terminal sináptico, donde se liberan neurotransmisores al espacio sináptico para estimular a la siguiente célula. El Sistema Nervioso Central (encéfalo y médula) procesa la información, mientras que el Periférico conecta los receptores y efectores. Un aspecto crítico es la vaina de mielina, que recubre los axones y aumenta drásticamente la velocidad de transmisión del impulso mediante una conducción saltatoria.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué parte de la neurona recibe la información de otras células?",
+        "opciones": ["Axón", "Vaina de mielina", "Dendritas", "Botón sináptico"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se comunican dos neuronas si no llegan a tocarse?",
+        "opciones": ["Por la sangre", "Mediante neurotransmisores en la sinapsis", "Por cables de cobre", "Por contacto físico directo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la función de la mielina?",
+        "opciones": ["Dar color a la neurona", "Aumentar la velocidad del impulso nervioso", "Digerir glucosa", "Fabricar hormonas"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué componentes forman el Sistema Nervioso Central?",
+        "opciones": ["Nervios y músculos", "Encéfalo y médula espinal", "Ojos y oídos", "Huesos y cartílagos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es el soma en una neurona?",
+        "opciones": ["El brazo largo", "El espacio entre neuronas", "El cuerpo celular que contiene el núcleo", "La punta de la dendrita"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "Sistema Endocrino: Glándulas y Hormonas",
+    "texto": "El sistema endocrino utiliza hormonas, mensajeros químicos vertidos a la sangre que actúan sobre órganos diana específicos. El hipotálamo y la hipófisis controlan gran parte del sistema. La tiroides regula el metabolismo basal mediante la tiroxina. El páncreas es vital para el control de la glucemia: la insulina baja el azúcar en sangre y el glucagón lo sube. Las glándulas suprarrenales producen adrenalina y cortisol para el estrés. A diferencia del sistema nervioso, el endocrino produce respuestas más lentas pero de mayor duración, siendo fundamental en procesos como el crecimiento, el ciclo menstrual y el mantenimiento del equilibrio interno (homeostasis).",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué glándula se encarga de regular los niveles de azúcar en sangre?",
+        "opciones": ["Tiroides", "Hipófisis", "Páncreas", "Ovarios"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llaman las sustancias químicas del sistema endocrino?",
+        "opciones": ["Neurotransmisores", "Hormonas", "Enzimas", "Anticuerpos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hormona aumenta el azúcar en sangre cuando estamos en ayunas?",
+        "opciones": ["Insulina", "Glucagón", "Adrenalina", "Tiroxina"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la glándula 'maestra' que cuelga del cerebro?",
+        "opciones": ["Suprarrenal", "Hígado", "Hipófisis", "Timo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué diferencia al sistema endocrino del sistema nervioso?",
+        "opciones": ["El endocrino es más rápido", "El endocrino usa señales eléctricas", "El endocrino produce efectos más lentos pero duraderos", "No hay ninguna diferencia"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "titulo": "El Sistema Inmunitario y las Vacunas",
+    "texto": "Nuestro cuerpo se defiende de patógenos mediante el sistema inmunitario. Poseemos defensas inespecíficas (piel, fagocitos e inflamación) y defensas específicas. Estas últimas dependen de los linfocitos: los linfocitos B producen anticuerpos que bloquean antígenos específicos, y los linfocitos T destruyen células infectadas por virus o células tumorales. La memoria inmunitaria es la capacidad de 'recordar' un patógeno para actuar rápido en el futuro. Las vacunas aprovechan esto introduciendo antígenos inocuos para generar memoria sin causar la enfermedad. El descubrimiento de los antibióticos por Fleming fue otro hito, permitiendo matar bacterias de forma selectiva.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué células producen anticuerpos específicos?",
+        "opciones": ["Glóbulos rojos", "Plaquetas", "Linfocitos B", "Neuronas"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es la memoria inmunitaria?",
+        "opciones": ["Recordar nombres de bacterias", "Capacidad del sistema de reconocer patógenos ya combatidos", "El cerebro protegiendo el cuerpo", "Un tipo de vacuna"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Contra qué tipo de patógenos sirven los antibióticos?",
+        "opciones": ["Virus", "Bacterias", "Hongos", "Todos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el objetivo principal de una vacuna?",
+        "opciones": ["Curar una infección actual", "Generar memoria inmunitaria preventiva", "Matar virus con calor", "Digerir bacterias"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quién descubrió el primer antibiótico (penicilina)?",
+        "opciones": ["Darwin", "Pasteur", "Alexander Fleming", "Mendel"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "titulo": "Aparatos Reproductores y Fecundación",
+    "texto": "La reproducción humana asegura la continuidad de la especie. El aparato masculino produce espermatozoides en los testículos. El femenino produce óvulos en los ovarios y alberga el desarrollo del embrión en el útero. La fecundación ocurre en las trompas de Falopio cuando un espermatozoide penetra el óvulo, formando el cigoto. Este se implanta en el endometrio del útero. El desarrollo embrionario y fetal dura unos 9 meses, durante los cuales la placenta permite el intercambio de nutrientes y gases entre madre e hijo sin mezclar sus sangres. Es fundamental la prevención de Infecciones de Transmisión Sexual (ITS) mediante métodos de barrera.",
+    "preguntas": [
+      {
+        "pregunta": "¿Dónde ocurre normalmente la fecundación?",
+        "opciones": ["En el útero", "En la vagina", "En las trompas de Falopio", "En los ovarios"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué órgano permite el intercambio de sustancias entre madre y feto?",
+        "opciones": ["Vejiga", "Placenta", "Estómago", "Cerebro"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llama la célula resultante de la fecundación?",
+        "opciones": ["Óvulo", "Espermatozoide", "Cigoto", "Feto"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Dónde se produce la implantación del embrión?",
+        "opciones": ["En el ovario", "En la pared del útero (endometrio)", "En la trompa", "En el riñón"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el método más eficaz para prevenir las ITS?",
+        "opciones": ["Lavarse bien", "Pastillas anticonceptivas", "Métodos de barrera (preservativo)", "Vitaminas"],
+        "correcta": 2
+      }
+    ]
+  }
+]

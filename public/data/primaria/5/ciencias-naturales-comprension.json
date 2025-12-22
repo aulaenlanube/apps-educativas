@@ -1,321 +1,321 @@
 [
   {
     "id": "1",
-    "titulo": "Seres vivos y objetos",
-    "texto": "En el parque hay muchas cosas diferentes. Las palomas y los árboles son seres vivos porque nacen, crecen y se alimentan. El banco de madera y los columpios son objetos inertes, no tienen vida. La piedra del camino tampoco tiene vida, es un objeto.",
+    "titulo": "Los niveles de organización de la vida",
+    "texto": "Todos los seres vivos están formados por células, pero la complejidad varía enormemente entre especies. Los organismos unicelulares, como las bacterias, realizan todas sus funciones vitales en una sola célula. En cambio, los pluricelulares, como nosotros, se organizan en niveles jerárquicos. Las células similares se agrupan en tejidos; diferentes tejidos forman órganos (como los pulmones); varios órganos trabajando juntos forman un aparato o sistema (como el sistema respiratorio); y finalmente, la unión de todos estos niveles constituye el organismo completo. Esta división del trabajo permite que los seres vivos realicen funciones mucho más complejas que una célula aislada.",
     "preguntas": [
       {
-        "pregunta": "¿El banco tiene vida?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es el nivel de organización formado por varios órganos trabajando juntos?",
+        "opciones": ["Tejido", "Célula", "Aparato o sistema", "Molécula"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué diferencia a los organismos pluricelulares de los unicelulares?",
+        "opciones": ["El color de la piel", "El número de células y su organización", "Que no necesitan comer", "Que viven en el agua"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Las palomas son seres vivos?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Es el corazón un ejemplo de tejido o de órgano?",
+        "opciones": ["Tejido", "Órgano", "Aparato", "Sistema"],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué hacen los seres vivos?",
-        "opciones": ["Nacen y crecen", "No hacen nada", "Son de plástico", "Siempre están quietos"],
-        "correcta": 0
+        "pregunta": "¿Por qué es útil la división del trabajo en los niveles de organización?",
+        "opciones": ["Para gastar más energía", "Para permitir funciones más complejas", "Para no tener que comer", "Para ser más pequeños"],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuál es un objeto inerte?",
-        "opciones": ["El árbol", "La paloma", "El niño", "La piedra"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué hay en el parque?",
-        "opciones": ["Solo piedras", "Solo animales", "Seres vivos y objetos", "Nada"],
+        "pregunta": "¿Qué constituye la unión de todos los aparatos y sistemas?",
+        "opciones": ["Un tejido gigante", "Una célula compleja", "El organismo completo", "Un ecosistema"],
         "correcta": 2
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Las partes del cuerpo",
-    "texto": "Nuestro cuerpo tiene tres partes principales: la cabeza, el tronco y las extremidades. En la cabeza tenemos la cara y el cerebro. El tronco es la parte central del cuerpo. Las extremidades son los brazos y las piernas, que nos sirven para movernos.",
+    "titulo": "El Reino de las Plantas: Fotosíntesis y Respiración",
+    "texto": "Las plantas son organismos autótrofos, lo que significa que fabrican su propio alimento. Este proceso se llama fotosíntesis y ocurre principalmente en las hojas gracias a la clorofila, que capta la luz del Sol. Para realizarla, la planta absorbe agua y sales minerales por la raíz (savia bruta), que sube por el tallo hasta las hojas. Allí se combina con el dióxido de carbono del aire para formar azúcares (savia elaborada) y liberar oxígeno. Es importante recordar que las plantas también respiran: toman oxígeno y expulsan dióxido de carbono durante todo el día y la noche, aunque durante el día la fotosíntesis compensa este proceso.",
     "preguntas": [
       {
-        "pregunta": "¿Cuántas partes principales tiene el cuerpo?",
-        "opciones": ["Dos", "Tres"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Las piernas son extremidades?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Dónde está la cara?",
-        "opciones": ["En el tronco", "En la cabeza", "En las piernas", "En los brazos"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuál es la parte central del cuerpo?",
-        "opciones": ["La mano", "El pie", "El tronco", "El pelo"],
+        "pregunta": "¿Cómo se llama el proceso por el cual las plantas fabrican su alimento?",
+        "opciones": ["Digestión", "Respiración", "Fotosíntesis", "Evaporación"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Para qué sirven las piernas?",
-        "opciones": ["Para pensar", "Para comer", "Para oler", "Para moverse"],
-        "correcta": 3
+        "pregunta": "¿Qué sustancia captada por las hojas es necesaria para la fotosíntesis?",
+        "opciones": ["Oxígeno", "Dióxido de carbono", "Nitrógeno", "Argón"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuándo respiran las plantas?",
+        "opciones": ["Solo de noche", "Solo de día", "Durante todo el día y la noche", "Solo en primavera"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué nombre recibe la mezcla de agua y minerales que sube por el tallo?",
+        "opciones": ["Savia elaborada", "Clorofila", "Savia bruta", "Resina"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué gas liberan las plantas como resultado de la fotosíntesis?",
+        "opciones": ["Dióxido de carbono", "Hidrógeno", "Oxígeno", "Helio"],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Los cinco sentidos",
-    "texto": "Tenemos cinco sentidos para conocer el mundo. Con los ojos vemos los colores (vista). Con los oídos escuchamos música (oído). Con la nariz olemos las flores (olfato). Con la lengua saboreamos la comida (gusto). Y con la piel tocamos las cosas suaves (tacto).",
+    "titulo": "Los Cinco Reinos de los Seres Vivos",
+    "texto": "Para estudiar la biodiversidad, los científicos clasifican a los seres vivos en cinco reinos. El Reino Animal incluye organismos pluricelulares heterótrofos que pueden desplazarse. El Reino Plantas agrupa organismos pluricelulares autótrofos. El Reino Hongos incluye seres como setas o levaduras, que no fabrican su alimento ni se desplazan, sino que descomponen materia orgánica. El Reino Protoctistas abarca a los protozoos (unicelulares) y las algas (uni o pluricelulares). Por último, el Reino Moneras está formado por las bacterias, que son los seres unicelulares más sencillos y antiguos del planeta, careciendo de un núcleo definido en su célula.",
     "preguntas": [
       {
-        "pregunta": "¿Cuántos sentidos tenemos?",
-        "opciones": ["Cinco", "Siete"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Usamos la nariz para ver?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿A qué reino pertenecen las bacterias?",
+        "opciones": ["Protoctistas", "Moneras", "Hongos", "Animal"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué sentido usamos para escuchar música?",
-        "opciones": ["El gusto", "El tacto", "El oído", "La vista"],
-        "correcta": 2
+        "pregunta": "¿Qué caracteriza a los miembros del Reino Hongos?",
+        "opciones": ["Son autótrofos", "Descomponen materia orgánica", "Siempre se desplazan", "Tienen flores"],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Con qué saboreamos la comida?",
-        "opciones": ["Con la lengua", "Con el ojo", "Con la oreja", "Con el dedo"],
-        "correcta": 0
+        "pregunta": "¿En qué reino clasificarías a las algas?",
+        "opciones": ["Plantas", "Protoctistas", "Moneras", "Hongos"],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué sentido está en la piel?",
-        "opciones": ["Olfato", "Vista", "Gusto", "Tacto"],
-        "correcta": 3
+        "pregunta": "¿Qué significa que un animal sea 'heterótrofo'?",
+        "opciones": ["Que fabrica su comida", "Que necesita alimentarse de otros", "Que vive en el agua", "Que tiene sangre fría"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la principal diferencia entre plantas y hongos?",
+        "opciones": ["El tamaño", "La capacidad de fabricar alimento", "El color verde", "Que los hongos no son seres vivos"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Animales domésticos y salvajes",
-    "texto": "Los animales pueden ser domésticos o salvajes. Los animales domésticos, como el perro y el gato, viven con las personas y nos hacen compañía. Los animales salvajes, como el león y el elefante, viven libres en la naturaleza y buscan su propia comida.",
+    "titulo": "La nutrición I: Aparatos Digestivo y Respiratorio",
+    "texto": "La nutrición es un proceso complejo que nos aporta energía. El aparato digestivo descompone los alimentos en nutrientes mediante la masticación, los jugos gástricos del estómago y la absorción en el intestino delgado. El aparato respiratorio, por su parte, suministra el oxígeno necesario para que las células puedan 'quemar' esos nutrientes y obtener energía. Este intercambio de gases ocurre en los alvéolos pulmonares, donde el oxígeno pasa a la sangre y el dióxido de carbono, un residuo tóxico, sale de ella para ser expulsado al exhalar. Ambos sistemas deben trabajar de forma coordinada para mantener el cuerpo en funcionamiento.",
     "preguntas": [
       {
-        "pregunta": "¿El gato es un animal doméstico?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Dónde ocurre la absorción de nutrientes en el aparato digestivo?",
+        "opciones": ["Estómago", "Boca", "Intestino delgado", "Esófago"],
+        "correcta": 2
       },
       {
-        "pregunta": "¿El león vive en una casa?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es la función principal de los alvéolos pulmonares?",
+        "opciones": ["Almacenar comida", "Filtrar la sangre", "Intercambio de gases", "Producir saliva"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué gas es un residuo que expulsamos al respirar?",
+        "opciones": ["Oxígeno", "Dióxido de carbono", "Nitrógeno", "Vapor de agua"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde viven los animales salvajes?",
-        "opciones": ["En la granja", "En un piso", "En la naturaleza", "En la tienda"],
-        "correcta": 2
+        "pregunta": "¿Para qué utilizan las células el oxígeno?",
+        "opciones": ["Para fabricar huesos", "Para obtener energía de los nutrientes", "Para dormir", "Para ver mejor"],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué animal es salvaje?",
-        "opciones": ["La vaca", "El perro", "El elefante", "La gallina"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué hacen los animales domésticos?",
-        "opciones": ["Viven con personas", "Viven en la selva", "Cazan leones", "Vuelan alto"],
-        "correcta": 0
+        "pregunta": "¿Cómo se descomponen los alimentos en el estómago?",
+        "opciones": ["Mediante el aire", "Mediante jugos gástricos", "Mediante el sol", "Mediante la sangre"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Cómo nacen los animales",
-    "texto": "Los animales pueden nacer de dos formas. Los vivíparos nacen de la barriga de su mamá, como los perros, los gatos y las personas. Los ovíparos nacen de un huevo, como las gallinas, los patos, las tortugas y los peces.",
+    "titulo": "La nutrición II: Aparatos Circulatorio y Excretor",
+    "texto": "Una vez obtenidos los nutrientes y el oxígeno, el aparato circulatorio se encarga de transportarlos a todas las células del cuerpo a través de la sangre, impulsada por el corazón. La sangre viaja por arterias, venas y capilares. Pero la nutrición no termina ahí; las células generan desechos que deben ser eliminados. El aparato excretor filtra la sangre, principalmente en los riñones, para formar la orina y expulsar sustancias tóxicas. Además, las glándulas sudoríparas también ayudan en la excreción a través del sudor, que además sirve para regular la temperatura corporal cuando hace calor o hacemos ejercicio.",
     "preguntas": [
       {
-        "pregunta": "¿Las personas somos vivíparas?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Los perros ponen huevos?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De dónde nacen los ovíparos?",
-        "opciones": ["De una semilla", "De un huevo", "De una flor", "De la barriga"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué animal es ovíparo?",
-        "opciones": ["El gato", "El caballo", "La gallina", "La vaca"],
+        "pregunta": "¿Qué órgano impulsa la sangre por todo el cuerpo?",
+        "opciones": ["Pulmón", "Cerebro", "Corazón", "Hígado"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué animal es vivíparo?",
-        "opciones": ["El pez", "El pato", "La tortuga", "El perro"],
-        "correcta": 3
+        "pregunta": "¿Dónde se filtra la sangre para formar la orina?",
+        "opciones": ["Vejiga", "Riñones", "Estómago", "Corazón"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué vasos sanguíneos son los más finos y permiten el intercambio con las células?",
+        "opciones": ["Arterias", "Venas", "Capilares", "Nervios"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es una función del sudor además de la excreción?",
+        "opciones": ["Dar energía", "Regular la temperatura corporal", "Ayudar a digerir", "Transportar oxígeno"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo viajan los nutrientes hasta los dedos de los pies?",
+        "opciones": ["Por el sistema digestivo", "Por el aire", "A través de la sangre", "Por los huesos"],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Las partes de una planta",
-    "texto": "Las plantas son seres vivos que no se pueden mover. Tienen tres partes importantes. La raíz está bajo tierra y sujeta la planta. El tallo crece hacia arriba y sostiene las hojas. Las hojas son verdes y sirven para que la planta respire.",
+    "titulo": "La función de Relación: Senses y Sistema Nervioso",
+    "texto": "La función de relación nos permite captar información del entorno y reaccionar. Los órganos de los sentidos (vista, oído, olfato, gusto y tacto) tienen receptores especializados que detectan estímulos como la luz, el sonido o el calor. Estos receptores envían señales eléctricas a través de los nervios sensoriales hacia el sistema nervioso central, compuesto por el encéfalo y la médula espinal. El cerebro procesa la información y elabora una respuesta, que puede ser motora (mover un músculo) o glandular. El sistema nervioso es increíblemente rápido, permitiéndonos retirar la mano de un objeto caliente en milésimas de segundo.",
     "preguntas": [
       {
-        "pregunta": "¿Las plantas se pueden mover?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De qué color suelen ser las hojas?",
-        "opciones": ["Verdes", "Azules"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué parte está bajo tierra?",
-        "opciones": ["La flor", "La hoja", "El tallo", "La raíz"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué sostiene las hojas?",
-        "opciones": ["El sol", "El agua", "El tallo", "La tierra"],
+        "pregunta": "¿Qué sistema procesa la información de los sentidos?",
+        "opciones": ["Sistema locomotor", "Sistema circulatorio", "Sistema nervioso", "Sistema digestivo"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Para qué sirven las hojas?",
-        "opciones": ["Para respirar", "Para andar", "Para oír", "Para comer tierra"],
-        "correcta": 0
+        "pregunta": "¿Qué partes forman el sistema nervioso central?",
+        "opciones": ["Ojos y oídos", "Músculos y huesos", "Encéfalo y médula espinal", "Estómago e intestinos"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo llega la información desde los ojos al cerebro?",
+        "opciones": ["Por la sangre", "A través de los nervios", "Por los huesos", "Por el aire"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué detectan los órganos de los sentidos?",
+        "opciones": ["Respuestas", "Estímulos", "Nutrientes", "Desechos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál de estos es un ejemplo de respuesta motora?",
+        "opciones": ["Sentir frío", "Cerrar los ojos ante una luz fuerte", "Ver un color", "Oler comida"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Carnívoros y herbívoros",
-    "texto": "Los animales comen cosas diferentes. Los animales que comen carne de otros animales se llaman carnívoros, como el tigre o el lobo. Los animales que comen plantas, hierba o frutas se llaman herbívoros, como la vaca, el conejo o la jirafa.",
+    "titulo": "La Reproducción Humana y la Pubertad",
+    "texto": "Los seres humanos tenemos reproducción sexual, lo que requiere la unión de una célula sexual masculina (espermatozoide) y una femenina (óvulo). Durante la pubertad, el cuerpo experimenta cambios físicos y hormonales que preparan a los aparatos reproductores para su función. En las chicas, los ovarios comienzan a liberar óvulos y aparece la menstruación. En los chicos, los testículos empiezan a producir espermatozoides. Si un espermatozoide fecunda a un óvulo, se forma un cigoto que se implantará en el útero de la mujer, donde se desarrollará el bebé durante nueve meses en un proceso llamado embarazo.",
     "preguntas": [
       {
-        "pregunta": "¿El tigre come carne?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿La vaca es carnívora?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué comen los herbívoros?",
-        "opciones": ["Piedras", "Plantas", "Carne", "Peces"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué animal es carnívoro?",
-        "opciones": ["La oveja", "El caballo", "El lobo", "El conejo"],
+        "pregunta": "¿Cómo se llama la célula sexual masculina?",
+        "opciones": ["Óvulo", "Cigoto", "Espermatozoide", "Hormona"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué animal es herbívoro?",
-        "opciones": ["El león", "La jirafa", "El tiburón", "El águila"],
+        "pregunta": "¿Dónde se desarrolla el bebé durante el embarazo?",
+        "opciones": ["En el estómago", "En el útero", "En los ovarios", "En los riñones"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué marca el inicio de la capacidad reproductora en la mujer?",
+        "opciones": ["La infancia", "La menstruación", "El crecimiento del pelo", "El cambio de voz"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué órgano masculino produce los espermatozoides?",
+        "opciones": ["Vejiga", "Próstata", "Testículos", "Riñones"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es la fecundación?",
+        "opciones": ["El nacimiento", "La unión de óvulo y espermatozoide", "El crecimiento del cuerpo", "La alimentación del bebé"],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El agua en la naturaleza",
-    "texto": "El agua es necesaria para la vida. La podemos encontrar en muchos sitios. En el mar el agua es salada. En los ríos y en los lagos el agua es dulce. También cae agua dulce del cielo cuando llueve o cuando nieva en las montañas.",
+    "titulo": "Ecosistemas: Biotopo y Biocenosis",
+    "texto": "Un ecosistema es el conjunto formado por los seres vivos (biocenosis), el medio físico en el que habitan (biotopo) y las relaciones que existen entre ellos. El biotopo incluye factores como la luz, el suelo, el agua y la temperatura. La biocenosis comprende todas las poblaciones de diferentes especies que conviven. Dentro de un ecosistema, los seres vivos se organizan en cadenas alimentarias: los productores (plantas) obtienen energía del sol; los consumidores primarios (herbívoros) comen plantas; y los consumidores secundarios (carnívoros) comen otros animales. El equilibrio del ecosistema depende de que todos estos elementos funcionen correctamente.",
     "preguntas": [
       {
-        "pregunta": "¿El agua es necesaria para vivir?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿El agua del mar es dulce?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué componente del ecosistema incluye a los animales y plantas?",
+        "opciones": ["Biotopo", "Biocenosis", "Atmósfera", "Geosfera"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde hay agua salada?",
-        "opciones": ["En el río", "En el lago", "En el mar", "En el grifo"],
+        "pregunta": "¿Cuál es un ejemplo de factor del biotopo?",
+        "opciones": ["Un lobo", "La temperatura", "Un pino", "Una bacteria"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llaman los seres vivos que fabrican su propio alimento?",
+        "opciones": ["Consumidores", "Descomponedores", "Productores", "Depredadores"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué cae del cielo?",
-        "opciones": ["Piedras", "Lluvia", "Sal", "Peces"],
+        "pregunta": "¿Qué ocurre en una cadena alimentaria?",
+        "opciones": ["Los animales fabrican sol", "La energía pasa de un ser vivo a otro", "Las plantas comen animales", "Nada cambia"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es el agua del río?",
-        "opciones": ["Dulce", "Salada", "Picante", "Amarga"],
-        "correcta": 0
+        "pregunta": "¿Qué es una población en un ecosistema?",
+        "opciones": ["Todos los seres vivos", "Individuos de una misma especie", "Solo las rocas", "El clima"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Los materiales",
-    "texto": "Las cosas están hechas de diferentes materiales. La madera sale de los troncos de los árboles. La lana viene de las ovejas. El plástico y el cristal se fabrican en las fábricas. El papel también se hace con madera de los árboles.",
+    "titulo": "Materia: Propiedades Generales y Específicas",
+    "texto": "Todo lo que ocupa un lugar en el espacio es materia. La materia tiene propiedades generales como la masa (cantidad de materia, medida en kg) y el volumen (espacio que ocupa, medido en litros o m3). Sin embargo, para distinguir una sustancia de otra usamos propiedades específicas. La densidad es una de ellas: es la relación entre la masa y el volumen. Por ejemplo, el hierro es mucho más denso que la madera, por eso un pequeño trozo de hierro puede pesar más que un bloque grande de madera. Otras propiedades específicas son el brillo, la dureza (resistencia a ser rayado) o la solubilidad.",
     "preguntas": [
       {
-        "pregunta": "¿La madera sale de los árboles?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿El plástico crece en el campo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué propiedad nos indica la cantidad de materia de un cuerpo?",
+        "opciones": ["Volumen", "Masa", "Densidad", "Color"],
         "correcta": 1
       },
       {
-        "pregunta": "¿De dónde viene la lana?",
-        "opciones": ["De la vaca", "De la oveja", "Del cerdo", "Del perro"],
+        "pregunta": "¿Qué es el volumen?",
+        "opciones": ["Lo que pesa un objeto", "El espacio que ocupa la materia", "La dureza de un material", "La luz que refleja"],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué se hace con madera?",
-        "opciones": ["Coches", "Papel", "Cristal", "Lana"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Dónde se hace el cristal?",
-        "opciones": ["En el mar", "En el bosque", "En la fábrica", "En la granja"],
+        "pregunta": "¿Cuál es una propiedad específica que ayuda a identificar sustancias?",
+        "opciones": ["Masa", "Volumen", "Densidad", "Forma"],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué material tiene mayor dureza?",
+        "opciones": ["Talco", "Madera", "Diamante", "Plástico"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué un barco de metal flota pero una canica de metal se hunde?",
+        "opciones": ["Por el color", "Por la densidad del conjunto (barco + aire)", "Porque el barco es más viejo", "Por el viento"],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Cuidamos el planeta",
-    "texto": "Para cuidar la Tierra tenemos que reciclar la basura. Tiramos el papel en el contenedor azul. El plástico y los envases van al contenedor amarillo. El vidrio y las botellas de cristal van al contenedor verde. Así ensuciamos menos.",
+    "titulo": "Energía: Fuentes Renovables y No Renovables",
+    "texto": "La energía es la capacidad de producir cambios en los objetos. Las fuentes de energía se dividen en dos tipos. Las renovables son prácticamente inagotables y más limpias: solar (Sol), eólica (viento), hidráulica (agua) y biomasa (restos vegetales). Las no renovables se agotan con el uso y suelen contaminar más: combustibles fósiles (carbón, petróleo, gas natural) y energía nuclear (uranio). El uso excesivo de fuentes no renovables provoca el aumento del efecto invernadero y el cambio climático. Por ello, es fundamental fomentar el ahorro energético y la transición hacia energías sostenibles para proteger nuestro planeta.",
     "preguntas": [
       {
-        "pregunta": "¿Hay que reciclar la basura?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿El papel va al contenedor verde?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué va al contenedor azul?",
-        "opciones": ["Vidrio", "Papel", "Plástico", "Comida"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué va al contenedor amarillo?",
-        "opciones": ["Papel", "Cristal", "Plástico", "Cartón"],
+        "pregunta": "¿Cuál de estas fuentes de energía es renovable?",
+        "opciones": ["Petróleo", "Carbón", "Viento (Eólica)", "Gas natural"],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué va al contenedor verde?",
-        "opciones": ["Vidrio", "Latas", "Revistas", "Juguetes"],
-        "correcta": 0
+        "pregunta": "¿Qué problema causan las energías no renovables?",
+        "opciones": ["Limpian el aire", "Son inagotables", "Contaminación y cambio climático", "Son gratis"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿De dónde proviene la energía hidráulica?",
+        "opciones": ["Del sol", "Del movimiento del agua", "Del viento", "Del calor interno de la tierra"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué fuente de energía utiliza el uranio?",
+        "opciones": ["Solar", "Biomasa", "Nuclear", "Eólica"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué es importante ahorrar energía?",
+        "opciones": ["Para gastar más dinero", "Para proteger el medio ambiente", "Para que no haga sol", "No es importante"],
+        "correcta": 1
       }
     ]
   }

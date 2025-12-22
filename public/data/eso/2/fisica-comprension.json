@@ -1,0 +1,322 @@
+[
+  {
+    "id": "1",
+    "titulo": "La Teoría Cinética y las Leyes de los Gases",
+    "texto": "El estado gaseoso es el más fácil de estudiar mediante leyes matemáticas. La Teoría Cinética establece que el gas está formado por partículas que chocan entre sí y contra las paredes del recipiente, generando presión. Existen tres leyes fundamentales que relacionan presión (P), volumen (V) y temperatura (T). La Ley de Boyle-Mariotte dice que a temperatura constante, la presión y el volumen son inversamente proporcionales (P·V = k). La Ley de Charles afirma que a presión constante, el volumen es proporcional a la temperatura (V/T = k). Por último, la Ley de Gay-Lussac indica que a volumen constante, la presión es proporcional a la temperatura (P/T = k). Es obligatorio usar la escala Kelvin (K = ºC + 273) para estos cálculos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué escala de temperatura se debe usar en las leyes de los gases?",
+        "opciones": ["Celsius", "Fahrenheit", "Kelvin", "Réaumur"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué relación establece la ley de Boyle-Mariotte?",
+        "opciones": ["P y T son proporcionales", "P y V son inversamente proporcionales", "V y T son proporcionales", "P siempre es 1"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre con el volumen de un gas si lo calentamos a presión constante?",
+        "opciones": ["Disminuye", "Aumenta", "No cambia", "Desaparece"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué genera la presión de un gas en un recipiente?",
+        "opciones": ["El peso del gas", "Los choques de las partículas contra las paredes", "El color del gas", "El frío"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la fórmula para pasar de Celsius a Kelvin?",
+        "opciones": ["K = ºC - 273", "K = ºC + 273", "K = ºC / 273", "K = ºC * 100"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "Modelos Atómicos: De Dalton a Bohr",
+    "texto": "La idea de que la materia está hecha de átomos ha evolucionado. Dalton (1808) imaginó átomos como esferas macizas e indivisibles. Thomson descubrió el electrón y propuso el modelo de 'pudin de pasas', con electrones negativos incrustados en una masa positiva. Rutherford realizó el experimento de la lámina de oro y descubrió que el átomo tiene un núcleo central muy pequeño y positivo donde está casi toda la masa, mientras los electrones giran alrededor en la corteza. Bohr perfeccionó esto indicando que los electrones giran en órbitas circulares de energía fija. Hoy sabemos que el núcleo tiene protones y neutrones, y que los electrones están en nubes de probabilidad llamadas orbitales.",
+    "preguntas": [
+      {
+        "pregunta": "¿Quién descubrió el núcleo del átomo?",
+        "opciones": ["Dalton", "Thomson", "Rutherford", "Bohr"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué partícula descubrió Thomson?",
+        "opciones": ["Protón", "Neutrón", "Electrón", "Núcleo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo imaginaba Dalton los átomos?",
+        "opciones": ["Como nubes", "Como esferas macizas e indivisibles", "Como sistemas solares", "Como vacío"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué partículas hay en el núcleo atómico?",
+        "opciones": ["Solo electrones", "Protones y neutrones", "Protones y electrones", "Solo neutrones"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué propuso Bohr sobre los electrones?",
+        "opciones": ["Que están quietos", "Que giran en órbitas de energía fija", "Que son positivos", "Que no existen"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "titulo": "El Número Atómico y los Isótopos",
+    "texto": "Para identificar un átomo usamos números. El Número Atómico (Z) indica la cantidad de protones en el núcleo y define el elemento químico. En un átomo neutro, Z también es el número de electrones. El Número Másico (A) es la suma de protones y neutrones (A = Z + n). Los isótopos son átomos de un mismo elemento (mismo Z) que tienen distinto número de neutrones (distinto A). Por ejemplo, el Hidrógeno tiene tres isótopos: Protio, Deuterio y Tritio. Algunos isótopos son inestables y emiten radiación, lo que se conoce como radiactividad, muy útil en medicina para el tratamiento del cáncer o para datar restos arqueológicos mediante el Carbono-14.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué indica el número atómico Z?",
+        "opciones": ["El número de neutrones", "El número de protones", "La masa total", "El tamaño"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué son los isótopos?",
+        "opciones": ["Átomos de distinto elemento", "Átomos del mismo elemento con distinto número de neutrones", "Átomos con carga eléctrica", "Partículas del núcleo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se calcula el número de neutrones?",
+        "opciones": ["A + Z", "A - Z", "Z / A", "Solo mirando el microscopio"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es el número másico A?",
+        "opciones": ["Solo los protones", "Solo los neutrones", "La suma de protones y neutrones", "El peso en gramos"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Para qué sirve el Carbono-14?",
+        "opciones": ["Para fabricar diamantes", "Para datar restos orgánicos antiguos", "Para hacer gasolina", "Para curar la gripe"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "titulo": "Iones: Átomos con Carga",
+    "texto": "En la naturaleza, los átomos suelen buscar estabilidad eléctrica. Un átomo neutro tiene los mismos protones (+) que electrones (-). Sin embargo, puede ganar o perder electrones de su capa externa. Si pierde electrones, se queda con más carga positiva y se convierte en un catión. Si gana electrones, tiene exceso de carga negativa y se llama anión. Los iones son fundamentales en los procesos químicos y biológicos; por ejemplo, el sodio (Na+) y el potasio (K+) son esenciales para el funcionamiento de nuestras neuronas. Los metales suelen formar cationes, mientras que los no metales suelen formar aniones.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es un catión?",
+        "opciones": ["Un átomo neutro", "Un ion con carga negativa", "Un ion con carga positiva", "Un gato pequeño"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué le pasa a un átomo para convertirse en anión?",
+        "opciones": ["Pierde protones", "Gana electrones", "Pierde neutrones", "Gana protones"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la carga de un electrón?",
+        "opciones": ["Positiva", "Negativa", "Neutra", "Variable"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tipo de iones suelen formar los metales?",
+        "opciones": ["Aniones", "Cationes", "Isótopos", "Moléculas"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué un átomo neutro no tiene carga eléctrica?",
+        "opciones": ["Porque no tiene partículas", "Porque tiene igual número de protones que de electrones", "Porque sus partículas no tienen carga", "Porque es muy pequeño"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "titulo": "La Tabla Periódica de los Elementos",
+    "texto": "Dimitri Mendeléyev fue el primero en organizar los elementos conocidos en 1869. La Tabla Periódica moderna ordena los 118 elementos por su número atómico creciente. Las filas horizontales se llaman períodos e indican el número de capas de electrones. Las columnas verticales se llaman grupos o familias, y sus elementos tienen propiedades químicas similares porque tienen el mismo número de electrones en su última capa. Distinguimos grandes bloques: metales (buenos conductores, brillantes), no metales (aislantes, diversos estados) y gases nobles (muy estables, no reaccionan). Elementos como el Oxígeno, Carbono, Hidrógeno y Nitrógeno son la base de la vida.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo se llaman las filas horizontales de la tabla periódica?",
+        "opciones": ["Grupos", "Períodos", "Familias", "Bloques"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tienen en común los elementos de un mismo grupo?",
+        "opciones": ["El mismo color", "La misma masa", "Propiedades químicas similares", "Viven en el mismo país"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es la característica de los gases nobles?",
+        "opciones": ["Son muy reactivos", "Son metales", "Son muy estables y apenas reaccionan", "Huelen mal"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se ordenan los elementos actualmente?",
+        "opciones": ["Por orden alfabético", "Por su número atómico creciente", "Por su tamaño", "Por su precio"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A qué grupo pertenecen los metales?",
+        "opciones": ["A la derecha de la tabla", "A la mayoría de la tabla (centro e izquierda)", "Solo a la primera fila", "No están en la tabla"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "titulo": "Cambios Físicos vs Cambios Químicos",
+    "texto": "Es fundamental distinguir cómo cambia la materia. Un cambio físico es aquel en el que no cambia la naturaleza de la sustancia; solo cambia su estado, forma o posición (ej. romper un papel, derretir hielo). Un cambio químico o reacción química es aquel en el que las sustancias iniciales (reactivos) se transforman en sustancias nuevas (productos) con propiedades diferentes (ej. quemar madera, oxidar un metal, digerir comida). En las reacciones químicas se rompen enlaces y se forman otros nuevos. Podemos detectar un cambio químico si hay desprendimiento de gas, cambio de color, aparición de un sólido o cambios bruscos de temperatura.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál es un ejemplo de cambio químico?",
+        "opciones": ["Cortar una manzana", "Evaporar agua", "Quemar un trozo de papel", "Doblar un alambre"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llaman las sustancias que hay al principio de una reacción?",
+        "opciones": ["Productos", "Reactivos", "Mezclas", "Metales"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre en un cambio físico?",
+        "opciones": ["Aparecen sustancias nuevas", "No cambia la naturaleza de la sustancia", "Hay una explosión siempre", "El átomo se rompe"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué indica que está ocurriendo una reacción química?",
+        "opciones": ["Solo el movimiento", "Un cambio de color o aparición de gas", "Que el objeto se moja", "Nada se puede ver"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Es la oxidación del hierro un cambio físico?",
+        "opciones": ["Sí", "No, es químico", "Depende del agua", "Solo si es hierro viejo"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "titulo": "La Ley de Lavoisier y las Ecuaciones Químicas",
+    "texto": "Antoine Lavoisier, considerado el padre de la química moderna, enunció la Ley de Conservación de la Masa: 'En una reacción química, la masa total de los reactivos es igual a la masa total de los productos'. Esto significa que los átomos no desaparecen, solo se reorganizan. Para representar esto usamos ecuaciones químicas. Ajustar o balancear una ecuación consiste en colocar coeficientes delante de las fórmulas para que haya el mismo número de átomos de cada elemento en ambos lados. Por ejemplo, en la formación del agua: 2 H2 + O2 -> 2 H2O. El 2 delante del H2 indica que hay dos moléculas de hidrógeno participando.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué dice la Ley de Lavoisier?",
+        "opciones": ["Que la masa aumenta", "Que la masa disminuye", "Que la masa se conserva en una reacción", "Que la masa es relativa"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Para qué se ajusta una ecuación química?",
+        "opciones": ["Para que sea más bonita", "Para que haya el mismo número de átomos en reactivos y productos", "Para gastar menos papel", "Para cambiar los elementos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quién es el autor de la Ley de Conservación de la Masa?",
+        "opciones": ["Dalton", "Lavoisier", "Newton", "Mendeléyev"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué representan los reactivos en la ecuación?",
+        "opciones": ["El final de la reacción", "Lo que se obtiene", "Lo que hay al principio", "La velocidad"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Si reaccionan 10g de A con 5g de B, cuánta masa de producto C se obtiene?",
+        "opciones": ["5g", "10g", "15g", "20g"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "Cinemática: El estudio del movimiento",
+    "texto": "La cinemática estudia el movimiento sin preocuparse de las causas. Un cuerpo se mueve si cambia su posición respecto a un sistema de referencia. La trayectoria es el camino seguido (línea recta o curva). El desplazamiento es la distancia en línea recta entre el punto inicial y final. La velocidad media es el espacio recorrido dividido por el tiempo (v = s/t). En el Movimiento Rectilíneo Uniforme (MRU), la trayectoria es una recta y la velocidad es constante. Si la velocidad cambia, hablamos de aceleración. La unidad de velocidad en el SI es m/s, aunque solemos usar km/h en la vida cotidiana (para pasar de km/h a m/s dividimos entre 3,6).",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es la trayectoria?",
+        "opciones": ["El punto final", "La línea o camino que sigue el móvil", "La velocidad", "El tiempo total"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la fórmula de la velocidad constante?",
+        "opciones": ["v = s · t", "v = s / t", "v = a · t", "v = m / V"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué caracteriza al MRU?",
+        "opciones": ["Velocidad variable", "Trayectoria curva", "Trayectoria recta y velocidad constante", "Que el cuerpo está parado"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llama el cambio de velocidad por unidad de tiempo?",
+        "opciones": ["Desplazamiento", "Inercia", "Aceleración", "Gravedad"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es la unidad de velocidad en el Sistema Internacional?",
+        "opciones": ["km/h", "m/s", "cm/min", "Nodos"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "titulo": "Fuerzas y Leyes de Newton",
+    "texto": "Una fuerza es cualquier interacción capaz de cambiar el estado de reposo o movimiento de un cuerpo, o de deformarlo. Se mide en Newtons (N) con un dinamómetro. Isaac Newton enunció tres leyes. 1ª Ley (Inercia): un cuerpo permanece en reposo o MRU si no actúa una fuerza sobre él. 2ª Ley (Fundamental): la fuerza es igual a la masa por la aceleración (F = m·a). 3ª Ley (Acción-Reacción): si un cuerpo ejerce una fuerza sobre otro, este ejerce una fuerza igual y opuesta sobre el primero. El peso es una fuerza: es la atracción de la gravedad sobre la masa de un cuerpo (P = m·g).",
+    "preguntas": [
+      {
+        "pregunta": "¿Con qué instrumento se miden las fuerzas?",
+        "opciones": ["Termómetro", "Báscula", "Dinamómetro", "Cronómetro"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué dice la 1ª Ley de Newton (Inercia)?",
+        "opciones": ["Que todo se mueve", "Que un cuerpo mantiene su estado si no hay fuerzas externas", "Que la masa es energía", "Que el peso siempre cambia"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la fórmula de la 2ª Ley de Newton?",
+        "opciones": ["F = m + a", "F = m / a", "F = m · a", "F = v / t"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es el peso?",
+        "opciones": ["Lo mismo que la masa", "La fuerza con la que la Tierra nos atrae", "La cantidad de partículas", "Una magnitud sin unidad"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la unidad de fuerza en el SI?",
+        "opciones": ["Kilogramo", "Julio", "Newton", "Pascal"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "titulo": "Energía Térmica y Calor",
+    "texto": "La energía térmica es la energía interna de un cuerpo debida al movimiento de sus partículas. La temperatura mide esa agitación. Cuando dos cuerpos a distinta temperatura entran en contacto, se transfiere energía del más caliente al más frío en forma de calor. Esto provoca cambios: aumento de temperatura o cambios de estado. Además, los cuerpos suelen aumentar su volumen al calentarse, fenómeno llamado dilatación térmica (por eso se dejan huecos en los raíles del tren). Los efectos del calor dependen del calor específico de cada sustancia: el agua tarda mucho en calentarse y enfriarse, lo que suaviza el clima en las zonas costeras.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es la dilatación térmica?",
+        "opciones": ["El aumento de temperatura", "El aumento de volumen al calentarse", "La congelación del agua", "La rotura de un cristal"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué dirección fluye siempre el calor de forma natural?",
+        "opciones": ["Del frío al caliente", "Del caliente al frío", "Solo hacia arriba", "No se mueve"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué mide la temperatura?",
+        "opciones": ["La cantidad de calor", "La agitación media de las partículas", "El peso de las moléculas", "La dureza"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué el agua suaviza las temperaturas en la costa?",
+        "opciones": ["Porque es azul", "Porque tiene un alto calor específico (tarda en cambiar su temperatura)", "Porque hay viento", "Porque tiene sal"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llama la transferencia de calor por movimiento de masas en líquidos o gases?",
+        "opciones": ["Conducción", "Convección", "Radiación", "Fusión"],
+        "correcta": 1
+      }
+    ]
+  }
+]

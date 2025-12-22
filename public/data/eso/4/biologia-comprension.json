@@ -1,0 +1,322 @@
+[
+  {
+    "id": "1",
+    "titulo": "El Ciclo Celular: Mitosis y Meiosis",
+    "texto": "Las células se reproducen siguiendo un ciclo. La interfase es el periodo de crecimiento y duplicación del ADN. La división nuclear puede ser Mitosis o Meiosis. La mitosis ocurre en células somáticas y genera dos células hijas idénticas a la madre (2n), permitiendo el crecimiento y reparación de tejidos. La meiosis ocurre solo en células germinales para producir gametos (n). Consta de dos divisiones sucesivas. En la primera meiosis ocurre la recombinación genética (entrecruzamiento entre cromosomas homólogos), proceso clave que aumenta la variabilidad genética de la descendencia, algo esencial para la evolución de las especies.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál es el objetivo principal de la mitosis?",
+        "opciones": ["Producir gametos", "Crecimiento y renovación de tejidos", "Reducir cromosomas", "Crear variabilidad"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué proceso de división genera cuatro células haploides (n)?",
+        "opciones": ["Mitosis", "Meiosis", "Interfase", "Fisión binaria"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué fase se produce el intercambio de fragmentos entre cromosomas homólogos?",
+        "opciones": ["Mitosis", "Meiosis I", "Fase S", "Citocinesis"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué células del cuerpo realizan la meiosis?",
+        "opciones": ["Células musculares", "Neuronas", "Células germinales (precursoras de gametos)", "Células de la piel"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo son las células hijas en una mitosis?",
+        "opciones": ["Diferentes entre sí", "Tienen la mitad de ADN", "Genéticamente idénticas a la madre", "Son gigantes"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "Genética Mendeliana: Las Leyes de la Herencia",
+    "texto": "Gregor Mendel, cruzando guisantes, descubrió las reglas de la herencia. La 1ª Ley (Uniformidad) dice que si cruzas dos líneas puras, la descendencia será igual entre sí. La 2ª Ley (Segregación) explica que los alelos se separan al formar gametos, reapareciendo caracteres recesivos en la segunda generación. La 3ª Ley (Independencia) afirma que los rasgos se heredan independientemente si están en cromosomas distintos. Usamos términos como genotipo (conjunto de genes) y fenotipo (rasgos observables). Un individuo es homocigoto si tiene alelos iguales (AA o aa) y heterocigoto si son distintos (Aa), donde el alelo dominante enmascara al recesivo.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es el fenotipo?",
+        "opciones": ["Los genes ocultos", "Los rasgos físicos y observables", "Un tipo de célula", "La división celular"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre si un individuo es heterocigoto para un carácter con dominancia completa?",
+        "opciones": ["Muestra el rasgo recesivo", "Muestra el rasgo dominante", "Muestra una mezcla", "No muestra nada"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo llamamos a un individuo con alelos idénticos para un gen (AA o aa)?",
+        "opciones": ["Heterocigoto", "Homocigoto o raza pura", "Híbrido", "Mutante"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ley de Mendel explica la reaparición del carácter recesivo en la F2?",
+        "opciones": ["1ª Ley", "2ª Ley (Segregación)", "3ª Ley", "Ley de la Evolución"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué planta utilizó Mendel para sus experimentos?",
+        "opciones": ["Rosas", "Trigo", "Guisantes (Pisum sativum)", "Maíz"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "titulo": "La Estructura del ADN y el Código Genético",
+    "texto": "El ADN (ácido desoxirribonucleico) es la molécula que almacena la información biológica. Watson y Crick propusieron su estructura de doble hélice en 1953. Está formado por nucleótidos (fosfato, azúcar desoxirribosa y una base nitrogenada). Las bases son Adenina (A), Timina (T), Citosina (C) y Guanina (G), y se aparean siempre A-T y C-G. El dogma central de la biología explica que el ADN se transcribe a ARNm en el núcleo, y este sale al citoplasma para ser traducido en los ribosomas. El código genético es universal y utiliza tripletes de bases (codones) para determinar el orden de los aminoácidos en las proteínas.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué bases nitrogenadas se emparejan siempre en el ADN?",
+        "opciones": ["A-C y T-G", "A-G y T-C", "A-T y C-G", "A-U y C-G"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Dónde ocurre la traducción de la información genética en proteínas?",
+        "opciones": ["En el núcleo", "En los ribosomas", "En las mitocondrias", "En el aparato de Golgi"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la estructura del ADN propuesta por Watson y Crick?",
+        "opciones": ["Una esfera", "Una cadena simple", "Una doble hélice", "Un cubo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué azúcar forma parte del nucleótido de ADN?",
+        "opciones": ["Ribosa", "Desoxirribosa", "Glucosa", "Fructosa"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es un codón?",
+        "opciones": ["Una proteína larga", "Un triplete de bases que codifica un aminoácido", "Un brazo del cromosoma", "Un tipo de enzima"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "titulo": "Mutaciones y Biotecnología",
+    "texto": "Las mutaciones son cambios permanentes en la secuencia del ADN. Pueden ser génicas (afectan a un gen), cromosómicas (afectan a un fragmento) o genómicas (afectan al número de cromosomas, como el Síndrome de Down). Son la fuente primaria de variabilidad genética. La biotecnología moderna utiliza la ingeniería genética para manipular el ADN. Mediante enzimas de restricción y vectores (plásmidos), podemos crear organismos genéticamente modificados (OGM) o transgénicos. Esto tiene aplicaciones en medicina (insulina humana producida por bacterias), agricultura (plantas resistentes) y terapia génica para curar enfermedades hereditarias.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es una mutación?",
+        "opciones": ["Un proceso de digestión", "Un cambio permanente en el ADN", "Un tipo de ejercicio", "La curación de una herida"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tipo de mutación provoca el Síndrome de Down (un cromosoma 21 extra)?",
+        "opciones": ["Génica", "Cromosómica", "Genómica", "Sustitución"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Para qué se usa la ingeniería genética en medicina?",
+        "opciones": ["Para fabricar vendas", "Para producir hormonas como la insulina en bacterias", "Para ver huesos rotos", "Para limpiar hospitales"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué son los organismos transgénicos?",
+        "opciones": ["Animales que cambian de color", "Organismos a los que se les ha introducido un gen de otra especie", "Plantas que no tienen ADN", "Bacterias naturales"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la principal importancia biológica de las mutaciones?",
+        "opciones": ["Causan siempre la muerte", "Son la fuente de variabilidad genética para la evolución", "Hacen que el ADN sea más corto", "No tienen importancia"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "titulo": "Teorías de la Evolución: Darwin y el Neodarwinismo",
+    "texto": "La evolución explica la diversidad biológica. Lamarck propuso erróneamente la herencia de los caracteres adquiridos. Charles Darwin y Alfred Wallace propusieron la Selección Natural: los individuos con variaciones ventajosas para su medio sobreviven más y dejan más descendencia. La teoría sintética o Neodarwinismo integra el darwinismo con la genética moderna, aclarando que la evolución ocurre por cambios en las frecuencias de los genes en las poblaciones debido a mutaciones, recombinación genética y selección natural. Las pruebas de la evolución incluyen fósiles, anatomía comparada (órganos homólogos), embriología y, sobre todo, la bioquímica y el ADN.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál es el motor principal de la evolución según Darwin?",
+        "opciones": ["El esfuerzo individual", "La selección natural", "La magia", "La falta de comida"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué integra el Neodarwinismo además de las ideas de Darwin?",
+        "opciones": ["La geología", "La física cuántica", "La genética y las mutaciones", "La astronomía"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué son los órganos homólogos?",
+        "opciones": ["Órganos que no sirven para nada", "Órganos con el mismo origen evolutivo pero distinta función (ej. ala ave y brazo humano)", "Órganos iguales en especies distintas", "Órganos que se compran"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué idea de Lamarck resultó ser falsa?",
+        "opciones": ["Que las especies cambian", "La herencia de los caracteres adquiridos por el uso", "Que el medio influye", "Que los fósiles existen"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la prueba más concluyente de la evolución hoy en día?",
+        "opciones": ["El color de los ojos", "El estudio del ADN y las secuencias de proteínas", "El tamaño de los huesos", "La forma de las huellas"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "titulo": "La Historia de la Tierra y los Fósiles",
+    "texto": "La Tierra tiene unos 4.500 millones de años. Su historia se divide en eones, eras y periodos. Los fósiles son restos de seres vivos o de su actividad preservados en rocas sedimentarias. Son fundamentales para la datación relativa y para reconstruir ambientes pasados. El Precámbrico ocupa la mayor parte de la historia. En la era Paleozoica (vida antigua) aparecieron los principales grupos de invertebrados y los primeros vertebrados. El Mesozoico fue la era de los dinosaurios y los grandes reptiles. El Cenozoico es la era actual, marcada por la diversificación de mamíferos y aves tras la gran extinción del Cretácico, y la aparición del género Homo en el último periodo, el Cuaternario.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál es la edad estimada de la Tierra?",
+        "opciones": ["2024 años", "10 millones de años", "4.500 millones de años", "un billón de años"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿En qué tipo de rocas se encuentran habitualmente los fósiles?",
+        "opciones": ["Ígneas", "Metamórficas", "Sedimentarias", "Volcánicas"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál fue la era dominada por los dinosaurios?",
+        "opciones": ["Paleozoico", "Mesozoico", "Cenozoico", "Precámbrico"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué son los fósiles guía?",
+        "opciones": ["Libros sobre fósiles", "Fósiles de especies que vivieron poco tiempo y mucha extensión, útiles para datar", "Huesos muy grandes", "Piedras con formas raras"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué era vivimos actualmente?",
+        "opciones": ["Mesozoico", "Paleozoico", "Cenozoico", "Jurásico"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "titulo": "Tectónica de Placas y Relieve",
+    "texto": "La litosfera terrestre está dividida en placas tectónicas que se mueven sobre el manto debido a las corrientes de convección. Existen tres tipos de límites. En los divergentes (dorsales oceánicas) las placas se separan y se crea nueva corteza. En los convergentes (zonas de subducción o colisión continental) las placas chocan, destruyéndose corteza y formando cordilleras (orogénesis) como el Himalaya o los Andes. En los transformantes (falla de San Andrés) las placas se deslizan lateralmente. Este movimiento global explica la deriva continental (Pangea), la distribución de volcanes y terremotos, y el ciclo de las rocas, manteniendo la Tierra geológicamente activa.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué motor mueve las placas tectónicas?",
+        "opciones": ["El magnetismo solar", "Las corrientes de convección en el manto", "Las mareas", "El viento"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llama el proceso de formación de montañas?",
+        "opciones": ["Erosión", "Subducción", "Orogénesis", "Sedimentación"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué ocurre en una dorsal oceánica?",
+        "opciones": ["Se destruye corteza", "Se crea nueva corteza oceánica por separación de placas", "Chocan dos continentes", "Se forman fosas profundas"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llamaba el último supercontinente que existió?",
+        "opciones": ["Atlántida", "Pangea", "Eurasia", "Gondwana"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué fenómeno es típico de los bordes transformantes como la falla de San Andrés?",
+        "opciones": ["Grandes volcanes", "Terremotos frecuentes por roce lateral", "Formación de islas", "Cierre de océanos"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "Ecología: Poblaciones y Ecosistemas",
+    "texto": "La ecología estudia las interacciones entre los seres vivos (factores bióticos) y su medio físico (factores abióticos). Un ecosistema es la unidad funcional de la biosfera. Los organismos se organizan en poblaciones (misma especie) y comunidades o biocenosis (distintas especies). En un ecosistema hay flujo de energía y ciclo de materia. La energía fluye desde los productores hacia los consumidores y se pierde calor en cada nivel (regla del 10%). La materia se recicla gracias a los descomponedores. Las relaciones entre especies pueden ser interespecíficas, como el mutualismo (beneficio mutuo), el comensalismo, el parasitismo o la competencia por recursos limitados.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué constituye la biocenosis de un ecosistema?",
+        "opciones": ["El suelo y las rocas", "El conjunto de todos los seres vivos", "El clima y la luz", "Solo los depredadores"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué relación interespecífica beneficia a ambas especies?",
+        "opciones": ["Parasitismo", "Competencia", "Mutualismo", "Depredación"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué es importante el papel de los descomponedores?",
+        "opciones": ["Porque fabrican oxígeno", "Porque reciclan la materia orgánica convirtiéndola en inorgánica", "Porque son bonitos", "Porque matan animales"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué son los factores abióticos?",
+        "opciones": ["Los animales del bosque", "Los componentes físicos y químicos (luz, agua, temperatura)", "Las bacterias", "Los hongos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué sucede con la energía al pasar de un nivel trófico al siguiente?",
+        "opciones": ["Se multiplica", "Se mantiene igual", "La mayor parte se pierde como calor (solo pasa el 10%)", "Se convierte en materia"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "titulo": "Dinámica de la Biosfera y Biomas",
+    "texto": "La biosfera se organiza en grandes zonas climáticas llamadas biomas, definidas por su vegetación y fauna adaptada. En las zonas frías encontramos la tundra y la taiga. En las templadas, el bosque caducifolio y el bosque mediterráneo. En las cálidas, la selva tropical, la sabana y el desierto. Cada bioma presenta adaptaciones específicas: por ejemplo, las plantas xerófitas del desierto almacenan agua. El equilibrio de estos biomas es fundamental para la biodiversidad global. La pérdida de hábitats debido a la expansión humana y el cambio climático está acelerando la sexta extinción masiva, poniendo en riesgo servicios ecosistémicos vitales como la polinización o la purificación del agua.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué bioma se caracteriza por tener pinos y abetos en climas fríos?",
+        "opciones": ["Tundra", "Taiga o bosque de coníferas", "Selva", "Sabana"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llaman las plantas adaptadas a vivir con muy poca agua?",
+        "opciones": ["Acuáticas", "Epífitas", "Xerófitas", "Parasitarias"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es el bioma con mayor biodiversidad del planeta?",
+        "opciones": ["Desierto", "Taiga", "Selva tropical", "Estepa"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué define principalmente a un bioma?",
+        "opciones": ["El idioma de la gente", "El clima y la vegetación predominante", "El tipo de rocas", "La cercanía a los volcanes"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué problema actual amenaza la supervivencia de los biomas?",
+        "opciones": ["La falta de luz solar", "El cambio climático y la pérdida de hábitat", "La lluvia", "El viento"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "titulo": "Impactos Humanos y Desarrollo Sostenible",
+    "texto": "La actividad humana genera impactos ambientales críticos. La contaminación atmosférica por gases de efecto invernadero (CO2, metano) causa el calentamiento global. La destrucción de la capa de ozono por CFCs aumenta la radiación UV. La eutrofización de las aguas por fertilizantes provoca la muerte de ecosistemas acuáticos. Para mitigar esto, surge el Desarrollo Sostenible: aquel que satisface las necesidades actuales sin comprometer las de las generaciones futuras. Esto implica una transición hacia energías renovables, economía circular, protección de espacios naturales y un consumo responsable. La ciencia y la tecnología son aliadas clave para encontrar soluciones sostenibles.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es el desarrollo sostenible?",
+        "opciones": ["Gastar todo el petróleo rápido", "Crecimiento que respeta el medio ambiente y a las generaciones futuras", "Vivir sin tecnología", "No usar agua"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué gas es el principal responsable del calentamiento global antropogénico?",
+        "opciones": ["Oxígeno", "Helio", "Dióxido de carbono (CO2)", "Argón"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es la eutrofización?",
+        "opciones": ["Un tipo de energía limpia", "Exceso de nutrientes en el agua que agota el oxígeno y mata la vida", "La formación de nubes", "El crecimiento de los desiertos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es un pilar de la economía circular?",
+        "opciones": ["Usar y tirar", "Reducir, reutilizar y reciclar recursos", "Quemar toda la basura", "Comprar más plástico"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve el Protocolo de Montreal?",
+        "opciones": ["Para viajar más", "Para proteger la capa de ozono prohibiendo los CFCs", "Para plantar árboles", "Para estudiar los peces"],
+        "correcta": 1
+      }
+    ]
+  }
+]

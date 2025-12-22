@@ -1,0 +1,322 @@
+[
+  {
+    "id": "1",
+    "titulo": "El Método Científico: El camino de la ciencia",
+    "texto": "La ciencia no es solo un conjunto de conocimientos, sino una forma de investigar el mundo de manera objetiva. El método científico es el proceso sistemático que utilizan los científicos para resolver problemas. Comienza con la observación minuciosa de un fenómeno, lo que lleva a hacerse una pregunta. A continuación, se formula una hipótesis, que es una suposición explicativa que debe ser comprobada. La fase más crítica es la experimentación, donde se diseñan pruebas controladas para validar o refutar la hipótesis. Tras analizar los resultados, se extraen conclusiones. Si la hipótesis es confirmada repetidamente, puede convertirse en una ley o formar parte de una teoría científica.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cuál es el primer paso del método científico?",
+        "opciones": ["La experimentación", "La observación", "La conclusión", "La publicación"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es una hipótesis?",
+        "opciones": ["Una verdad absoluta", "Una suposición que debe ser probada", "Un experimento fallido", "Un libro de ciencia"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué se hace durante la fase de experimentación?",
+        "opciones": ["Se escribe la conclusión", "Se diseñan pruebas controladas", "Se ignora la hipótesis", "Se observa el cielo sin anotar nada"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué sucede si un experimento refuta la hipótesis?",
+        "opciones": ["La ciencia se detiene", "Se debe revisar o cambiar la hipótesis", "Se ocultan los datos", "Se celebra como una victoria"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuándo se convierte una hipótesis en ley?",
+        "opciones": ["Cuando un científico lo dice", "Cuando es confirmada repetidamente y es universal", "Al día siguiente de pensarla", "Nunca"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "Magnitudes y Unidades: El Sistema Internacional",
+    "texto": "Para que los científicos de todo el mundo puedan comparar sus resultados, es necesario medir de la misma forma. Una magnitud es cualquier propiedad de un cuerpo que se puede medir, como la longitud, la masa o el tiempo. El Sistema Internacional de Unidades (SI) establece las unidades estándar: el metro (m) para la longitud, el kilogramo (kg) para la masa y el segundo (s) para el tiempo. Existen magnitudes fundamentales, que se definen por sí solas, y magnitudes derivadas, que provienen de la combinación de las anteriores, como la velocidad (m/s) o la densidad (kg/m³). Es vital diferenciar entre magnitud (lo que mido) y unidad (con qué lo mido).",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es una magnitud?",
+        "opciones": ["Un objeto muy grande", "Cualquier propiedad que se puede medir", "Un número sin sentido", "Un tipo de energía"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la unidad de masa en el Sistema Internacional?",
+        "opciones": ["Gramo", "Libra", "Kilogramo", "Tonelada"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál de estas es una magnitud derivada?",
+        "opciones": ["El tiempo", "La longitud", "La velocidad", "La masa"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué significa SI en el contexto científico?",
+        "opciones": ["Sistema Interno", "Sistema Internacional de Unidades", "Solo Importante", "Símbolo Instrumental"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la unidad estándar para el tiempo?",
+        "opciones": ["Hora", "Minuto", "Segundo", "Día"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "titulo": "Propiedades de la Materia: Masa, Volumen y Densidad",
+    "texto": "La materia es todo lo que tiene masa y ocupa un volumen. La masa es la cantidad de materia de un cuerpo, mientras que el volumen es el espacio que ocupa. Estas son propiedades generales, ya que no permiten identificar de qué sustancia se trata. Sin embargo, la densidad es una propiedad específica; es la relación entre la masa y el volumen (d = m/V). Cada sustancia pura tiene una densidad característica. Por ejemplo, la densidad del agua es 1 g/cm³. Si un objeto tiene una densidad mayor que la del agua, se hundirá; si es menor, flotará. Esto explica por qué el aceite flota sobre el agua o por qué un globo lleno de helio asciende en el aire.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué propiedad nos permite identificar una sustancia?",
+        "opciones": ["Masa", "Volumen", "Densidad", "Forma"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se calcula la densidad?",
+        "opciones": ["Masa por Volumen", "Masa dividido entre Volumen", "Volumen menos Masa", "Masa más Volumen"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué sucede con un objeto cuya densidad es 0,8 g/cm³ en el agua (d=1 g/cm³)?",
+        "opciones": ["Se hunde", "Explota", "Flota", "Se disuelve"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es el volumen?",
+        "opciones": ["La cantidad de materia", "El espacio que ocupa un cuerpo", "El peso de un objeto", "La velocidad de un cuerpo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Son la masa y el volumen propiedades específicas?",
+        "opciones": ["Sí", "No, son generales", "Solo la masa", "Solo el volumen"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "titulo": "Los Estados de la Materia y la Teoría Cinética",
+    "texto": "La materia se presenta principalmente en tres estados: sólido, líquido y gas. La Teoría Cinética explica que la materia está formada por partículas en continuo movimiento. En los sólidos, las partículas están muy juntas y solo vibran en posiciones fijas, lo que les da forma y volumen constantes. En los líquidos, las partículas están cerca pero pueden deslizarse unas sobre otras, permitiéndoles fluir y adaptarse a la forma del recipiente, aunque su volumen es constante. En los gases, las partículas están muy separadas y se mueven libremente a gran velocidad, por lo que no tienen forma ni volumen fijos y tienden a ocupar todo el espacio disponible (expansibilidad).",
+    "preguntas": [
+      {
+        "pregunta": "¿En qué estado las partículas solo vibran en posiciones fijas?",
+        "opciones": ["Sólido", "Líquido", "Gaseoso", "Plasma"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué caracteriza a los gases según la teoría cinética?",
+        "opciones": ["Forma fija", "Partículas muy juntas", "Partículas muy separadas y movimiento libre", "Volumen constante"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué los líquidos pueden fluir?",
+        "opciones": ["Porque sus partículas no se mueven", "Porque sus partículas pueden deslizarse unas sobre otras", "Porque no tienen partículas", "Porque son mágicos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué afirma la Teoría Cinética sobre la materia?",
+        "opciones": ["Que es continua", "Que está formada por partículas en movimiento", "Que nunca cambia de estado", "Que el calor no le afecta"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál de estos tiene volumen constante pero forma variable?",
+        "opciones": ["Un cubo de hielo", "El aire", "El agua líquida", "Una roca"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "titulo": "Cambios de Estado y Temperatura",
+    "texto": "Cuando calentamos o enfriamos una sustancia, su temperatura cambia hasta que alcanza un punto en el que cambia de estado. Durante el cambio de estado, la temperatura se mantiene constante. El paso de sólido a líquido es la fusión, y de líquido a gas es la vaporización (que puede ser evaporación o ebullición). Al enfriar, el gas pasa a líquido por condensación, y el líquido a sólido por solidificación. También existe el paso directo de sólido a gas, llamado sublimación, y viceversa, la sublimación inversa o deposición. Estos cambios son físicos, ya que la naturaleza de la sustancia no cambia, solo la organización y velocidad de sus partículas.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo se llama el paso de gas a líquido?",
+        "opciones": ["Fusión", "Solidificación", "Condensación", "Sublimación"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué sucede con la temperatura durante un cambio de estado?",
+        "opciones": ["Sube rápido", "Baja rápido", "Se mantiene constante", "Desaparece"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es la sublimación?",
+        "opciones": ["Paso de líquido a gas", "Paso de sólido a gas directamente", "Paso de gas a sólido", "Paso de sólido a líquido"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Es la fusión un cambio químico?",
+        "opciones": ["Sí", "No, es un cambio físico", "A veces", "Solo si hay fuego"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llama el paso de líquido a sólido?",
+        "opciones": ["Vaporización", "Condensación", "Solidificación", "Fusión"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "titulo": "Sustancias Puras y Mezclas",
+    "texto": "La materia se clasifica según su composición. Las sustancias puras están formadas por un solo tipo de materia y tienen propiedades constantes (como el agua pura o el oro). Se dividen en elementos (un solo tipo de átomo) y compuestos (varios tipos de átomos unidos químicamente). Por otro lado, las mezclas contienen dos o más sustancias puras. Las mezclas heterogéneas son aquellas en las que se distinguen sus componentes a simple vista (como agua con aceite o granito). Las mezclas homogéneas o disoluciones son aquellas en las que no se distinguen los componentes (como el aire o el agua del mar), y están formadas por un soluto y un disolvente.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es una mezcla homogénea?",
+        "opciones": ["Donde se ven los trozos", "Donde no se distinguen los componentes", "Una sustancia pura", "Un elemento químico"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llaman las sustancias puras formadas por varios tipos de átomos?",
+        "opciones": ["Elementos", "Mezclas", "Compuestos", "Disoluciones"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es un ejemplo de mezcla heterogénea?",
+        "opciones": ["Aire", "Agua con sal", "Ensalada", "Bronce"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué componentes forman una disolución?",
+        "opciones": ["Filtro y residuo", "Soluto y disolvente", "Gas y sólido", "Átomo y molécula"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Es el agua del grifo una sustancia pura?",
+        "opciones": ["Sí", "No, es una mezcla homogénea con sales", "Es un elemento", "Es una mezcla heterogénea"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "titulo": "Técnicas de Separación de Mezclas",
+    "texto": "Para obtener sustancias puras a partir de una mezcla, usamos técnicas físicas que no cambian la naturaleza de las sustancias. Para mezclas heterogéneas usamos la filtración (sólido de líquido usando un filtro), la decantación (líquidos de distinta densidad) o la separación magnética (si hay metales). Para mezclas homogéneas usamos la evaporación o cristalización (recuperar un soluto sólido) y la destilación, que se basa en los diferentes puntos de ebullición de los líquidos para separarlos (como el alcohol del agua). La elección de la técnica depende del estado de agregación y de las propiedades físicas de los componentes.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué técnica separa líquidos con diferente punto de ebullición?",
+        "opciones": ["Filtración", "Decantación", "Destilación", "Tamizado"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo separarías arena mezclada con agua?",
+        "opciones": ["Destilación", "Filtración", "Cromatografía", "Evaporación"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve la decantación?",
+        "opciones": ["Para separar mezclas de gases", "Para separar líquidos inmiscibles de distinta densidad", "Para calentar agua", "Para atraer hierro"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué técnica usarías para obtener la sal del agua del mar?",
+        "opciones": ["Filtración", "Evaporación", "Imantación", "Decantación"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué propiedad aprovecha la separación magnética?",
+        "opciones": ["El color", "El tamaño", "El magnetismo de algunos metales", "La densidad"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "La Energía y sus Transformaciones",
+    "texto": "La energía es la capacidad de un cuerpo o sistema para producir cambios en sí mismo o en su entorno. No se crea ni se destruye, solo se transforma (Ley de Conservación de la Energía). Existen muchas formas: cinética (movimiento), potencial (posición/altura), térmica (calor), química (alimentos/pilas), eléctrica y luminosa. En cada transformación, parte de la energía se degrada en forma de calor no utilizable. Por ejemplo, en una bombilla, la energía eléctrica se transforma en luminosa y térmica. Las fuentes de energía pueden ser renovables (sol, viento, agua) o no renovables (carbón, petróleo, gas, uranio), según su disponibilidad y velocidad de regeneración.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué dice la Ley de Conservación de la Energía?",
+        "opciones": ["Que la energía desaparece", "Que se crea energía nueva", "Que no se crea ni destruye, solo se transforma", "Que el sol es infinito"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué energía tiene una roca situada en lo alto de una montaña?",
+        "opciones": ["Cinética", "Potencial", "Eléctrica", "Luminosa"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es una fuente de energía no renovable?",
+        "opciones": ["Eólica", "Solar", "Petróleo", "Biomasa"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué le sucede a la energía cuando se transforma?",
+        "opciones": ["Se aprovecha al 100%", "Parte se degrada en forma de calor", "Se vuelve masa", "Desaparece"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tipo de energía contienen los alimentos?",
+        "opciones": ["Térmica", "Química", "Cinética", "Nuclear"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "titulo": "La Luz: Reflexión y Refracción",
+    "texto": "La luz es una forma de energía que viaja a unos 300.000 km/s en el vacío. Se propaga en línea recta y en todas las direcciones. Cuando choca con un objeto, puede ocurrir la reflexión, que es el rebote de la luz (lo que permite vernos en un espejo). Si la luz pasa de un medio a otro (del aire al agua, por ejemplo), cambia de dirección y velocidad; este fenómeno se llama refracción y es el responsable de que un lápiz parezca doblado en un vaso de agua. La luz blanca del Sol es en realidad una mezcla de todos los colores, lo que podemos observar al formarse el arcoíris mediante la dispersión de la luz en las gotas de lluvia.",
+    "preguntas": [
+      {
+        "pregunta": "¿A qué velocidad viaja la luz en el vacío?",
+        "opciones": ["340 m/s", "1.000 km/h", "300.000 km/s", "A la velocidad del sonido"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué fenómeno permite que nos veamos en un espejo?",
+        "opciones": ["Refracción", "Reflexión", "Difusión", "Opacidad"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es la refracción?",
+        "opciones": ["El rebote de la luz", "El cambio de dirección al pasar de un medio a otro", "La luz que atraviesa el cristal sin cambiar", "La ausencia de luz"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De qué está compuesta la luz blanca?",
+        "opciones": ["Solo de blanco", "De tres colores", "De todos los colores del arcoíris", "De luz negra"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se propaga la luz?",
+        "opciones": ["En curvas", "En línea recta", "Solo hacia arriba", "Muy lentamente"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "titulo": "El Calor y la Temperatura",
+    "texto": "Aunque a menudo se confunden, el calor y la temperatura son conceptos distintos. La temperatura es una medida de la energía cinética media de las partículas de un cuerpo; se mide con el termómetro en grados Celsius (ºC) o Kelvin (K). El calor es la energía que se transfiere de un cuerpo caliente a uno frío hasta que ambos alcanzan el equilibrio térmico (misma temperatura). El calor se puede transmitir de tres formas: conducción (a través de sólidos), convección (en fluidos como aire o agua) y radiación (a través del vacío, como el calor del Sol). Los materiales que transmiten bien el calor son conductores (metales), y los que no, son aislantes (madera, corcho).",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es el calor?",
+        "opciones": ["Lo que marca el termómetro", "Energía en tránsito de un cuerpo caliente a uno frío", "Una propiedad de los helados", "El grado de agitación de las partículas"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llama la transferencia de calor en los sólidos?",
+        "opciones": ["Convección", "Radiación", "Conducción", "Ebullición"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué ocurre en el equilibrio térmico?",
+        "opciones": ["Un cuerpo se congela", "Los dos cuerpos tienen la misma temperatura", "El calor desaparece", "La temperatura sube sin parar"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo nos llega el calor del Sol?",
+        "opciones": ["Conducción", "Convección", "Radiación", "Viento"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es un buen aislante térmico?",
+        "opciones": ["Cobre", "Hierro", "Madera", "Aluminio"],
+        "correcta": 2
+      }
+    ]
+  }
+]

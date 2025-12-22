@@ -1,0 +1,322 @@
+[
+  {
+    "id": "1",
+    "titulo": "Nutrición Humana: Digestión y Metabolismo",
+    "texto": "La nutrición es el conjunto de procesos mediante los cuales el organismo obtiene materia y energía. El aparato digestivo transforma macromoléculas en nutrientes simples (monómeros). La digestión comienza en la boca con la amilasa salival, continúa en el estómago con jugos gástricos y finaliza en el intestino delgado, donde las vellosidades intestinales absorben los nutrientes hacia la sangre. El metabolismo celular utiliza estos nutrientes para fabricar estructuras o para obtener energía en las mitocondrias mediante la respiración celular. Una dieta equilibrada debe aportar hidratos, lípidos, proteínas, vitaminas y minerales en proporciones adecuadas.",
+    "preguntas": [
+      {
+        "pregunta": "¿Dónde se produce principalmente la absorción de nutrientes?",
+        "opciones": ["Boca", "Estómago", "Intestino delgado", "Intestino grueso"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué orgánulo celular se encarga de obtener energía mediante respiración?",
+        "opciones": ["Núcleo", "Ribosoma", "Mitocondria", "Aparato de Golgi"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué función tienen las vellosidades intestinales?",
+        "opciones": ["Mover el alimento", "Producir moco", "Aumentar la superficie de absorción", "Masticar"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Para qué sirve el metabolismo?",
+        "opciones": ["Solo para adelgazar", "Para obtener energía y materiales para la célula", "Para respirar", "Para eliminar agua"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llaman las unidades mínimas que forman las proteínas?",
+        "opciones": ["Glucosas", "Ácidos grasos", "Aminoácidos", "Vitaminas"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "titulo": "Intercambio de Gases y Transporte Sanguíneo",
+    "texto": "El aparato respiratorio y el circulatorio trabajan coordinados. En los alvéolos pulmonares se produce el intercambio gaseoso por difusión: el oxígeno pasa a la sangre y el CO2 sale de ella. La sangre, compuesta por plasma y células (eritrocitos, leucocitos y plaquetas), es impulsada por el corazón. Los eritrocitos transportan el oxígeno gracias a la hemoglobina. El sistema circulatorio humano es cerrado (la sangre no sale de los vasos), doble (pasa dos veces por el corazón) y completo (la sangre oxigenada no se mezcla con la carboxigenada). Esto garantiza una alta eficiencia en el reparto de oxígeno.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué proteína de los glóbulos rojos transporta el oxígeno?",
+        "opciones": ["Insulina", "Hemoglobina", "Queratina", "Colágeno"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué significa que la circulación humana sea 'completa'?",
+        "opciones": ["Que llega a todo el cuerpo", "Que la sangre oxigenada y no oxigenada no se mezclan", "Que el corazón nunca para", "Que tiene muchas venas"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde ocurre exactamente el intercambio de gases?",
+        "opciones": ["Tráquea", "Bronquios", "Alvéolos pulmonares", "Faringe"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es la función de los leucocitos o glóbulos blancos?",
+        "opciones": ["Transportar CO2", "Taponar heridas", "Defensa contra patógenos", "Dar color a la sangre"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué tipo de vasos sanguíneos llevan la sangre del corazón a los órganos?",
+        "opciones": ["Venas", "Arterias", "Capilares", "Linfáticos"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "titulo": "Excreción y Homeostasis",
+    "texto": "La excreción es la eliminación de los desechos metabólicos de la sangre. El principal órgano es el riñón, que filtra la sangre en unidades llamadas nefronas. Allí se reabsorben las sustancias útiles (agua, glucosa) y se concentra la orina con los desechos (urea, sales). Este proceso es fundamental para la homeostasis, que es el mantenimiento del equilibrio interno del cuerpo (como la cantidad de agua y la temperatura). Otros órganos excretores son los pulmones (eliminan CO2), las glándulas sudoríparas (eliminan sales y regulan temperatura) y el hígado (elimina toxinas y pigmentos biliares).",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo se llama la unidad funcional del riñón?",
+        "opciones": ["Neurona", "Nefrona", "Alvéolo", "Vellosidad"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es la homeostasis?",
+        "opciones": ["Una enfermedad del riñón", "El equilibrio constante del medio interno", "El proceso de digestión", "La formación de huesos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué sustancias se expulsan principalmente por la orina?",
+        "opciones": ["Oxígeno y CO2", "Agua, sales y urea", "Proteínas y grasas", "Glóbulos rojos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la función excretora de los pulmones?",
+        "opciones": ["Eliminar orina", "Eliminar sudor", "Eliminar dióxido de carbono", "Eliminar urea"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué ocurre en la nefrona con las sustancias útiles?",
+        "opciones": ["Se destruyen", "Se expulsan", "Se reabsorben hacia la sangre", "Se convierten en gas"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "titulo": "Función de Relación: El Sistema Nervioso",
+    "texto": "La función de relación nos permite procesar información y emitir respuestas. El sistema nervioso está formado por neuronas, células capaces de transmitir impulsos eléctricos mediante la sinapsis. El Sistema Nervioso Central (SNC), compuesto por encéfalo y médula, procesa la información. El Sistema Nervioso Periférico (SNP) conecta el SNC con el resto del cuerpo. Además, el Sistema Nervioso Autónomo controla funciones involuntarias como el ritmo cardíaco. La salud del sistema nervioso depende de hábitos como el sueño reparador y evitar sustancias neurotóxicas como el alcohol o las drogas, que alteran la comunicación sináptica.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo se llama la conexión funcional entre neuronas?",
+        "opciones": ["Enlace", "Sinapsis", "Fusión", "Puente"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué parte del sistema nervioso controla los actos reflejos?",
+        "opciones": ["Cerebro", "Médula espinal", "Nervios ópticos", "Cerebelo"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la función del Sistema Nervioso Autónomo?",
+        "opciones": ["Mover las manos", "Controlar funciones involuntarias", "Pensar problemas matemáticos", "Leer libros"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué compone el Sistema Nervioso Central?",
+        "opciones": ["Solo nervios", "Encéfalo y médula espinal", "Músculos y huesos", "Ojos y oídos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo transmiten la información las neuronas?",
+        "opciones": ["Por la sangre", "Mediante impulsos eléctricos y químicos", "Por vibraciones", "Por calor"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "titulo": "Sistema Endocrino: Control Hormonal",
+    "texto": "El sistema endocrino coordina el organismo de forma lenta pero duradera mediante hormonas. Estas son proteínas o lípidos producidos por glándulas endocrinas y transportados por la sangre. La hipófisis es la glándula 'maestra' que dirige a las demás. El tiroides regula el metabolismo. El páncreas secreta insulina para bajar los niveles de glucosa en sangre. En situaciones de estrés, las glándulas suprarrenales liberan adrenalina, preparando al cuerpo para 'luchar o huir'. El equilibrio hormonal es delicado; un fallo puede causar enfermedades como la diabetes o problemas de crecimiento (enanismo o gigantismo).",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué glándula se considera la 'maestra' del sistema endocrino?",
+        "opciones": ["Tiroides", "Páncreas", "Hipófisis", "Testículos"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué hormona disminuye la cantidad de glucosa en sangre?",
+        "opciones": ["Adrenalina", "Insulina", "Tiroxina", "Glucagón"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo viajan las hormonas por el cuerpo?",
+        "opciones": ["Por los nervios", "Por la sangre", "Por el aire", "Por los músculos"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué glándula nos ayuda a reaccionar ante una situación de peligro?",
+        "opciones": ["Ovarios", "Tiroides", "Glándulas suprarrenales", "Hipófisis"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre el sistema nervioso y el endocrino?",
+        "opciones": ["El nervioso es más lento", "El endocrino usa impulsos eléctricos", "El endocrino es más lento pero su efecto dura más", "No hay diferencias"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "titulo": "Reproducción y Sexualidad",
+    "texto": "La reproducción humana es sexual y vivípara. Durante la pubertad, las hormonas sexuales (estrógenos y testosterona) activan los órganos reproductores y desarrollan caracteres secundarios. El ciclo menstrual de la mujer dura unos 28 días y prepara al útero para un posible embarazo. Si hay fecundación (unión de óvulo y espermatozoide en las trompas de Falopio), se forma el cigoto. La salud sexual implica prevención de Infecciones de Transmisión Sexual (ITS) mediante el uso de preservativos y una educación basada en el respeto. La reproducción no es solo biológica, sino que también tiene dimensiones afectivas y sociales.",
+    "preguntas": [
+      {
+        "pregunta": "¿Dónde ocurre normalmente la fecundación?",
+        "opciones": ["En el útero", "En la vagina", "En las trompas de Falopio", "En el ovario"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué hormona es la principal responsable de los caracteres masculinos?",
+        "opciones": ["Insulina", "Estrógeno", "Testosterona", "Progesterona"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llama la primera célula tras la fecundación?",
+        "opciones": ["Embrión", "Feto", "Cigoto", "Óvulo"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es la mejor forma de prevenir las ITS?",
+        "opciones": ["Beber mucha agua", "Uso de preservativos", "Tomar vitaminas", "Ducharse mucho"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuánto dura aproximadamente el ciclo menstrual?",
+        "opciones": ["7 días", "14 días", "28 días", "365 días"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "titulo": "Salud y Enfermedad: Sistema Inmunitario",
+    "texto": "La salud es el bienestar físico, mental y social. Las enfermedades se dividen en infecciosas (causadas por patógenos como virus, bacterias, hongos o protozoos) y no infecciosas (genéticas, degenerativas, carenciales). Nuestro cuerpo se defiende mediante el sistema inmunitario. Tenemos barreras inespecíficas (piel, mucosas) y defensas específicas. Los linfocitos B producen anticuerpos que bloquean a los patógenos, mientras que los linfocitos T destruyen células infectadas. Las vacunas ayudan al cuerpo a crear 'memoria inmunitaria' para que, si el patógeno real entra, los anticuerpos actúen de inmediato.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué tipo de enfermedad es la gripe o el COVID-19?",
+        "opciones": ["No infecciosa", "Carencial", "Infecciosa", "Degenerativa"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué células producen anticuerpos?",
+        "opciones": ["Glóbulos rojos", "Linfocitos B", "Plaquetas", "Neuronas"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve una vacuna?",
+        "opciones": ["Para curar una herida", "Para crear memoria inmunitaria", "Para dar vitaminas", "Para dormir mejor"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la primera barrera de defensa del cuerpo?",
+        "opciones": ["Los pulmones", "El estómago", "La piel y mucosas", "La sangre"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué microorganismo es el causante de una infección bacteriana?",
+        "opciones": ["Virus", "Bacteria", "Hongo", "Alga"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "Ecosistemas y Flujo de Energía",
+    "texto": "Un ecosistema es el conjunto de seres vivos y el medio físico. La energía entra en el ecosistema a través de la luz solar, que los productores (plantas) captan. La energía fluye de forma unidireccional por los niveles tróficos: productores -> consumidores primarios -> secundarios -> terciarios. Sin embargo, la materia se recicla gracias a los descomponedores. En cada nivel trófico se pierde un 90% de la energía en forma de calor y procesos vitales, por lo que solo el 10% pasa al siguiente eslabón. Por esto, las cadenas alimentarias no suelen ser muy largas. El impacto humano puede romper este equilibrio mediante la deforestación o contaminación.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo entra la energía en la mayoría de ecosistemas?",
+        "opciones": ["Por el viento", "Por la luz solar", "Por el agua", "Por la tierra"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué porcentaje de energía se transfiere aproximadamente de un nivel a otro?",
+        "opciones": ["10%", "50%", "90%", "100%"],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Quiénes reciclan la materia orgánica?",
+        "opciones": ["Productores", "Consumidores primarios", "Descomponedores", "Carnívoros"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es un nivel trófico?",
+        "opciones": ["Un tipo de animal", "La posición de un ser en la cadena alimentaria", "Una capa de suelo", "Un tipo de clima"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué sucede con la energía en el ecosistema?",
+        "opciones": ["Se crea de la nada", "Es un ciclo infinito", "Fluye en una sola dirección y se pierde calor", "No se pierde nunca"],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "titulo": "Tectónica de Placas: La Tierra Inquieta",
+    "texto": "La litosfera terrestre no es una capa continua, sino que está fragmentada en placas tectónicas que flotan sobre el manto. Debido a las corrientes de convección del interior terrestre, estas placas se mueven. En los límites divergentes (separación), se crea nueva corteza en las dorsales oceánicas. En los límites convergentes, una placa se hunde bajo otra (subducción), creando fosas y cordilleras como el Himalaya. En los límites transformantes, las placas rozan lateralmente. Estos movimientos son los responsables de la deriva continental, la formación de montañas y la mayoría de fenómenos geológicos externos que vemos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué motor mueve las placas tectónicas?",
+        "opciones": ["La gravedad solar", "Corrientes de convección en el manto", "Las mareas", "El viento"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre en un límite convergente?",
+        "opciones": ["Las placas se separan", "Las placas chocan o una se hunde bajo otra", "Las placas se detienen", "No pasa nada"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde se crea nueva corteza oceánica?",
+        "opciones": ["En las fosas marinas", "En las dorsales oceánicas", "En los desiertos", "En los volcanes"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llama el proceso de una placa hundiéndose bajo otra?",
+        "opciones": ["Evaporación", "Subducción", "Erosión", "Sedimentación"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es un ejemplo de gran cordillera formada por choque de placas?",
+        "opciones": ["El Sahara", "El Himalaya", "El Amazonas", "La fosa de las Marianas"],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "titulo": "Volcanes y Terremotos",
+    "texto": "La energía interna de la Tierra se libera mediante procesos geodinámicos. Los volcanes son grietas por las que sale el magma (roca fundida) al exterior en forma de lava, junto con gases y cenizas. Los terremotos o seísmos son vibraciones bruscas de la corteza producidas por la liberación de energía acumulada en las fallas. El punto interno donde se origina es el hipocentro, y el punto en superficie más cercano es el epicentro. Para medir los terremotos usamos la escala de magnitud de Richter. La mayoría de estos fenómenos ocurren en los bordes de placa, como el famoso 'Anillo de Fuego' del Pacífico.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo se llama el punto de la superficie donde un terremoto es más fuerte?",
+        "opciones": ["Hipocentro", "Epicentro", "Falla", "Cráter"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué diferencia hay entre magma y lava?",
+        "opciones": ["Es lo mismo", "El magma es sólido y la lava líquida", "El magma está bajo tierra y la lava sale al exterior", "La lava es fría"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué escala mide la magnitud o energía de un seísmo?",
+        "opciones": ["Escala Celsius", "Escala de Richter", "Escala de Beaufort", "Escala Newton"],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde se concentran la mayoría de volcanes y terremotos?",
+        "opciones": ["En el centro de las placas", "En el fondo de los lagos", "En los bordes de las placas tectónicas", "En los polos"],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es el hipocentro?",
+        "opciones": ["La parte más alta de un volcán", "El lugar exacto del interior donde se origina el seísmo", "Una ciudad con terremotos", "Un instrumento de medida"],
+        "correcta": 1
+      }
+    ]
+  }
+]
