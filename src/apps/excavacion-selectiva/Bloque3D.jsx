@@ -58,7 +58,7 @@ const BlockParticles = ({ position, texture }) => {
   );
 };
 
-export function Bloque3D({ position, text, onMine, onDestructionComplete, setHoverState, isTarget }) {
+export function Bloque3D({ position, text, onMine, onDestructionComplete, setHoverState, isTarget, isStar, isTNT, isFreeze }) {
   const meshRef = useRef();
   const isHoveredRef = useRef(false);
   const [isClose, setIsClose] = useState(false);
@@ -67,7 +67,7 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
   const { camera } = useThree();
 
   // === DETECTAR SI ES BLOQUE ESTRELLA ===
-  const isStarBlock = text === "★";
+  const isStarBlock = isStar || text === "★";
 
   // Texturas
   // Normal (Marrón tierra)
@@ -77,6 +77,9 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
   // ESTRELLA (Dorado)
   const textureGold = useMemo(() => generateMinecraftTexture(255, 215, 0), []);     // Oro
   const textureGoldHover = useMemo(() => generateMinecraftTexture(255, 235, 100), []); // Oro brillante
+
+  const textureTNT = useMemo(() => generateMinecraftTexture(200, 30, 30), []);
+  const textureFreeze = useMemo(() => generateMinecraftTexture(100, 200, 255), []);
 
   const initialPosVector = useMemo(() => new THREE.Vector3(...position), [position]);
 
@@ -115,7 +118,7 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
     e.stopPropagation();
     if (!isClose || isError || isDestroying) return;
 
-    if (isTarget) { // La estrella siempre es isTarget=true
+    if (isTarget || isTNT || isFreeze) {
       setHoverState('crosshair');
       onMine();
       setIsDestroying(true);
@@ -128,10 +131,16 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
   };
 
   // Determinar textura final
-  let finalTexture = isStarBlock ? textureGold : textureNormal;
+  let finalTexture = textureNormal;
+  if (isStarBlock) finalTexture = textureGold;
+  else if (isTNT) finalTexture = textureTNT;
+  else if (isFreeze) finalTexture = textureFreeze;
 
   if (!isError && isHoveredRef.current && isClose) {
-    finalTexture = isStarBlock ? textureGoldHover : textureHover;
+    if (isStarBlock) finalTexture = textureGoldHover;
+    else if (isTNT) finalTexture = textureTNT;
+    else if (isFreeze) finalTexture = textureFreeze;
+    else finalTexture = textureHover;
   }
 
   // Color de error o neutro

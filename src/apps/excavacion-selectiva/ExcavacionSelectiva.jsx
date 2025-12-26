@@ -51,8 +51,11 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
-  // Extraemos la lógica del juego, incluyendo isSuddenDeath
-  const { blocks, timeLeft, score, gameState, mission, mineBlock, isSuddenDeath } = useExcavacionSelectiva(data);
+  // Extraemos la lógica del juego
+  const {
+    blocks, timeLeft, score, gameState, mission, mineBlock,
+    isSuddenDeath, combo, isFrozen, lastEvent
+  } = useExcavacionSelectiva(data);
 
   // Estados de control y visuales
   const [isLocked, setIsLocked] = useState(false);
@@ -115,7 +118,10 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
 
   return (
     // Agregamos la clase 'sudden-death-mode' si estamos en esa fase (necesita el CSS)
-    <div className={`excavacion-container relative w-full h-[80vh] bg-slate-900 rounded-xl overflow-hidden shadow-2xl border-4 border-slate-700 ${isSuddenDeath ? 'sudden-death-mode' : ''}`}>
+    <div className={`excavacion-container relative w-full h-[80vh] bg-slate-900 rounded-xl overflow-hidden shadow-2xl border-4 border-slate-700 
+        ${isSuddenDeath ? 'sudden-death-mode' : ''} 
+        ${isFrozen ? 'time-frozen' : ''} 
+        ${lastEvent?.type === 'tnt' ? 'shake-effect' : ''}`}>
 
       {/* === 1. SELECCIÓN DE DISPOSITIVO === */}
       {!controlMode && (
@@ -140,6 +146,13 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
               <span>ORDENADOR</span>
             </Button>
           </div>
+        </div>
+      )}
+
+      {/* === INDICADOR DE CONGELACIÓN === */}
+      {isFrozen && (
+        <div className="absolute inset-0 z-40 bg-blue-400/20 pointer-events-none flex items-center justify-center">
+          <h2 className="text-3xl md:text-5xl text-blue-200 pixel-text animate-pulse drop-shadow-lg">❄️ TIEMPO DETENIDO ❄️</h2>
         </div>
       )}
 
@@ -168,13 +181,21 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
         </div>
 
         <div className="flex items-center gap-6 text-sm md:text-lg font-bold">
+          {/* COMBO INDICATOR */}
+          {combo > 1 && (
+            <div className="flex flex-col items-center">
+              <span className="text-yellow-400 text-xs md:text-sm animate-bounce">COMBO</span>
+              <span className="text-orange-500 text-xl">x{combo}</span>
+            </div>
+          )}
+
           <span className="text-green-400 drop-shadow-sm">XP: {score}</span>
 
           {/* TEMPORIZADOR DINÁMICO */}
-          <div className={`flex items-center drop-shadow-sm transition-all duration-200 ${isSuddenDeath ? 'text-red-600 scale-110' : (timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-white')
+          <div className={`flex items-center drop-shadow-sm transition-all duration-200 
+            ${isSuddenDeath ? 'text-red-600 scale-110' : (isFrozen ? 'text-blue-400' : (timeLeft < 10 ? 'text-red-500 animate-pulse' : 'text-white'))
             }`}>
-            <span className="mr-2">⏰</span>
-            {/* Usamos toFixed(1) para mostrar decimales */}
+            <span className="mr-2">{isFrozen ? "❄️" : "⏰"}</span>
             <span className="min-w-[4ch] text-right">{Math.max(0, timeLeft).toFixed(1)}s</span>
           </div>
         </div>
@@ -272,7 +293,11 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
         )}
 
         {/* Jugador: Movimiento (Teclado + Joystick Izq) */}
-        <Player isLocked={isLocked || controlMode === 'mobile'} joystickMove={joystickMove} />
+        <Player
+          isLocked={isLocked || controlMode === 'mobile'}
+          joystickMove={joystickMove}
+          isMining={isSwinging}
+        />
 
         {/* Suelo */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
@@ -290,6 +315,9 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
                   position={[block.x, block.y, block.z]}
                   text={block.text}
                   isTarget={block.isTarget}
+                  isStar={block.isStar}
+                  isTNT={block.isTNT}
+                  isFreeze={block.isFreeze}
                   setHoverState={setCursorType}
                   onMine={() => triggerSwing()}
                   onDestructionComplete={() => mineBlock(block.id)}

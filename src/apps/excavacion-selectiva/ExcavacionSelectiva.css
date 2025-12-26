@@ -2,10 +2,21 @@
 
 /* --- Animación de golpe del pico --- */
 @keyframes swing {
-    0% { transform: rotate(0deg); }
-    20% { transform: rotate(-20deg); } 
-    50% { transform: rotate(45deg); }  
-    100% { transform: rotate(0deg); }  
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20% {
+        transform: rotate(-20deg);
+    }
+
+    50% {
+        transform: rotate(45deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 .swing-animation {
@@ -16,19 +27,21 @@
 
 .excavacion-container {
     width: 100%;
-    height: 80vh; 
+    height: 80vh;
     border-radius: 0.5rem;
     overflow: hidden;
     font-family: 'Press Start 2P', cursive;
-    
+
     /* === CAMBIO CLAVE PARA MÓVIL === */
     /* Evita scroll, zoom y gestos del navegador dentro del juego */
-    touch-action: none; 
+    touch-action: none;
     user-select: none;
-    -webkit-user-select: none; /* Safari */
-    -webkit-touch-callout: none; /* Safari menu contextual */
+    -webkit-user-select: none;
+    /* Safari */
+    -webkit-touch-callout: none;
+    /* Safari menu contextual */
     /* =============================== */
-    
+
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 4v24M4 16h24" stroke="white" stroke-width="2" fill="none" style="filter: drop-shadow(1px 1px 1px black);"/></svg>') 16 16, crosshair;
 }
 
@@ -40,11 +53,54 @@
 /* Añadir al final del archivo CSS */
 
 @keyframes panic-border {
-    0% { border-color: #ef4444; box-shadow: 0 0 10px #ef4444 inset; }
-    50% { border-color: #7f1d1d; box-shadow: 0 0 30px #ef4444 inset; }
-    100% { border-color: #ef4444; box-shadow: 0 0 10px #ef4444 inset; }
+    0% {
+        border-color: #ef4444;
+        box-shadow: 0 0 10px #ef4444 inset;
+    }
+
+    50% {
+        border-color: #7f1d1d;
+        box-shadow: 0 0 30px #ef4444 inset;
+    }
+
+    100% {
+        border-color: #ef4444;
+        box-shadow: 0 0 10px #ef4444 inset;
+    }
 }
 
 .sudden-death-mode {
     animation: panic-border 0.5s infinite;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(5px, 5px);
+    }
+
+    50% {
+        transform: translate(-5px, -5px);
+    }
+
+    75% {
+        transform: translate(5px, -5px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.shake-effect {
+    animation: shake 0.2s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+.time-frozen {
+    border-color: #60a5fa !important;
+    box-shadow: 0 0 40px #60a5fa inset !important;
+    transition: all 0.5s ease;
 }

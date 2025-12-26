@@ -692,15 +692,24 @@
 
 .study-material-box {
     background: white;
-    width: 90%;
-    max-width: 700px;
-    height: 85vh;
+    width: 95%;
+    max-width: 800px;
+    height: 90vh;
     border-radius: 30px;
-    padding: 30px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     animation: popInModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@media (max-width: 640px) {
+    .study-material-box {
+        padding: 15px;
+        border-radius: 20px;
+        height: 95vh;
+        width: 98%;
+    }
 }
 
 .study-material-content {
@@ -736,11 +745,31 @@
     padding: 10px;
     background: #f8fafc;
     border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 640px) {
+    .study-letter-selector {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 15px;
+        /* Espacio para scrollbar si aparece */
+        border-radius: 12px;
+        gap: 6px;
+    }
+
+    .study-letter-selector::-webkit-scrollbar {
+        height: 4px;
+    }
 }
 
 .study-letter-btn {
     width: 45px;
     height: 45px;
+    min-width: 45px;
+    /* Evitar que se encojan en scroll horizontal */
     border-radius: 12px;
     border: 2px solid #e2e8f0;
     background: white;
@@ -753,6 +782,16 @@
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
+}
+
+@media (max-width: 640px) {
+    .study-letter-btn {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
 }
 
 .study-letter-btn:hover {

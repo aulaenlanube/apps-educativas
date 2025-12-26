@@ -6,6 +6,9 @@ export const useExcavacionSelectiva = (initialData) => {
   const [score, setScore] = useState(0);
   const [gameState, setGameState] = useState('playing');
   const [mission, setMission] = useState('');
+  const [combo, setCombo] = useState(0);
+  const [isFrozen, setIsFrozen] = useState(false);
+  const [lastEvent, setLastEvent] = useState(null); // { type, id }
 
   const [isSuddenDeath, setIsSuddenDeath] = useState(false);
   const suddenDeathCapRef = useRef(5.0);
@@ -15,6 +18,8 @@ export const useExcavacionSelectiva = (initialData) => {
   const allCategoriesRef = useRef([]);
   const isCategorizedRef = useRef(false);
 
+  const triggerEvent = (type) => setLastEvent({ type, id: Date.now() });
+
   // Generador de bloques único
   const createBlock = (type, data) => {
     const id = Math.random().toString(36).substr(2, 9);
@@ -23,6 +28,15 @@ export const useExcavacionSelectiva = (initialData) => {
 
     if (type === 'star') {
       return { id, x, y: 3.5, z, text: "★", isTarget: true, isStar: true, visible: true };
+    }
+
+    // Probabilidad de bloques especiales
+    const randSpecial = Math.random();
+    if (randSpecial < 0.05) {
+      return { id, x, y: 0.5, z, text: "TNT", isTarget: false, isTNT: true, visible: true };
+    }
+    if (randSpecial < 0.08) {
+      return { id, x, y: 0.5, z, text: "❄️", isTarget: true, isFreeze: true, visible: true };
     }
 
     let text = "";
@@ -75,9 +89,10 @@ export const useExcavacionSelectiva = (initialData) => {
 
     streakRef.current = 0;
     const newBlocks = [];
-    // Mantenemos 30 bloques constantes
+    // Mantenemos bloques constantes
     for (let i = 0; i < 15; i++) newBlocks.push(createBlock('target', data));
-    for (let i = 0; i < 15; i++) newBlocks.push(createBlock('distractor', data));
+    for (let i = 0; i < 12; i++) newBlocks.push(createBlock('distractor', data));
+    for (let i = 0; i < 3; i++) newBlocks.push(createBlock('special', data));
 
     setBlocks(newBlocks);
   };
@@ -86,6 +101,7 @@ export const useExcavacionSelectiva = (initialData) => {
     if (!initialData) return;
     setScore(0);
     setTimeLeft(60);
+    setCombo(0);
     setGameState('playing');
     setIsSuddenDeath(false);
     suddenDeathCapRef.current = 5.0;
@@ -93,7 +109,7 @@ export const useExcavacionSelectiva = (initialData) => {
   }, [initialData]);
 
   useEffect(() => {
-    if (gameState !== 'playing') return;
+    if (gameState !== 'playing' || isFrozen) return;
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
         const newVal = prev - 0.1;
@@ -110,7 +126,7 @@ export const useExcavacionSelectiva = (initialData) => {
       });
     }, 100);
     return () => clearInterval(timer);
-  }, [gameState, isSuddenDeath]);
+  }, [gameState, isSuddenDeath, isFrozen]);
 
   const mineBlock = useCallback((id) => {
     if (gameState !== 'playing') return;
@@ -121,8 +137,28 @@ export const useExcavacionSelectiva = (initialData) => {
 
       const block = prev[blockIndex];
 
+      if (block.isTNT) {
+        triggerEvent('tnt');
+        setScore(s => Math.max(0, s - 20));
+        setCombo(0);
+        setTimeLeft(t => Math.max(0, t - 10));
+        const newBlocks = [...prev];
+        newBlocks[blockIndex] = createBlock('distractor', initialData);
+        return newBlocks;
+      }
+
+      if (block.isFreeze) {
+        triggerEvent('freeze');
+        setIsFrozen(true);
+        setTimeout(() => setIsFrozen(false), 5000);
+        const newBlocks = [...prev];
+        newBlocks[blockIndex] = createBlock('target', initialData);
+        return newBlocks;
+      }
+
       // Caso Estrella: Limpia y regenera
       if (block.isStar) {
+        triggerEvent('mine');
         setScore(s => s + 50);
         if (isSuddenDeath) setTimeLeft(suddenDeathCapRef.current);
         // Usamos un timeout para no interferir con el render actual
@@ -132,7 +168,10 @@ export const useExcavacionSelectiva = (initialData) => {
 
       // Caso Objetivo: Reemplazamos 1 por 1
       if (block.isTarget) {
-        setScore(s => s + 10);
+        triggerEvent('mine');
+        const multiplier = Math.floor(combo / 5) + 1;
+        setScore(s => s + (10 * multiplier));
+        setCombo(c => c + 1);
         streakRef.current += 1;
 
         const newBlocks = [...prev];
@@ -153,12 +192,14 @@ export const useExcavacionSelectiva = (initialData) => {
         return newBlocks;
       } else {
         // Error: No desaparece, solo penaliza score y tiempo en Sudden Death
+        triggerEvent('error');
         setScore(s => Math.max(0, s - 5));
+        setCombo(0);
         if (isSuddenDeath) setTimeLeft(t => Math.max(0, t - 1.0));
         return prev;
       }
     });
-  }, [gameState, isSuddenDeath, initialData]);
+  }, [gameState, isSuddenDeath, initialData, combo]);
 
-  return { blocks, timeLeft, score, gameState, mission, mineBlock, isSuddenDeath };
+  return { blocks, timeLeft, score, gameState, mission, mineBlock, isSuddenDeath, combo, isFrozen, lastEvent };
 };
