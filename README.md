@@ -1,109 +1,85 @@
-# EduApps: Apps Educativas 🚀
+# EduApps: Plataforma de Aplicaciones Educativas Interactivas 🚀
 
-Bienvenido a **EduApps**, una plataforma web diseñada para centralizar y organizar las mejores aplicaciones educativas para estudiantes de Educación Primaria y ESO. El objetivo es facilitar el acceso a herramientas de aprendizaje interactivas y divertidas, filtradas por curso y nivel académico.
+![EduApps Hero Image](https://github.com/aulaenlanube/apps-educativas/raw/main/eduapps_hero.png)
 
-Este proyecto fue creado con un stack tecnológico moderno, enfocado en una experiencia de usuario fluida y un desarrollo escalable.
+**EduApps** es una plataforma web de vanguardia diseñada para transformar la educación tradicional en una experiencia digital interactiva, divertida y altamente eficiente. Centraliza una suite de aplicaciones educativas de alta calidad para estudiantes de **Educación Primaria (1º - 6º)** y **ESO (1º - 4º)**.
 
------
+---
 
-## ✨ Características Principales
+## ✨ Características Destacadas
 
-  * **Navegación por Cursos:** Portada intuitiva donde los usuarios pueden seleccionar fácilmente el nivel académico, desde 1º de Primaria hasta 4º de ESO.
-  * **Diseño Atractivo y Moderno:** Interfaz con micro-animaciones y un diseño visualmente agradable gracias a Framer Motion y Tailwind CSS.
-  * **Páginas Dedicadas por Curso:** Cada curso tiene su propia sección donde se mostrarán las aplicaciones recomendadas (actualmente en desarrollo).
-  * **Totalmente Responsive:** Adaptado para funcionar correctamente en ordenadores, tabletas y dispositivos móviles.
+*   **🎯 Aprendizaje Basado en el Juego (GBL):** Juegos diseñados específicamente para reforzar el currículo escolar.
+*   **🤖 Integración de IA y Tecnología:** Soporte para reconocimiento de voz y visión por webcam para una inmersión total.
+*   **📚 Material de Estudio Dinámico:** Sistema de glosarios interactivos para repasar conceptos antes de cada desafío.
+*   **👥 Modo Multijugador:** Fomenta la competición sana con modos de 1 y 2 jugadores.
+*   **📱 Diseño Premium & Responsive:** Interfaz moderna, fluida y adaptada a cualquier dispositivo mediante micro-animaciones y diseño orientado al usuario.
 
------
+---
 
-## 🛠️ Tecnologías Utilizadas
+## 🎮 Aplicaciones Incluidas
 
-Este proyecto está construido con un conjunto de herramientas modernas de desarrollo web:
+### 🎡 El Rosco (Flagship Game)
+Una versión digital y educativa del famoso juego de palabras, completamente personalizable y rica en funcionalidades.
+*   **Variedad Absoluta:** Más de **110 archivos de datos** que cubren asignaturas como Biología, Historia, Música, Matemáticas, Física, Química, Valenciano, Francés e Inglés.
+*   **Validación de Datos:** Todos los términos han sido validados algorítmicamente para garantizar que las soluciones coincidan con las letras correspondientes.
+*   **Modo Webcam:** Los jugadores pueden ver su propia imagen en tiempo real dentro del rosco.
+*   **Reconocimiento de Voz:** ¡Responde hablando! Incluye modo de grabación automática y reconocimiento de comandos de voz (ej: "Pasapalabra").
+*   **Material de Estudio Interactivo:** Nuevo sistema de pestañas por letra para estudiar todo el vocabulario antes de empezar la partida.
 
-  * **Framework Frontend:** [React](https://react.dev/)
-  * **Herramienta de Construcción:** [Vite](https://vitejs.dev/)
-  * **Estilos CSS:** [Tailwind CSS](https://tailwindcss.com/)
-  * **Enrutamiento (Routing):** [React Router](https://reactrouter.com/)
-  * **Animaciones:** [Framer Motion](https://www.framer.com/motion/)
-  * **Iconos:** [Lucide React](https://lucide.dev/)
-  * **Componentes UI:** [Radix UI](https://www.radix-ui.com/) (para Toasts, Avatares, etc.)
+### 🧩 Otras Experiencias
+*   **Busca el Intruso:** Desafíos de lógica y categorización.
+*   **Ordena la Historia:** Líneas del tiempo interactivas para eventos históricos.
+*   **Parejas de Cartas:** Entrenamiento de memoria visual con conceptos educativos.
+*   **Desafíos Matemáticos:** Sumas, restas, multiplicaciones y divisiones con progresión de dificultad.
+*   **Dinosaurios & Ciencia:** Visualizadores 3D y apps de excavación selectiva.
 
------
+---
 
-## 🚀 Cómo Empezar (Desarrollo Local)
+## 🛠️ Stack Tecnológico
 
-Si quieres ejecutar este proyecto en tu propio ordenador, sigue estos pasos:
+*   **Frontend:** [React.js](https://react.dev/) + [Vite](https://vitejs.dev/)
+*   **Estilos:** [Tailwind CSS](https://tailwindcss.com/) + Vanilla CSS para componentes de alta fidelidad.
+*   **Animaciones:** [Framer Motion](https://www.framer.com/motion/) para transiciones suaves y dinámicas.
+*   **Voz:** Web Speech API integrada para una experiencia hands-free.
+*   **Iconos & UI:** [Lucide React](https://lucide.dev/), [FaIcons](https://react-icons.github.io/react-icons/) y [Radix UI](https://www.radix-ui.com/).
+
+---
+
+## 📂 Arquitectura de Datos
+
+El proyecto utiliza una arquitectura basada en datos JSON, lo que permite una escalabilidad casi infinita sin tocar código fuente:
+*   `public/data/primaria/[grado]/`: Archivos de configuración y vocabulario para primaria.
+*   `public/data/eso/[grado]/`: Archivos de configuración y vocabulario para secundaria.
+*   **Validación Automática:** Contamos con scripts de Python para asegurar la integridad de miles de registros educativos.
+
+---
+
+## 🚀 Instalación Local
 
 1.  **Clona el repositorio:**
-
     ```bash
-    git clone [https://github.com/aulaenlanube/apps-educativas.git](https://github.com/aulaenlanube/apps-educativas.git)
+    git clone https://github.com/aulaenlanube/apps-educativas.git
     ```
-
-2.  **Navega a la carpeta del proyecto:**
-
-    ```bash
-    cd apps-educativas
-    ```
-
-3.  **Instala las dependencias:**
-    (Asegúrate de tener Node.js instalado. La versión recomendada está en el archivo `.nvmrc`)
-
+2.  **Instala dependencias:**
     ```bash
     npm install
     ```
-
-4.  **Ejecuta el servidor de desarrollo:**
-
+3.  **Lanza el entorno de desarrollo:**
     ```bash
     npm run dev
     ```
 
-    La aplicación estará disponible en `http://localhost:5173`.
+---
 
-### **Scripts Disponibles**
+## 🤝 Contribuciones
 
-En el archivo `package.json`, encontrarás los siguientes scripts:
+¿Eres educador o desarrollador? ¡EduApps es open-source! Si quieres añadir una nueva app o mejorar el contenido:
+1.  Haz un **Fork** del repo.
+2.  Crea tu app en `src/apps/[nombre-app]`.
+3.  Añade tu contenido en JSON a la carpeta `public/data`.
+4.  Registra tu app en `src/apps/appList.js`.
+5.  ¡Envía un **Pull Request**!
 
-  * `npm run dev`: Inicia el servidor de desarrollo con Vite.
-  * `npm run build`: Compila y empaqueta la aplicación para producción en la carpeta `dist`.
-  * `npm run preview`: Sirve la carpeta `dist` para previsualizar la versión de producción.
+---
 
------
-
-## 🤝 ¿Quieres Contribuir?
-
-¡Este proyecto está abierto a la comunidad! Si eres desarrollador y te gustaría añadir tu propia aplicación educativa, ¡tu ayuda es bienvenida!
-
-El objetivo es crear un ecosistema de mini-apps de calidad. Todas las propuestas serán revisadas para asegurar que cumplen con los estándares del proyecto antes de ser aceptadas.
-
-### Procedimiento para Añadir una App
-
-1.  **Haz un Fork:** Crea un "fork" de este repositorio en tu propia cuenta de GitHub.
-
-2.  **Crea tu App:**
-    * Dentro de la carpeta `src/apps/`, crea un nuevo directorio para tu aplicación. Usa un nombre descriptivo, como por ejemplo: `nombre-app-nivel-curso` (ej: `mapas-interactivos-primaria-4`).
-    * Dentro de esta nueva carpeta, desarrolla tu aplicación como un componente de React (ej: `MapasInteractivos.jsx`) y añade los estilos CSS que necesites.
-
-3.  **Registra la App:**
-    * Abre el archivo `src/apps/appList.js`.
-    * Importa el componente principal de tu app.
-    * Añade un nuevo objeto al array del curso y nivel correspondiente dentro de la constante `courseApps`. El objeto debe tener la siguiente estructura:
-        ```javascript
-        {
-          id: 'un-id-unico-para-tu-app',
-          name: 'Nombre de tu App',
-          description: 'Una descripción breve y atractiva.',
-          component: TuComponenteImportado
-        }
-        ```
-
-4.  **Envía tu Pull Request (PR):**
-    * Una vez que hayas probado tu app y funcione correctamente, sube los cambios a tu fork.
-    * Crea un Pull Request desde tu repositorio hacia la rama principal de `aulaenlanube/apps-educativas`.
-    * En la descripción del PR, explica brevemente en qué consiste tu app y para qué curso está pensada.
-
-¡Muchas gracias por considerar contribuir!
-
------
-
-> Hecho con ❤️ por Edu Torregrosa con la ayuda de la IA.
+> Hecho con ❤️ por **Edu Torregrosa** (@aulaenlanube) y potenciado con Inteligencia Artificial.
