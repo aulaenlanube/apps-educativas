@@ -39,7 +39,7 @@ export function Arbol3D({ position }) {
       {/* Lo subimos la mitad de su altura para que la base esté en el suelo (y=0) */}
       <mesh position={[0, trunkHeight / 2, 0]}>
         <boxGeometry args={[0.8, trunkHeight, 0.8]} />
-        <meshStandardMaterial map={textureTrunk} color="#888888" /> 
+        <meshStandardMaterial map={textureTrunk} color="#888888" />
       </mesh>
 
       {/* HOJAS */}

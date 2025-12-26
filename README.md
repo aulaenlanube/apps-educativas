@@ -1,8 +1,7 @@
 # EduApps: Plataforma de Aplicaciones Educativas Interactivas 🚀
 
-![EduApps Hero Image](https://github.com/aulaenlanube/apps-educativas/raw/main/eduapps_hero.png)
 
-**EduApps** es una plataforma web de vanguardia diseñada para transformar la educación tradicional en una experiencia digital interactiva, divertida y altamente eficiente. Centraliza una suite de aplicaciones educativas de alta calidad para estudiantes de **Educación Primaria (1º - 6º)** y **ESO (1º - 4º)**.
+**EduApps** es una plataforma web de vanguardia diseñada para transformar la educación tradicional en una experiencia digital interactiva, divertida y altamente eficiente. Centraliza una suite de aplicaciones educativas de alta calidad para estudiantes de **Educación Primaria** y **ESO**.
 
 ---
 
@@ -82,4 +81,4 @@ El proyecto utiliza una arquitectura basada en datos JSON, lo que permite una es
 
 ---
 
-> Hecho con ❤️ por **Edu Torregrosa** (@aulaenlanube) y potenciado con Inteligencia Artificial.
+> Hecho con ❤️ por **Edu Torregrosa** con la ayuda de la IA.
