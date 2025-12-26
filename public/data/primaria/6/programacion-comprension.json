@@ -1,320 +1,552 @@
 [
   {
     "id": "1",
-    "titulo": "El robot Robi",
-    "texto": "Robi es un robot que obedece todo lo que le dices. Ana le da instrucciones para llegar a la silla. Le dice: 'Camina dos pasos hacia delante y gira a la derecha'. Robi lo hace perfectamente. Si Ana no le dice 'Para', Robi sigue caminando y se choca.",
+    "titulo": "¿Cómo aprende una Inteligencia Artificial?",
+    "texto": "La Inteligencia Artificial (IA) no es mágica, es matemáticas y datos. El 'Aprendizaje Automático' o Machine Learning consiste en entrenar a un ordenador con miles de ejemplos. Por ejemplo, si le enseñamos 10.000 fotos de gatos y 10.000 fotos de perros, el algoritmo aprende a distinguir sus rasgos (orejas, hocico). Cuantos más datos le demos, mejor será su predicción. Hoy en día, la IA nos ayuda a traducir idiomas o a conducir coches autónomos.",
     "preguntas": [
       {
-        "pregunta": "¿Robi es un niño?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿En qué se basa la Inteligencia Artificial?",
+        "opciones": [
+          "En magia",
+          "En matemáticas y datos",
+          "En el azar",
+          "En cables"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Robi obedece las órdenes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cuántos pasos camina?",
-        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
+        "pregunta": "¿Qué es el Machine Learning?",
+        "opciones": [
+          "Un robot que limpia",
+          "Entrenar al ordenador con ejemplos",
+          "Un juego de coches",
+          "Aprender a escribir"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Hacia dónde gira?",
-        "opciones": ["Izquierda", "Derecha", "Arriba", "Abajo"],
+        "pregunta": "¿Qué necesita la IA para ser más precisa?",
+        "opciones": [
+          "Menos datos",
+          "Más datos y ejemplos",
+          "Dormir",
+          "Ser más grande"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué pasa si no le dicen 'Para'?",
-        "opciones": ["Se duerme", "Baila", "Se choca", "Vuela"],
-        "correcta": 2
+        "pregunta": "¿Qué ejemplo de uso menciona el texto?",
+        "opciones": [
+          "Cocinar sopa",
+          "Traducir idiomas o coches autónomos",
+          "Pintar cuadros al óleo",
+          "Hacer ejercicio"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Si le enseñamos pocas fotos de gatos, ¿aprenderá bien?",
+        "opciones": [
+          "Sí",
+          "No, necesita muchos ejemplos"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "La receta ordenada",
-    "texto": "Un algoritmo es como una receta de cocina: hay que seguir los pasos en orden. Para lavarse los dientes, primero ponemos pasta en el cepillo. Segundo, nos cepillamos los dientes. Tercero, nos enjuaguamos con agua. Si cambiamos el orden, no funciona bien.",
+    "titulo": "Las Bases de Datos: Archivos inteligentes",
+    "texto": "Cuando un videojuego guarda tu inventario o tu puntuación, usa una Base de Datos. Imagina una biblioteca gigante con millones de cajones, pero el ordenador sabe exactamente en cuál está tu información en milisegundos. Los datos se organizan en tablas (filas y columnas), de forma similar a una hoja de cálculo, pero mucho más potentes y preparadas para manejar millones de usuarios a la vez.",
     "preguntas": [
       {
-        "pregunta": "¿Hay que seguir un orden?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Un algoritmo es como una receta?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hacemos primero?",
-        "opciones": ["Enjuagar", "Poner pasta", "Dormir", "Comer"],
+        "pregunta": "¿Para qué sirve una base de datos?",
+        "opciones": [
+          "Para dibujar",
+          "Para organizar y guardar información",
+          "Para borrar archivos",
+          "Para ver el tiempo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hacemos al final?",
-        "opciones": ["Bailar", "Poner pasta", "Enjuagarnos", "Cepillar"],
-        "correcta": 2
+        "pregunta": "¿En qué estructura se suelen organizar los datos?",
+        "opciones": [
+          "En círculos",
+          "En tablas (filas y columnas)",
+          "En nubes",
+          "En una sola línea"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué pasa si cambiamos el orden?",
-        "opciones": ["Funciona mejor", "No funciona bien", "Es más rápido", "Es más divertido"],
+        "pregunta": "¿A qué objeto se parece en el ejemplo?",
+        "opciones": [
+          "A un balón",
+          "A una biblioteca gigante",
+          "A un coche",
+          "A un lápiz"
+        ],
         "correcta": 1
+      },
+      {
+        "pregunta": "¿Son rápidas las bases de datos?",
+        "opciones": [
+          "Sí, encuentran datos en milisegundos",
+          "No, son muy lentas"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Pueden manejar a muchos usuarios a la vez?",
+        "opciones": [
+          "Sí",
+          "No, solo a uno"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "El ratón del ordenador",
-    "texto": "El ratón nos ayuda a movernos por la pantalla. Cuando mueves el ratón con tu mano sobre la mesa, una flechita se mueve en el ordenador. El ratón tiene dos botones para hacer 'clic'. Con el botón izquierdo abrimos los juegos.",
+    "titulo": "HTML: El esqueleto de las páginas web",
+    "texto": "HTML significa 'Lenguaje de Marcado de Hipertexto'. No es un lenguaje de programación con lógica, sino un lenguaje de etiquetas que describe la estructura de una web. Con etiquetas como <h1> definimos títulos, con <p> párrafos y con <img> imágenes. El navegador lee este código y muestra el contenido. Sin HTML, las páginas web no tendrían botones, imágenes ni textos ordenados.",
     "preguntas": [
       {
-        "pregunta": "¿El ratón mueve la flecha?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué significan las siglas HTML?",
+        "opciones": [
+          "HyperText Markup Language",
+          "High Tech Multi Language",
+          "Home Tool Main Line",
+          "Nada"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿El ratón tiene cinco botones?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Para qué se usa HTML?",
+        "opciones": [
+          "Para hacer cálculos",
+          "Para definir la estructura de una web",
+          "Para hackear",
+          "Para jugar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde movemos el ratón?",
-        "opciones": ["En el aire", "En la mesa", "En el suelo", "En la cabeza"],
+        "pregunta": "¿Qué etiqueta se usa para un título principal?",
+        "opciones": [
+          "<p>",
+          "<h1>",
+          "<img>",
+          "<a>"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué botón abre los juegos?",
-        "opciones": ["El derecho", "El de abajo", "El izquierdo", "El de atrás"],
-        "correcta": 2
+        "pregunta": "¿Quién lee el código HTML para mostrarlo?",
+        "opciones": [
+          "El ratón",
+          "El navegador (browser)",
+          "El teclado",
+          "La impresora"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué hace el ratón?",
-        "opciones": ["Ladra", "Salta", "Hace 'clic'", "Come queso"],
-        "correcta": 2
+        "pregunta": "¿Es un lenguaje de programación con lógica compleja?",
+        "opciones": [
+          "Sí",
+          "No, es de marcado/etiquetas"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "El bucle de baile",
-    "texto": "Un bucle sirve para repetir algo muchas veces. Leo está programando un videojuego de baile. Escribe una instrucción que dice: 'Repetir 5 veces: Saltar'. El personaje del juego salta cinco veces seguidas sin parar. ¡Es muy cansado!",
+    "titulo": "Criptografía: El arte de los secretos",
+    "texto": "Desde Julio César hasta los hackers actuales, los humanos han querido ocultar mensajes. La criptografía consiste en transformar un mensaje legible en un código que nadie pueda entender si no tiene la llave. Hoy en día, cuando enviamos un WhatsApp, el mensaje se 'encripta' al salir de nuestro móvil y se 'desencripta' en el móvil de nuestro amigo. Así, si alguien lo intercepta por el camino, solo verá letras y números sin sentido.",
     "preguntas": [
       {
-        "pregunta": "¿El personaje salta solo una vez?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es la criptografía?",
+        "opciones": [
+          "Un tipo de dibujo",
+          "Ocultar mensajes mediante códigos",
+          "La historia de las cuevas",
+          "Un lenguaje de programación"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Un bucle sirve para repetir?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cuántas veces salta?",
-        "opciones": ["Dos", "Tres", "Cuatro", "Cinco"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué está programando Leo?",
-        "opciones": ["Una lavadora", "Un videojuego", "Un coche", "Un robot"],
+        "pregunta": "¿Qué se necesita para leer un mensaje cifrado?",
+        "opciones": [
+          "Un diccionario",
+          "Una llave o clave",
+          "Internet",
+          "Mucha luz"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hace el personaje?",
-        "opciones": ["Dormir", "Comer", "Saltar", "Nadar"],
+        "pregunta": "¿Para qué sirve en aplicaciones como WhatsApp?",
+        "opciones": [
+          "Para que los mensajes lleguen antes",
+          "Para que nadie pueda leerlos por el camino",
+          "Para que pesen menos",
+          "Para cambiar el color"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ve alguien que intercepta un mensaje encriptado?",
+        "opciones": [
+          "El mensaje original",
+          "Nada, se ve negro",
+          "Letras y números sin sentido",
+          "Una foto"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Es una técnica moderna solamente?",
+        "opciones": [
+          "Sí",
+          "No, se usa desde tiempos antiguos (como César)"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Buscando el error",
-    "texto": "Sara ha creado un programa para que su coche de juguete llegue a la meta. Pero el coche se ha girado al revés. Sara revisa sus instrucciones y encuentra un error. Había puesto 'Izquierda' en vez de 'Derecha'. Ella arregla el fallo y el coche funciona.",
+    "titulo": "Búsqueda Binaria: El truco para ir rápido",
+    "texto": "Imagina que tienes que buscar un número del 1 al 100. El método lento es mirar uno a uno. El método rápido es la búsqueda binaria. Empiezas por el medio (50). Si el número buscado es mayor, descartas todos los del 1 al 50. Luego pruebas el 75. En cada paso descartas la mitad de lo que te queda. Con este algoritmo, un ordenador puede encontrar un dato entre un millón en solo 20 intentos.",
     "preguntas": [
       {
-        "pregunta": "¿El coche llegó a la meta al principio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿En qué consiste la búsqueda binaria?",
+        "opciones": [
+          "Mirar todos los datos",
+          "Dividir el problema a la mitad en cada paso",
+          "Sumar todos los números",
+          "Preguntar a un amigo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Sara arregló el fallo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué encontró Sara?",
-        "opciones": ["Un premio", "Un error", "Una moneda", "Un gato"],
+        "pregunta": "¿Por qué es mejor que la búsqueda lineal?",
+        "opciones": [
+          "Porque es más bonita",
+          "Porque es muchísimo más rápida",
+          "Porque usa menos colores",
+          "Porque no usa números"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué instrucción estaba mal?",
-        "opciones": ["Avanzar", "Parar", "Izquierda", "Saltar"],
+        "pregunta": "Si buscas entre un millón de datos, ¿cuántos intentos necesita este método?",
+        "opciones": [
+          "Un millón",
+          "Quinientos mil",
+          "Unos 20",
+          "Diez"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué pasó después de arreglarlo?",
-        "opciones": ["El coche funcionó", "El coche explotó", "El coche voló", "Nada"],
+        "pregunta": "¿Cuál es el primer paso?",
+        "opciones": [
+          "Empezar por el 1",
+          "Ir al final",
+          "Probar en el centro de la lista",
+          "Borrar la lista"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Es útil para bases de datos grandes?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 0
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Si llueve, coge paraguas",
-    "texto": "Los ordenadores saben tomar decisiones. Podemos decirles: 'Si llueve, cierra la ventana'. 'Si hace sol, abre la ventana'. Esto se llama una condición. Es como cuando tu mamá te dice: 'Si terminas la cena, te doy postre'.",
+    "titulo": "Los sentidos de un Robot: Sensores",
+    "texto": "Un robot no ve ni oye como nosotros, pero usa sensores. Un sensor de ultrasonidos le permite saber a qué distancia está una pared (usando el eco). Un sensor de luz le sirve para seguir una línea negra en el suelo. Un sensor de contacto le indica si ha chocado contra algo. Los programadores usamos condicionales (SI ocurre esto, haz aquello) para que el robot decida según lo que detectan sus sensores.",
     "preguntas": [
       {
-        "pregunta": "¿Los ordenadores toman decisiones?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Para qué sirven los sensores?",
+        "opciones": [
+          "Para que el robot sea guapo",
+          "Para recibir información del entorno",
+          "Para gastar batería",
+          "Para nada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué usa el sensor de ultrasonidos para medir distancias?",
+        "opciones": [
+          "Luz",
+          "Cámaras",
+          "El eco del sonido",
+          "Cintas métricas"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo puede un robot seguir una línea negra?",
+        "opciones": [
+          "Con un sensor de luz",
+          "Con un sensor de tacto",
+          "Con Google Maps",
+          "Con el sonido"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Si hace sol cerramos la ventana?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué estructura de código se usa con los sensores?",
+        "opciones": [
+          "Solo bucles",
+          "Condicionales (SI...)",
+          "Sumas",
+          "No se usa código"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué pasa si llueve?",
-        "opciones": ["Abrimos la puerta", "Cerramos la ventana", "Ponemos música", "Comemos helado"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cómo se llama esto?",
-        "opciones": ["Canción", "Condición", "Camión", "Corazón"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué pasa si terminas la cena?",
-        "opciones": ["Te vas a dormir", "Te dan postre", "Te duchas", "Juegas"],
+        "pregunta": "Si el robot choca, ¿qué sensor le avisa?",
+        "opciones": [
+          "Luz",
+          "Contacto",
+          "Humedad",
+          "Temperatura"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Los cuadraditos de colores",
-    "texto": "Las imágenes de la pantalla están formadas por muchos cuadraditos pequeños llamados píxeles. Si te acercas mucho a la tele, puedes ver puntitos de colores. Juntos forman dibujos, como un mosaico de azulejos.",
+    "titulo": "Computación en la nube: ¿Dónde están mis fotos?",
+    "texto": "Cuando guardas un archivo en 'la nube' (Cloud), no está flotando en el cielo. Realmente está guardado en servidores, que son ordenadores muy potentes encendidos 24 horas en almacenes gigantes. La ventaja de la nube es que puedes acceder a tus archivos desde cualquier dispositivo con Internet (móvil, tablet, PC). Es como alquilar un trozo de disco duro en otra parte del mundo.",
     "preguntas": [
       {
-        "pregunta": "¿Las imágenes tienen círculos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es realmente 'la nube'?",
+        "opciones": [
+          "Vapor de agua con datos",
+          "Servidores encendidos 24 horas",
+          "Un satélite",
+          "Una carpeta del móvil"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Los cuadraditos se llaman píxeles?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Cuál es la principal ventaja de la nube?",
+        "opciones": [
+          "Que no cuesta dinero",
+          "Acceso desde cualquier dispositivo con Internet",
+          "Que es más bonita",
+          "Que no necesita electricidad"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué forman los píxeles?",
-        "opciones": ["Música", "Olores", "Dibujos", "Ruidos"],
-        "correcta": 2
+        "pregunta": "¿Qué es un servidor?",
+        "opciones": [
+          "Un camarero",
+          "Un ordenador muy potente para dar servicios",
+          "Un tipo de cable",
+          "Un ratón antiguo"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿A qué se parecen?",
-        "opciones": ["A un mosaico", "A una sopa", "A una nube", "A un libro"],
-        "correcta": 0
+        "pregunta": "¿Están los servidores encendidos siempre?",
+        "opciones": [
+          "No, solo de día",
+          "Sí, 24 horas al día",
+          "Solo cuando yo los uso",
+          "No necesitan energía"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué pasa si te acercas a la tele?",
-        "opciones": ["Te mojas", "Ves los puntitos", "Oyes mal", "Te duermes"],
+        "pregunta": "¿Se puede usar la nube sin Internet?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El teclado mágico",
-    "texto": "El teclado tiene muchas teclas con letras y números. La tecla más larga de todas está abajo y se llama 'barra espaciadora'. Sirve para separar las palabras cuando escribimos. Si no la usamos, todaslaspalabrasestánpegadas.",
+    "titulo": "Diseño de Videojuegos: Jugabilidad",
+    "texto": "Hacer un videojuego no es solo programar; también es diseño. La jugabilidad (gameplay) es lo que hace que un juego sea divertido. Los diseñadores equilibran la dificultad: si es muy fácil, es aburrido; si es muy difícil, es frustrante. También usan el 'feedback', que son sonidos o luces que ocurren cuando el jugador hace algo bien, para que el cerebro se sienta recompensado.",
     "preguntas": [
       {
-        "pregunta": "¿El teclado tiene letras?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿La tecla larga está arriba?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es la jugabilidad?",
+        "opciones": [
+          "El precio del juego",
+          "Lo que hace que un juego sea divertido y funcione",
+          "La caja del juego",
+          "El idioma"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se llama la tecla larga?",
-        "opciones": ["Enter", "Barra espaciadora", "Escape", "Borrar"],
+        "pregunta": "¿Qué pasa si un juego es demasiado fácil?",
+        "opciones": [
+          "Que es muy divertido",
+          "Que es aburrido",
+          "Que se rompe",
+          "Que nadie lo quiere comprar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Para qué sirve?",
-        "opciones": ["Para borrar", "Para poner música", "Para separar palabras", "Para apagar"],
-        "correcta": 2
+        "pregunta": "¿Qué es el 'feedback' en un juego?",
+        "opciones": [
+          "Un error",
+          "Respuestas visuales o sonoras a las acciones",
+          "El final del juego",
+          "Un mensaje de error"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué pasa si no la usamos?",
-        "opciones": ["Las palabras se pegan", "Se rompe el teclado", "Escribe en rojo", "No pasa nada"],
-        "correcta": 0
+        "pregunta": "¿Qué buscan evitar los diseñadores?",
+        "opciones": [
+          "Que el jugador gane",
+          "El aburrimiento y la frustración",
+          "Los colores brillantes",
+          "La música"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Es solo programar?",
+        "opciones": [
+          "Sí",
+          "No, también es diseñar la experiencia"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Encendido y apagado",
-    "texto": "Los ordenadores funcionan con electricidad. Por dentro, hablan un idioma secreto de solo dos cosas: encendido y apagado (o 1 y 0). Es como un interruptor de la luz. Con muchos unos y ceros pueden hacer cosas increíbles.",
+    "titulo": "Ciberseguridad: Las huellas digitales",
+    "texto": "Cada vez que navegas por Internet dejas un rastro. Las 'cookies' son pequeños archivos que las webs guardan en tu ordenador para recordarte. Aunque sirven para cosas buenas (recordar tu idioma), también pueden seguirte para saber qué te gusta comprar. Debemos aprender a gestionar nuestra privacidad, usar contraseñas seguras y no compartir información privada con extraños.",
     "preguntas": [
       {
-        "pregunta": "¿Los ordenadores usan gasolina?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué son las cookies?",
+        "opciones": [
+          "Galletas con chocolate",
+          "Pequeños archivos de rastreo en el navegador",
+          "Un tipo de virus",
+          "Un lenguaje nuevo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Entienden encendido y apagado?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué números usan?",
-        "opciones": ["1 y 0", "2 y 3", "8 y 9", "5 y 6"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿A qué se parece?",
-        "opciones": ["A un grifo", "A un interruptor", "A una puerta", "A una rueda"],
+        "pregunta": "¿Para qué sirven las cookies buenas?",
+        "opciones": [
+          "Para nada",
+          "Para recordar ajustes como el idioma",
+          "Para arreglar el PC",
+          "Para jugar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Con qué funcionan?",
-        "opciones": ["Con agua", "Con aire", "Con electricidad", "Con magia"],
-        "correcta": 2
+        "pregunta": "¿Qué es el rastro digital?",
+        "opciones": [
+          "Una foto de un pie",
+          "La huella que dejamos al navegar",
+          "Un virus",
+          "Un tipo de monitor"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué debemos proteger en Internet?",
+        "opciones": [
+          "Nuestra privacidad",
+          "El teclado",
+          "La mesa",
+          "El cargador"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Es seguro usar siempre la misma contraseña?",
+        "opciones": [
+          "Sí",
+          "No, hay que usar contraseñas seguras y distintas"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Internet nos conecta",
-    "texto": "Internet es como una red gigante invisible que conecta todos los ordenadores del mundo. Gracias a Internet, podemos mandar un dibujo a un amigo que vive en otro país y le llega en un segundo. ¡Es rapidísimo!",
+    "titulo": "CSS: Dando color a la web",
+    "texto": "Si HTML es el esqueleto de una web, CSS es la piel y la ropa. Significa 'Hojas de Estilo en Cascada'. Con CSS podemos cambiar el color de fondo, el tipo de letra, el tamaño de las imágenes o crear animaciones. Gracias al CSS, una misma página web puede verse totalmente distinta en un ordenador y en un móvil, adaptando los elementos para que sea fácil de leer.",
     "preguntas": [
       {
-        "pregunta": "¿Internet es visible?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué significan las siglas CSS?",
+        "opciones": [
+          "Cascading Style Sheets",
+          "Computer Style System",
+          "Coded Simple Science",
+          "Nada"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Para qué sirve el CSS?",
+        "opciones": [
+          "Para programar robots",
+          "Para dar estilo y diseño a la web",
+          "Para guardar datos",
+          "Para escribir textos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Conecta solo dos ordenadores?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué permite hacer el CSS con una web en un móvil?",
+        "opciones": [
+          "Que no funcione",
+          "Adaptar los elementos para que se vea bien",
+          "Borrar la web",
+          "Hacerla más pequeña solamente"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué es Internet?",
-        "opciones": ["Un juego", "Una red gigante", "Un robot", "Un cable"],
+        "pregunta": "¿A qué se parece el CSS según el ejemplo?",
+        "opciones": [
+          "Al esqueleto",
+          "A la piel y la ropa",
+          "A un cerebro",
+          "A un zapato"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuánto tarda en llegar un mensaje?",
-        "opciones": ["Un año", "Una hora", "Un segundo", "Un día"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿A dónde podemos mandar dibujos?",
-        "opciones": ["A la Luna", "A otro país", "Al pasado", "A ningún sitio"],
+        "pregunta": "¿Sin CSS cómo se verían las webs?",
+        "opciones": [
+          "Mucho mejor",
+          "Muy básicas, solo texto y enlaces",
+          "No se verían",
+          "En 3D"
+        ],
         "correcta": 1
       }
     ]

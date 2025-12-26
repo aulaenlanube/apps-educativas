@@ -1,320 +1,570 @@
 [
   {
     "id": "1",
-    "titulo": "La paella del diumenge",
-    "texto": "Hui és diumenge i mengem paella. El pare cuina al jardí amb llenya. La paella porta arròs, pollastre i bajoqueta. Tota la família seu a taula per a dinar. L'arròs està molt bo i groc.",
+    "titulo": "La meua família",
+    "texto": "Hola! Em diuen Laia. Visc amb el meu pare, la meua mare i el meu germà xicotet, que es diu Pau. També tenim un gos que es diu Brutus. Els diumenges anem a dinar a casa dels avis i mengem paella. M'agrada molt estar amb tota la meua família.",
     "preguntas": [
       {
-        "pregunta": "Hui és dilluns?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Com es diu la xiqueta?",
+        "opciones": [
+          "Pau",
+          "Laia",
+          "Brutus",
+          "Marta"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Cuina la mare?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Qui és Pau?",
+        "opciones": [
+          "El seu pare",
+          "El seu germà",
+          "El seu gos",
+          "L'avi"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què porta la paella?",
-        "opciones": ["Macarrons", "Arròs", "Creïlles", "Peix"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "On cuina el pare?",
-        "opciones": ["A la cuina", "Al bany", "Al jardí", "Al carrer"],
+        "pregunta": "Quin animal tenen a casa?",
+        "opciones": [
+          "Un gat",
+          "Un canari",
+          "Un gos",
+          "Una tortuga"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "De quin color és l'arròs?",
-        "opciones": ["Blau", "Verd", "Roig", "Groc"],
+        "pregunta": "Quin dia van a casa dels avis?",
+        "opciones": [
+          "Dissabte",
+          "Dilluns",
+          "Divendres",
+          "Diumenge"
+        ],
         "correcta": 3
+      },
+      {
+        "pregunta": "Què mengen a casa dels avis?",
+        "opciones": [
+          "Sopa",
+          "Pizza",
+          "Paella",
+          "Hamburguesa"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Les Falles",
-    "texto": "Al mes de març celebrem les Falles. Al carrer hi ha ninots molt grans i colorits. Els xiquets i les xiquetes tiren petards i s'ho passen molt bé. També mengem bunyols amb xocolate calent.",
+    "titulo": "L'escola deColors",
+    "texto": "A la meua escola hi ha moltes aules. La meua aula és gran i té finestres que donen al pati. En la motxilla porte el estoig amb llapis, una goma i els colors. La meua mestra es diu Carme i ens ensenya cançons molt boniques en valencià.",
     "preguntas": [
       {
-        "pregunta": "Les Falles són al març?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Com és l'aula de la xiqueta?",
+        "opciones": [
+          "Molt xicoteta",
+          "Gran",
+          "Fosca",
+          "Blava"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Què porta en la motxilla?",
+        "opciones": [
+          "L'estoig",
+          "El berenar",
+          "Un joguet",
+          "Ropa"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "Els xiquets tiren pedres?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "On donen les finestres de l'aula?",
+        "opciones": [
+          "Al carrer",
+          "Al pati",
+          "Al bosc",
+          "A la cuina"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què mengem?",
-        "opciones": ["Poma", "Bunyols", "Sopa", "Entrepà"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Què hi ha al carrer?",
-        "opciones": ["Cotxes", "Ninots grans", "Vaques", "Llits"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Amb què prenem els bunyols?",
-        "opciones": ["Amb aigua", "Amb suc", "Amb xocolate", "Amb llet"],
+        "pregunta": "Com es diu la mestra?",
+        "opciones": [
+          "Laia",
+          "Pau",
+          "Carme",
+          "Anna"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "Què els ensenya la mestra?",
+        "opciones": [
+          "Contes",
+          "Cançons",
+          "Dibuixos",
+          "Música"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "El meu gosset Blai",
-    "texto": "El meu gos es diu Blai. És xicotet i té el pèl de color marró. Li agrada molt jugar amb la pilota al parc. Quan té son, dorm al seu llit redó i calentet.",
+    "titulo": "Al mercat del poble",
+    "texto": "Tots els dissabtes el meu avi i jo anem al mercat. Comprem fruita fresca: taronges valencianes, pomes roges i plàtans. També comprem verdures com tomaques i carlotes per a fer l'ensalada. El mercat és molt alegre i ple de gent.",
     "preguntas": [
       {
-        "pregunta": "El gos és gran?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quin dia van al mercat?",
+        "opciones": [
+          "Dilluns",
+          "Dissabte",
+          "Diumenge",
+          "Dimarts"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "És de color blau?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Amb qui va el xiquet al mercat?",
+        "opciones": [
+          "Amb sa mare",
+          "Amb l'avi",
+          "Amb el mestre",
+          "Sols"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Com es diu el gos?",
-        "opciones": ["Toby", "Rex", "Blai", "Roc"],
+        "pregunta": "Quina fruita compren que és valenciana?",
+        "opciones": [
+          "Pomes",
+          "Taronges",
+          "Plàtans",
+          "Pereules"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Quines verdures compren?",
+        "opciones": [
+          "Patates",
+          "Tomaques i carlotes",
+          "Cebes",
+          "Mongetes"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Com és el mercat?",
+        "opciones": [
+          "Trist",
+          "Silenciós",
+          "Alegre e ple de gent",
+          "Molt xicotet"
+        ],
         "correcta": 2
-      },
-      {
-        "pregunta": "Amb què juga?",
-        "opciones": ["Amb una pilota", "Amb un llibre", "Amb un llapis", "Amb un os"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "On dorm Blai?",
-        "opciones": ["Al sofà", "Al llit", "A la cadira", "A terra"],
-        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "L'hora del pati",
-    "texto": "A l'escola, quan sona el timbre, eixim al pati. A mi m'agrada jugar a fet i amagar amb els amics. Hui he portat un entrepà de formatge i un suc de taronja per a esmorzar.",
+    "titulo": "Els animals de la granja",
+    "texto": "A la granja del tò Marc hi ha molts animals. La vaca és gran i blanca amb taca negres. Les gallines ponen ous cada matí. També hi ha un porquet rosa que li agrada jugar en el fang i unes ovelles blanques amb molta llana.",
     "preguntas": [
       {
-        "pregunta": "Sona el timbre?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Eixim al carrer?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "De qui és la granja?",
+        "opciones": [
+          "D'en Pau",
+          "Del tio Marc",
+          "Del mestre",
+          "Del veí"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "A què juga?",
-        "opciones": ["A futbol", "A bàsquet", "A fet i amagar", "A cartes"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "De què és l'entrepà?",
-        "opciones": ["De pernil", "De formatge", "De xocolate", "De tonyina"],
+        "pregunta": "Com és la vaca?",
+        "opciones": [
+          "Marró",
+          "Blanca amb taques negres",
+          "Negra solament",
+          "Rosa"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "De què és el suc?",
-        "opciones": ["De poma", "De pera", "De taronja", "De bresquilla"],
+        "pregunta": "Quin animal pon ous?",
+        "opciones": [
+          "La vaca",
+          "La gallina",
+          "El porc",
+          "L'ovella"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "On li agrada jugar al porquet?",
+        "opciones": [
+          "En l'aigua",
+          "En el fang",
+          "En la herba",
+          "Dins la casa"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Què tenen les ovelles?",
+        "opciones": [
+          "Plomes",
+          "Pèl",
+          "Llana",
+          "Escates"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "La taronja",
-    "texto": "La taronja és una fruita redona. Naix als tarongers, que són arbres amb fulles verdes. La taronja té molt de suc i és bona per a la salut. A València hi ha molts camps de taronges.",
+    "titulo": "La casa de l'avi",
+    "texto": "La casa de l'avi Pere és al camp. Té una cuina gran on fa menjars molt bons. També té un menjador amb una taula de fusta i tres dormitoris. Dalt de tot hi ha una terrassa on podem vore les muntanyes i el bosc.",
     "preguntas": [
       {
-        "pregunta": "La taronja és quadrada?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "On és la casa de l'avi?",
+        "opciones": [
+          "A la ciutat",
+          "Al camp",
+          "A la platja",
+          "Al costat del cole"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Les fulles són verdes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "On naixen les taronges?",
-        "opciones": ["Als pins", "Als tarongers", "A les roques", "Al mar"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Què té la taronja?",
-        "opciones": ["Llet", "Aigua", "Suc", "Sal"],
+        "pregunta": "Com és la cuina?",
+        "opciones": [
+          "Xicoteta",
+          "Blava",
+          "Gran",
+          "Magra"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "És bona per a la salut?",
-        "opciones": ["Sí, molt", "No, gens", "És roïna", "Fa mal"],
-        "correcta": 0
+        "pregunta": "Quants dormitoris té la casa?",
+        "opciones": [
+          "Un",
+          "Dos",
+          "Tres",
+          "Quatre"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Què hi ha dalt de tot?",
+        "opciones": [
+          "Un bany",
+          "Una terrassa",
+          "Un garatge",
+          "Una cuina"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Què es pot vore des de la terrassa?",
+        "opciones": [
+          "La mar",
+          "Les muntanyes i el bosc",
+          "El mercat",
+          "L'escola"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Un dia de pluja",
-    "texto": "Hui el cel està gris i plou molt. M'he posat les botes d'aigua i l'impermeable groc. M'agrada saltar als tolls d'aigua, però la mare diu que em banye els peus.",
+    "titulo": "Les Falles",
+    "texto": "Al març celebrem les Falles. Tot el carrer s'ompli de música i colors. Els fallers i les falleres porten vestits tradicionals molt bonics. Hi ha ninots molt grans de cartró que es diuen falles. L'últim dia de la festa es cremen amb foc.",
     "preguntas": [
       {
-        "pregunta": "Fa sol hui?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "El cel està blau?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "De quin color és l'impermeable?",
-        "opciones": ["Roig", "Groc", "Verd", "Negre"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "On salta?",
-        "opciones": ["Als tolls", "Al llit", "A la cadira", "Al sofà"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Què es banya?",
-        "opciones": ["Les mans", "El cap", "Els peus", "El nas"],
+        "pregunta": "Quin mes celebrem les Falles?",
+        "opciones": [
+          "Gener",
+          "Febrer",
+          "Març",
+          "Abril"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "De què s'ompli el carrer?",
+        "opciones": [
+          "De cotxes",
+          "De música i colors",
+          "D'aigua",
+          "De neu"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Com es diuen els ninots grans?",
+        "opciones": [
+          "Joguets",
+          "Gegants",
+          "Falles",
+          "Ninos"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Què fan l'últim dia amb les falles?",
+        "opciones": [
+          "Les guarden",
+          "Les venen",
+          "Les cremen",
+          "Les pinten"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Com són els vestits dels fallers?",
+        "opciones": [
+          "Moderns",
+          "Tradicionals",
+          "Esportius",
+          "De bany"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "La meua habitació",
-    "texto": "La meua habitació és de color blau. Tinc un llit gran i una taula per a fer els deures. A la prestatgeria tinc molts contes. El meu joguet preferit és un osset de peluix.",
+    "titulo": "El meu cos",
+    "texto": "És molt important cuidar el nostre cos. Amb els ulls podem vore els colors del món. Amb les orelles escoltem la música. Fem servir les nostres mans per a escriure i pintar dibuixos. Hem de menjar fruita i fer esport per a estar sans i forts.",
     "preguntas": [
       {
-        "pregunta": "L'habitació és roja?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Amb què podem vore els colors?",
+        "opciones": [
+          "Amb el nas",
+          "Amb els ulls",
+          "Amb les mans",
+          "Amb la boca"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Té un llit gran?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Per a què fem servir les orelles?",
+        "opciones": [
+          "Per a parlar",
+          "Per a escoltar música",
+          "Per a caminar",
+          "Per a menjar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Què fem amb les mans?",
+        "opciones": [
+          "Escoltats",
+          "Olorar",
+          "Escriure i pintar",
+          "Mirar"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Què hem de fer per a estar sans?",
+        "opciones": [
+          "Dormir poc",
+          "Menjar fruita i fer esport",
+          "Mirar la tele",
+          "No rentar-se"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Com ens sentirem si ens cuidem?",
+        "opciones": [
+          "Sans i forts",
+          "Tristos",
+          "Malalts",
+          "Cansats"
+        ],
         "correcta": 0
-      },
-      {
-        "pregunta": "De quin color és l'habitació?",
-        "opciones": ["Blanca", "Verda", "Blava", "Rosa"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "Què hi ha a la prestatgeria?",
-        "opciones": ["Plats", "Roba", "Contes", "Sabates"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "Quin és el joguet preferit?",
-        "opciones": ["Un cotxe", "Un osset", "Una nina", "Un tren"],
-        "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Anem a la platja",
-    "texto": "A l'estiu fa molta calor i anem a la platja. L'aigua de la mar està fresqueta. Jo faig castells amb l'arena i el meu germà neda amb els manguitos. Després mengem gelat.",
+    "titulo": "Un dia a la mar",
+    "texto": "A l'estiu fa molta calor i anem a la platja. El cel és blau i no hi ha núvols. Posem el para-sol en l'arena per a tindre ombra. M'agrada fer castells d'arena i banyar-me en l'aigua salada. Després mengem un gelat de llima molt fresquet.",
     "preguntas": [
       {
-        "pregunta": "Fa fred a l'estiu?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "En quina estació anem a la platja?",
+        "opciones": [
+          "Hivern",
+          "Primavera",
+          "Estiu",
+          "Tardor"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "De quin color és el cel?",
+        "opciones": [
+          "Gris",
+          "Blau",
+          "Roig",
+          "Blanc"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "L'aigua està calenta?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Què faig amb l'arena?",
-        "opciones": ["Boles", "Castells", "Pastissos", "Cases"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Amb què neda el germà?",
-        "opciones": ["Amb manguitos", "Amb barca", "Amb peus", "Amb res"],
+        "pregunta": "Per a què posem el para-sol?",
+        "opciones": [
+          "Per a tindre ombra",
+          "Per a jugar",
+          "Per a nadar",
+          "Per a menjar"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "Què mengen després?",
-        "opciones": ["Fruita", "Gelat", "Pa", "Peix"],
+        "pregunta": "Com és el gelat que mengem?",
+        "opciones": [
+          "De xocolata",
+          "De llima",
+          "De maduixa",
+          "De nata"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "On fem els castells?",
+        "opciones": [
+          "En l'aigua",
+          "En l'arena",
+          "En la terrassa",
+          "En el pati"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "La classe de música",
-    "texto": "Hui tenim classe de música amb la mestra Anna. Aprenem a tocar la flauta i el tambor. La mestra toca la guitarra i nosaltres cantem una cançó molt bonica sobre la primavera.",
+    "titulo": "El gatet de Marc",
+    "texto": "Marc té un gatet que es diu Mixu. És molt xicotet i té el pèl molt suau. Mixu dorm moltes hores en un bressol de llana. Quan té gana, miola i Marc li posa llet en un platet. Li agrada molt jugar amb una piloteta de colors pel passadís.",
     "preguntas": [
       {
-        "pregunta": "La mestra es diu Maria?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Toquem el piano?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Què toca la mestra?",
-        "opciones": ["El violí", "La guitarra", "La trompeta", "El piano"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Què toquen els xiquets?",
-        "opciones": ["Flauta i tambor", "Guitarra", "Piano", "Arpa"],
+        "pregunta": "Com es diu el gatet?",
+        "opciones": [
+          "Mixu",
+          "Brutus",
+          "Marc",
+          "Pau"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "De què és la cançó?",
-        "opciones": ["De l'hivern", "De la tardor", "De l'estiu", "De la primavera"],
-        "correcta": 3
+        "pregunta": "Com té el pèl el gatet?",
+        "opciones": [
+          "Dur",
+          "Punxegut",
+          "Suau",
+          "Negre"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "On dorm el gatet?",
+        "opciones": [
+          "Al sofà",
+          "En un bressol de llana",
+          "Al llit de Marc",
+          "Al pati"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Què menja el gatet?",
+        "opciones": [
+          "Pomes",
+          "Pa",
+          "Llet",
+          "Ensalada"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Amb què li agrada jugar?",
+        "opciones": [
+          "Amb un os",
+          "Amb una piloteta",
+          "Amb un llibre",
+          "Amb una nina"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "L'àvia Pepa",
-    "texto": "L'àvia Pepa viu al poble. Té una casa blanca amb un hort. A l'hort hi ha tomaques i encisams. L'àvia em conta contes de quan ella era xicoteta abans d'anar a dormir.",
+    "titulo": "La tardor i les fulles",
+    "texto": "A la tardor els dies són més curts. Les fulles dels arbres es tornen de color marró i groc. Quan fa vent, les fulles cauen a terra i fan soroll quan les trepitgem. Portem jaqueta perquè comença a fer un poc de fred i plou molts dies.",
     "preguntas": [
       {
-        "pregunta": "L'àvia viu a la ciutat?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Com són els dies a la tardor?",
+        "opciones": [
+          "Més llargs",
+          "Més curts",
+          "Iguals",
+          "Calents"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "La casa és negra?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "De quin color es tornen les fulles?",
+        "opciones": [
+          "Verdes",
+          "Marró i groc",
+          "Blaves",
+          "Negres"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què hi ha a l'hort?",
-        "opciones": ["Tomaques", "Pomes", "Taronges", "Melons"],
-        "correcta": 0
+        "pregunta": "Què fan les fulles quan fa vent?",
+        "opciones": [
+          "Volen molt",
+          "Cauen a terra",
+          "Es queden quietes",
+          "Canten"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Quan conta contes?",
-        "opciones": ["Pel matí", "A la vesprada", "Abans de dormir", "A l'hora de dinar"],
-        "correcta": 2
+        "pregunta": "Què portem quan fa fred?",
+        "opciones": [
+          "Banyador",
+          "Jaqueta",
+          "Gorra de sol",
+          "Sandàlies"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Com era l'àvia als contes?",
-        "opciones": ["Vella", "Xicoteta", "Alta", "Trista"],
+        "pregunta": "Què passa molts dies a la tardor?",
+        "opciones": [
+          "Neva",
+          "Plou",
+          "Fa molta calor",
+          "Hi ha boira"
+        ],
         "correcta": 1
       }
     ]

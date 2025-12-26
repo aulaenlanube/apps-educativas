@@ -1,0 +1,568 @@
+[
+    {
+        "id": "1",
+        "titulo": "La Música en el Cine: Funciones",
+        "texto": "La música de cine no solo acompaña a las imágenes; tiene funciones vitales. La función NARRATIVA nos sitúa en un lugar o época (ej: música celta para un bosque). La función EXPRESIVA destaca las emociones de los personajes (tristeza, miedo, alegría). El 'LEITMOTIV' es una melodía corta asociada a un personaje o idea que se repite cuando este aparece, como el tema de Darth Vader en Star Wars. Una gran banda sonora puede hacer que una escena normal se convierta en inolvidable y épica.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un leitmotiv?",
+                "opciones": [
+                    "Una canción completa",
+                    "Una melodía corta asociada a un personaje o idea",
+                    "Un instrumento raro",
+                    "Un tipo de director"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué función de la música nos indica dónde o cuándo ocurre la peli?",
+                "opciones": [
+                    "Expresiva",
+                    "Narrativa / Ambiental",
+                    "Matemática",
+                    "Silenciosa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién compuso el famoso leitmotiv de Darth Vader?",
+                "opciones": [
+                    "Beethoven",
+                    "John Williams",
+                    "Mozart",
+                    "Hanz Zimmer"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La función expresiva sirve principalmente para:",
+                "opciones": [
+                    "Ahorrar diálogos",
+                    "Aumentar la emoción de los personajes",
+                    "Vender palomitas",
+                    "Llenar el silencio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Podría el cine prescindir de la música hoy en día?",
+                "opciones": [
+                    "Sí, totalmente",
+                    "No, perdería gran parte de su fuerza emocional"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "La Grabación de Sonido: Historia",
+        "texto": "La forma en que escuchamos música ha cambiado radicalmente. El primer invento fue el FONÓGRAFO de Edison (1877), que grababa en cilindros de cera. Luego llegó el Gramófono y los discos de vinilo (grabación analógica). En los años 60, el casete permitió llevar la música a todas partes. La gran revolución fue el paso al MUNDO DIGITAL con el CD y más tarde el MP3, que permitía comprimir la música sin apenas pérdida de calidad. Hoy, el streaming nos permite acceder a toda la música del mundo sin necesidad de grabarla nosotros mismos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quién inventó el fonógrafo?",
+                "opciones": [
+                    "Newton",
+                    "Thomas Edison",
+                    "Graham Bell",
+                    "Einstein"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué formato fue el primero en ser digital?",
+                "opciones": [
+                    "Vinilo",
+                    "CD (Compact Disc)",
+                    "Casete",
+                    "Cilindro de cera"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ventaja tiene el formato MP3?",
+                "opciones": [
+                    "Su color",
+                    "La compresión del tamaño del archivo",
+                    "Que no se rompe",
+                    "Que es más grande"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la característica del sonido analógico (vinilo)?",
+                "opciones": [
+                    "Son ceros y unos",
+                    "Usa una señal continua (surco en el disco)",
+                    "No tiene sonido",
+                    "Viene de internet"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué invento permitió la música portátil por primera vez de forma masiva?",
+                "opciones": [
+                    "El piano",
+                    "El casete / Walkman",
+                    "La radio de casa",
+                    "El órgano"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "El Flamenco: Patrimonio de la Humanidad",
+        "texto": "El flamenco es un género único que nace en Andalucía del mestizaje de la cultura gitana, judía, árabe y cristiana. Sus tres pilares son: el CANTE, el TOQUE (la guitarra) y el BAILE. Los palos son los distintos estilos del flamenco (bulerías, alegrías, seguidillas...). El 'DUENDE' es ese estado especial de emoción y entrega que alcanza el artista cuando actúa. Es Patrimonio Inmaterial de la Humanidad por la UNESCO y es admirado en todo el mundo por su fuerza expresiva y su complejidad rítmica.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuáles son los pilares del flamenco?",
+                "opciones": [
+                    "Voz y piano",
+                    "Cante, Toque y Baile",
+                    "Solo baile",
+                    "Guitarra y batería"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un 'palo' flamenco?",
+                "opciones": [
+                    "Un trozo de madera",
+                    "Cada uno de los estilos o variedades del flamenco",
+                    "Un instrumento de percusión",
+                    "Un error"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa tener 'duende'?",
+                "opciones": [
+                    "Tener miedo",
+                    "Tener esa emoción y entrega especial al actuar",
+                    "Ser muy bajito",
+                    "Llevar un disfraz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un 'palo' mencionado:",
+                "opciones": [
+                    "Rock",
+                    "Bulerías",
+                    "Sinfonía",
+                    "Vals"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué reconocimiento internacional tiene el flamenco?",
+                "opciones": [
+                    "Es un deporte",
+                    "Patrimonio de la Humanidad por la UNESCO",
+                    "Solo se conoce en España",
+                    "Ninguno"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Derechos de Autor y Propiedad Intelectual",
+        "texto": "Crear música es un trabajo. Por eso existe la PROPIEDAD INTELECTUAL, que protege a los autores para que reciban compensación cuando su música se usa comercialmente. La SGAE en España gestiona estos derechos. Existen licencias como el 'Copyright' (todos los derechos reservados) o las 'CREATIVE COMMONS', que permiten que otros usen tu música de forma gratuita bajo ciertas condiciones (ej: citar al autor). El pirateo daña a la industria musical, impidiendo que nuevos artistas tengan recursos para grabar sus obras.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la propiedad intelectual?",
+                "opciones": [
+                    "Saber mucho de música",
+                    "Derechos que protegen las creaciones de autores y artistas",
+                    "Tener muchos libros",
+                    "Comprar instrumentos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el Copyright?",
+                "opciones": [
+                    "Derecho a copiar todo",
+                    "Todos los derechos reservados por el autor",
+                    "Música gratis para todos",
+                    "Un tipo de papel"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la licencia Creative Commons?",
+                "opciones": [
+                    "Para ganar mucho dinero",
+                    "Para permitir el uso compartido bajo ciertas condiciones",
+                    "Para prohibir escuchar la canción",
+                    "No existe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué entidad gestiona los derechos de autor en España?",
+                "opciones": [
+                    "NASA",
+                    "SGAE",
+                    "Real Madrid",
+                    "Correos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A quién afecta negativamente el pirateo masivo?",
+                "opciones": [
+                    "Solo a los ricos",
+                    "A toda la industria musical y especialmente a nuevos artistas",
+                    "A nadie",
+                    "A los que no escuchan música"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "La Voz Humana: Clasificación",
+        "texto": "La voz es el instrumento más natural. Se clasifican por su tesitura (el rango de notas que pueden cantar). Voces FEMENINAS: Soprano (aguda), Mezzosoprano (media) y Contralto (grave). Voces MASCULINAS: Tenor (aguda), Barítono (media) y Bajo (grave). Un coro de voces mixtas (SATB) combina estas tesituras para crear una armonía rica. El cuidado de la voz es fundamental para un cantante: hidratación, descanso y no forzar las cuerdas vocales son las claves para una carrera duradera.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llama la voz femenina más aguda?",
+                "opciones": [
+                    "Contralto",
+                    "Soprano",
+                    "Mezzo",
+                    "Tenor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Y la voz masculina más grave?",
+                "opciones": [
+                    "Bajo",
+                    "Tenor",
+                    "Barítono",
+                    "Soprano"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué es la tesitura?",
+                "opciones": [
+                    "La tela del vestido",
+                    "El rango o extensión de notas que puede cantar una voz",
+                    "La fuerza de los pulmones",
+                    "El nombre del cantante"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un coro SATB incluye:",
+                "opciones": [
+                    "Solo chicos",
+                    "Soprano, Alto, Tenor y Bajo",
+                    "Solo instrumentos",
+                    "Solo percusión"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita un cuidado esencial para la voz:",
+                "opciones": [
+                    "Gritar mucho",
+                    "Hidratación y buen descanso",
+                    "Fumar mucho",
+                    "No comer"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Música y Publicidad: El Jingle",
+        "texto": "La música en la publicidad tiene como objetivo que compres el producto. Un 'JINGLE' es una canción corta y pegadiza creada específicamente para un anuncio. La música publicitaria puede ser también una canción de éxito (música prestada) o música de 'stock'. Su función es crear un vínculo emocional con la marca y que el consumidor recuerde el nombre del producto incluso después de que acabe el anuncio. A veces, una buena música puede salvar una campaña publicitaria mediocre.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un jingle?",
+                "opciones": [
+                    "Un tipo de helado",
+                    "Una canción corta y pegadiza para un anuncio",
+                    "Un error de sonido",
+                    "La voz de un locutor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el fin último de la música en publicidad?",
+                "opciones": [
+                    "Que aprendamos música",
+                    "Ayudar a vender el producto y que sea recordado",
+                    "Que nos durmamos",
+                    "Que sea arte puro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un anuncio usa una canción de un grupo famoso, se llama:",
+                "opciones": [
+                    "Música prestada (licenciada)",
+                    "Música original",
+                    "Robo",
+                    "Música blanca"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué tipo de vínculo busca crear la música con la marca?",
+                "opciones": [
+                    "Agresivo",
+                    "Emocional",
+                    "Lógico",
+                    "Indiferente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La música ayuda a que el nombre del producto se...",
+                "opciones": [
+                    "Olvide",
+                    "Recuerde fácilmente",
+                    "Borre",
+                    "Ignore"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "La Producción Musical con ordenador",
+        "texto": "Hoy no hace falta un gran estudio para producir un éxito. Solo necesitas un ordenador, una interfaz de audio y un DAW (Digital Audio Workstation) como Ableton o GarageBand. Podemos usar INSTRUMENTOS VIRTUALES (VST) que imitan cualquier sonido real con gran fidelidad. El proceso de MEZCLA (equilibrar los volúmenes) y MASTERING (dar el acabado final) permite obtener un sonido profesional desde casa. Esto ha permitido que miles de artistas independientes publiquen su música sin depender de grandes discográficas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significan las siglas DAW?",
+                "opciones": [
+                    "Disco de Audio Web",
+                    "Digital Audio Workstation (Estación de trabajo de audio digital)",
+                    "Datos de Audio Wireless",
+                    "Diferente Audio Web"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un VST o instrumento virtual?",
+                "opciones": [
+                    "Un instrumento de madera",
+                    "Software que imita el sonido de instrumentos reales",
+                    "Un cable",
+                    "Un tipo de altavoz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién se beneficia más de la producción doméstica?",
+                "opciones": [
+                    "Los directores de orquesta",
+                    "Los artistas independientes",
+                    "Las tiendas de CDs",
+                    "Nadie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El proceso de equilibrar los volúmenes de las pistas se llama:",
+                "opciones": [
+                    "Mastering",
+                    "Mezcla (Mixing)",
+                    "Grabación",
+                    "Corte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Para conectar un micro al PC necesitamos una:",
+                "opciones": [
+                    "Interfaz de audio",
+                    "Luz roja",
+                    "Impresora",
+                    "Cámara"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Géneros Urbanos: Trap y Reggaetón",
+        "texto": "La música urbana domina el panorama actual. El REGGAETÓN nace en Panamá y Puerto Rico con un ritmo característico llamado 'Dem Bow'. El TRAP es un subgénero del hip-hop nacido en Atlanta, caracterizado por sus ritmos lentos pero con bombos muy potentes y el uso del AUTO-TUNE (procesador de voz). Aunque a menudo son criticados por sus letras, estos géneros reflejan la realidad de la calle y usan la tecnología de forma creativa para conectar con millones de oyentes en redes sociales como Spotify y YouTube.",
+        "preguntas": [
+            {
+                "pregunta": "¿De dónde proviene el Reggaetón?",
+                "opciones": [
+                    "España",
+                    "Panamá y Puerto Rico",
+                    "Nueva York",
+                    "Londres"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el ritmo base del reggaetón?",
+                "opciones": [
+                    "Beat box",
+                    "Dem Bow",
+                    "Salsa",
+                    "Rock"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué procesador de voz es típico del Trap?",
+                "opciones": [
+                    "Megáfono",
+                    "Auto-Tune",
+                    "Eco",
+                    "Silenciador"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La música urbana se difunde principalmente por:",
+                "opciones": [
+                    "Radios antiguas",
+                    "Plataformas digitales y redes sociales",
+                    "Solo en discotecas",
+                    "Solo en CD"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde nació originalmente el Trap?",
+                "opciones": [
+                    "París",
+                    "Atlanta (EE.UU.)",
+                    "Madrid",
+                    "México"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Música y Salud: Musicoterapia",
+        "texto": "La música tiene el poder de curar o mejorar la vida de las personas. La MUSICOTERAPIA es el uso profesional de la música para ayudar en hospitales o centros de salud. Ayuda a reducir el dolor, la ansiedad o a mejorar la memoria en personas con Alzheimer. Cantar en grupo libera endorfinas (la hormona de la felicidad) y reduce el estrés. Escuchar música relajante antes de dormir mejora la calidad del sueño. La música es, en definitiva, una herramienta biológica para el bienestar del ser humano.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la musicoterapia?",
+                "opciones": [
+                    "Vender música",
+                    "Uso profesional de la música con fines de salud y bienestar",
+                    "Tocar muy fuerte",
+                    "Ir a conciertos siempre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué pacientes puede ayudar especialmente la música?",
+                "opciones": [
+                    "Solo a niños",
+                    "Personas con ansiedad, dolor o Alzheimer",
+                    "No ayuda a nadie",
+                    "Solo si saben música"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hormona libera el cuerpo al cantar en grupo?",
+                "opciones": [
+                    "Adrenalina",
+                    "Endorfinas (hormona de la felicidad)",
+                    "Insulina",
+                    "Colesterol"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo influye la música en el sueño?",
+                "opciones": [
+                    "Lo impide",
+                    "La música relajante mejora su calidad",
+                    "No influye",
+                    "Da pesadillas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La musicoterapia se usa en:",
+                "opciones": [
+                    "Solo escuelas",
+                    "Hospitales y centros de salud",
+                    "Fábricas de coches",
+                    "Solo en casa"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "La importancia de la música en vivo",
+        "texto": "En un mundo digital, el CONCIERTO en directo es una experiencia insustituible. La conexión emocional entre el artista y el público, el volumen físico del sonido y la comunión con otras personas crean recuerdos imborrables. Además, tras la crisis de ventas de discos, las giras y festivales son el principal sustento económico de los artistas. Ir a conciertos apoya la cultura local y mantiene vivo el arte de la interpretación real, lejos de las ediciones y correcciones de los ordenadores del estudio.",
+        "preguntas": [
+            {
+                "pregunta": "¿Por qué es importante el concierto en directo hoy?",
+                "opciones": [
+                    "Porque es más barato",
+                    "Por la conexión emocional y la experiencia única",
+                    "Porque no hay otra cosa",
+                    "Para vender discos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es hoy el principal ingreso de los músicos?",
+                "opciones": [
+                    "Venta de CDs",
+                    "Giras y conciertos en directo",
+                    "Venta de camisetas",
+                    "Publicidad en radio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué aspecto de la música se valora en un concierto?",
+                "opciones": [
+                    "La interpretación real y humana",
+                    "Que sea todo grabado",
+                    "Que dure mucho",
+                    "Que sea gratis"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Los festivales de música apoyan la:",
+                "opciones": [
+                    "Guerra",
+                    "Cultura y economía local",
+                    "Televisión",
+                    "Naturaleza"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Puede un ordenador sustituir totalmente la emoción de un directo?",
+                "opciones": [
+                    "Sí",
+                    "No"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

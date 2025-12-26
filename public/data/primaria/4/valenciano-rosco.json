@@ -1,163 +1,947 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Paraula que té la síl·laba tònica en l'última posició.", "solucion": "aguda" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Paraula que diu com és el substantiu (bonic, gran...).", "solucion": "adjectiu" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Líquid transparent vital per a la vida.", "solucion": "aigua" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Paraula que significa el contrari (blanc/negre).", "solucion": "antònim" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Fruit sec dur que es menja al Nadal.", "solucion": "ametla" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Lloc on es guarden i presten llibres.", "solucion": "biblioteca" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Instrument per a saber on és el Nord.", "solucion": "brúixola" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Vehicle de dues rodes sense motor.", "solucion": "bicicleta" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Lloc ple d'arbres.", "solucion": "bosc" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Persona que talla el pèl i arregla la barba.", "solucion": "barber" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Conjunt de pobles veïns (ex: L'Horta, La Safor...).", "solucion": "comarca" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Edifici gran i fortificat on vivien els reis.", "solucion": "castell" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Pronoms: jo, tu, ell... o un indefinit com...", "solucion": "cadascú" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Lloc on veiem pel·lícules en pantalla gran.", "solucion": "cinema" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Utensili per a menjar sopa.", "solucion": "cullera" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Unió de dues vocals en una mateixa síl·laba.", "solucion": "diftong" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Llibre on busquem el significat de les paraules.", "solucion": "diccionari" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Primer dia de la setmana.", "solucion": "dilluns" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Metge que cura les dents.", "solucion": "dentista" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Últim mes de l'any.", "solucion": "desembre" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Paraula amb la síl·laba tònica en l'antepenúltima posició.", "solucion": "esdrúixola" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Lloc on els xiquets van a aprendre.", "solucion": "escola" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Estació de l'any que fa més calor.", "solucion": "estiu" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Animal gran amb trompa.", "solucion": "elefant" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Activitat física com el futbol o la natació.", "solucion": "esport" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Temps verbal del que passarà demà.", "solucion": "futur" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Pares, fills, avis, oncles...", "solucion": "família" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Lloc on es cou el pa.", "solucion": "forn" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Persona que treballa la fusta.", "solucion": "fuster" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "El mes més curt de l'any.", "solucion": "febrer" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Animal domèstic que lladra.", "solucion": "gos" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Animal que miola.", "solucion": "gat" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Color de la llimona o el sol.", "solucion": "groc" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Postres fredes de sabors.", "solucion": "gelat" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Objecte per a esborrar llapis.", "solucion": "goma" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Estació de l'any que fa fred.", "solucion": "hivern" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Persona adulta de sexe masculí.", "solucion": "home" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Mesura de temps de 60 minuts.", "solucion": "hora" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Lloc on curen als malalts.", "solucion": "hospital" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Terreny on es cultiven verdures.", "solucion": "hort" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Terra rodejada d'aigua per totes parts.", "solucion": "illa" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Sinònim de llest.", "solucion": "intel·ligent" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Persona que ajuda al metge.", "solucion": "infermer" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Tipus de frase que dona una ordre.", "solucion": "imperativa" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Aliment làctic cremós.", "solucion": "iogurt" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Activitat recreativa.", "solucion": "joc" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Lloc amb plantes i flors.", "solucion": "jardí" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Objecte per a jugar.", "solucion": "joguet" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Mes de l'estiu, el setè.", "solucion": "juliol" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Persona que decideix en un judici.", "solucion": "jutge" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Fruita verda amb pèls i llavors negres.", "solucion": "kiwi" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Art marcial japonès.", "solucion": "karate" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Mil grams.", "solucion": "kilo" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Salsa de tomaca roja.", "solucion": "kètxup" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Embarcació lleugera (canoa).", "solucion": "caiac" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Objecte amb fulles escrites per a llegir.", "solucion": "llibre" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Satèl·lit de la Terra.", "solucion": "lluna" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Objecte per a escriure que es pot esborrar.", "solucion": "llapis" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Líquid blanc que ens donen les vaques.", "solucion": "llet" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Persona que treballa al camp.", "solucion": "llaurador" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Elevació gran del terreny.", "solucion": "muntanya" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "La dona que té fills.", "solucion": "mare" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Doctor que cura malalts.", "solucion": "metge" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Art de combinar els sons.", "solucion": "música" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Lloc on comprem fruita i verdura.", "solucion": "mercat" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Vapor d'aigua al cel.", "solucion": "núvol" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Precipitació blanca i freda.", "solucion": "neu" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Part del dia sense sol.", "solucion": "nit" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Paraula que designa a una persona.", "solucion": "nom" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Signe que indica quantitat.", "solucion": "número" },
-
-  { "id": "ñ1", "letra": "NY", "tipo": "contiene", "definicion": "Elevació de terreny (conté NY).", "solucion": "muntanya" },
-  { "id": "ñ2", "letra": "NY", "tipo": "contiene", "definicion": "Insecte de vuit potes (conté NY).", "solucion": "aranya" },
-  { "id": "ñ3", "letra": "NY", "tipo": "contiene", "definicion": "Lloc per a la higiene personal (conté NY).", "solucion": "bany" },
-  { "id": "ñ4", "letra": "NY", "tipo": "contiene", "definicion": "Fruit de la tardor que es torra (conté NY).", "solucion": "castanya" },
-  { "id": "ñ5", "letra": "NY", "tipo": "contiene", "definicion": "Fruit del pi (conté NY).", "solucion": "pinya" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Òrgan de l'oïda.", "solucion": "orella" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Animal amb plomes que vola.", "solucion": "ocell" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Mes de l'any, el desè.", "solucion": "octubre" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Màquina electrònica per a treballar.", "solucion": "ordinador" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Conjunt de paraules amb sentit.", "solucion": "oració" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Paraula que té l'accent en la penúltima síl·laba.", "solucion": "plana" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Temps verbal d'ara.", "solucion": "present" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Persona que vetla per la seguretat.", "solucion": "policia" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Localitat més menuda que una ciutat.", "solucion": "poble" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Aigua que cau dels núvols.", "solucion": "pluja" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Número 4.", "solucion": "quatre" },
-  { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Figura geomètrica de 4 costats.", "solucion": "quadrat" },
-  { "id": "q3", "letra": "Q", "tipo": "empieza", "definicion": "Pronom interrogatiu de persona.", "solucion": "qui" },
-  { "id": "q4", "letra": "Q", "tipo": "empieza", "definicion": "Pronom interrogatiu de temps.", "solucion": "quan" },
-  { "id": "q5", "letra": "Q", "tipo": "empieza", "definicion": "Número 15.", "solucion": "quinze" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Aparell que marca l'hora.", "solucion": "rellotge" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Corrent d'aigua continu.", "solucion": "riu" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Color de la sang.", "solucion": "roig" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Animal xicotet que menja formatge.", "solucion": "ratolí" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Operació matemàtica de llevar.", "solucion": "resta" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Estrela del nostre sistema.", "solucion": "sol" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Calçat per als peus.", "solucion": "sabata" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Condiment per a donar sabor.", "solucion": "sal" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Rèptil llarg sense potes.", "solucion": "serp" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Període de 7 dies.", "solucion": "setmana" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Moble on mengem.", "solucion": "taula" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Transport que va per vies.", "solucion": "tren" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Estació on cauen les fulles.", "solucion": "tardor" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Fruita cítrica de color taronja.", "solucion": "taronja" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Lloc on es venen coses.", "solucion": "tenda" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Òrgan de la visió.", "solucion": "ull" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Número 1.", "solucion": "un" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Tot l'espai i els astres.", "solucion": "univers" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Part dura que protegeix el dit.", "solucion": "ungla" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Objecte per a veure-hi millor.", "solucion": "ulleres" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Color de l'esperança i les plantes.", "solucion": "verd" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Animal que fa muu.", "solucion": "vaca" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Contrari de nou.", "solucion": "vell" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Aire en moviment.", "solucion": "vent" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Que té vida.", "solucion": "viu" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Pàgina d'internet.", "solucion": "web" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Internet sense cables.", "solucion": "wifi" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Fruita amb pell marró i pèls (conté W).", "solucion": "kiwi" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Esport a la piscina (conté W).", "solucion": "waterpolo" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Entrepà de pa de motlle (conté W).", "solucion": "sandwich" },
-
-  { "id": "x1", "letra": "X", "tipo": "empieza", "definicion": "Sinònim de nen.", "solucion": "xiquet" },
-  { "id": "x2", "letra": "X", "tipo": "empieza", "definicion": "Dolç de cacau.", "solucion": "xocolata" },
-  { "id": "x3", "letra": "X", "tipo": "empieza", "definicion": "Instrument musical de fusta.", "solucion": "xilòfon" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Animal aquàtic que es menja (acaba en X).", "solucion": "peix" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Recipient de cartó (conté X).", "solucion": "caixa" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Joguet que puja i baixa.", "solucion": "yoyó" },
-  { "id": "y2", "letra": "Y", "tipo": "contiene", "definicion": "Lloc de costa amb arena (lletra grega).", "solucion": "platja" },
-  { "id": "y3", "letra": "Y", "tipo": "contiene", "definicion": "Menjar del matí (lletra grega).", "solucion": "desdejuni" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Mes de les flors (lletra grega).", "solucion": "maig" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Anar d'un lloc a un altre (lletra grega).", "solucion": "viatge" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Número que no val res.", "solucion": "zero" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Animal africà amb ratlles.", "solucion": "zebra" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Àrea o part d'un lloc.", "solucion": "zona" },
-  { "id": "z4", "letra": "Z", "tipo": "empieza", "definicion": "Lloc on viuen animals salvatges.", "solucion": "zoo" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Dotze, tretze, catorze... (conté Z).", "solucion": "quinze" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Paraula que té la síl·laba tònica en l'última posició.",
+    "solucion": "aguda"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Paraula que acompanya al substantiu i diu com és.",
+    "solucion": "adjectiu"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Paraula que significa el contrari d'una altra.",
+    "solucion": "antònim"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Signe de puntuació que s'escriu sobre algunes vocals.",
+    "solucion": "accent"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Lloc on es guarden els llibres en una biblioteca, ordenats per...",
+    "solucion": "alfabet"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Lloc on es guarden i es presten llibres.",
+    "solucion": "biblioteca"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Animal que té el cos cobert de pèl i mama llet (ex: balena).",
+    "solucion": "bestia"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Instrument per a orientar-se que assenyala el Nord.",
+    "solucion": "brúixola"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Recipient per a beure aigua.",
+    "solucion": "botella"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Peça de roba que es posa als peus.",
+    "solucion": "bota"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Paraula que s'escriu igual que una altra però té un significat diferent.",
+    "solucion": "comuna"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Conjunt de pobles que formen una unitat geogràfica.",
+    "solucion": "comarca"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Pronom que serveix per a preguntar (ex: ... vols?).",
+    "solucion": "quin"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Dues lletres que representen un sol so (ex: ny, qu).",
+    "solucion": "dígraf"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "L'alfabet o conjunt de lletres ordenades.",
+    "solucion": "abecedari"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Paraula que acompanya al substantiu (ex: el, la, un, tres).",
+    "solucion": "determinant"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Unió de dues vocals en una mateixa síl·laba.",
+    "solucion": "diftong"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Llibre on es recullen les paraules d'una llengua i el seu significat.",
+    "solucion": "diccionari"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Part del cos que tenim deu a les mans.",
+    "solucion": "dits"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "La part del dia que hi ha llum.",
+    "solucion": "dia"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Paraula que té la síl·laba tònica en l'antepenúltima posició.",
+    "solucion": "esdrúixola"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Conjunt d'ossos que sostenen el cos.",
+    "solucion": "esquelet"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Persona que escriu llibres.",
+    "solucion": "escriptor"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Lloc on anem a aprendre.",
+    "solucion": "escola"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Mesura de longitud xicoteta.",
+    "solucion": "centímetre"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Temps verbal que indica una acció que encara no ha passat.",
+    "solucion": "futur"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Narració breu amb animals que té una moralitat.",
+    "solucion": "fàbula"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Peça de roba que porten les dones.",
+    "solucion": "falda"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Aliment que es fa amb farina, aigua i rent.",
+    "solucion": "pa"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Part del cos entre el nas i el cabell.",
+    "solucion": "front"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Paraula que serveix per a anomenar persones, animals o coses.",
+    "solucion": "substantiu"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Acció de fer un text amb la mà o l'ordinador.",
+    "solucion": "escriure"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Animal que lladra.",
+    "solucion": "gos"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "L'aparell que serveix per a parlar amb algú lluny.",
+    "solucion": "telèfon"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Fruit de la vinya.",
+    "solucion": "raïm"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Terreny on es cultiven hortalisses.",
+    "solucion": "hort"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Història imaginària escrita per a nens.",
+    "solucion": "conte"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Lletra que no sona.",
+    "solucion": "hac"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Ocell nocturn que diu 'uu-uu'.",
+    "solucion": "mussol"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Instrument per a tallar llenya.",
+    "solucion": "destral"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Forma básica d'un verb, sense conjugar (ex: cantar, dormir).",
+    "solucion": "infinitiu"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Lloc on viuen els reis.",
+    "solucion": "palau"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Terra envoltada d'aigua per totes parts.",
+    "solucion": "illa"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Persona que viu a un altre país.",
+    "solucion": "estranger"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Cosa que s'inventa per primera vegada.",
+    "solucion": "invent"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Lloc amb moltes flors i plantes.",
+    "solucion": "jardí"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Persona que té molts anys.",
+    "solucion": "vell"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Part de la setmana que no es treballa.",
+    "solucion": "cap de setmana"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Mes que va després de juny.",
+    "solucion": "juliol"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Persona que juga a un esport.",
+    "solucion": "jugador"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Distància que té mil metres.",
+    "solucion": "quilòmetre"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Pes que té mil grams.",
+    "solucion": "quilogram"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Fruita verda amb pèls.",
+    "solucion": "kiwi"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Salsa de tomaca per a les hamburgueses.",
+    "solucion": "kètxup"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Art marcial del Japó.",
+    "solucion": "karate"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Paraula que serveix per a llegir.",
+    "solucion": "lletra"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Lloc on es venen llibres.",
+    "solucion": "llibreria"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Objecte per a escriure.",
+    "solucion": "llapis"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Satèl·lit de la Terra.",
+    "solucion": "lluna"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Animal que té molta força i és el rei de la selva.",
+    "solucion": "lleó"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Paraula que té el mateix significat que una altra.",
+    "solucion": "sinònim"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Lloc on hi ha molta aigua salada.",
+    "solucion": "mar"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Poble o ciutat on hem nascut.",
+    "solucion": "municipi"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Persona que ensenya als xiquets.",
+    "solucion": "mestre"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Lloc on es venen aliments.",
+    "solucion": "mercat"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Paraula que serveix per a anomenar (sinònim de substantiu).",
+    "solucion": "nom"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Ocupació o treball d'una persona.",
+    "solucion": "ofici"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Afecció de l'ànima cap a una altra persona.",
+    "solucion": "amor"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Punt on es creuen dues línies.",
+    "solucion": "node"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Fruit de la noguera.",
+    "solucion": "nou"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "conté",
+    "definicion": "Ocell que canta molt bé (conté la NY).",
+    "solucion": "rossinyol"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "conté",
+    "definicion": "Lloc de la casa per a rentar-se (conté NY).",
+    "solucion": "bany"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "conté",
+    "definicion": "Fruit de la tardor amb closca marró (conté NY).",
+    "solucion": "castanya"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "conté",
+    "definicion": "Insecte de vuit potes que fa teles (conté NY).",
+    "solucion": "aranya"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "conté",
+    "definicion": "Gran elevació del terreny (conté NY).",
+    "solucion": "muntanya"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Part del cos per on escoltem.",
+    "solucion": "orella"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Ciència que estudia el passat.",
+    "solucion": "història"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Conjunt de paraules amb sentit complet.",
+    "solucion": "oració"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Mes deu de l'any.",
+    "solucion": "octubre"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Persona que mira un espectacle.",
+    "solucion": "espectador"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Paraula que té la síl·laba tònica en la penúltima posició.",
+    "solucion": "plana"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Paraula que s'afegeix davant d'una altra per formar-ne una nova.",
+    "solucion": "prefix"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Animal que viu a l'aigua.",
+    "solucion": "peix"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Persona que vetla per l'ordre.",
+    "solucion": "policia"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Ciutat principal d'un país.",
+    "solucion": "capital"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Número que va després del tretze.",
+    "solucion": "catorze"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Aliment fet amb llet (ex: de cabra).",
+    "solucion": "formatge"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Pronom per a preguntar per coses.",
+    "solucion": "què"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Número després del tres.",
+    "solucion": "quatre"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Número que és deu més cinc.",
+    "solucion": "quinze"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Acció de tornar a llegir.",
+    "solucion": "relegir"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Corrent d'aigua que va a parar al mar.",
+    "solucion": "riu"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Color roig fort.",
+    "solucion": "granat"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Aparell per a saber l'hora.",
+    "solucion": "rellotge"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Operació de llevar una quantitat a una altra.",
+    "solucion": "resta"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Paraula que s'afegeix al final d'una paraula (ex: -et, -ota).",
+    "solucion": "sufix"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunt de set dies.",
+    "solucion": "setmana"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Peça de roba que es posa als peus.",
+    "solucion": "sabata"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "L'estrella del nostre sistema planetari.",
+    "solucion": "sol"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Líquid que ix de les fruites.",
+    "solucion": "suc"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Paraula que té la síl·laba tònica.",
+    "solucion": "tònica"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Moble on mengem i treballem.",
+    "solucion": "taula"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Fruit cítric de color taronja.",
+    "solucion": "taronja"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Estació de l'any on cauen les fulles.",
+    "solucion": "tardor"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Treball que fa una persona.",
+    "solucion": "tasca"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Part dura al final dels dits.",
+    "solucion": "ungla"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Tot el que existeix: planetes, estrelles...",
+    "solucion": "univers"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Instrument per a veure-hi millor.",
+    "solucion": "ulleres"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Número que va davant del dos.",
+    "solucion": "u"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Unitat de temps (60 minuts).",
+    "solucion": "hora"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Paraula que indica una acció (ex: cantar, saltar).",
+    "solucion": "verb"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Lletres que no són consonants.",
+    "solucion": "vocals"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Aire que es mou ràpid.",
+    "solucion": "vent"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Color de les fulles dels arbres.",
+    "solucion": "verd"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Animal que ens dona llet.",
+    "solucion": "vaca"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Esport que es juga a una piscina amb una pilota.",
+    "solucion": "waterpolo"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Fruita verda amb pèls (contém W).",
+    "solucion": "kiwi"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Pàgina d'Internet.",
+    "solucion": "web"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Sistema de connexió sense fils (conté W).",
+    "solucion": "wifi"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Entrepà de pa de motlle (conté W).",
+    "solucion": "sandwich"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "empieza",
+    "definicion": "Producte fet amb cacau.",
+    "solucion": "xocolata"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "empieza",
+    "definicion": "Sinònim de nen o nena.",
+    "solucion": "xiquet"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "empieza",
+    "definicion": "Instrument musical amb làmines de fusta.",
+    "solucion": "xilòfon"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Animal marí (acaba en X).",
+    "solucion": "peix"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Recipient per guardar coses (conté X).",
+    "solucion": "caixa"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Activitat per a relaxar el cos i la ment (lletra grega).",
+    "solucion": "yoga"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Embarcació estreta i llarga (lletra grega).",
+    "solucion": "kayak"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Activitat que fem en el temps lliure (lletra grega).",
+    "solucion": "hobby"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Aliment de llet cremós (comença per I en valencià, però té el so Y).",
+    "solucion": "iogurt"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Joguina que puja i baixa (comença per I en valencià).",
+    "solucion": "io-io"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Número després del catorze (conté Z).",
+    "solucion": "quinze"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Número que va després de l'onze (conté Z).",
+    "solucion": "dotze"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Número que va després del dotze (conté Z).",
+    "solucion": "tretze"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Número que va després del tretze (conté Z).",
+    "solucion": "catorze"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Número que va després del quinze (conté Z).",
+    "solucion": "setze"
+  }
 ]

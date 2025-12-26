@@ -1,17 +1,122 @@
 {
-  "particulas_atomicas": [
-    "protón", "neutrón", "electrón", "núcleo", "nube electrónica", "catión", "anión", "isótopo", "ión", "carga"
+  "estructura_atomica": [
+    "protón",
+    "neutrón",
+    "electrón",
+    "isótopo",
+    "número atómico z",
+    "número másico a",
+    "nucleón",
+    "corteza",
+    "orbital",
+    "configuración electrónica"
   ],
-  "tabla_periodica_metales": [
-    "hierro", "oro", "plata", "cobre", "litio", "sodio", "potasio", "calcio", "magnesio", "aluminio"
-  ],
-  "tabla_periodica_no_metales": [
-    "oxígeno", "hidrógeno", "carbono", "nitrógeno", "flúor", "cloro", "azufre", "fósforo", "yodo", "helio"
+  "tabla_periodica": [
+    "metal",
+    "no metal",
+    "gas noble",
+    "halógeno",
+    "alcalino",
+    "grupo",
+    "periodo",
+    "radio atómico",
+    "electronegatividad",
+    "valencia"
   ],
   "enlaces_quimicos": [
-    "iónico", "covalente", "metálico", "fuerzas de van der waals", "puente de hidrógeno", "red cristalina", "molécula", "octeto", "valencia", "compartir"
+    "iónico",
+    "covalente",
+    "metálico",
+    "red cristalina",
+    "molécula",
+    "fuerzas intermoleculares",
+    "regla del octeto",
+    "compartir electrones",
+    "nube electrónica",
+    "unidad de fórmula"
   ],
   "reacciones_quimicas": [
-    "oxidación", "combustión", "fermentación", "neutralización", "síntesis", "descomposición", "reactivo", "producto", "ajuste", "precipitación"
+    "reactivo",
+    "producto",
+    "ajustar ecuación",
+    "estequiometría",
+    "coeficiente",
+    "coeficiente estequiométrico",
+    "conservación de la masa",
+    "mol",
+    "masa molar",
+    "ecuación química"
+  ],
+  "energia_reaccion": [
+    "exotérmica",
+    "endotérmica",
+    "calor de reacción",
+    "combustión",
+    "oxidación",
+    "corrosión",
+    "velocidad de reacción",
+    "catalizador",
+    "síntesis",
+    "descomposición"
+  ],
+  "formulacion_inorganica": [
+    "óxido",
+    "hidruro",
+    "sales binarias",
+    "hidróxido",
+    "peróxido",
+    "ácido",
+    "valencia",
+    "estado de oxidación",
+    "iupac",
+    "nomenclatura"
+  ],
+  "electricidad_basica": [
+    "ley de ohm",
+    "voltaje",
+    "intensidad",
+    "resistencia",
+    "circuito",
+    "generador",
+    "receptor",
+    "conductor",
+    "corriente alterna",
+    "corriente continua"
+  ],
+  "fuerzas_estatica": [
+    "newton",
+    "dinamómetro",
+    "fuerza resultante",
+    "composición",
+    "descomposición",
+    "equilibrio",
+    "magnitud vectorial",
+    "módulo",
+    "sentido",
+    "dirección"
+  ],
+  "movimiento_cinematica": [
+    "posición",
+    "desplazamiento",
+    "velocidad",
+    "aceleración",
+    "mru",
+    "mrua",
+    "caída libre",
+    "trayectoria",
+    "velocidad media",
+    "tiempo"
+  ],
+  "energia_fuentes": [
+    "energía térmica",
+    "energia mecanica",
+    "energia electrica",
+    "renovable",
+    "no renovable",
+    "combustible fósil",
+    "placa solar",
+    "aerogenerador",
+    "reactor nuclear",
+    "trabajo"
   ]
 }

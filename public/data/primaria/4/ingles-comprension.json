@@ -1,321 +1,571 @@
 [
   {
     "id": "1",
-    "titulo": "My dog Max",
-    "texto": "My name is Tom. I have a dog. His name is Max. Max is brown and big. He likes to run in the park. He plays with a red ball.",
+    "titulo": "A Day in the Life of a Space Explorer",
+    "texto": "Captain Sarah is an astronaut on the International Space Station. She wakes up at 6:00 AM every day. For breakfast, she eats special space food from a bag. During the day, she does experiments and fixes things on the station. She exercises for two hours because gravity is very weak in space. In the evening, she looks out the window at Earth. She thinks our planet is beautiful and very blue.",
     "preguntas": [
       {
-        "pregunta": "Is Max a cat?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "Where does Captain Sarah live?",
+        "opciones": [
+          "In a house in London",
+          "On the International Space Station",
+          "In a camp on Mars",
+          "On a boat"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is Max big?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What colour is Max?",
-        "opciones": ["Red", "Blue", "Brown", "Green"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "What is the boy's name?",
-        "opciones": ["Sam", "Tom", "Ben", "Dan"],
+        "pregunta": "What time does she wake up?",
+        "opciones": [
+          "At 8:00 AM",
+          "At 6:00 AM",
+          "At 10:00 PM",
+          "At 7:30 AM"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "What does Max play with?",
-        "opciones": ["A red ball", "A blue car", "A yellow duck", "A green book"],
-        "correcta": 0
+        "pregunta": "Why does she exercise for two hours?",
+        "opciones": [
+          "Because she likes sports",
+          "Because gravity is weak in space",
+          "To lose weight",
+          "Because she is bored"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What does she do in the evening?",
+        "opciones": [
+          "She watches TV",
+          "She looks at Earth through the window",
+          "She sleeps all the time",
+          "She plays video games"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What does she think about Earth?",
+        "opciones": [
+          "It is small and grey",
+          "It is beautiful and blue",
+          "It is hot and red",
+          "It is very big and green"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Three Apples",
-    "texto": "Sarah likes fruit. She has three red apples on the table. She eats one apple. Now she has two apples. They are sweet and yummy.",
+    "titulo": "The Great Barrier Reef",
+    "texto": "The Great Barrier Reef is the largest coral reef system in the world. It is located in Australia. Thousands of different animals live there, including colorful fish, sea turtles, and sharks. Scientists visit the reef to study the corals and the animals. Unfortunately, the ocean is getting warmer, and this is dangerous for the reef. We must protect the ocean to keep the fish and the corals healthy.",
     "preguntas": [
       {
-        "pregunta": "Does Sarah like fruit?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Are the apples blue?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "Where is the Great Barrier Reef?",
+        "opciones": [
+          "In Spain",
+          "In Australia",
+          "In England",
+          "In Africa"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "How many apples does she have at first?",
-        "opciones": ["One", "Two", "Three", "Four"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "What colour are the apples?",
-        "opciones": ["Blue", "Red", "Yellow", "Pink"],
+        "pregunta": "What animals can you find there?",
+        "opciones": [
+          "Lions and tigers",
+          "Fish, turtles, and sharks",
+          "Bears and wolves",
+          "Elephants"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "How many apples does she eat?",
-        "opciones": ["One", "Two", "Three", "Five"],
+        "pregunta": "What is the problem for the reef?",
+        "opciones": [
+          "The ocean is getting warmer",
+          "There is too much salt",
+          "The fish are too big",
+          "There is no sunlight"
+        ],
         "correcta": 0
+      },
+      {
+        "pregunta": "Who visits the reef to study it?",
+        "opciones": [
+          "Astronauts",
+          "Scientists",
+          "Cooks",
+          "Firefighters"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Why must we protect the ocean?",
+        "opciones": [
+          "To find treasure",
+          "To keep the reef and animals healthy",
+          "To make it warmer",
+          "To build houses"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "My School Bag",
-    "texto": "This is my school bag. It is yellow and blue. I have a pencil and a book in my bag. The pencil is red. The book is green. I go to school in the morning.",
+    "titulo": "The Legend of King Arthur",
+    "texto": "Arthur was a legendary king of Britain. Many years ago, there was a magical sword in a big stone. The people said that only the true king could pull it out. Many strong men tried, but they failed. One day, young Arthur pulled the sword out very easily. He became the King of Britain and lived in a beautiful castle called Camelot with his Brave Knights of the Round Table.",
     "preguntas": [
       {
-        "pregunta": "Is the bag pink?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "Who was Arthur?",
+        "opciones": [
+          "A famous cook",
+          "A legendary king",
+          "A scary monster",
+          "A simple farmer"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is the pencil red?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
+        "pregunta": "Where was the magical sword?",
+        "opciones": [
+          "In a tree",
+          "In a big stone",
+          "In a river",
+          "Under a bed"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What colour is the book?",
-        "opciones": ["Red", "Blue", "Green", "Orange"],
-        "correcta": 2
+        "pregunta": "Who could pull the sword out of the stone?",
+        "opciones": [
+          "The strongest man",
+          "The true king",
+          "A magician",
+          "An old lady"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What is yellow and blue?",
-        "opciones": ["The bag", "The book", "The pencil", "The rubber"],
-        "correcta": 0
+        "pregunta": "What was the name of Arthur's castle?",
+        "opciones": [
+          "London",
+          "Camelot",
+          "Everest",
+          "Disneyland"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Where do I go?",
-        "opciones": ["To the park", "To the cinema", "To school", "To bed"],
-        "correcta": 2
+        "pregunta": "Who lived with King Arthur in the castle?",
+        "opciones": [
+          "A dragon",
+          "The Knights of the Round Table",
+          "Only his cats",
+          "Ghost pirates"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "My Face",
-    "texto": "Look at my face. I have two eyes and one nose. My mouth is small. My ears are big. I have brown hair. I am very happy today.",
+    "titulo": "My School Trip to London",
+    "texto": "Last month, my class went on a school trip to London. We travelled by plane from Valencia. It was my first time on a plane! In London, we saw many famous places. We visited the British Museum and saw old mummies from Egypt. We also saw Big Ben, the famous clock tower. It was raining a little, but we had umbrellas. My favorite part was the London Eye because the view was amazing.",
     "preguntas": [
       {
-        "pregunta": "Do I have three eyes?",
-        "opciones": ["Yes", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Is my mouth small?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "How many noses do I have?",
-        "opciones": ["One", "Two", "Three", "Four"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Are my ears big or small?",
-        "opciones": ["Small", "Big", "Red", "Blue"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "How am I?",
-        "opciones": ["Sad", "Angry", "Happy", "Tired"],
+        "pregunta": "How did they travel to London?",
+        "opciones": [
+          "By train",
+          "By car",
+          "By plane",
+          "By bus"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "Where did they see mummies?",
+        "opciones": [
+          "In the park",
+          "In the British Museum",
+          "In the street",
+          "At the airport"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What is Big Ben?",
+        "opciones": [
+          "A famous clock tower",
+          "A big bridge",
+          "A delicious burger",
+          "A scary ghost"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "What was the weather like?",
+        "opciones": [
+          "It was very hot",
+          "It was snowing",
+          "It was raining a little",
+          "It was very windy"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "What was the speaker's favorite part?",
+        "opciones": [
+          "The plane",
+          "The London Eye",
+          "The umbrellas",
+          "The food"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Sunday in the Park",
-    "texto": "It is Sunday. It is sunny and hot. I go to the park with my mum. We play football. We eat a delicious chocolate ice cream. It is a fun day.",
+    "titulo": "Healthy Habits",
+    "texto": "If you want to be healthy and strong, you must follow some simple rules. First, you should eat fruit and vegetables every day. They have vitamins. Second, you should drink a lot of water and not too much soda. Third, sleep is very important. Children need about ten hours of sleep every night. Finally, you should do exercise. You can play football, swim, or just walk in the park. Healthy habits make you feel happy!",
     "preguntas": [
       {
-        "pregunta": "Is it raining?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What should you eat every day?",
+        "opciones": [
+          "Candies and chocolate",
+          "Fruit and vegetables",
+          "Only pizza",
+          "Nothing"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Do I go to the park?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
+        "pregunta": "What should you drink?",
+        "opciones": [
+          "A lot of soda",
+          "A lot of water",
+          "Only milkshakes",
+          "Salt water"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What day is it?",
-        "opciones": ["Monday", "Friday", "Sunday", "Tuesday"],
-        "correcta": 2
+        "pregunta": "How many hours should children sleep?",
+        "opciones": [
+          "Four hours",
+          "Ten hours",
+          "Six hours",
+          "Thirteen hours"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What is the weather like?",
-        "opciones": ["Sunny", "Rainy", "Snowy", "Cloudy"],
-        "correcta": 0
+        "pregunta": "Which of these is a healthy exercise?",
+        "opciones": [
+          "Watching TV",
+          "Playing football",
+          "Staying in bed",
+          "Eating chips"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What do we eat?",
-        "opciones": ["Pizza", "Apples", "Ice cream", "Bread"],
+        "pregunta": "How do healthy habits make you feel?",
+        "opciones": [
+          "Tired",
+          "Sad",
+          "Happy",
+          "Angry"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Colours",
-    "texto": "My favourite colour is purple. I have a purple t-shirt and purple shoes. I do not like orange. My sister Lucy likes orange. She has an orange hat.",
+    "titulo": "The Roman Empire",
+    "texto": "The Romans were people from a city called Rome, in Italy. They built a very large empire many centuries ago. Romans were good at building roads, bridges, and aqueducts. They spoke Latin. Many languages today, like Spanish and French, come from Latin. Romans liked watching games in big stadiums called amphitheaters. The most famous one is the Colosseum in Rome.",
     "preguntas": [
       {
-        "pregunta": "Do I like purple?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "Where were the Romans from?",
+        "opciones": [
+          "China",
+          "Italy",
+          "Greece",
+          "Egypt"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What language did they speak?",
+        "opciones": [
+          "English",
+          "Latin",
+          "Chinese",
+          "Arabic"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Which language comes from Latin?",
+        "opciones": [
+          "Spanish",
+          "German",
+          "Japanese",
+          "Russian"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "Do I like orange?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What is the Colosseum?",
+        "opciones": [
+          "An old school",
+          "A famous amphitheater",
+          "A high mountain",
+          "A long river"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "What clothes are purple?",
-        "opciones": ["Hat", "T-shirt", "Jeans", "Coat"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Who likes orange?",
-        "opciones": ["My mum", "My dad", "My sister", "My brother"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "What colour is the hat?",
-        "opciones": ["Red", "Orange", "Purple", "Green"],
+        "pregunta": "What did the Romans build to transport water?",
+        "opciones": [
+          "Bridges",
+          "Aqueducts",
+          "Boats",
+          "Trains"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Farm Animals",
-    "texto": "There are five animals in the farm. The cow is black and white. The pig is pink and fat. The sheep is white. The duck is yellow. The horse is brown and fast.",
+    "titulo": "Rainforests",
+    "texto": "Rainforests are very special forests where it rains almost every day. They are home to more than half of the world's plants and animals. The weather is always hot and humid. Huge trees grow in the rainforest, and their leaves form a 'canopy' like a green roof. Animals like monkeys, toucans, and jaguars live there. Rainforests are important because they produce a lot of oxygen for the Earth.",
     "preguntas": [
       {
-        "pregunta": "Is the pig blue?",
-        "opciones": ["Yes", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Is the cow black and white?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What colour is the duck?",
-        "opciones": ["Green", "Yellow", "Red", "Purple"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "How many animals are there?",
-        "opciones": ["One", "Three", "Five", "Ten"],
+        "pregunta": "How often does it rain in a rainforest?",
+        "opciones": [
+          "Never",
+          "Once a year",
+          "Almost every day",
+          "Only in winter"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Which animal is pink?",
-        "opciones": ["The cow", "The pig", "The horse", "The sheep"],
+        "pregunta": "What is the weather like there?",
+        "opciones": [
+          "Cold and dry",
+          "Hot and humid",
+          "Snowy",
+          "Windy"
+        ],
         "correcta": 1
+      },
+      {
+        "pregunta": "Which animal lives in the rainforest?",
+        "opciones": [
+          "Polar bear",
+          "Monkey",
+          "Camel",
+          "Penguin"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What do we call the 'green roof' of the trees?",
+        "opciones": [
+          "The ground",
+          "The canopy",
+          "The basement",
+          "The wall"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Why are rainforests important for the Earth?",
+        "opciones": [
+          "They produce oxygen",
+          "They have gold",
+          "Because they are far away",
+          "Because they are quiet"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Lunch Time",
-    "texto": "I am hungry. It is lunch time. I eat chicken and chips. I drink orange juice. I like chicken very much. It is my favourite food. Yummy!",
+    "titulo": "The invention of the Telephone",
+    "texto": "Alexander Graham Bell invented the telephone in 1876. Before the telephone, people wrote letters to communicate. The first words Bell said on the phone were to his assistant: 'Mr. Watson, come here, I want to see you.' Today, we have mobile phones that are like small computers. We can speak to people, take photos, and play games. Communication is very different now!",
     "preguntas": [
       {
-        "pregunta": "Am I hungry?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Do I eat fish?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "Who invented the telephone?",
+        "opciones": [
+          "Thomas Edison",
+          "Alexander Graham Bell",
+          "Isaac Newton",
+          "Albert Einstein"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "What do I eat?",
-        "opciones": ["Chicken", "Pizza", "Soup", "Salad"],
+        "pregunta": "When was the telephone invented?",
+        "opciones": [
+          "In 2020",
+          "In 1876",
+          "In 1500",
+          "In 1999"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Who was Mr. Watson?",
+        "opciones": [
+          "Bell's father",
+          "Bell's assistant",
+          "A famous singer",
+          "A king"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "How did people communicate before the phone?",
+        "opciones": [
+          "By email",
+          "By writing letters",
+          "By using computers",
+          "They didn't speak"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What can we do with modern mobile phones?",
+        "opciones": [
+          "Speak, take photos, and play",
+          "Only speak",
+          "Only use them as a clock",
+          "Cook food"
+        ],
         "correcta": 0
-      },
-      {
-        "pregunta": "What do I drink?",
-        "opciones": ["Water", "Milk", "Orange juice", "Cola"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "Do I like chicken?",
-        "opciones": ["No", "A little", "Very much", "Not at all"],
-        "correcta": 2
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "My Bedroom",
-    "texto": "My bedroom is blue. The bed is big. There is a lamp on the table. The lamp is yellow. I have many toys in a box. I sleep in my bedroom at night.",
+    "titulo": "Plants and Seeds",
+    "texto": "Plants start their life as a small seed. When a seed has water and light, it starts to grow. This is called germination. First, the roots grow down into the soil. Then, a small stem grows up towards the sun. Leaves grow on the stem to catch sunlight for energy. Finally, the plant produces flowers and new seeds. This is the life cycle of a plant.",
     "preguntas": [
       {
-        "pregunta": "Is the bedroom pink?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "How does a plant start its life?",
+        "opciones": [
+          "As a leaf",
+          "As a seed",
+          "As a fruit",
+          "As a tall tree"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is the bed big?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What colour is the bedroom?",
-        "opciones": ["Blue", "Red", "Green", "White"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What is on the table?",
-        "opciones": ["A book", "A lamp", "A cat", "A computer"],
+        "pregunta": "What do seeds need to grow?",
+        "opciones": [
+          "Soda and chips",
+          "Water and light",
+          "Darkness and cold",
+          "Chocolate"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Where are the toys?",
-        "opciones": ["In a box", "On the bed", "Under the table", "On the chair"],
-        "correcta": 0
+        "pregunta": "What is 'germination'?",
+        "opciones": [
+          "When a plant dies",
+          "When a seed starts to grow",
+          "When fruit is eaten",
+          "When the wind blows"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What grows first from the seed?",
+        "opciones": [
+          "The flowers",
+          "The roots",
+          "The leaves",
+          "The fruit"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Why do plants need leaves?",
+        "opciones": [
+          "To look pretty",
+          "To catch sunlight for energy",
+          "To talk to other plants",
+          "To hide the stem"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Happy Birthday",
-    "texto": "Today is my birthday. I am seven years old. I have a chocolate cake. It has seven candles. I get many presents from my friends. We sing songs and dance.",
+    "titulo": "My Favorite Subject",
+    "texto": "Hi! My name is Lucy. My favorite subject at school is Science. I love learning about animals and the human body. In Science class, we do interesting experiments in the lab. We use microscopes to look at very small things. I also like Art because I love painting, but I think Science is the best. When I grow up, I want to be a doctor to help people.",
     "preguntas": [
       {
-        "pregunta": "Is it my birthday?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Is the cake strawberry?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What is Lucy's favorite subject?",
+        "opciones": [
+          "Maths",
+          "Science",
+          "History",
+          "PE"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "How old am I?",
-        "opciones": ["Six", "Seven", "Eight", "Nine"],
+        "pregunta": "What does she learn about in Science?",
+        "opciones": [
+          "Numbers",
+          "Animals and the human body",
+          "Ancient kings",
+          "Spanish verbs"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "What flavour is the cake?",
-        "opciones": ["Vanilla", "Chocolate", "Lemon", "Apple"],
+        "pregunta": "Where do they do experiments?",
+        "opciones": [
+          "In the kitchen",
+          "In the lab",
+          "At the library",
+          "In the gym"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "How many candles are there?",
-        "opciones": ["Five", "Six", "Seven", "Ten"],
-        "correcta": 2
+        "pregunta": "What does she use to look at small things?",
+        "opciones": [
+          "A telescope",
+          "A microscope",
+          "A mirror",
+          "A spoon"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What does Lucy want to be in the future?",
+        "opciones": [
+          "An astronaut",
+          "A doctor",
+          "A painter",
+          "A teacher"
+        ],
+        "correcta": 1
       }
     ]
   }

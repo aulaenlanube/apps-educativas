@@ -1,298 +1,2162 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Rama de las matemáticas que utiliza letras para representar números.", "solucion": "álgebra", "materia": "matematicas" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Región del plano comprendida entre dos semirrectas con el mismo origen.", "solucion": "ángulo", "materia": "matematicas" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Medida de la superficie de una figura plana.", "solucion": "área", "materia": "matematicas" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Segmento que une el centro de un polígono regular con el punto medio de un lado.", "solucion": "apotema", "materia": "matematicas" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Línea de intersección de dos caras de un poliedro.", "solucion": "arista", "materia": "matematicas" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Segmento perpendicular desde un vértice al lado opuesto o su prolongación.", "solucion": "altura", "materia": "matematicas" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Suceso cuyo resultado depende del azar.", "solucion": "aleatorio", "materia": "matematicas" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Diferencia entre el valor máximo y mínimo en estadística, o abertura de un ángulo.", "solucion": "amplitud", "materia": "matematicas" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Parte de una circunferencia.", "solucion": "arco", "materia": "matematicas" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Coordenada horizontal en un plano cartesiano (Eje de...).", "solucion": "abscisa", "materia": "matematicas" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Lado inferior de una figura geométrica o número que se eleva en una potencia.", "solucion": "base", "materia": "matematicas" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Semirrecta que divide un ángulo en dos partes iguales.", "solucion": "bisectriz", "materia": "matematicas" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Polinomio que consta de dos términos.", "solucion": "binomio", "materia": "matematicas" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Punto donde se cortan las tres medianas de un triángulo.", "solucion": "baricentro", "materia": "matematicas" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Tipo de ecuación de cuarto grado que se resuelve como una cuadrática.", "solucion": "bicuadrada", "materia": "matematicas" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Objeto esférico usado en problemas de probabilidad (urnas).", "solucion": "bola", "materia": "matematicas" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Tipo de diagrama estadístico con columnas rectangulares.", "solucion": "barras", "materia": "matematicas" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Un millón de millones (10^12).", "solucion": "billón", "materia": "matematicas" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Instrumento para medir la masa o peso.", "solucion": "balanza", "materia": "matematicas" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Acción de dividir algo en dos partes iguales.", "solucion": "bisección", "materia": "matematicas" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Figura plana formada por una circunferencia y su interior.", "solucion": "círculo", "materia": "matematicas" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Línea curva cerrada cuyos puntos equidistan del centro.", "solucion": "circunferencia", "materia": "matematicas" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Polígono regular de cuatro lados.", "solucion": "cuadrado", "materia": "matematicas" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Poliedro regular formado por seis cuadrados (Hexaedro).", "solucion": "cubo", "materia": "matematicas" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Resultado de una división.", "solucion": "cociente", "materia": "matematicas" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Número que multiplica a la parte literal en un monomio.", "solucion": "coeficiente", "materia": "matematicas" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Cuerpo de revolución generado por un triángulo rectángulo al girar sobre un cateto.", "solucion": "cono", "materia": "matematicas" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Cuerpo geométrico con dos bases circulares paralelas.", "solucion": "cilindro", "materia": "matematicas" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Cada uno de los lados menores de un triángulo rectángulo.", "solucion": "cateto", "materia": "matematicas" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Segmento que une dos puntos de una circunferencia.", "solucion": "cuerda", "materia": "matematicas" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Número que tiene una parte entera y una parte fraccionaria separada por una coma.", "solucion": "decimal", "materia": "matematicas" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Número inferior en una fracción que indica las partes en que se divide la unidad.", "solucion": "denominador", "materia": "matematicas" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Cuerda que pasa por el centro de la circunferencia.", "solucion": "diámetro", "materia": "matematicas" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Segmento que une dos vértices no consecutivos de un polígono.", "solucion": "diagonal", "materia": "matematicas" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Conjunto de valores que puede tomar la variable independiente (x) en una función.", "solucion": "dominio", "materia": "matematicas" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Medida de dispersión estadística (... típica).", "solucion": "desviación", "materia": "matematicas" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Número que se va a dividir en una división.", "solucion": "dividendo", "materia": "matematicas" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Número por el cual se divide.", "solucion": "divisor", "materia": "matematicas" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Información concreta sobre hechos o elementos (Estadística).", "solucion": "dato", "materia": "matematicas" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Polígono de diez lados.", "solucion": "decágono", "materia": "matematicas" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Igualdad matemática con una o más incógnitas.", "solucion": "ecuación", "materia": "matematicas" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Número pequeño arriba a la derecha que indica la potencia.", "solucion": "exponente", "materia": "matematicas" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Rama de las matemáticas que analiza datos.", "solucion": "estadística", "materia": "matematicas" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Cuerpo geométrico limitado por una superficie curva cuyos puntos equidistan del centro.", "solucion": "esfera", "materia": "matematicas" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Línea recta de referencia en coordenadas o simetría.", "solucion": "eje", "materia": "matematicas" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Triángulo con los tres lados iguales.", "solucion": "equilátero", "materia": "matematicas" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Resultado sin error o aproximación.", "solucion": "exacto", "materia": "matematicas" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Número sin decimales (puede ser positivo o negativo).", "solucion": "entero", "materia": "matematicas" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Conjunto de todos los resultados posibles (... muestral).", "solucion": "espacio", "materia": "matematicas" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Triángulo con los tres lados diferentes.", "solucion": "escaleno", "materia": "matematicas" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Expresión matemática que indica una parte de un todo (a/b).", "solucion": "fracción", "materia": "matematicas" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Cada uno de los números que se multiplican.", "solucion": "factor", "materia": "matematicas" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Relación entre dos conjuntos donde a cada valor le corresponde uno único.", "solucion": "función", "materia": "matematicas" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Expresión simbólica de una regla o principio general.", "solucion": "fórmula", "materia": "matematicas" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Número de veces que se repite un dato en estadística.", "solucion": "frecuencia", "materia": "matematicas" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Proceso de descomponer un número o polinomio en factores.", "solucion": "factorización", "materia": "matematicas" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Forma geométrica (cuadrado, círculo, etc.).", "solucion": "figura", "materia": "matematicas" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Que tiene fin o límite (contrario a infinito).", "solucion": "finito", "materia": "matematicas" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Punto fijo importante en la definición de cónicas (elipse, parábola...).", "solucion": "foco", "materia": "matematicas" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Operación de multiplicar números consecutivos decrecientes (!).", "solucion": "factorial", "materia": "matematicas" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Rama de las matemáticas que estudia las propiedades de las figuras.", "solucion": "geometría", "materia": "matematicas" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Unidad de medida de ángulos o el exponente mayor de un polinomio.", "solucion": "grado", "materia": "matematicas" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Representación visual de datos o funciones.", "solucion": "gráfica", "materia": "matematicas" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Línea que al girar engendra un cuerpo de revolución.", "solucion": "generatriz", "materia": "matematicas" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Movimiento de rotación alrededor de un punto.", "solucion": "giro", "materia": "matematicas" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Unidad de masa en el sistema métrico.", "solucion": "gramo", "materia": "matematicas" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "Conjunto de elementos con una operación definida (estructura algebraica).", "solucion": "grupo", "materia": "matematicas" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Beneficio económico obtenido (Problemas de finanzas).", "solucion": "ganancia", "materia": "matematicas" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "De gran tamaño.", "solucion": "grande", "materia": "matematicas" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Dimensión o espesor de un objeto.", "solucion": "grosor", "materia": "matematicas" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Lado opuesto al ángulo recto en un triángulo rectángulo.", "solucion": "hipotenusa", "materia": "matematicas" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Polígono de seis lados.", "solucion": "hexágono", "materia": "matematicas" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Polígono de siete lados.", "solucion": "heptágono", "materia": "matematicas" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Gráfico estadístico de barras para variables continuas.", "solucion": "histograma", "materia": "matematicas" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Medida de superficie equivalente a 10.000 m².", "solucion": "hectárea", "materia": "matematicas" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Transformación geométrica que amplía o reduce una figura.", "solucion": "homotecia", "materia": "matematicas" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Parte de la superficie esférica entre dos semicírculos máximos (Huso).", "solucion": "huso", "materia": "matematicas" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Curva cónica abierta de dos ramas (gráfica de proporcionalidad inversa).", "solucion": "hipérbola", "materia": "matematicas" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Línea paralela al horizonte.", "solucion": "horizontal", "materia": "matematicas" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Conjunto de rectas que pasan por un punto.", "solucion": "haz", "materia": "matematicas" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Expresión matemática que indica que dos cantidades son iguales.", "solucion": "igualdad", "materia": "matematicas" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Valor desconocido en una ecuación.", "solucion": "incógnita", "materia": "matematicas" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Igualdad que se cumple para cualquier valor de las variables.", "solucion": "identidad", "materia": "matematicas" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Concepto de algo que no tiene fin.", "solucion": "infinito", "materia": "matematicas" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Número que no se puede expresar como fracción (ej. Pi, raíz de 2).", "solucion": "irracional", "materia": "matematicas" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Conjunto de números comprendidos entre dos extremos.", "solucion": "intervalo", "materia": "matematicas" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Elemento que al operarlo da el neutro (Opuesto multiplicativo).", "solucion": "inverso", "materia": "matematicas" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Número entero que no es divisible por 2.", "solucion": "impar", "materia": "matematicas" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Triángulo con dos lados iguales.", "solucion": "isósceles", "materia": "matematicas" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Valor que toma la variable dependiente (y) para un valor de x.", "solucion": "imagen", "materia": "matematicas" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Orden en que se deben realizar las operaciones combinadas.", "solucion": "jerarquía", "materia": "matematicas" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Demostrar o probar un resultado.", "solucion": "justificar", "materia": "matematicas" },
-  { "id": "j3", "letra": "J", "tipo": "contiene", "definicion": "Línea de coordenadas (contiene J).", "solucion": "eje", "materia": "matematicas" },
-  { "id": "j4", "letra": "J", "tipo": "contiene", "definicion": "Agrupación de elementos (contiene J).", "solucion": "conjunto", "materia": "matematicas" },
-  { "id": "j5", "letra": "J", "tipo": "contiene", "definicion": "Dejar sola la incógnita en una ecuación (contiene J).", "solucion": "despejar", "materia": "matematicas" },
-  { "id": "j6", "letra": "J", "tipo": "contiene", "definicion": "Propiedad de figuras con la misma forma y ángulos (contiene J).", "solucion": "semejanza", "materia": "matematicas" },
-  { "id": "j7", "letra": "J", "tipo": "contiene", "definicion": "Diagrama de ... y bigotes (contiene J).", "solucion": "caja", "materia": "matematicas" },
-  { "id": "j8", "letra": "J", "tipo": "contiene", "definicion": "Suceso que no tiene nada en común con otro (contiene J).", "solucion": "ajeno", "materia": "matematicas" },
-  { "id": "j9", "letra": "J", "tipo": "contiene", "definicion": "Punto que no se mueve en una transformación (contiene J).", "solucion": "fijo", "materia": "matematicas" },
-  { "id": "j10", "letra": "J", "tipo": "empieza", "definicion": "Unidad de energía en el Sistema Internacional (Joule).", "solucion": "julio", "materia": "matematicas" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Mil metros.", "solucion": "kilómetro", "materia": "matematicas" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Prefijo que significa mil.", "solucion": "kilo", "materia": "matematicas" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Unidad básica de masa en el SI.", "solucion": "kilogramo", "materia": "matematicas" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Mil litros.", "solucion": "kilolitro", "materia": "matematicas" },
-  { "id": "k5", "letra": "K", "tipo": "contiene", "definicion": "Recibo de compra (contiene K).", "solucion": "ticket", "materia": "matematicas" },
-  { "id": "k6", "letra": "K", "tipo": "contiene", "definicion": "Existencias de un producto (contiene K).", "solucion": "stock", "materia": "matematicas" },
-  { "id": "k7", "letra": "K", "tipo": "contiene", "definicion": "Conjunto de objetos o herramientas (contiene K).", "solucion": "pack", "materia": "matematicas" },
-  { "id": "k8", "letra": "K", "tipo": "contiene", "definicion": "Lista ordenada de mayor a menor (contiene K).", "solucion": "ranking", "materia": "matematicas" },
-  { "id": "k9", "letra": "K", "tipo": "contiene", "definicion": "Pasatiempo lógico numérico japonés (contiene K).", "solucion": "sudoku", "materia": "matematicas" },
-  { "id": "k10", "letra": "K", "tipo": "empieza", "definicion": "Unidad de potencia eléctrica (1000 vatios).", "solucion": "kilovatio", "materia": "matematicas" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Segmento que forma el perímetro de un polígono.", "solucion": "lado", "materia": "matematicas" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Unidad principal de capacidad.", "solucion": "litro", "materia": "matematicas" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Distancia entre dos puntos.", "solucion": "longitud", "materia": "matematicas" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Tipo de función de grado 1 (recta).", "solucion": "lineal", "materia": "matematicas" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Conjunto de puntos que cumplen una propiedad (... geométrico).", "solucion": "lugar", "materia": "matematicas" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Regla constante (ej. ... de Laplace).", "solucion": "ley", "materia": "matematicas" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Valor al que se acerca una función.", "solucion": "límite", "materia": "matematicas" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Unidad de masa anglosajona.", "solucion": "libra", "materia": "matematicas" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Parte de un monomio formada por letras.", "solucion": "literal", "materia": "matematicas" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Acción de interpretar datos de una gráfica.", "solucion": "lectura", "materia": "matematicas" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Expresión algebraica de un solo término.", "solucion": "monomio", "materia": "matematicas" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Promedio aritmético de un conjunto de datos.", "solucion": "media", "materia": "matematicas" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Valor central de un conjunto de datos ordenados.", "solucion": "mediana", "materia": "matematicas" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Valor más frecuente en un conjunto de datos.", "solucion": "moda", "materia": "matematicas" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Operación de sumar un número varias veces.", "solucion": "multiplicación", "materia": "matematicas" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Número que contiene a otro una cantidad exacta de veces.", "solucion": "múltiplo", "materia": "matematicas" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Valor más alto de una función o conjunto.", "solucion": "máximo", "materia": "matematicas" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Valor más bajo de una función o conjunto.", "solucion": "mínimo", "materia": "matematicas" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Unidad base de longitud en el SI.", "solucion": "metro", "materia": "matematicas" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Tabla rectangular de números.", "solucion": "matriz", "materia": "matematicas" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Número que sirve para contar (N).", "solucion": "natural", "materia": "matematicas" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Parte superior de una fracción.", "solucion": "numerador", "materia": "matematicas" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Concepto matemático que expresa cantidad.", "solucion": "número", "materia": "matematicas" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Número menor que cero.", "solucion": "negativo", "materia": "matematicas" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Valor cero.", "solucion": "nulo", "materia": "matematicas" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Forma de escribir números grandes o pequeños (... científica).", "solucion": "notación", "materia": "matematicas" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Perpendicular a una superficie o distribución estadística común.", "solucion": "normal", "materia": "matematicas" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Calificación numérica.", "solucion": "nota", "materia": "matematicas" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Número 9.", "solucion": "nueve", "materia": "matematicas" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Que se puede contar.", "solucion": "numerable", "materia": "matematicas" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Tiempo de revolución terrestre (contiene Ñ).", "solucion": "año", "materia": "matematicas" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "De menor dimensión (contiene Ñ).", "solucion": "pequeño", "materia": "matematicas" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Magnitud o dimensión de un objeto (contiene Ñ).", "solucion": "tamaño", "materia": "matematicas" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Parte de una ventana de hoja de cálculo (contiene Ñ).", "solucion": "pestaña", "materia": "matematicas" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Indicio o marca (contiene Ñ).", "solucion": "señal", "materia": "matematicas" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "contiene", "definicion": "Plan o dibujo de un objeto (contiene Ñ).", "solucion": "diseño", "materia": "matematicas" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Pareja en trabajos escolares (contiene Ñ).", "solucion": "compañero", "materia": "matematicas" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Sumar o incorporar (contiene Ñ).", "solucion": "añadir", "materia": "matematicas" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "Tipo de gráfico radial (... web, contiene Ñ).", "solucion": "araña", "materia": "matematicas" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "Medida informal con la mano cerrada (contiene Ñ).", "solucion": "puño", "materia": "matematicas" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Punto de intersección de los ejes de coordenadas (0,0).", "solucion": "origen", "materia": "matematicas" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Coordenada vertical en el plano cartesiano (y).", "solucion": "ordenada", "materia": "matematicas" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Ángulo mayor de 90 grados y menor de 180.", "solucion": "obtuso", "materia": "matematicas" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Polígono de ocho lados.", "solucion": "octógono", "materia": "matematicas" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Cálculo matemático (suma, resta...).", "solucion": "operación", "materia": "matematicas" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Punto donde se cortan las alturas de un triángulo.", "solucion": "ortocentro", "materia": "matematicas" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Curva cerrada parecida a una elipse.", "solucion": "óvalo", "materia": "matematicas" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Número 11.", "solucion": "once", "materia": "matematicas" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Secuencia o colocación.", "solucion": "orden", "materia": "matematicas" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Perpendicular.", "solucion": "ortogonal", "materia": "matematicas" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Suma de varios monomios.", "solucion": "polinomio", "materia": "matematicas" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Multiplicación repetida de un número por sí mismo.", "solucion": "potencia", "materia": "matematicas" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Medida de la posibilidad de que ocurra un suceso.", "solucion": "probabilidad", "materia": "matematicas" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Cantidad que representa una parte de cada 100.", "solucion": "porcentaje", "materia": "matematicas" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Poliedro con una base y caras laterales triangulares que concurren en un vértice.", "solucion": "pirámide", "materia": "matematicas" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Poliedro con dos bases iguales y paralelas y caras laterales rectangulares.", "solucion": "prisma", "materia": "matematicas" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Figura plana cerrada delimitada por segmentos.", "solucion": "polígono", "materia": "matematicas" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Suma de las longitudes de los lados de una figura.", "solucion": "perímetro", "materia": "matematicas" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Curva abierta que representa una función cuadrática.", "solucion": "parábola", "materia": "matematicas" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Número irracional 3.14159...", "solucion": "pi", "materia": "matematicas" },
-
-  { "id": "q1", "letra": "Q", "tipo": "contiene", "definicion": "Triángulo con todos los lados iguales (contiene Q).", "solucion": "equilátero", "materia": "matematicas" },
-  { "id": "q2", "letra": "Q", "tipo": "contiene", "definicion": "Que tiene el mismo valor (contiene Q).", "solucion": "equivalente", "materia": "matematicas" },
-  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Justo o imparcial (contiene Q).", "solucion": "equitativo", "materia": "matematicas" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Representación gráfica simplificada (contiene Q).", "solucion": "esquema", "materia": "matematicas" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Nombre que identifica a un dato en un gráfico (contiene Q).", "solucion": "etiqueta", "materia": "matematicas" },
-  { "id": "q6", "letra": "Q", "tipo": "contiene", "definicion": "Estado de la materia, se mide en litros (contiene Q).", "solucion": "líquido", "materia": "matematicas" },
-  { "id": "q7", "letra": "Q", "tipo": "contiene", "definicion": "Conjunto o grupo de elementos (contiene Q).", "solucion": "bloque", "materia": "matematicas" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "Dirección contraria a derecha (contiene Q).", "solucion": "izquierda", "materia": "matematicas" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Famoso matemático griego (contiene Q).", "solucion": "arquímedes", "materia": "matematicas" },
-  { "id": "q10", "letra": "Q", "tipo": "contiene", "definicion": "Dispositivo mecánico o electrónico (contiene Q).", "solucion": "máquina", "materia": "matematicas" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Operación inversa a la potencia.", "solucion": "raíz", "materia": "matematicas" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Segmento que une el centro con cualquier punto de la circunferencia.", "solucion": "radio", "materia": "matematicas" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Línea de puntos infinita en la misma dirección.", "solucion": "recta", "materia": "matematicas" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Paralelogramo con cuatro ángulos rectos.", "solucion": "rectángulo", "materia": "matematicas" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Paralelogramo con cuatro lados iguales.", "solucion": "rombo", "materia": "matematicas" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Operación de quitar una cantidad a otra (sustracción).", "solucion": "resta", "materia": "matematicas" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Cociente entre dos números.", "solucion": "razón", "materia": "matematicas" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Método para resolver problemas de proporcionalidad (... de tres).", "solucion": "regla", "materia": "matematicas" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Método para dividir un polinomio por (x-a).", "solucion": "ruffini", "materia": "matematicas" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Conjunto de números racionales e irracionales (R).", "solucion": "real", "materia": "matematicas" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Operación de añadir cantidades (adición).", "solucion": "suma", "materia": "matematicas" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Parte de una recta delimitada por dos puntos.", "solucion": "segmento", "materia": "matematicas" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Recta que corta a una circunferencia en dos puntos.", "solucion": "secante", "materia": "matematicas" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Razón trigonométrica (cateto opuesto / hipotenusa).", "solucion": "seno", "materia": "matematicas" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Conjunto de dos o más ecuaciones.", "solucion": "sistema", "materia": "matematicas" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Valor que hace verdadera una ecuación.", "solucion": "solución", "materia": "matematicas" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Lista ordenada de números que siguen una ley.", "solucion": "sucesión", "materia": "matematicas" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Extensión de una figura (Área).", "solucion": "superficie", "materia": "matematicas" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Parte del círculo limitada por dos radios y un arco (... circular).", "solucion": "sector", "materia": "matematicas" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Correspondencia exacta entre dos mitades de una figura.", "solucion": "simetría", "materia": "matematicas" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Polígono de tres lados.", "solucion": "triángulo", "materia": "matematicas" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Proposición matemática demostrable.", "solucion": "teorema", "materia": "matematicas" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Recta que toca a una circunferencia en un solo punto.", "solucion": "tangente", "materia": "matematicas" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Cada una de las partes de una suma, sucesión o polinomio.", "solucion": "término", "materia": "matematicas" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Cuadrilátero con solo dos lados paralelos.", "solucion": "trapecio", "materia": "matematicas" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Movimiento de una figura sin girar.", "solucion": "traslación", "materia": "matematicas" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Forma de organizar datos en filas y columnas.", "solucion": "tabla", "materia": "matematicas" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Resultado final de una suma.", "solucion": "total", "materia": "matematicas" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Matemático griego famoso por su teorema de proporcionalidad.", "solucion": "thales", "materia": "matematicas" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Cada una de las tres partes iguales de un todo.", "solucion": "tercio", "materia": "matematicas" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Cantidad que se toma como referencia para medir.", "solucion": "unidad", "materia": "matematicas" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Primer número natural.", "solucion": "uno", "materia": "matematicas" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Conjunto formado por los elementos de otros conjuntos.", "solucion": "unión", "materia": "matematicas" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Movimiento con velocidad constante o distribución con igual probabilidad.", "solucion": "uniforme", "materia": "matematicas" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "El que está al final.", "solucion": "último", "materia": "matematicas" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Que no hay otro igual.", "solucion": "único", "materia": "matematicas" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Conjunto que contiene a todos los elementos.", "solucion": "universal", "materia": "matematicas" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Provecho o beneficio.", "solucion": "utilidad", "materia": "matematicas" },
-  { "id": "u9", "letra": "U", "tipo": "contiene", "definicion": "Ángulo menor de 90 grados (contiene U).", "solucion": "agudo", "materia": "matematicas" },
-  { "id": "u10", "letra": "U", "tipo": "contiene", "definicion": "Ángulo mayor de 90 grados (contiene U).", "solucion": "obtuso", "materia": "matematicas" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Símbolo que puede tomar diferentes valores (x, y...).", "solucion": "variable", "materia": "matematicas" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Resultado numérico de una expresión.", "solucion": "valor", "materia": "matematicas" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Punto donde se unen los lados de un polígono.", "solucion": "vértice", "materia": "matematicas" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Segmento orientado que tiene magnitud, dirección y sentido.", "solucion": "vector", "materia": "matematicas" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Espacio ocupado por un cuerpo.", "solucion": "volumen", "materia": "matematicas" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Conjunto que no tiene elementos.", "solucion": "vacío", "materia": "matematicas" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Dos veces diez.", "solucion": "veinte", "materia": "matematicas" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Línea perpendicular al horizonte.", "solucion": "vertical", "materia": "matematicas" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Relación entre espacio y tiempo.", "solucion": "velocidad", "materia": "matematicas" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Proposición que es cierta.", "solucion": "verdadera", "materia": "matematicas" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Unidad de potencia en física (Vatio).", "solucion": "watt", "materia": "matematicas" },
-  { "id": "w2", "letra": "W", "tipo": "contiene", "definicion": "Unidad de fuerza (contiene W).", "solucion": "newton", "materia": "matematicas" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Mil vatios (contiene W).", "solucion": "kilowatt", "materia": "matematicas" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Programas informáticos (contiene W).", "solucion": "software", "materia": "matematicas" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Componentes físicos del ordenador (contiene W).", "solucion": "hardware", "materia": "matematicas" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Red informática mundial (contiene W).", "solucion": "web", "materia": "matematicas" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Conexión inalámbrica (contiene W).", "solucion": "wifi", "materia": "matematicas" },
-  { "id": "w8", "letra": "W", "tipo": "contiene", "definicion": "Enciclopedia libre (contiene W).", "solucion": "wikipedia", "materia": "matematicas" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "Espectáculo o demostración (contiene W).", "solucion": "show", "materia": "matematicas" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Teorema del emparedado (Sand... contiene W).", "solucion": "sandwich", "materia": "matematicas" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Polígono de seis lados (contiene X).", "solucion": "hexágono", "materia": "matematicas" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Número que indica la potencia (contiene X).", "solucion": "exponente", "materia": "matematicas" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Valor mayor de una función (contiene X).", "solucion": "máximo", "materia": "matematicas" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Valor cercano al real (contiene X).", "solucion": "aproximación", "materia": "matematicas" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Preciso, sin error (contiene X).", "solucion": "exacto", "materia": "matematicas" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Línea de referencia (contiene X, E... de coordenadas).", "solucion": "eje", "materia": "matematicas" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Ordinal de seis (contiene X).", "solucion": "sexto", "materia": "matematicas" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Polígono con ángulos menores de 180 (contiene X).", "solucion": "convexo", "materia": "matematicas" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Número formado por entero y fracción (contiene X).", "solucion": "mixto", "materia": "matematicas" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "Valor final de un intervalo (contiene X).", "solucion": "extremo", "materia": "matematicas" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Eje de ordenadas.", "solucion": "y", "materia": "matematicas" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Unidad de longitud inglesa (0.91 m).", "solucion": "yarda", "materia": "matematicas" },
-  { "id": "y3", "letra": "Y", "tipo": "contiene", "definicion": "Más grande (contiene Y).", "solucion": "mayor", "materia": "matematicas" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Regla constante (Le... contiene Y).", "solucion": "ley", "materia": "matematicas" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Parte de una recta con origen (Ra...o contiene Y).", "solucion": "rayo", "materia": "matematicas" },
-  { "id": "y6", "letra": "Y", "tipo": "contiene", "definicion": "Ángulo que comparte lado y vértice (Ad...acente contiene Y).", "solucion": "adyacente", "materia": "matematicas" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Plan o trabajo (Pro...ecto contiene Y).", "solucion": "proyecto", "materia": "matematicas" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Camino recorrido (Tra...ectoria contiene Y).", "solucion": "trayectoria", "materia": "matematicas" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Prueba o experimento (Ensa...o contiene Y).", "solucion": "ensayo", "materia": "matematicas" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Soporte o base (Apo...o contiene Y).", "solucion": "apoyo", "materia": "matematicas" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Región o área.", "solucion": "zona", "materia": "matematicas" },
-  { "id": "z2", "letra": "Z", "tipo": "contiene", "definicion": "Solución de una ecuación (Raí... contiene Z).", "solucion": "raíz", "materia": "matematicas" },
-  { "id": "z3", "letra": "Z", "tipo": "contiene", "definicion": "Casualidad en probabilidad (A...ar contiene Z).", "solucion": "azar", "materia": "matematicas" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Tabla de números (Matri... contiene Z).", "solucion": "matriz", "materia": "matematicas" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Material para escribir en pizarra (Ti...a contiene Z).", "solucion": "tiza", "materia": "matematicas" },
-  { "id": "z6", "letra": "Z", "tipo": "contiene", "definicion": "Movimiento de un lugar a otro (Despla...amiento contiene Z).", "solucion": "desplazamiento", "materia": "matematicas" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Fuerza que se opone al movimiento (Ro...amiento contiene Z).", "solucion": "rozamiento", "materia": "matematicas" },
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "Causa capaz de modificar el estado de reposo (Fuer...a contiene Z).", "solucion": "fuerza", "materia": "matematicas" },
-  { "id": "z9", "letra": "Z", "tipo": "contiene", "definicion": "Unidad de peso antigua (On...a contiene Z).", "solucion": "onza", "materia": "matematicas" },
-  { "id": "z10", "letra": "Z", "tipo": "contiene", "definicion": "Número 10 (Die... contiene Z).", "solucion": "diez", "materia": "matematicas" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Rama de las matemáticas que utiliza letras para representar números.",
+    "solucion": "álgebra",
+    "materia": "matematicas"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Región del plano comprendida entre dos semirrectas con el mismo origen.",
+    "solucion": "ángulo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Medida de la superficie de una figura plana.",
+    "solucion": "área",
+    "materia": "matematicas"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Segmento que une el centro de un polígono regular con el punto medio de un lado.",
+    "solucion": "apotema",
+    "materia": "matematicas"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Línea de intersección de dos caras de un poliedro.",
+    "solucion": "arista",
+    "materia": "matematicas"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Segmento perpendicular desde un vértice al lado opuesto o su prolongación.",
+    "solucion": "altura",
+    "materia": "matematicas"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Suceso cuyo resultado depende del azar.",
+    "solucion": "aleatorio",
+    "materia": "matematicas"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Diferencia entre el valor máximo y mínimo en estadística, o abertura de un ángulo.",
+    "solucion": "amplitud",
+    "materia": "matematicas"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Parte de una circunferencia.",
+    "solucion": "arco",
+    "materia": "matematicas"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Coordenada horizontal en un plano cartesiano (Eje de...).",
+    "solucion": "abscisa",
+    "materia": "matematicas"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Lado inferior de una figura geométrica o número que se eleva en una potencia.",
+    "solucion": "base",
+    "materia": "matematicas"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Semirrecta que divide un ángulo en dos partes iguales.",
+    "solucion": "bisectriz",
+    "materia": "matematicas"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Polinomio que consta de dos términos.",
+    "solucion": "binomio",
+    "materia": "matematicas"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Punto donde se cortan las tres medianas de un triángulo.",
+    "solucion": "baricentro",
+    "materia": "matematicas"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Tipo de ecuación de cuarto grado que se resuelve como una cuadrática.",
+    "solucion": "bicuadrada",
+    "materia": "matematicas"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Objeto esférico usado en problemas de probabilidad (urnas).",
+    "solucion": "bola",
+    "materia": "matematicas"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Tipo de diagrama estadístico con columnas rectangulares.",
+    "solucion": "barras",
+    "materia": "matematicas"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Un millón de millones (10^12).",
+    "solucion": "billón",
+    "materia": "matematicas"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Instrumento para medir la masa o peso.",
+    "solucion": "balanza",
+    "materia": "matematicas"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Acción de dividir algo en dos partes iguales.",
+    "solucion": "bisección",
+    "materia": "matematicas"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Figura plana formada por una circunferencia y su interior.",
+    "solucion": "círculo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Línea curva cerrada cuyos puntos equidistan del centro.",
+    "solucion": "circunferencia",
+    "materia": "matematicas"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Polígono regular de cuatro lados.",
+    "solucion": "cuadrado",
+    "materia": "matematicas"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Poliedro regular formado por seis cuadrados (Hexaedro).",
+    "solucion": "cubo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Resultado de una división.",
+    "solucion": "cociente",
+    "materia": "matematicas"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Número que multiplica a la parte literal en un monomio.",
+    "solucion": "coeficiente",
+    "materia": "matematicas"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Cuerpo de revolución generado por un triángulo rectángulo al girar sobre un cateto.",
+    "solucion": "cono",
+    "materia": "matematicas"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Cuerpo geométrico con dos bases circulares paralelas.",
+    "solucion": "cilindro",
+    "materia": "matematicas"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Cada uno de los lados menores de un triángulo rectángulo.",
+    "solucion": "cateto",
+    "materia": "matematicas"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Segmento que une dos puntos de una circunferencia.",
+    "solucion": "cuerda",
+    "materia": "matematicas"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Número que tiene una parte entera y una parte fraccionaria separada por una coma.",
+    "solucion": "decimal",
+    "materia": "matematicas"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Número inferior en una fracción que indica las partes en que se divide la unidad.",
+    "solucion": "denominador",
+    "materia": "matematicas"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Cuerda que pasa por el centro de la circunferencia.",
+    "solucion": "diámetro",
+    "materia": "matematicas"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Segmento que une dos vértices no consecutivos de un polígono.",
+    "solucion": "diagonal",
+    "materia": "matematicas"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Conjunto de valores que puede tomar la variable independiente (x) en una función.",
+    "solucion": "dominio",
+    "materia": "matematicas"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Medida de dispersión estadística (... típica).",
+    "solucion": "desviación",
+    "materia": "matematicas"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Número que se va a dividir en una división.",
+    "solucion": "dividendo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Número por el cual se divide.",
+    "solucion": "divisor",
+    "materia": "matematicas"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Información concreta sobre hechos o elementos (Estadística).",
+    "solucion": "dato",
+    "materia": "matematicas"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Polígono de diez lados.",
+    "solucion": "decágono",
+    "materia": "matematicas"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Igualdad matemática con una o más incógnitas.",
+    "solucion": "ecuación",
+    "materia": "matematicas"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Número pequeño arriba a la derecha que indica la potencia.",
+    "solucion": "exponente",
+    "materia": "matematicas"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Rama de las matemáticas que analiza datos.",
+    "solucion": "estadística",
+    "materia": "matematicas"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Cuerpo geométrico limitado por una superficie curva cuyos puntos equidistan del centro.",
+    "solucion": "esfera",
+    "materia": "matematicas"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Línea recta de referencia en coordenadas o simetría.",
+    "solucion": "eje",
+    "materia": "matematicas"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Triángulo con los tres lados iguales.",
+    "solucion": "equilátero",
+    "materia": "matematicas"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Resultado sin error o aproximación.",
+    "solucion": "exacto",
+    "materia": "matematicas"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Número sin decimales (puede ser positivo o negativo).",
+    "solucion": "entero",
+    "materia": "matematicas"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Conjunto de todos los resultados posibles (... muestral).",
+    "solucion": "espacio",
+    "materia": "matematicas"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Triángulo con los tres lados diferentes.",
+    "solucion": "escaleno",
+    "materia": "matematicas"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Expresión matemática que indica una parte de un todo (a/b).",
+    "solucion": "fracción",
+    "materia": "matematicas"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Cada uno de los números que se multiplican.",
+    "solucion": "factor",
+    "materia": "matematicas"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Relación entre dos conjuntos donde a cada valor le corresponde uno único.",
+    "solucion": "función",
+    "materia": "matematicas"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Expresión simbólica de una regla o principio general.",
+    "solucion": "fórmula",
+    "materia": "matematicas"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Número de veces que se repite un dato en estadística.",
+    "solucion": "frecuencia",
+    "materia": "matematicas"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Proceso de descomponer un número o polinomio en factores.",
+    "solucion": "factorización",
+    "materia": "matematicas"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Forma geométrica (cuadrado, círculo, etc.).",
+    "solucion": "figura",
+    "materia": "matematicas"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Que tiene fin o límite (contrario a infinito).",
+    "solucion": "finito",
+    "materia": "matematicas"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Punto fijo importante en la definición de cónicas (elipse, parábola...).",
+    "solucion": "foco",
+    "materia": "matematicas"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Operación de multiplicar números consecutivos decrecientes (!).",
+    "solucion": "factorial",
+    "materia": "matematicas"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Rama de las matemáticas que estudia las propiedades de las figuras.",
+    "solucion": "geometría",
+    "materia": "matematicas"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Unidad de medida de ángulos o el exponente mayor de un polinomio.",
+    "solucion": "grado",
+    "materia": "matematicas"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Representación visual de datos o funciones.",
+    "solucion": "gráfica",
+    "materia": "matematicas"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Línea que al girar engendra un cuerpo de revolución.",
+    "solucion": "generatriz",
+    "materia": "matematicas"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Movimiento de rotación alrededor de un punto.",
+    "solucion": "giro",
+    "materia": "matematicas"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Unidad de masa en el sistema métrico.",
+    "solucion": "gramo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Conjunto de elementos con una operación definida (estructura algebraica).",
+    "solucion": "grupo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Beneficio económico obtenido (Problemas de finanzas).",
+    "solucion": "ganancia",
+    "materia": "matematicas"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "De gran tamaño.",
+    "solucion": "grande",
+    "materia": "matematicas"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Dimensión o espesor de un objeto.",
+    "solucion": "grosor",
+    "materia": "matematicas"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Lado opuesto al ángulo recto en un triángulo rectángulo.",
+    "solucion": "hipotenusa",
+    "materia": "matematicas"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Polígono de seis lados.",
+    "solucion": "hexágono",
+    "materia": "matematicas"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Polígono de siete lados.",
+    "solucion": "heptágono",
+    "materia": "matematicas"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Gráfico estadístico de barras para variables continuas.",
+    "solucion": "histograma",
+    "materia": "matematicas"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Medida de superficie equivalente a 10.000 m².",
+    "solucion": "hectárea",
+    "materia": "matematicas"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Transformación geométrica que amplía o reduce una figura.",
+    "solucion": "homotecia",
+    "materia": "matematicas"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Parte de la superficie esférica entre dos semicírculos máximos (Huso).",
+    "solucion": "huso",
+    "materia": "matematicas"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Curva cónica abierta de dos ramas (gráfica de proporcionalidad inversa).",
+    "solucion": "hipérbola",
+    "materia": "matematicas"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Línea paralela al horizonte.",
+    "solucion": "horizontal",
+    "materia": "matematicas"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Conjunto de rectas que pasan por un punto.",
+    "solucion": "haz",
+    "materia": "matematicas"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Expresión matemática que indica que dos cantidades son iguales.",
+    "solucion": "igualdad",
+    "materia": "matematicas"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Valor desconocido en una ecuación.",
+    "solucion": "incógnita",
+    "materia": "matematicas"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Igualdad que se cumple para cualquier valor de las variables.",
+    "solucion": "identidad",
+    "materia": "matematicas"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Concepto de algo que no tiene fin.",
+    "solucion": "infinito",
+    "materia": "matematicas"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Número que no se puede expresar como fracción (ej. Pi, raíz de 2).",
+    "solucion": "irracional",
+    "materia": "matematicas"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Conjunto de números comprendidos entre dos extremos.",
+    "solucion": "intervalo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Elemento que al operarlo da el neutro (Opuesto multiplicativo).",
+    "solucion": "inverso",
+    "materia": "matematicas"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Número entero que no es divisible por 2.",
+    "solucion": "impar",
+    "materia": "matematicas"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Triángulo con dos lados iguales.",
+    "solucion": "isósceles",
+    "materia": "matematicas"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Valor que toma la variable dependiente (y) para un valor de x.",
+    "solucion": "imagen",
+    "materia": "matematicas"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Orden en que se deben realizar las operaciones combinadas.",
+    "solucion": "jerarquía",
+    "materia": "matematicas"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Demostrar o probar un resultado.",
+    "solucion": "justificar",
+    "materia": "matematicas"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Línea de coordenadas (contiene J).",
+    "solucion": "eje",
+    "materia": "matematicas"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Agrupación de elementos (contiene J).",
+    "solucion": "conjunto",
+    "materia": "matematicas"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Dejar sola la incógnita en una ecuación (contiene J).",
+    "solucion": "despejar",
+    "materia": "matematicas"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Propiedad de figuras con la misma forma y ángulos (contiene J).",
+    "solucion": "semejanza",
+    "materia": "matematicas"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Diagrama de ... y bigotes (contiene J).",
+    "solucion": "caja",
+    "materia": "matematicas"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Suceso que no tiene nada en común con otro (contiene J).",
+    "solucion": "ajeno",
+    "materia": "matematicas"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Punto que no se mueve en una transformación (contiene J).",
+    "solucion": "fijo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Unidad de energía en el Sistema Internacional (Joule).",
+    "solucion": "julio",
+    "materia": "matematicas"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Mil metros.",
+    "solucion": "kilómetro",
+    "materia": "matematicas"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Prefijo que significa mil.",
+    "solucion": "kilo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unidad básica de masa en el SI.",
+    "solucion": "kilogramo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Mil litros.",
+    "solucion": "kilolitro",
+    "materia": "matematicas"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Recibo de compra (contiene K).",
+    "solucion": "ticket",
+    "materia": "matematicas"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Existencias de un producto (contiene K).",
+    "solucion": "stock",
+    "materia": "matematicas"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Conjunto de objetos o herramientas (contiene K).",
+    "solucion": "pack",
+    "materia": "matematicas"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Lista ordenada de mayor a menor (contiene K).",
+    "solucion": "ranking",
+    "materia": "matematicas"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Pasatiempo lógico numérico japonés (contiene K).",
+    "solucion": "sudoku",
+    "materia": "matematicas"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unidad de potencia eléctrica (1000 vatios).",
+    "solucion": "kilovatio",
+    "materia": "matematicas"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Segmento que forma el perímetro de un polígono.",
+    "solucion": "lado",
+    "materia": "matematicas"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Unidad principal de capacidad.",
+    "solucion": "litro",
+    "materia": "matematicas"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Distancia entre dos puntos.",
+    "solucion": "longitud",
+    "materia": "matematicas"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Tipo de función de grado 1 (recta).",
+    "solucion": "lineal",
+    "materia": "matematicas"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Conjunto de puntos que cumplen una propiedad (... geométrico).",
+    "solucion": "lugar",
+    "materia": "matematicas"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Regla constante (ej. ... de Laplace).",
+    "solucion": "ley",
+    "materia": "matematicas"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Valor al que se acerca una función.",
+    "solucion": "límite",
+    "materia": "matematicas"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Unidad de masa anglosajona.",
+    "solucion": "libra",
+    "materia": "matematicas"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Parte de un monomio formada por letras.",
+    "solucion": "literal",
+    "materia": "matematicas"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Acción de interpretar datos de una gráfica.",
+    "solucion": "lectura",
+    "materia": "matematicas"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Expresión algebraica de un solo término.",
+    "solucion": "monomio",
+    "materia": "matematicas"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Promedio aritmético de un conjunto de datos.",
+    "solucion": "media",
+    "materia": "matematicas"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Valor central de un conjunto de datos ordenados.",
+    "solucion": "mediana",
+    "materia": "matematicas"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Valor más frecuente en un conjunto de datos.",
+    "solucion": "moda",
+    "materia": "matematicas"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Operación de sumar un número varias veces.",
+    "solucion": "multiplicación",
+    "materia": "matematicas"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Número que contiene a otro una cantidad exacta de veces.",
+    "solucion": "múltiplo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Valor más alto de una función o conjunto.",
+    "solucion": "máximo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Valor más bajo de una función o conjunto.",
+    "solucion": "mínimo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Unidad base de longitud en el SI.",
+    "solucion": "metro",
+    "materia": "matematicas"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Tabla rectangular de números.",
+    "solucion": "matriz",
+    "materia": "matematicas"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Número que sirve para contar (N).",
+    "solucion": "natural",
+    "materia": "matematicas"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Parte superior de una fracción.",
+    "solucion": "numerador",
+    "materia": "matematicas"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Concepto matemático que expresa cantidad.",
+    "solucion": "número",
+    "materia": "matematicas"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Número menor que cero.",
+    "solucion": "negativo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Valor cero.",
+    "solucion": "nulo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Forma de escribir números grandes o pequeños (... científica).",
+    "solucion": "notación",
+    "materia": "matematicas"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Perpendicular a una superficie o distribución estadística común.",
+    "solucion": "normal",
+    "materia": "matematicas"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Calificación numérica.",
+    "solucion": "nota",
+    "materia": "matematicas"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Número 9.",
+    "solucion": "nueve",
+    "materia": "matematicas"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Que se puede contar.",
+    "solucion": "numerable",
+    "materia": "matematicas"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Tiempo de revolución terrestre (contiene Ñ).",
+    "solucion": "año",
+    "materia": "matematicas"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "De menor dimensión (contiene Ñ).",
+    "solucion": "pequeño",
+    "materia": "matematicas"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Magnitud o dimensión de un objeto (contiene Ñ).",
+    "solucion": "tamaño",
+    "materia": "matematicas"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Parte de una ventana de hoja de cálculo (contiene Ñ).",
+    "solucion": "pestaña",
+    "materia": "matematicas"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Indicio o marca (contiene Ñ).",
+    "solucion": "señal",
+    "materia": "matematicas"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Plan o dibujo de un objeto (contiene Ñ).",
+    "solucion": "diseño",
+    "materia": "matematicas"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Pareja en trabajos escolares (contiene Ñ).",
+    "solucion": "compañero",
+    "materia": "matematicas"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Sumar o incorporar (contiene Ñ).",
+    "solucion": "añadir",
+    "materia": "matematicas"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Tipo de gráfico radial (... web, contiene Ñ).",
+    "solucion": "araña",
+    "materia": "matematicas"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Medida informal con la mano cerrada (contiene Ñ).",
+    "solucion": "puño",
+    "materia": "matematicas"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Punto de intersección de los ejes de coordenadas (0,0).",
+    "solucion": "origen",
+    "materia": "matematicas"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Coordenada vertical en el plano cartesiano (y).",
+    "solucion": "ordenada",
+    "materia": "matematicas"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Ángulo mayor de 90 grados y menor de 180.",
+    "solucion": "obtuso",
+    "materia": "matematicas"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Polígono de ocho lados.",
+    "solucion": "octógono",
+    "materia": "matematicas"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Cálculo matemático (suma, resta...).",
+    "solucion": "operación",
+    "materia": "matematicas"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Punto donde se cortan las alturas de un triángulo.",
+    "solucion": "ortocentro",
+    "materia": "matematicas"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Curva cerrada parecida a una elipse.",
+    "solucion": "óvalo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Número 11.",
+    "solucion": "once",
+    "materia": "matematicas"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Secuencia o colocación.",
+    "solucion": "orden",
+    "materia": "matematicas"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Perpendicular.",
+    "solucion": "ortogonal",
+    "materia": "matematicas"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Suma de varios monomios.",
+    "solucion": "polinomio",
+    "materia": "matematicas"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Multiplicación repetida de un número por sí mismo.",
+    "solucion": "potencia",
+    "materia": "matematicas"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Medida de la posibilidad de que ocurra un suceso.",
+    "solucion": "probabilidad",
+    "materia": "matematicas"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Cantidad que representa una parte de cada 100.",
+    "solucion": "porcentaje",
+    "materia": "matematicas"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Poliedro con una base y caras laterales triangulares que concurren en un vértice.",
+    "solucion": "pirámide",
+    "materia": "matematicas"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Poliedro con dos bases iguales y paralelas y caras laterales rectangulares.",
+    "solucion": "prisma",
+    "materia": "matematicas"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Figura plana cerrada delimitada por segmentos.",
+    "solucion": "polígono",
+    "materia": "matematicas"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Suma de las longitudes de los lados de una figura.",
+    "solucion": "perímetro",
+    "materia": "matematicas"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Curva abierta que representa una función cuadrática.",
+    "solucion": "parábola",
+    "materia": "matematicas"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Número irracional 3.14159...",
+    "solucion": "pi",
+    "materia": "matematicas"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Triángulo con todos los lados iguales (contiene Q).",
+    "solucion": "equilátero",
+    "materia": "matematicas"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Que tiene el mismo valor (contiene Q).",
+    "solucion": "equivalente",
+    "materia": "matematicas"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Justo o imparcial (contiene Q).",
+    "solucion": "equitativo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Representación gráfica simplificada (contiene Q).",
+    "solucion": "esquema",
+    "materia": "matematicas"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Nombre que identifica a un dato en un gráfico (contiene Q).",
+    "solucion": "etiqueta",
+    "materia": "matematicas"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Estado de la materia, se mide en litros (contiene Q).",
+    "solucion": "líquido",
+    "materia": "matematicas"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Conjunto o grupo de elementos (contiene Q).",
+    "solucion": "bloque",
+    "materia": "matematicas"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Dirección contraria a derecha (contiene Q).",
+    "solucion": "izquierda",
+    "materia": "matematicas"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Famoso matemático griego (contiene Q).",
+    "solucion": "arquímedes",
+    "materia": "matematicas"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Dispositivo mecánico o electrónico (contiene Q).",
+    "solucion": "máquina",
+    "materia": "matematicas"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Operación inversa a la potencia.",
+    "solucion": "raíz",
+    "materia": "matematicas"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Segmento que une el centro con cualquier punto de la circunferencia.",
+    "solucion": "radio",
+    "materia": "matematicas"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Línea de puntos infinita en la misma dirección.",
+    "solucion": "recta",
+    "materia": "matematicas"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Paralelogramo con cuatro ángulos rectos.",
+    "solucion": "rectángulo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Paralelogramo con cuatro lados iguales.",
+    "solucion": "rombo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Operación de quitar una cantidad a otra (sustracción).",
+    "solucion": "resta",
+    "materia": "matematicas"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Cociente entre dos números.",
+    "solucion": "razón",
+    "materia": "matematicas"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Método para resolver problemas de proporcionalidad (... de tres).",
+    "solucion": "regla",
+    "materia": "matematicas"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Método para dividir un polinomio por (x-a).",
+    "solucion": "ruffini",
+    "materia": "matematicas"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Conjunto de números racionales e irracionales (R).",
+    "solucion": "real",
+    "materia": "matematicas"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Operación de añadir cantidades (adición).",
+    "solucion": "suma",
+    "materia": "matematicas"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Parte de una recta delimitada por dos puntos.",
+    "solucion": "segmento",
+    "materia": "matematicas"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Recta que corta a una circunferencia en dos puntos.",
+    "solucion": "secante",
+    "materia": "matematicas"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Razón trigonométrica (cateto opuesto / hipotenusa).",
+    "solucion": "seno",
+    "materia": "matematicas"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de dos o más ecuaciones.",
+    "solucion": "sistema",
+    "materia": "matematicas"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Valor que hace verdadera una ecuación.",
+    "solucion": "solución",
+    "materia": "matematicas"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Lista ordenada de números que siguen una ley.",
+    "solucion": "sucesión",
+    "materia": "matematicas"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Extensión de una figura (Área).",
+    "solucion": "superficie",
+    "materia": "matematicas"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Parte del círculo limitada por dos radios y un arco (... circular).",
+    "solucion": "sector",
+    "materia": "matematicas"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Correspondencia exacta entre dos mitades de una figura.",
+    "solucion": "simetría",
+    "materia": "matematicas"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Polígono de tres lados.",
+    "solucion": "triángulo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Proposición matemática demostrable.",
+    "solucion": "teorema",
+    "materia": "matematicas"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Recta que toca a una circunferencia en un solo punto.",
+    "solucion": "tangente",
+    "materia": "matematicas"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Cada una de las partes de una suma, sucesión o polinomio.",
+    "solucion": "término",
+    "materia": "matematicas"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Cuadrilátero con solo dos lados paralelos.",
+    "solucion": "trapecio",
+    "materia": "matematicas"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Movimiento de una figura sin girar.",
+    "solucion": "traslación",
+    "materia": "matematicas"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Forma de organizar datos en filas y columnas.",
+    "solucion": "tabla",
+    "materia": "matematicas"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Resultado final de una suma.",
+    "solucion": "total",
+    "materia": "matematicas"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Matemático griego famoso por su teorema de proporcionalidad.",
+    "solucion": "thales",
+    "materia": "matematicas"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Cada una de las tres partes iguales de un todo.",
+    "solucion": "tercio",
+    "materia": "matematicas"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Cantidad que se toma como referencia para medir.",
+    "solucion": "unidad",
+    "materia": "matematicas"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Primer número natural.",
+    "solucion": "uno",
+    "materia": "matematicas"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Conjunto formado por los elementos de otros conjuntos.",
+    "solucion": "unión",
+    "materia": "matematicas"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Movimiento con velocidad constante o distribución con igual probabilidad.",
+    "solucion": "uniforme",
+    "materia": "matematicas"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "El que está al final.",
+    "solucion": "último",
+    "materia": "matematicas"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Que no hay otro igual.",
+    "solucion": "único",
+    "materia": "matematicas"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Conjunto que contiene a todos los elementos.",
+    "solucion": "universal",
+    "materia": "matematicas"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Provecho o beneficio.",
+    "solucion": "utilidad",
+    "materia": "matematicas"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Ángulo menor de 90 grados (contiene U).",
+    "solucion": "agudo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Ángulo mayor de 90 grados (contiene U).",
+    "solucion": "obtuso",
+    "materia": "matematicas"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Símbolo que puede tomar diferentes valores (x, y...).",
+    "solucion": "variable",
+    "materia": "matematicas"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Resultado numérico de una expresión.",
+    "solucion": "valor",
+    "materia": "matematicas"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Punto donde se unen los lados de un polígono.",
+    "solucion": "vértice",
+    "materia": "matematicas"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Segmento orientado que tiene magnitud, dirección y sentido.",
+    "solucion": "vector",
+    "materia": "matematicas"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Espacio ocupado por un cuerpo.",
+    "solucion": "volumen",
+    "materia": "matematicas"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Conjunto que no tiene elementos.",
+    "solucion": "vacío",
+    "materia": "matematicas"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Dos veces diez.",
+    "solucion": "veinte",
+    "materia": "matematicas"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Línea perpendicular al horizonte.",
+    "solucion": "vertical",
+    "materia": "matematicas"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Relación entre espacio y tiempo.",
+    "solucion": "velocidad",
+    "materia": "matematicas"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Proposición que es cierta.",
+    "solucion": "verdadera",
+    "materia": "matematicas"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Unidad de potencia en física (Vatio).",
+    "solucion": "watt",
+    "materia": "matematicas"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Unidad de fuerza (contiene W).",
+    "solucion": "newton",
+    "materia": "matematicas"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Mil vatios (contiene W).",
+    "solucion": "kilowatt",
+    "materia": "matematicas"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Programas informáticos (contiene W).",
+    "solucion": "software",
+    "materia": "matematicas"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Componentes físicos del ordenador (contiene W).",
+    "solucion": "hardware",
+    "materia": "matematicas"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Red informática mundial (contiene W).",
+    "solucion": "web",
+    "materia": "matematicas"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Conexión inalámbrica (contiene W).",
+    "solucion": "wifi",
+    "materia": "matematicas"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Enciclopedia libre (contiene W).",
+    "solucion": "wikipedia",
+    "materia": "matematicas"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Espectáculo o demostración (contiene W).",
+    "solucion": "show",
+    "materia": "matematicas"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Teorema del emparedado (Sand... contiene W).",
+    "solucion": "sandwich",
+    "materia": "matematicas"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Polígono de seis lados (contiene X).",
+    "solucion": "hexágono",
+    "materia": "matematicas"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Número que indica la potencia (contiene X).",
+    "solucion": "exponente",
+    "materia": "matematicas"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Valor mayor de una función (contiene X).",
+    "solucion": "máximo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Valor cercano al real (contiene X).",
+    "solucion": "aproximación",
+    "materia": "matematicas"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Preciso, sin error (contiene X).",
+    "solucion": "exacto",
+    "materia": "matematicas"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Línea de referencia (contiene X, E... de coordenadas).",
+    "solucion": "examen",
+    "materia": "matematicas"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Ordinal de seis (contiene X).",
+    "solucion": "sexto",
+    "materia": "matematicas"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Polígono con ángulos menores de 180 (contiene X).",
+    "solucion": "convexo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Número formado por entero y fracción (contiene X).",
+    "solucion": "mixto",
+    "materia": "matematicas"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Valor final de un intervalo (contiene X).",
+    "solucion": "extremo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Eje de ordenadas.",
+    "solucion": "y",
+    "materia": "matematicas"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Unidad de longitud inglesa (0.91 m).",
+    "solucion": "yarda",
+    "materia": "matematicas"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Más grande (contiene Y).",
+    "solucion": "mayor",
+    "materia": "matematicas"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Regla constante (Le... contiene Y).",
+    "solucion": "ley",
+    "materia": "matematicas"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Parte de una recta con origen (Ra...o contiene Y).",
+    "solucion": "rayo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Ángulo que comparte lado y vértice (Ad...acente contiene Y).",
+    "solucion": "adyacente",
+    "materia": "matematicas"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Plan o trabajo (Pro...ecto contiene Y).",
+    "solucion": "proyecto",
+    "materia": "matematicas"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Camino recorrido (Tra...ectoria contiene Y).",
+    "solucion": "trayectoria",
+    "materia": "matematicas"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Prueba o experimento (Ensa...o contiene Y).",
+    "solucion": "ensayo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Soporte o base (Apo...o contiene Y).",
+    "solucion": "apoyo",
+    "materia": "matematicas"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Región o área.",
+    "solucion": "zona",
+    "materia": "matematicas"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Solución de una ecuación (Raí... contiene Z).",
+    "solucion": "raíz",
+    "materia": "matematicas"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Casualidad en probabilidad (A...ar contiene Z).",
+    "solucion": "azar",
+    "materia": "matematicas"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Tabla de números (Matri... contiene Z).",
+    "solucion": "matriz",
+    "materia": "matematicas"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Material para escribir en pizarra (Ti...a contiene Z).",
+    "solucion": "tiza",
+    "materia": "matematicas"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Movimiento de un lugar a otro (Despla...amiento contiene Z).",
+    "solucion": "desplazamiento",
+    "materia": "matematicas"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Fuerza que se opone al movimiento (Ro...amiento contiene Z).",
+    "solucion": "rozamiento",
+    "materia": "matematicas"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Causa capaz de modificar el estado de reposo (Fuer...a contiene Z).",
+    "solucion": "fuerza",
+    "materia": "matematicas"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Unidad de peso antigua (On...a contiene Z).",
+    "solucion": "onza",
+    "materia": "matematicas"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Número 10 (Die... contiene Z).",
+    "solucion": "diez",
+    "materia": "matematicas"
+  }
 ]

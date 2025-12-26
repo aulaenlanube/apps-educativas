@@ -1,17 +1,122 @@
 {
+  "transicion_primaria": [
+    "instituto",
+    "materias",
+    "horario",
+    "agenda",
+    "compañeros",
+    "profesores",
+    "recreo",
+    "mochila",
+    "exámenes",
+    "normas"
+  ],
+  "habilidades_sociales": [
+    "empatía",
+    "asertividad",
+    "escucha activa",
+    "respeto",
+    "tolerancia",
+    "amistad",
+    "comunicación",
+    "trabajo en equipo",
+    "diálogo",
+    "ayuda"
+  ],
+  "gestion_emociones": [
+    "alegría",
+    "tristeza",
+    "miedo",
+    "enfado",
+    "sorpresa",
+    "calma",
+    "autoestima",
+    "frustración",
+    "nerviosismo",
+    "confianza"
+  ],
   "tecnicas_estudio": [
-    "subrayado", "resumen", "esquema", "mapa mental", "lectura rápida", "memorización", "repaso", "planificación", "agenda", "apuntes"
+    "subrayado",
+    "esquema",
+    "resumen",
+    "mapa mental",
+    "planificación",
+    "lugar de estudio",
+    "atención",
+    "memoria",
+    "repaso",
+    "autoevaluación"
   ],
-  "emociones_sociales": [
-    "empatía", "asertividad", "respeto", "tolerancia", "solidaridad", "cooperación", "escucha activa", "diálogo", "paciencia", "gratitud"
+  "convivencia_conflicto": [
+    "mediación",
+    "acuerdo",
+    "disculpa",
+    "insulto",
+    "acoso",
+    "bullying",
+    "apoyo",
+    "denuncia",
+    "testigo",
+    "solución"
   ],
-  "normas_convivencia": [
-    "puntualidad", "silencio", "orden", "limpieza", "turno de palabra", "cuidado del material", "ayuda", "respeto al profesor", "no agredir", "no insultar"
+  "salud_habitos": [
+    "sueño",
+    "higiene",
+    "alimentación",
+    "desayuno",
+    "deporte",
+    "postura",
+    "descanso",
+    "agua",
+    "fruta",
+    "estiramientos"
   ],
-  "habitos_saludables": [
-    "desayuno", "fruta", "deporte", "dormir 8h", "higiene", "postura correcta", "agua", "evitar azúcar", "lavar dientes", "ducha"
+  "uso_tecnologia": [
+    "móvil",
+    "redes sociales",
+    "videojuegos",
+    "tiempo de pantalla",
+    "privacidad",
+    "identidad digital",
+    "netiqueta",
+    "desconexión",
+    "ciberacoso",
+    "seguridad"
   ],
-  "riesgos_redes": [
-    "ciberbullying", "adicción", "privacidad", "fake news", "sexting", "groming", "identidad falsa", "estafa", "virus", "phishing"
+  "igualdad_diversidad": [
+    "igualdad",
+    "diferencia",
+    "cultura",
+    "integración",
+    "discapacidad",
+    "derechos",
+    "pluralidad",
+    "cooperación",
+    "solidaridad",
+    "equipo"
+  ],
+  "organizacion_centro": [
+    "tutor",
+    "orientador",
+    "director",
+    "jefe de estudios",
+    "secretaría",
+    "conserjería",
+    "biblioteca",
+    "laboratorio",
+    "gimnasio",
+    "aula"
+  ],
+  "valores_personales": [
+    "esfuerzo",
+    "responsabilidad",
+    "honestidad",
+    "gratitud",
+    "paciencia",
+    "curiosidad",
+    "creatividad",
+    "autonomía",
+    "perseverancia",
+    "optimismo"
   ]
 }

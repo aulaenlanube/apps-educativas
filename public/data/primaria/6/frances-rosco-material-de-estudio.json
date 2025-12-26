@@ -1,0 +1,791 @@
+{
+  "titulo": "Material de Estudio - Frances - 6º PRIMARIA",
+  "introduccion": "Repasa este vocabulario de Frances para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "ami",
+          "definicion": "Une personne que l'on apprécie et avec qui on passe du temps.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "arbre",
+          "definicion": "Une grande plante avec un tronc et des feuilles.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "avion",
+          "definicion": "Un moyen de transport qui vole dans le ciel.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "automne",
+          "definicion": "La saison qui suit l'été et précède l'hiver.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "animal",
+          "definicion": "Un être vivant qui n'est ni un humain ni une plante.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "bonjour",
+          "definicion": "Ce que l'on dit pour saluer quelqu'un le matin.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "blanc",
+          "definicion": "La couleur du lait ou de la neige.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bibliothèque",
+          "definicion": "Un endroit où l'on trouve beaucoup de livres à emprunter.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bateau",
+          "definicion": "Un véhicule qui navigue sur l'eau.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "beau",
+          "definicion": "Le contraire de petit (au masculin).",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "boisson",
+          "definicion": "Une boisson chaude ou froide faite avec des feuilles ou des fruits.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "chat",
+          "definicion": "Un petit animal domestique qui fait 'miaou'.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "crayon",
+          "definicion": "Un objet utilisé pour écrire ou dessiner, souvent en bois.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cuisine",
+          "definicion": "Une pièce de la maison où l'on prépare les repas.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "chocolat",
+          "definicion": "Un aliment sucré fait à partir de cacao.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cheval",
+          "definicion": "Un animal utilisé pour l'équitation.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "dimanche",
+          "definicion": "Le dernier jour de la semaine.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dix",
+          "definicion": "Le nombre qui vient après neuf.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "danser",
+          "definicion": "Bouger son corps en suivant le rythme de la musique.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "devoir",
+          "definicion": "Le travail que les élèves font à la maison après l'école.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "déjeuner",
+          "definicion": "Le repas que l'on prend au milieu de la journée.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "école",
+          "definicion": "L'endroit où les enfants vont pour apprendre.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "élève",
+          "definicion": "Une personne qui apprend à l'école.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "été",
+          "definicion": "La saison la plus chaude de l'année.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "écouter",
+          "definicion": "Utiliser ses oreilles pour entendre de la musique ou quelqu'un parler.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "écrire",
+          "definicion": "Utiliser un stylo pour mettre des mots sur du papier.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "famille",
+          "definicion": "Les parents, les frères et les soeurs forment la...",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "frère",
+          "definicion": "Le fils de mes parents est mon...",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fromage",
+          "definicion": "Un aliment fait à partir de lait, très célèbre en France.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fleur",
+          "definicion": "Une plante colorée qui sent bon.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fenêtre",
+          "definicion": "Une ouverture dans un mur pour voir dehors et laisser entrer la lumière.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "garçon",
+          "definicion": "Un jeune humain de sexe masculin.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grand",
+          "definicion": "Le contraire de petit (au masculin).",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gris",
+          "definicion": "La couleur entre le noir et le blanc.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "guitare",
+          "definicion": "Un instrument de musique avec des cordes.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gomme",
+          "definicion": "Un objet utilisé pour effacer le crayon.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hiver",
+          "definicion": "La saison la plus froide de l'année.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "huit",
+          "definicion": "Le nombre qui vient après sept.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "heure",
+          "definicion": "Une période de soixante minutes.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "habiter",
+          "definicion": "Vivre dans un endroit.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "histoire",
+          "definicion": "Un récit de faits passés.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "île",
+          "definicion": "Une terre entourée d'eau de tous côtés.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "image",
+          "definicion": "Une représentation visuelle d'une chose ou d'une personne.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "informatique",
+          "definicion": "La science du traitement automatique de l'information par ordinateur.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "invitation",
+          "definicion": "Une carte pour demander à quelqu'un de venir à une fête.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "intelligent",
+          "definicion": "Une personne qui comprend et apprend vite.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "jeudi",
+          "definicion": "Le jour de la semaine entre le mercredi et le vendredi.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jaune",
+          "definicion": "La couleur du soleil ou des citrons.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jouer",
+          "definicion": "S'amuser avec des jeux ou des jouets.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jardin",
+          "definicion": "Un terrain avec de l'herbe et des fleurs près de la maison.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "journée",
+          "definicion": "Une période de vingt-quatre heures.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "kangourou",
+          "definicion": "Un animal australien qui saute et porte son bébé dans une poche.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kiwi",
+          "definicion": "Un fruit vert à l'intérieur avec des petits grains noirs.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilo",
+          "definicion": "Une unité de mesure de masse (abréviation).",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kayak",
+          "definicion": "Un petit bateau léger que l'on dirige avec une pagaie.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "képi",
+          "definicion": "Un chapeau militaire à visière.",
+          "pista": "Empieza por K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "livre",
+          "definicion": "Un objet avec des pages que l'on lit.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lundi",
+          "definicion": "Le premier jour de la semaine.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lit",
+          "definicion": "Un meuble utilisé pour dormir.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lapin",
+          "definicion": "Un petit animal avec de grandes oreilles qui mange des carottes.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lumière",
+          "definicion": "La lumière que nous donne le soleil pendant la journée.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "maison",
+          "definicion": "Le bâtiment où l'on habite.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mère",
+          "definicion": "La femme qui a des enfants.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "manger",
+          "definicion": "Mettre de la nourriture dans sa bouche pour vivre.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mardi",
+          "definicion": "Le deuxième jour de la semaine.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "main",
+          "definicion": "La partie du corps au bout du bras avec cinq doigts.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "noir",
+          "definicion": "La couleur la plus sombre, comme le ciel la nuit.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "neuf",
+          "definicion": "Le nombre qui vient après huit.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nuit",
+          "definicion": "La période de temps quand le soleil est couché.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nager",
+          "definicion": "Se déplacer dans l'eau.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nez",
+          "definicion": "La partie du visage qui sert à respirer et à sentir.",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "oiseau",
+          "definicion": "Un animal avec des plumes qui peut voler.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "orange",
+          "definicion": "La couleur du fruit du même nom.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ours",
+          "definicion": "Un grand animal sauvage qui aime le miel.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "onze",
+          "definicion": "Le nombre qui vient après dix.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oreille",
+          "definicion": "La partie du corps qui sert à entendre.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "père",
+          "definicion": "L'homme qui a des enfants.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pomme",
+          "definicion": "Un fruit rond, rouge, vert ou jaune.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "petit",
+          "definicion": "Le contraire de grand.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pantalon",
+          "definicion": "Un vêtement qui couvre les deux jambes.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "poisson",
+          "definicion": "Un animal qui vit et respire sous l'eau.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "quatre",
+          "definicion": "Le nombre de pattes d'un chien.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quatorze",
+          "definicion": "Le nombre qui vient après treize.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "qui",
+          "definicion": "Mot utilisé pour poser une question sur une personne.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quoi",
+          "definicion": "Mot utilisé pour poser une question sur une chose.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quarante",
+          "definicion": "Dix fois quatre.",
+          "pista": "Empieza por Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "rouge",
+          "definicion": "La couleur du sang ou des tomates.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "robe",
+          "definicion": "Un vêtement féminin en une seule pièce.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "regarder",
+          "definicion": "Utiliser ses yeux pour voir quelque chose.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rose",
+          "definicion": "La couleur du flamant rose.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rue",
+          "definicion": "Un chemin entre des maisons dans une ville.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "samedi",
+          "definicion": "Le jour de la semaine après le vendredi.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "soeur",
+          "definicion": "La fille de mes parents est ma...",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "stylo",
+          "definicion": "Un objet utilisé pour écrire avec de l'encre.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "soleil",
+          "definicion": "L'étoile qui nous éclaire et nous chauffe.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "serpent",
+          "definicion": "Un reptile sans pattes.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "trois",
+          "definicion": "Le nombre de côtés d'un triangle.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tête",
+          "definicion": "La partie supérieure du corps humain.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "train",
+          "definicion": "Un moyen de transport sur des rails.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "table",
+          "definicion": "Un meuble sur lequel on mange ou on travaille.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tortue",
+          "definicion": "Un reptile avec une carapace très dure.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "un",
+          "definicion": "Le premier nombre entier positif.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "univers",
+          "definicion": "L'ensemble de tout ce qui existe : étoiles, planètes...",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uniforme",
+          "definicion": "Un vêtement identique porté par tous les élèves d'une école.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "urgent",
+          "definicion": "Qui demande une action très rapide.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "usager",
+          "definicion": "Une personne qui utilise un service ou un objet.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "vert",
+          "definicion": "La couleur de l'herbe et des arbres.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "voiture",
+          "definicion": "Un véhicule avec quatre roues pour voyager sur la route.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vendredi",
+          "definicion": "Le jour de la semaine avant le samedi.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vélo",
+          "definicion": "Un moyen de transport avec deux roues (synonyme de bicyclette).",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "ville",
+          "definicion": "Une grande ville (contraire de village). Buscamos: Ville.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "weekend",
+          "definicion": "La fin de la semaine (samedi et dimanche).",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "wagon",
+          "definicion": "Une voiture de train pour les passagers ou les marchandises.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "wifi",
+          "definicion": "Un système pour se connecter à internet sans fils.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "waterpolo",
+          "definicion": "Un sport d'équipe qui se joue dans l'eau.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "kiwi",
+          "definicion": "Un petit fruit vert à l'intérieur (contient W).",
+          "pista": "Contiene la W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "xylophone",
+          "definicion": "Un instrument de musique avec des lames de bois ou de métal.",
+          "pista": "Empieza por X"
+        },
+        {
+          "termino": "six",
+          "definicion": "Trois plus trois font... (contient X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "dix",
+          "definicion": "Cinq plus cinq font... (contient X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "deux",
+          "definicion": "Un plus un font... (en français, contient X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "vieux",
+          "definicion": "Le contraire de jeune (au masculin, contient X).",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "yeux",
+          "definicion": "Les organes de la vue (pluriel).",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yaourt",
+          "definicion": "Un aliment crémeux fait avec du lait.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "stylo",
+          "definicion": "Un objet pour écrire (contient Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "voyage",
+          "definicion": "Aller loin de chez soi pour le plaisir (contient Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "pyjama",
+          "definicion": "Vêtement de nuit pour dormir (contient Y).",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zéro",
+          "definicion": "Le nombre qui représente le néant, rien.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zèbre",
+          "definicion": "Un animal d'Afrique avec des rayures noires et blanches.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zoo",
+          "definicion": "Un parc où l'on peut voir des animaux sauvages.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "onze",
+          "definicion": "Le nombre après dix (contient Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "douze",
+          "definicion": "Le nombre après onze (contient Z).",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

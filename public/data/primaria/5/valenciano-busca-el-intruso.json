@@ -1,145 +1,227 @@
 [
   {
-    "categoria": "Festes (Visual)",
+    "categoria": "Festes i Tradicions Valencianes (Visual)",
     "correctos": [
-      "🔥",
-      "🎆",
-      "🥘",
-      "💃",
-      "🎺",
-      "🥁"
+      "🔥 (Falles)",
+      "🎆 (Castell)",
+      "🥘 (Paella)",
+      "💃 (Dansà)",
+      "🎺 (Banda)",
+      "🥁 (Tabalet)",
+      "🏰 (Moros i Cristians)",
+      "🔔 (Micalet)"
     ],
     "intrusos": [
       "🎄",
       "🎅",
       "🎃",
       "👻",
-      "🦃"
+      "🦃",
+      "🧧",
+      "🏮",
+      "🎿",
+      "🏄",
+      "🎰"
     ]
   },
   {
-    "categoria": "Geografia (Visual)",
+    "categoria": "Paisatges i Geografia Natural (Visual)",
     "correctos": [
       "⛰️",
       "🏖️",
       "🌲",
       "🏞️",
       "🌅",
-      "🌊"
+      "🌊",
+      "🌋",
+      "🏜️",
+      "🏝️",
+      "🌬️"
     ],
     "intrusos": [
       "🏙️",
       "🏭",
       "🛣️",
       "🚇",
-      "🏯"
+      "🏯",
+      "🗼",
+      "🏟️",
+      "🏗️",
+      "⛽",
+      "🏪"
     ]
   },
   {
-    "categoria": "La Ciutat (Visual)",
+    "categoria": "Elements Urbans i Serveis (Visual)",
     "correctos": [
       "🚦",
       "🏢",
       "🚌",
-      "⛲",
+      " fountain",
       "🏬",
-      "🏥"
+      "🏥",
+      "🏫",
+      "🏤",
+      "🏛️",
+      "🏪",
+      "🏙️"
     ],
     "intrusos": [
       "🚜",
       "🌻",
       "🐄",
       "🐑",
-      "🏔️"
+      "🏔️",
+      "⛺",
+      "🌾",
+      "🐐",
+      "🐖",
+      "🐎",
+      "🌵"
     ]
   },
   {
-    "categoria": "Paraules Planes",
+    "categoria": "Paraules Planes (Acentuades o no)",
     "correctos": [
       "Casa",
       "Finestra",
       "Llibre",
       "Taula",
       "Examen",
-      "Difícil"
+      "Difícil",
+      "Àngel",
+      "Fàcil",
+      "Núvol",
+      "Mànega",
+      "Cadira",
+      "Botella"
     ],
     "intrusos": [
       "Camió",
       "Café",
       "Pardal",
       "Màquina",
-      "Música"
+      "Música",
+      "Paper",
+      "Ratolí",
+      "Pàgina",
+      "Càlcul",
+      "Berlín",
+      "Demà"
     ]
   },
   {
-    "categoria": "Verbs en Passat",
+    "categoria": "Formes del Passat Perifràstic",
     "correctos": [
       "Vaig anar",
       "Vas menjar",
       "Van dormir",
       "Vam jugar",
-      "Vareu llegir"
+      "Vareu llegir",
+      "Va eixir",
+      "Van vindre",
+      "Vam sentir"
     ],
     "intrusos": [
       "Aniré",
       "Menjaré",
       "Dorm",
       "Juga",
-      "Llegint"
+      "Llegint",
+      "Estudiaré",
+      "Menjat",
+      "Jugant",
+      "Dormir",
+      "Llegir"
     ]
   },
   {
-    "categoria": "La Natura",
+    "categoria": "Elements de la Natura de Proximitat",
     "correctos": [
       "Muntanya",
       "Riu",
       "Bosc",
       "Platja",
       "Mar",
-      "Vall"
+      "Vall",
+      "Cova",
+      "Barranc",
+      "Albufera",
+      "Palmar",
+      "Horta",
+      "Serra"
     ],
     "intrusos": [
       "Ciutat",
       "Edifici",
       "Cotxe",
       "Carretera",
-      "Fàbrica"
+      "Fàbrica",
+      "Port",
+      "Aeroport",
+      "Estació",
+      "Semàfor",
+      "Pont"
     ]
   },
   {
-    "categoria": "Pronoms Personals",
+    "categoria": "Pronoms Personals Forts (Subjecte)",
     "correctos": [
       "Jo",
       "Tu",
       "Ell",
       "Ella",
       "Nosaltres",
-      "Vosaltres"
+      "Vosaltres",
+      "Ells",
+      "Elles",
+      "Vosté",
+      "Vostés"
     ],
     "intrusos": [
       "El",
       "La",
       "Els",
       "Les",
-      "Un"
+      "Un",
+      "Una",
+      "En",
+      "Hi",
+      "Ho",
+      "Li",
+      "Em",
+      "Et",
+      "Es"
     ]
   },
   {
-    "categoria": "Animals Marins",
+    "categoria": "Animals Marins del Mediterrani",
     "correctos": [
       "Balena",
       "Dofí",
       "Tauró",
       "Polp",
       "Gamba",
-      "Cranc"
+      "Cranc",
+      "Medusa",
+      "Petxina",
+      "Orada",
+      "Llobarro",
+      "Sípia",
+      "Clòtxina"
     ],
     "intrusos": [
       "Gos",
       "Gat",
       "Lleó",
       "Àguila",
-      "Gallina"
+      "Gallina",
+      "Vaca",
+      "Orella",
+      "Porc",
+      "Cavall",
+      "Elefant",
+      "Girafa"
     ]
   }
 ]

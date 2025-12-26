@@ -1,0 +1,566 @@
+[
+    {
+        "id": "1",
+        "titulo": "Sistemas de Entrenamiento: Fartlek y Series",
+        "texto": "Para mejorar la condición física en 4º de ESO, usamos sistemas de entrenamiento variados. El FARTLEK consiste en correr variando la velocidad y el terreno (subidas, bajadas, sprints), sin detenerse. El ENTRENAMIENTO POR SERIES implica correr una distancia fija muy rápido, descansar un tiempo concreto y repetir. Mientras el Fartlek mejora la resistencia aeróbica de forma amena, las series son ideales para mejorar la velocidad y la potencia. Es vital calentar antes para evitar lesiones musculares.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué consiste el método Fartlek?",
+                "opciones": [
+                    "En correr siempre igual",
+                    "En juegos de velocidad variando ritmo y terreno sin parar",
+                    "En levantar pesas",
+                    "En dormir mucho"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué diferencia a las Series del Fartlek?",
+                "opciones": [
+                    "Que no se descansa",
+                    "Que tienen distancias fijas y tiempos de descanso controlados",
+                    "Que son más lentas",
+                    "Que se hacen sentado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué capacidad mejora principalmente el Fartlek?",
+                "opciones": [
+                    "La flexibilidad",
+                    "La resistencia aeróbica",
+                    "La fuerza máxima",
+                    "El equilibrio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es vital calentar antes de entrenar fuerte?",
+                "opciones": [
+                    "Para cansarse antes",
+                    "Para preparar el cuerpo y evitar lesiones",
+                    "Por obligación",
+                    "Para sudar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El entrenamiento debe ser siempre:",
+                "opciones": [
+                    "Igual para todos",
+                    "Progresivo y adaptado a la persona",
+                    "Muy peligroso",
+                    "Aburrido"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Prevención de Lesiones Deportivas",
+        "texto": "La práctica deportiva conlleva riesgos si no se hace correctamente. Las lesiones más comunes son los ESGUINCES (daño en los ligamentos por una torcedura) y las CONTRACTURAS (músculo que se queda encogido). Para prevenirlas, es fundamental realizar un buen calentamiento, usar el calzado adecuado y no sobreentrenar. Si ocurre una lesión leve, se aplica el protocolo RICE: Reposo, Hielo (Ice), Compresión y Elevación. Escuchar a nuestro cuerpo y saber cuándo parar es la mejor forma de mantenerse sano.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un esguince?",
+                "opciones": [
+                    "Un hueso roto",
+                    "Una lesión en los ligamentos por una torcedura",
+                    "Un golpe en la cabeza",
+                    "Mucha sed"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa el protocolo RICE ante una lesión?",
+                "opciones": [
+                    "Correr mucho",
+                    "Reposo, Hielo, Compresión y Elevación",
+                    "Comer arroz",
+                    "Saltar y gritar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es importante el calzado?",
+                "opciones": [
+                    "Por la moda",
+                    "Para amortiguar impactos y dar estabilidad al pie",
+                    "Para correr más",
+                    "Para no mancharse"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una causa de lesión mencionada:",
+                "opciones": [
+                    "El descanso",
+                    "El sobreentrenamiento (hacer más de lo que el cuerpo aguanta)",
+                    "Beber agua",
+                    "Dormir"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es una contractura?",
+                "opciones": [
+                    "Un corte",
+                    "Una contracción involuntaria y duradera de un músculo",
+                    "Un choque",
+                    "Una fiebre"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Pruebas de Condición Física: Course Navette",
+        "texto": "La prueba de 'Course Navette' mide la resistencia aeróbica y la capacidad máxima de oxígeno (VO2 máx). Consiste en correr una distancia de 20 metros de ida y vuelta al ritmo de unos pitidos que van acelerando. Si llegas tarde a la línea dos veces, la prueba termina. Es una prueba de esfuerzo progresiva que nos ayuda a conocer nuestro nivel de forma física real en comparación con otros jóvenes de nuestra edad. Los resultados sirven para planificar mejor nuestros entrenamientos del curso.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué mide la prueba de Course Navette?",
+                "opciones": [
+                    "La velocidad máxima",
+                    "La resistencia aeróbica",
+                    "La fuerza de brazos",
+                    "La altura del salto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué distancia se recorre entre pitidos?",
+                "opciones": [
+                    "100 metros",
+                    "20 metros",
+                    "50 metros",
+                    "1 kilómetro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre con el tiempo entre pitidos a medida que avanza la prueba?",
+                "opciones": [
+                    "Se mantiene igual",
+                    "Se hace más corto (hay que correr más rápido)",
+                    "Se hace más largo",
+                    "No hay pitidos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa VO2 máx?",
+                "opciones": [
+                    "Velocidad 2 máxima",
+                    "Capacidad máxima de consumo de oxígeno",
+                    "Volumen de agua",
+                    "Vatios de fuerza"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven los resultados de esta prueba?",
+                "opciones": [
+                    "Para poner una nota mala",
+                    "Para conocer tu nivel de forma y planificar el entrenamiento",
+                    "Para nada",
+                    "Para ir de excursión"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Deportes de Raqueta: Pádel y Bádminton",
+        "texto": "En 4º de ESO practicamos deportes de raqueta. El BÁDMINTON usa un volante o pluma en lugar de pelota, y se juega en una red alta. Exige mucha agilidad y reflejos. El PÁDEL, muy popular en España, se juega por parejas en una pista cerrada con paredes que pueden usarse para que la bola rebote. Ambos juegos mejoran la coordinación óculo-manual y el gasto calórico. El juego limpio (fair play) es esencial: respetar las decisiones, no discutir y felicitar al rival al terminar son señales de un buen deportista.",
+        "preguntas": [
+            {
+                "pregunta": "¿Con qué se juega al bádminton?",
+                "opciones": [
+                    "Una pelota de tenis",
+                    "Un volante o pluma",
+                    "Un disco",
+                    "Una piedra"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la característica principal de la pista de pádel?",
+                "opciones": [
+                    "Es muy larga",
+                    "Tiene paredes que forman parte del juego",
+                    "No tiene red",
+                    "Es de arena"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué capacidad física mejoran estos deportes?",
+                "opciones": [
+                    "Solo la fuerza",
+                    "Agilidad, reflejos y coordinación óculo-manual",
+                    "La natación",
+                    "El equilibrio estático"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el 'Fair Play'?",
+                "opciones": [
+                    "Jugar rápido",
+                    "Juego limpio y respeto al rival",
+                    "Ganar siempre",
+                    "No sudar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En el bádminton, ¿puede el volante tocar el suelo?",
+                "opciones": [
+                    "Sí",
+                    "No, si toca el suelo el punto termina"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Salud y Nutrición Deportiva",
+        "texto": "La alimentación es la 'gasolina' del deportista. Antes de hacer ejercicio, necesitamos DINÁMICA: hidratos de carbono (pasta, arroz) que nos dan energía rápida. Al terminar, las PROTEÍNAS (carne, huevo, legumbres) ayudan a reparar los músculos. La hidratación es clave: hay que beber agua antes, durante y después del ejercicio, aunque no tengamos sed. Evitar las bebidas energéticas y el azúcar en exceso previene problemas de salud como la obesidad y la fatiga prematura.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué nutriente nos da energía rápida para hacer deporte?",
+                "opciones": [
+                    "Grasas",
+                    "Hidratos de carbono",
+                    "Vitaminas",
+                    "Agua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Y para reparar los músculos después?",
+                "opciones": [
+                    "Azúcar",
+                    "Proteínas",
+                    "Sal",
+                    "Aceite"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo hay que beber agua?",
+                "opciones": [
+                    "Solo si tienes mucha sed",
+                    "Antes, durante y después del ejercicio",
+                    "Solo al final",
+                    "Nunca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Son recomendables las bebidas energéticas para jóvenes?",
+                "opciones": [
+                    "Sí, siempre",
+                    "No, tienen demasiado azúcar y cafeína perjudicial",
+                    "Solo para estudiar",
+                    "Solo si saben ricas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La alimentación equilibrada ayuda a prevenir:",
+                "opciones": [
+                    "Los goles",
+                    "La fatiga prematura y la obesidad",
+                    "La lluvia",
+                    "El aburrimiento"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "La Frecuencia Cardíaca de Entrenamiento",
+        "texto": "Para que el ejercicio sea efectivo y seguro, debemos controlar nuestras pulsaciones. La Frecuencia Cardíaca Máxima (FCM) se calcula restando tu edad a 220 (220 - edad). Para mejorar la salud, debemos entrenar en la 'zona de salud' (entre el 60% y el 80% de tu FCM). Si las pulsaciones son muy bajas, el cuerpo no mejora; si son muy altas, entramos en zona de peligro. Medir el pulso en la arteria carótida (cuello) o radial (muñeca) nos da información instantánea de nuestro nivel de esfuerzo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se calcula la Frecuencia Cardíaca Máxima teórica?",
+                "opciones": [
+                    "220 + edad",
+                    "220 - edad",
+                    "100 + peso",
+                    "Símplemente 100"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué porcentaje de la FCM debemos entrenar para que sea sano?",
+                "opciones": [
+                    "20%-40%",
+                    "60%-80%",
+                    "90%-100%",
+                    "0%"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un lugar para medir el pulso corporal:",
+                "opciones": [
+                    "En la oreja",
+                    "En el cuello (carótida) o muñeca (radial)",
+                    "En la nariz",
+                    "En la uña"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si entrenas a pulsaciones muy bajas?",
+                "opciones": [
+                    "Te lesionas",
+                    "El cuerpo no recibe estímulo suficiente para mejorar",
+                    "Mueres",
+                    "Eres un profesional"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si tienes 15 años, ¿cuál es tu FCM aproximada?",
+                "opciones": [
+                    "220",
+                    "205 (220 - 15)",
+                    "100",
+                    "150"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Actividades en el Medio Natural",
+        "texto": "El senderismo, la orientación o la escalada son actividades que nos conectan con la naturaleza. En las pruebas de ORIENTACIÓN debemos encontrar unos puntos (balizas) usando un mapa y una brújula en el menor tiempo posible. Es vital respetar el medio ambiente: no dejar basura, caminar por los senderos marcados y no molestar a los animales. Estas actividades mejoran nuestra autonomía y nos enseñan a valorar el patrimonio natural de nuestro país de forma activa y saludable.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué herramientas son básicas en una prueba de orientación?",
+                "opciones": [
+                    "Móvil y GPS solamente",
+                    "Mapa y brújula",
+                    "Linterna y cuchillo",
+                    "Cuerda y mosquetón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es una baliza?",
+                "opciones": [
+                    "Un animal",
+                    "Un punto de control que hay que encontrar en el terreno",
+                    "Un bocadillo",
+                    "Una señal de peligro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una norma ecológica importante:",
+                "opciones": [
+                    "Cantar mucho",
+                    "No dejar basura y respetar los senderos",
+                    "Llevar altavoces",
+                    "Arrancar flores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué capacidad mejora el senderismo?",
+                "opciones": [
+                    "Solo la velocidad",
+                    "Resistencia y autonomía personal",
+                    "La vista",
+                    "No mejora nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es importante caminar por senderos marcados?",
+                "opciones": [
+                    "No",
+                    "Sí, para no erosionar el terreno ni perderse"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Expresión Corporal y Acrosport",
+        "texto": "La Educación Física también es arte. El ACROSPORT es un deporte acrobático-coreográfico donde se forman pirámides humanas. Hay tres roles: el PORTOR (el que sujeta), el ÁGIL (el que sube arriba) y el AYUDANTE (el que vigila la seguridad). Requiere mucha fuerza, equilibrio pero sobre todo CONFIANZA en los compañeros. La expresión corporal nos ayuda a comunicarnos sin palabras, usando el gesto y el ritmo, mejorando nuestra autoestima y perdiendo el miedo a actuar frente a otros.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué consiste el Acrosport?",
+                "opciones": [
+                    "En correr mucho",
+                    "En hacer pirámides y figuras humanas en grupo",
+                    "En nadar",
+                    "En jugar con balones"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la persona que está arriba de la pirámide?",
+                "opciones": [
+                    "Portor",
+                    "Ágil",
+                    "Ayudante",
+                    "Director"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el valor más importante en el Acrosport?",
+                "opciones": [
+                    "La velocidad",
+                    "La confianza y la cooperación",
+                    "La rabia",
+                    "El individualismo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un portor?",
+                "opciones": [
+                    "El que limpia",
+                    "La persona que sirve de base y soporta el peso",
+                    "El que salta",
+                    "El que mira"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la expresión corporal?",
+                "opciones": [
+                    "Para estar quietos",
+                    "Para comunicar sentimientos y estados usando el cuerpo",
+                    "Solo para bailarines",
+                    "Para nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Dopaje: El Engaño en el Deporte",
+        "texto": "El dopaje es el uso de sustancias prohibidas para mejorar el rendimiento de forma artificial. Además de ser una TRAMPA que rompe la igualdad de oportunidades, es extremadamente peligroso para la salud: provoca problemas cardíacos, daños en el hígado y trastornos mentales. La lucha contra el dopaje busca proteger la ética del deporte y la vida del deportista. Un campeón real es aquel que consigue sus metas mediante el esfuerzo, el entrenamiento y el talento, no mediante fármacos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el dopaje?",
+                "opciones": [
+                    "Entrenar mucho",
+                    "Uso de sustancias prohibidas para mejorar artificialmente",
+                    "Comer bien",
+                    "Beber agua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es malo moralmente?",
+                "opciones": [
+                    "Porque es caro",
+                    "Porque es un engaño y rompe la igualdad de condiciones",
+                    "Porque es aburrido",
+                    "Por nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué riesgos tiene para la salud?",
+                "opciones": [
+                    "Ninguno",
+                    "Graves problemas cardíacos, hepáticos y mentales",
+                    "Te hace más alto",
+                    "Solo te cansa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se consigue el éxito real en el deporte?",
+                "opciones": [
+                    "Con pastillas",
+                    "Con esfuerzo, disciplina y entrenamiento",
+                    "Con suerte",
+                    "Pagando"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Existen controles de dopaje?",
+                "opciones": [
+                    "No",
+                    "Sí, para asegurar que la competición sea limpia"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Deporte e Inclusión Social",
+        "texto": "El deporte es una herramienta poderosa para unir a las personas. El DEPORTE ADAPTADO permite que personas con discapacidad física o intelectual compitan al más alto nivel (Juegos Paralímpicos). La inclusión significa que todos, sin importar su origen, sexo o capacidad, tienen el derecho a disfrutar de la actividad física. El deporte nos enseña que las barreras están para superarlas y que el valor de una persona no reside en su marca, sino en su espíritu de superación y en el respeto mutuo dentro del equipo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el deporte adaptado?",
+                "opciones": [
+                    "Deporte solo para niños",
+                    "Deporte con reglas o materiales modificados para personas con discapacidad",
+                    "Deporte fácil",
+                    "Deporte de verano"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llaman los 'Juegos Olímpicos' de personas con discapacidad?",
+                "opciones": [
+                    "Mini Juegos",
+                    "Juegos Paralímpicos",
+                    "Mundiales",
+                    "Eurocopas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué valor social fomenta el deporte colectivo?",
+                "opciones": [
+                    "La inclusión y la superación",
+                    "El odio al rival",
+                    "El egoísmo",
+                    "La soledad"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Inclusión significa que...",
+                "opciones": [
+                    "Solo juegan los mejores",
+                    "Todos tienen derecho a participar sin discriminación",
+                    "No hay reglas",
+                    "El profesor elige siempre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La verdadera meta del deporte escolar es:",
+                "opciones": [
+                    "Ganar copas de oro",
+                    "Formar personas sanas, respetuosas y solidarias",
+                    "Ser famoso",
+                    "No ir a clase"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

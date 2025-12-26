@@ -1,85 +1,127 @@
 [
   {
-    "categoria": "Medios de Comunicación (Visual)",
+    "categoria": "Canales de Comunicación y Tecnología (Visual)",
     "correctos": [
       "📧",
       "📱",
       "💻",
       "🛰️",
       "📡",
-      "📰"
+      "📰",
+      "🌐",
+      "📶",
+      "🗣️",
+      "🎬"
     ],
     "intrusos": [
       "📜",
       "🏺",
       "🗿",
       "🕊️",
-      "🚬"
+      "🚬",
+      "🏹",
+      "🛡️",
+      "⚔️",
+      "🪵",
+      "🧱"
     ]
   },
   {
-    "categoria": "Símbolos de Escritura (Visual)",
+    "categoria": "Arte y Cultura (Visual)",
     "correctos": [
-      "🖊️",
-      "📝",
-      "🖍️",
-      "✒️",
-      "⌨️",
-      "📖"
-    ],
-    "intrusos": [
-      "🔨",
-      "🔪",
-      "🔫",
-      "💊",
-      "🧪"
-    ]
-  },
-  {
-    "categoria": "El Tiempo Atmosférico (Visual)",
-    "correctos": [
-      "🌤️",
-      "⛈️",
-      "🌨️",
-      "🌪️",
-      "🌈",
-      "☔"
-    ],
-    "intrusos": [
-      "🏠",
-      "🚗",
-      "🥪",
-      "👠",
-      "⚽"
-    ]
-  },
-  {
-    "categoria": "Deportes (Visual)",
-    "correctos": [
-      "⚽",
-      "🏀",
-      "🎾",
-      "🏐",
-      "🏉",
-      "🎱"
+      "🎨",
+      "🎭",
+      "🎻",
+      "🎬",
+      "🎸",
+      "🏛️",
+      "🏰",
+      "🕌",
+      "⛩️",
+      "🗿"
     ],
     "intrusos": [
       "🍔",
       "🍟",
       "🍕",
       "🎮",
-      "📺"
+      "📺",
+      "📱",
+      "💻",
+      "⌚",
+      "🎒",
+      "👟"
     ]
   },
   {
-    "categoria": "Sustantivos Colectivos",
+    "categoria": "Fenómenos Atmosféricos Complejos (Visual)",
+    "correctos": [
+      "🌤️",
+      "⛈️",
+      "🌨️",
+      "🌪️",
+      "🌈",
+      "☔",
+      "🌫️",
+      "🌬️",
+      "🌡️",
+      "❄️"
+    ],
+    "intrusos": [
+      "🏠",
+      "🚗",
+      "🥪",
+      "👠",
+      "⚽",
+      "🧸",
+      "🪁",
+      "🏙️",
+      "🏭",
+      "🚜"
+    ]
+  },
+  {
+    "categoria": "Deportes de Pelota y Equipo (Visual)",
+    "correctos": [
+      "⚽",
+      "🏀",
+      "🎾",
+      "🏐",
+      "🏉",
+      "🎱",
+      "🥎",
+      "🏓",
+      "🏸",
+      "🏒"
+    ],
+    "intrusos": [
+      "🍔",
+      "🍟",
+      "🍕",
+      "🎮",
+      "📺",
+      "👟",
+      "🧗",
+      "🏂",
+      "🛹",
+      "🚴"
+    ]
+  },
+  {
+    "categoria": "Sustantivos Colectivos (Conjuntos)",
     "correctos": [
       "Rebaño",
       "Jauría",
       "Bosque",
       "Flota",
       "Ejército",
-      "Orquesta"
+      "Orquesta",
+      "Cardumen",
+      "Enjambre",
+      "Piara",
+      "Bandada",
+      "Constelación",
+      "Alameda"
     ],
     "intrusos": [
       "Oveja",
@@ -87,74 +129,120 @@
       "Árbol",
       "Barco",
       "Soldado",
-      "Músico"
+      "Músico",
+      "Pez",
+      "Abeja",
+      "Cerdo",
+      "Pájaro",
+      "Estrella",
+      "Álamo"
     ]
   },
   {
-    "categoria": "Adverbios de Tiempo",
+    "categoria": "Adverbios de Tiempo y Frecuencia",
     "correctos": [
       "Ayer",
       "Hoy",
       "Mañana",
       "Ahora",
       "Después",
-      "Pronto"
+      "Pronto",
+      "Tarde",
+      "Siempre",
+      "Nunca",
+      "Jamás",
+      "Todavía",
+      "Frecuentemente"
     ],
     "intrusos": [
       "Aquí",
       "Allí",
+      "Cerca",
+      "Lejos",
       "Mucho",
       "Poco",
       "Bien",
-      "Mal"
+      "Mal",
+      "Deprisa",
+      "Despacio",
+      "Arriba",
+      "Abajo"
     ]
   },
   {
-    "categoria": "Determinantes Demostrativos",
+    "categoria": "Determinantes Demostrativos (Distancia)",
     "correctos": [
       "Este",
       "Esta",
       "Ese",
       "Esa",
       "Aquel",
-      "Aquella"
+      "Aquella",
+      "Estos",
+      "Estas",
+      "Esos",
+      "Esas",
+      "Aquellos",
+      "Aquellas"
     ],
     "intrusos": [
       "Mi",
       "Tu",
       "Su",
       "Nuestro",
+      "Vuestro",
+      "Mis",
       "El",
-      "Un"
+      "La",
+      "Los",
+      "Las",
+      "Un",
+      "Una",
+      "Algún",
+      "Ningún"
     ]
   },
   {
-    "categoria": "Verbos en Pasado",
+    "categoria": "Formas Verbales en Pasado (SImple o Imperfecto)",
     "correctos": [
       "Comí",
       "Jugaba",
       "Vivió",
-      "Saltado",
       "Escribiste",
-      "Fue"
+      "Fue",
+      "Cantábamos",
+      "Leían",
+      "Saliste",
+      "Hablábamos",
+      "Pintó"
     ],
     "intrusos": [
       "Jugaré",
       "Como",
       "Viviré",
       "Saltaré",
-      "Escribo"
+      "Escribo",
+      "Cantaré",
+      "Leo",
+      "Saldré",
+      "Hablo",
+      "Pinto"
     ]
   },
   {
-    "categoria": "Palabras con Hiato",
+    "categoria": "Palabras con Hiato (Vocal Abierta + Abierta)",
     "correctos": [
       "Aéreo",
       "Teatro",
       "Cacao",
       "Poeta",
       "Caer",
-      "Leer"
+      "Leer",
+      "Héroe",
+      "Línea",
+      "Marea",
+      "Océano",
+      "Peón"
     ],
     "intrusos": [
       "Reina",
@@ -162,11 +250,16 @@
       "Cielo",
       "Fuego",
       "Agua",
-      "Hielo"
+      "Hielo",
+      "Baile",
+      "Ciudad",
+      "Causa",
+      "Pausa",
+      "Viaje"
     ]
   },
   {
-    "categoria": "Preposiciones",
+    "categoria": "Preposiciones de la Lengua Española",
     "correctos": [
       "A",
       "Ante",
@@ -174,15 +267,38 @@
       "Cabe",
       "Con",
       "Contra",
-      "De"
+      "De",
+      "Desde",
+      "Durante",
+      "En",
+      "Entre",
+      "Hacia",
+      "Hasta",
+      "Mediante",
+      "Para",
+      "Por",
+      "Según",
+      "Sin",
+      "So",
+      "Sobre",
+      "Tras",
+      "Versus",
+      "Vía"
     ],
     "intrusos": [
       "Y",
       "O",
+      "U",
+      "E",
+      "Ni",
       "Pero",
       "Porque",
       "Aunque",
-      "Si"
+      "Si",
+      "Sino",
+      "Que",
+      "Cuando",
+      "Donde"
     ]
   }
 ]

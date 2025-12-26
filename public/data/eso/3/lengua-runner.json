@@ -1,17 +1,122 @@
 {
-  "literatura_renacimiento": [
-    "Garcilaso", "soneto", "égloga", "lira", "humanismo", "carpe diem", "locus amoenus", "Fray Luis", "San Juan", "Lazarillo"
+  "generos_literarios": [
+    "narrativa",
+    "lírica",
+    "dramática",
+    "didáctica",
+    "novela picaresca",
+    "ensayo",
+    "elegía",
+    "égloga",
+    "epístola",
+    "auto sacramental"
   ],
-  "literatura_barroco": [
-    "Góngora", "Quevedo", "Lope de Vega", "Cervantes", "culteranismo", "conceptismo", "teatro nacional", "desengaño", "Calderón", "Tirso"
+  "literatura_oro": [
+    "quevedo",
+    "góngora",
+    "lopes de vega",
+    "cervantes",
+    "calderón de la barca",
+    "conceptismo",
+    "culteranismo",
+    "corral de comedias",
+    "pícaro",
+    "soneto"
   ],
-  "sintaxis_oracion": [
-    "sujeto", "predicado", "núcleo", "complemento directo", "complemento indirecto", "atributo", "circunstancial", "agente", "predicativo", "vocativo"
+  "lexicologia_avanzada": [
+    "neologismo",
+    "arcaísmo",
+    "tabú",
+    "eufemismo",
+    "préstamo",
+    "extranjerismo",
+    "calco",
+    "denotación",
+    "connotación",
+    "etimología"
   ],
-  "tipos_de_texto": [
-    "narrativo", "descriptivo", "dialogado", "expositivo", "argumentativo", "instructivo", "periodístico", "publicitario", "científico", "literario"
+  "morfosintaxis_oracion": [
+    "coordinada",
+    "subordinada",
+    "yuxtapuesta",
+    "nexo",
+    "conjunción",
+    "adverbio",
+    "complemento",
+    "predicado",
+    "copulativa",
+    "transitividad"
   ],
-  "generos_periodisticos": [
-    "noticia", "reportaje", "entrevista", "crónica", "editorial", "columna", "artículo", "carta al director", "crítica", "titular"
+  "texto_argumentativo": [
+    "tesis",
+    "argumento",
+    "contraargumento",
+    "conclusión",
+    "persuasión",
+    "subjetividad",
+    "objetividad",
+    "falacia",
+    "artículo de opinión",
+    "debate"
+  ],
+  "ortografia_acreditada": [
+    "tilde en hiatos",
+    "tildes en monosílabos",
+    "puntuación avanzada",
+    "corchetes",
+    "notas al pie",
+    "bibliografía",
+    "citación",
+    "letra cursiva",
+    "letra negrita",
+    "mayúsculas"
+  ],
+  "tipologia_textual": [
+    "expositivo",
+    "argumentativo",
+    "instructivo",
+    "narrativo",
+    "descriptivo",
+    "dialógico",
+    "científico",
+    "humanístico",
+    "jurídico",
+    "administrativo"
+  ],
+  "siglo_llaves": [
+    "ilustraciones",
+    "feijoo",
+    "cadalso",
+    "jovellanos",
+    "moratín",
+    "fábula",
+    "enciclopedia",
+    "razón",
+    "didactismo",
+    "neoclasicismo"
+  ],
+  "variedades_lengua": [
+    "dialecto",
+    "jerga",
+    "argot",
+    "vulgarismo",
+    "cultismo",
+    "estándar",
+    "coloquial",
+    "registro",
+    "bilingüismo",
+    "diglosia"
+  ],
+  "recursos_poeticos": [
+    "encabalgamiento",
+    "cesura",
+    "hemistiquio",
+    "rima asonante",
+    "rima consonante",
+    "métrica",
+    "isosilabismo",
+    "estrofa",
+    "terceto",
+    "cuarteto"
   ]
 }

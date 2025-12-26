@@ -1,0 +1,861 @@
+{
+  "titulo": "Material de Estudio - Matematicas - 6º PRIMARIA",
+  "introduccion": "Repasa este vocabulario de Matematicas para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "algoritmo",
+          "definicion": "Conjunto ordenado de pasos u operaciones que permite hallar la solución de un problema.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "abscisas",
+          "definicion": "Coordenada horizontal en un plano cartesiano (Eje de las...).",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "aleatorio",
+          "definicion": "Resultado que depende del azar y no se puede predecir con seguridad.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "arista",
+          "definicion": "Línea donde se encuentran dos caras de un poliedro.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "área",
+          "definicion": "Medida de la superficie que ocupa una figura plana.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "bisectriz",
+          "definicion": "Semirrecta que divide un ángulo en dos partes iguales.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "binario",
+          "definicion": "Sistema numérico que solo utiliza los dígitos 0 y 1.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "baricentro",
+          "definicion": "Punto donde se cortan las tres medianas de un triángulo.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "barras",
+          "definicion": "Gráfico que utiliza rectángulos para representar la frecuencia de datos.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "byte",
+          "definicion": "Unidad de almacenamiento de información digital equivalente a un grupo de bits.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "coordenadas",
+          "definicion": "Valores que nos indican la posición de un punto en un plano (Par de...).",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "circuncentro",
+          "definicion": "Punto donde se cortan las tres mediatrices de un triángulo.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "eratóstenes",
+          "definicion": "Procedimiento para encontrar números primos (Criba de...).",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cociente",
+          "definicion": "Resultado de realizar una división.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cono",
+          "definicion": "Cuerpo redondo con una base circular y un vértice.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "descomposición",
+          "definicion": "Expresar un número como producto de sus factores primos.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "divisibilidad",
+          "definicion": "Cualidad de un número de poder dividirse por otro de forma exacta.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "periódico",
+          "definicion": "Número decimal cuya parte decimal se repite infinitamente (Decimal...).",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "diagonal",
+          "definicion": "Segmento que une dos vértices no consecutivos de un polígono.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "desviación",
+          "definicion": "Diferencia de valor entre dos puntos o medidas.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "ecuación",
+          "definicion": "Igualdad matemática entre dos expresiones que contiene una o más incógnitas.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "enteros",
+          "definicion": "Conjunto de números que incluye a los naturales, sus opuestos y el cero.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "estadística",
+          "definicion": "Recuento y clasificación de datos para obtener conclusiones sobre una población.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "equidistantes",
+          "definicion": "Puntos que están a la misma distancia de un objeto central.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "exponente",
+          "definicion": "Número que indica cuántas veces se multiplica la base por sí misma en una potencia.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "frecuencia",
+          "definicion": "Número de veces que se repite un dato en un estudio estadístico.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "factor",
+          "definicion": "Cada uno de los números que se multiplican para obtener un producto.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fórmula",
+          "definicion": "Regla escrita con símbolos para resolver un cálculo matemático.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "equivalentes",
+          "definicion": "Dos fracciones que representan la misma parte de la unidad son...",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "segmento",
+          "definicion": "Parte de una recta limitada por dos puntos.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fracción",
+          "definicion": "Representación de una cantidad mediante el numerador y el denominador.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "grado",
+          "definicion": "Unidad de medida de la amplitud de los ángulos.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gráfico",
+          "definicion": "Representación visual de la relación entre datos numéricos.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "generatriz",
+          "definicion": "Línea que al girar genera la superficie de un cuerpo redondo.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gramo",
+          "definicion": "Unidad de masa del sistema métrico decimal.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "geometría",
+          "definicion": "Rama de las matemáticas que estudia las formas, líneas y volúmenes.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "histograma",
+          "definicion": "Representación gráfica de una variable en forma de barras contiguas.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hipotenusa",
+          "definicion": "Lado más largo de un triángulo rectángulo, opuesto al ángulo recto.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hexágono",
+          "definicion": "Polígono de seis lados y seis ángulos.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "altura",
+          "definicion": "Medida de la distancia perpendicular desde un vértice al lado opuesto.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hecto",
+          "definicion": "Prefijo que significa cien.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "incógnita",
+          "definicion": "Valor desconocido que se quiere hallar en una ecuación.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inverso",
+          "definicion": "Número que multiplicado por el original da la unidad como resultado.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "isósceles",
+          "definicion": "Triángulo que tiene al menos dos lados iguales.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inversa",
+          "definicion": "Relación entre magnitudes que no es directa (Proporcionalidad...).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "intervalo",
+          "definicion": "Conjunto de números situados entre dos valores dados.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "capacidad",
+          "definicion": "Capacidad de un recipiente para contener líquidos, medida en litros.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jarra",
+          "definicion": "Instrumento para medir la capacidad de un líquido.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "julio",
+          "definicion": "Unidad de energía en el Sistema Internacional.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "junio",
+          "definicion": "Mes del año que tiene exactamente 30 días.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "cuentas",
+          "definicion": "Realizar una operación matemática sumando o restando (coloquial: hacer las...).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "junta",
+          "definicion": "Punto donde se cortan dos líneas.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jerarquía",
+          "definicion": "Orden de las operaciones (Hieraquía o...).",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "kilómetro",
+          "definicion": "Unidad de longitud que equivale a 1.000 metros.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilogramo",
+          "definicion": "Unidad de masa que equivale a 1.000 gramos.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilolitro",
+          "definicion": "Unidad de capacidad que equivale a 1.000 litros.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kelvin",
+          "definicion": "Unidad de temperatura en el sistema absoluto.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilo",
+          "definicion": "Abreviatura común para el kilogramo.",
+          "pista": "Empieza por K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "límite",
+          "definicion": "Valor que nunca se alcanza pero al que se puede estar muy cerca.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "litro",
+          "definicion": "Unidad fundamental de capacidad en el sistema métrico.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "hipotenusa",
+          "definicion": "Lado de un triángulo que está frente al ángulo recto.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "línea",
+          "definicion": "Sucesión infinita de puntos en el espacio.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "longitud",
+          "definicion": "Medida de la distancia entre dos puntos.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lateral",
+          "definicion": "Cara de una figura que no es la base.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "moda",
+          "definicion": "Valor que más se repite en un conjunto de datos estadísticos.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "media",
+          "definicion": "Suma de todos los datos dividida por el número total de ellos.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mediana",
+          "definicion": "Valor que ocupa la posición central en un conjunto ordenado de datos.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mínimo común múltiplo",
+          "definicion": "El número más pequeño que es múltiplo de varios a la vez (Mínimo...).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "máximo común divisor",
+          "definicion": "El número más grande que es divisor de varios a la vez (Máximo...).",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "negativo",
+          "definicion": "Número entero menor que cero.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "científica",
+          "definicion": "Expresar números con base diez y potencias (Notación...).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "denominador",
+          "definicion": "Número de abajo en una fracción, indica las partes totales.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "numerador",
+          "definicion": "Número de arriba en una fracción, indica las partes tomadas.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "naturales",
+          "definicion": "Conjunto formado por el 1, 2, 3... (Números...).",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "años",
+          "definicion": "Tiempo transcurrido desde el nacimiento (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "tamaño",
+          "definicion": "Símbolo que sirve para separar la parte entera de la decimal (contiene Ñ). Buscamos: Pestaña (no). Coma/Punto (no). Señas (no). Tamaño.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "pequeño",
+          "definicion": "Referente a una magnitud que no es grande (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "añadir",
+          "definicion": "Operación de poner más unidades (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "diseños",
+          "definicion": "Envoltorio de un regalo con forma de cubo (contiene Ñ). Buscamos: Moño (no). Castaña (no). Diseños.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "cuña",
+          "definicion": "Segmento que divide el ángulo por la mitad (contiene la Ñ). No hay. Usaremos: Cuña.",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "orden",
+          "definicion": "Regla que establece qué cálculos se hacen primero (Jerarquía u...).",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ordenadas",
+          "definicion": "Coordenada vertical en un plano cartesiano (Eje de...).",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "opuesto",
+          "definicion": "Dicho de algo que está al lado contrario.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "octógono",
+          "definicion": "Polígono con ocho lados iguales.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "obtuso",
+          "definicion": "Ángulo que mide más de 90 grados y menos de 180.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "porcentaje",
+          "definicion": "Relación entre una cantidad de una magnitud y 100 de otra.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "probabilidad",
+          "definicion": "Posibilidad de que ocurra un evento aleatorio.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "proporcionalidad",
+          "definicion": "Relación constante entre dos magnitudes (Regla de...).",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "producto",
+          "definicion": "Resultado de realizar una multiplicación.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "perpendicular",
+          "definicion": "Línea que corta a otra formando ángulos de 90 grados.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "cuarto",
+          "definicion": "Cada una de las cuatro partes de una unidad.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "cuadrada",
+          "definicion": "Número multiplicado por sí mismo que da el original (Raíz...).",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quinto",
+          "definicion": "Número que indica la quinta posición.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "equilátero",
+          "definicion": "Propiedad de los lados iguales en un triángulo (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "cuadrilátero",
+          "definicion": "Polígono de cuatro lados (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "un quinto",
+          "definicion": "Fracción que tiene como numerador el 1 y denominador el 5.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quinientos",
+          "definicion": "Número 500.",
+          "pista": "Empieza por Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "radio",
+          "definicion": "Línea que une el centro con cualquier punto de la circunferencia.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "raíz cuadrada",
+          "definicion": "Operación inversa a elevar al cuadrado.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "recta",
+          "definicion": "Línea de puntos que no tiene principio ni fin.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "razón",
+          "definicion": "Relación entre el valor de una variable y otra.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "recta",
+          "definicion": "Lado de un polígono.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rombo",
+          "definicion": "Cuadrilátero que tiene todos sus lados iguales pero sus ángulos no son rectos.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "sector circular",
+          "definicion": "Parte de un círculo limitada por dos radios y un arco.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sexagesimal",
+          "definicion": "Sistema de numeración en base 60 usado para el tiempo.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "simetría",
+          "definicion": "Relación de correspondencia entre las partes de una figura.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "serie",
+          "definicion": "Suma de todos los términos de una progresión.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "segundo",
+          "definicion": "Unidad de tiempo fundamental.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "teorema",
+          "definicion": "Enunciado matemático que puede ser demostrado.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tasa",
+          "definicion": "Relación entre dos cantidades, a menudo usada en probabilidad o economía.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "trapecio",
+          "definicion": "Cuadrilátero que tiene al menos dos lados paralelos.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tetraedro",
+          "definicion": "Cuerpo geométrico con cuatro caras triangulares iguales.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "decimal",
+          "definicion": "Sistema de numeración que usamos (Sistema...).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tangente",
+          "definicion": "Línea que solo toca un punto de la curva.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "unidad",
+          "definicion": "Elemento que vale uno.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "universo",
+          "definicion": "Conjunto que contiene todos los elementos de estudio (Universo u...).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unívoco",
+          "definicion": "Que tiene un solo valor o significado.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "undécimo",
+          "definicion": "Ordinal correspondiente al número once.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unión",
+          "definicion": "Juntar dos conjuntos en uno solo.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "variable",
+          "definicion": "Símbolo que puede tomar distintos valores en una expresión matemática.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "volumen",
+          "definicion": "Medida del espacio que ocupa un cuerpo de tres dimensiones.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vértice",
+          "definicion": "Punto de unión entre dos lados de un ángulo o de una figura.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vertical",
+          "definicion": "Sentido de una línea de arriba hacia abajo.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vector",
+          "definicion": "Conjunto de datos representados por una flecha.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "vatio",
+          "definicion": "Unidad de medida de la potencia eléctrica (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "watt",
+          "definicion": "Medida de la potencia en inglés (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "web",
+          "definicion": "Red mundial de computadoras (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "kiwi",
+          "definicion": "Fruta que se pesa en kilos (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "wifi",
+          "definicion": "Tecnología de conexión inalámbrica (contiene W).",
+          "pista": "Contiene la W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "exacta",
+          "definicion": "Indica que un número es divisible por otro sin dejar resto (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "máximo",
+          "definicion": "Número más grande dentro de un conjunto (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "x",
+          "definicion": "Símbolo de la incógnita más común en álgebra (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "hexágono",
+          "definicion": "Polígono con seis ángulos y seis lados (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "sexto",
+          "definicion": "Sexta parte de la unidad (contiene X).",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "y",
+          "definicion": "Símbolo de la segunda incógnita en un par de ejes (Eje de las...).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "mayor",
+          "definicion": "Magnitud que supera a otra (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "proyección",
+          "definicion": "Punto de encuentro o unión (contiene la Y). Buscamos: Coyuntura (no). Proyección.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "rayo",
+          "definicion": "Segmento que va del centro a un lado (contiene la Y). No hay. Usaremos: Apotema (no). Rayo.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "trayecto",
+          "definicion": "Quinta parte de algo (contiene la Y). No. Usaremos: Joya (no). Trayecto.",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zona",
+          "definicion": "Puntos situados en una misma superficie.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zancada",
+          "definicion": "Avanzar caminando dando pasos largos.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "trazado",
+          "definicion": "Resultado de la suma (contiene Z). No. Usaremos: Trazado.",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "positivo",
+          "definicion": "Número entero mayor que cero (contiene Z). Buscamos: Positivo.",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "izquierda",
+          "definicion": "Lado opuesto a la derecha (contiene Z).",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,17 +1,122 @@
 {
-  "conceptos_basicos_economicos": [
-    "escasez", "necesidad", "coste de oportunidad", "bienes", "servicios", "consumo", "producción", "distribución", "agente económico", "incentivo"
+  "fundamentos_economia": [
+    "escasez",
+    "coste de oportunidad",
+    "necesidad",
+    "bien",
+    "servicio",
+    "recurso",
+    "factores de producción",
+    "agentes económicos",
+    "familia",
+    "empresa"
   ],
-  "mercado": [
-    "oferta", "demanda", "precio", "equilibrio", "competencia", "monopolio", "oligopolio", "consumidor", "empresa", "mercado laboral"
+  "mercado_demanda": [
+    "oferta",
+    "demanda",
+    "punto de equilibrio",
+    "precio",
+    "competencia perfecta",
+    "monopolio",
+    "oligopolio",
+    "competencia monopolística",
+    "exceso de oferta",
+    "exceso de demanda"
   ],
-  "indicadores_economicos": [
-    "pib", "ipc", "inflación", "desempleo", "crecimiento", "renta per cápita", "déficit", "superávit", "deuda pública", "tipos de interés"
+  "macroeconomia_basica": [
+    "pib",
+    "inflación",
+    "ipc",
+    "empleo",
+    "parque profesional",
+    "tasas de paro",
+    "ciclo económico",
+    "crecimiento",
+    "recesión",
+    "globalización"
+  ],
+  "sector_publico": [
+    "estado",
+    "impuesto",
+    "gasto público",
+    "presupuesto",
+    "déficit",
+    "deuda pública",
+    "política fiscal",
+    "seguridad social",
+    "servicios públicos",
+    "subvención"
+  ],
+  "sistema_financiero": [
+    "dinero",
+    "banco",
+    "interés",
+    "préstamo",
+    "hipoteca",
+    "ahorro",
+    "inversión",
+    "bolsa de valores",
+    "acción",
+    "dividendo"
   ],
   "finanzas_personales": [
-    "ahorro", "inversión", "presupuesto", "nómina", "impuesto", "préstamo", "hipoteca", "tarjeta", "banco", "seguro"
+    "presupuesto familiar",
+    "ingresos",
+    "gastos fijos",
+    "gastos variables",
+    "capacidad de ahorro",
+    "tarjeta de crédito",
+    "seguro",
+    "fondos de pensiones",
+    "educación financiera",
+    "endeudamiento"
   ],
-  "tipos_empresa": [
-    "pyme", "multinacional", "cooperativa", "sociedad anónima", "sociedad limitada", "franquicia", "autónomo", "pública", "privada", "mixta"
+  "emprendimiento_plan": [
+    "idea de negocio",
+    "plan de empresa",
+    "dafo",
+    "estudio de mercado",
+    "marketing",
+    "logotipo",
+    "financiación",
+    "autónomo",
+    "responsabilidad limitada",
+    "franquicia"
+  ],
+  "empresa_organizacion": [
+    "organigrama",
+    "recursos humanos",
+    "contabilidad",
+    "balance",
+    "cuenta de resultados",
+    "productividad",
+    "marketing mix",
+    "publicidad",
+    "canal de distribución",
+    "cliente"
+  ],
+  "economia_internacional": [
+    "exportación",
+    "importación",
+    "balanza comercial",
+    "tipo de cambio",
+    "divisa",
+    "omc",
+    "fmi",
+    "unión europea",
+    "mercado exterior",
+    "arancel"
+  ],
+  "etica_sostenibilidad": [
+    "responsabilidad social corporativa",
+    "economía circular",
+    "comercio justo",
+    "consumo responsable",
+    "impacto ambiental",
+    "ética empresarial",
+    "igualdad",
+    "desarrollo sostenible",
+    "huella de carbono",
+    "economía del bien común"
   ]
 }

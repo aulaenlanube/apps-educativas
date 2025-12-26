@@ -1,0 +1,566 @@
+[
+    {
+        "id": "1",
+        "titulo": "El Sector Primario: Retos actuales",
+        "texto": "El sector primario incluye las actividades que obtienen recursos directamente de la naturaleza: agricultura, ganadería, pesca y explotación forestal. Aunque emplea a poca gente en los países desarrollados (menos del 5%), es vital para nuestra supervivencia. El gran reto actual es la SOSTENIBILIDAD. El uso excesivo de fertilizantes químicos, la sobrepesca y el consumo abusivo de agua ponen en peligro el futuro. Por ello, la agricultura ecológica y la pesca responsable son tendencias al alza en todo el mundo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué actividades incluye el sector primario?",
+                "opciones": [
+                    "Fábricas y tiendas",
+                    "Agricultura, ganadería, pesca y explotación forestal",
+                    "Turismo y bancos",
+                    "Solo los que fabrican coches"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué porcentaje de gente trabaja en este sector en los países desarrollados?",
+                "opciones": [
+                    "Más del 50%",
+                    "Menos del 5%",
+                    "El 90%",
+                    "Casi nadie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el gran reto de este sector hoy en día?",
+                "opciones": [
+                    "Hacerlo más caro",
+                    "La sostenibilidad (proteger recursos)",
+                    "No usar agua",
+                    "Que no haya vacas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es vital aunque trabaje poca gente en él?",
+                "opciones": [
+                    "Porque es divertido",
+                    "Porque nos proporciona los alimentos",
+                    "Porque da mucho dinero",
+                    "Porque lo dice el mapa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La sobrepesca es un ejemplo de:",
+                "opciones": [
+                    "Actividad sostenible",
+                    "Mal uso de los recursos naturales",
+                    "Progreso",
+                    "Milagro"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "El Sector Secundario: La Industria",
+        "texto": "El sector secundario transforma las materias primas en productos elaborados. Su actividad principal es la INDUSTRIA. Históricamente, las fábricas se situaban cerca de las minas de carbón, pero hoy en día buscan lugares con buenas comunicaciones y tecnología. Distinguimos entre industria de base (siderurgia), de bienes de equipo (máquinas) y de bienes de consumo (alimentación, ropa). La AUTOMATIZACIÓN y la robótica han cambiado radicalmente el trabajo en las fábricas, necesitando menos operarios y más técnicos especializados.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué hace el sector secundario?",
+                "opciones": [
+                    "Vende productos",
+                    "Transforma materias primas en productos elaborados",
+                    "Cuida el ganado",
+                    "Cura enfermos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de industria fabrica ropa o comida?",
+                "opciones": [
+                    "Industria de base",
+                    "Industria de bienes de consumo",
+                    "Industria pesada",
+                    "Extractiva"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué factor es clave hoy para situar una fábrica?",
+                "opciones": [
+                    "El carbón solamente",
+                    "Buenas comunicaciones y tecnología",
+                    "Que haya gente mayor",
+                    "El clima frío"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo ha afectado la robótica a la industria?",
+                "opciones": [
+                    "No ha afectado",
+                    "Se necesitan operarios más especializados en tecnología",
+                    "Se ha dejado de fabricar",
+                    "Ahora las máquinas no funcionan"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La siderurgia (hacer acero) es una industria de:",
+                "opciones": [
+                    "Base",
+                    "Consumo",
+                    "Lujo",
+                    "Papel"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "El Sector Terciario: Servicios y Turismo",
+        "texto": "El sector terciario o de servicios no produce objetos físicos, sino que ofrece actividades para satisfacer las necesidades de la población: sanidad, educación, transporte, comercio y turismo. En los países más ricos, este sector emplea a más del 70% de la población activa. El TURISMO es una de las actividades más importantes en países como España. Sin embargo, debemos tener cuidado con el 'turismo de masas' que puede degradar el medio ambiente y los centros históricos, buscando un turismo de calidad y sostenible.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué ofrece el sector terciario?",
+                "opciones": [
+                    "Patatas y tomates",
+                    "Servicios para satisfacer necesidades",
+                    "Coches y barcos",
+                    "Minerales"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué porcentaje de gente trabaja en servicios en los países ricos?",
+                "opciones": [
+                    "20%",
+                    "Más del 70%",
+                    "El 5%",
+                    "Nadie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un servicio esencial mencionado:",
+                "opciones": [
+                    "Fábrica de ropa",
+                    "Sanidad o educación",
+                    "Minería",
+                    "Agricultura"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el riesgo del turismo según el texto?",
+                "opciones": [
+                    "Que no venga nadie",
+                    "La degradación del entorno por el turismo de masas",
+                    "Que el sol queme",
+                    "Que no haya hoteles"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Produce este sector objetos físicos?",
+                "opciones": [
+                    "Sí",
+                    "No (produce servicios)"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La Globalización Económica",
+        "texto": "La globalización es la creciente interdependencia de las economías de todo el mundo. Gracias a internet y a la mejora del transporte, hoy podemos comprar un producto diseñado en EE.UU., fabricado en China con materiales africanos y recibirlo en España en pocos días. Las MULTINACIONALES son las protagonistas de este sistema. Las ventajas son el acceso a más productos y precios bajos, pero los inconvenientes incluyen la pérdida de empleos en los países desarrollados y la desigualdad creciente con los países más pobres.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la globalización?",
+                "opciones": [
+                    "Un tipo de mapa",
+                    "La interdependencia de las economías del mundo",
+                    "Una marca de ropa",
+                    "El fin de la historia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quiénes son los actores principales de la globalización?",
+                "opciones": [
+                    "Los pequeños agricultores",
+                    "Las empresas multinacionales",
+                    "Los estudiantes",
+                    "Los piratas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita una ventaja de la globalización:",
+                "opciones": [
+                    "Contaminación",
+                    "Acceso a más productos y precios más bajos",
+                    "Guerras",
+                    "Menos internet"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué elemento tecnológico ha impulsado este proceso?",
+                "opciones": [
+                    "La televisión",
+                    "Internet",
+                    "La radio",
+                    "El fax"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un inconveniente mencionado?",
+                "opciones": [
+                    "Que hay mucha comida",
+                    "La desigualdad creciente entre países",
+                    "Que los barcos son grandes",
+                    "Que hace sol"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "La Población Mundial: El envejecimiento",
+        "texto": "La población mundial ha crecido mucho en el último siglo, superando los 8.000 millones de personas. Sin embargo, el crecimiento es muy desigual. En los países desarrollados, el gran problema es el ENVEJECIMIENTO: nacen muy pocos niños (baja natalidad) y la gente vive muchos años (alta esperanza de vida). Esto pone en peligro el sistema de pensiones y la sanidad. Por el contrario, en muchos países de África y Asia, la población es muy joven y crece rápido, lo que supone un reto para dar educación y empleo a todos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el problema demográfico en los países ricos?",
+                "opciones": [
+                    "Hay demasiados niños",
+                    "El envejecimiento de la población",
+                    "No hay gente",
+                    "La gente no vive nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa baja natalidad?",
+                "opciones": [
+                    "Que muere mucha gente",
+                    "Que nacen pocos niños",
+                    "Que la gente se muda",
+                    "Que no hay médicos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La esperanza de vida en los países desarrollados es:",
+                "opciones": [
+                    "Muy baja",
+                    "Alta (la gente vive muchos años)",
+                    "Igual que hace mil años",
+                    "Inexistente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántos habitantes hay aproximadamente en el mundo?",
+                "opciones": [
+                    "Mil millones",
+                    "Ocho mil millones",
+                    "Cien millones",
+                    "Diez mil millones"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué zona tiene una población muy joven y en rápido crecimiento?",
+                "opciones": [
+                    "Europa",
+                    "África y Asia",
+                    "La Antártida",
+                    "Japón"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "El Fenómeno Urbano: Las Megaciudades",
+        "texto": "Por primera vez en la historia, hay más gente viviendo en ciudades que en el campo. El crecimiento de las ciudades es imparable, surgiendo las MEGACIUDADES (más de 10 millones de habitantes como Tokio, México DF o Lagos). Las ciudades ofrecen más servicios y empleos, pero también generan grandes problemas: contaminación, falta de vivienda asequible, tráfico y desigualdades sociales entre barrios ricos y pobres. El reto de las ciudades del futuro es ser 'Smart Cities': sostenibles, digitales y humanas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es una megaciudad?",
+                "opciones": [
+                    "Una ciudad con playa",
+                    "Aquella que tiene más de 10 millones de habitantes",
+                    "Una ciudad muy antigua",
+                    "Un pueblo grande"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una ventaja de vivir en la ciudad:",
+                "opciones": [
+                    "El humo",
+                    "Acceso a más servicios y empleos",
+                    "El ruido",
+                    "El espacio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Vive más gente en el campo o en la ciudad actualmente?",
+                "opciones": [
+                    "En el campo",
+                    "En la ciudad",
+                    "Mitad y mitad",
+                    "En el bosque"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa el concepto de 'Smart City'?",
+                "opciones": [
+                    "Ciudad pequeña",
+                    "Ciudad inteligente, sostenible y digital",
+                    "Ciudad con muchos coches",
+                    "Ciudad solo para genios"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un problema grave de las grandes ciudades es:",
+                "opciones": [
+                    "La falta de silencio",
+                    "La contaminación y los atascos",
+                    "Que no hay tiendas",
+                    "Que no hay luz"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Las Desigualdades del Mundo actual",
+        "texto": "Aunque el mundo es más rico que nunca, la riqueza se reparte de forma muy injusta. Existe una división entre el NORTE Global (países desarrollados) y el SUR Global (países en desarrollo). El IDH (Índice de Desarrollo Humano) mide no solo el dinero, sino también la salud y la educación. Millones de personas en el mundo viven con menos de 2 euros al día, sin acceso a agua potable ni electricidad. La lucha contra la pobreza y el hambre (Objetivos de Desarrollo Sostenible) es la prioridad moral del siglo XXI.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significan las siglas IDH?",
+                "opciones": [
+                    "Interés de Habla Hispana",
+                    "Índice de Desarrollo Humano",
+                    "Ingresos de Hoy",
+                    "Información de Hombres"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué factores mide el IDH además del dinero?",
+                "opciones": [
+                    "Color del pelo",
+                    "Salud y educación",
+                    "Número de coches",
+                    "La altura"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la división simbólica de riqueza mundial?",
+                "opciones": [
+                    "Izquierda y derecha",
+                    "Norte y Sur Global",
+                    "Este y Oeste",
+                    "Ricos y Guapos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la prioridad moral del siglo XXI según el texto?",
+                "opciones": [
+                    "Volar a Marte",
+                    "Lucha contra la pobreza y el hambre",
+                    "Ganar el mundial",
+                    "Tener más móviles"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Viven todas las personas con acceso a agua potable?",
+                "opciones": [
+                    "Sí",
+                    "No, millones de personas carecen de ella"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "La Organización Política del Mundo",
+        "texto": "El mundo está dividido en casi 200 estados independientes. Un ESTADO es una organización política que tiene un territorio, una población y soberanía (poder propio). Las formas de gobierno pueden ser Monarquías (con REY) o Repúblicas (con PRESIDENTE). Lo más importante es si son DEMOCRACIAS (donde el pueblo elige y hay separación de poderes) o DICTADURAS (donde el poder lo tiene una persona o grupo sin libertades). España es una Monarquía Parlamentaria Democrática.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué tres elementos forman un Estado?",
+                "opciones": [
+                    "Bandera, himno y escudo",
+                    "Territorio, población y soberanía",
+                    "Rey, papa y pueblo",
+                    "Dinero, oro y plata"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué diferencia a una monarquía de una república?",
+                "opciones": [
+                    "La monarquía tiene rey y la república presidente",
+                    "La república es más antigua",
+                    "Solo hay monarquías ricas",
+                    "Ninguna"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Cuál es la clave de una verdadera democracia?",
+                "opciones": [
+                    "Que haya un jefe",
+                    "La elección libre y la separación de poderes",
+                    "Que todos hablen a la vez",
+                    "Que no haya leyes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre en una dictadura?",
+                "opciones": [
+                    "Todos votan",
+                    "No hay libertades y el poder es de una persona o grupo",
+                    "Hay muchos presidentes",
+                    "Se viaja mucho"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se define políticamente el Estado español?",
+                "opciones": [
+                    "Dictadura",
+                    "Monarquía Parlamentaria Democrática",
+                    "República Federal",
+                    "Imperio"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "La Unión Europea (UE)",
+        "texto": "La Unión Europea es una organización única que agrupa a 27 países europeos para colaborar en asuntos de economía, política y paz. Nació después de la Segunda Guerra Mundial para evitar más guerras entre vecinos. Algunos de sus grandes logros son el EURO (la moneda común), la libre circulación de ciudadanos (acuerdo de Schengen) y la paz duradera. Sus instituciones principales están en Bruselas (Bélgica), Estrasburgo y Luxemburgo. Formar parte de la UE ayuda a los países a ser más fuertes y prósperos ante los gigantes mundiales.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuántos países forman actualmente la UE?",
+                "opciones": [
+                    "12",
+                    "27",
+                    "50",
+                    "2"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué se creó la UE originalmente?",
+                "opciones": [
+                    "Para ganar dinero",
+                    "Para evitar guerras tras la 2ª Guerra Mundial",
+                    "Para hacer deporte",
+                    "Para viajar gratis"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el acuerdo que permite viajar sin pasaporte entre países de la UE?",
+                "opciones": [
+                    "Tratado de Roma",
+                    "Acuerdo de Schengen",
+                    "El euro",
+                    "La ONU"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se encuentran las principales instituciones de la UE?",
+                "opciones": [
+                    "Madrid",
+                    "Bruselas",
+                    "Londres",
+                    "París"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la moneda común de la mayoría de países de la UE?",
+                "opciones": [
+                    "Dólar",
+                    "Euro",
+                    "Libra",
+                    "Peseta"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "El Medio Ambiente: El Desarrollo Sostenible",
+        "texto": "El desarrollo sostenible es aquel que satisface las necesidades del presente sin comprometer la capacidad de las futuras generaciones para satisfacer sus propias necesidades. No se trata de no crecer, sino de crecer mejor: usando energías renovables, reduciendo la huella de carbono y respetando la biodiversidad. El cambio climático es una realidad científica provocada por el efecto invernadero. Proteger el medio ambiente no es una opción, es una obligación de todos para asegurar que el planeta siga siendo habitable.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el desarrollo sostenible?",
+                "opciones": [
+                    "Crecer sin límites",
+                    "Satisfacer el presente sin dañar el futuro de las próximas generaciones",
+                    "No usar tecnología",
+                    "Vivir en el campo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué provoca el cambio climático según el texto?",
+                "opciones": [
+                    "El sol solamente",
+                    "El efecto invernadero provocado por el hombre",
+                    "El viento",
+                    "Los volcanes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una acción para un desarrollo sostenible:",
+                "opciones": [
+                    "Usar más plástico",
+                    "Usar energías renovables y reducir la huella de carbono",
+                    "Quemar bosques",
+                    "Gastar mucha agua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es una opción personal proteger el planeta?",
+                "opciones": [
+                    "Sí",
+                    "No, es una obligación colectiva"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cuidar la biodiversidad significa:",
+                "opciones": [
+                    "Matar animales",
+                    "Respetar la variedad de especies vivas",
+                    "Hacer carreteras",
+                    "No comer fruta"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

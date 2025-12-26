@@ -1,0 +1,570 @@
+[
+    {
+        "id": "1",
+        "titulo": "De Bloques a Código: Python",
+        "texto": "En 3º de ESO damos el salto de Scratch a los lenguajes de texto, principalmente PYTHON. Python es un lenguaje muy popular por su sintaxis sencilla y legible. Ya no arrastramos bloques; ahora escribimos instrucciones. Es vital cuidar la IDENTACIÓN (el espacio al principio de línea), ya que en Python sirve para indicar qué código va dentro de un bucle o un condicional. Es el lenguaje rey en Inteligencia Artificial y Ciencia de Datos debido a su gran potencia y comunidad.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué caracteriza a la sintaxis de Python?",
+                "opciones": [
+                    "Es muy difícil",
+                    "Es sencilla y muy parecida al lenguaje humano (inglés)",
+                    "Solo usa números",
+                    "No tiene texto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la identación en Python?",
+                "opciones": [
+                    "Para que sea bonito",
+                    "Para definir bloques de código (bucles, funciones...)",
+                    "Para nada",
+                    "Para separar palabras"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué campo destaca especialmente Python?",
+                "opciones": [
+                    "Diseño de zapatos",
+                    "Inteligencia Artificial y Ciencia de Datos",
+                    "Mecánica de coches",
+                    "Cocina"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué sustituimos al pasar de Scratch a Python?",
+                "opciones": [
+                    "Los colores",
+                    "Los bloques por líneas de texto",
+                    "El ratón por el mando",
+                    "La pantalla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Python es un lenguaje de...",
+                "opciones": [
+                    "Máquina puro",
+                    "Alto nivel y propósito general",
+                    "Bajo nivel",
+                    "Dibujo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Variables y Tipos de Datos",
+        "texto": "Una variable es como una caja donde guardamos información para usarla más tarde. Cada variable tiene un nombre y un TIPO. Los más comunes son: 'int' (números enteros), 'float' (decimales), 'string' (texto, siempre entre comillas) y 'boolean' (verdadero o falso). Saber elegir el tipo de dato correcto ahorra memoria al ordenador y evita errores de programación. En lenguajes de texto, debemos ser muy cuidadosos y no confundir el número 5 (entero) con el texto '5' (cadena).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es una variable?",
+                "opciones": [
+                    "Un dibujo",
+                    "Un espacio en memoria para guardar un valor con un nombre",
+                    "Un botón del teclado",
+                    "Un cable"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de dato usarías para guardar tu nombre?",
+                "opciones": [
+                    "Int",
+                    "String (cadena de texto)",
+                    "Boolean",
+                    "Float"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Y para saber si una luz está encendida o apagada?",
+                "opciones": [
+                    "Integer",
+                    "Boolean (True/False)",
+                    "String",
+                    "Float"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la diferencia entre 5 y '5' en programación?",
+                "opciones": [
+                    "Ninguna",
+                    "Uno es un número para calcular y el otro es texto",
+                    "Son iguales",
+                    "Uno es más grande"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de dato es 3.14?",
+                "opciones": [
+                    "Int",
+                    "Float (decimales)",
+                    "String",
+                    "Boolean"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Estructuras de Control: Condicionales",
+        "texto": "Los condicionales permiten que el programa tome decisiones. Usamos la estructura IF (si...), ELIF (si no, si...) y ELSE (en cualquier otro caso). Se basan en comparaciones lógicas: igual (==), distinto (!=), mayor (>), menor (<). Por ejemplo: SI la contraseña es correcta, entra; SI NO, muestra error. Los condicionales son la base de la 'inteligencia' de cualquier software, permitiendo que la máquina responda de forma distinta según los datos recibidos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué estructura usamos para tomar una decisión en código?",
+                "opciones": [
+                    "Loop",
+                    "If / Else",
+                    "Variable",
+                    "Print"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa 'elif'?",
+                "opciones": [
+                    "El final",
+                    "Si no se cumple lo anterior, comprueba esta otra condición",
+                    "Es un error",
+                    "Empezar de nuevo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el operador para comprobar si dos valores son exactamente iguales?",
+                "opciones": [
+                    "=",
+                    "==",
+                    "!",
+                    "+"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si ninguna condición del 'if' o 'elif' se cumple?",
+                "opciones": [
+                    "El programa explota",
+                    "Se ejecuta el bloque 'else'",
+                    "Se borra el código",
+                    "No pasa nada nunca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Los condicionales se basan en la lógica...",
+                "opciones": [
+                    "Matemática",
+                    "Booleana (Verdadero/Falso)",
+                    "Simbólica",
+                    "Ninguna"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Bucles: Repetir sin cansarse",
+        "texto": "Los bucles permiten repetir un bloque de código muchas veces sin tener que escribirlo cada vez. En Python usamos 'FOR' (cuando sabemos cuántas veces repetir, ej: 10 veces) y 'WHILE' (mientras se cumpla una condición, ej: mientras la batería sea > 0). Hay que tener cuidado con los BUCLES INFINITOS, que pueden bloquear el ordenador si la condición de salida nunca se cumple. Los bucles son esenciales para procesar listas de datos, dibujar patrones o hacer que un robot se mueva.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuándo usarías un bucle 'for'?",
+                "opciones": [
+                    "Cuando no sé cuánto va a durar",
+                    "Cuando conozco el número exacto de repeticiones",
+                    "Para guardar un nombre",
+                    "Para apagar el PC"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace un bucle 'while'?",
+                "opciones": [
+                    "Repite el código 5 veces",
+                    "Repite el código mientras se cumpla una condición determinada",
+                    "No repite nada",
+                    "Borra el código"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un bucle infinito?",
+                "opciones": [
+                    "Un bucle muy grande",
+                    "Un bucle que nunca termina y puede bloquear el programa",
+                    "Un bucle de colores",
+                    "Un tipo de variable"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve un bucle en un videojuego?",
+                "opciones": [
+                    "Para cargar la partida",
+                    "Para que el juego se actualice constantemente (game loop)",
+                    "Para ganar siempre",
+                    "Para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Repetir una acción para cada elemento de una lista es un típico uso de:",
+                "opciones": [
+                    "Condicional",
+                    "Bucle (Loop)",
+                    "Variable",
+                    "Comentario"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Introducción al Desarrollo Web: HTML",
+        "texto": "Internet funciona gracias al lenguaje HTML (HyperText Markup Language). No es un lenguaje de programación con lógica, sino un lenguaje de MARCAS para estructurar el contenido de una web. Usamos 'etiquetas' encerradas entre corchetes angulares (< >). Casi todas tienen una de apertura (ej: <h1> para un título) y una de cierre con barra (ej: </h1>). HTML define qué es un párrafo, qué es una imagen y qué es un enlace. Es la estructura de los huesos de cualquier página web.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significan las siglas HTML?",
+                "opciones": [
+                    "Home Tool Markup Language",
+                    "HyperText Markup Language",
+                    "Hyperlinks and Text Management",
+                    "High Tech Modern Language"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se marcan los elementos en HTML?",
+                "opciones": [
+                    "Con paréntesis",
+                    "Con etiquetas (tags) entre < >",
+                    "Con colores",
+                    "Con números"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la etiqueta <h1>?",
+                "opciones": [
+                    "Para poner una imagen",
+                    "Para definir el título principal de la página",
+                    "Para crear un enlace",
+                    "Para cerrar la web"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es HTML un lenguaje de programación con lógica?",
+                "opciones": [
+                    "Sí",
+                    "No, es un lenguaje de marcas de estructura"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Toda etiqueta abierta debe ser generalmente...",
+                "opciones": [
+                    "Copiada",
+                    "Cerrada (ej: </h1>)",
+                    "Borrada",
+                    "Pintada"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "El estilo de la Web: CSS",
+        "texto": "Si el HTML son los huesos, el CSS es la PIEL y la ropa de una página web. CSS (Cascading Style Sheets) sirve para dar diseño: colores, tipos de letra, tamaños y posiciones de los elementos. Gracias al CSS podemos separar el contenido (HTML) de la apariencia (CSS). Podemos hacer que una web se vea distinta en un ordenador y en un móvil usando 'media queries'. Esto se llama Diseño Responsivo y es fundamental para que las webs sean modernas y fáciles de usar en cualquier dispositivo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la función del CSS?",
+                "opciones": [
+                    "Dar lógica a los botones",
+                    "Dar diseño y estilo visual (colores, fuentes, etc.)",
+                    "Guardar datos en internet",
+                    "Hacer que el PC vaya rápido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa 'Diseño Responsivo'?",
+                "opciones": [
+                    "Que la web contesta a preguntas",
+                    "Que la web se adapta al tamaño de cualquier dispositivo (móvil, tablet, PC)",
+                    "Que la web es muy rápida",
+                    "Que la web es muy cara"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es importante separar HTML de CSS?",
+                "opciones": [
+                    "Para perder más tiempo",
+                    "Para organizar mejor el código y poder cambiar el diseño sin tocar el contenido",
+                    "No es importante",
+                    "Para que no lo roben"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué podemos cambiar con CSS?",
+                "opciones": [
+                    "Solo el color de fondo",
+                    "Color, fuentes, bordes, posiciones y más",
+                    "Solo el texto",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Usar CSS hace que la web sea más...",
+                "opciones": [
+                    "Lenta",
+                    "Atractiva y profesional",
+                    "Difícil de leer",
+                    "Simple"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Robótica con Arduino: Entradas y Salidas",
+        "texto": "Al programar una placa Arduino, trabajamos con INPUTS (entradas) y OUTPUTS (salidas). Un INPUT es información que llega a la placa desde un sensor (ej: un sensor de luz o un botón). Un OUTPUT es una orden que envía la placa al exterior (ej: encender un LED o mover un motor). Arduino usa un lenguaje basado en C++. Todo programa de Arduino tiene dos partes fijas: 'setup' (configuración inicial) y 'loop' (código que se repite infinitamente mientras la placa tenga energía).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un INPUT en robótica?",
+                "opciones": [
+                    "Una luz",
+                    "Información que el sistema recibe del exterior (sensores)",
+                    "Un motor",
+                    "Una batería"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un OUTPUT típico:",
+                "opciones": [
+                    "Botón",
+                    "LED o Altavoz",
+                    "Sensor de humedad",
+                    "Ratón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace la función 'void loop()' en Arduino?",
+                "opciones": [
+                    "Se ejecuta una sola vez",
+                    "Ejecuta el código infinitamente en bucle",
+                    "Borra la memoria",
+                    "Apaga el robot"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué lenguaje se basa Arduino?",
+                "opciones": [
+                    "Python",
+                    "C++",
+                    "HTML",
+                    "Scratch"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre en la función 'void setup()'?",
+                "opciones": [
+                    "Se repite siempre",
+                    "Se configuran los pines y opciones iniciales una sola vez",
+                    "No se usa",
+                    "Se borra todo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Funciones: Reutilizar código",
+        "texto": "Una función es un bloque de código con un nombre que realiza una tarea específica. En lugar de escribir el mismo código 10 veces, creamos una función y la LLAMAMOS por su nombre cuando la necesitemos. Las funciones pueden recibir datos (parámetros) y devolver un resultado (return). Esto hace que nuestros programas sean más cortos, fáciles de entender y de corregir. Es como tener una 'receta' que puedes usar cada vez que quieras cocinar el mismo plato.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la principal ventaja de usar funciones?",
+                "opciones": [
+                    "Hacer el código más largo",
+                    "Reutilizar código y organizar mejor el programa",
+                    "Que el PC gaste menos luz",
+                    "Que no haya que usar variables"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un parámetro en una función?",
+                "opciones": [
+                    "El nombre de la función",
+                    "Un dato de entrada que la función necesita para trabajar",
+                    "El resultado final",
+                    "Un tipo de error"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa 'llamar' a una función?",
+                "opciones": [
+                    "Darle un número de teléfono",
+                    "Indicarle al programa que ejecute el código de esa función en ese momento",
+                    "Borrarlas",
+                    "Preguntarle qué hace"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué comando usamos para que la función nos entregue un resultado?",
+                "opciones": [
+                    "Input",
+                    "Return",
+                    "Print",
+                    "Exit"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Usar funciones hace que el código sea más...",
+                "opciones": [
+                    "Confuso",
+                    "Modular, limpio y fácil de mantener",
+                    "Pesado",
+                    "Solo para expertos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Ciberseguridad: Contraseñas y Phishing",
+        "texto": "En 3º de ESO debemos ser expertos en seguridad digital. No basta con contraseñas fáciles como '123456'; deben ser largas y combinar letras, números y símbolos. El PHISHING es una estafa donde los delincuentes nos envían correos o mensajes falsos (que parecen de nuestro banco o de Instagram) para robarnos la cuenta. Nunca debemos pinchar en enlaces sospechosos ni dar datos privados. La mejor defensa es la desconfianza ante mensajes urgentes o premios 'demasiado buenos para ser verdad'.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el Phishing?",
+                "opciones": [
+                    "Un juego de pesca",
+                    "Una estafa para robar datos mediante mensajes falsos",
+                    "Un tipo de virus de ordenador",
+                    "Una red social social"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo debe ser una contraseña segura?",
+                "opciones": [
+                    "Corta y fácil",
+                    "Larga y con mezcla de caracteres (letras, números, símbolos)",
+                    "Tu fecha de nacimiento",
+                    "El nombre de tu perro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debes hacer ante un mensaje urgente de 'tu banco' pidiendo tu clave?",
+                "opciones": [
+                    "Dársela rápido",
+                    "Desconfiar y no pinchar en ningún enlace (llamar al banco)",
+                    "Contestar con mis datos",
+                    "Enviarlo a mis amigos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué no es bueno usar la misma contraseña en todos sitios?",
+                "opciones": [
+                    "Para no olvidarla",
+                    "Porque si roban una, tienen acceso a todas tus cuentas",
+                    "No pasa nada",
+                    "Es lo más recomendable"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la Doble Autenticación (2FA)?",
+                "opciones": [
+                    "Tener dos pantallas",
+                    "Un sistema que pide un segundo código (normalmente móvil) para entrar",
+                    "Escribir la clave dos veces",
+                    "Tener dos móviles"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Introducción a la Inteligencia Artificial",
+        "texto": "La IA no es magia, es MATEMÁTICA y datos. Un sistema de IA aprende mediante el Machine Learning (Aprendizaje Automático). Le damos miles de ejemplos (ej: fotos de perros y gatos) para que el ordenador aprenda a reconocer patrones. Hoy usamos IA en los recomendadores de vídeo, en los asistentes de voz y en la conducción autónoma. Debemos ser éticos al usarla y recordar que la IA puede cometer errores o tener sesgos si los datos con los que aprendió no eran buenos. ¡El futuro está lleno de posibilidades!",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué se basa la Inteligencia Artificial realmente?",
+                "opciones": [
+                    "Magia",
+                    "Matemáticas, algoritmos y grandes cantidades de datos",
+                    "Sentimientos de la máquina",
+                    "Suerte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el Machine Learning?",
+                "opciones": [
+                    "Una máquina de gimnasio",
+                    "La capacidad de las máquinas de aprender patrones a partir de ejemplos",
+                    "Arreglar ordenadores",
+                    "Un tipo de motor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un uso cotidiano de la IA:",
+                "opciones": [
+                    "Un grifo de agua",
+                    "El recomendador de vídeos de YouTube o TikTok",
+                    "Una calculadora básica",
+                    "Un martillo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Puede la IA cometer errores?",
+                "opciones": [
+                    "Nunca, es perfecta",
+                    "Sí, puede tener sesgos o errores según los datos",
+                    "Solo si se rompe",
+                    "Solo en invierno"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un 'sesgo' en IA?",
+                "opciones": [
+                    "Una pieza del PC",
+                    "Un prejuicio o error injusto aprendido de datos incompletos",
+                    "Un tipo de cable",
+                    "Un botón"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

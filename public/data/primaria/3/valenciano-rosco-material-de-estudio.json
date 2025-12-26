@@ -1,0 +1,816 @@
+{
+  "titulo": "Material de Estudio - Valenciano - 3º PRIMARIA",
+  "introduccion": "Repasa este vocabulario de Valenciano para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "aigua",
+          "definicion": "Líquid que bevem quan tenim set.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "escola",
+          "definicion": "Lloc on anem a aprendre.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "mestre",
+          "definicion": "Persona que ens ensenya a l'escola.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "oliva",
+          "definicion": "Fruit de l'olivera per a fer oli.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "boca",
+          "definicion": "Part de la cara per on mengem.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "blau",
+          "definicion": "Color del cel i de la mar.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "blanc",
+          "definicion": "Color de la neu i el sucre.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "berenar",
+          "definicion": "Menjar del matí.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "biblioteca",
+          "definicion": "Lloc amb molts llibres.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "balança",
+          "definicion": "Instrument per a pesar.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "cambra",
+          "definicion": "Lloc on dormim a la nit.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cotxe",
+          "definicion": "Vehicle amb quatre rodes.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "gat",
+          "definicion": "Animal que diu 'miau'.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cinc",
+          "definicion": "Número després del quatre.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "comprar",
+          "definicion": "Lloc on comprem el menjar.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "deu",
+          "definicion": "Número després del nou.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dits",
+          "definicion": "Els tenim en les mans i els peus.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dimarts",
+          "definicion": "Dia després de dilluns.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "desena",
+          "definicion": "Grup de deu unitats.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dinar",
+          "definicion": "Menjar del migdia.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "escola",
+          "definicion": "Lloc on hi ha mestres i xiquets.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "estiu",
+          "definicion": "Estació de l'any de molta calor.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "elefant",
+          "definicion": "Animal molt gran amb trompa.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "esquelet",
+          "definicion": "Estructura d'ossos del cos.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "entrepà",
+          "definicion": "Pa amb embotit per a esmorzar.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "fred",
+          "definicion": "Contrari de calor.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "flor",
+          "definicion": "Planta amb colors al jardí.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "festa",
+          "definicion": "Celebració amb música i petards.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "falda",
+          "definicion": "Peça de roba de les xiques.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "formiga",
+          "definicion": "Xicotet animal que vuela (mosca o...).",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "gos",
+          "definicion": "Animal que diu 'bub-bub'.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grill",
+          "definicion": "Animalet que salta al camp.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "got",
+          "definicion": "Recipient per a beure aigua.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "groc",
+          "definicion": "Color de la llimona.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gomina",
+          "definicion": "Producte per al cabell.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hort",
+          "definicion": "Lloc on tenim tomaques i verdures.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hospital",
+          "definicion": "Home o dona que ens cura.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hora",
+          "definicion": "Té seixanta minuts.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hivern",
+          "definicion": "Estació de fred i neu.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hui",
+          "definicion": "Dia d'avui.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "illa",
+          "definicion": "Terra rodejada d'aigua.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "iman",
+          "definicion": "Objecte que atrau el ferro.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "insecte",
+          "definicion": "Pequeño animal (en castellà insecto).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "iglú",
+          "definicion": "Casa de gel.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inici",
+          "definicion": "El començament.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "joguet",
+          "definicion": "Objecte per a jugar.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jardí",
+          "definicion": "Lloc amb moltes flors.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jugar",
+          "definicion": "Divertirse amb els amics.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "dijous",
+          "definicion": "Dia de la setmana.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juliol",
+          "definicion": "Mes de l'estiu.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "kiwi",
+          "definicion": "Fruita verda.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilo",
+          "definicion": "Mil grams.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "karate",
+          "definicion": "Esport de cinturons.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "quilòmetre",
+          "definicion": "Mil metres.",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kètxup",
+          "definicion": "Salsa de tomata.",
+          "pista": "Contiene la K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "llibre",
+          "definicion": "Per a llegir històries.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "llet",
+          "definicion": "Beguda blanca de la vaca.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "llapis",
+          "definicion": "Per a escriure.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lluna",
+          "definicion": "Ix a la nit.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "llit",
+          "definicion": "Moble de descans.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "mare",
+          "definicion": "La mare que ens cuida.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "muntanya",
+          "definicion": "Lloc molt alt de terra.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mà",
+          "definicion": "Part de la mà.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mestre",
+          "definicion": "Qui ens ensenya a classe.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "menjar",
+          "definicion": "Acció de menjar.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "núvol",
+          "definicion": "Al cel, porta pluja.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nom",
+          "definicion": "Paraula per a nomenar.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nit",
+          "definicion": "Quan no hi ha sol.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "neu",
+          "definicion": "Aigua gelada blanca.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nas",
+          "definicion": "Per a flairar.",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "ungla",
+          "definicion": "Dels dits (conté la NY).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "castanya",
+          "definicion": "Fruit de la tardor (conté NY).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "muntanya",
+          "definicion": "Lloc molt alt (conté NY).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "pinyó",
+          "definicion": "Menut o xicotet (conté NY).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "lenya",
+          "definicion": "Cuinar a la brasa (conté NY).",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "orella",
+          "definicion": "Per a escoltar.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ocell",
+          "definicion": "Animal que vola.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ou",
+          "definicion": "Ho ponen les gallines.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ull",
+          "definicion": "Per a veure.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oliva",
+          "definicion": "Fruit de l'olivera.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "pare",
+          "definicion": "Marit de la mare.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pa",
+          "definicion": "Menjar diari.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "poma",
+          "definicion": "Fruita redona roja.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "peix",
+          "definicion": "Animal de mar.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pilota",
+          "definicion": "Per a jugar al futbol.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "quatre",
+          "definicion": "Número quatre.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quadrat",
+          "definicion": "Figura de 4 costats iguals.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "qui",
+          "definicion": "Saber quina persona és.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quan",
+          "definicion": "Saber el moment.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quinze",
+          "definicion": "Número quinze.",
+          "pista": "Empieza por Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "roig",
+          "definicion": "Color de la sang.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "riu",
+          "definicion": "Aigua que va a la mar.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rellotge",
+          "definicion": "Diu les hores.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "ratolí",
+          "definicion": "Animal que menja formatge.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "riure",
+          "definicion": "Gesto de la boca alegre.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "sol",
+          "definicion": "Dona llum i calor.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sabata",
+          "definicion": "Peça de roba del peu.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "suc",
+          "definicion": "Per a beure fruita.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sentit",
+          "definicion": "Saber on anem.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "set",
+          "definicion": "Número set.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "taula",
+          "definicion": "Mobles per a menjar.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tres",
+          "definicion": "Número tres.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tren",
+          "definicion": "Transport de rutes.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tardor",
+          "definicion": "Estació de fulles caigudes.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "taronja",
+          "definicion": "Fruita taronja.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "un",
+          "definicion": "Número u.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unitat",
+          "definicion": "Grup de deu.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "ungla",
+          "definicion": "Part final del dit.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "ulleres",
+          "definicion": "Per a veure bé.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "univers",
+          "definicion": "Tot l'espai solar.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "verd",
+          "definicion": "Color de l'herba.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vaca",
+          "definicion": "Ens dona llet.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vell",
+          "definicion": "Contrari de nou.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vent",
+          "definicion": "Aire que bufa.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "volar",
+          "definicion": "Viatge lluny.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "web",
+          "definicion": "Pàgina de xarxa.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "kiwi",
+          "definicion": "Fruita verda (conté W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "waterpolo",
+          "definicion": "Esport d'aigua.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "sandwich",
+          "definicion": "Entrepà de pa de motle (conté W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "halloween",
+          "definicion": "Festa de por (conté W).",
+          "pista": "Contiene la W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "xiquet",
+          "definicion": "Sinònim de nen.",
+          "pista": "Empieza por X"
+        },
+        {
+          "termino": "xocolata",
+          "definicion": "Dolç de cacau.",
+          "pista": "Empieza por X"
+        },
+        {
+          "termino": "xilòfon",
+          "definicion": "Instrument de fusta.",
+          "pista": "Empieza por X"
+        },
+        {
+          "termino": "peix",
+          "definicion": "Animal de mar (acaba en X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "caixa",
+          "definicion": "Caixa de fusta (conté X).",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "yoyó",
+          "definicion": "Joguet que puja i baixa.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yoga",
+          "definicion": "Relaxar-se (conté Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "kayak",
+          "definicion": "Navegar en riu (conté Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "manga",
+          "definicion": "Còmic de dibuixos (conté Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "hobby",
+          "definicion": "Afició (conté Y).",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zero",
+          "definicion": "Número zero.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zebra",
+          "definicion": "Animal de ratlles.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zona",
+          "definicion": "Lloc de passeig.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zoo",
+          "definicion": "Lloc d'animals.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "quinze",
+          "definicion": "Número quinze (conté Z).",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,17 +1,122 @@
 {
-  "professions": [
-    "metge", "advocat", "mestre", "arquitecte", "infermer", "periodista", "enginyer", "fuster", "electricista", "lampista"
+  "gramatica_verb": [
+    "indicatiu",
+    "subjuntiu",
+    "imperatiu",
+    "participi",
+    "gerundi",
+    "infinitiu",
+    "arrel",
+    "desinència",
+    "auxiliar",
+    "conjugació"
   ],
-  "el_temps_atmosferic": [
-    "pluja", "neu", "calamarsa", "vent", "boira", "tempesta", "llamp", "tro", "núvol", "sol"
+  "lexic_oficis": [
+    "metge",
+    "mestre",
+    "advocat",
+    "cuiner",
+    "fuster",
+    "policia",
+    "arquitecte",
+    "infermer",
+    "periodista",
+    "llaurador"
   ],
-  "la_familia": [
-    "pare", "mare", "germà", "germana", "avi", "àvia", "oncle", "tia", "cosí", "nebot"
+  "vocabular_ciutat": [
+    "ajuntament",
+    "museu",
+    "parc",
+    "plaça",
+    "carrer",
+    "edifici",
+    "biblioteca",
+    "estació",
+    "pont",
+    "mercat"
   ],
-  "connectors": [
-    "però", "perquè", "encara que", "doncs", "mentre", "també", "a més", "finalment", "aleshores", "tanmateix"
+  "comprensio_text": [
+    "títol",
+    "paràgraf",
+    "idea principal",
+    "resum",
+    "autor",
+    "narrador",
+    "personatge",
+    "argument",
+    "espai",
+    "temps"
   ],
-  "geografia_fisica": [
-    "muntanya", "vall", "riu", "llac", "illa", "platja", "cova", "barranc", "serra", "cim"
+  "ortografia_accent": [
+    "obert",
+    "tancat",
+    "agut",
+    "plan",
+    "esdrúixol",
+    "dièresi",
+    "apòstrof",
+    "guionet",
+    "ce trencada",
+    "ela geminada"
+  ],
+  "literatura_popular": [
+    "rondalla",
+    "cançó",
+    "endevinalla",
+    "refrany",
+    "llegenda",
+    "faula",
+    "teatre",
+    "poesia",
+    "tradició",
+    "folklore"
+  ],
+  "mitjans_comunicacio": [
+    "premsa",
+    "ràdio",
+    "televisió",
+    "internet",
+    "notícia",
+    "article",
+    "revista",
+    "anunci",
+    "públic",
+    "xarxa"
+  ],
+  "relacions_familiars": [
+    "pare",
+    "mare",
+    "germà",
+    "nebot",
+    "oncle",
+    "cosí",
+    "avi",
+    "nét",
+    "cunyat",
+    "sogre"
+  ],
+  "activitats_temps_lliure": [
+    "excursió",
+    "viatge",
+    "esport",
+    "lectura",
+    "concert",
+    "cine",
+    "ball",
+    "pintura",
+    "escacs",
+    "teatre"
+  ],
+  "medi_ambient": [
+    "natura",
+    "ecologia",
+    "reciclatge",
+    "clima",
+    "bosc",
+    "riu",
+    "mar",
+    "animal",
+    "planta",
+    "sostenibilitat"
   ]
 }

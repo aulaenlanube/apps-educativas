@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "La Révolution Française",
+        "texto": "La Révolution française de 1789 est l'un des événements les plus importants de l'histoire moderne. Le peuple de Paris a pris la Bastille le 14 JUILLET. Cette révolution a mis fin à la monarchie absolue de Louis XVI et a instauré la République. Les Français ont écrit la Déclaration des Droits de l'Homme et du Citoyen. La devise de la France est née à cette époque : LIBERTÉ, ÉGALITÉ, FRATERNITÉ. Aujourd'hui, on célèbre la fête nationale le 14 juillet avec des défilés et des feux d'artifice.",
+        "preguntas": [
+            {
+                "pregunta": "Quelle est la date de la fête nationale française ?",
+                "opciones": [
+                    "Le 1er mai",
+                    "Le 14 juillet",
+                    "Le 25 décembre",
+                    "Le 1er janvier"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle est la devise de la République française ?",
+                "opciones": [
+                    "Pain, Paix, Liberté",
+                    "Liberté, Égalité, Fraternité",
+                    "Travail, Famille, Patrie",
+                    "Vivre et laisser vivre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qui était le roi pendant la Révolution ?",
+                "opciones": [
+                    "Louis XIV",
+                    "Louis XVI",
+                    "Napoléon",
+                    "Charles de Gaulle"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel bâtiment célèbre a été pris par le peuple en 1789 ?",
+                "opciones": [
+                    "La Tour Eiffel",
+                    "La Bastille",
+                    "Le Louvre",
+                    "Notre-Dame"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'est-ce que la Révolution a instauré ?",
+                "opciones": [
+                    "L'Empire",
+                    "La République",
+                    "Une autre monarchie",
+                    "Une dictature"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "La Francophonie dans le monde",
+        "texto": "Le français n'est pas seulement parlé en France. Il y a environ 300 millions de francophones sur les cinq continents. La FRANCOPHONIE est l'organisation des pays qui partagent la langue française. Le français est une langue officielle au Canada (Québec), en Belgique, en Suisse et dans de nombreux pays d'Afrique comme le Sénégal ou la Côte d'Ivoire. C'est aussi une langue diplomatique utilisée à l'ONU et au Comité Olympique. Apprendre le français ouvre les portes d'une culture immense et diverse.",
+        "preguntas": [
+            {
+                "pregunta": "Combien y a-t-il de francophones dans le monde ?",
+                "opciones": [
+                    "10 millions",
+                    "Environ 300 millions",
+                    "1 milliard",
+                    "50 millions"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Dans quelle province du Canada parle-t-on français ?",
+                "opciones": [
+                    "Ontario",
+                    "Québec",
+                    "Alberta",
+                    "Vancouver"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Citez un pays d'Afrique francophone mentionné :",
+                "opciones": [
+                    "Égypte",
+                    "Sénégal",
+                    "Nigeria",
+                    "Kenya"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Le français est-il utilisé dans les organisations internationales ?",
+                "opciones": [
+                    "Non",
+                    "Oui, à l'ONU et au Comité Olympique",
+                    "Seulement en été",
+                    "Seulement en France"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'est-ce que la Francophonie ?",
+                "opciones": [
+                    "Un type de fromage",
+                    "L'organisation des pays qui parlent français",
+                    "Une ville",
+                    "Un journal"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "L'environnement et l'écologie",
+        "texto": "Aujourd'hui, protéger la planète est une priorité pour les jeunes Français. Le RÉCHAUFFEMENT CLIMATIQUE menace la biodiversité. En France, on pratique beaucoup le tri sélectif : on sépare le papier, le plastique et le verre. Il y a aussi des initiatives pour réduire le gaspillage alimentaire. Pour se déplacer en ville, beaucoup de gens utilisent le vélo ou les transports en commun au lieu de la voiture. Chaque petit geste compte pour sauver l'environnement et assurer un futur durable pour tout le monde.",
+        "preguntas": [
+            {
+                "pregunta": "Qu'est-ce que le tri sélectif ?",
+                "opciones": [
+                    "Un sport",
+                    "Séparer les déchets (papier, verre, plastique)",
+                    "Un type d'examen",
+                    "Une fête"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle est la principale menace mentionnée pour la planète ?",
+                "opciones": [
+                    "Le vent",
+                    "Le réchauffement climatique",
+                    "La pluie",
+                    "Le soleil"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel moyen de transport écologique est mentionné ?",
+                "opciones": [
+                    "L'avion",
+                    "Le vélo",
+                    "La voiture de sport",
+                    "Le taxi"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Que cherche-t-on à réduire concernant la nourriture ?",
+                "opciones": [
+                    "Le goût",
+                    "Le gaspillage alimentaire",
+                    "Le prix",
+                    "Les vitamines"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Pourquoi l'écologie est-elle importante ?",
+                "opciones": [
+                    "Pour gagner de l'argent",
+                    "Pour assurer un futur durable",
+                    "Pour être à la mode",
+                    "Ce n'est pas important"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La Gastronomie Française",
+        "texto": "Le repas gastronomique des Français est inscrit au patrimoine immatériel de l'UNESCO. La cuisine française est célèbre pour sa qualité et sa diversité. On commence souvent par une entrée, puis un plat principal, du FROMAGE et enfin un dessert. Le pain (la baguette) est présent sur toutes les tables. Chaque région a ses spécialités : les crêpes en Bretagne, la choucroute en Alsace ou la bouillabaisse à Marseille. On prend le temps de manger et de discuter en famille ou entre amis, c'est un moment de convivialité.",
+        "preguntas": [
+            {
+                "pregunta": "Quelle organisation a reconnu la gastronomie française ?",
+                "opciones": [
+                    "L'ONU",
+                    "L'UNESCO",
+                    "L'OTAN",
+                    "La FIFA"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel produit est typiquement mangé après le plat principal ?",
+                "opciones": [
+                    "De la soupe",
+                    "Du fromage",
+                    "Du poisson",
+                    "Des céréales"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle est la spécialité de la Bretagne ?",
+                "opciones": [
+                    "La pizza",
+                    "Les crêpes",
+                    "Le burger",
+                    "Les sushis"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Comment s'appelle le pain traditionnel français ?",
+                "opciones": [
+                    "Le sandwich",
+                    "La baguette",
+                    "Le toast",
+                    "Le muffin"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Que représente le repas pour les Français ?",
+                "opciones": [
+                    "Une perte de temps",
+                    "Un moment de convivialité et de discussion",
+                    "Un exercice physique",
+                    "Seulement manger vite"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Le Cinéma : Les Frères Lumière",
+        "texto": "Le cinéma est né en France ! En 1895, Auguste et Louis LUMIÈRE ont inventé le cinématographe et ont projeté le premier film à Paris. Aujourd'hui, la France reste un pays très important pour le septième art. Chaque année en mai, il y a le Festival de CANNES, le plus prestigieux festival de cinéma au monde. Des acteurs et des réalisateurs du monde entier viennent sur la Croisette. Le cinéma français est connu pour ses comédies, ses films d'auteur et ses animations comme 'Ratatouille' ou 'Miraculous'.",
+        "preguntas": [
+            {
+                "pregunta": "Qui a inventé le cinéma ?",
+                "opciones": [
+                    "Walt Disney",
+                    "Les frères Lumière",
+                    "Napoléon",
+                    "Victor Hugo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où se passe le festival de cinéma le plus célèbre en France ?",
+                "opciones": [
+                    "À Paris",
+                    "À Cannes",
+                    "À Lyon",
+                    "À Nice"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Comment appelle-t-on souvent le cinéma ?",
+                "opciones": [
+                    "Le premier art",
+                    "Le septième art",
+                    "Le dixième art",
+                    "Le petit art"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En quel mois a lieu le festival de Cannes ?",
+                "opciones": [
+                    "En janvier",
+                    "En mai",
+                    "En août",
+                    "En octobre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle ville a accueilli la première projection en 1895 ?",
+                "opciones": [
+                    "Londres",
+                    "Paris",
+                    "New York",
+                    "Rome"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "L'Union Européenne et la France",
+        "texto": "La France est l'un des membres fondateurs de l'Union européenne (UE). Robert Schuman, un homme politique français, est considéré comme l'un des 'pères de l'Europe'. Le but de l'UE est de maintenir la paix et de faciliter le commerce et les voyages. La ville de STRASBOURG, en France, est le siège du Parlement européen. Aujourd'hui, les citoyens européens partagent une monnaie commune, l'EURO, et peuvent étudier dans d'autres pays grâce au programme ERASMUS. C'est une grande aventure collective.",
+        "preguntas": [
+            {
+                "pregunta": "Qui est considéré comme l'un des pères de l'Europe ?",
+                "opciones": [
+                    "Molière",
+                    "Robert Schuman",
+                    "Zinedine Zidane",
+                    "Lafayette"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle ville française accueille le Parlement européen ?",
+                "opciones": [
+                    "Paris",
+                    "Strasbourg",
+                    "Marseille",
+                    "Bordeaux"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle est la monnaie commune de l'Europe ?",
+                "opciones": [
+                    "Le Franc",
+                    "L'Euro",
+                    "Le Dollar",
+                    "La Livre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Comment s'appelle le programme pour étudier à l'étranger ?",
+                "opciones": [
+                    "Netflix",
+                    "Erasmus",
+                    "SNCF",
+                    "Lego"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel est le but principal de l'Union européenne ?",
+                "opciones": [
+                    "Faire la guerre",
+                    "Maintenir la paix et faciliter les échanges",
+                    "Changer la langue",
+                    "Supprimer les vacances"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "La Tour Eiffel et les monuments de Paris",
+        "texto": "Paris est surnommée la 'Ville Lumière'. Son monument le plus célèbre est la TOUR EIFFEL, construite par Gustave Eiffel pour l'Exposition Universelle de 1889. Au début, beaucoup de Parisiens n'aimaient pas cette tour en fer ! Aujourd'hui, c'est le symbole de la France. Mais Paris a d'autres trésors : l'Arc de Triomphe, le musée du LOUVRE (où se trouve la Joconde) et la cathédrale Notre-Dame. Monter au sommet de la Tour Eiffel offre une vue magnifique sur toute la capitale.",
+        "preguntas": [
+            {
+                "pregunta": "Quel est le surnom de Paris ?",
+                "opciones": [
+                    "La Ville Rouge",
+                    "La Ville Lumière",
+                    "La Ville d'Acier",
+                    "La Ville Grise"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qui a construit la Tour Eiffel ?",
+                "opciones": [
+                    "Napoléon",
+                    "Gustave Eiffel",
+                    "Louis Pasteur",
+                    "Christian Dior"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Dans quel musée peut-on voir la Joconde ?",
+                "opciones": [
+                    "Musée d'Orsay",
+                    "Le Louvre",
+                    "Musée Rodin",
+                    "Centre Pompidou"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Pour quel événement la Tour Eiffel a-t-elle été construite ?",
+                "opciones": [
+                    "Les Jeux Olympiques",
+                    "L'Exposition Universelle de 1889",
+                    "Un mariage royal",
+                    "Noël"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En quel matériau la tour est-elle construite ?",
+                "opciones": [
+                    "En bois",
+                    "En fer",
+                    "En pierre",
+                    "En verre"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Le Sport en France",
+        "texto": "Les Français adorent le sport. Le football est le sport national, et l'équipe de France (les Bleus) a gagné la Coupe du Monde en 1998 et en 2018. Le cyclisme est aussi très populaire avec le TOUR DE FRANCE, la plus célèbre course de vélo au monde qui finit toujours sur les Champs-Élysées. En tennis, il y a le tournoi de ROLAND-GARROS sur terre battue. Enfin, Paris a accueilli les Jeux Olympiques en 2024, transformant la ville en un immense stade pour célébrer l'excellence sportive.",
+        "preguntas": [
+            {
+                "pregunta": "Quel est le sport national en France ?",
+                "opciones": [
+                    "Le basket",
+                    "Le football",
+                    "Le ski",
+                    "La natation"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Comment appelle-t-on l'équipe de France de football ?",
+                "opciones": [
+                    "Les Rouges",
+                    "Les Bleus",
+                    "Les Blancs",
+                    "Les Étoiles"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle est la course de vélo la plus célèbre ?",
+                "opciones": [
+                    "Le Giro",
+                    "Le Tour de France",
+                    "La Vuelta",
+                    "Le Marathon"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Sur quel type de terrain joue-t-on à Roland-Garros ?",
+                "opciones": [
+                    "Gazon",
+                    "Terre battue",
+                    "Béton",
+                    "Sable"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel grand événement a eu lieu à Paris en 2024 ?",
+                "opciones": [
+                    "L'Exposition Universelle",
+                    "Les Jeux Olympiques",
+                    "La fin du monde",
+                    "Un concert de rock"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "La Lecture et la Littérature",
+        "texto": "La France est le pays de la littérature. Beaucoup d'écrivains français sont connus dans le monde entier. Victor Hugo a écrit 'Les Misérables', une histoire sur la justice sociale. Le PETIT PRINCE d'Antoine de Saint-Exupéry est le livre le plus traduit après la Bible : c'est un conte philosophique sur l'amitié et la vie. Les Français aiment aussi les bandes dessinées (BD) comme 'Astérix' ou 'Tintin'. La lecture est encouragée à l'école et dans les nombreuses bibliothèques municipales du pays.",
+        "preguntas": [
+            {
+                "pregunta": "Qui a écrit 'Les Misérables' ?",
+                "opciones": [
+                    "Jules Verne",
+                    "Victor Hugo",
+                    "Jean-Paul Sartre",
+                    "Molière"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel livre est célèbre pour être le plus traduit après la Bible ?",
+                "opciones": [
+                    "Harry Potter",
+                    "Le Petit Prince",
+                    "Le Code Civil",
+                    "L'Étranger"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'est-ce qu'une 'BD' ?",
+                "opciones": [
+                    "Une bibliothèque",
+                    "Une Bande Dessinée",
+                    "Un bon dessert",
+                    "Une boîte de disque"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Citez un personnage de BD mentionné :",
+                "opciones": [
+                    "Batman",
+                    "Astérix",
+                    "Mickey",
+                    "Superman"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel est le thème principal du Petit Prince ?",
+                "opciones": [
+                    "La cuisine",
+                    "L'amitié et la vie",
+                    "La guerre",
+                    "Les mathématiques"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "La Technologie et le futur",
+        "texto": "La France investit beaucoup dans la haute technologie. Le TGV (Train à Grande Vitesse) est l'un des trains les plus rapides du monde. Dans le domaine de l'espace, la ville de Toulouse est le centre de l'industrie aéronautique européenne avec AIRBUS. La France développe aussi l'intelligence artificielle et l'énergie nucléaire civil. L'objectif est de créer des technologies innovantes pour améliorer la vie quotidienne tout en respectant l'environnement et en réduisant les émissions de carbone.",
+        "preguntas": [
+            {
+                "pregunta": "Que signifie TGV ?",
+                "opciones": [
+                    "Transport de Grand Volume",
+                    "Train à Grande Vitesse",
+                    "Très Grande Voiture",
+                    "Toujours Grand Voyage"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle ville française est le centre de l'aéronautique ?",
+                "opciones": [
+                    "Paris",
+                    "Toulouse",
+                    "Lille",
+                    "Brest"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle entreprise fabrique des avions à Toulouse ?",
+                "opciones": [
+                    "Boeing",
+                    "Airbus",
+                    "Renault",
+                    "Apple"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Sur quel type d'énergie la France travaille-t-elle beaucoup ?",
+                "opciones": [
+                    "Charbon",
+                    "Énergie nucléaire et renouvelable",
+                    "Piles",
+                    "Vapeur"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel est le but des nouvelles technologies selon le texte ?",
+                "opciones": [
+                    "Détruire la nature",
+                    "Améliorer la vie et respecter l'environnement",
+                    "Travailler plus",
+                    "Remplacer l'école"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

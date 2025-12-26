@@ -1,17 +1,97 @@
 {
   "derechos_del_niño": [
-    "educación", "salud", "juego", "familia", "igualdad", "protección", "nombre", "nacionalidad", "amor", "alimentación"
+    "derecho a la educación",
+    "derecho a una identidad",
+    "derecho a la vida",
+    "derecho a la salud",
+    "derecho a jugar",
+    "derecho a la familia",
+    "derecho a la nacionalidad",
+    "derecho a ser protegido",
+    "derecho a la igualdad",
+    "derecho a la expresión",
+    "derecho a un hogar",
+    "derecho a la alimentación",
+    "derecho a participar",
+    "derecho a la comprensión",
+    "derecho al bienestar"
   ],
   "valores_positivos": [
-    "tolerancia", "solidaridad", "paz", "justicia", "libertad", "responsabilidad", "honestidad", "gratitud", "humildad", "lealtad"
+    "solidaridad",
+    "libertad",
+    "justicia",
+    "honestidad",
+    "gratitud",
+    "humildad",
+    "lealtad",
+    "generosidad",
+    "paciencia",
+    "bondad",
+    "tolerancia",
+    "respeto",
+    "esfuerzo",
+    "compañerismo",
+    "valentía",
+    "sinceridad",
+    "compromiso",
+    "empatía",
+    "optimismo",
+    "perseverancia"
   ],
   "emociones_basicas": [
-    "alegría", "tristeza", "ira", "miedo", "asco", "sorpresa", "vergüenza", "culpa", "entusiasmo", "aburrimiento"
+    "alegría",
+    "tristeza",
+    "ira",
+    "miedo",
+    "asco",
+    "sorpresa",
+    "vergüenza",
+    "culpa",
+    "entusiasmo",
+    "aburrimiento",
+    "calma",
+    "envidia",
+    "orgullo",
+    "cariño",
+    "alivio",
+    "asombro",
+    "nerviosismo",
+    "timidez",
+    "euforia",
+    "curiosidad"
   ],
   "habitos_saludables": [
-    "fruta", "verdura", "agua", "ejercicio", "descanso", "higiene", "vacunas", "lavarse", "postura", "dentista"
+    "comer fruta",
+    "beber mucha agua",
+    "hacer deporte",
+    "lavarse los dientes",
+    "dormir ocho horas",
+    "higiene personal",
+    "vacunarse",
+    "postura correcta",
+    "revisión médica",
+    "comer verdura",
+    "ducharse a diario",
+    "lavarse las manos",
+    "evitar el azúcar",
+    "jugar al aire libre",
+    "leer cada día"
   ],
-  "normas_aula": [
-    "levantar la mano", "escuchar", "respetar", "compartir", "limpiar", "puntualidad", "silencio", "cuidar", "ordenar", "trabajar"
+  "normas_aula_y_convivencia": [
+    "levantar la mano para hablar",
+    "escuchar con atención",
+    "compartir el material",
+    "limpiar mi sitio",
+    "ser puntual",
+    "estar en silencio",
+    "cuidar los libros",
+    "trabajar en equipo",
+    "pedir las cosas por favor",
+    "dar las gracias",
+    "pedir perdón",
+    "no empujar",
+    "entrar con orden",
+    "respetar al compañero",
+    "hablar sin gritar"
   ]
 }

@@ -7,14 +7,30 @@
       "🐭",
       "🐰",
       "🦊",
-      "🐻"
+      "🐻",
+      "🦁",
+      "🐯",
+      "🐵",
+      "🐙",
+      "🐋",
+      "🦜",
+      "🐄",
+      "🐷",
+      "🐸"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "⚽",
       "🏠",
-      "✏️"
+      "✏️",
+      "🍕",
+      "🍔",
+      "🚲",
+      "🎸",
+      "⌚",
+      "💻",
+      "🧸"
     ]
   },
   {
@@ -25,14 +41,27 @@
       "🍇",
       "🍊",
       "🍋",
-      "🍓"
+      "🍓",
+      "🍉",
+      "🍍",
+      "🍒",
+      "🍑",
+      "🥝",
+      "🥭"
     ],
     "intrusos": [
       "🥦",
       "🥕",
       "🍔",
       "🍕",
-      "🌭"
+      "🌭",
+      "🍟",
+      "🥓",
+      "🥐",
+      "🧀",
+      "🍗",
+      "🥪",
+      "🍳"
     ]
   },
   {
@@ -43,14 +72,27 @@
       "🟢",
       "🟡",
       "⚫",
-      "⚪"
+      "⚪",
+      "🟣",
+      "🟠",
+      "🟤",
+      "🟥",
+      "🟦",
+      "🟩",
+      "🟨"
     ],
     "intrusos": [
       "🐶",
       "🐱",
       "🚗",
       "🏠",
-      "✏️"
+      "✏️",
+      "🍔",
+      "🧸",
+      "🚲",
+      "👟",
+      "🧢",
+      "📱"
     ]
   },
   {
@@ -61,47 +103,85 @@
       "Vert",
       "Jaune",
       "Noir",
-      "Blanc"
+      "Blanc",
+      "Rose",
+      "Orange",
+      "Gris",
+      "Violet",
+      "Marron",
+      "Beige",
+      "Argent",
+      "Or"
     ],
     "intrusos": [
       "Chien",
       "Chat",
       "Maison",
       "Un",
-      "Deux"
+      "Deux",
+      "Table",
+      "Chaise",
+      "Livre",
+      "Stylo",
+      "Pomme",
+      "Manger",
+      "Dormir"
     ]
   },
   {
-    "categoria": "Nombres 1-5",
+    "categoria": "Nombres 1-10",
     "correctos": [
       "Un",
       "Deux",
       "Trois",
       "Quatre",
-      "Cinq"
+      "Cinq",
+      "Six",
+      "Sept",
+      "Huit",
+      "Neuf",
+      "Dix"
     ],
     "intrusos": [
       "Bonjour",
       "Merci",
       "Oui",
       "Non",
-      "Rouge"
+      "Rouge",
+      "Bleu",
+      "Chien",
+      "Chat",
+      "Maison",
+      "Petit",
+      "Grand"
     ]
   },
   {
-    "categoria": "Salutations",
+    "categoria": "Salutations et Politesse",
     "correctos": [
       "Bonjour",
       "Salut",
       "Au revoir",
-      "Bonsoir"
+      "Bonsoir",
+      "Bonne nuit",
+      "Merci",
+      "S'il vous plaît",
+      "Pardon",
+      "Enchanté",
+      "De rien"
     ],
     "intrusos": [
       "Rouge",
       "Bleu",
       "Chat",
       "Chien",
-      "Pomme"
+      "Pomme",
+      "Banane",
+      "Un",
+      "Deux",
+      "Trois",
+      "Maison",
+      "Table"
     ]
   },
   {
@@ -111,14 +191,25 @@
       "Mère",
       "Frère",
       "Sœur",
-      "Bébé"
+      "Bébé",
+      "Grand-père",
+      "Grand-mère",
+      "Oncle",
+      "Tante",
+      "Cousin",
+      "Cousine"
     ],
     "intrusos": [
       "Stylo",
       "Gomme",
       "Cahier",
       "Professeur",
-      "École"
+      "École",
+      "Classe",
+      "Livre",
+      "Règle",
+      "Ciseaux",
+      "Sac à dos"
     ]
   },
   {
@@ -128,14 +219,28 @@
       "Chat",
       "Lion",
       "Tigre",
-      "Poisson"
+      "Poisson",
+      "Oiseau",
+      "Éléphant",
+      "Girafe",
+      "Zèbre",
+      "Singe",
+      "Vache",
+      "Cochon",
+      "Lapin"
     ],
     "intrusos": [
       "Table",
       "Chaise",
       "Livre",
       "Stylo",
-      "Pomme"
+      "Pomme",
+      "Banane",
+      "Voiture",
+      "Bus",
+      "Avion",
+      "Arbre",
+      "Fleur"
     ]
   }
 ]

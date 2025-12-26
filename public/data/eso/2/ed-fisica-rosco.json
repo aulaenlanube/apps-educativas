@@ -1,312 +1,2274 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Capacidad de realizar ejercicio de media o baja intensidad durante mucho tiempo (Resistencia...).", "solucion": "aeróbica", "materia": "ed_fisica" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Ejercicio intenso y corto con falta de oxígeno (Resistencia...).", "solucion": "anaeróbica", "materia": "ed_fisica" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Músculos de la zona del vientre.", "solucion": "abdominales", "materia": "ed_fisica" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Deporte rey del olimpismo (carreras, saltos...).", "solucion": "atletismo", "materia": "ed_fisica" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Juez del partido.", "solucion": "árbitro", "materia": "ed_fisica" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Fase del juego para marcar gol o punto.", "solucion": "ataque", "materia": "ed_fisica" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Unión entre huesos.", "solucion": "articulación", "materia": "ed_fisica" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Aparato de gimnasia (anillas, barra...).", "solucion": "aparato", "materia": "ed_fisica" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Capacidad de cambiar de dirección rápido.", "solucion": "agilidad", "materia": "ed_fisica" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Deporte marcial japonés.", "solucion": "aikido", "materia": "ed_fisica" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Deporte de raqueta y volante.", "solucion": "bádminton", "materia": "ed_fisica" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Deporte de canasta.", "solucion": "baloncesto", "materia": "ed_fisica" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Deporte de porterías y manos.", "solucion": "balonmano", "materia": "ed_fisica" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Músculo delantero del brazo.", "solucion": "bíceps", "materia": "ed_fisica" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Acción defensiva en voleibol en la red.", "solucion": "bloqueo", "materia": "ed_fisica" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Impulso final en el salto.", "solucion": "batida", "materia": "ed_fisica" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Lugar de los suplentes.", "solucion": "banquillo", "materia": "ed_fisica" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Objeto esférico de juego.", "solucion": "balón", "materia": "ed_fisica" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Vehículo para triatlón.", "solucion": "bicicleta", "materia": "ed_fisica" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Deporte americano con bate.", "solucion": "béisbol", "materia": "ed_fisica" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Fase inicial de la sesión para evitar lesiones.", "solucion": "calentamiento", "materia": "ed_fisica" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Músculo potente del muslo.", "solucion": "cuádriceps", "materia": "ed_fisica" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Cualidad física de armonizar movimientos.", "solucion": "coordinación", "materia": "ed_fisica" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Motor del sistema circulatorio.", "solucion": "corazón", "materia": "ed_fisica" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Recorrido con estaciones de ejercicios.", "solucion": "circuito", "materia": "ed_fisica" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Desplazamiento a pie a velocidad.", "solucion": "carrera", "materia": "ed_fisica" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Líder del equipo dentro del campo.", "solucion": "capitán", "materia": "ed_fisica" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Contracción dolorosa involuntaria.", "solucion": "calambre", "materia": "ed_fisica" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Ritmo de baile o música.", "solucion": "compás", "materia": "ed_fisica" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Medida de la energía de los alimentos.", "solucion": "caloría", "materia": "ed_fisica" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Músculo del hombro.", "solucion": "deltoides", "materia": "ed_fisica" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Músculo ancho de la espalda.", "solucion": "dorsal", "materia": "ed_fisica" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Acción de evitar que el contrario marque.", "solucion": "defensa", "materia": "ed_fisica" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Actividad física reglamentada.", "solucion": "deporte", "materia": "ed_fisica" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Acción de avanzar botando o regateando.", "solucion": "dribling", "materia": "ed_fisica" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Expresión corporal artística.", "solucion": "danza", "materia": "ed_fisica" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Pausa para recuperar.", "solucion": "descanso", "materia": "ed_fisica" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Falta doble en baloncesto (Pasos y... ).", "solucion": "dobles", "materia": "ed_fisica" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Lanzamiento de frisbee.", "solucion": "disco", "materia": "ed_fisica" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Tiro a canasta espectacular hacia abajo.", "solucion": "dunk", "materia": "ed_fisica" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Capacidad de mantener la postura sin caerse.", "solucion": "equilibrio", "materia": "ed_fisica" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Ejercicio para alargar músculos y ganar flexibilidad.", "solucion": "estiramiento", "materia": "ed_fisica" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Grupo de jugadores.", "solucion": "equipo", "materia": "ed_fisica" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Persona que dirige la preparación física.", "solucion": "entrenador", "materia": "ed_fisica" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Deporte de trepar paredes.", "solucion": "escalada", "materia": "ed_fisica" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Cualidad del músculo de estirarse.", "solucion": "elasticidad", "materia": "ed_fisica" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Lesión de ligamentos (torcedura).", "solucion": "esguince", "materia": "ed_fisica" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Conjunto de huesos.", "solucion": "esqueleto", "materia": "ed_fisica" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Prueba de atletismo de relevos (pasar el...).", "solucion": "estafeta", "materia": "ed_fisica" }, 
-  { "id": "e9_fix", "letra": "E", "tipo": "empieza", "definicion": "Postura o plan de juego.", "solucion": "estrategia", "materia": "ed_fisica" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Movimiento corporal planificado.", "solucion": "ejercicio", "materia": "ed_fisica" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Cualidad física que depende de la elasticidad y movilidad articular.", "solucion": "flexibilidad", "materia": "ed_fisica" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Capacidad de vencer una resistencia.", "solucion": "fuerza", "materia": "ed_fisica" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Número de latidos por minuto (Frecuencia...).", "solucion": "frecuencia", "materia": "ed_fisica" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Infracción de las reglas.", "solucion": "falta", "materia": "ed_fisica" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Deporte de 11 contra 11.", "solucion": "fútbol", "materia": "ed_fisica" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Disco volador (en inglés).", "solucion": "frisbee", "materia": "ed_fisica" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Engaño corporal para desbordar al rival.", "solucion": "finta", "materia": "ed_fisica" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Hueso del muslo.", "solucion": "fémur", "materia": "ed_fisica" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Cansancio muscular.", "solucion": "fatiga", "materia": "ed_fisica" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Deporte de sala con sticks (Floor...).", "solucion": "floorball", "materia": "ed_fisica" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Músculo de la nalga.", "solucion": "glúteo", "materia": "ed_fisica" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Músculo de la pantorrilla.", "solucion": "gemelo", "materia": "ed_fisica" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Deporte con acrobacias.", "solucion": "gimnasia", "materia": "ed_fisica" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Tanto en el fútbol.", "solucion": "gol", "materia": "ed_fisica" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Rotación sobre el eje longitudinal.", "solucion": "giro", "materia": "ed_fisica" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Impacto con el balón.", "solucion": "golpeo", "materia": "ed_fisica" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "El que vence.", "solucion": "ganador", "materia": "ed_fisica" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Reserva energética corporal.", "solucion": "grasa", "materia": "ed_fisica" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Lugar cubierto de entrenamiento.", "solucion": "gimnasio", "materia": "ed_fisica" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Portero en inglés (Goal...).", "solucion": "goalkeeper", "materia": "ed_fisica" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Hábitos de limpieza y salud.", "solucion": "higiene", "materia": "ed_fisica" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Beber agua antes, durante y después.", "solucion": "hidratación", "materia": "ed_fisica" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Pieza dura del esqueleto.", "solucion": "hueso", "materia": "ed_fisica" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Destreza motriz.", "solucion": "habilidad", "materia": "ed_fisica" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Articulación del brazo con el tronco.", "solucion": "hombro", "materia": "ed_fisica" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Hueso del brazo.", "solucion": "húmero", "materia": "ed_fisica" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Deporte con patines y stick.", "solucion": "hockey", "materia": "ed_fisica" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Deporte de levantar peso.", "solucion": "halterofilia", "materia": "ed_fisica" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Juego limpio (inglés: Fair play) o...", "solucion": "honestidad", "materia": "ed_fisica" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Acción repetida (costumbre saludable).", "solucion": "hábito", "materia": "ed_fisica" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Grado de esfuerzo (alta, media, baja).", "solucion": "intensidad", "materia": "ed_fisica" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Tomar aire.", "solucion": "inspiración", "materia": "ed_fisica" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Parte posterior del muslo (músculos).", "solucion": "isquiotibiales", "materia": "ed_fisica" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Periodo de descanso entre ejercicios.", "solucion": "intervalo", "materia": "ed_fisica" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Materiales o edificio deportivo.", "solucion": "instalación", "materia": "ed_fisica" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Comienzo de la actividad.", "solucion": "inicio", "materia": "ed_fisica" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Violación del reglamento.", "solucion": "infracción", "materia": "ed_fisica" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Fuerza inicial de un salto.", "solucion": "impulso", "materia": "ed_fisica" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Deporte que se hace solo.", "solucion": "individual", "materia": "ed_fisica" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Índice de Masa Corporal (siglas).", "solucion": "imc", "materia": "ed_fisica" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Evento deportivo mundial cada 4 años (Juegos...).", "solucion": "juegos", "materia": "ed_fisica" }, 
-  { "id": "j1_fix", "letra": "J", "tipo": "empieza", "definicion": "Olimpiadas (Juegos...).", "solucion": "olímpicos", "materia": "ed_fisica" }, 
-  { "id": "j1_final", "letra": "J", "tipo": "empieza", "definicion": "Arte marcial japonés de agarres.", "solucion": "judo", "materia": "ed_fisica" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Lanzamiento de una vara en atletismo.", "solucion": "jabalina", "materia": "ed_fisica" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Persona que compite en un equipo.", "solucion": "jugador", "materia": "ed_fisica" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Respeto a las reglas (Juego...).", "solucion": "limpio", "materia": "ed_fisica" }, 
-  { "id": "j4_fix", "letra": "J", "tipo": "empieza", "definicion": "Árbitro o evaluador.", "solucion": "juez", "materia": "ed_fisica" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Actividad lúdica.", "solucion": "juego", "materia": "ed_fisica" },
-  { "id": "j6", "letra": "J", "tipo": "empieza", "definicion": "Saltos continuos (fitness).", "solucion": "jumping", "materia": "ed_fisica" },
-  { "id": "j7", "letra": "J", "tipo": "empieza", "definicion": "Arte marcial brasileño (...-Jitsu).", "solucion": "jiu", "materia": "ed_fisica" },
-  { "id": "j8", "letra": "J", "tipo": "empieza", "definicion": "Correr suave en inglés.", "solucion": "jogging", "materia": "ed_fisica" },
-  { "id": "j9", "letra": "J", "tipo": "empieza", "definicion": "Respiración forzada tras esfuerzo.", "solucion": "jadeo", "materia": "ed_fisica" },
-  { "id": "j10", "letra": "J", "tipo": "empieza", "definicion": "Deporte vasco de pelota (Jai-...).", "solucion": "alai", "materia": "ed_fisica" }, 
-  { "id": "j10_fix", "letra": "J", "tipo": "empieza", "definicion": "Saber ganar y perder (actitud).", "solucion": "juego limpio", "materia": "ed_fisica" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Deporte de lucha con patadas.", "solucion": "karate", "materia": "ed_fisica" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Canoa deportiva cerrada.", "solucion": "kayak", "materia": "ed_fisica" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Distancia de 1000 metros.", "solucion": "kilómetro", "materia": "ed_fisica" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Unidad de masa.", "solucion": "kilogramo", "materia": "ed_fisica" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Vendaje de colores.", "solucion": "kinesiotape", "materia": "ed_fisica" },
-  { "id": "k6", "letra": "K", "tipo": "empieza", "definicion": "Deporte de contacto (Kick...).", "solucion": "boxing", "materia": "ed_fisica" }, 
-  { "id": "k6_fix", "letra": "K", "tipo": "empieza", "definicion": "Boxeo con patadas.", "solucion": "kickboxing", "materia": "ed_fisica" },
-  { "id": "k7", "letra": "K", "tipo": "empieza", "definicion": "Deporte acuático con cometa.", "solucion": "kitesurf", "materia": "ed_fisica" },
-  { "id": "k8", "letra": "K", "tipo": "contiene", "definicion": "Deporte alternativo mixto (contiene K).", "solucion": "korfbal", "materia": "ed_fisica" },
-  { "id": "k9", "letra": "K", "tipo": "contiene", "definicion": "Senderismo de montaña (contiene K).", "solucion": "trekking", "materia": "ed_fisica" },
-  { "id": "k10", "letra": "K", "tipo": "contiene", "definicion": "Deporte de raqueta (Pic..., contiene K).", "solucion": "pickleball", "materia": "ed_fisica" }, 
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Tirar un objeto.", "solucion": "lanzamiento", "materia": "ed_fisica" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Daño físico.", "solucion": "lesión", "materia": "ed_fisica" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Competición regular.", "solucion": "liga", "materia": "ed_fisica" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Zona de la espalda baja.", "solucion": "lumbar", "materia": "ed_fisica" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Tejido que une huesos.", "solucion": "ligamento", "materia": "ed_fisica" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Salto horizontal.", "solucion": "longitud", "materia": "ed_fisica" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Velocidad de movimiento (Lentitud/...).", "solucion": "ligereza", "materia": "ed_fisica" }, 
-  { "id": "l7_fix", "letra": "L", "tipo": "empieza", "definicion": "Jugador que actúa en las bandas.", "solucion": "lateral", "materia": "ed_fisica" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Marca del suelo.", "solucion": "línea", "materia": "ed_fisica" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Fluido corporal importante en el deporte.", "solucion": "líquido", "materia": "ed_fisica" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Capacidad de moverse libremente.", "solucion": "locomoción", "materia": "ed_fisica" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Tejido que genera movimiento.", "solucion": "músculo", "materia": "ed_fisica" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Cambio de lugar o posición.", "solucion": "movimiento", "materia": "ed_fisica" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Objetivo de una carrera.", "solucion": "meta", "materia": "ed_fisica" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Balones, aros, conos...", "solucion": "material", "materia": "ed_fisica" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Premio del ganador.", "solucion": "medalla", "materia": "ed_fisica" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Profesor.", "solucion": "maestro", "materia": "ed_fisica" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Impulso para actuar.", "solucion": "motivación", "materia": "ed_fisica" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Disminuir la velocidad en ciclismo o motor.", "solucion": "motricidad", "materia": "ed_fisica" }, 
-  { "id": "m8_fix", "letra": "M", "tipo": "empieza", "definicion": "Capacidad de generar movimiento.", "solucion": "motricidad", "materia": "ed_fisica" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Parte del cuerpo entre el brazo y los dedos.", "solucion": "mano", "materia": "ed_fisica" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Mejor marca personal.", "solucion": "marca", "materia": "ed_fisica" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Deporte en el agua.", "solucion": "natación", "materia": "ed_fisica" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Alimentación adecuada.", "solucion": "nutrición", "materia": "ed_fisica" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Reglas del juego.", "solucion": "normas", "materia": "ed_fisica" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Parte posterior del cuello.", "solucion": "nuca", "materia": "ed_fisica" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Cable que conecta el cerebro con el músculo.", "solucion": "nervio", "materia": "ed_fisica" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Estilo de natación (libre).", "solucion": "nado", "materia": "ed_fisica" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Sustancias de los alimentos.", "solucion": "nutrientes", "materia": "ed_fisica" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Grado de habilidad.", "solucion": "nivel", "materia": "ed_fisica" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Parte del cuerpo que incluye el glúteo.", "solucion": "nalga", "materia": "ed_fisica" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Dorsal de la camiseta.", "solucion": "número", "materia": "ed_fisica" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Articulación de la mano (contiene Ñ).", "solucion": "muñeca", "materia": "ed_fisica" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Amigo de equipo (contiene Ñ).", "solucion": "compañero", "materia": "ed_fisica" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Hacerse pupa (contiene Ñ).", "solucion": "daño", "materia": "ed_fisica" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Lugar para ducharse (contiene Ñ).", "solucion": "baño", "materia": "ed_fisica" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Senderismo en altura (contiene Ñ).", "solucion": "montaña", "materia": "ed_fisica" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "contiene", "definicion": "Temporada de liga (contiene Ñ).", "solucion": "campaña", "materia": "ed_fisica" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Labor del entrenador (contiene Ñ).", "solucion": "enseñar", "materia": "ed_fisica" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Gesto con la mano (contiene Ñ).", "solucion": "señal", "materia": "ed_fisica" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "Mano cerrada (contiene Ñ).", "solucion": "puño", "materia": "ed_fisica" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "Deporte en el agua (Ba... contiene Ñ).", "solucion": "bañarse", "materia": "ed_fisica" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Juegos mundiales cada 4 años.", "solucion": "olimpiadas", "materia": "ed_fisica" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Gas necesario para el ejercicio.", "solucion": "oxígeno", "materia": "ed_fisica" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Deporte de mapa y brújula.", "solucion": "orientación", "materia": "ed_fisica" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Meta a conseguir.", "solucion": "objetivo", "materia": "ed_fisica" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Rival.", "solucion": "oponente", "materia": "ed_fisica" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Barrera en una carrera.", "solucion": "obstáculo", "materia": "ed_fisica" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Medalla del campeón.", "solucion": "oro", "materia": "ed_fisica" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Estar en fuera de juego (inglés).", "solucion": "offside", "materia": "ed_fisica" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Tiempo libre activo.", "solucion": "ocio", "materia": "ed_fisica" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Colocación táctica.", "solucion": "orden", "materia": "ed_fisica" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Acción de dar el balón a otro.", "solucion": "pase", "materia": "ed_fisica" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Músculo del pecho.", "solucion": "pectoral", "materia": "ed_fisica" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Medida de la frecuencia cardíaca.", "solucion": "pulsaciones", "materia": "ed_fisica" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Cualidad de fuerza por velocidad.", "solucion": "potencia", "materia": "ed_fisica" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Jugador que guarda la meta.", "solucion": "portero", "materia": "ed_fisica" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Castigo en fútbol desde los 11 metros.", "solucion": "penalti", "materia": "ed_fisica" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Superficie de juego.", "solucion": "pista", "materia": "ed_fisica" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Deporte de raqueta contra una pared.", "solucion": "padel", "materia": "ed_fisica" }, 
-  { "id": "p8_fix", "letra": "P", "tipo": "empieza", "definicion": "Deporte de pala y pared.", "solucion": "pelota", "materia": "ed_fisica" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Deporte de patines.", "solucion": "patinaje", "materia": "ed_fisica" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Colocación del cuerpo.", "solucion": "postura", "materia": "ed_fisica" },
-
-  { "id": "q1", "letra": "Q", "tipo": "contiene", "definicion": "Deporte con nieve (contiene Q).", "solucion": "esquí", "materia": "ed_fisica" },
-  { "id": "q2", "letra": "Q", "tipo": "contiene", "definicion": "Grupo de jugadores (contiene Q).", "solucion": "equipo", "materia": "ed_fisica" },
-  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Instrumento de tenis (contiene Q).", "solucion": "raqueta", "materia": "ed_fisica" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Impedir el paso (contiene Q).", "solucion": "bloqueo", "materia": "ed_fisica" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Acción de intentar marcar (contiene Q).", "solucion": "ataque", "materia": "ed_fisica" },
-  { "id": "q6", "letra": "Q", "tipo": "contiene", "definicion": "Músculo del muslo (contiene Q).", "solucion": "isquiotibiales", "materia": "ed_fisica" }, 
-  { "id": "q6_fix", "letra": "Q", "tipo": "contiene", "definicion": "Músculo anterior del muslo (contiene Q).", "solucion": "cuádriceps", "materia": "ed_fisica" },
-  { "id": "q7", "letra": "Q", "tipo": "contiene", "definicion": "Mantenerse estable (contiene Q).", "solucion": "equilibrio", "materia": "ed_fisica" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "Golpear el balón (To..., contiene Q).", "solucion": "toque", "materia": "ed_fisica" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Lado del cuerpo (Iz..., contiene Q).", "solucion": "izquierda", "materia": "ed_fisica" },
-  { "id": "q10", "letra": "Q", "tipo": "contiene", "definicion": "Deporte con caballo (contiene Q).", "solucion": "equitación", "materia": "ed_fisica" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Cualidad de aguantar un esfuerzo.", "solucion": "resistencia", "materia": "ed_fisica" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Intercambio de gases en los pulmones.", "solucion": "respiración", "materia": "ed_fisica" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Acción de coger el balón.", "solucion": "recepción", "materia": "ed_fisica" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Vuelta a la calma.", "solucion": "relajación", "materia": "ed_fisica" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Norma del deporte.", "solucion": "reglamento", "materia": "ed_fisica" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Utensilio para jugar al tenis.", "solucion": "raqueta", "materia": "ed_fisica" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Carrera pasando un testigo.", "solucion": "relevo", "materia": "ed_fisica" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Articulación de la pierna.", "solucion": "rodilla", "materia": "ed_fisica" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Burlar al contrario con el balón.", "solucion": "regate", "materia": "ed_fisica" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Deporte con balón ovalado.", "solucion": "rugby", "materia": "ed_fisica" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Bienestar físico y mental.", "solucion": "salud", "materia": "ed_fisica" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Acción de iniciar el juego en voleibol o tenis.", "solucion": "saque", "materia": "ed_fisica" }, 
-  { "id": "s2_fix", "letra": "S", "tipo": "empieza", "definicion": "Acción de poner el balón en juego.", "solucion": "servicio", "materia": "ed_fisica" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Impulso para elevarse.", "solucion": "salto", "materia": "ed_fisica" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Falta de actividad física.", "solucion": "sedentarismo", "materia": "ed_fisica" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Caminar por la montaña.", "solucion": "senderismo", "materia": "ed_fisica" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Líquido por donde se pierde agua.", "solucion": "sudor", "materia": "ed_fisica" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Estiramiento (en inglés).", "solucion": "stretching", "materia": "ed_fisica" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Conjunto de repeticiones.", "solucion": "serie", "materia": "ed_fisica" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Pito del árbitro.", "solucion": "silbato", "materia": "ed_fisica" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Movimiento rítmico coordinado.", "solucion": "secuencia", "materia": "ed_fisica" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Plan de juego.", "solucion": "táctica", "materia": "ed_fisica" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Ejecución correcta del movimiento.", "solucion": "técnica", "materia": "ed_fisica" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Músculo posterior del brazo.", "solucion": "tríceps", "materia": "ed_fisica" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Músculo del hombro (Tra...).", "solucion": "trapecio", "materia": "ed_fisica" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Deporte de raqueta.", "solucion": "tenis", "materia": "ed_fisica" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Prueba que combina natación, bici y carrera.", "solucion": "triatlón", "materia": "ed_fisica" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Acción de lanzar a portería.", "solucion": "tiro", "materia": "ed_fisica" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Correr despacio.", "solucion": "trote", "materia": "ed_fisica" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Articulación del pie.", "solucion": "tobillo", "materia": "ed_fisica" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Deporte de mesa con palas.", "solucion": "tenis de mesa", "materia": "ed_fisica" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Ropa de equipo.", "solucion": "uniforme", "materia": "ed_fisica" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Parte final del dedo.", "solucion": "uña", "materia": "ed_fisica" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Cohesión del equipo.", "solucion": "unión", "materia": "ed_fisica" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Deporte con disco volador (Ultimate...).", "solucion": "ultimate", "materia": "ed_fisica" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Número de dorsal.", "solucion": "uno", "materia": "ed_fisica" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Asistencia rápida médica.", "solucion": "urgencia", "materia": "ed_fisica" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Herramienta o material.", "solucion": "utensilio", "materia": "ed_fisica" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Sesión de aprendizaje.", "solucion": "unidad", "materia": "ed_fisica" },
-  { "id": "u9", "letra": "U", "tipo": "empieza", "definicion": "Persona que va al gimnasio.", "solucion": "usuario", "materia": "ed_fisica" },
-  { "id": "u10", "letra": "U", "tipo": "empieza", "definicion": "Posición en el campo.", "solucion": "ubicación", "materia": "ed_fisica" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Cualidad física de rapidez.", "solucion": "velocidad", "materia": "ed_fisica" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Deporte de red y manos.", "solucion": "voleibol", "materia": "ed_fisica" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Obstáculo en atletismo.", "solucion": "valla", "materia": "ed_fisica" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Nutrientes esenciales.", "solucion": "vitaminas", "materia": "ed_fisica" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Entrada y salida de aire.", "solucion": "ventilación", "materia": "ed_fisica" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Recorrido en pista.", "solucion": "vuelta", "materia": "ed_fisica" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Lugar de cambio de ropa.", "solucion": "vestuario", "materia": "ed_fisica" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Deporte de barco con viento.", "solucion": "vela", "materia": "ed_fisica" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Triunfo en el partido.", "solucion": "victoria", "materia": "ed_fisica" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Protección articular.", "solucion": "vendaje", "materia": "ed_fisica" },
-
-  { "id": "w1", "letra": "W", "tipo": "contiene", "definicion": "Deporte acuático de equipo (contiene W).", "solucion": "waterpolo", "materia": "ed_fisica" },
-  { "id": "w2", "letra": "W", "tipo": "contiene", "definicion": "Deporte de vela (contiene W).", "solucion": "windsurf", "materia": "ed_fisica" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Arte marcial coreano (contiene W).", "solucion": "taekwondo", "materia": "ed_fisica" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Estilo de crol (contiene W).", "solucion": "craw", "materia": "ed_fisica" }, 
-  { "id": "w4_fix", "letra": "W", "tipo": "contiene", "definicion": "Estilo libre de natación (inglés, contiene W).", "solucion": "crawl", "materia": "ed_fisica" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Comida de pan (contiene W).", "solucion": "sandwich", "materia": "ed_fisica" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Fruta energética (contiene W).", "solucion": "kiwi", "materia": "ed_fisica" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Mover las caderas con aro (contiene W).", "solucion": "hula-hoop", "materia": "ed_fisica" }, 
-  { "id": "w7_fix", "letra": "W", "tipo": "contiene", "definicion": "Tabla de nieve (contiene W).", "solucion": "snowboard", "materia": "ed_fisica" },
-  { "id": "w8", "letra": "W", "tipo": "contiene", "definicion": "Correr suave en inglés (contiene W).", "solucion": "jogging", "materia": "ed_fisica" }, 
-  { "id": "w8_fix", "letra": "W", "tipo": "contiene", "definicion": "Lanzar la bola en bolos (contiene W).", "solucion": "bowling", "materia": "ed_fisica" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "Cronómetro en inglés (Stop..., contiene W).", "solucion": "stopwatch", "materia": "ed_fisica" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Red informática (contiene W).", "solucion": "web", "materia": "ed_fisica" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Capacidad de doblarse (contiene X).", "solucion": "flexibilidad", "materia": "ed_fisica" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Echar el aire (contiene X).", "solucion": "exhalar", "materia": "ed_fisica" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Estirar una articulación (contiene X).", "solucion": "extensión", "materia": "ed_fisica" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Gas vital (contiene X).", "solucion": "oxígeno", "materia": "ed_fisica" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Deporte de combate (contiene X).", "solucion": "boxeo", "materia": "ed_fisica" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Pecho (contiene X).", "solucion": "tórax", "materia": "ed_fisica" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Competición de motos o bicis (Moto..., contiene X).", "solucion": "motocross", "materia": "ed_fisica" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Esfuerzo límite (M..., contiene X).", "solucion": "máximo", "materia": "ed_fisica" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Expulsión del aire (contiene X).", "solucion": "expiración", "materia": "ed_fisica" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "Equipo de ambos sexos (contiene X).", "solucion": "mixto", "materia": "ed_fisica" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Ejercicio de relajación oriental.", "solucion": "yoga", "materia": "ed_fisica" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Arte marcial (Judo escrito con Y).", "solucion": "yudo", "materia": "ed_fisica" },
-  { "id": "y3", "letra": "Y", "tipo": "contiene", "definicion": "Juego de pistas (contiene Y).", "solucion": "gymkana", "materia": "ed_fisica" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Lugar de vóley (contiene Y).", "solucion": "playa", "materia": "ed_fisica" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Socorrer (contiene Y).", "solucion": "ayuda", "materia": "ed_fisica" },
-  { "id": "y6", "letra": "Y", "tipo": "contiene", "definicion": "Más grande (contiene Y).", "solucion": "mayor", "materia": "ed_fisica" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Apoyo de un compañero (contiene Y).", "solucion": "apoyo", "materia": "ed_fisica" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Comida matutina (contiene Y).", "solucion": "desayuno", "materia": "ed_fisica" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Voleibol (abreviado, contiene Y).", "solucion": "voley", "materia": "ed_fisica" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Deporte en barco (contiene Y).", "solucion": "yate", "materia": "ed_fisica" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Paso largo.", "solucion": "zancada", "materia": "ed_fisica" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Calzado de deporte.", "solucion": "zapatilla", "materia": "ed_fisica" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Área de defensa o ataque.", "solucion": "zona", "materia": "ed_fisica" },
-  { "id": "z4", "letra": "Z", "tipo": "empieza", "definicion": "Baile fitness latino.", "solucion": "zumba", "materia": "ed_fisica" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Tirar un objeto (contiene Z).", "solucion": "lanzar", "materia": "ed_fisica" },
-  { "id": "z6", "letra": "Z", "tipo": "contiene", "definicion": "Cualidad de ser fuerte (contiene Z).", "solucion": "fuerza", "materia": "ed_fisica" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Esfuerzo (contiene Z).", "solucion": "esfuerzo", "materia": "ed_fisica" },
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "Músculo cardíaco (contiene Z).", "solucion": "corazón", "materia": "ed_fisica" },
-  { "id": "z9", "letra": "Z", "tipo": "contiene", "definicion": "Estilo de natación (Bra..., contiene Z).", "solucion": "braza", "materia": "ed_fisica" },
-  { "id": "z10", "letra": "Z", "tipo": "contiene", "definicion": "Calzado (contiene Z).", "solucion": "calzado", "materia": "ed_fisica" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Capacidad de realizar ejercicio de media o baja intensidad durante mucho tiempo (Resistencia...).",
+    "solucion": "aeróbica",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Ejercicio intenso y corto con falta de oxígeno (Resistencia...).",
+    "solucion": "anaeróbica",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Músculos de la zona del vientre.",
+    "solucion": "abdominales",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Deporte rey del olimpismo (carreras, saltos...).",
+    "solucion": "atletismo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Juez del partido.",
+    "solucion": "árbitro",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Fase del juego para marcar gol o punto.",
+    "solucion": "ataque",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Unión entre huesos.",
+    "solucion": "articulación",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Aparato de gimnasia (anillas, barra...).",
+    "solucion": "aparato",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Capacidad de cambiar de dirección rápido.",
+    "solucion": "agilidad",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Deporte marcial japonés.",
+    "solucion": "aikido",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Deporte de raqueta y volante.",
+    "solucion": "bádminton",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Deporte de canasta.",
+    "solucion": "baloncesto",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Deporte de porterías y manos.",
+    "solucion": "balonmano",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Músculo delantero del brazo.",
+    "solucion": "bíceps",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Acción defensiva en voleibol en la red.",
+    "solucion": "bloqueo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Impulso final en el salto.",
+    "solucion": "batida",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Lugar de los suplentes.",
+    "solucion": "banquillo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Objeto esférico de juego.",
+    "solucion": "balón",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Vehículo para triatlón.",
+    "solucion": "bicicleta",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Deporte americano con bate.",
+    "solucion": "béisbol",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Fase inicial de la sesión para evitar lesiones.",
+    "solucion": "calentamiento",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Músculo potente del muslo.",
+    "solucion": "cuádriceps",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Cualidad física de armonizar movimientos.",
+    "solucion": "coordinación",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Motor del sistema circulatorio.",
+    "solucion": "corazón",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Recorrido con estaciones de ejercicios.",
+    "solucion": "circuito",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Desplazamiento a pie a velocidad.",
+    "solucion": "carrera",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Líder del equipo dentro del campo.",
+    "solucion": "capitán",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Contracción dolorosa involuntaria.",
+    "solucion": "calambre",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Ritmo de baile o música.",
+    "solucion": "compás",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Medida de la energía de los alimentos.",
+    "solucion": "caloría",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Músculo del hombro.",
+    "solucion": "deltoides",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Músculo ancho de la espalda.",
+    "solucion": "dorsal",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Acción de evitar que el contrario marque.",
+    "solucion": "defensa",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Actividad física reglamentada.",
+    "solucion": "deporte",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Acción de avanzar botando o regateando.",
+    "solucion": "dribling",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Expresión corporal artística.",
+    "solucion": "danza",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Pausa para recuperar.",
+    "solucion": "descanso",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Falta doble en baloncesto (Pasos y... ).",
+    "solucion": "dobles",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Lanzamiento de frisbee.",
+    "solucion": "disco",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Tiro a canasta espectacular hacia abajo.",
+    "solucion": "dunk",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Capacidad de mantener la postura sin caerse.",
+    "solucion": "equilibrio",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Ejercicio para alargar músculos y ganar flexibilidad.",
+    "solucion": "estiramiento",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Grupo de jugadores.",
+    "solucion": "equipo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Persona que dirige la preparación física.",
+    "solucion": "entrenador",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Deporte de trepar paredes.",
+    "solucion": "escalada",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Cualidad del músculo de estirarse.",
+    "solucion": "elasticidad",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Lesión de ligamentos (torcedura).",
+    "solucion": "esguince",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Conjunto de huesos.",
+    "solucion": "esqueleto",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Prueba de atletismo de relevos (pasar el...).",
+    "solucion": "estafeta",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "e9_fix",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Postura o plan de juego.",
+    "solucion": "estrategia",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Movimiento corporal planificado.",
+    "solucion": "ejercicio",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Cualidad física que depende de la elasticidad y movilidad articular.",
+    "solucion": "flexibilidad",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Capacidad de vencer una resistencia.",
+    "solucion": "fuerza",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Número de latidos por minuto (Frecuencia...).",
+    "solucion": "frecuencia",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Infracción de las reglas.",
+    "solucion": "falta",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Deporte de 11 contra 11.",
+    "solucion": "fútbol",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Disco volador (en inglés).",
+    "solucion": "frisbee",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Engaño corporal para desbordar al rival.",
+    "solucion": "finta",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Hueso del muslo.",
+    "solucion": "fémur",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Cansancio muscular.",
+    "solucion": "fatiga",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Deporte de sala con sticks (Floor...).",
+    "solucion": "floorball",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Músculo de la nalga.",
+    "solucion": "glúteo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Músculo de la pantorrilla.",
+    "solucion": "gemelo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Deporte con acrobacias.",
+    "solucion": "gimnasia",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Tanto en el fútbol.",
+    "solucion": "gol",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Rotación sobre el eje longitudinal.",
+    "solucion": "giro",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Impacto con el balón.",
+    "solucion": "golpeo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "El que vence.",
+    "solucion": "ganador",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Reserva energética corporal.",
+    "solucion": "grasa",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Lugar cubierto de entrenamiento.",
+    "solucion": "gimnasio",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Portero en inglés (Goal...).",
+    "solucion": "goalkeeper",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Hábitos de limpieza y salud.",
+    "solucion": "higiene",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Beber agua antes, durante y después.",
+    "solucion": "hidratación",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Pieza dura del esqueleto.",
+    "solucion": "hueso",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Destreza motriz.",
+    "solucion": "habilidad",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Articulación del brazo con el tronco.",
+    "solucion": "hombro",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Hueso del brazo.",
+    "solucion": "húmero",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Deporte con patines y stick.",
+    "solucion": "hockey",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Deporte de levantar peso.",
+    "solucion": "halterofilia",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Juego limpio (inglés: Fair play) o...",
+    "solucion": "honestidad",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Acción repetida (costumbre saludable).",
+    "solucion": "hábito",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Grado de esfuerzo (alta, media, baja).",
+    "solucion": "intensidad",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Tomar aire.",
+    "solucion": "inspiración",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Parte posterior del muslo (músculos).",
+    "solucion": "isquiotibiales",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Periodo de descanso entre ejercicios.",
+    "solucion": "intervalo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Materiales o edificio deportivo.",
+    "solucion": "instalación",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Comienzo de la actividad.",
+    "solucion": "inicio",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Violación del reglamento.",
+    "solucion": "infracción",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Fuerza inicial de un salto.",
+    "solucion": "impulso",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Deporte que se hace solo.",
+    "solucion": "individual",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Índice de Masa Corporal (siglas).",
+    "solucion": "imc",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Evento deportivo mundial cada 4 años (Juegos...).",
+    "solucion": "juegos",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j1_fix",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Olimpiadas (Juegos...).",
+    "solucion": "juegos olimpicos",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j1_final",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Arte marcial japonés de agarres.",
+    "solucion": "judo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Lanzamiento de una vara en atletismo.",
+    "solucion": "jabalina",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Persona que compite en un equipo.",
+    "solucion": "jugador",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Respeto a las reglas (Juego...).",
+    "solucion": "juego limpio",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j4_fix",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Árbitro o evaluador.",
+    "solucion": "juez",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Actividad lúdica.",
+    "solucion": "juego",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Saltos continuos (fitness).",
+    "solucion": "jumping",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Arte marcial brasileño (...-Jitsu).",
+    "solucion": "jiu",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Correr suave en inglés.",
+    "solucion": "jogging",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Respiración forzada tras esfuerzo.",
+    "solucion": "jadeo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Deporte vasco de pelota (Jai-...).",
+    "solucion": "Jai-",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "j10_fix",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Saber ganar y perder (actitud).",
+    "solucion": "juego limpio",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Deporte de lucha con patadas.",
+    "solucion": "karate",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Canoa deportiva cerrada.",
+    "solucion": "kayak",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Distancia de 1000 metros.",
+    "solucion": "kilómetro",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unidad de masa.",
+    "solucion": "kilogramo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Vendaje de colores.",
+    "solucion": "kinesiotape",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Deporte de contacto (Kick...).",
+    "solucion": "Kick",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "k6_fix",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Boxeo con patadas.",
+    "solucion": "kickboxing",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Deporte acuático con cometa.",
+    "solucion": "kitesurf",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Deporte alternativo mixto (contiene K).",
+    "solucion": "korfbal",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Senderismo de montaña (contiene K).",
+    "solucion": "trekking",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Deporte de raqueta (Pic..., contiene K).",
+    "solucion": "pickleball",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Tirar un objeto.",
+    "solucion": "lanzamiento",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Daño físico.",
+    "solucion": "lesión",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Competición regular.",
+    "solucion": "liga",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Zona de la espalda baja.",
+    "solucion": "lumbar",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Tejido que une huesos.",
+    "solucion": "ligamento",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Salto horizontal.",
+    "solucion": "longitud",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Velocidad de movimiento (Lentitud/...).",
+    "solucion": "ligereza",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "l7_fix",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Jugador que actúa en las bandas.",
+    "solucion": "lateral",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Marca del suelo.",
+    "solucion": "línea",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Fluido corporal importante en el deporte.",
+    "solucion": "líquido",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Capacidad de moverse libremente.",
+    "solucion": "locomoción",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Tejido que genera movimiento.",
+    "solucion": "músculo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Cambio de lugar o posición.",
+    "solucion": "movimiento",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Objetivo de una carrera.",
+    "solucion": "meta",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Balones, aros, conos...",
+    "solucion": "material",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Premio del ganador.",
+    "solucion": "medalla",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Profesor.",
+    "solucion": "maestro",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Impulso para actuar.",
+    "solucion": "motivación",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Disminuir la velocidad en ciclismo o motor.",
+    "solucion": "motricidad",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "m8_fix",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Capacidad de generar movimiento.",
+    "solucion": "motricidad",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Parte del cuerpo entre el brazo y los dedos.",
+    "solucion": "mano",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Mejor marca personal.",
+    "solucion": "marca",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Deporte en el agua.",
+    "solucion": "natación",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Alimentación adecuada.",
+    "solucion": "nutrición",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Reglas del juego.",
+    "solucion": "normas",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Parte posterior del cuello.",
+    "solucion": "nuca",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Cable que conecta el cerebro con el músculo.",
+    "solucion": "nervio",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Estilo de natación (libre).",
+    "solucion": "nado",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Sustancias de los alimentos.",
+    "solucion": "nutrientes",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Grado de habilidad.",
+    "solucion": "nivel",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Parte del cuerpo que incluye el glúteo.",
+    "solucion": "nalga",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Dorsal de la camiseta.",
+    "solucion": "número",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Articulación de la mano (contiene Ñ).",
+    "solucion": "muñeca",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Amigo de equipo (contiene Ñ).",
+    "solucion": "compañero",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Hacerse pupa (contiene Ñ).",
+    "solucion": "daño",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Lugar para ducharse (contiene Ñ).",
+    "solucion": "baño",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Senderismo en altura (contiene Ñ).",
+    "solucion": "montaña",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Temporada de liga (contiene Ñ).",
+    "solucion": "campaña",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Labor del entrenador (contiene Ñ).",
+    "solucion": "enseñar",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Gesto con la mano (contiene Ñ).",
+    "solucion": "señal",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Mano cerrada (contiene Ñ).",
+    "solucion": "puño",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Deporte en el agua (Ba... contiene Ñ).",
+    "solucion": "bañarse",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Juegos mundiales cada 4 años.",
+    "solucion": "olimpiadas",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gas necesario para el ejercicio.",
+    "solucion": "oxígeno",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Deporte de mapa y brújula.",
+    "solucion": "orientación",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Meta a conseguir.",
+    "solucion": "objetivo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Rival.",
+    "solucion": "oponente",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Barrera en una carrera.",
+    "solucion": "obstáculo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Medalla del campeón.",
+    "solucion": "oro",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Estar en fuera de juego (inglés).",
+    "solucion": "offside",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Tiempo libre activo.",
+    "solucion": "ocio",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Colocación táctica.",
+    "solucion": "orden",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Acción de dar el balón a otro.",
+    "solucion": "pase",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Músculo del pecho.",
+    "solucion": "pectoral",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Medida de la frecuencia cardíaca.",
+    "solucion": "pulsaciones",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Cualidad de fuerza por velocidad.",
+    "solucion": "potencia",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Jugador que guarda la meta.",
+    "solucion": "portero",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Castigo en fútbol desde los 11 metros.",
+    "solucion": "penalti",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Superficie de juego.",
+    "solucion": "pista",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Deporte de raqueta contra una pared.",
+    "solucion": "padel",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "p8_fix",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Deporte de pala y pared.",
+    "solucion": "pelota",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Deporte de patines.",
+    "solucion": "patinaje",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Colocación del cuerpo.",
+    "solucion": "postura",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Deporte con nieve (contiene Q).",
+    "solucion": "esquí",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Grupo de jugadores (contiene Q).",
+    "solucion": "equipo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Instrumento de tenis (contiene Q).",
+    "solucion": "raqueta",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Impedir el paso (contiene Q).",
+    "solucion": "bloqueo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Acción de intentar marcar (contiene Q).",
+    "solucion": "ataque",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Músculo del muslo (contiene Q).",
+    "solucion": "isquiotibiales",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "q6_fix",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Músculo anterior del muslo (contiene Q).",
+    "solucion": "equipo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Mantenerse estable (contiene Q).",
+    "solucion": "equilibrio",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Golpear el balón (To..., contiene Q).",
+    "solucion": "toque",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Lado del cuerpo (Iz..., contiene Q).",
+    "solucion": "izquierda",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Deporte con caballo (contiene Q).",
+    "solucion": "equitación",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Cualidad de aguantar un esfuerzo.",
+    "solucion": "resistencia",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Intercambio de gases en los pulmones.",
+    "solucion": "respiración",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Acción de coger el balón.",
+    "solucion": "recepción",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Vuelta a la calma.",
+    "solucion": "relajación",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Norma del deporte.",
+    "solucion": "reglamento",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Utensilio para jugar al tenis.",
+    "solucion": "raqueta",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Carrera pasando un testigo.",
+    "solucion": "relevo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Articulación de la pierna.",
+    "solucion": "rodilla",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Burlar al contrario con el balón.",
+    "solucion": "regate",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Deporte con balón ovalado.",
+    "solucion": "rugby",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Bienestar físico y mental.",
+    "solucion": "salud",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Acción de iniciar el juego en voleibol o tenis.",
+    "solucion": "saque",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "s2_fix",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Acción de poner el balón en juego.",
+    "solucion": "servicio",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Impulso para elevarse.",
+    "solucion": "salto",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Falta de actividad física.",
+    "solucion": "sedentarismo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Caminar por la montaña.",
+    "solucion": "senderismo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Líquido por donde se pierde agua.",
+    "solucion": "sudor",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Estiramiento (en inglés).",
+    "solucion": "stretching",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de repeticiones.",
+    "solucion": "serie",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Pito del árbitro.",
+    "solucion": "silbato",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Movimiento rítmico coordinado.",
+    "solucion": "secuencia",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Plan de juego.",
+    "solucion": "táctica",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Ejecución correcta del movimiento.",
+    "solucion": "técnica",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Músculo posterior del brazo.",
+    "solucion": "tríceps",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Músculo del hombro (Tra...).",
+    "solucion": "trapecio",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Deporte de raqueta.",
+    "solucion": "tenis",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Prueba que combina natación, bici y carrera.",
+    "solucion": "triatlón",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Acción de lanzar a portería.",
+    "solucion": "tiro",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Correr despacio.",
+    "solucion": "trote",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Articulación del pie.",
+    "solucion": "tobillo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Deporte de mesa con palas.",
+    "solucion": "tenis de mesa",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Ropa de equipo.",
+    "solucion": "uniforme",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Parte final del dedo.",
+    "solucion": "uña",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Cohesión del equipo.",
+    "solucion": "unión",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Deporte con disco volador (Ultimate...).",
+    "solucion": "ultimate",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Número de dorsal.",
+    "solucion": "uno",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Asistencia rápida médica.",
+    "solucion": "urgencia",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Herramienta o material.",
+    "solucion": "utensilio",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Sesión de aprendizaje.",
+    "solucion": "unidad",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Persona que va al gimnasio.",
+    "solucion": "usuario",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Posición en el campo.",
+    "solucion": "ubicación",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Cualidad física de rapidez.",
+    "solucion": "velocidad",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Deporte de red y manos.",
+    "solucion": "voleibol",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Obstáculo en atletismo.",
+    "solucion": "valla",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Nutrientes esenciales.",
+    "solucion": "vitaminas",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Entrada y salida de aire.",
+    "solucion": "ventilación",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Recorrido en pista.",
+    "solucion": "vuelta",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Lugar de cambio de ropa.",
+    "solucion": "vestuario",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Deporte de barco con viento.",
+    "solucion": "vela",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Triunfo en el partido.",
+    "solucion": "victoria",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Protección articular.",
+    "solucion": "vendaje",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Deporte acuático de equipo (contiene W).",
+    "solucion": "waterpolo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Deporte de vela (contiene W).",
+    "solucion": "windsurf",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Arte marcial coreano (contiene W).",
+    "solucion": "taekwondo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Estilo de crol (contiene W).",
+    "solucion": "craw",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w4_fix",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Estilo libre de natación (inglés, contiene W).",
+    "solucion": "crawl",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Comida de pan (contiene W).",
+    "solucion": "sandwich",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Fruta energética (contiene W).",
+    "solucion": "kiwi",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra W.",
+    "solucion": "kiwi",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w7_fix",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Tabla de nieve (contiene W).",
+    "solucion": "snowboard",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra W.",
+    "solucion": "kiwi",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w8_fix",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Lanzar la bola en bolos (contiene W).",
+    "solucion": "bowling",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Cronómetro en inglés (Stop..., contiene W).",
+    "solucion": "stopwatch",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Red informática (contiene W).",
+    "solucion": "web",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Capacidad de doblarse (contiene X).",
+    "solucion": "flexibilidad",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Echar el aire (contiene X).",
+    "solucion": "exhalar",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Estirar una articulación (contiene X).",
+    "solucion": "extensión",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Gas vital (contiene X).",
+    "solucion": "oxígeno",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Deporte de combate (contiene X).",
+    "solucion": "boxeo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Pecho (contiene X).",
+    "solucion": "tórax",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Competición de motos o bicis (Moto..., contiene X).",
+    "solucion": "examen",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Esfuerzo límite (M..., contiene X).",
+    "solucion": "máximo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Expulsión del aire (contiene X).",
+    "solucion": "expiración",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Equipo de ambos sexos (contiene X).",
+    "solucion": "mixto",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Ejercicio de relajación oriental.",
+    "solucion": "yoga",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Arte marcial (Judo escrito con Y).",
+    "solucion": "yudo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Juego de pistas (contiene Y).",
+    "solucion": "gymkana",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Lugar de vóley (contiene Y).",
+    "solucion": "playa",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Socorrer (contiene Y).",
+    "solucion": "ayuda",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Más grande (contiene Y).",
+    "solucion": "mayor",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Apoyo de un compañero (contiene Y).",
+    "solucion": "apoyo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Comida matutina (contiene Y).",
+    "solucion": "desayuno",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Voleibol (abreviado, contiene Y).",
+    "solucion": "voley",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Deporte en barco (contiene Y).",
+    "solucion": "yate",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Paso largo.",
+    "solucion": "zancada",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Calzado de deporte.",
+    "solucion": "zapatilla",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Área de defensa o ataque.",
+    "solucion": "zona",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Baile fitness latino.",
+    "solucion": "zumba",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Tirar un objeto (contiene Z).",
+    "solucion": "lanzar",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Cualidad de ser fuerte (contiene Z).",
+    "solucion": "fuerza",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Esfuerzo (contiene Z).",
+    "solucion": "esfuerzo",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Músculo cardíaco (contiene Z).",
+    "solucion": "corazón",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Estilo de natación (Bra..., contiene Z).",
+    "solucion": "braza",
+    "materia": "ed_fisica"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Calzado (contiene Z).",
+    "solucion": "calzado",
+    "materia": "ed_fisica"
+  }
 ]

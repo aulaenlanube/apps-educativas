@@ -1,301 +1,2186 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Autor del 'Libro de Buen Amor'.", "solucion": "arcipreste", "materia": "lengua" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Repetición de sonidos en un verso.", "solucion": "aliteración", "materia": "lengua" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Palabra que acompaña al sustantivo para calificarlo.", "solucion": "adjetivo", "materia": "lengua" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Palabra con significado opuesto.", "solucion": "antónimo", "materia": "lengua" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Resumen de los hechos de una narración.", "solucion": "argumento", "materia": "lengua" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Obra de autor desconocido.", "solucion": "anónimo", "materia": "lengua" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Pieza de teatro breve religiosa (Auto...).", "solucion": "sacramental", "materia": "lengua" }, 
-  { "id": "a7_fix", "letra": "A", "tipo": "empieza", "definicion": "Pieza teatral breve de carácter religioso (Auto).", "solucion": "auto", "materia": "lengua" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Sentimiento central en la lírica renacentista.", "solucion": "amor", "materia": "lengua" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Narración breve con enseñanza moral.", "solucion": "apólogo", "materia": "lengua" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Movimiento de vanguardia o parte del ejército.", "solucion": "avanzadilla", "materia": "lengua" }, 
-  { "id": "a10_fix", "letra": "A", "tipo": "empieza", "definicion": "Palabra tónica en la última sílaba.", "solucion": "aguda", "materia": "lengua" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Movimiento cultural del siglo XVII, posterior al Renacimiento.", "solucion": "barroco", "materia": "lengua" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Poesía que trata sobre pastores y la naturaleza.", "solucion": "bucólica", "materia": "lengua" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Relato de la vida de una persona.", "solucion": "biografía", "materia": "lengua" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Lista de libros consultados.", "solucion": "bibliografía", "materia": "lengua" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Ideal estético del Renacimiento.", "solucion": "belleza", "materia": "lengua" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Novela picaresca de Quevedo ('La vida del ...').", "solucion": "buscón", "materia": "lengua" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Tópico latino: 'Dichoso aquel' (... Ille).", "solucion": "beatus", "materia": "lengua" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Primer poeta castellano de nombre conocido (Gonzalo de...).", "solucion": "berceo", "materia": "lengua" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Que habla dos lenguas.", "solucion": "bilingüe", "materia": "lengua" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Cualidad de lo breve.", "solucion": "brevedad", "materia": "lengua" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Obra de Fernando de Rojas (La...).", "solucion": "celestina", "materia": "lengua" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Autor del Quijote.", "solucion": "cervantes", "materia": "lengua" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Poema épico medieval (... de Mío Cid).", "solucion": "cantar", "materia": "lengua" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Estrofa de cuatro versos de arte menor (Jorge Manrique).", "solucion": "copla", "materia": "lengua" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Estrofa del Mester de Clerecía (... vía).", "solucion": "cuaderna", "materia": "lengua" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Obra teatral con final feliz o humorístico.", "solucion": "comedia", "materia": "lengua" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Función sintáctica que completa al verbo.", "solucion": "complemento", "materia": "lengua" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Estilo literario de Quevedo, opuesto al culteranismo.", "solucion": "conceptismo", "materia": "lengua" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Tópico latino: 'Aprovecha el momento' (Carpe...).", "solucion": "diem", "materia": "lengua" }, 
-  { "id": "c9_fix", "letra": "C", "tipo": "empieza", "definicion": "Tópico del 'Aprovecha el momento' (Carpe Diem).", "solucion": "carpe", "materia": "lengua" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Estrofa de cuatro versos de arte mayor.", "solucion": "cuarteto", "materia": "lengua" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Conversación entre personajes.", "solucion": "diálogo", "materia": "lengua" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Palabra que acompaña al nombre (artículos, posesivos...).", "solucion": "determinante", "materia": "lengua" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Género teatral que mezcla tragedia y comedia.", "solucion": "drama", "materia": "lengua" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Mito del seductor creado por Tirso de Molina (... Juan).", "solucion": "don", "materia": "lengua" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Texto que explica cómo es algo o alguien.", "solucion": "descriptivo", "materia": "lengua" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Variedad de una lengua en un territorio.", "solucion": "dialecto", "materia": "lengua" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Verso de diez sílabas.", "solucion": "decasílabo", "materia": "lengua" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Literatura que busca enseñar.", "solucion": "didáctica", "materia": "lengua" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Final de una obra narrativa o teatral.", "solucion": "desenlace", "materia": "lengua" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Palabra formada a partir de otra.", "solucion": "derivada", "materia": "lengua" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Género narrativo en verso sobre héroes.", "solucion": "épica", "materia": "lengua" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Conjunto de versos.", "solucion": "estrofa", "materia": "lengua" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Verso de once sílabas, típico del Renacimiento.", "solucion": "endecasílabo", "materia": "lengua" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Obra teatral breve que se representaba en los descansos.", "solucion": "entremés", "materia": "lengua" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Género didáctico en prosa (s. XVIII).", "solucion": "ensayo", "materia": "lengua" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Adjetivo que resalta una cualidad inherente (la blanca nieve).", "solucion": "epíteto", "materia": "lengua" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Forma personal de escribir de un autor.", "solucion": "estilo", "materia": "lengua" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Omisión de elementos en la oración.", "solucion": "elipsis", "materia": "lengua" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Quien envía el mensaje.", "solucion": "emisor", "materia": "lengua" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Unidad mínima de comunicación.", "solucion": "enunciado", "materia": "lengua" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Narración con animales y moraleja.", "solucion": "fábula", "materia": "lengua" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Obra de Lope de Vega donde el pueblo se rebela.", "solucion": "fuenteovejuna", "materia": "lengua" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Finalidad del lenguaje (Referencial, Expresiva...).", "solucion": "función", "materia": "lengua" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Contenido de una obra (opuesto a forma).", "solucion": "fondo", "materia": "lengua" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Mundo imaginario creado por el autor.", "solucion": "ficción", "materia": "lengua" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Estructura externa de una obra (opuesto a fondo).", "solucion": "forma", "materia": "lengua" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Unidad mínima de sonido.", "solucion": "fonema", "materia": "lengua" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Recurso literario (... retórica).", "solucion": "figura", "materia": "lengua" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Última parte.", "solucion": "final", "materia": "lengua" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Saber popular tradicional.", "solucion": "folclore", "materia": "lengua" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Poeta renacentista que introdujo el soneto (... de la Vega).", "solucion": "garcilaso", "materia": "lengua" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Poeta barroco creador del culteranismo.", "solucion": "góngora", "materia": "lengua" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Categoría literaria (Lírico, Narrativo, Dramático).", "solucion": "género", "materia": "lengua" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Ciencia que estudia la lengua.", "solucion": "gramática", "materia": "lengua" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Comentario o explicación de un texto oscuro.", "solucion": "glosa", "materia": "lengua" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Figura retórica de enumeración ascendente o descendente.", "solucion": "gradación", "materia": "lengua" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "Novela pastoril de Cervantes (La...).", "solucion": "galatea", "materia": "lengua" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Protagonista de una novela picaresca (Mateo Alemán).", "solucion": "guzmán", "materia": "lengua" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Novela morisca (Guerras Civiles de...).", "solucion": "granada", "materia": "lengua" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Ser enorme que aparece en el Quijote (molinos).", "solucion": "gigante", "materia": "lengua" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Movimiento cultural que recupera los clásicos.", "solucion": "humanismo", "materia": "lengua" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Exageración literaria.", "solucion": "hipérbole", "materia": "lengua" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Protagonista de una gesta.", "solucion": "héroe", "materia": "lengua" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Noble de baja categoría (ej. Don Quijote).", "solucion": "hidalgo", "materia": "lengua" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Tema central del teatro barroco.", "solucion": "honor", "materia": "lengua" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Ruptura de la sinalefa.", "solucion": "hiato", "materia": "lengua" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Palabra que suena igual que otra.", "solucion": "homónima", "materia": "lengua" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Narración de hechos pasados.", "solucion": "historia", "materia": "lengua" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Uso individual de la lengua.", "solucion": "habla", "materia": "lengua" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Alteración del orden lógico de las palabras.", "solucion": "hipérbaton", "materia": "lengua" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Figura retórica: decir lo contrario de lo que se piensa.", "solucion": "ironía", "materia": "lengua" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Movimiento intelectual del siglo XVIII.", "solucion": "ilustración", "materia": "lengua" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Invento que difundió la literatura.", "solucion": "imprenta", "materia": "lengua" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Pregunta retórica.", "solucion": "interrogación", "materia": "lengua" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Complemento que recibe el daño o provecho (... Indirecto).", "solucion": "indirecto", "materia": "lengua" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Metáforas o descripciones sensoriales.", "solucion": "imágenes", "materia": "lengua" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Forma no personal del verbo (ej. Amar).", "solucion": "infinitivo", "materia": "lengua" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Parte inicial de un texto.", "solucion": "introducción", "materia": "lengua" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Libro impreso en los inicios de la imprenta.", "solucion": "incunable", "materia": "lengua" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Adjetivo del Hidalgo Don Quijote.", "solucion": "ingenioso", "materia": "lengua" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Artista medieval que recitaba poemas.", "solucion": "juglar", "materia": "lengua" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Autor de las 'Coplas a la muerte de su padre' (... Manrique).", "solucion": "jorge", "materia": "lengua" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Poemilla lírico mozárabe al final de una moaxaja.", "solucion": "jarcha", "materia": "lengua" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Arcipreste de Hita (... Ruiz).", "solucion": "juan", "materia": "lengua" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Cada acto de una obra de teatro barroca.", "solucion": "jornada", "materia": "lengua" },
-  { "id": "j6", "letra": "J", "tipo": "empieza", "definicion": "Tema del teatro barroco (castigo poético).", "solucion": "justicia", "materia": "lengua" },
-  { "id": "j7", "letra": "J", "tipo": "empieza", "definicion": "Actividad lúdica o recurso literario (... de palabras).", "solucion": "juego", "materia": "lengua" },
-  { "id": "j8", "letra": "J", "tipo": "empieza", "definicion": "Lenguaje especial de un grupo social.", "solucion": "jerga", "materia": "lengua" },
-  { "id": "j9", "letra": "J", "tipo": "empieza", "definicion": "Etapa de la vida (Juventud, divino tesoro...).", "solucion": "juventud", "materia": "lengua" },
-  { "id": "j10", "letra": "J", "tipo": "empieza", "definicion": "Alegría extrema.", "solucion": "júbilo", "materia": "lengua" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Mil metros (abreviatura).", "solucion": "kilómetro", "materia": "lengua" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Lugar de venta de periódicos.", "solucion": "kiosco", "materia": "lengua" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Arte marcial.", "solucion": "karate", "materia": "lengua" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Fruta.", "solucion": "kiwi", "materia": "lengua" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Animal australiano.", "solucion": "koala", "materia": "lengua" },
-  { "id": "k6", "letra": "K", "tipo": "empieza", "definicion": "Unidad de masa.", "solucion": "kilo", "materia": "lengua" },
-  { "id": "k7", "letra": "K", "tipo": "empieza", "definicion": "Destino o energía (concepto oriental).", "solucion": "karma", "materia": "lengua" },
-  { "id": "k8", "letra": "K", "tipo": "empieza", "definicion": "Conjunto de piezas.", "solucion": "kit", "materia": "lengua" },
-  { "id": "k9", "letra": "K", "tipo": "contiene", "definicion": "Prenda de baño (contiene K).", "solucion": "bikini", "materia": "lengua" },
-  { "id": "k10", "letra": "K", "tipo": "contiene", "definicion": "Chaqueta impermeable (contiene K).", "solucion": "anorak", "materia": "lengua" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Protagonista de la primera novela picaresca.", "solucion": "lazarillo", "materia": "lengua" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Dramaturgo del Siglo de Oro (... de Vega).", "solucion": "lope", "materia": "lengua" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Género literario que expresa sentimientos.", "solucion": "lírica", "materia": "lengua" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Narración tradicional fantástica.", "solucion": "leyenda", "materia": "lengua" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Obra escrita.", "solucion": "libro", "materia": "lengua" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Sistema de comunicación verbal.", "solucion": "lengua", "materia": "lengua" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Grupo de palabras con significado fijo.", "solucion": "locución", "materia": "lengua" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Uso incorrecto de 'la' como objeto indirecto.", "solucion": "laísmo", "materia": "lengua" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Tópico del lugar agradable (... amoenus).", "solucion": "locus", "materia": "lengua" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Arte de la palabra.", "solucion": "literatura", "materia": "lengua" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Oficio de clérigos o juglares (... de Clerecía/Juglaría).", "solucion": "mester", "materia": "lengua" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Identificación de dos términos (Real e Imaginario).", "solucion": "metáfora", "materia": "lengua" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Jorge ..., autor de las Coplas.", "solucion": "manrique", "materia": "lengua" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Período histórico de la literatura antes del Renacimiento.", "solucion": "medieval", "materia": "lengua" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Discurso de una sola persona.", "solucion": "monólogo", "materia": "lengua" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Parte de la gramática que estudia la forma de las palabras.", "solucion": "morfología", "materia": "lengua" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Medida de los versos.", "solucion": "métrica", "materia": "lengua" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Relato de dioses y héroes.", "solucion": "mito", "materia": "lengua" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Autor religioso que busca la unión con Dios.", "solucion": "místico", "materia": "lengua" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Título nobiliario femenino.", "solucion": "marquesa", "materia": "lengua" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Obra narrativa extensa.", "solucion": "novela", "materia": "lengua" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Voz que cuenta la historia.", "solucion": "narrador", "materia": "lengua" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Movimiento literario del siglo XVIII.", "solucion": "neoclasicismo", "materia": "lengua" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Sustantivo.", "solucion": "nombre", "materia": "lengua" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Palabra que une oraciones.", "solucion": "nexo", "materia": "lengua" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Texto periodístico informativo.", "solucion": "noticia", "materia": "lengua" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Parte central del sintagma.", "solucion": "núcleo", "materia": "lengua" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Género literario de contar historias.", "solucion": "narrativa", "materia": "lengua" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Autor de la primera Gramática castellana (1492).", "solucion": "nebrija", "materia": "lengua" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Poema de San Juan de la Cruz (... oscura).", "solucion": "noche", "materia": "lengua" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "País de origen del castellano (contiene Ñ).", "solucion": "españa", "materia": "lengua" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Periodo de 365 días (contiene Ñ).", "solucion": "año", "materia": "lengua" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Dueño o amo (contiene Ñ).", "solucion": "señor", "materia": "lengua" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Día siguiente a hoy (contiene Ñ).", "solucion": "mañana", "materia": "lengua" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Infante (contiene Ñ).", "solucion": "niño", "materia": "lengua" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "contiene", "definicion": "Lo que ves al dormir (contiene Ñ).", "solucion": "sueño", "materia": "lengua" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Casa rústica (contiene Ñ).", "solucion": "cabaña", "materia": "lengua" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Elevación de terreno (contiene Ñ).", "solucion": "montaña", "materia": "lengua" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "Madera para quemar (contiene Ñ).", "solucion": "leña", "materia": "lengua" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "Tela para la nariz (contiene Ñ).", "solucion": "pañuelo", "materia": "lengua" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Unidad sintáctica con verbo.", "solucion": "oración", "materia": "lengua" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Poema de alabanza.", "solucion": "oda", "materia": "lengua" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Creación literaria.", "solucion": "obra", "materia": "lengua" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Siglo de esplendor literario (... de Oro).", "solucion": "oro", "materia": "lengua" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Imitación de sonidos reales.", "solucion": "onomatopeya", "materia": "lengua" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Verso de ocho sílabas.", "solucion": "octosílabo", "materia": "lengua" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Reglas de escritura.", "solucion": "ortografía", "materia": "lengua" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Literatura transmitida de viva voz (...).", "solucion": "oral", "materia": "lengua" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Complemento verbal (Directo, Indirecto...).", "solucion": "objeto", "materia": "lengua" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Narrador que lo sabe todo.", "solucion": "omnisciente", "materia": "lengua" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Protagonista de la novela picaresca.", "solucion": "pícaro", "materia": "lengua" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Arte de componer versos.", "solucion": "poesía", "materia": "lengua" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Parte de la oración que dice algo del sujeto.", "solucion": "predicado", "materia": "lengua" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Ser ficticio de una obra.", "solucion": "personaje", "materia": "lengua" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Estrofa de dos versos.", "solucion": "pareado", "materia": "lengua" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Palabra con varios significados.", "solucion": "polisemia", "materia": "lengua" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Forma de escritura sin métrica (opuesto a verso).", "solucion": "prosa", "materia": "lengua" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Palabra que sustituye al nombre.", "solucion": "pronombre", "materia": "lengua" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Unión de dos o más verbos que funcionan como uno (... verbal).", "solucion": "perífrasis", "materia": "lengua" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Obras breves de Lope de Rueda.", "solucion": "pasos", "materia": "lengua" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Autor conceptista del Barroco (Francisco de...).", "solucion": "quevedo", "materia": "lengua" },
-  { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Obra cumbre de Cervantes (Don...).", "solucion": "quijote", "materia": "lengua" },
-  { "id": "q3", "letra": "Q", "tipo": "empieza", "definicion": "Figura retórica de cruce de elementos.", "solucion": "quiasmo", "materia": "lengua" },
-  { "id": "q4", "letra": "Q", "tipo": "empieza", "definicion": "Pronombre relativo.", "solucion": "quien", "materia": "lengua" },
-  { "id": "q5", "letra": "Q", "tipo": "empieza", "definicion": "Número de la niña bonita.", "solucion": "quince", "materia": "lengua" },
-  { "id": "q6", "letra": "Q", "tipo": "empieza", "definicion": "Verbo de voluntad.", "solucion": "querer", "materia": "lengua" },
-  { "id": "q7", "letra": "Q", "tipo": "empieza", "definicion": "Alimento lácteo.", "solucion": "queso", "materia": "lengua" },
-  { "id": "q8", "letra": "Q", "tipo": "empieza", "definicion": "Ciencia o relación entre personas.", "solucion": "química", "materia": "lengua" },
-  { "id": "q9", "letra": "Q", "tipo": "empieza", "definicion": "Ordinal de cinco.", "solucion": "quinto", "materia": "lengua" },
-  { "id": "q10", "letra": "Q", "tipo": "empieza", "definicion": "Finca de recreo.", "solucion": "quinta", "materia": "lengua" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Movimiento cultural del siglo XVI.", "solucion": "renacimiento", "materia": "lengua" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Poema de versos octosílabos con rima asonante en los pares.", "solucion": "romance", "materia": "lengua" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Repetición de sonidos al final del verso.", "solucion": "rima", "materia": "lengua" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Movimiento literario que busca reflejar la realidad (s. XIX).", "solucion": "realismo", "materia": "lengua" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Herramienta estilística (... literario).", "solucion": "recurso", "materia": "lengua" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Arte del bien decir.", "solucion": "retórica", "materia": "lengua" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Estrofa de cuatro versos octosílabos (abba).", "solucion": "redondilla", "materia": "lengua" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Conjunto de romances.", "solucion": "romancero", "materia": "lengua" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Apellido del Arcipreste de Hita (Juan...).", "solucion": "ruiz", "materia": "lengua" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Facultad humana exaltada en la Ilustración.", "solucion": "razón", "materia": "lengua" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Poema de 14 versos (dos cuartetos y dos tercetos).", "solucion": "soneto", "materia": "lengua" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Parte de la gramática que estudia la función de las palabras.", "solucion": "sintaxis", "materia": "lengua" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Periodo literario que abarca Renacimiento y Barroco (... de Oro).", "solucion": "siglo", "materia": "lengua" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Golpe de voz en una palabra.", "solucion": "sílaba", "materia": "lengua" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Palabra con significado igual.", "solucion": "sinónimo", "materia": "lengua" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Obra que critica o ridiculiza algo.", "solucion": "sátira", "materia": "lengua" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Quien realiza la acción del verbo.", "solucion": "sujeto", "materia": "lengua" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Comparación (figura retórica).", "solucion": "símil", "materia": "lengua" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Oración que depende de otra principal.", "solucion": "subordinada", "materia": "lengua" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Expresión emocional.", "solucion": "sentimiento", "materia": "lengua" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Género dramático.", "solucion": "teatro", "materia": "lengua" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Dramaturgo creador del Don Juan (... de Molina).", "solucion": "tirso", "materia": "lengua" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Obra dramática con final funesto.", "solucion": "tragedia", "materia": "lengua" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Idea o tema repetido en la literatura (... literario).", "solucion": "tópico", "materia": "lengua" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Estrofa de tres versos.", "solucion": "terceto", "materia": "lengua" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Poeta provenzal o cortesano.", "solucion": "trovador", "materia": "lengua" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Conjunto de enunciados.", "solucion": "texto", "materia": "lengua" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Duración o época (Tempus fugit).", "solucion": "tiempo", "materia": "lengua" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Acento gráfico.", "solucion": "tilde", "materia": "lengua" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Asunto de una obra.", "solucion": "tema", "materia": "lengua" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Obra de Tomás Moro sobre la sociedad ideal.", "solucion": "utopía", "materia": "lengua" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Cohesión o propiedad de ser uno.", "solucion": "unidad", "materia": "lengua" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Empleo de la lengua.", "solucion": "uso", "materia": "lengua" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Primer número cardinal.", "solucion": "uno", "materia": "lengua" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Conjunto de todo lo existente.", "solucion": "universo", "materia": "lengua" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Acción de unir.", "solucion": "unión", "materia": "lengua" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Prisa.", "solucion": "urgencia", "materia": "lengua" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Provecho.", "solucion": "utilidad", "materia": "lengua" },
-  { "id": "u9", "letra": "U", "tipo": "empieza", "definicion": "Final.", "solucion": "último", "materia": "lengua" },
-  { "id": "u10", "letra": "U", "tipo": "empieza", "definicion": "Sin igual.", "solucion": "único", "materia": "lengua" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Línea de un poema.", "solucion": "verso", "materia": "lengua" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Fénix de los ingenios (Lope de...).", "solucion": "vega", "materia": "lengua" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Palabra que indica acción.", "solucion": "verbo", "materia": "lengua" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Canción popular navideña o profana.", "solucion": "villancico", "materia": "lengua" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Sonido libre (a, e, i, o, u).", "solucion": "vocal", "materia": "lengua" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Biografía (La ... es sueño).", "solucion": "vida", "materia": "lengua" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Creíble, realista.", "solucion": "verosímil", "materia": "lengua" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Sonido humano o forma verbal (Activa/Pasiva).", "solucion": "voz", "materia": "lengua" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Función apelativa para llamar a alguien.", "solucion": "vocativo", "materia": "lengua" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Cualidad positiva.", "solucion": "valor", "materia": "lengua" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Página de internet.", "solucion": "web", "materia": "lengua" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Enciclopedia libre online.", "solucion": "wikipedia", "materia": "lengua" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Autor de cuentos (Irving ...ashington, contiene W).", "solucion": "washington", "materia": "lengua" },
-  { "id": "w4", "letra": "W", "tipo": "empieza", "definicion": "Bebida alcohólica.", "solucion": "whisky", "materia": "lengua" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Bocadillo (contiene W).", "solucion": "sandwich", "materia": "lengua" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Fruta (contiene W).", "solucion": "kiwi", "materia": "lengua" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Espectáculo (contiene W).", "solucion": "show", "materia": "lengua" },
-  { "id": "w8", "letra": "W", "tipo": "contiene", "definicion": "Deporte acuático (contiene W).", "solucion": "waterpolo", "materia": "lengua" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "Cine estadounidense (Holly...ood, contiene W).", "solucion": "hollywood", "materia": "lengua" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Fiesta de terror (Hallo...een, contiene W).", "solucion": "halloween", "materia": "lengua" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Conjunto de enunciados (contiene X).", "solucion": "texto", "materia": "lengua" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Palabra de unión (contiene X).", "solucion": "nexo", "materia": "lengua" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Orden de las palabras (Sinta...is, contiene X).", "solucion": "sintaxis", "materia": "lengua" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Palabra de otro idioma (E...tranjerismo, contiene X).", "solucion": "extranjerismo", "materia": "lengua" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Manifestación de pensamientos (E...presión, contiene X).", "solucion": "expresión", "materia": "lengua" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Triunfo (contiene X).", "solucion": "éxito", "materia": "lengua" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Entorno del texto (Conte...to, contiene X).", "solucion": "contexto", "materia": "lengua" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Vocabulario (Lé...ico, contiene X).", "solucion": "léxico", "materia": "lengua" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Punto culminante (contiene X).", "solucion": "clímax", "materia": "lengua" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "Prueba (E...amen, contiene X).", "solucion": "examen", "materia": "lengua" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Pie métrico.", "solucion": "yambo", "materia": "lengua" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Pronombre personal 1ª persona.", "solucion": "yo", "materia": "lengua" },
-  { "id": "y3", "letra": "Y", "tipo": "empieza", "definicion": "Hembra del caballo.", "solucion": "yegua", "materia": "lengua" },
-  { "id": "y4", "letra": "Y", "tipo": "empieza", "definicion": "Marido de la hija.", "solucion": "yerno", "materia": "lengua" },
-  { "id": "y5", "letra": "Y", "tipo": "empieza", "definicion": "Elemento químico.", "solucion": "yodo", "materia": "lengua" },
-  { "id": "y6", "letra": "Y", "tipo": "contiene", "definicion": "Norma (Le... contiene Y).", "solucion": "ley", "materia": "lengua" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Monarca (Re... contiene Y).", "solucion": "rey", "materia": "lengua" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Día presente (Ho... contiene Y).", "solucion": "hoy", "materia": "lengua" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Adverbio de cantidad (Mu... contiene Y).", "solucion": "muy", "materia": "lengua" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Río pequeño (Arro...o contiene Y).", "solucion": "arroyo", "materia": "lengua" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Género musical teatral español.", "solucion": "zarzuela", "materia": "lengua" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Autor del Don Juan Tenorio.", "solucion": "zorrilla", "materia": "lengua" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Área.", "solucion": "zona", "materia": "lengua" },
-  { "id": "z4", "letra": "Z", "tipo": "empieza", "definicion": "Calzado.", "solucion": "zapato", "materia": "lengua" },
-  { "id": "z5", "letra": "Z", "tipo": "empieza", "definicion": "Líquido de fruta.", "solucion": "zumo", "materia": "lengua" },
-  { "id": "z6", "letra": "Z", "tipo": "contiene", "definicion": "Obra: La Lo...ana Andaluza (contiene Z).", "solucion": "lozana", "materia": "lengua" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Parte de la palabra con significado (Raí... contiene Z).", "solucion": "raíz", "materia": "lengua" },
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "Sonido al hablar (Vo... contiene Z).", "solucion": "voz", "materia": "lengua" },
-  { "id": "z9", "letra": "Z", "tipo": "contiene", "definicion": "Ocasión (Ve... contiene Z).", "solucion": "vez", "materia": "lengua" },
-  { "id": "z10", "letra": "Z", "tipo": "contiene", "definicion": "Contrario de guerra (Pa... contiene Z).", "solucion": "paz", "materia": "lengua" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Autor del 'Libro de Buen Amor'.",
+    "solucion": "arcipreste",
+    "materia": "lengua"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Repetición de sonidos en un verso.",
+    "solucion": "aliteración",
+    "materia": "lengua"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Palabra que acompaña al sustantivo para calificarlo.",
+    "solucion": "adjetivo",
+    "materia": "lengua"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Palabra con significado opuesto.",
+    "solucion": "antónimo",
+    "materia": "lengua"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Resumen de los hechos de una narración.",
+    "solucion": "argumento",
+    "materia": "lengua"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Obra de autor desconocido.",
+    "solucion": "anónimo",
+    "materia": "lengua"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Pieza de teatro breve religiosa (Auto...).",
+    "solucion": "Auto",
+    "materia": "lengua"
+  },
+  {
+    "id": "a7_fix",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Pieza teatral breve de carácter religioso (Auto).",
+    "solucion": "auto",
+    "materia": "lengua"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Sentimiento central en la lírica renacentista.",
+    "solucion": "amor",
+    "materia": "lengua"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Narración breve con enseñanza moral.",
+    "solucion": "apólogo",
+    "materia": "lengua"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Movimiento de vanguardia o parte del ejército.",
+    "solucion": "avanzadilla",
+    "materia": "lengua"
+  },
+  {
+    "id": "a10_fix",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Palabra tónica en la última sílaba.",
+    "solucion": "aguda",
+    "materia": "lengua"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Movimiento cultural del siglo XVII, posterior al Renacimiento.",
+    "solucion": "barroco",
+    "materia": "lengua"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Poesía que trata sobre pastores y la naturaleza.",
+    "solucion": "bucólica",
+    "materia": "lengua"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Relato de la vida de una persona.",
+    "solucion": "biografía",
+    "materia": "lengua"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Lista de libros consultados.",
+    "solucion": "bibliografía",
+    "materia": "lengua"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Ideal estético del Renacimiento.",
+    "solucion": "belleza",
+    "materia": "lengua"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Novela picaresca de Quevedo ('La vida del ...').",
+    "solucion": "buscón",
+    "materia": "lengua"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Tópico latino: 'Dichoso aquel' (... Ille).",
+    "solucion": "beatus",
+    "materia": "lengua"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Primer poeta castellano de nombre conocido (Gonzalo de...).",
+    "solucion": "berceo",
+    "materia": "lengua"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Que habla dos lenguas.",
+    "solucion": "bilingüe",
+    "materia": "lengua"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Cualidad de lo breve.",
+    "solucion": "brevedad",
+    "materia": "lengua"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Obra de Fernando de Rojas (La...).",
+    "solucion": "celestina",
+    "materia": "lengua"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Autor del Quijote.",
+    "solucion": "cervantes",
+    "materia": "lengua"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Poema épico medieval (... de Mío Cid).",
+    "solucion": "cantar",
+    "materia": "lengua"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Estrofa de cuatro versos de arte menor (Jorge Manrique).",
+    "solucion": "copla",
+    "materia": "lengua"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Estrofa del Mester de Clerecía (... vía).",
+    "solucion": "cuaderna",
+    "materia": "lengua"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Obra teatral con final feliz o humorístico.",
+    "solucion": "comedia",
+    "materia": "lengua"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Función sintáctica que completa al verbo.",
+    "solucion": "complemento",
+    "materia": "lengua"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Estilo literario de Quevedo, opuesto al culteranismo.",
+    "solucion": "conceptismo",
+    "materia": "lengua"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Tópico latino: 'Aprovecha el momento' (Carpe...).",
+    "solucion": "Carpe",
+    "materia": "lengua"
+  },
+  {
+    "id": "c9_fix",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Tópico del 'Aprovecha el momento' (Carpe Diem).",
+    "solucion": "carpe",
+    "materia": "lengua"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Estrofa de cuatro versos de arte mayor.",
+    "solucion": "cuarteto",
+    "materia": "lengua"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Conversación entre personajes.",
+    "solucion": "diálogo",
+    "materia": "lengua"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Palabra que acompaña al nombre (artículos, posesivos...).",
+    "solucion": "determinante",
+    "materia": "lengua"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Género teatral que mezcla tragedia y comedia.",
+    "solucion": "drama",
+    "materia": "lengua"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Mito del seductor creado por Tirso de Molina (... Juan).",
+    "solucion": "don",
+    "materia": "lengua"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Texto que explica cómo es algo o alguien.",
+    "solucion": "descriptivo",
+    "materia": "lengua"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Variedad de una lengua en un territorio.",
+    "solucion": "dialecto",
+    "materia": "lengua"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Verso de diez sílabas.",
+    "solucion": "decasílabo",
+    "materia": "lengua"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Literatura que busca enseñar.",
+    "solucion": "didáctica",
+    "materia": "lengua"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Final de una obra narrativa o teatral.",
+    "solucion": "desenlace",
+    "materia": "lengua"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Palabra formada a partir de otra.",
+    "solucion": "derivada",
+    "materia": "lengua"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Género narrativo en verso sobre héroes.",
+    "solucion": "épica",
+    "materia": "lengua"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Conjunto de versos.",
+    "solucion": "estrofa",
+    "materia": "lengua"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Verso de once sílabas, típico del Renacimiento.",
+    "solucion": "endecasílabo",
+    "materia": "lengua"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Obra teatral breve que se representaba en los descansos.",
+    "solucion": "entremés",
+    "materia": "lengua"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Género didáctico en prosa (s. XVIII).",
+    "solucion": "ensayo",
+    "materia": "lengua"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Adjetivo que resalta una cualidad inherente (la blanca nieve).",
+    "solucion": "epíteto",
+    "materia": "lengua"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Forma personal de escribir de un autor.",
+    "solucion": "estilo",
+    "materia": "lengua"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Omisión de elementos en la oración.",
+    "solucion": "elipsis",
+    "materia": "lengua"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Quien envía el mensaje.",
+    "solucion": "emisor",
+    "materia": "lengua"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Unidad mínima de comunicación.",
+    "solucion": "enunciado",
+    "materia": "lengua"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Narración con animales y moraleja.",
+    "solucion": "fábula",
+    "materia": "lengua"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Obra de Lope de Vega donde el pueblo se rebela.",
+    "solucion": "fuenteovejuna",
+    "materia": "lengua"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Finalidad del lenguaje (Referencial, Expresiva...).",
+    "solucion": "función",
+    "materia": "lengua"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Contenido de una obra (opuesto a forma).",
+    "solucion": "fondo",
+    "materia": "lengua"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Mundo imaginario creado por el autor.",
+    "solucion": "ficción",
+    "materia": "lengua"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Estructura externa de una obra (opuesto a fondo).",
+    "solucion": "forma",
+    "materia": "lengua"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Unidad mínima de sonido.",
+    "solucion": "fonema",
+    "materia": "lengua"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Recurso literario (... retórica).",
+    "solucion": "figura",
+    "materia": "lengua"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Última parte.",
+    "solucion": "final",
+    "materia": "lengua"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Saber popular tradicional.",
+    "solucion": "folclore",
+    "materia": "lengua"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Poeta renacentista que introdujo el soneto (... de la Vega).",
+    "solucion": "garcilaso",
+    "materia": "lengua"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Poeta barroco creador del culteranismo.",
+    "solucion": "góngora",
+    "materia": "lengua"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Categoría literaria (Lírico, Narrativo, Dramático).",
+    "solucion": "género",
+    "materia": "lengua"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia la lengua.",
+    "solucion": "gramática",
+    "materia": "lengua"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Comentario o explicación de un texto oscuro.",
+    "solucion": "glosa",
+    "materia": "lengua"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Figura retórica de enumeración ascendente o descendente.",
+    "solucion": "gradación",
+    "materia": "lengua"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Novela pastoril de Cervantes (La...).",
+    "solucion": "galatea",
+    "materia": "lengua"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Protagonista de una novela picaresca (Mateo Alemán).",
+    "solucion": "guzmán",
+    "materia": "lengua"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Novela morisca (Guerras Civiles de...).",
+    "solucion": "granada",
+    "materia": "lengua"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Ser enorme que aparece en el Quijote (molinos).",
+    "solucion": "gigante",
+    "materia": "lengua"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Movimiento cultural que recupera los clásicos.",
+    "solucion": "humanismo",
+    "materia": "lengua"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Exageración literaria.",
+    "solucion": "hipérbole",
+    "materia": "lengua"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Protagonista de una gesta.",
+    "solucion": "héroe",
+    "materia": "lengua"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Noble de baja categoría (ej. Don Quijote).",
+    "solucion": "hidalgo",
+    "materia": "lengua"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Tema central del teatro barroco.",
+    "solucion": "honor",
+    "materia": "lengua"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Ruptura de la sinalefa.",
+    "solucion": "hiato",
+    "materia": "lengua"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Palabra que suena igual que otra.",
+    "solucion": "homónima",
+    "materia": "lengua"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Narración de hechos pasados.",
+    "solucion": "historia",
+    "materia": "lengua"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Uso individual de la lengua.",
+    "solucion": "habla",
+    "materia": "lengua"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Alteración del orden lógico de las palabras.",
+    "solucion": "hipérbaton",
+    "materia": "lengua"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Figura retórica: decir lo contrario de lo que se piensa.",
+    "solucion": "ironía",
+    "materia": "lengua"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Movimiento intelectual del siglo XVIII.",
+    "solucion": "ilustración",
+    "materia": "lengua"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Invento que difundió la literatura.",
+    "solucion": "imprenta",
+    "materia": "lengua"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Pregunta retórica.",
+    "solucion": "interrogación",
+    "materia": "lengua"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Complemento que recibe el daño o provecho (... Indirecto).",
+    "solucion": "indirecto",
+    "materia": "lengua"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Metáforas o descripciones sensoriales.",
+    "solucion": "imágenes",
+    "materia": "lengua"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Forma no personal del verbo (ej. Amar).",
+    "solucion": "infinitivo",
+    "materia": "lengua"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Parte inicial de un texto.",
+    "solucion": "introducción",
+    "materia": "lengua"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Libro impreso en los inicios de la imprenta.",
+    "solucion": "incunable",
+    "materia": "lengua"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Adjetivo del Hidalgo Don Quijote.",
+    "solucion": "ingenioso",
+    "materia": "lengua"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Artista medieval que recitaba poemas.",
+    "solucion": "juglar",
+    "materia": "lengua"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Autor de las 'Coplas a la muerte de su padre' (... Manrique).",
+    "solucion": "jorge",
+    "materia": "lengua"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Poemilla lírico mozárabe al final de una moaxaja.",
+    "solucion": "jarcha",
+    "materia": "lengua"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Arcipreste de Hita (... Ruiz).",
+    "solucion": "juan",
+    "materia": "lengua"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Cada acto de una obra de teatro barroca.",
+    "solucion": "jornada",
+    "materia": "lengua"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Tema del teatro barroco (castigo poético).",
+    "solucion": "justicia",
+    "materia": "lengua"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Actividad lúdica o recurso literario (... de palabras).",
+    "solucion": "juego",
+    "materia": "lengua"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Lenguaje especial de un grupo social.",
+    "solucion": "jerga",
+    "materia": "lengua"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Etapa de la vida (Juventud, divino tesoro...).",
+    "solucion": "juventud",
+    "materia": "lengua"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Alegría extrema.",
+    "solucion": "júbilo",
+    "materia": "lengua"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Mil metros (abreviatura).",
+    "solucion": "kilómetro",
+    "materia": "lengua"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Lugar de venta de periódicos.",
+    "solucion": "kiosco",
+    "materia": "lengua"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Arte marcial.",
+    "solucion": "karate",
+    "materia": "lengua"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Fruta.",
+    "solucion": "kiwi",
+    "materia": "lengua"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Animal australiano.",
+    "solucion": "koala",
+    "materia": "lengua"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unidad de masa.",
+    "solucion": "kilo",
+    "materia": "lengua"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Destino o energía (concepto oriental).",
+    "solucion": "karma",
+    "materia": "lengua"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Conjunto de piezas.",
+    "solucion": "kit",
+    "materia": "lengua"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Prenda de baño (contiene K).",
+    "solucion": "bikini",
+    "materia": "lengua"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Chaqueta impermeable (contiene K).",
+    "solucion": "anorak",
+    "materia": "lengua"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Protagonista de la primera novela picaresca.",
+    "solucion": "lazarillo",
+    "materia": "lengua"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Dramaturgo del Siglo de Oro (... de Vega).",
+    "solucion": "lope",
+    "materia": "lengua"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Género literario que expresa sentimientos.",
+    "solucion": "lírica",
+    "materia": "lengua"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Narración tradicional fantástica.",
+    "solucion": "leyenda",
+    "materia": "lengua"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Obra escrita.",
+    "solucion": "libro",
+    "materia": "lengua"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Sistema de comunicación verbal.",
+    "solucion": "lengua",
+    "materia": "lengua"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Grupo de palabras con significado fijo.",
+    "solucion": "locución",
+    "materia": "lengua"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Uso incorrecto de 'la' como objeto indirecto.",
+    "solucion": "laísmo",
+    "materia": "lengua"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Tópico del lugar agradable (... amoenus).",
+    "solucion": "locus",
+    "materia": "lengua"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Arte de la palabra.",
+    "solucion": "literatura",
+    "materia": "lengua"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Oficio de clérigos o juglares (... de Clerecía/Juglaría).",
+    "solucion": "mester",
+    "materia": "lengua"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Identificación de dos términos (Real e Imaginario).",
+    "solucion": "metáfora",
+    "materia": "lengua"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Jorge ..., autor de las Coplas.",
+    "solucion": "manrique",
+    "materia": "lengua"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Período histórico de la literatura antes del Renacimiento.",
+    "solucion": "medieval",
+    "materia": "lengua"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Discurso de una sola persona.",
+    "solucion": "monólogo",
+    "materia": "lengua"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Parte de la gramática que estudia la forma de las palabras.",
+    "solucion": "morfología",
+    "materia": "lengua"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Medida de los versos.",
+    "solucion": "métrica",
+    "materia": "lengua"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Relato de dioses y héroes.",
+    "solucion": "mito",
+    "materia": "lengua"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Autor religioso que busca la unión con Dios.",
+    "solucion": "místico",
+    "materia": "lengua"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Título nobiliario femenino.",
+    "solucion": "marquesa",
+    "materia": "lengua"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Obra narrativa extensa.",
+    "solucion": "novela",
+    "materia": "lengua"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Voz que cuenta la historia.",
+    "solucion": "narrador",
+    "materia": "lengua"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Movimiento literario del siglo XVIII.",
+    "solucion": "neoclasicismo",
+    "materia": "lengua"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Sustantivo.",
+    "solucion": "nombre",
+    "materia": "lengua"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Palabra que une oraciones.",
+    "solucion": "nexo",
+    "materia": "lengua"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Texto periodístico informativo.",
+    "solucion": "noticia",
+    "materia": "lengua"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Parte central del sintagma.",
+    "solucion": "núcleo",
+    "materia": "lengua"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Género literario de contar historias.",
+    "solucion": "narrativa",
+    "materia": "lengua"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Autor de la primera Gramática castellana (1492).",
+    "solucion": "nebrija",
+    "materia": "lengua"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Poema de San Juan de la Cruz (... oscura).",
+    "solucion": "noche",
+    "materia": "lengua"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "País de origen del castellano (contiene Ñ).",
+    "solucion": "españa",
+    "materia": "lengua"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Periodo de 365 días (contiene Ñ).",
+    "solucion": "año",
+    "materia": "lengua"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Dueño o amo (contiene Ñ).",
+    "solucion": "señor",
+    "materia": "lengua"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Día siguiente a hoy (contiene Ñ).",
+    "solucion": "mañana",
+    "materia": "lengua"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Infante (contiene Ñ).",
+    "solucion": "niño",
+    "materia": "lengua"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Lo que ves al dormir (contiene Ñ).",
+    "solucion": "sueño",
+    "materia": "lengua"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Casa rústica (contiene Ñ).",
+    "solucion": "cabaña",
+    "materia": "lengua"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Elevación de terreno (contiene Ñ).",
+    "solucion": "montaña",
+    "materia": "lengua"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Madera para quemar (contiene Ñ).",
+    "solucion": "leña",
+    "materia": "lengua"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Tela para la nariz (contiene Ñ).",
+    "solucion": "pañuelo",
+    "materia": "lengua"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Unidad sintáctica con verbo.",
+    "solucion": "oración",
+    "materia": "lengua"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Poema de alabanza.",
+    "solucion": "oda",
+    "materia": "lengua"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Creación literaria.",
+    "solucion": "obra",
+    "materia": "lengua"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Siglo de esplendor literario (... de Oro).",
+    "solucion": "oro",
+    "materia": "lengua"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Imitación de sonidos reales.",
+    "solucion": "onomatopeya",
+    "materia": "lengua"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Verso de ocho sílabas.",
+    "solucion": "octosílabo",
+    "materia": "lengua"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Reglas de escritura.",
+    "solucion": "ortografía",
+    "materia": "lengua"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Literatura transmitida de viva voz (...).",
+    "solucion": "oral",
+    "materia": "lengua"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Complemento verbal (Directo, Indirecto...).",
+    "solucion": "objeto",
+    "materia": "lengua"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Narrador que lo sabe todo.",
+    "solucion": "omnisciente",
+    "materia": "lengua"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Protagonista de la novela picaresca.",
+    "solucion": "pícaro",
+    "materia": "lengua"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Arte de componer versos.",
+    "solucion": "poesía",
+    "materia": "lengua"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Parte de la oración que dice algo del sujeto.",
+    "solucion": "predicado",
+    "materia": "lengua"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Ser ficticio de una obra.",
+    "solucion": "personaje",
+    "materia": "lengua"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Estrofa de dos versos.",
+    "solucion": "pareado",
+    "materia": "lengua"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Palabra con varios significados.",
+    "solucion": "polisemia",
+    "materia": "lengua"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Forma de escritura sin métrica (opuesto a verso).",
+    "solucion": "prosa",
+    "materia": "lengua"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Palabra que sustituye al nombre.",
+    "solucion": "pronombre",
+    "materia": "lengua"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Unión de dos o más verbos que funcionan como uno (... verbal).",
+    "solucion": "perífrasis",
+    "materia": "lengua"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Obras breves de Lope de Rueda.",
+    "solucion": "pasos",
+    "materia": "lengua"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Autor conceptista del Barroco (Francisco de...).",
+    "solucion": "quevedo",
+    "materia": "lengua"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Obra cumbre de Cervantes (Don...).",
+    "solucion": "quijote",
+    "materia": "lengua"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Figura retórica de cruce de elementos.",
+    "solucion": "quiasmo",
+    "materia": "lengua"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Pronombre relativo.",
+    "solucion": "quien",
+    "materia": "lengua"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Número de la niña bonita.",
+    "solucion": "quince",
+    "materia": "lengua"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Verbo de voluntad.",
+    "solucion": "querer",
+    "materia": "lengua"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Alimento lácteo.",
+    "solucion": "queso",
+    "materia": "lengua"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Ciencia o relación entre personas.",
+    "solucion": "química",
+    "materia": "lengua"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Ordinal de cinco.",
+    "solucion": "quinto",
+    "materia": "lengua"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Finca de recreo.",
+    "solucion": "quinta",
+    "materia": "lengua"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Movimiento cultural del siglo XVI.",
+    "solucion": "renacimiento",
+    "materia": "lengua"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Poema de versos octosílabos con rima asonante en los pares.",
+    "solucion": "romance",
+    "materia": "lengua"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Repetición de sonidos al final del verso.",
+    "solucion": "rima",
+    "materia": "lengua"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Movimiento literario que busca reflejar la realidad (s. XIX).",
+    "solucion": "realismo",
+    "materia": "lengua"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Herramienta estilística (... literario).",
+    "solucion": "recurso",
+    "materia": "lengua"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Arte del bien decir.",
+    "solucion": "retórica",
+    "materia": "lengua"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Estrofa de cuatro versos octosílabos (abba).",
+    "solucion": "redondilla",
+    "materia": "lengua"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Conjunto de romances.",
+    "solucion": "romancero",
+    "materia": "lengua"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Apellido del Arcipreste de Hita (Juan...).",
+    "solucion": "ruiz",
+    "materia": "lengua"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Facultad humana exaltada en la Ilustración.",
+    "solucion": "razón",
+    "materia": "lengua"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Poema de 14 versos (dos cuartetos y dos tercetos).",
+    "solucion": "soneto",
+    "materia": "lengua"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Parte de la gramática que estudia la función de las palabras.",
+    "solucion": "sintaxis",
+    "materia": "lengua"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Periodo literario que abarca Renacimiento y Barroco (... de Oro).",
+    "solucion": "siglo",
+    "materia": "lengua"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Golpe de voz en una palabra.",
+    "solucion": "sílaba",
+    "materia": "lengua"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Palabra con significado igual.",
+    "solucion": "sinónimo",
+    "materia": "lengua"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Obra que critica o ridiculiza algo.",
+    "solucion": "sátira",
+    "materia": "lengua"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Quien realiza la acción del verbo.",
+    "solucion": "sujeto",
+    "materia": "lengua"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Comparación (figura retórica).",
+    "solucion": "símil",
+    "materia": "lengua"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Oración que depende de otra principal.",
+    "solucion": "subordinada",
+    "materia": "lengua"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Expresión emocional.",
+    "solucion": "sentimiento",
+    "materia": "lengua"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Género dramático.",
+    "solucion": "teatro",
+    "materia": "lengua"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Dramaturgo creador del Don Juan (... de Molina).",
+    "solucion": "tirso",
+    "materia": "lengua"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Obra dramática con final funesto.",
+    "solucion": "tragedia",
+    "materia": "lengua"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Idea o tema repetido en la literatura (... literario).",
+    "solucion": "tópico",
+    "materia": "lengua"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Estrofa de tres versos.",
+    "solucion": "terceto",
+    "materia": "lengua"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Poeta provenzal o cortesano.",
+    "solucion": "trovador",
+    "materia": "lengua"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Conjunto de enunciados.",
+    "solucion": "texto",
+    "materia": "lengua"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Duración o época (Tempus fugit).",
+    "solucion": "tiempo",
+    "materia": "lengua"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Acento gráfico.",
+    "solucion": "tilde",
+    "materia": "lengua"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Asunto de una obra.",
+    "solucion": "tema",
+    "materia": "lengua"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Obra de Tomás Moro sobre la sociedad ideal.",
+    "solucion": "utopía",
+    "materia": "lengua"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Cohesión o propiedad de ser uno.",
+    "solucion": "unidad",
+    "materia": "lengua"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Empleo de la lengua.",
+    "solucion": "uso",
+    "materia": "lengua"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Primer número cardinal.",
+    "solucion": "uno",
+    "materia": "lengua"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Conjunto de todo lo existente.",
+    "solucion": "universo",
+    "materia": "lengua"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Acción de unir.",
+    "solucion": "unión",
+    "materia": "lengua"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Prisa.",
+    "solucion": "urgencia",
+    "materia": "lengua"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Provecho.",
+    "solucion": "utilidad",
+    "materia": "lengua"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Final.",
+    "solucion": "último",
+    "materia": "lengua"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Sin igual.",
+    "solucion": "único",
+    "materia": "lengua"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Línea de un poema.",
+    "solucion": "verso",
+    "materia": "lengua"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Fénix de los ingenios (Lope de...).",
+    "solucion": "vega",
+    "materia": "lengua"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Palabra que indica acción.",
+    "solucion": "verbo",
+    "materia": "lengua"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Canción popular navideña o profana.",
+    "solucion": "villancico",
+    "materia": "lengua"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Sonido libre (a, e, i, o, u).",
+    "solucion": "vocal",
+    "materia": "lengua"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Biografía (La ... es sueño).",
+    "solucion": "vida",
+    "materia": "lengua"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Creíble, realista.",
+    "solucion": "verosímil",
+    "materia": "lengua"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Sonido humano o forma verbal (Activa/Pasiva).",
+    "solucion": "voz",
+    "materia": "lengua"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Función apelativa para llamar a alguien.",
+    "solucion": "vocativo",
+    "materia": "lengua"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Cualidad positiva.",
+    "solucion": "valor",
+    "materia": "lengua"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Página de internet.",
+    "solucion": "web",
+    "materia": "lengua"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Enciclopedia libre online.",
+    "solucion": "wikipedia",
+    "materia": "lengua"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Autor de cuentos (Irving ...ashington, contiene W).",
+    "solucion": "washington",
+    "materia": "lengua"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Bebida alcohólica.",
+    "solucion": "whisky",
+    "materia": "lengua"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Bocadillo (contiene W).",
+    "solucion": "sandwich",
+    "materia": "lengua"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Fruta (contiene W).",
+    "solucion": "kiwi",
+    "materia": "lengua"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Espectáculo (contiene W).",
+    "solucion": "show",
+    "materia": "lengua"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Deporte acuático (contiene W).",
+    "solucion": "waterpolo",
+    "materia": "lengua"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Cine estadounidense (Holly...ood, contiene W).",
+    "solucion": "hollywood",
+    "materia": "lengua"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Fiesta de terror (Hallo...een, contiene W).",
+    "solucion": "halloween",
+    "materia": "lengua"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Conjunto de enunciados (contiene X).",
+    "solucion": "texto",
+    "materia": "lengua"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Palabra de unión (contiene X).",
+    "solucion": "nexo",
+    "materia": "lengua"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Orden de las palabras (Sinta...is, contiene X).",
+    "solucion": "sintaxis",
+    "materia": "lengua"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Palabra de otro idioma (E...tranjerismo, contiene X).",
+    "solucion": "extranjerismo",
+    "materia": "lengua"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Manifestación de pensamientos (E...presión, contiene X).",
+    "solucion": "expresión",
+    "materia": "lengua"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Triunfo (contiene X).",
+    "solucion": "éxito",
+    "materia": "lengua"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Entorno del texto (Conte...to, contiene X).",
+    "solucion": "contexto",
+    "materia": "lengua"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Vocabulario (Lé...ico, contiene X).",
+    "solucion": "léxico",
+    "materia": "lengua"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Punto culminante (contiene X).",
+    "solucion": "clímax",
+    "materia": "lengua"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Prueba (E...amen, contiene X).",
+    "solucion": "examen",
+    "materia": "lengua"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Pie métrico.",
+    "solucion": "yambo",
+    "materia": "lengua"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Pronombre personal 1ª persona.",
+    "solucion": "yo",
+    "materia": "lengua"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Hembra del caballo.",
+    "solucion": "yegua",
+    "materia": "lengua"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Marido de la hija.",
+    "solucion": "yerno",
+    "materia": "lengua"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Elemento químico.",
+    "solucion": "yodo",
+    "materia": "lengua"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Norma (Le... contiene Y).",
+    "solucion": "ley",
+    "materia": "lengua"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Monarca (Re... contiene Y).",
+    "solucion": "rey",
+    "materia": "lengua"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Día presente (Ho... contiene Y).",
+    "solucion": "hoy",
+    "materia": "lengua"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Adverbio de cantidad (Mu... contiene Y).",
+    "solucion": "muy",
+    "materia": "lengua"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Río pequeño (Arro...o contiene Y).",
+    "solucion": "arroyo",
+    "materia": "lengua"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Género musical teatral español.",
+    "solucion": "zarzuela",
+    "materia": "lengua"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Autor del Don Juan Tenorio.",
+    "solucion": "zorrilla",
+    "materia": "lengua"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Área.",
+    "solucion": "zona",
+    "materia": "lengua"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Calzado.",
+    "solucion": "zapato",
+    "materia": "lengua"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Líquido de fruta.",
+    "solucion": "zumo",
+    "materia": "lengua"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Obra: La Lo...ana Andaluza (contiene Z).",
+    "solucion": "lozana",
+    "materia": "lengua"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Parte de la palabra con significado (Raí... contiene Z).",
+    "solucion": "raíz",
+    "materia": "lengua"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Sonido al hablar (Vo... contiene Z).",
+    "solucion": "voz",
+    "materia": "lengua"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Ocasión (Ve... contiene Z).",
+    "solucion": "vez",
+    "materia": "lengua"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Contrario de guerra (Pa... contiene Z).",
+    "solucion": "paz",
+    "materia": "lengua"
+  }
 ]

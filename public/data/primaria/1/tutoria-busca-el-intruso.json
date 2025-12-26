@@ -1,5 +1,144 @@
 [
-  "😀", "😃", "😄", "😁", "😆", "😅", "🤣", "😂", "🙂", "😊",
-  "😇", "🥰", "😍", "🤩", "😘", "😗", "😚", "😙", "🥲", "😋",
-  "😛", "😜", "🤪", "😝", "🤗", "🤭", "🫢", "🫣", "🤫", "🤔"
+  {
+    "categoria": "Emociones Felices (Visual)",
+    "correctos": [
+      "😀",
+      "🙂",
+      "😊",
+      "🥰",
+      "😍",
+      "🤩",
+      "🥳"
+    ],
+    "intrusos": [
+      "😢",
+      "😡",
+      "😱",
+      "🤢",
+      "👿"
+    ]
+  },
+  {
+    "categoria": "Higiene y Salud (Visual)",
+    "correctos": [
+      "🧼",
+      "🪥",
+      "🚿",
+      "🛀",
+      "🧴",
+      "🍎",
+      "🥦"
+    ],
+    "intrusos": [
+      "🍔",
+      "🍕",
+      "🍩",
+      "🍟",
+      "🍭",
+      "🧂"
+    ]
+  },
+  {
+    "categoria": "Cosas para Compartir (Visual)",
+    "correctos": [
+      "🧸",
+      "⚽",
+      "📖",
+      "🎨",
+      "🧩",
+      "🍪"
+    ],
+    "intrusos": [
+      "🔥",
+      "🔌",
+      "🔪",
+      "💊",
+      "🧪"
+    ]
+  },
+  {
+    "categoria": "Ayuda y Amistad (Visual)",
+    "correctos": [
+      "🤝",
+      "🫂",
+      "👋",
+      "🤲",
+      "❤️",
+      "🗣️"
+    ],
+    "intrusos": [
+      "🥊",
+      "🖕",
+      "😤",
+      "📢",
+      "💣"
+    ]
+  },
+  {
+    "categoria": "Emociones que Siento",
+    "correctos": [
+      "Alegría",
+      "Miedo",
+      "Tristeza",
+      "Rabia",
+      "Sorpresa"
+    ],
+    "intrusos": [
+      "Hambre",
+      "Sed",
+      "Sueño",
+      "Dolor",
+      "Frío"
+    ]
+  },
+  {
+    "categoria": "Buenos Hábitos",
+    "correctos": [
+      "Saludar",
+      "Dar las gracias",
+      "Pedir por favor",
+      "Recoger",
+      "Ayudar"
+    ],
+    "intrusos": [
+      "Gritar",
+      "Pegar",
+      "Empujar",
+      "Insultar",
+      "Escupir"
+    ]
+  },
+  {
+    "categoria": "Mi Clase",
+    "correctos": [
+      "Amigos",
+      "Profesora",
+      "Mesas",
+      "Sillas",
+      "Pizarra"
+    ],
+    "intrusos": [
+      "Cama",
+      "Ducha",
+      "Coche",
+      "Nevera",
+      "Parque"
+    ]
+  },
+  {
+    "categoria": "Hábitos Saludables",
+    "correctos": [
+      "Comer fruta",
+      "Beber agua",
+      "Lavar manos",
+      "Dormir",
+      "Jugar"
+    ],
+    "intrusos": [
+      "Comer chuches",
+      "Ver mucha tele",
+      "No bañarse",
+      "Acostarse tarde"
+    ]
+  }
 ]

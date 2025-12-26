@@ -1,0 +1,570 @@
+[
+    {
+        "id": "1",
+        "titulo": "Trazados Geométricos Básicos",
+        "texto": "El dibujo técnico es una herramienta de precisión. Los trazados básicos incluyen la MEDIATRIZ de un segmento (línea perpendicular que pasa por el punto medio) y la BISECTRIZ de un ángulo (línea que lo divide en dos ángulos iguales). Para realizarlos con exactitud, debemos usar el compás y la regla, nunca a mano alzada. Estos trazados son la base para construir polígonos regulares y resolver problemas complejos de diseño industrial, arquitectura e ingeniería.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la mediatriz?",
+                "opciones": [
+                    "Una línea torcida",
+                    "La perpendicular que divide un segmento en dos partes iguales",
+                    "El borde de una hoja",
+                    "Un tipo de ángulo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace la bisectriz con un ángulo?",
+                "opciones": [
+                    "Lo borra",
+                    "Lo divide en dos ángulos iguales",
+                    "Lo hace más grande",
+                    "Lo cierra"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué instrumentos son esenciales para la precisión?",
+                "opciones": [
+                    "Lápices de colores",
+                    "Regla y compás",
+                    "Solo las manos",
+                    "Tijeras"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven estos trazados?",
+                "opciones": [
+                    "Solo para primaria",
+                    "Base para construir polígonos y diseños técnicos",
+                    "Para pintar paisajes",
+                    "Para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Se deben hacer a mano alzada en dibujo técnico?",
+                "opciones": [
+                    "Sí",
+                    "No, requieren precisión total"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "La Circunferencia y sus Elementos",
+        "texto": "La circunferencia es una línea curva cerrada cuyos puntos están a la misma distancia de un centro. Sus elementos principales son el RADIO (distancia del centro al borde), el DIÁMETRO (el doble del radio, cruza por el centro), la CUERDA (une dos puntos sin pasar por el centro) y el ARCO (porción de la circunferencia). También encontramos la línea TANGENTE, que toca a la circunferencia en un solo punto sin cortarla. Es fundamental dominar estos conceptos para el dibujo de piezas mecánicas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el radio?",
+                "opciones": [
+                    "Una línea que cruza toda la circunferencia",
+                    "La distancia del centro a cualquier punto del borde",
+                    "Un instrumento de música",
+                    "Un ángulo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántos radios mide un diámetro?",
+                "opciones": [
+                    "Uno",
+                    "Dos",
+                    "Tres",
+                    "Diez"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es una línea tangente?",
+                "opciones": [
+                    "Una que entra dentro del círculo",
+                    "Una que toca la circunferencia en un solo punto",
+                    "Una línea que no existe",
+                    "Una curva"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué elemento une dos puntos de la circunferencia sin pasar por el centro?",
+                "opciones": [
+                    "Radio",
+                    "Cuerda",
+                    "Tangente",
+                    "Centro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama una porción de la línea curva?",
+                "opciones": [
+                    "Trozo",
+                    "Arco",
+                    "Corte",
+                    "Segmento"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Polígonos Regulares",
+        "texto": "Un polígono es regular cuando todos sus lados y ángulos son iguales. Los más comunes son el triángulo equilátero (3 lados), el cuadrado (4 lados), el pentágono (5 lados) y el hexágono (6 lados). El hexágono es muy especial porque su lado mide exactamente lo mismo que el radio de la circunferencia donde se inscribe. Podemos construir estos polígonos usando el compás, dividiendo la circunferencia en partes iguales, lo que nos permite crear diseños geométricos perfectos y mosaicos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuándo un polígono es regular?",
+                "opciones": [
+                    "Cuando es muy grande",
+                    "Cuando todos sus lados y ángulos son iguales",
+                    "Cuando tiene colores",
+                    "Cuando tiene 3 lados"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el polígono de 5 lados iguales?",
+                "opciones": [
+                    "Cuadrado",
+                    "Pentágono",
+                    "Hexágono",
+                    "Octógono"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué curiosidad tiene el hexágono regular?",
+                "opciones": [
+                    "No tiene ángulos",
+                    "Su lado mide igual que el radio de su circunferencia",
+                    "Tiene 4 lados",
+                    "Es un círculo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué herramienta principal usamos para dibujar polígonos exactos?",
+                "opciones": [
+                    "Pincel",
+                    "Compás",
+                    "Goma",
+                    "Dedo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El triángulo equilátero tiene...",
+                "opciones": [
+                    "2 lados iguales",
+                    "3 lados iguales",
+                    "Ningún lado igual",
+                    "Lados curvos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La Percepción Visual: Leyes de la Gestalt",
+        "texto": "Nuestro cerebro no ve la realidad tal cual es, sino que organiza la información visual según ciertas reglas llamadas Leyes de la GESTALT. La Ley de FIGURA-FONDO nos permite distinguir un objeto de su entorno. La Ley de CIERRE hace que nuestro cerebro complete formas que no están terminadas. La Ley de PROXIMIDAD agrupa los elementos que están cerca. Conocer estos mecanismos es vital para diseñadores gráficos y artistas, ya que permite guiar la mirada del espectador y comunicar mensajes de forma efectiva.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué estudia la Gestalt?",
+                "opciones": [
+                    "Los tipos de pintura",
+                    "Cómo nuestro cerebro organiza lo que vemos (percepción)",
+                    "La historia de Roma",
+                    "La mezcla de colores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace la Ley de Cierre?",
+                "opciones": [
+                    "Cierra las puertas",
+                    "Hace que el cerebro complete figuras inacabadas",
+                    "Borra el dibujo",
+                    "Hace las líneas más gruesas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ley agrupa elementos que están próximos entre sí?",
+                "opciones": [
+                    "Ley de figura-fondo",
+                    "Ley de proximidad",
+                    "Ley del color",
+                    "Ley de dirección"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Distinguir un gato de la pared donde está se basa en la ley de:",
+                "opciones": [
+                    "Gente",
+                    "Figura y fondo",
+                    "Semejanza",
+                    "Contraste"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para quién es útil conocer estas leyes?",
+                "opciones": [
+                    "Solo para médicos",
+                    "Para diseñadores gráficos y artistas",
+                    "Para nadie",
+                    "Solo para conductores"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Sistemas de Representación: Vistas",
+        "texto": "Para representar un objeto 3D en un papel 2D de forma técnica, usamos las VISTAS. Imaginamos que miramos el objeto desde diferentes lados. Las tres vistas principales son: el ALZADO (vista de frente), la PLANTA (vista desde arriba) y el PERFIL (vista desde un lado). Al dibujar las tres, alguien que no vea el objeto real puede imaginar perfectamente su forma y dimensiones para fabricarlo. Es el lenguaje universal que usan arquitectos e ingenieros en todo el mundo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la planta de un objeto?",
+                "opciones": [
+                    "Una flor",
+                    "La vista desde arriba",
+                    "La vista de frente",
+                    "La base"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la vista frontal?",
+                "opciones": [
+                    "Perfil",
+                    "Alzado",
+                    "Cara",
+                    "Plano"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven las vistas?",
+                "opciones": [
+                    "Para que sea más bonito",
+                    "Para representar un objeto 3D en un papel 2D con precisión",
+                    "Para borrar errores",
+                    "Para pintar con colores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quiénes usan este lenguaje universal?",
+                "opciones": [
+                    "Solo niños",
+                    "Arquitectos e ingenieros",
+                    "Solo pintores de cuadros",
+                    "Nadie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántas vistas principales se suelen representar?",
+                "opciones": [
+                    "Una",
+                    "Tres (Alzado, Planta, Perfil)",
+                    "Diez",
+                    "Cien"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "La Perspectiva Caballera",
+        "texto": "La perspectiva caballera es un sistema rápido para dibujar objetos con volumen. Se basa en tres ejes: X e Y forman un ángulo de 90º (la cara frontal se dibuja tal cual, sin deformar), y el eje Z (la profundidad) se dibuja inclinado, generalmente a 45º. Para que el dibujo parezca más real, se aplica un COEFICIENTE DE REDUCCIÓN (normalmente 0.5) en el eje de profundidad, es decir, dibujamos las líneas que van 'hacia atrás' a la mitad de su tamaño real para evitar que el objeto parezca demasiado largo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué eje representa la profundidad en perspectiva?",
+                "opciones": [
+                    "X",
+                    "Y",
+                    "Z",
+                    "H"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué ángulo forman los ejes X e Y en la caballera?",
+                "opciones": [
+                    "30º",
+                    "45º",
+                    "90º",
+                    "180º"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué es el coeficiente de reducción?",
+                "opciones": [
+                    "Borrar el dibujo",
+                    "Dibujar la profundidad más corta para que sea realista",
+                    "Usar lápices finos",
+                    "Hacer el dibujo más pequeño"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un cubo tiene 4 cm de profundidad, con un coeficiente de 0.5 dibujaremos:",
+                "opciones": [
+                    "4 cm",
+                    "8 cm",
+                    "2 cm",
+                    "0 cm"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cómo se dibuja la cara frontal en esta perspectiva?",
+                "opciones": [
+                    "Muy deformada",
+                    "Sin deformar, con sus medidas reales",
+                    "No se dibuja",
+                    "En forma de círculo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "El Color: Armonías y Contrastes",
+        "texto": "El círculo cromático es una herramienta para combinar colores. Las ARMONÍAS se consiguen usando colores cercanos (como el azul y el violeta), lo que da sensación de calma. Los CONTRASTES se logran con colores OPUESTOS en el círculo cromático, llamados COMPLEMENTARIOS (como el amarillo y el violeta, o el rojo y el verde). Un uso inteligente del color puede cambiar totalmente el mensaje de una obra: los colores cálidos (rojos, naranjas) transmiten energía, mientras que los fríos (azules, verdes) transmiten serenidad.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué son los colores complementarios?",
+                "opciones": [
+                    "Colores parecidos",
+                    "Colores opuestos en el círculo cromático",
+                    "Solo el blanco y negro",
+                    "Colores primarios"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué sensación dan los colores cálidos?",
+                "opciones": [
+                    "Frío y hielo",
+                    "Energía y cercanía",
+                    "Tristeza",
+                    "Miedo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama usar colores cercanos en el círculo?",
+                "opciones": [
+                    "Contraste",
+                    "Armonía",
+                    "Mezcla",
+                    "Ruido visual"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el complementario del color rojo?",
+                "opciones": [
+                    "Amarillo",
+                    "Verde",
+                    "Azul",
+                    "Blanco"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un paisaje nevado usaría principalmente colores:",
+                "opciones": [
+                    "Cálidos",
+                    "Fríos",
+                    "Naranjas",
+                    "Rojos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Texturas: Visuales y Táctiles",
+        "texto": "La textura es la cualidad de la superficie de los objetos. Una textura TÁCTIL se puede sentir con las manos (el relieve de un tronco, la suavidad del terciopelo). Una textura VISUAL es un dibujo o fotografía que simula esa sensación en una superficie plana pero que es lisa al tocarla. En el arte, usamos texturas para dar realismo o expresividad a las composiciones. Podemos crear texturas propias mediante el frotado (frottage), el estampado o el rascado de pinturas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la diferencia entre textura táctil y visual?",
+                "opciones": [
+                    "Ninguna",
+                    "La táctil tiene relieve real y la visual es una simulación en el papel",
+                    "La visual molesta",
+                    "La táctil no se ve"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la técnica del frottage?",
+                "opciones": [
+                    "Pintar con los dedos",
+                    "Frotar un lápiz sobre un papel puesto encima de una superficie rugosa",
+                    "Lanzar pintura",
+                    "Cortar papel"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve usar texturas en un dibujo?",
+                "opciones": [
+                    "Para gastar papel",
+                    "Para dar realismo y expresividad",
+                    "Para que no se vea el dibujo",
+                    "Para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un ejemplo de textura táctil natural es:",
+                "opciones": [
+                    "Una foto de una roca",
+                    "La corteza de un árbol real",
+                    "Un dibujo de un gato",
+                    "Un círculo azul liso"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un dibujo parece que pincha pero el papel es liso, es una textura:",
+                "opciones": [
+                    "Táctil",
+                    "Visual",
+                    "Auditiva",
+                    "Gruesa"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "La Comunicación Visual",
+        "texto": "Vivimos rodeados de imágenes que nos envían mensajes. El lenguaje visual tiene tres funciones principales: 1) INFORMATIVA (señales de tráfico, planos). 2) EXPRESIVA (transmite sentimientos, como un cuadro). 3) PERSUASIVA (intenta convencernos de algo, como la publicidad). Para entender un mensaje visual debemos analizar quién es el emisor, qué canal se usa y cuál es el código. Una buena imagen publicitaria usa colores y composiciones llamativas para que deseemos comprar un producto.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la función de una señal de STOP?",
+                "opciones": [
+                    "Expresiva",
+                    "Informativa",
+                    "Persuasiva",
+                    "Artística"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué función busca convencerte para comprar algo?",
+                "opciones": [
+                    "Informativa",
+                    "Persuasiva (Publicidad)",
+                    "Expresiva",
+                    "Ninguna"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la función que transmite sentimientos?",
+                "opciones": [
+                    "Informativa",
+                    "Expresiva",
+                    "Publicitaria",
+                    "Rápida"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué elementos intervienen en la comunicación visual?",
+                "opciones": [
+                    "Luz y oscuridad solamente",
+                    "Emisor, mensaje, canal y código",
+                    "Papel y lápiz solamente",
+                    "Niños y adultos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un anuncio de zapatillas usa la función:",
+                "opciones": [
+                    "Informativa",
+                    "Persuasiva",
+                    "Deportiva",
+                    "Musical"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "El Lenguaje del Cómic",
+        "texto": "El cómic es una narración mediante imágenes y texto. Usa elementos propios: la VIÑETA (recuadro donde sucede la acción), el BOCADILLO (donde se escribe lo que el personaje piensa o dice) y las ONOMATOPEYAS (letras que representan sonidos como '¡BOOM!' o '¡ZAS!'). También usa líneas cinéticas para indicar movimiento. La forma del bocadillo nos da información: si es una nube, el personaje está pensando; si tiene picos, está gritando. Es un medio muy potente para contar historias de forma divertida y visual.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llama el recuadro que contiene toda una escena en el cómic?",
+                "opciones": [
+                    "Bocadillo",
+                    "Viñeta",
+                    "Página",
+                    "Fondo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es una onomatopeya?",
+                "opciones": [
+                    "Un dibujo de un perro",
+                    "La representación de un sonido con letras",
+                    "El nombre del autor",
+                    "Un tipo de color"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un bocadillo tiene forma de nube, ¿qué significa?",
+                "opciones": [
+                    "Que el personaje grita",
+                    "Que el personaje está pensando",
+                    "Que hay tormenta",
+                    "Que se ha acabado el papel"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven las líneas cinéticas?",
+                "opciones": [
+                    "Para decorar",
+                    "Para representar el movimiento",
+                    "Para escribir",
+                    "Para borrar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se escriben los diálogos?",
+                "opciones": [
+                    "En el suelo",
+                    "En los bocadillos o globos",
+                    "En las esquinas siempre",
+                    "Fuera de la página"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

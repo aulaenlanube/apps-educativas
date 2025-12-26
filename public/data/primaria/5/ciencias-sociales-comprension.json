@@ -1,320 +1,568 @@
 [
   {
     "id": "1",
-    "titulo": "Mi familia",
-    "texto": "Vivo con mi familia en una casa pequeña. Mi familia está formada por mi mamá, mi papá y mi hermano mayor que se llama Luis. Los domingos viene mi abuela a comer paella con nosotros. Todos nos queremos mucho y nos ayudamos en casa.",
+    "titulo": "La vida en el Paleolítico",
+    "texto": "Hace miles de años, en el Paleolítico, los primeros seres humanos eran nómadas. Esto significa que no vivían en un lugar fijo, sino que se desplazaban buscando alimento. Cazaban animales salvajes y recolectaban frutos. Vivían en cuevas o pequeñas cabañas de ramas y pieles. Un gran avance fue el descubrimiento del fuego, que les permitió calentarse, cocinar y ahuyentar a las fieras. También empezaron a fabricar herramientas golpeando piedras.",
     "preguntas": [
       {
-        "pregunta": "¿El hermano es mayor o pequeño?",
-        "opciones": ["Mayor", "Pequeño"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cuándo viene la abuela?",
-        "opciones": ["Los lunes", "Los domingos"],
+        "pregunta": "¿Qué significa que eran nómadas?",
+        "opciones": [
+          "Que vivían en una casa",
+          "Que no vivían en un lugar fijo",
+          "Que sabían volar",
+          "Que hablaban mucho"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se llama el hermano?",
-        "opciones": ["Juan", "Pedro", "Luis", "Carlos"],
+        "pregunta": "¿Cómo obtenían su comida?",
+        "opciones": [
+          "La compraban",
+          "Cazando y recolectando",
+          "La plantaban ellos",
+          "No comían"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué usaban el fuego?",
+        "opciones": [
+          "Solo para luz",
+          "Calentarse, cocinar y protección",
+          "Para jugar",
+          "Para nada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo fabricaban sus herramientas?",
+        "opciones": [
+          "Con metal",
+          "Golpeando piedras",
+          "Con madera suave",
+          "En máquinas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde vivían principalmente?",
+        "opciones": [
+          "En ciudades",
+          "En edificios",
+          "En cuevas o cabañas",
+          "Sola al aire libre"
+        ],
         "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué comen los domingos?",
-        "opciones": ["Pizza", "Sopa", "Ensalada", "Paella"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Dónde viven?",
-        "opciones": ["En un castillo", "En una casa", "En un barco", "En una tienda"],
-        "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "El colegio",
-    "texto": "En mi colegio aprendemos muchas cosas. Mi profesora se llama Elena y nos enseña a leer y a sumar. Tenemos un patio muy grande con una pista de baloncesto. Cuando suena el timbre, salimos al recreo a jugar con los amigos.",
+    "titulo": "El Neolítico: Los primeros poblados",
+    "texto": "Con el paso del tiempo, los seres humanos descubrieron la agricultura y la ganadería. Esto cambió su vida por completo. Al poder producir su propio alimento, ya no necesitaban desplazarse y se volvieron sedentarios. Construyeron los primeros poblados cerca de los ríos. También inventaron la cerámica para guardar alimentos y el telar para fabricar tejidos. Fue una auténtica revolución que permitió que la población creciera mucho más.",
     "preguntas": [
       {
-        "pregunta": "¿Cómo se llama la profesora?",
-        "opciones": ["María", "Elena"],
+        "pregunta": "¿Qué gran descubrimiento cambió la vida en el Neolítico?",
+        "opciones": [
+          "La televisión",
+          "La agricultura y la ganadería",
+          "El fuego",
+          "La rueda"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Tienen piscina en el patio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué significa ser sedentario?",
+        "opciones": [
+          "Vivir en un sitio fijo",
+          "Viajar siempre",
+          "Hacer mucho deporte",
+          "No comer carne"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Por qué vivían cerca de los ríos?",
+        "opciones": [
+          "Para bañarse",
+          "Para tener agua para cultivos y animales",
+          "Para que no hubiera árboles",
+          "Por el ruido"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hay en el patio?",
-        "opciones": ["Un huerto", "Una pista de baloncesto", "Un columpio", "Un tobogán"],
+        "pregunta": "¿Para qué inventaron la cerámica?",
+        "opciones": [
+          "Para adornar",
+          "Para guardar alimentos",
+          "Para fabricar armas",
+          "Para construir barcos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hacen cuando suena el timbre?",
-        "opciones": ["Se duermen", "Comen", "Salen al recreo", "Se van a casa"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué aprenden en clase?",
-        "opciones": ["A leer y sumar", "A cocinar", "A conducir", "A nadar"],
+        "pregunta": "¿Qué invento sirvió para hacer ropa?",
+        "opciones": [
+          "El telar",
+          "La aguja de oro",
+          "La cerámica",
+          "El fuego"
+        ],
         "correcta": 0
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Las partes de la casa",
-    "texto": "Las casas tienen diferentes habitaciones. En la cocina preparamos la comida y guardamos los alimentos en la nevera. En el dormitorio dormimos por la noche en nuestra cama. En el baño nos lavamos los dientes y nos duchamos para estar limpios.",
+    "titulo": "Al-Ándalus: Un legado cultural",
+    "texto": "En el año 711, los musulmanes llegaron a la península y conquistaron gran parte del territorio, al que llamaron Al-Ándalus. Su capital, Córdoba, se convirtió en una de las ciudades más importantes del mundo. Los musulmanes trajeron nuevos cultivos como el arroz, el limón y la naranja, e introdujeron sofisticados sistemas de riego. También nos dejaron grandes avances en matemáticas, medicina y astronomía, además de monumentos increíbles como la Mezquita de Córdoba o la Alhambra de Granada.",
     "preguntas": [
       {
-        "pregunta": "¿Dónde dormimos?",
-        "opciones": ["En la cocina", "En el dormitorio"],
+        "pregunta": "¿En qué año llegaron los musulmanes a la península?",
+        "opciones": [
+          "Año 476",
+          "Año 711",
+          "Año 1492",
+          "Año 1000"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde nos duchamos?",
-        "opciones": ["En el baño", "En el salón"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hay en la cocina?",
-        "opciones": ["Una cama", "Una nevera", "Un sofá", "Una ducha"],
+        "pregunta": "¿Cómo llamaron al territorio conquistado?",
+        "opciones": [
+          "Hispania",
+          "Al-Ándalus",
+          "Iberia",
+          "España"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuándo dormimos?",
-        "opciones": ["Por la mañana", "Por la tarde", "Por la noche", "A mediodía"],
+        "pregunta": "¿Cuál fue la gran capital de Al-Ándalus?",
+        "opciones": [
+          "Sevilla",
+          "Madrid",
+          "Córdoba",
+          "Granada"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué hacemos en el baño?",
-        "opciones": ["Cocinar", "Jugar", "Dormir", "Lavarnos los dientes"],
-        "correcta": 3
+        "pregunta": "¿Qué cultivos introdujeron?",
+        "opciones": [
+          "Trigo y cebada",
+          "Arroz, limón y naranja",
+          "Patatas y tomates",
+          "Café"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué monumento famoso está en Granada?",
+        "opciones": [
+          "La Mezquita",
+          "La Alhambra",
+          "La Giralda",
+          "El Acueducto"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Educación vial",
-    "texto": "Para cruzar la calle debemos tener cuidado. Siempre hay que cruzar por el paso de peatones, que tiene rayas blancas en el suelo. También debemos mirar el semáforo. Si el muñeco está en verde podemos pasar, pero si está en rojo debemos esperar.",
+    "titulo": "Los Reinos Cristianos y la Reconquista",
+    "texto": "Mientras los musulmanes gobernaban Al-Ándalus, en el norte de la península se formaron pequeños reinos cristianos. Durante casi ocho siglos, estos reinos fueron expandiéndose hacia el sur en un proceso llamado Reconquista. Destacaron el Reino de Castilla, el de Aragón, el de Navarra y el de Portugal. Con el tiempo, los reinos se fueron uniendo hasta que, en 1492, los Reyes Católicos conquistaron el último reino musulmán: Granada.",
     "preguntas": [
       {
-        "pregunta": "¿Podemos cruzar con el semáforo en rojo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Dónde se formaron los primeros reinos cristianos?",
+        "opciones": [
+          "En el sur",
+          "En el norte",
+          "En las islas",
+          "En el centro"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿De qué color son las rayas del suelo?",
-        "opciones": ["Blancas", "Azules"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Por dónde cruzamos?",
-        "opciones": ["Por el parque", "Por el paso de peatones", "Por la carretera", "Por donde queramos"],
+        "pregunta": "¿Cómo se llamó el proceso de recuperar tierras hacia el sur?",
+        "opciones": [
+          "Invasión",
+          "Reconquista",
+          "Transición",
+          "Descubrimiento"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué significa el muñeco verde?",
-        "opciones": ["Parar", "Correr", "Pasar", "Saltar"],
-        "correcta": 2
+        "pregunta": "¿Cuánto tiempo duró aproximadamente este proceso?",
+        "opciones": [
+          "100 años",
+          "800 años (ocho siglos)",
+          "10 siglos",
+          "20 años"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué hacemos si está en rojo?",
-        "opciones": ["Esperar", "Cruzar rápido", "Gritar", "Bailar"],
-        "correcta": 0
+        "pregunta": "¿Qué reino fue conquistado en 1492?",
+        "opciones": [
+          "Aragón",
+          "Granada",
+          "Castilla",
+          "Navarra"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quiénes terminaron la Reconquista?",
+        "opciones": [
+          "Carlos I",
+          "Los Reyes Católicos",
+          "El Cid",
+          "Don Pelayo"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "El pueblo y la ciudad",
-    "texto": "Lucas vive en un pueblo pequeño. Allí las casas son bajas y hay pocos coches, todo es muy tranquilo. Su prima vive en la ciudad, donde hay edificios muy altos, muchas tiendas, semáforos y mucho ruido de tráfico.",
+    "titulo": "La Meseta Central: El corazón de España",
+    "texto": "España es un país con una altitud media elevada. En el centro de la península se encuentra la Meseta Central, una gran llanura elevada que ocupa casi la mitad de España. La Meseta está dividida en dos por el Sistema Central: la Submeseta Norte y la Submeseta Sur. Alrededor de ella encontramos cordilleras como los Montes de Toledo, Sierra Morena o los Montes de León. Conocer el relieve nos ayuda a entender el clima y la vegetación de cada zona.",
     "preguntas": [
       {
-        "pregunta": "¿Dónde vive Lucas?",
-        "opciones": ["En el pueblo", "En la ciudad"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿En la ciudad hay mucho ruido?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo son las casas del pueblo?",
-        "opciones": ["Muy altas", "Bajas", "De cristal", "Flotantes"],
+        "pregunta": "¿Qué gran unidad de relieve ocupa el centro de España?",
+        "opciones": [
+          "Los Pirineos",
+          "La Meseta Central",
+          "El Valle del Ebro",
+          "Las Islas Baleares"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hay en la ciudad?",
-        "opciones": ["Pocas personas", "Edificios altos", "Muchos tractores", "Solo parques"],
+        "pregunta": "¿Qué cordillera divide la Meseta en dos?",
+        "opciones": [
+          "Sistema Penibético",
+          "Sistema Central",
+          "Cordillera Cantábrica",
+          "Sierra Morena"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es el pueblo?",
-        "opciones": ["Ruidoso", "Grande", "Tranquilo", "Peligroso"],
-        "correcta": 2
+        "pregunta": "¿Cómo se llaman las dos partes de la Meseta?",
+        "opciones": [
+          "Este y Oeste",
+          "Norte y Sur (Submesetas)",
+          "Alta y Baja",
+          "Rica y Pobre"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Es España un país muy llano en general?",
+        "opciones": [
+          "Sí",
+          "No, tiene una altitud media elevada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué relieve hay al sur de la Meseta?",
+        "opciones": [
+          "Sierra Morena",
+          "Pirineos",
+          "Los Alpes",
+          "El mar Cantábrico"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Los trabajos",
-    "texto": "Cada persona tiene un oficio diferente. El médico cura a los enfermos en el hospital. El bombero apaga los fuegos con su manguera y el camión rojo. El panadero hace pan y pasteles ricos en la panadería.",
+    "titulo": "Los ríos y las vertientes",
+    "texto": "Los ríos de España se agrupan en tres vertientes según el mar u océano donde desembocan. Los ríos de la vertiente CANTÁBRICA son cortos y caudalosos porque llueve mucho. Los de la vertiente ATLÁNTICA suelen ser largos, como el Duero o el Tajo. Por último, los de la vertiente MEDITERRÁNEA son poco caudalosos y sufren estiaje (poca agua en verano), a excepción del Ebro, que es el más caudaloso del país.",
     "preguntas": [
       {
-        "pregunta": "¿El médico apaga fuegos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿En cuántas vertientes se agrupan los ríos de España?",
+        "opciones": [
+          "Dos",
+          "Tres",
+          "Cinco",
+          "Diez"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde trabaja el panadero?",
-        "opciones": ["En el hospital", "En la panadería"],
+        "pregunta": "¿Cómo son los ríos de la vertiente Cantábrica?",
+        "opciones": [
+          "Largos y secos",
+          "Cortos y caudalosos",
+          "Subterráneos",
+          "Sin agua"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Quién cura a los enfermos?",
-        "opciones": ["El policía", "El médico", "El profesor", "El cartero"],
+        "pregunta": "¿Qué río es el más caudaloso de España?",
+        "opciones": [
+          "El Tajo",
+          "El Ebro",
+          "El Guadalquivir",
+          "El Duero"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué usa el bombero?",
-        "opciones": ["Una manguera", "Un horno", "Un termómetro", "Una pizarra"],
-        "correcta": 0
+        "pregunta": "¿Qué es el estiaje?",
+        "opciones": [
+          "Mucha agua en invierno",
+          "Caudal muy bajo en verano",
+          "La nieve de los ríos",
+          "La desembocadura"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿De qué color es el camión de bomberos?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
-        "correcta": 2
+        "pregunta": "¿A qué vertiente pertenece el río Tajo?",
+        "opciones": [
+          "Mediterránea",
+          "Atlántica",
+          "Cantábrica",
+          "No es un río"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Los medios de transporte",
-    "texto": "Para viajar usamos medios de transporte. El coche y el autobús van por la tierra (carretera). El barco navega por el agua del mar. El avión vuela muy alto por el aire para llevarnos a sitios lejanos rápidamente.",
+    "titulo": "El clima mediterráneo",
+    "texto": "Es el clima predominante en la mayor parte de España. Se caracteriza por inviernos suaves y veranos calurosos y secos. Las lluvias no son muy abundantes y se concentran sobre todo en primavera y otoño. Dependiendo de si estamos cerca del mar o en el interior, el clima mediterráneo puede variar: en el interior (como en Madrid) las temperaturas son más extremas, con inviernos muy fríos y veranos muy calurosos.",
     "preguntas": [
       {
-        "pregunta": "¿El barco va por la carretera?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo son los veranos en el clima mediterráneo?",
+        "opciones": [
+          "Fríos y lluviosos",
+          "Suaves",
+          "Calurosos y secos",
+          "Nieve siempre"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuándo suele llover más en este clima?",
+        "opciones": [
+          "En verano",
+          "Primavera y otoño",
+          "En enero",
+          "Nunca llueve"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿El avión va por el aire?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Es el clima más común en España?",
+        "opciones": [
+          "Sí",
+          "No, es el polar",
+          "Solo en Galicia",
+          "Solo en canarias"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué transporte va por tierra?",
-        "opciones": ["El barco", "El avión", "El coche", "El helicóptero"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Para qué sirve el avión?",
-        "opciones": ["Para ir despacio", "Para ir lejos", "Para navegar", "Para ir al colegio"],
+        "pregunta": "¿Cómo son las temperaturas en el interior (Madrid)?",
+        "opciones": [
+          "Siempre iguales",
+          "Extremas (frío en invierno, calor en verano)",
+          "Tropicales",
+          "Bajo cero siempre"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Por dónde va el autobús?",
-        "opciones": ["Por el mar", "Por el cielo", "Por la carretera", "Por el río"],
-        "correcta": 2
+        "pregunta": "¿Qué influye en que el clima cambie un poco?",
+        "opciones": [
+          "La comida",
+          "La distancia al mar",
+          "La hora del día",
+          "El color de la tierra"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El paisaje de montaña",
-    "texto": "En la montaña el aire es muy puro. Vemos montañas altas con nieve en la cima. En los valles hay ríos con agua fría y bosques llenos de árboles. En invierno hace mucho frío y podemos esquiar o jugar con la nieve.",
+    "titulo": "Organización del Estado: Monarquía Parlamentaria",
+    "texto": "España es un Estado democrático cuya forma de política es la Monarquía Parlamentaria. El Jefe del Estado es el Rey, pero no gobierna; sus funciones son representativas. El poder se divide en tres: el Legislativo (hace las leyes, en las Cortes Generales), el Ejecutivo (aplica las leyes, el Gobierno con el Presidente) y el Judicial (juzga si se cumplen las leyes, los Jueces). Todos los ciudadanos somos iguales ante la ley, según la Constitución de 1978.",
     "preguntas": [
       {
-        "pregunta": "¿Hace calor en la montaña en invierno?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es la función del Rey en España?",
+        "opciones": [
+          "Mandar en todo",
+          "Representativa (no gobierna)",
+          "Hacer las leyes",
+          "Ser juez"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Hay ríos en los valles?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hay en la cima de la montaña?",
-        "opciones": ["Arena", "Nieve", "Coches", "Mar"],
+        "pregunta": "¿Quién ejerce el poder legislativo?",
+        "opciones": [
+          "El Gobierno",
+          "Las Cortes Generales (Congreso y Senado)",
+          "El Rey",
+          "Los Jueces"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es el aire?",
-        "opciones": ["Sucio", "Puro", "Caliente", "Malo"],
+        "pregunta": "¿Quién preside el poder ejecutivo?",
+        "opciones": [
+          "El Rey",
+          "El Presidente del Gobierno",
+          "El Alcalde",
+          "El Juez"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué podemos hacer en invierno?",
-        "opciones": ["Nadar", "Tomar el sol", "Esquiar", "Pescar"],
-        "correcta": 2
+        "pregunta": "¿Qué ley es la más importante de España?",
+        "opciones": [
+          "El libro de lengua",
+          "La Constitución de 1978",
+          "El código de barras",
+          "La ley de gravedad"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "En democracia, ¿quién elige a los representantes?",
+        "opciones": [
+          "El Rey",
+          "Los ciudadanos mediante el voto",
+          "Ellos mismos",
+          "La televisión"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Los días de la semana",
-    "texto": "La semana tiene siete días. De lunes a viernes vamos al colegio para aprender. El sábado y el domingo es fin de semana y nos quedamos en casa para descansar o jugar con la familia. El lunes es el primer día de la semana.",
+    "titulo": "Los sectores económicos",
+    "texto": "Las actividades de trabajo se dividen en tres sectores. El SECTOR PRIMARIO obtiene recursos de la naturaleza (agricultura, pesca, ganadería y minería). El SECTOR SECUNDARIO transforma esos recursos en productos (industria, construcción y artesanía). Por último, el SECTOR TERCIARIO o de servicios no produce objetos, sino que ofrece servicios a los demás (comercio, turismo, sanidad, educación y transportes). En España, la mayoría de la gente trabaja en el sector terciario.",
     "preguntas": [
       {
-        "pregunta": "¿La semana tiene cinco días?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
+        "pregunta": "¿Qué sector extrae recursos de la naturaleza?",
+        "opciones": [
+          "Sector Primario",
+          "Sector Secundario",
+          "Sector Terciario",
+          "Sector Cuaternario"
+        ],
+        "correcta": 0
       },
       {
-        "pregunta": "¿Vamos al colegio el domingo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuál es el primer día?",
-        "opciones": ["Martes", "Viernes", "Lunes", "Domingo"],
+        "pregunta": "Un médico o un profesor pertenecen al...",
+        "opciones": [
+          "Sector Primario",
+          "Sector Secundario",
+          "Sector Terciario (servicios)",
+          "No trabajan"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué días descansamos?",
-        "opciones": ["Lunes y martes", "Jueves y viernes", "Sábado y domingo", "Miércoles y jueves"],
+        "pregunta": "¿Qué ocurre en el sector secundario?",
+        "opciones": [
+          "Se pesca",
+          "Se transforman recursos en productos (fábricas)",
+          "Se vende ropa",
+          "Se curan enfermos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué sector trabaja más gente en España?",
+        "opciones": [
+          "Primario",
+          "Secundario",
+          "Terciario",
+          "En ninguno"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuántos días vamos al cole?",
-        "opciones": ["Dos", "Cinco", "Siete", "Tres"],
-        "correcta": 1
+        "pregunta": "La minería es una actividad del...",
+        "opciones": [
+          "Sector Primario",
+          "Sector Terciario",
+          "Sector Secundario",
+          "No es una actividad"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El Sol y la Tierra",
-    "texto": "Vivimos en el planeta Tierra, que es redondo como una pelota. El Sol es una estrella muy grande que nos da luz y calor. Cuando el Sol se esconde, llega la noche y sale la Luna. La Tierra gira alrededor del Sol.",
+    "titulo": "La población: Natalidad y Mortalidad",
+    "texto": "La población de un lugar cambia por el movimiento natural (nacimientos y muertes) y el migratorio (gente que llega o se va). La natalidad es el número de bebés que nacen, y la mortalidad es el número de personas que mueren. Si nacen más personas de las que mueren, hay un crecimiento natural positivo. En España hoy en día, la población está envejeciendo porque nacen pocos niños y la gente vive muchos años gracias a la medicina.",
     "preguntas": [
       {
-        "pregunta": "¿La Tierra es plana?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es la natalidad?",
+        "opciones": [
+          "Gente que muere",
+          "Número de nacimientos",
+          "Viajar a otro país",
+          "La edad de los abuelos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿El Sol nos da frío?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué pasa si nacen más personas de las que mueren?",
+        "opciones": [
+          "La población baja",
+          "La población crece",
+          "Se queda igual",
+          "No se sabe"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué nos da el Sol?",
-        "opciones": ["Luz y calor", "Lluvia", "Viento", "Nieve"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué sale por la noche?",
-        "opciones": ["El Sol", "La Luna", "El arcoíris", "Las nubes"],
+        "pregunta": "¿Qué significa inmigrar?",
+        "opciones": [
+          "Irse de su país",
+          "Llegar a un país nuevo para vivir",
+          "Irse de vacaciones",
+          "Dormir fuera"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es la Tierra?",
-        "opciones": ["Cuadrada", "Redonda", "Pequeña", "Caliente"],
+        "pregunta": "¿Cómo es la población española actual?",
+        "opciones": [
+          "Muy joven",
+          "Envejecida",
+          "Pequeña",
+          "Igual que hace 100 años"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué la gente vive más años ahora?",
+        "opciones": [
+          "Por la suerte",
+          "Por los avances en medicina y alimentación",
+          "Porque no hace frío",
+          "Porque hay más sol"
+        ],
         "correcta": 1
       }
     ]

@@ -1,321 +1,561 @@
 [
   {
     "id": "1",
-    "titulo": "Mi familia",
-    "texto": "Vivo con mi familia en una casa pequeña. Mi familia está formada por mi mamá, mi papá y mi hermano mayor que se llama Luis. Los domingos viene mi abuela a comer paella con nosotros. Todos nos queremos mucho y nos ayudamos en casa.",
+    "titulo": "Las capas de nuestro planeta",
+    "texto": "La Tierra está compuesta por tres capas principales. La atmósfera es la capa de aire que nos rodea. La hidrosfera está formada por toda el agua del planeta (océanos, ríos y glaciares). La geosfera es la parte sólida de rocas y minerales sobre la que caminamos. Estas tres capas permiten que exista vida en nuestro planeta.",
     "preguntas": [
       {
-        "pregunta": "¿El hermano es mayor o pequeño?",
-        "opciones": ["Mayor", "Pequeño"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cuándo viene la abuela?",
-        "opciones": ["Los lunes", "Los domingos"],
+        "pregunta": "¿Qué es la atmósfera?",
+        "opciones": [
+          "La capa de agua",
+          "La capa de aire",
+          "La parte sólida",
+          "El centro del Sol"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se llama el hermano?",
-        "opciones": ["Juan", "Pedro", "Luis", "Carlos"],
+        "pregunta": "¿Cómo se llama la capa formada por agua?",
+        "opciones": [
+          "Geosfera",
+          "Atmósfera",
+          "Hidrosfera",
+          "Biosfera"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué comen los domingos?",
-        "opciones": ["Pizza", "Sopa", "Ensalada", "Paella"],
-        "correcta": 3
+        "pregunta": "¿De qué está hecha la geosfera?",
+        "opciones": [
+          "De gas",
+          "De agua dulce",
+          "De rocas y minerales",
+          "De nubes"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Dónde viven?",
-        "opciones": ["En un castillo", "En una casa", "En un barco", "En una tienda"],
+        "pregunta": "¿Qué encontramos en la hidrosfera?",
+        "opciones": [
+          "Nubes y viento",
+          "Ríos y océanos",
+          "Montañas y cuevas",
+          "Casas"
+        ],
         "correcta": 1
+      },
+      {
+        "pregunta": "¿Son necesarias estas capas para la vida?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "El colegio",
-    "texto": "En mi colegio aprendemos muchas cosas. Mi profesora se llama Elena y nos enseña a leer y a sumar. Tenemos un patio muy grande con una pista de baloncesto. Cuando suena el timbre, salimos al recreo a jugar con los amigos.",
+    "titulo": "El viaje del agua",
+    "texto": "El agua de la Tierra siempre está en movimiento en el llamado ciclo del agua. El calor del Sol evapora el agua de los mares. Este vapor sube y forma las nubes (condensación). Cuando las nubes se enfrían, el agua cae en forma de lluvia o nieve (precipitación) y vuelve a los ríos y océanos.",
     "preguntas": [
       {
-        "pregunta": "¿Cómo se llama la profesora?",
-        "opciones": ["María", "Elena"],
+        "pregunta": "¿Qué hace que el agua se evapore?",
+        "opciones": [
+          "El viento",
+          "El calor del Sol",
+          "El frío",
+          "Los peces"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Tienen piscina en el patio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué ocurre en la condensación?",
+        "opciones": [
+          "Se forman los ríos",
+          "Se forman las nubes",
+          "Sale el arcoíris",
+          "Se hiela el mar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hay en el patio?",
-        "opciones": ["Un huerto", "Una pista de baloncesto", "Un columpio", "Un tobogán"],
+        "pregunta": "¿Qué es la precipitación?",
+        "opciones": [
+          "Cuando el agua sube",
+          "Cuando el agua cae (lluvia/nieve)",
+          "Cuando el sol brilla",
+          "Cuando el agua se ensucia"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hacen cuando suena el timbre?",
-        "opciones": ["Se duermen", "Comen", "Salen al recreo", "Se van a casa"],
-        "correcta": 2
+        "pregunta": "¿A dónde vuelve el agua después de llover?",
+        "opciones": [
+          "Al Sol",
+          "A los ríos y océanos",
+          "Al espacio",
+          "Desaparece"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué aprenden en clase?",
-        "opciones": ["A leer y sumar", "A cocinar", "A conducir", "A nadar"],
-        "correcta": 0
+        "pregunta": "¿Qué le sucede al vapor de agua cuando sube?",
+        "opciones": [
+          "Se calienta más",
+          "Se enfría y se condensa",
+          "Se vuelve sólido",
+          "Se quema"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Las partes de la casa",
-    "texto": "Las casas tienen diferentes habitaciones. En la cocina preparamos la comida y guardamos los alimentos en la nevera. En el dormitorio dormimos por la noche en nuestra cama. En el baño nos lavamos los dientes y nos duchamos para estar limpios.",
+    "titulo": "El relieve de la costa",
+    "texto": "La costa es el lugar donde la tierra se junta con el mar. Allí podemos encontrar cabos, que son trozos de tierra que entran en el mar, y golfos, que son entradas del mar en la tierra. También existen las islas, que son tierras rodeadas de agua por todas partes. Varias islas juntas forman un archipiélago.",
     "preguntas": [
       {
-        "pregunta": "¿Dónde dormimos?",
-        "opciones": ["En la cocina", "En el dormitorio"],
+        "pregunta": "¿Qué es un cabo?",
+        "opciones": [
+          "Una montaña alta",
+          "Tierra que entra en el mar",
+          "Una playa de arena",
+          "Un barco"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde nos duchamos?",
-        "opciones": ["En el baño", "En el salón"],
+        "pregunta": "¿Qué es un golfo?",
+        "opciones": [
+          "Una montaña de arena",
+          "Entrada del mar en la tierra",
+          "Una isla pequeña",
+          "Un río"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es una isla?",
+        "opciones": [
+          "Tierra rodeada de agua por todas partes",
+          "Tierra pegada a la montaña",
+          "Un tipo de nube",
+          "Un bosque"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué hay en la cocina?",
-        "opciones": ["Una cama", "Una nevera", "Un sofá", "Una ducha"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuándo dormimos?",
-        "opciones": ["Por la mañana", "Por la tarde", "Por la noche", "A mediodía"],
+        "pregunta": "¿Cómo se llama un conjunto de islas?",
+        "opciones": [
+          "Continente",
+          "Península",
+          "Archipiélago",
+          "Municipio"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué hacemos en el baño?",
-        "opciones": ["Cocinar", "Jugar", "Dormir", "Lavarnos los dientes"],
-        "correcta": 3
+        "pregunta": "¿Es la costa una zona de relieve?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Educación vial",
-    "texto": "Para cruzar la calle debemos tener cuidado. Siempre hay que cruzar por el paso de peatones, que tiene rayas blancas en el suelo. También debemos mirar el semáforo. Si el muñeco está en verde podemos pasar, pero si está en rojo debemos esperar.",
+    "titulo": "Vivir en el municipio",
+    "texto": "Un municipio es un territorio gobernado por un Ayuntamiento. El Ayuntamiento está formado por el alcalde o la alcaldesa y los concejales. Ellos se encargan de organizar servicios públicos como la recogida de basuras, el alumbrado de las calles y el mantenimiento de los parques y jardines del pueblo o ciudad.",
     "preguntas": [
       {
-        "pregunta": "¿Podemos cruzar con el semáforo en rojo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Quién gobierna el municipio?",
+        "opciones": [
+          "Los vecinos",
+          "El Ayuntamiento",
+          "Los maestros",
+          "El Rey"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿De qué color son las rayas del suelo?",
-        "opciones": ["Blancas", "Azules"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Por dónde cruzamos?",
-        "opciones": ["Por el parque", "Por el paso de peatones", "Por la carretera", "Por donde queramos"],
+        "pregunta": "¿Quiénes forman el Ayuntamiento?",
+        "opciones": [
+          "Solo el alcalde",
+          "Alcalde y concejales",
+          "Los barrenderos",
+          "Los médicos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué significa el muñeco verde?",
-        "opciones": ["Parar", "Correr", "Pasar", "Saltar"],
-        "correcta": 2
+        "pregunta": "¿Qué servicio organiza el Ayuntamiento?",
+        "opciones": [
+          "La venta de pan",
+          "La recogida de basuras",
+          "Los viajes de vacaciones",
+          "Los deberes"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué hacemos si está en rojo?",
-        "opciones": ["Esperar", "Cruzar rápido", "Gritar", "Bailar"],
+        "pregunta": "¿Para qué sirve el alumbrado público?",
+        "opciones": [
+          "Para calentar la calle",
+          "Para dar luz de noche",
+          "Para decorar",
+          "Para gastar luz"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Los municipios pueden ser pueblos o ciudades?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 0
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "El pueblo y la ciudad",
-    "texto": "Lucas vive en un pueblo pequeño. Allí las casas son bajas y hay pocos coches, todo es muy tranquilo. Su prima vive en la ciudad, donde hay edificios muy altos, muchas tiendas, semáforos y mucho ruido de tráfico.",
+    "titulo": "Los trabajos de la naturaleza",
+    "texto": "El sector primario incluye los trabajos que obtienen recursos directamente de la naturaleza. Los agricultores cultivan plantas para obtener comida. Los ganaderos crían animales para leche o carne. Los pescadores capturan peces en los mares y los mineros extraen minerales de debajo de la tierra.",
     "preguntas": [
       {
-        "pregunta": "¿Dónde vive Lucas?",
-        "opciones": ["En el pueblo", "En la ciudad"],
+        "pregunta": "¿Qué sector obtiene recursos de la naturaleza?",
+        "opciones": [
+          "Sector Primario",
+          "Sector Secundario",
+          "Sector Terciario",
+          "Servicios"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿En la ciudad hay mucho ruido?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo son las casas del pueblo?",
-        "opciones": ["Muy altas", "Bajas", "De cristal", "Flotantes"],
+        "pregunta": "¿Qué hace un ganadero?",
+        "opciones": [
+          "Cultiva flores",
+          "Cría animales",
+          "Arregla coches",
+          "Vende pan"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hay en la ciudad?",
-        "opciones": ["Pocas personas", "Edificios altos", "Muchos tractores", "Solo parques"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cómo es el pueblo?",
-        "opciones": ["Ruidoso", "Grande", "Tranquilo", "Peligroso"],
+        "pregunta": "¿De dónde extraen minerales los mineros?",
+        "opciones": [
+          "Del cielo",
+          "Del mar",
+          "De debajo de la tierra",
+          "De los árboles"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Quién captura peces?",
+        "opciones": [
+          "El minero",
+          "El pescador",
+          "El agricultor",
+          "El ganadero"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué cultiva el agricultor?",
+        "opciones": [
+          "Coches",
+          "Plantas y alimentos",
+          "Animales",
+          "Piedras"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Los trabajos",
-    "texto": "Cada persona tiene un oficio diferente. El médico cura a los enfermos en el hospital. El bombero apaga los fuegos con su manguera y el camión rojo. El panadero hace pan y pasteles ricos en la panadería.",
+    "titulo": "Fábricas y servicios",
+    "texto": "El sector secundario transforma los productos naturales en objetos elaborados en fábricas o talleres. Por ejemplo, la leche se convierte en queso. El sector terciario o de servicios no produce objetos, sino que ayuda a los demás: médicos, profesores, dependientes y conductores de autobús.",
     "preguntas": [
       {
-        "pregunta": "¿El médico apaga fuegos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué hace el sector secundario?",
+        "opciones": [
+          "Planta árboles",
+          "Transforma productos en fábricas",
+          "Lleva gente de viaje",
+          "Nada"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde trabaja el panadero?",
-        "opciones": ["En el hospital", "En la panadería"],
+        "pregunta": "¿En qué se transforma la madera en una fábrica de muebles?",
+        "opciones": [
+          "En leche",
+          "En mesas o sillas",
+          "En flores",
+          "En agua"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Quién cura a los enfermos?",
-        "opciones": ["El policía", "El médico", "El profesor", "El cartero"],
+        "pregunta": "¿Qué es el sector terciario?",
+        "opciones": [
+          "Trabajos en fábricas",
+          "Trabajos de servicios a los demás",
+          "Trabajos con animales",
+          "Minería"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué usa el bombero?",
-        "opciones": ["Una manguera", "Un horno", "Un termómetro", "Una pizarra"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿De qué color es el camión de bomberos?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
+        "pregunta": "¿Quién pertenece al sector terciario?",
+        "opciones": [
+          "Un agricultor",
+          "Un minero",
+          "Un profesor",
+          "Un ganadero"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Un dependiente de una tienda produce el objeto que vende?",
+        "opciones": [
+          "Sí",
+          "No, solo lo vende"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Los medios de transporte",
-    "texto": "Para viajar usamos medios de transporte. El coche y el autobús van por la tierra (carretera). El barco navega por el agua del mar. El avión vuela muy alto por el aire para llevarnos a sitios lejanos rápidamente.",
+    "titulo": "Nuestros antepasados: La Prehistoria",
+    "texto": "La Prehistoria es la etapa más antigua. Los primeros seres humanos eran nómadas, es decir, no vivían en un sitio fijo y se movían para cazar y recolectar frutos. Vivían en cuevas y fabricaban herramientas de piedra y hueso. Mucho después, aprendieron a cultivar y se hicieron sedentarios, viviendo en poblados.",
     "preguntas": [
       {
-        "pregunta": "¿El barco va por la carretera?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué significa ser nómada?",
+        "opciones": [
+          "Vivir en una ciudad",
+          "No tener un sitio fijo para vivir",
+          "Comer solo carne",
+          "Dormir mucho"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿El avión va por el aire?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Dónde vivían los humanos más antiguos?",
+        "opciones": [
+          "En castillos",
+          "En cuevas",
+          "En rascacielos",
+          "En barcos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De qué hacían sus herramientas?",
+        "opciones": [
+          "De plástico",
+          "De piedra y hueso",
+          "De hierro",
+          "De cristal"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué aprendieron para hacerse sedentarios?",
+        "opciones": [
+          "A volar",
+          "A cultivar y criar animales",
+          "A pintar",
+          "A nadar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la etapa más antigua de la historia?",
+        "opciones": [
+          "La Prehistoria",
+          "La Edad Moderna",
+          "La de los romanos",
+          "El siglo XX"
+        ],
         "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué transporte va por tierra?",
-        "opciones": ["El barco", "El avión", "El coche", "El helicóptero"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Para qué sirve el avión?",
-        "opciones": ["Para ir despacio", "Para ir lejos", "Para navegar", "Para ir al colegio"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Por dónde va el autobús?",
-        "opciones": ["Por el mar", "Por el cielo", "Por la carretera", "Por el río"],
-        "correcta": 2
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El paisaje de montaña",
-    "texto": "En la montaña el aire es muy puro. Vemos montañas altas con nieve en la cima. En los valles hay ríos con agua fría y bosques llenos de árboles. En invierno hace mucho frío y podemos esquiar o jugar con la nieve.",
+    "titulo": "Los romanos en Hispania",
+    "texto": "Hace unos dos mil años, los romanos llegaron a la península ibérica y la llamaron Hispania. Construyeron grandes ciudades con teatros, termas para bañarse y acueductos para llevar agua. También hicieron calzadas, que eran carreteras de piedra para viajar rápido. Nos dejaron su lengua, el latín, de la que viene el español.",
     "preguntas": [
       {
-        "pregunta": "¿Hace calor en la montaña en invierno?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo llamaron los romanos a la península?",
+        "opciones": [
+          "España",
+          "Hispania",
+          "Roma",
+          "Europa"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Hay ríos en los valles?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hay en la cima de la montaña?",
-        "opciones": ["Arena", "Nieve", "Coches", "Mar"],
+        "pregunta": "¿Para qué servían los acueductos?",
+        "opciones": [
+          "Para luchar",
+          "Para llevar agua a las ciudades",
+          "Para viajar",
+          "Para dormir"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es el aire?",
-        "opciones": ["Sucio", "Puro", "Caliente", "Malo"],
+        "pregunta": "¿Qué eran las calzadas?",
+        "opciones": [
+          "Zapatos",
+          "Carreteras de piedra",
+          "Puentes",
+          "Libros"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué podemos hacer en invierno?",
-        "opciones": ["Nadar", "Tomar el sol", "Esquiar", "Pescar"],
-        "correcta": 2
+        "pregunta": "¿De qué lengua viene el español?",
+        "opciones": [
+          "Del griego",
+          "Del latín",
+          "Del inglés",
+          "Del francés"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué construían para bañarse?",
+        "opciones": [
+          "Teatros",
+          "Termas",
+          "Templos",
+          "Murallas"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Los días de la semana",
-    "texto": "La semana tiene siete días. De lunes a viernes vamos al colegio para aprender. El sábado y el domingo es fin de semana y nos quedamos en casa para descansar o jugar con la familia. El lunes es el primer día de la semana.",
+    "titulo": "El clima y el tiempo",
+    "texto": "No es lo mismo el tiempo que el clima. El tiempo es el estado de la atmósfera en un momento y lugar concreto (hoy llueve en mi pueblo). El clima es el tiempo que suele hacer en un lugar durante muchos años (en el desierto el clima es muy seco y caluroso). En España tenemos climas muy variados.",
     "preguntas": [
       {
-        "pregunta": "¿La semana tiene cinco días?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es el tiempo atmosférico?",
+        "opciones": [
+          "Lo que suele pasar en 30 años",
+          "Lo que pasa en un momento concreto",
+          "La hora del reloj",
+          "El nombre de un planeta"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Vamos al colegio el domingo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo se llama el estudio del tiempo durante muchos años?",
+        "opciones": [
+          "Clima",
+          "Estación",
+          "Calendario",
+          "Mapa"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cómo es el clima del desierto?",
+        "opciones": [
+          "Húmedo",
+          "Muy seco y caluroso",
+          "Frío y con nieve",
+          "Lluvioso"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuál es el primer día?",
-        "opciones": ["Martes", "Viernes", "Lunes", "Domingo"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué días descansamos?",
-        "opciones": ["Lunes y martes", "Jueves y viernes", "Sábado y domingo", "Miércoles y jueves"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cuántos días vamos al cole?",
-        "opciones": ["Dos", "Cinco", "Siete", "Tres"],
+        "pregunta": "¿Son iguales el tiempo y el clima?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué instrumento mide la temperatura?",
+        "opciones": [
+          "Termómetro",
+          "Pluviómetro",
+          "Reloj",
+          "Brújula"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El Sol y la Tierra",
-    "texto": "Vivimos en el planeta Tierra, que es redondo como una pelota. El Sol es una estrella muy grande que nos da luz y calor. Cuando el Sol se esconde, llega la noche y sale la Luna. La Tierra gira alrededor del Sol.",
+    "titulo": "Las señales de tráfico",
+    "texto": "En la calle, las señales de tráfico nos dan información importante para nuestra seguridad. Las circulares con borde rojo indican prohibición. Las triangulares con borde rojo advierten de un peligro. Las circulares azules indican obligación. Los semáforos también nos dicen cuándo cruzar con total seguridad.",
     "preguntas": [
       {
-        "pregunta": "¿La Tierra es plana?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué indican las señales redondas con borde rojo?",
+        "opciones": [
+          "Peligro",
+          "Prohibición",
+          "Obligación",
+          "Información"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿El Sol nos da frío?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Para qué sirven las señales triangulares?",
+        "opciones": [
+          "Para parar",
+          "Para avisar de un peligro",
+          "Para indicar el camino",
+          "Para decorar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué nos da el Sol?",
-        "opciones": ["Luz y calor", "Lluvia", "Viento", "Nieve"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué sale por la noche?",
-        "opciones": ["El Sol", "La Luna", "El arcoíris", "Las nubes"],
+        "pregunta": "¿De qué color son las señales de obligación?",
+        "opciones": [
+          "Rojas",
+          "Azules",
+          "Amarillas",
+          "Verdes"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es la Tierra?",
-        "opciones": ["Cuadrada", "Redonda", "Pequeña", "Caliente"],
-        "correcta": 1
+        "pregunta": "¿A quién ayudan estas señales?",
+        "opciones": [
+          "A los conductores",
+          "A los peatones",
+          "A todos",
+          "A nadie"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué color del semáforo nos deja cruzar?",
+        "opciones": [
+          "Rojo",
+          "Amarillo",
+          "Verde",
+          "Azul"
+        ],
+        "correcta": 2
       }
     ]
   }

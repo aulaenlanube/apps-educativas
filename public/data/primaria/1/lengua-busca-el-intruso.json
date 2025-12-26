@@ -1,5 +1,157 @@
 [
-  "A", "B", "C", "D", "E", "F", "G", "H",
-  "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-  "S", "T", "U", "V", "W", "X", "Y", "Z"
+  {
+    "categoria": "Letras Vocales (Visual)",
+    "correctos": [
+      "A",
+      "E",
+      "I",
+      "O",
+      "U"
+    ],
+    "intrusos": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J",
+      "K",
+      "L",
+      "M"
+    ]
+  },
+  {
+    "categoria": "Letras Consonantes (Visual)",
+    "correctos": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J"
+    ],
+    "intrusos": [
+      "A",
+      "E",
+      "I",
+      "O",
+      "U"
+    ]
+  },
+  {
+    "categoria": "Material de Clase (Visual)",
+    "correctos": [
+      "🎒",
+      "📚",
+      "✏️",
+      "📏",
+      "✂️",
+      "🖍️"
+    ],
+    "intrusos": [
+      "🍎",
+      "🐶",
+      "🚗",
+      "🧸",
+      "🍕"
+    ]
+  },
+  {
+    "categoria": "Animales de la Granja (Visual)",
+    "correctos": [
+      "🐷",
+      "🐮",
+      "🐔",
+      "🦆",
+      "🐑",
+      "🐴"
+    ],
+    "intrusos": [
+      "🦁",
+      "🐘",
+      "🐯",
+      "🐍",
+      "🦒"
+    ]
+  },
+  {
+    "categoria": "Palabras con la letra M",
+    "correctos": [
+      "Mamá",
+      "Mesa",
+      "Mano",
+      "Mora",
+      "Mico",
+      "Mina"
+    ],
+    "intrusos": [
+      "Papá",
+      "Pelo",
+      "Pino",
+      "Sapo",
+      "Sopa",
+      "Luna"
+    ]
+  },
+  {
+    "categoria": "Palabras con la letra P",
+    "correctos": [
+      "Papá",
+      "Pelo",
+      "Pino",
+      "Pala",
+      "Pera",
+      "Pomo"
+    ],
+    "intrusos": [
+      "Mamá",
+      "Mesa",
+      "Mano",
+      "Luna",
+      "Sapo",
+      "Sopa"
+    ]
+  },
+  {
+    "categoria": "Palabras cortas (2 letras)",
+    "correctos": [
+      "No",
+      "Sí",
+      "La",
+      "Lo",
+      "Me",
+      "Te",
+      "Mi"
+    ],
+    "intrusos": [
+      "Sol",
+      "Pan",
+      "Mar",
+      "Luz",
+      "Día",
+      "Casa",
+      "Mesa"
+    ]
+  },
+  {
+    "categoria": "Nombres de Colores",
+    "correctos": [
+      "Rojo",
+      "Azul",
+      "Rosa",
+      "Gris",
+      "Amarillo",
+      "Verde"
+    ],
+    "intrusos": [
+      "Perro",
+      "Gato",
+      "Casa",
+      "Sol",
+      "Luna",
+      "Mesa"
+    ]
+  }
 ]

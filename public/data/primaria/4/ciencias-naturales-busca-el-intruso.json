@@ -1,113 +1,169 @@
 [
   {
-    "categoria": "Reino Vegetal (Visual)",
+    "categoria": "Reino Vegetal y Organismos Productores (Visual)",
     "correctos": [
       "🌲",
       "🌵",
       "🌴",
       "🌹",
       "🌻",
-      "🍄",
-      "🌾"
+      "🌾",
+      "🎋",
+      "🍃",
+      "🌱",
+      "☘️",
+      "🍏",
+      "🍇"
     ],
     "intrusos": [
       "🦓",
       "🦀",
       "🪨",
       "🧱",
-      "🚗"
+      "🚗",
+      "🍄 (Reino Fungi)",
+      "🍕",
+      "🍔",
+      "📱",
+      "💻",
+      "🧸"
     ]
   },
   {
-    "categoria": "El Espacio (Visual)",
+    "categoria": "Cuerpos Celestes y el Espacio (Visual)",
     "correctos": [
       "🪐",
       "🌍",
       "🌕",
       "⭐",
       "☄️",
-      "🚀"
+      "🚀",
+      "🌌",
+      "🔭",
+      "🛰️",
+      "🛸"
     ],
     "intrusos": [
       "✈️",
       "🚁",
       "🦅",
       "☁️",
-      "🐦"
+      "🐦",
+      "🎈",
+      "🦟",
+      "🐝",
+      "🦉",
+      "🪁"
     ]
   },
   {
     "categoria": "Animales Invertebrados (Visual)",
     "correctos": [
       "🦋",
-      "🐜",
+      "Ant",
       "🕷️",
       "🐝",
       "🐞",
       "🐌",
-      "🐙"
+      "🐙",
+      "🦀",
+      "🦐",
+      "🦑",
+      "🦐",
+      "🐛"
     ],
     "intrusos": [
       "🐶",
       "🐱",
       "🦅",
       "🐍",
-      "🐸"
+      "🐸",
+      "🐟",
+      "🐢",
+      "🐧",
+      "🦈",
+      "🦒",
+      "🦓"
     ]
   },
   {
-    "categoria": "Energías Renovables (Visual)",
+    "categoria": "Energías Limpias y Renovables (Visual)",
     "correctos": [
       "☀️",
       "🌬️",
       "🌊",
       "🌱",
-      "💡"
+      "💡",
+      "♻️",
+      "🔋",
+      "🔌"
     ],
     "intrusos": [
       "🛢️",
       "⛽",
       "🏭",
       "🚬",
-      "☢️"
+      "☢️",
+      "🚗 de gasolina",
+      "🔥 de leña"
     ]
   },
   {
-    "categoria": "Propiedades de la Materia",
+    "categoria": "Propiedades Específicas de la Materia",
     "correctos": [
       "Masa",
       "Volumen",
       "Dureza",
       "Elasticidad",
-      "Fragilidad"
+      "Fragilidad",
+      "Densidad",
+      "Conductividad",
+      "Solubilidad",
+      "Viscosidad",
+      "Maleabilidad"
     ],
     "intrusos": [
       "Alegría",
       "Tiempo",
       "Amor",
       "Pensamiento",
-      "Recuerdo"
+      "Recuerdo",
+      "Color favorito",
+      "Nombre",
+      "Precio",
+      "Lugar",
+      "Amistad"
     ]
   },
   {
-    "categoria": "Aparato Digestivo",
+    "categoria": "Órganos del Aparato Digestivo y Excretor",
     "correctos": [
       "Boca",
       "Esófago",
       "Estómago",
-      "Intestino",
-      "Hígado"
+      "Intestino Delgado",
+      "Intestino Grueso",
+      "Hígado",
+      "Páncreas",
+      "Riñones",
+      "Vejiga",
+      "Glándulas salivales"
     ],
     "intrusos": [
       "Pulmones",
       "Corazón",
       "Cerebro",
-      "Riñones",
-      "Fémur"
+      "Medula espinal",
+      "Fémur",
+      "Cráneo",
+      "Músculos",
+      "Ojos",
+      "Oídos",
+      "Pelo"
     ]
   },
   {
-    "categoria": "Animales Vertebrados",
+    "categoria": "Grupos de Animales Vertebrados",
     "correctos": [
       "Mamíferos",
       "Aves",
@@ -120,41 +176,61 @@
       "Arácnidos",
       "Moluscos",
       "Gusanos",
-      "Medusas"
+      "Medusas",
+      "Crustáceos",
+      "Equinodermos",
+      "Poríferos",
+      "Anélidos"
     ]
   },
   {
-    "categoria": "Ecosistemas Acuáticos",
+    "categoria": "Ecosistemas de Agua Dulce y Salada",
     "correctos": [
       "Río",
       "Lago",
       "Mar",
       "Océano",
-      "Laguna"
+      "Laguna",
+      "Pantano",
+      "Estuario",
+      "Arrecife de coral",
+      "Charca"
     ],
     "intrusos": [
       "Bosque",
       "Desierto",
       "Selva",
       "Pradera",
-      "Sabana"
+      "Sabana",
+      "Tundra",
+      "Taiga",
+      "Cueva",
+      "Montaña nevada"
     ]
   },
   {
-    "categoria": "Fuentes de Energía",
+    "categoria": "Fuentes de Energía Primaria",
     "correctos": [
       "Sol",
       "Viento",
-      "Agua",
+      "Agua corriente",
       "Carbón",
-      "Petróleo"
+      "Petróleo",
+      "Gas natural",
+      "Uranio",
+      "Leña",
+      "Biomasa"
     ],
     "intrusos": [
       "Plástico",
       "Vidrio",
       "Papel",
       "Cartón",
-      "Tela"
+      "Tela",
+      "Metal",
+      "Cerámica",
+      "Goma",
+      "Ladrillo"
     ]
   }
 ]

@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "New School, New Friends",
+        "texto": "Hi! My name is Sarah and I am 12 years old. This is my first year at Secondary School. I am very happy but a bit nervous too. My school is very big and it has a library, a sports hall and a modern computer room. My favourite subject is Art because I love painting, but I don't like History very much because there are too many dates to remember. I have two best friends, Leo and Maya. We usually have lunch together at the school canteen. After school, we go to the park to play music.",
+        "preguntas": [
+            {
+                "pregunta": "How old is Sarah?",
+                "opciones": [
+                    "10 years old",
+                    "11 years old",
+                    "12 years old",
+                    "13 years old"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "How does she feel about the new school?",
+                "opciones": [
+                    "Sad and angry",
+                    "Happy but nervous",
+                    "Bored",
+                    "Terrible"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is her favourite subject?",
+                "opciones": [
+                    "History",
+                    "Art",
+                    "Maths",
+                    "English"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Where does she have lunch?",
+                "opciones": [
+                    "At home",
+                    "In the classroom",
+                    "At the school canteen",
+                    "In the park"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "What do the friends do after school?",
+                "opciones": [
+                    "Do homework",
+                    "Play music in the park",
+                    "Go to the cinema",
+                    "Sleep"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "My Daily Routine",
+        "texto": "On weekdays, I usually wake up at half past seven. I get up, have a shower and then I have breakfast with my parents. I always eat toast and drink orange juice. At eight o'clock, I catch the bus to school. Classes start at half past eight and finish at half past two. When I arrive home, I have lunch and then I do my homework. In the evening, I sometimes watch TV or listen to music. I never go to bed late; I usually sleep at ten o'clock.",
+        "preguntas": [
+            {
+                "pregunta": "What time does the person wake up?",
+                "opciones": [
+                    "7:00",
+                    "7:30",
+                    "8:00",
+                    "8:15"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "How does he go to school?",
+                "opciones": [
+                    "On foot",
+                    "By bus",
+                    "By car",
+                    "By train"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What does he have for breakfast?",
+                "opciones": [
+                    "Cereal",
+                    "Toast and orange juice",
+                    "Eggs",
+                    "Nothing"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What time do classes finish?",
+                "opciones": [
+                    "14:00",
+                    "14:30",
+                    "15:00",
+                    "16:00"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Does he go to bed late?",
+                "opciones": [
+                    "Yes, always",
+                    "No, never",
+                    "Only on Saturdays",
+                    "Sometimes"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "A Weekend in London",
+        "texto": "Last month, Paul went to London with his family. It was a fantastic trip! They stayed in a hotel near the river Thames. On Saturday morning, they visited the British Museum. Paul saw many ancient statues there. In the afternoon, they walked across Tower Bridge and they saw the Tower of London. On Sunday, they went to Hyde Park. People were riding bikes and having picnics. Paul took a lot of photos with his new camera. It was rainy, but they enjoyed the city very much.",
+        "preguntas": [
+            {
+                "pregunta": "Where did Paul go last month?",
+                "opciones": [
+                    "Paris",
+                    "New York",
+                    "London",
+                    "Madrid"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Where was the hotel?",
+                "opciones": [
+                    "Near a forest",
+                    "Near the river Thames",
+                    "At the airport",
+                    "Next to a school"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What did Paul see in the British Museum?",
+                "opciones": [
+                    "Dinosaur bones",
+                    "Ancient statues",
+                    "Modern paintings",
+                    "Old cars"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What was the weather like?",
+                "opciones": [
+                    "Sunny",
+                    "Snowy",
+                    "Rainy",
+                    "Foggy"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "What did Paul use to take photos?",
+                "opciones": [
+                    "His mobile phone",
+                    "An old tablet",
+                    "His new camera",
+                    "He didn't take photos"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "The Giant Panda",
+        "texto": "The Giant Panda is a very famous animal from China. It is black and white and it looks very cute. Pandas live in high mountains and cold forests. They spend most of their time eating bamboo. A panda can eat about 12 kilos of bamboo every day! They also like climbing trees and sleeping. Unfortunately, pandas are endangered because people are destroying the forests where they live. We must protect these beautiful animals and their environment.",
+        "preguntas": [
+            {
+                "pregunta": "Where do Giant Pandas come from?",
+                "opciones": [
+                    "Africa",
+                    "China",
+                    "Australia",
+                    "Europe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What colour are they?",
+                "opciones": [
+                    "Brown and white",
+                    "Black and white",
+                    "All grey",
+                    "Yellow and black"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is their main food?",
+                "opciones": [
+                    "Meat",
+                    "Fish",
+                    "Bamboo",
+                    "Fruit"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "How much can they eat per day?",
+                "opciones": [
+                    "2 kilos",
+                    "12 kilos",
+                    "50 kilos",
+                    "100 kilos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Why are they endangered?",
+                "opciones": [
+                    "They are very small",
+                    "Because of forest destruction",
+                    "They eat too much",
+                    "Because of the rain"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Healthy Habits",
+        "texto": "Being healthy is very important for students. You must eat good food, like vegetables and fish, and you shouldn't eat too many sweets. Drinking eight glasses of water every day is very good for your body. Physical activity is also necessary. You can play a sport or walk for 30 minutes every day. Sleeping is essential too; teenagers need about nine hours of sleep to have energy for the next day. If you follow these tips, you will feel better!",
+        "preguntas": [
+            {
+                "pregunta": "What should you eat to be healthy?",
+                "opciones": [
+                    "Only sweets",
+                    "Vegetables and fish",
+                    "Burgers and chips",
+                    "Nothing"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "How many glasses of water should you drink?",
+                "opciones": [
+                    "One",
+                    "Three",
+                    "Five",
+                    "Eight"
+                ],
+                "correcta": 3
+            },
+            {
+                "pregunta": "How long should you walk every day?",
+                "opciones": [
+                    "5 minutes",
+                    "30 minutes",
+                    "3 hours",
+                    "10 seconds"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "How many hours of sleep do teenagers need?",
+                "opciones": [
+                    "5 hours",
+                    "7 hours",
+                    "9 hours",
+                    "12 hours"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Why is sleep essential?",
+                "opciones": [
+                    "To grow taller",
+                    "To have energy",
+                    "To forget everything",
+                    "To eat more"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Technology in our lives",
+        "texto": "Today, technology is everywhere. Many people use smartphones to communicate with friends and family. Computers are very helpful for students because they can find information on the Internet for their school projects. Social media, like Instagram or TikTok, is very popular, but we must use it carefully. Don't share private information with strangers! Technology is a great tool, but we should also spend time without screens, for example, reading a book or playing outside.",
+        "preguntas": [
+            {
+                "pregunta": "What do people use smartphones for?",
+                "opciones": [
+                    "To cook",
+                    "To communicate",
+                    "To fly",
+                    "To wash clothes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Why are computers helpful for students?",
+                "opciones": [
+                    "To sleep better",
+                    "To find information on the Internet",
+                    "To eat lunch",
+                    "They aren't helpful"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is an example of social media?",
+                "opciones": [
+                    "Google",
+                    "Instagram",
+                    "Email",
+                    "Word"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What information should you NOT share?",
+                "opciones": [
+                    "Your name",
+                    "Private information",
+                    "Your favourite colour",
+                    "Your cat's name"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is a good activity without screens?",
+                "opciones": [
+                    "Watching TV",
+                    "Playing video games",
+                    "Reading a book or playing outside",
+                    "Recording a TikTok"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "An Extraordinary Explorer",
+        "texto": "Roald Amundsen was a famous explorer from Norway. He was the first person to reach the South Pole. In 1911, he travelled to Antarctica with his team. The weather was extremely cold and dangerous, but they had very good equipment and dogs to pull the sledges. They arrived at the South Pole on December 14th. Amundsen was a very brave man and today people remember him as one of the greatest explorers in history.",
+        "preguntas": [
+            {
+                "pregunta": "Where was Amundsen from?",
+                "opciones": [
+                    "England",
+                    "Norway",
+                    "USA",
+                    "Spain"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What was his great achievement?",
+                "opciones": [
+                    "Climbing Everest",
+                    "Discovering America",
+                    "Reaching the South Pole",
+                    "Flying to space"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "When did he arrive at the South Pole?",
+                "opciones": [
+                    "1811",
+                    "1901",
+                    "1911",
+                    "2011"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "How was the weather in Antarctica?",
+                "opciones": [
+                    "Hot and sunny",
+                    "Rainy",
+                    "Extremely cold and dangerous",
+                    "Windy and warm"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "What animals pulled the sledges?",
+                "opciones": [
+                    "Horses",
+                    "Dogs",
+                    "Reindeer",
+                    "Bears"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "The Olympic Games",
+        "texto": "The Olympic Games are an international sports event. They happen every four years in a different city. The first modern Olympics were in Athens in 1896. There are summer sports, like swimming and gymnastics, and winter sports, like skiing and ice hockey. Athletes from all countries practice very hard to win gold, silver and bronze medals. The Olympic symbol has five rings. These rings represent the five continents of the world joined in peace.",
+        "preguntas": [
+            {
+                "pregunta": "How often do the Olympic Games happen?",
+                "opciones": [
+                    "Every year",
+                    "Every two years",
+                    "Every four years",
+                    "Every ten years"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Where were the first modern Olympics?",
+                "opciones": [
+                    "London",
+                    "Paris",
+                    "Athens",
+                    "Rome"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "What is an example of a winter sport?",
+                "opciones": [
+                    "Swimming",
+                    "Skiing",
+                    "Football",
+                    "Volleyball"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What medals can athletes win?",
+                "opciones": [
+                    "Paper medals",
+                    "Titanium medals",
+                    "Gold, silver and bronze",
+                    "Diamond medals"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "What do the five rings represent?",
+                "opciones": [
+                    "The five oceans",
+                    "The five continents",
+                    "The five winners",
+                    "The five sports"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Space Exploration",
+        "texto": "Space is a mysterious and exciting place. In 1969, Neal Armstrong was the first man to walk on the Moon. Today, astronauts live and work in the International Space Station (ISS). They study how plants grow in space and they take amazing photos of the Earth. In the future, scientists want to send people to Mars, the red planet. Space travel is difficult because it is very expensive and astronauts must be very strong and intelligent.",
+        "preguntas": [
+            {
+                "pregunta": "Who was the first man on the Moon?",
+                "opciones": [
+                    "Buzz Lightyear",
+                    "Neal Armstrong",
+                    "Christopher Columbus",
+                    "Einstein"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Where do astronauts live today?",
+                "opciones": [
+                    "On the Moon",
+                    "In the International Space Station",
+                    "On Mars",
+                    "In a submarine"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is the mission for the future?",
+                "opciones": [
+                    "To go to Venus",
+                    "To send people to Mars",
+                    "To build a hotel on the Moon",
+                    "To find aliens"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What do astronauts study in space?",
+                "opciones": [
+                    "History",
+                    "How plants grow",
+                    "Ocean fish",
+                    "Ancient languages"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Why is space travel difficult?",
+                "opciones": [
+                    "It is too fast",
+                    "It is very expensive",
+                    "Space is boring",
+                    "There is too much oxygen"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "My Favourite Hobby: Cooking",
+        "texto": "I have many hobbies, but my favourite one is cooking. I love preparing food for my family and friends. On Sundays, I usually make pasta or pizza. I think cooking is like a science because you must follow a recipe and use the correct ingredients. It is also very creative because you can add different spices and flavours. My dream is to be a chef and have my own restaurant in the future. Preparing a meal and seeing people happy is the best feeling!",
+        "preguntas": [
+            {
+                "pregunta": "What is the narrator's favourite hobby?",
+                "opciones": [
+                    "Painting",
+                    "Cooking",
+                    "Dancing",
+                    "Swimming"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What does he usually make on Sundays?",
+                "opciones": [
+                    "Soup",
+                    "Steak",
+                    "Pasta or pizza",
+                    "Salad"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Why is cooking like a science?",
+                "opciones": [
+                    "Because it's boring",
+                    "Because you follow a recipe and use ingredients",
+                    "Because it is dangerous",
+                    "Because of the fire"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is his dream for the future?",
+                "opciones": [
+                    "To be a doctor",
+                    "To be a chef",
+                    "To be a scientist",
+                    "To be a pilot"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "How does he feel when people are happy with his food?",
+                "opciones": [
+                    "Sad",
+                    "Bored",
+                    "It's the best feeling",
+                    "Nervous"
+                ],
+                "correcta": 2
+            }
+        ]
+    }
+]

@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "La caída de Roma y los Reinos Germánicos",
+        "texto": "En el año 476 d.C., el Imperio Romano de Occidente cayó debido a las invasiones de los pueblos germanos (suevos, vándalos, alanos, visigodos...). Este evento marca el inicio de la EDAD MEDIA. Europa se fragmentó en diversos reinos independientes. En Hispania, los VISIGODOS fundaron un reino con capital en Toledo, unificando la península bajo una misma ley y religión (el cristianismo católico). Fue una época de inseguridad donde las ciudades perdieron importancia y la población se refugió en el campo (ruralización).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué evento marca el inicio de la Edad Media?",
+                "opciones": [
+                    "La caída de Roma (476 d.C.)",
+                    "El descubrimiento de América",
+                    "La invención de la rueda",
+                    "La caída de Constantinopla"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿En qué ciudad establecieron los visigodos su capital en Hispania?",
+                "opciones": [
+                    "Barcelona",
+                    "Sevilla",
+                    "Toledo",
+                    "Madrid"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué proceso ocurrió con la población tras la caída de Roma?",
+                "opciones": [
+                    "Se fueron a vivir a Marte",
+                    "Ruralización (huida al campo)",
+                    "Construyeron rascacielos",
+                    "Se mudaron a América"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué religión adoptaron oficialmente los visigodos?",
+                "opciones": [
+                    "Islam",
+                    "Cristianismo católico",
+                    "Judaísmo",
+                    "Budismo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo era la situación social en esa época?",
+                "opciones": [
+                    "Muy segura y rica",
+                    "De inseguridad y fragmentación",
+                    "Igual que ahora",
+                    "No había gente"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "El Imperio Bizantino: El brillo de Oriente",
+        "texto": "Mientras Occidente caía en la oscuridad, la parte oriental del Imperio Romano sobrevivió durante mil años más con el nombre de IMPERIO BIZANTINO. Su capital era CONSTANTINOPLA (actual Estambul), situada en un punto estratégico para el comercio entre Europa y Asia. Su emperador más brillante fue JUSTINIANO, quien intentó reconstruir el antiguo imperio romano y mandó construir la basílica de Santa Sofía. Destacaron por su arte rico en mosaicos y por conservar la cultura griega y romana que luego llegaría de nuevo a Europa.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llamaba la capital del Imperio Bizantino?",
+                "opciones": [
+                    "Roma",
+                    "Atenas",
+                    "Constantinopla",
+                    "París"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Quién fue su emperador más famoso?",
+                "opciones": [
+                    "César Augusto",
+                    "Justiniano",
+                    "Nabucodonosor",
+                    "Jaime I"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué gran monumento se construyó bajo su mando?",
+                "opciones": [
+                    "El Coliseo",
+                    "Santa Sofía",
+                    "La Giralda",
+                    "Las Pirámides"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué fue importante Bizancio culturalmente?",
+                "opciones": [
+                    "Por inventar el papel",
+                    "Por conservar la cultura griega y romana",
+                    "Por sus guerras",
+                    "No fue importante"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué país actual se encuentra su antigua capital?",
+                "opciones": [
+                    "Grecia",
+                    "Italia",
+                    "Turquía",
+                    "Egipto"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "El Islam: Origen y Expansión",
+        "texto": "En el siglo VII, en la península de Arabia, surgió una nueva religión: el ISLAM, predicada por el profeta MAHOMA. El libro sagrado es el CORÁN y su dios es Alá. Tras la muerte de Mahoma, el Islam se expandió rápidamente por Asia, el norte de África y, en el año 711, llegó a la península Ibérica. Al-Ándalus (el nombre árabe de Hispania) se convirtió en un gran centro cultural y económico, introduciendo cultivos como el arroz y la naranja, y avances en matemáticas y medicina. La convivencia entre musulmanes, cristianos y judíos fue una característica clave en algunos periodos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quién fue el profeta y fundador del Islam?",
+                "opciones": [
+                    "Abraham",
+                    "Mahoma",
+                    "Moisés",
+                    "Jesús"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el libro sagrado de los musulmanes?",
+                "opciones": [
+                    "Biblia",
+                    "Corán",
+                    "Torá",
+                    "Odisea"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué año llegaron los musulmanes a la península Ibérica?",
+                "opciones": [
+                    "476",
+                    "711",
+                    "1492",
+                    "2000"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué nombre dieron los musulmanes a Hispania?",
+                "opciones": [
+                    "Iberia",
+                    "Al-Ándalus",
+                    "España",
+                    "Granada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita un producto introducido por ellos:",
+                "opciones": [
+                    "Trigo",
+                    "Patata",
+                    "Arroz o naranja",
+                    "Tomate"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "El Feudalismo: Señores y Vasallos",
+        "texto": "A partir del siglo IX, Europa vivió bajo el sistema del FEUDALISMO. El rey, incapaz de defender todo su territorio, repartía tierras (feudos) a los nobles a cambio de ayuda militar. La sociedad era ESTAMENTAL y muy injusta, dividida en tres grupos. Los NOBLES (caballeros) se encargaban de la guerra. El CLERO (monjes y sacerdotes) rezaban por las almas. Y los CAMPESINOS (el 90% de la población) trabajaban la tierra para mantener a los otros dos. Los campesinos solían ser siervos, lo que significaba que no podían abandonar las tierras de su señor.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué era un feudo?",
+                "opciones": [
+                    "Un caballo",
+                    "Una porción de tierra entregada por el rey",
+                    "Un tipo de moneda",
+                    "Una corona"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se dividía la sociedad feudal?",
+                "opciones": [
+                    "En clases sociales ricas y pobres",
+                    "En tres estamentos: nobleza, clero y campesinado",
+                    "En democracias",
+                    "En tribus"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué porcentaje de la población eran campesinos?",
+                "opciones": [
+                    "10%",
+                    "50%",
+                    "Aproximadamente el 90%",
+                    "Casi nadie"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál era la función de los nobles?",
+                "opciones": [
+                    "Trabajar el campo",
+                    "Rezar",
+                    "La guerra y protección militar",
+                    "Hacer leyes"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué era un siervo?",
+                "opciones": [
+                    "Un esclavo total",
+                    "Un campesino ligado a la tierra de su señor",
+                    "Un monje",
+                    "Un caballero"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "El Arte de la Edad Media: Románico y Gótico",
+        "texto": "Durante la Edad Media se desarrollaron dos grandes estilos artísticos. El ROMÁNICO (siglos XI-XII) era un arte rural, con muros muy gruesos, ventanas pequeñas e iglesias oscuras que invitaban al recogimiento. El GÓTICO (siglos XIII-XV) fue un arte urbano, nacido con el crecimiento de las ciudades. Gracias al uso del arco apuntado y el arbotante, las catedrales se volvieron altísimas y llenas de luz gracias a las vidrieras de colores y los rosetones. Ambos estilos usaban la pintura y la escultura para enseñar religión al pueblo analfabeto.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál era la característica principal del arte Gótico?",
+                "opciones": [
+                    "Muros muy gruesos y poca luz",
+                    "Altura excesiva y luz mediante vidrieras",
+                    "Uso de columnas de madera",
+                    "No tenía catedrales"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué estilo se caracteriza por iglesias oscuras y ventanas pequeñas?",
+                "opciones": [
+                    "Renacimiento",
+                    "Románico",
+                    "Barroco",
+                    "Gótico"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llamaban las famosas ventanas circulares de colores?",
+                "opciones": [
+                    "Ojos de buey",
+                    "Rosetones",
+                    "Cúpulas",
+                    "Ábsides"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué había tantas pinturas y esculturas en las iglesias?",
+                "opciones": [
+                    "Para decorar",
+                    "Para que el pueblo analfabeto aprendiera la religión visualmente",
+                    "Porque eran baratas",
+                    "Para asustar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál de los dos estilos es más antiguo?",
+                "opciones": [
+                    "Románico",
+                    "Gótico",
+                    "Renacentista",
+                    "Bizantino"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "El Renacimiento y el Humanismo",
+        "texto": "Al final de la Edad Media surgió un gran cambio de mentalidad en Italia: el RENACIMIENTO. Se pasó del teocentrismo (Dios es el centro de todo) al ANTROPOCENTRISMO (el ser humano es el centro). Los humanistas redescubrieron la cultura clásica de Grecia y Roma. Un invento clave de esta época fue la IMPRENTA de Gutenberg, que permitió difundir las ideas mucho más rápido y barato. Artistas como Leonardo da Vinci o Miguel Ángel buscaron la proporción perfecta y el realismo, combinando la ciencia con el arte.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa Antropocentrismo?",
+                "opciones": [
+                    "Que Dios el centro del mundo",
+                    "Que el ser humano es el centro de interés",
+                    "Que solo importan los animales",
+                    "Que la Tierra es plana"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué cultura redescubrieron los renacentistas?",
+                "opciones": [
+                    "Egipto",
+                    "Grecia y Roma clásicas",
+                    "Maya e Inca",
+                    "China"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué invento revolucionó la difusión de libros y cultura?",
+                "opciones": [
+                    "La radio",
+                    "La imprenta",
+                    "La televisión",
+                    "El teléfono"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién es un artista famoso de esta época?",
+                "opciones": [
+                    "Velázquez",
+                    "Leonardo da Vinci",
+                    "Dalí",
+                    "Picasso"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde nació principalmente el Renacimiento?",
+                "opciones": [
+                    "España",
+                    "Francia",
+                    "Italia",
+                    "Alemania"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "La Era de los Descubrimientos",
+        "texto": "A finales del siglo XV, los europeos buscaron nuevas rutas comerciales hacia Asia buscando especias y seda. En 1492, la expedición de CRISTÓBAL COLÓN, financiada por los Reyes Católicos, llegó a un nuevo continente: América, aunque Colón pensó que estaba en las Indias. Fue una época de grandes avances en navegación (brújula, astrolabio, carabela). Posteriormente, Magallanes y Elcano realizaron la primera VUELTA AL MUNDO, demostrando definitivamente que la Tierra era redonda. Estos viajes cambiaron la economía mundial para siempre.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quién financió el viaje de Colón en 1492?",
+                "opciones": [
+                    "El Rey de Francia",
+                    "Los Reyes Católicos de España",
+                    "Los mercaderes italianos",
+                    "Nadie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A dónde creía Colón que había llegado realmente?",
+                "opciones": [
+                    "A las Indias (Asia)",
+                    "A la Antártida",
+                    "A Inglaterra",
+                    "A África"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Quiénes completaron la primera vuelta al mundo?",
+                "opciones": [
+                    "Colón y Vespucio",
+                    "Magallanes y Elcano",
+                    "Marco Polo",
+                    "Hermanos Pinzón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita un instrumento de navegación mencionado:",
+                "opciones": [
+                    "Termómetro",
+                    "Astrolabio o brújula",
+                    "Reloj de arena",
+                    "Radio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué buscaban principalmente en esas expediciones?",
+                "opciones": [
+                    "Oro solamente",
+                    "Especias y rutas comerciales",
+                    "Hielo",
+                    "Libros antiguos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "La Monarquía Autoritaria y los Reyes Católicos",
+        "texto": "En el siglo XV nació el Estado Moderno. Los reyes recuperaron el poder que tenían los nobles y crearon la MONARQUÍA AUTORITARIA. En España, el matrimonio de Isabel de Castilla y Fernando de Aragón supuso la unión dinástica de los dos grandes reinos peninsulares. Los Reyes Católicos unificaron el territorio con la conquista de Granada (1492), crearon un ejército profesional, impusieron la religión católica expulsando a judíos y musulmanes que no se convirtieran (unificación religiosa) y organizaron la administración del Estado.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quiénes fueron los Reyes Católicos?",
+                "opciones": [
+                    "Felipe y Letizia",
+                    "Isabel de Castilla y Fernando de Aragón",
+                    "Carlos I y Felipe II",
+                    "Reyes de Portugal"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué último reino musulmán conquistaron en la península?",
+                "opciones": [
+                    "Córdoba",
+                    "Sevilla",
+                    "Granada (1492)",
+                    "Toledo"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cómo se llama el modelo de monarquía nacido en el siglo XV?",
+                "opciones": [
+                    "Feudal",
+                    "Autoritaria",
+                    "Democrática",
+                    "Absoluta total"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál fue su objetivo respecto a la religión?",
+                "opciones": [
+                    "Libertad total",
+                    "Unificación religiosa bajo el catolicismo",
+                    "Traer el budismo",
+                    "No les importaba"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurrió con la nobleza en esta época?",
+                "opciones": [
+                    "Perdió poder frente a los reyes",
+                    "Mandaba más que el rey",
+                    "Desapareció",
+                    "Se fue a América"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "La Población Mundial: Geografía Humana",
+        "texto": "La geografía humana estudia la población y cómo se organiza en el territorio. En la actualidad, la población mundial está cerca de los 8.000 millones de personas. Sin embargo, no se reparte igual: hay zonas muy vacías (desiertos, polos) y zonas superpobladas (costas, grandes ciudades de Asia y Europa). Para estudiar la población usamos la DENSIDAD (habitantes por km²) y el CRECIMIENTO NATURAL (diferencia entre nacimientos y defunciones). Hoy día, un gran fenómeno es la MIGRACIÓN, motivada por guerras o falta de oportunidades económicas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué estudia la geografía humana?",
+                "opciones": [
+                    "Las piedras y ríos",
+                    "La población y su organización",
+                    "Los planetas",
+                    "La cocina"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la densidad de población?",
+                "opciones": [
+                    "El peso de la gente",
+                    "La relación entre habitantes y el espacio que ocupan",
+                    "El número de niños",
+                    "La altura media"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué dos datos calculan el crecimiento natural?",
+                "opciones": [
+                    "Inmigración y emigración",
+                    "Nacimientos y defunciones",
+                    "Ricos y pobres",
+                    "Altos y bajos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es una causa principal de las migraciones actuales?",
+                "opciones": [
+                    "Vagas de vacaciones",
+                    "Guerras o falta de trabajo/economía",
+                    "Amor a los barcos",
+                    "Hacer deporte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se suele concentrar más la población?",
+                "opciones": [
+                    "En los polos",
+                    "En desiertos",
+                    "En las costas y grandes ciudades",
+                    "En la cima del Everest"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Una Economía Sostenible",
+        "texto": "La economía es la ciencia que gestiona los recursos escasos para satisfacer necesidades. En 2nd ESO estudiamos que el modelo actual de consumo masivo genera problemas como el agotamiento de recursos y la contaminación. Por ello es urgente el DESARROLLO SOSTENIBLE: crecer económicamente pero respetando el medio ambiente para no comprometer el futuro. Esto implica usar energías renovables, reciclar, reducir residuos y comprar productos de proximidad. Todos somos agentes económicos y nuestras decisiones diarias cuentan.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el desarrollo sostenible?",
+                "opciones": [
+                    "Crecer sin importar nada",
+                    "Satisfacer necesidades actuales sin comprometer las del futuro",
+                    "Dejar de usar dinero",
+                    "Hacerse rico rápido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de energía propone el texto?",
+                "opciones": [
+                    "Energía nuclear peligrosa",
+                    "Energías renovables (Sol, viento...)",
+                    "Solo carbón",
+                    "Pilas gastadas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un hábito de economía sostenible?",
+                "opciones": [
+                    "Comprar y tirar",
+                    "Comprar productos de proximidad y reducir residuos",
+                    "Usar mucho plástico",
+                    "Gastar mucha luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué gestiona la economía según el texto?",
+                "opciones": [
+                    "Solo el dinero del banco",
+                    "Recursos escasos para satisfacer necesidades humanas",
+                    "La velocidad de los coches",
+                    "El tiempo atmosférico"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Somos nosotros agentes económicos?",
+                "opciones": [
+                    "Sí, con nuestras decisiones diarias",
+                    "No, solo los alcaldes",
+                    "Solo los que trabajan en empresas",
+                    "Solo los adultos"
+                ],
+                "correcta": 0
+            }
+        ]
+    }
+]

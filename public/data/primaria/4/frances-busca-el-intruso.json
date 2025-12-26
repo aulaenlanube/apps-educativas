@@ -1,74 +1,127 @@
 [
   {
-    "categoria": "Les Vêtements (Visual)",
+    "categoria": "Les Vêtements et Accessoires (Visual)",
     "correctos": [
       "👕",
       "👖",
       "👗",
       "🧥",
       "👟",
-      "🧢"
+      "🧢",
+      "👚",
+      "🧤",
+      "🧣",
+      "🧦",
+      "👔",
+      "👢",
+      "👜",
+      "🕶️"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "🏠",
       "🐶",
-      "⚽"
+      "⚽",
+      "🍔",
+      "🍕",
+      "🚲",
+      "🎸",
+      "💻",
+      "🧸"
     ]
   },
   {
-    "categoria": "La Maison (Visual)",
+    "categoria": "Les Parties de la Maison (Visual)",
     "correctos": [
       "🏠",
       "🚪",
       "🪟",
       "🛌",
       "🛋️",
-      "🛁"
+      "🛁",
+      "🚿",
+      "🍳",
+      "🪜",
+      "🪑",
+      "🛖",
+      "🏡"
     ],
     "intrusos": [
       "🚗",
       "🏫",
       "🌳",
       "🐶",
-      "🌊"
+      "🌊",
+      "🚜",
+      "🚲",
+      "🚁",
+      "🚂",
+      "🎡",
+      "🎢"
     ]
   },
   {
-    "categoria": "Le Corps (Visual)",
+    "categoria": "Le Corps et les Sens (Visual)",
     "correctos": [
       "👀",
       "👂",
       "👃",
       "👄",
       "🤚",
-      "🦶"
+      "🦶",
+      "👅",
+      "🦾",
+      "🦿",
+      "🦷",
+      "🧠",
+      "🦴"
     ],
     "intrusos": [
       "👕",
       "👖",
       "👟",
       "🧢",
-      "👓"
+      "眼镜",
+      "🧤",
+      "👔",
+      "🧣",
+      "👜",
+      "💍",
+      "⌚"
     ]
   },
   {
-    "categoria": "Les Parties du Corps",
+    "categoria": "Les Parties du Corps Humain",
     "correctos": [
       "Tête",
       "Bras",
       "Jambe",
       "Main",
       "Pied",
-      "Nez"
+      "Nez",
+      "Œil",
+      "Oreille",
+      "Bouche",
+      "Dos",
+      "Ventre",
+      "Genou",
+      "Coude",
+      "Épaule"
     ],
     "intrusos": [
       "Stylo",
       "Livre",
       "Chien",
       "Chat",
-      "Maison"
+      "Maison",
+      "Table",
+      "Chaise",
+      "Cahier",
+      "Gomme",
+      "Règle",
+      "Sac",
+      "Classe"
     ]
   },
   {
@@ -79,68 +132,119 @@
       "Jupe",
       "Pull",
       "Chemise",
-      "Manteau"
+      "Manteau",
+      "Chaussettes",
+      "Chaussures",
+      "Chapeau",
+      "Gants",
+      "Écharpe",
+      "Pyjama"
     ],
     "intrusos": [
       "Pomme",
       "Poire",
       "Banane",
       "Rouge",
-      "Bleu"
+      "Bleu",
+      "Jaune",
+      "Vert",
+      "Manger",
+      "Dormir",
+      "Sourire",
+      "Petit",
+      "Grand"
     ]
   },
   {
-    "categoria": "La Nourriture",
+    "categoria": "La Nourriture et les Repas",
     "correctos": [
       "Pain",
       "Fromage",
       "Pomme",
       "Lait",
       "Eau",
-      "Poulet"
+      "Poulet",
+      "Poisson",
+      "Œuf",
+      "Viande",
+      "Pâtes",
+      "Riz",
+      "Légumes",
+      "Fruit"
     ],
     "intrusos": [
       "Chien",
       "Chat",
       "Maison",
       "Voiture",
-      "École"
+      "École",
+      "Professeur",
+      "Livre",
+      "Cahier",
+      "Stylo",
+      "Rue",
+      "Jardin"
     ]
   },
   {
-    "categoria": "Les Jours de la Semaine",
+    "categoria": "Les Jours de la Semaine et Mois",
     "correctos": [
       "Lundi",
       "Mardi",
       "Mercredi",
       "Jeudi",
       "Vendredi",
-      "Samedi"
-    ],
-    "intrusos": [
+      "Samedi",
+      "Dimanche",
       "Janvier",
       "Février",
       "Mars",
+      "Avril"
+    ],
+    "intrusos": [
       "Noël",
-      "Pâques"
+      "Pâques",
+      "Été",
+      "Hiver",
+      "Automne",
+      "Printemps",
+      "Matin",
+      "Soir",
+      "Aujourd'hui",
+      "Hier",
+      "Demain"
     ]
   },
   {
-    "categoria": "Les Nombres 10-20",
+    "categoria": "Les Nombres 10-20 et Dizaines",
     "correctos": [
       "Dix",
       "Onze",
       "Douze",
       "Treize",
       "Quatorze",
-      "Vingt"
+      "Quinze",
+      "Seize",
+      "Dix-sept",
+      "Dix-huit",
+      "Dix-neuf",
+      "Vingt",
+      "Trente",
+      "Quarante"
     ],
     "intrusos": [
       "Un",
       "Deux",
       "Trois",
       "Rouge",
-      "Vert"
+      "Vert",
+      "Bleu",
+      "Bonjour",
+      "Merci",
+      "Petit",
+      "Grand",
+      "Beau",
+      "Fort"
     ]
   }
 ]

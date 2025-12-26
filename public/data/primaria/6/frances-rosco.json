@@ -1,157 +1,919 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Amigo en francés.", "solucion": "ami" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Árbol en francés.", "solucion": "arbre" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Avión en francés.", "solucion": "avion" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Adiós en francés.", "solucion": "au revoir" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Araña en francés.", "solucion": "araignée" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Buenos días en francés.", "solucion": "bonjour" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Color blanco en francés.", "solucion": "blanc" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Boca en francés.", "solucion": "bouche" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Barco en francés.", "solucion": "bateau" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Bonito/Guapo en francés.", "solucion": "beau" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Gato en francés.", "solucion": "chat" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Perro en francés.", "solucion": "chien" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Cuaderno en francés.", "solucion": "cahier" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Caballo en francés.", "solucion": "cheval" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Cocina en francés.", "solucion": "cuisine" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Domingo en francés.", "solucion": "dimanche" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Diez en francés.", "solucion": "dix" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Ducha en francés.", "solucion": "douche" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Bailar en francés.", "solucion": "danser" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Diente en francés.", "solucion": "dent" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Escuela en francés.", "solucion": "école" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Estudiante/Alumno en francés.", "solucion": "élève" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Verano en francés.", "solucion": "été" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Escuchar en francés.", "solucion": "écouter" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Agua en francés.", "solucion": "eau" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Familia en francés.", "solucion": "famille" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Hermano en francés.", "solucion": "frère" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Queso en francés.", "solucion": "fromage" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Frío en francés.", "solucion": "froid" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Hija o niña en francés.", "solucion": "fille" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Chico en francés.", "solucion": "garçon" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Color gris en francés.", "solucion": "gris" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Grande en francés.", "solucion": "grand" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Pastel en francés.", "solucion": "gâteau" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Hielo o helado en francés.", "solucion": "glace" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Invierno en francés.", "solucion": "hiver" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Ocho en francés.", "solucion": "huit" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Hora en francés.", "solucion": "heure" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Vivir en francés (verbo).", "solucion": "habiter" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Hámster en francés.", "solucion": "hamster" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Isla en francés.", "solucion": "île" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Imagen en francés.", "solucion": "image" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Informática en francés.", "solucion": "informatique" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Pronombre 'Él' en francés.", "solucion": "il" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Insecto en francés.", "solucion": "insecte" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Jueves en francés.", "solucion": "jeudi" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Amarillo en francés.", "solucion": "jaune" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Jugar en francés.", "solucion": "jouer" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Pierna en francés.", "solucion": "jambe" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Falda en francés.", "solucion": "jupe" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Canguro en francés.", "solucion": "kangourou" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Kiwi en francés.", "solucion": "kiwi" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Kilo en francés.", "solucion": "kilo" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Koala en francés.", "solucion": "koala" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Gorra militar (o quepis) en francés.", "solucion": "képi" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Libro en francés.", "solucion": "livre" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Lunes en francés.", "solucion": "lundi" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Cama en francés.", "solucion": "lit" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Conejo en francés.", "solucion": "lapin" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Lobo en francés.", "solucion": "loup" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Casa en francés.", "solucion": "maison" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Madre en francés.", "solucion": "mère" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Comer en francés.", "solucion": "manger" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Martes en francés.", "solucion": "mardi" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Mano en francés.", "solucion": "main" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Color negro en francés.", "solucion": "noir" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Nueve en francés.", "solucion": "neuf" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Noche en francés.", "solucion": "nuit" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Nadar en francés.", "solucion": "nager" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Nariz en francés.", "solucion": "nez" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Pájaro en francés.", "solucion": "oiseau" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Naranja en francés (color y fruta).", "solucion": "orange" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Oso en francés.", "solucion": "ours" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Once en francés.", "solucion": "onze" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Oreja en francés.", "solucion": "oreille" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Padre en francés.", "solucion": "père" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Manzana en francés.", "solucion": "pomme" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Pequeño en francés.", "solucion": "petit" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Pantalón en francés.", "solucion": "pantalon" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Pez en francés.", "solucion": "poisson" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Cuatro en francés.", "solucion": "quatre" },
-  { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Catorce en francés.", "solucion": "quatorze" },
-  { "id": "q3", "letra": "Q", "tipo": "empieza", "definicion": "Quién en francés.", "solucion": "qui" },
-  { "id": "q4", "letra": "Q", "tipo": "empieza", "definicion": "Qué en francés.", "solucion": "quoi" },
-  { "id": "q5", "letra": "Q", "tipo": "empieza", "definicion": "Cuarenta en francés.", "solucion": "quarante" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Color rojo en francés.", "solucion": "rouge" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Vestido en francés.", "solucion": "robe" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Mirar en francés.", "solucion": "regarder" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Color rosa en francés.", "solucion": "rose" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Calle en francés.", "solucion": "rue" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Sábado en francés.", "solucion": "samedi" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Hermana en francés.", "solucion": "soeur" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Bolígrafo en francés.", "solucion": "stylo" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Sol en francés.", "solucion": "soleil" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Serpiente en francés.", "solucion": "serpent" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Tres en francés.", "solucion": "trois" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Cabeza en francés.", "solucion": "tête" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Tren en francés.", "solucion": "train" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Mesa en francés.", "solucion": "table" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Tortuga en francés.", "solucion": "tortue" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Uno en francés.", "solucion": "un" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Una en francés.", "solucion": "une" },
-  { "id": "u3", "letra": "U", "tipo": "contiene", "definicion": "Coche (contiene U).", "solucion": "auto" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Uniforme en francés.", "solucion": "uniforme" },
-  { "id": "u5", "letra": "U", "tipo": "contiene", "definicion": "Autobús (contiene U).", "solucion": "bus" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Color verde en francés.", "solucion": "vert" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Coche en francés.", "solucion": "voiture" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Viernes en francés.", "solucion": "vendredi" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Bicicleta en francés.", "solucion": "vélo" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Vaca en francés.", "solucion": "vache" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Fin de semana en francés.", "solucion": "weekend" },
-  { "id": "w2", "letra": "W", "tipo": "contiene", "definicion": "Sandwich (contiene W).", "solucion": "sandwich" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Kiwi (contiene W).", "solucion": "kiwi" },
-  { "id": "w4", "letra": "W", "tipo": "empieza", "definicion": "Vagón en francés.", "solucion": "wagon" },
-  { "id": "w5", "letra": "W", "tipo": "empieza", "definicion": "Wifi en francés.", "solucion": "wifi" },
-
-  { "id": "x1", "letra": "X", "tipo": "empieza", "definicion": "Xilófono en francés.", "solucion": "xylophone" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Seis (contiene X).", "solucion": "six" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Diez (contiene X).", "solucion": "dix" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Dos (contiene X).", "solucion": "deux" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Viejo (contiene X).", "solucion": "vieux" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Ojos en francés.", "solucion": "yeux" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Yogur en francés.", "solucion": "yaourt" },
-  { "id": "y3", "letra": "Y", "tipo": "contiene", "definicion": "Bolígrafo (contiene Y).", "solucion": "stylo" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Viaje (contiene Y).", "solucion": "voyage" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Pijama (contiene Y).", "solucion": "pyjama" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Cero en francés.", "solucion": "zéro" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Cebra en francés.", "solucion": "zèbre" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Zoo en francés.", "solucion": "zoo" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Once (contiene Z).", "solucion": "onze" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Doce (contiene Z).", "solucion": "douze" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Une personne que l'on apprécie et avec qui on passe du temps.",
+    "solucion": "ami"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Une grande plante avec un tronc et des feuilles.",
+    "solucion": "arbre"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Un moyen de transport qui vole dans le ciel.",
+    "solucion": "avion"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "La saison qui suit l'été et précède l'hiver.",
+    "solucion": "automne"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Un être vivant qui n'est ni un humain ni une plante.",
+    "solucion": "animal"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Ce que l'on dit pour saluer quelqu'un le matin.",
+    "solucion": "bonjour"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "La couleur du lait ou de la neige.",
+    "solucion": "blanc"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Un endroit où l'on trouve beaucoup de livres à emprunter.",
+    "solucion": "bibliothèque"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Un véhicule qui navigue sur l'eau.",
+    "solucion": "bateau"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Le contraire de petit (au masculin).",
+    "solucion": "beau"
+  },
+  {
+    "id": "b5_fix",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Une boisson chaude ou froide faite avec des feuilles ou des fruits.",
+    "solucion": "boisson"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Un petit animal domestique qui fait 'miaou'.",
+    "solucion": "chat"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Un objet utilisé pour écrire ou dessiner, souvent en bois.",
+    "solucion": "crayon"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Une pièce de la maison où l'on prépare les repas.",
+    "solucion": "cuisine"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Un aliment sucré fait à partir de cacao.",
+    "solucion": "chocolat"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Un animal utilisé pour l'équitation.",
+    "solucion": "cheval"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Le dernier jour de la semaine.",
+    "solucion": "dimanche"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Le nombre qui vient après neuf.",
+    "solucion": "dix"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Bouger son corps en suivant le rythme de la musique.",
+    "solucion": "danser"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Le travail que les élèves font à la maison après l'école.",
+    "solucion": "devoir"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Le repas que l'on prend au milieu de la journée.",
+    "solucion": "déjeuner"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "L'endroit où les enfants vont pour apprendre.",
+    "solucion": "école"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Une personne qui apprend à l'école.",
+    "solucion": "élève"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "La saison la plus chaude de l'année.",
+    "solucion": "été"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Utiliser ses oreilles pour entendre de la musique ou quelqu'un parler.",
+    "solucion": "écouter"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Utiliser un stylo pour mettre des mots sur du papier.",
+    "solucion": "écrire"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Les parents, les frères et les soeurs forment la...",
+    "solucion": "famille"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Le fils de mes parents est mon...",
+    "solucion": "frère"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Un aliment fait à partir de lait, très célèbre en France.",
+    "solucion": "fromage"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Une plante colorée qui sent bon.",
+    "solucion": "fleur"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Une ouverture dans un mur pour voir dehors et laisser entrer la lumière.",
+    "solucion": "fenêtre"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Un jeune humain de sexe masculin.",
+    "solucion": "garçon"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Le contraire de petit (au masculin).",
+    "solucion": "grand"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "La couleur entre le noir et le blanc.",
+    "solucion": "gris"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Un instrument de musique avec des cordes.",
+    "solucion": "guitare"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Un objet utilisé pour effacer le crayon.",
+    "solucion": "gomme"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "La saison la plus froide de l'année.",
+    "solucion": "hiver"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Le nombre qui vient après sept.",
+    "solucion": "huit"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Une période de soixante minutes.",
+    "solucion": "heure"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Vivre dans un endroit.",
+    "solucion": "habiter"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Un récit de faits passés.",
+    "solucion": "histoire"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Une terre entourée d'eau de tous côtés.",
+    "solucion": "île"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Une représentation visuelle d'une chose ou d'une personne.",
+    "solucion": "image"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "La science du traitement automatique de l'information par ordinateur.",
+    "solucion": "informatique"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Une carte pour demander à quelqu'un de venir à une fête.",
+    "solucion": "invitation"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Une personne qui comprend et apprend vite.",
+    "solucion": "intelligent"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Le jour de la semaine entre le mercredi et le vendredi.",
+    "solucion": "jeudi"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "La couleur du soleil ou des citrons.",
+    "solucion": "jaune"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "S'amuser avec des jeux ou des jouets.",
+    "solucion": "jouer"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Un terrain avec de l'herbe et des fleurs près de la maison.",
+    "solucion": "jardin"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Une période de vingt-quatre heures.",
+    "solucion": "journée"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Un animal australien qui saute et porte son bébé dans une poche.",
+    "solucion": "kangourou"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Un fruit vert à l'intérieur avec des petits grains noirs.",
+    "solucion": "kiwi"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Une unité de mesure de masse (abréviation).",
+    "solucion": "kilo"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Un petit bateau léger que l'on dirige avec une pagaie.",
+    "solucion": "kayak"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Un chapeau militaire à visière.",
+    "solucion": "képi"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Un objet avec des pages que l'on lit.",
+    "solucion": "livre"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Le premier jour de la semaine.",
+    "solucion": "lundi"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Un meuble utilisé pour dormir.",
+    "solucion": "lit"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Un petit animal avec de grandes oreilles qui mange des carottes.",
+    "solucion": "lapin"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "La lumière que nous donne le soleil pendant la journée.",
+    "solucion": "lumière"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Le bâtiment où l'on habite.",
+    "solucion": "maison"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "La femme qui a des enfants.",
+    "solucion": "mère"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Mettre de la nourriture dans sa bouche pour vivre.",
+    "solucion": "manger"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Le deuxième jour de la semaine.",
+    "solucion": "mardi"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "La partie du corps au bout du bras avec cinq doigts.",
+    "solucion": "main"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "La couleur la plus sombre, comme le ciel la nuit.",
+    "solucion": "noir"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Le nombre qui vient après huit.",
+    "solucion": "neuf"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "La période de temps quand le soleil est couché.",
+    "solucion": "nuit"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Se déplacer dans l'eau.",
+    "solucion": "nager"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "La partie du visage qui sert à respirer et à sentir.",
+    "solucion": "nez"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Un animal avec des plumes qui peut voler.",
+    "solucion": "oiseau"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "La couleur du fruit du même nom.",
+    "solucion": "orange"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Un grand animal sauvage qui aime le miel.",
+    "solucion": "ours"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Le nombre qui vient après dix.",
+    "solucion": "onze"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "La partie du corps qui sert à entendre.",
+    "solucion": "oreille"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "L'homme qui a des enfants.",
+    "solucion": "père"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Un fruit rond, rouge, vert ou jaune.",
+    "solucion": "pomme"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Le contraire de grand.",
+    "solucion": "petit"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Un vêtement qui couvre les deux jambes.",
+    "solucion": "pantalon"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Un animal qui vit et respire sous l'eau.",
+    "solucion": "poisson"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Le nombre de pattes d'un chien.",
+    "solucion": "quatre"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Le nombre qui vient après treize.",
+    "solucion": "quatorze"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Mot utilisé pour poser une question sur une personne.",
+    "solucion": "qui"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Mot utilisé pour poser une question sur une chose.",
+    "solucion": "quoi"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Dix fois quatre.",
+    "solucion": "quarante"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "La couleur du sang ou des tomates.",
+    "solucion": "rouge"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Un vêtement féminin en une seule pièce.",
+    "solucion": "robe"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Utiliser ses yeux pour voir quelque chose.",
+    "solucion": "regarder"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "La couleur du flamant rose.",
+    "solucion": "rose"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Un chemin entre des maisons dans une ville.",
+    "solucion": "rue"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Le jour de la semaine après le vendredi.",
+    "solucion": "samedi"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "La fille de mes parents est ma...",
+    "solucion": "soeur"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Un objet utilisé pour écrire avec de l'encre.",
+    "solucion": "stylo"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "L'étoile qui nous éclaire et nous chauffe.",
+    "solucion": "soleil"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Un reptile sans pattes.",
+    "solucion": "serpent"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Le nombre de côtés d'un triangle.",
+    "solucion": "trois"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "La partie supérieure du corps humain.",
+    "solucion": "tête"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Un moyen de transport sur des rails.",
+    "solucion": "train"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Un meuble sur lequel on mange ou on travaille.",
+    "solucion": "table"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Un reptile avec une carapace très dure.",
+    "solucion": "tortue"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Le premier nombre entier positif.",
+    "solucion": "un"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "L'ensemble de tout ce qui existe : étoiles, planètes...",
+    "solucion": "univers"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Un vêtement identique porté par tous les élèves d'une école.",
+    "solucion": "uniforme"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Qui demande une action très rapide.",
+    "solucion": "urgent"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Une personne qui utilise un service ou un objet.",
+    "solucion": "usager"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "La couleur de l'herbe et des arbres.",
+    "solucion": "vert"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Un véhicule avec quatre roues pour voyager sur la route.",
+    "solucion": "voiture"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Le jour de la semaine avant le samedi.",
+    "solucion": "vendredi"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Un moyen de transport avec deux roues (synonyme de bicyclette).",
+    "solucion": "vélo"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Une grande ville (contraire de village). Buscamos: Ville.",
+    "solucion": "ville"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "La fin de la semaine (samedi et dimanche).",
+    "solucion": "weekend"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Une voiture de train pour les passagers ou les marchandises.",
+    "solucion": "wagon"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Un système pour se connecter à internet sans fils.",
+    "solucion": "wifi"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Un sport d'équipe qui se joue dans l'eau.",
+    "solucion": "waterpolo"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Un petit fruit vert à l'intérieur (contient W).",
+    "solucion": "kiwi"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "empieza",
+    "definicion": "Un instrument de musique avec des lames de bois ou de métal.",
+    "solucion": "xylophone"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Trois plus trois font... (contient X).",
+    "solucion": "six"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Cinq plus cinq font... (contient X).",
+    "solucion": "dix"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Un plus un font... (en français, contient X).",
+    "solucion": "deux"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Le contraire de jeune (au masculin, contient X).",
+    "solucion": "vieux"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Les organes de la vue (pluriel).",
+    "solucion": "yeux"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Un aliment crémeux fait avec du lait.",
+    "solucion": "yaourt"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Un objet pour écrire (contient Y).",
+    "solucion": "stylo"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Aller loin de chez soi pour le plaisir (contient Y).",
+    "solucion": "voyage"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Vêtement de nuit pour dormir (contient Y).",
+    "solucion": "pyjama"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Le nombre qui représente le néant, rien.",
+    "solucion": "zéro"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Un animal d'Afrique avec des rayures noires et blanches.",
+    "solucion": "zèbre"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Un parc où l'on peut voir des animaux sauvages.",
+    "solucion": "zoo"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Le nombre après dix (contient Z).",
+    "solucion": "onze"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Le nombre après onze (contient Z).",
+    "solucion": "douze"
+  }
 ]

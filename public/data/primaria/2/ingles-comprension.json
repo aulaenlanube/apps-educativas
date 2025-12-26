@@ -1,320 +1,548 @@
 [
   {
     "id": "1",
-    "titulo": "My dog Max",
-    "texto": "My name is Tom. I have a dog. His name is Max. Max is brown and big. He likes to run in the park. He plays with a red ball.",
+    "titulo": "My Happy Family",
+    "texto": "Hello! I am Tom. This is my family. My mother is Jane and my father is Mark. I have one sister. Her name is Lucy. We have got a small cat. Its name is Fluffy. We are very happy together.",
     "preguntas": [
       {
-        "pregunta": "Is Max a cat?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What is the boy's name?",
+        "opciones": [
+          "Mark",
+          "Tom",
+          "Lucy",
+          "Fluffy"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is Max big?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
+        "pregunta": "Who is Jane?",
+        "opciones": [
+          "The sister",
+          "The mother",
+          "The cat",
+          "The friend"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What colour is Max?",
-        "opciones": ["Red", "Blue", "Brown", "Green"],
+        "pregunta": "Does Tom have a brother?",
+        "opciones": [
+          "Yes",
+          "No, he has a sister"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What pet do they have?",
+        "opciones": [
+          "A dog",
+          "A hamster",
+          "A cat",
+          "A bird"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "What is the boy's name?",
-        "opciones": ["Sam", "Tom", "Ben", "Dan"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "What does Max play with?",
-        "opciones": ["A red ball", "A blue car", "A yellow duck", "A green book"],
-        "correcta": 0
+        "pregunta": "What is the cat's name?",
+        "opciones": [
+          "Lucy",
+          "Jane",
+          "Fluffy",
+          "Mark"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Three Apples",
-    "texto": "Sarah likes fruit. She has three red apples on the table. She eats one apple. Now she has two apples. They are sweet and yummy.",
+    "titulo": "My School Bag",
+    "texto": "I am ready for school. In my school bag, I have a red pencil case. I have two pencils, one blue pen and a yellow ruler. I also have a big green book. I like my school objects!",
     "preguntas": [
       {
-        "pregunta": "Does Sarah like fruit?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Are the apples blue?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What color is the pencil case?",
+        "opciones": [
+          "Blue",
+          "Red",
+          "Green",
+          "Yellow"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "How many apples does she have at first?",
-        "opciones": ["One", "Two", "Three", "Four"],
+        "pregunta": "How many pencils are there?",
+        "opciones": [
+          "One",
+          "Two",
+          "Three",
+          "Four"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What color is the pen?",
+        "opciones": [
+          "Red",
+          "Pink",
+          "Blue",
+          "Black"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "What colour are the apples?",
-        "opciones": ["Blue", "Red", "Yellow", "Pink"],
+        "pregunta": "Is the book small?",
+        "opciones": [
+          "Yes",
+          "No, it is big"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "How many apples does she eat?",
-        "opciones": ["One", "Two", "Three", "Five"],
-        "correcta": 0
+        "pregunta": "What color is the ruler?",
+        "opciones": [
+          "White",
+          "Green",
+          "Orange",
+          "Yellow"
+        ],
+        "correcta": 3
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "My School Bag",
-    "texto": "This is my school bag. It is yellow and blue. I have a pencil and a book in my bag. The pencil is red. The book is green. I go to school in the morning.",
+    "titulo": "At the Pet Shop",
+    "texto": "There are many animals in the pet shop. I can see a big brown dog and a small white rabbit. Look at the birds! They are blue and yellow. I like the little orange hamster. It is very cute!",
     "preguntas": [
       {
-        "pregunta": "Is the bag pink?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What color is the dog?",
+        "opciones": [
+          "Black",
+          "Brown",
+          "White",
+          "Grey"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is the pencil red?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
+        "pregunta": "Is the rabbit big or small?",
+        "opciones": [
+          "Big",
+          "Small"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What colour is the book?",
-        "opciones": ["Red", "Blue", "Green", "Orange"],
+        "pregunta": "What colors are the birds?",
+        "opciones": [
+          "Red and green",
+          "Blue and yellow",
+          "Pink and purple",
+          "Black and white"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What color is the hamster?",
+        "opciones": [
+          "Brown",
+          "White",
+          "Orange",
+          "Black"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "What is yellow and blue?",
-        "opciones": ["The bag", "The book", "The pencil", "The rubber"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Where do I go?",
-        "opciones": ["To the park", "To the cinema", "To school", "To bed"],
+        "pregunta": "Where are the animals?",
+        "opciones": [
+          "At the park",
+          "At school",
+          "At the pet shop",
+          "At home"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "My Face",
-    "texto": "Look at my face. I have two eyes and one nose. My mouth is small. My ears are big. I have brown hair. I am very happy today.",
+    "titulo": "I Can Move",
+    "texto": "Look at me! I can move my body. I have two arms and two legs. I can jump with my legs and clap with my hands. I have ten fingers and ten toes. It is fun to exercise!",
     "preguntas": [
       {
-        "pregunta": "Do I have three eyes?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "How many legs do I have?",
+        "opciones": [
+          "One",
+          "Two",
+          "Four",
+          "Ten"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is my mouth small?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "How many noses do I have?",
-        "opciones": ["One", "Two", "Three", "Four"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Are my ears big or small?",
-        "opciones": ["Small", "Big", "Red", "Blue"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "How am I?",
-        "opciones": ["Sad", "Angry", "Happy", "Tired"],
+        "pregunta": "What can I do with my legs?",
+        "opciones": [
+          "Clap",
+          "Sleep",
+          "Jump",
+          "Talk"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "What can I do with my hands?",
+        "opciones": [
+          "Jump",
+          "Clap",
+          "Eat",
+          "Sing"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "How many fingers do I have?",
+        "opciones": [
+          "Two",
+          "Five",
+          "Ten",
+          "Twenty"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Is exercise fun?",
+        "opciones": [
+          "Yes",
+          "No"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Sunday in the Park",
-    "texto": "It is Sunday. It is sunny and hot. I go to the park with my mum. We play football. We eat a delicious chocolate ice cream. It is a fun day.",
+    "titulo": "Fruit for Lunch",
+    "texto": "It is lunch time! I have a lunch box. I like fruit. I have one red apple and one yellow banana. I don't like pears, but I love orange juice. Fruit is healthy and tasty.",
     "preguntas": [
       {
-        "pregunta": "Is it raining?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What is in the lunch box?",
+        "opciones": [
+          "Pizza",
+          "Fruit",
+          "Candy",
+          "Meat"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Do I go to the park?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What day is it?",
-        "opciones": ["Monday", "Friday", "Sunday", "Tuesday"],
+        "pregunta": "What color is the apple?",
+        "opciones": [
+          "Green",
+          "Yellow",
+          "Red",
+          "Brown"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "What is the weather like?",
-        "opciones": ["Sunny", "Rainy", "Snowy", "Cloudy"],
-        "correcta": 0
+        "pregunta": "Does the child like pears?",
+        "opciones": [
+          "Yes",
+          "No"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What do we eat?",
-        "opciones": ["Pizza", "Apples", "Ice cream", "Bread"],
-        "correcta": 2
+        "pregunta": "What juice does the child love?",
+        "opciones": [
+          "Apple juice",
+          "Orange juice",
+          "Water",
+          "Milk"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "How many bananas are there?",
+        "opciones": [
+          "One",
+          "Two",
+          "Three",
+          "Five"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Colours",
-    "texto": "My favourite colour is purple. I have a purple t-shirt and purple shoes. I do not like orange. My sister Lucy likes orange. She has an orange hat.",
+    "titulo": "A Day at the Park",
+    "texto": "I go to the park with my friends. The sun is hot today. I can see the green grass and trees. Peter is on the slide and Anna is on the swing. We like to play and run. We are having a great time!",
     "preguntas": [
       {
-        "pregunta": "Do I like purple?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Do I like orange?",
-        "opciones": ["Yes", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "What clothes are purple?",
-        "opciones": ["Hat", "T-shirt", "Jeans", "Coat"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Who likes orange?",
-        "opciones": ["My mum", "My dad", "My sister", "My brother"],
+        "pregunta": "Where are the children?",
+        "opciones": [
+          "At school",
+          "At the beach",
+          "At the park",
+          "At the hospital"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "What colour is the hat?",
-        "opciones": ["Red", "Orange", "Purple", "Green"],
+        "pregunta": "Is it cold today?",
+        "opciones": [
+          "Yes",
+          "No, the sun is hot"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What color is the grass?",
+        "opciones": [
+          "Yellow",
+          "Green",
+          "Blue",
+          "Brown"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Who is on the swing?",
+        "opciones": [
+          "Peter",
+          "Tom",
+          "Anna",
+          "The teacher"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "What do the children like to do?",
+        "opciones": [
+          "Sleep",
+          "Play and run",
+          "Read",
+          "Eat"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Farm Animals",
-    "texto": "There are five animals in the farm. The cow is black and white. The pig is pink and fat. The sheep is white. The duck is yellow. The horse is brown and fast.",
+    "titulo": "My Clothes",
+    "texto": "Today is a cold day. I am wearing my blue jacket and my grey trousers. I have a red hat on my head and a warm scarf. I also have my black boots. I am ready to go out and play in the snow!",
     "preguntas": [
       {
-        "pregunta": "Is the pig blue?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "Is it a hot day?",
+        "opciones": [
+          "Yes",
+          "No, it is a cold day"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is the cow black and white?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What color is the jacket?",
+        "opciones": [
+          "Blue",
+          "Red",
+          "Black",
+          "Green"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "What colour is the duck?",
-        "opciones": ["Green", "Yellow", "Red", "Purple"],
+        "pregunta": "What is on the child's head?",
+        "opciones": [
+          "A scarf",
+          "A hat",
+          "Glasses",
+          "A mask"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "How many animals are there?",
-        "opciones": ["One", "Three", "Five", "Ten"],
+        "pregunta": "What color are the boots?",
+        "opciones": [
+          "Grey",
+          "Brown",
+          "Black",
+          "Pink"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Which animal is pink?",
-        "opciones": ["The cow", "The pig", "The horse", "The sheep"],
-        "correcta": 1
+        "pregunta": "Where is the child going to play?",
+        "opciones": [
+          "In the water",
+          "In the sand",
+          "In the snow",
+          "In the forest"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Lunch Time",
-    "texto": "I am hungry. It is lunch time. I eat chicken and chips. I drink orange juice. I like chicken very much. It is my favourite food. Yummy!",
+    "titulo": "The Magic Garden",
+    "texto": "Look at my garden! There are seven flowers. Three flowers are pink and four flowers are purple. There is a big tree with a bird's nest. I can see two small birds. My garden is very beautiful in the morning.",
     "preguntas": [
       {
-        "pregunta": "Am I hungry?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
+        "pregunta": "How many flowers are there in total?",
+        "opciones": [
+          "Three",
+          "Four",
+          "Seven",
+          "Ten"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "Do I eat fish?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What color are the flowers?",
+        "opciones": [
+          "Red and blue",
+          "Pink and purple",
+          "Yellow and white",
+          "Orange and green"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "What do I eat?",
-        "opciones": ["Chicken", "Pizza", "Soup", "Salad"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What do I drink?",
-        "opciones": ["Water", "Milk", "Orange juice", "Cola"],
+        "pregunta": "What is in the tree?",
+        "opciones": [
+          "A cat",
+          "A ball",
+          "A bird's nest",
+          "A toy"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Do I like chicken?",
-        "opciones": ["No", "A little", "Very much", "Not at all"],
-        "correcta": 2
+        "pregunta": "How many birds can you see?",
+        "opciones": [
+          "One",
+          "Two",
+          "Three",
+          "Zero"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Is the garden ugly?",
+        "opciones": [
+          "Yes",
+          "No, it is beautiful"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "My Bedroom",
-    "texto": "My bedroom is blue. The bed is big. There is a lamp on the table. The lamp is yellow. I have many toys in a box. I sleep in my bedroom at night.",
+    "titulo": "I Am Hungry",
+    "texto": "I am very hungry! I want to eat something. I like milk and bread. I also like cheese and eggs. I don't like fish or chicken. Today, my mom is making a sandwich for me. I am very happy!",
     "preguntas": [
       {
-        "pregunta": "Is the bedroom pink?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "How does the child feel?",
+        "opciones": [
+          "Thirsty",
+          "Hungry",
+          "Tired",
+          "Sad"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is the bed big?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "Does the child like cheese?",
+        "opciones": [
+          "Yes",
+          "No"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "What colour is the bedroom?",
-        "opciones": ["Blue", "Red", "Green", "White"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What is on the table?",
-        "opciones": ["A book", "A lamp", "A cat", "A computer"],
+        "pregunta": "What does the child NOT like?",
+        "opciones": [
+          "Bread",
+          "Fish or chicken",
+          "Eggs",
+          "Milk"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Where are the toys?",
-        "opciones": ["In a box", "On the bed", "Under the table", "On the chair"],
+        "pregunta": "What is the mom making?",
+        "opciones": [
+          "A cake",
+          "A pizza",
+          "A sandwich",
+          "A salad"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Is the child happy?",
+        "opciones": [
+          "Yes",
+          "No"
+        ],
         "correcta": 0
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Happy Birthday",
-    "texto": "Today is my birthday. I am seven years old. I have a chocolate cake. It has seven candles. I get many presents from my friends. We sing songs and dance.",
+    "titulo": "A Rainy Day",
+    "texto": "Today, it is raining. I am at home. I can hear the rain on the window. I have my yellow umbrella and my green raincoat. I can't go to the park, but I can read a book or watch TV. I like the rain!",
     "preguntas": [
       {
-        "pregunta": "Is it my birthday?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Is the cake strawberry?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What is the weather like?",
+        "opciones": [
+          "Sunny",
+          "Raining",
+          "Snowing",
+          "Windy"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "How old am I?",
-        "opciones": ["Six", "Seven", "Eight", "Nine"],
+        "pregunta": "Where is the child?",
+        "opciones": [
+          "At school",
+          "At the park",
+          "At home",
+          "At the beach"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "What color is the umbrella?",
+        "opciones": [
+          "Green",
+          "Blue",
+          "Yellow",
+          "Red"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Can the child go to the park?",
+        "opciones": [
+          "Yes",
+          "No"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "What flavour is the cake?",
-        "opciones": ["Vanilla", "Chocolate", "Lemon", "Apple"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "How many candles are there?",
-        "opciones": ["Five", "Six", "Seven", "Ten"],
+        "pregunta": "What color is the raincoat?",
+        "opciones": [
+          "Yellow",
+          "Orange",
+          "Green",
+          "Pink"
+        ],
         "correcta": 2
       }
     ]

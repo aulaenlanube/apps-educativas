@@ -1,174 +1,249 @@
 [
   {
-    "categoria": "Estadística y Azar (Visual)",
+    "categoria": "Gráficas de Datos y Probabilidad (Visual)",
     "correctos": [
       "📊",
       "📉",
       "📈",
-      "🥧",
+      "🥧 (Sectores)",
       "🎲",
-      "🎰"
+      "🎰",
+      "📋",
+      "📅",
+      "🧮",
+      "💻"
     ],
     "intrusos": [
       "📐",
       "📏",
       "🖌️",
       "📝",
-      "🧱"
+      "🧱",
+      "🔨",
+      "🔧",
+      "🪛",
+      "🪚",
+      "🗜️"
     ]
   },
   {
-    "categoria": "Potencias: Cuadrados y Cubos (Visual)",
+    "categoria": "Geometría del Cubo y el Cuadrado (Visual)",
     "correctos": [
       "📦",
       "🧊",
       "🟥",
       "🟦",
-      "🟨"
+      "🟨",
+      "🟩",
+      "⬜",
+      "⬛",
+      "🧱",
+      "🛖"
     ],
     "intrusos": [
       "🔴",
       "🔵",
       "〰️",
       "🐍",
-      "🎈"
+      "🎈",
+      "⭕",
+      "🟡",
+      "🟠",
+      "🟣",
+      "🪀"
     ]
   },
   {
-    "categoria": "Temperatura y Enteros (Visual)",
+    "categoria": "Escala Térmica y Números Bajo Cero (Visual)",
     "correctos": [
-      "🌡️",
+      "🌡️ (Frío)",
       "❄️",
       "🧊",
       "🥶",
-      "⛄"
+      "⛄",
+      "🐧",
+      "🐻‍❄️",
+      "🎿",
+      "🏂",
+      "⛸️"
     ],
     "intrusos": [
       "🔥",
       "☀️",
       "🥵",
       "🌋",
-      "🏜️"
+      "🏜️",
+      "🌵",
+      "😎",
+      "🦁",
+      "🐘",
+      "🐪"
     ]
   },
   {
-    "categoria": "Cuerpos Geométricos (Visual)",
+    "categoria": "Cuerpos Espaciales: Esferas y Pirámides (Visual)",
     "correctos": [
       "🪐",
-      "⛺",
+      "⚽",
       "🏐",
-      "🥫",
-      "🧱"
+      "🎾",
+      "🏀",
+      "🎱",
+      "🥎",
+      "🌍",
+      "🌕",
+      "☀️",
+      "🛖",
+      "🔺"
     ],
     "intrusos": [
       "🗺️",
       "🃏",
       "📄",
       "🖼️",
-      "📏"
+      "📏",
+      "📖",
+      "📜",
+      "💳",
+      "📱",
+      "💻"
     ]
   },
   {
-    "categoria": "Potencias",
+    "categoria": "Elementos de las Potencias",
     "correctos": [
       "Base",
       "Exponente",
       "Cuadrado",
       "Cubo",
-      "Elevado"
+      "Elevado a n",
+      "Potencia de base diez",
+      "Unidad seguida de ceros"
     ],
     "intrusos": [
-      "Raíz",
       "Suma",
       "Resto",
       "Divisor",
-      "Cociente"
+      "Cociente",
+      "Multiplicando",
+      "Minuendo",
+      "Sustraendo",
+      "Factor común"
     ]
   },
   {
-    "categoria": "Números Enteros",
+    "categoria": "Ámbito de los Números Enteros (Z)",
     "correctos": [
-      "Positivo",
-      "Negativo",
-      "Cero",
-      "Bajo cero",
-      "Deuda"
+      "Número Positivo (+)",
+      "Número Negativo (-)",
+      "Cero originario",
+      "Altitud bajo el mar",
+      "Temperatura bajo cero",
+      "Deuda bancaria",
+      "Sótano de edificio"
     ],
     "intrusos": [
-      "Decimal",
-      "Fracción",
-      "Medio",
-      "Mitad",
-      "Doble"
+      "Número Decimal",
+      "Centésima",
+      "Diez coma cinco",
+      "Fracción propia",
+      "Un medio",
+      "Mitad justa",
+      "Doble exacto"
     ]
   },
   {
-    "categoria": "Unidades de Volumen",
+    "categoria": "Unidades de Volumen y Capacidad Equivalentes",
     "correctos": [
-      "Metro cúbico",
-      "Litro",
-      "Decímetro cúbico",
-      "Centilitro",
-      "Mililitro"
+      "Metro cúbico (m³)",
+      "Litro (L)",
+      "Decímetro cúbico (dm³)",
+      "Centilitro (cl)",
+      "Mililitro (ml)",
+      "Centímetro cúbico (cm³)",
+      "Kilolitro (kl)"
     ],
     "intrusos": [
-      "Metro cuadrado",
-      "Hectárea",
-      "Kilómetro",
-      "Segundo",
-      "Gramo"
+      "Metro cuadrado (m²)",
+      "Hectárea (ha)",
+      "Kilómetro (km)",
+      "Segundo (s)",
+      "Gramo (g)",
+      "Grado Celsius",
+      "Euro (€)",
+      "Voltio"
     ]
   },
   {
-    "categoria": "Estadística",
+    "categoria": "Parámetros de Centralización Estadística",
     "correctos": [
-      "Media",
-      "Moda",
-      "Rango",
-      "Frecuencia",
-      "Datos"
+      "Media aritmética",
+      "Moda (valor frecuente)",
+      "Rango o Amplitud",
+      "Frecuencia absoluta",
+      "Promedio",
+      "Mediana",
+      "Muestra de datos"
     ],
     "intrusos": [
       "Vértice",
-      "Arista",
-      "Radio",
-      "Diámetro",
-      "Área"
+      "Arista del cubo",
+      "Radio del círculo",
+      "Diámetro solar",
+      "Área del polígono",
+      "Perímetro",
+      "Hipotenusa",
+      "Cateto"
     ]
   },
   {
-    "categoria": "Múltiplos de 12",
+    "categoria": "Múltiplos de 15 (Regla de divisibilidad 3 y 5)",
     "correctos": [
-      "12",
-      "24",
-      "36",
-      "48",
-      "60",
-      "72"
-    ],
-    "intrusos": [
-      "6",
-      "10",
       "15",
-      "18",
+      "30",
+      "45",
+      "60",
+      "75",
+      "90",
+      "150",
+      "300",
+      "450",
+      "600",
+      "1500"
+    ],
+    "intrusos": [
+      "5",
+      "10",
+      "20",
+      "25",
+      "35",
+      "40",
       "50",
-      "100"
+      "55",
+      "65",
+      "100",
+      "200"
     ]
   },
   {
-    "categoria": "Porcentajes y Fracciones",
+    "categoria": "Equivalencia Porcentajes y Fracciones Reducibles",
     "correctos": [
-      "50% y 1/2",
-      "25% y 1/4",
-      "75% y 3/4",
-      "10% y 1/10",
-      "20% y 1/5"
+      "50% es 1/2",
+      "25% es 1/4",
+      "75% es 3/4",
+      "10% es 1/10",
+      "20% es 1/5",
+      "100% es el total",
+      "5% es 1/20"
     ],
     "intrusos": [
-      "50% y 1/5",
-      "25% y 1/2",
-      "10% y 1/2",
-      "30% y 1/4"
+      "50% es 1/5",
+      "25% es 1/2",
+      "10% es 1/2",
+      "30% es 1/4",
+      "80% es 1/2",
+      "1% es 1/10",
+      "40% es 1/5"
     ]
   }
 ]

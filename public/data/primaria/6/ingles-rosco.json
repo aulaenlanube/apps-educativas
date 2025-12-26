@@ -1,158 +1,926 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Tía en inglés.", "solucion": "aunt" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Siempre (frecuencia) en inglés.", "solucion": "always" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Respuesta en inglés.", "solucion": "answer" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Tarde (después de mediodía) en inglés.", "solucion": "afternoon" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Dirección en inglés.", "solucion": "address" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Desayuno en inglés.", "solucion": "breakfast" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Botella en inglés.", "solucion": "bottle" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Detrás en inglés.", "solucion": "behind" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Puente en inglés.", "solucion": "bridge" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Pan en inglés.", "solucion": "bread" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Queso en inglés.", "solucion": "cheese" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Pollo en inglés.", "solucion": "chicken" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Ropa en inglés.", "solucion": "clothes" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Cine en inglés.", "solucion": "cinema" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Primo/a en inglés.", "solucion": "cousin" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Cenar en inglés (have...).", "solucion": "dinner" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Peligroso en inglés.", "solucion": "dangerous" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Vestido en inglés.", "solucion": "dress" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Beber en inglés.", "solucion": "drink" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Conducir en inglés.", "solucion": "drive" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Comer en inglés.", "solucion": "eat" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Temprano en inglés.", "solucion": "early" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Tierra (planeta) en inglés.", "solucion": "earth" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Cada/Todos en inglés (ej: ...day).", "solucion": "every" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Águila en inglés.", "solucion": "eagle" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Granja en inglés.", "solucion": "farm" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Viernes en inglés.", "solucion": "friday" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Fruta en inglés.", "solucion": "fruit" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Amigo en inglés.", "solucion": "friend" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Cuarenta en inglés.", "solucion": "forty" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Gafas en inglés.", "solucion": "glasses" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Uva en inglés.", "solucion": "grape" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Jardín en inglés.", "solucion": "garden" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Levantarse en inglés (get...).", "solucion": "up" }, 
-  { "id": "g4_fix", "letra": "G", "tipo": "empieza", "definicion": "Pegamento en inglés.", "solucion": "glue" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Fantasma en inglés.", "solucion": "ghost" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Hambre en inglés (I am...).", "solucion": "hungry" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Hospital en inglés.", "solucion": "hospital" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Deberes en inglés.", "solucion": "homework" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Pelo en inglés.", "solucion": "hair" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Vacaciones en inglés.", "solucion": "holiday" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Enfermo en inglés.", "solucion": "ill" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Interesante en inglés.", "solucion": "interesting" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Isla en inglés.", "solucion": "island" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Hielo en inglés.", "solucion": "ice" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Dentro en inglés.", "solucion": "inside" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Enero en inglés.", "solucion": "january" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Vaqueros (pantalones) en inglés.", "solucion": "jeans" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Trabajo en inglés.", "solucion": "job" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Mermelada en inglés.", "solucion": "jam" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Zumo en inglés.", "solucion": "juice" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Cocina (lugar) en inglés.", "solucion": "kitchen" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Llave en inglés.", "solucion": "key" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Saber o conocer en inglés.", "solucion": "know" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Rodilla en inglés.", "solucion": "knee" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Rey en inglés.", "solucion": "king" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Biblioteca en inglés.", "solucion": "library" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Escuchar en inglés.", "solucion": "listen" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Comida del mediodía en inglés.", "solucion": "lunch" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Sala de estar en inglés (... room).", "solucion": "living" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Gustar en inglés.", "solucion": "like" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Lunes en inglés.", "solucion": "monday" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Mes en inglés.", "solucion": "month" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Leche en inglés.", "solucion": "milk" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Dinero en inglés.", "solucion": "money" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Museo en inglés.", "solucion": "museum" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Enfermera en inglés.", "solucion": "nurse" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Noviembre en inglés.", "solucion": "november" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Noche en inglés.", "solucion": "night" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Nuevo en inglés.", "solucion": "new" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Próximo/Siguiente en inglés.", "solucion": "next" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Octubre en inglés.", "solucion": "october" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Cebolla en inglés.", "solucion": "onion" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "A menudo en inglés.", "solucion": "often" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Viejo en inglés.", "solucion": "old" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Enfrente de en inglés.", "solucion": "opposite" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Patata en inglés.", "solucion": "potato" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Gente/Personas en inglés.", "solucion": "people" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Parque en inglés.", "solucion": "park" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Por favor en inglés.", "solucion": "please" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Jugar en inglés.", "solucion": "play" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Reina en inglés.", "solucion": "queen" },
-  { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Pregunta en inglés.", "solucion": "question" },
-  { "id": "q3", "letra": "Q", "tipo": "empieza", "definicion": "Rápido en inglés.", "solucion": "quick" },
-  { "id": "q4", "letra": "Q", "tipo": "empieza", "definicion": "Tranquilo/Silencioso en inglés.", "solucion": "quiet" },
-  { "id": "q5", "letra": "Q", "tipo": "empieza", "definicion": "Cuarto (15 min) en inglés.", "solucion": "quarter" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Lluvia en inglés.", "solucion": "rain" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Leer en inglés.", "solucion": "read" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Correr en inglés.", "solucion": "run" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Habitación en inglés.", "solucion": "room" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Río en inglés.", "solucion": "river" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Colegio en inglés.", "solucion": "school" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Nadar en inglés.", "solucion": "swim" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Verano en inglés.", "solucion": "summer" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Falda en inglés.", "solucion": "skirt" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Calle en inglés.", "solucion": "street" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Profesor en inglés.", "solucion": "teacher" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Jueves en inglés.", "solucion": "thursday" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Pantalones en inglés.", "solucion": "trousers" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Ciudad en inglés.", "solucion": "town" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Hora/Tiempo en inglés.", "solucion": "time" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Debajo en inglés.", "solucion": "under" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Tío en inglés.", "solucion": "uncle" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Usar en inglés.", "solucion": "use" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Paraguas en inglés.", "solucion": "umbrella" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Feo en inglés.", "solucion": "ugly" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Verduras en inglés.", "solucion": "vegetables" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Pueblo (pequeño) en inglés.", "solucion": "village" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Muy en inglés.", "solucion": "very" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Visitar en inglés.", "solucion": "visit" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Voleibol en inglés.", "solucion": "volleyball" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Agua en inglés.", "solucion": "water" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Escribir en inglés.", "solucion": "write" },
-  { "id": "w3", "letra": "W", "tipo": "empieza", "definicion": "Miercoles en inglés.", "solucion": "wednesday" },
-  { "id": "w4", "letra": "W", "tipo": "empieza", "definicion": "Invierno en inglés.", "solucion": "winter" },
-  { "id": "w5", "letra": "W", "tipo": "empieza", "definicion": "Llevar puesto (ropa) en inglés.", "solucion": "wear" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Caja en inglés (acaba en X).", "solucion": "box" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Zorro en inglés (acaba en X).", "solucion": "fox" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Seis en inglés (acaba en X).", "solucion": "six" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Próximo/Siguiente en inglés (contiene X).", "solucion": "next" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Relajarse en inglés (contiene X).", "solucion": "relax" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Amarillo en inglés.", "solucion": "yellow" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Año en inglés.", "solucion": "year" },
-  { "id": "y3", "letra": "Y", "tipo": "empieza", "definicion": "Tú/Vosotros en inglés.", "solucion": "you" },
-  { "id": "y4", "letra": "Y", "tipo": "empieza", "definicion": "Ayer en inglés.", "solucion": "yesterday" },
-  { "id": "y5", "letra": "Y", "tipo": "empieza", "definicion": "Joven en inglés.", "solucion": "young" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Zoo en inglés.", "solucion": "zoo" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Cebra en inglés.", "solucion": "zebra" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Cero en inglés.", "solucion": "zero" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Tamaño en inglés (contiene Z).", "solucion": "size" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Perezoso en inglés (contiene Z).", "solucion": "lazy" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "The layer of gases surrounding the Earth or another planet.",
+    "solucion": "atmosphere"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Something done successfully, typically by effort, courage, or skill.",
+    "solucion": "achievement"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Belonging to a very distant past and no longer in existence.",
+    "solucion": "ancient"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "The way that someone or something looks.",
+    "solucion": "appearance"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "To give a spoken or written account of something.",
+    "solucion": "announce"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "The variety of plant and animal life in a particular habitat.",
+    "solucion": "biodiversity"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "A large outdoor board for displaying advertisements.",
+    "solucion": "billboard"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Unable to breathe easily, for example because you have been running.",
+    "solucion": "breathless"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "The part of a picture or scene that is furthest from the viewer.",
+    "solucion": "background"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "A device that measures air pressure and predicts changes in the weather.",
+    "solucion": "barometer"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "A task or situation that tests someone's abilities.",
+    "solucion": "challenge"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "A group of people living in the same place or having a particular characteristic in common.",
+    "solucion": "community"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "The weather conditions prevailing in an area in general or over a long period.",
+    "solucion": "climate"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "A social gathering or enjoyable activity held to honor an occasion.",
+    "solucion": "celebration"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "A human society with its own social organization and culture.",
+    "solucion": "civilization"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "The action or process of discovering or being discovered.",
+    "solucion": "discovery"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Sad or displeased because someone or something has failed to fulfill one's hopes.",
+    "solucion": "disappointed"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "The process of starting to experience or possess something new (Economic...).",
+    "solucion": "development"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Highly pleasant to the taste.",
+    "solucion": "delicious"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "A situation that is likely to cause harm or injury.",
+    "solucion": "danger"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "The surroundings or conditions in which a person, animal, or plant lives.",
+    "solucion": "environment"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "A public display of works of art or items of interest.",
+    "solucion": "exhibition"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Costing a lot of money.",
+    "solucion": "expensive"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Practical contact with and observation of facts or events.",
+    "solucion": "experience"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Extremely large; huge.",
+    "solucion": "enormous"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Extraordinarily good or attractive.",
+    "solucion": "fantastic"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "The lowest load-bearing part of a building, typically below ground level.",
+    "solucion": "foundation"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Happening or doing something often.",
+    "solucion": "frequent"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "A time that is still to come.",
+    "solucion": "future"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "To be able to pay for something (can...).",
+    "solucion": "afford"
+  },
+  {
+    "id": "f5_fix",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "The speed at which someone or something is able to move (not speed). Buscamos: Fast.",
+    "solucion": "fast"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "All of the people born and living at about the same time.",
+    "solucion": "generation"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "The study of the physical features of the earth and its atmosphere.",
+    "solucion": "geography"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "A glass building in which plants are grown that need protection from cold weather.",
+    "solucion": "greenhouse"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Very beautiful or attractive.",
+    "solucion": "gorgeous"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "An idea or opinion that is made about a large group of people (not specific).",
+    "solucion": "generalization"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Property that is or may be inherited; an inheritance.",
+    "solucion": "heritage"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Parallel to the plane of the horizon; at right angles to the vertical.",
+    "solucion": "horizontal"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "(Of an animal) spend the winter in a dormant state.",
+    "solucion": "hibernate"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "(Of a man) good-looking.",
+    "solucion": "handsome"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Very great in amount or level (not low).",
+    "solucion": "high"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Of great significance or value.",
+    "solucion": "important"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "An idea, feeling, or opinion about something or someone.",
+    "solucion": "impression"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Impossible to believe; extraordinary.",
+    "solucion": "incredible"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "The action of interrupting or being interrupted.",
+    "solucion": "interruption"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "To use or create something for the first time.",
+    "solucion": "invent"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "An act of traveling from one place to another.",
+    "solucion": "journey"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Feeling or showing envy of someone or their achievements and advantages.",
+    "solucion": "jealous"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Personal ornaments, such as necklaces, rings, or bracelets.",
+    "solucion": "jewelry"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Just behavior or treatment.",
+    "solucion": "justice"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "A story or piece of news that is intended to be funny.",
+    "solucion": "joke"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "A person whose job is to look after a certain place, like a zoo.",
+    "solucion": "keeper"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Be aware of through observation, inquiry, or information.",
+    "solucion": "know"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "The joint between the thigh and the lower leg in humans.",
+    "solucion": "knee"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "A weapon with a cutting blade and a handle.",
+    "solucion": "knife"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "The male ruler of an independent state, especially one who inherits the position.",
+    "solucion": "king"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "All the visible features of an area of countryside or land.",
+    "solucion": "landscape"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Written works, especially those considered of superior or lasting artistic merit.",
+    "solucion": "literature"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "A particular place or position.",
+    "solucion": "location"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "The state of great comfort and extravagant living.",
+    "solucion": "luxury"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "To feel or show a strong affection for someone.",
+    "solucion": "love"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Very good, beautiful, or impressive.",
+    "solucion": "magnificent"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "A substance made by mixing other substances together.",
+    "solucion": "mixture"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "An act of changing physical location or position.",
+    "solucion": "movement"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Something that is difficult or impossible to understand or explain.",
+    "solucion": "mystery"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "A large and impressively beautiful house.",
+    "solucion": "mansion"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Existing in or caused by nature; not made or caused by humankind.",
+    "solucion": "natural"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Required to be done, achieved, or present; essential.",
+    "solucion": "necessary"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "A district where people live, especially in a town or city.",
+    "solucion": "neighbourhood"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Not in or to any place; not anywhere.",
+    "solucion": "nowhere"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "A person whose job is to keep or examine records.",
+    "solucion": "notary"
+  },
+  {
+    "id": "n5_fix",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "A piece of information or news.",
+    "solucion": "notice"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "A set of circumstances that makes it possible to do something.",
+    "solucion": "opportunity"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "An individual animal, plant, or single-celled life form.",
+    "solucion": "organism"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Present or existing from the beginning; first or earliest.",
+    "solucion": "original"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "The way a thing turns out; a consequence.",
+    "solucion": "outcome"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Extending across the whole of a medium or area.",
+    "solucion": "overall"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "An act of staging or presenting a play, concert, or other form of entertainment.",
+    "solucion": "performance"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "The presence in or introduction into the environment of a substance that has harmful or poisonous effects.",
+    "solucion": "pollution"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Having great power, prestige, or influence.",
+    "solucion": "powerful"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "The continuous physical force exerted on or against an object by something in contact with it.",
+    "solucion": "pressure"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "A feeling of deep pleasure or satisfaction derived from one's own achievements.",
+    "solucion": "pride"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "A quality or accomplishment that makes someone suitable for a particular job or activity.",
+    "solucion": "qualification"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "A certain, indeterminate, or specified amount or number of something.",
+    "solucion": "quantity"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "At a fast speed; rapidly.",
+    "solucion": "quickly"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Making little or no noise.",
+    "solucion": "quietly"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "One of four equal or corresponding parts into which something is or can be divided.",
+    "solucion": "quarter"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Able to be maintained at a certain rate or level (Energy type).",
+    "solucion": "renewable"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "A stock or supply of money, materials, staff, and other assets that can be drawn on.",
+    "solucion": "resource"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "The way in which two or more people or things are connected.",
+    "solucion": "relationship"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "The throwing back by a body or surface of light, heat, or sound without absorbing it.",
+    "solucion": "reflection"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "A small stream.",
+    "solucion": "rivulet"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Able to be maintained at a certain rate or level over time (Environmentally...).",
+    "solucion": "sustainable"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "The arrangement of and relations between the parts or elements of something complex.",
+    "solucion": "structure"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "The internal framework of bone, cartilage, or other rigid material inside the body.",
+    "solucion": "skeleton"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Based on or characterized by the methods and principles of science.",
+    "solucion": "scientific"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "A person who is travelling or visiting a place for pleasure.",
+    "solucion": "sightseer"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "The application of scientific knowledge for practical purposes.",
+    "solucion": "technology"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "The degree or intensity of heat present in a substance or object.",
+    "solucion": "temperature"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Long-established or inherited (Style/Process).",
+    "solucion": "traditional"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "An area of land under the jurisdiction of a ruler or state.",
+    "solucion": "territory"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "The sound that follows a flash of lightning.",
+    "solucion": "thunder"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Situated or occurring below the surface of the ground.",
+    "solucion": "underground"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "All existing matter and space considered as a whole.",
+    "solucion": "universe"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Not habitually or commonly occurring or done.",
+    "solucion": "unusual"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Requiring immediate action or attention.",
+    "solucion": "urgent"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "A person who uses or operates something.",
+    "solucion": "user"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Worth a great deal of money.",
+    "solucion": "valuable"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "The quality or state of being different or diverse.",
+    "solucion": "variety"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "An instance of vibrating.",
+    "solucion": "vibration"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "A person who freely offers to take part in an enterprise or undertake a task.",
+    "solucion": "volunteer"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "The amount of space that a substance or object occupies.",
+    "solucion": "volume"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "A cascade of water falling from a height.",
+    "solucion": "waterfall"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "A large building where raw materials or manufactured goods may be stored.",
+    "solucion": "warehouse"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "The state of the atmosphere at a place and time as regards heat, dryness, sunshine, wind, rain, etc.",
+    "solucion": "weather"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Ready, eager, or prepared to do something.",
+    "solucion": "willing"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "To move your hand to say hello or goodbye.",
+    "solucion": "wave"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Extremely beautiful and, typically, delicate (contiene X).",
+    "solucion": "exquisite"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "The state of being no longer in existence (contiene X).",
+    "solucion": "extinction"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "To make someone feel very happy and excited (contiene X).",
+    "solucion": "exhilarate"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "The quality of being outstanding or extremely good (contiene X).",
+    "solucion": "excellence"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "A feeling of excited happiness (contiene X).",
+    "solucion": "exultation"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Something that happens once a year (contiene Y).",
+    "solucion": "yearly"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "A place where kids can play outside (contiene Y).",
+    "solucion": "playground"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "The day before today (contiene Y).",
+    "solucion": "yesterday"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Someone who lives near you (contiene Y).",
+    "solucion": "neighbor"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "A story told to children (contiene Y).",
+    "solucion": "story"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "A person who is fanatically committed to a cause.",
+    "solucion": "zealot"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "An area or region with a particular characteristic.",
+    "solucion": "zone"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "To be very surprised or shocked (contiene Z).",
+    "solucion": "amaze"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "The act of frozen water falling (contiene Z). Buscamos: Blizzard.",
+    "solucion": "blizzard"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "A puzzle or difficult problem (contiene Z). Buscamos: Puzzling.",
+    "solucion": "puzzling"
+  }
 ]

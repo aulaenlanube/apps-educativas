@@ -1,0 +1,568 @@
+[
+    {
+        "id": "1",
+        "titulo": "El Proceso Tecnológico",
+        "texto": "La tecnología nace para resolver problemas y satisfacer necesidades mediante la creación de objetos o sistemas. Para ello, siempre se sigue un orden llamado PROCESO TECNOLÓGICO. Las fases principales son: 1) Análisis del problema. 2) Búsqueda de información y diseño de la solución (dibujos). 3) Planificación de tareas y materiales. 4) Construcción en el taller. 5) Evaluación (ver si funciona). No se trata de construir a lo loco; una buena planificación ahorra tiempo, dinero y materiales, asegurando que el resultado final sea útil y seguro.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el objetivo principal de la tecnología?",
+                "opciones": [
+                    "Hacer dibujos bonitos",
+                    "Resolver problemas y satisfacer necesidades",
+                    "Solo ganar dinero",
+                    "Usar ordenadores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la primera fase del proceso tecnológico?",
+                "opciones": [
+                    "Construcción",
+                    "Búsqueda de información",
+                    "Análisis del problema",
+                    "Evaluación"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Para qué sirve el diseño y dibujo de la solución?",
+                "opciones": [
+                    "Para perder el tiempo",
+                    "Para visualizar la idea antes de construirla",
+                    "Para que el profesor nos ponga nota",
+                    "Para decorar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre en la fase de evaluación?",
+                "opciones": [
+                    "Se compra el material",
+                    "Se comprueba si el objeto funciona y resuelve el problema",
+                    "Se rompe el objeto",
+                    "Se empieza de nuevo sin mirar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es importante la planificación?",
+                "opciones": [
+                    "Porque es obligatorio",
+                    "Porque ahorra tiempo, dinero y materiales",
+                    "Para que el taller esté limpio",
+                    "No es importante"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Materiales: La Madera",
+        "texto": "La madera es una materia prima de origen vegetal con propiedades excelentes para la construcción. Es un material aislante (térmica y eléctricamente), biodegradable y fácil de trabajar. Se clasifica en maderas blandas (proceden de coníferas como el pino, crecen rápido) y maderas duras (proceden de árboles de hoja caduca como el roble, crecen lento y son más resistentes). En el taller usamos derivados como el contrachapado (láminas finas pegadas) o el aglomerado (virutas prensadas), que son más baratos y permiten fabricar paneles muy grandes.",
+        "preguntas": [
+            {
+                "pregunta": "¿De dónde procede la madera?",
+                "opciones": [
+                    "De las piedras",
+                    "De los vegetales (árboles)",
+                    "De los animales",
+                    "Del petróleo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La madera es un buen aislante de:",
+                "opciones": [
+                    "Agua",
+                    "Calor y electricidad",
+                    "Sonido solamente",
+                    "Luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué caracteriza a las maderas duras?",
+                "opciones": [
+                    "Crecen muy rápido",
+                    "Son más resistentes y suelen ser de hoja caduca",
+                    "Son blancas siempre",
+                    "Son fáciles de romper con la mano"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el contrachapado?",
+                "opciones": [
+                    "Madera natural de roble",
+                    "Láminas finas pegadas entre sí",
+                    "Polvo de madera",
+                    "Metal que parece madera"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un ejemplo de madera blanda es el:",
+                "opciones": [
+                    "Ébano",
+                    "Roble",
+                    "Pino",
+                    "Encina"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Metales: Propiedades y Usos",
+        "texto": "Los metales se extraen de los minerales de las rocas. Sus propiedades más comunes son la CONDUCTIVIDAD (pasan muy bien el calor y la electricidad), la MALEABILIDAD (se pueden hacer láminas, como el papel de aluminio) y la DUCTILIDAD (se pueden hacer hilos, como el cobre de los cables). Los dividimos en FERROSOS (contienen hierro, como el acero) y NO FERROSOS (como el cobre, aluminio o estaño). Los metales ferrosos son magnéticos y pueden oxidarse fácilmente con la humedad si no se protegen.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa que un metal sea dúctil?",
+                "opciones": [
+                    "Que se rompe fácil",
+                    "Que se pueden fabricar hilos finos con él",
+                    "Que brilla mucho",
+                    "Que flota en el agua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el componente principal de los metales ferrosos?",
+                "opciones": [
+                    "Cobre",
+                    "Hierro",
+                    "Aluminio",
+                    "Oro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué los cables eléctricos son de metal (cobre)?",
+                "opciones": [
+                    "Porque es barato",
+                    "Por su alta conductividad eléctrica",
+                    "Porque son bonitos",
+                    "Para que pesen más"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué grupo pertenece el aluminio?",
+                "opciones": [
+                    "Metal ferroso",
+                    "Metal no ferroso",
+                    "Plástico",
+                    "Madera artificial"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué propiedad permite hacer láminas metálicas?",
+                "opciones": [
+                    "Ductilidad",
+                    "Maleabilidad",
+                    "Dureza",
+                    "Magnetismo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Dibujo Técnico: Boceto y Croquis",
+        "texto": "Para comunicar nuestras ideas tecnológicas usamos el dibujo. El BOCETO es el primer dibujo, hecho a mano alzada, rápido y sin muchos detalles, para captar la idea general. El CROQUIS también es a mano alzada pero es más técnico: incluye medidas (cotas), detalles de las piezas y proporciones correctas. Finalmente, usamos el dibujo delineado con regla y compás para los planos definitivos. Saber dibujar un buen croquis es esencial para que otra persona pueda entender perfectamente cómo es un objeto y pueda construirlo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un boceto?",
+                "opciones": [
+                    "Un dibujo perfecto con regla",
+                    "Un dibujo rápido a mano alzada para la primera idea",
+                    "Un dibujo con ordenador",
+                    "Un tipo de pintura al óleo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué se diferencia el croquis del boceto?",
+                "opciones": [
+                    "El croquis es con regla",
+                    "El croquis incluye medidas y es más preciso",
+                    "No se diferencian",
+                    "El boceto es más grande"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llaman las medidas en un dibujo técnico?",
+                "opciones": [
+                    "Reglas",
+                    "Líneas",
+                    "Cotas",
+                    "Centímetros"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Para qué sirve el dibujo delineado?",
+                "opciones": [
+                    "Para la primera idea",
+                    "Para los planos definitivos con instrumentos",
+                    "Solo para decorar",
+                    "Para borrar errores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es necesario el dibujo en tecnología?",
+                "opciones": [
+                    "No",
+                    "Sí, para comunicar ideas y fabricar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Estructuras: Resistencia y Estabilidad",
+        "texto": "Una estructura es un conjunto de elementos unidos que soportan pesos y fuerzas sin romperse ni deformarse demasiado. Sus funciones son soportar pesos, dar forma y proteger. Los elementos principales son las VIGAS (horizontales), los PILARES (verticales) y los TIRANTES (cables). Para que una estructura sea estable (que no vuelque) debe tener una base ancha o el peso muy bajo. Para que sea resistente (que no se rompa) usamos formas geométricas, siendo el TRIÁNGULO la forma más rígida y usada en construcción (puentes, grúas).",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la función principal de una estructura?",
+                "opciones": [
+                    "Dar color",
+                    "Soportar pesos y fuerzas sin romperse",
+                    "Gastar material",
+                    "Hacer ruidos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llaman los elementos verticales de una estructura?",
+                "opciones": [
+                    "Vigas",
+                    "Pilares o columnas",
+                    "Tirantes",
+                    "Cimientos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la forma geométrica más rígida que no se deforma?",
+                "opciones": [
+                    "Cuadrado",
+                    "Círculo",
+                    "Triángulo",
+                    "Pentágono"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué ayuda a que una estructura no vuelque (estabilidad)?",
+                "opciones": [
+                    "Que sea muy alta",
+                    "Una base ancha o el centro de gravedad bajo",
+                    "Pintarla de rojo",
+                    "Que sea ligera"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué son los tirantes?",
+                "opciones": [
+                    "Vigas gordas",
+                    "Cables que ayudan a soportar esfuerzos de tracción",
+                    "Piedras grandes",
+                    "Ventanas"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Máquinas y Mecanismos simples",
+        "texto": "Los mecanismos son elementos que transmiten y transforman movimientos y fuerzas. Las máquinas simples por excelencia son la palanca y la polea. La PALANCA permite mover grandes pesos con poco esfuerzo (punto de apoyo, fuerza y resistencia). Las POLEAS sirven para elevar pesos cómodamente. También existen mecanismos de transmisión de movimiento entre ejes, como los ENGRANAJES (ruedas dentadas) o las POLEAS CON CORREA (como el motor de un coche). Estos sistemas permiten aumentar o disminuir la velocidad de giro.",
+        "preguntas": [
+            {
+                "pregunta": "¿Para qué sirve un mecanismo?",
+                "opciones": [
+                    "Para decorar",
+                    "Para transmitir o transformar movimientos y fuerzas",
+                    "Para calentar comida",
+                    "Para iluminar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tres elementos intervienen en una palanca?",
+                "opciones": [
+                    "Calor, frío y agua",
+                    "Apoyo, fuerza y resistencia",
+                    "Luz, cable y motor",
+                    "Tornillo, tuerca y clavo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un engranaje?",
+                "opciones": [
+                    "Una cuerda",
+                    "Una rueda dentada que encaja con otra",
+                    "Un tipo de pegamento",
+                    "Una palanca larga"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve una polea?",
+                "opciones": [
+                    "Para frenar",
+                    "Para elevar pesos más cómodamente",
+                    "Para cortar madera",
+                    "Para iluminar el taller"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un sistema de engranajes puede servir para:",
+                "opciones": [
+                    "Hacer ruido",
+                    "Cambiar la velocidad de giro",
+                    "Limpiar metales",
+                    "Pintar rápido"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Circuitos Eléctricos Básicos",
+        "texto": "La electricidad es el movimiento de electrones por un conductor. Un circuito necesita cuatro elementos: 1) GENERADOR (pila o batería) que da la energía. 2) CONDUCTOR (cables de cobre). 3) RECEPTOR (bombilla, motor, timbre) que transforma la electricidad en luz, giro o sonido. 4) ELEMENTOS DE CONTROL (interruptor, pulsador) que abren o cierran el paso. Si el circuito está abierto (interruptor apagado), la corriente no pasa y el receptor no funciona. Siempre debemos trabajar con seguridad y no usar pilas gastadas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué elemento proporciona la energía en un circuito?",
+                "opciones": [
+                    "Cables",
+                    "Generador (pila/batería)",
+                    "Interruptor",
+                    "Bombilla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De qué material suelen ser los cables conductores?",
+                "opciones": [
+                    "Plástico",
+                    "Madera",
+                    "Metal (normalmente cobre)",
+                    "Vidrio"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué ocurre si un interruptor está 'abierto'?",
+                "opciones": [
+                    "La luz se enciende",
+                    "La corriente no circula (circuito apagado)",
+                    "Hay un cortocircuito",
+                    "La pila se carga"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un ejemplo de receptor?",
+                "opciones": [
+                    "Una pila",
+                    "Un cable",
+                    "Una bombilla o motor",
+                    "Un interruptor"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué circula por el interior de los cables?",
+                "opciones": [
+                    "Agua",
+                    "Aire",
+                    "Electrones",
+                    "Luz pura"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Hardware y Software",
+        "texto": "Un ordenador es un sistema compuesto por dos partes inseparables. El HARDWARE es la parte física, lo que podemos tocar: teclado, ratón, monitor, CPU, memoria RAM, cables... El SOFTWARE son los programas y el sistema operativo (Windows, Linux, aplicaciones): son las instrucciones que dicen al hardware qué tiene que hacer. Sin software, el hardware es solo una caja vacía; y sin hardware, el software no tiene donde funcionar. La CPU (procesador) es el cerebro que realiza todos los cálculos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el Hardware?",
+                "opciones": [
+                    "Los programas",
+                    "La parte física (lo que se toca)",
+                    "Virus",
+                    "El nombre de internet"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué grupo pertenece Google Chrome o Windows?",
+                "opciones": [
+                    "Hardware",
+                    "Software",
+                    "Periféricos",
+                    "Cables"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el 'cerebro' del ordenador?",
+                "opciones": [
+                    "El ratón",
+                    "La CPU o procesador",
+                    "La pantalla",
+                    "La impresora"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se guardan los datos mientras el ordenador está trabajando rápido?",
+                "opciones": [
+                    "Memoria RAM",
+                    "Altavoces",
+                    "Teclado",
+                    "Caja"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Puede funcionar un ordenador sin Software?",
+                "opciones": [
+                    "Sí",
+                    "No, necesita instrucciones para funcionar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Seguridad en Internet",
+        "texto": "Internet es una red global llena de oportunidades, pero también de riesgos. Debemos proteger nuestro ordenador con un ANTIVIRUS y usar contraseñas seguras (mezclando letras, números y símbolos). Es vital no compartir información privada (dirección, teléfono, fotos íntimas) con desconocidos. También debemos sospechar de los correos que piden datos bancarios o regalan premios increíbles (Phishing). Navegar con seguridad implica usar el sentido común y pedir ayuda a un adulto si vemos algo extraño o amenazante.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué programa protege tu equipo de amenazas externas?",
+                "opciones": [
+                    "Calculadora",
+                    "Antivirus",
+                    "Editor de fotos",
+                    "Navegador"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo debe ser una contraseña segura?",
+                "opciones": [
+                    "1234",
+                    "Tu nombre",
+                    "Mezcla de letras, números y símbolos",
+                    "Solo vocales"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Debes compartir tu ubicación real en redes con extraños?",
+                "opciones": [
+                    "Sí, para hacer amigos",
+                    "No, nunca por seguridad",
+                    "Solo si es un juego",
+                    "Si te lo piden amablemente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué harías si recibes un mensaje amenazante?",
+                "opciones": [
+                    "Contestarle peor",
+                    "No decir nada",
+                    "Contárselo a un adulto de confianza",
+                    "Borrarlo y ya está"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué es el Phishing?",
+                "opciones": [
+                    "Un juego de peces",
+                    "Engaños para robar tus datos o dinero",
+                    "Un tipo de virus lento",
+                    "La velocidad de internet"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Herramientas de Taller y Seguridad",
+        "texto": "En el taller de tecnología usamos herramientas que pueden ser peligrosas si no se usan bien. Siempre hay que seguir las normas: 1) Usar gafas de protección si hay virutas. 2) No correr ni jugar. 3) Mantener la mesa limpia y recogida. Algunas herramientas comunes son el SARGENTO (para sujetar piezas), la SIERRA DE MARQUETERÍA (para cortar madera fina) o el MARTILLO. Recuerda: la herramienta más importante es tu propia seguridad y la de tus compañeros. ¡Un buen tecnólogo es un tecnólogo responsable!",
+        "preguntas": [
+            {
+                "pregunta": "¿Para qué sirve el sargento en el taller?",
+                "opciones": [
+                    "Para mandar sobre los alumnos",
+                    "Para sujetar firmemente las piezas a la mesa",
+                    "Para medir distancias",
+                    "Para golpear clavos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debemos llevar si vamos a cortar o lijar materiales?",
+                "opciones": [
+                    "Auriculares",
+                    "Gafas de protección",
+                    "Un reloj",
+                    "Mochila"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es fundamental mantener limpio en el taller?",
+                "opciones": [
+                    "Solo la cara",
+                    "El suelo y la mesa de trabajo",
+                    "Los pinceles viejos",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la norma de conducta número uno?",
+                "opciones": [
+                    "Gritar",
+                    "Correr",
+                    "Respetar las normas de seguridad y no jugar",
+                    "Acabar el primero"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué herramienta usamos para cortar maderas finas?",
+                "opciones": [
+                    "Martillo",
+                    "Sierra de marquetería",
+                    "Alicates",
+                    "Destornillador"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

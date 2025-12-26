@@ -1,17 +1,122 @@
 {
   "partes_celula": [
-    "núcleo", "citoplasma", "membrana", "mitocondria", "vacuola", "cloroplasto", "ribosoma", "lisosoma", "pared celular", "centriolo"
+    "núcleo",
+    "citoplasma",
+    "membrana",
+    "mitocondria",
+    "vacuola",
+    "cloroplasto",
+    "ribosoma",
+    "lisosoma",
+    "pared celular",
+    "centriolo"
   ],
   "invertebrados": [
-    "esponja", "medusa", "lombriz", "caracol", "pulpo", "araña", "cangrejo", "mariposa", "estrella de mar", "erizo"
+    "esponja",
+    "medusa",
+    "lombriz",
+    "caracol",
+    "pulpo",
+    "araña",
+    "cangrejo",
+    "mariposa",
+    "estrella de mar",
+    "erizo"
   ],
   "vertebrados": [
-    "tiburón", "rana", "salamandra", "cocodrilo", "águila", "pingüino", "lobo", "murciélago", "atún", "lagarto"
+    "tiburón",
+    "rana",
+    "salamandra",
+    "cocodrilo",
+    "águila",
+    "pingüino",
+    "lobo",
+    "murciélago",
+    "atún",
+    "lagarto"
   ],
   "capas_atmosfera": [
-    "troposfera", "estratosfera", "mesosfera", "termosfera", "exosfera", "ozonosfera", "ionosfera", "homosfera", "heterosfera", "magnetosfera"
+    "troposfera",
+    "estratosfera",
+    "mesosfera",
+    "termosfera",
+    "exosfera",
+    "ozonosfera",
+    "ionosfera",
+    "homosfera",
+    "heterosfera",
+    "magnetosfera"
   ],
   "reino_plantas": [
-    "musgo", "helecho", "pino", "ciprés", "rosal", "encina", "tulipán", "girasol", "trigo", "almendro"
+    "musgo",
+    "helecho",
+    "pino",
+    "ciprés",
+    "rosal",
+    "encina",
+    "tulipán",
+    "girasol",
+    "trigo",
+    "almendro"
+  ],
+  "reinos_seres_vivos": [
+    "animal",
+    "vegetal",
+    "hongos",
+    "moneras",
+    "protoctistas",
+    "bacteria",
+    "alga",
+    "protozoo",
+    "levadura",
+    "seta"
+  ],
+  "geosfera": [
+    "corteza",
+    "manto",
+    "núcleo",
+    "roca",
+    "mineral",
+    "volcán",
+    "terremoto",
+    "magma",
+    "falla",
+    "sedimento"
+  ],
+  "hidrosfera": [
+    "océano",
+    "mar",
+    "río",
+    "lago",
+    "nube",
+    "lluvia",
+    "nieve",
+    "hielo",
+    "evaporación",
+    "condensación"
+  ],
+  "biosfera_ecosistemas": [
+    "biotopo",
+    "biocenosis",
+    "población",
+    "comunidad",
+    "hábitat",
+    "productor",
+    "consumidor",
+    "descomponedor",
+    "especie",
+    "biodiversidad"
+  ],
+  "sistema_solar": [
+    "mercurio",
+    "venus",
+    "tierra",
+    "marte",
+    "júpiter",
+    "saturno",
+    "urano",
+    "neptuno",
+    "plutón",
+    "sol"
   ]
 }

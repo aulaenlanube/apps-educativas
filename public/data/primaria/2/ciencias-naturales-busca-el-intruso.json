@@ -7,15 +7,28 @@
       "🦁",
       "🐯",
       "🐻",
-      "🐵"
+      "🐵",
+      "🐘",
+      "🦓",
+      "🦒",
+      "🦓",
+      "🐺",
+      "🐮",
+      "🐷",
+      "🐨",
+      "🐼"
     ],
     "intrusos": [
       "🦅",
       "🦜",
       "🐊",
-      "🐍",
+      "蛇",
       "🐸",
-      "🐟"
+      "🐟",
+      "🐢",
+      "🐧",
+      "🦐",
+      "🐙"
     ]
   },
   {
@@ -26,14 +39,24 @@
       "🐞",
       "🦋",
       "🦗",
-      "🦟"
+      "🦟",
+      "🐛",
+      "🪰",
+      "🪲",
+      "🪳",
+      "🪻"
     ],
     "intrusos": [
       "🐶",
       "🐱",
       "🐦",
       "🐢",
-      "🦈"
+      "🦈",
+      "🕷️",
+      "🦂",
+      "🦞",
+      "🦀",
+      "🐡"
     ]
   },
   {
@@ -44,14 +67,24 @@
       "🌷",
       "🌲",
       "🌱",
-      "🍂"
+      "🍂",
+      "🌵",
+      "🎋",
+      "🍃",
+      "🪵",
+      "🍄"
     ],
     "intrusos": [
       "🐶",
       "🐱",
       "🚗",
       "📱",
-      "🧱"
+      "🧱",
+      "👗",
+      "👟",
+      "🍔",
+      "⚽",
+      "🧸"
     ]
   },
   {
@@ -62,14 +95,23 @@
       "🌧️",
       "❄️",
       "⛈️",
-      "🌈"
+      "🌈",
+      "🌪️",
+      "🌫️",
+      "🌬️",
+      "🌡️"
     ],
     "intrusos": [
       "🏠",
       "🚗",
       "🐶",
       "📚",
-      "✏️"
+      "✏️",
+      "🍔",
+      "🛋️",
+      "🛁",
+      "🧸",
+      "🚲"
     ]
   },
   {
@@ -86,7 +128,12 @@
       "Sueño",
       "Miedo",
       "Alegría",
-      "Sed"
+      "Sed",
+      "Cansancio",
+      "Dolor",
+      "Pena",
+      "Sorpresa",
+      "Prisa"
     ]
   },
   {
@@ -97,14 +144,25 @@
       "Piernas",
       "Manos",
       "Pies",
-      "Tronco"
+      "Tronco",
+      "Cuello",
+      "Codos",
+      "Rodillas",
+      "Hombros",
+      "Espalda",
+      "Barriga"
     ],
     "intrusos": [
       "Camisa",
       "Pantalón",
       "Zapato",
       "Gorro",
-      "Reloj"
+      "Reloj",
+      "Gafas",
+      "Mochila",
+      "Libro",
+      "Silla",
+      "Bicicleta"
     ]
   },
   {
@@ -115,14 +173,27 @@
       "Árbol",
       "Flor",
       "Niño",
-      "Pájaro"
+      "Pájaro",
+      "Conejo",
+      "Planta",
+      "Hormiga",
+      "Pez",
+      "Bebé",
+      "Musgo",
+      "Bacterias"
     ],
     "intrusos": [
       "Piedra",
       "Agua",
       "Mesa",
       "Coche",
-      "Juguete"
+      "Juguete",
+      "Arena",
+      "Nube",
+      "Aire",
+      "Fuego",
+      "Libro",
+      "Lápiz"
     ]
   },
   {
@@ -138,7 +209,12 @@
       "Enero",
       "Mañana",
       "Tarde",
-      "Noche"
+      "Noche",
+      "Mes",
+      "Año",
+      "Semana",
+      "Ayer",
+      "Hoy"
     ]
   },
   {
@@ -148,14 +224,24 @@
       "Pescado",
       "Huevos",
       "Leche",
-      "Queso"
+      "Queso",
+      "Mantequilla",
+      "Yogur",
+      "Jamón",
+      "Pollo",
+      "Miel"
     ],
     "intrusos": [
       "Manzana",
       "Lechuga",
       "Pan",
       "Arroz",
-      "Tomate"
+      "Tomate",
+      "Patata",
+      "Aceite",
+      "Pasta",
+      "Garbanzos",
+      "Plátano"
     ]
   }
 ]

@@ -1,0 +1,568 @@
+[
+    {
+        "id": "1",
+        "titulo": "Entrenamiento de la Resistencia",
+        "texto": "En 3º de ESO profundizamos en cómo mejorar nuestra resistencia de forma científica. Distinguimos entre RESISTENCIA AERÓBICA (intensidad baja/media, larga duración, el cuerpo usa oxígeno) y RESISTENCIA ANAERÓBICA (intensidad muy alta, corta duración, el cuerpo no tiene suficiente oxígeno). Para mejorar, usamos métodos como la CARRERA CONTINUA (sin parar) o el ENTRENAMIENTO POR INTERVALOS (series con descansos). Mejorar la resistencia fortalece el corazón y reduce la fatiga en nuestro día a día.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué tipo de resistencia usa oxígeno para producir energía?",
+                "opciones": [
+                    "Anaeróbica",
+                    "Aeróbica",
+                    "Eléctrica",
+                    "Ninguna"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la característica de la resistencia anaeróbica?",
+                "opciones": [
+                    "Es muy lenta",
+                    "Intensidad muy alta y corta duración",
+                    "Se hace durmiendo",
+                    "Dura muchas horas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la carrera continua?",
+                "opciones": [
+                    "Correr y parar mucho",
+                    "Correr sin interrupciones a ritmo constante",
+                    "Hacer pesas",
+                    "Caminar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el entrenamiento con descansos entre series?",
+                "opciones": [
+                    "Carrera loca",
+                    "Entrenamiento por intervalos (Fartlek)",
+                    "Siesta",
+                    "Fuerza máxima"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué órgano se fortalece principalmente con la resistencia?",
+                "opciones": [
+                    "Los pulmones solamente",
+                    "El corazón",
+                    "El estómago",
+                    "El pelo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Nutrición y Deporte: El combustible",
+        "texto": "Nuestra dieta influye directamente en nuestro rendimiento físico. Los HIDRATOS DE CARBONO (pasta, arroz, fruta) son el combustible principal para el músculo. Las PROTEÍNAS (carne, pescado, legumbres) sirven para reparar y construir los tejidos musculares. Las GRASAS son reservas de energía a largo plazo. Es vital estar bien hidratados (beber agua antes, durante y después del ejercicio) y evitar el consumo excesivo de azúcares refinados, que dan energía rápida pero provocan fatiga al poco tiempo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el 'combustible' principal para los músculos?",
+                "opciones": [
+                    "Proteínas",
+                    "Hidratos de carbono",
+                    "Grasas",
+                    "Vitaminas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven las proteínas?",
+                "opciones": [
+                    "Para dar energía rápida",
+                    "Para reparar y construir tejidos musculares",
+                    "Para nada",
+                    "Para dormir mejor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un alimento rico en hidratos de carbono:",
+                "opciones": [
+                    "Lechuga",
+                    "Arroz o pasta",
+                    "Aceite",
+                    "Agua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo debemos beber agua si hacemos deporte?",
+                "opciones": [
+                    "Solo después",
+                    "Solo antes",
+                    "Antes, durante y después",
+                    "Cuando lleguemos a casa"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué efecto tienen los azúcares procesados?",
+                "opciones": [
+                    "Energía infinita",
+                    "Energía efímera seguida de fatiga rápida",
+                    "Hacen que corras más",
+                    "Son muy sanos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Baloncesto: Táctica de Ataque y Defensa",
+        "texto": "En 3º de ESO avanzamos en los sistemas de juego del baloncesto. En DEFENSA, podemos usar la defensa individual (cada uno con su par) o la DEFENSA EN ZONA (cada uno defiende un área del campo). En ATAQUE, es vital el uso de BLOQUEOS (interponerse en el camino del defensa) y el movimiento sin balón. También practicamos el 'contraataque' rápido tras recuperar el balón. La comunicación constante entre los compañeros es la clave para ganar a equipos que individualmente puedan ser mejores.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es una defensa en zona?",
+                "opciones": [
+                    "Perseguir a un jugador por todo el campo",
+                    "Cada jugador defiende un espacio concreto del área",
+                    "Estar sentados",
+                    "No defender"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve un bloqueo en ataque?",
+                "opciones": [
+                    "Para empujar al árbitro",
+                    "Para obstaculizar legalmente al defensa y liberar a un compañero",
+                    "Para insultar",
+                    "Para perder el balón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un contraataque?",
+                "opciones": [
+                    "Un defensa pegando a un atacante",
+                    "Un ataque muy rápido tras recuperar el balón",
+                    "Lanzar desde tu canasta",
+                    "Esperar al rival"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Es vital moverse...",
+                "opciones": [
+                    "Solo con el balón",
+                    "Sin balón para crear espacios",
+                    "Solo andando",
+                    "Hacia atrás"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué factor psicológico es clave en baloncesto?",
+                "opciones": [
+                    "Ser el más egoísta",
+                    "La comunicación y el trabajo en equipo",
+                    "Gritar al rival",
+                    "La suerte"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La Frecuencia Cardíaca de Entrenamiento",
+        "texto": "Para que el ejercicio sea efectivo, debemos trabajar en una 'zona de entrenamiento' segura y eficaz. Normalmente se sitúa entre el 60% y el 85% de nuestra frecuencia cardíaca máxima (FCM). Trabajar por debajo del 60% apenas mejora la condición física (es más bien un paseo). Trabajar por encima del 90% es muy intenso y solo debe hacerse de forma muy breve. Conociendo tu frecuencia cardíaca, puedes saber si estás entrenando tu salud cardiovascular o simplemente perdiendo el tiempo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el rango ideal para una zona de entrenamiento saludable?",
+                "opciones": [
+                    "10-20%",
+                    "60-85% de la FCM",
+                    "100%",
+                    "95-100%"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si entrenas por debajo del 60%?",
+                "opciones": [
+                    "Te lesionas",
+                    "Apenas hay mejora en la condición física",
+                    "Es peligroso",
+                    "Te cansas mucho"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es recomendable entrenar mucho tiempo al 95%?",
+                "opciones": [
+                    "Sí, es lo mejor",
+                    "No, es demasiado intenso y solo para momentos puntuales",
+                    "Solo si eres joven",
+                    "Sí, para quemar grasa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué nos permite saber el control de las pulsaciones?",
+                "opciones": [
+                    "Si estamos rojos",
+                    "La intensidad real del ejercicio",
+                    "Si vamos a ganar",
+                    "La hora"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La FCM se calcula aproximadamente como:",
+                "opciones": [
+                    "220 - edad",
+                    "Edad + 100",
+                    "Peso x 2",
+                    "No se puede calcular"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Bádminton: Un deporte de rapidez",
+        "texto": "El bádminton es el deporte de raqueta más rápido del mundo (el volante puede superar los 300 km/h). No se usa una pelota, sino un VOLANTE (o pluma). Es un juego de mucha agilidad y reflejos. El objetivo es que el volante toque el suelo del campo contrario. Un error común es usar mucha fuerza de brazo; en realidad, el secreto está en el golpe de MUÑECA. Se puede jugar individual o dobles. Es un deporte olímpico que requiere gran resistencia aeróbica debido a la intensidad de los puntos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llama el 'proyectil' que se golpea en bádminton?",
+                "opciones": [
+                    "Bola",
+                    "Volante (o pluma)",
+                    "Flecha",
+                    "Disco"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué parte del cuerpo es clave para el golpeo técnico?",
+                "opciones": [
+                    "El hombro",
+                    "La muñeca",
+                    "La rodilla",
+                    "La cabeza"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué velocidad puede llegar a ir el volante?",
+                "opciones": [
+                    "50 km/h",
+                    "Más de 300 km/h",
+                    "1.000 km/h",
+                    "10 km/h"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Se puede jugar en parejas?",
+                "opciones": [
+                    "No, solo individual",
+                    "Sí, se llama dobles",
+                    "Solo si son 4 contra 4",
+                    "Solo en fiestas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué capacidad física exige mucho este deporte?",
+                "opciones": [
+                    "Solo fuerza",
+                    "Agilidad, reflejos y resistencia",
+                    "Ninguna",
+                    "Flexibilidad extrema solamente"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Acondicionamiento Físico: El Circuit Training",
+        "texto": "El 'Circuit Training' o entrenamiento en circuito consiste en realizar una serie de ejercicios (estaciones) de forma consecutiva con descansos muy breves. En cada estación trabajamos un grupo muscular diferente (piernas, brazos, abdominales...). Esto nos permite trabajar la fuerza y la resistencia al mismo tiempo de forma muy eficiente en poco tiempo. Es un método muy divertido y dinámico que se adapta perfectamente al nivel de cada persona, permitiendo una progresión constante.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué consiste el entrenamiento en circuito?",
+                "opciones": [
+                    "En correr en círculos",
+                    "En realizar diferentes estaciones de ejercicios consecutivas",
+                    "En hacer un solo ejercicio mil veces",
+                    "En mirar cómo otros entrenan"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo son los descansos entre estaciones?",
+                "opciones": [
+                    "Muy largos",
+                    "Muy breves o nulos",
+                    "No hay ejercicios",
+                    "De 10 minutos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué se trabaja en un circuito bien diseñado?",
+                "opciones": [
+                    "Solo el bíceps",
+                    "Diferentes grupos musculares de forma equilibrada",
+                    "Solo la mente",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ventaja tiene este método?",
+                "opciones": [
+                    "Es aburrido",
+                    "Eficiente, divertido y se adapta a cada nivel",
+                    "Es muy caro",
+                    "No cansa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Al pasar de una estación a otra sin descanso, trabajas la resistencia:",
+                "opciones": [
+                    "Solo de piernas",
+                    "Cardiovascular",
+                    "De las manos",
+                    "Ninguna"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Primeros Auxilios: El protocolo PAS",
+        "texto": "En educación física es vital saber actuar ante un accidente. Usamos el protocolo PAS: PROTEGER (asegurar el lugar para que no haya más accidentes), AVISAR (llamar al 112) y SOCORRER (ayudar al herido con lo que sepamos). Si alguien sospechas que tiene una lesión de espalda o cuello, NUNCA debes moverlo. Si es una herida leve, limpiar con agua y jabón. Mantener la calma es lo más importante para poder ayudar de forma efectiva mientras llegan los profesionales sanitarios.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significan las siglas del protocolo PAS?",
+                "opciones": [
+                    "Pasar, Ayudar, Salir",
+                    "Proteger, Avisar, Socorrer",
+                    "Parar, Andar, Saltar",
+                    "Pedir, Ayudar, Sanar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué número de emergencias se debe llamar en España?",
+                "opciones": [
+                    "911",
+                    "112",
+                    "091",
+                    "100"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debes hacer si sospechas de una lesión de cuello?",
+                "opciones": [
+                    "Sentarlo rápidamente",
+                    "No moverlo bajo ningún concepto",
+                    "Darle agua",
+                    "Llevarlo en brazos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la primera acción del PAS?",
+                "opciones": [
+                    "Socorrer rápido",
+                    "Proteger el lugar del accidente",
+                    "Llamar por teléfono",
+                    "Gritar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Ante una herida leve, el primer paso es:",
+                "opciones": [
+                    "Poner una venda sucia",
+                    "Limpiar con agua y jabón",
+                    "No hacer nada",
+                    "Echar alcohol directamente"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Higiene y Salud Corporal: La Postura",
+        "texto": "Pasamos muchas horas sentados estudiando o mirando el móvil. Esto afecta a nuestra salud postural. La 'cifosis' (chepa) o la 'escoliosis' (desviación lateral) son comunes en adolescentes. Para evitarlas, debemos fortalecer la musculatura de la espalda y el abdomen (el 'Core') y cuidar cómo nos sentamos: espalda recta, pies apoyados en el suelo y pantalla a la altura de los ojos. Un cuerpo equilibrado y fuerte es la mejor prevención contra los dolores de espalda crónicos en el futuro.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la escoliosis?",
+                "opciones": [
+                    "Una enfermedad del pie",
+                    "Una desviación lateral de la columna",
+                    "Un tipo de músculo",
+                    "Dolor de cabeza"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué zona muscular ayuda a mantener una buena postura?",
+                "opciones": [
+                    "Los dedos",
+                    "El Core (abdominales y espalda)",
+                    "Solo los gemelos",
+                    "Las orejas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo debemos tener la pantalla si usamos el ordenador?",
+                "opciones": [
+                    "En el suelo",
+                    "A la altura de los ojos",
+                    "Muy arriba",
+                    "Tapada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde deben estar los pies al estar sentados?",
+                "opciones": [
+                    "Colgando",
+                    "Apoyados en el suelo",
+                    "Encima de la silla",
+                    "Cruzados"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué tenemos más problemas de postura hoy?",
+                "opciones": [
+                    "Por correr mucho",
+                    "Por el uso excesivo de móviles y estar muchas horas sentados",
+                    "Por la comida",
+                    "Por el frío"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Expresión Corporal: La Danza y el Ritmo",
+        "texto": "La educación física también es expresión y arte. La expresión corporal utiliza el cuerpo como instrumento para comunicar sentimientos o ideas. El ritmo es el elemento que organiza el movimiento en el tiempo. Practicar danzas del mundo o crear nuestras propias coreografías mejora nuestra coordinación, nuestra memoria motriz y nos ayuda a perder la vergüenza. El movimiento expresivo es fundamental para conocernos mejor a nosotros mismos y para aprender a trabajar creativamente con los demás.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el instrumento de la expresión corporal?",
+                "opciones": [
+                    "Un tambor",
+                    "El propio cuerpo",
+                    "Un pincel",
+                    "La voz solamente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué elemento organiza el movimiento en el tiempo?",
+                "opciones": [
+                    "El espacio",
+                    "El ritmo",
+                    "El volumen",
+                    "La ropa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué mejora practicar coreografías?",
+                "opciones": [
+                    "La fuerza de dedos",
+                    "La coordinación y memoria motriz",
+                    "Solo el oído",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un beneficio psicológico mencionado:",
+                "opciones": [
+                    "Sentirse superior",
+                    "Perder la vergüenza y conocerse mejor",
+                    "Estar enfadado",
+                    "Ser famoso"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es el movimiento expresivo una forma de arte?",
+                "opciones": [
+                    "Sí",
+                    "No, es solo gimnasia"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Sustancias que dañan el rendimiento",
+        "texto": "El consumo de drogas, sean legales (alcohol, tabaco, vapers) o ilegales, destruye por completo el rendimiento de un deportista. El alcohol deshidrata el cuerpo y ralentiza los reflejos. El tabaco y los vapers dañan los pulmones, impidiendo que llegue oxígeno a los músculos. Además, estas sustancias crean ADICCIÓN, lo que significa que dejas de tener el control sobre tu propio cuerpo. Mantenerte sano y alejado de estas sustancias es la única forma de alcanzar tu máximo potencial físico y mental.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo afecta el alcohol al deporte?",
+                "opciones": [
+                    "Te hace más rápido",
+                    "Deshidrata y ralentiza los reflejos",
+                    "Da fuerza",
+                    "No afecta"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué daño hacen los vapers y el tabaco?",
+                "opciones": [
+                    "Dañan los pulmones e impiden la oxigenación",
+                    "Ayudan a respirar",
+                    "No hacen nada",
+                    "Solo huelen mal"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué significa que una sustancia crea adicción?",
+                "opciones": [
+                    "Que es muy cara",
+                    "Que pierdes el control sobre tu cuerpo y voluntad",
+                    "Que es muy rica",
+                    "Que te cansa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Se puede ser un deportista de élite consumiendo estas sustancias?",
+                "opciones": [
+                    "Sí",
+                    "No, destruyen el rendimiento"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la conclusión del texto?",
+                "opciones": [
+                    "Probar de todo",
+                    "Mantenerse sano y libre de sustancias",
+                    "Fumar solo un poco",
+                    "Beber solo en fiestas"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

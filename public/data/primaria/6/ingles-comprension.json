@@ -1,321 +1,563 @@
 [
   {
     "id": "1",
-    "titulo": "My dog Max",
-    "texto": "My name is Tom. I have a dog. His name is Max. Max is brown and big. He likes to run in the park. He plays with a red ball.",
+    "titulo": "Save Our Planet",
+    "texto": "Global warming is a serious problem for our planet. Humans produce too much waste and use too many resources. To help the environment, we should follow the 'Three Rs': Reduce, Reuse, and Recycle. For example, we can reduce plastic use by bringing our own bags to the supermarket. We can reuse glass jars for storage. Recycling paper and cans helps save energy and trees. If we all work together, we can protect our ecosystems and ensure a better future for everyone.",
     "preguntas": [
       {
-        "pregunta": "Is Max a cat?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What is the main problem mentioned in the text?",
+        "opciones": [
+          "Bad food",
+          "Global warming",
+          "Too many animals",
+          "Space travel"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is Max big?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What colour is Max?",
-        "opciones": ["Red", "Blue", "Brown", "Green"],
+        "pregunta": "What do the 'Three Rs' stand for?",
+        "opciones": [
+          "Read, Run, Rest",
+          "Repair, Rent, Return",
+          "Reduce, Reuse, Recycle",
+          "Respect, Relax, Repeat"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "What is the boy's name?",
-        "opciones": ["Sam", "Tom", "Ben", "Dan"],
+        "pregunta": "How can we reduce plastic use according to the text?",
+        "opciones": [
+          "By buying more toys",
+          "By bringing our own bags to the supermarket",
+          "By drinking more water",
+          "By using glass jars"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "What does Max play with?",
-        "opciones": ["A red ball", "A blue car", "A yellow duck", "A green book"],
+        "pregunta": "Why is recycling paper important?",
+        "opciones": [
+          "It helps save energy and trees",
+          "It makes people happy",
+          "It is very cheap",
+          "It produces more waste"
+        ],
         "correcta": 0
+      },
+      {
+        "pregunta": "Who is responsible for protecting the environment?",
+        "opciones": [
+          "Only scientists",
+          "Only teachers",
+          "Everyone",
+          "Nobody"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Three Apples",
-    "texto": "Sarah likes fruit. She has three red apples on the table. She eats one apple. Now she has two apples. They are sweet and yummy.",
+    "titulo": "A Trip to London",
+    "texto": "Last summer, Sarah and her family travelled to London. They stayed in a small hotel near the city centre. On the first day, they visited the British Museum and saw many ancient treasures. Then, they walked to Big Ben and took beautiful photos. Sarah’s favourite part was the London Eye, a giant Ferris wheel next to the River Thames. The view of the city from the top was incredible! They also tried traditional fish and chips for lunch. It was an unforgettable experience.",
     "preguntas": [
       {
-        "pregunta": "Does Sarah like fruit?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Are the apples blue?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "When did Sarah travel to London?",
+        "opciones": [
+          "Last winter",
+          "Last summer",
+          "Yesterday",
+          "Two years ago"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "How many apples does she have at first?",
-        "opciones": ["One", "Two", "Three", "Four"],
+        "pregunta": "Where did the family stay?",
+        "opciones": [
+          "In a big house",
+          "At a friend's house",
+          "In a small hotel",
+          "In a caravan"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "What colour are the apples?",
-        "opciones": ["Blue", "Red", "Yellow", "Pink"],
-        "correcta": 1
+        "pregunta": "What was Sarah's favourite part of the trip?",
+        "opciones": [
+          "The museum",
+          "The hotel",
+          "The London Eye",
+          "Big Ben"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "How many apples does she eat?",
-        "opciones": ["One", "Two", "Three", "Five"],
-        "correcta": 0
+        "pregunta": "What traditional food did they try?",
+        "opciones": [
+          "Pizza",
+          "Pasta",
+          "Fish and chips",
+          "Hamburgers"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Which river flows through London?",
+        "opciones": [
+          "The Nile",
+          "The Seine",
+          "The Thames",
+          "The Ebro"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "My School Bag",
-    "texto": "This is my school bag. It is yellow and blue. I have a pencil and a book in my bag. The pencil is red. The book is green. I go to school in the morning.",
+    "titulo": "Living on Mars",
+    "texto": "Can humans live on Mars in the future? Some scientists believe that it might be possible one day. Mars is often called the 'Red Planet' because of its rusty soil. However, living there would be very difficult. There isn't enough oxygen to breathe, and the temperatures are extremely cold. Astronauts would need special domes and spacesuits to survive. Space agencies like NASA are already sending robots to explore the surface and look for water. Maybe your generation will be the first to travel there!",
     "preguntas": [
       {
-        "pregunta": "Is the bag pink?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What is the nickname for Mars?",
+        "opciones": [
+          "The Blue Planet",
+          "The Red Planet",
+          "The Cold Star",
+          "The Second Earth"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is the pencil red?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What colour is the book?",
-        "opciones": ["Red", "Blue", "Green", "Orange"],
+        "pregunta": "Why is living on Mars difficult?",
+        "opciones": [
+          "Too much rain",
+          "No shops",
+          "Not enough oxygen and very cold",
+          "Too many aliens"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "What is yellow and blue?",
-        "opciones": ["The bag", "The book", "The pencil", "The rubber"],
-        "correcta": 0
+        "pregunta": "What do astronauts need to survive on Mars?",
+        "opciones": [
+          "A car",
+          "Special domes and spacesuits",
+          "A lot of money",
+          "An umbrella"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Where do I go?",
-        "opciones": ["To the park", "To the cinema", "To school", "To bed"],
-        "correcta": 2
+        "pregunta": "What are space agencies sending to Mars now?",
+        "opciones": [
+          "Humans",
+          "Robots",
+          "Animals",
+          "Plants"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Is there definitely water on Mars according to the text?",
+        "opciones": [
+          "Yes",
+          "No, they are looking for it"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "My Face",
-    "texto": "Look at my face. I have two eyes and one nose. My mouth is small. My ears are big. I have brown hair. I am very happy today.",
+    "titulo": "The Internet: A Global Connection",
+    "texto": "The Internet has changed the way we live. It was invented in the 20th century, but it became popular in the 1990s. Today, we use it for almost everything: school research, playing games, and talking to friends. We can access information from the other side of the world in just one second! However, we must be careful. Cyberbullying and private information are important issues. We should always use the Internet safely and respect others online.",
     "preguntas": [
       {
-        "pregunta": "Do I have three eyes?",
-        "opciones": ["Yes", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Is my mouth small?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "How many noses do I have?",
-        "opciones": ["One", "Two", "Three", "Four"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Are my ears big or small?",
-        "opciones": ["Small", "Big", "Red", "Blue"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "How am I?",
-        "opciones": ["Sad", "Angry", "Happy", "Tired"],
+        "pregunta": "When did the Internet become popular?",
+        "opciones": [
+          "In the 1800s",
+          "In the 1950s",
+          "In the 1990s",
+          "In the 2010s"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "What can we do on the Internet according to the text?",
+        "opciones": [
+          "Only play games",
+          "Research, games, and talk to friends",
+          "Cook dinner",
+          "Clean the house"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "How fast can we access information?",
+        "opciones": [
+          "In one hour",
+          "In one minute",
+          "In one second",
+          "In one day"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "What are the negative issues mentioned?",
+        "opciones": [
+          "Too much light",
+          "Cyberbullying and privacy",
+          "Slow computers",
+          "Expensive prices"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "How should we use the Internet?",
+        "opciones": [
+          "Dangerously",
+          "Safely and with respect",
+          "Only at night",
+          "Never"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Sunday in the Park",
-    "texto": "It is Sunday. It is sunny and hot. I go to the park with my mum. We play football. We eat a delicious chocolate ice cream. It is a fun day.",
+    "titulo": "Marie Curie: A Pioneer in Science",
+    "texto": "Marie Curie was a famous scientist born in Poland in 1867. She later moved to France to study at the university. Marie was the first woman to win a Nobel Prize, and she actually won two! She discovered two new elements: Polonium and Radium. Her work was very important for the development of X-rays in medicine. She worked very hard her whole life, even when things were difficult. Today, she is remembered as one of the most important scientists in history.",
     "preguntas": [
       {
-        "pregunta": "Is it raining?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "Where was Marie Curie born?",
+        "opciones": [
+          "France",
+          "Poland",
+          "England",
+          "USA"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Do I go to the park?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
+        "pregunta": "How many Nobel Prizes did she win?",
+        "opciones": [
+          "One",
+          "Two",
+          "Three",
+          "Zero"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What day is it?",
-        "opciones": ["Monday", "Friday", "Sunday", "Tuesday"],
+        "pregunta": "What did she discover?",
+        "opciones": [
+          "Electricity",
+          "Penicillin",
+          "Polonium and Radium",
+          "Telephone"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "What is the weather like?",
-        "opciones": ["Sunny", "Rainy", "Snowy", "Cloudy"],
-        "correcta": 0
+        "pregunta": "What medical technology did her work help develop?",
+        "opciones": [
+          "Aspirin",
+          "X-rays",
+          "Microscopes",
+          "Bandages"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What do we eat?",
-        "opciones": ["Pizza", "Apples", "Ice cream", "Bread"],
-        "correcta": 2
+        "pregunta": "Was she the first woman to win a Nobel Prize?",
+        "opciones": [
+          "Yes",
+          "No"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Colours",
-    "texto": "My favourite colour is purple. I have a purple t-shirt and purple shoes. I do not like orange. My sister Lucy likes orange. She has an orange hat.",
+    "titulo": "The Industrial Revolution",
+    "texto": "The Industrial Revolution began in Great Britain in the late 1700s. It was a time of great change. Before this period, people made things by hand at home. After the invention of the steam engine, factories were built. Machines could produce goods much faster than people. Many people moved from the countryside to the cities to work in these factories. This was the beginning of the modern world, with new transport like trains and steamships.",
     "preguntas": [
       {
-        "pregunta": "Do I like purple?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Do I like orange?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "When did the Industrial Revolution begin?",
+        "opciones": [
+          "Early 1600s",
+          "Late 1700s",
+          "Mid 1900s",
+          "Year 2000"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "What clothes are purple?",
-        "opciones": ["Hat", "T-shirt", "Jeans", "Coat"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Who likes orange?",
-        "opciones": ["My mum", "My dad", "My sister", "My brother"],
+        "pregunta": "Where did it start?",
+        "opciones": [
+          "France",
+          "USA",
+          "Great Britain",
+          "China"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "What colour is the hat?",
-        "opciones": ["Red", "Orange", "Purple", "Green"],
+        "pregunta": "What invention was very important for factories?",
+        "opciones": [
+          "The computer",
+          "The steam engine",
+          "The telephone",
+          "The wheel"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Where did people move to work?",
+        "opciones": [
+          "To the forest",
+          "To the cities",
+          "To other countries",
+          "To the beach"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Name a new type of transport from that time.",
+        "opciones": [
+          "Airplanes",
+          "Trains",
+          "Electric cars",
+          "Spaceships"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Farm Animals",
-    "texto": "There are five animals in the farm. The cow is black and white. The pig is pink and fat. The sheep is white. The duck is yellow. The horse is brown and fast.",
+    "titulo": "The Wonders of the Amazon",
+    "texto": "The Amazon Rainforest is the largest tropical rainforest in the world. It covers much of South America, including Brazil, Peru, and Colombia. It is often called 'the lungs of the planet' because it produces a lot of oxygen for us to breathe. Thousands of different animals live there, like jaguars, toucans, and pink dolphins. Protecting the Amazon is essential because deforestation is destroying the trees and the homes of many species.",
     "preguntas": [
       {
-        "pregunta": "Is the pig blue?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "Where is the Amazon Rainforest located?",
+        "opciones": [
+          "Africa",
+          "South America",
+          "Europe",
+          "Asia"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is the cow black and white?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What colour is the duck?",
-        "opciones": ["Green", "Yellow", "Red", "Purple"],
+        "pregunta": "What is its nickname?",
+        "opciones": [
+          "The Green Giant",
+          "The Lungs of the Planet",
+          "The Big River",
+          "The Hot Place"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "How many animals are there?",
-        "opciones": ["One", "Three", "Five", "Ten"],
+        "pregunta": "Which animal is NOT mentioned in the text?",
+        "opciones": [
+          "Jaguar",
+          "Toucan",
+          "Elephant",
+          "Pink dolphin"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Which animal is pink?",
-        "opciones": ["The cow", "The pig", "The horse", "The sheep"],
+        "pregunta": "What does the rainforest produce for us?",
+        "opciones": [
+          "Water",
+          "Oil",
+          "Oxygen",
+          "Food only"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "What is the main threat to the Amazon?",
+        "opciones": [
+          "Fire",
+          "Deforestation",
+          "Too many animals",
+          "Cold weather"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Lunch Time",
-    "texto": "I am hungry. It is lunch time. I eat chicken and chips. I drink orange juice. I like chicken very much. It is my favourite food. Yummy!",
+    "titulo": "Healthy Habits for a Great Life",
+    "texto": "If you want to feel good and have a lot of energy, you should have healthy habits. First, you should eat a balanced diet with plenty of fruit and vegetables. Second, you must drink enough water every day, about 1.5 or 2 litres. Exercise is also very important; you can play football, swim, or just walk to school. Finally, your brain needs rest. You should sleep at least 9 hours every night. Small changes can make a big difference!",
     "preguntas": [
       {
-        "pregunta": "Am I hungry?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Do I eat fish?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What should you eat for a balanced diet?",
+        "opciones": [
+          "Only meat",
+          "Fruit and vegetables",
+          "Sweets and cake",
+          "Nothing"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "What do I eat?",
-        "opciones": ["Chicken", "Pizza", "Soup", "Salad"],
-        "correcta": 0
+        "pregunta": "How much water should you drink?",
+        "opciones": [
+          "One cup",
+          "1.5 to 2 litres",
+          "5 litres",
+          "None"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What do I drink?",
-        "opciones": ["Water", "Milk", "Orange juice", "Cola"],
+        "pregunta": "What type of exercise is mentioned?",
+        "opciones": [
+          "Video games",
+          "Football, swimming, or walking",
+          "Sleeping",
+          "Watching TV"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "How many hours of sleep do you need?",
+        "opciones": [
+          "5 hours",
+          "7 hours",
+          "9 hours",
+          "12 hours"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Do I like chicken?",
-        "opciones": ["No", "A little", "Very much", "Not at all"],
-        "correcta": 2
+        "pregunta": "Does the text say that small changes are useless?",
+        "opciones": [
+          "Yes",
+          "No, they make a big difference"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "My Bedroom",
-    "texto": "My bedroom is blue. The bed is big. There is a lamp on the table. The lamp is yellow. I have many toys in a box. I sleep in my bedroom at night.",
+    "titulo": "The History of Chocolate",
+    "texto": "Did you know that chocolate comes from a tree? The cacao tree grows in tropical regions. Long ago, the Mayans and Aztecs in Mexico were the first people to enjoy chocolate. They didn't eat bars of chocolate; they drank it as a bitter drink with spices. Later, Spanish explorers brought cacao to Europe. People started adding sugar and milk to make it sweet. Today, chocolate is one of the most popular treats in the world!",
     "preguntas": [
       {
-        "pregunta": "Is the bedroom pink?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "Where does chocolate come from?",
+        "opciones": [
+          "A factory directly",
+          "The cacao tree",
+          "The ground",
+          "Underground"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is the bed big?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What colour is the bedroom?",
-        "opciones": ["Blue", "Red", "Green", "White"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What is on the table?",
-        "opciones": ["A book", "A lamp", "A cat", "A computer"],
+        "pregunta": "Who were the first people to use chocolate?",
+        "opciones": [
+          "Romans",
+          "Mayans and Aztecs",
+          "Greeks",
+          "Vikings"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Where are the toys?",
-        "opciones": ["In a box", "On the bed", "Under the table", "On the chair"],
-        "correcta": 0
+        "pregunta": "How did they drink it?",
+        "opciones": [
+          "With a lot of sugar",
+          "As a bitter drink with spices",
+          "With ice",
+          "With honey only"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Who brought cacao to Europe?",
+        "opciones": [
+          "British explorers",
+          "Spanish explorers",
+          "French explorers",
+          "Nobody"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What was added to make it sweet?",
+        "opciones": [
+          "Salt",
+          "Sugar and milk",
+          "Water",
+          "Pepper"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Happy Birthday",
-    "texto": "Today is my birthday. I am seven years old. I have a chocolate cake. It has seven candles. I get many presents from my friends. We sing songs and dance.",
+    "titulo": "William Shakespeare",
+    "texto": "William Shakespeare is considered the greatest writer in the English language. He was born in 1564 in Stratford-upon-Avon, England. He wrote famous plays like 'Romeo and Juliet', 'Hamlet', and 'Macbeth'. He lived in London and worked as an actor and a playwright at the Globe Theatre. Many of the words and expressions we use in English today were actually invented by him. His plays are still performed in theatres all over the world.",
     "preguntas": [
       {
-        "pregunta": "Is it my birthday?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Is the cake strawberry?",
-        "opciones": ["Yes", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "How old am I?",
-        "opciones": ["Six", "Seven", "Eight", "Nine"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "What flavour is the cake?",
-        "opciones": ["Vanilla", "Chocolate", "Lemon", "Apple"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "How many candles are there?",
-        "opciones": ["Five", "Six", "Seven", "Ten"],
+        "pregunta": "Where was Shakespeare born?",
+        "opciones": [
+          "London",
+          "Paris",
+          "Stratford-upon-Avon",
+          "New York"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "What was his profession?",
+        "opciones": [
+          "Doctor",
+          "Actor and playwright",
+          "Teacher",
+          "Engineer"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Name one of his famous plays.",
+        "opciones": [
+          "The Quixote",
+          "Harry Potter",
+          "Romeo and Juliet",
+          "The Odyssey"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "What was the name of his theatre?",
+        "opciones": [
+          "The Palace",
+          "The Globe",
+          "The Royal",
+          "The Circle"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Is he still famous today?",
+        "opciones": [
+          "Yes, his plays are still performed",
+          "No, everyone forgot him"
+        ],
+        "correcta": 0
       }
     ]
   }

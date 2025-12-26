@@ -1,17 +1,122 @@
 {
-  "genetica": [
-    "adn", "cromosoma", "gen", "alelo", "mutación", "clonación", "biotecnología", "transgénico", "herencia", "genotipo"
+  "genetica_molecular": [
+    "adn",
+    "arn",
+    "nucleótido",
+    "doble hélice",
+    "transcripción",
+    "traducción",
+    "mutación",
+    "gen",
+    "cromosoma",
+    "proteína"
   ],
-  "evolucion": [
-    "darwinismo", "selección natural", "adaptación", "fósil", "especie", "hominización", "ancestro", "biodiversidad", "neodarwinismo", "variabilidad"
+  "herencia_mendeliana": [
+    "alelo",
+    "homocigoto",
+    "heterocigoto",
+    "dominante",
+    "recesivo",
+    "fenotipo",
+    "genotipo",
+    "monohibridismo",
+    "dihibridismo",
+    "leyes de mendel"
   ],
-  "tectonica_placas": [
-    "litosfera", "dorsal", "zona de subducción", "falla", "volcán", "terremoto", "orogénesis", "pangea", "corteza", "manto"
+  "evolucion_vida": [
+    "darwinismo",
+    "selección natural",
+    "lamarckismo",
+    "especiación",
+    "fósil",
+    "anatomía comparada",
+    "embriología",
+    "ancestro común",
+    "neodarwinismo",
+    "variabilidad"
+  ],
+  "biotecnologia": [
+    "ingeniería genética",
+    "clonación",
+    "transgénico",
+    "pcr",
+    "crispr",
+    "terapia génica",
+    "bioética",
+    "secuenciación",
+    "plásmido",
+    "vacuna de arn"
+  ],
+  "celula_division": [
+    "mitosis",
+    "meiosis",
+    "interfase",
+    "profase",
+    "metafase",
+    "anafase",
+    "telofase",
+    "huso mitótico",
+    "gameto",
+    "sobrecruzamiento"
+  ],
+  "geodinamica_interna": [
+    "teoria tectónica de placas",
+    "deriva continental",
+    "convección manto",
+    "litosfera",
+    "astenosfera",
+    "fosa oceánica",
+    "dorsal",
+    "subducción",
+    "hot spot",
+    "pangea"
   ],
   "historia_tierra": [
-    "precámbrico", "paleozoico", "mesozoico", "cenozoico", "jurásico", "extinción", "sedimentación", "estrato", "glaciación", "fósil guía"
+    "eratos",
+    "periodo",
+    "era",
+    "fanerozoico",
+    "mesozoico",
+    "cenozoico",
+    "precámbrico",
+    "extinción masiva",
+    "fósil guía",
+    "estratigrafía"
   ],
-  "ecologia_global": [
-    "biosfera", "ecosistema", "ciclo del carbono", "efecto invernadero", "cambio climático", "sostenibilidad", "recurso", "impacto ambiental", "huella ecológica", "bioma"
+  "ecologia_sostenibilidad": [
+    "ecosistema",
+    "cadena trófica",
+    "nivel trófico",
+    "ciclo del carbono",
+    "ciclo del nitrógeno",
+    "huella ecológica",
+    "desarrollo sostenible",
+    "biodiversidad",
+    "resiliencia",
+    "bioma"
+  ],
+  "inmunologia": [
+    "antígeno",
+    "anticuerpo",
+    "leucocito",
+    "linfocito t",
+    "linfocito b",
+    "inflamación",
+    "barrera primaria",
+    "fagocitosis",
+    "memoria inmunológica",
+    "alergia"
+  ],
+  "bioelementos_biomoleculas": [
+    "carbono",
+    "hidrógeno",
+    "oxígeno",
+    "nitrógeno",
+    "glúcido",
+    "lípido",
+    "proteína",
+    "ácido nucleico",
+    "agua",
+    "sales minerales"
   ]
 }

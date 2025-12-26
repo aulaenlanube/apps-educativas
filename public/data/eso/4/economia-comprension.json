@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "La Escasez: El Problema Económico",
+        "texto": "La economía es la ciencia que estudia cómo gestionar recursos limitados para satisfacer necesidades ilimitadas. Esto genera el problema de la ESCASEZ. Al no poder tenerlo todo, debemos elegir, y cada elección tiene un COSTE DE OPORTUNIDAD: es el valor de aquello a lo que renunciamos cuando tomamos una decisión. Por ejemplo, si decides gastar tu dinero en un videojuego, el coste de oportunidad es la zapatilla que no has podido comprar. Aprender economía nos ayuda a tomar decisiones más inteligentes en nuestra vida.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el problema básico de la economía?",
+                "opciones": [
+                    "La riqueza",
+                    "La escasez (recursos limitados vs necesidades infinitas)",
+                    "El tiempo",
+                    "El aburrimiento"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el coste de oportunidad?",
+                "opciones": [
+                    "El precio de un objeto",
+                    "El valor de la mejor opción a la que renuncias al elegir otra",
+                    "Un descuento en rebajas",
+                    "El dinero ganado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo son las necesidades humanas según la economía?",
+                "opciones": [
+                    "Pocas",
+                    "Ilimitadas (siempre queremos más)",
+                    "Finitas",
+                    "Innecesarias"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si eliges estudiar en lugar de ir al cine, el coste de oportunidad es:",
+                "opciones": [
+                    "La nota del examen",
+                    "La diversión de la película perdida",
+                    "El precio de la entrada",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La economía nos ayuda a ser:",
+                "opciones": [
+                    "Más ricos rápido",
+                    "Más racionales en nuestras decisiones",
+                    "Expertos en bolsa",
+                    "Políticos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Mercado: Oferta y Demanda",
+        "texto": "En una economía de mercado, los precios se fijan por la ley de la oferta y la demanda. La DEMANDA es la cantidad de un bien que los consumidores quieren comprar; si el precio sube, la demanda baja. La OFERTA es la cantidad que las empresas quieren vender; si el precio sube, querrán vender más. El PRECIO DE EQUILIBRIO es aquel donde coinciden los deseos de compradores y vendedores. Si hay mucha demanda y poca oferta (como en una consola nueva), el precio tiende a subir rápidamente.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué ocurre con la demanda si sube mucho el precio de un producto?",
+                "opciones": [
+                    "Sube también",
+                    "Baja (menos gente querrá comprarlo)",
+                    "Se queda igual",
+                    "La gente compra dos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la oferta?",
+                "opciones": [
+                    "Un descuento",
+                    "La cantidad de producto que las empresas están dispuestas a vender",
+                    "Lo que hay en la tienda gratis",
+                    "El dinero de los bancos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el precio de equilibrio?",
+                "opciones": [
+                    "El más caro",
+                    "Donde la cantidad ofrecida y la demandada son iguales",
+                    "El que pone el gobierno",
+                    "El más barato"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un producto se pone 'de moda' y todos lo quieren, suele ocurrir que:",
+                "opciones": [
+                    "Su precio baja",
+                    "Su precio sube",
+                    "Se regala",
+                    "No cambia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quiénes forman la demanda?",
+                "opciones": [
+                    "Las fábricas",
+                    "Los consumidores",
+                    "Los políticos",
+                    "Los bancos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "La Inflación: El enemigo silencioso",
+        "texto": "La INFLACIÓN es la subida generalizada y continuada de los precios. Cuando hay inflación, nuestro dinero pierde valor: con los mismos euros podemos comprar menos cosas que antes. Si los precios suben un 10%, pero tu sueldo no sube, eres más pobre aunque tengas los mismos billetes. Esto se llama pérdida de PODER ADQUISITIVO. Las causas pueden ser el aumento de los costes de producción (como el precio de la energía) o un exceso de dinero en circulación. Controlar la inflación es clave para la estabilidad del país.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la inflación?",
+                "opciones": [
+                    "Cuando los precios bajan",
+                    "La subida generalizada de los precios de bienes y servicios",
+                    "Un tipo de impuesto",
+                    "Ganar mucha lotería"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué consecuencia directa tiene la inflación?",
+                "opciones": [
+                    "El dinero vale más",
+                    "Pérdida de poder adquisitivo (compras menos con lo mismo)",
+                    "La gente ahorra más",
+                    "Todo es más barato"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si los precios suben un 5% y tu sueldo no sube, tú:",
+                "opciones": [
+                    "Eres más rico",
+                    "Pierdes poder de compra",
+                    "Te quedas igual",
+                    "Ahorras más"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una causa de inflación según el texto:",
+                "opciones": [
+                    "Que la gente no compre",
+                    "El aumento de los costes (ej: energía)",
+                    "Que haya poco dinero",
+                    "El buen tiempo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién debe intentar controlar la inflación?",
+                "opciones": [
+                    "Las panaderías",
+                    "Los Bancos Centrales y Gobiernos",
+                    "Los colegios",
+                    "Nadie"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "El Mercado de Trabajo y el Paro",
+        "texto": "En el mercado de trabajo, las personas ofrecen su tiempo y habilidades a cambio de un SALARIO. Las empresas son las que demandan trabajo. El PARO (o desempleo) ocurre cuando personas que quieren y pueden trabajar no encuentran un puesto. Existen varios tipos, como el paro estacional (típico del turismo en verano) o el estructural (cuando los trabajadores no tienen la formación que las empresas necesitan). Estudiar y formarse continuamente es la mejor forma de evitar el desempleo en un mundo que cambia tan rápido.",
+        "preguntas": [
+            {
+                "pregunta": "En economía, ¿quiénes forman la OFERTA de trabajo?",
+                "opciones": [
+                    "Las empresas",
+                    "Los trabajadores (que ofrecen su esfuerzo)",
+                    "Los bancos",
+                    "Los robots"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el paro estacional?",
+                "opciones": [
+                    "Estar parado en el semáforo",
+                    "Desempleo que depende de la época del año (ej: turismo)",
+                    "Paro para siempre",
+                    "Paro por enfermedad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el pago por el trabajo realizado?",
+                "opciones": [
+                    "Regalo",
+                    "Salario",
+                    "Impuesto",
+                    "Préstamo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el paro estructural?",
+                "opciones": [
+                    "Falta de edificios",
+                    "Desajuste entre lo que piden las empresas y la formación de los parados",
+                    "Paro por vacaciones",
+                    "No existe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la mejor protección contra el paro según el texto?",
+                "opciones": [
+                    "Tener suerte",
+                    "La formación y educación continua",
+                    "Quedarse en casa",
+                    "No trabajar nunca"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Empresa y Producción",
+        "texto": "Una empresa es una organización que combina factores productivos para crear bienes o servicios y obtener un BENEFICIO. Los factores son: TIERRA (recursos naturales), TRABAJO (esfuerzo humano) y CAPITAL (maquinaria, dinero, naves). La empresa asume riesgos y busca la eficiencia. El beneficio es la diferencia entre los INGRESOS (lo que gana vendiendo) y los COSTES (lo que gasta en fabricar). Si los costes son mayores que los ingresos, la empresa tendrá pérdidas y podría quebrar.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el objetivo principal de la mayoría de empresas?",
+                "opciones": [
+                    "Perder dinero",
+                    "Obtener beneficio",
+                    "Hacer amigos",
+                    "Gastar luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra los tres factores de producción:",
+                "opciones": [
+                    "Aire, Agua y Fuego",
+                    "Tierra, Trabajo y Capital",
+                    "Papel, Boli y Goma",
+                    "Oro, Plata y Bronce"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el capital en economía?",
+                "opciones": [
+                    "La ciudad principal",
+                    "Maquinaria, herramientas y dinero de la empresa",
+                    "Solo el nombre",
+                    "El dueño"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se calcula el beneficio?",
+                "opciones": [
+                    "Sumando todo",
+                    "Ingresos menos Costes",
+                    "Multiplicando precios",
+                    "Dividiendo sueldos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si los costes son mayores que los ingresos hay:",
+                "opciones": [
+                    "Beneficios",
+                    "Pérdidas",
+                    "Ahorro",
+                    "Felicidad"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "El Sector Público y los Impuestos",
+        "texto": "El Estado interviene en la economía para proporcionar bienes públicos (educación, sanidad, carreteras) que las empresas privadas no ofrecerían a todos por igual. Para pagar estos servicios, el Estado recauda IMPUESTOS. Los hay DIRECTOS (gravan la riqueza o el sueldo, como el IRPF) e INDIRECTOS (gravan el consumo, como el IVA). Una economía justa busca que quienes más tienen paguen un poco más para que todos tengan acceso a unos servicios básicos de calidad.",
+        "preguntas": [
+            {
+                "pregunta": "¿Para qué sirve el sector público principalmente?",
+                "opciones": [
+                    "Para ganar dinero",
+                    "Para proporcionar servicios básicos y corregir desigualdades",
+                    "Para prohibir cosas",
+                    "Para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un impuesto indirecto?",
+                "opciones": [
+                    "El que pagas por tu sueldo",
+                    "El que pagas al comprar algo (como el IVA)",
+                    "Un regalo al rey",
+                    "Una multa de tráfico"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significan las siglas IVA?",
+                "opciones": [
+                    "Impuesto sobre el Valor Añadido",
+                    "Ingreso de Venta Anual",
+                    "Impuesto de Vida Alegre",
+                    "Idea de Valor Alto"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Nombra un servicio público mencionado:",
+                "opciones": [
+                    "Cine",
+                    "Educación o Sanidad",
+                    "Netflix",
+                    "Supermercado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el impuesto sobre la renta de las personas?",
+                "opciones": [
+                    "IVA",
+                    "IRPF",
+                    "IBI",
+                    "USB"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Finanzas Personales: El Ahorro",
+        "texto": "Ahorrar es guardar una parte de nuestros ingresos de hoy para usarlos en el futuro. Es vital tener un FONDO DE EMERGENCIA por si surge un gasto inesperado (se rompe el móvil, una avería...). Una regla de oro es 'págate a ti mismo primero': nada más recibir dinero (paga, sueldo), guarda una cantidad fija antes de empezar a gastar. El interés compuesto hará que, con el tiempo, tus pequeños ahorros crezcan mucho. Evitar deudas innecesarias (como comprar a plazos cosas que no necesitas) es clave para tener libertad financiera.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es ahorrar según el texto?",
+                "opciones": [
+                    "Gastar todo rápido",
+                    "Guardar parte de los ingresos actuales para el futuro",
+                    "Esconder dinero",
+                    "Comprar barato"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve un fondo de emergencia?",
+                "opciones": [
+                    "Para irse de viaje",
+                    "Para afrontar gastos imprevistos e importantes",
+                    "Para comprar chuches",
+                    "Para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa 'págate a ti mismo primero'?",
+                "opciones": [
+                    "Comprarte un regalo",
+                    "Apartar el ahorro nada más recibir tus ingresos",
+                    "No pagar deudas",
+                    "Darse un baño"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace que los ahorros crezcan más rápido a largo plazo?",
+                "opciones": [
+                    "La suerte",
+                    "El interés compuesto",
+                    "Gastar poco",
+                    "Esconderlo en casa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Evitar deudas innecesarias nos aporta:",
+                "opciones": [
+                    "Más trabajo",
+                    "Libertad financiera y tranquilidad",
+                    "Menos amigos",
+                    "Más problemas"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Los Bancos y los Préstamos",
+        "texto": "Los bancos actúan como intermediarios entre quienes tienen ahorros y quienes necesitan dinero. Cuando pides un PRÉSTAMO, el banco te da una cantidad que debes devolver con INTERESES. El tipo de interés es el 'precio' del dinero. Si es alto, pedir préstamos es caro. Hay que tener mucho cuidado con las tarjetas de crédito y los préstamos rápidos, ya que suelen tener intereses altísimos que pueden atrapar a las personas en deudas que no pueden pagar. Nunca pidas prestado para algo que no sea imprescindible.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el interés en un préstamo?",
+                "opciones": [
+                    "Un regalo del banco",
+                    "El precio que pagas por usar el dinero prestado",
+                    "La cantidad total",
+                    "Un error"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo es más caro pedir dinero prestado?",
+                "opciones": [
+                    "Cuando el tipo de interés es bajo",
+                    "Cuando el tipo de interés es alto",
+                    "Siempre es igual",
+                    "Cuando hace sol"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué función principal tiene un banco?",
+                "opciones": [
+                    "Fábrica de papel",
+                    "Intermediario entre ahorradores y deudores",
+                    "Tienda de ropa",
+                    "Venta de coches"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el riesgo de las tarjetas de crédito?",
+                "opciones": [
+                    "Que se rompan",
+                    "Intereses muy altos que generan mucha deuda",
+                    "Que las roben solamente",
+                    "No tienen riesgo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un consejo financiero básico es:",
+                "opciones": [
+                    "Pedir todo prestado",
+                    "No pedir prestado para cosas que no son imprescindibles",
+                    "No tener cuenta bancaria",
+                    "Gastar lo que no tienes"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Globalización Económica",
+        "texto": "Hoy en día, la mayoría de productos que usamos (móvil, ropa, zapatillas) se han fabricado en países diferentes. Esto es la GLOBALIZACIÓN. Permite que los productos sean más baratos y que haya más variedad. Sin embargo, tiene problemas: la competencia de países con salarios muy bajos destruye fábricas en otros lugares, y el transporte constante contamina mucho el medio ambiente. El COMERCIO JUSTO intenta que este proceso sea más ético, asegurando que los productores de países pobres reciban un salario digno.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la globalización económica?",
+                "opciones": [
+                    "Viajar por el mundo",
+                    "La interconexión de los mercados y producción a nivel mundial",
+                    "Comprar solo en el barrio",
+                    "Hacerse un mapa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una ventaja de la globalización:",
+                "opciones": [
+                    "Más contaminación",
+                    "Precios más bajos y más variedad de productos",
+                    "Menos trabajo para todos",
+                    "Es más lenta"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué problema ambiental genera?",
+                "opciones": [
+                    "Ninguno",
+                    "Mucha contaminación por el transporte constante de mercancías",
+                    "Cuidado de los bosques",
+                    "Menos ruido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué busca el Comercio Justo?",
+                "opciones": [
+                    "Vender lo más caro posible",
+                    "Asegurar salarios y condiciones dignas a los productores",
+                    "Que no haya barcos",
+                    "Hacerse millonario"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La globalización ha hecho que los mercados estén:",
+                "opciones": [
+                    "Separados",
+                    "Interconectados",
+                    "Cerrados",
+                    "Vacíos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Economía Circular y Sostenibilidad",
+        "texto": "El modelo tradicional de 'usar y tirar' ya no sirve porque los recursos naturales se agotan. La ECONOMÍA CIRCULAR propone un modelo donde se reduce el consumo, se reutilizan los productos y se reciclan los materiales para que vuelvan al ciclo de producción. El objetivo es el DESARROLLO SOSTENIBLE: crecer de forma que no destruyamos el planeta para las futuras generaciones. Ser un consumidor responsable, comprando solo lo que necesitamos y eligiendo productos duraderos, es nuestra mejor contribución.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué propone la economía circular?",
+                "opciones": [
+                    "Tirar todo a la basura",
+                    "Reducir, reutilizar y reciclar materiales para que vuelvan al ciclo",
+                    "Comprar muchas cosas",
+                    "No usar dinero"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el desarrollo sostenible?",
+                "opciones": [
+                    "Crecer sin parar",
+                    "Satisfacer nuestras necesidades sin dañar el futuro del planeta",
+                    "Ser muy alto",
+                    "Vivir en el campo sin nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el problema del modelo de 'usar y tirar'?",
+                "opciones": [
+                    "Es muy limpio",
+                    "Agotamiento de recursos y exceso de residuos",
+                    "Es muy barato",
+                    "No tiene problemas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo podemos ser consumidores responsables?",
+                "opciones": [
+                    "Comprando por impulso",
+                    "Comprando solo lo necesario y eligiendo calidad duradera",
+                    "Tirando la ropa cada mes",
+                    "No comprando nunca nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La economía circular busca evitar:",
+                "opciones": [
+                    "El ahorro",
+                    "El desperdicio y la destrucción ambiental",
+                    "Las fábricas",
+                    "El transporte"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

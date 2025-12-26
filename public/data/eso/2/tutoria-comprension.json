@@ -1,0 +1,568 @@
+[
+    {
+        "id": "1",
+        "titulo": "La Presión de Grupo",
+        "texto": "En 2nd ESO, la opinión de los amigos se vuelve muy importante, a veces incluso más que la de la familia. Esto puede llevarnos a la PRESIÓN DE GRUPO: hacer algo que no queremos (fumar, faltar al respeto a alguien, saltarnos las normas) solo para sentir que 'encajamos'. Ser valiente no es seguir a la masa, sino ser capaz de decir NO cuando algo va contra tus valores. Un verdadero amigo te respetará aunque no hagas lo mismo que el resto. Aprender a decidir por ti mismo es el primer paso hacia la madurez.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la presión de grupo?",
+                "opciones": [
+                    "Hacer deporte juntos",
+                    "Sentirse obligado a hacer algo para ser aceptado por los demás",
+                    "Ayudar a los amigos",
+                    "Estudiar en grupo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué define la verdadera valentía según el texto?",
+                "opciones": [
+                    "Hacer lo más arriesgado",
+                    "Ser capaz de decir NO y mantener tus valores",
+                    "Pegarse con otros",
+                    "Tener muchos amigos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo actuará un verdadero amigo?",
+                "opciones": [
+                    "Te obligará a hacer lo que él quiera",
+                    "Te respetará aunque pienses o actúes diferente",
+                    "Se enfadará si no bebes",
+                    "Te dejará de hablar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Hacia dónde nos lleva decidir por nosotros mismos?",
+                "opciones": [
+                    "Hacia la soledad",
+                    "Hacia la madurez y autonomía",
+                    "Hacia el error siempre",
+                    "A ninguna parte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A quién solemos dar más importancia en esta etapa?",
+                "opciones": [
+                    "A los profesores",
+                    "A los amigos",
+                    "A los hermanos pequeños",
+                    "A los vecinos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Resolución de Conflictos: La Mediación",
+        "texto": "Los conflictos son parte de la vida, lo importante es cómo los resolvemos. Una herramienta muy útil en el instituto es la MEDIACIÓN. Consiste en que dos personas que tienen un problema hablan de forma calmada acompañadas por un mediador (que puede ser un compañero o profesor formado). El mediador no da la solución ni juzga; su función es ayudar a que las partes se escuchen y encuentren ellas mismas un acuerdo. Gritar o insultar solo empeora las cosas; hablar con respeto es la única forma de avanzar.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué consiste la mediación?",
+                "opciones": [
+                    "En pelearse en el patio",
+                    "En hablar con ayuda de una tercera persona neutral para llegar a un acuerdo",
+                    "En que el profesor castigue a los dos",
+                    "En ignorar el problema"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la función del mediador?",
+                "opciones": [
+                    "Decir quién tiene la culpa",
+                    "Ayudar a que las partes se escuchen y dialoguen",
+                    "Poner una nota",
+                    "Gritar más que los otros"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es malo tener conflictos?",
+                "opciones": [
+                    "Sí, hay que evitarlos siempre",
+                    "No, son parte de la vida, el reto es cómo resolverlos",
+                    "Solo si eres de 2nd ESO",
+                    "Solo en el instituto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué actitud ayuda a resolver un problema?",
+                "opciones": [
+                    "El insulto",
+                    "El respeto y el diálogo calmado",
+                    "Quedarse callado para siempre",
+                    "La fuerza"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién debe encontrar la solución en una mediación?",
+                "opciones": [
+                    "El mediador",
+                    "Las personas implicadas en el conflicto",
+                    "El director",
+                    "Los padres"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Autoimagen y Redes Sociales",
+        "texto": "La adolescencia es una etapa de cambios físicos y búsqueda de identidad. Las redes sociales a menudo nos muestran filtros y vidas perfectas que no son reales. Esto puede dañar nuestra AUTOIMAGEN si nos comparamos constantemente con personas que parecen 'perfectas'. Debemos recordar que cada cuerpo es único y válido. No permitas que un algoritmo de likes defina tu valor como persona. Eres mucho más que una foto o un número de seguidores; tu inteligencia, tu humor y tu bondad son lo que realmente importa.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué riesgo tienen los filtros en las redes?",
+                "opciones": [
+                    "Que son muy caros",
+                    "Que crean una imagen poco realista y dañan la autoimagen",
+                    "Que no se ven bien",
+                    "Que son divertidos y ya"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué define tu valor como persona?",
+                "opciones": [
+                    "El número de likes",
+                    "Tus seguidores",
+                    "Tu interior (inteligencia, bondad, humor)",
+                    "Tu ropa"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Es bueno compararse con los demás en redes?",
+                "opciones": [
+                    "Sí, para mejorar",
+                    "No, cada uno tiene su ritmo y su realidad única",
+                    "Solo si sales bien",
+                    "Solo si eres influencer"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debemos recordar sobre nuestros cuerpos?",
+                "opciones": [
+                    "Que hay que operarlos",
+                    "Que cada cuerpo es único y válido",
+                    "Que deben ser iguales",
+                    "Que no importan"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la autoimagen?",
+                "opciones": [
+                    "Una foto con el móvil",
+                    "La percepción que tenemos de nuestra propia apariencia y forma de ser",
+                    "Un tipo de espejo",
+                    "Un filtro de Instagram"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "El Valor de la Tolerancia",
+        "texto": "La tolerancia no es 'aguantar' al que es diferente, sino RESPETAR y valorar la diversidad. En nuestro instituto conviven personas de distintas religiones, países, orientaciones sexuales e intereses. La diversidad nos enriquece porque nos permite ver el mundo desde otros ojos. Atacar a alguien por ser diferente (racismo, homofobia, machismo) es una señal de ignorancia y falta de empatía. Un entorno tolerante es un entorno seguro donde todos pueden expresarse sin miedo a ser juzgados o insultados.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la tolerancia realmente?",
+                "opciones": [
+                    "No decir nada",
+                    "Respetar y valorar positivamente la diversidad",
+                    "Tener mucha paciencia",
+                    "Ser igual que los otros"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué nos aporta la diversidad?",
+                "opciones": [
+                    "Problemas y líos",
+                    "Nos enriquece y abre nuestra mente",
+                    "Que las clases sean lentas",
+                    "Que no nos entendamos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué se debe el rechazo al diferente?",
+                "opciones": [
+                    "A ser muy listo",
+                    "A la ignorancia y falta de empatía",
+                    "A que los demás son malos",
+                    "Al clima"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo es un entorno tolerante?",
+                "opciones": [
+                    "Aburrido",
+                    "Seguro y libre de miedo al juicio",
+                    "Peligroso",
+                    "Solo para algunos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Combatir el racismo es un ejemplo de:",
+                "opciones": [
+                    "Tolerancia",
+                    "Intolerancia",
+                    "Indiferencia",
+                    "Lucha"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Hábitos Saludables: La Higiene del Sueño",
+        "texto": "Dormir bien es fundamental para el cerebro adolescente. Durante el sueño, procesamos lo aprendido y el cuerpo crece. La 'higiene del sueño' son hábitos para descansar mejor: no usar pantallas (móvil, tablet) una hora antes de dormir, mantener un horario fijo y evitar bebidas con cafeína por la tarde. La luz azul de las pantallas engaña al cerebro y le hace creer que es de día, impidiendo que descanse. Dormir 8 o 9 horas te hará estar de mejor humor y sacar mejores notas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué ocurre en nuestro cerebro cuando dormimos?",
+                "opciones": [
+                    "Se apaga totalmente",
+                    "Procesa lo aprendido durante el día",
+                    "Se calienta",
+                    "No ocurre nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es mala la luz azul del móvil antes de dormir?",
+                "opciones": [
+                    "Porque gasta batería",
+                    "Porque engaña al cerebro y le impide descansar",
+                    "Porque es blanca",
+                    "Porque el móvil se rompe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hábito ayuda a dormir mejor?",
+                "opciones": [
+                    "Tomar refrescos antes de acostarse",
+                    "Jugar a la consola hasta tarde",
+                    "Tener un horario fijo y apagar pantallas una hora antes",
+                    "Dormir con la luz encendida"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuántas horas se recomienda dormir en 2nd ESO?",
+                "opciones": [
+                    "4 horas",
+                    "6 horas",
+                    "8 o 9 horas",
+                    "12 horas"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Mejora el sueño el rendimiento escolar?",
+                "opciones": [
+                    "Sí, mucho",
+                    "No influye"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Gestión del Fracaso: Aprender del error",
+        "texto": "En la vida no siempre se gana o se saca un 10. A veces suspendemos un examen, perdemos un partido o nos sale mal un dibujo. El fracaso es una oportunidad de aprendizaje. En lugar de decir 'no sirvo para esto', debemos preguntarnos: '¿qué puedo cambiar la próxima vez?'. Las personas con éxito no son las que nunca fallan, sino las que nunca se rinden y saben levantarse después de caer. No tengas miedo a equivocarte; el error es el escalón necesario para llegar al éxito y a la maestría.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el fracaso según el texto?",
+                "opciones": [
+                    "El final del camino",
+                    "Una oportunidad de aprender y mejorar",
+                    "Algo que ocultar",
+                    "Una señal de que somos malos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué pregunta debemos hacernos ante un error?",
+                "opciones": [
+                    "¿Quién tiene la culpa?",
+                    "¿Qué puedo cambiar la próxima vez?",
+                    "¿Por qué a mí?",
+                    "¿Dónde me escondo?"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué define a las personas con éxito?",
+                "opciones": [
+                    "Que nunca fallan",
+                    "Que persisten y saben levantarse tras los fallos",
+                    "Que tienen suerte",
+                    "Que son perfectas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es malo equivocarse?",
+                "opciones": [
+                    "Sí",
+                    "No, es un escalón necesario hacia el éxito"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cambiar 'no sirvo' por 'voy a esforzarme más' es una actitud:",
+                "opciones": [
+                    "Derrotista",
+                    "Positiva y de crecimiento",
+                    "Tonta",
+                    "Falsa"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "El Ciberacoso (Cyberbullying)",
+        "texto": "El acoso a través de internet es muy grave porque el agresor puede atacar las 24 horas del día y los mensajes llegan a mucha gente rápidamente. Insultar en grupos de WhatsApp, difundir rumores falsos o subir fotos sin permiso es DELITO y tiene consecuencias legales. Si estás sufriendo ciberacoso o ves que alguien lo sufre: 1) No contestes. 2) Guarda las pruebas (capturas de pantalla). 3) Cuéntalo a un adulto de confianza. No permitas que nadie te haga sentir mal a través de una pantalla; tienes derecho a una vida digital segura.",
+        "preguntas": [
+            {
+                "pregunta": "¿Por qué es tan peligroso el ciberacoso?",
+                "opciones": [
+                    "Porque no usa papel",
+                    "Porque ocurre las 24h y llega a mucha gente",
+                    "Porque es más barato",
+                    "No es peligroso"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un ejemplo de ciberacoso:",
+                "opciones": [
+                    "Jugar juntos online",
+                    "Difundir rumores falsos o subir fotos sin permiso",
+                    "Enviar los deberes",
+                    "Hacer un grupo de clase"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es lo primero que NO debes hacer ante un ataque?",
+                "opciones": [
+                    "Guardar pruebas",
+                    "Contestar con más insultos",
+                    "Avisar a tus padres",
+                    "Hacer capturas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve guardar capturas de pantalla?",
+                "opciones": [
+                    "Para nada",
+                    "Como prueba de lo que está ocurriendo",
+                    "Para enviarlas a todo el mundo",
+                    "Para borrar la memoria"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es el ciberacoso un delito?",
+                "opciones": [
+                    "No, son cosas de niños",
+                    "Sí, tiene consecuencias legales graves",
+                    "Solo si hay dinero",
+                    "Solo en otros países"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "La Empatía con el Medio Ambiente",
+        "texto": "Cuidar el planeta también es una cuestión de valores personales. No tiramos basura al suelo porque respetamos a los demás y al mundo en el que vivimos. El cambio climático nos afecta a todos, pero especialmente a las personas más pobres y a los animales que pierden sus hogares. Ser consciente de lo que consumes, reciclar y no malgastar agua son actos de RESPONSABILIDAD CIUDADANA. El planeta no es nuestro, es un préstamo que debemos cuidar para los que vendrán después de nosotros.",
+        "preguntas": [
+            {
+                "pregunta": "¿Por qué no debemos tirar basura al suelo?",
+                "opciones": [
+                    "Porque nos pueden multar solamente",
+                    "Por respeto a los demás y al entorno",
+                    "Porque pesa mucho",
+                    "Porque atrae a los gatos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa ser un ciudadano responsable?",
+                "opciones": [
+                    "Tener mucho dinero",
+                    "Cuidar el entorno, reciclar y no malgastar recursos",
+                    "Ser el más listo",
+                    "Solo obedecer al profesor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A quién afecta más el cambio climático?",
+                "opciones": [
+                    "A los más ricos",
+                    "A las personas más pobres y vulnerables y a los animales",
+                    "A nadie",
+                    "Solo a los científicos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Según el texto, el planeta es...",
+                "opciones": [
+                    "De nuestra propiedad",
+                    "Un préstamo que debemos cuidar para el futuro",
+                    "Un vertedero gigante",
+                    "Un lugar del que podemos sacar todo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Reciclar es un acto de:",
+                "opciones": [
+                    "Aburrimiento",
+                    "Responsabilidad ciudadana",
+                    "Fuerza",
+                    "Moda"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Organización y Metas a largo plazo",
+        "texto": "A mitad de la ESO empezamos a pensar en el futuro. ¿Qué me gusta? ¿Qué quiero ser? Para alcanzar tus sueños necesitas OBJETIVOS claros y paciencia. Un gran sueño se construye con pequeñas metas diarias: estudiar un poco cada día, leer, practicar un deporte... No busques la recompensa inmediata de los videojuegos o el móvil siempre; hay cosas valiosas que requieren tiempo y esfuerzo. La disciplina no es un castigo, es la herramienta que te permite llegar a donde tú quieras estar mañana.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se construye un gran sueño según el texto?",
+                "opciones": [
+                    "Esperando que llegue solo",
+                    "Con pequeñas metas y esfuerzo diario",
+                    "Con mucha suerte",
+                    "Comprándolo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la disciplina?",
+                "opciones": [
+                    "Un castigo de los padres",
+                    "La herramienta para alcanzar tus metas a largo plazo",
+                    "Hacer lo que dice el vecino",
+                    "Gritar fuerte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de recompensa nos dan los móviles a menudo?",
+                "opciones": [
+                    "Inmediata y fácil",
+                    "Difícil y lenta",
+                    "Ninguna",
+                    "Eterna"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué se necesita para alcanzar los sueños?",
+                "opciones": [
+                    "Objetivos claros y paciencia",
+                    "Mucho dinero",
+                    "Estar sentado",
+                    "No hacer nada"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Cuándo empezamos a pensar más en nuestro futuro?",
+                "opciones": [
+                    "En primaria",
+                    "A mitad de la ESO",
+                    "A los 50 años",
+                    "Nunca"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "La Amistad Verdadera",
+        "texto": "Un amigo no es solo alguien con quien juegas o te ríes. Un amigo de verdad es el que te apoya cuando estás triste, el que te dice la verdad aunque duela y el que te ayuda a ser mejor persona. En 2nd ESO las amistades cambian y se vuelven más intensas. No busques tener 'miles de amigos' en redes, busca tener personas de confianza en las que apoyarte. La lealtad y el respeto son la base de cualquier relación sana. ¡Cuida a tus amigos, son uno de los tesoros más grandes de la vida!",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué define a un amigo de verdad?",
+                "opciones": [
+                    "Que te deja dinero siempre",
+                    "Te apoya en los malos momentos y te ayuda a mejorar",
+                    "Que te ríe todas las gracias aunque estén mal",
+                    "Que tiene la misma consola"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es mejor tener mil amigos en redes o pocos de confianza?",
+                "opciones": [
+                    "Mil amigos sin duda",
+                    "Pocos pero de confianza y reales",
+                    "Ninguno",
+                    "Da igual"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la base de una relación sana?",
+                "opciones": [
+                    "Los regalos",
+                    "La lealtad y el respeto",
+                    "Que piensen igual en todo",
+                    "La competición"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debe hacer un amigo si haces algo mal?",
+                "opciones": [
+                    "Animarte a seguir haciéndolo",
+                    "Decirte la verdad con respeto para ayudarte",
+                    "No decirte nada",
+                    "Reírse"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Hacia qué sentimiento van dirigidas las amistades en 2nd ESO?",
+                "opciones": [
+                    "Indiferencia",
+                    "Intensidad y cambio",
+                    "Aburrimiento",
+                    "Miedo"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

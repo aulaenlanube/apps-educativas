@@ -7,14 +7,27 @@
       "🚂",
       "✈️",
       "🚢",
-      "🚲"
+      "🚲",
+      "🚑",
+      "🚒",
+      "🚕",
+      "🚜",
+      "🛵",
+      "🚁"
     ],
     "intrusos": [
       "🏠",
       "🏫",
       "🌳",
       "🐶",
-      "🍔"
+      "🍔",
+      "🍕",
+      "🧸",
+      "🛋️",
+      "🛁",
+      "🛌",
+      "🧥",
+      "👟"
     ]
   },
   {
@@ -25,14 +38,26 @@
       "👮‍♂️",
       "👨‍🚒",
       "👩‍🍳",
-      "👨‍🌾"
+      "👨‍🌾",
+      "🕵️‍♂️",
+      "👨‍🎨",
+      "👩‍🚀",
+      "👨‍🔧",
+      "👩‍🔬",
+      "👨‍⚖️"
     ],
     "intrusos": [
       "👻",
       "👽",
       "🤖",
       "🐵",
-      "🗽"
+      "🗽",
+      "🧸",
+      "🪁",
+      "🏰",
+      "🦄",
+      "🐉",
+      "🧛"
     ]
   },
   {
@@ -41,16 +66,28 @@
       "🚦",
       "🏢",
       "🚌",
-      "⛲",
+      " fountain",
       "🏬",
-      "🏥"
+      "🏥",
+      "🏫",
+      "⛪",
+      "🏤",
+      "🏬",
+      "🏪",
+      "🏙️"
     ],
     "intrusos": [
       "🚜",
       "🌻",
       "🐄",
       "🐑",
-      "🏔️"
+      "🏔️",
+      "⛺",
+      "🌾",
+      "🐐",
+      "🐖",
+      "🐎",
+      "🌵"
     ]
   },
   {
@@ -61,14 +98,25 @@
       "✏️",
       "📏",
       "✂️",
-      "🖍️"
+      "🖍️",
+      "🗒️",
+      "🏫",
+      "🎓",
+      "🔔",
+      "📖",
+      "🖊️"
     ],
     "intrusos": [
       "🛌",
       "🛁",
       "🍳",
-      "📺",
-      "🎮"
+      " televisión",
+      "🎮",
+      "🧸",
+      "🍦",
+      "🥪",
+      "🛋️",
+      "🚿"
     ]
   },
   {
@@ -77,16 +125,29 @@
       "Padre",
       "Madre",
       "Hermano",
+      "Hermana",
       "Abuelo",
+      "Abuela",
       "Tío",
-      "Primo"
+      "Tía",
+      "Primo",
+      "Prima",
+      "Yayo",
+      "Yaya",
+      "Sobrino",
+      "Sobrina"
     ],
     "intrusos": [
       "Profesor",
       "Médico",
       "Vecino",
       "Amigo",
-      "Policía"
+      "Policía",
+      "Bombero",
+      "Cartero",
+      "Panadero",
+      "Cantante",
+      "Futbolista"
     ]
   },
   {
@@ -96,48 +157,80 @@
       "Salón",
       "Baño",
       "Dormitorio",
-      "Comedor"
+      "Comedor",
+      "Terraza",
+      "Garaje",
+      "Pasillo",
+      "Recibidor",
+      "Despensa",
+      "Jardín",
+      "Sótano"
     ],
     "intrusos": [
       "Colegio",
       "Parque",
       "Tienda",
       "Cine",
-      "Calle"
+      "Calle",
+      "Plaza",
+      "Museo",
+      "Hospital",
+      "Estación",
+      "Puente"
     ]
   },
   {
-    "categoria": "Servicios de la Calle",
+    "categoria": "Servicios y Mobiliario de la Calle",
     "correctos": [
       "Semáforo",
       "Papelera",
       "Farola",
       "Banco",
-      "Paso de cebra"
+      "Paso de cebra",
+      "Buzón",
+      "Fuente",
+      "Contenedor",
+      "Quiosco",
+      "Señal de tráfico"
     ],
     "intrusos": [
       "Sofá",
       "Cama",
       "Ducha",
       "Televisión",
-      "Nevera"
+      "Nevera",
+      "Alfombra",
+      "Microondas",
+      "Espejo",
+      "Lavadora",
+      "Armario"
     ]
   },
   {
-    "categoria": "Profesiones",
+    "categoria": "Profesiones del Sector Servicios",
     "correctos": [
       "Médico",
       "Profesor",
       "Policía",
       "Bombero",
-      "Panadero"
+      "Panadero",
+      "Cartero",
+      "Enfermero",
+      "Camarero",
+      "Vigilante",
+      "Limpiador"
     ],
     "intrusos": [
       "Niño",
       "Alumno",
       "Bebé",
       "Perro",
-      "Gato"
+      "Gato",
+      "Pájaro",
+      "Libro",
+      "Mochila",
+      "Estuche",
+      "Pizarra"
     ]
   },
   {
@@ -147,14 +240,24 @@
       "Televisión",
       "Radio",
       "Carta",
-      "Ordenador"
+      "Ordenador",
+      "Internet",
+      "Periódico",
+      "Revista",
+      "Tableta",
+      "Email"
     ],
     "intrusos": [
       "Coche",
       "Bicicleta",
       "Tren",
       "Avión",
-      "Barco"
+      "Barco",
+      "Camión",
+      "Autobús",
+      "Moto",
+      "Metro",
+      "Patinete"
     ]
   }
 ]

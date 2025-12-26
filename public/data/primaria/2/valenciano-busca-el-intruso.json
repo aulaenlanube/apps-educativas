@@ -7,14 +7,30 @@
       "🐭",
       "🐰",
       "🦊",
-      "🐻"
+      "🐻",
+      "🦁",
+      "🐯",
+      "🐵",
+      "🐙",
+      "🐋",
+      "🦜",
+      "🐄",
+      "🐷",
+      "🐸"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "⚽",
       "🏠",
-      "✏️"
+      "✏️",
+      "🍕",
+      "🍔",
+      "🚲",
+      "🎸",
+      "⌚",
+      "💻",
+      "🧸"
     ]
   },
   {
@@ -25,14 +41,28 @@
       "🍊",
       "🍌",
       "🍇",
-      "🍓"
+      "🍓",
+      "🍉",
+      "🍍",
+      "🍋",
+      "🍒",
+      "🍑",
+      "🥝",
+      "🥭"
     ],
     "intrusos": [
       "🥦",
       "🥕",
       "🥔",
       "🥩",
-      "🥚"
+      "🥚",
+      "🍟",
+      "🍕",
+      "🍔",
+      "🥓",
+      "🥐",
+      "🧀",
+      "🍗"
     ]
   },
   {
@@ -43,14 +73,27 @@
       "✏️",
       "📏",
       "✂️",
-      "🖍️"
+      "🖍️",
+      "📓",
+      "🏫",
+      "🖊️",
+      "🎓",
+      "📖",
+      "📎"
     ],
     "intrusos": [
       "🛌",
       "🛁",
       "🍳",
       "📺",
-      "🎮"
+      "🎮",
+      "🧸",
+      "🍦",
+      "🥪",
+      "🛋️",
+      "📻",
+      "🚲",
+      "🚗"
     ]
   },
   {
@@ -61,32 +104,64 @@
       "Groc",
       "Verd",
       "Blanc",
-      "Negre"
+      "Negre",
+      "Rosa",
+      "Taronja",
+      "Marró",
+      "Lila",
+      "Gris",
+      "Violeta",
+      "Daurat",
+      "Argentat"
     ],
     "intrusos": [
       "Taula",
       "Cadira",
       "Gat",
       "Gos",
-      "Llibre"
+      "Llibre",
+      "Corre",
+      "Salta",
+      "Menja",
+      "Bona",
+      "Malament",
+      "Gran",
+      "Petit"
     ]
   },
   {
-    "categoria": "Nombres 1-10",
+    "categoria": "Nombres 1-20",
     "correctos": [
       "U",
       "Dos",
       "Tres",
       "Quatre",
       "Cinc",
-      "Deu"
+      "Sis",
+      "Set",
+      "Huit",
+      "Nou",
+      "Deu",
+      "Onze",
+      "Dotze",
+      "Tretze",
+      "Catorze",
+      "Quinze",
+      "Vint"
     ],
     "intrusos": [
       "Roig",
       "Blau",
       "Dilluns",
       "Gener",
-      "Estiu"
+      "Estiu",
+      "Hivern",
+      "Gran",
+      "Petit",
+      "Gos",
+      "Gat",
+      "Taula",
+      "Cadira"
     ]
   },
   {
@@ -96,14 +171,28 @@
       "Mare",
       "Germà",
       "Germana",
-      "Iaio"
+      "Iaio",
+      "Iaia",
+      "Oncle",
+      "Tieta",
+      "Cosí",
+      "Cosina",
+      "Nét",
+      "Néta",
+      "Sogre",
+      "Sogra"
     ],
     "intrusos": [
       "Mestre",
       "Metge",
       "Amic",
       "Veí",
-      "Policia"
+      "Policia",
+      "Bomber",
+      "Carter",
+      "Infermer",
+      "Advocat",
+      "Dentista"
     ]
   },
   {
@@ -113,14 +202,24 @@
       "Dimarts",
       "Dimecres",
       "Dijous",
-      "Divendres"
+      "Divendres",
+      "Dissabte",
+      "Diumenge"
     ],
     "intrusos": [
       "Gener",
       "Febrer",
       "Estiu",
       "Hivern",
-      "Matí"
+      "Matí",
+      "Vesprada",
+      "Nit",
+      "Mes",
+      "Any",
+      "Setmana",
+      "Ahir",
+      "Hui",
+      "Demà"
     ]
   },
   {
@@ -131,14 +230,29 @@
       "Cama",
       "Mà",
       "Peu",
-      "Nas"
+      "Nas",
+      "Ull",
+      "Orella",
+      "Boca",
+      "Panxa",
+      "Coll",
+      "Genoll",
+      "Colze",
+      "Hombro",
+      "Dits"
     ],
     "intrusos": [
       "Samarreta",
       "Pantalons",
       "Sabates",
       "Barret",
-      "Ulleres"
+      "Ulleres",
+      "Rellotge",
+      "Mochilla",
+      "Llibre",
+      "Pilot",
+      "Cadira",
+      "Taula"
     ]
   }
 ]

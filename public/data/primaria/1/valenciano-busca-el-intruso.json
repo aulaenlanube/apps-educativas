@@ -1,5 +1,148 @@
 [
-  "A", "B", "C", "D", "E", "F", "G", "H",
-  "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-  "S", "T", "U", "V", "W", "X", "Y", "Z"
+  {
+    "categoria": "Les Vocals (Visual)",
+    "correctos": [
+      "A",
+      "E",
+      "I",
+      "O",
+      "U"
+    ],
+    "intrusos": [
+      "B",
+      "C",
+      "D",
+      "F",
+      "G",
+      "H",
+      "J"
+    ]
+  },
+  {
+    "categoria": "Material de l'Aula (Visual)",
+    "correctos": [
+      "🎒",
+      "📚",
+      "✏️",
+      "📏",
+      "✂️",
+      "🖍️"
+    ],
+    "intrusos": [
+      "🍎",
+      "🐶",
+      "🚗",
+      "🧸",
+      "🍕",
+      "🍔"
+    ]
+  },
+  {
+    "categoria": "Animals de Casa (Visual)",
+    "correctos": [
+      "🐶",
+      "🐱",
+      "🐰",
+      "🦜",
+      "🐹",
+      "🐢"
+    ],
+    "intrusos": [
+      "🦁",
+      "🐘",
+      "🦒",
+      "🦓",
+      "🐊",
+      "🦖"
+    ]
+  },
+  {
+    "categoria": "Fruites i Verdures (Visual)",
+    "correctos": [
+      "🍎",
+      "🍌",
+      "🍇",
+      "🍊",
+      "🥦",
+      "🥕"
+    ],
+    "intrusos": [
+      "🍦",
+      "🍩",
+      "🍪",
+      "🍕",
+      "🍔",
+      "🍟"
+    ]
+  },
+  {
+    "categoria": "Paraules amb la lletra L",
+    "correctos": [
+      "Lluna",
+      "Llibre",
+      "Llet",
+      "Lloc",
+      "Llàpis"
+    ],
+    "intrusos": [
+      "Mare",
+      "Pare",
+      "Casa",
+      "Gos",
+      "Gat"
+    ]
+  },
+  {
+    "categoria": "Colors Bàsics",
+    "correctos": [
+      "Roig",
+      "Blau",
+      "Groc",
+      "Verd",
+      "Rosa",
+      "Blanc"
+    ],
+    "intrusos": [
+      "Sol",
+      "Mar",
+      "Llibre",
+      "Goma",
+      "Aula"
+    ]
+  },
+  {
+    "categoria": "Membres de la Família",
+    "correctos": [
+      "Pare",
+      "Mare",
+      "Avi",
+      "Àvia",
+      "Germà",
+      "Germana"
+    ],
+    "intrusos": [
+      "Gos",
+      "Mesa",
+      "Cadira",
+      "Cotxe",
+      "Tren"
+    ]
+  },
+  {
+    "categoria": "Parts de la Cara",
+    "correctos": [
+      "Ulls",
+      "Nas",
+      "Boca",
+      "Orelles",
+      "Cabells"
+    ],
+    "intrusos": [
+      "Peu",
+      "Mà",
+      "Dits",
+      "Genoll",
+      "Panxa"
+    ]
+  }
 ]

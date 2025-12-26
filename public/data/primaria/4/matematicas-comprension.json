@@ -1,321 +1,571 @@
 [
   {
     "id": "1",
-    "titulo": "Las manzanas de Ana",
-    "texto": "Ana ha ido al mercado con su cesta. Ha comprado tres manzanas rojas y dos manzanas verdes. Cuando iba camino a casa, le ha entrado hambre y se ha comido una manzana roja. Ahora su cesta pesa un poco menos.",
+    "titulo": "Preparando la fiesta de fin de curso",
+    "texto": "En el colegio de Javi están organizando la fiesta de fin de curso. Han comprado 15 cajas de refrescos y en cada caja hay 12 botellas. Para la comida, han encargado 4 pizzas gigantes. Cada pizza está cortada en 8 porciones iguales. Si hay 30 alumnos en clase, quieren saber si habrá suficiente para todos.",
     "preguntas": [
       {
-        "pregunta": "¿Ana ha comprado peras?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántas botellas de refresco tienen en total?",
+        "opciones": [
+          "150 botellas",
+          "180 botellas",
+          "165 botellas",
+          "200 botellas"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Ha comprado más manzanas rojas que verdes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Cuántas porciones de pizza hay en total?",
+        "opciones": [
+          "24 porciones",
+          "32 porciones",
+          "40 porciones",
+          "12 porciones"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas manzanas rojas compró al principio?",
-        "opciones": ["Una", "Dos", "Tres", "Cuatro"],
+        "pregunta": "Si cada alumno quiere una porción de pizza, ¿sobrará alguna?",
+        "opciones": [
+          "No sobrará ninguna",
+          "Sobrarán 2 porciones",
+          "Sobran 4 porciones",
+          "Faltarán porciones"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántos alumnos hay en la clase?",
+        "opciones": [
+          "15 alumnos",
+          "12 alumnos",
+          "30 alumnos",
+          "4 alumnos"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuántas manzanas verdes compró?",
-        "opciones": ["Una", "Dos", "Tres", "Cinco"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuántas manzanas le quedan en total al final?",
-        "opciones": ["Tres", "Cuatro", "Cinco", "Seis"],
-        "correcta": 1
+        "pregunta": "Si quieren repartir los refrescos equitativamente, ¿cuántas botellas le tocan a cada alumno?",
+        "opciones": [
+          "4 botellas",
+          "5 botellas",
+          "6 botellas",
+          "10 botellas"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "El autobús escolar",
-    "texto": "El autobús del colegio lleva a diez niños sentados. En la primera parada se bajan tres niños que ya han llegado a su casa. El conductor cierra la puerta y sigue conduciendo hasta la siguiente parada.",
+    "titulo": "El huerto escolar",
+    "texto": "Los alumnos de 4º han plantado un huerto rectangular. El largo del huerto mide 8 metros y el ancho mide 5 metros. Quieren poner una valla alrededor para que no entren los conejos. Además, han decidido dedicar 2/5 del huerto a plantar lechugas y el resto a tomates.",
     "preguntas": [
       {
-        "pregunta": "¿El autobús va lleno de abuelos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es el área total del huerto?",
+        "opciones": [
+          "13 metros cuadrados",
+          "40 metros cuadrados",
+          "26 metros cuadrados",
+          "30 metros cuadrados"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Se bajan niños en la primera parada?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántos metros de valla necesitan para rodear todo el huerto (perímetro)?",
+        "opciones": [
+          "13 metros",
+          "26 metros",
+          "40 metros",
+          "20 metros"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué fracción del huerto está dedicada a los tomates?",
+        "opciones": [
+          "1/5",
+          "2/5",
+          "3/5",
+          "4/5"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos metros cuadrados ocupan las lechugas?",
+        "opciones": [
+          "16 metros cuadrados",
+          "8 metros cuadrados",
+          "20 metros cuadrados",
+          "10 metros cuadrados"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Cuántos niños había al principio?",
-        "opciones": ["Ocho", "Nueve", "Diez", "Once"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cuántos niños se bajan?",
-        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cuántos niños quedan en el autobús?",
-        "opciones": ["Cinco", "Seis", "Siete", "Ocho"],
+        "pregunta": "¿Qué forma tiene el huerto?",
+        "opciones": [
+          "Cuadrada",
+          "Triangular",
+          "Rectangular",
+          "Circular"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Figuras en el parque",
-    "texto": "En el parque hay muchas formas diferentes. Las ruedas de las bicicletas son círculos redondos. El banco para sentarse es un rectángulo largo de madera. La señal de tráfico tiene forma de triángulo con el borde rojo.",
+    "titulo": "Ahorrando para la bicicleta",
+    "texto": "Marta quiere comprarse una bicicleta que cuesta 120 euros. Ya tiene ahorrados 45 euros. Sus abuelos le han dado 30 euros por su cumpleaños y ella ha decidido ahorrar 5 euros cada semana de su paga. Marta quiere saber cuántas semanas tardará en tener todo el dinero.",
     "preguntas": [
       {
-        "pregunta": "¿Las ruedas son cuadradas?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuánto dinero tiene ahorrado Marta antes de empezar a ahorrar su paga semanal?",
+        "opciones": [
+          "45 euros",
+          "75 euros",
+          "30 euros",
+          "120 euros"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿La señal es un triángulo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué forma tienen las ruedas?",
-        "opciones": ["Cuadrado", "Círculo", "Triángulo", "Rombo"],
+        "pregunta": "¿Cuánto dinero le falta todavía para llegar a los 120 euros?",
+        "opciones": [
+          "55 euros",
+          "45 euros",
+          "35 euros",
+          "50 euros"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué es un rectángulo?",
-        "opciones": ["La señal", "La rueda", "El banco", "El árbol"],
+        "pregunta": "¿Cuántas semanas tendrá que ahorrar su paga de 5 euros para completar el dinero?",
+        "opciones": [
+          "5 semanas",
+          "8 semanas",
+          "9 semanas",
+          "10 semanas"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿De qué color es el borde de la señal?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
+        "pregunta": "¿Cuánto le dieron sus abuelos?",
+        "opciones": [
+          "5 euros",
+          "45 euros",
+          "30 euros",
+          "120 euros"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "Si la bicicleta costara el doble, ¿cuánto dinero necesitaría en total?",
+        "opciones": [
+          "200 euros",
+          "240 euros",
+          "180 euros",
+          "150 euros"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "La hucha de Pablo",
-    "texto": "Pablo está ahorrando dinero en su hucha de cerdito. Tiene una moneda de dos euros y dos monedas de un euro. Quiere comprarse un coche de juguete que cuesta cinco euros. Tendrá que ahorrar un poco más.",
+    "titulo": "El viaje en tren",
+    "texto": "Un tren sale de la estación a las 10:15 de la mañana. El viaje dura 2 horas y 45 minutos. El tren tiene 6 vagones y en cada vagón hay 48 asientos. En el momento de la salida, el tren va por la mitad de su capacidad.",
     "preguntas": [
       {
-        "pregunta": "¿La hucha tiene forma de perro?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿A qué hora llegará el tren a su destino?",
+        "opciones": [
+          "A las 12:45",
+          "A las 13:00",
+          "A las 13:15",
+          "A las 12:15"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Pablo quiere comprar chuches?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántos asientos tiene el tren en total?",
+        "opciones": [
+          "240 asientos",
+          "288 asientos",
+          "300 asientos",
+          "250 asientos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas monedas de un euro tiene?",
-        "opciones": ["Una", "Dos", "Tres", "Ninguna"],
+        "pregunta": "¿Cuántos pasajeros hay en el tren si va a media capacidad?",
+        "opciones": [
+          "120 pasajeros",
+          "144 pasajeros",
+          "150 pasajeros",
+          "96 pasajeros"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuánto dinero tiene en total?",
-        "opciones": ["Dos euros", "Tres euros", "Cuatro euros", "Cinco euros"],
+        "pregunta": "¿Cuántos vagones tiene el tren?",
+        "opciones": [
+          "4 vagones",
+          "8 vagones",
+          "6 vagones",
+          "10 vagones"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuánto cuesta el coche?",
-        "opciones": ["Tres euros", "Cuatro euros", "Cinco euros", "Seis euros"],
-        "correcta": 2
+        "pregunta": "Si cada billete cuesta 10 euros, ¿cuánto dinero han recaudado en total?",
+        "opciones": [
+          "1.440 euros",
+          "2.880 euros",
+          "1.200 euros",
+          "1.500 euros"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "La torre de bloques",
-    "texto": "Sara está construyendo una torre muy alta. Ha puesto cuatro bloques azules en la base. Encima ha puesto tres bloques rojos. Y arriba del todo ha puesto un bloque amarillo. La torre no se cae.",
+    "titulo": "La biblioteca del barrio",
+    "texto": "En la biblioteca del barrio hay 1.500 libros. La mitad de los libros son de literatura infantil. De esos libros infantiles, 1/3 son de aventuras y el resto son de misterio. El bibliotecario quiere organizar los libros de aventuras en estanterías donde caben 50 libros en cada una.",
     "preguntas": [
       {
-        "pregunta": "¿La torre se ha caído?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Hay bloques verdes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De qué color son los bloques de abajo?",
-        "opciones": ["Rojos", "Amarillos", "Azules", "Naranjas"],
+        "pregunta": "¿Cuántos libros son de literatura infantil?",
+        "opciones": [
+          "500 libros",
+          "1.000 libros",
+          "750 libros",
+          "250 libros"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuántos bloques rojos hay?",
-        "opciones": ["Dos", "Tres", "Cuatro", "Cinco"],
+        "pregunta": "¿Cuántos libros de aventuras hay?",
+        "opciones": [
+          "250 libros",
+          "500 libros",
+          "125 libros",
+          "300 libros"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuántas estanterías necesitará para los libros de aventuras?",
+        "opciones": [
+          "5 estanterías",
+          "10 estanterías",
+          "4 estanterías",
+          "6 estanterías"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuántos libros son de misterio?",
+        "opciones": [
+          "250 libros",
+          "500 libros",
+          "750 libros",
+          "1.000 libros"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos bloques hay en total?",
-        "opciones": ["Siete", "Ocho", "Nueve", "Diez"],
-        "correcta": 1
+        "pregunta": "Si llegaran 250 libros nuevos, ¿cuántos habría en total en la biblioteca?",
+        "opciones": [
+          "1.750 libros",
+          "2.000 libros",
+          "1.600 libros",
+          "1.800 libros"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "El reloj de pared",
-    "texto": "En la clase hay un reloj redondo en la pared. La aguja pequeña marca las horas y la aguja grande marca los minutos. Ahora la aguja pequeña señala el nueve y la grande el doce. ¡Es la hora de entrar a clase!",
+    "titulo": "Mediciones en educación física",
+    "texto": "En la clase de gimnasia, los alumnos han medido cuánto saltan. Pablo ha saltado 1 metro y 25 centímetros. Lucía ha saltado 140 centímetros. El profesor dice que el récord del colegio está en 2 metros. Todos quieren intentar superarlo en el próximo trimestre.",
     "preguntas": [
       {
-        "pregunta": "¿El reloj es cuadrado?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántos centímetros ha saltado Pablo?",
+        "opciones": [
+          "100 cm",
+          "125 cm",
+          "150 cm",
+          "120 cm"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿La aguja pequeña marca los minutos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Quién ha saltado más, Pablo o Lucía?",
+        "opciones": [
+          "Pablo",
+          "Lucía",
+          "Han saltado lo mismo",
+          "No se puede saber"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué número señala la aguja pequeña?",
-        "opciones": ["El seis", "El doce", "El tres", "El nueve"],
-        "correcta": 3
+        "pregunta": "¿Cuántos centímetros le faltan a Lucía para llegar al récord de 2 metros?",
+        "opciones": [
+          "60 cm",
+          "50 cm",
+          "40 cm",
+          "70 cm"
+        ],
+        "correcta": 0
       },
       {
-        "pregunta": "¿Qué hora es?",
-        "opciones": ["Las ocho", "Las nueve", "Las diez", "Las once"],
+        "pregunta": "¿Cuántos centímetros le faltan a Pablo para saltar lo mismo que Lucía?",
+        "opciones": [
+          "10 cm",
+          "15 cm",
+          "20 cm",
+          "25 cm"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué toca hacer ahora?",
-        "opciones": ["Irse a casa", "Comer", "Entrar a clase", "Dormir"],
-        "correcta": 2
+        "pregunta": "¿A cuántos centímetros equivalen los 2 metros del récord?",
+        "opciones": [
+          "20 cm",
+          "200 cm",
+          "2.000 cm",
+          "100 cm"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Izquierda y derecha",
-    "texto": "Luis está aprendiendo los lados. En su mano derecha lleva una pulsera de colores. Con su mano izquierda sujeta un balón. Su perro Toby está sentado a su derecha, moviendo la cola.",
+    "titulo": "La colección de cromos",
+    "texto": "Dani tiene 240 cromos en su colección. La cuarta parte de los cromos son de jugadores de baloncesto y el resto son de fútbol. Su amigo le regala 3 paquetes de cromos nuevos, y cada paquete trae 6 cromos.",
     "preguntas": [
       {
-        "pregunta": "¿Toby es un gato?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Luis lleva una pulsera?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántos cromos de baloncesto tiene Dani?",
+        "opciones": [
+          "60 cromos",
+          "40 cromos",
+          "80 cromos",
+          "120 cromos"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿En qué mano lleva la pulsera?",
-        "opciones": ["Izquierda", "Derecha", "En las dos", "En ninguna"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué tiene en la mano izquierda?",
-        "opciones": ["Un lápiz", "Una manzana", "Un balón", "Un libro"],
+        "pregunta": "¿Cuántos cromos de fútbol tiene?",
+        "opciones": [
+          "120 cromos",
+          "200 cromos",
+          "180 cromos",
+          "160 cromos"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Dónde está el perro?",
-        "opciones": ["A la izquierda", "A la derecha", "Delante", "Detrás"],
+        "pregunta": "¿Cuántos cromos nuevos le ha regalado su amigo?",
+        "opciones": [
+          "9 cromos",
+          "12 cromos",
+          "18 cromos",
+          "24 cromos"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos cromos tendrá Dani después del regalo de su amigo?",
+        "opciones": [
+          "258 cromos",
+          "249 cromos",
+          "246 cromos",
+          "270 cromos"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "Si Dani reparte sus 240 cromos originales en 8 sobres iguales, ¿cuántos cromos habrá en cada sobre?",
+        "opciones": [
+          "20 cromos",
+          "30 cromos",
+          "40 cromos",
+          "25 cromos"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "La carrera de caracoles",
-    "texto": "Tres caracoles hacen una carrera. El caracol Rayo ha llegado el primero a la meta. El caracol Lento ha llegado el último. El caracol Fiti ha llegado entre los dos, en segunda posición.",
+    "titulo": "Las compras del supermercado",
+    "texto": "Mi madre ha comprado 3 kg de naranjas a 2 euros el kilo, y 2 kg de manzanas a 3 euros el kilo. También ha comprado un paquete de arroz que cuesta 1,50 euros. Ha pagado con un billete de 20 euros y quiere saber cuánto dinero le devolverán.",
     "preguntas": [
       {
-        "pregunta": "¿Son caracoles rápidos?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Han hecho una carrera?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Quién ha ganado (primero)?",
-        "opciones": ["Lento", "Fiti", "Rayo", "Turbo"],
+        "pregunta": "¿Cuánto han costado las naranjas?",
+        "opciones": [
+          "3 euros",
+          "5 euros",
+          "6 euros",
+          "2 euros"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿En qué puesto quedó Fiti?",
-        "opciones": ["Primero", "Segundo", "Tercero", "Cuarto"],
+        "pregunta": "¿Cuánto han costado las manzanas?",
+        "opciones": [
+          "6 euros",
+          "5 euros",
+          "4 euros",
+          "3 euros"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuál es el precio total de la compra?",
+        "opciones": [
+          "12 euros",
+          "13,50 euros",
+          "15 euros",
+          "10,50 euros"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Quién llegó el último?",
-        "opciones": ["Rayo", "Fiti", "Lento", "Bob"],
+        "pregunta": "¿Cuánto dinero le devolverán de los 20 euros?",
+        "opciones": [
+          "8 euros",
+          "7,50 euros",
+          "6,50 euros",
+          "5,50 euros"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos kilos de fruta ha comprado en total?",
+        "opciones": [
+          "3 kg",
+          "2 kg",
+          "5 kg",
+          "6 kg"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Repartiendo caramelos",
-    "texto": "Tengo seis caramelos de fresa y quiero repartirlos con mi amigo. Le doy tres caramelos a él y yo me quedo con los otros tres. Ahora los dos tenemos la misma cantidad. ¡Qué ricos están!",
+    "titulo": "Geometría en el dibujo",
+    "texto": "En clase de dibujo, Elena ha dibujado un hexágono regular que tiene 6 cm de lado. A su lado, ha dibujado un triángulo equilátero que tiene el mismo perímetro que el hexágono. Elena se pregunta cuánto mide cada lado del triángulo.",
     "preguntas": [
       {
-        "pregunta": "¿Los caramelos son de limón?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es el perímetro del hexágono?",
+        "opciones": [
+          "24 cm",
+          "30 cm",
+          "36 cm",
+          "12 cm"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos lados tiene un hexágono?",
+        "opciones": [
+          "4 lados",
+          "5 lados",
+          "6 lados",
+          "8 lados"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Si el triángulo tiene el mismo perímetro (36 cm), ¿cuánto mide cada lado del triángulo?",
+        "opciones": [
+          "10 cm",
+          "12 cm",
+          "9 cm",
+          "18 cm"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Tenemos la misma cantidad?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué significa que el triángulo sea equilátero?",
+        "opciones": [
+          "Que tiene dos lados iguales",
+          "Que tiene todos los lados diferentes",
+          "Que tiene los tres lados iguales",
+          "Que tiene un ángulo recto"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos lados tiene el triángulo?",
+        "opciones": [
+          "3 lados",
+          "4 lados",
+          "2 lados",
+          "5 lados"
+        ],
         "correcta": 0
-      },
-      {
-        "pregunta": "¿Cuántos caramelos tenía al principio?",
-        "opciones": ["Cuatro", "Cinco", "Seis", "Ocho"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cuántos le doy a mi amigo?",
-        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿De qué sabor son?",
-        "opciones": ["Menta", "Fresa", "Naranja", "Cola"],
-        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El calendario",
-    "texto": "El mes de enero tiene treinta y un días. Es el primer mes del año y hace frío. En el calendario he marcado en rojo el día de mi cumpleaños, que es el día quince. ¡Haré una fiesta!",
+    "titulo": "Reparto de caramelos en el cumpleaños",
+    "texto": "Por su cumpleaños, Luis ha traído 100 caramelos para repartir. En su clase hay 25 alumnos. Quiere dar el mismo número de caramelos a cada compañero. Luego, su madre le dice que guarde 10 caramelos para sus primos que irán a casa por la tarde.",
     "preguntas": [
       {
-        "pregunta": "¿Enero es el último mes?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántos caramelos le tocarían a cada alumno si repartiera los 100?",
+        "opciones": [
+          "2 caramelos",
+          "4 caramelos",
+          "5 caramelos",
+          "10 caramelos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Hace calor en enero?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Si primero guarda los 10 caramelos para sus primos, ¿cuántos le quedan para llevar al colegio?",
+        "opciones": [
+          "100 caramelos",
+          "80 caramelos",
+          "90 caramelos",
+          "110 caramelos"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Con los 90 caramelos que quedan, si los reparte entre los 25 alumnos, ¿cuántos le sobran?",
+        "opciones": [
+          "5 caramelos",
+          "10 caramelos",
+          "15 caramelos",
+          "No sobra ninguno"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos alumnos hay en la clase de Luis?",
+        "opciones": [
+          "100 alumnos",
+          "10 alumnos",
+          "25 alumnos",
+          "90 alumnos"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Si tuviera el doble de caramelos (200), ¿cuántos le daría a cada uno de los 25 alumnos?",
+        "opciones": [
+          "4 caramelos",
+          "8 caramelos",
+          "10 caramelos",
+          "12 caramelos"
+        ],
         "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuántos días tiene enero?",
-        "opciones": ["Veinte", "Treinta", "Treinta y uno", "Veintiocho"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué día es el cumpleaños?",
-        "opciones": ["El uno", "El diez", "El quince", "El veinte"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿De qué color marcó el día?",
-        "opciones": ["Azul", "Verde", "Rojo", "Negro"],
-        "correcta": 2
       }
     ]
   }

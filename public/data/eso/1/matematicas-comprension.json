@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "Divisibilidad: Múltiplos y Divisores",
+        "texto": "Decimos que un número es múltiplo de otro si lo contiene una cantidad exacta de veces. Por ejemplo, 12 es múltiplo de 3 porque 3 x 4 = 12. Por el contrario, decimos que un número es divisor de otro si al dividir el segundo por el primero el resto es cero (ej: 3 es divisor de 12). Los números primos son aquellos que solo tienen dos divisores: el 1 y ellos mismos (como 2, 3, 5, 7, 11...). Los números compuestos tienen más de dos divisores. Todo número compuesto se puede descomponer en un producto de factores primos únicos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un número primo?",
+                "opciones": [
+                    "Un número muy grande",
+                    "Aquel con solo dos divisores: 1 y él mismo",
+                    "Aquel que termina en cifra par",
+                    "Un número que no tiene divisores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál de estos números es compuesto?",
+                "opciones": [
+                    "3",
+                    "5",
+                    "7",
+                    "9 (divisible por 1, 3 y 9)"
+                ],
+                "correcta": 3
+            },
+            {
+                "pregunta": "Si dividimos 15 entre 3 y el resto es 0, ¿qué es el 3?",
+                "opciones": [
+                    "Múltiplo de 15",
+                    "Divisor de 15",
+                    "Suma de 15",
+                    "Factor primo de 5"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué número es el único primo par?",
+                "opciones": [
+                    "0",
+                    "2",
+                    "4",
+                    "10"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el proceso de escribir un número como multiplicación de primos?",
+                "opciones": [
+                    "Suma",
+                    "División",
+                    "Factorización o descomposición",
+                    "Resta"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Los Números Enteros y el Ascensor",
+        "texto": "El conjunto de los números enteros (Z) incluye a los naturales (positivos), al cero y a los negativos. Son muy útiles para representar posiciones. Imagina un ascensor: la planta calle es el 0. Los pisos de oficinas son +1, +2... y los sótanos de garaje son -1, -2... Para sumar enteros, si tienen el mismo signo se suman sus valores absolutos y se deja el signo. Si tienen distinto signo, se restan los valores absolutos y se pone el signo del que sea mayor. Así, si estoy en el sótano -2 y subo 5 plantas, llegaré a la planta +3.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué números forman los enteros?",
+                "opciones": [
+                    "Solo los positivos",
+                    "Positivos, negativos y el cero",
+                    "Solo los decimales",
+                    "Solo las fracciones"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el resultado de la operación: -5 + 2?",
+                "opciones": [
+                    "-7",
+                    "-3",
+                    "3",
+                    "7"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué número representa una profundidad de 20 metros bajo el mar?",
+                "opciones": [
+                    "+20",
+                    "0",
+                    "-20",
+                    "20,5"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "En un termómetro, ¿qué temperatura es más fría?",
+                "opciones": [
+                    "2 ºC",
+                    "-5 ºC",
+                    "-10 ºC",
+                    "0 ºC"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Si estás en el piso -3 y bajas 2 pisos más, ¿en cuál estás?",
+                "opciones": [
+                    "-1",
+                    "-5",
+                    "+5",
+                    "0"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Fracciones: Partes de un todo",
+        "texto": "Una fracción representa una división o una parte de una unidad. El NUMERADOR (número de arriba) indica cuántas partes tomamos, y el DENOMINADOR (abajo) indica en cuántas partes iguales se divide el total. Por ejemplo, en 3/4 tomamos tres partes de un total de cuatro. Dos fracciones son EQUIVALENTES si representan la misma cantidad (ej: 1/2 es igual a 2/4). Para comparar fracciones con distinto denominador, debemos buscar primero un denominador común usando el mínimo común múltiplo (m.c.m.).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué indica el denominador de una fracción?",
+                "opciones": [
+                    "Las partes que tomamos",
+                    "En cuántas partes se divide el total",
+                    "El resultado de la suma",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál de estas fracciones es equivalente a 1/3?",
+                "opciones": [
+                    "2/3",
+                    "3/9",
+                    "4/3",
+                    "1/6"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si te comes 4/4 de una pizza, ¿cuánta pizza has comido?",
+                "opciones": [
+                    "Media pizza",
+                    "Toda la pizza (la unidad)",
+                    "Un trozo",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llaman las fracciones que representan la misma parte?",
+                "opciones": [
+                    "Distintas",
+                    "Equivalentes",
+                    "Inversas",
+                    "Primas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué necesitamos para sumar fracciones con distinto denominador?",
+                "opciones": [
+                    "Directamente sumar",
+                    "Cualquier número",
+                    "Un denominador común",
+                    "Multiplicar por cero"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Potencias y Raíces Cuadradas",
+        "texto": "Una potencia es una forma abreviada de escribir una multiplicación de factores iguales. En 5³, el 5 es la BASE y el 3 es el EXPONENTE (significa 5x5x5 = 125). Las potencias de base 10 son muy útiles para escribir números muy grandes. La operación inversa a la potencia al cuadrado es la RAÍZ CUADRADA. La raíz de un número es otro que, elevado al cuadrado, nos da el primero. Por ejemplo, la raíz cuadrada de 49 es 7, porque 7² = 49. Los números cuya raíz es un entero se llaman cuadrados perfectos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuánto es 2³?",
+                "opciones": [
+                    "6",
+                    "8",
+                    "9",
+                    "32"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En la potencia 3⁴, ¿cuál es el exponente?",
+                "opciones": [
+                    "3",
+                    "4",
+                    "81",
+                    "12"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la raíz cuadrada de 64?",
+                "opciones": [
+                    "6",
+                    "7",
+                    "8",
+                    "9"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué es un cuadrado perfecto?",
+                "opciones": [
+                    "Un dibujo",
+                    "Un número con raíz cuadrada exacta",
+                    "Un número impar",
+                    "Un número negativo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuánto es 10²?",
+                "opciones": [
+                    "20",
+                    "100",
+                    "1000",
+                    "50"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Magnitudes directamente proporcionales",
+        "texto": "Dos magnitudes son directamente proporcionales si al aumentar el doble una, la otra también aumenta el doble (o si una disminuye a la mitad, la otra también). Por ejemplo: el peso de las manzanas y su precio. Si 1 kg cuesta 2 €, 2 kg costarán 4 €. Para resolver problemas de proporcionalidad usamos la REGLA DE TRES DIRECTA. Multiplicamos en cruz y dividimos por el tercer dato. Los porcentajes (%) son también un caso de proporcionalidad donde el total es siempre 100.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué pasa si dos magnitudes son directamente proporcionales y triplicas una?",
+                "opciones": [
+                    "La otra se queda igual",
+                    "La otra se triplica",
+                    "La otra se divide entre tres",
+                    "La otra desaparece"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si 3 cuadernos cuestan 6 €, ¿cuánto cuestan 5 cuadernos?",
+                "opciones": [
+                    "8 €",
+                    "10 €",
+                    "12 €",
+                    "15 €"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué porcentaje representa la mitad de algo?",
+                "opciones": [
+                    "10%",
+                    "25%",
+                    "50%",
+                    "100%"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cómo se suele resolver la proporcionalidad directa?",
+                "opciones": [
+                    "Con una resta",
+                    "Con una regla de tres directa",
+                    "Con un dibujo",
+                    "Al azar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un pantalón de 40 € tiene un 10% de descuento, ¿cuánto dinero nos descuentan?",
+                "opciones": [
+                    "1 €",
+                    "4 €",
+                    "10 €",
+                    "40 €"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Ángulos y Triángulos",
+        "texto": "Un ángulo es la región del plano entre dos semirrectas con el mismo origen. Se miden en grados (º). Un ángulo RECTO mide 90º, uno AGUDO menos de 90º y uno OBTUSO más de 90º. Los triángulos se pueden clasificar según sus ángulos. Si tiene un ángulo recto es un triángulo RECTÁNGULO; si todos son agudos es ACUTÁNGULO; y si tiene uno obtuso es OBTUSÁNGULO. Un dato fundamental es que la suma de los tres ángulos de cualquier triángulo siempre es 180º.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuánto mide un ángulo recto?",
+                "opciones": [
+                    "45º",
+                    "90º",
+                    "180º",
+                    "360º"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el triángulo con un ángulo mayor de 90º?",
+                "opciones": [
+                    "Equilátero",
+                    "Rectángulo",
+                    "Obtusángulo",
+                    "Acutángulo"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuánto suman los ángulos interiores de un triángulo?",
+                "opciones": [
+                    "90º",
+                    "180º",
+                    "360º",
+                    "Varía según el triángulo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un triángulo tiene tres ángulos de 60º, es:",
+                "opciones": [
+                    "Obtusángulo",
+                    "Rectángulo",
+                    "Acutángulo",
+                    "No existe"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cómo se llama el ángulo que mide 180º?",
+                "opciones": [
+                    "Agudo",
+                    "Recto",
+                    "Llano",
+                    "Completo"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Introducción al Álgebra",
+        "texto": "El álgebra utiliza letras para representar números desconocidos o variables. Las expresiones algebraicas combinan números y letras con operaciones. Por ejemplo, '2x + 3'. Una ECUACIÓN es una igualdad entre dos expresiones algebraicas (ej: x + 5 = 12). Resolver una ecuación de primer grado consiste en encontrar el valor de la incógnita (la letra) que hace que la igualdad sea cierta. Usamos la técnica de 'pasar términos': lo que está sumando pasa al otro lado restando, y lo que está multiplicando pasa dividiendo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué usamos en álgebra para representar números desconocidos?",
+                "opciones": [
+                    "Colores",
+                    "Letras",
+                    "Espacios en blanco",
+                    "Solo números"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la solución de la ecuación x + 10 = 15?",
+                "opciones": [
+                    "5",
+                    "10",
+                    "25",
+                    "0"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Si una letra está multiplicada por 2 (2x = 10), ¿cómo pasa el 2 al otro lado?",
+                "opciones": [
+                    "Suma",
+                    "Resta",
+                    "Dividiendo",
+                    "Multiplicando"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "En la expresión '3b', ¿qué operación hay entre el 3 y la b?",
+                "opciones": [
+                    "Suma",
+                    "Resta",
+                    "Multiplicación",
+                    "Potencia"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué es una ecuación?",
+                "opciones": [
+                    "Una suma difícil",
+                    "Una igualdad entre dos expresiones",
+                    "Un tipo de número",
+                    "Una regla de medir"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Áreas y Perímetros de Polígonos",
+        "texto": "El PERÍMETRO de una figura es la suma de las longitudes de todos sus lados (el contorno). El ÁREA es la medida de la superficie interior. Cada figura tiene su fórmula. Para un RECTÁNGULO, el área es 'base x altura'. Para un TRIÁNGULO, es '(base x altura) / 2'. Para un cuadrado, es 'lado x lado'. Es importante no confundir estas medidas; si medimos un jardín, el perímetro nos dirá cuánta valla comprar y el área cuántos metros de césped necesitamos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se calcula el perímetro de cualquier polígono?",
+                "opciones": [
+                    "Multiplicando lados",
+                    "Sumando la longitud de todos sus lados",
+                    "Restando la base",
+                    "Dividiendo entre dos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el área de un rectángulo de base 5 cm y altura 4 cm?",
+                "opciones": [
+                    "9 cm²",
+                    "18 cm²",
+                    "20 cm²",
+                    "40 cm²"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál es la fórmula del área del triángulo?",
+                "opciones": [
+                    "lado + lado",
+                    "(base x altura) / 2",
+                    "base + altura",
+                    "lado x lado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un cuadrado tiene un lado de 3 cm, ¿cuál es su área?",
+                "opciones": [
+                    "6 cm²",
+                    "9 cm²",
+                    "12 cm²",
+                    "3 cm²"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué unidades se suelen usar para medir superficies (áreas)?",
+                "opciones": [
+                    "Metros",
+                    "Segundos",
+                    "Metros cuadrados (m²)",
+                    "Litros"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Estadística: Media, Moda y Rango",
+        "texto": "La estadística nos ayuda a analizar datos de un grupo. La MEDIA aritmética se calcula sumando todos los datos y dividiendo entre el número total. La MODA es el dato que más se repite. El RANGO es la diferencia entre el valor más alto y el más bajo. Por ejemplo, en las notas [5, 7, 7, 9], la moda es 7 y el rango es 4 (9-5). Estos valores nos permiten resumir mucha información en unos pocos números representativos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llama el valor que más se repite en un conjunto de datos?",
+                "opciones": [
+                    "Media",
+                    "Rango",
+                    "Moda",
+                    "Frecuencia"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál es la media de los números 2, 4, 6?",
+                "opciones": [
+                    "4 (2+4+6=12; 12/3=4)",
+                    "6",
+                    "12",
+                    "7"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Si en una clase las edades son de 12 a 15 años, ¿cuál es el rango?",
+                "opciones": [
+                    "27",
+                    "12",
+                    "3",
+                    "15"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué hay que hacer para hallar la media?",
+                "opciones": [
+                    "Restar todo",
+                    "Sumar todos los datos y dividir por el número de datos",
+                    "Multiplicar los extremos",
+                    "Elegir el número del medio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En los datos [10, 10, 2, 2, 10], ¿cuál es la moda?",
+                "opciones": [
+                    "2",
+                    "10",
+                    "5",
+                    "34"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Probabilidad: ¿Es posible que ocurra?",
+        "texto": "La probabilidad mide las posibilidades de que un suceso ocurra al azar. Se expresa como una fracción: (casos favorables) / (casos posibles). Al lanzar un dado, los casos posibles son 6. Si queremos sacar un '5', hay 1 caso favorable, así que la probabilidad es 1/6. Un suceso SEGURO tiene probabilidad 1 (siempre ocurre); un suceso IMPOSIBLE tiene probabilidad 0 (nunca ocurre). La mayoría de sucesos son 'posibles' y su valor está entre 0 y 1.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la probabilidad de sacar un número 7 al lanzar un dado de 6 caras?",
+                "opciones": [
+                    "1/6",
+                    "0 (suceso imposible)",
+                    "1 (suceso seguro)",
+                    "7/6"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la probabilidad de sacar 'cara' al lanzar una moneda?",
+                "opciones": [
+                    "1/1",
+                    "1/2",
+                    "0",
+                    "1/4"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama un suceso que siempre ocurre?",
+                "opciones": [
+                    "Probable",
+                    "Seguro",
+                    "Imposible",
+                    "Dudoso"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En una bolsa con 4 bolas rojas y 4 azules, ¿qué probabilidad hay de sacar una roja?",
+                "opciones": [
+                    "1/8",
+                    "4/8 (o 1/2)",
+                    "1/4",
+                    "100%"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué valor de probabilidad representa un suceso imposible?",
+                "opciones": [
+                    "1",
+                    "0,5",
+                    "0",
+                    "100"
+                ],
+                "correcta": 2
+            }
+        ]
+    }
+]

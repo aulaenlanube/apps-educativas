@@ -1,17 +1,122 @@
 {
-  "revoluciones": [
-    "francesa", "industrial", "rusa", "americana", "burguesía", "proletariado", "fábrica", "máquina de vapor", "guillotina", "sindicato"
+  "revoluciones_liberales": [
+    "antiguo régimen",
+    "ilustración",
+    "revolución francesa",
+    "declaración de derechos",
+    "napoleón",
+    "bastilla",
+    "constitucion 1812",
+    "liberalismo",
+    "nacionalismo",
+    "revolución industrial"
   ],
-  "guerras_mundiales": [
-    "trinchera", "aliados", "potencias centrales", "eje", "nazismo", "fascismo", "holocausto", "bomba atómica", "guerra fría", "muro de berlín"
+  "imperialismo_primera_guerra": [
+    "colonización",
+    "reparto de áfrica",
+    "paz armada",
+    "trinchera",
+    "soviets",
+    "revolución rusa",
+    "tratado de versalles",
+    "sociedad de naciones",
+    "metrópolis",
+    "atentado de sarajevo"
   ],
-  "siglo_xix_espana": [
-    "guerra independencia", "fernando vii", "isabel ii", "carlismo", "restauración", "desamortización", "turno pacífico", "caciquismo", "anarquismo", "constitución"
+  "entreguerras_totalitarismos": [
+    "felices años veinte",
+    "crack del 29",
+    "gran depresión",
+    "fascismo",
+    "nazismo",
+    "estalinismo",
+    "mussolini",
+    "hitler",
+    "antisemitismo",
+    "propaganda"
+  ],
+  "segunda_guerra_mundial": [
+    "eje",
+    "aliados",
+    "holocausto",
+    "bomba atómica",
+    "desembarco de normandía",
+    "peral harbor",
+    "onu",
+    "teló de acero",
+    "stalingrado",
+    "gueto"
+  ],
+  "guerra_civil_franquismo": [
+    "segunda república",
+    "frente popular",
+    "golpe de estado",
+    "bando republicano",
+    "bando nacional",
+    "autarquía",
+    "desarrollismo",
+    "dictadura",
+    "exilio",
+    "transición"
+  ],
+  "guerra_fria": [
+    "bloque capitalista",
+    "bloque comunista",
+    "muro de berlín",
+    "carrera espacial",
+    "crisis de los misiles",
+    "guerra de vietnam",
+    "otan",
+    "pacto de varsovia",
+    "cia",
+    "kgb"
+  ],
+  "descolonizacion_tercer_mundo": [
+    "neocolonialismo",
+    "gandhi",
+    "apartheid",
+    "nelson mandela",
+    "conferencia de bandung",
+    "paises no alineados",
+    "movimiento de liberación",
+    "independiencia",
+    "pobreza",
+    "explotación"
+  ],
+  "mundo_globalizado": [
+    "caida del muro",
+    "fin de la urss",
+    "terrorismo internacional",
+    "cambio climático",
+    "ue",
+    "globalización económica",
+    "era digital",
+    "brecha norte-sur",
+    "democracia liberal",
+    "migraciones asivas"
+  ],
+  "espana_democratica": [
+    "juan carlos i",
+    "suárez",
+    "constitucion 1978",
+    "golpe 23-f",
+    "entada en la ue",
+    "crisis económica",
+    "estado de las autonomías",
+    "pluralismo político",
+    "felipe gonzález",
+    "aznar"
   ],
   "arte_contemporaneo": [
-    "romanticismo", "realismo", "impresionismo", "modernismo", "cubismo", "surrealismo", "vanguardia", "goya", "picasso", "dalí"
-  ],
-  "conceptos_politicos": [
-    "sufragio", "soberanía", "constitución", "parlamento", "democracia", "liberalismo", "nacionalismo", "imperialismo", "colonialismo", "república"
+    "arquitectura de hierro",
+    "impresionismo",
+    "cubismo",
+    "picasso",
+    "surrealismo",
+    "dalí",
+    "pop-art",
+    "arte abstracto",
+    "graffiti",
+    "postmodernidad"
   ]
 }

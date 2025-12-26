@@ -1,173 +1,243 @@
 [
   {
-    "categoria": "La Edad Media (Visual)",
+    "categoria": "La Edad Media: Caballeros y Castillos (Visual)",
     "correctos": [
       "🏰",
       "👑",
       "🛡️",
       "⚔️",
       "🐎",
-      "⚜️"
+      "⚜️",
+      "🏹",
+      "🛖",
+      "🛖",
+      "🕌",
+      "⛪"
     ],
     "intrusos": [
       "📱",
       "🚗",
       "💡",
       "🏭",
-      "🚆"
+      "🚆",
+      "🚀",
+      "💻",
+      "🕶️",
+      "🎒",
+      "🕹️"
     ]
   },
   {
-    "categoria": "El Universo (Visual)",
+    "categoria": "Astronomía y el Cosmos (Visual)",
     "correctos": [
       "🪐",
       "🌌",
       "⭐",
       "☄️",
       "🌑",
-      "🔭"
+      "🔭",
+      "☀️",
+      "🌍",
+      "🌕",
+      "📡"
     ],
     "intrusos": [
       "✈️",
       "☁️",
       "🦅",
       "🪁",
-      "🚁"
+      "🚁",
+      "🎈",
+      "🦟",
+      "🐝",
+      "🦉",
+      "🐦"
     ]
   },
   {
-    "categoria": "Símbolos UE (Visual)",
+    "categoria": "Unión Europea e Instituciones (Visual)",
     "correctos": [
       "🇪🇺",
       "💶",
       "🗳️",
       "🏛️",
-      "🤝"
+      "🤝",
+      "🛂",
+      "🚩",
+      "🇪🇸",
+      "🇫🇷",
+      "🇩🇪"
     ],
     "intrusos": [
       "🇺🇸",
       "💴",
       "⛩️",
       "🤠",
-      "🗽"
+      "🗽",
+      "🏮",
+      "🉐",
+      "🪆",
+      "🌮",
+      "🇦🇮"
     ]
   },
   {
-    "categoria": "Inventos (Visual)",
+    "categoria": "Grandes Inventos de la Modernidad (Visual)",
     "correctos": [
       "💡",
       "🚂",
       "🚗",
       "☎️",
       "📷",
-      "📻"
+      "📻",
+      "✈️",
+      "🎥",
+      "🖨️",
+      "🔬"
     ],
     "intrusos": [
       "🔨",
       "🔥",
       "🏺",
       "🏹",
-      "🕯️"
+      "🕯️",
+      "🛖",
+      "🦴",
+      "🪵",
+      "⚔️",
+      "🐎"
     ]
   },
   {
-    "categoria": "La Edad Media",
+    "categoria": "Sociedad y Vida en la Edad Media",
     "correctos": [
       "Castillo",
       "Rey",
       "Caballero",
       "Feudalismo",
       "Muralla",
-      "Monasterio"
+      "Monasterio",
+      "Siervo",
+      "Vasallaje",
+      "Gremio",
+      "Torneo",
+      "Cruzada"
     ],
     "intrusos": [
       "Fábrica",
       "Coche",
       "Teléfono",
       "Imperio Romano",
-      "Pirámides"
+      "Pirámides",
+      "Internet",
+      "Democracia moderna",
+      "Avión",
+      "Electricidad"
     ]
   },
   {
-    "categoria": "Climas de España",
+    "categoria": "Dominios Climáticos de España",
     "correctos": [
-      "Mediterráneo",
+      "Mediterráneo típico",
+      "Mediterráneo continentalizado",
       "Oceánico",
       "De montaña",
-      "Subtropical"
+      "Subtropical Canario"
     ],
     "intrusos": [
-      "Polar",
-      "Tropical",
-      "Desértico extremo",
-      "Monzónico"
+      "Polar Ártico",
+      "Equatorial Húmedo",
+      "Desértico del Sahara",
+      "Monzónico Asiático",
+      "Continental Ruso",
+      "Tundra"
     ]
   },
   {
-    "categoria": "Instituciones de España",
+    "categoria": "Instituciones Democráticas de España",
     "correctos": [
-      "Rey",
-      "Constitución",
-      "Parlamento",
-      "Gobierno",
-      "Tribunales"
+      "Jefatura del Estado (Rey)",
+      "Constitución de 1978",
+      "Cortes Generales (Parlamento)",
+      "Gobierno de la Nación",
+      "Tribunales de Justicia",
+      "Defensor del Pueblo"
     ],
     "intrusos": [
       "Faraón",
       "Emperador",
       "Dictador",
-      "Pirata"
+      "Pirata",
+      "Señor Feudal",
+      "Zar",
+      "César",
+      "Bajá",
+      "Shogun"
     ]
   },
   {
-    "categoria": "Ríos Vertiente Atlántica",
+    "categoria": "Ríos de la Vertiente Atlántica Peninsular",
     "correctos": [
       "Miño",
       "Duero",
       "Tajo",
       "Guadiana",
-      "Guadalquivir"
+      "Guadalquivir",
+      "Ulla",
+      "Tambre"
     ],
     "intrusos": [
       "Ebro",
       "Júcar",
       "Segura",
-      "Turia"
+      "Turia",
+      "Llobregat",
+      "Mijares",
+      "Serpis",
+      "Almanzora"
     ]
   },
   {
-    "categoria": "Capas de la Atmósfera",
+    "categoria": "Capas Gaseosas de la Tierra (Atmósfera)",
     "correctos": [
       "Troposfera",
       "Estratosfera",
       "Mesosfera",
       "Termosfera",
-      "Exosfera"
+      "Exosfera",
+      "Ionosfera"
     ],
     "intrusos": [
       "Litosfera",
       "Hidrosfera",
       "Biosfera",
-      "Corteza",
-      "Manto"
+      "Corteza terrestre",
+      "Manto superior",
+      "Núcleo externo",
+      "Magma"
     ]
   },
   {
-    "categoria": "Planetas Sistema Solar",
+    "categoria": "Planetas del Sistema Solar (Actualizado)",
     "correctos": [
       "Mercurio",
       "Venus",
       "Tierra",
       "Marte",
       "Júpiter",
-      "Saturno"
+      "Saturno",
+      "Urano",
+      "Neptuno"
     ],
     "intrusos": [
-      "Plutón",
+      "Plutón (Planeta enano)",
       "Luna",
       "Sol",
       "Estrella Polar",
-      "Andrómeda"
+      "Andrómeda",
+      "Ceres",
+      "Eris",
+      "Alfa Centauri"
     ]
   }
 ]

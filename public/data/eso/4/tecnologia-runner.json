@@ -1,17 +1,122 @@
 {
-  "electronica_analogica": [
-    "resistencia", "condensador", "diodo", "led", "transistor", "potenciómetro", "circuito", "placa", "soldadura", "sensor"
-  ],
-  "electronica_digital": [
-    "puerta lógica", "sistema binario", "bit", "byte", "microchip", "procesador", "memoria", "álgebra de boole", "código", "señal"
-  ],
-  "control_y_robotica": [
-    "sensor", "actuador", "servomotor", "microcontrolador", "arduino", "lazo abierto", "lazo cerrado", "automatismo", "robot", "programación"
+  "electronica_4": [
+    "transistor",
+    "circuito integrado",
+    "resistencia variable",
+    "condensador electrolítico",
+    "diodo zener",
+    "optoacoplador",
+    "tiristor",
+    "relé",
+    "lógica digital",
+    "placa pcb"
   ],
   "neumatica_hidraulica": [
-    "compresor", "válvula", "cilindro", "pistón", "tubería", "presión", "caudal", "fluido", "aire", "aceite"
+    "compresor",
+    "válvula",
+    "cilindro de simple efecto",
+    "cilindro de doble efecto",
+    "manómetro",
+    "presión",
+    "caudal",
+    "fluido",
+    "depósito",
+    "tubo de conexión"
   ],
-  "tecnologia_comunicacion": [
-    "wifi", "bluetooth", "fibra óptica", "satélite", "radiofrecuencia", "cobertura", "datos", "ancho de banda", "protocolo", "red"
+  "automatizacion_control": [
+    "lógica cableada",
+    "lógica programada",
+    "autómata",
+    "plc",
+    "sensor de proximidad",
+    "final de carrera",
+    "actuador",
+    "bucle cerrado",
+    "realimentación",
+    "interface"
+  ],
+  "instalaciones_vivienda": [
+    "cuadro de mando",
+    "diferencial",
+    "pia",
+    "toma de tierra",
+    "fontanería",
+    "calefacción",
+    "aire acondicionado",
+    "gas",
+    "domótica",
+    "certificación energética"
+  ],
+  "robótica_arduino": [
+    "sketch",
+    "void setup",
+    "void loop",
+    "pin digital",
+    "pin pwm",
+    "sensor ultrasonidos",
+    "bluetooth",
+    "servomotor",
+    "puente h",
+    "ide arduino"
+  ],
+  "comunicaciones_4": [
+    "fibra óptica",
+    "satélite",
+    "radiofrecuencia",
+    "red 5g",
+    "wi-fi",
+    "bluetooth",
+    "puerto serie",
+    "protocolo",
+    "ip",
+    "router"
+  ],
+  "materiales_construccion": [
+    "cemento",
+    "hormigón armado",
+    "ladrillo",
+    "acero",
+    "vidrio",
+    "aislante térmico",
+    "yeso",
+    "piedra",
+    "mortero",
+    "viga"
+  ],
+  "dibujo_cad_3d": [
+    "modelado 3d",
+    "extrusión",
+    "boceto",
+    "acotación",
+    "impresión 3d",
+    "renderizado",
+    "capas",
+    "ensamblaje",
+    "piezas calcomanía",
+    "coordenadas"
+  ],
+  "tecnologia_sociedad": [
+    "obsolescencia programada",
+    "desecho electrónico",
+    "economía circular",
+    "sostenibilidad",
+    "energía limpia",
+    "eficiencia",
+    "innovación",
+    "ética",
+    "impacto ambiental",
+    "patente"
+  ],
+  "proyectos_gestion": [
+    "presupuesto",
+    "hoja de procesos",
+    "planificación",
+    "memoria técnica",
+    "evaluación de riesgos",
+    "prototipo",
+    "verificación",
+    "normativa",
+    "taller",
+    "trabajo en equipo"
   ]
 }

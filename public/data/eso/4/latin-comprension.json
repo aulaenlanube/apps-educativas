@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "La Fundación de Roma: Leyenda y Realidad",
+        "texto": "Según la leyenda, Roma fue fundada en el año 753 a.C. por RÓMULO y REMO, dos gemelos amamantados por una loba. Sin embargo, la arqueología nos dice que Roma nació de la unión de aldeas situadas en las siete colinas junto al río Tíber. Lo que empezó como un pequeño poblado de pastores se convirtió, con el paso de los siglos, en el mayor imperio de la Antigüedad, extendiendo su lengua (el latín), sus leyes y su arquitectura por tres continentes: Europa, África y Asia.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quiénes fueron los fundadores legendarios de Roma?",
+                "opciones": [
+                    "César y Augusto",
+                    "Rómulo y Remo",
+                    "Apolo y Diana",
+                    "Hércules y Zeus"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué animal amamantó a los gemelos según el mito?",
+                "opciones": [
+                    "Una vaca",
+                    "Una loba",
+                    "Una cabra",
+                    "Una leona"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Junto a qué río se fundó la ciudad?",
+                "opciones": [
+                    "Nilo",
+                    "Tíber",
+                    "Ebro",
+                    "Danubio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En cuántas colinas se asentaron los primeros romanos?",
+                "opciones": [
+                    "Dos",
+                    "Siete",
+                    "Doce",
+                    "Una"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué año se sitúa la fundación legendaria?",
+                "opciones": [
+                    "200 d.C.",
+                    "753 a.C.",
+                    "1492 a.C.",
+                    "Año 0"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "El Latín: Lengua Madre",
+        "texto": "El latín fue la lengua hablada por los romanos. Aunque hoy se considera una 'lengua muerta' porque no es la lengua materna de ningún país, sigue muy viva en nuestro vocabulario. El castellano, el catalán, el gallego, el francés, el italiano y el portugués son LENGUAS ROMÁNICAS que derivan de la evolución del latín vulgar. Además, el latín sigue siendo la lengua oficial de la ciencia y la medicina (nombres de plantas, huesos, órganos) y del derecho, demostrando que Roma nunca murió del todo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es una lengua románica?",
+                "opciones": [
+                    "Una lengua de amor",
+                    "Una lengua que deriva del latín",
+                    "La lengua de Grecia",
+                    "Una lengua moderna de América"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué el latín se llama 'lengua muerta'?",
+                "opciones": [
+                    "Porque es muy aburrida",
+                    "Porque no tiene hablantes nativos hoy",
+                    "Porque desapareció totalmente",
+                    "Porque solo se habla en cementerios"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una lengua románica:",
+                "opciones": [
+                    "Inglés",
+                    "Francés o Castellano",
+                    "Alemán",
+                    "Árabe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué campos profesionales se sigue usando el latín?",
+                "opciones": [
+                    "Cocina",
+                    "Ciencia, Medicina y Derecho",
+                    "Deporte",
+                    "Mecánica"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de latín dio lugar a nuestras lenguas?",
+                "opciones": [
+                    "Latín culto de los sabios",
+                    "Latín vulgar (hablado por el pueblo)",
+                    "Latín escrito en oro",
+                    "No fue el latín"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "La Sociedad Romana: Patricios y Plebeyos",
+        "texto": "La sociedad romana estaba rígidamente dividida. En la cima estaban los PATRICIOS, descendientes de las familias fundadoras, que poseían las tierras y el poder político. La gran mayoría de la población eran los PLEBEYOS (campesinos, artesanos y comerciantes), que lucharon durante siglos por obtener derechos. En el escalón más bajo estaban los ESCLAVOS, personas sin derechos que eran propiedad de sus amos. Sin embargo, un esclavo podía obtener la libertad y convertirse en un 'liberto', integrándose poco a poco en la sociedad.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quiénes tenían el poder político en la Roma primitiva?",
+                "opciones": [
+                    "Los plebeyos",
+                    "Los patricios",
+                    "Los esclavos",
+                    "Los extranjeros"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quiénes formaban la mayoría del pueblo romano?",
+                "opciones": [
+                    "Los senadores",
+                    "Los plebeyos (campesinos, artesanos...)",
+                    "Los gladiadores",
+                    "Los reyes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué era un liberto?",
+                "opciones": [
+                    "Un patricio rico",
+                    "Un esclavo que había conseguido la libertad",
+                    "Un soldado",
+                    "Un poeta"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Tenían derechos los esclavos?",
+                "opciones": [
+                    "Muchos",
+                    "Ninguno, eran propiedad del amo",
+                    "Solo los domingos",
+                    "Eran los que mandaban"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué lucharon los plebeyos durante siglos?",
+                "opciones": [
+                    "Por tener más esclavos",
+                    "Por tener igualdad de derechos políticos",
+                    "Por destruir Roma",
+                    "Por viajar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La Religión: El Olimpo Romano",
+        "texto": "Los romanos eran POLITEÍSTAS (creían en muchos dioses). Adoptaron la gran mayoría de los dioses griegos, pero les cambiaron el nombre. Júpiter (Zeus) era el padre de los dioses y el dios del trueno. Juno (Hera) era la protectora de la familia. Marte (Ares) era el dios de la guerra, fundamental para un pueblo conquistador como el romano. Además de los grandes dioses, los romanos rendían culto en sus casas a los dioses LARES (protectores del hogar) y a los antepasados, buscando su favor en la vida diaria.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa ser politeísta?",
+                "opciones": [
+                    "No creer en nada",
+                    "Creer en muchos dioses",
+                    "Creer en un solo dios",
+                    "Hablar muchos idiomas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién era el dios del trueno y padre de los dioses?",
+                "opciones": [
+                    "Marte",
+                    "Júpiter",
+                    "Neptuno",
+                    "Platón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De qué cultura adoptó Roma la mayoría de sus dioses?",
+                "opciones": [
+                    "Egipto",
+                    "Grecia",
+                    "Fenicia",
+                    "China"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién era el dios de la guerra?",
+                "opciones": [
+                    "Apolo",
+                    "Marte",
+                    "Vulcano",
+                    "Mercurio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué eran los dioses Lares?",
+                "opciones": [
+                    "Dioses del mar",
+                    "Protectores del hogar y la familia en las casas",
+                    "Dioses de los muertos",
+                    "Gigantes malos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Pan y Circo: El Ocio en Roma",
+        "texto": "Para mantener al pueblo contento y evitar revueltas, los emperadores ofrecían 'Panem et Circenses' (Pan y Circo). Esto incluía reparto de trigo gratuito y grandes espectáculos. El lugar más famoso era el COLISEO, donde se celebraban luchas de gladiadores y cacerías de animales salvajes. También eran muy populares las carreras de carros en el CIRCO MÁXIMO, donde los aurigas (conductores) eran las grandes estrellas de la época. Estos eventos reunían a miles de personas de todas las clases sociales.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa la frase 'Panem et Circenses'?",
+                "opciones": [
+                    "Comida y guerra",
+                    "Pan y Circo (comida y diversión para el pueblo)",
+                    "Solo panadero",
+                    "Dinero para todos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué espectáculo se celebraba en el Coliseo?",
+                "opciones": [
+                    "Carreras de caballos",
+                    "Luchas de gladiadores",
+                    "Teatro griego",
+                    "Música"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se celebraban las carreras de carros?",
+                "opciones": [
+                    "En el foro",
+                    "En el Circo Máximo",
+                    "En el puerto",
+                    "En el palacio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llamaba a los conductores de los carros?",
+                "opciones": [
+                    "Pilotos",
+                    "Aurigas",
+                    "Gladiadores",
+                    "Legionarios"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál era la razón política de dar estos espectáculos?",
+                "opciones": [
+                    "Hacer ejercicio",
+                    "Mantener al pueblo entretenido y evitar quejas",
+                    "Ganar las olimpiadas",
+                    "Ninguna"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "La Vida en una Domus",
+        "texto": "Los romanos ricos vivían en casas unifamiliares llamadas DOMUS. Eran casas cerradas al exterior pero abiertas a un patio central llamado ATRIO, que tenía un estanque (impluvium) para recoger el agua de lluvia. Los muros solían estar decorados con mosaicos y frescos (pinturas en la pared). La mayoría de los romanos pobres, sin embargo, vivían en edificios de pisos llamados 'insulae', que eran de madera, muy estrechos y peligrosos por el riesgo constante de incendios y derrumbes.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llamaba la casa de los romanos ricos?",
+                "opciones": [
+                    "Piso",
+                    "Domus",
+                    "Insulae",
+                    "Tienda"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué era el atrio?",
+                "opciones": [
+                    "La habitación de dormir",
+                    "El patio central de la casa",
+                    "La cocina",
+                    "El baño"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llamaban los edificios de los ciudadanos pobres?",
+                "opciones": [
+                    "Castillos",
+                    "Insulae",
+                    "Villas",
+                    "Acueductos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué riesgo tenían las insulae?",
+                "opciones": [
+                    "El frío",
+                    "Incendios y derrumbes por ser de materiales pobres",
+                    "Eran demasiado grandes",
+                    "Había muchos ladrones"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué servía el impluvium?",
+                "opciones": [
+                    "Para nadar",
+                    "Para recoger el agua de lluvia en el patio",
+                    "Para cocinar",
+                    "Para rezar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "El Ejército: Las Legiones",
+        "texto": "El poder de Roma se basaba en sus LEGIONES. El ejército romano era una máquina de guerra perfecta, muy disciplinada y con tácticas avanzadas como la 'tortuga' (cubrirse con escudos por todos lados). Los soldados, llamados LEGIONARIOS, servían durante 25 años y al jubilarse recibían tierras para cultivar. Construían calzadas por todo el imperio para que las tropas pudieran moverse rápido. Gracias a su ejército, Roma conquistó todo el Mediterráneo, al que llamaron 'Mare Nostrum' (Nuestro Mar).",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llamaban las unidades principales del ejército romano?",
+                "opciones": [
+                    "Batallones",
+                    "Legiones",
+                    "Flotas",
+                    "Tercios"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo llamaban los romanos al Mar Mediterráneo?",
+                "opciones": [
+                    "Mar Grande",
+                    "Mare Nostrum (Nuestro Mar)",
+                    "Océano",
+                    "Mar de los Griegos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué consistía la formación en 'tortuga'?",
+                "opciones": [
+                    "En ir muy despacio",
+                    "En cubrirse totalmente con los escudos para protegerse de flechas",
+                    "En esconderse bajo tierra",
+                    "En nadar como tortugas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué recibía un legionario al terminar sus años de servicio?",
+                "opciones": [
+                    "Un caballo de oro",
+                    "Tierras para cultivar y una pensión",
+                    "Nada",
+                    "Una medalla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué construían tantas calzadas?",
+                "opciones": [
+                    "Para ir de paseo",
+                    "Para que el ejército se moviera rápidamente por el imperio",
+                    "Para separar los campos",
+                    "Por decoración"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Ingeniería: Acueductos y Calzadas",
+        "texto": "Los romanos fueron los mejores ingenieros de la Antigüedad. Sus construcciones eran prácticas y duraderas. El ACUEDUCTO era una obra maestra que transportaba agua desde kilómetros de distancia hasta las ciudades usando solo la fuerza de la gravedad. Usaban el ARCO de medio punto para dar resistencia a sus puentes y edificios. Sus calzadas (carreteras) estaban tan bien hechas con capas de piedra y arena que muchas todavía se conservan hoy, 2.000 años después, conectando todavía pueblos y ciudades.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál era la función de un acueducto?",
+                "opciones": [
+                    "Llevar mensajes",
+                    "Transportar agua a las ciudades desde fuentes lejanas",
+                    "Hacer carreras",
+                    "Cruzar ríos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué elemento arquitectónico permitía dar resistencia a los puentes?",
+                "opciones": [
+                    "El techado",
+                    "El arco de medio punto",
+                    "La ventana",
+                    "El color blanco"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo funcionaban los acueductos?",
+                "opciones": [
+                    "Con bombas eléctricas",
+                    "Mediante la gravedad (inclinación suave)",
+                    "Con cubos",
+                    "Empujando el agua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De qué material estaban hechas principalmente sus calzadas?",
+                "opciones": [
+                    "De barro",
+                    "De capas de piedras y arena",
+                    "De madera",
+                    "De cemento moderno"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la característica principal de la ingeniería romana?",
+                "opciones": [
+                    "Era frágil",
+                    "Era práctica y muy duradera",
+                    "Era solo para templos",
+                    "Era muy barata"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Julio César y el fin de la República",
+        "texto": "Julio César fue el personaje más famoso de Roma. Fue un general brillante que conquistó las Galias (Francia). Al regresar a Roma, se convirtió en dictador perpetuo, acabando con el sistema de la República. Temiendo que quisiera proclamarse rey, un grupo de senadores liderados por Bruto lo asesinaron en el Senado. Tras su muerte, su sobrino OCTAVIO AUGUSTO se convertiría en el primer emperador, dando inicio a la época del IMPERIO, el periodo de mayor esplendor y paz (Pax Romana) del mundo antiguo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué territorio conquistó Julio César?",
+                "opciones": [
+                    "España",
+                    "Las Galias (actual Francia)",
+                    "Egipto solamente",
+                    "Inglaterra"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde fue asesinado Julio César?",
+                "opciones": [
+                    "En el campo de batalla",
+                    "En el Senado",
+                    "En su casa",
+                    "En el circo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién fue el primer emperador de Roma?",
+                "opciones": [
+                    "Julio César",
+                    "Octavio Augusto",
+                    "Nerón",
+                    "Trajano"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué supuso la llegada de César al poder?",
+                "opciones": [
+                    "Más democracia",
+                    "El fin de la República y el inicio del poder personal",
+                    "La destrucción de Roma",
+                    "No cambió nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llamó al periodo de paz que inició Augusto?",
+                "opciones": [
+                    "Guerra Fría",
+                    "Pax Romana",
+                    "Siglo de Oro",
+                    "Era de las Luces"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Locuciones Latinas en la actualidad",
+        "texto": "Usamos frases en latín sin darnos cuenta. Decimos 'CARPE DIEM' para animar a alguien a aprovechar el momento. Usamos 'Etcétera' (y lo demás) continuamente. En los juicios se habla de 'Habeas Corpus' o de 'In dubio pro reo' (en caso de duda, a favor del acusado). Cuando alguien comete un error, decimos que es un 'Lapsus'. Estas frases demuestran que el pensamiento romano sigue dando forma a nuestra cultura, a nuestras leyes y a nuestra manera de expresarnos cada día.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa la expresión 'Carpe Diem'?",
+                "opciones": [
+                    "Mañana iré",
+                    "Aprovecha el momento (cosecha el día)",
+                    "Tengo hambre",
+                    "Hasta luego"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Y 'Etcétera'?",
+                "opciones": [
+                    "Y lo demás",
+                    "Fin de la historia",
+                    "Escuchar",
+                    "Error"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué es un 'lapsus'?",
+                "opciones": [
+                    "Un éxito",
+                    "Un error o desliz (de memoria o lengua)",
+                    "Un tipo de lápiz",
+                    "Un puente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En derecho, 'In dubio pro reo' significa:",
+                "opciones": [
+                    "El culpable siempre paga",
+                    "En caso de duda, a favor del acusado",
+                    "El juez siempre tiene razón",
+                    "No hay pruebas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué demuestra el uso de estas frases hoy?",
+                "opciones": [
+                    "Que somos muy listos",
+                    "Que la cultura romana sigue viva en nuestra lengua",
+                    "Que no sabemos hablar español",
+                    "Nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

@@ -1,0 +1,816 @@
+{
+  "titulo": "Material de Estudio - Matematicas - 1º PRIMARIA",
+  "introduccion": "Repasa este vocabulario de Matematicas para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "anterior",
+          "definicion": "Número que va justo antes de otro.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "alto",
+          "definicion": "Lo contrario de bajo.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "ancho",
+          "definicion": "Dimensión de un objeto, lo contrario de estrecho.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "agrupar",
+          "definicion": "Juntar grupos de cosas.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "abrir",
+          "definicion": "Lo contrario de cerrar.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "balanza",
+          "definicion": "Instrumento con dos platos para pesar.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "barato",
+          "definicion": "Que cuesta poco dinero.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bajo",
+          "definicion": "Lo contrario de alto.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "billete",
+          "definicion": "Dinero en papel.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "balón",
+          "definicion": "Objeto con forma de esfera que bota.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "cuadrado",
+          "definicion": "Figura con 4 lados iguales.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "círculo",
+          "definicion": "Figura redonda sin esquinas.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cinco",
+          "definicion": "Número de dedos de una mano.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cero",
+          "definicion": "Número que no vale nada si está solo.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cuarenta",
+          "definicion": "Número que va después del 39.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "diez",
+          "definicion": "Número 10.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dos",
+          "definicion": "Uno más uno.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "docena",
+          "definicion": "Conjunto de 12 unidades.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "derecha",
+          "definicion": "Lo contrario de izquierda.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "decena",
+          "definicion": "Grupo de 10 unidades.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "esfera",
+          "definicion": "Cuerpo geométrico redondo como una pelota.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "esquina",
+          "definicion": "Donde se juntan dos paredes o lados.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "edad",
+          "definicion": "Los años que tienes.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "encima",
+          "definicion": "Lo contrario de debajo.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "escuadra",
+          "definicion": "Regla con forma de triángulo.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "forma",
+          "definicion": "El aspecto de un objeto (redondo, cuadrado...).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "figura",
+          "definicion": "Dibujo geométrico como el triángulo.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fila",
+          "definicion": "Objetos puestos uno detrás de otro.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "febrero",
+          "definicion": "El mes más corto del año.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fin",
+          "definicion": "Lo que indica cuándo se acaba algo.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "grande",
+          "definicion": "Lo contrario de pequeño.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grupo",
+          "definicion": "Conjunto de cosas o personas.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "girar",
+          "definicion": "Movimiento circular, dar vueltas.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gruesa",
+          "definicion": "Línea con mucho volumen, no es fina.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gramo",
+          "definicion": "Unidad pequeña para pesar cosas.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hora",
+          "definicion": "Medida de tiempo, tiene 60 minutos.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hoy",
+          "definicion": "El día en el que estamos.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hacia",
+          "definicion": "Indica dirección.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hasta",
+          "definicion": "Límite, contar del 1 ... el 10.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "ochenta",
+          "definicion": "Número 80.",
+          "pista": "Contiene la H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "igual",
+          "definicion": "Símbolo de dos rayitas (=).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "impar",
+          "definicion": "Número que no es par (1, 3, 5...).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "izquierda",
+          "definicion": "Lo contrario de derecha.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inicio",
+          "definicion": "El principio de una serie.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "infinito",
+          "definicion": "Que no tiene fin.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "junto",
+          "definicion": "Al lado de, pegado.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juntar",
+          "definicion": "Unir dos grupos.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "julio",
+          "definicion": "Mes del año, el séptimo.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "junio",
+          "definicion": "Mes del año, el sexto.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jueves",
+          "definicion": "Día de la semana entre miércoles y viernes.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "kilo",
+          "definicion": "Mil gramos.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilómetro",
+          "definicion": "Mil metros.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilos",
+          "definicion": "Lo que pesamos en la báscula (plural).",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilogramo",
+          "definicion": "Unidad de masa.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "skate",
+          "definicion": "Hacer deporte con un monopatín (contiene la K).",
+          "pista": "Contiene la K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "litro",
+          "definicion": "Medida para líquidos.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "largo",
+          "definicion": "Lo contrario de corto.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lejos",
+          "definicion": "Lo contrario de cerca.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lado",
+          "definicion": "Parte recta de una figura geométrica.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lunes",
+          "definicion": "Primer día de la semana.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "metro",
+          "definicion": "Medida de longitud, son 100 centímetros.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mitad",
+          "definicion": "Partir en dos partes iguales.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "más",
+          "definicion": "Palabra para el signo de la suma (+).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "menos",
+          "definicion": "Palabra para el signo de la resta (-).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "martes",
+          "definicion": "Día de la semana después del lunes.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "nueve",
+          "definicion": "Número 3 + 3 + 3.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "número",
+          "definicion": "Símbolo para contar o calcular.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nada",
+          "definicion": "Cero cantidad.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "noventa",
+          "definicion": "Número 90.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "uno",
+          "definicion": "El primer número (contiene la N).",
+          "pista": "Contiene la N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "año",
+          "definicion": "Tiempo de 365 días.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "puño",
+          "definicion": "Mano cerrada.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "pequeño",
+          "definicion": "Lo contrario de grande.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "mañana",
+          "definicion": "Parte del día al despertar.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "otoño",
+          "definicion": "Estación del año donde caen las hojas.",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "once",
+          "definicion": "Número 10 + 1.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ocho",
+          "definicion": "Número 4 + 4.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "orden",
+          "definicion": "Colocación de las cosas de menor a mayor.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "octavo",
+          "definicion": "Posición número 8º.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "octubre",
+          "definicion": "Mes del año número 10.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "par",
+          "definicion": "Números como 2, 4, 6, 8...",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "primero",
+          "definicion": "El que gana llega el...",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "peso",
+          "definicion": "Lo que marca la báscula.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "precio",
+          "definicion": "Dinero que cuesta una cosa.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pequeño",
+          "definicion": "De poco tamaño.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "quince",
+          "definicion": "Número 10 + 5.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quinto",
+          "definicion": "Posición número 5º.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quitar",
+          "definicion": "Acción de restar.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "queda",
+          "definicion": "Lo que sobra de una resta.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "pequeño",
+          "definicion": "Lo contrario de grande (contiene la Q).",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "resta",
+          "definicion": "Operación de quitar.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "recta",
+          "definicion": "Línea sin curvas.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "redondo",
+          "definicion": "Forma circular.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rombo",
+          "definicion": "Figura parecida al diamante.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "reloj",
+          "definicion": "Objeto que mide el tiempo.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "suma",
+          "definicion": "Operación de añadir o juntar.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "siete",
+          "definicion": "Número 3 + 4.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "seis",
+          "definicion": "Media docena.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "segundo",
+          "definicion": "El que va después del primero.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "serie",
+          "definicion": "Lista de números ordenados.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "tres",
+          "definicion": "Número 1 + 1 + 1.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "triángulo",
+          "definicion": "Figura con 3 lados.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "trece",
+          "definicion": "Número 10 + 3.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "treinta",
+          "definicion": "Número 30.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "total",
+          "definicion": "Resultado final de una suma.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "uno",
+          "definicion": "El primer número.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "último",
+          "definicion": "El que está al final de la fila.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unidad",
+          "definicion": "Lo que vale 1.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unir",
+          "definicion": "Juntar dos grupos.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "un",
+          "definicion": "Número 1 escrito en letra.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "veinte",
+          "definicion": "Número 20.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "viernes",
+          "definicion": "Día antes del sábado.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "valor",
+          "definicion": "Precio o lo que cuesta algo.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vacío",
+          "definicion": "Recipiente sin nada dentro.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vez",
+          "definicion": "Una ocasión.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "kiwi",
+          "definicion": "Fruta marrón con pelitos que se vende al peso.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "waterpolo",
+          "definicion": "Deporte en la piscina con balón.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "sandwich",
+          "definicion": "Comida de dos panes (se puede contar).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "web",
+          "definicion": "Página de internet.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "halloween",
+          "definicion": "Fiesta de miedo en octubre.",
+          "pista": "Contiene la W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "sexto",
+          "definicion": "Posición número 6º.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "próximo",
+          "definicion": "Número que va después de otro (sinónimo de siguiente).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "máximo",
+          "definicion": "Lo más grande posible.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "exacto",
+          "definicion": "Resultado correcto, sin fallo.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "hexágono",
+          "definicion": "Figura de 6 lados.",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "mayor",
+          "definicion": "Más grande que...",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ayer",
+          "definicion": "El día anterior a hoy.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "mayo",
+          "definicion": "Mes del año, el quinto.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "rayas",
+          "definicion": "Líneas rectas.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "hoy",
+          "definicion": "El día en el que estamos.",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "diez",
+          "definicion": "Número 10 (contiene la Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "zancada",
+          "definicion": "Paso muy largo para medir distancia.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zona",
+          "definicion": "Lugar o área.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "izquierda",
+          "definicion": "Lado donde está el corazón.",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "manzana",
+          "definicion": "Fruta roja para contar (contiene la Z).",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

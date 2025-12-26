@@ -1,127 +1,224 @@
 [
   {
-    "categoria": "Tecnologia (Visual)",
+    "categoria": "Tecnologia Digital i Comunicació (Visual)",
     "correctos": [
       "💻",
       "📱",
       "🖱️",
       "⌨️",
       "🖥️",
-      "🔋"
+      "🔋",
+      "🔌",
+      "🎧",
+      "📷",
+      "🕹️",
+      "📡",
+      "🛰️"
     ],
     "intrusos": [
       "📚",
       "✏️",
       "🕯️",
       "🕰️",
-      "🔨"
+      "🔨",
+      "🛖",
+      "🏹",
+      "🛡️",
+      "⚔️",
+      "🐎",
+      "🧱"
     ]
   },
   {
-    "categoria": "Aliments (Visual)",
+    "categoria": "Productes i Alimentació Tradicional (Visual)",
     "correctos": [
-      "🥘",
-      "🍊",
-      "🥖",
-      "🧀",
-      "🐟",
-      "🍇"
+      "🥘 (Paella)",
+      "🍊 (Taronja)",
+      "🥖 (Pa)",
+      "🧀 (Formatge)",
+      "🐟 (Peix)",
+      "🍇 (Raïm)",
+      "🥘 (Fideuà)",
+      "🥚 (Ou)",
+      "🍤 (Gamba)"
     ],
     "intrusos": [
       "🍽️",
       "🔪",
       "🧂",
       "🍷",
-      "🥤"
+      "🥤",
+      "🥣",
+      "🥢",
+      "🍴",
+      "🥄",
+      "🧊"
     ]
   },
   {
-    "categoria": "Natura (Visual)",
+    "categoria": "Entorn Natural i Paisatge Escènic (Visual)",
     "correctos": [
       "🌳",
       "🌊",
       "🏔️",
       "🦅",
       "🍄",
-      "🌻"
+      "🌻",
+      "🌿",
+      "🦋",
+      "🌈",
+      "🌅",
+      "🌋",
+      "🏜️",
+      "🏝️"
     ],
     "intrusos": [
       "🏭",
       "🚗",
       "🏙️",
       "🏢",
-      "⛽"
+      "⛽",
+      "🏪",
+      "🏟️",
+      "🏗️",
+      "🚄",
+      "🚢",
+      "🚜"
     ]
   },
   {
-    "categoria": "Paraules Esdrúixoles",
+    "categoria": "Paraules Esdrúixoles (Sempre amb accent)",
     "correctos": [
       "Música",
       "Pàgina",
       "Telèfon",
       "Màquina",
       "Plàtan",
-      "Fàbrica"
+      "Fàbrica",
+      "Síl·laba",
+      "Matemàtiques",
+      "Història",
+      "Càpsula",
+      "Dècada",
+      "Bèlgica"
     ],
     "intrusos": [
       "Camisa",
       "Taula",
       "Camió",
       "Paper",
-      "Ordinador"
+      "Ordinador",
+      "Llanterna",
+      "Cadira",
+      "Botella",
+      "Examen",
+      "Difícil",
+      "Àngel"
     ]
   },
   {
-    "categoria": "Temps Verbals",
+    "categoria": "Temps Verbals del Mode Indicatiu",
     "correctos": [
       "Present",
-      "Passat",
+      "Pretèrit Imperfet",
+      "Pretèrit Perifràstic",
       "Futur",
-      "Imperfet",
-      "Condicional"
+      "Condicional",
+      "Pretèrit Plusquamperfet"
     ],
     "intrusos": [
       "Subjecte",
       "Predicat",
       "Nom",
       "Adjectiu",
-      "Article"
+      "Article",
+      "Sustantiu",
+      "Adverbi",
+      "Preposició",
+      "Conjunció"
     ]
   },
   {
-    "categoria": "Oficis",
+    "categoria": "Professions i Sectors Laborals",
     "correctos": [
       "Metge",
       "Mestre",
       "Advocat",
       "Bomber",
       "Policia",
-      "Fuster"
+      "Fuster",
+      "Infermer",
+      "Arquitecte",
+      "Enginyer",
+      "Veterinari",
+      "Periodista"
     ],
     "intrusos": [
       "Escola",
       "Hospital",
       "Comissaria",
       "Cotxe",
-      "Llibre"
+      "Llibre",
+      "Mochilla",
+      "Llapis",
+      "Goma",
+      "Aula",
+      "Despatx",
+      "Parc"
     ]
   },
   {
-    "categoria": "Geografia Valenciana",
+    "categoria": "Geografia i Relleu del Territori Valencià",
     "correctos": [
       "Albufera",
-      "Túria",
-      "Xúquer",
+      "Riu Túria",
+      "Riu Xúquer",
       "Penyagolosa",
-      "Aitana",
-      "Montgó"
+      "Serra d'Aitana",
+      "El Montgó",
+      "Riu Segura",
+      "Despoblado de Gallinera",
+      "L'Alcalatén"
     ],
     "intrusos": [
       "Pirineus",
-      "Ebre",
+      "Riu Ebre",
       "Teide",
-      "Amazones",
-      "Everest"
+      "Riu Amazones",
+      "Everest",
+      "Himalaia",
+      "Riu Nil",
+      "Alps",
+      "Andes"
+    ]
+  },
+  {
+    "categoria": "Pronoms Personals i Determinants",
+    "correctos": [
+      "Jo",
+      "Tu",
+      "Ell",
+      "Ella",
+      "Nosaltres",
+      "Vosaltres",
+      "Meua",
+      "Teua",
+      "Seua",
+      "Nostra",
+      "Vostra"
+    ],
+    "intrusos": [
+      "Molt",
+      "Poc",
+      "Gaire",
+      "Massa",
+      "Sempre",
+      "Mai",
+      "Hui",
+      "Ahir",
+      "Demà",
+      "Dins",
+      "Fora"
     ]
   }
 ]

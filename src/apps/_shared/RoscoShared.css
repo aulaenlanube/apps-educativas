@@ -25,18 +25,20 @@
 /* Cada letra individual - SIN BORDES */
 .rosco-letter {
     position: absolute;
-    width: 42px; /* Un poco más grandes */
+    width: 42px;
+    /* Un poco más grandes */
     height: 42px;
     border-radius: 50%;
     background: #e5e7eb;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 900; /* Extra bold */
+    font-weight: 900;
+    /* Extra bold */
     font-family: 'Fredoka One', cursive;
     color: #4b5563;
     /* Eliminado el border: 2px solid white; */
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.15); 
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     font-size: 1.2rem;
 }
@@ -45,14 +47,28 @@
 .rosco-letter.active {
     background: #3b82f6;
     color: white;
-    transform: scale(1.5); /* Más grandes al estar activas */
+    transform: scale(1.5);
+    /* Más grandes al estar activas */
     z-index: 10;
     box-shadow: 0 4px 15px rgba(59, 130, 246, 0.5);
 }
 
-.rosco-letter.correct { background: #22c55e; color: white; }
-.rosco-letter.wrong { background: #ef4444; color: white; }
-.rosco-letter.pending { background: #d1d5db; color: #6b7280; } /* Un gris un poco más oscuro para pending */
+.rosco-letter.correct {
+    background: #22c55e;
+    color: white;
+}
+
+.rosco-letter.wrong {
+    background: #ef4444;
+    color: white;
+}
+
+.rosco-letter.pending {
+    background: #d1d5db;
+    color: #6b7280;
+}
+
+/* Un gris un poco más oscuro para pending */
 
 /* Caja central */
 .rosco-center-box {
@@ -61,7 +77,8 @@
     padding: 25px;
     border-radius: 20px;
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-    min-height: 240px; /* Un poco más alto para acomodar el botón nuevo */
+    min-height: 240px;
+    /* Un poco más alto para acomodar el botón nuevo */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -69,7 +86,7 @@
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
-    border: 4px solid transparent; 
+    border: 4px solid transparent;
     position: relative;
     /* Quitamos overflow: hidden para que no corte sombras, la animación se maneja con opacidad */
 }
@@ -95,7 +112,8 @@
 /* --- CONTROLES --- */
 .rosco-input-group {
     display: flex;
-    flex-direction: column; /* Cambiado a columna para poner Pasapalabra debajo */
+    flex-direction: column;
+    /* Cambiado a columna para poner Pasapalabra debajo */
     align-items: center;
     gap: 12px;
     width: 100%;
@@ -147,8 +165,16 @@
     font-size: 1rem;
 }
 
-.btn-check-inline:hover:not(:disabled) { background: #16a34a; transform: translateY(-50%) scale(1.1); }
-.btn-check-inline:disabled { background: #d1d5db; cursor: not-allowed; opacity: 0.6; }
+.btn-check-inline:hover:not(:disabled) {
+    background: #16a34a;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.btn-check-inline:disabled {
+    background: #d1d5db;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
 
 /* BOTÓN PASAPALABRA (Texto explícito) */
 .btn-pasapalabra-text {
@@ -156,7 +182,8 @@
     color: white;
     border: none;
     padding: 12px 0;
-    width: 100%; /* Ocupa todo el ancho disponible */
+    width: 100%;
+    /* Ocupa todo el ancho disponible */
     border-radius: 30px;
     font-weight: 900;
     font-size: 1.1rem;
@@ -199,70 +226,141 @@
     border-radius: 50%;
     transition: all 0.2s;
 }
-.btn-exit-corner:hover { color: #ef4444; background: #fee2e2; transform: rotate(90deg); }
+
+.btn-exit-corner:hover {
+    color: #ef4444;
+    background: #fee2e2;
+    transform: rotate(90deg);
+}
 
 /* --- FEEDBACK FULLSCREEN --- */
 .feedback-overlay {
-    position: fixed; /* Fijo a la ventana */
+    position: fixed;
+    /* Fijo a la ventana */
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(255, 255, 255, 0.85); /* Fondo blanco semitransparente */
+    background: rgba(255, 255, 255, 0.85);
+    /* Fondo blanco semitransparente */
     backdrop-filter: blur(5px);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10000; /* Muy por encima de todo */
+    z-index: 10000;
+    /* Muy por encima de todo */
     text-align: center;
     animation: fadeInOverlay 0.2s ease-out;
 }
 
 .feedback-content {
-    font-size: 3rem; /* Texto muy grande */
+    font-size: 3rem;
+    /* Texto muy grande */
     font-weight: 900;
     padding: 40px;
     border-radius: 30px;
     background: white;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     max-width: 90%;
     animation: popInFeedback 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.feedback-success .feedback-content { color: #22c55e; border: 5px solid #22c55e; }
-.feedback-error .feedback-content { color: #ef4444; border: 5px solid #ef4444; }
-.feedback-info .feedback-content { color: #f59e0b; border: 5px solid #f59e0b; }
+.feedback-success .feedback-content {
+    color: #22c55e;
+    border: 5px solid #22c55e;
+}
 
-@keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
-@keyframes popInFeedback { from { transform: scale(0.5); } to { transform: scale(1); } }
+.feedback-error .feedback-content {
+    color: #ef4444;
+    border: 5px solid #ef4444;
+}
+
+.feedback-info .feedback-content {
+    color: #f59e0b;
+    border: 5px solid #f59e0b;
+}
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popInFeedback {
+    from {
+        transform: scale(0.5);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
 
 
 /* --- ANIMACIONES --- */
-.rosco-center-box.animating { pointer-events: none; }
+.rosco-center-box.animating {
+    pointer-events: none;
+}
 
 @keyframes slideOutLeft {
-    0% { transform: translateX(0); opacity: 1; }
-    100% { transform: translateX(-50px); opacity: 0; }
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
 }
+
 @keyframes slideInRight {
-    0% { transform: translateX(50px); opacity: 0; }
-    100% { transform: translateX(0); opacity: 1; }
+    0% {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .animate-pasapalabra-out .rosco-definition,
 .animate-pasapalabra-out .rosco-input-group,
-.animate-pasapalabra-out .rosco-type-label { animation: slideOutLeft 0.4s ease-in forwards; }
+.animate-pasapalabra-out .rosco-type-label {
+    animation: slideOutLeft 0.4s ease-in forwards;
+}
 
 .animate-pasapalabra-in .rosco-definition,
 .animate-pasapalabra-in .rosco-input-group,
-.animate-pasapalabra-in .rosco-type-label { animation: slideInRight 0.4s ease-out forwards; }
+.animate-pasapalabra-in .rosco-type-label {
+    animation: slideInRight 0.4s ease-out forwards;
+}
 
 @keyframes pulseSwap {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.96); opacity: 0.7; }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.96);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
-.animate-turn-change { animation: pulseSwap 0.6s ease-in-out; }
+
+.animate-turn-change {
+    animation: pulseSwap 0.6s ease-in-out;
+}
 
 /* MODAL CONFIRMACIÓN */
 .exit-modal-overlay {
@@ -279,29 +377,96 @@
     z-index: 9999;
     animation: fadeIn 0.2s ease-out;
 }
+
 .exit-modal-box {
     background: white;
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     text-align: center;
     max-width: 90%;
     width: 400px;
     animation: popInModal 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-@keyframes popInModal { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-.exit-modal-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 25px; }
-.btn-confirm-exit { background: #ef4444; color: white; padding: 10px 20px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; flex: 1; }
-.btn-confirm-exit:hover { background: #dc2626; }
-.btn-cancel-exit { background: #e5e7eb; color: #374151; padding: 10px 20px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; flex: 1; }
-.btn-cancel-exit:hover { background: #d1d5db; }
+
+@keyframes popInModal {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.exit-modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.btn-confirm-exit {
+    background: #ef4444;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    flex: 1;
+}
+
+.btn-confirm-exit:hover {
+    background: #dc2626;
+}
+
+.btn-cancel-exit {
+    background: #e5e7eb;
+    color: #374151;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    flex: 1;
+}
+
+.btn-cancel-exit:hover {
+    background: #d1d5db;
+}
 
 /* Utilidades */
-.grayscale { filter: grayscale(100%); opacity: 0.6; }
-.scale-110 { transform: scale(1.1); }
-.scale-90 { transform: scale(0.9); }
-.animate-fadeIn { animation: fadeIn 0.5s ease-out; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.grayscale {
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+
+.scale-110 {
+    transform: scale(1.1);
+}
+
+.scale-90 {
+    transform: scale(0.9);
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /* ... [TODO EL CSS ANTERIOR SE MANTIENE, AÑADE O REEMPLAZA ESTO] ... */
 
@@ -311,27 +476,33 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 220px; /* Tamaño del hueco interior aprox */
+    width: 220px;
+    /* Tamaño del hueco interior aprox */
     height: 220px;
     border-radius: 50%;
     overflow: hidden;
-    z-index: 0; /* Detrás de las letras si se solapan, aunque es más pequeño */
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.5); /* Sombra interior para profundidad */
-    background: #000; /* Fondo negro mientras carga */
+    z-index: 0;
+    /* Detrás de las letras si se solapan, aunque es más pequeño */
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+    /* Sombra interior para profundidad */
+    background: #000;
+    /* Fondo negro mientras carga */
 }
 
 .rosco-webcam-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scaleX(-1); /* Efecto espejo */
+    transform: scaleX(-1);
+    /* Efecto espejo */
 }
 
 /* --- BOTÓN TOGGLE WEBCAM --- */
 .btn-webcam-toggle {
     position: absolute;
     top: 10px;
-    left: 10px; /* Esquina opuesta al botón de salir */
+    left: 10px;
+    /* Esquina opuesta al botón de salir */
     background: transparent;
     border: none;
     color: #9ca3af;
@@ -363,7 +534,7 @@
 
 .rosco-input {
     /* Aumentamos padding-left para que quepa el micro */
-    padding: 12px 50px 12px 50px; 
+    padding: 12px 50px 12px 50px;
     font-size: 1.2rem;
     border: 3px solid #e5e7eb;
     border-radius: 30px;
@@ -383,7 +554,8 @@
     top: 50%;
     transform: translateY(-50%);
     background: transparent;
-    color: #6b7280; /* Gris apagado */
+    color: #6b7280;
+    /* Gris apagado */
     border: none;
     width: 36px;
     height: 36px;
@@ -410,9 +582,17 @@
 }
 
 @keyframes micPulse {
-    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+    }
 }
 
 .btn-mic-inline:disabled {
@@ -425,7 +605,7 @@
 /* Botón WebCam (Ya existente, ajustado posición) */
 .btn-webcam-toggle {
     /* Quitamos position: absolute porque ahora están en un flex container */
-    position: static; 
+    position: static;
     background: transparent;
     border: none;
     color: #9ca3af;
@@ -468,18 +648,127 @@
 
 .btn-auto-mic:hover {
     background: #f3e8ff;
-    color: #9333ea; /* Morado */
+    color: #9333ea;
+    /* Morado */
 }
 
 .btn-auto-mic.active {
     color: #9333ea;
     background: #f3e8ff;
     box-shadow: inset 0 0 5px rgba(147, 51, 234, 0.2);
-    animation: pulseAuto 2s infinite; /* Latido suave para indicar que está activo */
+    animation: pulseAuto 2s infinite;
+    /* Latido suave para indicar que está activo */
 }
 
 @keyframes pulseAuto {
-    0% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.4); }
-    70% { box-shadow: 0 0 0 5px rgba(147, 51, 234, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(147, 51, 234, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 5px rgba(147, 51, 234, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(147, 51, 234, 0);
+    }
+}
+
+/* Material de Estudio */
+.study-material-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.study-material-box {
+    background: white;
+    width: 90%;
+    max-width: 700px;
+    height: 85vh;
+    border-radius: 30px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    animation: popInModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.study-material-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 15px;
+    text-align: left;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+}
+
+.study-letter-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 20px;
+}
+
+.study-letter-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    border: 2px solid #e2e8f0;
+    background: white;
+    color: #475569;
+    font-weight: 800;
+    font-family: 'Fredoka One', cursive;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.study-letter-btn:hover {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    transform: translateY(-2px);
+}
+
+.study-letter-btn.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.study-material-box {
+    max-width: 800px;
+    /* Un poco más ancho para el selector */
 }

@@ -1,83 +1,125 @@
 [
   {
-    "categoria": "Ángulos (Visual)",
+    "categoria": "Ángulos y Líneas Poligonales (Visual)",
     "correctos": [
       "📐",
-      "L",
-      "V",
       "⊿",
-      "🔲"
+      "🔲",
+      "📐",
+      "⟀",
+      "∠",
+      "∟",
+      "⦣"
     ],
     "intrusos": [
       "🔴",
       "🔵",
       "〰️",
       "🎈",
-      "🐶"
+      "🐶",
+      "🍦",
+      "🥪",
+      "🍳"
     ]
   },
   {
-    "categoria": "Instrumentos de Medida (Visual)",
+    "categoria": "Instrumentos de Medida de Precisión (Visual)",
     "correctos": [
       "📏",
       "📐",
       "⚖️",
       "⏱️",
       "🌡️",
-      "⏲️"
+      "⏲️",
+      "🕰️",
+      "📅",
+      "⏳",
+      "⌚",
+      "📏"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🪛",
       "✂️",
-      "🖍️"
+      "🖍️",
+      "🎨",
+      "🎬",
+      "🎸",
+      "🎺",
+      "🎒"
     ]
   },
   {
-    "categoria": "Cuerpos Redondos (Visual)",
+    "categoria": "Cuerpos de Revolución / Redondos (Visual)",
     "correctos": [
       "⚽",
       "🍊",
       "🥫",
       "🕯️",
       "🍦",
-      "🌍"
+      "🌍",
+      "🏐",
+      "🏀",
+      "🎾",
+      "⚾",
+      "🎱",
+      "🧪"
     ],
     "intrusos": [
       "📦",
       "🎲",
       "🧱",
       "📺",
-      "🧃"
+      "🧃",
+      "📱",
+      "💻",
+      "💼",
+      "📎",
+      "📓"
     ]
   },
   {
-    "categoria": "Fracciones: Mitades (Visual)",
+    "categoria": "Representación de Mitades y Fracciones (Visual)",
     "correctos": [
       "🌗",
       "🌓",
       "🍕",
       "🍰",
-      "🍋"
+      "🍋",
+      "🍎",
+      "🥪",
+      "🍫",
+      "🧇",
+      "🥞"
     ],
     "intrusos": [
       "🌕",
       "🌑",
       "🟦",
       "🟩",
-      "🔟"
+      "🔟",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
     ]
   },
   {
-    "categoria": "Números Decimales",
+    "categoria": "Números Decimales con Décimas y Centésimas",
     "correctos": [
-      "0.5",
-      "1.2",
-      "3.14",
-      "0.05",
-      "10.5",
-      "7.8"
+      "0,5",
+      "1,2",
+      "3,14",
+      "0,05",
+      "10,5",
+      "7,8",
+      "25,12",
+      "0,75",
+      "1,99",
+      "100,01"
     ],
     "intrusos": [
       "100",
@@ -85,77 +127,103 @@
       "25",
       "1",
       "500",
-      "Mil"
+      "Mil",
+      "Diez",
+      "Cien",
+      "DOCE",
+      "5+5",
+      "10-2"
     ]
   },
   {
-    "categoria": "Tipos de Ángulos",
+    "categoria": "Tipos de Ángulos según su Apertura",
     "correctos": [
       "Agudo",
       "Recto",
       "Obtuso",
       "Llano",
-      "Completo"
+      "Completo",
+      "Cóncavo",
+      "Convexo"
     ],
     "intrusos": [
       "Triángulo",
       "Cuadrado",
       "Círculo",
       "Vértice",
-      "Lado"
+      "Lado",
+      "Arista",
+      "Cara",
+      "Cuerpo",
+      "Plano"
     ]
   },
   {
-    "categoria": "Términos de la División",
+    "categoria": "Elementos de la Operación de la División",
     "correctos": [
       "Dividendo",
       "Divisor",
       "Cociente",
-      "Resto"
+      "Resto",
+      "Dividir",
+      "Repartir"
     ],
     "intrusos": [
       "Sumando",
       "Factor",
       "Producto",
       "Minuendo",
-      "Resta"
+      "Resta",
+      "Diferencia",
+      "Multiplicando",
+      "Suma"
     ]
   },
   {
-    "categoria": "Unidades de Masa",
+    "categoria": "Unidades de Medida de Masa del Sistema Métrico",
     "correctos": [
       "Kilogramo",
       "Gramo",
       "Miligramo",
       "Hectogramo",
-      "Decagramo"
+      "Decagramo",
+      "Centigramo",
+      "Decigramo",
+      "Tonelada"
     ],
     "intrusos": [
       "Litro",
       "Metro",
       "Segundo",
       "Grado",
-      "Euro"
+      "Euro",
+      "Minuto",
+      "Hora",
+      "Kilómetro",
+      "Centímetro"
     ]
   },
   {
-    "categoria": "Clasificación de Triángulos",
+    "categoria": "Clasificación de Triángulos según sus Lados",
     "correctos": [
       "Equilátero",
       "Isósceles",
-      "Escaleno",
-      "Rectángulo"
+      "Escaleno"
     ],
     "intrusos": [
+      "Rectángulo",
+      "Acutángulo",
+      "Obtusángulo",
       "Cuadrado",
       "Rombo",
+      "Trapecio",
       "Pentágono",
-      "Círculo",
-      "Prisma"
+      "Hexágono",
+      "Paralelogramo"
     ]
   },
   {
-    "categoria": "Números Romanos (decenas)",
+    "categoria": "Números Romanos (Decenas y Centenas)",
     "correctos": [
       "X",
       "XX",
@@ -163,16 +231,28 @@
       "XL",
       "L",
       "LX",
-      "XC"
+      "LXX",
+      "LXXX",
+      "XC",
+      "C",
+      "CC",
+      "D",
+      "M"
     ],
     "intrusos": [
       "I",
       "V",
+      "II",
+      "III",
+      "IV",
+      "VI",
+      "VII",
+      "VIII",
+      "IX",
       "10",
       "20",
-      "A",
-      "B",
-      "Cien"
+      "50",
+      "100"
     ]
   }
 ]

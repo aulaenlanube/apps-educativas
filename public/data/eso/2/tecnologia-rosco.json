@@ -1,299 +1,2170 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Material metálico formado por hierro y carbono.", "solucion": "acero", "materia": "tecnologia" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Mezcla de dos o más elementos, uno de ellos metal.", "solucion": "aleación", "materia": "tecnologia" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Material que no deja pasar la electricidad.", "solucion": "aislante", "materia": "tecnologia" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Vista frontal de un objeto.", "solucion": "alzado", "materia": "tecnologia" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Instrumento para medir la intensidad de corriente.", "solucion": "amperímetro", "materia": "tecnologia" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Metal ligero, resistente a la corrosión y buen conductor.", "solucion": "aluminio", "materia": "tecnologia" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Mecanismo que funciona por sí solo.", "solucion": "automatismo", "materia": "tecnologia" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Unidad de intensidad eléctrica.", "solucion": "amperio", "materia": "tecnologia" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Punto donde se sustenta una palanca.", "solucion": "apoyo", "materia": "tecnologia" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Elemento estructural curvo que desvía cargas a los lados.", "solucion": "arco", "materia": "tecnologia" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Barra rígida que une el pistón con el cigüeñal.", "solucion": "biela", "materia": "tecnologia" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Herramienta de corte que se usa con el taladro.", "solucion": "broca", "materia": "tecnologia" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Dibujo previo de un diseño.", "solucion": "boceto", "materia": "tecnologia" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Aleación de cobre y estaño.", "solucion": "bronce", "materia": "tecnologia" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Acumulador de energía eléctrica.", "solucion": "batería", "materia": "tecnologia" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Elemento que emite luz por incandescencia o gas.", "solucion": "bombilla", "materia": "tecnologia" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Parte inferior de una estructura o figura.", "solucion": "base", "materia": "tecnologia" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Unidad mínima de información digital (0 o 1).", "solucion": "bit", "materia": "tecnologia" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Conjunto de instrucciones en programación.", "solucion": "bloque", "materia": "tecnologia" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Energía obtenida de materia orgánica.", "solucion": "biomasa", "materia": "tecnologia" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Camino cerrado para la corriente eléctrica.", "solucion": "circuito", "materia": "tecnologia" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Flujo de electrones.", "solucion": "corriente", "materia": "tecnologia" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Eje acodado que transforma movimiento lineal en circular.", "solucion": "cigüeñal", "materia": "tecnologia" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Esfuerzo de aplastamiento.", "solucion": "compresión", "materia": "tecnologia" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Esfuerzo de corte (como unas tijeras).", "solucion": "cizalladura", "materia": "tecnologia" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Material buen transportador de electricidad.", "solucion": "conductor", "materia": "tecnologia" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Material pétreo artificial usado en construcción (hormigón).", "solucion": "cemento", "materia": "tecnologia" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Energía producida por el calor.", "solucion": "calorífica", "materia": "tecnologia" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Metal rojizo usado en cables.", "solucion": "cobre", "materia": "tecnologia" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Elemento vertical que soporta peso.", "solucion": "columna", "materia": "tecnologia" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Máquina que convierte energía mecánica en eléctrica (corriente continua).", "solucion": "dinamo", "materia": "tecnologia" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Resistencia a ser rayado.", "solucion": "dureza", "materia": "tecnologia" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Capacidad de un material de hacerse hilos.", "solucion": "ductilidad", "materia": "tecnologia" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Componente electrónico que permite el paso de corriente en un solo sentido.", "solucion": "diodo", "materia": "tecnologia" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Representación gráfica de un circuito.", "solucion": "diagrama", "materia": "tecnologia" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Planificación de un objeto antes de construirlo.", "solucion": "diseño", "materia": "tecnologia" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Dibujo técnico de todas las piezas por separado.", "solucion": "despiece", "materia": "tecnologia" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Herramienta para apretar tornillos.", "solucion": "destornillador", "materia": "tecnologia" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Información digital.", "solucion": "datos", "materia": "tecnologia" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Sistema binario (señal...).", "solucion": "digital", "materia": "tecnologia" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Conjunto de elementos que soportan cargas y protegen.", "solucion": "estructura", "materia": "tecnologia" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Tensión interna que experimenta un cuerpo.", "solucion": "esfuerzo", "materia": "tecnologia" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Mecanismo de ruedas dentadas.", "solucion": "engranaje", "materia": "tecnologia" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Relación matemática entre el dibujo y la realidad.", "solucion": "escala", "materia": "tecnologia" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Energía del viento.", "solucion": "eólica", "materia": "tecnologia" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Metal usado para soldar en electrónica.", "solucion": "estaño", "materia": "tecnologia" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Plástico elástico (caucho, goma...).", "solucion": "elastómero", "materia": "tecnologia" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Dibujo simplificado con símbolos.", "solucion": "esquema", "materia": "tecnologia" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Forma de energía que mueve electrones.", "solucion": "electricidad", "materia": "tecnologia" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Partícula subatómica de carga negativa.", "solucion": "electrón", "materia": "tecnologia" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Elemento de protección eléctrica que se funde.", "solucion": "fusible", "materia": "tecnologia" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Esfuerzo de doblado.", "solucion": "flexión", "materia": "tecnologia" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Dispositivo que suministra energía (pila).", "solucion": "fuente", "materia": "tecnologia" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Material textil o de vidrio.", "solucion": "fibra", "materia": "tecnologia" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Cansancio de un material por uso repetido.", "solucion": "fatiga", "materia": "tecnologia" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Energía solar de paneles.", "solucion": "fotovoltaica", "materia": "tecnologia" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Aleación de hierro y carbono con mucho carbono.", "solucion": "fundición", "materia": "tecnologia" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Herramienta de corte para madera.", "solucion": "formón", "materia": "tecnologia" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Elemento mecánico que no se mueve (Punto...).", "solucion": "fijo", "materia": "tecnologia" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Acción capaz de alterar el estado de reposo o movimiento.", "solucion": "fuerza", "materia": "tecnologia" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Máquina que produce corriente eléctrica (alternador/dinamo).", "solucion": "generador", "materia": "tecnologia" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Herramienta de sujeción (sargento).", "solucion": "gato", "materia": "tecnologia" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Mineral de carbono conductor.", "solucion": "grafito", "materia": "tecnologia" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Máquina para cortar papel o chapa.", "solucion": "guillotina", "materia": "tecnologia" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Movimiento circular.", "solucion": "giro", "materia": "tecnologia" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Tornillo sin fin (Mecanismo de...).", "solucion": "gusano", "materia": "tecnologia" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "Unidad de temperatura o ángulo.", "solucion": "grados", "materia": "tecnologia" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Combustible derivado del petróleo.", "solucion": "gasolina", "materia": "tecnologia" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Recubrir con zinc para evitar óxido.", "solucion": "galvanizado", "materia": "tecnologia" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Técnica de impresión o arte.", "solucion": "grabado", "materia": "tecnologia" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Instrumento de trabajo.", "solucion": "herramienta", "materia": "tecnologia" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Parte física del ordenador.", "solucion": "hardware", "materia": "tecnologia" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Energía de fluidos (aceite/agua).", "solucion": "hidráulica", "materia": "tecnologia" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Metal más usado en la industria.", "solucion": "hierro", "materia": "tecnologia" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Material de construcción (cemento, arena, grava, agua).", "solucion": "hormigón", "materia": "tecnologia" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Parte cortante de la sierra.", "solucion": "hoja", "materia": "tecnologia" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Cable conductor fino.", "solucion": "hilo", "materia": "tecnologia" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Elemento que impulsa un barco o avión.", "solucion": "hélice", "materia": "tecnologia" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Madera dura de color claro.", "solucion": "haya", "materia": "tecnologia" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Máquina para calentar o fundir.", "solucion": "horno", "materia": "tecnologia" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Elemento de control que abre o cierra el circuito.", "solucion": "interruptor", "materia": "tecnologia" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Cantidad de carga eléctrica que pasa por segundo.", "solucion": "intensidad", "materia": "tecnologia" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Ciencia del tratamiento automático de la información.", "solucion": "informática", "materia": "tecnologia" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Red de redes.", "solucion": "internet", "materia": "tecnologia" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Máquina para sacar copias en papel.", "solucion": "impresora", "materia": "tecnologia" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Plano no horizontal ni vertical.", "solucion": "inclinado", "materia": "tecnologia" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Material que no arde.", "solucion": "ignífugo", "materia": "tecnologia" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Objeto magnético.", "solucion": "imán", "materia": "tecnologia" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Pensamiento creativo inicial.", "solucion": "idea", "materia": "tecnologia" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Foto o gráfico digital.", "solucion": "imagen", "materia": "tecnologia" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Unidad de energía y trabajo.", "solucion": "julio", "materia": "tecnologia" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Palanca de control para juegos.", "solucion": "joystick", "materia": "tecnologia" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Elemento de estanqueidad entre piezas.", "solucion": "junta", "materia": "tecnologia" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Estructura de barras (Caja o...).", "solucion": "jaula", "materia": "tecnologia" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Holgura o movimiento entre piezas.", "solucion": "juego", "materia": "tecnologia" },
-  { "id": "j6", "letra": "J", "tipo": "empieza", "definicion": "Lenguaje de programación.", "solucion": "java", "materia": "tecnologia" },
-  { "id": "j7", "letra": "J", "tipo": "empieza", "definicion": "Formato de imagen comprimida.", "solucion": "jpg", "materia": "tecnologia" },
-  { "id": "j8", "letra": "J", "tipo": "empieza", "definicion": "Unir piezas.", "solucion": "juntar", "materia": "tecnologia" },
-  { "id": "j9", "letra": "J", "tipo": "empieza", "definicion": "Cilindro para inyectar fluidos.", "solucion": "jeringa", "materia": "tecnologia" },
-  { "id": "j10", "letra": "J", "tipo": "empieza", "definicion": "Unidad de energía (en inglés).", "solucion": "joule", "materia": "tecnologia" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Mil vatios.", "solucion": "kilovatio", "materia": "tecnologia" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Material sintético muy resistente.", "solucion": "kevlar", "materia": "tecnologia" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Conjunto de piezas para montar.", "solucion": "kit", "materia": "tecnologia" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Papel de embalaje.", "solucion": "kraft", "materia": "tecnologia" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Núcleo del sistema operativo (Linux).", "solucion": "kernel", "materia": "tecnologia" },
-  { "id": "k6", "letra": "K", "tipo": "empieza", "definicion": "1024 bytes.", "solucion": "kilobyte", "materia": "tecnologia" },
-  { "id": "k7", "letra": "K", "tipo": "empieza", "definicion": "Unidad de temperatura.", "solucion": "kelvin", "materia": "tecnologia" },
-  { "id": "k8", "letra": "K", "tipo": "empieza", "definicion": "Prefijo que indica 1000.", "solucion": "kilo", "materia": "tecnologia" },
-  { "id": "k9", "letra": "K", "tipo": "contiene", "definicion": "Combustible derivado del carbón (contiene K).", "solucion": "coque", "materia": "tecnologia" },
-  { "id": "k10", "letra": "K", "tipo": "contiene", "definicion": "Metal usado en baterías y aleaciones (contiene K).", "solucion": "níquel", "materia": "tecnologia" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Pieza mecánica que gira y empuja (excéntrica).", "solucion": "leva", "materia": "tecnologia" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Aleación de cobre y zinc.", "solucion": "latón", "materia": "tecnologia" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Herramienta para rebajar metal o madera.", "solucion": "lima", "materia": "tecnologia" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Papel abrasivo para pulir.", "solucion": "lija", "materia": "tecnologia" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Relación V=I*R (Ley de...).", "solucion": "ohm", "materia": "tecnologia" }, 
-  { "id": "l5_fix", "letra": "L", "tipo": "empieza", "definicion": "Relación V=I*R.", "solucion": "ley de ohm", "materia": "tecnologia" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Componente eléctrico que da luz.", "solucion": "lámpara", "materia": "tecnologia" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Diodo emisor de luz (siglas).", "solucion": "led", "materia": "tecnologia" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Sustancia para reducir rozamiento.", "solucion": "lubricante", "materia": "tecnologia" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Material formado por láminas pegadas.", "solucion": "laminado", "materia": "tecnologia" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Material cerámico de construcción.", "solucion": "ladrillo", "materia": "tecnologia" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Máquina que transforma energía en movimiento.", "solucion": "motor", "materia": "tecnologia" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Conjunto de piezas que transmiten fuerzas.", "solucion": "mecanismo", "materia": "tecnologia" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Material orgánico de los árboles.", "solucion": "madera", "materia": "tecnologia" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Material conductor y resistente.", "solucion": "metal", "materia": "tecnologia" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Herramienta de percusión.", "solucion": "martillo", "materia": "tecnologia" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Aparato de medida eléctrica universal.", "solucion": "multímetro", "materia": "tecnologia" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Artefacto para realizar un trabajo.", "solucion": "máquina", "materia": "tecnologia" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Almacén de datos del ordenador.", "solucion": "memoria", "materia": "tecnologia" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Propiedad de extenderse en láminas.", "solucion": "maleabilidad", "materia": "tecnologia" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Combinación de sustancias.", "solucion": "mezcla", "materia": "tecnologia" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Tecnología del aire comprimido.", "solucion": "neumática", "materia": "tecnologia" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Programa para ver webs.", "solucion": "navegador", "materia": "tecnologia" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Fibra plástica sintética.", "solucion": "nylon", "materia": "tecnologia" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Almacenamiento online.", "solucion": "nube", "materia": "tecnologia" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Cable de retorno (color azul).", "solucion": "neutro", "materia": "tecnologia" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Metal de transición magnético.", "solucion": "níquel", "materia": "tecnologia" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Regla de obligado cumplimiento.", "solucion": "norma", "materia": "tecnologia" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Punto de conexión en una red.", "solucion": "nodo", "materia": "tecnologia" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Interior del electroimán o transformador.", "solucion": "núcleo", "materia": "tecnologia" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Tecnología a escala molecular.", "solucion": "nanotecnología", "materia": "tecnologia" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Rueda dentada pequeña (contiene Ñ).", "solucion": "piñón", "materia": "tecnologia" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Fase creativa del proyecto (contiene Ñ).", "solucion": "diseño", "materia": "tecnologia" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Biomasa de madera (contiene Ñ).", "solucion": "leña", "materia": "tecnologia" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Parte de una ventana de navegador (contiene Ñ).", "solucion": "pestaña", "materia": "tecnologia" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Prototipo o modelo a escala (contiene Ñ).", "solucion": "maqueta", "materia": "tecnologia" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "contiene", "definicion": "Material para soldar (contiene Ñ).", "solucion": "estaño", "materia": "tecnologia" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Pieza en forma de ángulo (contiene Ñ).", "solucion": "cuña", "materia": "tecnologia" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Rotura o avería (contiene Ñ).", "solucion": "daño", "materia": "tecnologia" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "Dimensión de un archivo (contiene Ñ).", "solucion": "tamaño", "materia": "tecnologia" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "Indicación de peligro (contiene Ñ).", "solucion": "señal", "materia": "tecnologia" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Unidad de resistencia eléctrica.", "solucion": "ohmio", "materia": "tecnologia" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Mecanismo que transforma movimiento.", "solucion": "operador", "materia": "tecnologia" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Máquina de procesamiento de datos.", "solucion": "ordenador", "materia": "tecnologia" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Metal precioso muy buen conductor.", "solucion": "oro", "materia": "tecnologia" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Corrosión del metal por el aire.", "solucion": "óxido", "materia": "tecnologia" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Cosa material.", "solucion": "objeto", "materia": "tecnologia" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Gráfico de organización.", "solucion": "organigrama", "materia": "tecnologia" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Lugar de trabajo administrativo.", "solucion": "oficina", "materia": "tecnologia" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Señal eléctrica periódica.", "solucion": "onda", "materia": "tecnologia" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Circuito generador de ondas.", "solucion": "oscilador", "materia": "tecnologia" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Máquina simple (Barra + punto de apoyo).", "solucion": "palanca", "materia": "tecnologia" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Rueda acanalada para cuerdas.", "solucion": "polea", "materia": "tecnologia" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Rueda dentada pequeña.", "solucion": "piñón", "materia": "tecnologia" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Material sintético moldeable.", "solucion": "plástico", "materia": "tecnologia" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Macromolécula que forma los plásticos.", "solucion": "polímero", "materia": "tecnologia" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Dibujo técnico.", "solucion": "plano", "materia": "tecnologia" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Vista superior.", "solucion": "planta", "materia": "tecnologia" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Vista lateral.", "solucion": "perfil", "materia": "tecnologia" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Conexión de componentes en ramas separadas.", "solucion": "paralelo", "materia": "tecnologia" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Generador químico.", "solucion": "pila", "materia": "tecnologia" },
-
-  { "id": "q1", "letra": "Q", "tipo": "contiene", "definicion": "Dibujo a mano alzada (contiene Q).", "solucion": "croquis", "materia": "tecnologia" },
-  { "id": "q2", "letra": "Q", "tipo": "contiene", "definicion": "Modelo a escala (contiene Q).", "solucion": "maqueta", "materia": "tecnologia" },
-  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Profesional de la construcción (contiene Q).", "solucion": "arquitecto", "materia": "tecnologia" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Dibujo de circuito (contiene Q).", "solucion": "esquema", "materia": "tecnologia" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Grupo de instrucciones (contiene Q).", "solucion": "bloque", "materia": "tecnologia" },
-  { "id": "q6", "letra": "Q", "tipo": "contiene", "definicion": "Artefacto mecánico (contiene Q).", "solucion": "máquina", "materia": "tecnologia" },
-  { "id": "q7", "letra": "Q", "tipo": "contiene", "definicion": "Producto industrial (contiene Q).", "solucion": "químico", "materia": "tecnologia" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "Adhesivo o marca (contiene Q).", "solucion": "etiqueta", "materia": "tecnologia" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Cortar con molde (contiene Q).", "solucion": "troquelar", "materia": "tecnologia" },
-  { "id": "q10", "letra": "Q", "tipo": "contiene", "definicion": "Metal Ni (contiene Q).", "solucion": "níquel", "materia": "tecnologia" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Componente que limita la corriente.", "solucion": "resistencia", "materia": "tecnologia" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Interruptor electromagnético.", "solucion": "relé", "materia": "tecnologia" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Máquina programable.", "solucion": "robot", "materia": "tecnologia" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Tratamiento de residuos.", "solucion": "reciclaje", "materia": "tecnologia" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Conexión de ordenadores.", "solucion": "red", "materia": "tecnologia" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Periférico de entrada (mouse).", "solucion": "ratón", "materia": "tecnologia" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Fuerza contraria al movimiento.", "solucion": "rozamiento", "materia": "tecnologia" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Unión fija de metales (Clavo remachado).", "solucion": "remache", "materia": "tecnologia" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Movimiento giratorio.", "solucion": "rotación", "materia": "tecnologia" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Instrumento de medida y trazado.", "solucion": "regla", "materia": "tecnologia" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Herramienta de corte con dientes.", "solucion": "sierra", "materia": "tecnologia" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Programas del ordenador.", "solucion": "software", "materia": "tecnologia" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Conexión uno detrás de otro.", "solucion": "serie", "materia": "tecnologia" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Herramienta para fundir estaño.", "solucion": "soldador", "materia": "tecnologia" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Conjunto de elementos organizados.", "solucion": "sistema", "materia": "tecnologia" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Dispositivo que capta magnitudes físicas.", "solucion": "sensor", "materia": "tecnologia" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Dibujos de componentes.", "solucion": "simbología", "materia": "tecnologia" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Ordenador central.", "solucion": "servidor", "materia": "tecnologia" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Material semiconductor.", "solucion": "silicio", "materia": "tecnologia" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Prevención de accidentes.", "solucion": "seguridad", "materia": "tecnologia" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Elemento de unión roscado.", "solucion": "tornillo", "materia": "tecnologia" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Pieza con agujero roscado.", "solucion": "tuerca", "materia": "tecnologia" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Máquina para perforar.", "solucion": "taladro", "materia": "tecnologia" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Diferencia de potencial (Voltaje).", "solucion": "tensión", "materia": "tecnologia" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Esfuerzo de retorcer.", "solucion": "torsión", "materia": "tecnologia" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Esfuerzo de estirar.", "solucion": "tracción", "materia": "tecnologia" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Figura geométrica indeformable.", "solucion": "triángulo", "materia": "tecnologia" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Motor de fluido.", "solucion": "turbina", "materia": "tecnologia" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Plástico que se deforma con calor.", "solucion": "termoplástico", "materia": "tecnologia" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Dispositivo que cambia el voltaje.", "solucion": "transformador", "materia": "tecnologia" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Juntar piezas.", "solucion": "unión", "materia": "tecnologia" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Conector universal.", "solucion": "usb", "materia": "tecnologia" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Persona que maneja el sistema.", "solucion": "usuario", "materia": "tecnologia" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Función de un objeto.", "solucion": "utilidad", "materia": "tecnologia" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Medida estándar.", "solucion": "unidad", "materia": "tecnologia" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Que sirve para todo (Alicate...).", "solucion": "universal", "materia": "tecnologia" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Material de amianto-cemento (prohibido).", "solucion": "uralita", "materia": "tecnologia" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Combustible nuclear.", "solucion": "uranio", "materia": "tecnologia" },
-  { "id": "u9", "letra": "U", "tipo": "empieza", "definicion": "Herramienta pequeña.", "solucion": "utensilio", "materia": "tecnologia" },
-  { "id": "u10", "letra": "U", "tipo": "empieza", "definicion": "Lugar o posición.", "solucion": "ubicación", "materia": "tecnologia" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Tensión eléctrica.", "solucion": "voltaje", "materia": "tecnologia" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Unidad de tensión.", "solucion": "voltio", "materia": "tecnologia" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Rapidez.", "solucion": "velocidad", "materia": "tecnologia" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Unidad de potencia.", "solucion": "vatio", "materia": "tecnologia" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Elemento de control de flujo.", "solucion": "válvula", "materia": "tecnologia" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Proyecciones ortogonales (Alzado, Planta, Perfil).", "solucion": "vistas", "materia": "tecnologia" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Calibre o Pie de Rey.", "solucion": "vernier", "materia": "tecnologia" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Material cerámico transparente.", "solucion": "vidrio", "materia": "tecnologia" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Máquina que mueve aire.", "solucion": "ventilador", "materia": "tecnologia" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Elemento estructural horizontal.", "solucion": "viga", "materia": "tecnologia" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Vatio en inglés.", "solucion": "watt", "materia": "tecnologia" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Red inalámbrica.", "solucion": "wifi", "materia": "tecnologia" },
-  { "id": "w3", "letra": "W", "tipo": "empieza", "definicion": "World Wide Web.", "solucion": "web", "materia": "tecnologia" },
-  { "id": "w4", "letra": "W", "tipo": "empieza", "definicion": "Sistema operativo de Microsoft.", "solucion": "windows", "materia": "tecnologia" },
-  { "id": "w5", "letra": "W", "tipo": "empieza", "definicion": "Procesador de textos.", "solucion": "word", "materia": "tecnologia" },
-  { "id": "w6", "letra": "W", "tipo": "empieza", "definicion": "Cámara web.", "solucion": "webcam", "materia": "tecnologia" },
-  { "id": "w7", "letra": "W", "tipo": "empieza", "definicion": "Metal de filamentos (Tungsteno).", "solucion": "wolframio", "materia": "tecnologia" },
-  { "id": "w8", "letra": "W", "tipo": "empieza", "definicion": "Aplicación de chat.", "solucion": "whatsapp", "materia": "tecnologia" },
-  { "id": "w9", "letra": "W", "tipo": "empieza", "definicion": "Enciclopedia online.", "solucion": "wikipedia", "materia": "tecnologia" },
-  { "id": "w10", "letra": "W", "tipo": "empieza", "definicion": "Transmisor de radio.", "solucion": "walkie-talkie", "materia": "tecnologia" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Dar forma empujando material (contiene X).", "solucion": "extrusión", "materia": "tecnologia" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Que se dobla (contiene X).", "solucion": "flexible", "materia": "tecnologia" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Cualidad de la superficie (contiene X).", "solucion": "textura", "materia": "tecnologia" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Enlace (contiene X).", "solucion": "conexión", "materia": "tecnologia" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Ayuda o secundario (contiene X).", "solucion": "auxiliar", "materia": "tecnologia" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Circuito serie y paralelo (contiene X).", "solucion": "mixto", "materia": "tecnologia" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Punto de imagen (contiene X).", "solucion": "píxel", "materia": "tecnologia" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Tuerca de 6 lados (contiene X).", "solucion": "hexagonal", "materia": "tecnologia" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Ensayo científico (contiene X).", "solucion": "experimento", "materia": "tecnologia" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "Parte de fuera (contiene X).", "solucion": "exterior", "materia": "tecnologia" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Herramienta de herrero.", "solucion": "yunque", "materia": "tecnologia" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Fibra vegetal.", "solucion": "yute", "materia": "tecnologia" },
-  { "id": "y3", "letra": "Y", "tipo": "empieza", "definicion": "Sulfato de calcio (construcción).", "solucion": "yeso", "materia": "tecnologia" },
-  { "id": "y4", "letra": "Y", "tipo": "empieza", "definicion": "Lugar de minerales.", "solucion": "yacimiento", "materia": "tecnologia" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Plan de trabajo (contiene Y).", "solucion": "proyecto", "materia": "tecnologia" },
-  { "id": "y6", "letra": "Y", "tipo": "contiene", "definicion": "Prueba (contiene Y).", "solucion": "ensayo", "materia": "tecnologia" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Regla científica (contiene Y).", "solucion": "ley", "materia": "tecnologia" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Socorro (contiene Y).", "solucion": "ayuda", "materia": "tecnologia" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Electricidad natural (contiene Y).", "solucion": "rayo", "materia": "tecnologia" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Más grande (contiene Y).", "solucion": "mayor", "materia": "tecnologia" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Avisador acústico.", "solucion": "zumbador", "materia": "tecnologia" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Base para chips.", "solucion": "zócalo", "materia": "tecnologia" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Área.", "solucion": "zona", "materia": "tecnologia" },
-  { "id": "z4", "letra": "Z", "tipo": "empieza", "definicion": "Metal para galvanizar.", "solucion": "zinc", "materia": "tecnologia" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Herramienta de agarre (contiene Z).", "solucion": "pinza", "materia": "tecnologia" },
-  { "id": "z6", "letra": "Z", "tipo": "contiene", "definicion": "Causa del movimiento (contiene Z).", "solucion": "fuerza", "materia": "tecnologia" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Componente mecánico (contiene Z).", "solucion": "pieza", "materia": "tecnologia" },
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "Herramienta de corte y agarre (contiene Z).", "solucion": "tenaza", "materia": "tecnologia" },
-  { "id": "z9", "letra": "Z", "tipo": "contiene", "definicion": "Trabajo o tensión (contiene Z).", "solucion": "esfuerzo", "materia": "tecnologia" },
-  { "id": "z10", "letra": "Z", "tipo": "contiene", "definicion": "Utensilio de dibujo (contiene Z).", "solucion": "lápiz", "materia": "tecnologia" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Material metálico formado por hierro y carbono.",
+    "solucion": "acero",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Mezcla de dos o más elementos, uno de ellos metal.",
+    "solucion": "aleación",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Material que no deja pasar la electricidad.",
+    "solucion": "aislante",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Vista frontal de un objeto.",
+    "solucion": "alzado",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Instrumento para medir la intensidad de corriente.",
+    "solucion": "amperímetro",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Metal ligero, resistente a la corrosión y buen conductor.",
+    "solucion": "aluminio",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Mecanismo que funciona por sí solo.",
+    "solucion": "automatismo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Unidad de intensidad eléctrica.",
+    "solucion": "amperio",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Punto donde se sustenta una palanca.",
+    "solucion": "apoyo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Elemento estructural curvo que desvía cargas a los lados.",
+    "solucion": "arco",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Barra rígida que une el pistón con el cigüeñal.",
+    "solucion": "biela",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Herramienta de corte que se usa con el taladro.",
+    "solucion": "broca",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Dibujo previo de un diseño.",
+    "solucion": "boceto",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Aleación de cobre y estaño.",
+    "solucion": "bronce",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Acumulador de energía eléctrica.",
+    "solucion": "batería",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Elemento que emite luz por incandescencia o gas.",
+    "solucion": "bombilla",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Parte inferior de una estructura o figura.",
+    "solucion": "base",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Unidad mínima de información digital (0 o 1).",
+    "solucion": "bit",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Conjunto de instrucciones en programación.",
+    "solucion": "bloque",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Energía obtenida de materia orgánica.",
+    "solucion": "biomasa",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Camino cerrado para la corriente eléctrica.",
+    "solucion": "circuito",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Flujo de electrones.",
+    "solucion": "corriente",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Eje acodado que transforma movimiento lineal en circular.",
+    "solucion": "cigüeñal",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Esfuerzo de aplastamiento.",
+    "solucion": "compresión",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Esfuerzo de corte (como unas tijeras).",
+    "solucion": "cizalladura",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Material buen transportador de electricidad.",
+    "solucion": "conductor",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Material pétreo artificial usado en construcción (hormigón).",
+    "solucion": "cemento",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Energía producida por el calor.",
+    "solucion": "calorífica",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Metal rojizo usado en cables.",
+    "solucion": "cobre",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Elemento vertical que soporta peso.",
+    "solucion": "columna",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Máquina que convierte energía mecánica en eléctrica (corriente continua).",
+    "solucion": "dinamo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Resistencia a ser rayado.",
+    "solucion": "dureza",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Capacidad de un material de hacerse hilos.",
+    "solucion": "ductilidad",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Componente electrónico que permite el paso de corriente en un solo sentido.",
+    "solucion": "diodo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Representación gráfica de un circuito.",
+    "solucion": "diagrama",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Planificación de un objeto antes de construirlo.",
+    "solucion": "diseño",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Dibujo técnico de todas las piezas por separado.",
+    "solucion": "despiece",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Herramienta para apretar tornillos.",
+    "solucion": "destornillador",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Información digital.",
+    "solucion": "datos",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Sistema binario (señal...).",
+    "solucion": "digital",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Conjunto de elementos que soportan cargas y protegen.",
+    "solucion": "estructura",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Tensión interna que experimenta un cuerpo.",
+    "solucion": "esfuerzo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Mecanismo de ruedas dentadas.",
+    "solucion": "engranaje",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Relación matemática entre el dibujo y la realidad.",
+    "solucion": "escala",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Energía del viento.",
+    "solucion": "eólica",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Metal usado para soldar en electrónica.",
+    "solucion": "estaño",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Plástico elástico (caucho, goma...).",
+    "solucion": "elastómero",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Dibujo simplificado con símbolos.",
+    "solucion": "esquema",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Forma de energía que mueve electrones.",
+    "solucion": "electricidad",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Partícula subatómica de carga negativa.",
+    "solucion": "electrón",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Elemento de protección eléctrica que se funde.",
+    "solucion": "fusible",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Esfuerzo de doblado.",
+    "solucion": "flexión",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Dispositivo que suministra energía (pila).",
+    "solucion": "fuente",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Material textil o de vidrio.",
+    "solucion": "fibra",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Cansancio de un material por uso repetido.",
+    "solucion": "fatiga",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Energía solar de paneles.",
+    "solucion": "fotovoltaica",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Aleación de hierro y carbono con mucho carbono.",
+    "solucion": "fundición",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Herramienta de corte para madera.",
+    "solucion": "formón",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Elemento mecánico que no se mueve (Punto...).",
+    "solucion": "fijo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Acción capaz de alterar el estado de reposo o movimiento.",
+    "solucion": "fuerza",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Máquina que produce corriente eléctrica (alternador/dinamo).",
+    "solucion": "generador",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Herramienta de sujeción (sargento).",
+    "solucion": "gato",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Mineral de carbono conductor.",
+    "solucion": "grafito",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Máquina para cortar papel o chapa.",
+    "solucion": "guillotina",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Movimiento circular.",
+    "solucion": "giro",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Tornillo sin fin (Mecanismo de...).",
+    "solucion": "gusano",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Unidad de temperatura o ángulo.",
+    "solucion": "grados",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Combustible derivado del petróleo.",
+    "solucion": "gasolina",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Recubrir con zinc para evitar óxido.",
+    "solucion": "galvanizado",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Técnica de impresión o arte.",
+    "solucion": "grabado",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Instrumento de trabajo.",
+    "solucion": "herramienta",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Parte física del ordenador.",
+    "solucion": "hardware",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Energía de fluidos (aceite/agua).",
+    "solucion": "hidráulica",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Metal más usado en la industria.",
+    "solucion": "hierro",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Material de construcción (cemento, arena, grava, agua).",
+    "solucion": "hormigón",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Parte cortante de la sierra.",
+    "solucion": "hoja",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Cable conductor fino.",
+    "solucion": "hilo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Elemento que impulsa un barco o avión.",
+    "solucion": "hélice",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Madera dura de color claro.",
+    "solucion": "haya",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Máquina para calentar o fundir.",
+    "solucion": "horno",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Elemento de control que abre o cierra el circuito.",
+    "solucion": "interruptor",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Cantidad de carga eléctrica que pasa por segundo.",
+    "solucion": "intensidad",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Ciencia del tratamiento automático de la información.",
+    "solucion": "informática",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Red de redes.",
+    "solucion": "internet",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Máquina para sacar copias en papel.",
+    "solucion": "impresora",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Plano no horizontal ni vertical.",
+    "solucion": "inclinado",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Material que no arde.",
+    "solucion": "ignífugo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Objeto magnético.",
+    "solucion": "imán",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Pensamiento creativo inicial.",
+    "solucion": "idea",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Foto o gráfico digital.",
+    "solucion": "imagen",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Unidad de energía y trabajo.",
+    "solucion": "julio",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Palanca de control para juegos.",
+    "solucion": "joystick",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Elemento de estanqueidad entre piezas.",
+    "solucion": "junta",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Estructura de barras (Caja o...).",
+    "solucion": "jaula",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Holgura o movimiento entre piezas.",
+    "solucion": "juego",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Lenguaje de programación.",
+    "solucion": "java",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Formato de imagen comprimida.",
+    "solucion": "jpg",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Unir piezas.",
+    "solucion": "juntar",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Cilindro para inyectar fluidos.",
+    "solucion": "jeringa",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Unidad de energía (en inglés).",
+    "solucion": "joule",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Mil vatios.",
+    "solucion": "kilovatio",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Material sintético muy resistente.",
+    "solucion": "kevlar",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Conjunto de piezas para montar.",
+    "solucion": "kit",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Papel de embalaje.",
+    "solucion": "kraft",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Núcleo del sistema operativo (Linux).",
+    "solucion": "kernel",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "1024 bytes.",
+    "solucion": "kilobyte",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unidad de temperatura.",
+    "solucion": "kelvin",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Prefijo que indica 1000.",
+    "solucion": "kilo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Combustible derivado del carbón (contiene K).",
+    "solucion": "kilo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Metal usado en baterías y aleaciones (contiene K).",
+    "solucion": "kilo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Pieza mecánica que gira y empuja (excéntrica).",
+    "solucion": "leva",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Aleación de cobre y zinc.",
+    "solucion": "latón",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Herramienta para rebajar metal o madera.",
+    "solucion": "lima",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Papel abrasivo para pulir.",
+    "solucion": "lija",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Relación V=I*R (Ley de...).",
+    "solucion": "Ley",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "l5_fix",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Relación V=I*R.",
+    "solucion": "ley de ohm",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Componente eléctrico que da luz.",
+    "solucion": "lámpara",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Diodo emisor de luz (siglas).",
+    "solucion": "led",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Sustancia para reducir rozamiento.",
+    "solucion": "lubricante",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Material formado por láminas pegadas.",
+    "solucion": "laminado",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Material cerámico de construcción.",
+    "solucion": "ladrillo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Máquina que transforma energía en movimiento.",
+    "solucion": "motor",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Conjunto de piezas que transmiten fuerzas.",
+    "solucion": "mecanismo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Material orgánico de los árboles.",
+    "solucion": "madera",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Material conductor y resistente.",
+    "solucion": "metal",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Herramienta de percusión.",
+    "solucion": "martillo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Aparato de medida eléctrica universal.",
+    "solucion": "multímetro",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Artefacto para realizar un trabajo.",
+    "solucion": "máquina",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Almacén de datos del ordenador.",
+    "solucion": "memoria",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Propiedad de extenderse en láminas.",
+    "solucion": "maleabilidad",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Combinación de sustancias.",
+    "solucion": "mezcla",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Tecnología del aire comprimido.",
+    "solucion": "neumática",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Programa para ver webs.",
+    "solucion": "navegador",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Fibra plástica sintética.",
+    "solucion": "nylon",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Almacenamiento online.",
+    "solucion": "nube",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Cable de retorno (color azul).",
+    "solucion": "neutro",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Metal de transición magnético.",
+    "solucion": "níquel",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Regla de obligado cumplimiento.",
+    "solucion": "norma",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Punto de conexión en una red.",
+    "solucion": "nodo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Interior del electroimán o transformador.",
+    "solucion": "núcleo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Tecnología a escala molecular.",
+    "solucion": "nanotecnología",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Rueda dentada pequeña (contiene Ñ).",
+    "solucion": "piñón",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Fase creativa del proyecto (contiene Ñ).",
+    "solucion": "diseño",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Biomasa de madera (contiene Ñ).",
+    "solucion": "leña",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Parte de una ventana de navegador (contiene Ñ).",
+    "solucion": "pestaña",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra Ñ.",
+    "solucion": "mañana",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Material para soldar (contiene Ñ).",
+    "solucion": "estaño",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Pieza en forma de ángulo (contiene Ñ).",
+    "solucion": "cuña",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Rotura o avería (contiene Ñ).",
+    "solucion": "daño",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Dimensión de un archivo (contiene Ñ).",
+    "solucion": "tamaño",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Indicación de peligro (contiene Ñ).",
+    "solucion": "señal",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Unidad de resistencia eléctrica.",
+    "solucion": "ohmio",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Mecanismo que transforma movimiento.",
+    "solucion": "operador",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Máquina de procesamiento de datos.",
+    "solucion": "ordenador",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Metal precioso muy buen conductor.",
+    "solucion": "oro",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Corrosión del metal por el aire.",
+    "solucion": "óxido",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Cosa material.",
+    "solucion": "objeto",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gráfico de organización.",
+    "solucion": "organigrama",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Lugar de trabajo administrativo.",
+    "solucion": "oficina",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Señal eléctrica periódica.",
+    "solucion": "onda",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Circuito generador de ondas.",
+    "solucion": "oscilador",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Máquina simple (Barra + punto de apoyo).",
+    "solucion": "palanca",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Rueda acanalada para cuerdas.",
+    "solucion": "polea",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Rueda dentada pequeña.",
+    "solucion": "piñón",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Material sintético moldeable.",
+    "solucion": "plástico",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Macromolécula que forma los plásticos.",
+    "solucion": "polímero",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Dibujo técnico.",
+    "solucion": "plano",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Vista superior.",
+    "solucion": "planta",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Vista lateral.",
+    "solucion": "perfil",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Conexión de componentes en ramas separadas.",
+    "solucion": "paralelo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Generador químico.",
+    "solucion": "pila",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Dibujo a mano alzada (contiene Q).",
+    "solucion": "croquis",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Modelo a escala (contiene Q).",
+    "solucion": "maqueta",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Profesional de la construcción (contiene Q).",
+    "solucion": "arquitecto",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Dibujo de circuito (contiene Q).",
+    "solucion": "esquema",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Grupo de instrucciones (contiene Q).",
+    "solucion": "bloque",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Artefacto mecánico (contiene Q).",
+    "solucion": "máquina",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Producto industrial (contiene Q).",
+    "solucion": "químico",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Adhesivo o marca (contiene Q).",
+    "solucion": "etiqueta",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Cortar con molde (contiene Q).",
+    "solucion": "troquelar",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Metal Ni (contiene Q).",
+    "solucion": "níquel",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Componente que limita la corriente.",
+    "solucion": "resistencia",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Interruptor electromagnético.",
+    "solucion": "relé",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Máquina programable.",
+    "solucion": "robot",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Tratamiento de residuos.",
+    "solucion": "reciclaje",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Conexión de ordenadores.",
+    "solucion": "red",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Periférico de entrada (mouse).",
+    "solucion": "ratón",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Fuerza contraria al movimiento.",
+    "solucion": "rozamiento",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Unión fija de metales (Clavo remachado).",
+    "solucion": "remache",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Movimiento giratorio.",
+    "solucion": "rotación",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Instrumento de medida y trazado.",
+    "solucion": "regla",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Herramienta de corte con dientes.",
+    "solucion": "sierra",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Programas del ordenador.",
+    "solucion": "software",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conexión uno detrás de otro.",
+    "solucion": "serie",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Herramienta para fundir estaño.",
+    "solucion": "soldador",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de elementos organizados.",
+    "solucion": "sistema",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Dispositivo que capta magnitudes físicas.",
+    "solucion": "sensor",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Dibujos de componentes.",
+    "solucion": "simbología",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Ordenador central.",
+    "solucion": "servidor",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Material semiconductor.",
+    "solucion": "silicio",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Prevención de accidentes.",
+    "solucion": "seguridad",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Elemento de unión roscado.",
+    "solucion": "tornillo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Pieza con agujero roscado.",
+    "solucion": "tuerca",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Máquina para perforar.",
+    "solucion": "taladro",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Diferencia de potencial (Voltaje).",
+    "solucion": "tensión",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Esfuerzo de retorcer.",
+    "solucion": "torsión",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Esfuerzo de estirar.",
+    "solucion": "tracción",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Figura geométrica indeformable.",
+    "solucion": "triángulo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Motor de fluido.",
+    "solucion": "turbina",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Plástico que se deforma con calor.",
+    "solucion": "termoplástico",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Dispositivo que cambia el voltaje.",
+    "solucion": "transformador",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Juntar piezas.",
+    "solucion": "unión",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Conector universal.",
+    "solucion": "usb",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Persona que maneja el sistema.",
+    "solucion": "usuario",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Función de un objeto.",
+    "solucion": "utilidad",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Medida estándar.",
+    "solucion": "unidad",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Que sirve para todo (Alicate...).",
+    "solucion": "universal",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Material de amianto-cemento (prohibido).",
+    "solucion": "uralita",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Combustible nuclear.",
+    "solucion": "uranio",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Herramienta pequeña.",
+    "solucion": "utensilio",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Lugar o posición.",
+    "solucion": "ubicación",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Tensión eléctrica.",
+    "solucion": "voltaje",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Unidad de tensión.",
+    "solucion": "voltio",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Rapidez.",
+    "solucion": "velocidad",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Unidad de potencia.",
+    "solucion": "vatio",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Elemento de control de flujo.",
+    "solucion": "válvula",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Proyecciones ortogonales (Alzado, Planta, Perfil).",
+    "solucion": "vistas",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Calibre o Pie de Rey.",
+    "solucion": "vernier",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Material cerámico transparente.",
+    "solucion": "vidrio",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Máquina que mueve aire.",
+    "solucion": "ventilador",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Elemento estructural horizontal.",
+    "solucion": "viga",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Vatio en inglés.",
+    "solucion": "watt",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Red inalámbrica.",
+    "solucion": "wifi",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "World Wide Web.",
+    "solucion": "web",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Sistema operativo de Microsoft.",
+    "solucion": "windows",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Procesador de textos.",
+    "solucion": "word",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Cámara web.",
+    "solucion": "webcam",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Metal de filamentos (Tungsteno).",
+    "solucion": "wolframio",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Aplicación de chat.",
+    "solucion": "whatsapp",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Enciclopedia online.",
+    "solucion": "wikipedia",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Transmisor de radio.",
+    "solucion": "walkie-talkie",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Dar forma empujando material (contiene X).",
+    "solucion": "extrusión",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Que se dobla (contiene X).",
+    "solucion": "flexible",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Cualidad de la superficie (contiene X).",
+    "solucion": "textura",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Enlace (contiene X).",
+    "solucion": "conexión",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Ayuda o secundario (contiene X).",
+    "solucion": "auxiliar",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Circuito serie y paralelo (contiene X).",
+    "solucion": "mixto",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Punto de imagen (contiene X).",
+    "solucion": "píxel",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Tuerca de 6 lados (contiene X).",
+    "solucion": "hexagonal",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Ensayo científico (contiene X).",
+    "solucion": "experimento",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Parte de fuera (contiene X).",
+    "solucion": "exterior",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Herramienta de herrero.",
+    "solucion": "yunque",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Fibra vegetal.",
+    "solucion": "yute",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Sulfato de calcio (construcción).",
+    "solucion": "yeso",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Lugar de minerales.",
+    "solucion": "yacimiento",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Plan de trabajo (contiene Y).",
+    "solucion": "proyecto",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Prueba (contiene Y).",
+    "solucion": "ensayo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Regla científica (contiene Y).",
+    "solucion": "ley",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Socorro (contiene Y).",
+    "solucion": "ayuda",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Electricidad natural (contiene Y).",
+    "solucion": "rayo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Más grande (contiene Y).",
+    "solucion": "mayor",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Avisador acústico.",
+    "solucion": "zumbador",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Base para chips.",
+    "solucion": "zócalo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Área.",
+    "solucion": "zona",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Metal para galvanizar.",
+    "solucion": "zinc",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Herramienta de agarre (contiene Z).",
+    "solucion": "pinza",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Causa del movimiento (contiene Z).",
+    "solucion": "fuerza",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Componente mecánico (contiene Z).",
+    "solucion": "pieza",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Herramienta de corte y agarre (contiene Z).",
+    "solucion": "tenaza",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Trabajo o tensión (contiene Z).",
+    "solucion": "esfuerzo",
+    "materia": "tecnologia"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Utensilio de dibujo (contiene Z).",
+    "solucion": "lápiz",
+    "materia": "tecnologia"
+  }
 ]

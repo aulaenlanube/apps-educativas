@@ -1,0 +1,1491 @@
+{
+  "titulo": "Material de Estudio - Tecnologia - 4º ESO",
+  "introduccion": "Repasa este vocabulario de Tecnologia para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "analógica",
+          "definicion": "Señal eléctrica que varía de forma continua en el tiempo.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "automatismo",
+          "definicion": "Sistema que realiza tareas sin intervención humana directa.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "algoritmo",
+          "definicion": "Conjunto ordenado de pasos para resolver un problema (base de la programación).",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "actuador",
+          "definicion": "Elemento final de un sistema de control que ejecuta la acción (motor, cilindro...).",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "amperio",
+          "definicion": "Unidad de medida de la intensidad de corriente eléctrica.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "and",
+          "definicion": "Puerta lógica que realiza la función de multiplicación (Y).",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "arquitectura",
+          "definicion": "Estructura y organización de los componentes de un ordenador.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "alterna",
+          "definicion": "Corriente eléctrica que cambia de sentido periódicamente (AC).",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "antena",
+          "definicion": "Dispositivo para emitir o recibir ondas de radio.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "aislante",
+          "definicion": "Material que no permite el paso de la corriente eléctrica.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "binario",
+          "definicion": "Sistema de numeración en base 2 (0 y 1).",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "base",
+          "definicion": "Terminal de un transistor (B).",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bit",
+          "definicion": "Unidad mínima de información digital (0 o 1).",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bobina",
+          "definicion": "Componente pasivo formado por hilo enrollado que almacena energía magnética.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bus",
+          "definicion": "Canal de comunicación por donde viajan los datos en un ordenador.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bios",
+          "definicion": "Sistema Básico de Entrada/Salida del ordenador.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "batería",
+          "definicion": "Dispositivo que almacena energía eléctrica química.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "biela",
+          "definicion": "Elemento mecánico que transforma movimiento circular en lineal junto a la manivela.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bluetooth",
+          "definicion": "Estándar de comunicación inalámbrica de corto alcance.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "banda ancha",
+          "definicion": "Conexión a internet de alta velocidad.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "corriente",
+          "definicion": "Flujo de electrones a través de un conductor.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "condensador",
+          "definicion": "Componente capaz de almacenar carga eléctrica.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "chip",
+          "definicion": "Circuito integrado, pastilla de silicio.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "compresor",
+          "definicion": "Máquina que aumenta la presión del aire en neumática.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "control",
+          "definicion": "Sistema que regula el comportamiento de otros dispositivos (Lazo abierto/cerrado).",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "circuito",
+          "definicion": "Conjunto de componentes eléctricos conectados entre sí.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "conmutador",
+          "definicion": "Elemento que permite desviar la corriente por diferentes caminos.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "código",
+          "definicion": "Conjunto de instrucciones de un programa.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "colector",
+          "definicion": "Terminal de un transistor (C).",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cpu",
+          "definicion": "Unidad Central de Procesamiento (siglas).",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "digital",
+          "definicion": "Señal que solo toma valores discretos (0 y 1).",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "diodo",
+          "definicion": "Componente electrónico que permite el paso de corriente en un solo sentido.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "domótica",
+          "definicion": "Automatización inteligente de la vivienda.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dinamo",
+          "definicion": "Generador de corriente continua.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "disco duro",
+          "definicion": "Dispositivo de almacenamiento masivo magnético.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "driver",
+          "definicion": "Controlador de dispositivo (software).",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "diagrama",
+          "definicion": "Representación gráfica de un algoritmo (... de flujo).",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "distribuidora",
+          "definicion": "Válvula que dirige el fluido en neumática (...tidora).",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "datos",
+          "definicion": "Información procesada por el ordenador.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dron",
+          "definicion": "Vehículo aéreo no tripulado.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "electrónica",
+          "definicion": "Rama de la tecnología que trata el control y procesamiento de información mediante corrientes.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "emisor",
+          "definicion": "Terminal de un transistor (E).",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "energía",
+          "definicion": "Capacidad para realizar un trabajo.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "esquema",
+          "definicion": "Dibujo simplificado de un circuito eléctrico.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "engranaje",
+          "definicion": "Rueda dentada.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "escala",
+          "definicion": "Relación entre las dimensiones del dibujo y la realidad.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "electroimán",
+          "definicion": "Barra de hierro rodeada de una bobina que atrae metales.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "etiqueta",
+          "definicion": "Pegatina que indica la eficiencia de un electrodoméstico.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "eólica",
+          "definicion": "Energía obtenida del viento.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "estructura",
+          "definicion": "Disposición de las partes de una construcción.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "fibra óptica",
+          "definicion": "Cable de vidrio o plástico para transmitir datos con luz.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fuente",
+          "definicion": "Dispositivo que suministra energía al circuito (... de alimentación).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fusible",
+          "definicion": "Componente de protección que se funde si hay sobreintensidad.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fotovoltaica",
+          "definicion": "Energía solar que produce electricidad directamente.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "frecuencia",
+          "definicion": "Número de ciclos por segundo (Hz).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "final de carrera",
+          "definicion": "Sensor que detecta la posición final de un mecanismo.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "freno",
+          "definicion": "Mecanismo para detener el movimiento.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "firewall",
+          "definicion": "Sistema de seguridad de red (Cortafuegos).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fase",
+          "definicion": "Cable activo en una instalación de alterna (color negro/marrón/gris).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fabricación",
+          "definicion": "Proceso de creación de un producto.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "generador",
+          "definicion": "Máquina que produce corriente eléctrica.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grados",
+          "definicion": "Posibilidades de movimiento de un robot (... de libertad).",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grabación",
+          "definicion": "Almacenamiento de datos en soporte magnético u óptico.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gps",
+          "definicion": "Sistema de Posicionamiento Global.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gigabyte",
+          "definicion": "Unidad de medida de información (1024 MB).",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grafeno",
+          "definicion": "Material de carbono de gran resistencia y conductividad.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "google",
+          "definicion": "Buscador de internet más usado.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gas",
+          "definicion": "Fluido compresible usado en neumática (Aire).",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "giro",
+          "definicion": "Movimiento circular.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gestión",
+          "definicion": "Administración de recursos.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hidráulica",
+          "definicion": "Tecnología que usa líquidos (aceite) para transmitir fuerza.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hardware",
+          "definicion": "Parte física del ordenador (componentes).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "html",
+          "definicion": "Lenguaje de marcado para crear páginas web.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hoja de cálculo",
+          "definicion": "Programa para cálculos numéricos (Excel).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hub",
+          "definicion": "Concentrador de red (dispositivo antiguo).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "híbrido",
+          "definicion": "Vehículo que usa dos tipos de motor (eléctrico y combustión).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hormigón",
+          "definicion": "Material de construcción mezcla de cemento, agua y áridos.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hertzio",
+          "definicion": "Unidad de frecuencia (Hertz).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hipertexto",
+          "definicion": "Texto que contiene enlaces a otros textos.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "herramienta",
+          "definicion": "Utensilio manual de trabajo.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "interruptor",
+          "definicion": "Dispositivo para abrir o cerrar un circuito manualmente.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "internet",
+          "definicion": "Red mundial de ordenadores.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "intensidad",
+          "definicion": "Cantidad de electrones que circulan (Amperios).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "informática",
+          "definicion": "Ciencia del tratamiento automático de la información.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "instalación",
+          "definicion": "Conjunto de circuitos de una vivienda.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "ip",
+          "definicion": "Dirección numérica de un dispositivo en una red.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inteligencia artificial",
+          "definicion": "Campo que crea máquinas que imitan el pensamiento humano (IA).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "impresora",
+          "definicion": "Periférico de salida para papel.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "interfaz",
+          "definicion": "Conexión física o lógica entre usuario y máquina.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "infrarrojos",
+          "definicion": "Tipo de radiación usada en mandos a distancia.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "julio",
+          "definicion": "Unidad de trabajo y energía en el S.I.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "java",
+          "definicion": "Lenguaje de programación multiplataforma.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jack",
+          "definicion": "Conector de audio analógico.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "joystick",
+          "definicion": "Palanca de mando para videojuegos.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jpeg",
+          "definicion": "Formato de compresión de imágenes.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "junta",
+          "definicion": "Elemento de unión para evitar fugas (fontanería).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jaula",
+          "definicion": "Recinto metálico que aísla de campos eléctricos (... de Faraday).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "joule",
+          "definicion": "Efecto por el cual la corriente produce calor.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juego",
+          "definicion": "Software de entretenimiento.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jumper",
+          "definicion": "Pequeño puente para configurar placas electrónicas.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "kilovatio",
+          "definicion": "Unidad de potencia (1000 vatios).",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kelvin",
+          "definicion": "Unidad de temperatura absoluta.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kit",
+          "definicion": "Conjunto de piezas para montar.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilobyte",
+          "definicion": "Unidad de almacenamiento (1024 bytes).",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kirchhoff",
+          "definicion": "Leyes de circuitos eléctricos (nodos y mallas).",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kevlar",
+          "definicion": "Fibra sintética muy resistente.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kernel",
+          "definicion": "Núcleo de un sistema operativo.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilo",
+          "definicion": "Prefijo que indica mil.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kbps",
+          "definicion": "Velocidad de transmisión (miles de bits por segundo).",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "keyboard",
+          "definicion": "Teclado en inglés.",
+          "pista": "Empieza por K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "led",
+          "definicion": "Diodo emisor de luz.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "ley de ohm",
+          "definicion": "Relación entre V, I y R (V=I*R).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "leva",
+          "definicion": "Elemento mecánico con forma de huevo que empuja.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lógica",
+          "definicion": "Tipo de circuitos digitales (Puertas...).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "ldr",
+          "definicion": "Resistencia variable con la luz.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lan",
+          "definicion": "Red de Área Local.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "linux",
+          "definicion": "Sistema operativo de código abierto.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lenguaje",
+          "definicion": "Sistema de códigos para programar (... de programación).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "láser",
+          "definicion": "Luz amplificada por emisión estimulada (cortadora).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "litografía",
+          "definicion": "Técnica de fabricación de microchips.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "motor",
+          "definicion": "Máquina que transforma energía en movimiento.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mecanismo",
+          "definicion": "Conjunto de piezas que transmiten fuerza y movimiento.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "microprocesador",
+          "definicion": "Circuito integrado central del ordenador (CPU).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "multímetro",
+          "definicion": "Aparato para medir magnitudes eléctricas (Polímetro).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "memoria",
+          "definicion": "Lugar donde se guardan datos (RAM, ROM).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "módem",
+          "definicion": "Dispositivo para modular y demodular señales de internet.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "malware",
+          "definicion": "Software malicioso (virus, troyanos...).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mantenimiento",
+          "definicion": "Acciones para conservar el buen estado de los equipos.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "muelle",
+          "definicion": "Elemento elástico en espiral (Resorte).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "manivela",
+          "definicion": "Barra doblada para girar un eje manualmente.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "neumática",
+          "definicion": "Tecnología que usa aire comprimido.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "navegador",
+          "definicion": "Programa para ver páginas web.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nube",
+          "definicion": "Almacenamiento y servicios en servidores remotos.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nanotecnología",
+          "definicion": "Tecnología a escala atómica.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "not",
+          "definicion": "Puerta lógica inversora (NO).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nodo",
+          "definicion": "Punto de intersección en un circuito o red.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nivel",
+          "definicion": "Herramienta de albañil para comprobar la horizontalidad.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "núcleo",
+          "definicion": "Parte central de un átomo, cable o sistema operativo.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "ntp",
+          "definicion": "Protocolo de tiempo de red.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nand",
+          "definicion": "Puerta lógica (No Y).",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "señal",
+          "definicion": "Información transmitida (eléctrica, radio...). (Se...al, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "diseño",
+          "definicion": "Planificación y creación de objetos (Dise...o, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "contraseña",
+          "definicion": "Clave secreta de acceso (Contrase...a, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "piñón",
+          "definicion": "Rueda dentada pequeña (Pi...ón, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "cigüeñal",
+          "definicion": "Eje acodado de los motores (Cigüe...al, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "pestaña",
+          "definicion": "Parte de una ventana del navegador (Pesta...a, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "tamaño",
+          "definicion": "Dimensiones de un archivo (Tama...o, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "araña",
+          "definicion": "Robot buscador de Google (Ara...a, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "leña",
+          "definicion": "Biomasa de madera (Le...a, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "estaño",
+          "definicion": "Metal usado en soldadura blanda (Esta...o, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "ordenador",
+          "definicion": "Máquina electrónica de procesamiento de datos.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ohmio",
+          "definicion": "Unidad de resistencia eléctrica.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "operador",
+          "definicion": "Empresa que suministra servicios de telefonía/internet.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "or",
+          "definicion": "Puerta lógica de suma (O).",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "osciloscopio",
+          "definicion": "Instrumento para visualizar señales eléctricas.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "onda",
+          "definicion": "Forma de transmisión de energía inalámbrica.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ofimática",
+          "definicion": "Aplicaciones de oficina (Word, Excel...).",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "open",
+          "definicion": "Software de código abierto (Inglés, ... Source).",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "output",
+          "definicion": "Salida de datos (Inglés).",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "objetos",
+          "definicion": "Elemento en programación orientada a ...",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "pila",
+          "definicion": "Generador químico de energía eléctrica.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "polímetro",
+          "definicion": "Instrumento de medida multifunción (Multímetro).",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "potencia",
+          "definicion": "Energía consumida por unidad de tiempo (Vatios).",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "presión",
+          "definicion": "Fuerza por unidad de superficie (Neumática).",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "puerta lógica",
+          "definicion": "Circuito digital básico (AND, OR, NOT...).",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "programación",
+          "definicion": "Escritura de código informático.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "periférico",
+          "definicion": "Dispositivo conectado al ordenador (Ratón, Teclado...).",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "protocolo",
+          "definicion": "Conjunto de reglas de comunicación (TCP/IP).",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pistón",
+          "definicion": "Pieza móvil dentro de un cilindro.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "polea",
+          "definicion": "Rueda con canal para transmitir fuerza.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "arquitectura",
+          "definicion": "Diseño de edificios y ordenadores (Ar...itectura, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "bloque",
+          "definicion": "Diagrama de funcionamiento (Blo...e, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "esquema",
+          "definicion": "Representación simbólica (Es...uema, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "maqueta",
+          "definicion": "Modelo a escala reducida (Ma...eta, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "queso",
+          "definicion": "Base de montaje electrónica (Pla...a, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "máquina",
+          "definicion": "Dispositivo mecánico (Má...uina, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "queso",
+          "definicion": "Ciclos por segundo (Fre...uencia, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "etiqueta",
+          "definicion": "Clasificación energética (Eti...ueta, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "paquete",
+          "definicion": "Unidad de datos en red (Pa...uete, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "bloqueo",
+          "definicion": "Impedir el acceso (Blo...eo, contiene Q).",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "resistencia",
+          "definicion": "Componente que se opone al paso de corriente.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "relé",
+          "definicion": "Interruptor controlado por un electroimán.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "robot",
+          "definicion": "Máquina programable capaz de realizar tareas.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "red",
+          "definicion": "Conjunto de ordenadores conectados.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "router",
+          "definicion": "Dispositivo que encamina el tráfico de internet.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "ram",
+          "definicion": "Memoria de acceso aleatorio (volátil).",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rectificador",
+          "definicion": "Componente que convierte corriente alterna en continua.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rom",
+          "definicion": "Memoria de solo lectura (BIOS).",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "retroalimentación",
+          "definicion": "Señal de salida que vuelve a la entrada en control.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "receptor",
+          "definicion": "Elemento que recibe la señal de comunicación.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "sensor",
+          "definicion": "Dispositivo que capta magnitudes físicas (luz, temperatura).",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "software",
+          "definicion": "Parte lógica del ordenador (Programas).",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "servidor",
+          "definicion": "Ordenador que proporciona servicios en una red.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sistema",
+          "definicion": "Conjunto de elementos relacionados entre sí.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "soldadura",
+          "definicion": "Unión de metales mediante calor y material de aporte.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "semiconductor",
+          "definicion": "Material base de la electrónica (Silicio).",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "señal",
+          "definicion": "Variación de una magnitud física para transmitir información.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "serie",
+          "definicion": "Circuito donde la corriente solo tiene un camino.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "simulador",
+          "definicion": "Programa que imita el funcionamiento de un sistema real.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "servomotor",
+          "definicion": "Motor que permite control preciso de posición.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "transistor",
+          "definicion": "Componente electrónico semiconductor de 3 patillas (base, colector, emisor).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tensión",
+          "definicion": "Diferencia de potencial eléctrico (Voltaje).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "transformador",
+          "definicion": "Máquina que cambia el voltaje de la corriente alterna.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "termostato",
+          "definicion": "Sensor que controla la temperatura (abre/cierra circuito).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tecnología",
+          "definicion": "Ciencia aplicada a la resolución de problemas.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "telecomunicación",
+          "definicion": "Comunicación a distancia.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tcp/ip",
+          "definicion": "Protocolo fundamental de Internet.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "turbina",
+          "definicion": "Máquina rotativa movida por un fluido.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tdt",
+          "definicion": "Estándar de televisión digital.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "transmisión",
+          "definicion": "Acción de pasar movimiento o datos.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "usb",
+          "definicion": "Puerto serie universal.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "url",
+          "definicion": "Dirección de un recurso en internet.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "usuario",
+          "definicion": "Persona que utiliza un sistema informático.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unidad",
+          "definicion": "Parte del procesador que dirige las operaciones (... de Control).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "ultrasonidos",
+          "definicion": "Sensor para medir distancias mediante sonido.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "update",
+          "definicion": "Actualización de software (Inglés).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "upload",
+          "definicion": "Subir un archivo a la red (Inglés).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "ubicación",
+          "definicion": "Posición geográfica determinada por GPS.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "utilidad",
+          "definicion": "Programa que realiza tareas de mantenimiento.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unión",
+          "definicion": "Conexión entre dos piezas.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "voltaje",
+          "definicion": "Diferencia de potencial eléctrico.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "válvula",
+          "definicion": "Elemento de control de flujo en neumática.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "voltímetro",
+          "definicion": "Instrumento para medir la tensión.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vatio",
+          "definicion": "Unidad de potencia eléctrica.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "ventilador",
+          "definicion": "Dispositivo para refrigerar el PC.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "variable",
+          "definicion": "Espacio de memoria para guardar datos en programación.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "velocidad",
+          "definicion": "Rapidez de movimiento o transmisión.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "video",
+          "definicion": "Señal de imagen.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "virtual",
+          "definicion": "Entorno simulado por ordenador (Realidad...).",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "voz",
+          "definicion": "Telefonía por internet (... IP).",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "wifi",
+          "definicion": "Conexión inalámbrica (Fidelidad Inalámbrica).",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "web",
+          "definicion": "Página de internet.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "windows",
+          "definicion": "Sistema operativo más usado en PC.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "watt",
+          "definicion": "Vatio en inglés.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "www",
+          "definicion": "World Wide Web (siglas).",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "webcam",
+          "definicion": "Cámara de vídeo para el ordenador.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "word",
+          "definicion": "Procesador de textos de Microsoft.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "wan",
+          "definicion": "Red de Área Amplia (Wide Area Network).",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "walkie-talkie",
+          "definicion": "Emisor-receptor de radio portátil.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "wikipedia",
+          "definicion": "Enciclopedia libre colaborativa.",
+          "pista": "Empieza por W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "conexión",
+          "definicion": "Enlace entre dispositivos o redes (Cone...ión, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "extensión",
+          "definicion": "Sufijo de archivo (E...tensión, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "píxel",
+          "definicion": "Punto de luz en una pantalla (Pí...el, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "linux",
+          "definicion": "Sistema operativo libre (Linu..., contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "auxiliar",
+          "definicion": "Vista de dibujo técnico (Au...iliar, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "texto",
+          "definicion": "Archivo escrito (Te...to, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "flexible",
+          "definicion": "Material no rígido (Fle...ible, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "mixto",
+          "definicion": "Circuito combinación de serie y paralelo (Mi...to, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "hexadecimal",
+          "definicion": "Sistema de numeración base 16 (He...adecimal, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "externa",
+          "definicion": "Memoria fuera del ordenador (E...terna, contiene X).",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "byte",
+          "definicion": "8 bits (B...te, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "joystick",
+          "definicion": "Mando de juegos (Jo...stick, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ley",
+          "definicion": "Regla científica (Le..., contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "display",
+          "definicion": "Pantalla en inglés (Displa..., contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "proyecto",
+          "definicion": "Trabajo técnico escolar (Pro...ecto, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "gigabyte",
+          "definicion": "1024 Megabytes (Gigab...te, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "megabyte",
+          "definicion": "1024 Kilobytes (Megab...te, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "play",
+          "definicion": "Reproducir vídeo o audio (Pla..., contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "layout",
+          "definicion": "Distribución de componentes o teclado (La...out, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "proxy",
+          "definicion": "Servidor intermediario (Pro...y, contiene Y).",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zumbador",
+          "definicion": "Componente que emite sonido (Buzzer).",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zigbee",
+          "definicion": "Protocolo de comunicación inalámbrica domótica.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zona",
+          "definicion": "Área de cobertura.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zócalo",
+          "definicion": "Soporte donde se inserta el microprocesador.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zip",
+          "definicion": "Formato de archivo comprimido.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zoom",
+          "definicion": "Ampliación de imagen.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "hertzio",
+          "definicion": "Unidad de frecuencia (Hert...io, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "pieza",
+          "definicion": "Parte de una máquina (Pie...a, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "fuerza",
+          "definicion": "Causa del movimiento (Fuer...a, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "cizalla",
+          "definicion": "Herramienta de corte de metal (Ci...alla, contiene Z).",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,164 +1,1010 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Animal que puede vivir tanto en el agua como en la tierra, como la rana.", "solucion": "anfibio" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Capa de gases que rodea la Tierra.", "solucion": "atmósfera" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Animales vertebrados que tienen plumas y ponen huevos.", "solucion": "aves" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Proceso mediante el cual los seres vivos toman alimentos.", "solucion": "alimentación" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Órgano del sistema respiratorio donde se produce el intercambio de gases.", "solucion": "alveolo" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Conjunto de todos los seres vivos del planeta y el lugar donde viven.", "solucion": "biosfera" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Órganos que utilizan los peces para respirar bajo el agua.", "solucion": "branquias" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Seres vivos microscópicos que pueden ser beneficiosos o causar enfermedades.", "solucion": "bacterias" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Variedad de vida animal y vegetal en un ecosistema.", "solucion": "biodiversidad" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Líquido verde producido por el hígado que ayuda a la digestión.", "solucion": "bilis" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Unidad más pequeña que forma los seres vivos.", "solucion": "célula" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Animal que se alimenta principalmente de carne.", "solucion": "carnívoro" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Órgano muscular que bombea la sangre por todo el cuerpo.", "solucion": "corazón" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Relación alimentaria donde unos animales se comen a otros.", "solucion": "cadena" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Sustancia verde de las plantas necesaria para la fotosíntesis.", "solucion": "clorofila" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Proceso de transformación de los alimentos en nutrientes.", "solucion": "digestión" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Gas que expulsamos al respirar (dióxido de...).", "solucion": "dióxido" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Ecosistema muy seco con poca agua y poca vegetación.", "solucion": "desierto" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Medida de la cantidad de masa que hay en un volumen determinado.", "solucion": "densidad" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Alimentación sana y equilibrada.", "solucion": "dieta" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Capacidad para realizar un trabajo o provocar cambios.", "solucion": "energía" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Conjunto formado por un lugar y los seres vivos que lo habitan.", "solucion": "ecosistema" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Desaparición total de una especie animal o vegetal.", "solucion": "extinción" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Órgano del aparato digestivo que une la boca con el estómago.", "solucion": "esófago" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Forma de energía que usamos para encender bombillas.", "solucion": "electricidad" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Proceso por el cual las plantas fabrican su propio alimento.", "solucion": "fotosíntesis" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Causa capaz de modificar el estado de reposo o movimiento de un cuerpo.", "solucion": "fuerza" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Restos de seres vivos de hace millones de años conservados en roca.", "solucion": "fósil" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Unión de un óvulo y un espermatozoide.", "solucion": "fecundación" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Parte de la planta que contiene las semillas.", "solucion": "fruto" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Fuerza que atrae los objetos hacia el centro de la Tierra.", "solucion": "gravedad" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Estado de la materia que no tiene forma ni volumen fijo.", "solucion": "gaseoso" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Proceso por el que una semilla se convierte en planta.", "solucion": "germinación" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Célula sexual masculina o femenina.", "solucion": "gameto" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Células de la sangre: ... rojos y blancos.", "solucion": "glóbulos" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Animal que se alimenta de plantas.", "solucion": "herbívoro" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Lugar físico donde vive un ser vivo.", "solucion": "hábitat" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Capa de agua de la Tierra (ríos, mares, océanos...).", "solucion": "hidrosfera" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Glándula grande que produce la bilis.", "solucion": "hígado" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Ser vivo que no es animal ni planta, como el champiñón.", "solucion": "hongo" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Animal que no tiene columna vertebral.", "solucion": "invertebrado" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Parte del tubo digestivo: delgado y grueso.", "solucion": "intestino" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Acción del aire al entrar en los pulmones.", "solucion": "inspiración" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Animales de seis patas como las moscas.", "solucion": "insectos" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Energía luminosa que nos permite ver (sinónimo de luz o resplandor).", "solucion": "iluminación" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Planeta más grande del Sistema Solar.", "solucion": "júpiter" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Líquidos digestivos del estómago: ... gástricos.", "solucion": "jugos" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Articulaciones de los dedos de la mano.", "solucion": "nudillos" }, 
-  { "id": "j3_fix", "letra": "J", "tipo": "empieza", "definicion": "Felino carnívoro de la selva americana.", "solucion": "jaguar" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Material valioso y brillante (sinónimo de gema).", "solucion": "joya" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Unión entre dos huesos.", "solucion": "juntura" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Unidad de masa igual a 1000 gramos.", "solucion": "kilogramo" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Unidad de distancia igual a 1000 metros.", "solucion": "kilómetro" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Marsupial australiano que come eucalipto.", "solucion": "koala" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Ave no voladora de Nueva Zelanda.", "solucion": "kiwi" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Alimento procesado derivado del tomate (salsa).", "solucion": "ketchup" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Energía que nos permite ver los objetos.", "solucion": "luz" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Satélite natural de la Tierra.", "solucion": "luna" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Capa externa y sólida de la Tierra.", "solucion": "litosfera" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Estado de la materia como el agua.", "solucion": "líquido" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Instrumento óptico para ver cosas muy pequeñas.", "solucion": "lupa" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Todo lo que tiene masa y ocupa un volumen.", "solucion": "materia" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Animales vertebrados que maman leche al nacer.", "solucion": "mamíferos" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Unión de dos o más sustancias.", "solucion": "mezcla" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Tejidos que permiten el movimiento del cuerpo.", "solucion": "músculos" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Cambio de forma de algunos animales como la mariposa.", "solucion": "metamorfosis" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Proceso de conseguir energía y materiales para vivir.", "solucion": "nutrición" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Cables que llevan mensajes por el cuerpo.", "solucion": "nervios" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Líquido dulce de las flores que atrae insectos.", "solucion": "néctar" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Parte central de la célula.", "solucion": "núcleo" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Planeta del sistema solar, el octavo.", "solucion": "neptuno" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Estación del año donde caen las hojas (contiene la Ñ).", "solucion": "otoño" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Artrópodo de ocho patas que teje redes (contiene la Ñ).", "solucion": "araña" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Órgano que filtra la sangre, plural (contiene la Ñ).", "solucion": "riñones" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Ave corredora parecida al avestruz (contiene la Ñ).", "solucion": "ñandú" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Gran elevación natural del terreno (contiene la Ñ).", "solucion": "montaña" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Animal que come de todo (plantas y carne).", "solucion": "omnívoro" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Gas que necesitamos para respirar.", "solucion": "oxígeno" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Animal que nace de un huevo.", "solucion": "ovíparo" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Parte del cuerpo que realiza una función.", "solucion": "órgano" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Trayectoria que sigue un planeta.", "solucion": "órbita" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Ser vivo capaz de fabricar su propio alimento.", "solucion": "planta" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Órganos principales de la respiración.", "solucion": "pulmones" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Cuerpo celeste que gira alrededor de una estrella.", "solucion": "planeta" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Paso del polen de una flor a otra.", "solucion": "polinización" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Materia prima derivada del petróleo.", "solucion": "plástico" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Transformación de la materia (cambio...).", "solucion": "químico" },
-  { "id": "q2", "letra": "Q", "tipo": "contiene", "definicion": "Estado en el que las fuerzas se compensan (contiene Q).", "solucion": "equilibrio" },
-  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Conjunto de huesos (contiene Q).", "solucion": "esqueleto" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Tubo por donde respiramos (contiene Q).", "solucion": "tráquea" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Tipo de energía calorífica (contiene Q).", "solucion": "calorífica" }, 
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Función vital para tener descendencia.", "solucion": "reproducción" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Intercambio de gases con el medio.", "solucion": "respiración" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Animal vertebrado que repta y tiene escamas.", "solucion": "reptil" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Parte de la planta que absorbe agua del suelo.", "solucion": "raíz" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Procesar residuos para volver a usarlos.", "solucion": "reciclar" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Estrella central de nuestro sistema planetario.", "solucion": "sol" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Líquido rojo que transporta nutrientes.", "solucion": "sangre" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Parte de la planta que da origen a una nueva.", "solucion": "semilla" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Estado de la materia con forma propia.", "solucion": "sólido" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Mezcla de árboles y plantas en un lugar.", "solucion": "selva" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Planeta donde vivimos.", "solucion": "tierra" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Parte de la planta que sostiene las hojas.", "solucion": "tallo" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Instrumento para medir la temperatura.", "solucion": "termómetro" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Agrupación de células similares.", "solucion": "tejido" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Parte del cuerpo entre el cuello y el abdomen.", "solucion": "tórax" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Conjunto de todo lo que existe en el espacio.", "solucion": "universo" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Séptimo planeta del sistema solar.", "solucion": "urano" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Conducto por donde sale la orina.", "solucion": "uretra" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Órgano donde crece el bebé.", "solucion": "útero" },
-  { "id": "u5", "letra": "U", "tipo": "contiene", "definicion": "Planeta más lejano (contiene la U).", "solucion": "neptuno" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Animal con columna vertebral.", "solucion": "vertebrado" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Animal que nace del vientre de la madre.", "solucion": "vivíparo" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Sentido que nos permite ver.", "solucion": "vista" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Conducto que lleva la sangre al corazón.", "solucion": "vena" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Abertura de la tierra por donde sale lava.", "solucion": "volcán" },
-
-  { "id": "w1", "letra": "W", "tipo": "contiene", "definicion": "Fruta con piel peluda (contiene W).", "solucion": "kiwi" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Unidad de potencia eléctrica.", "solucion": "watt" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Deporte en el agua (contiene W).", "solucion": "waterpolo" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Comida rápida (contiene W).", "solucion": "sandwich" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Red informática mundial (contiene W).", "solucion": "web" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Desaparición de una especie (contiene X).", "solucion": "extinción" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Gas necesario para respirar (contiene X).", "solucion": "oxígeno" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Pecho o caja torácica (contiene X).", "solucion": "tórax" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Animal que come de todo (contiene X).", "solucion": "mixto" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Prueba científica (contiene X).", "solucion": "experimento" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Parte amarilla del huevo.", "solucion": "yema" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Hembra del caballo.", "solucion": "yegua" },
-  { "id": "y3", "letra": "Y", "tipo": "empieza", "definicion": "Lugar donde se encuentran fósiles.", "solucion": "yacimiento" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Comida de la mañana (contiene Y).", "solucion": "desayuno" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Electricidad natural en una tormenta (contiene Y).", "solucion": "rayo" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Ciencia que estudia los animales.", "solucion": "zoología" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Animal astuto de color naranja.", "solucion": "zorro" },
-  { "id": "z3", "letra": "Z", "tipo": "contiene", "definicion": "Parte de la planta bajo tierra (contiene Z).", "solucion": "raíz" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Energía que ilumina (contiene Z).", "solucion": "luz" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Órgano que bombea sangre (contiene Z).", "solucion": "corazón" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Molécula que contiene la información genética de los seres vivos.",
+    "solucion": "adn"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Sustancia que mata o impide el crecimiento de bacterias patógenas.",
+    "solucion": "antibiótico"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Proteína producida por el sistema inmunitario para neutralizar virus o bacterias.",
+    "solucion": "anticuerpo"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Órganos microscópicos del pulmón donde ocurre el intercambio gaseoso.",
+    "solucion": "alvéolos"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Unidad mínima de la materia que conserva sus propiedades químicas.",
+    "solucion": "átomo"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Conjunto de seres vivos que habitan en un ecosistema determinado.",
+    "solucion": "biocenosis"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Lugar o medio físico ocupado por una comunidad de seres vivos.",
+    "solucion": "biotopo"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Sustancia que puede ser degradada por la acción de agentes biológicos.",
+    "solucion": "biodegradable"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia los seres vivos y sus procesos vitales.",
+    "solucion": "biología"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Variedad de especies animales y vegetales en su medio ambiente.",
+    "solucion": "biodiversidad"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Estructura del núcleo celular que contiene el material genético (ADN).",
+    "solucion": "cromosoma"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Parte de la célula situada entre la membrana y el núcleo, donde están los orgánulos.",
+    "solucion": "citoplasma"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Reacción química rápida entre el oxígeno y un combustible que desprende calor y luz.",
+    "solucion": "combustión"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Órgano muscular que impulsa la sangre por el sistema circulatorio.",
+    "solucion": "corazón"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Pigmento verde de las células vegetales encargado de absorber la luz solar.",
+    "solucion": "clorofila"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Satisfacer las necesidades actuales sin comprometer las de las generaciones futuras (Desarrollo...).",
+    "solucion": "sostenible"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Tratamiento de las aguas residuales para eliminar contaminantes antes de verterlas.",
+    "solucion": "depuración"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Relación entre la masa de una sustancia y el volumen que ocupa.",
+    "solucion": "densidad"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Proceso por el que una célula madre se especializa en una función concreta.",
+    "solucion": "diferenciación"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Transformación de los alimentos en sustancias más sencillas absorbibles por el organismo.",
+    "solucion": "digestión"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Fenómeno por el cual ciertos gases retienen parte de la energía solar en la atmósfera.",
+    "solucion": "efecto invernadero"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Unidad biológica funcional formada por los seres vivos y su medio físico.",
+    "solucion": "ecosistema"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Eliminación de sustancias de desecho de la sangre y el organismo.",
+    "solucion": "excreción"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Tipo de energía que se obtiene de fuentes inagotables como el sol o el viento.",
+    "solucion": "renovable"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Movimiento de los electrones a través de un material conductor.",
+    "solucion": "electricidad"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Proceso bioquímico por el cual algunas bacterias o levaduras transforman azúcares sin oxígeno.",
+    "solucion": "fermentación"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Respuesta de una planta ante el estímulo de la luz.",
+    "solucion": "fototropismo"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Unión del gameto masculino y femenino para formar un cigoto.",
+    "solucion": "fecundación"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Proceso de fabricación de materia orgánica por las plantas usando luz solar.",
+    "solucion": "fotosíntesis"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Interacción capaz de cambiar el estado de movimiento o de forma de un cuerpo.",
+    "solucion": "fuerza"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Rama de la biología que estudia la herencia y la transmisión de caracteres.",
+    "solucion": "genética"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Respuesta de una planta ante la fuerza de la gravedad.",
+    "solucion": "geotropismo"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Sustancia que regula funciones del cuerpo, producida por glándulas endocrinas.",
+    "solucion": "hormona"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Célula sexual (óvulo o espermatozoide).",
+    "solucion": "gameto"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Fuerza con la que la Tierra atrae a los cuerpos hacia su centro.",
+    "solucion": "gravedad"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Sustancia orgánica procedente de la descomposición de restos animales y vegetales en el suelo.",
+    "solucion": "humus"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Nombre científico del ser humano actual.",
+    "solucion": "homo sapiens"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Mantener constante el medio interno del cuerpo frente a cambios externos.",
+    "solucion": "homeostasis"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Capa externa y líquida de la Tierra (ríos, mares, nubes...).",
+    "solucion": "hidrosfera"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Gas más abundante en el universo y el más ligero.",
+    "solucion": "hidrógeno"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Capacidad del organismo para resistir y defenderse de enfermedades infecciosas.",
+    "solucion": "inmunidad"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Entrada y reproducción de microorganismos patógenos en un ser vivo.",
+    "solucion": "infección"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Incapacidad de un material para dejar pasar un líquido (ser...).",
+    "solucion": "impermeable"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Animal que carece de esqueleto interno óseo.",
+    "solucion": "invertebrado"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Propiedad de la materia de mantener su estado de reposo o movimiento a menos que actúe una fuerza.",
+    "solucion": "inercia"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Líquidos producidos por el estómago para ayudar a la digestión química.",
+    "solucion": "jugos gástricos"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Planeta gaseoso más grande del Sistema Solar.",
+    "solucion": "júpiter"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Unión entre dos o más huesos que permite el movimiento.",
+    "solucion": "articulación"
+  },
+  {
+    "id": "j3_fix",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Unidad de medida de la energía en el Sistema Internacional.",
+    "solucion": "julio"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Material que no conduce bien el calor ni la electricidad (sinónimo de aislante).",
+    "solucion": "malo"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Punto de contacto entre dos neuronas para pasar información.",
+    "solucion": "sinapsis"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unidad de masa equivalente a mil gramos.",
+    "solucion": "kilogramo"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Energía que posee un cuerpo debido a su movimiento.",
+    "solucion": "cinética"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Escala de temperatura absoluta que comienza en el cero absoluto.",
+    "solucion": "kelvin"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Símbolo químico del Potasio en la tabla periódica.",
+    "solucion": "k"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Mamífero marsupial de Australia que se alimenta de eucalipto.",
+    "solucion": "koala"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Capa sólida y superficial de la Tierra.",
+    "solucion": "litosfera"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Célula de la sangre encargada de la defensa contra infecciones (glóbulo blanco).",
+    "solucion": "leucocito"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Energía transportada por las ondas electromagnéticas que nos permite ver.",
+    "solucion": "lumínica"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Animal que nace de un huevo y tiene forma distinta al adulto antes de la metamorfosis.",
+    "solucion": "larva"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Conducto del aparato respiratorio que contiene las cuerdas vocales.",
+    "solucion": "laringe"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Orgánulo celular encargado de producir energía mediante la respiración celular.",
+    "solucion": "mitocondria"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Proceso de división celular en el que se obtienen dos células idénticas.",
+    "solucion": "mitosis"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Proceso de división celular para formar gametos con la mitad de cromosomas.",
+    "solucion": "meiosis"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Capa más externa de la tierra, situada sobre el núcleo.",
+    "solucion": "manto"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Cualquier sustancia que tiene masa y ocupa volumen.",
+    "solucion": "materia"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Célula especializada del sistema nervioso capaz de transmitir impulsos eléctricos.",
+    "solucion": "neurona"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Sustancias químicas que la célula necesita para realizar sus funciones.",
+    "solucion": "nutrientes"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Cada uno de los pasos de una cadena alimentaria (Nivel...).",
+    "solucion": "trófico"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Gas más abundante en la atmósfera terrestre (78%).",
+    "solucion": "nitrógeno"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Cerebro, cerebelo y tronco encefálico forman el sistema... central.",
+    "solucion": "nervioso"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Órganos que filtran la sangre para retirar los desechos (contiene Ñ).",
+    "solucion": "riñones"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Capas de aire que envuelven un planeta (contiene Ñ). Buscamos: Pestañas (no). Cañerías (no). Extrañas.",
+    "solucion": "extrañas"
+  },
+  {
+    "id": "ñ2_fix",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Animal que trepa por los árboles y tiene cola larga (contiene la Ñ). No. Usaremos: Cigüeña.",
+    "solucion": "cigüeña"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Pequeña parte de la uña (contiene la Ñ). No. Usaremos: Meñique.",
+    "solucion": "meñique"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Estructura que construyen algunas aves para poner huevos (contiene Ñ).",
+    "solucion": "nido"
+  },
+  {
+    "id": "ñ4_fix",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Animal parecido al avestruz originario de Sudamérica (contiene la Ñ).",
+    "solucion": "ñandú"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Masa de agua helada que flota en el mar (contiene Ñ). No. Usaremos: Montaña.",
+    "solucion": "montaña"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Estructura celular interna con una función determinada (mitocondria, ribosoma...).",
+    "solucion": "orgánulo"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Paso de disolvente a través de una membrana semipermeable.",
+    "solucion": "osmosis"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Animal que se desarrolla en un huevo que eclosiona dentro de la madre.",
+    "solucion": "ovovivíparo"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Elemento químico gaseoso esencial para la respiración aeróbica.",
+    "solucion": "oxígeno"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gas de la estratosfera que nos protege de la radiación ultravioleta.",
+    "solucion": "ozono"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Ser vivo formado por muchas células especializadas.",
+    "solucion": "pluricelular"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Reino de seres vivos que incluye a las algas y los protozoos.",
+    "solucion": "protista"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Propiedad de la materia que indica la fuerza con la que la Tierra atrae un cuerpo.",
+    "solucion": "peso"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Célula sin núcleo definido, como las bacterias.",
+    "solucion": "procariota"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Conjunto de individuos de la misma especie que viven en el mismo lugar.",
+    "solucion": "población"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Proteína que forma el pelo, las uñas y las plumas.",
+    "solucion": "queratina"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Estado de un sistema donde no hay cambios netos (contiene la Q).",
+    "solucion": "equilibrio"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Conducto cartilaginoso que lleva el aire a los pulmones (contiene Q).",
+    "solucion": "tráquea"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Enlace que mantiene unidos a los átomos en una molécula (contiene Q).",
+    "solucion": "químico"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Energía almacenada en los enlaces de las sustancias (contiene Q).",
+    "solucion": "química"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Transformación de unas sustancias iniciales en otras diferentes.",
+    "solucion": "reacción química"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Tipo de reproducción en la que un solo progenitor crea copias idénticas.",
+    "solucion": "asexual"
+  },
+  {
+    "id": "r2_fix",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Célula de la sangre que transporta el oxígeno (glóbulo rojo).",
+    "solucion": "reticulocito"
+  },
+  {
+    "id": "r2_final",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Serie de reacciones en las que unos seres vivos se alimentan de otros.",
+    "solucion": "red trófica"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Materiales sobrantes de las actividades humanas que deben gestionarse.",
+    "solucion": "residuos"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Órgano detector de estímulos como el calor o la luz.",
+    "solucion": "receptor"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Función vital por la cual los seres vivos reciben información y responden a ella.",
+    "solucion": "relación"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Relación de ayuda mutua entre dos especies diferentes.",
+    "solucion": "simbiosis"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Comunicación entre neuronas mediante neurotransmisores.",
+    "solucion": "sinapsis"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Dicho de una célula que no tiene núcleo como las bacterias (sinónimo de procariota).",
+    "solucion": "simple"
+  },
+  {
+    "id": "s3_fix",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Estrella del centro del sistema solar.",
+    "solucion": "sol"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Mezcla homogénea de dos o más sustancias.",
+    "solucion": "solución"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Estado de la materia en el que las partículas están muy juntas y con poca movilidad.",
+    "solucion": "sólido"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Conjunto de células del mismo tipo que realizan la misma función.",
+    "solucion": "tejido"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Medida de la energía cinética de las partículas de un cuerpo.",
+    "solucion": "temperatura"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Respuesta de movimiento de una planta ante un estímulo.",
+    "solucion": "tropismo"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Estructuras que protegen los extremos de los cromosomas.",
+    "solucion": "telómeros"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Ecosistema frío del norte donde el suelo está congelado.",
+    "solucion": "tundra"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Sustancia contenida en la orina formada por el metabolismo de proteínas.",
+    "solucion": "urea"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Conducto que une la vejiga con el exterior.",
+    "solucion": "uretra"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Ser vivo formado por una sola célula.",
+    "solucion": "unicelular"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Radiación solar invisible que puede dañar la piel.",
+    "solucion": "ultravioleta"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Sustancia que sirve para combatir virus o bacterias (sinónimo de medicamento).",
+    "solucion": "ungüento"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Preparado biológico que proporciona inmunidad ante una enfermedad determinada.",
+    "solucion": "vacuna"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Agente infeccioso microscópico que solo puede replicarse dentro de una célula.",
+    "solucion": "virus"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Conducto que retorna la sangre al corazón.",
+    "solucion": "vena"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Gas que se forma cuando el agua líquida se calienta.",
+    "solucion": "vapor de agua"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Órgano donde se almacena la orina.",
+    "solucion": "vejiga"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Unidad de medida de la potencia eléctrica (contiene W).",
+    "solucion": "vatio"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Página de información en internet (contiene W).",
+    "solucion": "web"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Pequeña fruta verde con piel marrón y pelos (contiene W).",
+    "solucion": "kiwi"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Red inalámbrica de datos (contiene W).",
+    "solucion": "wifi"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Escala de temperatura de los países anglosajones (contiene W). No. Usaremos: Newton.",
+    "solucion": "newton"
+  },
+  {
+    "id": "w5_fix",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Relacionado con el agua en inglés (contiene la W).",
+    "solucion": "water"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "empieza",
+    "definicion": "Tejido vegetal que transporta la savia bruta desde las raíces.",
+    "solucion": "xilema"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Gas esencial para la vida aeróbica (contiene X).",
+    "solucion": "oxígeno"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Reacción del cuerpo ante un agente externo (contiene la X). Buscamos: Reflejo (no). Tóxico.",
+    "solucion": "tóxico"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Pecho o cavidad que protege los pulmones (contiene la X).",
+    "solucion": "tórax"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Expulsar el aire de los pulmones (contiene la X).",
+    "solucion": "exhalar"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Elemento químico necesario para el buen funcionamiento del tiroides.",
+    "solucion": "yodo"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Lugar rico en minerales o fósiles.",
+    "solucion": "yacimiento"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Nombre del líquido que transportan los vasos linfáticos (contiene Y). No. Usaremos: Linfa (no). Pollo (no). Rayo.",
+    "solucion": "rayo"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Sustancia que se come al amanecer (contiene Y).",
+    "solucion": "desayuno"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Que tiene mucha potencia o vida (contiene Y). Buscamos: Ayuda (no). Subyacente (no). Vida (no). Producir.",
+    "solucion": "producir"
+  },
+  {
+    "id": "y5_fix",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Célula animal que forma parte de la sangre (contiene Y). No. Usaremos: Alimento.",
+    "solucion": "alimento"
+  },
+  {
+    "id": "y5_final",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Órgano que produce la bilis (contiene la Y). No. Usaremos: Enzimas.",
+    "solucion": "enzimas"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia los animales.",
+    "solucion": "zoología"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Área o región con características biológicas comunes.",
+    "solucion": "zona"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Órgano muscular que bombea la sangre (contiene Z).",
+    "solucion": "corazón"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Sustancia dulce que fabrican las abejas (contiene Z). No. Usaremos: Azúcar.",
+    "solucion": "azúcar"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Gas que respiramos (contiene la Z). No. Usaremos: Nariz.",
+    "solucion": "nariz"
+  }
 ]

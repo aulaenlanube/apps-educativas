@@ -1,17 +1,122 @@
 {
-  "irregular_verbs": [
-    "go", "see", "eat", "drink", "buy", "swim", "run", "have", "make", "come"
+  "personal_info": [
+    "name",
+    "surname",
+    "age",
+    "birthday",
+    "address",
+    "phone number",
+    "country",
+    "nationality",
+    "hobbies",
+    "email"
   ],
-  "adjectives_personality": [
-    "shy", "friendly", "funny", "clever", "lazy", "hardworking", "polite", "rude", "kind", "serious"
+  "school_objects": [
+    "pencil",
+    "pen",
+    "ruler",
+    "rubber",
+    "sharpener",
+    "notebook",
+    "book",
+    "backpack",
+    "desk",
+    "blackboard"
   ],
-  "clothes": [
-    "t-shirt", "jeans", "skirt", "dress", "shoes", "socks", "jumper", "coat", "scarf", "gloves"
+  "family_members": [
+    "father",
+    "mother",
+    "brother",
+    "sister",
+    "grandfather",
+    "grandmother",
+    "uncle",
+    "aunt",
+    "cousin",
+    "nephew"
   ],
-  "food_and_drink": [
-    "bread", "cheese", "chicken", "salad", "water", "juice", "milk", "coffee", "tea", "cake"
+  "house_rooms": [
+    "kitchen",
+    "bathroom",
+    "bedroom",
+    "living room",
+    "dining room",
+    "garden",
+    "garage",
+    "hall",
+    "attic",
+    "terrace"
   ],
-  "parts_of_house": [
-    "kitchen", "bedroom", "bathroom", "living room", "dining room", "garden", "garage", "hall", "attic", "stairs"
+  "body_parts": [
+    "head",
+    "shoulders",
+    "knees",
+    "toes",
+    "eyes",
+    "ears",
+    "mouth",
+    "nose",
+    "hand",
+    "finger"
+  ],
+  "daily_routines": [
+    "wake up",
+    "get up",
+    "have breakfast",
+    "go to school",
+    "have lunch",
+    "do homework",
+    "play games",
+    "have dinner",
+    "take a shower",
+    "go to bed"
+  ],
+  "animals_wild": [
+    "lion",
+    "tiger",
+    "elephant",
+    "giraffe",
+    "monkey",
+    "zebra",
+    "snake",
+    "crocodile",
+    "bear",
+    "wolf"
+  ],
+  "food_drinks": [
+    "apple",
+    "banana",
+    "milk",
+    "water",
+    "juice",
+    "bread",
+    "cheese",
+    "chicken",
+    "salad",
+    "pizza"
+  ],
+  "feelings_adjectives": [
+    "happy",
+    "sad",
+    "angry",
+    "tired",
+    "hungry",
+    "thirsty",
+    "bored",
+    "excited",
+    "scared",
+    "worried"
+  ],
+  "free_time_activities": [
+    "reading",
+    "dancing",
+    "singing",
+    "swimming",
+    "running",
+    "drawing",
+    "watching TV",
+    "listening to music",
+    "playing chess",
+    "cycling"
   ]
 }

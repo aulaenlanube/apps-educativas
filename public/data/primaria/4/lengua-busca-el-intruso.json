@@ -1,78 +1,108 @@
 [
   {
-    "categoria": "Herramientas de Escritura (Visual)",
+    "categoria": "Herramientas de Escritura y Arte (Visual)",
     "correctos": [
       "✏️",
       "🖊️",
       "🖍️",
       "🖌️",
       "✒️",
-      "📝"
+      "📝",
+      "🖋️",
+      "🎨",
+      "🖼️"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🥄",
       "🍴",
-      "🥢"
+      "🥢",
+      "🪛",
+      "🪚",
+      "🪓",
+      "✂️"
     ]
   },
   {
-    "categoria": "Medios de Comunicación (Visual)",
+    "categoria": "Medios de Comunicación y Tecnología (Visual)",
     "correctos": [
       "📱",
       "💻",
       "☎️",
       "📺",
       "📻",
-      "📰"
+      "📰",
+      "✉️",
+      "📧",
+      "🛰️",
+      "📠"
     ],
     "intrusos": [
       "🚗",
       "🚲",
       "🛴",
-      "🛹",
-      "🛶"
+      " skateboard",
+      "🛶",
+      "🚁",
+      "🚜",
+      "🚄",
+      "🚢"
     ]
   },
   {
     "categoria": "Sustantivos Femeninos (Visual)",
     "correctos": [
-      "🏠",
-      "🥄",
-      "🌕",
-      "⭐️",
-      "🔑",
-      "👕"
+      "🏠 (casa)",
+      "🥄 (cuchara)",
+      "🌕 (luna)",
+      "⭐️ (estrella)",
+      "🔑 (llave)",
+      "👕 (camiseta)",
+      "🚲 (bicicleta)",
+      "🧶 (lana)",
+      "🎒 (mochila)"
     ],
     "intrusos": [
-      "🚗",
-      "☀️",
-      "🐶",
-      "🐱",
-      "🐟"
+      "🚗 (coche)",
+      "☀️ (sol)",
+      "🐶 (perro)",
+      "🐱 (gato)",
+      "🐟 (pez)",
+      "🌳 (árbol)",
+      "🌲 (pino)",
+      "📱 (móvil)",
+      "💻 (ordenador)"
     ]
   },
   {
-    "categoria": "Acciones/Verbos (Visual)",
+    "categoria": "Acciones y Deportes / Verbos (Visual)",
     "correctos": [
-      "🏃",
-      "🏊",
-      "💃",
-      "🤸",
-      "🚴",
-      "🤾"
+      "🏃 (correr)",
+      "🏊 (nadar)",
+      "💃 (bailar)",
+      "🤸 (saltar)",
+      "🚴 (pedalear)",
+      "🤾 (jugar)",
+      "🏇 (cabalgar)",
+      "⛷️ (esquiar)",
+      "🚣 (remar)"
     ],
     "intrusos": [
       "🏠",
       "🌳",
       "🚗",
       "🏔️",
-      "⌚"
+      "⌚",
+      "🏢",
+      "🏛️",
+      "🛤️",
+      "🏙️",
+      "🌉"
     ]
   },
   {
-    "categoria": "Palabras Llanas",
+    "categoria": "Palabras Llanas (Acentuadas o no)",
     "correctos": [
       "Árbol",
       "Lápiz",
@@ -80,32 +110,59 @@
       "Silla",
       "Casa",
       "Coche",
-      "Difícil"
+      "Difícil",
+      "Fútbol",
+      "Cárcel",
+      "Trébol",
+      "Ventana",
+      "Examen",
+      "Libreta"
     ],
     "intrusos": [
       "Camión",
       "Sofá",
       "Pájaro",
       "Teléfono",
-      "Café"
+      "Café",
+      "Ratón",
+      "Avión",
+      "Música",
+      "Página",
+      "Bebé",
+      "Azul",
+      "Reloj"
     ]
   },
   {
-    "categoria": "Palabras Esdrújulas",
+    "categoria": "Palabras Esdrújulas (Siempre con tilde)",
     "correctos": [
       "Pájaro",
       "Teléfono",
       "Música",
       "Lámpara",
       "Plátano",
-      "Círculo"
+      "Círculo",
+      "Brújula",
+      "Sábado",
+      "Página",
+      "África",
+      "Máquina",
+      "Sílaba",
+      "Médico"
     ],
     "intrusos": [
       "Camión",
       "Árbol",
       "Mesa",
       "Reloj",
-      "Sofá"
+      "Sofá",
+      "Papá",
+      "Lápiz",
+      "Azúcar",
+      "Césped",
+      "Fácil",
+      "Balón",
+      "Pincel"
     ]
   },
   {
@@ -116,7 +173,13 @@
       "Su",
       "Nuestro",
       "Vuestro",
-      "Mis"
+      "Mis",
+      "Tus",
+      "Sus",
+      "Nuestra",
+      "Vuestra",
+      "Nuestros",
+      "Vuestros"
     ],
     "intrusos": [
       "Este",
@@ -124,58 +187,97 @@
       "Aquel",
       "Un",
       "El",
-      "La"
+      "La",
+      "Los",
+      "Las",
+      "Algún",
+      "Todo",
+      "Mucho",
+      "Poco"
     ]
   },
   {
-    "categoria": "Tiempos Verbales: Futuro",
+    "categoria": "Tiempos Verbales: Futuro Simple",
     "correctos": [
       "Comeré",
       "Saltarás",
       "Viviremos",
       "Jugarán",
-      "Dormirá"
+      "Dormirá",
+      "Escribiremos",
+      "Leerás",
+      "Viajaré",
+      "Cantaré",
+      "Pintarán"
     ],
     "intrusos": [
       "Comí",
       "Salto",
       "Vivía",
       "Jugaron",
-      "Estudian"
+      "Estudian",
+      "Había leído",
+      "Saltaba",
+      "He jugado",
+      "Corrimos",
+      "Baila"
     ]
   },
   {
-    "categoria": "Prefijos",
+    "categoria": "Palabras con Prefijos de Negación o Repetición",
     "correctos": [
       "Deshacer",
-      "Prehistoria",
-      "Submarino",
+      "Inmortal",
+      "Rehacer",
       "Imposible",
-      "Rehacer"
+      "Despegar",
+      "Invisible",
+      "Releer",
+      "Incapaz",
+      "Desconfiar",
+      "Reutilizar"
     ],
     "intrusos": [
       "Mesa",
       "Silla",
       "Papel",
       "Casa",
-      "Flor"
+      "Flor",
+      "Perro",
+      "Gato",
+      "Árbol",
+      "Sol",
+      "Luna",
+      "Mar",
+      "Libro"
     ]
   },
   {
-    "categoria": "Sufijos de Profesión",
+    "categoria": "Sufijos que forman Profesiones",
     "correctos": [
       "Cocinero",
       "Futbolista",
       "Panadero",
       "Zapatero",
-      "Dentista"
+      "Dentista",
+      "Camionero",
+      "Taxista",
+      "Carpintero",
+      "Peluquero",
+      "Bibliotecario"
     ],
     "intrusos": [
       "Libro",
       "Cuchara",
       "Balón",
       "Pan",
-      "Zapato"
+      "Zapato",
+      "Diente",
+      "Camión",
+      "Taxi",
+      "Madera",
+      "Pelo",
+      "Biblioteca"
     ]
   }
 ]

@@ -1,158 +1,912 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Tía en inglés.", "solucion": "aunt" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Siempre (frecuencia) en inglés.", "solucion": "always" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Respuesta en inglés.", "solucion": "answer" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Tarde (después de mediodía) en inglés.", "solucion": "afternoon" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Dirección en inglés.", "solucion": "address" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Desayuno en inglés.", "solucion": "breakfast" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Botella en inglés.", "solucion": "bottle" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Detrás en inglés.", "solucion": "behind" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Puente en inglés.", "solucion": "bridge" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Pan en inglés.", "solucion": "bread" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Queso en inglés.", "solucion": "cheese" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Pollo en inglés.", "solucion": "chicken" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Ropa en inglés.", "solucion": "clothes" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Cine en inglés.", "solucion": "cinema" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Primo/a en inglés.", "solucion": "cousin" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Cenar en inglés (have...).", "solucion": "dinner" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Peligroso en inglés.", "solucion": "dangerous" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Vestido en inglés.", "solucion": "dress" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Beber en inglés.", "solucion": "drink" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Conducir en inglés.", "solucion": "drive" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Comer en inglés.", "solucion": "eat" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Temprano en inglés.", "solucion": "early" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Tierra (planeta) en inglés.", "solucion": "earth" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Cada/Todos en inglés (ej: ...day).", "solucion": "every" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Águila en inglés.", "solucion": "eagle" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Granja en inglés.", "solucion": "farm" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Viernes en inglés.", "solucion": "friday" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Fruta en inglés.", "solucion": "fruit" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Amigo en inglés.", "solucion": "friend" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Cuarenta en inglés.", "solucion": "forty" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Gafas en inglés.", "solucion": "glasses" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Uva en inglés.", "solucion": "grape" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Jardín en inglés.", "solucion": "garden" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Levantarse en inglés (get...).", "solucion": "up" }, 
-  { "id": "g4_fix", "letra": "G", "tipo": "empieza", "definicion": "Pegamento en inglés.", "solucion": "glue" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Fantasma en inglés.", "solucion": "ghost" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Hambre en inglés (I am...).", "solucion": "hungry" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Hospital en inglés.", "solucion": "hospital" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Deberes en inglés.", "solucion": "homework" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Pelo en inglés.", "solucion": "hair" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Vacaciones en inglés.", "solucion": "holiday" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Enfermo en inglés.", "solucion": "ill" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Interesante en inglés.", "solucion": "interesting" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Isla en inglés.", "solucion": "island" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Hielo en inglés.", "solucion": "ice" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Dentro en inglés.", "solucion": "inside" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Enero en inglés.", "solucion": "january" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Vaqueros (pantalones) en inglés.", "solucion": "jeans" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Trabajo en inglés.", "solucion": "job" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Mermelada en inglés.", "solucion": "jam" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Zumo en inglés.", "solucion": "juice" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Cocina (lugar) en inglés.", "solucion": "kitchen" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Llave en inglés.", "solucion": "key" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Saber o conocer en inglés.", "solucion": "know" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Rodilla en inglés.", "solucion": "knee" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Rey en inglés.", "solucion": "king" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Biblioteca en inglés.", "solucion": "library" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Escuchar en inglés.", "solucion": "listen" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Comida del mediodía en inglés.", "solucion": "lunch" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Sala de estar en inglés (... room).", "solucion": "living" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Gustar en inglés.", "solucion": "like" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Lunes en inglés.", "solucion": "monday" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Mes en inglés.", "solucion": "month" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Leche en inglés.", "solucion": "milk" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Dinero en inglés.", "solucion": "money" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Museo en inglés.", "solucion": "museum" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Enfermera en inglés.", "solucion": "nurse" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Noviembre en inglés.", "solucion": "november" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Noche en inglés.", "solucion": "night" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Nuevo en inglés.", "solucion": "new" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Próximo/Siguiente en inglés.", "solucion": "next" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Octubre en inglés.", "solucion": "october" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Cebolla en inglés.", "solucion": "onion" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "A menudo en inglés.", "solucion": "often" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Viejo en inglés.", "solucion": "old" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Enfrente de en inglés.", "solucion": "opposite" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Patata en inglés.", "solucion": "potato" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Gente/Personas en inglés.", "solucion": "people" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Parque en inglés.", "solucion": "park" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Por favor en inglés.", "solucion": "please" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Jugar en inglés.", "solucion": "play" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Reina en inglés.", "solucion": "queen" },
-  { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Pregunta en inglés.", "solucion": "question" },
-  { "id": "q3", "letra": "Q", "tipo": "empieza", "definicion": "Rápido en inglés.", "solucion": "quick" },
-  { "id": "q4", "letra": "Q", "tipo": "empieza", "definicion": "Tranquilo/Silencioso en inglés.", "solucion": "quiet" },
-  { "id": "q5", "letra": "Q", "tipo": "empieza", "definicion": "Cuarto (15 min) en inglés.", "solucion": "quarter" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Lluvia en inglés.", "solucion": "rain" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Leer en inglés.", "solucion": "read" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Correr en inglés.", "solucion": "run" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Habitación en inglés.", "solucion": "room" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Río en inglés.", "solucion": "river" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Colegio en inglés.", "solucion": "school" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Nadar en inglés.", "solucion": "swim" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Verano en inglés.", "solucion": "summer" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Falda en inglés.", "solucion": "skirt" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Calle en inglés.", "solucion": "street" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Profesor en inglés.", "solucion": "teacher" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Jueves en inglés.", "solucion": "thursday" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Pantalones en inglés.", "solucion": "trousers" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Ciudad en inglés.", "solucion": "town" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Hora/Tiempo en inglés.", "solucion": "time" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Debajo en inglés.", "solucion": "under" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Tío en inglés.", "solucion": "uncle" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Usar en inglés.", "solucion": "use" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Paraguas en inglés.", "solucion": "umbrella" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Feo en inglés.", "solucion": "ugly" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Verduras en inglés.", "solucion": "vegetables" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Pueblo (pequeño) en inglés.", "solucion": "village" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Muy en inglés.", "solucion": "very" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Visitar en inglés.", "solucion": "visit" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Voleibol en inglés.", "solucion": "volleyball" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Agua en inglés.", "solucion": "water" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Escribir en inglés.", "solucion": "write" },
-  { "id": "w3", "letra": "W", "tipo": "empieza", "definicion": "Miercoles en inglés.", "solucion": "wednesday" },
-  { "id": "w4", "letra": "W", "tipo": "empieza", "definicion": "Invierno en inglés.", "solucion": "winter" },
-  { "id": "w5", "letra": "W", "tipo": "empieza", "definicion": "Llevar puesto (ropa) en inglés.", "solucion": "wear" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Caja en inglés (acaba en X).", "solucion": "box" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Zorro en inglés (acaba en X).", "solucion": "fox" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Seis en inglés (acaba en X).", "solucion": "six" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Próximo/Siguiente en inglés (contiene X).", "solucion": "next" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Relajarse en inglés (contiene X).", "solucion": "relax" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Amarillo en inglés.", "solucion": "yellow" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Año en inglés.", "solucion": "year" },
-  { "id": "y3", "letra": "Y", "tipo": "empieza", "definicion": "Tú/Vosotros en inglés.", "solucion": "you" },
-  { "id": "y4", "letra": "Y", "tipo": "empieza", "definicion": "Ayer en inglés.", "solucion": "yesterday" },
-  { "id": "y5", "letra": "Y", "tipo": "empieza", "definicion": "Joven en inglés.", "solucion": "young" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Zoo en inglés.", "solucion": "zoo" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Cebra en inglés.", "solucion": "zebra" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Cero en inglés.", "solucion": "zero" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Tamaño en inglés (contiene Z).", "solucion": "size" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Perezoso en inglés (contiene Z).", "solucion": "lazy" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'never'.",
+    "solucion": "always"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "A fruit that is usually red or green.",
+    "solucion": "apple"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Afternoon in English.",
+    "solucion": "afternoon"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "The sister of your mother or father.",
+    "solucion": "aunt"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "To give a reply to a question.",
+    "solucion": "answer"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "The first meal of the day.",
+    "solucion": "breakfast"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "A person who cuts hair.",
+    "solucion": "barber"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'front'.",
+    "solucion": "back"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "A large animal that lives in the forest and likes honey.",
+    "solucion": "bear"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "A place where you can borrow books.",
+    "solucion": "library"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "A place where you watch movies.",
+    "solucion": "cinema"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "The son or daughter of your aunt or uncle.",
+    "solucion": "cousin"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Something you wear, like a shirt or trousers.",
+    "solucion": "clothes"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "A bird that lives on a farm and gives eggs.",
+    "solucion": "chicken"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "A vegetable that is long, thin, and orange.",
+    "solucion": "carrot"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "The meal you eat in the evening.",
+    "solucion": "dinner"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Something that is not safe.",
+    "solucion": "dangerous"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "The first month of winter.",
+    "solucion": "december"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "A person who helps people with their teeth.",
+    "solucion": "dentist"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "To move a car or a bus.",
+    "solucion": "drive"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "To put food in your mouth and swallow it.",
+    "solucion": "eat"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "The planet where we live.",
+    "solucion": "earth"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "A large animal with a trunk and big ears.",
+    "solucion": "elephant"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'late'.",
+    "solucion": "early"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Every day, every week... (each one).",
+    "solucion": "every"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "A place where crops are grown and animals live.",
+    "solucion": "farm"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Something you eat that comes from plants (apples, bananas...).",
+    "solucion": "fruit"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "The fifth day of the week.",
+    "solucion": "friday"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "A person you like and play with.",
+    "solucion": "friend"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'slow'.",
+    "solucion": "fast"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Something you wear on your face to see better.",
+    "solucion": "glasses"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "A place with grass and flowers behind a house.",
+    "solucion": "garden"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "A small purple or green fruit used to make juice.",
+    "solucion": "grape"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'bad'.",
+    "solucion": "good"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "A person who is not a boy.",
+    "solucion": "girl"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Work you do at home for school.",
+    "solucion": "homework"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "A place where sick people are treated.",
+    "solucion": "hospital"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "When you want to eat something.",
+    "solucion": "hungry"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Something that grows on your head.",
+    "solucion": "hair"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "A time when you don't go to school (vacation).",
+    "solucion": "holiday"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "A place surrounded by water.",
+    "solucion": "island"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Frozen water.",
+    "solucion": "ice"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Something that is very good or keeps your attention.",
+    "solucion": "interesting"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "A small animal like a fly or a beetle.",
+    "solucion": "insect"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'outside'.",
+    "solucion": "inside"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "The first month of the year.",
+    "solucion": "january"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "A drink made from fruit.",
+    "solucion": "juice"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Pants made of blue denim.",
+    "solucion": "jeans"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "A sweet food made from fruit, often eaten on bread.",
+    "solucion": "jam"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "To move off the ground with your feet.",
+    "solucion": "jump"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "A room where food is cooked.",
+    "solucion": "kitchen"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "A small piece of metal used to open a door.",
+    "solucion": "key"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "To have information in your mind.",
+    "solucion": "know"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "The joint in the middle of your leg.",
+    "solucion": "knee"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "A man who rules a country.",
+    "solucion": "king"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "A place where many books are kept.",
+    "solucion": "library"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "To use your ears to hear something.",
+    "solucion": "listen"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "The meal you eat in the middle of the day.",
+    "solucion": "lunch"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "To feel affection for someone or something.",
+    "solucion": "love"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "A room in a house where people relax and watch TV.",
+    "solucion": "living room"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "The first day of the week.",
+    "solucion": "monday"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "A white drink that comes from cows.",
+    "solucion": "milk"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Something you use to buy things.",
+    "solucion": "money"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "A place where you can see historical objects.",
+    "solucion": "museum"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "A large area of land with grass and trees (often for hiking).",
+    "solucion": "mountain"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "A person who helps a doctor.",
+    "solucion": "nurse"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "The time when it is dark and people sleep.",
+    "solucion": "night"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'old'.",
+    "solucion": "new"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "The month before December.",
+    "solucion": "november"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "A word used to identify a person, place, or thing.",
+    "solucion": "name"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "The tenth month of the year.",
+    "solucion": "october"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "A vegetable that can make you cry when you cut it.",
+    "solucion": "onion"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'closed'.",
+    "solucion": "open"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Many times (frequency).",
+    "solucion": "often"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'same'.",
+    "solucion": "other"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "A place where you can go to play or walk.",
+    "solucion": "park"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "A word you say when you ask for something politely.",
+    "solucion": "please"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "A small animal that you keep at home (like a dog or cat).",
+    "solucion": "pet"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "A person who is not a child.",
+    "solucion": "parent"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Something you use to write with ink.",
+    "solucion": "pen"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "A woman who rules a country.",
+    "solucion": "queen"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Something you ask to get information.",
+    "solucion": "question"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'loud'.",
+    "solucion": "quiet"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "To do something in a short time (opposite of slow).",
+    "solucion": "quick"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Fifteen minutes (a ... of an hour).",
+    "solucion": "quarter"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Water that falls from the sky.",
+    "solucion": "rain"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "To look at words and understand them.",
+    "solucion": "read"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "A color like a tomato.",
+    "solucion": "red"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "To move very fast on your legs.",
+    "solucion": "run"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "A large stream of water that flows to the sea.",
+    "solucion": "river"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "A place where students go to learn.",
+    "solucion": "school"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "The hottest season of the year.",
+    "solucion": "summer"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "To move through water with your body.",
+    "solucion": "swim"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "A star that gives us light and heat.",
+    "solucion": "sun"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'tall'.",
+    "solucion": "short"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "A person who teaches students.",
+    "solucion": "teacher"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "The fourth day of the week.",
+    "solucion": "thursday"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Something you use to brush your teeth.",
+    "solucion": "toothbrush"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "A place that is bigger than a village but smaller than a city.",
+    "solucion": "town"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "A large vehicle used for carrying heavy things.",
+    "solucion": "truck"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Something you use when it rains.",
+    "solucion": "umbrella"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "The brother of your mother or father.",
+    "solucion": "uncle"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'over'.",
+    "solucion": "under"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'down'.",
+    "solucion": "up"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "A set of clothes worn by students at school.",
+    "solucion": "uniform"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Food like carrots, potatoes, and peas.",
+    "solucion": "vegetables"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "A small town in the country.",
+    "solucion": "village"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "A person who helps animals (animal doctor).",
+    "solucion": "vet"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "To go to see a person or a place.",
+    "solucion": "visit"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "A musical instrument with four strings.",
+    "solucion": "violin"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "The coldest season of the year.",
+    "solucion": "winter"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "The third day of the week.",
+    "solucion": "wednesday"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "A liquid we drink to stay alive.",
+    "solucion": "water"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "To use a pen or pencil to make words on paper.",
+    "solucion": "write"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'east'.",
+    "solucion": "west"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "A box used to carry things (ends in X).",
+    "solucion": "box"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "A wild animal like a small dog with a long tail (ends in X).",
+    "solucion": "fox"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "The number after five (ends in X).",
+    "solucion": "six"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "A medical picture of your bones (starts with X).",
+    "solucion": "x-ray"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "A musical instrument with wooden bars (starts with X).",
+    "solucion": "xylophone"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "The color of a lemon or the sun.",
+    "solucion": "yellow"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "The day before today.",
+    "solucion": "yesterday"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "A period of 365 days.",
+    "solucion": "year"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'no'.",
+    "solucion": "yes"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "The opposite of 'old'.",
+    "solucion": "young"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "A place where you can see wild animals.",
+    "solucion": "zoo"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "An animal with black and white stripes.",
+    "solucion": "zebra"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "The number before one.",
+    "solucion": "zero"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "A fastener used on jackets or bags (starts with Z).",
+    "solucion": "zipper"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "A prize given to a winner (ends in E, but has a Z sound - actually let's use 'size').",
+    "solucion": "size"
+  }
 ]

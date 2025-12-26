@@ -1,0 +1,1511 @@
+{
+  "titulo": "Material de Estudio - Economia - 4º ESO",
+  "introduccion": "Repasa este vocabulario de Economia para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "ahorro",
+          "definicion": "Parte del dinero que no se gasta y se guarda para el futuro.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "acción",
+          "definicion": "Título que representa una parte alícuota del capital social de una empresa.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "activo",
+          "definicion": "Bienes y derechos que posee una empresa (lo que tiene).",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "agente",
+          "definicion": "Persona física o jurídica que interviene en la economía (Familias, Empresas, Estado).",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "arancel",
+          "definicion": "Impuesto que se aplica a los bienes importados.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "alquiler",
+          "definicion": "Pago periódico por el uso de un bien (ej. vivienda).",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "amortización",
+          "definicion": "Pérdida de valor de un activo por el uso o el tiempo.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "aval",
+          "definicion": "Garantía personal en la que un tercero se compromete a pagar si el deudor no lo hace.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "autónomo",
+          "definicion": "Trabajador por cuenta propia.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "acreedor",
+          "definicion": "Persona o entidad a la que se le debe dinero.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "banco",
+          "definicion": "Entidad financiera que capta depósitos y otorga préstamos.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "beneficio",
+          "definicion": "Ganancia económica que se obtiene de un negocio, inversión, etc.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bolsa",
+          "definicion": "Mercado donde se compran y venden acciones.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "balance",
+          "definicion": "Documento contable que refleja el patrimonio de una empresa en un momento dado.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bien",
+          "definicion": "Objeto material o servicio que satisface una necesidad.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bruto",
+          "definicion": "Salario antes de descontar impuestos y cotizaciones (Salario...).",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "burbuja",
+          "definicion": "Situación de subida descontrolada de precios de un activo (Inmobiliaria).",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "billete",
+          "definicion": "Dinero en papel.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bce",
+          "definicion": "Banco Central Europeo (siglas).",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bono",
+          "definicion": "Título de deuda emitido por el Estado o empresas.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "capital",
+          "definicion": "Dinero y bienes que se invierten para producir.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "coste",
+          "definicion": "Gasto necesario para producir un bien o servicio.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "consumo",
+          "definicion": "Acción de gastar dinero en bienes y servicios.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "crisis",
+          "definicion": "Situación económica negativa con decrecimiento.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "crédito",
+          "definicion": "Préstamo de dinero que debe ser devuelto.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "comercio",
+          "definicion": "Actividad de compraventa de mercancías.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "competencia",
+          "definicion": "Rivalidad entre empresas para ganar clientes.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cliente",
+          "definicion": "Persona que compra un producto o servicio.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cotización",
+          "definicion": "Precio de las acciones en bolsa o de las divisas.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "contrato",
+          "definicion": "Acuerdo legal entre dos partes (ej. de trabajo).",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "demanda",
+          "definicion": "Cantidad de un bien que los consumidores quieren comprar.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "deuda",
+          "definicion": "Dinero que se debe a otro.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "déficit",
+          "definicion": "Situación donde los gastos superan a los ingresos.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dinero",
+          "definicion": "Medio de pago aceptado por todos.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dividendo",
+          "definicion": "Parte del beneficio que se reparte entre los accionistas.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "divisa",
+          "definicion": "Moneda extranjera.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "desempleo",
+          "definicion": "Situación de falta de trabajo (Paro).",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "deflación",
+          "definicion": "Bajada generalizada de precios (lo contrario a inflación).",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "depósito",
+          "definicion": "Dinero guardado en el banco.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "descuento",
+          "definicion": "Rebaja en el precio.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "economía",
+          "definicion": "Ciencia que estudia la administración de recursos escasos.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "empresa",
+          "definicion": "Organización que produce bienes o servicios para obtener beneficio.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "empleo",
+          "definicion": "Trabajo remunerado.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "euro",
+          "definicion": "Moneda común de la Unión Europea.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "especulación",
+          "definicion": "Compra de bienes con la esperanza de que suban de precio rápido.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "exportación",
+          "definicion": "Venta de productos a otro país.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "estado",
+          "definicion": "Agente económico que regula la economía y ofrece servicios públicos.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "eficiencia",
+          "definicion": "Uso óptimo de los recursos.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "escasez",
+          "definicion": "Problema básico de la economía: recursos limitados.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "equilibrio",
+          "definicion": "Punto donde la oferta iguala a la demanda.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "financiación",
+          "definicion": "Obtención de recursos monetarios para un proyecto.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "factura",
+          "definicion": "Documento que justifica una compra o venta.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fondo",
+          "definicion": "Dinero reservado para un fin (ej. ... de inversión).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fiscalidad",
+          "definicion": "Sistema de impuestos y recaudación pública.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "franquicia",
+          "definicion": "Modelo de negocio donde se alquila una marca.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fianza",
+          "definicion": "Dinero entregado como garantía (ej. alquiler).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "flujo",
+          "definicion": "Movimiento de dinero (... de caja).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "familia",
+          "definicion": "Unidad básica de consumo en economía.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fijo",
+          "definicion": "Coste que no varía con la producción.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fraude",
+          "definicion": "Engaño económico o fiscal.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "gasto",
+          "definicion": "Dinero que sale de la empresa o familia.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "ganancia",
+          "definicion": "Beneficio obtenido.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "globalización",
+          "definicion": "Proceso de interconexión económica mundial.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "garantía",
+          "definicion": "Seguridad de cumplimiento de una obligación (ej. de un producto).",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gestión",
+          "definicion": "Administración de recursos.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gratuito",
+          "definicion": "Que no cuesta dinero.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gremio",
+          "definicion": "Asociación profesional antigua.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gravamen",
+          "definicion": "Carga impositiva o impuesto.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "giro",
+          "definicion": "Transferencia de dinero.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gran empresa",
+          "definicion": "Compañía de gran tamaño (+250 empleados).",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hacienda",
+          "definicion": "Organismo público encargado de recaudar impuestos.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hipoteca",
+          "definicion": "Préstamo para comprar una vivienda.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hiperinflación",
+          "definicion": "Inflación muy elevada y fuera de control.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "huelga",
+          "definicion": "Paro colectivo de trabajadores como protesta.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "haber",
+          "definicion": "Columna del balance contable (Debe y ...).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "holding",
+          "definicion": "Sociedad que posee la mayoría de acciones de otras empresas.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "habitante",
+          "definicion": "PIB por persona (per cápita o por ...).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "honorarios",
+          "definicion": "Pago a profesionales liberales (abogados, notarios).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hucha",
+          "definicion": "Recipiente para ahorrar dinero.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "herencia",
+          "definicion": "Bienes y deudas que se reciben de una persona fallecida.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "inflación",
+          "definicion": "Subida generalizada de precios.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "interés",
+          "definicion": "Precio del dinero (Tipo de ...).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inversión",
+          "definicion": "Uso de dinero para obtener rentabilidad futura.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "impuesto",
+          "definicion": "Pago obligatorio al Estado.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "ingreso",
+          "definicion": "Dinero que entra en la economía familiar o empresarial.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "ipc",
+          "definicion": "Índice de Precios al Consumo (siglas).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "importación",
+          "definicion": "Compra de productos del extranjero.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "irpf",
+          "definicion": "Impuesto sobre la Renta de las Personas Físicas (siglas).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "iva",
+          "definicion": "Impuesto sobre el Valor Añadido (siglas).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "incentivo",
+          "definicion": "Estímulo económico para motivar una acción.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "jubilación",
+          "definicion": "Retiro laboral por edad con derecho a pensión.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jornada",
+          "definicion": "Horario laboral diario (... laboral).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jornal",
+          "definicion": "Pago por un día de trabajo.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "junta",
+          "definicion": "Reunión de accionistas (... General).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "joven",
+          "definicion": "Tipo de desempleo que afecta a menores de 25 años (... juvenil).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "justicia",
+          "definicion": "Objetivo de equidad económica (... social).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juego",
+          "definicion": "Situación donde lo que uno gana lo pierde otro (... de suma cero).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jurisprudencia",
+          "definicion": "Conjunto de sentencias legales sobre temas económicos.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jefatura",
+          "definicion": "Cargo directivo.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jerarquía",
+          "definicion": "Orden de mando en una empresa.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "banking",
+          "definicion": "Sector de la economía que incluye bancos y seguros (Ban...ing, contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "marketing",
+          "definicion": "Estrategias para vender productos (Mar...eting, contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "keynes",
+          "definicion": "Economista famoso (John Maynard ...eynes, contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "market",
+          "definicion": "Lugar de intercambio (Mar...et, contiene K - Mercado).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "stock",
+          "definicion": "Acciones de una empresa (Stoc..., contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "ranking",
+          "definicion": "Lista de clasificación (Ran...ing, contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kilovatio",
+          "definicion": "Medida de electricidad para la factura (Kilovatio, contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "risk",
+          "definicion": "Peligro de pérdida (Ris... en inglés, contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "bank",
+          "definicion": "Entidad financiera (Ban..., contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kapital",
+          "definicion": "Dinero en alemán o 'El Capital' (Das ...apital, contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "work",
+          "definicion": "Trabajo en inglés (Wor..., contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "link",
+          "definicion": "Conexión o enlace web (Lin..., contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kartell",
+          "definicion": "Acuerdo ilegal entre empresas para fijar precios (Cártel, en alemán ...artell).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kuwait",
+          "definicion": "País rico en petróleo (K...wait, contiene K).",
+          "pista": "Contiene la K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "liquidez",
+          "definicion": "Capacidad de convertir un activo en dinero rápidamente.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lucro",
+          "definicion": "Ganancia o beneficio.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "largo",
+          "definicion": "Periodo de tiempo superior a un año (... plazo).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "letra",
+          "definicion": "Título de deuda pública a corto plazo (... del Tesoro).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "liberalismo",
+          "definicion": "Doctrina que defiende la mínima intervención del Estado.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "ley",
+          "definicion": "Regla que rige el mercado (... de oferta y demanda).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "laboral",
+          "definicion": "Relativo al trabajo (... laboral).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lujo",
+          "definicion": "Bienes muy caros y exclusivos.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "licencia",
+          "definicion": "Permiso para realizar una actividad económica.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "libre",
+          "definicion": "Mercado sin restricciones (... mercado).",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "mercado",
+          "definicion": "Lugar donde se encuentran oferta y demanda.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "moneda",
+          "definicion": "Dinero de un país.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "monopolio",
+          "definicion": "Situación de mercado con un solo vendedor.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "macroeconomía",
+          "definicion": "Estudio de la economía en su conjunto (país).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "microeconomía",
+          "definicion": "Estudio del comportamiento de agentes individuales.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "margen",
+          "definicion": "Diferencia entre precio de venta y coste.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "materia prima",
+          "definicion": "Recurso natural sin transformar.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "marketing",
+          "definicion": "Conjunto de técnicas para mejorar la venta (Mercadotecnia).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "marca",
+          "definicion": "Nombre comercial de un producto.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "multinacional",
+          "definicion": "Empresa que opera en varios países.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "neto",
+          "definicion": "Valor final tras descontar impuestos o gastos.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nómina",
+          "definicion": "Documento con el sueldo del trabajador.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "necesidad",
+          "definicion": "Sensación de carencia unida al deseo de satisfacerla.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "negocio",
+          "definicion": "Actividad comercial con fines de lucro.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nicho",
+          "definicion": "Segmento de mercado pequeño y específico (... de mercado).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nivel",
+          "definicion": "Calidad de bienestar material (... de vida).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nacionalización",
+          "definicion": "Proceso por el que el Estado se queda una empresa privada.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nota",
+          "definicion": "Documento del Registro de la Propiedad (... simple).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nasdaq",
+          "definicion": "Mercado de valores tecnológico de EE.UU.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "numerario",
+          "definicion": "Dinero en efectivo (monedas y billetes).",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "españa",
+          "definicion": "País miembro del Euro (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "año",
+          "definicion": "Ejercicio económico de 12 meses (A... fiscal, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "compañía",
+          "definicion": "Sociedad mercantil o empresa (Compa...ía, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "diseño",
+          "definicion": "Aspecto visual de un producto (Dise...o, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "daño",
+          "definicion": "Perjuicio económico (Da...o, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "tamaño",
+          "definicion": "Dimensión de la empresa (Tama...o, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "cuña",
+          "definicion": "Diferencia entre coste laboral y salario neto (Cu...a fiscal, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "pequeña",
+          "definicion": "Empresa con pocos trabajadores (Peque...a empresa, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "campaña",
+          "definicion": "Periodo de publicidad o ventas (Campa...a, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "dueño",
+          "definicion": "Propietario de un negocio (Due...o, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "oferta",
+          "definicion": "Cantidad de productos que las empresas venden.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "obligación",
+          "definicion": "Título de deuda de una empresa o estado.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oportunidad",
+          "definicion": "Valor de lo que se renuncia al elegir otra cosa (Coste de...).",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oligopolio",
+          "definicion": "Mercado con pocos vendedores.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oro",
+          "definicion": "Metal precioso usado como reserva de valor.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "organización",
+          "definicion": "Estructura de la empresa.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "operación",
+          "definicion": "Transacción económica.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oficinas",
+          "definicion": "Lugares de trabajo administrativo.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "onza",
+          "definicion": "Unidad de peso para el oro.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "orden",
+          "definicion": "Mandato de compra o venta en bolsa.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "precio",
+          "definicion": "Valor monetario de un producto.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "producto",
+          "definicion": "Bien o servicio resultado de la producción.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pib",
+          "definicion": "Producto Interior Bruto (siglas).",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "patrimonio",
+          "definicion": "Conjunto de bienes, derechos y obligaciones.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "préstamo",
+          "definicion": "Dinero que se pide al banco y se devuelve con intereses.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pasivo",
+          "definicion": "Deudas y obligaciones de una empresa (Balance).",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "paro",
+          "definicion": "Situación de desempleo.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pensión",
+          "definicion": "Pago mensual tras la jubilación.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pobreza",
+          "definicion": "Situación de escasez de recursos extremos.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "presupuesto",
+          "definicion": "Plan de ingresos y gastos futuros.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "cheque",
+          "definicion": "Documento de pago (Che...e, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "riqueza",
+          "definicion": "Abundancia de bienes (Ri...eza, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "etiqueta",
+          "definicion": "Marca informativa en productos (Eti...eta, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "alquiler",
+          "definicion": "Pago por uso de vivienda (Al...iler, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "franquicia",
+          "definicion": "Modelo de negocio (Fran...icia, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "quiebra",
+          "definicion": "Bancarrota (Qui...bra, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "liquidación",
+          "definicion": "Venta final por cierre (Li...idación, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "equilibrio",
+          "definicion": "Balance entre oferta y demanda (E...ilibrio, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "paquete",
+          "definicion": "Conjunto de acciones (Pa...ete, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "bloque",
+          "definicion": "Grupo de países o empresas (Blo...e, contiene Q).",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "renta",
+          "definicion": "Ingreso periódico (del trabajo, capital, etc.).",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "recesión",
+          "definicion": "Caída de la actividad económica (PIB negativo).",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "riesgo",
+          "definicion": "Posibilidad de perder dinero en una inversión.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "riqueza",
+          "definicion": "Conjunto de bienes y activos.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "recurso",
+          "definicion": "Medio utilizado para producir (tierra, trabajo, capital).",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rendimiento",
+          "definicion": "Beneficio que produce una inversión.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "retribución",
+          "definicion": "Pago por el trabajo realizado.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rebaja",
+          "definicion": "Descuento en el precio (Rebajas).",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "recibo",
+          "definicion": "Justificante de pago.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "red",
+          "definicion": "Conjunto de contactos o infraestructuras.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "salario",
+          "definicion": "Pago por el trabajo.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sector",
+          "definicion": "Parte de la economía (Primario, Secundario, Terciario).",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "superávit",
+          "definicion": "Situación donde los ingresos superan a los gastos.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "subvención",
+          "definicion": "Ayuda económica del Estado.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sociedad",
+          "definicion": "Forma jurídica de una empresa (S.A., S.L.).",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "servicio",
+          "definicion": "Actividad inmaterial que satisface una necesidad.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sindicato",
+          "definicion": "Asociación de trabajadores para defender sus derechos.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sistema",
+          "definicion": "Conjunto de reglas económicas.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "socio",
+          "definicion": "Miembro de una sociedad.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "seguridad",
+          "definicion": "Organismo público de protección (... Social).",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "trabajo",
+          "definicion": "Factor productivo humano.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tasa",
+          "definicion": "Porcentaje o índice (ej. de paro).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tipo",
+          "definicion": "Precio del dinero (... de interés).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tributo",
+          "definicion": "Pago obligatorio al Estado (Impuesto).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tarjeta",
+          "definicion": "Medio de pago de plástico.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tesoro",
+          "definicion": "Hacienda pública (... Público).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tierra",
+          "definicion": "Factor productivo natural.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "transferencia",
+          "definicion": "Envío de dinero entre cuentas.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "turismo",
+          "definicion": "Sector económico de viajes y ocio.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tratado",
+          "definicion": "Acuerdo comercial internacional.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "utilidad",
+          "definicion": "Satisfacción que produce un bien.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "usuario",
+          "definicion": "Persona que usa un servicio.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unión",
+          "definicion": "Bloque económico europeo (... Europea).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "umbral",
+          "definicion": "Límite de ingresos para considerar pobreza (... de pobreza).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "usura",
+          "definicion": "Interés excesivo por un préstamo.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unidad",
+          "definicion": "Cada producto suelto.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "urgente",
+          "definicion": "Que requiere atención inmediata.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "urbano",
+          "definicion": "Zona de ciudad (Suelo...).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unipersonal",
+          "definicion": "Empresa de un solo socio.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "utilización",
+          "definicion": "Uso de recursos.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "valor",
+          "definicion": "Utilidad o precio de algo.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "venta",
+          "definicion": "Acción de dar un bien a cambio de dinero.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "variable",
+          "definicion": "Factor que puede cambiar (Macroeconomía).",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "ventaja",
+          "definicion": "Beneficio respecto a la competencia (... competitiva).",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vida",
+          "definicion": "Calidad de bienestar (Nivel de...).",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "volatilidad",
+          "definicion": "Cambio brusco de precios en el mercado.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "Valor",
+          "definicion": "Incremento de valor en el proceso productivo (Valor...).",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vivienda",
+          "definicion": "Casa o piso, bien de inversión.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vencimiento",
+          "definicion": "Fecha límite de un pago.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "volumen",
+          "definicion": "Cantidad total (ej. ... de negocio).",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "web",
+          "definicion": "Página de internet para comercio (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "welfare",
+          "definicion": "Estado del Bienestar en inglés (Welfare, contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "wall street",
+          "definicion": "Calle de la bolsa de Nueva York (Wall Street, contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "work",
+          "definicion": "Trabajo en inglés (Work, contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "software",
+          "definicion": "Programas informáticos (Soft...ware, contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "hardware",
+          "definicion": "Componentes físicos del ordenador (Hard...ware, contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "world",
+          "definicion": "Banco Mundial en inglés (...orld Bank, contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "networking",
+          "definicion": "Red de contactos (Net...orking, contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "win",
+          "definicion": "Situación donde todos ganan (...-win, contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "warrant",
+          "definicion": "Derecho de compra/venta de acciones (contiene W).",
+          "pista": "Contiene la W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "exportación",
+          "definicion": "Venta al extranjero (E...portación, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "extranjero",
+          "definicion": "País ajeno (E...tranjero, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "explotación",
+          "definicion": "Uso de recursos (E...plotación, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "éxito",
+          "definicion": "Triunfo empresarial (É...ito, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "excedente",
+          "definicion": "Sobrante de producción (E...cedente, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "existencias",
+          "definicion": "Stock en almacén (E...istencias, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "tax",
+          "definicion": "Tasa en inglés (Ta..., contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "texto",
+          "definicion": "Documento legal (Te...to, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "flexible",
+          "definicion": "Tipo de cambio que varía (Fle...ible, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "mixta",
+          "definicion": "Sistema con sector público y privado (Economía Mi...ta, contiene X).",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "yen",
+          "definicion": "Moneda de Japón.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yuan",
+          "definicion": "Moneda de China.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yacimiento",
+          "definicion": "Lugar con recursos minerales.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "pyme",
+          "definicion": "Pequeña y Mediana Empresa (P...me, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "royaltie",
+          "definicion": "Pago por derechos de autor (Ro...altie, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ley",
+          "definicion": "Norma jurídica (Le..., contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "mayorista",
+          "definicion": "Vendedor a grandes cantidades (Ma...orista, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "coyuntura",
+          "definicion": "Situación económica actual (Co...untura, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "hoy",
+          "definicion": "Día presente (Ho..., contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "proyecto",
+          "definicion": "Plan de empresa (Pro...ecto, contiene Y).",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zona",
+          "definicion": "Área geográfica con moneda común (... Euro).",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "balanza",
+          "definicion": "Estado contable de un país (Balan...a de pagos, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "riqueza",
+          "definicion": "Patrimonio o dinero (Rique...a, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "cotización",
+          "definicion": "Pago a la Seguridad Social (Coti...ación, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "fiscalización",
+          "definicion": "Control de impuestos (Fiscali...ación, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "indemnización",
+          "definicion": "Pago por despido o daño (Indemni...ación, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "organización",
+          "definicion": "Estructura de la empresa (Organi...ación, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "estabilización",
+          "definicion": "Control de precios (Estabili...ación, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "capitalización",
+          "definicion": "Valor total de las acciones (Capitali...ación, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "comercialización",
+          "definicion": "Puesta en venta de un producto (Comerciali...ación, contiene Z).",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

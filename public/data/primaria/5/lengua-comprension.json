@@ -1,321 +1,569 @@
 [
   {
     "id": "1",
-    "titulo": "El cumpleaños de Leo",
-    "texto": "Hoy es un día muy especial porque es el cumpleaños de Leo. Su mamá le ha preparado una tarta de chocolate con seis velas. Leo ha invitado a sus amigos del colegio a jugar al parque por la tarde. Su abuela le ha regalado un balón de fútbol nuevo de color rojo.",
+    "titulo": "Miguel de Cervantes y el Quijote",
+    "texto": "Miguel de Cervantes Saavedra es considerado el máximo exponente de la literatura española. Su obra maestra, 'El ingenioso hidalgo Don Quijote de la Mancha', publicada en 1605, es la novela más traducida del mundo después de la Biblia. En ella, un hidalgo enloquecido por la lectura de libros de caballería decide hacerse caballero andante para deshacer entuertos y proteger a los desvalidos, acompañado por su fiel escudero Sancho Panza. Cervantes creó una obra que mezcla la realidad y la fantasía, el humor y la crítica social.",
     "preguntas": [
       {
-        "pregunta": "¿De qué sabor es la tarta?",
-        "opciones": ["De fresa", "De chocolate"],
+        "pregunta": "¿En qué año se publicó la primera parte del Quijote?",
+        "opciones": [
+          "1505",
+          "1605",
+          "1705",
+          "1805"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas velas tiene la tarta?",
-        "opciones": ["Seis velas", "Ocho velas"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Quién le regaló el balón?",
-        "opciones": ["Su papá", "Su tía", "Su abuela", "Su hermano"],
+        "pregunta": "¿Quién es el autor de esta obra?",
+        "opciones": [
+          "Lope de Vega",
+          "Francisco de Quevedo",
+          "Miguel de Cervantes",
+          "Garcilaso de la Vega"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿De qué color es el balón?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
+        "pregunta": "¿Por qué decide el protagonista hacerse caballero andante?",
+        "opciones": [
+          "Para ganar dinero",
+          "Para proteger a Sancho",
+          "Para deshacer entuertos",
+          "Porque se lo pidió un rey"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Dónde van a jugar?",
-        "opciones": ["En el cine", "En el parque", "En la playa", "En la escuela"],
+        "pregunta": "¿Quién acompaña a Don Quijote en sus aventuras?",
+        "opciones": [
+          "Dulcinea",
+          "Rocinante",
+          "Sancho Panza",
+          "El cura"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué motivó la locura de Don Quijote?",
+        "opciones": [
+          "La falta de comida",
+          "Los libros de caballería",
+          "Un hechizo",
+          "La soledad"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "La mariposa Lola",
-    "texto": "Lola es una mariposa de muchos colores que vive en el jardín. Le gusta volar de flor en flor cuando sale el sol. Cuando llueve, Lola se esconde debajo de una hoja grande para no mojarse las alas. Su mejor amiga es una abeja que se llama Pepi.",
+    "titulo": "Federico García Lorca y la Generación del 27",
+    "texto": "Federico García Lorca fue uno de los poetas y dramaturgos más importantes de España. Perteneció a la Generación del 27, un grupo de escritores que renovaron la literatura española en el siglo XX. Sus poemas suelen hablar del amor, la luna, la muerte y las tradiciones de su tierra andaluza. Obras como 'Romancero Gitano' o 'La Casa de Bernarda Alba' son famosas en todo el mundo. Lorca utilizaba metáforas brillantes y un ritmo musical en sus versos que los hacen únicos.",
     "preguntas": [
       {
-        "pregunta": "¿Cómo se llama la mariposa?",
-        "opciones": ["Lola", "Pepi"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hace cuando llueve?",
-        "opciones": ["Sigue volando", "Se esconde"],
+        "pregunta": "¿A qué grupo literario perteneció Lorca?",
+        "opciones": [
+          "Generación del 98",
+          "Generación del 27",
+          "El Siglo de Oro",
+          "El Romanticismo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde vive Lola?",
-        "opciones": ["En una casa", "En el bosque", "En el mar", "En el jardín"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Quién es su mejor amiga?",
-        "opciones": ["Una hormiga", "Una abeja", "Una mariquita", "Un grillo"],
+        "pregunta": "¿De qué región era originario Lorca?",
+        "opciones": [
+          "Cataluña",
+          "Andalucía",
+          "Galicia",
+          "Castilla"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuándo le gusta volar?",
-        "opciones": ["Cuando es de noche", "Cuando nieva", "Cuando sale el sol", "Cuando hay viento"],
-        "correcta": 2
+        "pregunta": "¿Cuál de estas obras es un libro de poemas de Lorca?",
+        "opciones": [
+          "El Quijote",
+          "Romancero Gitano",
+          "El Aleph",
+          "Campos de Castilla"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué elementos suelen aparecer en sus poemas?",
+        "opciones": [
+          "Coches y aviones",
+          "La luna y las tradiciones",
+          "Ordenadores",
+          "Caballos mecánicos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué características destacan en sus versos?",
+        "opciones": [
+          "Falta de rima",
+          "Metáforas brillantes y ritmo musical",
+          "Uso de palabras en inglés",
+          "Son muy aburridos"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "El perro Toby",
-    "texto": "Toby es un perro blanco con manchas negras. Es muy juguetón y le encanta correr detrás de la pelota en el parque. Su dueño se llama Juan y siempre le lleva agua fresca. Hoy Toby ha encontrado un hueso muy grande debajo de un árbol.",
+    "titulo": "Las funciones del lenguaje",
+    "texto": "Cuando nos comunicamos, no siempre lo hacemos con el mismo objetivo. Si queremos informar sobre algo, usamos la función representativa (ej: 'Hoy es martes'). Si queremos expresar sentimientos, usamos la función expresiva (ej: '¡Qué alegría verte!'). Si intentamos convencer a alguien para que haga algo, usamos la función apelativa (ej: '¡Ven aquí!'). Por último, si el texto destaca por su belleza, como en la poesía, usamos la función poética.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es Toby?",
-        "opciones": ["Marrón", "Blanco con manchas"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué encontró Toby?",
-        "opciones": ["Un hueso", "Un juguete"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo se llama su dueño?",
-        "opciones": ["Luis", "Pedro", "Juan", "Carlos"],
+        "pregunta": "¿Qué función usamos para informar sobre hechos reales?",
+        "opciones": [
+          "Expresiva",
+          "Apelativa",
+          "Representativa o informativa",
+          "Poética"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué le gusta perseguir?",
-        "opciones": ["Coches", "Gatos", "Pájaros", "La pelota"],
-        "correcta": 3
+        "pregunta": "¿Cómo se llama la función que expresa emociones?",
+        "opciones": [
+          "Poética",
+          "Fática",
+          "Expresiva",
+          "Metalingüística"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Dónde encontró el hueso?",
-        "opciones": ["En la casa", "Bajo un árbol", "En la calle", "En la cama"],
+        "pregunta": "Si digo: '¡Cierra la puerta!', ¿qué función estoy usando?",
+        "opciones": [
+          "Apelativa",
+          "Informativa",
+          "Expresiva",
+          "Poética"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Dónde es más común encontrar la función poética?",
+        "opciones": [
+          "En las noticias",
+          "En los libros de cocina",
+          "En la poesía y literatura",
+          "En un examen"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿El lenguaje tiene siempre el mismo objetivo?",
+        "opciones": [
+          "Sí",
+          "No, depende de la intención del hablante"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "La excursión al zoo",
-    "texto": "La clase de primero ha ido de excursión al zoológico. Han ido todos juntos en un autobús amarillo. Han visto una jirafa muy alta comiendo hojas de un árbol. También vieron monos saltando y leones durmiendo. A la hora de comer tomaron bocadillos.",
+    "titulo": "La noticia: Estructura y rigor",
+    "texto": "Una noticia es un texto periodístico que informa sobre un hecho de actualidad e interés. Para que una noticia sea completa, debe responder a seis preguntas: ¿Quién?, ¿Qué?, ¿Cuándo?, ¿Dónde?, ¿Por qué? y ¿Cómo? Su estructura suele incluir un titular (grande y llamativo), una entradilla (resumen del inicio) y el cuerpo de la noticia (detalles ordenados de más a menos importancia, siguiendo la pirámide invertida).",
     "preguntas": [
       {
-        "pregunta": "¿En qué fueron al zoo?",
-        "opciones": ["En tren", "En autobús"],
+        "pregunta": "¿Cuál es el objetivo de una noticia?",
+        "opciones": [
+          "Persuadir",
+          "Opinar",
+          "Informar sobre un hecho actual",
+          "Contar un cuento"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué pregunta NO es obligatoria en una buena noticia?",
+        "opciones": [
+          "¿Quién?",
+          "¿Qué?",
+          "¿Cuántos años tengo yo?",
+          "¿Dónde?"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llama la parte resumen al principio?",
+        "opciones": [
+          "Titular",
+          "Entradilla",
+          "Cuerpo",
+          "Pie de página"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué comía la jirafa?",
-        "opciones": ["Hojas", "Carne"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿De qué color era el autobús?",
-        "opciones": ["Rojo", "Azul", "Verde", "Amarillo"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué hacían los leones?",
-        "opciones": ["Comer", "Dormir", "Correr", "Rugir"],
+        "pregunta": "¿Qué significa la 'pirámide invertida'?",
+        "opciones": [
+          "Información de menos a más importante",
+          "Información de más a menos importante",
+          "Información desordenada",
+          "Una foto de Egipto"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué comieron los niños?",
-        "opciones": ["Pizza", "Sopa", "Bocadillos", "Fruta"],
+        "pregunta": "¿Cómo debe ser el titular?",
+        "opciones": [
+          "Muy largo y aburrido",
+          "Escrito a mano",
+          "Grande y llamativo",
+          "No lleva titular"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "El diente de Ana",
-    "texto": "A Ana se le mueve un diente de leche. Su mamá le ha dicho que cuando se le caiga, vendrá el Ratoncito Pérez. Ana está muy emocionada y se mira al espejo a cada rato. Por la noche, dejará el diente debajo de su almohada para tener una sorpresa.",
+    "titulo": "La leyenda del Monte de las Ánimas",
+    "texto": "Gustavo Adolfo Bécquer es famoso por sus leyendas, relatos fantásticos que suelen ocurrir en la época medieval. En 'El Monte de las Ánimas', situada en Soria, se cuenta que en la noche de Todos los Santos, los esqueletos de antiguos guerreros templarios se levantan de sus tumbas y recorren el monte. Es un relato de terror romántico donde el misterio y los sonidos de la naturaleza juegan un papel fundamental para asustar al lector.",
     "preguntas": [
       {
-        "pregunta": "¿Qué se le mueve a Ana?",
-        "opciones": ["Un diente", "Una uña"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Quién vendrá a visitarla?",
-        "opciones": ["Papá Noel", "El Ratoncito Pérez"],
+        "pregunta": "¿Quién escribió las leyendas de este tipo?",
+        "opciones": [
+          "Cervantes",
+          "Bécquer",
+          "Lope de Vega",
+          "Góngora"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde dejará el diente?",
-        "opciones": ["En la mesa", "En el suelo", "Bajo la almohada", "En una caja"],
+        "pregunta": "¿En qué ciudad se sitúa esta leyenda?",
+        "opciones": [
+          "Madrid",
+          "Soria",
+          "Sevilla",
+          "Barcelona"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué noche ocurre el suceso fantástico?",
+        "opciones": [
+          "Nochebuena",
+          "San Juan",
+          "Todos los Santos (Fieles Difuntos)",
+          "La noche de bodas"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cómo se siente Ana?",
-        "opciones": ["Triste", "Enfadada", "Asustada", "Emocionada"],
-        "correcta": 3
+        "pregunta": "¿Quiénes se levantan de sus tumbas?",
+        "opciones": [
+          "Gigantes",
+          "Caballeros templarios (esqueletos)",
+          "Animales salvajes",
+          "Los vecinos"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Dónde se mira Ana?",
-        "opciones": ["En el espejo", "En la ventana", "En el agua", "En el móvil"],
-        "correcta": 0
+        "pregunta": "¿Qué género literario es el de este relato?",
+        "opciones": [
+          "Ciencia ficción",
+          "Terror romántico",
+          "Comedia",
+          "Crónica deportiva"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "La bicicleta nueva",
-    "texto": "Pedro tiene una bicicleta nueva de color azul. Tiene un timbre que suena muy fuerte. Pedro va a la plaza con su papá para aprender a montar sin ruedines. Siempre se pone el casco para estar seguro y no hacerse daño si se cae.",
+    "titulo": "Sustantivos, adjetivos y determinantes",
+    "texto": "Un grupo nominal es una palabra o conjunto de palabras que tiene como núcleo un sustantivo. Por ejemplo, en 'La casa blanca', 'casa' es el sustantivo (núcleo), 'La' es un determinante artículo y 'blanca' es un adjetivo. Los adjetivos deben concordar en género y número con el sustantivo al que acompañan. No podemos decir 'Las caballos rápido', sino 'Los caballos rápidos'.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es la bici?",
-        "opciones": ["Roja", "Azul"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Con quién va a la plaza?",
-        "opciones": ["Con su papá", "Con su abuelo"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué usa para protegerse?",
-        "opciones": ["Gorra", "Bufanda", "Casco", "Guantes"],
+        "pregunta": "¿Qué palabra es el núcleo de un grupo nominal?",
+        "opciones": [
+          "El verbo",
+          "El adjetivo",
+          "El sustantivo",
+          "El adverbio"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cómo suena el timbre?",
-        "opciones": ["Flojo", "Mal", "Raro", "Fuerte"],
-        "correcta": 3
+        "pregunta": "En la frase 'Esas flores hermosas', ¿qué es 'Esas'?",
+        "opciones": [
+          "Sustantivo",
+          "Adjetivo",
+          "Determinante demostrativo",
+          "Pronombre"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Dónde aprende a montar?",
-        "opciones": ["En el colegio", "En la plaza", "En el bosque", "En casa"],
+        "pregunta": "¿Qué significa que deben 'concordar'?",
+        "opciones": [
+          "Que deben empezar por la misma letra",
+          "Que deben tener el mismo género y número",
+          "Que deben rimar",
+          "Que deben ir juntos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el adjetivo en 'Mi pequeño perro'?",
+        "opciones": [
+          "Mi",
+          "Pequeño",
+          "Perro",
+          "No hay adjetivo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál de estas opciones está bien escrita?",
+        "opciones": [
+          "La gatos blanco",
+          "Unas niñas simpáticas",
+          "El silla rojos",
+          "Aquel nubes"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Un día en la playa",
-    "texto": "Sara ha ido a la playa porque es verano. Ha hecho un castillo de arena muy grande con su cubo y su pala. El agua del mar está un poco fría, pero le gusta saltar las olas. Ha visto un pececito pequeño nadando cerca de sus pies.",
+    "titulo": "El mito de Eco y Narciso",
+    "texto": "La mitología griega nos enseña historias con moralejas o explicaciones naturales. Narciso era un joven tan guapo que se enamoró de su propia imagen reflejada en un estanque. Por otro lado, la ninfa Eco fue castigada a poder repetir solo las últimas palabras de lo que otros decían. Esta historia explica por qué existe el eco en las montañas y por qué el narcisismo (el exceso de amor propio) puede ser peligroso.",
     "preguntas": [
       {
-        "pregunta": "¿En qué estación es?",
-        "opciones": ["Verano", "Invierno"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo está el agua?",
-        "opciones": ["Caliente", "Fría"],
+        "pregunta": "¿De qué cultura procede este mito?",
+        "opciones": [
+          "Egipcia",
+          "Griega",
+          "Maya",
+          "Vikinga"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué ha construido Sara?",
-        "opciones": ["Una casa", "Un puente", "Un coche", "Un castillo"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué animal ha visto?",
-        "opciones": ["Un cangrejo", "Un pez", "Una medusa", "Una gaviota"],
+        "pregunta": "¿De quién se enamoró Narciso?",
+        "opciones": [
+          "De Eco",
+          "De su propio reflejo",
+          "De una diosa",
+          "De nadie"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué usó para el castillo?",
-        "opciones": ["Cubo y pala", "Tenedor", "Solo las manos", "Una red"],
-        "correcta": 0
+        "pregunta": "¿Cuál era el castigo de la ninfa Eco?",
+        "opciones": [
+          "No poder hablar",
+          "Repetir solo las últimas palabras",
+          "Ser invisible",
+          "Dormir mil años"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué fenómeno natural explica este mito?",
+        "opciones": [
+          "La lluvia",
+          "El eco",
+          "El trueno",
+          "El arcoíris"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué significa hoy en día ser 'narcisista'?",
+        "opciones": [
+          "Ser muy generoso",
+          "Tener un exceso de amor propio",
+          "Saber nadar muy bien",
+          "Ser muy tímido"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El gatito Misu",
-    "texto": "Misu es un gatito gris muy curioso. Un día salió al jardín y se subió a un árbol muy alto persiguiendo a un pájaro. Luego le daba miedo bajar. Un bombero tuvo que venir con una escalera larga para ayudarle a bajar al suelo.",
+    "titulo": "El texto teatral",
+    "texto": "El teatro es un género literario pensado para ser representado ante un público. El autor se llama dramaturgo. Un texto teatral se compone de diálogos (lo que dicen los personajes) y acotaciones (indicaciones en cursiva o entre paréntesis sobre cómo deben moverse o qué gestos deben hacer). No hay un narrador que cuente la historia, sino que descubrimos los hechos a través de las acciones de los actores.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es Misu?",
-        "opciones": ["Negro", "Gris"],
+        "pregunta": "¿Cómo se llama el autor de una obra de teatro?",
+        "opciones": [
+          "Poeta",
+          "Dramaturgo",
+          "Editor",
+          "Pintor"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿A quién perseguía?",
-        "opciones": ["A un ratón", "A un pájaro"],
+        "pregunta": "¿Qué son las acotaciones?",
+        "opciones": [
+          "Los diálogos principales",
+          "Indicaciones sobre gestos o movimientos",
+          "La opinión del público",
+          "Los nombres de los actores"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde se subió?",
-        "opciones": ["Al tejado", "A una silla", "A un árbol", "A un coche"],
-        "correcta": 2
+        "pregunta": "¿Aparecen las acotaciones en el escenario cuando se habla?",
+        "opciones": [
+          "Sí, se leen en voz alta",
+          "No, sirven de guía para los actores",
+          "Solo si el público quiere",
+          "Depende del día"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Quién le ayudó?",
-        "opciones": ["Un policía", "Un médico", "Un bombero", "Su dueño"],
-        "correcta": 2
+        "pregunta": "¿Hay narrador en el teatro tradicional?",
+        "opciones": [
+          "Sí, cuenta todo",
+          "No, se descubre por diálogos y acciones",
+          "A veces",
+          "Solo en el intermedio"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué usó el bombero?",
-        "opciones": ["Una cuerda", "Una red", "Una cama", "Una escalera"],
-        "correcta": 3
+        "pregunta": "¿Cómo se escriben normalmente las acotaciones para diferenciarlas?",
+        "opciones": [
+          "En mayúsculas rojas",
+          "En cursiva o entre paréntesis",
+          "Subrayadas",
+          "En voz alta"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Haciendo galletas",
-    "texto": "Hugo y su hermana están cocinando galletas. Mezclan harina, azúcar y leche en un bol grande. Utilizan moldes con forma de estrella y de corazón. Cuando las meten en el horno, toda la cocina huele muy bien.",
+    "titulo": "Las reglas de acentuación",
+    "texto": "Para escribir correctamente en español, debemos conocer la sílaba tónica. Las palabras AGUDAS tienen la fuerza en la última sílaba (camión) y llevan tilde si terminan en n, s o vocal. Las LLANAS tienen la fuerza en la penúltima (árbol) y llevan tilde si NO terminan en n, s o vocal. Las ESDRÚJULAS tienen la fuerza en la antepenúltima (pájaro) y siempre llevan tilde, sin excepción.",
     "preguntas": [
       {
-        "pregunta": "¿Qué están cocinando?",
-        "opciones": ["Un pastel", "Galletas"],
+        "pregunta": "¿Cuál es la sílaba tónica en las palabras agudas?",
+        "opciones": [
+          "Penúltima",
+          "Antepenúltima",
+          "Última",
+          "Cualquiera"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuándo lleva tilde una palabra aguda?",
+        "opciones": [
+          "Siempre",
+          "Si termina en n, s o vocal",
+          "Si termina en consonante rara",
+          "Nunca"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Con qué forma las hacen?",
-        "opciones": ["Estrellas", "Coches"],
+        "pregunta": "¿Cuándo llevan tilde las palabras esdrújulas?",
+        "opciones": [
+          "Solo si terminan en vocal",
+          "Solo si son largas",
+          "Siempre",
+          "Nunca"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "La palabra 'teléfono' es...",
+        "opciones": [
+          "Aguda",
+          "Llana",
+          "Esdrújula",
+          "Sobresdrújula"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué palabra llana lleva tilde correctamente?",
+        "opciones": [
+          "Lápiz",
+          "Casas",
+          "Cantar",
+          "Café"
+        ],
         "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué ingrediente usan?",
-        "opciones": ["Sal", "Pimienta", "Azúcar", "Queso"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Dónde las meten?",
-        "opciones": ["En la nevera", "En el horno", "En el cajón", "En la mesa"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cómo huele la cocina?",
-        "opciones": ["Mal", "A quemado", "Bien", "A nada"],
-        "correcta": 2
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El muñeco de nieve",
-    "texto": "Ha estado nevando toda la noche. Eva ha salido al patio muy abrigada. Ha hecho un muñeco de nieve con tres bolas grandes. Le ha puesto una zanahoria como nariz y una bufanda roja vieja para que no tenga frío.",
+    "titulo": "La publicidad y la persuasión",
+    "texto": "Los anuncios publicitarios intentan convencernos de comprar un producto o cambiar un hábito. Usan un lenguaje persuasivo, imágenes llamativas y un eslogan, que es una frase corta y fácil de recordar. Por ejemplo, 'Just do it' o 'Porque tú lo vales'. También es importante distinguir entre la información real del producto y los trucos publicitarios para que parezca mejor de lo que es.",
     "preguntas": [
       {
-        "pregunta": "¿Qué ha hecho Eva?",
-        "opciones": ["Un iglú", "Un muñeco de nieve"],
+        "pregunta": "¿Cuál es el objetivo principal de la publicidad?",
+        "opciones": [
+          "Informar objetivamente",
+          "Persuadir o convencer",
+          "Contar la verdad absoluta",
+          "Divertir gratis"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué usó de nariz?",
-        "opciones": ["Una patata", "Una zanahoria"],
+        "pregunta": "¿Qué es un eslogan?",
+        "opciones": [
+          "Un dibujo grande",
+          "Una frase corta y fácil de recordar",
+          "El nombre de la empresa",
+          "El precio del producto"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿De qué color es la bufanda?",
-        "opciones": ["Azul", "Verde", "Roja", "Negra"],
-        "correcta": 2
+        "pregunta": "¿Qué elementos suelen usar los anuncios?",
+        "opciones": [
+          "Imágenes llamativas y lenguaje persuasivo",
+          "Solo texto en blanco y negro",
+          "Solo números",
+          "Ninguno"
+        ],
+        "correcta": 0
       },
       {
-        "pregunta": "¿Dónde hizo el muñeco?",
-        "opciones": ["En el parque", "En el patio", "En la calle", "En el colegio"],
+        "pregunta": "¿Debemos creer todo lo que dice un anuncio?",
+        "opciones": [
+          "Sí",
+          "No, hay que ser críticos",
+          "Solo si sale en la tele",
+          "Si lo dice un famoso"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuándo nevó?",
-        "opciones": ["Por la mañana", "Por la tarde", "Toda la noche", "A mediodía"],
-        "correcta": 2
+        "pregunta": "¿Qué intenta transmitir un eslogan?",
+        "opciones": [
+          "Toda la historia de la marca",
+          "Un mensaje rápido y positivo",
+          "Instrucciones de uso",
+          "La lista de ingredientes"
+        ],
+        "correcta": 1
       }
     ]
   }

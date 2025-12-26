@@ -1,0 +1,570 @@
+[
+    {
+        "id": "1",
+        "titulo": "Benvinguts a 3r d'ESO",
+        "texto": "Comença un curs apassionant! En 3r d'ESO deixem arrere els primers passos a l'institut per a endinsar-nos en matèries més específiques. El valencià serà la nostra eina per a descobrir autors nous i millorar la nostra expressió escrita i oral. Aquest any farem projectes en grup i aprendrem a debatre amb respecte sobre temes d'actualitat. És un curs clau per a consolidar els nostres hàbits d'estudi i començar a pensar en quins camins volem seguir en el futur. Endavant amb energia!",
+        "preguntas": [
+            {
+                "pregunta": "En quin curs es troben els alumnes?",
+                "opciones": [
+                    "1r d'ESO",
+                    "2n d'ESO",
+                    "3r d'ESO",
+                    "Batxillerat"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Què aprendran a fer a més de projectes en grup?",
+                "opciones": [
+                    "Parlar poc",
+                    "Debatre amb respecte",
+                    "Dibuixar",
+                    "Anar d'excursió"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per a què serà el valencià una eina principal?",
+                "opciones": [
+                    "Per a fer esport",
+                    "Per a descobrir autors i millorar l'expressió",
+                    "Per a fer matemàtiques",
+                    "Per a res"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per què és un curs clau segons el text?",
+                "opciones": [
+                    "Perquè és el més curt",
+                    "Per a consolidar hàbits i pensar en el futur",
+                    "Perquè no hi ha exàmens",
+                    "Perquè és l'últim"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com han de començar el curs?",
+                "opciones": [
+                    "Amb por",
+                    "Amb energia",
+                    "Dormint",
+                    "Cansats"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "L'accentuació i la dièresi",
+        "texto": "En valencià, a més de l'accent (obert i tancat), usem la DIÈRESI (¨). Aquest signe es posa sobre la I o la U per a indicar dues coses: 1) Que la U es pronuncia en les síl·labes güe, güi, qüe, qüi (com en 'aigües' o 'qüestió'). 2) Que la I no forma diptong amb la vocal anterior (com en 'raïm' o 'veïna'). No es posa dièresi si la paraula ja porta accent tònic en eixa vocal, ni en els sufixos -isme o -ista (com en 'egoisme'). Dominar la dièresi és senyal d'una ortografia excel·lent.",
+        "preguntas": [
+            {
+                "pregunta": "Què indica la dièresi en la paraula 'aigües'?",
+                "opciones": [
+                    "Que la U no es pronuncia",
+                    "Que la U sí que es pronuncia",
+                    "Que la A és tònica",
+                    "Res"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "I en la paraula 'raïm'?",
+                "opciones": [
+                    "Que hi ha un diptong",
+                    "Que la I no forma diptong amb la vocal anterior",
+                    "Que és plural",
+                    "Que és una fruita"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Porta dièresi la paraula 'egoisme'?",
+                "opciones": [
+                    "Sí",
+                    "No, perquè és un sufix -isme",
+                    "Depén de la frase",
+                    "Sempre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Sobre quines vocals es pot posar la dièresi?",
+                "opciones": [
+                    "A, E, O",
+                    "I, U",
+                    "Totes",
+                    "Només la E"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Es posa dièresi si la vocal ja porta accent?",
+                "opciones": [
+                    "Sempre",
+                    "Mai (l'accent guanya)",
+                    "A vegades",
+                    "Si és una paraula llarga"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "El Segle d'Or Valencià",
+        "texto": "El segle XV és conegut com el Segle d'Or de la literatura valenciana. En aquesta època, la ciutat de València era el centre cultural i econòmic de la Corona d'Aragó. Autors com Ausiàs March (poesia), Joanot Martorell (amb 'Tirant lo Blanc') o Isabel de Villena (amb 'Vita Christi') van crear obres mestres que encara estudiem hui. Fou una època de gran riquesa on la nostra llengua va assolir el seu màxim esplendor literari, influint en tota la cultura europea del moment.",
+        "preguntas": [
+            {
+                "pregunta": "Quin segle és el Segle d'Or valencià?",
+                "opciones": [
+                    "XIII",
+                    "XV",
+                    "XIX",
+                    "XXI"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quina ciutat n'era el centre cultural?",
+                "opciones": [
+                    "Barcelona",
+                    "Alacant",
+                    "València",
+                    "Castelló"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Qui va escriure 'Vita Christi'?",
+                "opciones": [
+                    "Joanot Martorell",
+                    "Isabel de Villena",
+                    "Ausiàs March",
+                    "Jaume I"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin gènere literari va conrear Ausiàs March?",
+                "opciones": [
+                    "Teatre",
+                    "Poesia",
+                    "Novel·la",
+                    "Assaig"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Va tindre influència fora de les nostres terres?",
+                "opciones": [
+                    "No",
+                    "Sí, en tota la cultura europea del moment",
+                    "Només a Múrcia",
+                    "Només a l'institut"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La Biodiversitat de l'Albufera",
+        "texto": "L'Albufera de València és un dels aiguamolls més importants d'Europa. És un parc natural on conviuen centenars d'espècies d'aus, algunes en perill d'extinció. El llac d'aigua dolça està separat de la mar per la Devesa del Saler, un bosc de pins i dunes. L'activitat humana, com el cultiu de l'arròs, ha marcat el paisatge i la gastronomia de la zona. És vital protegir les seues aigües de la contaminació per a conservar aquest tresor natural que respira al costat de la ciutat de València.",
+        "preguntas": [
+            {
+                "pregunta": "Què és l'Albufera?",
+                "opciones": [
+                    "Una muntanya",
+                    "Un aiguamoll (humedal) i parc natural",
+                    "Una platja de arena blanca",
+                    "Un riu molt llarg"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què separa el llac de la mar?",
+                "opciones": [
+                    "Un mur de pedra",
+                    "La Devesa del Saler (pins i dunes)",
+                    "Una carretera",
+                    "Res, estan junts"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin cultiu és típic de la zona?",
+                "opciones": [
+                    "Blat",
+                    "Arròs",
+                    "Taronges",
+                    "Olives"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin és el principal perill per a l'Albufera?",
+                "opciones": [
+                    "Els turistes",
+                    "La contaminació de les aigües",
+                    "Que no ploga",
+                    "El fred"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "És un lloc important per a les aus?",
+                "opciones": [
+                    "Sí, n'hi ha centenars d'espècies",
+                    "No, no n'hi ha",
+                    "Sols a l'estiu",
+                    "Sols les aus domèstiques"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Pronoms febles: Un repte divertit",
+        "texto": "Els pronoms febles serveixen per a substituir elements de la frase i evitar repeticions. Per exemple: 'Compre el pa' -> 'El compre'. S'anomenen 'febles' perquè no tenen accent propi i han d'anar pegats al verb. Poden anar davant del verb ('Em diuen') o darrere ('Digue'm'). Hi ha moltes formes segons si el verb comença per vocal o consonant. Encara que al principi semblen difícils, una vegada els domines, parlaràs i escriuràs amb una fluïdesa i naturalitat digna d'un expert natiu.",
+        "preguntas": [
+            {
+                "pregunta": "Per a què serveixen els pronoms febles?",
+                "opciones": [
+                    "Per a fer la frase més llarga",
+                    "Per a substituir elements i evitar repeticions",
+                    "Per a marcar el plural",
+                    "Per a posar accents"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per què es diuen 'febles'?",
+                "opciones": [
+                    "Perquè no tenen força",
+                    "Perquè no tenen accent propi i depenen del verb",
+                    "Perquè s'aturen sempre",
+                    "Perquè són pocs"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "On poden anar situats respecte al verb?",
+                "opciones": [
+                    "Sempre davant",
+                    "Sempre darrere",
+                    "Davant o darrere segons el cas",
+                    "En qualsevol lloc de la frase"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Substitueix 'Llig el llibre' usant un pronom feble:",
+                "opciones": [
+                    "El llig",
+                    "Llig-lo",
+                    "Les llig",
+                    "Llig-li"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què millora l'ús correcte d'aquests pronoms?",
+                "opciones": [
+                    "La velocitat de carrera",
+                    "La fluïdesa i naturalitat de la llengua",
+                    "La visió",
+                    "El dibuix"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Les Homònimes: Paraules que s'assemblen",
+        "texto": "En valencià tenim paraules que sonen igual o molt semblant però tenen significats diferents. Per exemple: 'BÉ' (adverbi o possessió) i 'BE' (l'animal que fa beee). O 'SÓN' (del verb ser) i 'SON' (acte de dormir). També és el cas de 'VILA' (població) i 'BILA' (la b de l'alfabet). És molt important fixar-se en el context de la frase per a saber quina paraula triar i com escriure-la correctament, especialment si porten o no l'accent diacrític per a diferenciar-les.",
+        "preguntas": [
+            {
+                "pregunta": "Què són paraules homònimes?",
+                "opciones": [
+                    "Paraules que signifiquen el mateix",
+                    "Paraules que sonen igual o semblant amb significat diferent",
+                    "Paraules molt llargues",
+                    "Paraules que no existeixen"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin és el significat de 'be' sense accent en el text?",
+                "opciones": [
+                    "Una possessió",
+                    "L'animal (ovella)",
+                    "Dormir",
+                    "Ser"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què ens ajuda a saber quina paraula homònima triar?",
+                "opciones": [
+                    "La sort",
+                    "El context de la frase",
+                    "El color del paper",
+                    "El tamany de la lletra"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com diferenciem 'són' (verb) de 'son' (dormir)?",
+                "opciones": [
+                    "No es diferencien",
+                    "Amb l'accent diacrític",
+                    "Pels dibuixos",
+                    "Per la lletra H"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La paraula 'vila' es refereix a...",
+                "opciones": [
+                    "Una lletra",
+                    "Una població o poble",
+                    "Un menjar",
+                    "Un esport"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "El canvi climàtic a la Mediterrània",
+        "texto": "La mar Mediterrània és una de les zones més afectades pel calfament global. L'augment de la temperatura de l'aigua provoca temporals més forts, com les DANA, i la pèrdua de platges per la pujada del nivell del mar. A més, moltes espècies autòctones com la posidònia estan patint, mentre arriben espècies invasores de mars més càlids. Hem de prendre consciència que protegir les nostres costes és un deure urgent per a garantir el futur de la nostra economia i de la nostra natura.",
+        "preguntas": [
+            {
+                "pregunta": "Com afecta el canvi climàtic a la Mediterrània?",
+                "opciones": [
+                    "No afecta",
+                    "Augment de temperatura, temporals forts i pujada del nivell del mar",
+                    "Hi ha més neu",
+                    "L'aigua desapareix"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quina planta marina important s'esmenta?",
+                "opciones": [
+                    "L'arròs",
+                    "La posidònia",
+                    "Alga verda",
+                    "Palmeres"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què són les DANA?",
+                "opciones": [
+                    "Un tipus de peix",
+                    "Temporals de pluja molt forts",
+                    "Unes dunes de arena",
+                    "Barques antigues"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per què és urgent protegir les costes?",
+                "opciones": [
+                    "Perquè sí",
+                    "Per a garantir el futur de l'economia i la natura",
+                    "Per a fer hotels",
+                    "Per a que no vinguen peixos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "De on venen les espècies invasores?",
+                "opciones": [
+                    "De la lluna",
+                    "De mars més càlids",
+                    "Dels rius",
+                    "Del centre de la terra"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Enric Valor i les Rondalles",
+        "texto": "Enric Valor va ser un escriptor fonamental per a la recuperació de la cultura popular valenciana al segle XX. El seu gran treball va ser arreplegar les 'Rondalles', contes populars que passaven de pares a fills per tradició oral. En aquestes històries apareixen gegants, dimonis amigables, joves valents i paratges reals de les nostres muntanyes, com l'Aitana o el Puig Campana. Valor no sols va salvar aquestes històries de l'oblit, sinó que les va escriure amb un llenguatge riquíssim i ple de paraules nostres.",
+        "preguntas": [
+            {
+                "pregunta": "Qui va ser Enric Valor?",
+                "opciones": [
+                    "Un polític",
+                    "Un escriptor que va recuperar la cultura i llengua valenciana",
+                    "Un metge",
+                    "Un pintor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què són les 'Rondalles'?",
+                "opciones": [
+                    "Cançons de bressol",
+                    "Contes populars de tradició oral",
+                    "Poemes d'amor",
+                    "Llibres de receptes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita algun personatge típic d'aquestes històries:",
+                "opciones": [
+                    "Robots",
+                    "Gegants o dimonis amigables",
+                    "Polítics",
+                    "Dinosaures"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quina muntanya real apareix esmentada?",
+                "opciones": [
+                    "Everest",
+                    "Aitana",
+                    "Mont Blanc",
+                    "Teide"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com és el llenguatge que usa Enric Valor?",
+                "opciones": [
+                    "Molt pobre",
+                    "Riquíssim i ple de paraules genuïnes",
+                    "En anglés",
+                    "Molt infantil"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Les sigles i els acrònims",
+        "texto": "En el món modern usem moltes sigles per a anar més ràpid: l'ESO (Educació Secundària Obligatòria), la UNESCO o les TIC (Tecnologies de la Informació i la Comunicació). Les sigles es formen amb les lletres inicials de diverses paraules i normalment s'escriuen en majúscules i sense punts. Un acrònim és una sigla que es pot llegir com una paraula normal, com 'OVNI' o 'pime'. És fonamental conèixer el seu significat per a entendre les notícies, els llibres de text i el món digital on vivim.",
+        "preguntas": [
+            {
+                "pregunta": "Què significa la sigla ESO?",
+                "opciones": [
+                    "Estudi Secundari Organitzat",
+                    "Educació Secundària Obligatòria",
+                    "Escola Superior Online",
+                    "Examen Solament Oral"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com s'escriuen normalment les sigles?",
+                "opciones": [
+                    "En minúscula",
+                    "En majúscules i sense punts",
+                    "Amb guions",
+                    "Sempre amb números"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què és un acrònim segons el text?",
+                "opciones": [
+                    "Una sigla que es llegeix com una paraula (ex: OVNI)",
+                    "Una paraula molt llarga",
+                    "Un error d'escriptura",
+                    "Un sinònim"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Què signifiquen les TIC?",
+                "opciones": [
+                    "Traducció i Cultura",
+                    "Tecnologies de la Informació i la Comunicació",
+                    "Turisme i Cuina",
+                    "Tots i Cada u"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per a què serveix conèixer les sigles?",
+                "opciones": [
+                    "Per a fer exàmens sols",
+                    "Per a entendre millor el món modern i digital",
+                    "Per a res",
+                    "Per a parlar menys"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "L'Emprenedoria Social",
+        "texto": "L'emprenedoria social consisteix a crear projectes o empreses que, a més de ser viables econòmicament, tinguen com a objectiu principal resoldre un problema de la societat o del medi ambient. Per exemple, una empresa que fabrica roba amb materials reciclats o una app que ajuda a trobar aliments a punt de caducar per a no tirar-los. En 3r d'ESO fomentem aquest esperit creatiu i solidari, perquè vosaltres sou la generació que ha de dissenyar un món més just, humà i sostenible.",
+        "preguntas": [
+            {
+                "pregunta": "Quin és l'objectiu principal de l'emprenedoria social?",
+                "opciones": [
+                    "Fer-se ric ràpid",
+                    "Resoldre un problema social o ambiental",
+                    "No treballar",
+                    "Vendre molts cotxes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Posa un exemple d'un projecte social esmentat:",
+                "opciones": [
+                    "Una fàbrica de plàstics",
+                    "Una app per a no malgastar aliments",
+                    "Un banc",
+                    "Un programa de televisió"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "A més de solidaris, aquests projectes han de ser...",
+                "opciones": [
+                    "Grans",
+                    "Viables econòmicament",
+                    "Gratuïts sempre",
+                    "Pocs"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per què es fomenta en 3r d'ESO aquest esperit?",
+                "opciones": [
+                    "Perquè toca",
+                    "Perquè sou la generació que ha de dissenyar un món millor",
+                    "Per a traure millor nota",
+                    "Per a no fer classe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "L'emprenedoria social és sols solidaritat?",
+                "opciones": [
+                    "Sí",
+                    "No, és creativitat i innovació per al bé comú"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

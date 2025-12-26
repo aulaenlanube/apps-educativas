@@ -1,17 +1,122 @@
 {
-  "phrasal_verbs": [
-    "give up", "look for", "carry on", "get along", "turn on", "put off", "break down", "run out", "set up", "find out"
+  "conditionals": [
+    "if I were",
+    "would have",
+    "unless",
+    "provided that",
+    "as long as",
+    "second conditional",
+    "third conditional",
+    "zero conditional",
+    "mixed conditional",
+    "wish"
   ],
-  "work_and_jobs": [
-    "salary", "resume", "interview", "boss", "employee", "full-time", "part-time", "retirement", "unemployment", "skill"
+  "passive_voice": [
+    "is being made",
+    "has been done",
+    "it is said that",
+    "causative have",
+    "agent",
+    "by",
+    "was built",
+    "are allowed",
+    "is thought to",
+    "reported speech"
   ],
-  "global_issues": [
-    "poverty", "hunger", "war", "pollution", "disease", "racism", "equality", "rights", "climate change", "peace"
+  "work_careers": [
+    "application",
+    "salary",
+    "shift",
+    "overtime",
+    "promotion",
+    "redundant",
+    "freelance",
+    "vacancy",
+    "internship",
+    "entrepreneur"
   ],
-  "personality_adjectives": [
-    "ambitious", "stubborn", "reliable", "generous", "selfish", "polite", "brave", "honest", "sensible", "sensitive"
+  "crime_law": [
+    "burglary",
+    "shoplifting",
+    "fraud",
+    "sentence",
+    "clue",
+    "guilty",
+    "verdict",
+    "witness",
+    "misdemeanour",
+    "offence"
   ],
-  "technology_terms": [
-    "browser", "app", "download", "upload", "wifi", "device", "gadget", "software", "hardware", "network"
+  "environment_issues": [
+    "sustainability",
+    "carbon footprint",
+    "deforestation",
+    "renewable",
+    "biodiversity",
+    "conservation",
+    "disposable",
+    "ecosystem",
+    "shortage",
+    "pollution"
+  ],
+  "travel_adventure": [
+    "itinerary",
+    "landscape",
+    "backpacking",
+    "destinations",
+    "remote",
+    "unforgettable",
+    "wanderlust",
+    "visa",
+    "off the beaten track",
+    "low-cost"
+  ],
+  "science_tech_4": [
+    "artificial intelligence",
+    "nanotechnology",
+    "gadget",
+    "breakthrough",
+    "innovative",
+    "robotics",
+    "cybersecurity",
+    "software",
+    "hardware",
+    "biotech"
+  ],
+  "relationships_emotions": [
+    "reliable",
+    "trustworthy",
+    "stubborn",
+    "moody",
+    "outgoing",
+    "affectionate",
+    "annoyed",
+    "overwhelmed",
+    "supportive",
+    "misunderstood"
+  ],
+  "arts_culture": [
+    "masterpiece",
+    "audience",
+    "exhibition",
+    "rehearsal",
+    "contemporary",
+    "sculpture",
+    "classical",
+    "box office",
+    "review",
+    "award"
+  ],
+  "phrasal_verbs_pro": [
+    "look forward to",
+    "put up with",
+    "run out of",
+    "get along with",
+    "bring up",
+    "set up",
+    "take after",
+    "break down",
+    "make up",
+    "go through"
   ]
 }

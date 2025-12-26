@@ -1,320 +1,570 @@
 [
   {
     "id": "1",
-    "titulo": "El cumpleaños de Leo",
-    "texto": "Hoy es un día muy especial porque es el cumpleaños de Leo. Su mamá le ha preparado una tarta de chocolate con seis velas. Leo ha invitado a sus amigos del colegio a jugar al parque por la tarde. Su abuela le ha regalado un balón de fútbol nuevo de color rojo.",
+    "titulo": "El mito de Ícaro y Dédalo",
+    "texto": "Dédalo era un gran inventor que estaba prisionero en la isla de Creta. Para escapar, fabricó unas alas con plumas y cera para él y para su hijo Ícaro. Antes de volar, advirtió a su hijo que no se acercara demasiado al Sol, pues el calor derretiría la cera. Sin embargo, Ícaro, emocionado por la sensación de volar, subió cada vez más alto. El calor del Sol derritió sus alas y el joven cayó al mar. Dédalo, con gran tristeza, continuó su viaje hasta llegar a Sicilia.",
     "preguntas": [
       {
-        "pregunta": "¿De qué sabor es la tarta?",
-        "opciones": ["De fresa", "De chocolate"],
+        "pregunta": "¿Por qué fabricó Dédalo las alas?",
+        "opciones": [
+          "Porque quería ser un pájaro",
+          "Para escapar de la isla de Creta",
+          "Para un concurso de inventos",
+          "Para jugar con su hijo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas velas tiene la tarta?",
-        "opciones": ["Seis velas", "Ocho velas"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Quién le regaló el balón?",
-        "opciones": ["Su papá", "Su tía", "Su abuela", "Su hermano"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿De qué color es el balón?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Dónde van a jugar?",
-        "opciones": ["En el cine", "En el parque", "En la playa", "En la escuela"],
+        "pregunta": "¿Qué advertencia le dio Dédalo a su hijo?",
+        "opciones": [
+          "Que no volara sobre el mar",
+          "Que no se acercara al Sol",
+          "Que volara muy rápido",
+          "Que no tuviera miedo"
+        ],
         "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué materiales usó Dédalo para las alas?",
+        "opciones": [
+          "Madera y hierro",
+          "Plumas y cera",
+          "Tela y pegamento",
+          "Papel y cartón"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurrió finalmente con Ícaro?",
+        "opciones": [
+          "Llegó a Sicilia con su padre",
+          "Se quemó con el Sol",
+          "Cayó al mar al derretirse la cera",
+          "Aprendió a fabricar mejores alas"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Hacia dónde se dirigió Dédalo al final?",
+        "opciones": [
+          "Creta",
+          "Roma",
+          "Sicilia",
+          "Grecia"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "La mariposa Lola",
-    "texto": "Lola es una mariposa de muchos colores que vive en el jardín. Le gusta volar de flor en flor cuando sale el sol. Cuando llueve, Lola se esconde debajo de una hoja grande para no mojarse las alas. Su mejor amiga es una abeja que se llama Pepi.",
+    "titulo": "La importancia de las abejas",
+    "texto": "Las abejas son insectos fundamentales para el equilibrio de la naturaleza. Mientras buscan néctar para fabricar miel, transportan polen de una flor a otra. Este proceso, llamado polinización, permite que las plantas produzcan frutos y semillas. Sin las abejas, muchos de los alimentos que consumimos, como las manzanas o las almendras, podrían desaparecer. Por eso, es vital proteger sus hábitats y evitar el uso de productos químicos que les causen daño.",
     "preguntas": [
       {
-        "pregunta": "¿Cómo se llama la mariposa?",
-        "opciones": ["Lola", "Pepi"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hace cuando llueve?",
-        "opciones": ["Sigue volando", "Se esconde"],
+        "pregunta": "¿Qué proceso realizan las abejas al transportar polen?",
+        "opciones": [
+          "Digestión",
+          "Polinización",
+          "Estructuración",
+          "Invernación"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde vive Lola?",
-        "opciones": ["En una casa", "En el bosque", "En el mar", "En el jardín"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Quién es su mejor amiga?",
-        "opciones": ["Una hormiga", "Una abeja", "Una mariquita", "Un grillo"],
+        "pregunta": "¿Qué buscan las abejas en las flores?",
+        "opciones": [
+          "Agua",
+          "Néctar",
+          "Hojas",
+          "Sombra"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuándo le gusta volar?",
-        "opciones": ["Cuando es de noche", "Cuando nieva", "Cuando sale el sol", "Cuando hay viento"],
-        "correcta": 2
+        "pregunta": "¿Qué consecuencia tendría la desaparición de las abejas?",
+        "opciones": [
+          "Habría más flores",
+          "Muchos alimentos podrían desaparecer",
+          "Haría más calor",
+          "No pasaría nada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué fabrican miel las abejas?",
+        "opciones": [
+          "Para los humanos",
+          "Como alimento para la colmena",
+          "Para decorar las flores",
+          "Para limpiar el aire"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué acciones perjudican a las abejas?",
+        "opciones": [
+          "Plantar flores",
+          "El uso de productos químicos dañinos",
+          "Hacer miel",
+          "La lluvia"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "El perro Toby",
-    "texto": "Toby es un perro blanco con manchas negras. Es muy juguetón y le encanta correr detrás de la pelota en el parque. Su dueño se llama Juan y siempre le lleva agua fresca. Hoy Toby ha encontrado un hueso muy grande debajo de un árbol.",
+    "titulo": "El origen de la escritura",
+    "texto": "La escritura no nació de repente, sino que fue una invención gradual. Los primeros sistemas surgieron en Mesopotamia hace unos 5.000 años. Al principio, se usaban pequeños dibujos llamados pictogramas para representar objetos o animales. Con el tiempo, estos dibujos se simplificaron y se convirtieron en signos que representaban sonidos. Este gran invento marcó el final de la Prehistoria y el comienzo de la Historia, ya que permitió registrar los hechos de forma duradera.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es Toby?",
-        "opciones": ["Marrón", "Blanco con manchas"],
+        "pregunta": "¿Dónde surgió la escritura por primera vez?",
+        "opciones": [
+          "En Egipto",
+          "En Mesopotamia",
+          "En China",
+          "En España"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué encontró Toby?",
-        "opciones": ["Un hueso", "Un juguete"],
-        "correcta": 0
+        "pregunta": "¿Qué eran los pictogramas?",
+        "opciones": [
+          "Letras modernas",
+          "Dibujos que representan objetos",
+          "Tipos de papel",
+          "Piedras grandes"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se llama su dueño?",
-        "opciones": ["Luis", "Pedro", "Juan", "Carlos"],
+        "pregunta": "¿Qué periodo histórico comienza con la invención de la escritura?",
+        "opciones": [
+          "El Neolítico",
+          "La Prehistoria",
+          "La Historia",
+          "La Edad Moderna"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué le gusta perseguir?",
-        "opciones": ["Coches", "Gatos", "Pájaros", "La pelota"],
-        "correcta": 3
+        "pregunta": "¿Hace cuántos años aproximadamente se inventó la escritura?",
+        "opciones": [
+          "1.000 años",
+          "5.000 años",
+          "10.000 años",
+          "500 años"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Dónde encontró el hueso?",
-        "opciones": ["En la casa", "Bajo un árbol", "En la calle", "En la cama"],
+        "pregunta": "¿En qué se convirtieron los pictogramas con el tiempo?",
+        "opciones": [
+          "En fotografías",
+          "En signos que representaban sonidos",
+          "En pinturas de colores",
+          "En herramientas de piedra"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "La excursión al zoo",
-    "texto": "La clase de primero ha ido de excursión al zoológico. Han ido todos juntos en un autobús amarillo. Han visto una jirafa muy alta comiendo hojas de un árbol. También vieron monos saltando y leones durmiendo. A la hora de comer tomaron bocadillos.",
+    "titulo": "La cigarra y la hormiga",
+    "texto": "Durante todo el verano, la hormiga trabajó sin descanso recolectando granos para el invierno. Mientras tanto, la cigarra se dedicaba a cantar y a disfrutar del sol, burlándose de lo mucho que trabajaba su vecina. Cuando llegó el frío y la nieve, la cigarra no tenía nada que comer y fue a pedir ayuda a la hormiga. Esta le respondió: 'Si cantaste en verano, ahora baila en invierno'. La cigarra aprendió que es importante ser previsor y esforzarse.",
     "preguntas": [
       {
-        "pregunta": "¿En qué fueron al zoo?",
-        "opciones": ["En tren", "En autobús"],
+        "pregunta": "¿Qué hacía la hormiga durante el verano?",
+        "opciones": [
+          "Cantar y bailar",
+          "Trabajar recolectando comida",
+          "Dormir la siesta",
+          "Viajar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué comía la jirafa?",
-        "opciones": ["Hojas", "Carne"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿De qué color era el autobús?",
-        "opciones": ["Rojo", "Azul", "Verde", "Amarillo"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué hacían los leones?",
-        "opciones": ["Comer", "Dormir", "Correr", "Rugir"],
+        "pregunta": "¿Qué hacía la cigarra mientras la hormiga trabajaba?",
+        "opciones": [
+          "Ayudarla",
+          "Cantar y burlarse",
+          "Sembrar trigo",
+          "Construir una casa"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué comieron los niños?",
-        "opciones": ["Pizza", "Sopa", "Bocadillos", "Fruta"],
+        "pregunta": "¿Qué ocurrió cuando llegó el invierno?",
+        "opciones": [
+          "La cigarra dio una fiesta",
+          "La cigarra no tenía comida",
+          "La hormiga se fue de vacaciones",
+          "Nevó caramelos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la moraleja de esta fábula?",
+        "opciones": [
+          "Que cantar es malo",
+          "Que hay que ser previsor y esforzarse",
+          "Que el invierno es divertido",
+          "Que las hormigas son antipáticas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A quién pidió ayuda la cigarra?",
+        "opciones": [
+          "A un búho",
+          "Al sol",
+          "A la hormiga",
+          "A un elefante"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "El diente de Ana",
-    "texto": "A Ana se le mueve un diente de leche. Su mamá le ha dicho que cuando se le caiga, vendrá el Ratoncito Pérez. Ana está muy emocionada y se mira al espejo a cada rato. Por la noche, dejará el diente debajo de su almohada para tener una sorpresa.",
+    "titulo": "El lince ibérico",
+    "texto": "El lince ibérico es el felino más amenazado del planeta. Vive exclusivamente en la Península Ibérica, en zonas de bosque mediterráneo. Se distingue por sus orejas acabadas en pinceles negros y sus patillas largas. Su alimento principal es el conejo, por lo que si los conejos desaparecen, el lince también corre peligro. Gracias a los programas de conservación, el número de linces está aumentando poco a poco en los últimos años.",
     "preguntas": [
       {
-        "pregunta": "¿Qué se le mueve a Ana?",
-        "opciones": ["Un diente", "Una uña"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Quién vendrá a visitarla?",
-        "opciones": ["Papá Noel", "El Ratoncito Pérez"],
+        "pregunta": "¿Cuál es el hábitat principal del lince ibérico?",
+        "opciones": [
+          "La selva tropical",
+          "El bosque mediterráneo",
+          "El desierto",
+          "La Antártida"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde dejará el diente?",
-        "opciones": ["En la mesa", "En el suelo", "Bajo la almohada", "En una caja"],
+        "pregunta": "¿Qué rasgo físico es característico del lince?",
+        "opciones": [
+          "Una trompa larga",
+          "Orejas con pinceles negros",
+          "Piel azul",
+          "Alas pequeñas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De qué se alimenta principalmente?",
+        "opciones": [
+          "De plantas",
+          "De peces",
+          "De conejos",
+          "De pájaros"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cómo se siente Ana?",
-        "opciones": ["Triste", "Enfadada", "Asustada", "Emocionada"],
-        "correcta": 3
+        "pregunta": "¿Por qué es famoso el lince ibérico?",
+        "opciones": [
+          "Por ser el más rápido",
+          "Por ser el felino más amenazado",
+          "Por vivir en los árboles",
+          "Por hablar"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Dónde se mira Ana?",
-        "opciones": ["En el espejo", "En la ventana", "En el agua", "En el móvil"],
-        "correcta": 0
+        "pregunta": "¿Qué está ayudando a que aumente la población de linces?",
+        "opciones": [
+          "La caza",
+          "El frío",
+          "Los programas de conservación",
+          "Que no comen nada"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "La bicicleta nueva",
-    "texto": "Pedro tiene una bicicleta nueva de color azul. Tiene un timbre que suena muy fuerte. Pedro va a la plaza con su papá para aprender a montar sin ruedines. Siempre se pone el casco para estar seguro y no hacerse daño si se cae.",
+    "titulo": "Miguel de Cervantes",
+    "texto": "Miguel de Cervantes fue un famoso escritor español que vivió hace unos 400 años. Su obra más conocida es 'Don Quijote de la Mancha', considerada una de las mejores novelas de la literatura universal. Cervantes nació en Alcalá de Henares y tuvo una vida llena de aventuras; incluso participó en una batalla naval llamada Lepanto, donde hirieron su brazo izquierdo. Por ello, se le conoce como el 'Manco de Lepanto'.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es la bici?",
-        "opciones": ["Roja", "Azul"],
+        "pregunta": "¿Cuál es la obra más famosa de Cervantes?",
+        "opciones": [
+          "El Cid",
+          "Don Quijote de la Mancha",
+          "Harry Potter",
+          "La Celestina"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Con quién va a la plaza?",
-        "opciones": ["Con su papá", "Con su abuelo"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué usa para protegerse?",
-        "opciones": ["Gorra", "Bufanda", "Casco", "Guantes"],
+        "pregunta": "¿Dónde nació Miguel de Cervantes?",
+        "opciones": [
+          "Madrid",
+          "Barcelona",
+          "Alcalá de Henares",
+          "Sevilla"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cómo suena el timbre?",
-        "opciones": ["Flojo", "Mal", "Raro", "Fuerte"],
-        "correcta": 3
+        "pregunta": "¿Qué apodo recibió tras la batalla de Lepanto?",
+        "opciones": [
+          "El Caballero de la Mancha",
+          "El Manco de Lepanto",
+          "El Gran Escritor",
+          "Dulcinea"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Dónde aprende a montar?",
-        "opciones": ["En el colegio", "En la plaza", "En el bosque", "En casa"],
+        "pregunta": "¿Hace cuántos años vivió aproximadamente?",
+        "opciones": [
+          "100 años",
+          "400 años",
+          "1.000 años",
+          "20 años"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo era la vida de Cervantes según el texto?",
+        "opciones": [
+          "Aburrida",
+          "Llena de aventuras",
+          "Siempre en calma",
+          "Muy corta"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Un día en la playa",
-    "texto": "Sara ha ido a la playa porque es verano. Ha hecho un castillo de arena muy grande con su cubo y su pala. El agua del mar está un poco fría, pero le gusta saltar las olas. Ha visto un pececito pequeño nadando cerca de sus pies.",
+    "titulo": "El viaje de Colón",
+    "texto": "En 1492, Cristóbal Colón partió del puerto de Palos con tres carabelas: la Pinta, la Niña y la Santa María. Su intención era llegar a la India navegando hacia el oeste, cruzando el océano Atlántico. Tras varias semanas de navegación, el 12 de octubre, llegaron a una isla que hoy pertenece al continente americano. Aunque Colón pensaba que había llegado a Asia, en realidad había descubierto un nuevo continente para los europeos.",
     "preguntas": [
       {
-        "pregunta": "¿En qué estación es?",
-        "opciones": ["Verano", "Invierno"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo está el agua?",
-        "opciones": ["Caliente", "Fría"],
+        "pregunta": "¿Cuántos barcos llevaba Colón en su primer viaje?",
+        "opciones": [
+          "Uno",
+          "Tres",
+          "Cinco",
+          "Diez"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué ha construido Sara?",
-        "opciones": ["Una casa", "Un puente", "Un coche", "Un castillo"],
-        "correcta": 3
+        "pregunta": "¿Qué océano cruzaron para llegar a América?",
+        "opciones": [
+          "Pacífico",
+          "Índico",
+          "Atlántico",
+          "Ártico"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Qué animal ha visto?",
-        "opciones": ["Un cangrejo", "Un pez", "Una medusa", "Una gaviota"],
+        "pregunta": "¿En qué año se produjo el descubrimiento?",
+        "opciones": [
+          "1200",
+          "1492",
+          "1900",
+          "1550"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué usó para el castillo?",
-        "opciones": ["Cubo y pala", "Tenedor", "Solo las manos", "Una red"],
-        "correcta": 0
+        "pregunta": "¿A dónde creía Colón que había llegado?",
+        "opciones": [
+          "A la Luna",
+          "A Asia (las Indias)",
+          "A África",
+          "A Australia"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llamaba la nave capitana?",
+        "opciones": [
+          "La Pinta",
+          "La Niña",
+          "La Santa María",
+          "El Galeón"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El gatito Misu",
-    "texto": "Misu es un gatito gris muy curioso. Un día salió al jardín y se subió a un árbol muy alto persiguiendo a un pájaro. Luego le daba miedo bajar. Un bombero tuvo que venir con una escalera larga para ayudarle a bajar al suelo.",
+    "titulo": "La hidrosfera y el agua",
+    "texto": "El agua es el elemento más abundante de la superficie terrestre. La hidrosfera incluye toda el agua del planeta: los océanos, los ríos, los lagos, el hielo de los glaciares y el agua subterránea. El agua dulce es esencial para nuestra supervivencia, pero solo representa una mínima parte del total. Por eso, es fundamental no malgastarla, cerrar los grifos cuando no los usemos y no contaminar los ríos con basura o vertidos químicos.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es Misu?",
-        "opciones": ["Negro", "Gris"],
+        "pregunta": "¿A qué llamamos hidrosfera?",
+        "opciones": [
+          "A las nubes",
+          "A toda el agua de la Tierra",
+          "A las rocas",
+          "A los árboles"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿A quién perseguía?",
-        "opciones": ["A un ratón", "A un pájaro"],
+        "pregunta": "¿Qué tipo de agua es esencial para los seres humanos?",
+        "opciones": [
+          "Agua salada",
+          "Agua dulce",
+          "Agua destilada",
+          "Agua de color"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde se subió?",
-        "opciones": ["Al tejado", "A una silla", "A un árbol", "A un coche"],
-        "correcta": 2
+        "pregunta": "¿Qué porcentaje representa el agua dulce respecto al total?",
+        "opciones": [
+          "Casi toda",
+          "Una mínima parte",
+          "Exactamente la mitad",
+          "No existe agua dulce"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Quién le ayudó?",
-        "opciones": ["Un policía", "Un médico", "Un bombero", "Su dueño"],
-        "correcta": 2
+        "pregunta": "¿Qué consejo nos da el texto para cuidar el agua?",
+        "opciones": [
+          "Beber mucha",
+          "Cerrar los grifos y no contaminar",
+          "Lavar el coche cada día",
+          "Usar más plástico"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué usó el bombero?",
-        "opciones": ["Una cuerda", "Una red", "Una cama", "Una escalera"],
-        "correcta": 3
+        "pregunta": "¿Dónde se encuentra el agua en la hidrosfera?",
+        "opciones": [
+          "Solo en el mar",
+          "En ríos, lagos, hielos y océanos",
+          "Solo en el aire",
+          "Solo bajo tierra"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Haciendo galletas",
-    "texto": "Hugo y su hermana están cocinando galletas. Mezclan harina, azúcar y leche en un bol grande. Utilizan moldes con forma de estrella y de corazón. Cuando las meten en el horno, toda la cocina huele muy bien.",
+    "titulo": "Las reglas de acentuación",
+    "texto": "Para poner las tildes correctamente, debemos saber dónde está la sílaba tònica. Las palabras agudas llevan tilde si terminan en vocal, n o s (ej: camión). Las palabras llanas llevan tilde si no terminan en vocal, n ni s (ej: lápiz). Por último, las palabras esdrújulas siempre llevan tilde (ej: pájaro). Conocer estas reglas nos ayuda a escribir sin faltas de ortografía y a que los demás nos entiendan mejor.",
     "preguntas": [
       {
-        "pregunta": "¿Qué están cocinando?",
-        "opciones": ["Un pastel", "Galletas"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Con qué forma las hacen?",
-        "opciones": ["Estrellas", "Coches"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué ingrediente usan?",
-        "opciones": ["Sal", "Pimienta", "Azúcar", "Queso"],
+        "pregunta": "¿Cuándo llevan tilde las palabras agudas?",
+        "opciones": [
+          "Siempre",
+          "Nunca",
+          "Si terminan en vocal, n o s",
+          "Si terminan en z"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Dónde las meten?",
-        "opciones": ["En la nevera", "En el horno", "En el cajón", "En la mesa"],
+        "pregunta": "¿Qué regla tienen las palabras esdrújulas?",
+        "opciones": [
+          "Nunca llevan tilde",
+          "Solo si terminan en n",
+          "Siempre llevan tilde",
+          "Solo si son largas"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué 'lápiz' lleva tilde?",
+        "opciones": [
+          "Porque es aguda",
+          "Porque es llana y no termina en vocal, n ni s",
+          "Porque es esdrújula",
+          "Porque suena fuerte"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo huele la cocina?",
-        "opciones": ["Mal", "A quemado", "Bien", "A nada"],
+        "pregunta": "¿Qué es la sílaba tónica?",
+        "opciones": [
+          "La primera sílaba",
+          "La que se pronuncia más fuerte",
+          "La sílaba que tiene una 'o'",
+          "La última sílaba"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿'Música' es una palabra...?",
+        "opciones": [
+          "Aguda",
+          "Llana",
+          "Esdrújula",
+          "Sobresdrújula"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El muñeco de nieve",
-    "texto": "Ha estado nevando toda la noche. Eva ha salido al patio muy abrigada. Ha hecho un muñeco de nieve con tres bolas grandes. Le ha puesto una zanahoria como nariz y una bufanda roja vieja para que no tenga frío.",
+    "titulo": "El medio ambiente y el reciclaje",
+    "texto": "Cuidar el medio ambiente es responsabilidad de todos. Una forma sencilla de ayudar es siguiendo la regla de las tres erres: Reducir (usar menos cosas), Reutilizar (dar un nuevo uso) y Reciclar (separar la basura). Debemos tirar el plástico al contenedor amarillo, el papel al azul y el vidrio al verde. Si reciclamos, ahorramos recursos naturales y evitamos que nuestro planeta se llene de residuos que tardan cientos de años en desaparecer.",
     "preguntas": [
       {
-        "pregunta": "¿Qué ha hecho Eva?",
-        "opciones": ["Un iglú", "Un muñeco de nieve"],
+        "pregunta": "¿En qué consiste la regla de las tres erres?",
+        "opciones": [
+          "Reír, Recorrer, Releer",
+          "Reducir, Reutilizar, Reciclar",
+          "Rojo, Rosa, Rápido",
+          "Romper, Robar, Rugir"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué usó de nariz?",
-        "opciones": ["Una patata", "Una zanahoria"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De qué color es la bufanda?",
-        "opciones": ["Azul", "Verde", "Roja", "Negra"],
+        "pregunta": "¿A qué contenedor debemos tirar el papel?",
+        "opciones": [
+          "Amarillo",
+          "Verde",
+          "Azul",
+          "Marrón"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Dónde hizo el muñeco?",
-        "opciones": ["En el parque", "En el patio", "En la calle", "En el colegio"],
+        "pregunta": "¿Qué tiramos al contenedor amarillo?",
+        "opciones": [
+          "Vidrio",
+          "Comida",
+          "Plásticos y latas",
+          "Papel"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Para qué sirve reciclar?",
+        "opciones": [
+          "Para gastar más dinero",
+          "Para ahorrar recursos y evitar residuos",
+          "Para que el camión no pase",
+          "Para jugar con la basura"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuándo nevó?",
-        "opciones": ["Por la mañana", "Por la tarde", "Toda la noche", "A mediodía"],
+        "pregunta": "¿Qué significa 'Reutilizar'?",
+        "opciones": [
+          "Comprar algo nuevo",
+          "Tirar algo a la calle",
+          "Dar un nuevo uso a un objeto",
+          "Quemar la basura"
+        ],
         "correcta": 2
       }
     ]

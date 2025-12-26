@@ -1,5 +1,148 @@
 [
-  "A", "B", "C", "D", "E", "F", "G", "H",
-  "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
-  "S", "T", "U", "V", "W", "X", "Y", "Z"
+  {
+    "categoria": "Numbers 1-5 (Visual)",
+    "correctos": [
+      "1️⃣",
+      "2️⃣",
+      "3️⃣",
+      "4️⃣",
+      "5️⃣"
+    ],
+    "intrusos": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ]
+  },
+  {
+    "categoria": "Primary Colors (Visual)",
+    "correctos": [
+      "🔴 (Red)",
+      "🔵 (Blue)",
+      "🟡 (Yellow)",
+      "🟢 (Green)"
+    ],
+    "intrusos": [
+      "🐶",
+      "🍎",
+      "🚗",
+      "🏠"
+    ]
+  },
+  {
+    "categoria": "Pets: Animals at Home (Visual)",
+    "correctos": [
+      "🐶",
+      "🐱",
+      "🐰",
+      "🐹",
+      "🦜",
+      "🐢"
+    ],
+    "intrusos": [
+      "🦁",
+      "🐘",
+      "🐯",
+      "🦒",
+      "🦓"
+    ]
+  },
+  {
+    "categoria": "Fruit: Healthy Food (Visual)",
+    "correctos": [
+      "🍎",
+      "🍌",
+      "🍇",
+      "🍊",
+      "🍓",
+      "🍐"
+    ],
+    "intrusos": [
+      "🍦",
+      "🍩",
+      "🍕",
+      "🍔",
+      "🍟"
+    ]
+  },
+  {
+    "categoria": "Numbers (Words)",
+    "correctos": [
+      "One",
+      "Two",
+      "Three",
+      "Four",
+      "Five",
+      "Six",
+      "Seven",
+      "Eight",
+      "Nine",
+      "Ten"
+    ],
+    "intrusos": [
+      "Red",
+      "Blue",
+      "Green",
+      "Dog",
+      "Cat",
+      "Apple"
+    ]
+  },
+  {
+    "categoria": "Basic Colors (Words)",
+    "correctos": [
+      "Red",
+      "Blue",
+      "Yellow",
+      "Green",
+      "Pink",
+      "White",
+      "Black"
+    ],
+    "intrusos": [
+      "One",
+      "Two",
+      "Three",
+      "Mom",
+      "Dad",
+      "Home"
+    ]
+  },
+  {
+    "categoria": "Family Members",
+    "correctos": [
+      "Mom / Mother",
+      "Dad / Father",
+      "Brother",
+      "Sister",
+      "Baby"
+    ],
+    "intrusos": [
+      "Pen",
+      "Pencil",
+      "Book",
+      "Chair",
+      "Table"
+    ]
+  },
+  {
+    "categoria": "School Objects",
+    "correctos": [
+      "Pencil",
+      "Pen",
+      "Book",
+      "Bag",
+      "Eraser",
+      "Ruler"
+    ],
+    "intrusos": [
+      "Apple",
+      "Banana",
+      "Pizza",
+      "Milk",
+      "Water"
+    ]
+  }
 ]

@@ -1,321 +1,569 @@
 [
   {
     "id": "1",
-    "titulo": "Las manzanas de Ana",
-    "texto": "Ana ha ido al mercado con su cesta. Ha comprado tres manzanas rojas y dos manzanas verdes. Cuando iba camino a casa, le ha entrado hambre y se ha comido una manzana roja. Ahora su cesta pesa un poco menos.",
+    "titulo": "La biblioteca municipal",
+    "texto": "La biblioteca de mi barrio ha recibido una gran donación de libros. El lunes llegaron 456 libros de aventuras y el martes 328 libros de poesía. El bibliotecario quiere colocarlos todos en estanterías nuevas donde caben exactamente 100 libros en cada una.",
     "preguntas": [
       {
-        "pregunta": "¿Ana ha comprado peras?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántos libros de aventuras llegaron?",
+        "opciones": [
+          "328",
+          "456",
+          "784",
+          "100"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Ha comprado más manzanas rojas que verdes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Cuántos libros llegaron en total entre los dos días?",
+        "opciones": [
+          "774",
+          "784",
+          "884",
+          "684"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas manzanas rojas compró al principio?",
-        "opciones": ["Una", "Dos", "Tres", "Cuatro"],
+        "pregunta": "¿Cuántas estanterías de 100 libros llenará completamente?",
+        "opciones": [
+          "4",
+          "3",
+          "7",
+          "8"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuántas manzanas verdes compró?",
-        "opciones": ["Una", "Dos", "Tres", "Cinco"],
-        "correcta": 1
+        "pregunta": "¿Cuántos libros faltan para llenar la octava estantería?",
+        "opciones": [
+          "16",
+          "26",
+          "84",
+          "50"
+        ],
+        "correcta": 0
       },
       {
-        "pregunta": "¿Cuántas manzanas le quedan en total al final?",
-        "opciones": ["Tres", "Cuatro", "Cinco", "Seis"],
+        "pregunta": "¿Qué día llegaron menos libros?",
+        "opciones": [
+          "Lunes",
+          "Martes",
+          "Llegaron los mismos",
+          "No se sabe"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "El autobús escolar",
-    "texto": "El autobús del colegio lleva a diez niños sentados. En la primera parada se bajan tres niños que ya han llegado a su casa. El conductor cierra la puerta y sigue conduciendo hasta la siguiente parada.",
+    "titulo": "El viaje por carretera",
+    "texto": "La familia de Carlos va a viajar de Madrid a Valencia, que está a una distancia de 350 kilómetros. Después de conducir durante dos horas, han parado a descansar en un área de servicio que está exactamente en el kilómetro 165.",
     "preguntas": [
       {
-        "pregunta": "¿El autobús va lleno de abuelos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es la distancia total del viaje?",
+        "opciones": [
+          "165 km",
+          "350 km",
+          "515 km",
+          "200 km"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Se bajan niños en la primera parada?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿En qué kilómetro han parado a descansar?",
+        "opciones": [
+          "150",
+          "165",
+          "200",
+          "350"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos niños había al principio?",
-        "opciones": ["Ocho", "Nueve", "Diez", "Once"],
-        "correcta": 2
+        "pregunta": "¿Cuántos kilómetros les faltan para llegar a Valencia?",
+        "opciones": [
+          "165 km",
+          "185 km",
+          "200 km",
+          "285 km"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos niños se bajan?",
-        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
-        "correcta": 2
+        "pregunta": "¿Han recorrido ya más de la mitad del camino?",
+        "opciones": [
+          "Sí",
+          "No, les falta poco para la mitad"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos niños quedan en el autobús?",
-        "opciones": ["Cinco", "Seis", "Siete", "Ocho"],
-        "correcta": 2
+        "pregunta": "¿Cuál es la mitad de 350?",
+        "opciones": [
+          "150",
+          "175",
+          "185",
+          "200"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Figuras en el parque",
-    "texto": "En el parque hay muchas formas diferentes. Las ruedas de las bicicletas son círculos redondos. El banco para sentarse es un rectángulo largo de madera. La señal de tráfico tiene forma de triángulo con el borde rojo.",
+    "titulo": "La merienda escolar",
+    "texto": "En el comedor del colegio hay 8 mesas largas. En cada mesa se sientan 9 alumnos para merendar. Hoy han repartido 2 galletas a cada alumno. La jefa de cocina necesita saber cuántas galletas se han consumido en total.",
     "preguntas": [
       {
-        "pregunta": "¿Las ruedas son cuadradas?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿La señal es un triángulo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántas mesas hay en el comedor?",
+        "opciones": [
+          "8",
+          "9",
+          "17",
+          "72"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué forma tienen las ruedas?",
-        "opciones": ["Cuadrado", "Círculo", "Triángulo", "Rombo"],
+        "pregunta": "¿Cuántos alumnos hay sentados en total?",
+        "opciones": [
+          "17",
+          "64",
+          "72",
+          "81"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántas galletas come cada alumno?",
+        "opciones": [
+          "1",
+          "2",
+          "8",
+          "9"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué es un rectángulo?",
-        "opciones": ["La señal", "La rueda", "El banco", "El árbol"],
-        "correcta": 2
+        "pregunta": "¿Cuántas galletas se han repartido en total?",
+        "opciones": [
+          "72",
+          "144",
+          "100",
+          "16"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿De qué color es el borde de la señal?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
-        "correcta": 2
+        "pregunta": "Si en una mesa faltan 2 alumnos, ¿cuántos hay en esa mesa?",
+        "opciones": [
+          "7",
+          "6",
+          "9",
+          "11"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "La hucha de Pablo",
-    "texto": "Pablo está ahorrando dinero en su hucha de cerdito. Tiene una moneda de dos euros y dos monedas de un euro. Quiere comprarse un coche de juguete que cuesta cinco euros. Tendrá que ahorrar un poco más.",
+    "titulo": "Repartiendo canicas",
+    "texto": "Andrés tiene una bolsa con 48 canicas y quiere repartirlas a partes iguales entre sus 4 mejores amigos. Quiere que todos tengan el mismo número de canicas para que no haya peleas durante el juego en el recreo.",
     "preguntas": [
       {
-        "pregunta": "¿La hucha tiene forma de perro?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Pablo quiere comprar chuches?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuántas monedas de un euro tiene?",
-        "opciones": ["Una", "Dos", "Tres", "Ninguna"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuánto dinero tiene en total?",
-        "opciones": ["Dos euros", "Tres euros", "Cuatro euros", "Cinco euros"],
+        "pregunta": "¿Cuántas canicas tiene Andrés?",
+        "opciones": [
+          "4",
+          "44",
+          "48",
+          "52"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuánto cuesta el coche?",
-        "opciones": ["Tres euros", "Cuatro euros", "Cinco euros", "Seis euros"],
+        "pregunta": "¿Entre cuántos amigos reparte las canicas?",
+        "opciones": [
+          "2",
+          "4",
+          "6",
+          "8"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántas canicas recibirá cada amigo?",
+        "opciones": [
+          "10",
+          "11",
+          "12",
+          "14"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Sobra alguna canica?",
+        "opciones": [
+          "Sí, sobra una",
+          "No, el reparto es exacto",
+          "Sobran dos",
+          "Falta una"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué operación matemática se ha utilizado?",
+        "opciones": [
+          "Suma",
+          "Resta",
+          "Multiplicación",
+          "División"
+        ],
+        "correcta": 3
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "La torre de bloques",
-    "texto": "Sara está construyendo una torre muy alta. Ha puesto cuatro bloques azules en la base. Encima ha puesto tres bloques rojos. Y arriba del todo ha puesto un bloque amarillo. La torre no se cae.",
+    "titulo": "La pastelería de dulces",
+    "texto": "Un pastelero ha usado 1 kilo y 500 gramos de harina para hacer bizcochos. También ha usado 750 gramos de azúcar y 250 gramos de chocolate. Necesita saber el peso total de estos tres ingredientes para preparar el envase.",
     "preguntas": [
       {
-        "pregunta": "¿La torre se ha caído?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Hay bloques verdes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De qué color son los bloques de abajo?",
-        "opciones": ["Rojos", "Amarillos", "Azules", "Naranjas"],
+        "pregunta": "¿Cuántos gramos son 1 kilo?",
+        "opciones": [
+          "100",
+          "500",
+          "1000",
+          "10"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuántos bloques rojos hay?",
-        "opciones": ["Dos", "Tres", "Cuatro", "Cinco"],
+        "pregunta": "¿Cuánta harina usó en gramos?",
+        "opciones": [
+          "500 g",
+          "1000 g",
+          "1500 g",
+          "2000 g"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuánto pesan juntos el azúcar y el chocolate?",
+        "opciones": [
+          "500 g",
+          "1000 g (1 kg)",
+          "1250 g",
+          "750 g"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos bloques hay en total?",
-        "opciones": ["Siete", "Ocho", "Nueve", "Diez"],
+        "pregunta": "¿Cuál es el peso total de los tres ingredientes?",
+        "opciones": [
+          "2000 g",
+          "2500 g",
+          "3000 g",
+          "1500 g"
+        ],
         "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ingrediente pesa más?",
+        "opciones": [
+          "Azúcar",
+          "Chocolate",
+          "Harina",
+          "Pesan igual"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "El reloj de pared",
-    "texto": "En la clase hay un reloj redondo en la pared. La aguja pequeña marca las horas y la aguja grande marca los minutos. Ahora la aguja pequeña señala el nueve y la grande el doce. ¡Es la hora de entrar a clase!",
+    "titulo": "El estanque de los patos",
+    "texto": "Un estanque tiene capacidad para 850 litros de agua. El lunes estaba lleno, pero por el calor se han evaporado 125 litros. El jardinero ha decidido añadir 200 litros más con una manguera para que los patos estén cómodos.",
     "preguntas": [
       {
-        "pregunta": "¿El reloj es cuadrado?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿La aguja pequeña marca los minutos?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué número señala la aguja pequeña?",
-        "opciones": ["El seis", "El doce", "El tres", "El nueve"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué hora es?",
-        "opciones": ["Las ocho", "Las nueve", "Las diez", "Las once"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué toca hacer ahora?",
-        "opciones": ["Irse a casa", "Comer", "Entrar a clase", "Dormir"],
+        "pregunta": "¿Cuál es la capacidad máxima del estanque?",
+        "opciones": [
+          "125 l",
+          "200 l",
+          "850 l",
+          "1000 l"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuánta agua se perdió por el calor?",
+        "opciones": [
+          "125 l",
+          "200 l",
+          "850 l",
+          "50 l"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuánta agua quedó antes de que el jardinero añadiera más?",
+        "opciones": [
+          "725 l",
+          "975 l",
+          "850 l",
+          "625 l"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuánta agua hay al final en el estanque?",
+        "opciones": [
+          "850 l",
+          "925 l",
+          "1050 l",
+          "725 l"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Está el estanque por encima de su capacidad máxima al final?",
+        "opciones": [
+          "Sí, se desborda",
+          "No, aún cabe un poco más",
+          "Está exactamente lleno",
+          "Está vacío"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Izquierda y derecha",
-    "texto": "Luis está aprendiendo los lados. En su mano derecha lleva una pulsera de colores. Con su mano izquierda sujeta un balón. Su perro Toby está sentado a su derecha, moviendo la cola.",
+    "titulo": "El tiempo en la estación",
+    "texto": "El tren de cercanías sale a las 10:15 de la mañana. El viaje dura 45 minutos. Laura ha llegado a la estación 10 minutos antes de que el tren se fuera para comprar el billete.",
     "preguntas": [
       {
-        "pregunta": "¿Toby es un gato?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿A qué hora sale el tren?",
+        "opciones": [
+          "A las 10:00",
+          "A las 10:15",
+          "A las 10:30",
+          "A las 11:00"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Luis lleva una pulsera?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿En qué mano lleva la pulsera?",
-        "opciones": ["Izquierda", "Derecha", "En las dos", "En ninguna"],
+        "pregunta": "¿A qué hora llegó Laura a la estación?",
+        "opciones": [
+          "A las 10:00",
+          "A las 10:05",
+          "A las 10:15",
+          "A las 10:25"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué tiene en la mano izquierda?",
-        "opciones": ["Un lápiz", "Una manzana", "Un balón", "Un libro"],
+        "pregunta": "¿A qué hora llegará el tren a su destino?",
+        "opciones": [
+          "A las 10:45",
+          "A las 11:00",
+          "A las 11:15",
+          "A las 11:30"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántos minutos tiene una hora?",
+        "opciones": [
+          "30",
+          "45",
+          "60",
+          "100"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Dónde está el perro?",
-        "opciones": ["A la izquierda", "A la derecha", "Delante", "Detrás"],
+        "pregunta": "¿Cuánto tiempo estuvo Laura en el tren?",
+        "opciones": [
+          "10 minutos",
+          "45 minutos",
+          "1 hora",
+          "30 minutos"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "La carrera de caracoles",
-    "texto": "Tres caracoles hacen una carrera. El caracol Rayo ha llegado el primero a la meta. El caracol Lento ha llegado el último. El caracol Fiti ha llegado entre los dos, en segunda posición.",
+    "titulo": "La compra en el supermercado",
+    "texto": "El padre de Marina ha comprado un paquete de leche por 1 euro y 20 céntimos, un kilo de arroz por 90 céntimos y una caja de galletas por 2 euros y 10 céntimos. Ha pagado con un billete de 5 euros.",
     "preguntas": [
       {
-        "pregunta": "¿Son caracoles rápidos?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Han hecho una carrera?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Quién ha ganado (primero)?",
-        "opciones": ["Lento", "Fiti", "Rayo", "Turbo"],
+        "pregunta": "¿Cuál es el producto más caro?",
+        "opciones": [
+          "Leche",
+          "Arroz",
+          "Galletas",
+          "Valen igual"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿En qué puesto quedó Fiti?",
-        "opciones": ["Primero", "Segundo", "Tercero", "Cuarto"],
+        "pregunta": "¿Cuánto dinero cuestan la leche y el arroz juntos?",
+        "opciones": [
+          "2 euros",
+          "2 euros y 10 céntimos",
+          "1 euro y 10 céntimos",
+          "3 euros"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Quién llegó el último?",
-        "opciones": ["Rayo", "Fiti", "Lento", "Bob"],
+        "pregunta": "¿Cuál es el precio total de la compra?",
+        "opciones": [
+          "3 euros y 20 céntimos",
+          "4 euros y 20 céntimos",
+          "5 euros",
+          "4 euros"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántos céntimos le devuelven de cambio?",
+        "opciones": [
+          "20 céntimos",
+          "80 céntimos",
+          "50 céntimos",
+          "No le devuelven nada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántos céntimos hay en un euro?",
+        "opciones": [
+          "10",
+          "50",
+          "100",
+          "1000"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Repartiendo caramelos",
-    "texto": "Tengo seis caramelos de fresa y quiero repartirlos con mi amigo. Le doy tres caramelos a él y yo me quedo con los otros tres. Ahora los dos tenemos la misma cantidad. ¡Qué ricos están!",
+    "titulo": "Geometría en la ciudad",
+    "texto": "Un arquitecto está diseñando una plaza. Ha dibujado un parterre con forma de pentágono (5 lados), una fuente circular y un quiosco con forma de hexágono (6 lados). Quiere colocar una valla alrededor del pentágono.",
     "preguntas": [
       {
-        "pregunta": "¿Los caramelos son de limón?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Tenemos la misma cantidad?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cuántos caramelos tenía al principio?",
-        "opciones": ["Cuatro", "Cinco", "Seis", "Ocho"],
+        "pregunta": "¿Cuántos lados tiene el parterre?",
+        "opciones": [
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuántos le doy a mi amigo?",
-        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
-        "correcta": 2
+        "pregunta": "¿Cómo se llama la figura de 6 lados?",
+        "opciones": [
+          "Pentágono",
+          "Hexágono",
+          "Cuadrilátero",
+          "Círculo"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿De qué sabor son?",
-        "opciones": ["Menta", "Fresa", "Naranja", "Cola"],
+        "pregunta": "¿Qué figura es la fuente?",
+        "opciones": [
+          "Cuadrado",
+          "Círculo",
+          "Triángulo",
+          "Rectángulo"
+        ],
         "correcta": 1
+      },
+      {
+        "pregunta": "Si cada lado del pentágono mide 4 metros, ¿cuántos metros de valla necesita?",
+        "opciones": [
+          "15 m",
+          "20 m",
+          "25 m",
+          "10 m"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántos ángulos tiene un hexágono?",
+        "opciones": [
+          "4",
+          "5",
+          "6",
+          "8"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El calendario",
-    "texto": "El mes de enero tiene treinta y un días. Es el primer mes del año y hace frío. En el calendario he marcado en rojo el día de mi cumpleaños, que es el día quince. ¡Haré una fiesta!",
+    "titulo": "Los prismas y las pirámides",
+    "texto": "En clase de matemáticas estamos viendo cuerpos geométricos. Hemos aprendido que un cubo tiene 6 caras cuadradas iguales. También vimos que una pirámide tiene una base y varias caras triangulares que se juntan en un punto llamado vértice superior.",
     "preguntas": [
       {
-        "pregunta": "¿Enero es el último mes?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántas caras tiene un cubo?",
+        "opciones": [
+          "4",
+          "6",
+          "8",
+          "12"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Hace calor en enero?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿De qué forma son las caras de un cubo?",
+        "opciones": [
+          "Triángulos",
+          "Círculos",
+          "Cuadrados",
+          "Rectángulos"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo son las caras laterales de una pirámide?",
+        "opciones": [
+          "Cuadradas",
+          "Triangulares",
+          "Redondas",
+          "Planos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos días tiene enero?",
-        "opciones": ["Veinte", "Treinta", "Treinta y uno", "Veintiocho"],
+        "pregunta": "¿Cómo se llama el punto donde se juntan las caras de la pirámide?",
+        "opciones": [
+          "Arista",
+          "Base",
+          "Vértice",
+          "Lado"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué día es el cumpleaños?",
-        "opciones": ["El uno", "El diez", "El quince", "El veinte"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿De qué color marcó el día?",
-        "opciones": ["Azul", "Verde", "Rojo", "Negro"],
-        "correcta": 2
+        "pregunta": "¿Cuántas bases tiene una pirámide?",
+        "opciones": [
+          "Una",
+          "Dos",
+          "Cuatro",
+          "Seis"
+        ],
+        "correcta": 0
       }
     ]
   }

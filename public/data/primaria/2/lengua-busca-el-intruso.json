@@ -7,14 +7,25 @@
       "🐔",
       "🐑",
       "🐴",
-      "🐥"
+      "🐥",
+      "🐄",
+      "🐐",
+      "🐇",
+      "🦆",
+      "🦃",
+      "🐎"
     ],
     "intrusos": [
       "🦁",
       "🐯",
       "🐘",
       "🦈",
-      "🦕"
+      "🦕",
+      "🦒",
+      "🦓",
+      "🐊",
+      "🦍",
+      "🐳"
     ]
   },
   {
@@ -25,14 +36,25 @@
       "🍊",
       "🍌",
       "🍇",
-      "🍓"
+      "🍓",
+      "🍍",
+      "🥭",
+      "🍋",
+      "🍒",
+      "🍑",
+      "🥝"
     ],
     "intrusos": [
       "🥦",
       "🥕",
       "🌽",
       "🍗",
-      "🧀"
+      "🧀",
+      "🍕",
+      "🍟",
+      "🍔",
+      "🥚",
+      "🥓"
     ]
   },
   {
@@ -43,14 +65,25 @@
       "👗",
       "🧥",
       "👟",
-      "🧢"
+      "🧢",
+      "👚",
+      "🧤",
+      "🧣",
+      "🧦",
+      "👔",
+      "👢"
     ],
     "intrusos": [
       "🚗",
       "🏠",
       "🐶",
       "✏️",
-      "⌚"
+      "⌚",
+      "💻",
+      "🧸",
+      "🚲",
+      "🎸",
+      "🥣"
     ]
   },
   {
@@ -61,14 +94,25 @@
       "🚑",
       "🚒",
       "🚕",
-      "🚜"
+      "🚜",
+      "🚲",
+      "🛵",
+      "🚄",
+      "✈️",
+      "🚢",
+      "🚁"
     ],
     "intrusos": [
       "🏠",
       "🏫",
       "🌳",
       "🐶",
-      "🍔"
+      "🍔",
+      "🍕",
+      "🧸",
+      "🛋️",
+      "🛁",
+      "🛌"
     ]
   },
   {
@@ -79,14 +123,28 @@
       "Coche",
       "Casa",
       "Lápiz",
-      "Libro"
+      "Libro",
+      "Ventana",
+      "Puerta",
+      "Mochila",
+      "Estuche",
+      "Pizarra",
+      "Papel",
+      "Vaso",
+      "Plato",
+      "Cuchara"
     ],
     "intrusos": [
       "Correr",
       "Saltar",
       "Rápido",
       "Azul",
-      "Grande"
+      "Grande",
+      "Cantar",
+      "Bailar",
+      "Alto",
+      "Rojo",
+      "Pequeño"
     ]
   },
   {
@@ -97,14 +155,28 @@
       "Comer",
       "Dormir",
       "Jugar",
-      "Saltar"
+      "Saltar",
+      "Correr",
+      "Escribir",
+      "Leer",
+      "Pintar",
+      "Nadar",
+      "Reír",
+      "Caminar",
+      "Subir",
+      "Bajar"
     ],
     "intrusos": [
       "Gato",
       "Perro",
       "Niño",
       "Bonito",
-      "Alto"
+      "Alto",
+      "Mesa",
+      "Lápiz",
+      "Verde",
+      "Rápido",
+      "Libro"
     ]
   },
   {
@@ -115,14 +187,28 @@
       "Guapo",
       "Feo",
       "Grande",
-      "Pequeño"
+      "Pequeño",
+      "Rápido",
+      "Lento",
+      "Fuerte",
+      "Dulce",
+      "Salado",
+      "Frío",
+      "Caliente",
+      "Limpio",
+      "Sucio"
     ],
     "intrusos": [
       "Juan",
       "Madrid",
       "Mesa",
       "Silla",
-      "Coche"
+      "Coche",
+      "Correr",
+      "Comer",
+      "Perro",
+      "Libro",
+      "Saltar"
     ]
   },
   {
@@ -132,14 +218,25 @@
       "El perro",
       "El coche",
       "El niño",
-      "El libro"
+      "El libro",
+      "El sol",
+      "El árbol",
+      "El vaso",
+      "El papel",
+      "El lápiz",
+      "El río"
     ],
     "intrusos": [
       "La casa",
       "La mesa",
       "La silla",
       "La niña",
-      "La flor"
+      "La flor",
+      "La luna",
+      "La pelota",
+      "La puerta",
+      "La ventana",
+      "La mochila"
     ]
   },
   {
@@ -149,14 +246,26 @@
       "Perros",
       "Mesas",
       "Sillas",
-      "Niños"
+      "Niños",
+      "Libros",
+      "Coches",
+      "Lápices",
+      "Flores",
+      "Árboles",
+      "Casas",
+      "Pelotas"
     ],
     "intrusos": [
       "Gato",
       "Perro",
       "Mesa",
       "Silla",
-      "Niño"
+      "Niño",
+      "Libro",
+      "Coche",
+      "Lápiz",
+      "Flor",
+      "Árbol"
     ]
   }
 ]

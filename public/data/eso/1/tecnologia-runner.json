@@ -1,17 +1,122 @@
 {
-  "fases_proyecto": [
-    "necesidad", "idea", "boceto", "diseño", "planificación", "presupuesto", "construcción", "evaluación", "memoria", "divulgación"
+  "aula_tecnologia": [
+    "banco de trabajo",
+    "segueta",
+    "sargento",
+    "barrena",
+    "martillo",
+    "alicates",
+    "destornillador",
+    "limas",
+    "gafas de protección",
+    "cepillo"
   ],
   "materiales_madera": [
-    "pino", "roble", "haya", "contrachapado", "aglomerado", "tablero", "listón", "chapa", "corcho", "papel"
+    "pino",
+    "roble",
+    "contrachapado",
+    "aglomerado",
+    "dm",
+    "corcho",
+    "lámina",
+    "listón",
+    "serrín",
+    "barniz"
   ],
-  "herramientas_taller": [
-    "sierra", "martillo", "destornillador", "gato", "lima", "escofina", "taladro", "pincel", "regla", "escuadra"
+  "metales_basicos": [
+    "hierro",
+    "acero",
+    "cobre",
+    "aluminio",
+    "estaño",
+    "plomo",
+    "zinc",
+    "latón",
+    "aleación",
+    "oxidación"
   ],
-  "hardware_ordenador": [
-    "cpu", "memoria ram", "disco duro", "placa base", "tarjeta gráfica", "teclado", "ratón", "monitor", "impresora", "altavoz"
+  "metodo_proyectos": [
+    "problema",
+    "investigación",
+    "diseño",
+    "planificación",
+    "construcción",
+    "evaluación",
+    "memoria",
+    "presupuesto",
+    "boceto",
+    "prototipo"
   ],
-  "internet_seguridad": [
-    "navegador", "buscador", "contraseña", "virus", "antivirus", "wifi", "nube", "correo", "red social", "descarga"
+  "electricidad_basica": [
+    "pila",
+    "bombilla",
+    "cable",
+    "interruptor",
+    "circuito",
+    "conductor",
+    "aislante",
+    "corriente",
+    "polo positivo",
+    "polo negativo"
+  ],
+  "estructuras_esfuerzos": [
+    "tracción",
+    "compresión",
+    "flexión",
+    "torsión",
+    "cizalladura",
+    "viga",
+    "pilar",
+    "tirante",
+    "cimiento",
+    "arco"
+  ],
+  "maquinas_simples": [
+    "palanca",
+    "polea",
+    "plano inclinado",
+    "torno",
+    "cuña",
+    "tornillo",
+    "punto de apoyo",
+    "resistencia",
+    "potencia",
+    "eje"
+  ],
+  "dibujo_tecnico": [
+    "escuadra",
+    "cartabón",
+    "compás",
+    "regla graduada",
+    "transportador",
+    "acotación",
+    "escala",
+    "alzado",
+    "planta",
+    "perfil"
+  ],
+  "hardware_informatica": [
+    "monitor",
+    "teclado",
+    "ratón",
+    "cpu",
+    "placa base",
+    "disco duro",
+    "memoria ram",
+    "impresora",
+    "altavoces",
+    "puerto usb"
+  ],
+  "software_basico": [
+    "sistema operativo",
+    "navegador",
+    "procesador de textos",
+    "hoja de cálculo",
+    "presentación",
+    "carpeta",
+    "archivo",
+    "icono",
+    "escritorio",
+    "papelera"
   ]
 }

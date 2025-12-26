@@ -1,321 +1,565 @@
 [
   {
     "id": "1",
-    "titulo": "Compartir es divertido",
-    "texto": "Juan tiene un balón nuevo. Su amigo Luis quiere jugar también, pero solo hay un balón. Juan piensa un poco y decide que es más divertido jugar los dos juntos pasándose la pelota. Se ríen mucho en el patio.",
+    "titulo": "El monstruo de los colores",
+    "texto": "Había una vez un monstruo que hoy se sentía raro. Tenía todos sus colores mezclados: amarillo, azul, rojo y verde. Para sentirse mejor, decidió poner cada emoción en un bote diferente. El amarillo era la alegría, el azul la tristeza y el rojo la rabia. ¡Qué alivio estar ordenado!",
     "preguntas": [
       {
-        "pregunta": "¿Juan tiene un balón nuevo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Cómo se sentía el monstruo al principio?",
+        "opciones": [
+          "Feliz",
+          "Tranquilo",
+          "Raro, con colores mezclados",
+          "Dormido"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Juegan cada uno por su lado?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué deciden hacer?",
-        "opciones": ["Pelearse", "Jugar juntos", "Guardar el balón", "Romperlo"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cómo se lo pasan?",
-        "opciones": ["Mal", "Aburridos", "Tristes", "Muy bien"],
+        "pregunta": "¿Qué color representa la alegría?",
+        "opciones": [
+          "Azul",
+          "Rojo",
+          "Verde",
+          "Amarillo"
+        ],
         "correcta": 3
       },
       {
-        "pregunta": "¿Qué valor aprenden?",
-        "opciones": ["A gritar", "A compartir", "A pegar", "A correr"],
+        "pregunta": "¿Para qué puso los colores en botes?",
+        "opciones": [
+          "Para pintar",
+          "Para sentirse mejor y ordenado",
+          "Para jugar",
+          "Para esconderlos"
+        ],
         "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué color es la tristeza?",
+        "opciones": [
+          "Amarillo",
+          "Azul",
+          "Rojo",
+          "Blanco"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De qué color es la rabia?",
+        "opciones": [
+          "Rosa",
+          "Gris",
+          "Rojo",
+          "Naranja"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "La niña nueva",
-    "texto": "Hoy ha llegado una niña nueva a clase que se llama Aila. Viene de otro país y no conoce a nadie. Al principio estaba sola en el recreo. María y sus amigas la han visto y la han invitado a saltar a la comba con ellas.",
+    "titulo": "Compartir los colores",
+    "texto": "A Lucas le encanta dibujar, pero hoy se ha olvidado sus pinturas en casa. Su compañera de mesa, Sofía, se ha dado cuenta y le ha dicho: ‘No te preocupes, Lucas, podemos compartir mis colores’. Lucas se ha puesto muy contento y juntos han hecho un dibujo precioso.",
     "preguntas": [
       {
-        "pregunta": "¿Aila es nueva en el colegio?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Tenía muchos amigos al principio?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De dónde viene Aila?",
-        "opciones": ["De su casa", "De otro país", "Del parque", "De la tienda"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿A qué la invitan a jugar?",
-        "opciones": ["Al fútbol", "Al escondite", "A la comba", "A las cartas"],
+        "pregunta": "¿Qué se olvidó Lucas en casa?",
+        "opciones": [
+          "Los libros",
+          "El almuerzo",
+          "Las pinturas",
+          "La mochila"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué han hecho María y sus amigas?",
-        "opciones": ["Ignorarla", "Molestarla", "Integrarla", "Gritarle"],
+        "pregunta": "¿Cómo se llama su compañera?",
+        "opciones": [
+          "Marta",
+          "Sofía",
+          "Ana",
+          "Lucía"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué valor demuestra Sofía?",
+        "opciones": [
+          "Egoísmo",
+          "Pereza",
+          "Compartir y generosidad",
+          "Enfermedad"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se sintió Lucas cuando Sofía le ayudó?",
+        "opciones": [
+          "Triste",
+          "Enfadado",
+          "Muy contento",
+          "Aburrido"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué hicieron juntos?",
+        "opciones": [
+          "Un examen",
+          "Un dibujo precioso",
+          "Una torre",
+          "Nada"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Saber pedir perdón",
-    "texto": "Carlos corría por la clase y sin querer ha tirado el estuche de Ana al suelo. Todos los lápices se han desperdigado. Carlos se ha parado, le ha pedido perdón a Ana y le ha ayudado a recogerlos todos rápidamente.",
+    "titulo": "Las palabras mágicas",
+    "texto": "Existen palabras que son mágicas porque abren puertas y corazones. Estas palabras son: 'Por favor' cuando pedimos algo, 'Gracias' cuando nos dan algo y 'Perdón' si nos equivocamos. En clase de segundo siempre las usamos para llevarnos bien con todos.",
     "preguntas": [
       {
-        "pregunta": "¿Carlos quería tirar el estuche?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué dicen las palabras mágicas?",
+        "opciones": [
+          "Abracadabra",
+          "Por favor, gracias y perdón",
+          "Hola y adiós",
+          "Uno, dos y tres"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Se han caído los lápices?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Cuándo decimos 'Gracias'?",
+        "opciones": [
+          "Cuando pedimos algo",
+          "Cuando nos dan algo",
+          "Cuando dormimos",
+          "Cuando gritamos"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué ha hecho Carlos primero?",
-        "opciones": ["Reírse", "Irse corriendo", "Pedir perdón", "Gritar"],
+        "pregunta": "¿Por qué son importantes estas palabras?",
+        "opciones": [
+          "Para aprender lengua",
+          "Para llevarnos bien con todos",
+          "Para ser magos",
+          "No son importantes"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué decimos si nos equivocamos?",
+        "opciones": [
+          "Grito",
+          "Nada",
+          "Perdón",
+          "Mañana"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué han hecho después?",
-        "opciones": ["Recogerlos", "Pisarlos", "Dejarlos ahí", "Llorar"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo se ha comportado Carlos?",
-        "opciones": ["Mal", "Bien", "Regular", "Fatal"],
+        "pregunta": "¿En qué curso están los niños de la historia?",
+        "opciones": [
+          "Primero",
+          "Segundo",
+          "Tercero",
+          "Sexto"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Cuando estoy enfadado",
-    "texto": "A veces, cuando las cosas no salen bien, nos enfadamos. Dani estaba haciendo un dibujo y se le ha roto la punta del lápiz. Se ha enfadado mucho, pero ha respirado hondo tres veces para calmarse. Luego le ha sacado punta tranquilamente.",
+    "titulo": "Manos limpias",
+    "texto": "Antes de comer el bocadillo del recreo, siempre hay que lavarse las manos con agua y jabón. Así quitamos los gérmenes que no vemos pero que están ahí por haber estado jugando. Unas manos limpias nos ayudan a no ponernos enfermos y a estar sanos.",
     "preguntas": [
       {
-        "pregunta": "¿Dani estaba haciendo un puzle?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Se le rompió el lápiz?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuándo hay que lavarse las manos?",
+        "opciones": [
+          "Antes de comer",
+          "Después de dormir",
+          "Al saltar",
+          "Nunca"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué hizo para calmarse?",
-        "opciones": ["Gritar", "Pegar a la mesa", "Romper el papel", "Respirar hondo"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué emoción sentía Dani?",
-        "opciones": ["Alegría", "Enfado", "Miedo", "Sueño"],
+        "pregunta": "¿Qué necesitamos para lavar las manos?",
+        "opciones": [
+          "Sopa",
+          "Agua y jabón",
+          "Papel",
+          "Pegamento"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hizo al final?",
-        "opciones": ["Sacar punta", "Irse a casa", "Llorar", "Dormir"],
+        "pregunta": "¿Qué quitamos de las manos al lavarlas?",
+        "opciones": [
+          "Los dedos",
+          "Los gérmenes",
+          "La piel",
+          "Los anillos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve tener las manos limpias?",
+        "opciones": [
+          "Para tener frío",
+          "Para no enfermar",
+          "Para correr",
+          "Para cantar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué hay gérmenes en las manos?",
+        "opciones": [
+          "Por haber estado jugando",
+          "Por comer fruta",
+          "Por leer",
+          "Por dormir"
+        ],
         "correcta": 0
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Las palabras mágicas",
-    "texto": "En clase usamos las palabras mágicas para llevarnos bien. Si queremos pedir algo, decimos 'por favor'. Cuando alguien nos ayuda o nos da algo, decimos 'gracias'. Si queremos pasar y hay gente, decimos 'permiso'.",
+    "titulo": "Todos somos diferentes",
+    "texto": "En mi clase hay niños altos, bajos, con el pelo rizado o liso. Algunos usan gafas y otros tienen la piel de distintos colores. Pero a todos nos gusta jugar y aprender. Esa diferencia nos hace especiales y por eso nos respetamos y nos ayudamos unos a otros.",
     "preguntas": [
       {
-        "pregunta": "¿Existen palabras mágicas?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Decimos 'gracias' para pedir algo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Son todos los niños iguales en clase?",
+        "opciones": [
+          "Sí",
+          "No, son diferentes"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué decimos para pedir algo?",
-        "opciones": ["Dámelo", "Lo quiero", "Por favor", "Tonto"],
-        "correcta": 2
+        "pregunta": "¿Qué cosas pueden ser diferentes?",
+        "opciones": [
+          "El pelo o la piel",
+          "La ropa",
+          "Si usan gafas",
+          "Todas las anteriores"
+        ],
+        "correcta": 3
       },
       {
-        "pregunta": "¿Qué decimos cuando nos ayudan?",
-        "opciones": ["Adiós", "Gracias", "Hola", "Nada"],
+        "pregunta": "¿Qué les gusta a todos por igual?",
+        "opciones": [
+          "Dormir",
+          "Jugar y aprender",
+          "Llorar",
+          "Gritar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Para qué sirven estas palabras?",
-        "opciones": ["Para volar", "Para convivir mejor", "Para comer", "Para correr"],
+        "pregunta": "¿Por qué nos respetamos?",
+        "opciones": [
+          "Porque tenemos miedo",
+          "Porque la diferencia nos hace especiales",
+          "Porque sí",
+          "No nos respetamos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hacen los niños en clase?",
+        "opciones": [
+          "Pelear",
+          "Respetarse y ayudarse",
+          "Estar en silencio",
+          "Saltar"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Trabajo en equipo",
-    "texto": "La clase estaba muy desordenada después de hacer manualidades. Había papeles y pegamento por todas partes. La profesora dijo: '¡Equipo de limpieza!'. Todos los niños ayudaron a recoger y en cinco minutos la clase estaba perfecta.",
+    "titulo": "Escuchar con atención",
+    "texto": "Cuando un compañero habla, los demás debemos escuchar en silencio y mirar a la persona que cuenta su historia. Así demostramos que nos interesa lo que dice. Escuchar es tan importante como hablar, porque así aprendemos cosas nuevas sobre nuestros amigos.",
     "preguntas": [
       {
-        "pregunta": "¿La clase estaba limpia al principio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué debemos hacer cuando alguien habla?",
+        "opciones": [
+          "Hablar nosotros",
+          "Escuchar en silencio",
+          "Correr",
+          "Gritar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Ayudaron todos los niños?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué demostramos al escuchar?",
+        "opciones": [
+          "Que estamos aburridos",
+          "Que nos interesa lo que dicen",
+          "Que queremos dormir",
+          "Nada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A quién debemos mirar?",
+        "opciones": [
+          "Al techo",
+          "Al suelo",
+          "A la persona que habla",
+          "A la ventana"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Para qué sirve escuchar?",
+        "opciones": [
+          "Para aprender cosas de los amigos",
+          "Para nada",
+          "Para que pase el tiempo",
+          "Para comer"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué habían hecho antes?",
-        "opciones": ["Gimnasia", "Música", "Manualidades", "Matemáticas"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cuánto tardaron en limpiar?",
-        "opciones": ["Una hora", "Un día", "Cinco minutos", "Nada"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cómo es mejor trabajar?",
-        "opciones": ["Solos", "En equipo", "Peleando", "Mirando"],
+        "pregunta": "¿Qué es tan importante como hablar?",
+        "opciones": [
+          "Correr",
+          "Escuchar",
+          "Saltar",
+          "Pintar"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Todos somos diferentes",
-    "texto": "En mi grupo de amigos todos somos diferentes. Pablo es muy alto. Sara lleva gafas y lee muy bien. A mí se me da bien dibujar. Cada uno tiene cosas buenas y lo importante es que nos queremos tal como somos.",
+    "titulo": "Resolver sin pelear",
+    "texto": "A veces, dos amigos quieren jugar con el mismo juguete. En lugar de tirar de él o enfadarse, lo mejor es usar el diálogo. Podemos decir: '¿Jugamos juntos?' o 'Primero tú y luego yo'. Hablar ayuda a solucionar los problemas sin que nadie se sienta triste.",
     "preguntas": [
       {
-        "pregunta": "¿Son todos iguales?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué ocurre a veces con los juguetes?",
+        "opciones": [
+          "Se rompen",
+          "Dos amigos quieren el mismo",
+          "No hay juguetes",
+          "Se pierden"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Pablo es bajo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué lleva Sara?",
-        "opciones": ["Gorra", "Gafas", "Coleta", "Bufanda"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué se le da bien al narrador?",
-        "opciones": ["Cantar", "Bailar", "Dibujar", "Correr"],
+        "pregunta": "¿Qué es mejor que pelearse?",
+        "opciones": [
+          "Llorar",
+          "Enfadarse",
+          "Usar el diálogo y hablar",
+          "Ignorar"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué es lo importante?",
-        "opciones": ["Ser guapos", "Quererse y respetarse", "Tener juguetes", "Ser rápidos"],
+        "pregunta": "¿Qué podemos decir para jugar juntos?",
+        "opciones": [
+          "¡Es mío!",
+          "Dámelo ya",
+          "¡Jugamos juntos?",
+          "Vete"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Para qué sirve hablar?",
+        "opciones": [
+          "Para crear problemas",
+          "Para solucionar problemas",
+          "Para gritar",
+          "Para nada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se siente alguien si hay pelea?",
+        "opciones": [
+          "Muy feliz",
+          "Triste",
+          "Tranquilo",
+          "Dormido"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Decir la verdad",
-    "texto": "Elena ha roto sin querer un vaso de agua en la cocina. Su mamá ha preguntado quién ha sido. Elena tenía miedo de que la riñeran, pero ha dicho la verdad: 'He sido yo'. Su mamá no se ha enfadado porque Elena ha sido sincera.",
+    "titulo": "La importancia de recoger",
+    "texto": "Después de jugar en clase o en casa, hay que recoger los juguetes y materiales. Si todo está ordenado, será más fácil encontrarlo la próxima vez y nadie se tropezará con nada. Un aula limpia es un lugar mucho más agradable para aprender.",
     "preguntas": [
       {
-        "pregunta": "¿Elena rompió un plato?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué hay que hacer después de jugar?",
+        "opciones": [
+          "Dormir",
+          "Recoger",
+          "Cenar",
+          "Irse"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Elena dijo la verdad?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Por qué es bueno el orden?",
+        "opciones": [
+          "Para encontrar las cosas fácil",
+          "Para que no haya juguetes",
+          "Porque es aburrido",
+          "Para nada"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué se rompió?",
-        "opciones": ["Una taza", "Un vaso", "Una ventana", "Una botella"],
+        "pregunta": "¿Qué evitamos si recogemos el suelo?",
+        "opciones": [
+          "Caminar",
+          "Tropezar",
+          "Reír",
+          "Saltar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Por qué no se enfadó mamá?",
-        "opciones": ["Porque fue sincera", "Porque no lo vio", "Porque era viejo", "Porque no estaba"],
+        "pregunta": "¿Cómo es un aula agradable?",
+        "opciones": [
+          "Sucia",
+          "Limpia y ordenada",
+          "Llena de papeles",
+          "Fosca"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Recoger es responsabilidad de todos?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo se sentía Elena al principio?",
-        "opciones": ["Feliz", "Con miedo", "Enfadada", "Cansada"],
-        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Cuidamos los libros",
-    "texto": "Los libros de la biblioteca del colegio son de todos. No podemos pintar en ellos ni romper las hojas. Hay que tratarlos con cuidado. Si cuidamos los cuentos, otros niños podrán leerlos y disfrutar de las historias después de nosotros.",
+    "titulo": "Cuidar a los amigos",
+    "texto": "Un buen amigo es alguien que nos ayuda cuando estamos tristes o cuando no entendemos un ejercicio. Si un amigo se cae en el patio, vamos a ayudarle a levantarse y le preguntamos si está bien. La amistad es un tesoro que debemos cuidar todos los días.",
     "preguntas": [
       {
-        "pregunta": "¿Los libros son solo míos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué hace un buen amigo si estás triste?",
+        "opciones": [
+          "Se ríe",
+          "Te ayuda",
+          "Te ignora",
+          "Se va"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Podemos pintar en los libros?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué hacemos si un amigo se cae?",
+        "opciones": [
+          "Seguir corriendo",
+          "Ayudarle a levantarse",
+          "Gritar",
+          "Quedarse quieto"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo hay que tratar los libros?",
-        "opciones": ["Mal", "Con fuerza", "Con cuidado", "Arrugándolos"],
-        "correcta": 2
+        "pregunta": "¿Qué le preguntamos al amigo que se cae?",
+        "opciones": [
+          "¿Qué hora es?",
+          "¿Estás bien?",
+          "¿Dónde vas?",
+          "¿Cómo te llamas?"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿De dónde son los libros?",
-        "opciones": ["De la biblioteca", "De la tienda", "Del parque", "De la basura"],
+        "pregunta": "¿A qué se parece la amistad?",
+        "opciones": [
+          "A una piedra",
+          "A un tesoro",
+          "A un zapato",
+          "A un árbol"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Hay que cuidar a los amigos?",
+        "opciones": [
+          "Sí, cada día",
+          "Solo los lunes",
+          "No",
+          "Solo si nos dan cosas"
+        ],
         "correcta": 0
-      },
-      {
-        "pregunta": "¿Para qué los cuidamos?",
-        "opciones": ["Para que estén bonitos", "Para otros niños", "Para que pesen más", "Para nada"],
-        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Ayudar a los demás",
-    "texto": "En el recreo, Lucas se ha tropezado y se ha hecho daño en la rodilla. Estaba llorando en el suelo. Su amiga Inés ha ido corriendo a ayudarle. Le ha dado la mano para levantarse y le ha acompañado a buscar a la profesora.",
+    "titulo": "¡Yo puedo hacerlo solo!",
+    "texto": "En segundo de primaria ya somos más mayores. Ya sabemos ponernos los zapatos, abrocharnos la chaqueta y preparar nuestra mochila. Cada vez que aprendemos a hacer algo solos, nos sentimos más capaces y contentos con nosotros mismos.",
     "preguntas": [
       {
-        "pregunta": "¿Lucas se ha caído?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Inés se ha reído de él?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué saben hacer ya los niños de segundo?",
+        "opciones": [
+          "Volar",
+          "Ponerse los zapatos y abrocharse",
+          "Conducir",
+          "Cocinar sopa"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué le dolía a Lucas?",
-        "opciones": ["La cabeza", "El brazo", "La rodilla", "El pie"],
+        "pregunta": "¿Cómo se sienten cuando hacen cosas solos?",
+        "opciones": [
+          "Tristes",
+          "Aburridos",
+          "Capaces y contentos",
+          "Cansados"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué ha hecho Inés?",
-        "opciones": ["Empujarle", "Ayudarle", "Gritarle", "Ignorarle"],
-        "correcta": 1
+        "pregunta": "¿Qué curso son ahora?",
+        "opciones": [
+          "Infantil",
+          "Primero",
+          "Segundo",
+          "Sexto"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿A quién han buscado?",
-        "opciones": ["Al director", "A la profesora", "A la policía", "Al médico"],
-        "correcta": 1
+        "pregunta": "¿Es bueno aprender a ser autónomo?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué preparan para ir al colegio?",
+        "opciones": [
+          "La comida",
+          "La cama",
+          "La mochila",
+          "El coche"
+        ],
+        "correcta": 2
       }
     ]
   }

@@ -1,17 +1,122 @@
 {
   "salutations": [
-    "bonjour", "bonsoir", "salut", "au revoir", "bonne nuit", "à bientôt", "à demain", "adieu", "enchanté", "coucou"
+    "bonjour",
+    "salut",
+    "bonsoir",
+    "bonne nuit",
+    "au revoir",
+    "merci",
+    "de rien",
+    "s'il vous plaît",
+    "pardon",
+    "enchanté"
+  ],
+  "nombres_1_10": [
+    "un",
+    "deux",
+    "trois",
+    "quatre",
+    "cinq",
+    "six",
+    "sept",
+    "huit",
+    "neuf",
+    "dix"
+  ],
+  "famille": [
+    "père",
+    "mère",
+    "frère",
+    "soeur",
+    "grand-père",
+    "grand-mère",
+    "oncle",
+    "tante",
+    "cousin",
+    "fille"
+  ],
+  "couleurs": [
+    "rouge",
+    "bleu",
+    "jaune",
+    "vert",
+    "noir",
+    "blanc",
+    "orange",
+    "rose",
+    "gris",
+    "marron"
+  ],
+  "école": [
+    "crayon",
+    "stylo",
+    "gomme",
+    "livre",
+    "cahier",
+    "professeur",
+    "élève",
+    "classe",
+    "tableau",
+    "sac à dos"
   ],
   "jours_semaine": [
-    "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche", "weekend", "jour", "semaine"
+    "lundi",
+    "mardi",
+    "mercredi",
+    "jeudi",
+    "vendredi",
+    "samedi",
+    "dimanche",
+    "saison",
+    "mois",
+    "année"
   ],
   "mois_annee": [
-    "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "décembre"
+    "janvier",
+    "février",
+    "mars",
+    "avril",
+    "mai",
+    "juin",
+    "juillet",
+    "août",
+    "septembre",
+    "octobre"
   ],
-  "nombres_1_20": [
-    "un", "deux", "trois", "quatre", "cinq", "dix", "onze", "douze", "treize", "vingt"
+  "animaux": [
+    "chat",
+    "chien",
+    "oiseau",
+    "lapin",
+    "lion",
+    "singe",
+    "poisson",
+    "vache",
+    "cochon",
+    "cheval"
   ],
-  "fournitures_scolaires": [
-    "stylo", "crayon", "gomme", "cahier", "livre", "règle", "trousse", "sac à dos", "ciseaux", "colle"
+  "nourriture": [
+    "pain",
+    "fromage",
+    "eau",
+    "lait",
+    "pomme",
+    "banane",
+    "viande",
+    "salade",
+    "soupe",
+    "riz"
+  ],
+  "corps_humain": [
+    "tête",
+    "bras",
+    "jambe",
+    "main",
+    "pied",
+    "oeil",
+    "nez",
+    "bouche",
+    "oreille",
+    "doigt"
   ]
 }

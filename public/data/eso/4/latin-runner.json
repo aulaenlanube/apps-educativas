@@ -1,17 +1,122 @@
 {
-  "mitologia_dioses": [
-    "Júpiter", "Juno", "Minerva", "Marte", "Venus", "Apolo", "Diana", "Mercurio", "Neptuno", "Plutón"
+  "cultura_romana": [
+    "patricio",
+    "plebeyo",
+    "senado",
+    "foro",
+    "legión",
+    "centurión",
+    "esclavo",
+    "liberto",
+    "emperador",
+    "cónsul"
   ],
-  "casos_declinacion": [
-    "nominativo", "vocativo", "acusativo", "genitivo", "dativo", "ablativo", "singular", "plural", "masculino", "femenino"
+  "ciudades_monumentos": [
+    "roma",
+    "coliseo",
+    "panteón",
+    "foro romano",
+    "termas",
+    "acueducto",
+    "circo",
+    "teatro",
+    "basílica",
+    "vía apia"
   ],
-  "instituciones_romanas": [
-    "senado", "cónsul", "pretor", "censor", "tribuno", "patricio", "plebeyo", "esclavo", "liberto", "república"
+  "latinismos_actuales": [
+    "ad hoc",
+    "alma mater",
+    "curriculum vitae",
+    "habeas corpus",
+    "ipso facto",
+    "per capita",
+    "quid pro quo",
+    "sine qua non",
+    "status quo",
+    "viceversa"
   ],
-  "urbanismo_romano": [
-    "foro", "termas", "teatro", "anfiteatro", "circo", "acueducto", "domus", "villa", "calzada", "arco de triunfo"
+  "mitologia_romana": [
+    "júpiter",
+    "juno",
+    "neptuno",
+    "marte",
+    "venus",
+    "apolo",
+    "diana",
+    "mercurio",
+    "minerva",
+    "vulcano"
   ],
-  "expresiones_latinas": [
-    "carpe diem", "curriculum vitae", "alter ego", "a priori", "ipso facto", "grosso modo", "mare magnum", "in situ", "per se", "alma mater"
+  "familia_domus": [
+    "pater familias",
+    "mater familias",
+    "domus",
+    "atrio",
+    "triclinio",
+    "peristilo",
+    "insula",
+    "villa",
+    "toga",
+    "estola"
+  ],
+  "literatura_latina": [
+    "virgilio",
+    "horacio",
+    "ovidio",
+    "cicerón",
+    "séneca",
+    "eneida",
+    "metamorfosis",
+    "catón",
+    "tito livio",
+    "plauto"
+  ],
+  "gramatica_basica_latin": [
+    "declinación",
+    "nominativo",
+    "acusativo",
+    "genitivo",
+    "dativo",
+    "ablativo",
+    "vocativo",
+    "concordancia",
+    "caso",
+    "género"
+  ],
+  "historia_expansion": [
+    "fundación de roma",
+    "monarquía",
+    "república",
+    "imperio",
+    "guerras púnicas",
+    "cartago",
+    "julio césar",
+    "augusto",
+    "caída de roma",
+    "romanización"
+  ],
+  "ocio_vida_diaria": [
+    "gladiador",
+    "auriga",
+    "banquete",
+    "termas",
+    "mercado",
+    "sacrificio",
+    "religión",
+    "calendario",
+    "escuela",
+    "juegos"
+  ],
+  "lenguas_romanicas": [
+    "español",
+    "francés",
+    "italiano",
+    "portugués",
+    "rumano",
+    "catalán",
+    "gallego",
+    "latín vulgar",
+    "léxico",
+    "etimología"
   ]
 }

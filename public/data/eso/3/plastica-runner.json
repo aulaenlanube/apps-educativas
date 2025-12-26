@@ -1,17 +1,122 @@
 {
+  "geometria_metricas": [
+    "triángulo",
+    "cuadrilátero",
+    "polígono regular",
+    "polígono estrellado",
+    "tangencia",
+    "potencia",
+    "eje radical",
+    "curva técnica",
+    "óvalo",
+    "ovoide"
+  ],
   "sistemas_representacion": [
-    "diédrico", "axonométrico", "cónica", "alzado", "planta", "perfil", "isométrica", "caballera", "punto de fuga", "proyección"
+    "axonométrico",
+    "isométrico",
+    "dimétrico",
+    "trimétrico",
+    "caballera",
+    "diedro",
+    "perspectiva cónica",
+    "alzado",
+    "planta",
+    "perfil"
   ],
-  "diseno_grafico": [
-    "logotipo", "tipografía", "maquetación", "cartel", "branding", "imagotipo", "boceto", "diagramación", "icono", "vector"
+  "expresion_color": [
+    "teoria de munsell",
+    "rgb",
+    "cmyk",
+    "pantone",
+    "psicología del color",
+    "simbolismo",
+    "contraste simultáneo",
+    "armonía analógica",
+    "brillo",
+    "saturación"
   ],
-  "lenguaje_visual": [
-    "signo", "símbolo", "icono", "indicio", "código", "emisor", "receptor", "mensaje", "canal", "contexto"
+  "arte_concesiones": [
+    "impresionismo",
+    "expresionismo",
+    "fauvismo",
+    "cubismo",
+    "surrealismo",
+    "abstracción",
+    "pop art",
+    "land art",
+    "performance",
+    "videoarte"
   ],
-  "publicidad": [
-    "eslogan", "marca", "anuncio", "consumidor", "target", "campaña", "spot", "valla", "marketing", "persuasión"
+  "imagen_audiovisual": [
+    "plano",
+    "ángulo de cámara",
+    "movimiento de cámara",
+    "guion técnico",
+    "storyboard",
+    "montaje",
+    "postproducción",
+    "fotograma",
+    "iluminación",
+    "sonido"
   ],
-  "elementos_composicion": [
-    "ritmo", "equilibrio", "simetría", "peso visual", "contraste", "proporción", "regla de tercios", "encuadre", "fondo", "figura"
+  "diseno_industrial": [
+    "funcionalidad",
+    "ergonomía",
+    "estética",
+    "material",
+    "prototipo",
+    "boceto",
+    "render",
+    "maqueta",
+    "producción en serie",
+    "sostenibilidad"
+  ],
+  "narrativa_visual": [
+    "cómic",
+    "novela gráfica",
+    "ilustración",
+    "caricatura",
+    "infografía",
+    "composición",
+    "ritmo",
+    "equilibrio",
+    "tensión",
+    "dirección"
+  ],
+  "tecnicas_mixtas": [
+    "collage",
+    "frottage",
+    "decalcomanía",
+    "grabado",
+    "serigrafía",
+    "linograbado",
+    "monotipo",
+    "transferencia",
+    "ensamblado",
+    "instalación"
+  ],
+  "arquitectura_espacio": [
+    "planta",
+    "sección",
+    "fachada",
+    "volumen",
+    "urbanismo",
+    "espacio público",
+    "maqueta",
+    "proyectar",
+    "estructura",
+    "materiales constructivos"
+  ],
+  "analisis_obra": [
+    "contexto histórico",
+    "autoría",
+    "estilo",
+    "técnica",
+    "composición",
+    "luz",
+    "color",
+    "significado",
+    "iconografía",
+    "valoración"
   ]
 }

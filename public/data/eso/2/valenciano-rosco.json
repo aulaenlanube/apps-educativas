@@ -1,306 +1,2226 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Paraula que acompanya el nom i concorda en gènere i nombre (Adjectiu, Article...).", "solucion": "adjectiu", "materia": "valenciano" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Paraula amb l'accent en l'última síl·laba.", "solucion": "aguda", "materia": "valenciano" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Signe gràfic (´ o `) sobre la vocal tònica.", "solucion": "accent", "materia": "valenciano" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Signe (') que indica l'elisió d'una vocal.", "solucion": "apòstrof", "materia": "valenciano" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Conjunt de lletres d'una llengua.", "solucion": "alfabet", "materia": "valenciano" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Paraula de significat oposat.", "solucion": "antònim", "materia": "valenciano" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Part invariable d'una paraula (Lexema).", "solucion": "arrel", "materia": "valenciano" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Determinant que presenta el nom (el, la, els, les).", "solucion": "article", "materia": "valenciano" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Paraula invariable que modifica el verb.", "solucion": "adverbi", "materia": "valenciano" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Recurs de repetició de sons.", "solucion": "al·literació", "materia": "valenciano" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Lloc de préstec de llibres.", "solucion": "biblioteca", "materia": "valenciano" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Relat de la vida d'una persona.", "solucion": "biografia", "materia": "valenciano" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Globus de text en un còmic.", "solucion": "bafarada", "materia": "valenciano" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Persona que parla dues llengües.", "solucion": "bilingüe", "materia": "valenciano" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Primera redacció provisional d'un text.", "solucion": "esborrany", "materia": "valenciano" }, 
-  { "id": "b5_fix", "letra": "B", "tipo": "empieza", "definicion": "Grup de versos en un poema (estrofa, sovint es diu...).", "solucion": "bloc", "materia": "valenciano" }, 
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Contrari de roín.", "solucion": "bo", "materia": "valenciano" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Orifici per on mengem i parlem.", "solucion": "boca", "materia": "valenciano" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Qualitat d'allò que és bell.", "solucion": "bellesa", "materia": "valenciano" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Extensió de terreny poblada d'arbres.", "solucion": "bosc", "materia": "valenciano" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Peça de roba de feina.", "solucion": "bata", "materia": "valenciano" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Narració breu fictícia.", "solucion": "conte", "materia": "valenciano" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Intercanvi de missatges.", "solucion": "comunicació", "materia": "valenciano" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Mitjà de transmissió del missatge.", "solucion": "canal", "materia": "valenciano" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Sistema de signes.", "solucion": "codi", "materia": "valenciano" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Obra de teatre d'humor.", "solucion": "comèdia", "materia": "valenciano" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Recurs literari (Símil).", "solucion": "comparació", "materia": "valenciano" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Fonema que no és vocal.", "solucion": "consonant", "materia": "valenciano" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Paraula formada per dos lexemes.", "solucion": "composta", "materia": "valenciano" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Història en vinyetes.", "solucion": "còmic", "materia": "valenciano" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Llistat de formes verbals.", "solucion": "conjugació", "materia": "valenciano" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Llibre de definicions.", "solucion": "diccionari", "materia": "valenciano" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Grup de dues vocals en una síl·laba.", "solucion": "diftong", "materia": "valenciano" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Dos punts sobre la ï o la ü.", "solucion": "dièresi", "materia": "valenciano" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Paraula que acompanya i concreta el nom.", "solucion": "determinant", "materia": "valenciano" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Text que explica com és alguna cosa.", "solucion": "descripció", "materia": "valenciano" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Conversa entre persones.", "solucion": "diàleg", "materia": "valenciano" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Part final d'una narració.", "solucion": "desenllaç", "materia": "valenciano" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Creació de paraules amb afixos.", "solucion": "derivació", "materia": "valenciano" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Pronoms àtons (em, et, es...).", "solucion": "febles", "materia": "valenciano" }, 
-  { "id": "d9_fix", "letra": "D", "tipo": "empieza", "definicion": "Pronoms que no tenen accent tònic (Febles o...).", "solucion": "dèbils", "materia": "valenciano" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Varietat geogràfica d'una llengua.", "solucion": "dialecte", "materia": "valenciano" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Qui emet el missatge.", "solucion": "emissor", "materia": "valenciano" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Paraula amb l'accent en l'antepenúltima síl·laba.", "solucion": "esdrúixola", "materia": "valenciano" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Conjunt de versos.", "solucion": "estrofa", "materia": "valenciano" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Text de preguntes i respostes.", "solucion": "entrevista", "materia": "valenciano" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Manera pròpia d'escriure.", "solucion": "estil", "materia": "valenciano" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Supressió d'una vocal (l'el...).", "solucion": "elisió", "materia": "valenciano" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Unitat de comunicació.", "solucion": "enunciat", "materia": "valenciano" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Signes ¡!.", "solucion": "exclamació", "materia": "valenciano" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Primer esborrany.", "solucion": "esborrany", "materia": "valenciano" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Poema narratiu llarg sobre herois.", "solucion": "epopeia", "materia": "valenciano" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Conte amb animals i moralitat.", "solucion": "faula", "materia": "valenciano" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Objectiu comunicatiu (Funció...).", "solucion": "funció", "materia": "valenciano" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Invenció literària.", "solucion": "ficció", "materia": "valenciano" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Temps verbal posterior.", "solucion": "futur", "materia": "valenciano" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Grup de paraules derivades (Família...).", "solucion": "lèxica", "materia": "valenciano" }, 
-  { "id": "f5_fix", "letra": "F", "tipo": "empieza", "definicion": "Conjunt de paraules amb la mateixa arrel (Família...).", "solucion": "família", "materia": "valenciano" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Text publicitari breu.", "solucion": "fullet", "materia": "valenciano" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Unitat de so.", "solucion": "fonema", "materia": "valenciano" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Desenllaç.", "solucion": "final", "materia": "valenciano" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Enunciat sense verb o amb sentit complet.", "solucion": "frase", "materia": "valenciano" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Gènere gramatical (dona).", "solucion": "femení", "materia": "valenciano" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Categoria literària (Gènere...).", "solucion": "gènere", "materia": "valenciano" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Intensitat de l'adjectiu.", "solucion": "grau", "materia": "valenciano" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Signe ortogràfic (-).", "solucion": "guionet", "materia": "valenciano" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Nom de l'habitant d'un lloc.", "solucion": "gentilici", "materia": "valenciano" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Estudi de la llengua.", "solucion": "gramàtica", "materia": "valenciano" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Llista de termes.", "solucion": "glossari", "materia": "valenciano" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "Préstec del francès.", "solucion": "gal·licisme", "materia": "valenciano" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Forma verbal acabada en -ant, -ent.", "solucion": "gerundi", "materia": "valenciano" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Lletra ela geminada (l·l).", "solucion": "geminada", "materia": "valenciano" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Representació d'un so per escrit.", "solucion": "grafia", "materia": "valenciano" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Vocals juntes en síl·labes distintes.", "solucion": "hiat", "materia": "valenciano" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Protagonista valent.", "solucion": "heroi", "materia": "valenciano" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Exageració.", "solucion": "hipèrbole", "materia": "valenciano" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Paraules que s'escriuen igual amb diferent significat.", "solucion": "homònimes", "materia": "valenciano" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Còmic breu.", "solucion": "historieta", "materia": "valenciano" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Lletra muda.", "solucion": "hac", "materia": "valenciano" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Composició solemne.", "solucion": "himne", "materia": "valenciano" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Paraula inclosa en una categoria.", "solucion": "hipònim", "materia": "valenciano" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Paraula que engloba altres.", "solucion": "hiperònim", "materia": "valenciano" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Relat del passat o narració.", "solucion": "història", "materia": "valenciano" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Forma verbal base.", "solucion": "infinitiu", "materia": "valenciano" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Pregunta.", "solucion": "interrogació", "materia": "valenciano" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Dir el contrari del que es pensa.", "solucion": "ironia", "materia": "valenciano" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Mode de l'ordre.", "solucion": "imperatiu", "materia": "valenciano" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Mode de la realitat.", "solucion": "indicatiu", "materia": "valenciano" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Inici d'un text.", "solucion": "introducció", "materia": "valenciano" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Quantitat imprecisa (Algun, cap...).", "solucion": "indefinit", "materia": "valenciano" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Exclamació (Ai!, Oh!).", "solucion": "interjecció", "materia": "valenciano" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Foto o dibuix.", "solucion": "imatge", "materia": "valenciano" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Taula de continguts.", "solucion": "índex", "materia": "valenciano" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Llenguatge específic (Argot).", "solucion": "jerga", "materia": "valenciano" }, 
-  { "id": "j1_fix", "letra": "J", "tipo": "empieza", "definicion": "Recull de normes.", "solucion": "joc", "materia": "valenciano" }, 
-  { "id": "j1_final", "letra": "J", "tipo": "empieza", "definicion": "Activitat lúdica.", "solucion": "joc", "materia": "valenciano" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Artista medieval.", "solucion": "joglar", "materia": "valenciano" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Literatura per a joves.", "solucion": "juvenil", "materia": "valenciano" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Lletra J.", "solucion": "jota", "materia": "valenciano" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Persona que jutja.", "solucion": "jutge", "materia": "valenciano" },
-  { "id": "j6", "letra": "J", "tipo": "empieza", "definicion": "Donar raons.", "solucion": "justificar", "materia": "valenciano" },
-  { "id": "j7", "letra": "J", "tipo": "empieza", "definicion": "Punt d'unió.", "solucion": "juntura", "materia": "valenciano" },
-  { "id": "j8", "letra": "J", "tipo": "empieza", "definicion": "Dia de treball.", "solucion": "jornada", "materia": "valenciano" },
-  { "id": "j9", "letra": "J", "tipo": "empieza", "definicion": "Zona verda.", "solucion": "jardí", "materia": "valenciano" },
-  { "id": "j10", "letra": "J", "tipo": "empieza", "definicion": "Mes d'estiu.", "solucion": "juliol", "materia": "valenciano" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "1000 metres.", "solucion": "quilòmetre", "materia": "valenciano" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Fruita.", "solucion": "kiwi", "materia": "valenciano" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Art marcial.", "solucion": "karate", "materia": "valenciano" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Venda de premsa.", "solucion": "quiosc", "materia": "valenciano" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Unitat de pes.", "solucion": "kilo", "materia": "valenciano" },
-  { "id": "k6", "letra": "K", "tipo": "empieza", "definicion": "Destí.", "solucion": "karma", "materia": "valenciano" },
-  { "id": "k7", "letra": "K", "tipo": "empieza", "definicion": "Salsa de tomaca.", "solucion": "kètxup", "materia": "valenciano" },
-  { "id": "k8", "letra": "K", "tipo": "empieza", "definicion": "Marsupial.", "solucion": "koala", "materia": "valenciano" },
-  { "id": "k9", "letra": "K", "tipo": "empieza", "definicion": "Lletra K.", "solucion": "ca", "materia": "valenciano" },
-  { "id": "k10", "letra": "K", "tipo": "empieza", "definicion": "Canoa.", "solucion": "caiac", "materia": "valenciano" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Idioma.", "solucion": "llengua", "materia": "valenciano" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Art escrit.", "solucion": "literatura", "materia": "valenciano" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Poesia emotiva.", "solucion": "lírica", "materia": "valenciano" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Narració fantàstica.", "solucion": "llegenda", "materia": "valenciano" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Arrel.", "solucion": "lexema", "materia": "valenciano" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Volum per a llegir.", "solucion": "llibre", "materia": "valenciano" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Signe alfabètic.", "solucion": "lletra", "materia": "valenciano" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Llegir.", "solucion": "lectura", "materia": "valenciano" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Conjunt de paraules.", "solucion": "lèxic", "materia": "valenciano" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Paraula pròpia d'un lloc.", "solucion": "localisme", "materia": "valenciano" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Lletra gran.", "solucion": "majúscula", "materia": "valenciano" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Una síl·laba.", "solucion": "monosíl·laba", "materia": "valenciano" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Gènere (home).", "solucion": "masculí", "materia": "valenciano" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Comparació irreal.", "solucion": "metàfora", "materia": "valenciano" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Informació.", "solucion": "missatge", "materia": "valenciano" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Relat de déus.", "solucion": "mite", "materia": "valenciano" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Indicatiu, Subjuntiu...", "solucion": "mode", "materia": "valenciano" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Mètrica del vers.", "solucion": "mesura", "materia": "valenciano" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Unitat gramatical mínima.", "solucion": "morfema", "materia": "valenciano" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Parla un sol personatge.", "solucion": "monòleg", "materia": "valenciano" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Substantiu.", "solucion": "nom", "materia": "valenciano" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "La veu que conta.", "solucion": "narrador", "materia": "valenciano" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Narració llarga.", "solucion": "novel·la", "materia": "valenciano" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Text periodístic.", "solucion": "notícia", "materia": "valenciano" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Singular/Plural.", "solucion": "nombre", "materia": "valenciano" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Part central del sintagma.", "solucion": "nucli", "materia": "valenciano" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Gènere de relats.", "solucion": "narrativa", "materia": "valenciano" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Part central de la trama.", "solucion": "nus", "materia": "valenciano" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Escrit curt.", "solucion": "nota", "materia": "valenciano" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Dir no.", "solucion": "negació", "materia": "valenciano" },
-
-  { "id": "ñ1", "letra": "NY", "tipo": "contiene", "definicion": "Tractament de respecte (conté NY).", "solucion": "senyor", "materia": "valenciano" },
-  { "id": "ñ2", "letra": "NY", "tipo": "contiene", "definicion": "Amic (conté NY).", "solucion": "company", "materia": "valenciano" },
-  { "id": "ñ3", "letra": "NY", "tipo": "contiene", "definicion": "365 dies (conté NY).", "solucion": "any", "materia": "valenciano" },
-  { "id": "ñ4", "letra": "NY", "tipo": "contiene", "definicion": "Quadre de còmic (conté NY).", "solucion": "vinyeta", "materia": "valenciano" },
-  { "id": "ñ5", "letra": "NY", "tipo": "contiene", "definicion": "Elevació de terra (conté NY).", "solucion": "muntanya", "materia": "valenciano" },
-  { "id": "ñ6", "letra": "NY", "tipo": "contiene", "definicion": "Indici (conté NY).", "solucion": "senyal", "materia": "valenciano" },
-  { "id": "ñ7", "letra": "NY", "tipo": "contiene", "definicion": "Educació (conté NY).", "solucion": "ensenyament", "materia": "valenciano" },
-  { "id": "ñ8", "letra": "NY", "tipo": "contiene", "definicion": "Lavabo (conté NY).", "solucion": "bany", "materia": "valenciano" },
-  { "id": "ñ9", "letra": "NY", "tipo": "contiene", "definicion": "Fruit sec (conté NY).", "solucion": "castanya", "materia": "valenciano" },
-  { "id": "ñ10", "letra": "NY", "tipo": "contiene", "definicion": "Mà tancada (conté NY).", "solucion": "puny", "materia": "valenciano" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Frase amb sentit.", "solucion": "oració", "materia": "valenciano" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Escriptura correcta.", "solucion": "ortografia", "materia": "valenciano" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "No escrit.", "solucion": "oral", "materia": "valenciano" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Poema de lloança.", "solucion": "oda", "materia": "valenciano" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "So escrit.", "solucion": "onomatopeia", "materia": "valenciano" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Complement (CD/CI).", "solucion": "objecte", "materia": "valenciano" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Punt de vista.", "solucion": "opinió", "materia": "valenciano" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Organització.", "solucion": "ordre", "materia": "valenciano" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Llibre o creació.", "solucion": "obra", "materia": "valenciano" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Receptor oral.", "solucion": "oient", "materia": "valenciano" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Accent en la penúltima (Paraula...).", "solucion": "plana", "materia": "valenciano" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Part verbal de l'oració.", "solucion": "predicat", "materia": "valenciano" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Substitut del nom.", "solucion": "pronom", "materia": "valenciano" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Enllaç (a, en, amb...).", "solucion": "preposició", "materia": "valenciano" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Art en vers.", "solucion": "poesia", "materia": "valenciano" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Text poètic.", "solucion": "poema", "materia": "valenciano" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Ésser d'una obra.", "solucion": "personatge", "materia": "valenciano" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Personatge principal.", "solucion": "protagonista", "materia": "valenciano" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Molts significats.", "solucion": "polisèmia", "materia": "valenciano" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Mot.", "solucion": "paraula", "materia": "valenciano" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Relatiu o conjunció.", "solucion": "que", "materia": "valenciano" },
-  { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Interrogatiu persona.", "solucion": "qui", "materia": "valenciano" },
-  { "id": "q3", "letra": "Q", "tipo": "empieza", "definicion": "Obra de Cervantes.", "solucion": "quixot", "materia": "valenciano" },
-  { "id": "q4", "letra": "Q", "tipo": "empieza", "definicion": "Llibreta.", "solucion": "quadern", "materia": "valenciano" },
-  { "id": "q5", "letra": "Q", "tipo": "empieza", "definicion": "Full de paper.", "solucion": "quartilla", "materia": "valenciano" },
-  { "id": "q6", "letra": "Q", "tipo": "contiene", "definicion": "Causa (conté Q).", "solucion": "perquè", "materia": "valenciano" },
-  { "id": "q7", "letra": "Q", "tipo": "contiene", "definicion": "Resum (Es..., conté Q).", "solucion": "esquema", "materia": "valenciano" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "Conjunt de fulls (conté Q).", "solucion": "bloc", "materia": "valenciano" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Adhesiu amb nom (conté Q).", "solucion": "etiqueta", "materia": "valenciano" },
-  { "id": "q10", "letra": "Q", "tipo": "contiene", "definicion": "Informal (conté Q).", "solucion": "col·loquial", "materia": "valenciano" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "So final igual.", "solucion": "rima", "materia": "valenciano" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Destinatari.", "solucion": "receptor", "materia": "valenciano" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Lexema.", "solucion": "arrel", "materia": "valenciano" }, 
-  { "id": "r3_fix", "letra": "R", "tipo": "empieza", "definicion": "Poema narratiu.", "solucion": "romanç", "materia": "valenciano" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Musicalitat.", "solucion": "ritme", "materia": "valenciano" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Moviment literari fidel a la realitat.", "solucion": "realisme", "materia": "valenciano" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Escriure.", "solucion": "redacció", "materia": "valenciano" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Síntesi.", "solucion": "resum", "materia": "valenciano" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Norma.", "solucion": "regla", "materia": "valenciano" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Eina literària.", "solucion": "recurs", "materia": "valenciano" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Dita popular.", "solucion": "refrany", "materia": "valenciano" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Qui fa l'acció.", "solucion": "subjecte", "materia": "valenciano" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Nom.", "solucion": "substantiu", "materia": "valenciano" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Igual significat.", "solucion": "sinònim", "materia": "valenciano" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Cop de veu.", "solucion": "síl·laba", "materia": "valenciano" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Accent abans de l'antepenúltima.", "solucion": "sobreesdrúixola", "materia": "valenciano" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Morfema final.", "solucion": "sufix", "materia": "valenciano" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Un sol element.", "solucion": "singular", "materia": "valenciano" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Poema 14 versos.", "solucion": "sonet", "materia": "valenciano" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Comparació.", "solucion": "símil", "materia": "valenciano" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Abreviatura (ONU).", "solucion": "sigla", "materia": "valenciano" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Conjunt de frases.", "solucion": "text", "materia": "valenciano" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Accent gràfic (Tit...).", "solucion": "titla", "materia": "valenciano" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Gènere dramàtic.", "solucion": "teatre", "materia": "valenciano" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Obra trista.", "solucion": "tragèdia", "materia": "valenciano" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Passat/Present/Futur.", "solucion": "temps", "materia": "valenciano" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Nom de l'obra.", "solucion": "títol", "materia": "valenciano" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Argument.", "solucion": "trama", "materia": "valenciano" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Tema principal.", "solucion": "tema", "materia": "valenciano" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Desinència final.", "solucion": "terminació", "materia": "valenciano" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "De tres síl·labes.", "solucion": "trisíl·laba", "materia": "valenciano" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Sílaba final.", "solucion": "última", "materia": "valenciano" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Empra.", "solucion": "ús", "materia": "valenciano" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Element.", "solucion": "unitat", "materia": "valenciano" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Pressa.", "solucion": "urgència", "materia": "valenciano" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Sol en la seva espècie.", "solucion": "únic", "materia": "valenciano" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Connexió.", "solucion": "unió", "materia": "valenciano" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "1.", "solucion": "un", "materia": "valenciano" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Tractament formal.", "solucion": "vostè", "materia": "valenciano" },
-  { "id": "u8_fix", "letra": "U", "tipo": "empieza", "definicion": "Societat ideal.", "solucion": "utopia", "materia": "valenciano" },
-  { "id": "u9", "letra": "U", "tipo": "empieza", "definicion": "Fer servir.", "solucion": "utilitzar", "materia": "valenciano" },
-  { "id": "u10", "letra": "U", "tipo": "empieza", "definicion": "Ulleres (variant).", "solucion": "ulleres", "materia": "valenciano" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Paraula d'acció.", "solucion": "verb", "materia": "valenciano" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Línia poètica.", "solucion": "vers", "materia": "valenciano" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "A, E, I, O, U.", "solucion": "vocal", "materia": "valenciano" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Conjunt de mots.", "solucion": "vocabulari", "materia": "valenciano" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Tipus de llengua.", "solucion": "varietat", "materia": "valenciano" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Paraula incorrecta.", "solucion": "vulgarisme", "materia": "valenciano" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Activa o passiva.", "solucion": "veu", "materia": "valenciano" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Relatiu al verb.", "solucion": "verbal", "materia": "valenciano" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Cançó de Nadal (en castellà Villancico, en valencià...).", "solucion": "nadala", "materia": "valenciano" }, 
-  { "id": "v9_fix", "letra": "V", "tipo": "empieza", "definicion": "Desplaçament.", "solucion": "viatge", "materia": "valenciano" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Cert.", "solucion": "veritat", "materia": "valenciano" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Pàgina d'internet.", "solucion": "web", "materia": "valenciano" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Xarxa sense fils.", "solucion": "wifi", "materia": "valenciano" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Enciclopèdia lliure (conté W).", "solucion": "wikipedia", "materia": "valenciano" },
-  { "id": "w4", "letra": "W", "tipo": "empieza", "definicion": "Aplicació de xat.", "solucion": "whatsapp", "materia": "valenciano" },
-  { "id": "w5", "letra": "W", "tipo": "empieza", "definicion": "Pel·lícula de l'oest.", "solucion": "western", "materia": "valenciano" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Entrepà (conté W).", "solucion": "sandwich", "materia": "valenciano" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Fruita (conté W).", "solucion": "kiwi", "materia": "valenciano" },
-  { "id": "w8", "letra": "W", "tipo": "contiene", "definicion": "Components físics PC (conté W).", "solucion": "hardware", "materia": "valenciano" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "Programes PC (conté W).", "solucion": "software", "materia": "valenciano" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Espectacle (conté W).", "solucion": "show", "materia": "valenciano" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Escrit (conté X).", "solucion": "text", "materia": "valenciano" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Entorn (conté X).", "solucion": "context", "materia": "valenciano" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Paraules (conté X).", "solucion": "lèxic", "materia": "valenciano" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Ordre gramatical (conté X).", "solucion": "sintaxi", "materia": "valenciano" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Abans de l'arrel (conté X).", "solucion": "prefix", "materia": "valenciano" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Unió (conté X).", "solucion": "nexe", "materia": "valenciano" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Darrere de l'arrel (conté X).", "solucion": "sufix", "materia": "valenciano" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Manifestació (conté X).", "solucion": "expressió", "materia": "valenciano" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Presentació (conté X).", "solucion": "exposició", "materia": "valenciano" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "Prova (conté X).", "solucion": "examen", "materia": "valenciano" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Joguet.", "solucion": "yoyó", "materia": "valenciano" },
-  { "id": "y2", "letra": "Y", "tipo": "contiene", "definicion": "365 dies (conté Y).", "solucion": "any", "materia": "valenciano" },
-  { "id": "y3", "letra": "Y", "tipo": "contiene", "definicion": "Muntanya (conté Y).", "solucion": "muntanya", "materia": "valenciano" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "País (conté Y).", "solucion": "espanya", "materia": "valenciano" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Amic (conté Y).", "solucion": "company", "materia": "valenciano" },
-  { "id": "y6", "letra": "Y", "tipo": "contiene", "definicion": "Indici (conté Y).", "solucion": "senyal", "materia": "valenciano" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Docència (conté Y).", "solucion": "ensenyament", "materia": "valenciano" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Lavabo (conté Y).", "solucion": "bany", "materia": "valenciano" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Fruit (conté Y).", "solucion": "castanya", "materia": "valenciano" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Per al nas (conté Y).", "solucion": "mocador", "materia": "valenciano" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Res.", "solucion": "zero", "materia": "valenciano" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Animal.", "solucion": "zebra", "materia": "valenciano" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Àrea.", "solucion": "zona", "materia": "valenciano" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "11 (conté Z).", "solucion": "onze", "materia": "valenciano" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "12 (conté Z).", "solucion": "dotze", "materia": "valenciano" },
-  { "id": "z6", "letra": "Z", "tipo": "contiene", "definicion": "13 (conté Z).", "solucion": "tretze", "materia": "valenciano" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "14 (conté Z).", "solucion": "catorze", "materia": "valenciano" },
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "15 (conté Z).", "solucion": "quinze", "materia": "valenciano" },
-  { "id": "z9", "letra": "Z", "tipo": "contiene", "definicion": "16 (conté Z).", "solucion": "setze", "materia": "valenciano" },
-  { "id": "z10", "letra": "Z", "tipo": "empieza", "definicion": "Teatre musical.", "solucion": "sarsuela", "materia": "valenciano" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Paraula que acompanya el nom i concorda en gènere i nombre (Adjectiu, Article...).",
+    "solucion": "adjectiu",
+    "materia": "valenciano"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Paraula amb l'accent en l'última síl·laba.",
+    "solucion": "aguda",
+    "materia": "valenciano"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Signe gràfic (´ o `) sobre la vocal tònica.",
+    "solucion": "accent",
+    "materia": "valenciano"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Signe (') que indica l'elisió d'una vocal.",
+    "solucion": "apòstrof",
+    "materia": "valenciano"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Conjunt de lletres d'una llengua.",
+    "solucion": "alfabet",
+    "materia": "valenciano"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Paraula de significat oposat.",
+    "solucion": "antònim",
+    "materia": "valenciano"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Part invariable d'una paraula (Lexema).",
+    "solucion": "arrel",
+    "materia": "valenciano"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Determinant que presenta el nom (el, la, els, les).",
+    "solucion": "article",
+    "materia": "valenciano"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Paraula invariable que modifica el verb.",
+    "solucion": "adverbi",
+    "materia": "valenciano"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Recurs de repetició de sons.",
+    "solucion": "al·literació",
+    "materia": "valenciano"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Lloc de préstec de llibres.",
+    "solucion": "biblioteca",
+    "materia": "valenciano"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Relat de la vida d'una persona.",
+    "solucion": "biografia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Globus de text en un còmic.",
+    "solucion": "bafarada",
+    "materia": "valenciano"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Persona que parla dues llengües.",
+    "solucion": "bilingüe",
+    "materia": "valenciano"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Primera redacció provisional d'un text.",
+    "solucion": "borrador",
+    "materia": "valenciano"
+  },
+  {
+    "id": "b5_fix",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Grup de versos en un poema (estrofa, sovint es diu...).",
+    "solucion": "bloc",
+    "materia": "valenciano"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Contrari de roín.",
+    "solucion": "bo",
+    "materia": "valenciano"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Orifici per on mengem i parlem.",
+    "solucion": "boca",
+    "materia": "valenciano"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Qualitat d'allò que és bell.",
+    "solucion": "bellesa",
+    "materia": "valenciano"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Extensió de terreny poblada d'arbres.",
+    "solucion": "bosc",
+    "materia": "valenciano"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Peça de roba de feina.",
+    "solucion": "bata",
+    "materia": "valenciano"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Narració breu fictícia.",
+    "solucion": "conte",
+    "materia": "valenciano"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Intercanvi de missatges.",
+    "solucion": "comunicació",
+    "materia": "valenciano"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Mitjà de transmissió del missatge.",
+    "solucion": "canal",
+    "materia": "valenciano"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Sistema de signes.",
+    "solucion": "codi",
+    "materia": "valenciano"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Obra de teatre d'humor.",
+    "solucion": "comèdia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Recurs literari (Símil).",
+    "solucion": "comparació",
+    "materia": "valenciano"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Fonema que no és vocal.",
+    "solucion": "consonant",
+    "materia": "valenciano"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Paraula formada per dos lexemes.",
+    "solucion": "composta",
+    "materia": "valenciano"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Història en vinyetes.",
+    "solucion": "còmic",
+    "materia": "valenciano"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Llistat de formes verbals.",
+    "solucion": "conjugació",
+    "materia": "valenciano"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Llibre de definicions.",
+    "solucion": "diccionari",
+    "materia": "valenciano"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Grup de dues vocals en una síl·laba.",
+    "solucion": "diftong",
+    "materia": "valenciano"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Dos punts sobre la ï o la ü.",
+    "solucion": "dièresi",
+    "materia": "valenciano"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Paraula que acompanya i concreta el nom.",
+    "solucion": "determinant",
+    "materia": "valenciano"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Text que explica com és alguna cosa.",
+    "solucion": "descripció",
+    "materia": "valenciano"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Conversa entre persones.",
+    "solucion": "diàleg",
+    "materia": "valenciano"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Part final d'una narració.",
+    "solucion": "desenllaç",
+    "materia": "valenciano"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Creació de paraules amb afixos.",
+    "solucion": "derivació",
+    "materia": "valenciano"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Pronoms àtons (em, et, es...).",
+    "solucion": "debils",
+    "materia": "valenciano"
+  },
+  {
+    "id": "d9_fix",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Pronoms que no tenen accent tònic (Febles o...).",
+    "solucion": "dèbils",
+    "materia": "valenciano"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Varietat geogràfica d'una llengua.",
+    "solucion": "dialecte",
+    "materia": "valenciano"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Qui emet el missatge.",
+    "solucion": "emissor",
+    "materia": "valenciano"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Paraula amb l'accent en l'antepenúltima síl·laba.",
+    "solucion": "esdrúixola",
+    "materia": "valenciano"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Conjunt de versos.",
+    "solucion": "estrofa",
+    "materia": "valenciano"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Text de preguntes i respostes.",
+    "solucion": "entrevista",
+    "materia": "valenciano"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Manera pròpia d'escriure.",
+    "solucion": "estil",
+    "materia": "valenciano"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Supressió d'una vocal (l'el...).",
+    "solucion": "elisió",
+    "materia": "valenciano"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Unitat de comunicació.",
+    "solucion": "enunciat",
+    "materia": "valenciano"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Signes ¡!.",
+    "solucion": "exclamació",
+    "materia": "valenciano"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Primer esborrany.",
+    "solucion": "esborrany",
+    "materia": "valenciano"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Poema narratiu llarg sobre herois.",
+    "solucion": "epopeia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Conte amb animals i moralitat.",
+    "solucion": "faula",
+    "materia": "valenciano"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Objectiu comunicatiu (Funció...).",
+    "solucion": "funció",
+    "materia": "valenciano"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Invenció literària.",
+    "solucion": "ficció",
+    "materia": "valenciano"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Temps verbal posterior.",
+    "solucion": "futur",
+    "materia": "valenciano"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Grup de paraules derivades (Família...).",
+    "solucion": "familia lexica",
+    "materia": "valenciano"
+  },
+  {
+    "id": "f5_fix",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Conjunt de paraules amb la mateixa arrel (Família...).",
+    "solucion": "família",
+    "materia": "valenciano"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Text publicitari breu.",
+    "solucion": "fullet",
+    "materia": "valenciano"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Unitat de so.",
+    "solucion": "fonema",
+    "materia": "valenciano"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Desenllaç.",
+    "solucion": "final",
+    "materia": "valenciano"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Enunciat sense verb o amb sentit complet.",
+    "solucion": "frase",
+    "materia": "valenciano"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Gènere gramatical (dona).",
+    "solucion": "femení",
+    "materia": "valenciano"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Categoria literària (Gènere...).",
+    "solucion": "gènere",
+    "materia": "valenciano"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Intensitat de l'adjectiu.",
+    "solucion": "grau",
+    "materia": "valenciano"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Signe ortogràfic (-).",
+    "solucion": "guionet",
+    "materia": "valenciano"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Nom de l'habitant d'un lloc.",
+    "solucion": "gentilici",
+    "materia": "valenciano"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Estudi de la llengua.",
+    "solucion": "gramàtica",
+    "materia": "valenciano"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Llista de termes.",
+    "solucion": "glossari",
+    "materia": "valenciano"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Préstec del francès.",
+    "solucion": "gal·licisme",
+    "materia": "valenciano"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Forma verbal acabada en -ant, -ent.",
+    "solucion": "gerundi",
+    "materia": "valenciano"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Lletra ela geminada (l·l).",
+    "solucion": "geminada",
+    "materia": "valenciano"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Representació d'un so per escrit.",
+    "solucion": "grafia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Vocals juntes en síl·labes distintes.",
+    "solucion": "hiat",
+    "materia": "valenciano"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Protagonista valent.",
+    "solucion": "heroi",
+    "materia": "valenciano"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Exageració.",
+    "solucion": "hipèrbole",
+    "materia": "valenciano"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Paraules que s'escriuen igual amb diferent significat.",
+    "solucion": "homònimes",
+    "materia": "valenciano"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Còmic breu.",
+    "solucion": "historieta",
+    "materia": "valenciano"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Lletra muda.",
+    "solucion": "hac",
+    "materia": "valenciano"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Composició solemne.",
+    "solucion": "himne",
+    "materia": "valenciano"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Paraula inclosa en una categoria.",
+    "solucion": "hipònim",
+    "materia": "valenciano"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Paraula que engloba altres.",
+    "solucion": "hiperònim",
+    "materia": "valenciano"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Relat del passat o narració.",
+    "solucion": "història",
+    "materia": "valenciano"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Forma verbal base.",
+    "solucion": "infinitiu",
+    "materia": "valenciano"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Pregunta.",
+    "solucion": "interrogació",
+    "materia": "valenciano"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Dir el contrari del que es pensa.",
+    "solucion": "ironia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Mode de l'ordre.",
+    "solucion": "imperatiu",
+    "materia": "valenciano"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Mode de la realitat.",
+    "solucion": "indicatiu",
+    "materia": "valenciano"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Inici d'un text.",
+    "solucion": "introducció",
+    "materia": "valenciano"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Quantitat imprecisa (Algun, cap...).",
+    "solucion": "indefinit",
+    "materia": "valenciano"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Exclamació (Ai!, Oh!).",
+    "solucion": "interjecció",
+    "materia": "valenciano"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Foto o dibuix.",
+    "solucion": "imatge",
+    "materia": "valenciano"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Taula de continguts.",
+    "solucion": "índex",
+    "materia": "valenciano"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Llenguatge específic (Argot).",
+    "solucion": "jerga",
+    "materia": "valenciano"
+  },
+  {
+    "id": "j1_fix",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Recull de normes.",
+    "solucion": "joc",
+    "materia": "valenciano"
+  },
+  {
+    "id": "j1_final",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Activitat lúdica.",
+    "solucion": "joc",
+    "materia": "valenciano"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Artista medieval.",
+    "solucion": "joglar",
+    "materia": "valenciano"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Literatura per a joves.",
+    "solucion": "juvenil",
+    "materia": "valenciano"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Lletra J.",
+    "solucion": "jota",
+    "materia": "valenciano"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Persona que jutja.",
+    "solucion": "jutge",
+    "materia": "valenciano"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Donar raons.",
+    "solucion": "justificar",
+    "materia": "valenciano"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Punt d'unió.",
+    "solucion": "juntura",
+    "materia": "valenciano"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Dia de treball.",
+    "solucion": "jornada",
+    "materia": "valenciano"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Zona verda.",
+    "solucion": "jardí",
+    "materia": "valenciano"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Mes d'estiu.",
+    "solucion": "juliol",
+    "materia": "valenciano"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "1000 metres.",
+    "solucion": "kilo",
+    "materia": "valenciano"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Fruita.",
+    "solucion": "kiwi",
+    "materia": "valenciano"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Art marcial.",
+    "solucion": "karate",
+    "materia": "valenciano"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Venda de premsa.",
+    "solucion": "kilo",
+    "materia": "valenciano"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unitat de pes.",
+    "solucion": "kilo",
+    "materia": "valenciano"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Destí.",
+    "solucion": "karma",
+    "materia": "valenciano"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Salsa de tomaca.",
+    "solucion": "kètxup",
+    "materia": "valenciano"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Marsupial.",
+    "solucion": "koala",
+    "materia": "valenciano"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Lletra K.",
+    "solucion": "kilo",
+    "materia": "valenciano"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Canoa.",
+    "solucion": "kilo",
+    "materia": "valenciano"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Idioma.",
+    "solucion": "llengua",
+    "materia": "valenciano"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Art escrit.",
+    "solucion": "literatura",
+    "materia": "valenciano"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Poesia emotiva.",
+    "solucion": "lírica",
+    "materia": "valenciano"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Narració fantàstica.",
+    "solucion": "llegenda",
+    "materia": "valenciano"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Arrel.",
+    "solucion": "lexema",
+    "materia": "valenciano"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Volum per a llegir.",
+    "solucion": "llibre",
+    "materia": "valenciano"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Signe alfabètic.",
+    "solucion": "lletra",
+    "materia": "valenciano"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Llegir.",
+    "solucion": "lectura",
+    "materia": "valenciano"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Conjunt de paraules.",
+    "solucion": "lèxic",
+    "materia": "valenciano"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Paraula pròpia d'un lloc.",
+    "solucion": "localisme",
+    "materia": "valenciano"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Lletra gran.",
+    "solucion": "majúscula",
+    "materia": "valenciano"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Una síl·laba.",
+    "solucion": "monosíl·laba",
+    "materia": "valenciano"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Gènere (home).",
+    "solucion": "masculí",
+    "materia": "valenciano"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Comparació irreal.",
+    "solucion": "metàfora",
+    "materia": "valenciano"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Informació.",
+    "solucion": "missatge",
+    "materia": "valenciano"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Relat de déus.",
+    "solucion": "mite",
+    "materia": "valenciano"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Indicatiu, Subjuntiu...",
+    "solucion": "mode",
+    "materia": "valenciano"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Mètrica del vers.",
+    "solucion": "mesura",
+    "materia": "valenciano"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Unitat gramatical mínima.",
+    "solucion": "morfema",
+    "materia": "valenciano"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Parla un sol personatge.",
+    "solucion": "monòleg",
+    "materia": "valenciano"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Substantiu.",
+    "solucion": "nom",
+    "materia": "valenciano"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "La veu que conta.",
+    "solucion": "narrador",
+    "materia": "valenciano"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Narració llarga.",
+    "solucion": "novel·la",
+    "materia": "valenciano"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Text periodístic.",
+    "solucion": "notícia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Singular/Plural.",
+    "solucion": "nombre",
+    "materia": "valenciano"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Part central del sintagma.",
+    "solucion": "nucli",
+    "materia": "valenciano"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Gènere de relats.",
+    "solucion": "narrativa",
+    "materia": "valenciano"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Part central de la trama.",
+    "solucion": "nus",
+    "materia": "valenciano"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Escrit curt.",
+    "solucion": "nota",
+    "materia": "valenciano"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Dir no.",
+    "solucion": "negació",
+    "materia": "valenciano"
+  },
+  {
+    "id": "ñ1",
+    "letra": "NY",
+    "tipo": "contiene",
+    "definicion": "Tractament de respecte (conté NY).",
+    "solucion": "senyor",
+    "materia": "valenciano"
+  },
+  {
+    "id": "ñ2",
+    "letra": "NY",
+    "tipo": "contiene",
+    "definicion": "Amic (conté NY).",
+    "solucion": "company",
+    "materia": "valenciano"
+  },
+  {
+    "id": "ñ3",
+    "letra": "NY",
+    "tipo": "contiene",
+    "definicion": "365 dies (conté NY).",
+    "solucion": "any",
+    "materia": "valenciano"
+  },
+  {
+    "id": "ñ4",
+    "letra": "NY",
+    "tipo": "contiene",
+    "definicion": "Quadre de còmic (conté NY).",
+    "solucion": "vinyeta",
+    "materia": "valenciano"
+  },
+  {
+    "id": "ñ5",
+    "letra": "NY",
+    "tipo": "contiene",
+    "definicion": "Elevació de terra (conté NY).",
+    "solucion": "muntanya",
+    "materia": "valenciano"
+  },
+  {
+    "id": "ñ6",
+    "letra": "NY",
+    "tipo": "contiene",
+    "definicion": "Indici (conté NY).",
+    "solucion": "senyal",
+    "materia": "valenciano"
+  },
+  {
+    "id": "ñ7",
+    "letra": "NY",
+    "tipo": "contiene",
+    "definicion": "Educació (conté NY).",
+    "solucion": "ensenyament",
+    "materia": "valenciano"
+  },
+  {
+    "id": "ñ8",
+    "letra": "NY",
+    "tipo": "contiene",
+    "definicion": "Lavabo (conté NY).",
+    "solucion": "bany",
+    "materia": "valenciano"
+  },
+  {
+    "id": "ñ9",
+    "letra": "NY",
+    "tipo": "contiene",
+    "definicion": "Fruit sec (conté NY).",
+    "solucion": "castanya",
+    "materia": "valenciano"
+  },
+  {
+    "id": "ñ10",
+    "letra": "NY",
+    "tipo": "contiene",
+    "definicion": "Mà tancada (conté NY).",
+    "solucion": "puny",
+    "materia": "valenciano"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Frase amb sentit.",
+    "solucion": "oració",
+    "materia": "valenciano"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Escriptura correcta.",
+    "solucion": "ortografia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "No escrit.",
+    "solucion": "oral",
+    "materia": "valenciano"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Poema de lloança.",
+    "solucion": "oda",
+    "materia": "valenciano"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "So escrit.",
+    "solucion": "onomatopeia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Complement (CD/CI).",
+    "solucion": "objecte",
+    "materia": "valenciano"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Punt de vista.",
+    "solucion": "opinió",
+    "materia": "valenciano"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Organització.",
+    "solucion": "ordre",
+    "materia": "valenciano"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Llibre o creació.",
+    "solucion": "obra",
+    "materia": "valenciano"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Receptor oral.",
+    "solucion": "oient",
+    "materia": "valenciano"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Accent en la penúltima (Paraula...).",
+    "solucion": "plana",
+    "materia": "valenciano"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Part verbal de l'oració.",
+    "solucion": "predicat",
+    "materia": "valenciano"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Substitut del nom.",
+    "solucion": "pronom",
+    "materia": "valenciano"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Enllaç (a, en, amb...).",
+    "solucion": "preposició",
+    "materia": "valenciano"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Art en vers.",
+    "solucion": "poesia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Text poètic.",
+    "solucion": "poema",
+    "materia": "valenciano"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Ésser d'una obra.",
+    "solucion": "personatge",
+    "materia": "valenciano"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Personatge principal.",
+    "solucion": "protagonista",
+    "materia": "valenciano"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Molts significats.",
+    "solucion": "polisèmia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Mot.",
+    "solucion": "paraula",
+    "materia": "valenciano"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Relatiu o conjunció.",
+    "solucion": "que",
+    "materia": "valenciano"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Interrogatiu persona.",
+    "solucion": "qui",
+    "materia": "valenciano"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Obra de Cervantes.",
+    "solucion": "quixot",
+    "materia": "valenciano"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Llibreta.",
+    "solucion": "quadern",
+    "materia": "valenciano"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Full de paper.",
+    "solucion": "quartilla",
+    "materia": "valenciano"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Causa (conté Q).",
+    "solucion": "perquè",
+    "materia": "valenciano"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Resum (Es..., conté Q).",
+    "solucion": "esquema",
+    "materia": "valenciano"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Conjunt de fulls (conté Q).",
+    "solucion": "queso",
+    "materia": "valenciano"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Adhesiu amb nom (conté Q).",
+    "solucion": "etiqueta",
+    "materia": "valenciano"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Informal (conté Q).",
+    "solucion": "col·loquial",
+    "materia": "valenciano"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "So final igual.",
+    "solucion": "rima",
+    "materia": "valenciano"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Destinatari.",
+    "solucion": "receptor",
+    "materia": "valenciano"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Lexema.",
+    "solucion": "radiculas",
+    "materia": "valenciano"
+  },
+  {
+    "id": "r3_fix",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Poema narratiu.",
+    "solucion": "romanç",
+    "materia": "valenciano"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Musicalitat.",
+    "solucion": "ritme",
+    "materia": "valenciano"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Moviment literari fidel a la realitat.",
+    "solucion": "realisme",
+    "materia": "valenciano"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Escriure.",
+    "solucion": "redacció",
+    "materia": "valenciano"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Síntesi.",
+    "solucion": "resum",
+    "materia": "valenciano"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Norma.",
+    "solucion": "regla",
+    "materia": "valenciano"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Eina literària.",
+    "solucion": "recurs",
+    "materia": "valenciano"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Dita popular.",
+    "solucion": "refrany",
+    "materia": "valenciano"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Qui fa l'acció.",
+    "solucion": "subjecte",
+    "materia": "valenciano"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Nom.",
+    "solucion": "substantiu",
+    "materia": "valenciano"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Igual significat.",
+    "solucion": "sinònim",
+    "materia": "valenciano"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Cop de veu.",
+    "solucion": "síl·laba",
+    "materia": "valenciano"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Accent abans de l'antepenúltima.",
+    "solucion": "sobreesdrúixola",
+    "materia": "valenciano"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Morfema final.",
+    "solucion": "sufix",
+    "materia": "valenciano"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Un sol element.",
+    "solucion": "singular",
+    "materia": "valenciano"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Poema 14 versos.",
+    "solucion": "sonet",
+    "materia": "valenciano"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Comparació.",
+    "solucion": "símil",
+    "materia": "valenciano"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Abreviatura (ONU).",
+    "solucion": "sigla",
+    "materia": "valenciano"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Conjunt de frases.",
+    "solucion": "text",
+    "materia": "valenciano"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Accent gràfic (Tit...).",
+    "solucion": "titla",
+    "materia": "valenciano"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Gènere dramàtic.",
+    "solucion": "teatre",
+    "materia": "valenciano"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Obra trista.",
+    "solucion": "tragèdia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Passat/Present/Futur.",
+    "solucion": "temps",
+    "materia": "valenciano"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Nom de l'obra.",
+    "solucion": "títol",
+    "materia": "valenciano"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Argument.",
+    "solucion": "trama",
+    "materia": "valenciano"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Tema principal.",
+    "solucion": "tema",
+    "materia": "valenciano"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Desinència final.",
+    "solucion": "terminació",
+    "materia": "valenciano"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "De tres síl·labes.",
+    "solucion": "trisíl·laba",
+    "materia": "valenciano"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Sílaba final.",
+    "solucion": "última",
+    "materia": "valenciano"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Empra.",
+    "solucion": "ús",
+    "materia": "valenciano"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Element.",
+    "solucion": "unitat",
+    "materia": "valenciano"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Pressa.",
+    "solucion": "urgència",
+    "materia": "valenciano"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Sol en la seva espècie.",
+    "solucion": "únic",
+    "materia": "valenciano"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Connexió.",
+    "solucion": "unió",
+    "materia": "valenciano"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "1.",
+    "solucion": "un",
+    "materia": "valenciano"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Tractament formal.",
+    "solucion": "un",
+    "materia": "valenciano"
+  },
+  {
+    "id": "u8_fix",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Societat ideal.",
+    "solucion": "utopia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Fer servir.",
+    "solucion": "utilitzar",
+    "materia": "valenciano"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Ulleres (variant).",
+    "solucion": "ulleres",
+    "materia": "valenciano"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Paraula d'acció.",
+    "solucion": "verb",
+    "materia": "valenciano"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Línia poètica.",
+    "solucion": "vers",
+    "materia": "valenciano"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "A, E, I, O, U.",
+    "solucion": "vocal",
+    "materia": "valenciano"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Conjunt de mots.",
+    "solucion": "vocabulari",
+    "materia": "valenciano"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Tipus de llengua.",
+    "solucion": "varietat",
+    "materia": "valenciano"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Paraula incorrecta.",
+    "solucion": "vulgarisme",
+    "materia": "valenciano"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Activa o passiva.",
+    "solucion": "veu",
+    "materia": "valenciano"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Relatiu al verb.",
+    "solucion": "verbal",
+    "materia": "valenciano"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Cançó de Nadal (en castellà Villancico, en valencià...).",
+    "solucion": "villancet",
+    "materia": "valenciano"
+  },
+  {
+    "id": "v9_fix",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Desplaçament.",
+    "solucion": "viatge",
+    "materia": "valenciano"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Cert.",
+    "solucion": "veritat",
+    "materia": "valenciano"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Pàgina d'internet.",
+    "solucion": "web",
+    "materia": "valenciano"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Xarxa sense fils.",
+    "solucion": "wifi",
+    "materia": "valenciano"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Enciclopèdia lliure (conté W).",
+    "solucion": "wikipedia",
+    "materia": "valenciano"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Aplicació de xat.",
+    "solucion": "whatsapp",
+    "materia": "valenciano"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Pel·lícula de l'oest.",
+    "solucion": "western",
+    "materia": "valenciano"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Entrepà (conté W).",
+    "solucion": "sandwich",
+    "materia": "valenciano"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Fruita (conté W).",
+    "solucion": "kiwi",
+    "materia": "valenciano"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Components físics PC (conté W).",
+    "solucion": "hardware",
+    "materia": "valenciano"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Programes PC (conté W).",
+    "solucion": "software",
+    "materia": "valenciano"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Espectacle (conté W).",
+    "solucion": "show",
+    "materia": "valenciano"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Escrit (conté X).",
+    "solucion": "text",
+    "materia": "valenciano"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Entorn (conté X).",
+    "solucion": "context",
+    "materia": "valenciano"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Paraules (conté X).",
+    "solucion": "lèxic",
+    "materia": "valenciano"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Ordre gramatical (conté X).",
+    "solucion": "sintaxi",
+    "materia": "valenciano"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Abans de l'arrel (conté X).",
+    "solucion": "prefix",
+    "materia": "valenciano"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Unió (conté X).",
+    "solucion": "nexe",
+    "materia": "valenciano"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Darrere de l'arrel (conté X).",
+    "solucion": "sufix",
+    "materia": "valenciano"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Manifestació (conté X).",
+    "solucion": "expressió",
+    "materia": "valenciano"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Presentació (conté X).",
+    "solucion": "exposició",
+    "materia": "valenciano"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Prova (conté X).",
+    "solucion": "examen",
+    "materia": "valenciano"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Joguet.",
+    "solucion": "yoyó",
+    "materia": "valenciano"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "365 dies (conté Y).",
+    "solucion": "any",
+    "materia": "valenciano"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Muntanya (conté Y).",
+    "solucion": "muntanya",
+    "materia": "valenciano"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "País (conté Y).",
+    "solucion": "espanya",
+    "materia": "valenciano"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Amic (conté Y).",
+    "solucion": "company",
+    "materia": "valenciano"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Indici (conté Y).",
+    "solucion": "senyal",
+    "materia": "valenciano"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Docència (conté Y).",
+    "solucion": "ensenyament",
+    "materia": "valenciano"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Lavabo (conté Y).",
+    "solucion": "bany",
+    "materia": "valenciano"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Fruit (conté Y).",
+    "solucion": "castanya",
+    "materia": "valenciano"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Per al nas (conté Y).",
+    "solucion": "espacios y lineas",
+    "materia": "valenciano"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Res.",
+    "solucion": "zero",
+    "materia": "valenciano"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Animal.",
+    "solucion": "zebra",
+    "materia": "valenciano"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Àrea.",
+    "solucion": "zona",
+    "materia": "valenciano"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "11 (conté Z).",
+    "solucion": "onze",
+    "materia": "valenciano"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "12 (conté Z).",
+    "solucion": "dotze",
+    "materia": "valenciano"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "13 (conté Z).",
+    "solucion": "tretze",
+    "materia": "valenciano"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "14 (conté Z).",
+    "solucion": "catorze",
+    "materia": "valenciano"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "15 (conté Z).",
+    "solucion": "quinze",
+    "materia": "valenciano"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "16 (conté Z).",
+    "solucion": "setze",
+    "materia": "valenciano"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Teatre musical.",
+    "solucion": "zoologia",
+    "materia": "valenciano"
+  }
 ]

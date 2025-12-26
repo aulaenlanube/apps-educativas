@@ -1,0 +1,1511 @@
+{
+  "titulo": "Material de Estudio - Fisica - 4º ESO",
+  "introduccion": "Repasa este vocabulario de Fisica para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "aceleración",
+          "definicion": "Variación de la velocidad por unidad de tiempo.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "átomo",
+          "definicion": "Partícula más pequeña de un elemento químico.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "anión",
+          "definicion": "Ion con carga negativa.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "arquímedes",
+          "definicion": "Científico griego que enunció el principio de empuje en fluidos.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "amperio",
+          "definicion": "Unidad de intensidad de corriente eléctrica.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "ácido",
+          "definicion": "Sustancia que en disolución libera protones (H+).",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "alquino",
+          "definicion": "Hidrocarburo con enlace triple.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "ajuste",
+          "definicion": "Proceso de igualar el número de átomos en una reacción química.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "alcohol",
+          "definicion": "Compuesto orgánico que contiene el grupo hidroxilo (-OH).",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "atmósfera",
+          "definicion": "Capa gaseosa que rodea la Tierra y ejerce presión.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "bohr",
+          "definicion": "Científico que propuso el modelo atómico de órbitas cuantizadas.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "barómetro",
+          "definicion": "Instrumento para medir la presión atmosférica.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "base",
+          "definicion": "Sustancia que acepta protones o libera OH- (pH > 7).",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "butano",
+          "definicion": "Hidrocarburo de 4 carbonos usado como combustible.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "balanza",
+          "definicion": "Instrumento para medir la masa.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "benceno",
+          "definicion": "Hidrocarburo aromático de fórmula C6H6.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "biomasa",
+          "definicion": "Materia orgánica utilizada como fuente de energía.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "batería",
+          "definicion": "Dispositivo que almacena energía química para generar electricidad.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bobina",
+          "definicion": "Componente de un circuito formado por hilo enrollado (Inductor).",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bromo",
+          "definicion": "Elemento químico halógeno, líquido a temperatura ambiente (Br).",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "cinética",
+          "definicion": "Energía asociada al movimiento de los cuerpos.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "covalente",
+          "definicion": "Tipo de enlace químico donde se comparten electrones.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "carbono",
+          "definicion": "Elemento principal de la química orgánica.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "culombio",
+          "definicion": "Unidad de carga eléctrica.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "catalizador",
+          "definicion": "Sustancia que acelera una reacción química sin consumirse.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "concentración",
+          "definicion": "Cantidad de soluto por unidad de disolución.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "conducción",
+          "definicion": "Transferencia de calor por contacto directo.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "caída",
+          "definicion": "Movimiento vertical bajo la acción exclusiva de la gravedad (... libre).",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "circuito",
+          "definicion": "Camino cerrado por donde circula la corriente eléctrica.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "condensación",
+          "definicion": "Cambio de estado de gas a líquido.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "dinámica",
+          "definicion": "Parte de la física que estudia las fuerzas y sus efectos.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "densidad",
+          "definicion": "Relación entre la masa y el volumen de un cuerpo.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "desplazamiento",
+          "definicion": "Vector que une la posición inicial con la final.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dalton",
+          "definicion": "Científico que formuló la primera teoría atómica moderna.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dilatación",
+          "definicion": "Aumento de volumen de un cuerpo por el calor.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "disolución",
+          "definicion": "Mezcla homogénea de dos o más sustancias.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "destilación",
+          "definicion": "Método de separación de líquidos con diferentes puntos de ebullición.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "deuterio",
+          "definicion": "Isótopo del hidrógeno con un protón y un neutrón.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "diamante",
+          "definicion": "Forma alotrópica del carbono, material muy duro.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dina",
+          "definicion": "Unidad de fuerza en el sistema CGS.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "energía",
+          "definicion": "Capacidad de un sistema para realizar un trabajo.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "electrón",
+          "definicion": "Partícula subatómica con carga negativa.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "enlace",
+          "definicion": "Fuerza que mantiene unidos a los átomos.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "estequiometría",
+          "definicion": "Cálculo de las relaciones cuantitativas en reacciones químicas.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "ecuación",
+          "definicion": "Representación matemática de una reacción química.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "elástica",
+          "definicion": "Energía potencial almacenada en un muelle estirado.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "eléctrica",
+          "definicion": "Energía asociada a las cargas en movimiento.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "espacio",
+          "definicion": "Lugar que ocupa un cuerpo.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "ebullición",
+          "definicion": "Cambio de estado de líquido a gas en toda la masa.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "endotérmica",
+          "definicion": "Reacción química que absorbe calor.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "fuerza",
+          "definicion": "Magnitud vectorial que mide la interacción entre cuerpos.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "frecuencia",
+          "definicion": "Número de oscilaciones por segundo.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fricción",
+          "definicion": "Fuerza que se opone al movimiento entre superficies.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fusión",
+          "definicion": "Cambio de estado de sólido a líquido o reacción nuclear de unión.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fórmula",
+          "definicion": "Representación de la composición de una sustancia (ej. H2O).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fotón",
+          "definicion": "Partícula portadora de la luz.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "faraday",
+          "definicion": "Científico que descubrió la inducción electromagnética.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fluido",
+          "definicion": "Sustancia que puede fluir (líquidos y gases).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fisión",
+          "definicion": "Reacción nuclear de ruptura de núcleos pesados.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fuente",
+          "definicion": "Origen de energía (ej. renovable).",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "gravedad",
+          "definicion": "Fuerza de atracción entre masas.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gas",
+          "definicion": "Estado de la materia sin forma ni volumen fijo.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gramo",
+          "definicion": "Unidad de masa.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grupo",
+          "definicion": "Columna vertical de la tabla periódica.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "generador",
+          "definicion": "Dispositivo que convierte energía mecánica en eléctrica.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grafito",
+          "definicion": "Forma alotrópica del carbono conductora de electricidad.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "giga",
+          "definicion": "Unidad de energía equivalente a mil millones de julios (G...).",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gay-lussac",
+          "definicion": "Científico que formuló la ley de los volúmenes de combinación de gases.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "geo",
+          "definicion": "Energía interna de la Tierra (...térmica).",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "galaxia",
+          "definicion": "Agrupación enorme de estrellas.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hidrógeno",
+          "definicion": "Primer elemento de la tabla periódica.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "helio",
+          "definicion": "Gas noble usado en globos.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hercio",
+          "definicion": "Unidad de frecuencia.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hooke",
+          "definicion": "Científico que formuló la ley de la elasticidad.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hidrostática",
+          "definicion": "Parte de la física que estudia los fluidos en reposo.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hidruro",
+          "definicion": "Compuesto binario de hidrógeno y metal.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hidróxido",
+          "definicion": "Compuesto ternario con grupo OH (Base).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "homogénea",
+          "definicion": "Mezcla uniforme en sus propiedades.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "heterogénea",
+          "definicion": "Mezcla con componentes distinguibles.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hipótesis",
+          "definicion": "Suposición inicial en el método científico.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "inercia",
+          "definicion": "Resistencia de un cuerpo a cambiar su estado de movimiento.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "ion",
+          "definicion": "Átomo con carga eléctrica neta.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "isótopo",
+          "definicion": "Átomo del mismo elemento con diferente número de neutrones.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "iónico",
+          "definicion": "Enlace químico basado en la atracción electrostática.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "intensidad",
+          "definicion": "Cantidad de carga eléctrica que circula por unidad de tiempo.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "imán",
+          "definicion": "Material que genera un campo magnético.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "imagen",
+          "definicion": "Figura formada por un espejo o lente.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "incertidumbre",
+          "definicion": "Principio cuántico de Heisenberg.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inoxidable",
+          "definicion": "Tipo de acero resistente a la corrosión.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "indicador",
+          "definicion": "Sustancia que cambia de color según el pH.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "julio",
+          "definicion": "Unidad de energía en el Sistema Internacional.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "joule",
+          "definicion": "Físico inglés que estudió el calor (James Prescott...).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "júpiter",
+          "definicion": "Planeta más grande del Sistema Solar.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jabón",
+          "definicion": "Sustancia de limpieza obtenida por saponificación.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jeringa",
+          "definicion": "Instrumento de laboratorio para medir volúmenes (Jeringa).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jaula",
+          "definicion": "Recinto que protege de campos eléctricos (Jaula de Faraday).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "junta",
+          "definicion": "Elemento de unión en tuberías.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jerarquía",
+          "definicion": "Orden de prioridad en las operaciones (matemáticas en física).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jade",
+          "definicion": "Mineral verde muy duro.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "joliot",
+          "definicion": "Científica hija de Marie Curie (Irène ...-Curie).",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "kelvin",
+          "definicion": "Unidad de temperatura absoluta.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilogramo",
+          "definicion": "Unidad básica de masa en el SI.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilómetro",
+          "definicion": "Mil metros.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilo",
+          "definicion": "Prefijo que significa mil.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kepler",
+          "definicion": "Astrónomo que describió las leyes del movimiento planetario.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kriptón",
+          "definicion": "Gas noble de número atómico 36.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilovatio",
+          "definicion": "Unidad de potencia eléctrica (contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "k",
+          "definicion": "Símbolo químico del Potasio.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "k",
+          "definicion": "Hidrocarburo con enlace triple (Al...ino, contiene K? No, Q. Alquino). Error. Vamos con: Parte de la física del movimiento (Cinética, suena K). No, contiene K: 'Elektro...inética' (No). Mejor: Símbolo de la constante de equilibrio.",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kilogramo",
+          "definicion": "Energía del movimiento (Cinética, en inglés Kinetic, contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kilogramo",
+          "definicion": "Medida de la pureza del oro (contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "sklodowska",
+          "definicion": "Partícula elemental (Quar... contiene K? No, Q). Nombre de pila de la científica Curie (contiene K? Marie SklodowsKa).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kefir",
+          "definicion": "Bebida fermentada (Kéfir, contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kinetic",
+          "definicion": "Energía del movimiento (en inglés).",
+          "pista": "Empieza por K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "litio",
+          "definicion": "Elemento químico alcalino (Li).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "líquido",
+          "definicion": "Estado de la materia con volumen constante pero forma variable.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "ley",
+          "definicion": "Enunciado científico comprobado experimentalmente.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "luz",
+          "definicion": "Radiación electromagnética visible.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "longitud",
+          "definicion": "Magnitud fundamental que mide la distancia.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "laboratorio",
+          "definicion": "Lugar de experimentación.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lente",
+          "definicion": "Objeto transparente que refracta la luz.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "láser",
+          "definicion": "Luz amplificada por emisión estimulada de radiación.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "latón",
+          "definicion": "Aleación de cobre y zinc.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lavoisier",
+          "definicion": "Padre de la química moderna.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "masa",
+          "definicion": "Cantidad de materia de un cuerpo.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "materia",
+          "definicion": "Todo lo que ocupa espacio y tiene masa.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mol",
+          "definicion": "Unidad de cantidad de sustancia.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "molécula",
+          "definicion": "Agrupación definida de átomos.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "metal",
+          "definicion": "Elemento con brillo y buen conductor.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "movimiento",
+          "definicion": "Cambio de posición.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mecánica",
+          "definicion": "Rama de la física que estudia el movimiento y las fuerzas.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mezcla",
+          "definicion": "Combinación física de sustancias.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mendeleiev",
+          "definicion": "Químico ruso creador de la tabla periódica.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mercurio",
+          "definicion": "Metal líquido a temperatura ambiente (Hg).",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "neutrón",
+          "definicion": "Partícula nuclear sin carga.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "núcleo",
+          "definicion": "Centro del átomo.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "newton",
+          "definicion": "Unidad de fuerza.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nivel",
+          "definicion": "Capa energética de los electrones (... de energía).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "número",
+          "definicion": "Cantidad de protones (Número atómico).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "noble",
+          "definicion": "Gas inerte del grupo 18.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nube",
+          "definicion": "Zona de probabilidad de encontrar un electrón (... electrónica).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "normal",
+          "definicion": "Fuerza perpendicular a la superficie de contacto.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nitrógeno",
+          "definicion": "Gas mayoritario en el aire.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nomenclatura",
+          "definicion": "Sistema de reglas para nombrar compuestos.",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "año",
+          "definicion": "Distancia que recorre la luz en un año (... luz, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "daño",
+          "definicion": "Efecto perjudicial en materiales (Da...o, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "pequeño",
+          "definicion": "De tamaño reducido (Peque...o, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "tamaño",
+          "definicion": "Dimensión de un objeto (Tama...o, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "señal",
+          "definicion": "Onda electromagnética portadora de información (Se...al, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "montaña",
+          "definicion": "Gráfico de relieve (Monta...a en gráfica, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "baño",
+          "definicion": "Método de calentar indirectamente (Ba...o María, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "estaño",
+          "definicion": "Metal usado en soldadura (Esta...o, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "cañón",
+          "definicion": "Dispositivo para lanzar proyectiles (Ca...ón, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "extraño",
+          "definicion": "Fenómeno desconocido (Extra...o, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "oxígeno",
+          "definicion": "Elemento esencial para la combustión.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "órbita",
+          "definicion": "Trayectoria de un electrón.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ohmio",
+          "definicion": "Unidad de resistencia eléctrica.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oro",
+          "definicion": "Metal noble de símbolo Au.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oxidación",
+          "definicion": "Reacción de pérdida de electrones.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "onda",
+          "definicion": "Propagación de una perturbación.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "opaco",
+          "definicion": "Que no deja pasar la luz.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "orgánica",
+          "definicion": "Química del carbono (Química...).",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "óxido",
+          "definicion": "Compuesto binario con oxígeno.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "orbital",
+          "definicion": "Región del espacio donde es probable encontrar un electrón (mecánica cuántica).",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "protón",
+          "definicion": "Partícula nuclear con carga positiva.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "periodo",
+          "definicion": "Fila de la tabla periódica.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "potencia",
+          "definicion": "Trabajo por unidad de tiempo.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "peso",
+          "definicion": "Fuerza con que la Tierra atrae un cuerpo.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "presión",
+          "definicion": "Fuerza por unidad de superficie.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pascal",
+          "definicion": "Unidad de presión.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "partícula",
+          "definicion": "Porción mínima de materia.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "propiedad",
+          "definicion": "Característica medible de un sistema.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "polímero",
+          "definicion": "Macromolécula formada por monómeros.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pipeta",
+          "definicion": "Instrumento para medir volúmenes líquidos.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "química",
+          "definicion": "Ciencia de la materia y sus cambios.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quark",
+          "definicion": "Partícula fundamental que forma hadrones.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "químico",
+          "definicion": "Profesional de la química.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quemadura",
+          "definicion": "Lesión térmica en la piel.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "líquido",
+          "definicion": "Estado fluido (Lí...ido, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "equilibrada",
+          "definicion": "Ecuación ajustada (E...ilibrada, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "bloque",
+          "definicion": "Grupo de elementos (Blo...e, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "estequiometría",
+          "definicion": "Cálculos en reacciones (Este...iometría, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "máquina",
+          "definicion": "Aparato (Má...ina, contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "esquema",
+          "definicion": "Representación (Es...ema, contiene Q).",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "reacción",
+          "definicion": "Transformación química.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rozamiento",
+          "definicion": "Fuerza que se opone al deslizamiento.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "repulsión",
+          "definicion": "Fuerza entre cargas iguales.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "radio",
+          "definicion": "Distancia del núcleo al electrón externo (... atómico).",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rutherford",
+          "definicion": "Descubridor del núcleo atómico.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "resistencia",
+          "definicion": "Oposición al paso de corriente.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rectilíneo",
+          "definicion": "Movimiento en línea recta.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "resultante",
+          "definicion": "Suma de fuerzas.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "reflexión",
+          "definicion": "Cambio de dirección de la luz al chocar.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "radiación",
+          "definicion": "Emisión de energía.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "sólido",
+          "definicion": "Estado de la materia con forma propia.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "solución",
+          "definicion": "Mezcla homogénea líquida.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "soluto",
+          "definicion": "Sustancia que se disuelve.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sistema",
+          "definicion": "Conjunto de cuerpos (Sistema Solar).",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sustancia",
+          "definicion": "Materia con composición definida.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "símbolo",
+          "definicion": "Abreviatura de un elemento.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sodio",
+          "definicion": "Elemento Na.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sublimación",
+          "definicion": "Paso directo de sólido a gas.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "satélite",
+          "definicion": "Cuerpo que orbita un planeta.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sonido",
+          "definicion": "Onda mecánica audible.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "tiempo",
+          "definicion": "Magnitud escalar de duración.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "temperatura",
+          "definicion": "Medida de la energía térmica.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "thomson",
+          "definicion": "Descubridor del electrón.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tabla",
+          "definicion": "Organización de elementos (... periódica).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "trayectoria",
+          "definicion": "Camino seguido por un móvil.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "trabajo",
+          "definicion": "Energía transferida por fuerza y desplazamiento.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tensión",
+          "definicion": "Fuerza en una cuerda.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "termómetro",
+          "definicion": "Instrumento de temperatura.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tubo",
+          "definicion": "Recipiente de laboratorio (... de ensayo).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "transformación",
+          "definicion": "Cambio de energía.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "uranio",
+          "definicion": "Elemento radiactivo U.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unidad",
+          "definicion": "Patrón de medida.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uniforme",
+          "definicion": "Movimiento a velocidad constante (MR...).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "universo",
+          "definicion": "Todo lo existente.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "ultravioleta",
+          "definicion": "Luz invisible de alta energía (Rayos...).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "umbral",
+          "definicion": "Valor mínimo de percepción.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unión",
+          "definicion": "Enlace.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "utilidad",
+          "definicion": "Aplicación práctica.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "ultrasonido",
+          "definicion": "Sonido de alta frecuencia.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uno",
+          "definicion": "Número atómico del hidrógeno.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "velocidad",
+          "definicion": "Rapidez con dirección.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "voltio",
+          "definicion": "Unidad de potencial eléctrico.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "volumen",
+          "definicion": "Espacio ocupado.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vector",
+          "definicion": "Magnitud con dirección y sentido.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vaporización",
+          "definicion": "Cambio de líquido a gas.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vacío",
+          "definicion": "Ausencia de materia.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "valencia",
+          "definicion": "Capacidad de combinación (Número de...).",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vidrio",
+          "definicion": "Material de laboratorio transparente.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vertido",
+          "definicion": "Derrame de sustancia.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "voltímetro",
+          "definicion": "Medidor de voltios.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "w",
+          "definicion": "Símbolo del Wolframio.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "watt",
+          "definicion": "Unidad de potencia (Inglés).",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "wolframio",
+          "definicion": "Elemento de alto punto de fusión.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "newton",
+          "definicion": "Unidad de fuerza (Ne...ton, contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "maxwell",
+          "definicion": "Científico del electromagnetismo (Max...ell, contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "kilowatt",
+          "definicion": "Mil vatios (Kilo... contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "browniano",
+          "definicion": "Movimiento aleatorio (Bro...niano, contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "hardware",
+          "definicion": "Parte física del ordenador (Hard... contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "software",
+          "definicion": "Programas (Soft... contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "kilowatio",
+          "definicion": "Unidad de potencia (Kilo...atio, contiene W).",
+          "pista": "Contiene la W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "experimento",
+          "definicion": "Prueba (E...perimento, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "oxidación",
+          "definicion": "Reacción con oxígeno (O...idación, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "explosión",
+          "definicion": "Reacción violenta (E...plosión, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "óxido",
+          "definicion": "Compuesto binario (Ó...ido, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "exotérmica",
+          "definicion": "Reacción que libera calor (E...otérmica, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "exterior",
+          "definicion": "Fuera (E...terior, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "mixta",
+          "definicion": "Mezcla (Mi...ta, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "xenón",
+          "definicion": "Gas noble (Xenón, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "conexión",
+          "definicion": "Unión (Cone...ión, contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "flexible",
+          "definicion": "Material no rígido (Fle...ible, contiene X).",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "yodo",
+          "definicion": "Elemento halógeno sólido (I).",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yacimiento",
+          "definicion": "Lugar con mineral.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "rayo",
+          "definicion": "Descarga eléctrica (Ra...o, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ley",
+          "definicion": "Norma (Le..., contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ensayo",
+          "definicion": "Prueba (Ensa...o, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "apoyo",
+          "definicion": "Punto de soporte (Apo...o, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "trayectoria",
+          "definicion": "Camino (Tra...ectoria, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "boya",
+          "definicion": "Objeto flotante (Bo...a, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "mayor",
+          "definicion": "Más grande (Ma...or, contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ayuda",
+          "definicion": "Colaboración (A...uda, contiene Y).",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zinc",
+          "definicion": "Metal usado en galvanizado (Zn).",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zirconio",
+          "definicion": "Mineral muy duro (Zr).",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "fuerza",
+          "definicion": "Capacidad de modificar movimiento (Fuer...a, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "balanza",
+          "definicion": "Instrumento de masa (Balan...a, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "tiza",
+          "definicion": "Carbonato de calcio (Ti...a, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "desplazamiento",
+          "definicion": "Vector de cambio de posición (Despla...amiento, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "rozamiento",
+          "definicion": "Fuerza de contacto (Ro...amiento, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "azul",
+          "definicion": "Color del sulfato de cobre (A...ul, contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "luz",
+          "definicion": "Radiación visible (Lu..., contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "capa de ozono",
+          "definicion": "Unidad de frecuencia (Her...io, contiene Z).",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

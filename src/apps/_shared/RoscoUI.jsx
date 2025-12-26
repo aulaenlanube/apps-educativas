@@ -1,19 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaCheck, FaForward, FaTimes, FaVideo, FaVideoSlash, FaMicrophone, FaHeadset } from 'react-icons/fa';
+import { FaCheck, FaForward, FaTimes, FaVideo, FaVideoSlash, FaMicrophone, FaHeadset, FaBook } from 'react-icons/fa';
 import '../_shared/RoscoShared.css';
 
 const ICONS = ['🐶', '🐱', '🐼', '🦊', '🦁', '🐯', '🦄', '🐸', '🤖', '👽', '👻', '🤡', '🤠', '👸', '🤴', '🦸'];
 
-const RoscoUI = ({ 
-    gameState, players, activePlayer, activePlayerIndex, currentQuestion, 
+const RoscoUI = ({
+    gameState, players, activePlayer, activePlayerIndex, currentQuestion,
     checkAnswer, pasapalabra, restartGame, feedback,
     startGame, config, setConfig, maxQuestions,
     animState,
-    showExitConfirm, requestExit, cancelExit, confirmExit
+    showExitConfirm, requestExit, cancelExit, confirmExit,
+    loadStudyMaterial
 }) => {
     const [inputValue, setInputValue] = useState('');
     const inputRef = useRef(null);
-    
+    const [showStudyMaterial, setShowStudyMaterial] = useState(false);
+    const [materialData, setMaterialData] = useState(null);
+    const [selectedStudyLetter, setSelectedStudyLetter] = useState(null);
+
     // --- ESTADO WEBCAM ---
     const [isWebcamOn, setIsWebcamOn] = useState(false);
     const videoRef = useRef(null);
@@ -22,7 +26,7 @@ const RoscoUI = ({
     // --- ESTADO VOZ ---
     const [isListening, setIsListening] = useState(false);
     const [voiceSupported, setVoiceSupported] = useState(false);
-    const [autoRecord, setAutoRecord] = useState(false); 
+    const [autoRecord, setAutoRecord] = useState(false);
     const [hasAutoRecorded, setHasAutoRecorded] = useState(false);
     const recognitionRef = useRef(null);
 
@@ -40,7 +44,7 @@ const RoscoUI = ({
     // Inicializar Reconocimiento de Voz
     useEffect(() => {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        
+
         if (SpeechRecognition) {
             setVoiceSupported(true);
             const recognition = new SpeechRecognition();
@@ -49,17 +53,17 @@ const RoscoUI = ({
             recognition.lang = 'es-ES';
 
             recognition.onstart = () => setIsListening(true);
-            
+
             recognition.onend = () => setIsListening(false);
 
             recognition.onresult = (event) => {
                 const transcript = event.results[0][0].transcript;
                 const cleanTranscript = transcript.replace(/\.$/, "").trim();
-                
+
                 if (cleanTranscript.toLowerCase() === 'pasapalabra') {
-                    setInputValue(''); 
+                    setInputValue('');
                     setIsListening(false);
-                    pasapalabraRef.current(); 
+                    pasapalabraRef.current();
                     return;
                 }
 
@@ -85,10 +89,10 @@ const RoscoUI = ({
     const startListening = () => {
         if (!recognitionRef.current || isListening) return;
         try {
-            setInputValue(''); 
+            setInputValue('');
             recognitionRef.current.start();
-            if(inputRef.current) inputRef.current.focus();
-        } catch(e) {
+            if (inputRef.current) inputRef.current.focus();
+        } catch (e) {
             console.error("No se pudo iniciar el micro", e);
         }
     };
@@ -115,18 +119,18 @@ const RoscoUI = ({
 
     useEffect(() => {
         if (
-            autoRecord &&               
-            voiceSupported &&           
-            !isListening &&             
-            !hasAutoRecorded &&         
-            gameState === 'playing' &&  
-            animState === 'none' &&     
-            !feedback &&                
-            !showExitConfirm            
+            autoRecord &&
+            voiceSupported &&
+            !isListening &&
+            !hasAutoRecorded &&
+            gameState === 'playing' &&
+            animState === 'none' &&
+            !feedback &&
+            !showExitConfirm
         ) {
             const timer = setTimeout(() => {
                 startListening();
-                setHasAutoRecorded(true); 
+                setHasAutoRecorded(true);
             }, 200);
             return () => clearTimeout(timer);
         }
@@ -176,6 +180,17 @@ const RoscoUI = ({
         setInputValue(''); // ¡Esto faltaba!
     };
 
+    const handleOpenStudyMaterial = async () => {
+        const material = await loadStudyMaterial();
+        if (material) {
+            setMaterialData(material);
+            if (material.secciones && material.secciones.length > 0) {
+                setSelectedStudyLetter(material.secciones[0].letra);
+            }
+            setShowStudyMaterial(true);
+        }
+    };
+
     // --- UI ---
     if (gameState === 'config') {
         const handleConfigChange = (key, value) => setConfig(prev => ({ ...prev, [key]: value }));
@@ -209,7 +224,7 @@ const RoscoUI = ({
                             </div>
                         </div>
                     )}
-                    <hr className="my-4 border-gray-100"/>
+                    <hr className="my-4 border-gray-100" />
                     <div className="grid grid-cols-2 gap-4 mb-6">
                         <div>
                             <label className="block text-gray-700 font-bold text-xs mb-2">PREGUNTAS: {config.questionCount}</label>
@@ -226,9 +241,59 @@ const RoscoUI = ({
                             {config.useTimer && <p className="text-xs text-right text-gray-400 mt-1">{config.timeLimit} seg</p>}
                         </div>
                     </div>
+
+                    <button onClick={handleOpenStudyMaterial} className="w-full mb-3 flex items-center justify-center gap-2 bg-orange-100 hover:bg-orange-200 text-orange-600 text-lg font-bold py-2 px-6 rounded-2xl transition-all border-2 border-orange-200">
+                        <FaBook /> Ver Material de Estudio
+                    </button>
+
                     <button onClick={() => startGame(config)} className="w-full bg-blue-600 hover:bg-blue-700 text-white text-xl font-bold py-3 px-6 rounded-2xl transition-transform transform hover:scale-105 shadow-lg">
                         ¡Empezar Partida!
                     </button>
+
+                    {showStudyMaterial && materialData && (
+                        <div className="study-material-overlay">
+                            <div className="study-material-box">
+                                <div className="flex justify-between items-start mb-4">
+                                    <h2 className="text-2xl font-bold text-blue-600">{materialData.titulo}</h2>
+                                    <button onClick={() => setShowStudyMaterial(false)} className="text-gray-400 hover:text-red-500 text-2xl"><FaTimes /></button>
+                                </div>
+                                <p className="text-gray-600 mb-4 italic">{materialData.introduccion}</p>
+
+                                <div className="study-letter-selector custom-scrollbar mb-6">
+                                    {materialData.secciones.map((sec) => (
+                                        <button
+                                            key={sec.letra}
+                                            onClick={() => setSelectedStudyLetter(sec.letra)}
+                                            className={`study-letter-btn ${selectedStudyLetter === sec.letra ? 'active' : ''}`}
+                                        >
+                                            {sec.letra}
+                                        </button>
+                                    ))}
+                                </div>
+
+                                <div className="study-material-content custom-scrollbar">
+                                    {materialData.secciones
+                                        .filter(sec => sec.letra === selectedStudyLetter)
+                                        .map((sec, idx) => (
+                                            <div key={idx} className="animate-fadeIn">
+                                                <div className="grid gap-4">
+                                                    {sec.conceptos.map((con, cidx) => (
+                                                        <div key={cidx} className="bg-gray-50 p-5 rounded-2xl border-2 border-gray-100 hover:border-blue-100 transition-all shadow-sm">
+                                                            <div className="flex justify-between items-center mb-3">
+                                                                <h3 className="font-fredoka text-xl text-blue-800">{con.termino}</h3>
+                                                                <span className="text-[10px] font-bold bg-blue-100 text-blue-600 px-2 py-1 rounded-full uppercase tracking-tighter">{con.pista}</span>
+                                                            </div>
+                                                            <p className="text-gray-700 text-base leading-relaxed">{con.definicion}</p>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        ))}
+                                </div>
+                                <button onClick={() => setShowStudyMaterial(false)} className="w-full mt-6 bg-blue-600 hover:bg-blue-700 transition-colors text-white font-fredoka text-xl py-4 rounded-2xl shadow-lg ring-4 ring-blue-50">¡Entendido, a jugar!</button>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         );
@@ -248,10 +313,10 @@ const RoscoUI = ({
                 <div className="bg-white p-8 rounded-3xl shadow-xl max-w-md mx-auto">
                     {isSinglePlayer ? (
                         <div className="mb-8">
-                             <span className="text-6xl block mb-2">{winner.icon}</span>
-                             <h2 className="text-2xl font-bold text-gray-700 mb-2">Resultados</h2>
-                             <div className="text-5xl font-extrabold text-green-500">{winner.score} <span className="text-2xl text-gray-400">aciertos</span></div>
-                             {config.useTimer && winner.timeLeft > 0 && (<p className="text-sm text-gray-400 mt-2 font-bold">¡Te sobraron {winner.timeLeft}s!</p>)}
+                            <span className="text-6xl block mb-2">{winner.icon}</span>
+                            <h2 className="text-2xl font-bold text-gray-700 mb-2">Resultados</h2>
+                            <div className="text-5xl font-extrabold text-green-500">{winner.score} <span className="text-2xl text-gray-400">aciertos</span></div>
+                            {config.useTimer && winner.timeLeft > 0 && (<p className="text-sm text-gray-400 mt-2 font-bold">¡Te sobraron {winner.timeLeft}s!</p>)}
                         </div>
                     ) : (
                         isTie ? (<div className="text-4xl mb-6">🤝 ¡Empate!</div>) : (
@@ -279,9 +344,9 @@ const RoscoUI = ({
 
     if (gameState === 'loading' || !activePlayer || !currentQuestion) return <div className="text-center p-10 text-2xl font-bold text-gray-400">Cargando...</div>;
 
-    const radius = 135; 
+    const radius = 135;
     const letters = Object.keys(activePlayer.letterStatus);
-    
+
     let animationClass = '';
     if (animState === 'pasapalabra-out') animationClass = 'animate-pasapalabra-out animating';
     else if (animState === 'pasapalabra-in') animationClass = 'animate-pasapalabra-in animating';
@@ -312,8 +377,8 @@ const RoscoUI = ({
 
             <div className="flex justify-center gap-4 mb-2 max-w-3xl mx-auto">
                 {players.map((p, idx) => (
-                    <div key={p.id} 
-                         className={`relative flex items-center gap-3 px-4 py-2 rounded-2xl transition-all duration-300 border-2
+                    <div key={p.id}
+                        className={`relative flex items-center gap-3 px-4 py-2 rounded-2xl transition-all duration-300 border-2
                          ${activePlayerIndex === idx ? 'bg-white shadow-xl scale-110 border-blue-500 z-10 ring-4 ring-blue-100' : 'bg-gray-100 opacity-60 scale-90 border-transparent grayscale'}`}>
                         <span className="text-3xl">{p.icon}</span>
                         <div className="text-left">
@@ -334,16 +399,16 @@ const RoscoUI = ({
                 )}
                 {letters.map((letra, index) => {
                     const angle = (index / letters.length) * 2 * Math.PI - (Math.PI / 2);
-                    const x = Math.cos(angle) * radius + 130; 
+                    const x = Math.cos(angle) * radius + 130;
                     const y = Math.sin(angle) * radius + 130;
                     const isCurrent = currentQuestion.letra === letra;
-                    const statusClass = activePlayer.letterStatus[letra]; 
+                    const statusClass = activePlayer.letterStatus[letra];
                     return (<div key={letra} className={`rosco-letter ${statusClass} ${isCurrent ? 'active' : ''}`} style={{ left: `${x}px`, top: `${y}px` }}>{letra}</div>);
                 })}
             </div>
 
             <div className={`rosco-center-box relative transition-all duration-300 ${borderColorClass} ${animationClass}`}>
-                
+
                 <button onClick={requestExit} className="btn-exit-corner" title="Salir de la partida">
                     <FaTimes />
                 </button>
@@ -352,21 +417,21 @@ const RoscoUI = ({
                     <button onClick={toggleWebcam} className={`btn-webcam-toggle ${isWebcamOn ? 'active' : ''}`} title={isWebcamOn ? "Apagar cámara" : "Encender cámara"}>
                         {isWebcamOn ? <FaVideo /> : <FaVideoSlash />}
                     </button>
-                    
+
                     {voiceSupported && (
                         <button onClick={toggleAutoRecord} className={`btn-auto-mic ${autoRecord ? 'active' : ''}`} title={autoRecord ? "Desactivar modo auto-voz" : "Activar modo auto-voz"}>
                             <FaHeadset />
                         </button>
                     )}
                 </div>
-                
+
                 <div className="rosco-type-label">
-                    {currentQuestion.tipo === 'empieza' ? 'Empieza por' : 'Contiene la'} 
+                    {currentQuestion.tipo === 'empieza' ? 'Empieza por' : 'Contiene la'}
                     <span className="text-4xl ml-2 text-blue-600 align-middle font-fredoka">{currentQuestion.letra}</span>
                 </div>
-                
+
                 <p className="rosco-definition">{currentQuestion.definicion}</p>
-                
+
                 <div className="rosco-input-group">
                     <form onSubmit={handleSubmit} className="rosco-form-inner">
                         {voiceSupported && (
@@ -374,9 +439,9 @@ const RoscoUI = ({
                                 <FaMicrophone />
                             </button>
                         )}
-                        <input 
+                        <input
                             ref={inputRef}
-                            type="text" 
+                            type="text"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             className="rosco-input"
@@ -388,7 +453,7 @@ const RoscoUI = ({
                             <FaCheck />
                         </button>
                     </form>
-                    
+
                     <button type="button" onClick={pasapalabra} className="btn-pasapalabra-text" disabled={!!feedback || animState !== 'none' || showExitConfirm} title="Pasapalabra">
                         PASAPALABRA
                     </button>

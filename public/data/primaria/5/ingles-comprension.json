@@ -1,321 +1,567 @@
 [
   {
     "id": "1",
-    "titulo": "My dog Max",
-    "texto": "My name is Tom. I have a dog. His name is Max. Max is brown and big. He likes to run in the park. He plays with a red ball.",
+    "titulo": "My Daily Routine",
+    "texto": "Hi! My name is Alex and I'm eleven years old. Every day, I wake up at seven o'clock. First, I wash my face and brush my teeth. Then, I have breakfast: usually cereal with milk and an orange juice. I go to school at eight o'clock by bus. My favorite subjects are English and Science. I have lunch at the school canteen at one o'clock. After school, I do my homework and I play basketball with my friends. I go to bed at nine o'clock. I'm busy but happy!",
     "preguntas": [
       {
-        "pregunta": "Is Max a cat?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What time does Alex wake up?",
+        "opciones": [
+          "At 6:00",
+          "At 7:00",
+          "At 8:00",
+          "At 9:00"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is Max big?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
+        "pregunta": "How does he go to school?",
+        "opciones": [
+          "By car",
+          "By bus",
+          "On foot",
+          "By bike"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What colour is Max?",
-        "opciones": ["Red", "Blue", "Brown", "Green"],
+        "pregunta": "What does he have for breakfast?",
+        "opciones": [
+          "Pizza",
+          "Cereal, milk and juice",
+          "Nothing",
+          "Eggs"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What are his favorite subjects?",
+        "opciones": [
+          "Maths and PE",
+          "English and Science",
+          "Art",
+          "Music"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What sport does he play after school?",
+        "opciones": [
+          "Football",
+          "Tennis",
+          "Basketball",
+          "Swimming"
+        ],
         "correcta": 2
-      },
-      {
-        "pregunta": "What is the boy's name?",
-        "opciones": ["Sam", "Tom", "Ben", "Dan"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "What does Max play with?",
-        "opciones": ["A red ball", "A blue car", "A yellow duck", "A green book"],
-        "correcta": 0
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Three Apples",
-    "texto": "Sarah likes fruit. She has three red apples on the table. She eats one apple. Now she has two apples. They are sweet and yummy.",
+    "titulo": "A Day at the Zoo",
+    "texto": "Today is Saturday and I'm at the zoo with my family. Look! The lions are sleeping under the trees. The monkeys are climbing and jumping because they are very energetic. My favorite animals are the giraffes; they are taller than elephants! Now, we are watching the penguins. They are swimming and eating fish. It's a sunny day and we are having a great time. Animals are amazing!",
     "preguntas": [
       {
-        "pregunta": "Does Sarah like fruit?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Are the apples blue?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What are the lions doing?",
+        "opciones": [
+          "Eating",
+          "Sleeping",
+          "Running",
+          "Roaring"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "How many apples does she have at first?",
-        "opciones": ["One", "Two", "Three", "Four"],
+        "pregunta": "Why are the monkeys jumping?",
+        "opciones": [
+          "Because they are tired",
+          "Because they are energetic",
+          "Because they are hungry",
+          "Because they are cold"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Which animals are taller than elephants?",
+        "opciones": [
+          "Lions",
+          "Giraffes",
+          "Monkeys",
+          "Penguins"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What are the penguins eating?",
+        "opciones": [
+          "Meat",
+          "Fruit",
+          "Fish",
+          "Grass"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "What colour are the apples?",
-        "opciones": ["Blue", "Red", "Yellow", "Pink"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "How many apples does she eat?",
-        "opciones": ["One", "Two", "Three", "Five"],
-        "correcta": 0
+        "pregunta": "How is the weather?",
+        "opciones": [
+          "Raining",
+          "Cloudy",
+          "Sunny",
+          "Snowing"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "My School Bag",
-    "texto": "This is my school bag. It is yellow and blue. I have a pencil and a book in my bag. The pencil is red. The book is green. I go to school in the morning.",
+    "titulo": "Last Summer Holidays",
+    "texto": "Last summer, I went to a beautiful village in the mountains with my grandparents. We stayed in a small house. Every morning, we went for a walk in the forest. One day, we saw a deer near the river! I took many photos with my camera. In the afternoons, I helped my grandmother in the garden. We cooked delicious vegetable soup for dinner. I didn't watch TV because I preferred reading books. It was very relaxing.",
     "preguntas": [
       {
-        "pregunta": "Is the bag pink?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "Where did the child go last summer?",
+        "opciones": [
+          "To the beach",
+          "To the mountains",
+          "To London",
+          "To the city"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is the pencil red?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
+        "pregunta": "Who did he go with?",
+        "opciones": [
+          "With friends",
+          "With grandparents",
+          "With teachers",
+          "Alone"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What colour is the book?",
-        "opciones": ["Red", "Blue", "Green", "Orange"],
-        "correcta": 2
+        "pregunta": "What animal did they see near the river?",
+        "opciones": [
+          "A bear",
+          "A deer",
+          "A wolf",
+          "A rabbit"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What is yellow and blue?",
-        "opciones": ["The bag", "The book", "The pencil", "The rubber"],
-        "correcta": 0
+        "pregunta": "What did they cook for dinner?",
+        "opciones": [
+          "Pizza",
+          "Vegetable soup",
+          "Pasta",
+          "Burgers"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Where do I go?",
-        "opciones": ["To the park", "To the cinema", "To school", "To bed"],
-        "correcta": 2
+        "pregunta": "Did he watch TV?",
+        "opciones": [
+          "Yes, a lot",
+          "No, he preferred reading books"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "My Face",
-    "texto": "Look at my face. I have two eyes and one nose. My mouth is small. My ears are big. I have brown hair. I am very happy today.",
+    "titulo": "The Olympic Games",
+    "texto": "The Olympic Games are very important. Athletes from all over the world compete in different sports. Swimming is fast, but cycling is faster. However, running is the most popular sport in the Olympics. To be an athlete, you must practice every day and eat healthy food. I want to be a gold medalist in the future because I love sports and I am very competitive!",
     "preguntas": [
       {
-        "pregunta": "Do I have three eyes?",
-        "opciones": ["Yes", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Is my mouth small?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "How many noses do I have?",
-        "opciones": ["One", "Two", "Three", "Four"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Are my ears big or small?",
-        "opciones": ["Small", "Big", "Red", "Blue"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "How am I?",
-        "opciones": ["Sad", "Angry", "Happy", "Tired"],
+        "pregunta": "What is the most popular sport in the Olympics according to the text?",
+        "opciones": [
+          "Swimming",
+          "Cycling",
+          "Running",
+          "Tennis"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "Is cycling slower than swimming?",
+        "opciones": [
+          "Yes",
+          "No, it's faster"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What must an athlete do?",
+        "opciones": [
+          "Sleep all day",
+          "Practice every day and eat healthy",
+          "Eat sweets",
+          "Watch TV"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What does the narrator want to be in the future?",
+        "opciones": [
+          "A doctor",
+          "A gold medalist",
+          "A scientist",
+          "A teacher"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Why does he want to be a medalist?",
+        "opciones": [
+          "Because he is lazy",
+          "Because he loves sports and is competitive",
+          "Because he likes the color gold",
+          "Because his dad wants"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Sunday in the Park",
-    "texto": "It is Sunday. It is sunny and hot. I go to the park with my mum. We play football. We eat a delicious chocolate ice cream. It is a fun day.",
+    "titulo": "A Trip to London",
+    "texto": "London is a fantastic city. There are many famous places to visit. Big Ben is a very old clock tower. You can see the River Thames from the London Eye. It is a giant wheel! People in London travel by red buses or by the Tube (the underground). I want to visit the British Museum to see the Egyptian mummies. Don't forget your umbrella because it often rains in London!",
     "preguntas": [
       {
-        "pregunta": "Is it raining?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What is Big Ben?",
+        "opciones": [
+          "A bridge",
+          "A clock tower",
+          "A park",
+          "A museum"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Do I go to the park?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
+        "pregunta": "What is the name of the river in London?",
+        "opciones": [
+          "The Nile",
+          "The Thames",
+          "The Ebro",
+          "The Seine"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What day is it?",
-        "opciones": ["Monday", "Friday", "Sunday", "Tuesday"],
-        "correcta": 2
+        "pregunta": "What is 'the Tube'?",
+        "opciones": [
+          "A television",
+          "The underground (metro)",
+          "A famous bus",
+          "A river"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What is the weather like?",
-        "opciones": ["Sunny", "Rainy", "Snowy", "Cloudy"],
-        "correcta": 0
+        "pregunta": "What can you see in the British Museum?",
+        "opciones": [
+          "Cars",
+          "Egyptian mummies",
+          "Fish",
+          "Dinosaurs only"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What do we eat?",
-        "opciones": ["Pizza", "Apples", "Ice cream", "Bread"],
-        "correcta": 2
+        "pregunta": "Why do you need an umbrella?",
+        "opciones": [
+          "Because it's sunny",
+          "Because it often rains",
+          "Because it's hot",
+          "To walk"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Colours",
-    "texto": "My favourite colour is purple. I have a purple t-shirt and purple shoes. I do not like orange. My sister Lucy likes orange. She has an orange hat.",
+    "titulo": "Healthy Eating",
+    "texto": "If you want to be healthy, you should eat a balanced diet. You should eat five portions of fruit and vegetables every day. They have many vitamins! You should drink a lot of water too. Milk and cheese are good for your bones because they have calcium. You shouldn't eat too many sweets or drink soda because they have a lot of sugar. Healthy food gives you energy to play and study!",
     "preguntas": [
       {
-        "pregunta": "Do I like purple?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Do I like orange?",
-        "opciones": ["Yes", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "What clothes are purple?",
-        "opciones": ["Hat", "T-shirt", "Jeans", "Coat"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Who likes orange?",
-        "opciones": ["My mum", "My dad", "My sister", "My brother"],
+        "pregunta": "How many portions of fruit and vegetables should you eat?",
+        "opciones": [
+          "One",
+          "Two",
+          "Five",
+          "Ten"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "What colour is the hat?",
-        "opciones": ["Red", "Orange", "Purple", "Green"],
+        "pregunta": "Why are fruit and vegetables good?",
+        "opciones": [
+          "Because they are expensive",
+          "Because they have vitamins",
+          "Because they are blue",
+          "They aren't good"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What is good for your bones?",
+        "opciones": [
+          "Candy",
+          "Milk and cheese",
+          "Pizza",
+          "Soda"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What should you NOT eat or drink too much of?",
+        "opciones": [
+          "Water",
+          "Sweets and soda",
+          "Apples",
+          "Fish"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What does healthy food give you?",
+        "opciones": [
+          "Sleep",
+          "Energy",
+          "Headache",
+          "Nothing"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Farm Animals",
-    "texto": "There are five animals in the farm. The cow is black and white. The pig is pink and fat. The sheep is white. The duck is yellow. The horse is brown and fast.",
+    "titulo": "The Solar System",
+    "texto": "Our Solar System has eight planets. The Sun is at the center. It is a very big and hot star. Mercury is the closest planet to the Sun. Earth is the third planet and it is our home. Mars is called the 'Red Planet'. Jupiter is the biggest planet of all. Some planets have moons; the Earth has only one moon. Astronauts use spaceships to travel to space and learn about the universe.",
     "preguntas": [
       {
-        "pregunta": "Is the pig blue?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "How many planets are there in the Solar System?",
+        "opciones": [
+          "Seven",
+          "Eight",
+          "Nine",
+          "Ten"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is the cow black and white?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What colour is the duck?",
-        "opciones": ["Green", "Yellow", "Red", "Purple"],
+        "pregunta": "What is the Sun?",
+        "opciones": [
+          "A planet",
+          "A star",
+          "A moon",
+          "A comet"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "How many animals are there?",
-        "opciones": ["One", "Three", "Five", "Ten"],
+        "pregunta": "Which planet is the closest to the Sun?",
+        "opciones": [
+          "Earth",
+          "Mars",
+          "Mercury",
+          "Venus"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Which animal is pink?",
-        "opciones": ["The cow", "The pig", "The horse", "The sheep"],
-        "correcta": 1
+        "pregunta": "Which is the biggest planet?",
+        "opciones": [
+          "Earth",
+          "Mars",
+          "Jupiter",
+          "Saturn"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "What is the nickname for Mars?",
+        "opciones": [
+          "The Blue Planet",
+          "The Hot Planet",
+          "The Red Planet",
+          "The Big Planet"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Lunch Time",
-    "texto": "I am hungry. It is lunch time. I eat chicken and chips. I drink orange juice. I like chicken very much. It is my favourite food. Yummy!",
+    "titulo": "My Hobbies",
+    "texto": "In my free time, I have many hobbies. I love reading books because they are interesting. I also like playing video games with my brother on Saturdays. My sister's hobby is painting; she is very artistic. We both love music; I can play the guitar and she can play the piano. On Sundays, we usually go to the park to fly a kite or ride our bikes. Hobbies are fun!",
     "preguntas": [
       {
-        "pregunta": "Am I hungry?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Do I eat fish?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "What does the narrator like reading?",
+        "opciones": [
+          "Comics",
+          "Books",
+          "Newspapers",
+          "Letters"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "What do I eat?",
-        "opciones": ["Chicken", "Pizza", "Soup", "Salad"],
-        "correcta": 0
+        "pregunta": "When does he play video games?",
+        "opciones": [
+          "On Mondays",
+          "On Saturdays",
+          "Every day",
+          "Never"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "What do I drink?",
-        "opciones": ["Water", "Milk", "Orange juice", "Cola"],
-        "correcta": 2
+        "pregunta": "What instrument can the narrator play?",
+        "opciones": [
+          "Piano",
+          "Guitar",
+          "Drums",
+          "Flute"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Do I like chicken?",
-        "opciones": ["No", "A little", "Very much", "Not at all"],
-        "correcta": 2
+        "pregunta": "What is the sister's hobby?",
+        "opciones": [
+          "Reading",
+          "Painting",
+          "Running",
+          "Cooking"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What do they do on Sundays?",
+        "opciones": [
+          "Go for a walk",
+          "Fly a kite or ride bikes",
+          "Sleep",
+          "Study"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "My Bedroom",
-    "texto": "My bedroom is blue. The bed is big. There is a lamp on the table. The lamp is yellow. I have many toys in a box. I sleep in my bedroom at night.",
+    "titulo": "Christopher Columbus",
+    "texto": "Christopher Columbus was a famous explorer. He was born in Italy but he worked for the Spanish Kings: Isabel and Fernando. In 1492, he sailed across the Atlantic Ocean with three ships: the Santa María, the Pinta and the Niña. He wanted to go to India, but he arrived in America. This was a very important event in history. Today, many people speak Spanish in America because of this journey.",
     "preguntas": [
       {
-        "pregunta": "Is the bedroom pink?",
-        "opciones": ["Yes", "No"],
+        "pregunta": "Where was Columbus born?",
+        "opciones": [
+          "Spain",
+          "Italy",
+          "France",
+          "Portugal"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Is the bed big?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What colour is the bedroom?",
-        "opciones": ["Blue", "Red", "Green", "White"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "What is on the table?",
-        "opciones": ["A book", "A lamp", "A cat", "A computer"],
+        "pregunta": "Who did he work for?",
+        "opciones": [
+          "The French Queen",
+          "The Spanish Kings",
+          "The Italian Mayor",
+          "Nobody"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Where are the toys?",
-        "opciones": ["In a box", "On the bed", "Under the table", "On the chair"],
-        "correcta": 0
+        "pregunta": "In what year did he arrive in America?",
+        "opciones": [
+          "1238",
+          "1492",
+          "1605",
+          "1992"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "How many ships did he have?",
+        "opciones": [
+          "Two",
+          "Three",
+          "Four",
+          "Five"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Where did he want to go originally?",
+        "opciones": [
+          "America",
+          "India",
+          "China",
+          "Africa"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Happy Birthday",
-    "texto": "Today is my birthday. I am seven years old. I have a chocolate cake. It has seven candles. I get many presents from my friends. We sing songs and dance.",
+    "titulo": "The Four Seasons",
+    "texto": "There are four seasons in a year: spring, summer, autumn and winter. In spring, flowers grow and the weather is warm. In summer, it is very hot and children go to the beach. In autumn, the leaves fall from the trees and it is windy. In winter, it is very cold and sometimes it snows. My favorite season is summer because I don't have school and I can swim in the sea every day!",
     "preguntas": [
       {
-        "pregunta": "Is it my birthday?",
-        "opciones": ["Yes", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Is the cake strawberry?",
-        "opciones": ["Yes", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "How old am I?",
-        "opciones": ["Six", "Seven", "Eight", "Nine"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "What flavour is the cake?",
-        "opciones": ["Vanilla", "Chocolate", "Lemon", "Apple"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "How many candles are there?",
-        "opciones": ["Five", "Six", "Seven", "Ten"],
+        "pregunta": "How many seasons are there?",
+        "opciones": [
+          "Two",
+          "Three",
+          "Four",
+          "Five"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "In which season do flowers grow?",
+        "opciones": [
+          "Winter",
+          "Autumn",
+          "Spring",
+          "Summer"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "What is the weather like in summer?",
+        "opciones": [
+          "Cold",
+          "Very hot",
+          "Rainy",
+          "Snowy"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "What happens in autumn?",
+        "opciones": [
+          "Flowers grow",
+          "Leaves fall from trees",
+          "It snows",
+          "It's Christmas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Why does the narrator like summer?",
+        "opciones": [
+          "Because it's cold",
+          "Because there is no school and he can swim",
+          "Because of homework",
+          "Because he likes coats"
+        ],
+        "correcta": 1
       }
     ]
   }

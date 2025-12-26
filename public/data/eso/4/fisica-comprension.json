@@ -1,320 +1,568 @@
 [
   {
     "id": "1",
-    "titulo": "El Mol y la Estequiometría",
-    "texto": "En química, las cantidades son fundamentales. El mol es la unidad de cantidad de sustancia y contiene 6,022 x 10²³ partículas (Número de Avogadro). La estequiometría estudia las relaciones cuantitativas en las reacciones. Gracias a ella, podemos calcular exactamente cuánto reactivo necesitamos para obtener una cantidad de producto. Por ejemplo, si conocemos la masa atómica del carbono (12) y del oxígeno (16), sabemos que 12g de carbono reaccionan con 32g de oxígeno para dar 44g de CO2. Estos cálculos son la base de la industria farmacéutica y de materiales, donde la precisión es cuestión de éxito o fracaso.",
+    "titulo": "Cinemática: El Movimiento Circular",
+    "texto": "No todos los movimientos son en línea recta. El MOVIMIENTO CIRCULAR UNIFORME (MCU) es el que realiza un objeto que gira alrededor de un eje a velocidad constante, como las agujas de un reloj o un satélite. Aunque la rapidez sea constante, existe una ACELERACIÓN CENTRÍPETA que apunta siempre hacia el centro del círculo, obligando al objeto a cambiar de dirección. La velocidad se mide en radianes por segundo o revoluciones por minuto (rpm). Es el movimiento base para entender motores y planetas.",
     "preguntas": [
       {
-        "pregunta": "¿Qué valor tiene el Número de Avogadro?",
-        "opciones": ["3,14", "9,8", "6,022 x 10²³", "100.000"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué estudia la estequiometría?",
-        "opciones": ["Los colores de las llamas", "Las relaciones de cantidad en las reacciones químicas", "El movimiento de los planetas", "La historia de la química"],
+        "pregunta": "¿Qué caracteriza al Movimiento Circular Uniforme?",
+        "opciones": [
+          "La velocidad cambia siempre",
+          "Trayectoria circular con rapidez constante",
+          "Ir solo hacia adelante",
+          "Ir cada vez más despacio"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué es el mol?",
-        "opciones": ["Una unidad de peso", "Una unidad de volumen", "La unidad de cantidad de sustancia en el SI", "Un tipo de átomo"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cómo se calcula la masa molecular del agua (H2O)? (H=1, O=16)",
-        "opciones": ["17 g/mol", "18 g/mol", "16 g/mol", "2 g/mol"],
+        "pregunta": "¿Hacia dónde apunta la aceleración centrípeta?",
+        "opciones": [
+          "Hacia afuera del círculo",
+          "Hacia el centro de la trayectoria",
+          "Hacia atrás",
+          "Hacia arriba"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué permite predecir la estequiometría?",
-        "opciones": ["El clima", "La cantidad de producto que se formará", "La dureza de un metal", "La velocidad de la luz"],
+        "pregunta": "Nombra un ejemplo de MCU en la vida diaria:",
+        "opciones": [
+          "Un coche frenando",
+          "Las agujas de un reloj analógico",
+          "Caída libre",
+          "Un salto"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué significa rpm?",
+        "opciones": [
+          "Rápido Por Minuto",
+          "Revoluciones Por Minuto (vueltas)",
+          "Radio Por Metro",
+          "Resta Por multiplicación"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Hay aceleración en un movimiento circular constante?",
+        "opciones": [
+          "No",
+          "Sí, la aceleración centrípeta (cambia la dirección)"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Configuración Electrónica y Orbitales",
-    "texto": "El modelo atómico actual se basa en la mecánica cuántica. Los electrones no están en órbitas, sino en orbitales, regiones donde es probable encontrarlos. Se distribuyen siguiendo el principio de mínima energía (Diagrama de Moeller). La configuración electrónica nos dice cómo se reparten los electrones en los niveles (1, 2, 3...) y subniveles (s, p, d, f). El número de electrones en la capa más externa se llaman electrones de valencia y son los responsables de cómo el átomo se enlaza. Los elementos de un mismo grupo tienen configuraciones externas similares, lo que explica por qué tienen propiedades químicas parecidas.",
+    "titulo": "Las Tres Leyes de Newton",
+    "texto": "Isaac Newton cambió nuestra forma de entender el mundo con tres leyes. 1) LEY DE INERCIA: Un objeto no cambia su estado (reposo o movimiento) si no sobre él no actúa una fuerza. 2) LEY FUNDAMENTAL: La fuerza es igual a la masa por la aceleración (F=m·a). 3) ACCIÓN Y REACCIÓN: Por cada fuerza que hacemos, recibimos otra igual en sentido contrario. Estas leyes permiten calcular desde la frenada de un coche hasta el lanzamiento de cohetes espaciales que vencen la gravedad terrestre.",
     "preguntas": [
       {
-        "pregunta": "¿Qué indica el Diagrama de Moeller?",
-        "opciones": ["La masa del núcleo", "El orden de llenado de los orbitales por energía", "El color del átomo", "La velocidad del electrón"],
+        "pregunta": "¿Qué dice la primera ley o ley de inercia?",
+        "opciones": [
+          "Que todo se mueve",
+          "Que los cuerpos tienden a mantener su estado a menos que una fuerza actúe",
+          "Que la gravedad es mala",
+          "Que el peso es cero"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos electrones caben como máximo en un subnivel 'p'?",
-        "opciones": ["2", "6", "10", "14"],
+        "pregunta": "¿Cuál es la fórmula de la segunda ley?",
+        "opciones": [
+          "F = m + a",
+          "F = m · a (Fuerza = masa por aceleración)",
+          "F = m / a",
+          "F = a / m"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué son los electrones de valencia?",
-        "opciones": ["Los que están en el núcleo", "Los de la capa más interna", "Los de la capa más externa", "Los neutrones"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué forma tiene un orbital de tipo 's'?",
-        "opciones": ["Doble lóbulo", "Esférica", "Cuadrada", "Irregular"],
+        "pregunta": "Si empujas una pared con 50 N, ¿qué fuerza hace la pared sobre ti?",
+        "opciones": [
+          "0 N",
+          "50 N en sentido contrario (Acción-Reacción)",
+          "100 N",
+          "10 N"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Por qué los gases nobles son tan estables?",
-        "opciones": ["Porque son pesados", "Porque tienen su última capa completa", "Porque no tienen electrones", "Porque son fríos"],
+        "pregunta": "¿En qué unidad se mide la fuerza en el Sistema Internacional?",
+        "opciones": [
+          "Kilogramos",
+          "Newtons (N)",
+          "Metros",
+          "Segundos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué le ocurre a la aceleración si aumentamos la masa (y la fuerza es la misma)?",
+        "opciones": [
+          "Aumenta",
+          "Disminuye",
+          "Se queda igual",
+          "Se hace cero"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Introducción a la Química Orgánica",
-    "texto": "La química orgánica es la química del carbono. El átomo de carbono es especial porque puede formar cuatro enlaces covalentes muy estables consigo mismo y con otros elementos, creando cadenas y anillos de gran complejidad. Los compuestos más sencillos son los hidrocarburos (formados solo por C e H). Se dividen en alcanos (enlaces sencillos), alquenos (dobles enlaces) y alquinos (triples enlaces). Además de los hidrocarburos, existen grupos funcionales como alcoholes, ácidos carboxílicos o aminas. Esta química es la base de la vida (proteínas, ADN) y de materiales modernos como los plásticos, las medicinas y los combustibles.",
+    "titulo": "Energía Mecánica y su Conservación",
+    "texto": "La energía mecánica de un cuerpo es la suma de su ENERGÍA CINÉTICA (asociada al movimiento) y su ENERGÍA POTENCIAL (asociada a su altura). En ausencia de rozamiento, la energía mecánica se conserva: no se crea ni se destruye, solo se transforma. En una montaña rusa, en el punto más alto tenemos máxima potencial; al bajar, esa energía se convierte en cinética. Cuanto más rápido vamos y más pesamos, más energía cinética tenemos (Ec=1/2·m·v²).",
     "preguntas": [
       {
-        "pregunta": "¿Cuántos enlaces forma el carbono habitualmente?",
-        "opciones": ["Dos", "Tres", "Cuatro", "Seis"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué es un hidrocarburo?",
-        "opciones": ["Agua con carbono", "Compuesto formado solo por carbono e hidrógeno", "Un tipo de metal", "Un gas noble"],
+        "pregunta": "¿Qué dos energías forman la energía mecánica?",
+        "opciones": [
+          "Luz y Calor",
+          "Cinética y Potencial",
+          "Eléctrica y Solar",
+          "Química y Nuclear"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué caracteriza a un alqueno?",
-        "opciones": ["Solo enlaces sencillos", "Al menos un doble enlace carbono-carbono", "Un triple enlace", "No tiene carbono"],
+        "pregunta": "¿De qué depende la energía potencial gravitatoria?",
+        "opciones": [
+          "De la velocidad",
+          "De la masa y la altura",
+          "Del color",
+          "Del tiempo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se llama el alcano de un solo carbono?",
-        "opciones": ["Etano", "Propano", "Metano", "Butano"],
-        "correcta": 2
+        "pregunta": "¿Qué dice el principio de conservación de la energía?",
+        "opciones": [
+          "Que la energía se gasta",
+          "Que la energía total no cambia, solo se transforma",
+          "Que la energía desaparece",
+          "Que siempre es la misma"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuál es la base de la química orgánica?",
-        "opciones": ["El oxígeno", "El silicio", "El carbono", "El hierro"],
-        "correcta": 2
+        "pregunta": "En una caída, ¿en qué se transforma la energía potencial?",
+        "opciones": [
+          "En calor",
+          "En energía cinética (movimiento)",
+          "En luz",
+          "En nada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre con la energía mecánica si hay rozamiento?",
+        "opciones": [
+          "Se conserva",
+          "Parte se transforma en calor (energía no mecánica)",
+          "Aumenta",
+          "Se hace infinita"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Cinemática avanzada: Movimiento Circular",
-    "texto": "No todos los movimientos son rectilíneos. El Movimiento Circular Uniforme (MCU) es aquel cuya trayectoria es una circunferencia y su velocidad angular es constante. Aunque la rapidez sea constante, existe una aceleración centrípeta dirigida hacia el centro, que es la que hace que el cuerpo cambie de dirección continuamente. Las magnitudes que usamos son el radián (unidad de ángulo), el período (tiempo en dar una vuelta) y la frecuencia (vueltas por segundo). El MCU se encuentra en la rotación de los planetas, las aspas de un aerogenerador o el giro de un disco. Entenderlo es clave para la ingeniería y la astronomía.",
+    "titulo": "Trabajo y Potencia",
+    "texto": "En física, realizamos TRABAJO (W) cuando aplicamos una fuerza sobre un cuerpo y este se desplaza (W = F · d). Si empujas una pared y no se mueve, el trabajo es cero. La RAPIDEZ con la que realizamos ese trabajo se llama POTENCIA (P). Se mide en VATIOS (W). Un motor es más potente si es capaz de realizar el mismo trabajo en menos tiempo. Por ejemplo, un coche potente acelera hasta los 100 km/h en pocos segundos porque su motor entrega mucha energía por cada segundo que pasa.",
     "preguntas": [
       {
-        "pregunta": "¿Hacia dónde apunta la aceleración centrípeta?",
-        "opciones": ["Hacia afuera", "Tangente a la curva", "Hacia el centro de la trayectoria", "Hacia atrás"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué es el período en un MCU?",
-        "opciones": ["El número de vueltas", "El tiempo que tarda en dar una vuelta completa", "La velocidad angular", "El radio de la curva"],
+        "pregunta": "¿Cuándo se realiza trabajo en sentido físico?",
+        "opciones": [
+          "Cuando piensas mucho",
+          "Cuando una fuerza provoca un desplazamiento",
+          "Cuando estás parado",
+          "Cuando duermes"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuál es la unidad de ángulo en el Sistema Internacional?",
-        "opciones": ["Grado", "Minuto", "Radián", "Metro"],
-        "correcta": 2
+        "pregunta": "¿Qué es la potencia?",
+        "opciones": [
+          "La fuerza total",
+          "La rapidez con la que se realiza un trabajo (Energía / Tiempo)",
+          "El tamaño del motor",
+          "La velocidad máxima"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué ocurre con la velocidad en el MCU?",
-        "opciones": ["Es constante en módulo pero cambia de dirección", "Es constante en todo", "Es variable en módulo", "Es cero"],
-        "correcta": 0
+        "pregunta": "¿En qué unidad se mide la potencia?",
+        "opciones": [
+          "Metros",
+          "Vatios (W)",
+          "Julios (J)",
+          "Newtons"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué magnitud mide las vueltas por segundo?",
-        "opciones": ["Período", "Frecuencia", "Radio", "Masa"],
+        "pregunta": "Si un motor hace un trabajo en 10s y otro en 5s, ¿cuál es más potente?",
+        "opciones": [
+          "El de 10s",
+          "El de 5s",
+          "Son iguales",
+          "El más grande"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la unidad del Trabajo y la Energía en el S.I.?",
+        "opciones": [
+          "Newton",
+          "Julio (J)",
+          "Vatio",
+          "Celsius"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Dinámica: Fuerzas de rozamiento y Planos Inclinados",
-    "texto": "En 4º de ESO resolvemos problemas de fuerzas más realistas. El rozamiento es una fuerza disipativa que depende de la fuerza normal y del coeficiente de rozamiento (μ). En un plano inclinado, el peso del cuerpo se descompone en dos: una componente paralela al plano (que lo hace caer) y otra perpendicular (que lo presiona contra el plano). La aceleración del objeto dependerá del ángulo de inclinación y de si hay o no rozamiento. Estos principios se aplican desde el diseño de rampas para sillas de ruedas hasta el cálculo de la seguridad en carreteras de montaña y puentes.",
+    "titulo": "Presión y Principio de Pascal",
+    "texto": "La presión mide cómo se reparte la fuerza sobre una superficie (P = F / S). El Principio de PASCAL afirma que la presión ejercida sobre un fluido encerrado se transmite por igual en todas direcciones. Esto permite fabricar la PRENSA HIDRÁULICA: aplicando una fuerza pequeña en un émbolo pequeño, podemos levantar un camión en un émbolo grande. Es la base de los gatos hidráulicos de los talleres, de los frenos de los coches y de la maquinaria pesada de construcción.",
     "preguntas": [
       {
-        "pregunta": "¿De qué depende la fuerza de rozamiento?",
-        "opciones": ["Solo de la velocidad", "De la fuerza normal y el coeficiente de rozamiento", "Del color del objeto", "Del tiempo que lleve moviéndose"],
+        "pregunta": "¿Qué es la presión?",
+        "opciones": [
+          "La fuerza total",
+          "La relación entre la fuerza aplicada y la superficie",
+          "El peso de los objetos",
+          "El aire"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué componente del peso hace que un objeto baje por una rampa?",
-        "opciones": ["La perpendicular", "La normal", "La paralela al plano", "La centrípeta"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué es la fuerza normal?",
-        "opciones": ["El peso", "La fuerza de reacción de la superficie perpendicular a ella", "El rozamiento", "La gravedad"],
+        "pregunta": "¿Qué afirma el Principio de Pascal?",
+        "opciones": [
+          "Que los líquidos no pesan",
+          "Que la presión en un fluido se transmite íntegramente a todo el fluido",
+          "Que el agua moja",
+          "Que la presión baja"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué ocurre si el coeficiente de rozamiento es cero?",
-        "opciones": ["No hay rozamiento (superficie ideal)", "El cuerpo se pega al suelo", "El peso desaparece", "El ángulo se vuelve recto"],
-        "correcta": 0
+        "pregunta": "¿Para qué sirve una prensa hidráulica?",
+        "opciones": [
+          "Para calentar agua",
+          "Para multiplicar la fuerza usando líquidos",
+          "Para enfriar motores",
+          "Para nada"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cómo influye el ángulo de una rampa en la aceleración?",
-        "opciones": ["A mayor ángulo, menor aceleración", "A mayor ángulo, mayor aceleración de bajada", "No influye", "La aceleración siempre es 9,8"],
+        "pregunta": "Si aumentamos la superficie (S) donde aplicamos una fuerza...",
+        "opciones": [
+          "La presión aumenta",
+          "La presión disminuye",
+          "La fuerza desaparece",
+          "No cambia"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué unidad se mide la presión en el S.I.?",
+        "opciones": [
+          "Newton",
+          "Pascal (Pa)",
+          "Vatio",
+          "Metro"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Energía Mecánica y su Conservación",
-    "texto": "La Energía Mecánica (Em) es la suma de la Energía Cinética (Ec) y la Energía Potencial (Ep). Si solo actúan fuerzas conservativas (como la gravedad) y no hay rozamiento, la Energía Mecánica se mantiene constante en todo el trayecto. Esto significa que si un objeto pierde altura, gana velocidad de forma proporcional. Sin embargo, en la vida real hay rozamiento, y parte de la energía mecánica se transforma en calor (trabajo de la fuerza de rozamiento). El concepto de trabajo (W = F · d · cosα) es fundamental para entender cómo transferimos energía mediante fuerzas y cómo funcionan los motores y las máquinas térmicas.",
+    "titulo": "Calor y Temperatura",
+    "texto": "Aunque a veces los confundimos, son cosas distintas. La TEMPERATURA indica la energía interna (movimiento de átomos) de un cuerpo. El CALOR es la energía que viaja de un cuerpo caliente a uno frío. El calor puede transmitirse por CONDUCCIÓN (contacto sólido), CONVECCIÓN (movimiento de fluidos como aire o agua) o RADIACIÓN (ondas como la luz del Sol). Dos cuerpos en contacto alcanzan el EQUILIBRIO TÉRMICO cuando sus temperaturas se igualan y deja de fluir calor entre ellos.",
     "preguntas": [
       {
-        "pregunta": "¿Qué es la Energía Mecánica?",
-        "opciones": ["Solo la cinética", "La suma de Cinética y Potencial", "El calor", "La electricidad"],
+        "pregunta": "¿Qué es el calor en física?",
+        "opciones": [
+          "Lo que marca el termómetro",
+          "Energía en tránsito desde un cuerpo caliente a uno frío",
+          "Un tipo de luz",
+          "Ondas de radio"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuándo se conserva la Energía Mecánica?",
-        "opciones": ["Siempre", "Cuando no hay fuerzas no conservativas como el rozamiento", "Cuando el cuerpo está parado", "Nunca"],
+        "pregunta": "¿Hacia dónde fluye siempre el calor de forma natural?",
+        "opciones": [
+          "Del frío al caliente",
+          "Del caliente al frío",
+          "En cualquier dirección",
+          "Solo hacia arriba"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué sucede con la energía cinética de un coche al frenar por rozamiento?",
-        "opciones": ["Se destruye", "Se transforma en calor", "Se vuelve potencial", "Se duplica"],
+        "pregunta": "¿Cómo nos llega el calor del sol a través del vacío?",
+        "opciones": [
+          "Conducción",
+          "Radiación",
+          "Convección",
+          "Cables"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuál es la unidad de trabajo y energía en el SI?",
-        "opciones": ["Newton", "Vatio", "Julio (J)", "Pascal"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué fórmula define la Energía Potencial Gravitatoria?",
-        "opciones": ["Ec = 1/2 m·v²", "Ep = m·g·h", "W = F·d", "P = W/t"],
-        "correcta": 1
-      }
-    ]
-  },
-  {
-    "id": "7",
-    "titulo": "Gravitación Universal",
-    "texto": "Isaac Newton descubrió que la misma fuerza que hace caer una manzana es la que mantiene a la Luna en órbita. La Ley de Gravitación Universal establece que dos cuerpos se atraen con una fuerza proporcional al producto de sus masas e inversamente proporcional al cuadrado de la distancia que los separa. Esta fuerza es siempre atractiva. Gracias a esta ley, podemos calcular la masa de los planetas, las órbitas de los satélites artificiales y entender las mareas. La gravedad no es solo algo de la Tierra, es una propiedad de toda la materia en el universo, aunque solo se hace evidente cuando las masas son gigantescas como estrellas o planetas.",
-    "preguntas": [
-      {
-        "pregunta": "¿Cómo varía la fuerza de gravedad con la distancia?",
-        "opciones": ["Aumenta con la distancia", "Disminuye con el cuadrado de la distancia", "No varía", "Es aleatoria"],
+        "pregunta": "¿Qué es el equilibrio térmico?",
+        "opciones": [
+          "Cuando un cuerpo se congela",
+          "Cuando dos cuerpos igualan su temperatura y el flujo de calor para",
+          "Cuando hierve el agua",
+          "Cuando hace sol"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué cuerpos tienen gravedad?",
-        "opciones": ["Solo la Tierra", "Solo el Sol", "Todos los cuerpos con masa", "Solo los que tienen imanes"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué mantiene a los planetas girando alrededor del Sol?",
-        "opciones": ["El viento espacial", "La fuerza de atracción gravitatoria", "La luz", "Nada, es pura suerte"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Quién formuló la Ley de Gravitación Universal?",
-        "opciones": ["Einstein", "Newton", "Galileo", "Bohr"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué ocurre si duplicamos la masa de uno de los cuerpos?",
-        "opciones": ["La fuerza de atracción se duplica", "La fuerza se divide", "La fuerza se cuadriplica", "La fuerza desaparece"],
+        "pregunta": "¿Y la temperatura?",
+        "opciones": [
+          "Es una magnitud que mide la agitación térmica de las partículas",
+          "Es la cantidad de fuego",
+          "Es igual que el calor",
+          "No se puede medir"
+        ],
         "correcta": 0
       }
     ]
   },
   {
-    "id": "8",
-    "titulo": "Presión Atmosférica y Experimento de Torricelli",
-    "texto": "Vivimos en el fondo de un océano de aire. El peso de la atmósfera sobre nosotros genera la presión atmosférica. Evangelista Torricelli fue el primero en medirla en 1643 usando un tubo de mercurio. Descubrió que al nivel del mar, la atmósfera es capaz de sostener una columna de 760 mm de mercurio (1 atm). La presión atmosférica disminuye con la altitud porque hay menos aire encima. Por eso, a los alpinistas les cuesta más respirar y el agua hierve a menos de 100ºC en las montañas. Los barómetros son los instrumentos que miden esta presión y son esenciales para la predicción meteorológica.",
+    "id": "7",
+    "titulo": "Ondas: Sonido y Luz",
+    "texto": "Una onda transporta energía sin transportar materia. El SONIDO es una onda mecánica: necesita un medio (aire, agua) para viajar; por eso en el espacio no se oyen las explosiones. La LUZ es una onda electromagnética: puede viajar por el vacío. Las ondas se definen por su FRECUENCIA (cuántas pasan por segundo) y su LONGITUD. Los sonidos agudos tienen mucha frecuencia, mientras que en la luz, los diferentes colores dependen también de su frecuencia. La velocidad del sonido es de 340 m/s, pero la de la luz es casi 300.000 km/s.",
     "preguntas": [
       {
-        "pregunta": "¿Qué valor tiene la presión atmosférica normal a nivel del mar?",
-        "opciones": ["100 Pa", "760 mmHg (1 atm)", "10 mmHg", "500 atm"],
+        "pregunta": "¿Por qué no se oye nada en el espacio exterior?",
+        "opciones": [
+          "Porque hay mucho ruido",
+          "Porque el sonido necesita un medio material para viajar y hay vacío",
+          "Porque hace frío",
+          "Porque no hay oídos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué ocurre con la presión atmosférica al subir a una montaña?",
-        "opciones": ["Aumenta", "Se mantiene igual", "Disminuye", "Se vuelve líquida"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué líquido usó Torricelli en su famoso experimento?",
-        "opciones": ["Agua", "Alcohol", "Mercurio", "Aceite"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cómo se llama el instrumento que mide la presión atmosférica?",
-        "opciones": ["Termómetro", "Barómetro", "Dinamómetro", "Voltímetro"],
+        "pregunta": "¿Qué es más rápido?",
+        "opciones": [
+          "El sonido",
+          "La luz (viaja a 300.000 km/s)",
+          "Un avión",
+          "Un rayo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Por qué disminuye la presión con la altura?",
-        "opciones": ["Porque hace más frío", "Porque hay menos columna de aire sobre nosotros", "Porque la gravedad es mayor", "Por el viento"],
+        "pregunta": "¿Qué tipo de onda es la luz?",
+        "opciones": [
+          "Mecánica",
+          "Electromagnética",
+          "Sonora",
+          "Lenta"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué define el tono (agudo/grave) de un sonido?",
+        "opciones": [
+          "Su peso",
+          "Su frecuencia",
+          "Su color",
+          "Su longitud"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Las ondas transportan energía pero no transportan:",
+        "opciones": [
+          "Información",
+          "Materia",
+          "Velocidad",
+          "Sitio"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "titulo": "Gravitación Universal",
+    "texto": "Newton descubrió que la misma fuerza que hace caer una manzana mantiene a la Luna en su órbita: la GRAVEDAD. Todos los cuerpos con masa se atraen entre sí. Esta fuerza es mayor cuanto más masa tengan los cuerpos y menor cuanto más lejos estén. Por eso la Tierra nos atrae con fuerza pero nosotros no notamos la atracción de una montaña. Esta ley permite predecir eclipses, órbitas de planetas y lanzar satélites de comunicaciones con una precisión matemática asombrosa.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué dos factores determinan la fuerza de gravedad entre dos cuerpos?",
+        "opciones": [
+          "Su color y tamaño",
+          "Sus masas y la distancia entre ellos",
+          "Su velocidad",
+          "El tiempo que llevan ahí"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre con la gravedad si alejamos dos objetos?",
+        "opciones": [
+          "Aumenta",
+          "Disminuye",
+          "Se queda igual",
+          "Se hace infinita"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quién formuló la Ley de la Gravitación Universal?",
+        "opciones": [
+          "Einstein",
+          "Newton",
+          "Darwin",
+          "Galileo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué no notamos la atracción de objetos cotidianos?",
+        "opciones": [
+          "Porque es mentira",
+          "Porque su masa es minúscula comparada con la de la Tierra",
+          "Porque están quietos",
+          "Porque no tienen carga"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "La gravedad es una fuerza de:",
+        "opciones": [
+          "Repulsión",
+          "Atracción",
+          "Giro",
+          "Frenado"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Calorimetría y Equilibrio Térmico",
-    "texto": "La calorimetría estudia la medición del calor. Cuando mezclamos dos sustancias a distintas temperaturas, la energía fluye del cuerpo caliente al frío. El calor cedido por uno es igual al calor absorbido por el otro (Q_ganado = -Q_cedido). Usamos la fórmula Q = m · Ce · ΔT. Además del cambio de temperatura, el calor puede producir cambios de estado (fusión, ebullición). Durante el cambio de estado, la temperatura no varía; toda la energía se usa para romper los enlaces entre partículas. Esta energía se llama calor latente. Es por esto que una mezcla de agua y hielo se mantiene exactamente a 0ºC hasta que todo el hielo se ha derretido.",
+    "titulo": "Electricidad: Ley de Ohm",
+    "texto": "La electricidad es el movimiento de electrones por un conductor. Se rige por tres magnitudes: VOLTAJE (empuje, V), INTENSIDAD (caudal, I) y RESISTENCIA (dificultad, R). La LEY DE OHM las une: V = I · R. En un circuito en SERIE, la corriente es la misma en todos los puntos; en PARALELO, el voltaje es el mismo. Entender esto permite diseñar desde una linterna hasta la compleja instalación eléctrica de un hospital o un coche eléctrico.",
     "preguntas": [
       {
-        "pregunta": "¿Qué sucede con la temperatura durante la fusión del hielo?",
-        "opciones": ["Sube sin parar", "Se mantiene constante en 0ºC", "Baja", "Desaparece"],
+        "pregunta": "¿Cuál es la fórmula de la Ley de Ohm?",
+        "opciones": [
+          "V = I / R",
+          "V = I · R (Voltaje = Intensidad por Resistencia)",
+          "I = V · R",
+          "R = V · I"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se llama la energía necesaria para cambiar de estado sin variar la temperatura?",
-        "opciones": ["Calor específico", "Calor latente", "Energía cinética", "Temperatura crítica"],
+        "pregunta": "¿En qué se mide la Intensidad de corriente?",
+        "opciones": [
+          "Voltios",
+          "Amperios (A)",
+          "Ohmios",
+          "Vatios"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuál es la unidad de calor en el SI?",
-        "opciones": ["Caloría", "Julio (J)", "Grado Celsius", "Vatio"],
+        "pregunta": "¿Y la Resistencia?",
+        "opciones": [
+          "Amperios",
+          "Ohmios (Ω)",
+          "Metros",
+          "Segundos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué mide el calor específico?",
-        "opciones": ["La temperatura máxima", "La resistencia de un material a cambiar su temperatura", "La masa de un cuerpo", "La velocidad de la luz"],
+        "pregunta": "¿Qué ocurre si aumentamos la resistencia en un circuito (y el voltaje es igual)?",
+        "opciones": [
+          "Pasa más corriente",
+          "Pasa menos corriente (la intensidad baja)",
+          "Explota",
+          "No pasa nada"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Si mezclamos agua a 80ºC y agua a 20ºC, en qué rango estará la temperatura final?",
-        "opciones": ["A 100ºC", "A 10ºC", "Entre 20ºC y 80ºC", "A 0ºC"],
-        "correcta": 2
+        "pregunta": "En un circuito en paralelo doméstico, todas las bombillas reciben el mismo:",
+        "opciones": [
+          "Consumo",
+          "Voltaje",
+          "Cable",
+          "Resplandor"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Ondas: Sonido y Luz",
-    "texto": "Una onda es una perturbación que transporta energía sin transportar materia. El sonido es una onda mecánica (necesita un medio como aire o agua) y longitudinal. Su velocidad depende del medio (340 m/s en el aire, mucho más rápido en el agua y sólidos). La luz es una onda electromagnética (puede viajar por el vacío) y transversal. Las ondas se caracterizan por su frecuencia (tonos agudos o graves en sonido; colores en luz) y su longitud de onda. El efecto Doppler explica por qué el sonido de una ambulancia cambia de tono al acercarse o alejarse. El estudio de las ondas permite desde las telecomunicaciones modernas hasta la medicina (ecografías y rayos X).",
+    "titulo": "Física Moderna: E = mc²",
+    "texto": "A principios del siglo XX, Albert Einstein demostró que el espacio y el tiempo no son absolutos, sino que dependen de la velocidad. Su famosa ecuación E = mc² nos dice que la MASA y la ENERGÍA son la misma cosa. Una pequeña cantidad de materia puede convertirse en una cantidad gigante de energía. Esto explica por qué el Sol brilla (fusión nuclear) y cómo funcionan las centrales nucleares. La física moderna nos ha dado tecnologías como el GPS (que debe corregir el tiempo por la relatividad) o los escáneres médicos PET.",
     "preguntas": [
       {
-        "pregunta": "¿Qué transporta una onda?",
-        "opciones": ["Materia", "Energía", "Aire", "Agua"],
+        "pregunta": "¿Quién es el autor de la teoría de la relatividad?",
+        "opciones": [
+          "Isaac Newton",
+          "Albert Einstein",
+          "Stephen Hawking",
+          "Marie Curie"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Por qué no se oyen explosiones en el espacio?",
-        "opciones": ["Porque no hay luz", "Porque el sonido necesita un medio material (vacío)", "Porque hace mucho frío", "Porque están muy lejos"],
+        "pregunta": "¿Qué significa la 'm' en la ecuación E=mc²?",
+        "opciones": [
+          "Metros",
+          "Masa",
+          "Música",
+          "Miedo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué fenómeno explica el cambio de tono de una sirena en movimiento?",
-        "opciones": ["Efecto Doppler", "Refracción", "Reflexión", "Difracción"],
-        "correcta": 0
+        "pregunta": "¿Qué relación establece esta fórmula?",
+        "opciones": [
+          "Distancia y tiempo",
+          "Equivalencia entre masa y energía",
+          "Velocidad y peso",
+          "Luz y color"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué tipo de onda es la luz?",
-        "opciones": ["Mecánica", "Longitudinal", "Electromagnética y transversal", "Sonora"],
-        "correcta": 2
+        "pregunta": "¿Para qué sirve conocer la relatividad en la tecnología actual?",
+        "opciones": [
+          "Para la radio",
+          "Para la precisión de los satélites GPS",
+          "Para la TV",
+          "Para los coches diésel"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿De qué depende que un sonido sea agudo o grave?",
-        "opciones": ["De su amplitud", "De su frecuencia", "De su color", "De la distancia"],
+        "pregunta": "Según Einstein, el tiempo es:",
+        "opciones": [
+          "Absoluto",
+          "Relativo (depende de la velocidad)",
+          "Infinito para todos",
+          "Un objeto"
+        ],
         "correcta": 1
       }
     ]

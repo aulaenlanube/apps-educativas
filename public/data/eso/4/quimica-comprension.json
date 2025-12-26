@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "El Átomo: Modelos Históricos",
+        "texto": "Nuestra idea del átomo ha evolucionado. DALTON pensaba que era una esfera sólida. THOMSON descubrió el electrón (modelo del pudin de pasas). RUTHERFORD demostró que el átomo tiene un núcleo positivo muy pequeño y que está casi todo vacío. BOHR propuso que los electrones giran en órbitas circulares de energía fija. Hoy usamos el modelo MECANO-CUÁNTICO, donde los electrones no están en órbitas fijas, sino en zonas de probabilidad llamadas ORBITALES. Entender el átomo nos permite conocer cómo se combina la materia.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quién descubrió el núcleo atómico?",
+                "opciones": [
+                    "Dalton",
+                    "Rutherford",
+                    "Thomson",
+                    "Bohr"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué descubrió Thomson?",
+                "opciones": [
+                    "El protón",
+                    "El electrón",
+                    "El neutrón",
+                    "La luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llaman las zonas de probabilidad donde están los electrones hoy?",
+                "opciones": [
+                    "Círculos",
+                    "Orbitales",
+                    "Nubes de polvo",
+                    "Agujeros"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hay en el núcleo del átomo?",
+                "opciones": [
+                    "Electrones solamente",
+                    "Protones y Neutrones",
+                    "Nada, está vacío",
+                    "Luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo es la mayor parte del volumen de un átomo?",
+                "opciones": [
+                    "Sólido",
+                    "Espacio vacío",
+                    "Lleno de agua",
+                    "Lleno de aire"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "La Tabla Periódica y sus tendencias",
+        "texto": "La Tabla Periódica organiza los elementos por su número atómico (Z), que es el número de protones. Los elementos de la misma columna (GRUPO) tienen propiedades químicas similares porque tienen los mismos electrones en su última capa. Los de la misma fila están en el mismo PERIODO. A la derecha encontramos los NO METALES y gases nobles, y a la izquierda los METALES. La tabla es un mapa que predice cómo se comportará un elemento: si será reactivo, si conducirá la luz o si será sólido o gas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué indica el número atómico (Z)?",
+                "opciones": [
+                    "El peso",
+                    "El número de protones en el núcleo",
+                    "La edad",
+                    "El tamaño"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué los elementos de un mismo grupo se parecen?",
+                "opciones": [
+                    "Porque pesan igual",
+                    "Porque tienen el mismo número de electrones de valencia (última capa)",
+                    "Porque son del mismo color",
+                    "No se parecen"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se sitúan los metales en la tabla?",
+                "opciones": [
+                    "A la derecha",
+                    "A la izquierda y centro",
+                    "Solo abajo",
+                    "No hay sitio fijo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llaman las filas horizontales?",
+                "opciones": [
+                    "Grupos",
+                    "Periodos",
+                    "Familias",
+                    "Estantes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué elementos son muy estables y no suelen reaccionar?",
+                "opciones": [
+                    "Metales",
+                    "Gases Nobles (Grupo 18)",
+                    "Halógenos",
+                    "El hidrógeno"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "El Enlace Químico: ¿Por qué se unen?",
+        "texto": "Los átomos se unen para ganar estabilidad, intentando tener 8 electrones en su última capa (regla del octeto). Hay tres tipos: 1) ENLACE IÓNICO: un metal da un electrón a un no metal; se atraen por cargas (+ y -). 2) ENLACE COVALENTE: dos no metales comparten electrones; es un enlace muy fuerte (como en el agua o el ADN). 3) ENLACE METÁLICO: los electrones forman una 'nube' que rodea a los núcleos; por eso los metales conducen tan bien la electricidad y el calor.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué buscan los átomos al unirse?",
+                "opciones": [
+                    "Pesar más",
+                    "Estabilidad (llegar a tener 8 electrones en la última capa)",
+                    "Cambiar de nombre",
+                    "Ser más grandes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre en un enlace iónico?",
+                "opciones": [
+                    "Se comparten electrones",
+                    "Hay transferencia de electrones entre un metal y un no metal",
+                    "Se pelean",
+                    "Se evaporan"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de enlace hay en la molécula de agua (H₂O)?",
+                "opciones": [
+                    "Iónico",
+                    "Covalente (comparten electrones)",
+                    "Metálico",
+                    "No hay enlace"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué caracteriza al enlace metálico?",
+                "opciones": [
+                    "Es muy frágil",
+                    "Los electrones están libres en una nube común",
+                    "Es invisible",
+                    "Solo hay un átomo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La regla que explica la estabilidad se llama:",
+                "opciones": [
+                    "Regla del diez",
+                    "Regla del Octeto",
+                    "Regla de tres",
+                    "Regla de Dalton"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Reacciones Químicas y Estequiometría",
+        "texto": "En una reacción química, los reactivos se transforman en productos rompiendo y formando nuevos enlaces. Se rigen por la Ley de Lavoisier: LA MATERIA NO SE CREA NI SE DESTRUYE, solo se transforma. Por eso debemos AJUSTAR las ecuaciones químicas para que haya el mismo número de átomos a cada lado. El MOL es la unidad química para contar átomos (6,022·10²³). La estequiometría nos permite calcular qué cantidad de pastillas de freno o de combustible necesitamos con precisión matemática.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué dice la Ley de Lavoisier?",
+                "opciones": [
+                    "Que la masa disminuye siempre",
+                    "Que la masa se conserva (no se crea ni se destruye)",
+                    "Que el oxígeno es malo",
+                    "Que todo es energía"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve ajustar una ecuación química?",
+                "opciones": [
+                    "Para que sea bonita",
+                    "Para cumplir la ley de conservación de la masa (iguales átomos a ambos lados)",
+                    "Para que sea más difícil",
+                    "Para borrarla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la unidad para medir la cantidad de sustancia?",
+                "opciones": [
+                    "Gramo",
+                    "Mol",
+                    "Litro",
+                    "Metro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si quemamos 10g de madera y recogemos todo el humo y ceniza, ¿cuánto pesará?",
+                "opciones": [
+                    "Menos de 10g",
+                    "10g exactos (la masa se conserva)",
+                    "Más de 10g",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llaman las sustancias iniciales de una reacción?",
+                "opciones": [
+                    "Resultados",
+                    "Reactivos",
+                    "Finales",
+                    "Basura"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Concentración de las Disoluciones",
+        "texto": "Una disolución es una mezcla homogénea de un SOLUTO (lo que hay en menor cantidad) y un DISOLVENTE (lo que hay en mayor cantidad, normalmente agua). La CONCENTRACIÓN indica cuánto soluto hay en el total. Podemos medirla en gramos por litro (g/L), en porcentaje (%) o en MOLARIDAD (moles por litro). Controlar la concentración es vital: una medicina puede curarte o ser veneno dependiendo de su concentración en sangre, igual que la sal en un guiso o el cloro en una piscina.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué componente de la mezcla está en menor cantidad?",
+                "opciones": [
+                    "Disolvente",
+                    "Soluto",
+                    "Agua",
+                    "Contenedor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué indica la Molaridad?",
+                "opciones": [
+                    "El peso total",
+                    "El número de moles de soluto por cada litro de disolución",
+                    "El color",
+                    "El precio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el disolvente universal más común?",
+                "opciones": [
+                    "Alcohol",
+                    "Agua",
+                    "Leche",
+                    "Aceite"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si añadimos más soluto sin cambiar el volumen del líquido, la disolución está más:",
+                "opciones": [
+                    "Diluida",
+                    "Concentrada",
+                    "Fría",
+                    "Luminosa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué magnitud mide g de soluto entre L de disolución?",
+                "opciones": [
+                    "Peso",
+                    "Concentración en masa (g/L)",
+                    "Volumen",
+                    "Tiempo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Química de los Ácidos y Bases",
+        "texto": "Los ÁCIDOS (como el limón o el vinagre) y las BASES (como el bicarbonato o la lejía) están en toda nuestra casa. Medimos su fuerza con la escala de PH. Un pH de 7 es NEUTRO (como el agua pura). Menor que 7 es ÁCIDO y mayor que 7 es BÁSICO (alcalino). Cuando un ácido y una base reaccionan entre sí ocurren una NEUTRALIZACIÓN, formando sal y agua. El pH es fundamental para la vida: nuestra sangre debe tener un pH exacto de alrededor de 7,4; si cambia mínimamente, podríamos morir.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué valor tiene el pH neutro?",
+                "opciones": [
+                    "0",
+                    "7",
+                    "14",
+                    "10"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un producto tiene pH 2, es:",
+                "opciones": [
+                    "Básico",
+                    "Ácido",
+                    "Neutro",
+                    "Inofensivo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué se forma al mezclar un ácido y una base (neutralización)?",
+                "opciones": [
+                    "Solo fuego",
+                    "Sal y agua",
+                    "Oro",
+                    "Un gas venenoso"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una sustancia básica común:",
+                "opciones": [
+                    "Limón",
+                    "Bicarbonato o Lejía",
+                    "Vinagre",
+                    "Coca-cola"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el pH de la sangre humana aproximado?",
+                "opciones": [
+                    "Muy ácido",
+                    "Casi neutro (7,4)",
+                    "Muy básico",
+                    "Cambia cada hora"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Química Orgánica: El Carbono",
+        "texto": "El CARBONO es el elemento base de la vida. Puede formar largas cadenas y complejos anillos uniéndose consigo mismo y con otros elementos (H, O, N). A esto se le llama QUÍMICA ORGÁNICA o del Carbono. Los hidrocarburos (petróleo, gas natural) son las moléculas más simples de carbono e hidrógeno. Pero el carbono también forma parte de las proteínas, el ADN y los plásticos. Entender cómo se une el carbono nos permite fabricar desde nuevos tejidos sintéticos hasta fármacos contra enfermedades raras.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el elemento principal de la química orgánica?",
+                "opciones": [
+                    "Oxígeno",
+                    "Carbono",
+                    "Hierro",
+                    "Oro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué son los hidrocarburos?",
+                "opciones": [
+                    "Moléculas de agua",
+                    "Compuestos formados solo por Carbono e Hidrógeno",
+                    "Gases nobles",
+                    "Sales minerales"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es tan especial el Carbono?",
+                "opciones": [
+                    "Porque brilla",
+                    "Porque puede formar cadenas largas y estables",
+                    "Porque es muy barato",
+                    "Porque es líquido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un material hecho de cadenas de carbono mencionado:",
+                "opciones": [
+                    "Cristal",
+                    "Plástico o Proteínas",
+                    "Arena",
+                    "Cobre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El petróleo es una fuente de:",
+                "opciones": [
+                    "Metales",
+                    "Hidrocarburos (energía y plásticos)",
+                    "Agua",
+                    "Luz"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Energía de las Reacciones: Exotérmicas",
+        "texto": "Al producirse una reacción, puede sobrar o faltar energía. Las reacciones EXOTÉRMICAS desprenden energía en forma de calor o luz (como una combustión o el fuego). Las reacciones ENDOTÉRMICAS necesitan absorber energía para ocurrir (como la fotosíntesis, que necesita luz solar). Conocer esto es vital para la seguridad: algunas reacciones exotérmicas son tan rápidas que provocan explosiones, mientras que otras son lentas como la oxidación de un clavo a la intemperie.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es una reacción exotérmica?",
+                "opciones": [
+                    "La que absorbe frío",
+                    "La que desprende energía (calor/luz)",
+                    "La que no hace nada",
+                    "La que se congela"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de reacción es la fotosíntesis?",
+                "opciones": [
+                    "Exotérmica",
+                    "Endotérmica (necesita energía del sol)",
+                    "Explosiva",
+                    "Mecánica"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un incendio es una reacción:",
+                "opciones": [
+                    "Endotérmica",
+                    "Exotérmica",
+                    "De color azul",
+                    "De luz solamente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué se suele liberar la energía sobrante?",
+                "opciones": [
+                    "En sonido solamente",
+                    "En forma de calor o luz",
+                    "En forma de peso",
+                    "No se libera"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es más rápida?",
+                "opciones": [
+                    "La oxidación de un clavo",
+                    "La explosión de dinamita",
+                    "Son iguales",
+                    "Depende del día"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Formulación Inorgánica: Óxidos y Sales",
+        "texto": "Para que los científicos se entiendan en todo el mundo, usamos normas de la IUPAC para nombrar compuestos. Un ÓXIDO es la unión de un elemento con oxígeno. Un HIDRÓXIDO tiene el grupo OH. Las SALES BINARIAS unen un metal y un no metal (como la sal de mesa NaCl). Aprender las valencias (el número de electrones que un átomo gana, pierde o comparte) es la clave para escribir las fórmulas correctamente. Sin un lenguaje común, la química sería un caos de nombres diferentes para la misma sustancia.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué organismo pone las reglas para nombrar compuestos?",
+                "opciones": [
+                    "UNESCO",
+                    "IUPAC",
+                    "ONU",
+                    "NBA"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un óxido?",
+                "opciones": [
+                    "Unión de metal y agua",
+                    "Unión de un elemento con Oxígeno",
+                    "Unión de Carbono y Sal",
+                    "Un tipo de plástico"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la fórmula de la sal de mesa?",
+                "opciones": [
+                    "H2O",
+                    "NaCl (Cloruro de sodio)",
+                    "CO2",
+                    "Au"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué necesitamos saber para formular bien?",
+                "opciones": [
+                    "El color",
+                    "Las valencias (número de oxidación)",
+                    "El precio",
+                    "La marca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué grupo caracteriza a los hidróxidos?",
+                "opciones": [
+                    "CO2",
+                    "OH (grupo hidroxilo)",
+                    "NaCl",
+                    "H2"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Química Sustentable: Los Plásticos",
+        "texto": "Los polímeros o plásticos son moléculas gigantes creadas por el hombre. Son muy útiles pero tienen un gran problema: son muy difíciles de degradar y contaminan mares y suelos durante siglos. La QUÍMICA VERDE busca crear bioplásticos biodegradables a partir de maíz o patata, que desaparecen en pocos meses sin dañar el medio ambiente. El reciclaje químico permite volver a convertir el plástico viejo en monómeros para hacer nuevos materiales, cerrando el ciclo y protegiendo el futuro del planeta.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el principal problema de los plásticos tradicionales?",
+                "opciones": [
+                    "Son caros",
+                    "No se degradan y contaminan durante siglos",
+                    "Se rompen rápido",
+                    "Huelen mal"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De qué se fabrican los bioplásticos?",
+                "opciones": [
+                    "De petróleo rico",
+                    "De materias vegetales como maíz o patata",
+                    "De arena",
+                    "De metal líquido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué busca la Química Verde?",
+                "opciones": [
+                    "Pintar todo de verde",
+                    "Crear procesos y productos químicos que no dañen la naturaleza",
+                    "Hacer bombas",
+                    "Prohibir la química"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un polímero?",
+                "opciones": [
+                    "Una molécula pequeña",
+                    "Una molécula gigante formada por muchas unidades iguales",
+                    "Un tipo de pez",
+                    "Un gas noble"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Reciclar ayuda a:",
+                "opciones": [
+                    "Gastar más",
+                    "Ahorrar recursos y reducir la basura en el planeta",
+                    "Nada",
+                    "Que las fábricas cierren"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

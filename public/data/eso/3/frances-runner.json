@@ -1,17 +1,122 @@
 {
-  "monde_travail": [
-    "métier", "bureau", "salaire", "chômage", "entreprise", "chef", "collègue", "stage", "grève", "retraite"
+  "passions_loisirs": [
+    "faire de la rando",
+    "jouer aux échecs",
+    "dessiner",
+    "chanter",
+    "jouer de la guitare",
+    "sortir avec des amis",
+    "voyager",
+    "lire un roman",
+    "faire du sport",
+    "cuisiner"
   ],
-  "medias_communication": [
-    "journal", "internet", "télévision", "radio", "publicité", "nouvelles", "réseaux sociaux", "magazine", "écran", "message"
+  "souvenirs_enfance": [
+    "quand j'étais petit",
+    "je jouais",
+    "j'aimais",
+    "à l'école primaire",
+    "jouet",
+    "peluche",
+    "vacances d'été",
+    "campagne",
+    "souvenir",
+    "rêve"
   ],
-  "environnement": [
-    "pollution", "recyclage", "nature", "écologie", "déchets", "climat", "réchauffement", "énergie", "protection", "planète"
+  "vetements_accessoires": [
+    "un pull à capuche",
+    "des baskets",
+    "une casquette",
+    "une montre",
+    "des lunettes de soleil",
+    "un sac à dos",
+    "un blouson",
+    "une chemise",
+    "une robe",
+    "des gants"
   ],
-  "sentiments": [
-    "amour", "haine", "joie", "peur", "tristesse", "colère", "surprise", "honte", "bonheur", "jalousie"
+  "corps_sante": [
+    "avoir mal à la tête",
+    "le bras",
+    "la jambe",
+    "le dos",
+    "le médecin",
+    "la pharmacie",
+    "médicament",
+    "se sentir bien",
+    "avoir la grippe",
+    "faire de l'exercice"
   ],
-  "sante": [
-    "maladie", "fièvre", "médicament", "douleur", "hôpital", "médecin", "pharmacie", "grippe", "rhume", "santé"
+  "alimentation_gastronomie": [
+    "un croissant",
+    "une baguette",
+    "du fromage",
+    "du vin",
+    "un plat typique",
+    "délicieux",
+    "manger sain",
+    "boire de l'eau",
+    "sucré",
+    "salé"
+  ],
+  "villes_tourisme": [
+    "paris",
+    "la tour eiffel",
+    "un monument",
+    "le musée du louvre",
+    "une place",
+    "un plan",
+    "visiter",
+    "un hôtel",
+    "le métro",
+    "une église"
+  ],
+  "le_futur_proche": [
+    "je vais faire",
+    "tu vas aller",
+    "demain",
+    "ce soir",
+    "plus tard",
+    "pendant les vacances",
+    "prochainement",
+    "espérer",
+    "vouloir",
+    "pouvoir"
+  ],
+  "metiers_avenir": [
+    "ingénieur",
+    "médecin",
+    "artiste",
+    "informaticien",
+    "cuisinier",
+    "journaliste",
+    "avocat",
+    "chercheur",
+    "professeur",
+    "pilote"
+  ],
+  "environnement_planete": [
+    "recycler",
+    "écologie",
+    "pollution",
+    "la forêt",
+    "les animaux",
+    "protéger",
+    "le climat",
+    "énergies propres",
+    "déchets",
+    "avenir"
+  ],
+  "grammaire_verbes": [
+    "passé composé",
+    "imparfait",
+    "futur",
+    "conditionnel",
+    "subjonctif",
+    "réflexif",
+    "irrégulier",
+    "avoir",
+    "être",
+    "faire"
   ]
 }

@@ -1,0 +1,566 @@
+[
+    {
+        "id": "1",
+        "titulo": "Modernismo y Generación del 98",
+        "texto": "A finales del siglo XIX, España vive una crisis profunda tras la pérdida de las últimas colonias (Cuba y Filipinas). Surgen dos movimientos: el MODERNISMO, que busca la belleza, el exotismo y el ritmo (liderado por Rubén Darío), y la GENERACIÓN DEL 98, que se centra en el problema de España con un estilo sobrio y reflexivo. Autores como Unamuno, Pío Baroja o Machado buscan la esencia de Castilla y critican el atraso del país. Ambos movimientos marcan el inicio de la modernidad literaria en castellano.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué hecho histórico marcó a la Generación del 98?",
+                "opciones": [
+                    "La Guerra Civil",
+                    "La pérdida de las colonias en 1898",
+                    "El descubrimiento de América",
+                    "La invención de la imprenta"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué buscaba principalmente el Modernismo?",
+                "opciones": [
+                    "La crítica social dura",
+                    "La belleza sensorial, el ritmo y el exotismo",
+                    "Escribir para niños",
+                    "No usar adjetivos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién es el autor principal del Modernismo?",
+                "opciones": [
+                    "Antonio Machado",
+                    "Rubén Darío",
+                    "Quevedo",
+                    "Cervantes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tema obsesionaba a los autores del 98?",
+                "opciones": [
+                    "La moda",
+                    "El 'problema de España' y su identidad",
+                    "Los viajes espaciales",
+                    "El dinero"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo era el estilo de la Generación del 98?",
+                "opciones": [
+                    "Muy decorado",
+                    "Sobrio, sencillo y reflexivo",
+                    "Imposible de leer",
+                    "Solo poesía"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Las Vanguardias y el Surrealismo",
+        "texto": "En los años 20 surge el espíritu de las VANGUARDIAS (o Ismos), que quieren romper totalmente con el arte del pasado. El Futurismo exalta las máquinas; el Dadaísmo, el absurdo; y el SURREALISMO intenta liberar el subconsciente y los sueños sin el control de la razón. En España, estas ideas calaron hondo, influyendo en la técnica de la 'escritura automática' y en el uso de metáforas sorprendentes e ilógicas que buscaban impactar al lector y renovar el lenguaje poético.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el objetivo de los movimientos de vanguardia?",
+                "opciones": [
+                    "Copiar a los clásicos",
+                    "Romper totalmente con el arte y la tradición anterior",
+                    "Solo ganar dinero",
+                    "Escribir sobre la religión"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué se centra el Surrealismo?",
+                "opciones": [
+                    "En las máquinas",
+                    "En el subconsciente y el mundo de los sueños",
+                    "En la estadística",
+                    "En la historia de Roma"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la 'escritura automática'?",
+                "opciones": [
+                    "Escribir con ordenador",
+                    "Escribir sin control de la razón, dejando fluir el pensamiento",
+                    "Escribir muy rápido",
+                    "Escribir sin faltas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué exalta el Futurismo?",
+                "opciones": [
+                    "La naturaleza",
+                    "La velocidad, las máquinas y la tecnología",
+                    "El silencio",
+                    "La paz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo son las metáforas vanguardistas?",
+                "opciones": [
+                    "Muy sencillas",
+                    "Sorprendentes, ilógicas y originales",
+                    "No usan metáforas",
+                    "Siempre hablan de flores"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "La Generación del 27",
+        "texto": "El grupo de poetas de 1927 representa el momento de mayor brillo de la lírica española del siglo XX. Unen la TRADICIÓN (Góngora, el romancero) con la vanguardia. Sus figuras más célebres son Federico García LORCA, Rafael Alberti y Luis Cernuda. Lorca combina en su obra el mundo gitano y rural con técnicas surrealistas ('Poeta en Nueva York'). La Guerra Civil rompió este grupo trágicamente con el asesinato de Lorca y el exilio de la mayoría de los demás, que siguieron escribiendo con nostalgia desde América.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué caracteriza a la Generación del 27?",
+                "opciones": [
+                    "Solo les interesaba el futuro",
+                    "La unión de la tradición literaria con la vanguardia",
+                    "Que no sabían escribir",
+                    "Que eran todos pintores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién escribió 'Poeta en Nueva York'?",
+                "opciones": [
+                    "Machado",
+                    "Federico García Lorca",
+                    "Bécquer",
+                    "Rubén Darío"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué suceso histórico dispersó a este grupo en 1936?",
+                "opciones": [
+                    "La Primera Guerra Mundial",
+                    "La Guerra Civil Española",
+                    "La Revolución Francesa",
+                    "La crisis del petróleo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tema aparece en sus obras tras la guerra?",
+                "opciones": [
+                    "La alegría",
+                    "La nostalgia y el dolor del exilio",
+                    "La tecnología",
+                    "El humor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra a otro poeta del 27 mencionado:",
+                "opciones": [
+                    "Cervantes",
+                    "Rafael Alberti",
+                    "Lope de Vega",
+                    "Góngora"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Sintaxis: Las Proposiciones de Relativo",
+        "texto": "Dentro de las oraciones compuestas subordinadas, las de RELATIVO (o adjetivas) son fundamentales. Funcionan como un adjetivo: modifican a un sustantivo anterior llamado ANTECEDENTE. Introducidas por nexos como 'que', 'quien', 'cuyo'. Distinguimos entre ESPECIFICATIVAS (seleccionan al sujeto: 'Los alumnos que estudiaron aprobaron') y EXPLICATIVAS (añaden una nota entre comas: 'Los alumnos, que estaban cansados, se durmieron'). Su uso correcto es esencial para dar precisión a nuestros textos.",
+        "preguntas": [
+            {
+                "pregunta": "¿A qué elemento modifican las oraciones de relativo?",
+                "opciones": [
+                    "Al verbo principal",
+                    "A un sustantivo anterior llamado antecedente",
+                    "Al final de la frase",
+                    "A los adjetivos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita un nexo típico de relativo:",
+                "opciones": [
+                    "Porque",
+                    "Cuyo / Que / Quien",
+                    "Pero",
+                    "Aunque"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se distinguen las explicativas en la escritura?",
+                "opciones": [
+                    "Van en negrita",
+                    "Van entre comas",
+                    "Van al principio",
+                    "No se distinguen"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En 'La casa donde vivo es roja', ¿cuál es el antecedente?",
+                "opciones": [
+                    "Roja",
+                    "La casa",
+                    "Vivo",
+                    "Donde"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Las subordinadas de relativo equivalen a un:",
+                "opciones": [
+                    "Sustantivo",
+                    "Adjetivo",
+                    "Adverbio",
+                    "Verbo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "El Teatro de Valle-Inclán: El Esperpento",
+        "texto": "Ramón María del Valle-Inclán revolucionó el teatro español con la creación del ESPERPENTO. Consiste en una deformación sistemática de la realidad, como si la miráramos a través de espejos cóncavos. El objetivo es mostrar lo absurdo, lo trágico y lo grotesco de la sociedad española de su tiempo. Su obra cumbre es 'Luces de Bohemia'. Los héroes aparecen como fantoches y el lenguaje mezcla lo más culto con lo más vulgar para crear una sensación de crítica profunda y humor amargo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el esperpento?",
+                "opciones": [
+                    "Un tipo de comedia alegre",
+                    "Una deformación grotesca de la realidad para criticar la sociedad",
+                    "Un decorado muy grande",
+                    "Un teatro solo para niños"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A través de qué tipo de espejos dice Valle-Inclán que se ve el esperpento?",
+                "opciones": [
+                    "Planos",
+                    "Espejos cóncavos (que deforman)",
+                    "Oscuros",
+                    "Limpios"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la obra más famosa de este estilo?",
+                "opciones": [
+                    "Don Juan Tenorio",
+                    "Luces de Bohemia",
+                    "La Celestina",
+                    "Yerma"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué mezcla el lenguaje de Valle-Inclán?",
+                "opciones": [
+                    "Solo insultos",
+                    "Lo muy culto con lo muy vulgar",
+                    "Español e inglés",
+                    "No usa lenguaje"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál era la intención de este teatro?",
+                "opciones": [
+                    "Solo hacer reír",
+                    "Crítica profunda de la realidad nacional",
+                    "Enseñar historia",
+                    "Vender entradas"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "La Poesía Posguerra y la Poesía Social",
+        "texto": "Tras la Guerra Civil (1939), la poesía se divide. Por un lado, una poesía ARRAIGADA (optimista y religiosa, apoyada por el bando vencedor). Por otro, la poesía DESARRAIGADA (expresa dolor, angustia y vacío ante un mundo roto, como 'Hijos de la ira' de Dámaso Alonso). En los años 50 surge la POESÍA SOCIAL, donde el poeta siente que la poesía debe ser una 'arma para cambiar el mundo' (Blas de Otero, Gabriel Celaya). Escriben sobre los problemas de la gente común y la falta de libertad.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué expresa la poesía desarraigada?",
+                "opciones": [
+                    "Felicidad",
+                    "Dolor, angustia y el vacío tras la guerra",
+                    "Ciencia ficción",
+                    "Amor idealizado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién escribió 'Hijos de la ira'?",
+                "opciones": [
+                    "Lorca",
+                    "Dámaso Alonso",
+                    "Neruda",
+                    "Quevedo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el lema de la poesía social?",
+                "opciones": [
+                    "El arte por el arte",
+                    "La poesía es un arma cargada de futuro (para cambiar la sociedad)",
+                    "Escribir es llorar",
+                    "La vida es sueño"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De qué temas habla la poesía social?",
+                "opciones": [
+                    "De hadas",
+                    "De los problemas del pueblo y la sed de justicia",
+                    "De la naturaleza",
+                    "De los planetas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra a un poeta social:",
+                "opciones": [
+                    "Garcilaso",
+                    "Blas de Otero",
+                    "Bécquer",
+                    "Lope"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Semántica: Las Lenguas de España",
+        "texto": "España es un país plurilingüe. Además del castellano (lengua oficial de todo el Estado), existen otras lenguas cooficiales en sus respectivos territorios: el catalán/valenciano, el gallego y el euskera. Salvo el euskera (de origen desconocido y muy antiguo), todas son lenguas ROMÁNICAS derivadas del latín. Esta riqueza lingüística está protegida por la Constitución. Conocer y respetar la diversidad de lenguas nos permite entender mejor la rica cultura e historia de los diferentes pueblos que forman nuestro país.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la única lengua de España que no deriva del latín?",
+                "opciones": [
+                    "Gallego",
+                    "Euskera",
+                    "Catalán",
+                    "Valencia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa que una lengua es 'románica'?",
+                "opciones": [
+                    "Que se habla en Roma",
+                    "Que deriva de la evolución del latín vulgar",
+                    "Que sirve para el amor",
+                    "Que es muy antigua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se habla el gallego?",
+                "opciones": [
+                    "En Cataluña",
+                    "En Galicia",
+                    "En Andalucía",
+                    "En Madrid"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué texto legal protege el plurilingüismo en España?",
+                "opciones": [
+                    "El diccionario",
+                    "La Constitución",
+                    "Un libro de historia",
+                    "El código penal"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es el castellano oficial en toda España?",
+                "opciones": [
+                    "Sí",
+                    "No"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "La Narrativa de los años 60 y 70: Renovación",
+        "texto": "A partir de los 60, la novela española abandona el realismo social sencillo para experimentar con la forma. Influyen autores extranjeros y el 'boom' latinoamericano. Se rompe el orden lineal del tiempo, aparecen varios narradores y se usa el MONÓLOGO INTERIOR (el flujo desordenado de los pensamientos de un personaje). Obras como 'Tiempo de silencio' de Luis Martín-Santos marcan este cambio. El lector ya no es pasivo, sino que tiene que esforzarse en 'reconstruir' el rompecabezas de la historia.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué técnica muestra los pensamientos desordenados de un personaje?",
+                "opciones": [
+                    "Descripción",
+                    "Monólogo interior",
+                    "Diálogo",
+                    "Resumen"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre con el tiempo en la novela experimental?",
+                "opciones": [
+                    "Es siempre lineal",
+                    "Se rompe el orden cronológico",
+                    "No hay tiempo",
+                    "Pasa muy lento"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la obra clave de este periodo renovador?",
+                "opciones": [
+                    "El Quijote",
+                    "Tiempo de silencio",
+                    "La ciudad de los prodigios",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo debe ser el lector ante estos textos?",
+                "opciones": [
+                    "Pasivo y aburrido",
+                    "Activo (debe reconstruir la historia)",
+                    "Inexistente",
+                    "Solo mira los dibujos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué grupo de autores influyó en esta renovación?",
+                "opciones": [
+                    "El Siglo de Oro",
+                    "El boom latinoamericano",
+                    "Los griegos",
+                    "Los románticos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Propiedades del texto: Coherencia y Cohesión",
+        "texto": "Para que un conjunto de frases sea un TEXTO, debe cumplir tres propiedades. 1) ADECUACIÓN (ajustarse a la situación: no hablas igual a un amigo que a un juez). 2) COHERENCIA (que tenga un sentido global y no se contradiga). 3) COHESIÓN (que las frases estén bien unidas mediante nexos, pronombres y sinonimia). Un texto sin cohesión parece una lista de frases sueltas; un texto sin coherencia es incomprensible. Dominar estas propiedades es la clave para ser un buen comunicador.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué propiedad se encarga de que el texto tenga sentido lógico?",
+                "opciones": [
+                    "Adecuación",
+                    "Coherencia",
+                    "Cohesión",
+                    "Ortografía"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la cohesión?",
+                "opciones": [
+                    "Para que sea largo",
+                    "Para que las frases estén conectadas gramaticalmente",
+                    "Para que sea bonito",
+                    "No sirve"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Usar un registro formal en un examen es una cuestión de:",
+                "opciones": [
+                    "Cohesión",
+                    "Adecuación",
+                    "Coherencia",
+                    "Suerte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Evitar repeticiones usando sinónimos es un recurso de:",
+                "opciones": [
+                    "Adecuación",
+                    "Cohesión",
+                    "Poesía",
+                    "Cero"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Un texto es simplemente una acumulación de frases?",
+                "opciones": [
+                    "Sí",
+                    "No, debe tener unidad y sentido"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Ortografía: Signos de puntuación avanzados",
+        "texto": "En 4º de ESO debemos dominar el uso de los signos más allá de la coma. El PUNTO Y COMA (;) se usa para separar elementos de una enumeración que ya llevan comas o para unir oraciones muy relacionadas. Los DOS PUNTOS (:) preceden a una explicación o cita textual. Los PARÉNTESIS y RAYAS sirvren para introducir incisos o aclaraciones. Una puntuación incorrecta puede cambiar totalmente el significado de una frase. Escribir bien es, ante todo, puntuar con precisión para que el lector entienda exactamente lo que queremos decir.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuándo se usa principalmente el punto y coma según el texto?",
+                "opciones": [
+                    "Al final del texto siempre",
+                    "Para separar elementos de una enumeración compleja que ya tiene comas",
+                    "En el título",
+                    "Nunca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven los dos puntos?",
+                "opciones": [
+                    "Para finalizar",
+                    "Para preceder a una explicación o cita",
+                    "Para hacer una pausa larga",
+                    "No tienen función"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Para introducir una aclaración secundaria usamos:",
+                "opciones": [
+                    "Exclamaciones",
+                    "Paréntesis o rayas",
+                    "Puntos suspensivos",
+                    "Flechas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Puede la puntuación cambiar el sentido de una frase?",
+                "opciones": [
+                    "No",
+                    "Sí, drásticamente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el fin último de puntuar bien?",
+                "opciones": [
+                    "Que el texto ocupe más",
+                    "Que el lector entienda exactamente el mensaje",
+                    "Gastar menos papel",
+                    "Obligación"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

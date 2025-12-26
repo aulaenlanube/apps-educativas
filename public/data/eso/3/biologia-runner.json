@@ -1,17 +1,122 @@
 {
+  "organizacion_cuerpo": [
+    "célula",
+    "tejido",
+    "órgano",
+    "aparato",
+    "sistema",
+    "metabolismo",
+    "homeostasis",
+    "nutrición",
+    "relación",
+    "reproducción"
+  ],
+  "aparato_digestivo": [
+    "boca",
+    "esófago",
+    "estómago",
+    "intestino delgado",
+    "intestino grueso",
+    "hígado",
+    "páncreas",
+    "enzima",
+    "quimo",
+    "absorción"
+  ],
+  "aparato_respiratorio": [
+    "fosas nasales",
+    "faringe",
+    "laringe",
+    "tráquea",
+    "bronquio",
+    "pulmón",
+    "alvéolo",
+    "diafragma",
+    "intercambio gaseoso",
+    "inspiración"
+  ],
+  "aparato_circulatorio": [
+    "corazón",
+    "sangre",
+    "arteria",
+    "vena",
+    "capilar",
+    "glóbulo rojo",
+    "glóbulo blanco",
+    "plaqueta",
+    "aurícula",
+    "ventrículo"
+  ],
+  "aparato_excretor": [
+    "riñón",
+    "uréters",
+    "vejiga",
+    "uretra",
+    "nefrona",
+    "filtración",
+    "reabsorción",
+    "glándula sudorípara",
+    "orina",
+    "sudor"
+  ],
+  "salud_enfermedad": [
+    "patógeno",
+    "bacteria",
+    "virus",
+    "hongo",
+    "protozoo",
+    "vacuna",
+    "antibiótico",
+    "suero",
+    "inmunidad",
+    "transmisión"
+  ],
   "sistema_nervioso": [
-    "cerebro", "neurona", "médula espinal", "nervio", "cerebelo", "sinapsis", "axón", "dendrita", "hipotálamo", "bulbo raquídeo"
+    "encéfalo",
+    "médula espinal",
+    "nervio",
+    "neurona",
+    "sinapsis",
+    "reflejo",
+    "sistema nervioso central",
+    "sistema nervioso periférico",
+    "cerebro",
+    "cerebelo"
+  ],
+  "organos_sentidos": [
+    "ojo",
+    "oído",
+    "pituitaria",
+    "papila gustativa",
+    "piel",
+    "retina",
+    "tímpano",
+    "nervio óptico",
+    "nervio auditivo",
+    "receptor"
   ],
   "sistema_endocrino": [
-    "hormona", "tiroides", "páncreas", "insulina", "adrenalina", "hipófisis", "glándula", "testosterona", "estrógenos", "cortisol"
+    "hormona",
+    "hipófisis",
+    "tiroides",
+    "páncreas",
+    "glándula suprarrenal",
+    "insulina",
+    "adrenalina",
+    "testículo",
+    "ovario",
+    "crecimiento"
   ],
-  "enfermedades_infecciosas": [
-    "gripe", "sarampión", "tuberculosis", "malaria", "sida", "hepatitis", "salmonelosis", "covid", "tétanos", "varicela"
-  ],
-  "sistema_inmune": [
-    "anticuerpo", "leucocito", "vacuna", "linfocito", "macrófago", "antígeno", "inmunidad", "suero", "fagocitosis", "inflamación"
-  ],
-  "drogas_y_salud": [
-    "alcohol", "tabaco", "nicotina", "adicción", "dependencia", "sobredosis", "tolerancia", "abstinencia", "sedante", "estimulante"
+  "alimentacion_nutricion": [
+    "glúcido",
+    "lípido",
+    "proteína",
+    "vitamina",
+    "mineral",
+    "fibra",
+    "caloría",
+    "dieta equilibrada",
+    "pirámide alimenticia",
+    "trastorno alimentario"
   ]
 }

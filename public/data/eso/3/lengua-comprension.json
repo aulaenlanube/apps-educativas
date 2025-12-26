@@ -1,0 +1,566 @@
+[
+    {
+        "id": "1",
+        "titulo": "La lengua como sistema",
+        "texto": "La lengua no es un conjunto de palabras sueltas, sino un SISTEMA de signos interrelacionados. Este sistema se organiza en varios niveles: el nivel fónico (sonidos), el morfológico (estructura de las palabras), el sintáctico (cómo se combinan las palabras) y el semántico (significados). Para que nos entendamos, debemos compartir el mismo CÓDIGO. Además, la lengua es variable; no hablamos igual en un nivel formal que en uno coloquial, ni tampoco se habla igual en todas las regiones. Estas variaciones se llaman DIALECTOS y registros lingüísticos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué estudia el nivel morfológico de la lengua?",
+                "opciones": [
+                    "Los sonidos",
+                    "La estructura interna de las palabras",
+                    "El orden de la frase",
+                    "Los diccionarios"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llaman las variantes de una lengua según la geografía?",
+                "opciones": [
+                    "Registros",
+                    "Dialectos",
+                    "Jerigonzas",
+                    "Idiomas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué nivel se encarga de los sonidos y fonemas?",
+                "opciones": [
+                    "Semántico",
+                    "Fónico",
+                    "Sintáctico",
+                    "Textual"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el código en la comunicación?",
+                "opciones": [
+                    "La persona que habla",
+                    "El sistema de signos compartido (idioma)",
+                    "El aparato electrónico",
+                    "El mensaje secreto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es la lengua algo estático e invariable?",
+                "opciones": [
+                    "Sí",
+                    "No, varía según el registro y la región"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Literatura del Siglo de Oro: El Barroco",
+        "texto": "El siglo XVII en España es conocido como el Siglo de Oro de las letras, aunque fue una época de crisis económica y social. El Barroco se caracteriza por el pesimismo y la complejidad. En poesía destacan dos corrientes enfrentadas: el CULTERANISMO de Góngora (busca la belleza formal con palabras difíciles y metáforas oscuras) y el CONCEPTISMO de Quevedo (busca la profundidad de las ideas usando dobles sentidos y juegos de palabras). Ambos autores se criticaban duramente, reflejando el espíritu competitivo y brillante de la época.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué siglo comprende el periodo Barroco en España?",
+                "opciones": [
+                    "Siglo XV",
+                    "Siglo XVII",
+                    "Siglo XIX",
+                    "Siglo XII"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué autor es el máximo representante del Culteranismo?",
+                "opciones": [
+                    "Quevedo",
+                    "Góngora",
+                    "Lope de Vega",
+                    "Cervantes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué se centra el Conceptismo?",
+                "opciones": [
+                    "En la decoración excesiva",
+                    "En la profundidad de las ideas y juegos de palabras",
+                    "En los sentimientos de amor",
+                    "En la historia antigua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo era la situación social en ese siglo?",
+                "opciones": [
+                    "De gran riqueza",
+                    "De crisis y pesimismo",
+                    "De paz total",
+                    "No había sociedad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de lenguaje usa Góngora?",
+                "opciones": [
+                    "Muy sencillo",
+                    "Culto, difícil y con muchas metáforas",
+                    "Infantil",
+                    "Solo verbos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Cervantes y el Quijote",
+        "texto": "Miguel de Cervantes publicó en 1605 la primera parte de 'Don Quijote de la Mancha', la obra cumbre de nuestra literatura. Su intención original era parodiar los libros de caballerías que tanto gustaban entonces. La novela narra las aventuras de un hidalgo que enloquece por leer estos libros y decide hacerse caballero andante. Don Quijote representa el IDEALISMO, mientras que su escudero, Sancho Panza, representa el REALISMO. A lo largo del viaje, ambos personajes se influyen mutuamente, en un proceso llamado 'quijotización' de Sancho y 'sanchificación' de Don Quijote.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál era la intención inicial de Cervantes al escribir el Quijote?",
+                "opciones": [
+                    "Escribir un libro de historia",
+                    "Parodiar los libros de caballerías",
+                    "Enseñar a leer",
+                    "Ganar una guerra"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué año se publicó la primera parte?",
+                "opciones": [
+                    "1492",
+                    "1605",
+                    "1700",
+                    "1900"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué representa el personaje de Sancho Panza?",
+                "opciones": [
+                    "El idealismo",
+                    "El realismo y el sentido común",
+                    "La maldad",
+                    "La locura"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el proceso por el que los personajes aprenden el uno del otro?",
+                "opciones": [
+                    "Simbiósis",
+                    "Quijotización y Sanchificación",
+                    "Amistad loca",
+                    "Viaje literario"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué pierde el juicio Don Quijote?",
+                "opciones": [
+                    "Por un golpe",
+                    "Por leer demasiados libros de caballerías",
+                    "Por el calor",
+                    "Por no comer"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Las Oraciones Compuestas",
+        "texto": "A diferencia de las simples, las oraciones compuestas tienen más de un verbo y, por tanto, más de un predicado. Se dividen en tres tipos: 1) COORDINADAS: se unen mediante nexos pero son independientes (ej: 'Vino y se fue'). 2) SUBORDINADAS: una depende de la otra para tener sentido (ej: 'Dijo que vendría'). 3) YUXTAPUESTAS: se unen solo mediante signos de puntuación, sin nexos (ej: 'Llegué, vi, vencí'). Saber analizar estas estructuras nos ayuda a mejorar nuestra escritura, haciéndola más fluida y profesional.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué define a una oración compuesta?",
+                "opciones": [
+                    "Tener muchas palabras",
+                    "Tener más de un verbo",
+                    "Tener muchos adjetivos",
+                    "No tener sujeto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llaman las oraciones que se unen solo con comas o puntos?",
+                "opciones": [
+                    "Coordinadas",
+                    "Yuxtapuestas",
+                    "Subordinadas",
+                    "Ausentes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre en una oración subordinada?",
+                "opciones": [
+                    "Son totalmente independientes",
+                    "Una oración depende de la principal",
+                    "No tienen nexo",
+                    "Tienen diez verbos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "'Juan estudia y Pedro trabaja' es una oración:",
+                "opciones": [
+                    "Simple",
+                    "Coordinada",
+                    "Subordinada",
+                    "Yuxtapuesta"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve dominar las oraciones compuestas?",
+                "opciones": [
+                    "Para hablar más lento",
+                    "Para escribir textos más fluidos y complejos",
+                    "Para no usar puntos",
+                    "Para nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "El Neoclasicismo: El Siglo de las Luces",
+        "texto": "El siglo XVIII o Siglo de las Luces trajo el NEOCLASICISMO. Tras el exceso del Barroco, se busca el predominio de la RAZÓN, la claridad y el orden. La literatura debe tener una finalidad DIDÁCTICA (enseñar). Por eso triunfan géneros como el ENSAYO y la FÁBULA (cuentos de animales con moraleja, como los de Iriarte y Samaniego). No se escribe para emocionar, sino para educar al ciudadano y mejorar la sociedad basándose en el progreso científico y los valores de la Ilustración.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la característica principal del Neoclasicismo?",
+                "opciones": [
+                    "El exceso decorativo",
+                    "El predominio de la razón y el orden",
+                    "El misterio",
+                    "La fantasía desbordada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué finalidad debía tener la literatura neoclásica?",
+                "opciones": [
+                    "Entretener solamente",
+                    "Didáctica (enseñar y educar)",
+                    "Asustar",
+                    "Confundir"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es una fábula?",
+                "opciones": [
+                    "Un poema largo",
+                    "Un relato de animales con una enseñanza o moraleja",
+                    "Una noticia",
+                    "Una obra de teatro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué género literario destaca para expresar ideas y críticas?",
+                "opciones": [
+                    "Ensayo",
+                    "Poesía oscura",
+                    "Novela de terror",
+                    "Cantar de gesta"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Cómo se llamaba también al siglo XVIII?",
+                "opciones": [
+                    "Siglo de Oro",
+                    "Siglo de las Luces",
+                    "Siglo del Hierro",
+                    "Edad Media"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Ortografía: La tilde en diptongos e hiatos",
+        "texto": "Las reglas de acentuación se aplican con cuidado en las vocales juntas. Un DIPTONGO es la unión de dos vocales en una misma sílaba (ej: 'cau-sa'). Llevan tilde según las reglas generales (agudas, llanas, esdrúixolas) y se pone en la vocal abierta. Un HIATO es cuando las vocales están juntas pero en sílabas diferentes (ej: 'dí-a'). Si el hiato está formado por una vocal abierta y una cerrada tónica (í, ú), siempre lleva tilde sobre la cerrada, aunque no cumpla las reglas generales de agudas o llanas. Esto es vital para pronunciar bien las palabras.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un diptongo?",
+                "opciones": [
+                    "Dos vocales en sílabas separadas",
+                    "Dos vocales en la misma sílaba",
+                    "Tres consonantes juntas",
+                    "Una vocal sola"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se pone la tilde en un diptongo?",
+                "opciones": [
+                    "En la primera siempre",
+                    "En la vocal abierta (a, e, o)",
+                    "En la consonante",
+                    "No llevan tilde"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo lleva tilde siempre un hiato de vocal abierta + cerrada?",
+                "opciones": [
+                    "Nunca",
+                    "Cuando la vocal cerrada (i, u) es tónica",
+                    "Solo en las agudas",
+                    "Si la palabra es larga"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La palabra 'caos' es un ejemplo de:",
+                "opciones": [
+                    "Diptongo",
+                    "Hiato",
+                    "Triptongo",
+                    "Una sola sílaba"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve conocer estas reglas?",
+                "opciones": [
+                    "Para escribir más lento",
+                    "Para pronunciar y escribir correctamente las palabras",
+                    "Para nada",
+                    "Para ahorrar tinta"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "El Romanticismo: Rebeldía y Sentimiento",
+        "texto": "En la primera mitad del siglo XIX aparece el ROMANTICISMO como reacción al racionalismo anterior. Los románticos exaltan el YO, los sentimientos intensos, la libertad absoluta y la rebeldía contra las normas. Prefieren los paisajes nocturnos, los cementerios y las tormentas porque reflejan su tormento interior. Autores como Bécquer (Rimas y Leyendas) o Espronceda (Canción del Pirata) son los máximos exponentes en España. El héroe romántico suele ser un marginado que prefiere la muerte a vivir sin libertad o sin amor.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué exalta principalmente el Romanticismo?",
+                "opciones": [
+                    "La razón",
+                    "El YO y los sentimientos",
+                    "La ciencia",
+                    "El orden"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de paisajes prefieren los autores románticos?",
+                "opciones": [
+                    "Ciudades modernas",
+                    "Nocturnos, cementerios y tormentas",
+                    "Días de sol en el campo",
+                    "Oficinas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién escribió las 'Rimas y Leyendas'?",
+                "opciones": [
+                    "Góngora",
+                    "Bécquer",
+                    "Cervantes",
+                    "Lorca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el valor supremo para un romántico?",
+                "opciones": [
+                    "El dinero",
+                    "La libertad",
+                    "La obediencia",
+                    "La fama"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué se oponían los románticos?",
+                "opciones": [
+                    "Al arte",
+                    "Al racionalismo estricto del siglo anterior",
+                    "A la naturaleza",
+                    "A escribir"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Textos Argumentativos",
+        "texto": "Un texto argumentativo tiene como objetivo CONVENCER o persuadir al receptor sobre una idea (tesis). Se estructura en: INTRODUCCIÓN (presenta el tema), CUERPO ARGUMENTATIVO (razones y pruebas) y CONCLUSIÓN (resumen y cierre). Para que sea efectivo, debemos usar argumentos sólidos: datos estadísticos, opiniones de expertos (autoridad) o ejemplos reales. Los encontramos en artículos de opinión, debates y publicidad. Saber argumentar es una capacidad crítica fundamental en democracia para defender nuestras opiniones con respeto.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el objetivo de un texto argumentativo?",
+                "opciones": [
+                    "Contar una historia",
+                    "Convencer o persuadir al receptor",
+                    "Dar instrucciones de montaje",
+                    "Hacer reír"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la tesis?",
+                "opciones": [
+                    "El final del libro",
+                    "La idea principal que se quiere defender",
+                    "Un tipo de broma",
+                    "El nombre del autor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué se incluye en el cuerpo argumentativo?",
+                "opciones": [
+                    "Dibujos",
+                    "Razones, datos y pruebas",
+                    "La biografía del autor",
+                    "Muchos insultos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un argumento de autoridad?",
+                "opciones": [
+                    "Gritar mucho",
+                    "Citar la opinión de un experto en el tema",
+                    "Amenazar",
+                    "No decir nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde solemos encontrar este tipo de textos?",
+                "opciones": [
+                    "En el diccionario",
+                    "Artículos de opinión y debates",
+                    "En las etiquetas de la ropa",
+                    "En los libros de cocina"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "El léxico: Cultismos y Helenismos",
+        "texto": "Nuestro vocabulario tiene orígenes diversos. El castellano procede del latín, pero las palabras han evolucionado. Los CULTISMOS son palabras tomadas directamente del latín o griego clásico en épocas posteriores que apenas han cambiado (ej: 'espíritu', 'referéndum'). Los HELENISMOS son palabras de origen griego (ej: 'biología', 'democracia', 'teléfono'). Muchas palabras científicas y técnicas actuales son helenismos. Conocer la etimología (origen) de las palabras nos ayuda a entender su significado profundo y a mejorar nuestra ortografía.",
+        "preguntas": [
+            {
+                "pregunta": "¿De qué lengua proceden los helenismos?",
+                "opciones": [
+                    "Alemán",
+                    "Griego",
+                    "Árabe",
+                    "Inglés"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un cultismo?",
+                "opciones": [
+                    "Una palabra mal sonante",
+                    "Palabra tomada del latín/griego que apenas ha cambiado",
+                    "Un insulto culto",
+                    "Un tipo de noticia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve conocer la etimología?",
+                "opciones": [
+                    "Para hablar más rápido",
+                    "Para entender el significado profundo y mejorar la ortografía",
+                    "Para nada",
+                    "Para ahorrar papel"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Palabras como 'democracia' son de origen:",
+                "opciones": [
+                    "Latino",
+                    "Griego (helenismos)",
+                    "Francés",
+                    "Inglés"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es el castellano una lengua muerta?",
+                "opciones": [
+                    "Sí",
+                    "No, es una lengua románica viva"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Publicidad y Manipulación",
+        "texto": "La publicidad usa el lenguaje visual y verbal para crear necesidades y vendernos productos. A menudo utiliza RECURSOS RETÓRICOS (metáforas, hipérboles) y asociaciones emocionales (felicidad, éxito, aventura). Debemos ser receptores críticos para distinguir entre la información real del producto y la MANIPULACIÓN publicitaria. Un anuncio puede sugerir que si usas cierto perfume serás más popular, lo cual es falso. Analizar la publicidad nos hace menos vulnerables al consumo excesivo e innecesario.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué intenta crear la publicidad según el texto?",
+                "opciones": [
+                    "Nuevas amistades",
+                    "Necesidades y deseos de consumo",
+                    "Leyes",
+                    "Obras de arte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué usa la publicidad para llamar la atención?",
+                "opciones": [
+                    "Solo datos científicos",
+                    "Recursos retóricos y asociaciones emocionales",
+                    "Verdad absoluta",
+                    "Silencio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa ser un receptor crítico?",
+                "opciones": [
+                    "Romper el televisor",
+                    "Distinguir la información real de la manipulación",
+                    "Comprar todo lo que sale",
+                    "No ver anuncios"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es siempre cierta la relación entre un producto y la felicidad que promete el anuncio?",
+                "opciones": [
+                    "Sí",
+                    "No, es una asociación emocional falsa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué nos ayuda analizar la publicidad?",
+                "opciones": [
+                    "A ser más ricos",
+                    "A ser menos vulnerables al consumo excesivo",
+                    "A trabajar en una agencia",
+                    "A nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

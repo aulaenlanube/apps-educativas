@@ -1,13 +1,21 @@
 [
   {
-    "categoria": "Hardware: Cosas que toco (Visual)",
+    "categoria": "Hardware y Periféricos (Visual)",
     "correctos": [
       "💻",
       "⌨️",
       "🖱️",
       "🖨️",
       "📱",
-      "🖥️"
+      "🖥️",
+      "🔋",
+      "🔌",
+      "🎧",
+      "📷",
+      "🕹️",
+      "💾",
+      "📡",
+      "🛰️"
     ],
     "intrusos": [
       "🍎",
@@ -15,147 +23,256 @@
       "⚽",
       "🧸",
       "🚗",
-      "🍕"
+      "🍕",
+      "🍦",
+      "🥪",
+      "🛋️",
+      "🛁",
+      "👕",
+      "👟",
+      "👞",
+      "🧢"
     ]
   },
   {
-    "categoria": "Robótica (Visual)",
+    "categoria": "Componentes de Robótica (Visual)",
     "correctos": [
       "🤖",
       "⚙️",
       "🔋",
       "🔌",
       "💡",
-      "🛠️"
+      "🛠️",
+      "🔩",
+      "🏗️",
+      "📡",
+      "🛰️",
+      "🦾",
+      "🦿",
+      "🎛️"
     ],
     "intrusos": [
       "🌸",
       "🍦",
       "🐱",
       "☁️",
-      "🎨"
+      "🎨",
+      "🧸",
+      "🍭",
+      "🦋",
+      "🌈",
+      "🍉",
+      "🧣",
+      "🧤",
+      "👒"
     ]
   },
   {
-    "categoria": "Iconos de la pantalla (Visual)",
+    "categoria": "Interfaz y Gestión de Archivos (Visual)",
     "correctos": [
       "📁",
       "🗑️",
       "🔍",
       "✉️",
       "🖼️",
-      "🎬"
+      "🎬",
+      "🎵",
+      "🕒",
+      "⚙️",
+      "🔒",
+      "📶",
+      "🔋",
+      "💾",
+      "📥",
+      "📤"
     ],
     "intrusos": [
       "🚲",
       "🦒",
       "🍔",
       "🎸",
-      "👞"
+      "👞",
+      "👕",
+      "👒",
+      "🛹",
+      "⚽",
+      "🍎",
+      "🏠",
+      "🌲",
+      "🌳"
     ]
   },
   {
-    "categoria": "Símbolos de Código (Visual)",
+    "categoria": "Lógica y Flujo: Flechas y Signos (Visual)",
     "correctos": [
       "➡️",
       "⬅️",
       "⬆️",
       "⬇️",
       "➕",
-      "➖"
+      "➖",
+      "✖️",
+      "➗",
+      "🔄",
+      "↩️",
+      "🔢",
+      "🔣",
+      "🔡",
+      "🔁",
+      "🔀"
     ],
     "intrusos": [
       "🏠",
       "🚗",
       "🐶",
       "🌲",
-      "🍎"
+      "🍎",
+      "🍔",
+      "🍕",
+      "🧸",
+      "🛋️",
+      "🛁",
+      "👕",
+      "👟",
+      "👞",
+      "🧢"
     ]
   },
   {
-    "categoria": "Órdenes para un Robot",
+    "categoria": "Comandos de Acción para Robots",
     "correctos": [
       "Avanzar",
-      "Girar",
+      "Girar 90 grados",
       "Saltar",
       "Parar",
-      "Esperar"
+      "Esperar",
+      "Retroceder",
+      "Subir",
+      "Bajar",
+      "Encender LED",
+      "Repetir bucle",
+      "Si contacto entonces",
+      "Emitir pitido"
     ],
     "intrusos": [
       "Comer",
       "Dormir",
       "Llorar",
       "Cantar",
-      "Soñar"
+      "Soñar",
+      "Bañarse",
+      "Peinarse",
+      "Desayunar",
+      "Merienda",
+      "Almorzar",
+      "Cenar"
     ]
   },
   {
-    "categoria": "Partes de un Ordenador",
+    "categoria": "Componentes Internos y Externos del PC",
     "correctos": [
       "Teclado",
-      "Ratón",
-      "Pantalla",
+      "Ratón USB",
+      "Pantalla LED",
       "Altavoz",
-      "Cámara",
-      "Batería"
+      "Cámara web",
+      "Batería",
+      "Placa base",
+      "Memoria RAM",
+      "Disco duro",
+      "Procesador",
+      "Cable HDMI",
+      "Router WiFi"
     ],
     "intrusos": [
       "Zapato",
       "Cuchara",
       "Libreta",
       "Lápiz",
-      "Gorra"
+      "Gorra",
+      "Mesa de madera",
+      "Silla de plástico",
+      "Vaso de cristal",
+      "Plato hondo",
+      "Ventana cristal",
+      "Puerta metal"
     ]
   },
   {
-    "categoria": "Cosas que hay en Internet",
+    "categoria": "Conceptos de Internet y Comunicación",
     "correctos": [
-      "Web",
-      "Vídeo",
-      "Juego",
-      "Correo",
-      "Foto",
-      "Mensaje"
+      "Página Web",
+      "Vídeo online",
+      "Juego en red",
+      "Correo electrónico",
+      "Base de datos",
+      "Buscador",
+      "Enlace / Link",
+      "Aplicación / App",
+      "Nube / Cloud",
+      "Contraseña / Password"
     ],
     "intrusos": [
       "Piedra",
       "Árbol",
-      "Bocadillo",
-      "Pelota",
-      "Libro"
+      "Bocadillo vegetal",
+      "Pelota goma",
+      "Libro papel",
+      "Arena playa",
+      "Agua mar",
+      "Fuego campamento",
+      "Cuchillo cocina",
+      "Tenedor metal"
     ]
   },
   {
-    "categoria": "Acciones con el Ratón",
+    "categoria": "Interacción Humano-Computadora",
     "correctos": [
-      "Clic",
+      "Hacer Clic",
       "Doble clic",
-      "Arrastrar",
-      "Soltar"
+      "Arrastrar icono",
+      "Soltar archivo",
+      "Hacer Scroll",
+      "Pulsar tecla",
+      "Deslizar pantalla",
+      "Mover el cursor",
+      "Seleccionar texto",
+      "Hacer Zoom"
     ],
     "intrusos": [
-      "Pintar",
-      "Recortar",
-      "Pegar",
-      "Doblar",
-      "Escribir"
+      "Pintar con acuarela",
+      "Recortar con tijera",
+      "Pegar con cola",
+      "Doblar papel",
+      "Escribir con boli",
+      "Borrar con goma",
+      "Cerrar los ojos",
+      "Saltar a la comba"
     ]
   },
   {
-    "categoria": "Conceptos de Programación",
+    "categoria": "Pensamiento Computacional",
     "correctos": [
       "Código",
-      "Bucle",
+      "Bucle / Loop",
       "Algoritmo",
       "Instrucción",
-      "Condicional"
+      "Condicional (Si...entonces)",
+      "Variable",
+      "Secuencia lógica",
+      "Depuración / Debug",
+      "Evento / Disparador",
+      "Función"
     ],
     "intrusos": [
-      "Cuento",
-      "Canción",
-      "Receta",
-      "Dibujo",
-      "Poesía"
+      "Cuento de hadas",
+      "Canción infantil",
+      "Receta de tarta",
+      "Dibujo libre",
+      "Poesía épica",
+      "Parque infantil",
+      "Columpio madera",
+      "Merienda sana"
     ]
   }
 ]

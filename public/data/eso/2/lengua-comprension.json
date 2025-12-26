@@ -1,0 +1,570 @@
+[
+    {
+        "id": "1",
+        "titulo": "Las Etapas de la Comunicación",
+        "texto": "La comunicación es un proceso dinámico que permite intercambiar información. Aunque parece sencillo, requiere que el emisor codifique un mensaje y el receptor lo decodifique correctamente a través de un canal. En la comunicación escrita, el canal es el soporte físico (papel o pantalla). Un factor que puede estropear este proceso es el RUIDO, que no es solo sonido alto, sino cualquier interferencia que impida que el mensaje llegue bien (como una mancha de café en una carta o mala cobertura). Además, el CONTEXTO o situación es vital para entender si una palabra se usa en serio o en broma.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el ruido en la comunicación según el texto?",
+                "opciones": [
+                    "Solo música muy alta",
+                    "Cualquier interferencia que impida recibir el mensaje",
+                    "El silencio absoluto",
+                    "Un tipo de mensaje"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace el receptor con el mensaje?",
+                "opciones": [
+                    "Lo codifica",
+                    "Lo decodifica",
+                    "Lo inventa",
+                    "Lo borra"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué elemento ayuda a saber si algo es broma o no?",
+                "opciones": [
+                    "El canal",
+                    "El contexto o situación",
+                    "El código",
+                    "El ruido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En un mensaje de WhatsApp, ¿cuál es el canal?",
+                "opciones": [
+                    "El aire",
+                    "La pantalla/internet",
+                    "El idioma español",
+                    "La persona que escribe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es la comunicación un proceso estático?",
+                "opciones": [
+                    "Sí",
+                    "No, es dinámico"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Los Géneros Literarios: La Épica",
+        "texto": "La literatura se divide en grandes grupos o géneros. Uno de los más antiguos es el género NARRATIVO o ÉPICO. En la Edad Media surgieron los CANTAR DE GESTA, que eran poemas cantados por juglares que narraban las hazañas de héroes nacionales. El ejemplo más importante en nuestra lengua es el 'Cantar de mio Cid', que cuenta las aventuras de Rodrigo Díaz de Vivar para recuperar su honor. Estos relatos mezclan hechos históricos reales con elementos legendarios para motivar y entretener al pueblo que no sabía leer ni escribir.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quiénes cantaban las hazañas de los héroes en la Edad Media?",
+                "opciones": [
+                    "Los reyes",
+                    "Los juglares",
+                    "Los monjes",
+                    "Los soldados"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la obra épica más importante del español?",
+                "opciones": [
+                    "Don Quijote",
+                    "El Cantar de mio Cid",
+                    "La Celestina",
+                    "Lazarillo de Tormes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué se mezclaban hechos históricos con leyendas?",
+                "opciones": [
+                    "Para mentir",
+                    "Para motivar y entretener",
+                    "Porque no sabían historia",
+                    "Para gastar papel"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién es el protagonista del Cantar de mio Cid?",
+                "opciones": [
+                    "El Rey Alfonso",
+                    "Rodrigo Díaz de Vivar",
+                    "Diego y Fernando",
+                    "Sancho Panza"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa el término 'Épico'?",
+                "opciones": [
+                    "Relativo a los sentimientos",
+                    "Relativo a la narración de hazañas",
+                    "Relativo al teatro",
+                    "Relativo al humor"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "La noticia y sus partes",
+        "texto": "La noticia es el género periodístico informativo por excelencia. Debe ser objetiva, veraz y actual. Para redactar una buena noticia se suele usar la estructura de la 'pirámide invertida': lo más importante al principio y los detalles al final. Sus partes principales son: el titular (llama la atención), la entradilla o lead (párrafo inicial que responde a las 6 preguntas básicas: quién, qué, cuándo, dónde, por qué y cómo) y el cuerpo de la noticia (desarrollo de los hechos). Mantener la objetividad significa que el periodista no debe dar su opinión personal.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué característica debe tener una noticia?",
+                "opciones": [
+                    "Ser inventada",
+                    "Ser objetiva, veraz y actual",
+                    "Ser muy larga",
+                    "Tener muchos dibujos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la estructura de la noticia?",
+                "opciones": [
+                    "Círculo vicioso",
+                    "Pirámide invertida",
+                    "Cuadrilateral",
+                    "Línea recta"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la entradilla o lead?",
+                "opciones": [
+                    "El final de la noticia",
+                    "El primer párrafo que resume lo esencial",
+                    "La foto",
+                    "El nombre del periodista"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué NO debe hacer un periodista en una noticia informativa?",
+                "opciones": [
+                    "Escribir",
+                    "Dar su opinión personal",
+                    "Hacer fotos",
+                    "Hablar con testigos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A cuántas preguntas básicas debería responder una noticia?",
+                "opciones": [
+                    "A dos",
+                    "A seis",
+                    "A ninguna",
+                    "A cien"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "El Enunciado: Frases y Oraciones",
+        "texto": "Un enunciado es un grupo de palabras ordenadas con sentido completo. Los dividimos en dos tipos. Las FRASES son enunciados que no tienen verbo (ej: '¡Qué buen día!'). Las ORACIONES son enunciados que sí tienen, al menos, un verbo en forma personal (ej: 'Hoy hace sol'). Toda oración se divide en dos partes fundamentales: el SUJETO (quien realiza la acción o de quien se dice algo) y el PREDICADO (la acción y sus circunstancias). El núcleo del sujeto suele ser un sustantivo y el del predicado siempre es un verbo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la diferencia principal entre frase y oración?",
+                "opciones": [
+                    "La longitud",
+                    "La presencia de un verbo",
+                    "El número de letras",
+                    "El signo de exclamación"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el sujeto de una oración?",
+                "opciones": [
+                    "El nombre de la pelicula",
+                    "Quien realiza la acción o de quien se dice algo",
+                    "El final de la frase",
+                    "Un tipo de verbo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el núcleo del predicado?",
+                "opciones": [
+                    "El adjetivo",
+                    "El verbo",
+                    "El sustantivo",
+                    "El artículo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "'¡Hola a todos!' es un ejemplo de:",
+                "opciones": [
+                    "Oración",
+                    "Frase",
+                    "Predicado",
+                    "Párrafo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué partes fundamentales tiene toda oración?",
+                "opciones": [
+                    "Título y cuerpo",
+                    "Sujeto y Predicado",
+                    "Vocal y consonante",
+                    "Inicio y fin"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "La Lírica y la rima",
+        "texto": "En la lírica, el autor expresa sus sentimientos, emociones o mundo interior. Se escribe normalmente en verso. Uno de los elementos que da musicalidad al poema es la RIMA, que es la repetición de sonidos a partir de la última vocal acentuada de cada verso. Hay dos clases de rima: CONSONANTE (cuando coinciden vocales y consonantes, ej: 'casa' y 'pasa') y ASONANTE (cuando solo coinciden las vocales, ej: 'casa' y 'fama'). Los versos se agrupan en ESTROFAS, que siguen un esquema métrico determinado.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué expresa principalmente el autor en la lírica?",
+                "opciones": [
+                    "Hechos históricos",
+                    "Sentimientos y mundo interior",
+                    "Instrucciones de cocina",
+                    "Noticias actuales"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la rima asonante?",
+                "opciones": [
+                    "Cuando todo coincide",
+                    "Cuando solo coinciden las vocales",
+                    "Cuando no rima nada",
+                    "Cuando solo coinciden las consonantes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el grupo de versos que forman una unidad?",
+                "opciones": [
+                    "Párrafo",
+                    "Estrofa",
+                    "Capítulo",
+                    "Canto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué rima hay entre 'viento' y 'Siento'?",
+                "opciones": [
+                    "Asonante",
+                    "Consonante",
+                    "Libre",
+                    "No riman"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A partir de qué vocal se cuenta la rima?",
+                "opciones": [
+                    "De la primera",
+                    "De la última vocal acentuada",
+                    "De la del medio",
+                    "De la última letra siempre"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Ortografía: El uso de la G y la J",
+        "texto": "Las letras G y J representan el mismo sonido fuerte ante E, I, lo que causa muchas dudas. Por regla general, se escriben con G las palabras que empiezan por 'geo-', 'gest-' o 'gen-' (ej: geología, gestión, gente), y las que terminan en '-logía' u '-gía' (ej: biología, energía). Se escriben con J las palabras que terminan en '-aje' o '-eje' (ej: viaje, garaje, eje), y las formas de los verbos que no tienen ni g ni j en su infinitivo (ej: Traer -> traje, Decir -> dije). Conocer estas reglas evita errores comunes en la escritura académica.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se escribe la palabra que significa estudio de la vida?",
+                "opciones": [
+                    "Biolojía",
+                    "Biología",
+                    "Byología",
+                    "Viología"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Las palabras terminadas en -aje se escriben con...",
+                "opciones": [
+                    "G",
+                    "J",
+                    "H",
+                    "Y"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la forma correcta del pasado del verbo traer?",
+                "opciones": [
+                    "Trage",
+                    "Traje",
+                    "Traie",
+                    "Trager"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se escribe la palabra 'geografía'?",
+                "opciones": [
+                    "Jeografía",
+                    "Geografía",
+                    "Geojrafía",
+                    "Jeojrafía"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La palabra 'garaje' termina en e y se escribe con J, ¿por qué?",
+                "opciones": [
+                    "Es una excepción",
+                    "Las palabras terminadas en -aje llevan J",
+                    "Es con G",
+                    "No tiene regla"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Semántica: Sinónimos y Antónimos",
+        "texto": "La semántica estudia el significado de las palabras. Dos palabras son SINÓNIMAS cuando tienen el mismo significado o uno muy parecido (ej: 'rápido' y 'veloz'), lo que nos ayuda a no repetir palabras al escribir. Por el contrario, las palabras ANTÓNIMAS son aquellas que significan lo opuesto (ej: 'alto' y 'bajo'). También existen las palabras POLISÉMICAS, que son las que tienen varios significados según el contexto (ej: 'banco' de sentarse o 'banco' de dinero). Dominar el léxico nos permite expresarnos con mayor precisión.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué son los sinónimos?",
+                "opciones": [
+                    "Palabras que suenan igual",
+                    "Palabras con significado igual o parecido",
+                    "Palabras opuestas",
+                    "Palabras difíciles"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el antónimo de 'valiente'?",
+                "opciones": [
+                    "Héroe",
+                    "Cobarde",
+                    "Fuerte",
+                    "Rápido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa que una palabra sea polisémica?",
+                "opciones": [
+                    "Que no tiene significado",
+                    "Que tiene varios significados diferentes",
+                    "Que solo tiene un significado",
+                    "Que es muy antigua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un ejemplo de sinonimia es:",
+                "opciones": [
+                    "Subir/Bajar",
+                    "Oír/Escuchar",
+                    "Blanco/Negro",
+                    "Luz/Oscuridad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué estudia la semántica?",
+                "opciones": [
+                    "Los sonidos",
+                    "El significado de las palabras",
+                    "La historia de los países",
+                    "Los tipos de letras"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Propiedades del Texto: La Adecuación",
+        "texto": "Para que un texto sea eficaz debe cumplir tres propiedades: adecuación, coherencia y cohesión. La ADECUACIÓN es saber adaptar el texto a la persona que lo recibe y a la situación. No es lo mismo escribir un mensaje de WhatsApp a un amigo (lenguaje informal, abreviaturas) que escribir una reclamación a una empresa o un examen (lenguaje formal, sin faltas, vocabulario preciso). Un texto inadecuado puede causar una mala impresión o incluso que no nos entiendan correctamente.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la adecuación?",
+                "opciones": [
+                    "Escribir muy rápido",
+                    "Adaptar el lenguaje a la situación y al receptor",
+                    "Poner muchas comas",
+                    "Usar palabras difíciles"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo usamos un lenguaje formal?",
+                "opciones": [
+                    "Cenando con amigos",
+                    "En un examen o carta oficial",
+                    "Hablando por teléfono con el primo",
+                    "Jugando a la consola"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué puede ocurrir si un texto es inadecuado?",
+                "opciones": [
+                    "Que nos den un premio",
+                    "Que cause una mala impresión o confusión",
+                    "Nada",
+                    "Que se borre solo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Usar abreviaturas en un examen es un ejemplo de texto:",
+                "opciones": [
+                    "Adecuado",
+                    "Inadecuado",
+                    "Coherente",
+                    "Divertido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuáles son las tres propiedades del texto?",
+                "opciones": [
+                    "Color, forma y tamaño",
+                    "Adecuación, coherencia y cohesión",
+                    "Sujeto, verbo y adjetivo",
+                    "Inicio, nudo y desenlace"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "El Género Dramático: El Teatro",
+        "texto": "El género dramático está hecho para ser representado ante un público. En un texto teatral no hay narrador (normalmente); conocemos la historia a través de los DIÁLOGOS de los personajes. También aparecen las ACOTACIONES, que son indicaciones del autor sobre el escenario, el tono de voz o los movimientos, y que suelen ir entre paréntesis o en cursiva. Las obras se dividen en ACTOS (marcados por la caída del telón) y ESCENAS (marcadas por la entrada o salida de personajes).",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la finalidad principal del texto teatral?",
+                "opciones": [
+                    "Ser leído en silencio",
+                    "Ser representado ante un público",
+                    "Ser cantado",
+                    "Ser una noticia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué son las acotaciones?",
+                "opciones": [
+                    "Los insultos de los personajes",
+                    "Instrucciones del autor sobre la representación",
+                    "El nombre de los actores",
+                    "La música de fondo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué marca el cambio de escena?",
+                "opciones": [
+                    "La caída del telón",
+                    "La entrada o salida de un personaje",
+                    "El final del libro",
+                    "Un grito"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Hay narrador en el teatro tradicional?",
+                "opciones": [
+                    "Sí, siempre",
+                    "Normalmente no, se sabe todo por los diálogos",
+                    "Solo al principio",
+                    "Solo al final"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se agrupan las escenas?",
+                "opciones": [
+                    "En capítulos",
+                    "En actos",
+                    "En estrofas",
+                    "En párrafos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Las Lenguas de España",
+        "texto": "España es un país plurilingüe, lo que significa que se hablan varias lenguas. El castellano o español es la lengua oficial en todo el Estado. Además, existen lenguas cooficiales en algunas comunidades autónomas: el catalán / valenciano, el gallego y el euskera. Casi todas (menos el euskera) proceden del latín y se llaman lenguas ROMÁNICAS. Esta diversidad lingüística es un patrimonio cultural protegido por la Constitución. Conocer y respetar las diferentes lenguas nos ayuda a valorar la riqueza cultural de nuestro país.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa que España es plurilingüe?",
+                "opciones": [
+                    "Que no se habla nada",
+                    "Que se hablan varias lenguas",
+                    "Que solo se habla un idioma",
+                    "Que se habla inglés"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la única lengua oficial en todo el territorio?",
+                "opciones": [
+                    "Gallego",
+                    "Castellano / Español",
+                    "Catalán",
+                    "Euskera"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De qué lengua derivan el gallego y el castellano?",
+                "opciones": [
+                    "Del árabe",
+                    "Del latín",
+                    "Del griego",
+                    "Del alemán"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la lengua que NO procede del latín?",
+                "opciones": [
+                    "Portugués",
+                    "Euskera",
+                    "Valenciano",
+                    "Francés"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se habla el gallego?",
+                "opciones": [
+                    "Cataluña",
+                    "Galicia",
+                    "Andalucía",
+                    "Madrid"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

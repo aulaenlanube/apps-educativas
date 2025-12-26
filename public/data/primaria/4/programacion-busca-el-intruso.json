@@ -1,13 +1,23 @@
 [
   {
-    "categoria": "Hardware: Cosas que toco (Visual)",
+    "categoria": "Hardware y Dispositivos Externos (Visual)",
     "correctos": [
       "💻",
       "⌨️",
       "🖱️",
       "🖨️",
       "📱",
-      "🖥️"
+      "🖥️",
+      "🔋",
+      "🔌",
+      "🎧",
+      "📷",
+      "🕹️",
+      "💾",
+      "📡",
+      "🛰️",
+      "📠",
+      "📽️"
     ],
     "intrusos": [
       "🍎",
@@ -15,147 +25,258 @@
       "⚽",
       "🧸",
       "🚗",
-      "🍕"
+      "🍕",
+      "🍦",
+      "🥪",
+      "🛋️",
+      "🛁",
+      "👕",
+      "👟",
+      "👞",
+      "🧢",
+      "👒"
     ]
   },
   {
-    "categoria": "Robótica (Visual)",
+    "categoria": "Robótica y Componentes Electrónicos (Visual)",
     "correctos": [
       "🤖",
       "⚙️",
       "🔋",
       "🔌",
       "💡",
-      "🛠️"
+      "🛠️",
+      "🔩",
+      "🏗️",
+      "📡",
+      "🛰️",
+      "🦾",
+      "🦿",
+      "🎛️",
+      "🌡️",
+      "⏲️"
     ],
     "intrusos": [
       "🌸",
       "🍦",
       "🐱",
       "☁️",
-      "🎨"
+      "🎨",
+      "🧸",
+      "🍭",
+      "🦋",
+      "🌈",
+      "🍉",
+      "🧣",
+      "🧤",
+      "👒",
+      "🧥",
+      "👟"
     ]
   },
   {
-    "categoria": "Iconos de la pantalla (Visual)",
+    "categoria": "Interfaz de Usuario y Gestión (Visual)",
     "correctos": [
       "📁",
       "🗑️",
       "🔍",
       "✉️",
       "🖼️",
-      "🎬"
+      "🎬",
+      "🎵",
+      "🕒",
+      "⚙️",
+      "🔒",
+      "📶",
+      "🔋",
+      "💾",
+      "📥",
+      "📤",
+      "🔔",
+      "📍"
     ],
     "intrusos": [
       "🚲",
       "🦒",
       "🍔",
       "🎸",
-      "👞"
+      "👞",
+      "👕",
+      "👒",
+      "🛹",
+      "⚽",
+      "🍎",
+      "🏠",
+      "🌲",
+      "🌳",
+      "🌻",
+      "🦆"
     ]
   },
   {
-    "categoria": "Símbolos de Código (Visual)",
+    "categoria": "Lógica de Programación por Bloques (Visual)",
     "correctos": [
       "➡️",
       "⬅️",
       "⬆️",
       "⬇️",
       "➕",
-      "➖"
+      "➖",
+      "✖️",
+      "➗",
+      "🔄",
+      "↩️",
+      "🔢",
+      "🔣",
+      "🔡",
+      "🔁",
+      "🔀",
+      "〰️",
+      "🔗"
     ],
     "intrusos": [
       "🏠",
       "🚗",
       "🐶",
       "🌲",
-      "🍎"
+      "🍎",
+      "🍔",
+      "🍕",
+      "🧸",
+      "🛋️",
+      "🛁",
+      "👕",
+      "👟",
+      "👞",
+      "🧢",
+      "👒",
+      "🚲"
     ]
   },
   {
-    "categoria": "Órdenes para un Robot",
+    "categoria": "Comandos de Programación Visual (Scratch)",
     "correctos": [
-      "Avanzar",
-      "Girar",
-      "Saltar",
-      "Parar",
-      "Esperar"
+      "Mover 10 pasos",
+      "Girar a la derecha",
+      "Al presionar bandera verde",
+      "Por siempre",
+      "Si toca el borde",
+      "Decir Hola durante 2 segundos",
+      "Cambiar disfraz",
+      "Esperar 1 segundo",
+      "Repetir 10 veces"
     ],
     "intrusos": [
-      "Comer",
-      "Dormir",
-      "Llorar",
-      "Cantar",
-      "Soñar"
+      "Comer manzana",
+      "Dormir en la cama",
+      "Llorar fuerte",
+      "Cantar una canción",
+      "Soñar con robots",
+      "Bañarse con jabón",
+      "Peinarse el pelo",
+      "Hacer la merienda",
+      "Ir de excursión"
     ]
   },
   {
-    "categoria": "Partes de un Ordenador",
+    "categoria": "Componentes del Sistema Informático",
     "correctos": [
-      "Teclado",
-      "Ratón",
-      "Pantalla",
-      "Altavoz",
-      "Cámara",
-      "Batería"
+      "Placa base",
+      "Procesador (CPU)",
+      "Memoria RAM",
+      "Tarjeta gráfica",
+      "Disco duro (SSD)",
+      "Fuente de alimentación",
+      "Ventilador",
+      "Puerto USB",
+      "Sistema Operativo",
+      "Driver / Controlador"
     ],
     "intrusos": [
-      "Zapato",
-      "Cuchara",
-      "Libreta",
-      "Lápiz",
-      "Gorra"
+      "Zapato de cuero",
+      "Cuchara de sopa",
+      "Libreta de notas",
+      "Lápiz de color",
+      "Gorra de béisbol",
+      "Silla de oficina",
+      "Mesa de estudio",
+      "Puerta de casa",
+      "Ventana de cristal"
     ]
   },
   {
-    "categoria": "Cosas que hay en Internet",
+    "categoria": "Seguridad e Internet",
     "correctos": [
-      "Web",
-      "Vídeo",
-      "Juego",
-      "Correo",
-      "Foto",
-      "Mensaje"
+      "Contraseña segura",
+      "Antivirus",
+      "Cortafuegos",
+      "Navegador web",
+      "Correo basura (Spam)",
+      "Enlace seguro (https)",
+      "Perfil privado",
+      "Red WiFi",
+      "Descarga",
+      "Buscador"
     ],
     "intrusos": [
-      "Piedra",
-      "Árbol",
-      "Bocadillo",
-      "Pelota",
-      "Libro"
+      "Piedra del camino",
+      "Árbol del parque",
+      "Bocadillo de queso",
+      "Pelota de tenis",
+      "Libro de papel",
+      "Arena de playa",
+      "Agua de grifo",
+      "Fuego de cerilla",
+      "Cuchillo de mesa"
     ]
   },
   {
-    "categoria": "Acciones con el Ratón",
+    "categoria": "Acciones de Entrada y Salida",
     "correctos": [
-      "Clic",
-      "Doble clic",
-      "Arrastrar",
-      "Soltar"
+      "Hacer clic",
+      "Escribir texto",
+      "Imprimir documento",
+      "Escanear foto",
+      "Escuchar sonido",
+      "Grabar video",
+      "Enviar mensaje",
+      "Recibir datos",
+      "Mover el ratón",
+      "Tocar pantalla"
     ],
     "intrusos": [
-      "Pintar",
-      "Recortar",
-      "Pegar",
-      "Doblar",
-      "Escribir"
+      "Pintar un mural",
+      "Recortar cartulina",
+      "Pegar pegatinas",
+      "Doblar ropa",
+      "Correr por el patio",
+      "Saltar charcos",
+      "Comer un helado",
+      "Dormir la siesta"
     ]
   },
   {
-    "categoria": "Conceptos de Programación",
+    "categoria": "Conceptos de Algoritmia Básica",
     "correctos": [
-      "Código",
-      "Bucle",
       "Algoritmo",
-      "Instrucción",
-      "Condicional"
+      "Bucle infinito",
+      "Variable de puntos",
+      "Condición (Si...)",
+      "Secuencia de pasos",
+      "Instrucción de parada",
+      "Función de salto",
+      "Depuración de errores",
+      "Evento de inicio"
     ],
     "intrusos": [
-      "Cuento",
-      "Canción",
-      "Receta",
-      "Dibujo",
-      "Poesía"
+      "Cuento de Navidad",
+      "Receta de galletas",
+      "Dibujo de un gato",
+      "Poesía de amor",
+      "Excursión al museo",
+      "Partido de fútbol",
+      "Siesta de tarde",
+      "Juego de mesa"
     ]
   }
 ]

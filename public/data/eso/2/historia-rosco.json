@@ -1,304 +1,2210 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Nombre que los musulmanes dieron a la Península Ibérica.", "solucion": "al-andalus", "materia": "historia" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Periodo histórico entre el siglo V y el XV (Alta y Baja...).", "solucion": "alta edad media", "materia": "historia" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Arte de proyectar y construir edificios.", "solucion": "arquitectura", "materia": "historia" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Actividad económica de cultivar la tierra.", "solucion": "agricultura", "materia": "historia" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Elaboración de objetos a mano (gremio).", "solucion": "artesanía", "materia": "historia" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Palacio y fortaleza roja de Granada.", "solucion": "alhambra", "materia": "historia" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Dinastía que reinó en España en los siglos XVI y XVII.", "solucion": "austrias", "materia": "historia" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Continente descubierto por Colón en 1492.", "solucion": "américa", "materia": "historia" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Sistema político donde el rey tiene todo el poder.", "solucion": "absolutismo", "materia": "historia" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Flota enviada por Felipe II contra Inglaterra (La ... Invencible).", "solucion": "armada", "materia": "historia" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Periodo final de la Edad Media (siglos XI-XV).", "solucion": "baja edad media", "materia": "historia" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Clase social formada por comerciantes y artesanos.", "solucion": "burguesía", "materia": "historia" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Imperio romano de Oriente con capital en Constantinopla.", "solucion": "bizancio", "materia": "historia" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Estilo artístico del siglo XVII, recargado y dramático.", "solucion": "barroco", "materia": "historia" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Piratas musulmanes del norte de África.", "solucion": "berberiscos", "materia": "historia" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Último rey de Granada.", "solucion": "boabdil", "materia": "historia" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Técnica agrícola de dejar descansar la tierra.", "solucion": "barbecho", "materia": "historia" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Instrumento de orientación fundamental para la navegación.", "solucion": "brújula", "materia": "historia" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Negocio de manejo de dinero y préstamos.", "solucion": "banca", "materia": "historia" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Enfrentamiento armado entre ejércitos.", "solucion": "batalla", "materia": "historia" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Máxima autoridad política y religiosa en el mundo islámico.", "solucion": "califa", "materia": "historia" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Residencia fortificada del señor feudal.", "solucion": "castillo", "materia": "historia" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Iglesia principal de una diócesis, típica del Gótico.", "solucion": "catedral", "materia": "historia" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Estamento formado por los miembros de la Iglesia.", "solucion": "clero", "materia": "historia" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Guerras santas de los cristianos para recuperar Jerusalén.", "solucion": "cruzadas", "materia": "historia" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Toma de territorios (ej: América).", "solucion": "conquista", "materia": "historia" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Navegante que llegó a América en 1492.", "solucion": "cristóbal colón", "materia": "historia" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Rey emperador, nieto de los Reyes Católicos (Carlos I de España y V de...).", "solucion": "alemania", "materia": "historia" }, 
-  { "id": "c8_fix", "letra": "C", "tipo": "empieza", "definicion": "Nombre del rey I de España y V de Alemania.", "solucion": "carlos", "materia": "historia" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Reacción de la Iglesia Católica ante la Reforma Protestante.", "solucion": "contrarreforma", "materia": "historia" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Libro sagrado del Islam.", "solucion": "corán", "materia": "historia" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Estudio de la población humana.", "solucion": "demografía", "materia": "historia" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Número de habitantes por km cuadrado.", "solucion": "densidad", "materia": "historia" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Serie de reyes de una misma familia.", "solucion": "dinastía", "materia": "historia" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Impuesto del 10% que se pagaba a la Iglesia.", "solucion": "diezmo", "materia": "historia" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Rey visigodo que inició la Reconquista en Covadonga.", "solucion": "don pelayo", "materia": "historia" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Hallazgo de tierras desconocidas.", "solucion": "descubrimiento", "materia": "historia" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Título nobiliario superior al de conde.", "solucion": "duque", "materia": "historia" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Escultura íbera famosa (... de Elche).", "solucion": "dama", "materia": "historia" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Muerte de una persona (término demográfico).", "solucion": "defunción", "materia": "historia" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Ser supremo creador.", "solucion": "dios", "materia": "historia" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Periodo histórico entre la Antigüedad y la Edad Moderna.", "solucion": "edad media", "materia": "historia" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Periodo histórico desde 1492 hasta 1789.", "solucion": "edad moderna", "materia": "historia" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Grupo social cerrado del Antiguo Régimen.", "solucion": "estamento", "materia": "historia" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Territorio gobernado por un emir.", "solucion": "emirato", "materia": "historia" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Arma defensiva o emblema de una familia.", "solucion": "escudo", "materia": "historia" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Echar a un grupo de personas de un país (judíos, moriscos).", "solucion": "expulsión", "materia": "historia" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Sistema de trabajo forzado en América.", "solucion": "encomienda", "materia": "historia" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Título de Carlos V.", "solucion": "emperador", "materia": "historia" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Productos valiosos de Oriente (pimienta, canela...).", "solucion": "especias", "materia": "historia" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Arte de tallar piedra o madera.", "solucion": "escultura", "materia": "historia" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Sistema político y social de la Edad Media.", "solucion": "feudalismo", "materia": "historia" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Zanja con agua alrededor del castillo.", "solucion": "foso", "materia": "historia" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Rey Católico de Aragón.", "solucion": "fernando", "materia": "historia" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Rey hijo de Carlos V, construyó El Escorial.", "solucion": "felipe ii", "materia": "historia" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Ley o derecho especial de una ciudad o reino.", "solucion": "fuero", "materia": "historia" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Región europea (actual Bélgica) importante para los Austrias.", "solucion": "flandes", "materia": "historia" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Edificación militar defensiva.", "solucion": "fortaleza", "materia": "historia" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Línea que separa dos territorios.", "solucion": "frontera", "materia": "historia" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Creyente religioso.", "solucion": "fiel", "materia": "historia" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Defensa exagerada de una creencia.", "solucion": "fanatismo", "materia": "historia" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Estilo artístico medieval con arcos apuntados y vidrieras.", "solucion": "gótico", "materia": "historia" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Asociación de artesanos de un mismo oficio.", "solucion": "gremio", "materia": "historia" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Conflicto armado.", "solucion": "guerra", "materia": "historia" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Último reino musulmán en la Península.", "solucion": "granada", "materia": "historia" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Pueblos bárbaros (visigodos, francos...).", "solucion": "germánicos", "materia": "historia" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Ciencia que estudia la superficie terrestre.", "solucion": "geografía", "materia": "historia" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "Cría de animales (sector primario).", "solucion": "ganadería", "materia": "historia" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Inventor de la imprenta.", "solucion": "gutenberg", "materia": "historia" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Famoso militar de los Reyes Católicos (Gonzalo Fernández de Córdoba).", "solucion": "gran capitán", "materia": "historia" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Masa de hielo.", "solucion": "glaciar", "materia": "historia" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Huida de Mahoma a Medina (año 622).", "solucion": "hégira", "materia": "historia" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Movimiento cultural del Renacimiento centrado en el hombre.", "solucion": "humanismo", "materia": "historia" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Noble de baja categoría.", "solucion": "hidalgo", "materia": "historia" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Ceremonia de fidelidad de un vasallo a su señor.", "solucion": "homenaje", "materia": "historia" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Arco típico de la arquitectura islámica.", "solucion": "herradura", "materia": "historia" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Dinastía de los Austrias.", "solucion": "habsburgo", "materia": "historia" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Creencia contraria al dogma religioso.", "solucion": "herejía", "materia": "historia" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Terreno de regadío.", "solucion": "huerta", "materia": "historia" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Ejército o tropa.", "solucion": "hueste", "materia": "historia" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Conquistador de México.", "solucion": "hernán cortés", "materia": "historia" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Religión fundada por Mahoma.", "solucion": "islam", "materia": "historia" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Conjunto de territorios gobernados por un emperador.", "solucion": "imperio", "materia": "historia" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Tribunal eclesiástico que perseguía herejías.", "solucion": "inquisición", "materia": "historia" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Invento que permitió difundir libros rápidamente.", "solucion": "imprenta", "materia": "historia" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Reina Católica de Castilla.", "solucion": "isabel", "materia": "historia" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Institución religiosa cristiana.", "solucion": "iglesia", "materia": "historia" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Civilización precolombina de los Andes.", "solucion": "incas", "materia": "historia" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Nombre que Colón dio a América.", "solucion": "indias", "materia": "historia" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Conversión a la religión islámica.", "solucion": "islamización", "materia": "historia" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Figura religiosa pintada (arte bizantino).", "solucion": "icono", "materia": "historia" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Persona que practica la religión hebrea.", "solucion": "judío", "materia": "historia" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Composición poética hispano-árabe.", "solucion": "jarcha", "materia": "historia" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Rey conquistador de Valencia y Mallorca.", "solucion": "jaume i", "materia": "historia" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Organización por rangos o niveles.", "solucion": "jerarquía", "materia": "historia" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Orden religiosa fundada por San Ignacio (Compañía de Jesús).", "solucion": "jesuitas", "materia": "historia" },
-  { "id": "j6", "letra": "J", "tipo": "empieza", "definicion": "Trabajador del campo por un sueldo diario.", "solucion": "jornalero", "materia": "historia" },
-  { "id": "j7", "letra": "J", "tipo": "empieza", "definicion": "Barrio donde vivían los judíos.", "solucion": "judería", "materia": "historia" },
-  { "id": "j8", "letra": "J", "tipo": "empieza", "definicion": "Día de la Semana Santa (Santo).", "solucion": "jueves", "materia": "historia" },
-  { "id": "j9", "letra": "J", "tipo": "empieza", "definicion": "Promesa solemne.", "solucion": "juramento", "materia": "historia" },
-  { "id": "j10", "letra": "J", "tipo": "empieza", "definicion": "Ciudad sagrada para judíos, cristianos y musulmanes.", "solucion": "jerusalén", "materia": "historia" },
-
-  { "id": "k1", "letra": "K", "tipo": "contiene", "definicion": "Pueblo escandinavo que atacaba las costas (contiene K).", "solucion": "vikingo", "materia": "historia" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Título de emperador alemán (Káiser).", "solucion": "kaiser", "materia": "historia" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Científico de la Revolución Científica (Johannes...).", "solucion": "kepler", "materia": "historia" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "País de África (geografía).", "solucion": "kenia", "materia": "historia" },
-  { "id": "k5", "letra": "K", "tipo": "contiene", "definicion": "Civilización de Guatemala y México (Maya, ciudad Ti..., contiene K).", "solucion": "tikal", "materia": "historia" }, 
-  { "id": "k5_fix", "letra": "K", "tipo": "contiene", "definicion": "Mercado (en inglés, contiene K).", "solucion": "market", "materia": "historia" }, 
-  { "id": "k5_final", "letra": "K", "tipo": "empieza", "definicion": "Medida de distancia.", "solucion": "kilómetro", "materia": "historia" },
-  { "id": "k6", "letra": "K", "tipo": "contiene", "definicion": "Lengua vasca (contiene K).", "solucion": "euskera", "materia": "historia" },
-  { "id": "k7", "letra": "K", "tipo": "contiene", "definicion": "Pueblo bárbaro (Fran...os, contiene K).", "solucion": "frankos", "materia": "historia" }, 
-  { "id": "k7_fix", "letra": "K", "tipo": "contiene", "definicion": "Imperio de los Andes (Inca o In...a, contiene K).", "solucion": "inka", "materia": "historia" },
-  { "id": "k8", "letra": "K", "tipo": "contiene", "definicion": "Nombre de Rusia (Moscú, contiene K?? No).", "solucion": "kremlin", "materia": "historia" }, 
-  { "id": "k9", "letra": "K", "tipo": "contiene", "definicion": "País de Asia (Pa...istán, contiene K).", "solucion": "pakistán", "materia": "historia" },
-  { "id": "k10", "letra": "K", "tipo": "contiene", "definicion": "Capital de Japón (To...io, contiene K).", "solucion": "tokio", "materia": "historia" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Gran propiedad agrícola.", "solucion": "latifundio", "materia": "historia" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Edificio comercial de la Corona de Aragón.", "solucion": "lonja", "materia": "historia" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Religión cristiana reformada por Lutero.", "solucion": "luteranismo", "materia": "historia" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Batalla naval ganada a los turcos.", "solucion": "lepanto", "materia": "historia" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Norma jurídica.", "solucion": "ley", "materia": "historia" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Ascendencia o familia.", "solucion": "linaje", "materia": "historia" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Materia prima de la oveja, base de la economía castellana.", "solucion": "lana", "materia": "historia" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Nombre de muchos reyes de Francia (XIV, XVI...).", "solucion": "luis", "materia": "historia" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Protagonista de una novela picaresca (... de Tormes).", "solucion": "lazarillo", "materia": "historia" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Herencia cultural.", "solucion": "legado", "materia": "historia" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Templo musulmán.", "solucion": "mezquita", "materia": "historia" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Lugar donde viven monjes.", "solucion": "monasterio", "materia": "historia" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Asociación de ganaderos de Castilla.", "solucion": "mesta", "materia": "historia" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Forma de gobierno con rey.", "solucion": "monarquía", "materia": "historia" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Seguidor del Islam.", "solucion": "musulmán", "materia": "historia" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Musulmán que vivía en territorio cristiano.", "solucion": "mudéjar", "materia": "historia" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Civilización precolombina de Centroamérica.", "solucion": "mayas", "materia": "historia" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Ciudad sagrada del Islam donde está la tumba de Mahoma.", "solucion": "medina", "materia": "historia" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Tasa demográfica de fallecimientos.", "solucion": "mortalidad", "materia": "historia" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Movimiento de población.", "solucion": "migración", "materia": "historia" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Estamento privilegiado que luchaba.", "solucion": "nobleza", "materia": "historia" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Tasa de nacimientos.", "solucion": "natalidad", "materia": "historia" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Batalla de 1212 clave en la Reconquista.", "solucion": "navas de tolosa", "materia": "historia" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Tipo de barco usado por Colón.", "solucion": "nao", "materia": "historia" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Nombre que se dio a América.", "solucion": "nuevo mundo", "materia": "historia" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Que se desplaza, sin residencia fija.", "solucion": "nómada", "materia": "historia" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Pasillo central de una iglesia.", "solucion": "nave", "materia": "historia" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Pueblo vikingo que se asentó en Francia.", "solucion": "normando", "materia": "historia" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Pertenencia a una nación.", "solucion": "nacionalidad", "materia": "historia" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Comunidad política.", "solucion": "nación", "materia": "historia" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Territorio de un señor feudal (contiene Ñ).", "solucion": "señorío", "materia": "historia" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Campo de cultivo (contiene Ñ).", "solucion": "campiña", "materia": "historia" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Fecha histórica (contiene Ñ).", "solucion": "año", "materia": "historia" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Recurso energético vegetal (contiene Ñ).", "solucion": "leña", "materia": "historia" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Camino para el ganado (contiene Ñ).", "solucion": "cañada", "materia": "historia" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "contiene", "definicion": "Cultivo de la uva (contiene Ñ).", "solucion": "viña", "materia": "historia" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Familiar político (hermano del cónyuge, contiene Ñ).", "solucion": "cuñado", "materia": "historia" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Campanario de pared (contiene Ñ).", "solucion": "espadaña", "materia": "historia" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "Propietario (contiene Ñ).", "solucion": "dueño", "materia": "historia" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "De tamaño reducido (contiene Ñ).", "solucion": "pequeño", "materia": "historia" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Grupo religioso o militar (del Temple, de Santiago...).", "solucion": "orden", "materia": "historia" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Rezo.", "solucion": "oración", "materia": "historia" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Jefe religioso de una diócesis.", "solucion": "obispo", "materia": "historia" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Imperio turco que conquistó Constantinopla.", "solucion": "otomano", "materia": "historia" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Punto cardinal del oeste.", "solucion": "occidente", "materia": "historia" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Metal precioso buscado en América.", "solucion": "oro", "materia": "historia" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Trabajo manual.", "solucion": "oficio", "materia": "historia" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Animal que produce lana (raza merina).", "solucion": "oveja", "materia": "historia" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Gran masa de agua (Atlántico...).", "solucion": "océano", "materia": "historia" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Cultivo mediterráneo de aceite.", "solucion": "olivo", "materia": "historia" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Epidemia mortal del siglo XIV (... Negra).", "solucion": "peste", "materia": "historia" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Gráfico de población por edad y sexo.", "solucion": "pirámide", "materia": "historia" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Jefe de la Iglesia Católica.", "solucion": "papa", "materia": "historia" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Cristiano que sigue la Reforma de Lutero.", "solucion": "protestante", "materia": "historia" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Estamento con derechos especiales (nobleza y clero).", "solucion": "privilegiado", "materia": "historia" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Entrada decorada de una iglesia.", "solucion": "portada", "materia": "historia" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Conquistador del Imperio Inca.", "solucion": "pizarro", "materia": "historia" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Viaje a un lugar sagrado (Santiago, La Meca).", "solucion": "peregrinación", "materia": "historia" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Lugar de enterramiento real.", "solucion": "panteón", "materia": "historia" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Residencia real.", "solucion": "palacio", "materia": "historia" },
-
-  { "id": "q1", "letra": "Q", "tipo": "contiene", "definicion": "Toma de Granada (contiene Q).", "solucion": "conquista", "materia": "historia" },
-  { "id": "q2", "letra": "Q", "tipo": "contiene", "definicion": "Templo musulmán (contiene Q).", "solucion": "mezquita", "materia": "historia" },
-  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Arte de construir (contiene Q).", "solucion": "arquitectura", "materia": "historia" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Forma de gobierno real (contiene Q).", "solucion": "monarquía", "materia": "historia" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Tribunal del Santo Oficio (contiene Q).", "solucion": "inquisición", "materia": "historia" },
-  { "id": "q6", "letra": "Q", "tipo": "contiene", "definicion": "Recuperación de territorio cristiano (contiene Q).", "solucion": "reconquista", "materia": "historia" },
-  { "id": "q7", "letra": "Q", "tipo": "contiene", "definicion": "Casa de campo árabe (contiene Q).", "solucion": "alquería", "materia": "historia" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "Piedra grande (contiene Q).", "solucion": "bloque", "materia": "historia" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Objeto sagrado (hueso de santo...) (contiene Q).", "solucion": "reliquia", "materia": "historia" },
-  { "id": "q10", "letra": "Q", "tipo": "contiene", "definicion": "Lugar lleno de árboles (contiene Q).", "solucion": "bosque", "materia": "historia" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Proceso de recuperación de tierras a los musulmanes.", "solucion": "reconquista", "materia": "historia" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Movimiento cultural del siglo XV y XVI.", "solucion": "renacimiento", "materia": "historia" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Estilo artístico medieval de arcos de medio punto.", "solucion": "románico", "materia": "historia" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Cambio religioso iniciado por Lutero.", "solucion": "reforma", "materia": "historia" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Monarca.", "solucion": "rey", "materia": "historia" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Relativo al campo.", "solucion": "rural", "materia": "historia" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Ocupación de tierras vacías.", "solucion": "repoblación", "materia": "historia" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Ventana circular con vidrieras.", "solucion": "rosetón", "materia": "historia" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Camino comercial (... de la Seda).", "solucion": "ruta", "materia": "historia" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Obra de arte detrás del altar.", "solucion": "retablo", "materia": "historia" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Conjunto de personas (Estamental en la E. Media).", "solucion": "sociedad", "materia": "historia" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Dueño del feudo.", "solucion": "señor", "materia": "historia" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Campesino no libre.", "solucion": "siervo", "materia": "historia" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Apóstol patrón de España (Camino de...).", "solucion": "santiago", "materia": "historia" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Tejido valioso traído de Oriente.", "solucion": "seda", "materia": "historia" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Templo judío.", "solucion": "sinagoga", "materia": "historia" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Periodo de esplendor cultural español (... de Oro).", "solucion": "siglo", "materia": "historia" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Terreno para edificar.", "solucion": "solar", "materia": "historia" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Carabela de Colón (La ... María).", "solucion": "santa", "materia": "historia" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Gobernante turco.", "solucion": "sultán", "materia": "historia" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Visión del mundo con Dios en el centro.", "solucion": "teocentrismo", "materia": "historia" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Combate deportivo medieval a caballo.", "solucion": "torneo", "materia": "historia" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Reino musulmán independiente.", "solucion": "taifa", "materia": "historia" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Juzgado (de la Inquisición).", "solucion": "tribunal", "materia": "historia" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Acuerdo entre países (de Tordesillas).", "solucion": "tratado", "materia": "historia" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Índice demográfico (de natalidad).", "solucion": "tasa", "materia": "historia" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Capital del imperio azteca.", "solucion": "tenochtitlán", "materia": "historia" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Ejército de infantería español de los Austrias.", "solucion": "tercios", "materia": "historia" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Nave transversal de una iglesia.", "solucion": "transepto", "materia": "historia" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Construcción alta defensiva.", "solucion": "torre", "materia": "historia" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Institución de enseñanza superior medieval.", "solucion": "universidad", "materia": "historia" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Relativo a la ciudad.", "solucion": "urbano", "materia": "historia" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Alianza de coronas (Isabel y Fernando).", "solucion": "unión", "materia": "historia" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Planificación de las ciudades.", "solucion": "urbanismo", "materia": "historia" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Dinastía islámica (Omeya en inglés).", "solucion": "umayyad", "materia": "historia" }, 
-  { "id": "u5_fix", "letra": "U", "tipo": "empieza", "definicion": "Sociedad ideal perfecta (Tomás Moro).", "solucion": "utopía", "materia": "historia" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Conjunto de estrellas y galaxias.", "solucion": "universo", "materia": "historia" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Singular, sin igual.", "solucion": "único", "materia": "historia" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Sinónimo de ciudad grande.", "solucion": "urbe", "materia": "historia" },
-  { "id": "u9", "letra": "U", "tipo": "empieza", "definicion": "Préstamo de dinero con interés abusivo.", "solucion": "usura", "materia": "historia" },
-  { "id": "u10", "letra": "U", "tipo": "empieza", "definicion": "Medida de cantidad.", "solucion": "unidad", "materia": "historia" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Persona que jura fidelidad a un señor.", "solucion": "vasallo", "materia": "historia" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Pueblo germánico que gobernó España.", "solucion": "visigodo", "materia": "historia" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Representante del rey en América.", "solucion": "virrey", "materia": "historia" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Ventana de colores de las catedrales.", "solucion": "vidriera", "materia": "historia" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Sede del Papa.", "solucion": "vaticano", "materia": "historia" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Tela para mover barcos.", "solucion": "vela", "materia": "historia" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Expedición de Colón.", "solucion": "viaje", "materia": "historia" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Población con privilegios.", "solucion": "villa", "materia": "historia" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Pintor de las Meninas.", "solucion": "velázquez", "materia": "historia" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Persona de confianza del rey que gobernaba.", "solucion": "valido", "materia": "historia" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Rey visigodo (W...).", "solucion": "wamba", "materia": "historia" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Ciudad donde Lutero publicó sus tesis.", "solucion": "wittenberg", "materia": "historia" },
-  { "id": "w3", "letra": "W", "tipo": "empieza", "definicion": "Paz que puso fin a la Guerra de los 30 años.", "solucion": "westfalia", "materia": "historia" },
-  { "id": "w4", "letra": "W", "tipo": "empieza", "definicion": "Rey visigodo (W...tiza).", "solucion": "witiza", "materia": "historia" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Científico inglés (Ne...ton, contiene W).", "solucion": "newton", "materia": "historia" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Naturalista (Dar...in, contiene W).", "solucion": "darwin", "materia": "historia" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Pintor flamenco (Van der ...eyden, contiene W).", "solucion": "weyden", "materia": "historia" },
-  { "id": "w8", "letra": "W", "tipo": "empieza", "definicion": "Batalla de Napoleón (Waterloo).", "solucion": "waterloo", "materia": "historia" }, 
-  { "id": "w8_fix", "letra": "W", "tipo": "empieza", "definicion": "Capital de EE.UU.", "solucion": "washington", "materia": "historia" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "País asiático (Ku...ait, contiene W).", "solucion": "kuwait", "materia": "historia" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Mineral duro (Wolframio).", "solucion": "wolframio", "materia": "historia" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Echar a alguien de su tierra (contiene X).", "solucion": "expulsión", "materia": "historia" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Desaparición de algo (contiene X).", "solucion": "extinción", "materia": "historia" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Viajes de descubrimiento (contiene X).", "solucion": "exploración", "materia": "historia" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Persona de otro país (contiene X).", "solucion": "extranjero", "materia": "historia" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Escrito histórico (contiene X).", "solucion": "texto", "materia": "historia" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Entorno de un suceso (contiene X).", "solucion": "contexto", "materia": "historia" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Lo más grande (contiene X).", "solucion": "máximo", "materia": "historia" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Triunfo (contiene X).", "solucion": "éxito", "materia": "historia" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Sacar recursos (contiene X).", "solucion": "explotación", "materia": "historia" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "Pena de destierro (contiene X).", "solucion": "exilio", "materia": "historia" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Lugar arqueológico.", "solucion": "yacimiento", "materia": "historia" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Monasterio de San Millán de...", "solucion": "yuso", "materia": "historia" },
-  { "id": "y3", "letra": "Y", "tipo": "empieza", "definicion": "Hembra del caballo.", "solucion": "yegua", "materia": "historia" },
-  { "id": "y4", "letra": "Y", "tipo": "empieza", "definicion": "Reina Católica (escritura antigua).", "solucion": "ysabel", "materia": "historia" },
-  { "id": "y5", "letra": "Y", "tipo": "empieza", "definicion": "Guerra santa islámica.", "solucion": "yihad", "materia": "historia" },
-  { "id": "y6", "letra": "Y", "tipo": "empieza", "definicion": "Símbolo de los Reyes Católicos (... y flechas).", "solucion": "yugo", "materia": "historia" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Colaboración (contiene Y).", "solucion": "ayuda", "materia": "historia" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Hijo primogénito (contiene Y).", "solucion": "mayor", "materia": "historia" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Norma jurídica (contiene Y).", "solucion": "ley", "materia": "historia" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Día presente (contiene Y).", "solucion": "hoy", "materia": "historia" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Mercado árabe.", "solucion": "zoco", "materia": "historia" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Músico árabe que trajo modas a Córdoba.", "solucion": "ziryab", "materia": "historia" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Área o región.", "solucion": "zona", "materia": "historia" },
-  { "id": "z4", "letra": "Z", "tipo": "empieza", "definicion": "Emperador de Rusia.", "solucion": "zar", "materia": "historia" },
-  { "id": "z5", "letra": "Z", "tipo": "empieza", "definicion": "Minas de plata en México.", "solucion": "zacatecas", "materia": "historia" },
-  { "id": "z6", "letra": "Z", "tipo": "empieza", "definicion": "Excavación defensiva.", "solucion": "zanja", "materia": "historia" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Palacio árabe en Zaragoza (Al...).", "solucion": "aljafería", "materia": "historia" },
-  { "id": "z8", "letra": "Z", "tipo": "empieza", "definicion": "Herramienta agrícola.", "solucion": "azada", "materia": "historia" },
-  { "id": "z9", "letra": "Z", "tipo": "empieza", "definicion": "Cerámica vidriada decorativa.", "solucion": "azulejo", "materia": "historia" },
-  { "id": "z10", "letra": "Z", "tipo": "contiene", "definicion": "Cereal americano (contiene Z).", "solucion": "maíz", "materia": "historia" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Nombre que los musulmanes dieron a la Península Ibérica.",
+    "solucion": "al-andalus",
+    "materia": "historia"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Periodo histórico entre el siglo V y el XV (Alta y Baja...).",
+    "solucion": "alta edad media",
+    "materia": "historia"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Arte de proyectar y construir edificios.",
+    "solucion": "arquitectura",
+    "materia": "historia"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Actividad económica de cultivar la tierra.",
+    "solucion": "agricultura",
+    "materia": "historia"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Elaboración de objetos a mano (gremio).",
+    "solucion": "artesanía",
+    "materia": "historia"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Palacio y fortaleza roja de Granada.",
+    "solucion": "alhambra",
+    "materia": "historia"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Dinastía que reinó en España en los siglos XVI y XVII.",
+    "solucion": "austrias",
+    "materia": "historia"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Continente descubierto por Colón en 1492.",
+    "solucion": "américa",
+    "materia": "historia"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Sistema político donde el rey tiene todo el poder.",
+    "solucion": "absolutismo",
+    "materia": "historia"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Flota enviada por Felipe II contra Inglaterra (La ... Invencible).",
+    "solucion": "armada",
+    "materia": "historia"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Periodo final de la Edad Media (siglos XI-XV).",
+    "solucion": "baja edad media",
+    "materia": "historia"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Clase social formada por comerciantes y artesanos.",
+    "solucion": "burguesía",
+    "materia": "historia"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Imperio romano de Oriente con capital en Constantinopla.",
+    "solucion": "bizancio",
+    "materia": "historia"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Estilo artístico del siglo XVII, recargado y dramático.",
+    "solucion": "barroco",
+    "materia": "historia"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Piratas musulmanes del norte de África.",
+    "solucion": "berberiscos",
+    "materia": "historia"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Último rey de Granada.",
+    "solucion": "boabdil",
+    "materia": "historia"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Técnica agrícola de dejar descansar la tierra.",
+    "solucion": "barbecho",
+    "materia": "historia"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Instrumento de orientación fundamental para la navegación.",
+    "solucion": "brújula",
+    "materia": "historia"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Negocio de manejo de dinero y préstamos.",
+    "solucion": "banca",
+    "materia": "historia"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Enfrentamiento armado entre ejércitos.",
+    "solucion": "batalla",
+    "materia": "historia"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Máxima autoridad política y religiosa en el mundo islámico.",
+    "solucion": "califa",
+    "materia": "historia"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Residencia fortificada del señor feudal.",
+    "solucion": "castillo",
+    "materia": "historia"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Iglesia principal de una diócesis, típica del Gótico.",
+    "solucion": "catedral",
+    "materia": "historia"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Estamento formado por los miembros de la Iglesia.",
+    "solucion": "clero",
+    "materia": "historia"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Guerras santas de los cristianos para recuperar Jerusalén.",
+    "solucion": "cruzadas",
+    "materia": "historia"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Toma de territorios (ej: América).",
+    "solucion": "conquista",
+    "materia": "historia"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Navegante que llegó a América en 1492.",
+    "solucion": "cristóbal colón",
+    "materia": "historia"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Rey emperador, nieto de los Reyes Católicos (Carlos I de España y V de...).",
+    "solucion": "Carlos",
+    "materia": "historia"
+  },
+  {
+    "id": "c8_fix",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Nombre del rey I de España y V de Alemania.",
+    "solucion": "carlos",
+    "materia": "historia"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Reacción de la Iglesia Católica ante la Reforma Protestante.",
+    "solucion": "contrarreforma",
+    "materia": "historia"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Libro sagrado del Islam.",
+    "solucion": "corán",
+    "materia": "historia"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Estudio de la población humana.",
+    "solucion": "demografía",
+    "materia": "historia"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Número de habitantes por km cuadrado.",
+    "solucion": "densidad",
+    "materia": "historia"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Serie de reyes de una misma familia.",
+    "solucion": "dinastía",
+    "materia": "historia"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Impuesto del 10% que se pagaba a la Iglesia.",
+    "solucion": "diezmo",
+    "materia": "historia"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Rey visigodo que inició la Reconquista en Covadonga.",
+    "solucion": "don pelayo",
+    "materia": "historia"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Hallazgo de tierras desconocidas.",
+    "solucion": "descubrimiento",
+    "materia": "historia"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Título nobiliario superior al de conde.",
+    "solucion": "duque",
+    "materia": "historia"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Escultura íbera famosa (... de Elche).",
+    "solucion": "dama",
+    "materia": "historia"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Muerte de una persona (término demográfico).",
+    "solucion": "defunción",
+    "materia": "historia"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Ser supremo creador.",
+    "solucion": "dios",
+    "materia": "historia"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Periodo histórico entre la Antigüedad y la Edad Moderna.",
+    "solucion": "edad media",
+    "materia": "historia"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Periodo histórico desde 1492 hasta 1789.",
+    "solucion": "edad moderna",
+    "materia": "historia"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Grupo social cerrado del Antiguo Régimen.",
+    "solucion": "estamento",
+    "materia": "historia"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Territorio gobernado por un emir.",
+    "solucion": "emirato",
+    "materia": "historia"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Arma defensiva o emblema de una familia.",
+    "solucion": "escudo",
+    "materia": "historia"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Echar a un grupo de personas de un país (judíos, moriscos).",
+    "solucion": "expulsión",
+    "materia": "historia"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Sistema de trabajo forzado en América.",
+    "solucion": "encomienda",
+    "materia": "historia"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Título de Carlos V.",
+    "solucion": "emperador",
+    "materia": "historia"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Productos valiosos de Oriente (pimienta, canela...).",
+    "solucion": "especias",
+    "materia": "historia"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Arte de tallar piedra o madera.",
+    "solucion": "escultura",
+    "materia": "historia"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Sistema político y social de la Edad Media.",
+    "solucion": "feudalismo",
+    "materia": "historia"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Zanja con agua alrededor del castillo.",
+    "solucion": "foso",
+    "materia": "historia"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Rey Católico de Aragón.",
+    "solucion": "fernando",
+    "materia": "historia"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Rey hijo de Carlos V, construyó El Escorial.",
+    "solucion": "felipe ii",
+    "materia": "historia"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Ley o derecho especial de una ciudad o reino.",
+    "solucion": "fuero",
+    "materia": "historia"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Región europea (actual Bélgica) importante para los Austrias.",
+    "solucion": "flandes",
+    "materia": "historia"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Edificación militar defensiva.",
+    "solucion": "fortaleza",
+    "materia": "historia"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Línea que separa dos territorios.",
+    "solucion": "frontera",
+    "materia": "historia"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Creyente religioso.",
+    "solucion": "fiel",
+    "materia": "historia"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Defensa exagerada de una creencia.",
+    "solucion": "fanatismo",
+    "materia": "historia"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Estilo artístico medieval con arcos apuntados y vidrieras.",
+    "solucion": "gótico",
+    "materia": "historia"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Asociación de artesanos de un mismo oficio.",
+    "solucion": "gremio",
+    "materia": "historia"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Conflicto armado.",
+    "solucion": "guerra",
+    "materia": "historia"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Último reino musulmán en la Península.",
+    "solucion": "granada",
+    "materia": "historia"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Pueblos bárbaros (visigodos, francos...).",
+    "solucion": "germánicos",
+    "materia": "historia"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia la superficie terrestre.",
+    "solucion": "geografía",
+    "materia": "historia"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Cría de animales (sector primario).",
+    "solucion": "ganadería",
+    "materia": "historia"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Inventor de la imprenta.",
+    "solucion": "gutenberg",
+    "materia": "historia"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Famoso militar de los Reyes Católicos (Gonzalo Fernández de Córdoba).",
+    "solucion": "gran capitán",
+    "materia": "historia"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Masa de hielo.",
+    "solucion": "glaciar",
+    "materia": "historia"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Huida de Mahoma a Medina (año 622).",
+    "solucion": "hégira",
+    "materia": "historia"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Movimiento cultural del Renacimiento centrado en el hombre.",
+    "solucion": "humanismo",
+    "materia": "historia"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Noble de baja categoría.",
+    "solucion": "hidalgo",
+    "materia": "historia"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Ceremonia de fidelidad de un vasallo a su señor.",
+    "solucion": "homenaje",
+    "materia": "historia"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Arco típico de la arquitectura islámica.",
+    "solucion": "herradura",
+    "materia": "historia"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Dinastía de los Austrias.",
+    "solucion": "habsburgo",
+    "materia": "historia"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Creencia contraria al dogma religioso.",
+    "solucion": "herejía",
+    "materia": "historia"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Terreno de regadío.",
+    "solucion": "huerta",
+    "materia": "historia"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Ejército o tropa.",
+    "solucion": "hueste",
+    "materia": "historia"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Conquistador de México.",
+    "solucion": "hernán cortés",
+    "materia": "historia"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Religión fundada por Mahoma.",
+    "solucion": "islam",
+    "materia": "historia"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Conjunto de territorios gobernados por un emperador.",
+    "solucion": "imperio",
+    "materia": "historia"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Tribunal eclesiástico que perseguía herejías.",
+    "solucion": "inquisición",
+    "materia": "historia"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Invento que permitió difundir libros rápidamente.",
+    "solucion": "imprenta",
+    "materia": "historia"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Reina Católica de Castilla.",
+    "solucion": "isabel",
+    "materia": "historia"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Institución religiosa cristiana.",
+    "solucion": "iglesia",
+    "materia": "historia"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Civilización precolombina de los Andes.",
+    "solucion": "incas",
+    "materia": "historia"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Nombre que Colón dio a América.",
+    "solucion": "indias",
+    "materia": "historia"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Conversión a la religión islámica.",
+    "solucion": "islamización",
+    "materia": "historia"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Figura religiosa pintada (arte bizantino).",
+    "solucion": "icono",
+    "materia": "historia"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Persona que practica la religión hebrea.",
+    "solucion": "judío",
+    "materia": "historia"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Composición poética hispano-árabe.",
+    "solucion": "jarcha",
+    "materia": "historia"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Rey conquistador de Valencia y Mallorca.",
+    "solucion": "jaume i",
+    "materia": "historia"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Organización por rangos o niveles.",
+    "solucion": "jerarquía",
+    "materia": "historia"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Orden religiosa fundada por San Ignacio (Compañía de Jesús).",
+    "solucion": "jesuitas",
+    "materia": "historia"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Trabajador del campo por un sueldo diario.",
+    "solucion": "jornalero",
+    "materia": "historia"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Barrio donde vivían los judíos.",
+    "solucion": "judería",
+    "materia": "historia"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Día de la Semana Santa (Santo).",
+    "solucion": "jueves",
+    "materia": "historia"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Promesa solemne.",
+    "solucion": "juramento",
+    "materia": "historia"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Ciudad sagrada para judíos, cristianos y musulmanes.",
+    "solucion": "jerusalén",
+    "materia": "historia"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Pueblo escandinavo que atacaba las costas (contiene K).",
+    "solucion": "vikingo",
+    "materia": "historia"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Título de emperador alemán (Káiser).",
+    "solucion": "kaiser",
+    "materia": "historia"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Científico de la Revolución Científica (Johannes...).",
+    "solucion": "kepler",
+    "materia": "historia"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "País de África (geografía).",
+    "solucion": "kenia",
+    "materia": "historia"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Civilización de Guatemala y México (Maya, ciudad Ti..., contiene K).",
+    "solucion": "tikal",
+    "materia": "historia"
+  },
+  {
+    "id": "k5_fix",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Mercado (en inglés, contiene K).",
+    "solucion": "market",
+    "materia": "historia"
+  },
+  {
+    "id": "k5_final",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Medida de distancia.",
+    "solucion": "kilómetro",
+    "materia": "historia"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Lengua vasca (contiene K).",
+    "solucion": "euskera",
+    "materia": "historia"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Pueblo bárbaro (Fran...os, contiene K).",
+    "solucion": "frankos",
+    "materia": "historia"
+  },
+  {
+    "id": "k7_fix",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Imperio de los Andes (Inca o In...a, contiene K).",
+    "solucion": "inka",
+    "materia": "historia"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Nombre de Rusia (Moscú, contiene K?? No).",
+    "solucion": "kremlin",
+    "materia": "historia"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "País de Asia (Pa...istán, contiene K).",
+    "solucion": "pakistán",
+    "materia": "historia"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Capital de Japón (To...io, contiene K).",
+    "solucion": "tokio",
+    "materia": "historia"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Gran propiedad agrícola.",
+    "solucion": "latifundio",
+    "materia": "historia"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Edificio comercial de la Corona de Aragón.",
+    "solucion": "lonja",
+    "materia": "historia"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Religión cristiana reformada por Lutero.",
+    "solucion": "luteranismo",
+    "materia": "historia"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Batalla naval ganada a los turcos.",
+    "solucion": "lepanto",
+    "materia": "historia"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Norma jurídica.",
+    "solucion": "ley",
+    "materia": "historia"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Ascendencia o familia.",
+    "solucion": "linaje",
+    "materia": "historia"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Materia prima de la oveja, base de la economía castellana.",
+    "solucion": "lana",
+    "materia": "historia"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Nombre de muchos reyes de Francia (XIV, XVI...).",
+    "solucion": "luis",
+    "materia": "historia"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Protagonista de una novela picaresca (... de Tormes).",
+    "solucion": "lazarillo",
+    "materia": "historia"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Herencia cultural.",
+    "solucion": "legado",
+    "materia": "historia"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Templo musulmán.",
+    "solucion": "mezquita",
+    "materia": "historia"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Lugar donde viven monjes.",
+    "solucion": "monasterio",
+    "materia": "historia"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Asociación de ganaderos de Castilla.",
+    "solucion": "mesta",
+    "materia": "historia"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Forma de gobierno con rey.",
+    "solucion": "monarquía",
+    "materia": "historia"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Seguidor del Islam.",
+    "solucion": "musulmán",
+    "materia": "historia"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Musulmán que vivía en territorio cristiano.",
+    "solucion": "mudéjar",
+    "materia": "historia"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Civilización precolombina de Centroamérica.",
+    "solucion": "mayas",
+    "materia": "historia"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Ciudad sagrada del Islam donde está la tumba de Mahoma.",
+    "solucion": "medina",
+    "materia": "historia"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Tasa demográfica de fallecimientos.",
+    "solucion": "mortalidad",
+    "materia": "historia"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Movimiento de población.",
+    "solucion": "migración",
+    "materia": "historia"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Estamento privilegiado que luchaba.",
+    "solucion": "nobleza",
+    "materia": "historia"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Tasa de nacimientos.",
+    "solucion": "natalidad",
+    "materia": "historia"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Batalla de 1212 clave en la Reconquista.",
+    "solucion": "navas de tolosa",
+    "materia": "historia"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Tipo de barco usado por Colón.",
+    "solucion": "nao",
+    "materia": "historia"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Nombre que se dio a América.",
+    "solucion": "nuevo mundo",
+    "materia": "historia"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Que se desplaza, sin residencia fija.",
+    "solucion": "nómada",
+    "materia": "historia"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Pasillo central de una iglesia.",
+    "solucion": "nave",
+    "materia": "historia"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Pueblo vikingo que se asentó en Francia.",
+    "solucion": "normando",
+    "materia": "historia"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Pertenencia a una nación.",
+    "solucion": "nacionalidad",
+    "materia": "historia"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Comunidad política.",
+    "solucion": "nación",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Territorio de un señor feudal (contiene Ñ).",
+    "solucion": "señorío",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Campo de cultivo (contiene Ñ).",
+    "solucion": "campiña",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Fecha histórica (contiene Ñ).",
+    "solucion": "año",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Recurso energético vegetal (contiene Ñ).",
+    "solucion": "leña",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Camino para el ganado (contiene Ñ).",
+    "solucion": "cañada",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Cultivo de la uva (contiene Ñ).",
+    "solucion": "viña",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Familiar político (hermano del cónyuge, contiene Ñ).",
+    "solucion": "cuñado",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Campanario de pared (contiene Ñ).",
+    "solucion": "espadaña",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Propietario (contiene Ñ).",
+    "solucion": "dueño",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "De tamaño reducido (contiene Ñ).",
+    "solucion": "pequeño",
+    "materia": "historia"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Grupo religioso o militar (del Temple, de Santiago...).",
+    "solucion": "orden",
+    "materia": "historia"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Rezo.",
+    "solucion": "oración",
+    "materia": "historia"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Jefe religioso de una diócesis.",
+    "solucion": "obispo",
+    "materia": "historia"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Imperio turco que conquistó Constantinopla.",
+    "solucion": "otomano",
+    "materia": "historia"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Punto cardinal del oeste.",
+    "solucion": "occidente",
+    "materia": "historia"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Metal precioso buscado en América.",
+    "solucion": "oro",
+    "materia": "historia"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Trabajo manual.",
+    "solucion": "oficio",
+    "materia": "historia"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Animal que produce lana (raza merina).",
+    "solucion": "oveja",
+    "materia": "historia"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gran masa de agua (Atlántico...).",
+    "solucion": "océano",
+    "materia": "historia"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Cultivo mediterráneo de aceite.",
+    "solucion": "olivo",
+    "materia": "historia"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Epidemia mortal del siglo XIV (... Negra).",
+    "solucion": "peste",
+    "materia": "historia"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Gráfico de población por edad y sexo.",
+    "solucion": "pirámide",
+    "materia": "historia"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Jefe de la Iglesia Católica.",
+    "solucion": "papa",
+    "materia": "historia"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Cristiano que sigue la Reforma de Lutero.",
+    "solucion": "protestante",
+    "materia": "historia"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Estamento con derechos especiales (nobleza y clero).",
+    "solucion": "privilegiado",
+    "materia": "historia"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Entrada decorada de una iglesia.",
+    "solucion": "portada",
+    "materia": "historia"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Conquistador del Imperio Inca.",
+    "solucion": "pizarro",
+    "materia": "historia"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Viaje a un lugar sagrado (Santiago, La Meca).",
+    "solucion": "peregrinación",
+    "materia": "historia"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Lugar de enterramiento real.",
+    "solucion": "panteón",
+    "materia": "historia"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Residencia real.",
+    "solucion": "palacio",
+    "materia": "historia"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Toma de Granada (contiene Q).",
+    "solucion": "conquista",
+    "materia": "historia"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Templo musulmán (contiene Q).",
+    "solucion": "mezquita",
+    "materia": "historia"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Arte de construir (contiene Q).",
+    "solucion": "arquitectura",
+    "materia": "historia"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Forma de gobierno real (contiene Q).",
+    "solucion": "monarquía",
+    "materia": "historia"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Tribunal del Santo Oficio (contiene Q).",
+    "solucion": "inquisición",
+    "materia": "historia"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Recuperación de territorio cristiano (contiene Q).",
+    "solucion": "reconquista",
+    "materia": "historia"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Casa de campo árabe (contiene Q).",
+    "solucion": "alquería",
+    "materia": "historia"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Piedra grande (contiene Q).",
+    "solucion": "bloque",
+    "materia": "historia"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Objeto sagrado (hueso de santo...) (contiene Q).",
+    "solucion": "reliquia",
+    "materia": "historia"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Lugar lleno de árboles (contiene Q).",
+    "solucion": "bosque",
+    "materia": "historia"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Proceso de recuperación de tierras a los musulmanes.",
+    "solucion": "reconquista",
+    "materia": "historia"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Movimiento cultural del siglo XV y XVI.",
+    "solucion": "renacimiento",
+    "materia": "historia"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Estilo artístico medieval de arcos de medio punto.",
+    "solucion": "románico",
+    "materia": "historia"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Cambio religioso iniciado por Lutero.",
+    "solucion": "reforma",
+    "materia": "historia"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Monarca.",
+    "solucion": "rey",
+    "materia": "historia"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Relativo al campo.",
+    "solucion": "rural",
+    "materia": "historia"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Ocupación de tierras vacías.",
+    "solucion": "repoblación",
+    "materia": "historia"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Ventana circular con vidrieras.",
+    "solucion": "rosetón",
+    "materia": "historia"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Camino comercial (... de la Seda).",
+    "solucion": "ruta",
+    "materia": "historia"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Obra de arte detrás del altar.",
+    "solucion": "retablo",
+    "materia": "historia"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de personas (Estamental en la E. Media).",
+    "solucion": "sociedad",
+    "materia": "historia"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Dueño del feudo.",
+    "solucion": "señor",
+    "materia": "historia"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Campesino no libre.",
+    "solucion": "siervo",
+    "materia": "historia"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Apóstol patrón de España (Camino de...).",
+    "solucion": "santiago",
+    "materia": "historia"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Tejido valioso traído de Oriente.",
+    "solucion": "seda",
+    "materia": "historia"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Templo judío.",
+    "solucion": "sinagoga",
+    "materia": "historia"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Periodo de esplendor cultural español (... de Oro).",
+    "solucion": "siglo",
+    "materia": "historia"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Terreno para edificar.",
+    "solucion": "solar",
+    "materia": "historia"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Carabela de Colón (La ... María).",
+    "solucion": "santa",
+    "materia": "historia"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Gobernante turco.",
+    "solucion": "sultán",
+    "materia": "historia"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Visión del mundo con Dios en el centro.",
+    "solucion": "teocentrismo",
+    "materia": "historia"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Combate deportivo medieval a caballo.",
+    "solucion": "torneo",
+    "materia": "historia"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Reino musulmán independiente.",
+    "solucion": "taifa",
+    "materia": "historia"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Juzgado (de la Inquisición).",
+    "solucion": "tribunal",
+    "materia": "historia"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Acuerdo entre países (de Tordesillas).",
+    "solucion": "tratado",
+    "materia": "historia"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Índice demográfico (de natalidad).",
+    "solucion": "tasa",
+    "materia": "historia"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Capital del imperio azteca.",
+    "solucion": "tenochtitlán",
+    "materia": "historia"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Ejército de infantería español de los Austrias.",
+    "solucion": "tercios",
+    "materia": "historia"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Nave transversal de una iglesia.",
+    "solucion": "transepto",
+    "materia": "historia"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Construcción alta defensiva.",
+    "solucion": "torre",
+    "materia": "historia"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Institución de enseñanza superior medieval.",
+    "solucion": "universidad",
+    "materia": "historia"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Relativo a la ciudad.",
+    "solucion": "urbano",
+    "materia": "historia"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Alianza de coronas (Isabel y Fernando).",
+    "solucion": "unión",
+    "materia": "historia"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Planificación de las ciudades.",
+    "solucion": "urbanismo",
+    "materia": "historia"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Dinastía islámica (Omeya en inglés).",
+    "solucion": "umayyad",
+    "materia": "historia"
+  },
+  {
+    "id": "u5_fix",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Sociedad ideal perfecta (Tomás Moro).",
+    "solucion": "utopía",
+    "materia": "historia"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Conjunto de estrellas y galaxias.",
+    "solucion": "universo",
+    "materia": "historia"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Singular, sin igual.",
+    "solucion": "único",
+    "materia": "historia"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Sinónimo de ciudad grande.",
+    "solucion": "urbe",
+    "materia": "historia"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Préstamo de dinero con interés abusivo.",
+    "solucion": "usura",
+    "materia": "historia"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Medida de cantidad.",
+    "solucion": "unidad",
+    "materia": "historia"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Persona que jura fidelidad a un señor.",
+    "solucion": "vasallo",
+    "materia": "historia"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Pueblo germánico que gobernó España.",
+    "solucion": "visigodo",
+    "materia": "historia"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Representante del rey en América.",
+    "solucion": "virrey",
+    "materia": "historia"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Ventana de colores de las catedrales.",
+    "solucion": "vidriera",
+    "materia": "historia"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Sede del Papa.",
+    "solucion": "vaticano",
+    "materia": "historia"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Tela para mover barcos.",
+    "solucion": "vela",
+    "materia": "historia"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Expedición de Colón.",
+    "solucion": "viaje",
+    "materia": "historia"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Población con privilegios.",
+    "solucion": "villa",
+    "materia": "historia"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Pintor de las Meninas.",
+    "solucion": "velázquez",
+    "materia": "historia"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Persona de confianza del rey que gobernaba.",
+    "solucion": "valido",
+    "materia": "historia"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Rey visigodo (W...).",
+    "solucion": "wamba",
+    "materia": "historia"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Ciudad donde Lutero publicó sus tesis.",
+    "solucion": "wittenberg",
+    "materia": "historia"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Paz que puso fin a la Guerra de los 30 años.",
+    "solucion": "westfalia",
+    "materia": "historia"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Rey visigodo (W...tiza).",
+    "solucion": "witiza",
+    "materia": "historia"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Científico inglés (Ne...ton, contiene W).",
+    "solucion": "newton",
+    "materia": "historia"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Naturalista (Dar...in, contiene W).",
+    "solucion": "darwin",
+    "materia": "historia"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Pintor flamenco (Van der ...eyden, contiene W).",
+    "solucion": "weyden",
+    "materia": "historia"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Batalla de Napoleón (Waterloo).",
+    "solucion": "waterloo",
+    "materia": "historia"
+  },
+  {
+    "id": "w8_fix",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Capital de EE.UU.",
+    "solucion": "washington",
+    "materia": "historia"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "País asiático (Ku...ait, contiene W).",
+    "solucion": "kuwait",
+    "materia": "historia"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Mineral duro (Wolframio).",
+    "solucion": "wolframio",
+    "materia": "historia"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Echar a alguien de su tierra (contiene X).",
+    "solucion": "expulsión",
+    "materia": "historia"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Desaparición de algo (contiene X).",
+    "solucion": "extinción",
+    "materia": "historia"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Viajes de descubrimiento (contiene X).",
+    "solucion": "exploración",
+    "materia": "historia"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Persona de otro país (contiene X).",
+    "solucion": "extranjero",
+    "materia": "historia"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Escrito histórico (contiene X).",
+    "solucion": "texto",
+    "materia": "historia"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Entorno de un suceso (contiene X).",
+    "solucion": "contexto",
+    "materia": "historia"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Lo más grande (contiene X).",
+    "solucion": "máximo",
+    "materia": "historia"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Triunfo (contiene X).",
+    "solucion": "éxito",
+    "materia": "historia"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Sacar recursos (contiene X).",
+    "solucion": "explotación",
+    "materia": "historia"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Pena de destierro (contiene X).",
+    "solucion": "exilio",
+    "materia": "historia"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Lugar arqueológico.",
+    "solucion": "yacimiento",
+    "materia": "historia"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Monasterio de San Millán de...",
+    "solucion": "yuso",
+    "materia": "historia"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Hembra del caballo.",
+    "solucion": "yegua",
+    "materia": "historia"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Reina Católica (escritura antigua).",
+    "solucion": "ysabel",
+    "materia": "historia"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Guerra santa islámica.",
+    "solucion": "yihad",
+    "materia": "historia"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Símbolo de los Reyes Católicos (... y flechas).",
+    "solucion": "yugo",
+    "materia": "historia"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Colaboración (contiene Y).",
+    "solucion": "ayuda",
+    "materia": "historia"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Hijo primogénito (contiene Y).",
+    "solucion": "mayor",
+    "materia": "historia"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Norma jurídica (contiene Y).",
+    "solucion": "ley",
+    "materia": "historia"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Día presente (contiene Y).",
+    "solucion": "hoy",
+    "materia": "historia"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Mercado árabe.",
+    "solucion": "zoco",
+    "materia": "historia"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Músico árabe que trajo modas a Córdoba.",
+    "solucion": "ziryab",
+    "materia": "historia"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Área o región.",
+    "solucion": "zona",
+    "materia": "historia"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Emperador de Rusia.",
+    "solucion": "zar",
+    "materia": "historia"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Minas de plata en México.",
+    "solucion": "zacatecas",
+    "materia": "historia"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Excavación defensiva.",
+    "solucion": "zanja",
+    "materia": "historia"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Palacio árabe en Zaragoza (Al...).",
+    "solucion": "capa de ozono",
+    "materia": "historia"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por Z.",
+    "solucion": "zona",
+    "materia": "historia"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por Z.",
+    "solucion": "zona",
+    "materia": "historia"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Cereal americano (contiene Z).",
+    "solucion": "maíz",
+    "materia": "historia"
+  }
 ]

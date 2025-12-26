@@ -1,163 +1,947 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Capa de gases que envuelve la Tierra.", "solucion": "atmósfera" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Persona que preside el ayuntamiento.", "solucion": "alcalde" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Trabajo que consiste en cultivar la tierra.", "solucion": "agricultura" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Canal que construían los romanos para transportar agua.", "solucion": "acueducto" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Instrumento para medir la velocidad del viento.", "solucion": "anemómetro" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Instrumento con una aguja imantada para orientarse.", "solucion": "brújula" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Zona de una ciudad o pueblo.", "solucion": "barrio" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Capa de la Tierra donde habitan los seres vivos.", "solucion": "biosfera" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Instrumento para medir la presión atmosférica.", "solucion": "barómetro" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Símbolo de tela que representa a un país o comunidad.", "solucion": "bandera" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Lista de los habitantes de un país en un momento dado.", "solucion": "censo" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Ley más importante de España aprobada en 1978.", "solucion": "constitución" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Serie de montañas enlazadas entre sí.", "solucion": "cordillera" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Camino por donde discurre un río.", "solucion": "cauce" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Estado del tiempo frecuente en un lugar (temperatura, lluvias...).", "solucion": "clima" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Sistema de gobierno donde el pueblo elige a sus representantes.", "solucion": "democracia" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Número de habitantes que viven en un km cuadrado (Densidad de...).", "solucion": "densidad" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Terreno triangular formado en la desembocadura de algunos ríos.", "solucion": "delta" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Persona elegida para representar a los ciudadanos en el parlamento.", "solucion": "diputado" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Ciencia que estudia la población.", "solucion": "demografía" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Desgaste del suelo por el viento o el agua.", "solucion": "erosión" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Línea imaginaria que divide la Tierra en dos hemisferios.", "solucion": "ecuador" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Período de tiempo histórico (Antigua, Media...).", "solucion": "edad" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Relación entre el tamaño real y el del mapa.", "solucion": "escala" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Paso estrecho de mar que une dos mares u océanos.", "solucion": "estrecho" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Conjunto de animales de una zona.", "solucion": "fauna" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Conjunto de plantas de una zona.", "solucion": "flora" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Lugar donde se transforman materias primas en productos.", "solucion": "fábrica" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Línea que separa dos estados o países.", "solucion": "frontera" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Documento u objeto que nos da información del pasado (Fuente...).", "solucion": "fuente" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Modelo esférico que representa la Tierra (Globo...).", "solucion": "globo" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Ciencia que estudia la superficie de la Tierra.", "solucion": "geografía" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Cría de animales para obtener alimentos.", "solucion": "ganadería" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Grupo de personas que dirigen un país.", "solucion": "gobierno" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Entrada de mar en la tierra, más grande que una bahía.", "solucion": "golfo" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Capa de agua de la Tierra.", "solucion": "hidrosfera" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Ciencia que estudia el pasado.", "solucion": "historia" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Cada una de las mitades de la Tierra.", "solucion": "hemisferio" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Persona que vive en un lugar.", "solucion": "habitante" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Cantidad de vapor de agua en el aire.", "solucion": "humedad" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Actividad que transforma materias primas en productos.", "solucion": "industria" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Porción de tierra rodeada de agua.", "solucion": "isla" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Organización política de gran extensión (Ej: Romano).", "solucion": "imperio" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Península donde se encuentran España y Portugal.", "solucion": "ibérica" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Persona que llega a un país para vivir en él.", "solucion": "inmigrante" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Persona que aplica la justicia.", "solucion": "juez" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Poder del estado que juzga y hace cumplir las leyes.", "solucion": "judicial" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Planeta más grande del Sistema Solar.", "solucion": "júpiter" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Persona que manda en el Estado (Jefe de...).", "solucion": "jefe" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Tiempo que dura el trabajo en un día.", "solucion": "jornada" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Unidad para medir distancias en los mapas.", "solucion": "kilómetro" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Unidad de masa.", "solucion": "kilo" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Tienda pequeña en la calle (sector terciario).", "solucion": "kiosco" },
-  { "id": "k4", "letra": "K", "tipo": "contiene", "definicion": "Guerrero escandinavo de la Edad Media (contiene K).", "solucion": "vikingo" },
-  { "id": "k5", "letra": "K", "tipo": "contiene", "definicion": "Comercio de productos, cantidad almacenada (contiene K).", "solucion": "stock" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Terreno plano sin montañas.", "solucion": "llanura" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Capa sólida de la Tierra.", "solucion": "litosfera" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Masa de agua rodeada de tierra.", "solucion": "lago" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Satélite de la Tierra.", "solucion": "luna" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Pueblo o ciudad.", "solucion": "localidad" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Representación plana de la Tierra.", "solucion": "mapa" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Llanura elevada sobre el nivel del mar.", "solucion": "meseta" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "División administrativa menor que la provincia.", "solucion": "municipio" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Extracción de minerales de la tierra.", "solucion": "minería" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Elementos de la naturaleza que usamos (Materias...).", "solucion": "primas" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Punto cardinal opuesto al Sur.", "solucion": "norte" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Número de nacimientos en un lugar.", "solucion": "natalidad" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Persona que no vive en un sitio fijo.", "solucion": "nómada" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Masa de vapor de agua en la atmósfera.", "solucion": "nube" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Conjunto de todo lo que existe y no ha hecho el hombre.", "solucion": "naturaleza" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Nuestro país (contiene la Ñ).", "solucion": "españa" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Elevación natural del terreno (contiene la Ñ).", "solucion": "montaña" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Terreno llano dedicado al cultivo (contiene la Ñ).", "solucion": "campiña" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Estación del año (contiene la Ñ).", "solucion": "otoño" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Madera usada como recurso natural (contiene la Ñ).", "solucion": "leña" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Punto cardinal por donde se pone el sol.", "solucion": "oeste" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Gran masa de agua salada.", "solucion": "océano" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Saber dónde estamos y hacia dónde ir.", "solucion": "orientación" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Conjunto de montes de una región.", "solucion": "orografía" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Tiempo libre.", "solucion": "ocio" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Cuerpo celeste que gira alrededor de una estrella.", "solucion": "planeta" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Tierra rodeada de agua menos por una parte.", "solucion": "península" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Conjunto de habitantes de un lugar.", "solucion": "población" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Etapa de la historia antes de la escritura.", "solucion": "prehistoria" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Actividad de capturar peces.", "solucion": "pesca" },
-
-  { "id": "q1", "letra": "Q", "tipo": "contiene", "definicion": "Canal para llevar agua de riego (contiene la Q).", "solucion": "acequia" },
-  { "id": "q2", "letra": "Q", "tipo": "contiene", "definicion": "Largo periodo sin lluvia (contiene la Q).", "solucion": "sequía" },
-  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Persona que diseña edificios (contiene la Q).", "solucion": "arquitecto" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Espacio verde en la ciudad (contiene la Q).", "solucion": "parque" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Gran extensión de árboles (contiene la Q).", "solucion": "bosque" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Conjunto de formas que tiene la superficie terrestre.", "solucion": "relieve" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Corriente continua de agua.", "solucion": "río" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Capital del antiguo Imperio Romano.", "solucion": "roma" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Movimiento de la Tierra sobre sí misma.", "solucion": "rotación" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Relacionado con el campo.", "solucion": "rural" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "El Sol y los planetas forman el Sistema...", "solucion": "solar" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Parte de la actividad económica (Primario, Secundario...).", "solucion": "sector" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Punto cardinal opuesto al Norte.", "solucion": "sur" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Que vive en un lugar fijo, no es nómada.", "solucion": "sedentario" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Sector terciario, ofrece...", "solucion": "servicios" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Planeta donde vivimos.", "solucion": "tierra" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Grado de calor del aire.", "solucion": "temperatura" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Movimiento de la Tierra alrededor del Sol.", "solucion": "traslación" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Viajar por placer.", "solucion": "turismo" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Medios para llevar personas o mercancías.", "solucion": "transporte" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Conjunto de todo lo que existe.", "solucion": "universo" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Paisaje de ciudad.", "solucion": "urbano" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Grupo de países de Europa (La ... Europea).", "solucion": "unión" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Número de la escala del mapa.", "solucion": "uno" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Caja para depositar votos en elecciones.", "solucion": "urna" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Terreno llano entre montañas.", "solucion": "valle" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Montaña con una abertura por donde sale lava.", "solucion": "volcán" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Lado de una montaña por donde bajan las aguas.", "solucion": "vertiente" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Aire en movimiento.", "solucion": "viento" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Camino construido por los romanos.", "solucion": "vía" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Página de internet.", "solucion": "web" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Conexión inalámbrica a internet.", "solucion": "wifi" },
-  { "id": "w3", "letra": "W", "tipo": "empieza", "definicion": "Capital de Estados Unidos.", "solucion": "washington" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Científico que descubrió la gravedad (contiene W).", "solucion": "newton" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Cultura del cine americano (contiene W).", "solucion": "hollywood" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Persona de otro país (contiene X).", "solucion": "extranjero" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Terreno llano y despejado (contiene X).", "solucion": "explanada" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Fuente histórica escrita (contiene X).", "solucion": "texto" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Agrupación de estrellas, la Vía Láctea es una (contiene X).", "solucion": "galaxia" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Cultivo que combina varios tipos (contiene X).", "solucion": "mixto" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Lugar donde se encuentran restos arqueológicos.", "solucion": "yacimiento" },
-  { "id": "y2", "letra": "Y", "tipo": "contiene", "definicion": "Lugar de costa con arena (contiene Y).", "solucion": "playa" },
-  { "id": "y3", "letra": "Y", "tipo": "contiene", "definicion": "Río pequeño con poco caudal (contiene Y).", "solucion": "arroyo" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Edad para votar (contiene Y).", "solucion": "mayoría" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Monarca de un reino (contiene Y).", "solucion": "rey" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Área o región determinada.", "solucion": "zona" },
-  { "id": "z2", "letra": "Z", "tipo": "contiene", "definicion": "Herramienta para cavar la tierra (contiene Z).", "solucion": "azada" },
-  { "id": "z3", "letra": "Z", "tipo": "contiene", "definicion": "Espacio público abierto en una ciudad (contiene Z).", "solucion": "plaza" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Símbolo en los mapas para indicar una iglesia o cementerio (contiene Z).", "solucion": "cruz" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Cultivo de cereal amarillo (contiene Z).", "solucion": "maíz" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Capa de gases que rodea la Tierra.",
+    "solucion": "atmósfera"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Jefe de un ayuntamiento.",
+    "solucion": "alcalde"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Gran masa de agua salada.",
+    "solucion": "océano"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Sector que incluye la agricultura.",
+    "solucion": "primario"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Lugar por donde sale el sol.",
+    "solucion": "alba"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Entrada del mar en la costa, más pequeña que un golfo.",
+    "solucion": "bahía"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Instrumento para medir la presión atmosférica.",
+    "solucion": "barómetro"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Personas que apagan incendios.",
+    "solucion": "bomberos"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Lugar de libros públicos.",
+    "solucion": "biblioteca"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "contiene",
+    "definicion": "Pueblo mui pequeño (contiene la B).",
+    "solucion": "aldea"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Saliente de tierra que se mete en el mar.",
+    "solucion": "cabo"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Serie de montañas juntas.",
+    "solucion": "cordillera"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Tiempo que hace en un lugar durante muchos años.",
+    "solucion": "clima"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Persona que vive en una ciudad con derechos.",
+    "solucion": "ciudadano"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Estado del cielo con nubes.",
+    "solucion": "cubierto"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Lugar donde el río echa sus aguas al mar.",
+    "solucion": "desembocadura"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Puntos que indican el Norte, Sur, Este y Oeste.",
+    "solucion": "dirección"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Forma de gobierno donde el pueblo elige.",
+    "solucion": "democracia"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Lo que pagamos para servicios públicos.",
+    "solucion": "dinero"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Cosas que tenemos por ley.",
+    "solucion": "derechos"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Punto cardinal por donde sale el Sol.",
+    "solucion": "este"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Capa de la Tierra formada por agua.",
+    "solucion": "hidrosfera"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Periodo de la historia (como la Media o la Antigua).",
+    "solucion": "edad"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Aparato que consume electricidad.",
+    "solucion": "electrodoméstico"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Lugar donde viven seres vivos.",
+    "solucion": "ecosistema"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Lugar con grandes máquinas para fabricar.",
+    "solucion": "fábrica"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Luz que guía a los barcos.",
+    "solucion": "faro"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Línea que separa dos países o provincias.",
+    "solucion": "frontera"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Propiedad de un terreno.",
+    "solucion": "finca"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Agua de río que no tiene sal.",
+    "solucion": "fluvial"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Entrada de mar muy grande.",
+    "solucion": "golfo"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Capa sólida de la Tierra.",
+    "solucion": "geosfera"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Representación de la Tierra en una esfera.",
+    "solucion": "globo"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Persona que cría ganado.",
+    "solucion": "ganadero"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "contiene",
+    "definicion": "Lugar de granjas (contiene la G).",
+    "solucion": "pueblo"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Capa de agua de la Tierra.",
+    "solucion": "hidrosfera"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Relato de los hechos del pasado.",
+    "solucion": "historia"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Relativo al agua de los ríos.",
+    "solucion": "hídrico"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Persona que vive en un lugar.",
+    "solucion": "habitante"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Donde se paran los barcos.",
+    "solucion": "helipuerto"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Tierra rodeada de agua por todas partes.",
+    "solucion": "isla"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Conjunto de islas juntas.",
+    "solucion": "archipiélago"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Península donde está España.",
+    "solucion": "ibérica"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Trabajar en fábricas (sector secundario).",
+    "solucion": "industria"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Persona de otro país.",
+    "solucion": "inmigrante"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Persona que ordena en un ayuntamiento (incorrecto).",
+    "solucion": "jefe"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Tercera edad, personas que no trabajan.",
+    "solucion": "jubilados"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Lugar de justicia.",
+    "solucion": "juzgado"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Ocupación para ganar dinero (contiene la J).",
+    "solucion": "trabajo"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Persona que cuida el jardín (contiene la J).",
+    "solucion": "jardinero"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Mil metros.",
+    "solucion": "kilómetro"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Puesto de periódicos.",
+    "solucion": "kiosco"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Estado de mucha nieve (contiene la K).",
+    "solucion": "alaska"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Página social (contiene la K).",
+    "solucion": "facebook"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Sinónimo de pueblo (contiene la K).",
+    "solucion": "kermés"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Terreno plano y extenso.",
+    "solucion": "llanura"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Explicación de los símbolos de un mapa.",
+    "solucion": "leyenda"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Pueblo o ciudad.",
+    "solucion": "localidad"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Gran superficie de agua dulce.",
+    "solucion": "lago"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Donde se hace la ley local.",
+    "solucion": "lavadero"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Gran elevación de terreno.",
+    "solucion": "montaña"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Gran llanura elevada en el centro de España.",
+    "solucion": "meseta"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Cada pueblo con su ayuntamiento.",
+    "solucion": "municipio"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Pequeño pueblo de montaña.",
+    "solucion": "masía"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Dibujo de la Tierra o parte de ella.",
+    "solucion": "mapa"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Punto cardinal hacia arriba del mapa.",
+    "solucion": "norte"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Regla para convivir.",
+    "solucion": "norma"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Vapor de agua en el cielo.",
+    "solucion": "nube"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Relativo al lugar donde se nace.",
+    "solucion": "natal"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Barco grande para navegar.",
+    "solucion": "navío"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Relieve elevado (contiene la Ñ).",
+    "solucion": "montaña"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Nuestro país.",
+    "solucion": "españa"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "365 días.",
+    "solucion": "año"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Día de un año más (contiene la Ñ).",
+    "solucion": "cumpleaños"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Donde se cuelga la ropa (contiene la Ñ).",
+    "solucion": "bañador"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Punto cardinal por donde se pone el Sol.",
+    "solucion": "oeste"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gran masa de agua salada entre continentes.",
+    "solucion": "océano"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Relativo al campo.",
+    "solucion": "oleada"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Lugar de trabajo público.",
+    "solucion": "oficina"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Trabajar para otros.",
+    "solucion": "operario"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Tierra rodeada de agua salvo por una parte (el istmo).",
+    "solucion": "península"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Primer periodo de la historia de la humanidad.",
+    "solucion": "paleolítico"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Personas que viven en un lugar.",
+    "solucion": "población"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Ciudad principal de una comunidad.",
+    "solucion": "provincia"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Relativo al lugar de origen.",
+    "solucion": "patria"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Lugar para jugar (contiene la Q).",
+    "solucion": "parque"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Dicho de algo pequeño (contiene la Q).",
+    "solucion": "pequeño"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Lugar de arena (contiene la Q).",
+    "solucion": "playa"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Persona de la armada (contiene la Q).",
+    "solucion": "buque"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Lugar de la izquierda (contiene la Q).",
+    "solucion": "izquierdo"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Corriente de agua dulce continua.",
+    "solucion": "río"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Relativo al campo.",
+    "solucion": "rural"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Movimiento de la tierra que causa el día.",
+    "solucion": "rotación"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Persona que reina en España.",
+    "solucion": "rey"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Signo de tráfico circular.",
+    "solucion": "rotonda"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Punto cardinal opuesto al Norte.",
+    "solucion": "sur"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Sector terciario que incluye comercio y turismo.",
+    "solucion": "servicios"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de todos los planetas con estrellas.",
+    "solucion": "sistema"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Lugar donde se separa el agua del lodo.",
+    "solucion": "sedimento"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Persona que vive fuera de su país.",
+    "solucion": "sojuzgado"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Movimiento de la tierra que causa el año.",
+    "solucion": "traslación"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Conjunto de las tierras de un país.",
+    "solucion": "territorio"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Sector terciario de viajes.",
+    "solucion": "turismo"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Lugar de venta de productos.",
+    "solucion": "tienda"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Estado del cielo (incorrecto).",
+    "solucion": "tiempo"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Paisaje de la ciudad.",
+    "solucion": "urbano"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Caja electoral.",
+    "solucion": "urna"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Planeta con anillos.",
+    "solucion": "urano"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Entidad local pequeña.",
+    "solucion": "pueblo"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Lugar de mar (contiene la U).",
+    "solucion": "puerto"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Persona que vive en la misma localidad.",
+    "solucion": "vecino"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Abertura en la tierra por donde sale lava.",
+    "solucion": "volcán"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Lugar estrecho entre montañas.",
+    "solucion": "valle"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Aire que sopla.",
+    "solucion": "viento"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Camino para los coches.",
+    "solucion": "vía"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Conexión a internet.",
+    "solucion": "wifi"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Página social.",
+    "solucion": "web"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Deporte acuático.",
+    "solucion": "waterpolo"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Washington (capital).",
+    "solucion": "washington"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Nombre propio.",
+    "solucion": "walter"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Prueba del colegio.",
+    "solucion": "examen"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Coche público.",
+    "solucion": "taxi"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Irse del país por guerra.",
+    "solucion": "éxodo"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Lugar de fuera.",
+    "solucion": "exterior"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Mirar con detalle.",
+    "solucion": "examinar"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Amarillo del huevo.",
+    "solucion": "yema"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Día antes de hoy.",
+    "solucion": "ayer"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Gente de la familia.",
+    "solucion": "familia"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Arena de playa.",
+    "solucion": "playa"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Mes quinto.",
+    "solucion": "mayo"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Parte de un pueblo.",
+    "solucion": "zona"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Animal naranja.",
+    "solucion": "zorro"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Lado contrario a derecho.",
+    "solucion": "izquierda"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Lugar público abierto.",
+    "solucion": "plaza"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Luz de la sala.",
+    "solucion": "luz"
+  }
 ]

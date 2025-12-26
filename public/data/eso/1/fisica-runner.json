@@ -1,17 +1,122 @@
 {
-  "material_laboratorio": [
-    "probeta", "pipeta", "bisturí", "microscopio", "matraz", "vaso precipitado", "tubo ensayo", "embudo", "bureta", "termómetro"
-  ],
   "estados_materia": [
-    "sólido", "líquido", "gaseoso", "plasma", "condensación", "vaporización", "fusión", "solidificación", "sublimación", "ebullición"
+    "sólido",
+    "líquido",
+    "gaseoso",
+    "plasma",
+    "fusión",
+    "solidificación",
+    "vaporización",
+    "condensación",
+    "sublimación",
+    "ebullición"
   ],
-  "elementos_quimicos": [
-    "hidrógeno", "oxígeno", "carbono", "nitrógeno", "hierro", "oro", "plata", "cloro", "sodio", "calcio"
+  "propiedades_materia": [
+    "masa",
+    "volumen",
+    "densidad",
+    "temperatura",
+    "dureza",
+    "elasticidad",
+    "viscosidad",
+    "solubilidad",
+    "color",
+    "brillo"
   ],
-  "tipos_energia": [
-    "cinética", "potencial", "térmica", "química", "eléctrica", "nuclear", "lumínica", "sonora", "eólica", "solar"
+  "mezclas_disoluciones": [
+    "homogénea",
+    "heterogénea",
+    "soluto",
+    "disolvente",
+    "concentración",
+    "filtración",
+    "decantación",
+    "destilación",
+    "evaporación",
+    "tamizado"
   ],
-  "unidades_medida": [
-    "metro", "kilogramo", "segundo", "litro", "kelvin", "amperio", "julio", "metro cúbico", "gramo", "centímetro"
+  "materia_atomo": [
+    "átomo",
+    "molécula",
+    "protón",
+    "neutrón",
+    "electrón",
+    "núcleo",
+    "corteza",
+    "elemento",
+    "compuesto",
+    "símbolo"
+  ],
+  "energia": [
+    "cinética",
+    "potencial",
+    "térmica",
+    "eléctrica",
+    "lumínica",
+    "química",
+    "nuclear",
+    "renovable",
+    "no renovable",
+    "trabajo"
+  ],
+  "fuerzas_movimiento": [
+    "gravedad",
+    "fricción",
+    "magnética",
+    "eléctrica",
+    "velocidad",
+    "aceleración",
+    "trayectoria",
+    "reposo",
+    "impulso",
+    "masa"
+  ],
+  "luz_sonido": [
+    "reflexión",
+    "refracción",
+    "espectro",
+    "eco",
+    "vibración",
+    "frecuencia",
+    "intensidad",
+    "lente",
+    "espejo",
+    "onda"
+  ],
+  "laboratorio": [
+    "probeta",
+    "pipeta",
+    "vaso de precipitados",
+    "tubo de ensayo",
+    "matraz",
+    "embudo",
+    "balanza",
+    "termómetro",
+    "mechero",
+    "gradilla"
+  ],
+  "sustancias_puras": [
+    "oxígeno",
+    "hidrógeno",
+    "carbono",
+    "hierro",
+    "oro",
+    "plata",
+    "cloro",
+    "nitrógeno",
+    "helio",
+    "calcio"
+  ],
+  "fenomenos_fisicos": [
+    "disolución",
+    "cambio de estado",
+    "movimiento",
+    "deformación",
+    "mezcla",
+    "imanación",
+    "conducción",
+    "radiación",
+    "convección",
+    "flotación"
   ]
 }

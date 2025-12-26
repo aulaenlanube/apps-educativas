@@ -1,0 +1,562 @@
+[
+    {
+        "id": "1",
+        "titulo": "El Salto a la Secundaria: Un nuevo reto",
+        "texto": "Pasar de primaria a secundaria es uno de los cambios más importantes. Ahora eres más autónomo, tienes más profesores y las exigencias de estudio son mayores. Es normal sentir nervios o miedo al principio. Lo más importante es la ORGANIZACIÓN: usar una agenda, llevar el material al día y no dejar los deberes para el último momento. Recuerda que no estás solo; tus compañeros están en la misma situación y tus tutores están para ayudarte en esta transición. ¡Confía en ti mismo y verás cómo te adaptas pronto!",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la clave para afrontar las mayores exigencias de la ESO?",
+                "opciones": [
+                    "Dormir en clase",
+                    "La organización (usar agenda, planificación)",
+                    "Hacer trampas",
+                    "No estudiar nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo es normal sentirse al principio de esta etapa?",
+                "opciones": [
+                    "Aburrido",
+                    "Nervioso o con algo de miedo",
+                    "Como si supieras todo",
+                    "Enfadado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A quién puedes acudir si tienes problemas de adaptación?",
+                "opciones": [
+                    "A nadie",
+                    "Al tutor o equipo de orientación",
+                    "Solo a tus amigos",
+                    "Solo a internet"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué cambia respecto a los profesores en la ESO?",
+                "opciones": [
+                    "Hay menos",
+                    "Suele haber un profesor distinto por asignatura",
+                    "Son los mismos que en infantil",
+                    "No hay profesores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es positivo dejar los deberes para el último día?",
+                "opciones": [
+                    "Sí",
+                    "No"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "La Empatía: Ponerse en el lugar del otro",
+        "texto": "La empatía es la capacidad de comprender los sentimientos y las emociones de los demás, intentando experimentar de forma objetiva lo que siente otro individuo. No significa estar siempre de acuerdo, sino entender por qué alguien se siente triste, alegre o enfadado. Un grupo con empatía es un grupo unido donde el acoso escolar no tiene lugar. Cuando veas a alguien solo o triste, pregúntate: '¿Cómo me sentiría yo en su situación?'. Este simple gesto mejora enormemente la convivencia en el instituto.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la empatía?",
+                "opciones": [
+                    "Ser muy simpático",
+                    "Comprender los sentimientos de los demás poniéndose en su lugar",
+                    "Dar dinero a los pobres",
+                    "Cantar juntos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Significa la empatía estar siempre de acuerdo con todos?",
+                "opciones": [
+                    "Sí",
+                    "No, solo entender sus sentimientos",
+                    "A veces",
+                    "Solo con los amigos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué evita el desarrollo de la empatía en clase?",
+                "opciones": [
+                    "Los exámenes",
+                    "El acoso escolar (bullying)",
+                    "Sacar buenas notas",
+                    "El deporte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué pregunta nos ayuda a ser empáticos?",
+                "opciones": [
+                    "¿Qué hora es?",
+                    "¿Cómo me sentiría yo en su situación?",
+                    "¿Qué hay de comer?",
+                    "¿Por qué hace esto?"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Mejora la convivencia la empatía?",
+                "opciones": [
+                    "No importa",
+                    "Sí, enormemente"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "El uso crítico de las Redes Sociales",
+        "texto": "Muchos alumnos de 1º de ESO empiezan a tener su primer móvil y redes sociales. Las redes son geniales para estar conectados, pero tienen riesgos. Debemos ser críticos: no todo lo que vemos es real (filtros, vidas perfectas fingidas, noticias falsas). Además, debemos cuidar nuestra PRIVACIDAD y la de los demás: nunca pidas ni pases fotos que puedan comprometer a alguien. El tiempo de uso también importa; si el móvil te impide dormir o hablar con tu familia cara a cara, es que tienes un problema de dependencia.",
+        "preguntas": [
+            {
+                "pregunta": "¿Debemos creer todo lo que vemos en las redes sociales?",
+                "opciones": [
+                    "Sí, todo es verdad",
+                    "No, hay filtros, vidas fingidas y noticias falsas",
+                    "Solo si tiene muchos likes",
+                    "Solo lo que dicen los influencers"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa ser crítico con las redes?",
+                "opciones": [
+                    "Insultar a todos",
+                    "Analizar la información y no dejarse engañar",
+                    "No usarlas nunca",
+                    "Saber hackear"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debemos cuidar especialmente en internet?",
+                "opciones": [
+                    "El color del fondo",
+                    "Nuestra privacidad y la de los demás",
+                    "El número de fotos",
+                    "La marca del móvil"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo el uso del móvil se convierte en un problema?",
+                "opciones": [
+                    "Cuando te cansas",
+                    "Cuando te impide dormir o relacionarte cara a cara",
+                    "Cuando no tiene batería",
+                    "Nunca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es lo más peligroso de compartir según el texto?",
+                "opciones": [
+                    "Un dibujo",
+                    "Fotos que comprometan la intimidad",
+                    "Una canción",
+                    "Un chiste"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Asertividad: Saber decir NO",
+        "texto": "La asertividad es la habilidad de expresar nuestros deseos, opiniones y sentimientos de forma clara y respetuosa, sin agredir a los demás pero sin dejar que nos pisen. En secundaria, a veces el grupo te presiona para hacer algo que no quieres o no te gusta. Ser asertivo es ser capaz de decir 'No, no me apetece' o 'No estoy de acuerdo' sin sentirte culpable. Una persona asertiva tiene una buena autoestima y se gana el respeto de los demás porque sabe poner límites saludables.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la asertividad?",
+                "opciones": [
+                    "Gritar para que te hagan caso",
+                    "Expresar tus deseos y límites con respeto y claridad",
+                    "Callarse siempre para no molestar",
+                    "Estar de acuerdo con todo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se siente una persona asertiva al poner límites?",
+                "opciones": [
+                    "Muy culpable",
+                    "Respetuosa y segura consigo misma",
+                    "Mala persona",
+                    "Asustada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es importante en la ESO?",
+                "opciones": [
+                    "Para sacar mejores notas",
+                    "Para resistir la presión de grupo dañina",
+                    "Para ser el líder",
+                    "Para hablar más rápido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Decir 'No, no quiero hacer eso' de forma tranquila es un ejemplo de:",
+                "opciones": [
+                    "Maleducación",
+                    "Asertividad",
+                    "Timidez",
+                    "Agresividad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué relación tiene la asertividad con el respeto?",
+                "opciones": [
+                    "Ninguna",
+                    "Se basa en el respeto a uno mismo y a los demás"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Prevención del Acoso Escolar (Bullying)",
+        "texto": "El acoso escolar es cualquier forma de maltrato físico, verbal o psicológico producido entre estudiantes de forma reiterada a lo largo del tiempo. No es una broma, sino una situación injusta que causa mucho sufrimiento. El papel más importante no es solo el de la víctima o el agresor, sino el de los TESTIGOS. Si ves una injusticia y te callas, el acosador se siente poderoso. Si el grupo apoya a la víctima y denuncia la situación al profesor, el acoso se detiene. ¡Tu silencio te hace cómplice, tu palabra te hace valiente!",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué define al acoso escolar?",
+                "opciones": [
+                    "Una pelea puntual un día",
+                    "Maltrato repetido y prolongado en el tiempo",
+                    "Intercambio de opiniones",
+                    "Hacer los deberes juntos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién tiene el poder de detener un acoso?",
+                "opciones": [
+                    "Solo el director",
+                    "Solo la policía",
+                    "Los testigos (el grupo) si dejan de reír y lo denuncian",
+                    "Nadie"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Es una broma el bullying?",
+                "opciones": [
+                    "Sí",
+                    "No, es una situación grave que causa sufrimiento"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debes hacer si ves a alguien sufriendo maltrato?",
+                "opciones": [
+                    "Mirar para otro lado",
+                    "Reírte con el agresor",
+                    "Informar a un profesor o adulto",
+                    "Grabarlo y subirlo"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué mensaje final da el texto sobre el silencio?",
+                "opciones": [
+                    "Que el silencio es oro",
+                    "Que el silencio te hace cómplice",
+                    "Que no importa",
+                    "Que es mejor estar callado"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Hábitos de Estudio y Concentración",
+        "texto": "Para que tu estudio sea eficaz, necesitas crear un entorno adecuado. Busca un lugar tranquilo, bien iluminado y sin distracciones (¡fuera el móvil!). Es mejor estudiar en periodos cortos de 45 minutos con descansos de 5 o 10 minutos (Técnica Pomodoro) que intentar estudiar tres horas seguidas sin parar. También es vital dormir al menos 8 o 9 horas, ya que el cerebro consolida lo aprendido durante el sueño. Si no duermes, por mucho que estudies, no recordarás nada el día del examen.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es fundamental para concentrarse?",
+                "opciones": [
+                    "Escuchar música a tope",
+                    "Eliminar distracciones como el móvil",
+                    "Tener hambre",
+                    "Estudiar en la cama"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo deben ser los periodos de estudio recomendados?",
+                "opciones": [
+                    "De 5 horas",
+                    "Cortos con pequeños descansos",
+                    "Toda la noche sin dormir",
+                    "10 minutos al día"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es tan importante el sueño para el estudio?",
+                "opciones": [
+                    "Para no tener ojeras",
+                    "Para que el cerebro consolide y guarde la información",
+                    "Para que el profesor no se enfade",
+                    "No es importante"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántas horas debe dormir un estudiante de ESO?",
+                "opciones": [
+                    "4 horas",
+                    "6 horas",
+                    "Al menos 8 o 9 horas",
+                    "12 horas"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué técnica de estudio menciona el texto?",
+                "opciones": [
+                    "Copiar",
+                    "Pomodoro",
+                    "Memorizar sin entender",
+                    "No estudiar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Gestión de las Emociones: El Semáforo",
+        "texto": "Todos sentimos rabia, tristeza o frustración a veces. Lo importante es saber gestionarlas para no hacernos daño ni herir a los demás. Una técnica útil es el SEMÁFORO: 1) ROJO: ¡Párate! Cuando sientes que vas a explotar, detente antes de actuar. 2) AMARILLO: ¡Piensa! Identifica qué sientes y busca soluciones o alternativas. 3) VERDE: ¡Actúa! Elige la mejor opción de forma calmada. Aprender a controlar nuestros impulsos nos ayuda a ser más dueños de nuestra vida y a tener mejores relaciones.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa el Rojo en la gestión emocional?",
+                "opciones": [
+                    "Correr mucho",
+                    "Pararse antes de actuar por impulso",
+                    "Gritar fuerte",
+                    "Cerrar los ojos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debemos hacer en la fase Amarilla?",
+                "opciones": [
+                    "Insultar",
+                    "Identificar lo que sentimos y pensar una solución",
+                    "Dormir",
+                    "Comprar algo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el objetivo de esta técnica?",
+                "opciones": [
+                    "Aprender los colores",
+                    "Gestionar las emociones para no herir a nadie",
+                    "Ser más rápido",
+                    "Ganar una carrera"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es malo sentir rabia o tristeza?",
+                "opciones": [
+                    "Sí, nunca hay que sentirlas",
+                    "No, son emociones normales, lo importante es cómo las gestionamos",
+                    "Solo si eres pequeño",
+                    "Solo en el instituto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Actuar de forma calmada tras reflexionar corresponde al color:",
+                "opciones": [
+                    "Rojo",
+                    "Amarillo",
+                    "Verde",
+                    "Azul"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "La Diversidad: Todos distintos, todos iguales",
+        "texto": "En un aula hay personas de diferentes culturas, capacidades, gustos y formas de ser. Esta diversidad no es un problema, es una RIQUEZA. Aprender de alguien que piensa distinto o que viene de otro país nos abre la mente y nos hace más inteligentes. El respeto a la diversidad implica no juzgar por las apariencias y valorar a cada persona por su interior. Un mundo donde todos fueran iguales sería muy aburrido. La diferencia nos permite colaborar y complementarnos unos a otros.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la diversidad en el aula?",
+                "opciones": [
+                    "Un problema para el profe",
+                    "Una riqueza (diferentes culturas, capacidades y gustos)",
+                    "Que todos llevan el mismo uniforme",
+                    "Que no hay materiales"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo nos ayuda conocer a gente diferente?",
+                "opciones": [
+                    "Nos confunde",
+                    "Nos abre la mente y nos enriquece",
+                    "Nos hace peores",
+                    "No nos ayuda"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué actitud debemos tener ante la diversidad?",
+                "opciones": [
+                    "Burla",
+                    "Miedo",
+                    "Respeto y valoración",
+                    "Indiferencia"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Si todos fuéramos iguales, el mundo sería:",
+                "opciones": [
+                    "Mejor",
+                    "Muy aburrido",
+                    "Imposible",
+                    "Perfecto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué nos ayuda la diferencia según el texto?",
+                "opciones": [
+                    "A pelearnos",
+                    "A colaborar y complementarnos",
+                    "A estar solos",
+                    "A nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Consumo Responsable y Medio Ambiente",
+        "texto": "Nuestras decisiones de compra y hábitos diarios afectan al planeta. El consumo responsable consiste en preguntarse antes de comprar: '¿Realmente necesito esto?'. Debemos evitar el 'usar y tirar' y apostar por las 3 R: Reducir, Reutilizar y Reciclar. En el instituto, podemos ser responsables cuidando el material, no malgastando papel y usando las papeleras de reciclaje. Cuidar el medio ambiente no es una moda, es una necesidad para asegurar que tengamos un futuro saludable.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué consiste el consumo responsable?",
+                "opciones": [
+                    "Comprar mucho",
+                    "Preguntarse si realmente necesitamos algo antes de comprarlo",
+                    "Comprar lo más caro",
+                    "Comprar solo comida"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuáles son las 3 R?",
+                "opciones": [
+                    "Reír, Rezar, Romper",
+                    "Reducir, Reutilizar y Reciclar",
+                    "Rápido, Recto, Rojo",
+                    "Roma, Rusia, Reino"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo podemos ayudar en el instituto?",
+                "opciones": [
+                    "Escribiendo en las mesas",
+                    "Cuidando el material y reciclando",
+                    "Gritando en el patio",
+                    "Trayendo muchos juguetes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es importante cuidar el planeta?",
+                "opciones": [
+                    "Porque sale en la tele",
+                    "Para asegurar un futuro saludable",
+                    "Para gastar menos dinero",
+                    "No es importante"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hábito debemos evitar?",
+                "opciones": [
+                    "Reciclar",
+                    "El consumo de 'usar y tirar'",
+                    "Reutilizar ropa",
+                    "Beber agua de grifo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "La importancia de la Autoestima",
+        "texto": "La autoestima es la valoración que tenemos de nosotros mismos. Tener una BUENA AUTOESTIMA significa aceptarse tal como uno es, reconociendo nuestras virtudes y también nuestros defectos sin castigarnos por ello. No depende de cuántos seguidores tengas o de tus notas, sino de tu propio respeto. Alguien con buena autoestima se atreve a intentar cosas nuevas, no se rinde ante el primer fallo y sabe que su valor no cambia por lo que digan los demás. ¡Quiérete y valórate, eres una persona única!",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la autoestima?",
+                "opciones": [
+                    "Ser un presumido",
+                    "La valoración y respeto que tenemos hacia nosotros mismos",
+                    "Saber mucho de matemáticas",
+                    "Tener muchos amigos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Depende la autoestima del número de seguidores?",
+                "opciones": [
+                    "Sí",
+                    "No"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace una persona con buena autoestima tras un fallo?",
+                "opciones": [
+                    "Se rinde",
+                    "Se castiga",
+                    "Identifica el error y lo sigue intentando",
+                    "Llora siempre"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué significa aceptarse a uno mismo?",
+                "opciones": [
+                    "Creerse perfecto",
+                    "Conocer virtudes y defectos con respeto",
+                    "Hacer lo que digan los otros",
+                    "No cambiar nunca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la frase final de ánimo?",
+                "opciones": [
+                    "Estudia mucho",
+                    "Eres una persona única",
+                    "Sé el mejor",
+                    "Gana siempre"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

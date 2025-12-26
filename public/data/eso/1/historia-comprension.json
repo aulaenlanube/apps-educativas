@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "La Tierra en el Universo",
+        "texto": "La Tierra es el tercer planeta del Sistema Solar y el único donde, por ahora, conocemos la existencia de vida. Esta vida es posible gracias a la distancia adecuada al Sol, la presencia de una atmósfera protectora y la existencia de agua líquida. La Tierra realiza dos movimientos principales: la ROTACIÓN, girando sobre su propio eje cada 24 horas (generando el día y la noche), y la TRASLACIÓN, recorriendo una órbita alrededor del Sol durante 365 días y unas 6 horas (generando las estaciones del año debido a la inclinación del eje terrestre).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué movimiento terrestre genera el día y la noche?",
+                "opciones": [
+                    "Traslación",
+                    "Rotación",
+                    "Eclipses",
+                    "Gravedad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuánto dura aproximadamente el movimiento de traslación?",
+                "opciones": [
+                    "24 horas",
+                    "30 días",
+                    "365 días (un año)",
+                    "10 años"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué factor permite el agua líquida en la Tierra?",
+                "opciones": [
+                    "La falta de atmósfera",
+                    "La distancia adecuada al Sol",
+                    "La luz de la Luna",
+                    "Los volcanes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué se producen las estaciones del año?",
+                "opciones": [
+                    "Por la rotación",
+                    "Por la traslación y la inclinación del eje",
+                    "Porque el Sol se apaga a veces",
+                    "Por la distancia a la Luna"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué posición ocupa la Tierra respecto al Sol?",
+                "opciones": [
+                    "Primero",
+                    "Segundo",
+                    "Tercero",
+                    "Quinto"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "El Relieve y la Tectónica de Placas",
+        "texto": "La corteza terrestre no es una pieza única, sino que está dividida en grandes fragmentos llamados PLACAS TECTÓNICAS. Estas placas flotan sobre el manto y se mueven lentamente. Cuando dos placas chocan, se forman grandes cordilleras (como el Himalaya) o se producen terremotos. Cuando se separan, surge magma del interior creando nueva corteza. Los agentes externos (agua, viento, hielo) también moldean el relieve mediante la erosión, el transporte y la sedimentación de materiales, desgastando las montañas y rellenando los valles durante millones de años.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llaman los fragmentos en los que se divide la corteza?",
+                "opciones": [
+                    "Continentes",
+                    "Placas tectónicas",
+                    "Islas",
+                    "Rocas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre normalmente cuando dos placas chocan?",
+                "opciones": [
+                    "Se forma un desierto",
+                    "Se crean cordilleras o terremotos",
+                    "La Tierra se detiene",
+                    "Se crea agua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un agente externo que moldea el relieve?",
+                "opciones": [
+                    "El núcleo de la Tierra",
+                    "El viento y el agua",
+                    "Las estrellas",
+                    "La luna"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el proceso de desgaste de las rocas?",
+                "opciones": [
+                    "Erosión",
+                    "Sedimentación",
+                    "Erupción",
+                    "Transporte"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué aparece del interior cuando las placas se separan?",
+                "opciones": [
+                    "Agua de mar",
+                    "Magma",
+                    "Aire frío",
+                    "Vegetación"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Climas y Paisajes de la Tierra",
+        "texto": "El clima es el estado medio de la atmósfera en un lugar durante mucho tiempo. Depende de la temperatura y las precipitaciones. En la Tierra hay tres grandes zonas climáticas: zonas CÁLIDAS (cerca del ecuador, como la selva o el desierto), zonas TEMPLADAS (entre los trópicos y los círculos polares, como el clima mediterráneo u oceánico) y zonas FRÍAS (en los polos y alta montaña). Cada clima genera un PAISAJE natural distinto con vegetación y fauna adaptadas. El cambio climático actual está alterando estos paisajes de forma acelerada.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué zona climática se encuentra el clima mediterráneo?",
+                "opciones": [
+                    "Zona cálida",
+                    "Zona templada",
+                    "Zona fría",
+                    "Zona ecuatorial"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el factor principal para definir un clima?",
+                "opciones": [
+                    "La contaminación",
+                    "Temperatura y precipitaciones",
+                    "El número de personas",
+                    "La altura de los edificios"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se localizan las zonas cálidas?",
+                "opciones": [
+                    "En los polos",
+                    "Cerca del Ecuador",
+                    "En las montañas más altas",
+                    "Solo en España"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el paisaje natural?",
+                "opciones": [
+                    "Una foto",
+                    "El resultado del clima, relieve y seres vivos",
+                    "Un jardín cuidado",
+                    "Un desierto artificial"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué fenómeno está alterando hoy los climas de la Tierra?",
+                "opciones": [
+                    "La rotación",
+                    "El cambio climático",
+                    "Las mareas",
+                    "El magnetismo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La Prehistoria: El Paleolítico",
+        "texto": "El Paleolítico es la etapa más larga de la humanidad. Durante este periodo, los seres humanos eran NÓMADAS (se desplazaban buscando comida) y vivían de la caza, la pesca y la recolección. Fabricaban herramientas golpeando piedras (de ahí su nombre: 'piedra antigua') y otros materiales como hueso o madera. Un hito fundamental fue el dominio del FUEGO, que cambió su dieta y les protegió del frío. Al final de esta etapa, empezaron a realizar pinturas rupestres en las paredes de las cuevas, posiblemente con un sentido ritual o mágico.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa que los humanos eran nómadas?",
+                "opciones": [
+                    "Que vivían en ciudades",
+                    "Que no tenían un lugar fijo de residencia",
+                    "Que plantaban su comida",
+                    "Que no hablaban"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De qué vivían principalmente en el Paleolítico?",
+                "opciones": [
+                    "Agricultura",
+                    "Comercio",
+                    "Caza, pesca y recolección",
+                    "Industria"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué gran descubrimiento cambió su forma de vivir?",
+                "opciones": [
+                    "La rueda",
+                    "La escritura",
+                    "El fuego",
+                    "La televisión"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Dónde realizaban las pinturas rupestres?",
+                "opciones": [
+                    "En lienzos",
+                    "En las paredes de las cuevas",
+                    "En el suelo del bosque",
+                    "En templos de piedra"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Con qué material hacían sus primeras herramientas?",
+                "opciones": [
+                    "Hierro",
+                    "Bronce",
+                    "Piedra tallada",
+                    "Plástico"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "La Revolución Neolítica",
+        "texto": "Hace unos 10.000 años, la vida humana cambió radicalmente con la aparición de la AGRICULTURA y la GANADERÍA. Los humanos aprendieron a cultivar plantas y domesticar animales. Al poder producir su alimento, se volvieron SEDENTARIOS y formaron los primeros poblados permanentes cerca de ríos. También inventaron la cerámica para almacenar grano y tejieron telas. Este cambio se llama 'Revolución' porque permitió un aumento de la población y el inicio de la especialización del trabajo (unos eran campesinos, otros artesanos...).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué actividad permitió a los humanos volverse sedentarios?",
+                "opciones": [
+                    "La caza mayor",
+                    "La agricultura y la ganadería",
+                    "La pesca en el mar",
+                    "La pintura"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde solían situarse los primeros poblados neolíticos?",
+                "opciones": [
+                    "En la cima de montañas",
+                    "Cerca de los ríos",
+                    "En el desierto",
+                    "Lejos de la costa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué invento sirvió para guardar y transportar alimentos?",
+                "opciones": [
+                    "La cerámica",
+                    "El fuego",
+                    "La lanza",
+                    "La piedra tallada"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué significa ser sedentario?",
+                "opciones": [
+                    "Viajar mucho",
+                    "Vivir en un lugar fijo",
+                    "Hacer mucho ejercicio",
+                    "No comer carne"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué se llama 'Revolución' Neolítica?",
+                "opciones": [
+                    "Hubo una gran guerra",
+                    "Supuso un cambio total en la forma de vida",
+                    "Por la invención de la rueda",
+                    "Porque duró poco tiempo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Mesopotamia: La cuna de la civilización",
+        "texto": "Mesopotamia significa 'tierra entre ríos' (el Tigris y el Éufrates). Allí surgieron las primeras ciudades-estado hace unos 5.000 años. Los mesopotámicos inventaron la ESCRITURA (cuneiforme) para llevar la contabilidad de los templos y el comercio. También construyeron grandes templos en forma de pirámide escalonada llamados ZIGURATS. Fue una sociedad jerarquizada con reyes poderosos. Su agricultura era muy productiva gracias a complejos sistemas de riego que aprovechaban las crecidas de los ríos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Entre qué ríos se situaba Mesopotamia?",
+                "opciones": [
+                    "Nilo y Jordán",
+                    "Tigris y Éufrates",
+                    "Tíber y Po",
+                    "Indo y Ganges"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llamaba la escritura inventada allí?",
+                "opciones": [
+                    "Jeroglífica",
+                    "Cuneiforme",
+                    "Alfabeto",
+                    "China"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué era un Zigurat?",
+                "opciones": [
+                    "Un palacio real",
+                    "Un templo escalonado",
+                    "Un tipo de barco",
+                    "Una muralla defensiva"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué era tan productiva su agricultura?",
+                "opciones": [
+                    "Por la lluvia constante",
+                    "Por los sistemas de riego y la fertilidad de los ríos",
+                    "Usaban máquinas modernas",
+                    "No hacían agricultura"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué servía inicialmente la escritura en Mesopotamia?",
+                "opciones": [
+                    "Para escribir poemas de amor",
+                    "Para la contabilidad y gestión de recursos",
+                    "Para decorar las casas",
+                    "Para hablar con otros países"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Egipto y el don del Nilo",
+        "texto": "La civilización egipcia se desarrolló a lo largo del valle del río Nilo, al que consideraban un dios porque sus crecidas fertilizaban las tierras del desierto. Los egipcios estaban gobernados por el FARAÓN, que tenía poder absoluto y era considerado un dios en la Tierra. Construyeron enormes pirámides como tumbas para sus faraones e inventaron la escritura jeroglífica. Su religión era POLITEÍSTA (creían en muchos dioses como Ra, Isis o Anubis) y daban mucha importancia a la vida después de la muerte, por lo que momificaban los cuerpos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué río era fundamental para la vida en Egipto?",
+                "opciones": [
+                    "Tíber",
+                    "Nilo",
+                    "Éufrates",
+                    "Amazonas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llamaba el máximo gobernante egipcio?",
+                "opciones": [
+                    "Rey",
+                    "César",
+                    "Faraón",
+                    "Emperador"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál era la función de las pirámides?",
+                "opciones": [
+                    "Templos religiosos",
+                    "Tumbas para los faraones",
+                    "Graneros para el trigo",
+                    "Casas para el pueblo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa que fueran politeístas?",
+                "opciones": [
+                    "Que no creían en nada",
+                    "Que creían en un solo dios",
+                    "Que creían en muchos dioses",
+                    "Que adoraban a los animales"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Por qué momificaban a los difuntos?",
+                "opciones": [
+                    "Para asustar",
+                    "Por higiene",
+                    "Para preservar el cuerpo para la vida después de la muerte",
+                    "Por falta de espacio"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "La Antigua Grecia: La Democracia",
+        "texto": "Grecia no era un país unido, sino un conjunto de POLIS o ciudades-estado independientes (como Atenas o Esparta). A pesar de sus guerras, compartían la misma lengua, religión y cultura. En Atenas nació la DEMOCRACIA, un sistema donde los ciudadanos varones libres participaban en las decisiones de la ciudad. Los griegos destacaron por buscar la belleza y la armonía en el arte (templos como el Partenón) y por el nacimiento de la FILOSOFÍA, intentando explicar el mundo a través de la razón.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué eran las Polis?",
+                "opciones": [
+                    "Soldados griegos",
+                    "Ciudades-estado independientes",
+                    "Templos de mármol",
+                    "Libros de leyes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué ciudad nació la democracia?",
+                "opciones": [
+                    "Esparta",
+                    "Roma",
+                    "Atenas",
+                    "Alejandría"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué buscaban los griegos en su arte?",
+                "opciones": [
+                    "El miedo",
+                    "La belleza y la armonía",
+                    "La riqueza excesiva",
+                    "La oscuridad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué compartían todos los griegos aunque vivieran en Polis distintas?",
+                "opciones": [
+                    "El mismo gobierno",
+                    "Lengua, religión y cultura",
+                    "El mismo rey",
+                    "Todo era distinto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué disciplina nació en Grecia buscando explicar el mundo con la razón?",
+                "opciones": [
+                    "Alquimia",
+                    "Mitología",
+                    "Filosofía",
+                    "Informática"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Roma: De la República al Imperio",
+        "texto": "Roma comenzó como una pequeña ciudad que acabó dominando todo el Mediterráneo. Pasó por tres etapas: Monarquía, República e Imperio. Durante el IMPERIO, Roma gobernó un territorio inmenso unificado por el latín, el derecho romano y una red de calzadas (carreteras). Los romanos eran grandes ingenieros y construyeron acueductos, anfiteatros (como el Coliseo), termas y puentes. Hispania (la península Ibérica) fue una de las provincias más romanizadas, adoptando sus leyes, lengua y religión cristiana al final.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué mar dominó completamente el Imperio Romano?",
+                "opciones": [
+                    "Mar Rojo",
+                    "Mar Cantábrico",
+                    "Mar Mediterráneo",
+                    "Océano Atlántico"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cómo se llamaba la lengua de los romanos?",
+                "opciones": [
+                    "Griego",
+                    "Latín",
+                    "Castellano",
+                    "Italiano"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál de estos es un ejemplo de ingeniería romana?",
+                "opciones": [
+                    "Pirámides",
+                    "Zigurats",
+                    "Acueductos",
+                    "Rascacielos"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cómo se llamaba la península Ibérica bajo el dominio romano?",
+                "opciones": [
+                    "Iberia",
+                    "España",
+                    "Hispania",
+                    "Lusitania"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál de estas fue una etapa política de Roma?",
+                "opciones": [
+                    "Dictadura moderna",
+                    "República",
+                    "Democracia directa ateniense",
+                    "Comunismo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "La Herencia de la Antigüedad",
+        "texto": "Nuestra cultura actual le debe mucho a las civilizaciones de la Antigüedad. De Mesopotamia heredamos la rueda y la escritura; de Egipto, avances médicos; de Grecia, la filosofía, las olimpiadas y la democracia; y de Roma, el derecho, el latín (del que derivan el español o el francés) y la organización de las ciudades. Entender nuestro pasado nos permite comprender por qué hablamos como hablamos y por qué nuestras leyes y gobiernos son como son. La historia es la memoria de la humanidad.",
+        "preguntas": [
+            {
+                "pregunta": "¿De qué lengua antigua deriva el español?",
+                "opciones": [
+                    "Griego",
+                    "Egipto",
+                    "Latín",
+                    "Árabe"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué herencia importante nos dejó Atenas?",
+                "opciones": [
+                    "Las pirámides",
+                    "La democracia",
+                    "El papel",
+                    "La pólvora"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quiénes inventaron la rueda según el texto?",
+                "opciones": [
+                    "Griegos",
+                    "Romanos",
+                    "Mesopotámicos",
+                    "Egipcios"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Por qué es importante estudiar la historia antigua?",
+                "opciones": [
+                    "Para viajar",
+                    "Para entender nuestra cultura y leyes actuales",
+                    "Para buscar tesoros",
+                    "No es importante"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué evento deportivo mundial tiene su origen en Grecia?",
+                "opciones": [
+                    "Mundial de Fútbol",
+                    "Las Olimpiadas",
+                    "Tour de Francia",
+                    "Super Bowl"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

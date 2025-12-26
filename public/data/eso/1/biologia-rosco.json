@@ -1,298 +1,2162 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Capa gaseosa que envuelve la Tierra.", "solucion": "atmósfera", "materia": "biologia" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Vertebrados que pueden vivir dentro y fuera del agua, como las ranas.", "solucion": "anfibios", "materia": "biologia" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Grupo de plantas con flores y frutos.", "solucion": "angiospermas", "materia": "biologia" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Filo de invertebrados con patas articuladas y exoesqueleto.", "solucion": "artrópodos", "materia": "biologia" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Organismos del reino Protoctistas, suelen ser acuáticos y hacen la fotosíntesis.", "solucion": "algas", "materia": "biologia" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Ser vivo que se alimenta de otros seres vivos.", "solucion": "animal", "materia": "biologia" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Nutrición de los seres que fabrican su propio alimento.", "solucion": "autótrofa", "materia": "biologia" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Ácido que contiene la información genética (siglas).", "solucion": "adn", "materia": "biologia" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Cuerpo rocoso pequeño que orbita alrededor del Sol, mayoritariamente entre Marte y Júpiter.", "solucion": "asteroide", "materia": "biologia" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Invertebrados de cuerpo blando y anillos, como la lombriz.", "solucion": "anélidos", "materia": "biologia" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Conjunto de todos los seres vivos que habitan la Tierra.", "solucion": "biosfera", "materia": "biologia" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Organismos unicelulares procariotas del reino Moneras.", "solucion": "bacterias", "materia": "biologia" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Grupo de plantas sencillas sin vasos conductores, como los musgos.", "solucion": "briofitas", "materia": "biologia" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Variedad de especies animales y vegetales en su medio ambiente.", "solucion": "biodiversidad", "materia": "biologia" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Abertura por donde ingieren alimentos la mayoría de animales.", "solucion": "boca", "materia": "biologia" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Ciencia que estudia los seres vivos.", "solucion": "biología", "materia": "biologia" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Órganos respiratorios de los peces.", "solucion": "branquias", "materia": "biologia" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Teoría sobre el origen del universo como una gran explosión.", "solucion": "big bang", "materia": "biologia" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Moluscos con dos conchas, como el mejillón.", "solucion": "bivalvos", "materia": "biologia" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Tallo subterráneo con hojas carnosas, como el de la cebolla.", "solucion": "bulbo", "materia": "biologia" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Unidad básica de estructura y función de los seres vivos.", "solucion": "célula", "materia": "biologia" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Líquido gelatinoso que llena el interior de la célula.", "solucion": "citoplasma", "materia": "biologia" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Orgánulo de la célula vegetal donde se realiza la fotosíntesis.", "solucion": "cloroplasto", "materia": "biologia" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Pigmento verde necesario para captar la luz solar.", "solucion": "clorofila", "materia": "biologia" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Filo de animales que incluye a los vertebrados.", "solucion": "cordados", "materia": "biologia" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Invertebrados acuáticos con tentáculos urticantes, como las medusas.", "solucion": "cnidarios", "materia": "biologia" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Artrópodos con dos pares de antenas, como el cangrejo.", "solucion": "crustáceos", "materia": "biologia" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Alteración nociva del medio ambiente.", "solucion": "contaminación", "materia": "biologia" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Parte de la estratosfera que nos protege de los rayos UV (Capa de...).", "solucion": "ozono", "materia": "biologia" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Cuerpo celeste de hielo y polvo con una cola brillante.", "solucion": "cometa", "materia": "biologia" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Gas que expulsan los seres vivos al respirar (Dióxido de...).", "solucion": "carbono", "materia": "biologia" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Bioma muy seco con escasas precipitaciones.", "solucion": "desierto", "materia": "biologia" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Mamífero marino muy inteligente.", "solucion": "delfín", "materia": "biologia" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Reptil extinto que dominó la Tierra en el Mesozoico.", "solucion": "dinosaurio", "materia": "biologia" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Cordillera submarina (Dorsal...).", "solucion": "oceánica", "materia": "biologia" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Proceso de transformación de alimentos en nutrientes.", "solucion": "digestión", "materia": "biologia" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Animal que caza a otros para alimentarse.", "solucion": "depredador", "materia": "biologia" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Organismo que se alimenta de materia orgánica muerta.", "solucion": "descomponedor", "materia": "biologia" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Capa profunda de la piel.", "solucion": "dermis", "materia": "biologia" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Relación entre la masa y el volumen.", "solucion": "densidad", "materia": "biologia" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Célula compleja con núcleo diferenciado.", "solucion": "eucariota", "materia": "biologia" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Conjunto formado por el biotopo y la biocenosis.", "solucion": "ecosistema", "materia": "biologia" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Invertebrado porífero con cuerpo lleno de poros.", "solucion": "esponja", "materia": "biologia" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Invertebrado marino con esqueleto de placas, como la estrella de mar.", "solucion": "equinodermo", "materia": "biologia" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Parte masculina de la flor que produce polen.", "solucion": "estambre", "materia": "biologia" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Poros en las hojas para el intercambio de gases.", "solucion": "estomas", "materia": "biologia" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Capacidad para realizar un trabajo o cambios.", "solucion": "energía", "materia": "biologia" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Grupo de organismos que pueden reproducirse entre sí.", "solucion": "especie", "materia": "biologia" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Desgaste de las rocas y el suelo.", "solucion": "erosión", "materia": "biologia" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Estructura interna que sostiene el cuerpo de los vertebrados.", "solucion": "esqueleto", "materia": "biologia" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Proceso por el que las plantas fabrican su alimento.", "solucion": "fotosíntesis", "materia": "biologia" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Reino al que pertenecen los hongos.", "solucion": "fungi", "materia": "biologia" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Órgano reproductor de las angiospermas.", "solucion": "flor", "materia": "biologia" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Parte de la planta que contiene las semillas.", "solucion": "fruto", "materia": "biologia" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Resto de un ser vivo antiguo petrificado.", "solucion": "fósil", "materia": "biologia" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Unión del gameto masculino y el femenino.", "solucion": "fecundación", "materia": "biologia" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Proceso de obtención de energía sin oxígeno (levaduras).", "solucion": "fermentación", "materia": "biologia" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Filamento largo que permite moverse a algunas células.", "solucion": "flagelo", "materia": "biologia" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Conjunto de animales de un lugar.", "solucion": "fauna", "materia": "biologia" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Conjunto de plantas de un lugar.", "solucion": "flora", "materia": "biologia" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Parte sólida y rocosa de la Tierra.", "solucion": "geosfera", "materia": "biologia" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Plantas con semillas pero sin fruto (ej: pino).", "solucion": "gimnospermas", "materia": "biologia" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Molusco con un gran pie muscular, como el caracol.", "solucion": "gastrópodo", "materia": "biologia" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Célula sexual (óvulo o espermatozoide).", "solucion": "gameto", "materia": "biologia" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Fuerza que nos atrae hacia el centro de la Tierra.", "solucion": "gravedad", "materia": "biologia" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Roca ígnea muy común en la corteza continental.", "solucion": "granito", "materia": "biologia" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "Masa grande de hielo.", "solucion": "glaciar", "materia": "biologia" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Nombre común para animales alargados y blanecinos (anélidos, etc).", "solucion": "gusano", "materia": "biologia" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Inicio del desarrollo de la semilla.", "solucion": "germinación", "materia": "biologia" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Célula sanguínea (rojo o blanco).", "solucion": "glóbulo", "materia": "biologia" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Capa de agua de la Tierra.", "solucion": "hidrosfera", "materia": "biologia" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Ser vivo del reino Fungi.", "solucion": "hongo", "materia": "biologia" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Parte de la planta donde se realiza la fotosíntesis.", "solucion": "hoja", "materia": "biologia" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Animal que se alimenta de plantas.", "solucion": "herbívoro", "materia": "biologia" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Nutrición de los seres que se alimentan de otros.", "solucion": "heterótrofa", "materia": "biologia" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Lugar físico donde vive una especie.", "solucion": "hábitat", "materia": "biologia" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Glándula digestiva que produce la bilis.", "solucion": "hígado", "materia": "biologia" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Filamento microscópico de los hongos.", "solucion": "hifa", "materia": "biologia" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Célula que resulta de la fecundación.", "solucion": "huevo", "materia": "biologia" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Restos orgánicos en descomposición en el suelo.", "solucion": "humus", "materia": "biologia" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Animal que no tiene columna vertebral.", "solucion": "invertebrado", "materia": "biologia" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Artrópodo con tres pares de patas y antenas.", "solucion": "insecto", "materia": "biologia" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Parte del tubo digestivo donde se absorben nutrientes.", "solucion": "intestino", "materia": "biologia" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Efecto de calentamiento por gases en la atmósfera.", "solucion": "invernadero", "materia": "biologia" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Roca formada por el enfriamiento del magma.", "solucion": "ígnea", "materia": "biologia" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Acción de tragar el alimento.", "solucion": "ingestión", "materia": "biologia" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Propiedad del agua pura: sin color.", "solucion": "incolora", "materia": "biologia" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Propiedad del agua pura: sin olor.", "solucion": "inodora", "materia": "biologia" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Propiedad del agua pura: sin sabor.", "solucion": "insípida", "materia": "biologia" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Estación del año con menos luz solar.", "solucion": "invierno", "materia": "biologia" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "El planeta más grande del Sistema Solar.", "solucion": "júpiter", "materia": "biologia" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Lugar con diversidad de plantas (Botánico).", "solucion": "jardín", "materia": "biologia" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Sustancia producida por las abejas para la reina.", "solucion": "jalea", "materia": "biologia" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Animal mamífero de cuello muy largo.", "solucion": "jirafa", "materia": "biologia" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Mamífero salvaje parecido al cerdo.", "solucion": "jabalí", "materia": "biologia" },
-  { "id": "j6", "letra": "J", "tipo": "empieza", "definicion": "Planta herbácea de lugares húmedos.", "solucion": "juncia", "materia": "biologia" },
-  { "id": "j7", "letra": "J", "tipo": "empieza", "definicion": "Periodo geológico de los dinosaurios.", "solucion": "jurásico", "materia": "biologia" },
-  { "id": "j8", "letra": "J", "tipo": "empieza", "definicion": "Articulación entre huesos (sinónimo de juntura).", "solucion": "juntura", "materia": "biologia" },
-  { "id": "j9", "letra": "J", "tipo": "empieza", "definicion": "Líquidos del estómago que digieren comida.", "solucion": "jugos", "materia": "biologia" },
-  { "id": "j10", "letra": "J", "tipo": "empieza", "definicion": "Etapa inicial de un río.", "solucion": "joven", "materia": "biologia" },
-
-  { "id": "k1", "letra": "K", "tipo": "contiene", "definicion": "Dominio que incluye a animales, plantas, hongos y protoctistas.", "solucion": "eukarya", "materia": "biologia" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Unidad de masa del Sistema Internacional.", "solucion": "kilogramo", "materia": "biologia" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Distancia de mil metros.", "solucion": "kilómetro", "materia": "biologia" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Marsupial australiano.", "solucion": "koala", "materia": "biologia" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Pequeño crustáceo que come la ballena.", "solucion": "krill", "materia": "biologia" },
-  { "id": "k6", "letra": "K", "tipo": "empieza", "definicion": "Ave de Nueva Zelanda o fruta.", "solucion": "kiwi", "materia": "biologia" },
-  { "id": "k7", "letra": "K", "tipo": "contiene", "definicion": "Relieve formado por disolución de rocas calizas.", "solucion": "kárstico", "materia": "biologia" },
-  { "id": "k8", "letra": "K", "tipo": "contiene", "definicion": "Proteína que forma el pelo y las uñas.", "solucion": "keratina", "materia": "biologia" },
-  { "id": "k9", "letra": "K", "tipo": "contiene", "definicion": "Dominio de las bacterias (Pro...)", "solucion": "prokarya", "materia": "biologia" },
-  { "id": "k10", "letra": "K", "tipo": "empieza", "definicion": "Prefijo que significa mil.", "solucion": "kilo", "materia": "biologia" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Capa sólida externa de la Tierra.", "solucion": "litosfera", "materia": "biologia" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Estado de la materia que fluye.", "solucion": "líquido", "materia": "biologia" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Satélite natural de la Tierra.", "solucion": "luna", "materia": "biologia" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Planta vascular sin semilla.", "solucion": "licopodio", "materia": "biologia" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Legumbre rica en hierro.", "solucion": "lenteja", "materia": "biologia" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Hongo unicelular usado para hacer pan.", "solucion": "levadura", "materia": "biologia" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Etapa juvenil de los insectos.", "solucion": "larva", "materia": "biologia" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Felino ibérico en peligro.", "solucion": "lince", "materia": "biologia" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Cánido salvaje antepasado del perro.", "solucion": "lobo", "materia": "biologia" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Energía necesaria para la fotosíntesis.", "solucion": "luz", "materia": "biologia" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Capa que rodea la célula.", "solucion": "membrana", "materia": "biologia" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Orgánulo celular que produce energía.", "solucion": "mitocondria", "materia": "biologia" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Reino de las bacterias.", "solucion": "moneras", "materia": "biologia" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Planta briofita que crece en humedad.", "solucion": "musgo", "materia": "biologia" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Invertebrado de cuerpo blando (caracol, pulpo).", "solucion": "molusco", "materia": "biologia" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Vertebrado con pelo y glándulas mamarias.", "solucion": "mamífero", "materia": "biologia" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Transformación que sufren los anfibios.", "solucion": "metamorfosis", "materia": "biologia" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Sustancia sólida, inorgánica y natural.", "solucion": "mineral", "materia": "biologia" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Roca fundida en el interior de la Tierra.", "solucion": "magma", "materia": "biologia" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Capa de la Tierra entre la corteza y el núcleo.", "solucion": "manto", "materia": "biologia" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Parte central de la célula con el ADN.", "solucion": "núcleo", "materia": "biologia" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Función vital de obtener energía.", "solucion": "nutrición", "materia": "biologia" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Gusano cilíndrico no segmentado.", "solucion": "nematodo", "materia": "biologia" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Líquido dulce de las flores.", "solucion": "néctar", "materia": "biologia" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Masa de gotas de agua en la atmósfera.", "solucion": "nube", "materia": "biologia" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Nube de gas y polvo en el espacio.", "solucion": "nebulosa", "materia": "biologia" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Precipitación sólida en copos.", "solucion": "nieve", "materia": "biologia" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Sustancia que nutre.", "solucion": "nutriente", "materia": "biologia" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Fibra que transmite impulsos.", "solucion": "nervio", "materia": "biologia" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Octavo planeta del sistema solar.", "solucion": "neptuno", "materia": "biologia" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Artrópodo de 8 patas (contiene Ñ).", "solucion": "araña", "materia": "biologia" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Hongo comestible (contiene Ñ).", "solucion": "champiñón", "materia": "biologia" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Órgano excretor (contiene Ñ).", "solucion": "riñón", "materia": "biologia" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Elevación del terreno (contiene Ñ).", "solucion": "montaña", "materia": "biologia" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Estación del año (contiene Ñ).", "solucion": "otoño", "materia": "biologia" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "empieza", "definicion": "Mamífero africano de la familia de los antílopes.", "solucion": "ñu", "materia": "biologia" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Animal que come cadáveres (contiene Ñ).", "solucion": "carroñero", "materia": "biologia" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Pez carnívoro de río (contiene Ñ).", "solucion": "piraña", "materia": "biologia" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "Madera para el fuego (contiene Ñ).", "solucion": "leña", "materia": "biologia" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "Fruto seco (contiene Ñ).", "solucion": "castaña", "materia": "biologia" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Parte del cuerpo con una función.", "solucion": "órgano", "materia": "biologia" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Ser vivo individual.", "solucion": "organismo", "materia": "biologia" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Gas vital para la respiración.", "solucion": "oxígeno", "materia": "biologia" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Animal que nace de un huevo.", "solucion": "ovíparo", "materia": "biologia" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Animal que come plantas y animales.", "solucion": "omnívoro", "materia": "biologia" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Ojo simple de los insectos.", "solucion": "ocelo", "materia": "biologia" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Tapa de las branquias en los peces.", "solucion": "opérculo", "materia": "biologia" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Parte de la flor que contiene los óvulos.", "solucion": "ovario", "materia": "biologia" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Camino de un planeta alrededor del Sol.", "solucion": "órbita", "materia": "biologia" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Gran masa de agua salada.", "solucion": "océano", "materia": "biologia" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Célula sin núcleo definido.", "solucion": "procariota", "materia": "biologia" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Reino de las algas y protozoos.", "solucion": "protoctistas", "materia": "biologia" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Ser vivo del reino vegetal.", "solucion": "planta", "materia": "biologia" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Polvillo que interviene en la reproducción de las plantas.", "solucion": "polen", "materia": "biologia" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Parte femenina de la flor.", "solucion": "pistilo", "materia": "biologia" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Planta sin flor como el helecho.", "solucion": "pteridofita", "materia": "biologia" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Filo de las esponjas.", "solucion": "porífero", "materia": "biologia" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Cnidario con forma de saco fijado al suelo.", "solucion": "pólipo", "materia": "biologia" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Vertebrado acuático con escamas.", "solucion": "pez", "materia": "biologia" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Cuerpo celeste que orbita una estrella.", "solucion": "planeta", "materia": "biologia" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Sustancia que forma el exoesqueleto de los insectos.", "solucion": "quitina", "materia": "biologia" },
-  { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Ciencia que estudia la composición de la materia.", "solucion": "química", "materia": "biologia" },
-  { "id": "q3", "letra": "Q", "tipo": "empieza", "definicion": "Forma de resistencia de algunos microorganismos.", "solucion": "quiste", "materia": "biologia" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Animal marino con 'piel de erizo' (contiene Q).", "solucion": "equinodermo", "materia": "biologia" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Conjunto de huesos (contiene Q).", "solucion": "esqueleto", "materia": "biologia" },
-  { "id": "q6", "letra": "Q", "tipo": "contiene", "definicion": "Tubo respiratorio de los insectos (contiene Q).", "solucion": "tráquea", "materia": "biologia" },
-  { "id": "q7", "letra": "Q", "tipo": "contiene", "definicion": "Estado de la materia que fluye (contiene Q).", "solucion": "líquido", "materia": "biologia" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "De tamaño reducido (contiene Q).", "solucion": "pequeño", "materia": "biologia" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Órgano respiratorio del pez (contiene Q).", "solucion": "branquia", "materia": "biologia" },
-  { "id": "q10", "letra": "Q", "tipo": "empieza", "definicion": "Papilla en la que se convierte el alimento en el estómago.", "solucion": "quimo", "materia": "biologia" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Cada uno de los 5 grandes grupos de seres vivos.", "solucion": "reino", "materia": "biologia" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Función vital para crear descendencia.", "solucion": "reproducción", "materia": "biologia" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Parte de la planta que absorbe agua.", "solucion": "raíz", "materia": "biologia" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Proceso de intercambio de gases.", "solucion": "respiración", "materia": "biologia" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Vertebrado de sangre fría y piel con escamas.", "solucion": "reptil", "materia": "biologia" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Material sólido formado por minerales.", "solucion": "roca", "materia": "biologia" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Corriente natural de agua.", "solucion": "río", "materia": "biologia" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Forma de la superficie terrestre.", "solucion": "relieve", "materia": "biologia" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Movimiento de la Tierra sobre su eje.", "solucion": "rotación", "materia": "biologia" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Proceso de volver a usar materiales.", "solucion": "reciclaje", "materia": "biologia" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Conjunto de órganos que trabajan juntos.", "solucion": "sistema", "materia": "biologia" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Estrella de nuestro sistema planetario.", "solucion": "sol", "materia": "biologia" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Cuerpo celeste que orbita un planeta.", "solucion": "satélite", "materia": "biologia" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Líquido que circula por las plantas.", "solucion": "savia", "materia": "biologia" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Parte de la planta que da origen a una nueva.", "solucion": "semilla", "materia": "biologia" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Relación entre especies con beneficio mutuo.", "solucion": "simbiosis", "materia": "biologia" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Cuerpo fructífero de algunos hongos.", "solucion": "setas", "materia": "biologia" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Material sólido depositado por el agua o viento.", "solucion": "sedimento", "materia": "biologia" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Mineral común en el agua de mar.", "solucion": "sal", "materia": "biologia" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Capa superficial de la corteza terrestre.", "solucion": "suelo", "materia": "biologia" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Conjunto de células del mismo tipo.", "solucion": "tejido", "materia": "biologia" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Parte aérea de la planta que sostiene las hojas.", "solucion": "tallo", "materia": "biologia" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Nariz alargada del elefante o aparato bucal de insectos.", "solucion": "trompa", "materia": "biologia" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Brazo de los pulpos o medusas.", "solucion": "tentáculo", "materia": "biologia" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Tubo que lleva aire a los pulmones.", "solucion": "tráquea", "materia": "biologia" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Tercer planeta del Sistema Solar.", "solucion": "tierra", "materia": "biologia" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Bioma frío y sin árboles.", "solucion": "tundra", "materia": "biologia" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Bosque de coníferas del norte.", "solucion": "taiga", "materia": "biologia" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Temblor de la tierra.", "solucion": "terremoto", "materia": "biologia" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Instrumento para medir la temperatura.", "solucion": "termómetro", "materia": "biologia" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Conjunto de toda la materia y energía existente.", "solucion": "universo", "materia": "biologia" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Organismo formado por una sola célula.", "solucion": "unicelular", "materia": "biologia" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Conducto por donde sale la orina.", "solucion": "uretra", "materia": "biologia" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Conducto que va del riñón a la vejiga.", "solucion": "uréter", "materia": "biologia" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Órgano donde se desarrolla el feto.", "solucion": "útero", "materia": "biologia" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Séptimo planeta del sistema solar.", "solucion": "urano", "materia": "biologia" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Placa dura en los dedos.", "solucion": "uña", "materia": "biologia" },
-  { "id": "u8", "letra": "U", "tipo": "contiene", "definicion": "Célula sexual femenina (contiene U).", "solucion": "óvulo", "materia": "biologia" },
-  { "id": "u9", "letra": "U", "tipo": "contiene", "definicion": "Planta briofita (contiene U).", "solucion": "musgo", "materia": "biologia" },
-  { "id": "u10", "letra": "U", "tipo": "contiene", "definicion": "Parte de la planta con semillas (contiene U).", "solucion": "fruto", "materia": "biologia" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Orgánulo celular que almacena sustancias.", "solucion": "vacuola", "materia": "biologia" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Animal con columna vertebral.", "solucion": "vertebrado", "materia": "biologia" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Animal que nace del vientre materno.", "solucion": "vivíparo", "materia": "biologia" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Reino de las plantas.", "solucion": "vegetal", "materia": "biologia" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Abertura de la corteza por donde sale magma.", "solucion": "volcán", "materia": "biologia" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Aire en movimiento.", "solucion": "viento", "materia": "biologia" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Nuestra galaxia.", "solucion": "vía láctea", "materia": "biologia" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Agua en estado gaseoso.", "solucion": "vapor", "materia": "biologia" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Cualidad de los seres que nacen, crecen y mueren.", "solucion": "vida", "materia": "biologia" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Agente infeccioso no celular.", "solucion": "virus", "materia": "biologia" },
-
-  { "id": "w1", "letra": "W", "tipo": "contiene", "definicion": "Ave no voladora o fruta (contiene W).", "solucion": "kiwi", "materia": "biologia" },
-  { "id": "w2", "letra": "W", "tipo": "contiene", "definicion": "Naturalista padre de la teoría de la evolución (contiene W).", "solucion": "darwin", "materia": "biologia" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Mineral de símbolo W, wolframio.", "solucion": "wolframio", "materia": "biologia" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Científico de la deriva continental (contiene W).", "solucion": "wegener", "materia": "biologia" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Unidad de potencia (contiene W).", "solucion": "watt", "materia": "biologia" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Deporte acuático (contiene W).", "solucion": "waterpolo", "materia": "biologia" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Comida rápida (contiene W).", "solucion": "sandwich", "materia": "biologia" },
-  { "id": "w8", "letra": "W", "tipo": "contiene", "definicion": "Capital de EE.UU (contiene W).", "solucion": "washington", "materia": "biologia" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "Red informática (contiene W).", "solucion": "web", "materia": "biologia" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Conexión inalámbrica (contiene W).", "solucion": "wifi", "materia": "biologia" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Esqueleto externo de los artrópodos (contiene X).", "solucion": "exoesqueleto", "materia": "biologia" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Gas vital (contiene X).", "solucion": "oxígeno", "materia": "biologia" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Agrupación de estrellas (contiene X).", "solucion": "galaxia", "materia": "biologia" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Desaparición de una especie (contiene X).", "solucion": "extinción", "materia": "biologia" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Reacción del hierro con oxígeno (contiene X).", "solucion": "óxido", "materia": "biologia" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Parte del cuerpo de los insectos (contiene X).", "solucion": "tórax", "materia": "biologia" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Reproducción con dos progenitores (contiene X).", "solucion": "sexual", "materia": "biologia" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Ciencia de la clasificación (contiene X).", "solucion": "taxonomía", "materia": "biologia" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Hueso de la mandíbula (contiene X).", "solucion": "maxilar", "materia": "biologia" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "Alimentación de plantas y carne (contiene X).", "solucion": "mixta", "materia": "biologia" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Parte amarilla del huevo.", "solucion": "yema", "materia": "biologia" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Lugar donde se encuentran fósiles.", "solucion": "yacimiento", "materia": "biologia" },
-  { "id": "y3", "letra": "Y", "tipo": "empieza", "definicion": "Mineral blando usado en construcción.", "solucion": "yeso", "materia": "biologia" },
-  { "id": "y4", "letra": "Y", "tipo": "empieza", "definicion": "Vena del cuello.", "solucion": "yugular", "materia": "biologia" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Más grande que (contiene Y).", "solucion": "mayor", "materia": "biologia" },
-  { "id": "y6", "letra": "Y", "tipo": "contiene", "definicion": "Árbol de bosque templado (contiene Y).", "solucion": "haya", "materia": "biologia" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Costa con arena (contiene Y).", "solucion": "playa", "materia": "biologia" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Río pequeño (contiene Y).", "solucion": "arroyo", "materia": "biologia" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Descarga eléctrica natural (contiene Y).", "solucion": "rayo", "materia": "biologia" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Introducir medicina con aguja (contiene Y).", "solucion": "inyección", "materia": "biologia" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Ciencia que estudia los animales.", "solucion": "zoología", "materia": "biologia" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Región o área.", "solucion": "zona", "materia": "biologia" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Mamífero carnívoro de cola peluda.", "solucion": "zorro", "materia": "biologia" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Parte subterránea de la planta (contiene Z).", "solucion": "raíz", "materia": "biologia" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Vertebrado acuático con aletas (contiene Z).", "solucion": "pez", "materia": "biologia" },
-  { "id": "z6", "letra": "Z", "tipo": "contiene", "definicion": "Capa externa de la Tierra (contiene Z).", "solucion": "corteza", "materia": "biologia" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Fruto del manzano (contiene Z).", "solucion": "manzana", "materia": "biologia" },
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "Equinodermos con púas (contiene Z).", "solucion": "erizos", "materia": "biologia" },
-  { "id": "z9", "letra": "Z", "tipo": "contiene", "definicion": "Energía visible (contiene Z).", "solucion": "luz", "materia": "biologia" },
-  { "id": "z10", "letra": "Z", "tipo": "contiene", "definicion": "Cubierta dura de algunos animales (contiene Z).", "solucion": "caparazón", "materia": "biologia" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Capa gaseosa que envuelve la Tierra.",
+    "solucion": "atmósfera",
+    "materia": "biologia"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Vertebrados que pueden vivir dentro y fuera del agua, como las ranas.",
+    "solucion": "anfibios",
+    "materia": "biologia"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Grupo de plantas con flores y frutos.",
+    "solucion": "angiospermas",
+    "materia": "biologia"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Filo de invertebrados con patas articuladas y exoesqueleto.",
+    "solucion": "artrópodos",
+    "materia": "biologia"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Organismos del reino Protoctistas, suelen ser acuáticos y hacen la fotosíntesis.",
+    "solucion": "algas",
+    "materia": "biologia"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Ser vivo que se alimenta de otros seres vivos.",
+    "solucion": "animal",
+    "materia": "biologia"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Nutrición de los seres que fabrican su propio alimento.",
+    "solucion": "autótrofa",
+    "materia": "biologia"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Ácido que contiene la información genética (siglas).",
+    "solucion": "adn",
+    "materia": "biologia"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Cuerpo rocoso pequeño que orbita alrededor del Sol, mayoritariamente entre Marte y Júpiter.",
+    "solucion": "asteroide",
+    "materia": "biologia"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Invertebrados de cuerpo blando y anillos, como la lombriz.",
+    "solucion": "anélidos",
+    "materia": "biologia"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Conjunto de todos los seres vivos que habitan la Tierra.",
+    "solucion": "biosfera",
+    "materia": "biologia"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Organismos unicelulares procariotas del reino Moneras.",
+    "solucion": "bacterias",
+    "materia": "biologia"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Grupo de plantas sencillas sin vasos conductores, como los musgos.",
+    "solucion": "briofitas",
+    "materia": "biologia"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Variedad de especies animales y vegetales en su medio ambiente.",
+    "solucion": "biodiversidad",
+    "materia": "biologia"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Abertura por donde ingieren alimentos la mayoría de animales.",
+    "solucion": "boca",
+    "materia": "biologia"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia los seres vivos.",
+    "solucion": "biología",
+    "materia": "biologia"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Órganos respiratorios de los peces.",
+    "solucion": "branquias",
+    "materia": "biologia"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Teoría sobre el origen del universo como una gran explosión.",
+    "solucion": "big bang",
+    "materia": "biologia"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Moluscos con dos conchas, como el mejillón.",
+    "solucion": "bivalvos",
+    "materia": "biologia"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Tallo subterráneo con hojas carnosas, como el de la cebolla.",
+    "solucion": "bulbo",
+    "materia": "biologia"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Unidad básica de estructura y función de los seres vivos.",
+    "solucion": "célula",
+    "materia": "biologia"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Líquido gelatinoso que llena el interior de la célula.",
+    "solucion": "citoplasma",
+    "materia": "biologia"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Orgánulo de la célula vegetal donde se realiza la fotosíntesis.",
+    "solucion": "cloroplasto",
+    "materia": "biologia"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Pigmento verde necesario para captar la luz solar.",
+    "solucion": "clorofila",
+    "materia": "biologia"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Filo de animales que incluye a los vertebrados.",
+    "solucion": "cordados",
+    "materia": "biologia"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Invertebrados acuáticos con tentáculos urticantes, como las medusas.",
+    "solucion": "cnidarios",
+    "materia": "biologia"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Artrópodos con dos pares de antenas, como el cangrejo.",
+    "solucion": "crustáceos",
+    "materia": "biologia"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Alteración nociva del medio ambiente.",
+    "solucion": "contaminación",
+    "materia": "biologia"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Parte de la estratosfera que nos protege de los rayos UV (Capa de...).",
+    "solucion": "capa de ozono",
+    "materia": "biologia"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Cuerpo celeste de hielo y polvo con una cola brillante.",
+    "solucion": "cometa",
+    "materia": "biologia"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Gas que expulsan los seres vivos al respirar (Dióxido de...).",
+    "solucion": "dioxido de carbono",
+    "materia": "biologia"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Bioma muy seco con escasas precipitaciones.",
+    "solucion": "desierto",
+    "materia": "biologia"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Mamífero marino muy inteligente.",
+    "solucion": "delfín",
+    "materia": "biologia"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Reptil extinto que dominó la Tierra en el Mesozoico.",
+    "solucion": "dinosaurio",
+    "materia": "biologia"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Cordillera submarina (Dorsal...).",
+    "solucion": "dorsal oceanica",
+    "materia": "biologia"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Proceso de transformación de alimentos en nutrientes.",
+    "solucion": "digestión",
+    "materia": "biologia"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Animal que caza a otros para alimentarse.",
+    "solucion": "depredador",
+    "materia": "biologia"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Organismo que se alimenta de materia orgánica muerta.",
+    "solucion": "descomponedor",
+    "materia": "biologia"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Capa profunda de la piel.",
+    "solucion": "dermis",
+    "materia": "biologia"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Relación entre la masa y el volumen.",
+    "solucion": "densidad",
+    "materia": "biologia"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Célula compleja con núcleo diferenciado.",
+    "solucion": "eucariota",
+    "materia": "biologia"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Conjunto formado por el biotopo y la biocenosis.",
+    "solucion": "ecosistema",
+    "materia": "biologia"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Invertebrado porífero con cuerpo lleno de poros.",
+    "solucion": "esponja",
+    "materia": "biologia"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Invertebrado marino con esqueleto de placas, como la estrella de mar.",
+    "solucion": "equinodermo",
+    "materia": "biologia"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Parte masculina de la flor que produce polen.",
+    "solucion": "estambre",
+    "materia": "biologia"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Poros en las hojas para el intercambio de gases.",
+    "solucion": "estomas",
+    "materia": "biologia"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Capacidad para realizar un trabajo o cambios.",
+    "solucion": "energía",
+    "materia": "biologia"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Grupo de organismos que pueden reproducirse entre sí.",
+    "solucion": "especie",
+    "materia": "biologia"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Desgaste de las rocas y el suelo.",
+    "solucion": "erosión",
+    "materia": "biologia"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Estructura interna que sostiene el cuerpo de los vertebrados.",
+    "solucion": "esqueleto",
+    "materia": "biologia"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Proceso por el que las plantas fabrican su alimento.",
+    "solucion": "fotosíntesis",
+    "materia": "biologia"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Reino al que pertenecen los hongos.",
+    "solucion": "fungi",
+    "materia": "biologia"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Órgano reproductor de las angiospermas.",
+    "solucion": "flor",
+    "materia": "biologia"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Parte de la planta que contiene las semillas.",
+    "solucion": "fruto",
+    "materia": "biologia"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Resto de un ser vivo antiguo petrificado.",
+    "solucion": "fósil",
+    "materia": "biologia"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Unión del gameto masculino y el femenino.",
+    "solucion": "fecundación",
+    "materia": "biologia"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Proceso de obtención de energía sin oxígeno (levaduras).",
+    "solucion": "fermentación",
+    "materia": "biologia"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Filamento largo que permite moverse a algunas células.",
+    "solucion": "flagelo",
+    "materia": "biologia"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Conjunto de animales de un lugar.",
+    "solucion": "fauna",
+    "materia": "biologia"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Conjunto de plantas de un lugar.",
+    "solucion": "flora",
+    "materia": "biologia"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Parte sólida y rocosa de la Tierra.",
+    "solucion": "geosfera",
+    "materia": "biologia"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Plantas con semillas pero sin fruto (ej: pino).",
+    "solucion": "gimnospermas",
+    "materia": "biologia"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Molusco con un gran pie muscular, como el caracol.",
+    "solucion": "gastrópodo",
+    "materia": "biologia"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Célula sexual (óvulo o espermatozoide).",
+    "solucion": "gameto",
+    "materia": "biologia"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Fuerza que nos atrae hacia el centro de la Tierra.",
+    "solucion": "gravedad",
+    "materia": "biologia"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Roca ígnea muy común en la corteza continental.",
+    "solucion": "granito",
+    "materia": "biologia"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Masa grande de hielo.",
+    "solucion": "glaciar",
+    "materia": "biologia"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Nombre común para animales alargados y blanecinos (anélidos, etc).",
+    "solucion": "gusano",
+    "materia": "biologia"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Inicio del desarrollo de la semilla.",
+    "solucion": "germinación",
+    "materia": "biologia"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Célula sanguínea (rojo o blanco).",
+    "solucion": "glóbulo",
+    "materia": "biologia"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Capa de agua de la Tierra.",
+    "solucion": "hidrosfera",
+    "materia": "biologia"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Ser vivo del reino Fungi.",
+    "solucion": "hongo",
+    "materia": "biologia"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Parte de la planta donde se realiza la fotosíntesis.",
+    "solucion": "hoja",
+    "materia": "biologia"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Animal que se alimenta de plantas.",
+    "solucion": "herbívoro",
+    "materia": "biologia"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Nutrición de los seres que se alimentan de otros.",
+    "solucion": "heterótrofa",
+    "materia": "biologia"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Lugar físico donde vive una especie.",
+    "solucion": "hábitat",
+    "materia": "biologia"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Glándula digestiva que produce la bilis.",
+    "solucion": "hígado",
+    "materia": "biologia"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Filamento microscópico de los hongos.",
+    "solucion": "hifa",
+    "materia": "biologia"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Célula que resulta de la fecundación.",
+    "solucion": "huevo",
+    "materia": "biologia"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Restos orgánicos en descomposición en el suelo.",
+    "solucion": "humus",
+    "materia": "biologia"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Animal que no tiene columna vertebral.",
+    "solucion": "invertebrado",
+    "materia": "biologia"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Artrópodo con tres pares de patas y antenas.",
+    "solucion": "insecto",
+    "materia": "biologia"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Parte del tubo digestivo donde se absorben nutrientes.",
+    "solucion": "intestino",
+    "materia": "biologia"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Efecto de calentamiento por gases en la atmósfera.",
+    "solucion": "invernadero",
+    "materia": "biologia"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Roca formada por el enfriamiento del magma.",
+    "solucion": "ígnea",
+    "materia": "biologia"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Acción de tragar el alimento.",
+    "solucion": "ingestión",
+    "materia": "biologia"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Propiedad del agua pura: sin color.",
+    "solucion": "incolora",
+    "materia": "biologia"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Propiedad del agua pura: sin olor.",
+    "solucion": "inodora",
+    "materia": "biologia"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Propiedad del agua pura: sin sabor.",
+    "solucion": "insípida",
+    "materia": "biologia"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Estación del año con menos luz solar.",
+    "solucion": "invierno",
+    "materia": "biologia"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "El planeta más grande del Sistema Solar.",
+    "solucion": "júpiter",
+    "materia": "biologia"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Lugar con diversidad de plantas (Botánico).",
+    "solucion": "jardín",
+    "materia": "biologia"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Sustancia producida por las abejas para la reina.",
+    "solucion": "jalea",
+    "materia": "biologia"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Animal mamífero de cuello muy largo.",
+    "solucion": "jirafa",
+    "materia": "biologia"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Mamífero salvaje parecido al cerdo.",
+    "solucion": "jabalí",
+    "materia": "biologia"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Planta herbácea de lugares húmedos.",
+    "solucion": "juncia",
+    "materia": "biologia"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Periodo geológico de los dinosaurios.",
+    "solucion": "jurásico",
+    "materia": "biologia"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Articulación entre huesos (sinónimo de juntura).",
+    "solucion": "juntura",
+    "materia": "biologia"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Líquidos del estómago que digieren comida.",
+    "solucion": "jugos",
+    "materia": "biologia"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Etapa inicial de un río.",
+    "solucion": "joven",
+    "materia": "biologia"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Dominio que incluye a animales, plantas, hongos y protoctistas.",
+    "solucion": "eukarya",
+    "materia": "biologia"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unidad de masa del Sistema Internacional.",
+    "solucion": "kilogramo",
+    "materia": "biologia"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Distancia de mil metros.",
+    "solucion": "kilómetro",
+    "materia": "biologia"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Marsupial australiano.",
+    "solucion": "koala",
+    "materia": "biologia"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Pequeño crustáceo que come la ballena.",
+    "solucion": "krill",
+    "materia": "biologia"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Ave de Nueva Zelanda o fruta.",
+    "solucion": "kiwi",
+    "materia": "biologia"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Relieve formado por disolución de rocas calizas.",
+    "solucion": "kárstico",
+    "materia": "biologia"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Proteína que forma el pelo y las uñas.",
+    "solucion": "keratina",
+    "materia": "biologia"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Dominio de las bacterias (Pro...)",
+    "solucion": "prokarya",
+    "materia": "biologia"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Prefijo que significa mil.",
+    "solucion": "kilo",
+    "materia": "biologia"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Capa sólida externa de la Tierra.",
+    "solucion": "litosfera",
+    "materia": "biologia"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Estado de la materia que fluye.",
+    "solucion": "líquido",
+    "materia": "biologia"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Satélite natural de la Tierra.",
+    "solucion": "luna",
+    "materia": "biologia"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Planta vascular sin semilla.",
+    "solucion": "licopodio",
+    "materia": "biologia"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Legumbre rica en hierro.",
+    "solucion": "lenteja",
+    "materia": "biologia"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Hongo unicelular usado para hacer pan.",
+    "solucion": "levadura",
+    "materia": "biologia"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Etapa juvenil de los insectos.",
+    "solucion": "larva",
+    "materia": "biologia"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Felino ibérico en peligro.",
+    "solucion": "lince",
+    "materia": "biologia"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Cánido salvaje antepasado del perro.",
+    "solucion": "lobo",
+    "materia": "biologia"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Energía necesaria para la fotosíntesis.",
+    "solucion": "luz",
+    "materia": "biologia"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Capa que rodea la célula.",
+    "solucion": "membrana",
+    "materia": "biologia"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Orgánulo celular que produce energía.",
+    "solucion": "mitocondria",
+    "materia": "biologia"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Reino de las bacterias.",
+    "solucion": "moneras",
+    "materia": "biologia"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Planta briofita que crece en humedad.",
+    "solucion": "musgo",
+    "materia": "biologia"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Invertebrado de cuerpo blando (caracol, pulpo).",
+    "solucion": "molusco",
+    "materia": "biologia"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Vertebrado con pelo y glándulas mamarias.",
+    "solucion": "mamífero",
+    "materia": "biologia"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Transformación que sufren los anfibios.",
+    "solucion": "metamorfosis",
+    "materia": "biologia"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Sustancia sólida, inorgánica y natural.",
+    "solucion": "mineral",
+    "materia": "biologia"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Roca fundida en el interior de la Tierra.",
+    "solucion": "magma",
+    "materia": "biologia"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Capa de la Tierra entre la corteza y el núcleo.",
+    "solucion": "manto",
+    "materia": "biologia"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Parte central de la célula con el ADN.",
+    "solucion": "núcleo",
+    "materia": "biologia"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Función vital de obtener energía.",
+    "solucion": "nutrición",
+    "materia": "biologia"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Gusano cilíndrico no segmentado.",
+    "solucion": "nematodo",
+    "materia": "biologia"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Líquido dulce de las flores.",
+    "solucion": "néctar",
+    "materia": "biologia"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Masa de gotas de agua en la atmósfera.",
+    "solucion": "nube",
+    "materia": "biologia"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Nube de gas y polvo en el espacio.",
+    "solucion": "nebulosa",
+    "materia": "biologia"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Precipitación sólida en copos.",
+    "solucion": "nieve",
+    "materia": "biologia"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Sustancia que nutre.",
+    "solucion": "nutriente",
+    "materia": "biologia"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Fibra que transmite impulsos.",
+    "solucion": "nervio",
+    "materia": "biologia"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Octavo planeta del sistema solar.",
+    "solucion": "neptuno",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Artrópodo de 8 patas (contiene Ñ).",
+    "solucion": "araña",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Hongo comestible (contiene Ñ).",
+    "solucion": "champiñón",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Órgano excretor (contiene Ñ).",
+    "solucion": "riñón",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Elevación del terreno (contiene Ñ).",
+    "solucion": "montaña",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Estación del año (contiene Ñ).",
+    "solucion": "otoño",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "empieza",
+    "definicion": "Mamífero africano de la familia de los antílopes.",
+    "solucion": "ñu",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Animal que come cadáveres (contiene Ñ).",
+    "solucion": "carroñero",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Pez carnívoro de río (contiene Ñ).",
+    "solucion": "piraña",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Madera para el fuego (contiene Ñ).",
+    "solucion": "leña",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Fruto seco (contiene Ñ).",
+    "solucion": "castaña",
+    "materia": "biologia"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Parte del cuerpo con una función.",
+    "solucion": "órgano",
+    "materia": "biologia"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Ser vivo individual.",
+    "solucion": "organismo",
+    "materia": "biologia"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gas vital para la respiración.",
+    "solucion": "oxígeno",
+    "materia": "biologia"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Animal que nace de un huevo.",
+    "solucion": "ovíparo",
+    "materia": "biologia"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Animal que come plantas y animales.",
+    "solucion": "omnívoro",
+    "materia": "biologia"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Ojo simple de los insectos.",
+    "solucion": "ocelo",
+    "materia": "biologia"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Tapa de las branquias en los peces.",
+    "solucion": "opérculo",
+    "materia": "biologia"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Parte de la flor que contiene los óvulos.",
+    "solucion": "ovario",
+    "materia": "biologia"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Camino de un planeta alrededor del Sol.",
+    "solucion": "órbita",
+    "materia": "biologia"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gran masa de agua salada.",
+    "solucion": "océano",
+    "materia": "biologia"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Célula sin núcleo definido.",
+    "solucion": "procariota",
+    "materia": "biologia"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Reino de las algas y protozoos.",
+    "solucion": "protoctistas",
+    "materia": "biologia"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Ser vivo del reino vegetal.",
+    "solucion": "planta",
+    "materia": "biologia"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Polvillo que interviene en la reproducción de las plantas.",
+    "solucion": "polen",
+    "materia": "biologia"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Parte femenina de la flor.",
+    "solucion": "pistilo",
+    "materia": "biologia"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Planta sin flor como el helecho.",
+    "solucion": "pteridofita",
+    "materia": "biologia"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Filo de las esponjas.",
+    "solucion": "porífero",
+    "materia": "biologia"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Cnidario con forma de saco fijado al suelo.",
+    "solucion": "pólipo",
+    "materia": "biologia"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Vertebrado acuático con escamas.",
+    "solucion": "pez",
+    "materia": "biologia"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Cuerpo celeste que orbita una estrella.",
+    "solucion": "planeta",
+    "materia": "biologia"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Sustancia que forma el exoesqueleto de los insectos.",
+    "solucion": "quitina",
+    "materia": "biologia"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia la composición de la materia.",
+    "solucion": "química",
+    "materia": "biologia"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Forma de resistencia de algunos microorganismos.",
+    "solucion": "quiste",
+    "materia": "biologia"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Animal marino con 'piel de erizo' (contiene Q).",
+    "solucion": "equinodermo",
+    "materia": "biologia"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Conjunto de huesos (contiene Q).",
+    "solucion": "esqueleto",
+    "materia": "biologia"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Tubo respiratorio de los insectos (contiene Q).",
+    "solucion": "tráquea",
+    "materia": "biologia"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Estado de la materia que fluye (contiene Q).",
+    "solucion": "líquido",
+    "materia": "biologia"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "De tamaño reducido (contiene Q).",
+    "solucion": "pequeño",
+    "materia": "biologia"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Órgano respiratorio del pez (contiene Q).",
+    "solucion": "branquia",
+    "materia": "biologia"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Papilla en la que se convierte el alimento en el estómago.",
+    "solucion": "quimo",
+    "materia": "biologia"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Cada uno de los 5 grandes grupos de seres vivos.",
+    "solucion": "reino",
+    "materia": "biologia"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Función vital para crear descendencia.",
+    "solucion": "reproducción",
+    "materia": "biologia"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Parte de la planta que absorbe agua.",
+    "solucion": "raíz",
+    "materia": "biologia"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Proceso de intercambio de gases.",
+    "solucion": "respiración",
+    "materia": "biologia"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Vertebrado de sangre fría y piel con escamas.",
+    "solucion": "reptil",
+    "materia": "biologia"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Material sólido formado por minerales.",
+    "solucion": "roca",
+    "materia": "biologia"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Corriente natural de agua.",
+    "solucion": "río",
+    "materia": "biologia"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Forma de la superficie terrestre.",
+    "solucion": "relieve",
+    "materia": "biologia"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Movimiento de la Tierra sobre su eje.",
+    "solucion": "rotación",
+    "materia": "biologia"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Proceso de volver a usar materiales.",
+    "solucion": "reciclaje",
+    "materia": "biologia"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de órganos que trabajan juntos.",
+    "solucion": "sistema",
+    "materia": "biologia"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Estrella de nuestro sistema planetario.",
+    "solucion": "sol",
+    "materia": "biologia"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Cuerpo celeste que orbita un planeta.",
+    "solucion": "satélite",
+    "materia": "biologia"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Líquido que circula por las plantas.",
+    "solucion": "savia",
+    "materia": "biologia"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Parte de la planta que da origen a una nueva.",
+    "solucion": "semilla",
+    "materia": "biologia"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Relación entre especies con beneficio mutuo.",
+    "solucion": "simbiosis",
+    "materia": "biologia"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Cuerpo fructífero de algunos hongos.",
+    "solucion": "setas",
+    "materia": "biologia"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Material sólido depositado por el agua o viento.",
+    "solucion": "sedimento",
+    "materia": "biologia"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Mineral común en el agua de mar.",
+    "solucion": "sal",
+    "materia": "biologia"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Capa superficial de la corteza terrestre.",
+    "solucion": "suelo",
+    "materia": "biologia"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Conjunto de células del mismo tipo.",
+    "solucion": "tejido",
+    "materia": "biologia"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Parte aérea de la planta que sostiene las hojas.",
+    "solucion": "tallo",
+    "materia": "biologia"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Nariz alargada del elefante o aparato bucal de insectos.",
+    "solucion": "trompa",
+    "materia": "biologia"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Brazo de los pulpos o medusas.",
+    "solucion": "tentáculo",
+    "materia": "biologia"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Tubo que lleva aire a los pulmones.",
+    "solucion": "tráquea",
+    "materia": "biologia"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Tercer planeta del Sistema Solar.",
+    "solucion": "tierra",
+    "materia": "biologia"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Bioma frío y sin árboles.",
+    "solucion": "tundra",
+    "materia": "biologia"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Bosque de coníferas del norte.",
+    "solucion": "taiga",
+    "materia": "biologia"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Temblor de la tierra.",
+    "solucion": "terremoto",
+    "materia": "biologia"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Instrumento para medir la temperatura.",
+    "solucion": "termómetro",
+    "materia": "biologia"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Conjunto de toda la materia y energía existente.",
+    "solucion": "universo",
+    "materia": "biologia"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Organismo formado por una sola célula.",
+    "solucion": "unicelular",
+    "materia": "biologia"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Conducto por donde sale la orina.",
+    "solucion": "uretra",
+    "materia": "biologia"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Conducto que va del riñón a la vejiga.",
+    "solucion": "uréter",
+    "materia": "biologia"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Órgano donde se desarrolla el feto.",
+    "solucion": "útero",
+    "materia": "biologia"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Séptimo planeta del sistema solar.",
+    "solucion": "urano",
+    "materia": "biologia"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Placa dura en los dedos.",
+    "solucion": "uña",
+    "materia": "biologia"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Célula sexual femenina (contiene U).",
+    "solucion": "óvulo",
+    "materia": "biologia"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Planta briofita (contiene U).",
+    "solucion": "musgo",
+    "materia": "biologia"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Parte de la planta con semillas (contiene U).",
+    "solucion": "fruto",
+    "materia": "biologia"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Orgánulo celular que almacena sustancias.",
+    "solucion": "vacuola",
+    "materia": "biologia"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Animal con columna vertebral.",
+    "solucion": "vertebrado",
+    "materia": "biologia"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Animal que nace del vientre materno.",
+    "solucion": "vivíparo",
+    "materia": "biologia"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Reino de las plantas.",
+    "solucion": "vegetal",
+    "materia": "biologia"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Abertura de la corteza por donde sale magma.",
+    "solucion": "volcán",
+    "materia": "biologia"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Aire en movimiento.",
+    "solucion": "viento",
+    "materia": "biologia"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Nuestra galaxia.",
+    "solucion": "vía láctea",
+    "materia": "biologia"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Agua en estado gaseoso.",
+    "solucion": "vapor",
+    "materia": "biologia"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Cualidad de los seres que nacen, crecen y mueren.",
+    "solucion": "vida",
+    "materia": "biologia"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Agente infeccioso no celular.",
+    "solucion": "virus",
+    "materia": "biologia"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Ave no voladora o fruta (contiene W).",
+    "solucion": "kiwi",
+    "materia": "biologia"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Naturalista padre de la teoría de la evolución (contiene W).",
+    "solucion": "darwin",
+    "materia": "biologia"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Mineral de símbolo W, wolframio.",
+    "solucion": "wolframio",
+    "materia": "biologia"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Científico de la deriva continental (contiene W).",
+    "solucion": "wegener",
+    "materia": "biologia"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Unidad de potencia (contiene W).",
+    "solucion": "watt",
+    "materia": "biologia"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Deporte acuático (contiene W).",
+    "solucion": "waterpolo",
+    "materia": "biologia"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Comida rápida (contiene W).",
+    "solucion": "sandwich",
+    "materia": "biologia"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Capital de EE.UU (contiene W).",
+    "solucion": "washington",
+    "materia": "biologia"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Red informática (contiene W).",
+    "solucion": "web",
+    "materia": "biologia"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Conexión inalámbrica (contiene W).",
+    "solucion": "wifi",
+    "materia": "biologia"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Esqueleto externo de los artrópodos (contiene X).",
+    "solucion": "exoesqueleto",
+    "materia": "biologia"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Gas vital (contiene X).",
+    "solucion": "oxígeno",
+    "materia": "biologia"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Agrupación de estrellas (contiene X).",
+    "solucion": "galaxia",
+    "materia": "biologia"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Desaparición de una especie (contiene X).",
+    "solucion": "extinción",
+    "materia": "biologia"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Reacción del hierro con oxígeno (contiene X).",
+    "solucion": "óxido",
+    "materia": "biologia"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Parte del cuerpo de los insectos (contiene X).",
+    "solucion": "tórax",
+    "materia": "biologia"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Reproducción con dos progenitores (contiene X).",
+    "solucion": "sexual",
+    "materia": "biologia"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Ciencia de la clasificación (contiene X).",
+    "solucion": "taxonomía",
+    "materia": "biologia"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Hueso de la mandíbula (contiene X).",
+    "solucion": "maxilar",
+    "materia": "biologia"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Alimentación de plantas y carne (contiene X).",
+    "solucion": "mixta",
+    "materia": "biologia"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Parte amarilla del huevo.",
+    "solucion": "yema",
+    "materia": "biologia"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Lugar donde se encuentran fósiles.",
+    "solucion": "yacimiento",
+    "materia": "biologia"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Mineral blando usado en construcción.",
+    "solucion": "yeso",
+    "materia": "biologia"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Vena del cuello.",
+    "solucion": "yugular",
+    "materia": "biologia"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Más grande que (contiene Y).",
+    "solucion": "mayor",
+    "materia": "biologia"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Árbol de bosque templado (contiene Y).",
+    "solucion": "haya",
+    "materia": "biologia"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Costa con arena (contiene Y).",
+    "solucion": "playa",
+    "materia": "biologia"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Río pequeño (contiene Y).",
+    "solucion": "arroyo",
+    "materia": "biologia"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Descarga eléctrica natural (contiene Y).",
+    "solucion": "rayo",
+    "materia": "biologia"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Introducir medicina con aguja (contiene Y).",
+    "solucion": "inyección",
+    "materia": "biologia"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia los animales.",
+    "solucion": "zoología",
+    "materia": "biologia"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Región o área.",
+    "solucion": "zona",
+    "materia": "biologia"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Mamífero carnívoro de cola peluda.",
+    "solucion": "zorro",
+    "materia": "biologia"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Parte subterránea de la planta (contiene Z).",
+    "solucion": "raíz",
+    "materia": "biologia"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Vertebrado acuático con aletas (contiene Z).",
+    "solucion": "pez",
+    "materia": "biologia"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Capa externa de la Tierra (contiene Z).",
+    "solucion": "corteza",
+    "materia": "biologia"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Fruto del manzano (contiene Z).",
+    "solucion": "manzana",
+    "materia": "biologia"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Equinodermos con púas (contiene Z).",
+    "solucion": "erizos",
+    "materia": "biologia"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Energía visible (contiene Z).",
+    "solucion": "luz",
+    "materia": "biologia"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Cubierta dura de algunos animales (contiene Z).",
+    "solucion": "caparazón",
+    "materia": "biologia"
+  }
 ]

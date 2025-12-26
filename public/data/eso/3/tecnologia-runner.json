@@ -1,17 +1,122 @@
 {
-  "electricidad": [
-    "voltaje", "intensidad", "resistencia", "ley de ohm", "circuito", "serie", "paralelo", "generador", "multímetro", "potencia"
+  "electronica_analogica": [
+    "resistencia",
+    "condensador",
+    "diodo",
+    "transistor",
+    "potenciómetro",
+    "ldr",
+    "ntc",
+    "ptc",
+    "led",
+    "protoboard"
+  ],
+  "electronica_digital": [
+    "puerta and",
+    "puerta or",
+    "puerta not",
+    "sistema binario",
+    "bit",
+    "byte",
+    "chip",
+    "microprocesador",
+    "señal digital",
+    "señal analógica"
+  ],
+  "control_robotica": [
+    "sensor",
+    "actuador",
+    "bucle de control",
+    "realimentación",
+    "arduino",
+    "servomotor",
+    "motor paso a paso",
+    "puente h",
+    "software de control",
+    "algoritmo"
+  ],
+  "energia_generacion": [
+    "central térmica",
+    "central hidroeléctrica",
+    "central nuclear",
+    "placa fotovoltaica",
+    "parque eólico",
+    "biomasa",
+    "geotermia",
+    "red eléctrica",
+    "transformador",
+    "alternador"
+  ],
+  "maquinas_herramientas": [
+    "taladro de columna",
+    "torno",
+    "fresadora",
+    "lijadora",
+    "sierra de cinta",
+    "soldador",
+    "alicates",
+    "broca",
+    "mordaza",
+    "tronzadora"
   ],
   "materiales_plasticos": [
-    "termoplástico", "termoestable", "elastómero", "pvc", "pet", "polietileno", "caucho", "latex", "nailon", "poliestireno"
+    "termoplástico",
+    "termoestable",
+    "elastómero",
+    "pvc",
+    "pet",
+    "poliestireno",
+    "moldeo por inyección",
+    "extrusión",
+    "soplado",
+    "vacío"
   ],
-  "materiales_construccion": [
-    "cemento", "hormigón", "yeso", "ladrillo", "cerámica", "vidrio", "arena", "grava", "asfalto", "viga"
+  "comunicacion_inalambrica": [
+    "bluetooth",
+    "wi-fi",
+    "radiofrecuencia",
+    "infrarrojos",
+    "antena",
+    "emisor",
+    "receptor",
+    "modulación",
+    "cobertura",
+    "red 5g"
   ],
-  "informatica": [
-    "hardware", "software", "sistema operativo", "redes", "algoritmo", "programación", "código binario", "base de datos", "servidor", "nube"
+  "dibujo_asistido_cad": [
+    "tinkercad",
+    "freecad",
+    "autocad",
+    "diseño 3d",
+    "extrusión",
+    "boceto 2d",
+    "renderizado",
+    "exportar",
+    "coordenadas",
+    "capas"
   ],
-  "generacion_energia": [
-    "central térmica", "central nuclear", "placa solar", "aerogenerador", "turbina", "alternador", "presa", "biomasa", "geotermia", "red eléctrica"
+  "vivienda_instalaciones": [
+    "cuadro general",
+    "pia",
+    "diferencial",
+    "toma de tierra",
+    "fontanería",
+    "calefacción",
+    "aire acondicionado",
+    "domótica",
+    "gas",
+    "evacuación de aguas"
+  ],
+  "impacto_tecnologico": [
+    "obsolescencia programada",
+    "desecho electrónico",
+    "reciclaje",
+    "desarrollo sostenible",
+    "huella ecológica",
+    "ética tecnológica",
+    "brecha digital",
+    "economía circular",
+    "eficiencia energética",
+    "innovación"
   ]
 }

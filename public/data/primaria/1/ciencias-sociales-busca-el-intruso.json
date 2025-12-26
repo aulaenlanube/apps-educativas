@@ -1,4 +1,148 @@
-[ 
-  "🧑", "👴", "👵", "👶", "🧒", "👦", "👧", "👋", "✋",
-  "🤚", "🖐️", "🤝", "👍", "👎", "👊", "✊", "🤜", "🤛"
+[
+  {
+    "categoria": "La Familia (Visual)",
+    "correctos": [
+      "👨",
+      "👩",
+      "👴",
+      "👵",
+      "👶",
+      "🧒"
+    ],
+    "intrusos": [
+      "🦁",
+      "🐯",
+      "🐺",
+      "🦖",
+      "🛸",
+      "🤖"
+    ]
+  },
+  {
+    "categoria": "Transportes (Visual)",
+    "correctos": [
+      "🚗",
+      "🚌",
+      "🚂",
+      "✈️",
+      "🚢",
+      "🚲"
+    ],
+    "intrusos": [
+      "🍔",
+      "🍕",
+      "🍦",
+      "🍎",
+      "🥦",
+      "🥕"
+    ]
+  },
+  {
+    "categoria": "En el Colegio (Visual)",
+    "correctos": [
+      "🏫",
+      "🎒",
+      "📚",
+      "✏️",
+      "👩‍🏫",
+      "🎨"
+    ],
+    "intrusos": [
+      "🛀",
+      "🛌",
+      "🛋️",
+      "🍳",
+      "🚿",
+      "📺"
+    ]
+  },
+  {
+    "categoria": "Profesiones (Visual)",
+    "correctos": [
+      "👨‍⚕️",
+      "👩‍🏫",
+      "👮‍♂️",
+      "👨‍🚒",
+      "👩‍🍳",
+      "👨‍🌾"
+    ],
+    "intrusos": [
+      "🦖",
+      "👻",
+      "👽",
+      "🤖",
+      "🧚",
+      "🧜"
+    ]
+  },
+  {
+    "categoria": "Miembros de la Familia",
+    "correctos": [
+      "Mamá",
+      "Papá",
+      "Abuelo",
+      "Abuela",
+      "Primo",
+      "Tío"
+    ],
+    "intrusos": [
+      "Mesa",
+      "Silla",
+      "Coche",
+      "Libro",
+      "Lápiz",
+      "Pan"
+    ]
+  },
+  {
+    "categoria": "Lugares de la Casa",
+    "correctos": [
+      "Cocina",
+      "Baño",
+      "Salón",
+      "Dormitorio",
+      "Jardín"
+    ],
+    "intrusos": [
+      "Colegio",
+      "Parque",
+      "Playa",
+      "Calle",
+      "Cine"
+    ]
+  },
+  {
+    "categoria": "Cosas de la Ciudad",
+    "correctos": [
+      "Semáforo",
+      "Farola",
+      "Banco",
+      "Paso de cebra",
+      "Parque"
+    ],
+    "intrusos": [
+      "Vaca",
+      "Cerdo",
+      "Oveja",
+      "Tractor",
+      "Granja"
+    ]
+  },
+  {
+    "categoria": "Medios de Comunicación",
+    "correctos": [
+      "Teléfono",
+      "Carta",
+      "Radio",
+      "Televisión",
+      "Periódico"
+    ],
+    "intrusos": [
+      "Zapato",
+      "Cuchara",
+      "Pelota",
+      "Peine",
+      "Silla"
+    ]
+  }
 ]

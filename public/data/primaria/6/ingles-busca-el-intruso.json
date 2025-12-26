@@ -1,162 +1,266 @@
 [
   {
-    "categoria": "Digital World (Icons)",
+    "categoria": "Modern Digital World (Icons)",
     "correctos": [
       "💻",
       "📱",
       "📡",
       "💾",
       "🖱️",
-      "⌨️"
+      "⌨️",
+      "📧",
+      "🌐",
+      "📶",
+      "🛒 (online shop)",
+      "🕹️"
     ],
     "intrusos": [
       "📚",
       "🖊️",
       "🚲",
       "🌳",
-      "⚽"
+      "⚽",
+      "🛖",
+      "🏹",
+      "🛡️",
+      "⚔️",
+      "🐎",
+      "🏛️"
     ]
   },
   {
-    "categoria": "Environment (Icons)",
+    "categoria": "Environmental Awareness and Eco-Friendly (Icons)",
     "correctos": [
       "♻️",
       "🌍",
       "🌱",
       "🚮",
       "🔋",
-      "☀️"
+      "☀️",
+      "🌬️",
+      "🌊",
+      "🚲",
+      "🥦",
+      "🧺"
     ],
     "intrusos": [
       "🏭",
       "🛢️",
       "🚬",
       "🔥",
-      "☢️"
+      "☢️",
+      "🚗 (petrol)",
+      "💨 (smoke)",
+      "⛽",
+      "🎰"
     ]
   },
   {
-    "categoria": "Health (Icons)",
+    "categoria": "Health Conditions and Sickness (Icons)",
     "correctos": [
       "🤒",
       "🤕",
       "🤢",
       "🤧",
       "😷",
-      "🌡️"
+      "🌡️",
+      "💉",
+      "💊",
+      "🚑",
+      "🏥"
     ],
     "intrusos": [
       "😀",
       "😎",
       "🥳",
       "🤠",
-      "💪"
+      "💪",
+      "🏃",
+      "🤸",
+      "🍎",
+      "🏀",
+      "🏊",
+      "🏐"
     ]
   },
   {
-    "categoria": "Future (Icons)",
+    "categoria": "Future Technology and Space (Icons)",
     "correctos": [
       "🤖",
       "🚀",
       "🛸",
       "🦾",
       "🧬",
-      "🔭"
+      "🔭",
+      "🛰️",
+      "🛸",
+      "🌑",
+      "🌌"
     ],
     "intrusos": [
       "🦕",
       "🕯️",
       "📜",
       "🏰",
-      "🛡️"
+      "🛡️",
+      "⚔️",
+      "🏺",
+      "🛶",
+      "🛖",
+      "🏛️"
     ]
   },
   {
-    "categoria": "Mixed Tenses",
+    "categoria": "Verb Tenses (Past, Present, Future)",
     "correctos": [
       "I go",
       "I went",
       "I have gone",
       "I am going",
-      "I will go"
+      "I will go",
+      "She goes",
+      "They went",
+      "We will visit"
     ],
     "intrusos": [
       "I to go",
       "Me go",
       "Going I",
       "I gone",
-      "Go I"
+      "Go I",
+      "She going",
+      "He been",
+      "They was",
+      "We is"
     ]
   },
   {
-    "categoria": "Materials",
+    "categoria": "Natural and Synthetic Materials",
     "correctos": [
       "Wood",
       "Metal",
       "Plastic",
       "Glass",
       "Fabric",
-      "Leather"
+      "Leather",
+      "Paper",
+      "Stone",
+      "Rubber",
+      "Cotton",
+      "Wool"
     ],
     "intrusos": [
       "Table",
       "Chair",
       "Window",
       "Bottle",
-      "Shirt"
+      "Shirt",
+      "Shoe",
+      "Wall",
+      "House",
+      "Pen",
+      "Book",
+      "Car"
     ]
   },
   {
-    "categoria": "Prepositions of Place",
+    "categoria": "Specific Prepositions of Place and Movement",
     "correctos": [
       "In",
       "On",
       "Under",
       "Behind",
       "Between",
-      "Next to"
+      "Next to",
+      "Above",
+      "Opposite",
+      "Through",
+      "Across",
+      "Towards"
     ],
     "intrusos": [
       "Yesterday",
       "Tomorrow",
       "Run",
       "Jump",
-      "Happy"
+      "Happy",
+      "Always",
+      "Often",
+      "Never",
+      "Because",
+      "But",
+      "And"
     ]
   },
   {
-    "categoria": "Health Problems",
+    "categoria": "Common Health Problems and Illnesses",
     "correctos": [
       "Headache",
       "Stomachache",
+      "Toothache",
       "Cold",
       "Cough",
       "Fever",
-      "Flu"
+      "Flu",
+      "Backache",
+      "Earache",
+      "Sore throat"
     ],
     "intrusos": [
       "Happy",
       "Hungry",
       "Thirsty",
       "Tired",
-      "Excited"
+      "Excited",
+      "Scared",
+      "Angry",
+      "Bored",
+      "Doctor",
+      "Medicine",
+      "Hospital"
     ]
   },
   {
-    "categoria": "Famous Cities",
+    "categoria": "Major Cities in English-Speaking Countries",
     "correctos": [
       "London",
       "New York",
       "Manchester",
       "Liverpool",
-      "Los Angeles"
+      "Los Angeles",
+      "Chicago",
+      "Sydney",
+      "Toronto",
+      "Dublin",
+      "Edinburgh"
     ],
     "intrusos": [
       "Paris",
       "Madrid",
       "Rome",
       "Berlin",
-      "Tokyo"
+      "Tokyo",
+      "Peking",
+      "Cairo",
+      "Moscow",
+      "Mexico City",
+      "Bangkok"
+    ]
+  },
+  {
+    "categoria": "Conditionals (Zero and First)",
+    "correctos": [
+      "If it rains, I will stay home",
+      "If you touch fire, you get burned",
+      "If you study, you will pass",
+      "If I am late, I will call"
+    ],
+    "intrusos": [
+      "If I goes",
+      "When I will go",
+      "If I to go",
+      "I stay home if rain",
+      "You get burned if you touch"
     ]
   }
 ]

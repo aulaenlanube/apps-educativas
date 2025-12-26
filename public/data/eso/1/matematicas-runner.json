@@ -1,17 +1,122 @@
 {
+  "numeros_naturales": [
+    "suma",
+    "resta",
+    "multiplicación",
+    "división",
+    "potencia",
+    "raíz cuadrada",
+    "par",
+    "impar",
+    "primo",
+    "compuesto"
+  ],
+  "geometria_plana": [
+    "triángulo",
+    "cuadrado",
+    "rectángulo",
+    "pentágono",
+    "hexágono",
+    "círculo",
+    "rombo",
+    "trapecio",
+    "perímetro",
+    "área"
+  ],
+  "fracciones": [
+    "numerador",
+    "denominador",
+    "propia",
+    "impropia",
+    "equivalente",
+    "simplificada",
+    "mixta",
+    "unidad",
+    "decimal",
+    "porcentaje"
+  ],
+  "unidades_medida": [
+    "metro",
+    "litro",
+    "gramo",
+    "segundo",
+    "grado",
+    "centímetro",
+    "kilómetro",
+    "mililitro",
+    "tonelada",
+    "minuto"
+  ],
+  "cuerpos_geometricos": [
+    "cubo",
+    "prisma",
+    "pirámide",
+    "cono",
+    "cilindro",
+    "esfera",
+    "vértice",
+    "arista",
+    "cara",
+    "base"
+  ],
   "numeros_enteros": [
-    "positivo", "negativo", "cero", "valor absoluto", "opuesto", "mayor que", "menor que", "recta numérica", "ascendente", "descendente"
+    "positivo",
+    "negativo",
+    "cero",
+    "valor absoluto",
+    "opuesto",
+    "coordenadas",
+    "eje x",
+    "eje y",
+    "cuadrante",
+    "recta numérica"
   ],
-  "figuras_planas": [
-    "triángulo", "cuadrado", "rectángulo", "rombo", "trapecio", "pentágono", "hexágono", "círculo", "polígono", "elipse"
-  ],
-  "elementos_fraccion": [
-    "numerador", "denominador", "fracción propia", "fracción impropia", "fracción mixta", "fracción irreducible", "equivalente", "simplificar", "amplificar", "unidad"
-  ],
-  "conceptos_estadistica": [
-    "población", "muestra", "variable", "frecuencia absoluta", "frecuencia relativa", "media", "moda", "mediana", "rango", "gráfico"
+  "divisibilidad": [
+    "múltiplo",
+    "divisor",
+    "mcd",
+    "mcm",
+    "criterio de divisibilidad",
+    "factorización",
+    "número primo",
+    "número compuesto",
+    "descomposición",
+    "resto"
   ],
   "algebra_basica": [
-    "incógnita", "variable", "coeficiente", "exponente", "monomio", "polinomio", "ecuación", "igualdad", "término", "expresión"
+    "variable",
+    "incógnita",
+    "ecuación",
+    "término",
+    "coeficiente",
+    "grado",
+    "monomio",
+    "polinomio",
+    "igualdad",
+    "solución"
+  ],
+  "estadistica": [
+    "población",
+    "muestra",
+    "dato",
+    "frecuencia",
+    "media",
+    "moda",
+    "mediana",
+    "encuesta",
+    "gráfico",
+    "tabla"
+  ],
+  "probabilidad": [
+    "azar",
+    "experimento",
+    "suceso",
+    "seguro",
+    "imposible",
+    "probable",
+    "dado",
+    "moneda",
+    "carta",
+    "urna"
   ]
 }

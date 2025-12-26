@@ -1,302 +1,2194 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Parte del dinero que no se gasta y se guarda para el futuro.", "solucion": "ahorro", "materia": "economia" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Título que representa una parte alícuota del capital social de una empresa.", "solucion": "acción", "materia": "economia" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Bienes y derechos que posee una empresa (lo que tiene).", "solucion": "activo", "materia": "economia" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Persona física o jurídica que interviene en la economía (Familias, Empresas, Estado).", "solucion": "agente", "materia": "economia" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Impuesto que se aplica a los bienes importados.", "solucion": "arancel", "materia": "economia" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Pago periódico por el uso de un bien (ej. vivienda).", "solucion": "alquiler", "materia": "economia" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Pérdida de valor de un activo por el uso o el tiempo.", "solucion": "amortización", "materia": "economia" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Garantía personal en la que un tercero se compromete a pagar si el deudor no lo hace.", "solucion": "aval", "materia": "economia" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Trabajador por cuenta propia.", "solucion": "autónomo", "materia": "economia" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Persona o entidad a la que se le debe dinero.", "solucion": "acreedor", "materia": "economia" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Entidad financiera que capta depósitos y otorga préstamos.", "solucion": "banco", "materia": "economia" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Ganancia económica que se obtiene de un negocio, inversión, etc.", "solucion": "beneficio", "materia": "economia" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Mercado donde se compran y venden acciones.", "solucion": "bolsa", "materia": "economia" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Documento contable que refleja el patrimonio de una empresa en un momento dado.", "solucion": "balance", "materia": "economia" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Objeto material o servicio que satisface una necesidad.", "solucion": "bien", "materia": "economia" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Salario antes de descontar impuestos y cotizaciones (Salario...).", "solucion": "bruto", "materia": "economia" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Situación de subida descontrolada de precios de un activo (Inmobiliaria).", "solucion": "burbuja", "materia": "economia" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Dinero en papel.", "solucion": "billete", "materia": "economia" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Banco Central Europeo (siglas).", "solucion": "bce", "materia": "economia" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Título de deuda emitido por el Estado o empresas.", "solucion": "bono", "materia": "economia" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Dinero y bienes que se invierten para producir.", "solucion": "capital", "materia": "economia" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Gasto necesario para producir un bien o servicio.", "solucion": "coste", "materia": "economia" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Acción de gastar dinero en bienes y servicios.", "solucion": "consumo", "materia": "economia" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Situación económica negativa con decrecimiento.", "solucion": "crisis", "materia": "economia" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Préstamo de dinero que debe ser devuelto.", "solucion": "crédito", "materia": "economia" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Actividad de compraventa de mercancías.", "solucion": "comercio", "materia": "economia" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Rivalidad entre empresas para ganar clientes.", "solucion": "competencia", "materia": "economia" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Persona que compra un producto o servicio.", "solucion": "cliente", "materia": "economia" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Precio de las acciones en bolsa o de las divisas.", "solucion": "cotización", "materia": "economia" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Acuerdo legal entre dos partes (ej. de trabajo).", "solucion": "contrato", "materia": "economia" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Cantidad de un bien que los consumidores quieren comprar.", "solucion": "demanda", "materia": "economia" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Dinero que se debe a otro.", "solucion": "deuda", "materia": "economia" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Situación donde los gastos superan a los ingresos.", "solucion": "déficit", "materia": "economia" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Medio de pago aceptado por todos.", "solucion": "dinero", "materia": "economia" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Parte del beneficio que se reparte entre los accionistas.", "solucion": "dividendo", "materia": "economia" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Moneda extranjera.", "solucion": "divisa", "materia": "economia" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Situación de falta de trabajo (Paro).", "solucion": "desempleo", "materia": "economia" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Bajada generalizada de precios (lo contrario a inflación).", "solucion": "deflación", "materia": "economia" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Dinero guardado en el banco.", "solucion": "depósito", "materia": "economia" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Rebaja en el precio.", "solucion": "descuento", "materia": "economia" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Ciencia que estudia la administración de recursos escasos.", "solucion": "economía", "materia": "economia" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Organización que produce bienes o servicios para obtener beneficio.", "solucion": "empresa", "materia": "economia" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Trabajo remunerado.", "solucion": "empleo", "materia": "economia" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Moneda común de la Unión Europea.", "solucion": "euro", "materia": "economia" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Compra de bienes con la esperanza de que suban de precio rápido.", "solucion": "especulación", "materia": "economia" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Venta de productos a otro país.", "solucion": "exportación", "materia": "economia" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Agente económico que regula la economía y ofrece servicios públicos.", "solucion": "estado", "materia": "economia" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Uso óptimo de los recursos.", "solucion": "eficiencia", "materia": "economia" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Problema básico de la economía: recursos limitados.", "solucion": "escasez", "materia": "economia" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Punto donde la oferta iguala a la demanda.", "solucion": "equilibrio", "materia": "economia" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Obtención de recursos monetarios para un proyecto.", "solucion": "financiación", "materia": "economia" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Documento que justifica una compra o venta.", "solucion": "factura", "materia": "economia" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Dinero reservado para un fin (ej. ... de inversión).", "solucion": "fondo", "materia": "economia" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Sistema de impuestos y recaudación pública.", "solucion": "fiscalidad", "materia": "economia" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Modelo de negocio donde se alquila una marca.", "solucion": "franquicia", "materia": "economia" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Dinero entregado como garantía (ej. alquiler).", "solucion": "fianza", "materia": "economia" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Movimiento de dinero (... de caja).", "solucion": "flujo", "materia": "economia" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Unidad básica de consumo en economía.", "solucion": "familia", "materia": "economia" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Coste que no varía con la producción.", "solucion": "fijo", "materia": "economia" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Engaño económico o fiscal.", "solucion": "fraude", "materia": "economia" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Dinero que sale de la empresa o familia.", "solucion": "gasto", "materia": "economia" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Beneficio obtenido.", "solucion": "ganancia", "materia": "economia" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Proceso de interconexión económica mundial.", "solucion": "globalización", "materia": "economia" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Seguridad de cumplimiento de una obligación (ej. de un producto).", "solucion": "garantía", "materia": "economia" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Administración de recursos.", "solucion": "gestión", "materia": "economia" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Que no cuesta dinero.", "solucion": "gratuito", "materia": "economia" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "Asociación profesional antigua.", "solucion": "gremio", "materia": "economia" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Carga impositiva o impuesto.", "solucion": "gravamen", "materia": "economia" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Transferencia de dinero.", "solucion": "giro", "materia": "economia" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Compañía de gran tamaño (+250 empleados).", "solucion": "gran empresa", "materia": "economia" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Organismo público encargado de recaudar impuestos.", "solucion": "hacienda", "materia": "economia" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Préstamo para comprar una vivienda.", "solucion": "hipoteca", "materia": "economia" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Inflación muy elevada y fuera de control.", "solucion": "hiperinflación", "materia": "economia" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Paro colectivo de trabajadores como protesta.", "solucion": "huelga", "materia": "economia" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Columna del balance contable (Debe y ...).", "solucion": "haber", "materia": "economia" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Sociedad que posee la mayoría de acciones de otras empresas.", "solucion": "holding", "materia": "economia" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "PIB por persona (per cápita o por ...).", "solucion": "habitante", "materia": "economia" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Pago a profesionales liberales (abogados, notarios).", "solucion": "honorarios", "materia": "economia" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Recipiente para ahorrar dinero.", "solucion": "hucha", "materia": "economia" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Bienes y deudas que se reciben de una persona fallecida.", "solucion": "herencia", "materia": "economia" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Subida generalizada de precios.", "solucion": "inflación", "materia": "economia" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Precio del dinero (Tipo de ...).", "solucion": "interés", "materia": "economia" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Uso de dinero para obtener rentabilidad futura.", "solucion": "inversión", "materia": "economia" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Pago obligatorio al Estado.", "solucion": "impuesto", "materia": "economia" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Dinero que entra en la economía familiar o empresarial.", "solucion": "ingreso", "materia": "economia" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Índice de Precios al Consumo (siglas).", "solucion": "ipc", "materia": "economia" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Compra de productos del extranjero.", "solucion": "importación", "materia": "economia" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Impuesto sobre la Renta de las Personas Físicas (siglas).", "solucion": "irpf", "materia": "economia" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Impuesto sobre el Valor Añadido (siglas).", "solucion": "iva", "materia": "economia" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Estímulo económico para motivar una acción.", "solucion": "incentivo", "materia": "economia" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Retiro laboral por edad con derecho a pensión.", "solucion": "jubilación", "materia": "economia" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Horario laboral diario (... laboral).", "solucion": "jornada", "materia": "economia" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Pago por un día de trabajo.", "solucion": "jornal", "materia": "economia" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Reunión de accionistas (... General).", "solucion": "junta", "materia": "economia" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Tipo de desempleo que afecta a menores de 25 años (... juvenil).", "solucion": "joven", "materia": "economia" },
-  { "id": "j6", "letra": "J", "tipo": "empieza", "definicion": "Objetivo de equidad económica (... social).", "solucion": "justicia", "materia": "economia" },
-  { "id": "j7", "letra": "J", "tipo": "empieza", "definicion": "Situación donde lo que uno gana lo pierde otro (... de suma cero).", "solucion": "juego", "materia": "economia" },
-  { "id": "j8", "letra": "J", "tipo": "empieza", "definicion": "Conjunto de sentencias legales sobre temas económicos.", "solucion": "jurisprudencia", "materia": "economia" },
-  { "id": "j9", "letra": "J", "tipo": "empieza", "definicion": "Cargo directivo.", "solucion": "jefatura", "materia": "economia" },
-  { "id": "j10", "letra": "J", "tipo": "empieza", "definicion": "Orden de mando en una empresa.", "solucion": "jerarquía", "materia": "economia" },
-
-  { "id": "k1", "letra": "K", "tipo": "contiene", "definicion": "Sector de la economía que incluye bancos y seguros (Ban...ing, contiene K).", "solucion": "banking", "materia": "economia" }, 
-  { "id": "k1_fix", "letra": "K", "tipo": "contiene", "definicion": "Estrategias para vender productos (Mar...eting, contiene K).", "solucion": "marketing", "materia": "economia" },
-  { "id": "k2", "letra": "K", "tipo": "contiene", "definicion": "Economista famoso (John Maynard ...eynes, contiene K).", "solucion": "keynes", "materia": "economia" },
-  { "id": "k3", "letra": "K", "tipo": "contiene", "definicion": "Lugar de intercambio (Mar...et, contiene K - Mercado).", "solucion": "market", "materia": "economia" }, 
-  { "id": "k3_fix", "letra": "K", "tipo": "contiene", "definicion": "Acciones de una empresa (Stoc..., contiene K).", "solucion": "stock", "materia": "economia" },
-  { "id": "k4", "letra": "K", "tipo": "contiene", "definicion": "Lista de clasificación (Ran...ing, contiene K).", "solucion": "ranking", "materia": "economia" },
-  { "id": "k5", "letra": "K", "tipo": "contiene", "definicion": "Medida de electricidad para la factura (Kilovatio, contiene K).", "solucion": "kilovatio", "materia": "economia" },
-  { "id": "k6", "letra": "K", "tipo": "contiene", "definicion": "Peligro de pérdida (Ris... en inglés, contiene K).", "solucion": "risk", "materia": "economia" }, 
-  { "id": "k6_fix", "letra": "K", "tipo": "contiene", "definicion": "Entidad financiera (Ban..., contiene K).", "solucion": "bank", "materia": "economia" },
-  { "id": "k7", "letra": "K", "tipo": "contiene", "definicion": "Dinero en alemán o 'El Capital' (Das ...apital, contiene K).", "solucion": "kapital", "materia": "economia" },
-  { "id": "k8", "letra": "K", "tipo": "contiene", "definicion": "Trabajo en inglés (Wor..., contiene K).", "solucion": "work", "materia": "economia" },
-  { "id": "k9", "letra": "K", "tipo": "contiene", "definicion": "Conexión o enlace web (Lin..., contiene K).", "solucion": "link", "materia": "economia" },
-  { "id": "k10", "letra": "K", "tipo": "contiene", "definicion": "Acuerdo ilegal entre empresas para fijar precios (Cártel, en alemán ...artell).", "solucion": "kartell", "materia": "economia" }, 
-  { "id": "k10_fix", "letra": "K", "tipo": "contiene", "definicion": "País rico en petróleo (K...wait, contiene K).", "solucion": "kuwait", "materia": "economia" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Capacidad de convertir un activo en dinero rápidamente.", "solucion": "liquidez", "materia": "economia" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Ganancia o beneficio.", "solucion": "lucro", "materia": "economia" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Periodo de tiempo superior a un año (... plazo).", "solucion": "largo", "materia": "economia" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Título de deuda pública a corto plazo (... del Tesoro).", "solucion": "letra", "materia": "economia" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Doctrina que defiende la mínima intervención del Estado.", "solucion": "liberalismo", "materia": "economia" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Regla que rige el mercado (... de oferta y demanda).", "solucion": "ley", "materia": "economia" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Relativo al trabajo (... laboral).", "solucion": "laboral", "materia": "economia" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Bienes muy caros y exclusivos.", "solucion": "lujo", "materia": "economia" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Permiso para realizar una actividad económica.", "solucion": "licencia", "materia": "economia" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Mercado sin restricciones (... mercado).", "solucion": "libre", "materia": "economia" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Lugar donde se encuentran oferta y demanda.", "solucion": "mercado", "materia": "economia" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Dinero de un país.", "solucion": "moneda", "materia": "economia" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Situación de mercado con un solo vendedor.", "solucion": "monopolio", "materia": "economia" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Estudio de la economía en su conjunto (país).", "solucion": "macroeconomía", "materia": "economia" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Estudio del comportamiento de agentes individuales.", "solucion": "microeconomía", "materia": "economia" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Diferencia entre precio de venta y coste.", "solucion": "margen", "materia": "economia" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Recurso natural sin transformar.", "solucion": "materia prima", "materia": "economia" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Conjunto de técnicas para mejorar la venta (Mercadotecnia).", "solucion": "marketing", "materia": "economia" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Nombre comercial de un producto.", "solucion": "marca", "materia": "economia" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Empresa que opera en varios países.", "solucion": "multinacional", "materia": "economia" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Valor final tras descontar impuestos o gastos.", "solucion": "neto", "materia": "economia" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Documento con el sueldo del trabajador.", "solucion": "nómina", "materia": "economia" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Sensación de carencia unida al deseo de satisfacerla.", "solucion": "necesidad", "materia": "economia" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Actividad comercial con fines de lucro.", "solucion": "negocio", "materia": "economia" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Segmento de mercado pequeño y específico (... de mercado).", "solucion": "nicho", "materia": "economia" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Calidad de bienestar material (... de vida).", "solucion": "nivel", "materia": "economia" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Proceso por el que el Estado se queda una empresa privada.", "solucion": "nacionalización", "materia": "economia" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Documento del Registro de la Propiedad (... simple).", "solucion": "nota", "materia": "economia" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Mercado de valores tecnológico de EE.UU.", "solucion": "nasdaq", "materia": "economia" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Dinero en efectivo (monedas y billetes).", "solucion": "numerario", "materia": "economia" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "País miembro del Euro (contiene Ñ).", "solucion": "españa", "materia": "economia" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Ejercicio económico de 12 meses (A... fiscal, contiene Ñ).", "solucion": "año", "materia": "economia" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Sociedad mercantil o empresa (Compa...ía, contiene Ñ).", "solucion": "compañía", "materia": "economia" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Aspecto visual de un producto (Dise...o, contiene Ñ).", "solucion": "diseño", "materia": "economia" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Perjuicio económico (Da...o, contiene Ñ).", "solucion": "daño", "materia": "economia" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "contiene", "definicion": "Dimensión de la empresa (Tama...o, contiene Ñ).", "solucion": "tamaño", "materia": "economia" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Diferencia entre coste laboral y salario neto (Cu...a fiscal, contiene Ñ).", "solucion": "cuña", "materia": "economia" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Empresa con pocos trabajadores (Peque...a empresa, contiene Ñ).", "solucion": "pequeña", "materia": "economia" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "Periodo de publicidad o ventas (Campa...a, contiene Ñ).", "solucion": "campaña", "materia": "economia" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "Propietario de un negocio (Due...o, contiene Ñ).", "solucion": "dueño", "materia": "economia" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Cantidad de productos que las empresas venden.", "solucion": "oferta", "materia": "economia" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Título de deuda de una empresa o estado.", "solucion": "obligación", "materia": "economia" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Valor de lo que se renuncia al elegir otra cosa (Coste de...).", "solucion": "oportunidad", "materia": "economia" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Mercado con pocos vendedores.", "solucion": "oligopolio", "materia": "economia" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Metal precioso usado como reserva de valor.", "solucion": "oro", "materia": "economia" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Estructura de la empresa.", "solucion": "organización", "materia": "economia" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Transacción económica.", "solucion": "operación", "materia": "economia" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Lugares de trabajo administrativo.", "solucion": "oficinas", "materia": "economia" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Unidad de peso para el oro.", "solucion": "onza", "materia": "economia" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Mandato de compra o venta en bolsa.", "solucion": "orden", "materia": "economia" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Valor monetario de un producto.", "solucion": "precio", "materia": "economia" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Bien o servicio resultado de la producción.", "solucion": "producto", "materia": "economia" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Producto Interior Bruto (siglas).", "solucion": "pib", "materia": "economia" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Conjunto de bienes, derechos y obligaciones.", "solucion": "patrimonio", "materia": "economia" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Dinero que se pide al banco y se devuelve con intereses.", "solucion": "préstamo", "materia": "economia" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Deudas y obligaciones de una empresa (Balance).", "solucion": "pasivo", "materia": "economia" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Situación de desempleo.", "solucion": "paro", "materia": "economia" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Pago mensual tras la jubilación.", "solucion": "pensión", "materia": "economia" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Situación de escasez de recursos extremos.", "solucion": "pobreza", "materia": "economia" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Plan de ingresos y gastos futuros.", "solucion": "presupuesto", "materia": "economia" },
-
-  { "id": "q1", "letra": "Q", "tipo": "contiene", "definicion": "Documento de pago (Che...e, contiene Q).", "solucion": "cheque", "materia": "economia" },
-  { "id": "q2", "letra": "Q", "tipo": "contiene", "definicion": "Abundancia de bienes (Ri...eza, contiene Q).", "solucion": "riqueza", "materia": "economia" },
-  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Marca informativa en productos (Eti...eta, contiene Q).", "solucion": "etiqueta", "materia": "economia" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Pago por uso de vivienda (Al...iler, contiene Q).", "solucion": "alquiler", "materia": "economia" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Modelo de negocio (Fran...icia, contiene Q).", "solucion": "franquicia", "materia": "economia" },
-  { "id": "q6", "letra": "Q", "tipo": "contiene", "definicion": "Bancarrota (Qui...bra, contiene Q).", "solucion": "quiebra", "materia": "economia" },
-  { "id": "q7", "letra": "Q", "tipo": "contiene", "definicion": "Venta final por cierre (Li...idación, contiene Q).", "solucion": "liquidación", "materia": "economia" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "Balance entre oferta y demanda (E...ilibrio, contiene Q).", "solucion": "equilibrio", "materia": "economia" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Conjunto de acciones (Pa...ete, contiene Q).", "solucion": "paquete", "materia": "economia" },
-  { "id": "q10", "letra": "Q", "tipo": "contiene", "definicion": "Grupo de países o empresas (Blo...e, contiene Q).", "solucion": "bloque", "materia": "economia" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Ingreso periódico (del trabajo, capital, etc.).", "solucion": "renta", "materia": "economia" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Caída de la actividad económica (PIB negativo).", "solucion": "recesión", "materia": "economia" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Posibilidad de perder dinero en una inversión.", "solucion": "riesgo", "materia": "economia" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Conjunto de bienes y activos.", "solucion": "riqueza", "materia": "economia" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Medio utilizado para producir (tierra, trabajo, capital).", "solucion": "recurso", "materia": "economia" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Beneficio que produce una inversión.", "solucion": "rendimiento", "materia": "economia" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Pago por el trabajo realizado.", "solucion": "retribución", "materia": "economia" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Descuento en el precio (Rebajas).", "solucion": "rebaja", "materia": "economia" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Justificante de pago.", "solucion": "recibo", "materia": "economia" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Conjunto de contactos o infraestructuras.", "solucion": "red", "materia": "economia" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Pago por el trabajo.", "solucion": "salario", "materia": "economia" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Parte de la economía (Primario, Secundario, Terciario).", "solucion": "sector", "materia": "economia" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Situación donde los ingresos superan a los gastos.", "solucion": "superávit", "materia": "economia" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Ayuda económica del Estado.", "solucion": "subvención", "materia": "economia" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Forma jurídica de una empresa (S.A., S.L.).", "solucion": "sociedad", "materia": "economia" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Actividad inmaterial que satisface una necesidad.", "solucion": "servicio", "materia": "economia" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Asociación de trabajadores para defender sus derechos.", "solucion": "sindicato", "materia": "economia" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Conjunto de reglas económicas.", "solucion": "sistema", "materia": "economia" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Miembro de una sociedad.", "solucion": "socio", "materia": "economia" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Organismo público de protección (... Social).", "solucion": "seguridad", "materia": "economia" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Factor productivo humano.", "solucion": "trabajo", "materia": "economia" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Porcentaje o índice (ej. de paro).", "solucion": "tasa", "materia": "economia" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Precio del dinero (... de interés).", "solucion": "tipo", "materia": "economia" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Pago obligatorio al Estado (Impuesto).", "solucion": "tributo", "materia": "economia" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Medio de pago de plástico.", "solucion": "tarjeta", "materia": "economia" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Hacienda pública (... Público).", "solucion": "tesoro", "materia": "economia" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Factor productivo natural.", "solucion": "tierra", "materia": "economia" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Envío de dinero entre cuentas.", "solucion": "transferencia", "materia": "economia" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Sector económico de viajes y ocio.", "solucion": "turismo", "materia": "economia" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Acuerdo comercial internacional.", "solucion": "tratado", "materia": "economia" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Satisfacción que produce un bien.", "solucion": "utilidad", "materia": "economia" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Persona que usa un servicio.", "solucion": "usuario", "materia": "economia" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Bloque económico europeo (... Europea).", "solucion": "unión", "materia": "economia" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Límite de ingresos para considerar pobreza (... de pobreza).", "solucion": "umbral", "materia": "economia" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Interés excesivo por un préstamo.", "solucion": "usura", "materia": "economia" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Cada producto suelto.", "solucion": "unidad", "materia": "economia" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Que requiere atención inmediata.", "solucion": "urgente", "materia": "economia" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Zona de ciudad (Suelo...).", "solucion": "urbano", "materia": "economia" },
-  { "id": "u9", "letra": "U", "tipo": "empieza", "definicion": "Empresa de un solo socio.", "solucion": "unipersonal", "materia": "economia" },
-  { "id": "u10", "letra": "U", "tipo": "empieza", "definicion": "Uso de recursos.", "solucion": "utilización", "materia": "economia" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Utilidad o precio de algo.", "solucion": "valor", "materia": "economia" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Acción de dar un bien a cambio de dinero.", "solucion": "venta", "materia": "economia" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Factor que puede cambiar (Macroeconomía).", "solucion": "variable", "materia": "economia" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Beneficio respecto a la competencia (... competitiva).", "solucion": "ventaja", "materia": "economia" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Calidad de bienestar (Nivel de...).", "solucion": "vida", "materia": "economia" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Cambio brusco de precios en el mercado.", "solucion": "volatilidad", "materia": "economia" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Incremento de valor en el proceso productivo (Valor...).", "solucion": "añadido", "materia": "economia" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Casa o piso, bien de inversión.", "solucion": "vivienda", "materia": "economia" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Fecha límite de un pago.", "solucion": "vencimiento", "materia": "economia" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Cantidad total (ej. ... de negocio).", "solucion": "volumen", "materia": "economia" },
-
-  { "id": "w1", "letra": "W", "tipo": "contiene", "definicion": "Página de internet para comercio (contiene W).", "solucion": "web", "materia": "economia" },
-  { "id": "w2", "letra": "W", "tipo": "contiene", "definicion": "Estado del Bienestar en inglés (Welfare, contiene W).", "solucion": "welfare", "materia": "economia" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Calle de la bolsa de Nueva York (Wall Street, contiene W).", "solucion": "wall street", "materia": "economia" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Trabajo en inglés (Work, contiene W).", "solucion": "work", "materia": "economia" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Programas informáticos (Soft...ware, contiene W).", "solucion": "software", "materia": "economia" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Componentes físicos del ordenador (Hard...ware, contiene W).", "solucion": "hardware", "materia": "economia" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Banco Mundial en inglés (...orld Bank, contiene W).", "solucion": "world", "materia": "economia" },
-  { "id": "w8", "letra": "W", "tipo": "contiene", "definicion": "Red de contactos (Net...orking, contiene W).", "solucion": "networking", "materia": "economia" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "Situación donde todos ganan (...-win, contiene W).", "solucion": "win", "materia": "economia" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Derecho de compra/venta de acciones (contiene W).", "solucion": "warrant", "materia": "economia" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Venta al extranjero (E...portación, contiene X).", "solucion": "exportación", "materia": "economia" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "País ajeno (E...tranjero, contiene X).", "solucion": "extranjero", "materia": "economia" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Uso de recursos (E...plotación, contiene X).", "solucion": "explotación", "materia": "economia" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Triunfo empresarial (É...ito, contiene X).", "solucion": "éxito", "materia": "economia" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Sobrante de producción (E...cedente, contiene X).", "solucion": "excedente", "materia": "economia" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Stock en almacén (E...istencias, contiene X).", "solucion": "existencias", "materia": "economia" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Tasa en inglés (Ta..., contiene X).", "solucion": "tax", "materia": "economia" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Documento legal (Te...to, contiene X).", "solucion": "texto", "materia": "economia" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Tipo de cambio que varía (Fle...ible, contiene X).", "solucion": "flexible", "materia": "economia" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "Sistema con sector público y privado (Economía Mi...ta, contiene X).", "solucion": "mixta", "materia": "economia" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Moneda de Japón.", "solucion": "yen", "materia": "economia" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Moneda de China.", "solucion": "yuan", "materia": "economia" },
-  { "id": "y3", "letra": "Y", "tipo": "empieza", "definicion": "Lugar con recursos minerales.", "solucion": "yacimiento", "materia": "economia" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Pequeña y Mediana Empresa (P...me, contiene Y).", "solucion": "pyme", "materia": "economia" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Pago por derechos de autor (Ro...altie, contiene Y).", "solucion": "royaltie", "materia": "economia" },
-  { "id": "y6", "letra": "Y", "tipo": "contiene", "definicion": "Norma jurídica (Le..., contiene Y).", "solucion": "ley", "materia": "economia" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Vendedor a grandes cantidades (Ma...orista, contiene Y).", "solucion": "mayorista", "materia": "economia" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Situación económica actual (Co...untura, contiene Y).", "solucion": "coyuntura", "materia": "economia" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Día presente (Ho..., contiene Y).", "solucion": "hoy", "materia": "economia" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Plan de empresa (Pro...ecto, contiene Y).", "solucion": "proyecto", "materia": "economia" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Área geográfica con moneda común (... Euro).", "solucion": "zona", "materia": "economia" },
-  { "id": "z2", "letra": "Z", "tipo": "contiene", "definicion": "Estado contable de un país (Balan...a de pagos, contiene Z).", "solucion": "balanza", "materia": "economia" },
-  { "id": "z3", "letra": "Z", "tipo": "contiene", "definicion": "Patrimonio o dinero (Rique...a, contiene Z).", "solucion": "riqueza", "materia": "economia" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Pago a la Seguridad Social (Coti...ación, contiene Z).", "solucion": "cotización", "materia": "economia" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Control de impuestos (Fiscali...ación, contiene Z).", "solucion": "fiscalización", "materia": "economia" },
-  { "id": "z6", "letra": "Z", "tipo": "contiene", "definicion": "Pago por despido o daño (Indemni...ación, contiene Z).", "solucion": "indemnización", "materia": "economia" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Estructura de la empresa (Organi...ación, contiene Z).", "solucion": "organización", "materia": "economia" },
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "Control de precios (Estabili...ación, contiene Z).", "solucion": "estabilización", "materia": "economia" },
-  { "id": "z9", "letra": "Z", "tipo": "contiene", "definicion": "Valor total de las acciones (Capitali...ación, contiene Z).", "solucion": "capitalización", "materia": "economia" },
-  { "id": "z10", "letra": "Z", "tipo": "contiene", "definicion": "Puesta en venta de un producto (Comerciali...ación, contiene Z).", "solucion": "comercialización", "materia": "economia" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Parte del dinero que no se gasta y se guarda para el futuro.",
+    "solucion": "ahorro",
+    "materia": "economia"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Título que representa una parte alícuota del capital social de una empresa.",
+    "solucion": "acción",
+    "materia": "economia"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Bienes y derechos que posee una empresa (lo que tiene).",
+    "solucion": "activo",
+    "materia": "economia"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Persona física o jurídica que interviene en la economía (Familias, Empresas, Estado).",
+    "solucion": "agente",
+    "materia": "economia"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Impuesto que se aplica a los bienes importados.",
+    "solucion": "arancel",
+    "materia": "economia"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Pago periódico por el uso de un bien (ej. vivienda).",
+    "solucion": "alquiler",
+    "materia": "economia"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Pérdida de valor de un activo por el uso o el tiempo.",
+    "solucion": "amortización",
+    "materia": "economia"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Garantía personal en la que un tercero se compromete a pagar si el deudor no lo hace.",
+    "solucion": "aval",
+    "materia": "economia"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Trabajador por cuenta propia.",
+    "solucion": "autónomo",
+    "materia": "economia"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Persona o entidad a la que se le debe dinero.",
+    "solucion": "acreedor",
+    "materia": "economia"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Entidad financiera que capta depósitos y otorga préstamos.",
+    "solucion": "banco",
+    "materia": "economia"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Ganancia económica que se obtiene de un negocio, inversión, etc.",
+    "solucion": "beneficio",
+    "materia": "economia"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Mercado donde se compran y venden acciones.",
+    "solucion": "bolsa",
+    "materia": "economia"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Documento contable que refleja el patrimonio de una empresa en un momento dado.",
+    "solucion": "balance",
+    "materia": "economia"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Objeto material o servicio que satisface una necesidad.",
+    "solucion": "bien",
+    "materia": "economia"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Salario antes de descontar impuestos y cotizaciones (Salario...).",
+    "solucion": "bruto",
+    "materia": "economia"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Situación de subida descontrolada de precios de un activo (Inmobiliaria).",
+    "solucion": "burbuja",
+    "materia": "economia"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Dinero en papel.",
+    "solucion": "billete",
+    "materia": "economia"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Banco Central Europeo (siglas).",
+    "solucion": "bce",
+    "materia": "economia"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Título de deuda emitido por el Estado o empresas.",
+    "solucion": "bono",
+    "materia": "economia"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Dinero y bienes que se invierten para producir.",
+    "solucion": "capital",
+    "materia": "economia"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Gasto necesario para producir un bien o servicio.",
+    "solucion": "coste",
+    "materia": "economia"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Acción de gastar dinero en bienes y servicios.",
+    "solucion": "consumo",
+    "materia": "economia"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Situación económica negativa con decrecimiento.",
+    "solucion": "crisis",
+    "materia": "economia"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Préstamo de dinero que debe ser devuelto.",
+    "solucion": "crédito",
+    "materia": "economia"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Actividad de compraventa de mercancías.",
+    "solucion": "comercio",
+    "materia": "economia"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Rivalidad entre empresas para ganar clientes.",
+    "solucion": "competencia",
+    "materia": "economia"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Persona que compra un producto o servicio.",
+    "solucion": "cliente",
+    "materia": "economia"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Precio de las acciones en bolsa o de las divisas.",
+    "solucion": "cotización",
+    "materia": "economia"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Acuerdo legal entre dos partes (ej. de trabajo).",
+    "solucion": "contrato",
+    "materia": "economia"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Cantidad de un bien que los consumidores quieren comprar.",
+    "solucion": "demanda",
+    "materia": "economia"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Dinero que se debe a otro.",
+    "solucion": "deuda",
+    "materia": "economia"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Situación donde los gastos superan a los ingresos.",
+    "solucion": "déficit",
+    "materia": "economia"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Medio de pago aceptado por todos.",
+    "solucion": "dinero",
+    "materia": "economia"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Parte del beneficio que se reparte entre los accionistas.",
+    "solucion": "dividendo",
+    "materia": "economia"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Moneda extranjera.",
+    "solucion": "divisa",
+    "materia": "economia"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Situación de falta de trabajo (Paro).",
+    "solucion": "desempleo",
+    "materia": "economia"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Bajada generalizada de precios (lo contrario a inflación).",
+    "solucion": "deflación",
+    "materia": "economia"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Dinero guardado en el banco.",
+    "solucion": "depósito",
+    "materia": "economia"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Rebaja en el precio.",
+    "solucion": "descuento",
+    "materia": "economia"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia la administración de recursos escasos.",
+    "solucion": "economía",
+    "materia": "economia"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Organización que produce bienes o servicios para obtener beneficio.",
+    "solucion": "empresa",
+    "materia": "economia"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Trabajo remunerado.",
+    "solucion": "empleo",
+    "materia": "economia"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Moneda común de la Unión Europea.",
+    "solucion": "euro",
+    "materia": "economia"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Compra de bienes con la esperanza de que suban de precio rápido.",
+    "solucion": "especulación",
+    "materia": "economia"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Venta de productos a otro país.",
+    "solucion": "exportación",
+    "materia": "economia"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Agente económico que regula la economía y ofrece servicios públicos.",
+    "solucion": "estado",
+    "materia": "economia"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Uso óptimo de los recursos.",
+    "solucion": "eficiencia",
+    "materia": "economia"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Problema básico de la economía: recursos limitados.",
+    "solucion": "escasez",
+    "materia": "economia"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Punto donde la oferta iguala a la demanda.",
+    "solucion": "equilibrio",
+    "materia": "economia"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Obtención de recursos monetarios para un proyecto.",
+    "solucion": "financiación",
+    "materia": "economia"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Documento que justifica una compra o venta.",
+    "solucion": "factura",
+    "materia": "economia"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Dinero reservado para un fin (ej. ... de inversión).",
+    "solucion": "fondo",
+    "materia": "economia"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Sistema de impuestos y recaudación pública.",
+    "solucion": "fiscalidad",
+    "materia": "economia"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Modelo de negocio donde se alquila una marca.",
+    "solucion": "franquicia",
+    "materia": "economia"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Dinero entregado como garantía (ej. alquiler).",
+    "solucion": "fianza",
+    "materia": "economia"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Movimiento de dinero (... de caja).",
+    "solucion": "flujo",
+    "materia": "economia"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Unidad básica de consumo en economía.",
+    "solucion": "familia",
+    "materia": "economia"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Coste que no varía con la producción.",
+    "solucion": "fijo",
+    "materia": "economia"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Engaño económico o fiscal.",
+    "solucion": "fraude",
+    "materia": "economia"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Dinero que sale de la empresa o familia.",
+    "solucion": "gasto",
+    "materia": "economia"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Beneficio obtenido.",
+    "solucion": "ganancia",
+    "materia": "economia"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Proceso de interconexión económica mundial.",
+    "solucion": "globalización",
+    "materia": "economia"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Seguridad de cumplimiento de una obligación (ej. de un producto).",
+    "solucion": "garantía",
+    "materia": "economia"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Administración de recursos.",
+    "solucion": "gestión",
+    "materia": "economia"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Que no cuesta dinero.",
+    "solucion": "gratuito",
+    "materia": "economia"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Asociación profesional antigua.",
+    "solucion": "gremio",
+    "materia": "economia"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Carga impositiva o impuesto.",
+    "solucion": "gravamen",
+    "materia": "economia"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Transferencia de dinero.",
+    "solucion": "giro",
+    "materia": "economia"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Compañía de gran tamaño (+250 empleados).",
+    "solucion": "gran empresa",
+    "materia": "economia"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Organismo público encargado de recaudar impuestos.",
+    "solucion": "hacienda",
+    "materia": "economia"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Préstamo para comprar una vivienda.",
+    "solucion": "hipoteca",
+    "materia": "economia"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Inflación muy elevada y fuera de control.",
+    "solucion": "hiperinflación",
+    "materia": "economia"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Paro colectivo de trabajadores como protesta.",
+    "solucion": "huelga",
+    "materia": "economia"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Columna del balance contable (Debe y ...).",
+    "solucion": "haber",
+    "materia": "economia"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Sociedad que posee la mayoría de acciones de otras empresas.",
+    "solucion": "holding",
+    "materia": "economia"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "PIB por persona (per cápita o por ...).",
+    "solucion": "habitante",
+    "materia": "economia"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Pago a profesionales liberales (abogados, notarios).",
+    "solucion": "honorarios",
+    "materia": "economia"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Recipiente para ahorrar dinero.",
+    "solucion": "hucha",
+    "materia": "economia"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Bienes y deudas que se reciben de una persona fallecida.",
+    "solucion": "herencia",
+    "materia": "economia"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Subida generalizada de precios.",
+    "solucion": "inflación",
+    "materia": "economia"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Precio del dinero (Tipo de ...).",
+    "solucion": "interés",
+    "materia": "economia"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Uso de dinero para obtener rentabilidad futura.",
+    "solucion": "inversión",
+    "materia": "economia"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Pago obligatorio al Estado.",
+    "solucion": "impuesto",
+    "materia": "economia"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Dinero que entra en la economía familiar o empresarial.",
+    "solucion": "ingreso",
+    "materia": "economia"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Índice de Precios al Consumo (siglas).",
+    "solucion": "ipc",
+    "materia": "economia"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Compra de productos del extranjero.",
+    "solucion": "importación",
+    "materia": "economia"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Impuesto sobre la Renta de las Personas Físicas (siglas).",
+    "solucion": "irpf",
+    "materia": "economia"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Impuesto sobre el Valor Añadido (siglas).",
+    "solucion": "iva",
+    "materia": "economia"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Estímulo económico para motivar una acción.",
+    "solucion": "incentivo",
+    "materia": "economia"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Retiro laboral por edad con derecho a pensión.",
+    "solucion": "jubilación",
+    "materia": "economia"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Horario laboral diario (... laboral).",
+    "solucion": "jornada",
+    "materia": "economia"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Pago por un día de trabajo.",
+    "solucion": "jornal",
+    "materia": "economia"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Reunión de accionistas (... General).",
+    "solucion": "junta",
+    "materia": "economia"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Tipo de desempleo que afecta a menores de 25 años (... juvenil).",
+    "solucion": "joven",
+    "materia": "economia"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Objetivo de equidad económica (... social).",
+    "solucion": "justicia",
+    "materia": "economia"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Situación donde lo que uno gana lo pierde otro (... de suma cero).",
+    "solucion": "juego",
+    "materia": "economia"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Conjunto de sentencias legales sobre temas económicos.",
+    "solucion": "jurisprudencia",
+    "materia": "economia"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Cargo directivo.",
+    "solucion": "jefatura",
+    "materia": "economia"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Orden de mando en una empresa.",
+    "solucion": "jerarquía",
+    "materia": "economia"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Sector de la economía que incluye bancos y seguros (Ban...ing, contiene K).",
+    "solucion": "banking",
+    "materia": "economia"
+  },
+  {
+    "id": "k1_fix",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Estrategias para vender productos (Mar...eting, contiene K).",
+    "solucion": "marketing",
+    "materia": "economia"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Economista famoso (John Maynard ...eynes, contiene K).",
+    "solucion": "keynes",
+    "materia": "economia"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Lugar de intercambio (Mar...et, contiene K - Mercado).",
+    "solucion": "market",
+    "materia": "economia"
+  },
+  {
+    "id": "k3_fix",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Acciones de una empresa (Stoc..., contiene K).",
+    "solucion": "stock",
+    "materia": "economia"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Lista de clasificación (Ran...ing, contiene K).",
+    "solucion": "ranking",
+    "materia": "economia"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Medida de electricidad para la factura (Kilovatio, contiene K).",
+    "solucion": "kilovatio",
+    "materia": "economia"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Peligro de pérdida (Ris... en inglés, contiene K).",
+    "solucion": "risk",
+    "materia": "economia"
+  },
+  {
+    "id": "k6_fix",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Entidad financiera (Ban..., contiene K).",
+    "solucion": "bank",
+    "materia": "economia"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Dinero en alemán o 'El Capital' (Das ...apital, contiene K).",
+    "solucion": "kapital",
+    "materia": "economia"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Trabajo en inglés (Wor..., contiene K).",
+    "solucion": "work",
+    "materia": "economia"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Conexión o enlace web (Lin..., contiene K).",
+    "solucion": "link",
+    "materia": "economia"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Acuerdo ilegal entre empresas para fijar precios (Cártel, en alemán ...artell).",
+    "solucion": "kartell",
+    "materia": "economia"
+  },
+  {
+    "id": "k10_fix",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "País rico en petróleo (K...wait, contiene K).",
+    "solucion": "kuwait",
+    "materia": "economia"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Capacidad de convertir un activo en dinero rápidamente.",
+    "solucion": "liquidez",
+    "materia": "economia"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Ganancia o beneficio.",
+    "solucion": "lucro",
+    "materia": "economia"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Periodo de tiempo superior a un año (... plazo).",
+    "solucion": "largo",
+    "materia": "economia"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Título de deuda pública a corto plazo (... del Tesoro).",
+    "solucion": "letra",
+    "materia": "economia"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Doctrina que defiende la mínima intervención del Estado.",
+    "solucion": "liberalismo",
+    "materia": "economia"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Regla que rige el mercado (... de oferta y demanda).",
+    "solucion": "ley",
+    "materia": "economia"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Relativo al trabajo (... laboral).",
+    "solucion": "laboral",
+    "materia": "economia"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Bienes muy caros y exclusivos.",
+    "solucion": "lujo",
+    "materia": "economia"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Permiso para realizar una actividad económica.",
+    "solucion": "licencia",
+    "materia": "economia"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Mercado sin restricciones (... mercado).",
+    "solucion": "libre",
+    "materia": "economia"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Lugar donde se encuentran oferta y demanda.",
+    "solucion": "mercado",
+    "materia": "economia"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Dinero de un país.",
+    "solucion": "moneda",
+    "materia": "economia"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Situación de mercado con un solo vendedor.",
+    "solucion": "monopolio",
+    "materia": "economia"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Estudio de la economía en su conjunto (país).",
+    "solucion": "macroeconomía",
+    "materia": "economia"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Estudio del comportamiento de agentes individuales.",
+    "solucion": "microeconomía",
+    "materia": "economia"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Diferencia entre precio de venta y coste.",
+    "solucion": "margen",
+    "materia": "economia"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Recurso natural sin transformar.",
+    "solucion": "materia prima",
+    "materia": "economia"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Conjunto de técnicas para mejorar la venta (Mercadotecnia).",
+    "solucion": "marketing",
+    "materia": "economia"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Nombre comercial de un producto.",
+    "solucion": "marca",
+    "materia": "economia"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Empresa que opera en varios países.",
+    "solucion": "multinacional",
+    "materia": "economia"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Valor final tras descontar impuestos o gastos.",
+    "solucion": "neto",
+    "materia": "economia"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Documento con el sueldo del trabajador.",
+    "solucion": "nómina",
+    "materia": "economia"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Sensación de carencia unida al deseo de satisfacerla.",
+    "solucion": "necesidad",
+    "materia": "economia"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Actividad comercial con fines de lucro.",
+    "solucion": "negocio",
+    "materia": "economia"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Segmento de mercado pequeño y específico (... de mercado).",
+    "solucion": "nicho",
+    "materia": "economia"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Calidad de bienestar material (... de vida).",
+    "solucion": "nivel",
+    "materia": "economia"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Proceso por el que el Estado se queda una empresa privada.",
+    "solucion": "nacionalización",
+    "materia": "economia"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Documento del Registro de la Propiedad (... simple).",
+    "solucion": "nota",
+    "materia": "economia"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Mercado de valores tecnológico de EE.UU.",
+    "solucion": "nasdaq",
+    "materia": "economia"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Dinero en efectivo (monedas y billetes).",
+    "solucion": "numerario",
+    "materia": "economia"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "País miembro del Euro (contiene Ñ).",
+    "solucion": "españa",
+    "materia": "economia"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Ejercicio económico de 12 meses (A... fiscal, contiene Ñ).",
+    "solucion": "año",
+    "materia": "economia"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Sociedad mercantil o empresa (Compa...ía, contiene Ñ).",
+    "solucion": "compañía",
+    "materia": "economia"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Aspecto visual de un producto (Dise...o, contiene Ñ).",
+    "solucion": "diseño",
+    "materia": "economia"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Perjuicio económico (Da...o, contiene Ñ).",
+    "solucion": "daño",
+    "materia": "economia"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Dimensión de la empresa (Tama...o, contiene Ñ).",
+    "solucion": "tamaño",
+    "materia": "economia"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Diferencia entre coste laboral y salario neto (Cu...a fiscal, contiene Ñ).",
+    "solucion": "cuña",
+    "materia": "economia"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Empresa con pocos trabajadores (Peque...a empresa, contiene Ñ).",
+    "solucion": "pequeña",
+    "materia": "economia"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Periodo de publicidad o ventas (Campa...a, contiene Ñ).",
+    "solucion": "campaña",
+    "materia": "economia"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Propietario de un negocio (Due...o, contiene Ñ).",
+    "solucion": "dueño",
+    "materia": "economia"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Cantidad de productos que las empresas venden.",
+    "solucion": "oferta",
+    "materia": "economia"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Título de deuda de una empresa o estado.",
+    "solucion": "obligación",
+    "materia": "economia"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Valor de lo que se renuncia al elegir otra cosa (Coste de...).",
+    "solucion": "oportunidad",
+    "materia": "economia"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Mercado con pocos vendedores.",
+    "solucion": "oligopolio",
+    "materia": "economia"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Metal precioso usado como reserva de valor.",
+    "solucion": "oro",
+    "materia": "economia"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Estructura de la empresa.",
+    "solucion": "organización",
+    "materia": "economia"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Transacción económica.",
+    "solucion": "operación",
+    "materia": "economia"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Lugares de trabajo administrativo.",
+    "solucion": "oficinas",
+    "materia": "economia"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Unidad de peso para el oro.",
+    "solucion": "onza",
+    "materia": "economia"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Mandato de compra o venta en bolsa.",
+    "solucion": "orden",
+    "materia": "economia"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Valor monetario de un producto.",
+    "solucion": "precio",
+    "materia": "economia"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Bien o servicio resultado de la producción.",
+    "solucion": "producto",
+    "materia": "economia"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Producto Interior Bruto (siglas).",
+    "solucion": "pib",
+    "materia": "economia"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Conjunto de bienes, derechos y obligaciones.",
+    "solucion": "patrimonio",
+    "materia": "economia"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Dinero que se pide al banco y se devuelve con intereses.",
+    "solucion": "préstamo",
+    "materia": "economia"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Deudas y obligaciones de una empresa (Balance).",
+    "solucion": "pasivo",
+    "materia": "economia"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Situación de desempleo.",
+    "solucion": "paro",
+    "materia": "economia"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Pago mensual tras la jubilación.",
+    "solucion": "pensión",
+    "materia": "economia"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Situación de escasez de recursos extremos.",
+    "solucion": "pobreza",
+    "materia": "economia"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Plan de ingresos y gastos futuros.",
+    "solucion": "presupuesto",
+    "materia": "economia"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Documento de pago (Che...e, contiene Q).",
+    "solucion": "cheque",
+    "materia": "economia"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Abundancia de bienes (Ri...eza, contiene Q).",
+    "solucion": "riqueza",
+    "materia": "economia"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Marca informativa en productos (Eti...eta, contiene Q).",
+    "solucion": "etiqueta",
+    "materia": "economia"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Pago por uso de vivienda (Al...iler, contiene Q).",
+    "solucion": "alquiler",
+    "materia": "economia"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Modelo de negocio (Fran...icia, contiene Q).",
+    "solucion": "franquicia",
+    "materia": "economia"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Bancarrota (Qui...bra, contiene Q).",
+    "solucion": "quiebra",
+    "materia": "economia"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Venta final por cierre (Li...idación, contiene Q).",
+    "solucion": "liquidación",
+    "materia": "economia"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Balance entre oferta y demanda (E...ilibrio, contiene Q).",
+    "solucion": "equilibrio",
+    "materia": "economia"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Conjunto de acciones (Pa...ete, contiene Q).",
+    "solucion": "paquete",
+    "materia": "economia"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Grupo de países o empresas (Blo...e, contiene Q).",
+    "solucion": "bloque",
+    "materia": "economia"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Ingreso periódico (del trabajo, capital, etc.).",
+    "solucion": "renta",
+    "materia": "economia"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Caída de la actividad económica (PIB negativo).",
+    "solucion": "recesión",
+    "materia": "economia"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Posibilidad de perder dinero en una inversión.",
+    "solucion": "riesgo",
+    "materia": "economia"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Conjunto de bienes y activos.",
+    "solucion": "riqueza",
+    "materia": "economia"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Medio utilizado para producir (tierra, trabajo, capital).",
+    "solucion": "recurso",
+    "materia": "economia"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Beneficio que produce una inversión.",
+    "solucion": "rendimiento",
+    "materia": "economia"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Pago por el trabajo realizado.",
+    "solucion": "retribución",
+    "materia": "economia"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Descuento en el precio (Rebajas).",
+    "solucion": "rebaja",
+    "materia": "economia"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Justificante de pago.",
+    "solucion": "recibo",
+    "materia": "economia"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Conjunto de contactos o infraestructuras.",
+    "solucion": "red",
+    "materia": "economia"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Pago por el trabajo.",
+    "solucion": "salario",
+    "materia": "economia"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Parte de la economía (Primario, Secundario, Terciario).",
+    "solucion": "sector",
+    "materia": "economia"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Situación donde los ingresos superan a los gastos.",
+    "solucion": "superávit",
+    "materia": "economia"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Ayuda económica del Estado.",
+    "solucion": "subvención",
+    "materia": "economia"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Forma jurídica de una empresa (S.A., S.L.).",
+    "solucion": "sociedad",
+    "materia": "economia"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Actividad inmaterial que satisface una necesidad.",
+    "solucion": "servicio",
+    "materia": "economia"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Asociación de trabajadores para defender sus derechos.",
+    "solucion": "sindicato",
+    "materia": "economia"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de reglas económicas.",
+    "solucion": "sistema",
+    "materia": "economia"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Miembro de una sociedad.",
+    "solucion": "socio",
+    "materia": "economia"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Organismo público de protección (... Social).",
+    "solucion": "seguridad",
+    "materia": "economia"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Factor productivo humano.",
+    "solucion": "trabajo",
+    "materia": "economia"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Porcentaje o índice (ej. de paro).",
+    "solucion": "tasa",
+    "materia": "economia"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Precio del dinero (... de interés).",
+    "solucion": "tipo",
+    "materia": "economia"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Pago obligatorio al Estado (Impuesto).",
+    "solucion": "tributo",
+    "materia": "economia"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Medio de pago de plástico.",
+    "solucion": "tarjeta",
+    "materia": "economia"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Hacienda pública (... Público).",
+    "solucion": "tesoro",
+    "materia": "economia"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Factor productivo natural.",
+    "solucion": "tierra",
+    "materia": "economia"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Envío de dinero entre cuentas.",
+    "solucion": "transferencia",
+    "materia": "economia"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Sector económico de viajes y ocio.",
+    "solucion": "turismo",
+    "materia": "economia"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Acuerdo comercial internacional.",
+    "solucion": "tratado",
+    "materia": "economia"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Satisfacción que produce un bien.",
+    "solucion": "utilidad",
+    "materia": "economia"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Persona que usa un servicio.",
+    "solucion": "usuario",
+    "materia": "economia"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Bloque económico europeo (... Europea).",
+    "solucion": "unión",
+    "materia": "economia"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Límite de ingresos para considerar pobreza (... de pobreza).",
+    "solucion": "umbral",
+    "materia": "economia"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Interés excesivo por un préstamo.",
+    "solucion": "usura",
+    "materia": "economia"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Cada producto suelto.",
+    "solucion": "unidad",
+    "materia": "economia"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Que requiere atención inmediata.",
+    "solucion": "urgente",
+    "materia": "economia"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Zona de ciudad (Suelo...).",
+    "solucion": "urbano",
+    "materia": "economia"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Empresa de un solo socio.",
+    "solucion": "unipersonal",
+    "materia": "economia"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Uso de recursos.",
+    "solucion": "utilización",
+    "materia": "economia"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Utilidad o precio de algo.",
+    "solucion": "valor",
+    "materia": "economia"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Acción de dar un bien a cambio de dinero.",
+    "solucion": "venta",
+    "materia": "economia"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Factor que puede cambiar (Macroeconomía).",
+    "solucion": "variable",
+    "materia": "economia"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Beneficio respecto a la competencia (... competitiva).",
+    "solucion": "ventaja",
+    "materia": "economia"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Calidad de bienestar (Nivel de...).",
+    "solucion": "vida",
+    "materia": "economia"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Cambio brusco de precios en el mercado.",
+    "solucion": "volatilidad",
+    "materia": "economia"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Incremento de valor en el proceso productivo (Valor...).",
+    "solucion": "Valor",
+    "materia": "economia"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Casa o piso, bien de inversión.",
+    "solucion": "vivienda",
+    "materia": "economia"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Fecha límite de un pago.",
+    "solucion": "vencimiento",
+    "materia": "economia"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Cantidad total (ej. ... de negocio).",
+    "solucion": "volumen",
+    "materia": "economia"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Página de internet para comercio (contiene W).",
+    "solucion": "web",
+    "materia": "economia"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Estado del Bienestar en inglés (Welfare, contiene W).",
+    "solucion": "welfare",
+    "materia": "economia"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Calle de la bolsa de Nueva York (Wall Street, contiene W).",
+    "solucion": "wall street",
+    "materia": "economia"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Trabajo en inglés (Work, contiene W).",
+    "solucion": "work",
+    "materia": "economia"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Programas informáticos (Soft...ware, contiene W).",
+    "solucion": "software",
+    "materia": "economia"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Componentes físicos del ordenador (Hard...ware, contiene W).",
+    "solucion": "hardware",
+    "materia": "economia"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Banco Mundial en inglés (...orld Bank, contiene W).",
+    "solucion": "world",
+    "materia": "economia"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Red de contactos (Net...orking, contiene W).",
+    "solucion": "networking",
+    "materia": "economia"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Situación donde todos ganan (...-win, contiene W).",
+    "solucion": "win",
+    "materia": "economia"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Derecho de compra/venta de acciones (contiene W).",
+    "solucion": "warrant",
+    "materia": "economia"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Venta al extranjero (E...portación, contiene X).",
+    "solucion": "exportación",
+    "materia": "economia"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "País ajeno (E...tranjero, contiene X).",
+    "solucion": "extranjero",
+    "materia": "economia"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Uso de recursos (E...plotación, contiene X).",
+    "solucion": "explotación",
+    "materia": "economia"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Triunfo empresarial (É...ito, contiene X).",
+    "solucion": "éxito",
+    "materia": "economia"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Sobrante de producción (E...cedente, contiene X).",
+    "solucion": "excedente",
+    "materia": "economia"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Stock en almacén (E...istencias, contiene X).",
+    "solucion": "existencias",
+    "materia": "economia"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Tasa en inglés (Ta..., contiene X).",
+    "solucion": "tax",
+    "materia": "economia"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Documento legal (Te...to, contiene X).",
+    "solucion": "texto",
+    "materia": "economia"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Tipo de cambio que varía (Fle...ible, contiene X).",
+    "solucion": "flexible",
+    "materia": "economia"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Sistema con sector público y privado (Economía Mi...ta, contiene X).",
+    "solucion": "mixta",
+    "materia": "economia"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Moneda de Japón.",
+    "solucion": "yen",
+    "materia": "economia"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Moneda de China.",
+    "solucion": "yuan",
+    "materia": "economia"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Lugar con recursos minerales.",
+    "solucion": "yacimiento",
+    "materia": "economia"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Pequeña y Mediana Empresa (P...me, contiene Y).",
+    "solucion": "pyme",
+    "materia": "economia"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Pago por derechos de autor (Ro...altie, contiene Y).",
+    "solucion": "royaltie",
+    "materia": "economia"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Norma jurídica (Le..., contiene Y).",
+    "solucion": "ley",
+    "materia": "economia"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Vendedor a grandes cantidades (Ma...orista, contiene Y).",
+    "solucion": "mayorista",
+    "materia": "economia"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Situación económica actual (Co...untura, contiene Y).",
+    "solucion": "coyuntura",
+    "materia": "economia"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Día presente (Ho..., contiene Y).",
+    "solucion": "hoy",
+    "materia": "economia"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Plan de empresa (Pro...ecto, contiene Y).",
+    "solucion": "proyecto",
+    "materia": "economia"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Área geográfica con moneda común (... Euro).",
+    "solucion": "zona",
+    "materia": "economia"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Estado contable de un país (Balan...a de pagos, contiene Z).",
+    "solucion": "balanza",
+    "materia": "economia"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Patrimonio o dinero (Rique...a, contiene Z).",
+    "solucion": "riqueza",
+    "materia": "economia"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Pago a la Seguridad Social (Coti...ación, contiene Z).",
+    "solucion": "cotización",
+    "materia": "economia"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Control de impuestos (Fiscali...ación, contiene Z).",
+    "solucion": "fiscalización",
+    "materia": "economia"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Pago por despido o daño (Indemni...ación, contiene Z).",
+    "solucion": "indemnización",
+    "materia": "economia"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Estructura de la empresa (Organi...ación, contiene Z).",
+    "solucion": "organización",
+    "materia": "economia"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Control de precios (Estabili...ación, contiene Z).",
+    "solucion": "estabilización",
+    "materia": "economia"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Valor total de las acciones (Capitali...ación, contiene Z).",
+    "solucion": "capitalización",
+    "materia": "economia"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Puesta en venta de un producto (Comerciali...ación, contiene Z).",
+    "solucion": "comercialización",
+    "materia": "economia"
+  }
 ]

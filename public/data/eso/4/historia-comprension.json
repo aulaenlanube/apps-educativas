@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "La Revolución Francesa: El fin del Antiguo Régimen",
+        "texto": "En 1789, Francia rompió con siglos de monarquía absoluta. La Revolución Francesa no solo derrocó a los reyes, sino que proclamó la Declaración de los Derechos del Hombre y del Ciudadano. Sus ideales de LIBERTAD, IGUALDAD y FRATERNIDAD se extendieron por todo el mundo, poniendo fin al Antiguo Régimen donde los nobles tenían todos los privilegios. Aunque fue un proceso violento (época del Terror), sentó las bases de nuestras democracias actuales y de la división de poderes (legislativo, ejecutivo y judicial).",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué año estalló la Revolución Francesa?",
+                "opciones": [
+                    "1492",
+                    "1789",
+                    "1812",
+                    "1914"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuáles eran los tres ideales principales de la Revolución?",
+                "opciones": [
+                    "Dinero, Oro y Plata",
+                    "Libertad, Igualdad y Fraternidad",
+                    "Paz, Amor y Música",
+                    "Guerra, Miedo y Hambre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué documento clave se redactó durante este proceso?",
+                "opciones": [
+                    "La Biblia",
+                    "La Declaración de los Derechos del Hombre y del Ciudadano",
+                    "Un libro de cocina",
+                    "El Quijote"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué sistema político anterior a la revolución desapareció?",
+                "opciones": [
+                    "Democracia",
+                    "Antiguo Régimen (Monarquía Absoluta)",
+                    "República",
+                    "Dictadura"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quiénes perdieron sus privilegios según el texto?",
+                "opciones": [
+                    "Los campesinos",
+                    "La nobleza y el clero",
+                    "Los niños",
+                    "Los extranjeros"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "El Imperialismo y el reparto de África",
+        "texto": "A finales del siglo XIX, las potencias europeas (Gran Bretaña, Francia, Alemania...) compitieron por conquistar territorios en África y Asia. Este fenómeno se llama IMPERIALISMO. Buscaban materias primas para sus fábricas y nuevos mercados. En la Conferencia de Berlín (1884), los líderes europeos trazaron fronteras sobre el mapa de África sin tener en cuenta a los pueblos que vivían allí. Esto generó una enorme riqueza para Europa, pero dejó una herencia de pobreza y conflictos en las colonias que llega hasta nuestros días.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué buscaban las potencias europeas con el Imperialismo?",
+                "opciones": [
+                    "Plantar flores",
+                    "Materias primas y nuevos mercados para su industria",
+                    "Hacer amigos",
+                    "Aprender idiomas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué conferencia se repartieron África?",
+                "opciones": [
+                    "Conferencia de Madrid",
+                    "Conferencia de Berlín (1884)",
+                    "Conferencia de la Paz",
+                    "No hubo conferencia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué criterio usaron para trazar las fronteras de las colonias?",
+                "opciones": [
+                    "El respeto a las tribus",
+                    "Intereses de los líderes europeos sin importar los pueblos locales",
+                    "La geografía de los ríos",
+                    "Hicieron un sorteo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quiénes fueron las principales potencias imperialistas?",
+                "opciones": [
+                    "España y Portugal solamente",
+                    "Gran Bretaña, Francia y Alemania",
+                    "EE.UU y Rusia",
+                    "China y Japón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué consecuencia tuvo para las colonias?",
+                "opciones": [
+                    "Gran riqueza",
+                    "Pobreza y conflictos duraderos",
+                    "Paz eterna",
+                    "No cambió nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "La Primera Guerra Mundial (1914-1918)",
+        "texto": "Llamada la 'Gran Guerra', fue un conflicto nunca visto hasta entonces por su escala y tecnología (tanques, aviones, armas químicas). Se luchó principalmente en TRINCHERAS, donde los soldados vivían en condiciones terribles. El asesinato del archiduque Francisco Fernando fue la chispa que encendió el conflicto entre la Triple Entente y las Potencias Centrales. La guerra terminó con el Tratado de Versalles, que impuso condiciones muy duras a Alemania, lo que generó un resentimiento que años más tarde facilitaría el ascenso de Hitler al poder.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué periodos de tiempo ocurrió la 1ª Guerra Mundial?",
+                "opciones": [
+                    "1800-1810",
+                    "1914-1918",
+                    "1939-1945",
+                    "Año 2000"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llamaba el tipo de guerra donde los soldados se escondían en zanjas?",
+                "opciones": [
+                    "Guerra de barcos",
+                    "Guerra de trincheras",
+                    "Guerra de nubes",
+                    "Guerra relámpago"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tratado puso fin a la guerra?",
+                "opciones": [
+                    "Tratado de Roma",
+                    "Tratado de Versalles",
+                    "Tratado de Paz",
+                    "Tratado de Berlín"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué país se le impusieron condiciones muy duras?",
+                "opciones": [
+                    "Francia",
+                    "Alemania",
+                    "España",
+                    "EE.UU."
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una tecnología militar usada por primera vez:",
+                "opciones": [
+                    "Flechas",
+                    "Tanques, aviones y armas químicas",
+                    "Láseres",
+                    "Espadas de hierro"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La Revolución Rusa de 1917",
+        "texto": "Mientras el mundo luchaba en la Gran Guerra, Rusia vivió una revolución interna que cambió la historia del siglo XX. Los BOLCHEVIQUES, liderados por LENIN, derrocaron al Zar y establecieron el primer estado comunista del mundo. Prometían 'Paz, Pan y Tierra' al pueblo agotado por la guerra y el hambre. La propiedad privada de las fábricas y las tierras desapareció, pasando a manos del Estado. Así nació la URSS (Unión de Repúblicas Socialistas Soviéticas), una superpotencia que se opondría al capitalismo de EE.UU. durante décadas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quién era el líder principal de los bolcheviques?",
+                "opciones": [
+                    "Stalin",
+                    "Lenin",
+                    "Zar Nicolás",
+                    "Putin"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué sistema económico se estableció tras la revolución?",
+                "opciones": [
+                    "Capitalismo",
+                    "Comunismo",
+                    "Monopolio",
+                    "Trueque"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál era el lema de los revolucionarios para atraer al pueblo?",
+                "opciones": [
+                    "Dinero y Fama",
+                    "Paz, Pan y Tierra",
+                    "Guerra hasta el final",
+                    "Libertad de internet"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A quién derrocaron los revolucionarios?",
+                "opciones": [
+                    "Al Presidente",
+                    "Al Zar (Rey de Rusia)",
+                    "Al Director",
+                    "A nadie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué siglas recibió el nuevo estado formado?",
+                "opciones": [
+                    "USA",
+                    "URSS",
+                    "EU",
+                    "ONU"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "La Crisis de 1929 y la Gran Depresión",
+        "texto": "Tras los 'felices años 20', el optimismo se rompió en el Jueves Negro de 1929 con el 'crack' de la bolsa de Nueva York. La gente quería vender sus acciones pero nadie quería comprarlas, y el valor del dinero desapareció. Esto provocó una crisis mundial sin precedentes: los bancos cerraron, miles de fábricas quebraron y millones de personas se quedaron sin trabajo ni comida. Esta GRAN DEPRESIÓN duró casi una década y demostró que el sistema económico podía fallar de forma catastrófica si no había control.",
+        "preguntas": [
+            {
+                "pregunta": "¿Dónde comenzó la crisis de 1929?",
+                "opciones": [
+                    "En París",
+                    "En Nueva York (bolsa de Wall Street)",
+                    "En Madrid",
+                    "En Pekín"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llamó al día del crack de la bolsa?",
+                "opciones": [
+                    "Lunes Triste",
+                    "Jueves Negro",
+                    "Viernes Blanco",
+                    "Domingo Alegre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué consecuencia tuvo para la gente común?",
+                "opciones": [
+                    "Ganaron mucho dinero",
+                    "Millones perdieron su trabajo y ahorros",
+                    "Se fueron de vacaciones",
+                    "No pasó nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Duró mucho tiempo esta crisis?",
+                "opciones": [
+                    "Un mes",
+                    "Casi una década (la Gran Depresión)",
+                    "Un día",
+                    "Cien años"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La crisis demostró que el sistema necesitaba:",
+                "opciones": [
+                    "Más bancos",
+                    "Control y regulación",
+                    "Más acciones",
+                    "Menos leyes"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "La Segunda Guerra Mundial (1939-1945)",
+        "texto": "Fue el conflicto más sangriento de la historia, con más de 60 millones de muertos. Se enfrentaron dos bandos: el EJE (Alemania nazi, Italia fascista y Japón) contra los ALIADOS (Gran Bretaña, la URSS y EE.UU.). El horror alcanzó niveles extremos con el HOLOCAUSTO (exterminio de 6 millones de judíos por los nazis) y el uso de la BOMBA ATÓMICA en Japón. La guerra terminó con la derrota total del fascismo y la división del mundo en dos bloques contrarios que darían lugar a la Guerra Fría.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué año terminó la 2ª Guerra Mundial?",
+                "opciones": [
+                    "1918",
+                    "1945",
+                    "1975",
+                    "2000"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué países formaban el bando del Eje?",
+                "opciones": [
+                    "España y Portugal",
+                    "Alemania, Italia y Japón",
+                    "Francia y Gran Bretaña",
+                    "EE.UU y Rusia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué fue el Holocausto?",
+                "opciones": [
+                    "Una fiesta nazi",
+                    "El exterminio sistemático de judíos y otras minorías por los nazis",
+                    "Un tipo de bomba",
+                    "Una batalla aérea"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué nueva y terrible arma se usó por primera vez al final de la guerra?",
+                "opciones": [
+                    "El arco",
+                    "La bomba atómica",
+                    "La ballesta",
+                    "El tanque"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Aproximadamente cuánta gente murió en total?",
+                "opciones": [
+                    "Un millón",
+                    "Más de 60 millones",
+                    "Cinco millones",
+                    "Diez mil"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "La Guerra Civil Española (1936-1939)",
+        "texto": "España se desangró en una guerra entre hermanos tras el golpe de estado de un sector del ejército contra el gobierno legítimo de la 2ª República. Se enfrentaron el bando REPUBLICANO contra el bando SUBLEVADO (o Nacional), liderado por Franco. Tras tres años de lucha, el bando de Franco ganó e instauró una DICTADURA que duró casi 40 años. Fue una guerra ideológica donde participaron potencias extranjeras (Alemania e Italia con Franco, la URSS con la República), sirviendo de ensayo para la 2ª Guerra Mundial.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llamaban los dos bandos enfrentados?",
+                "opciones": [
+                    "Rojos y Azules solamente",
+                    "Republicanos y Sublevados (Nacionales)",
+                    "Griegos y Romanos",
+                    "Liberales y Conservadores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién se convirtió en dictador tras la guerra?",
+                "opciones": [
+                    "Felipe VI",
+                    "Francisco Franco",
+                    "Azaña",
+                    "Hitler"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuánto tiempo duró la guerra?",
+                "opciones": [
+                    "3 meses",
+                    "3 años (1936-1939)",
+                    "10 años",
+                    "Un siglo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué potencias ayudaron a Franco?",
+                "opciones": [
+                    "Francia e Inglaterra",
+                    "Alemania e Italia",
+                    "La URSS y México",
+                    "EE.UU y Japón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Tras la guerra empezó un periodo de:",
+                "opciones": [
+                    "Democracia",
+                    "Dictadura sin libertades",
+                    "Monarquía parlamentaria",
+                    "República federal"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "La Guerra Fría y el Muro de Berlín",
+        "texto": "La tensión entre EE.UU. (capitalista) y la URSS (comunista) tras 1945 se llamó GUERRA FRÍA porque nunca llegaron a dispararse directamente por miedo a una guerra nuclear solar. El mundo se dividió en dos: la OTAN y el Pacto de Varsovia. El símbolo de esta división fue el MURO DE BERLÍN, que separaba a las familias de la misma ciudad. Durante décadas hubo una carrera espacial y de armamento. La caída del muro en 1989 y la disolución de la URSS en 1991 marcaron el fin de esta época de sospecha.",
+        "preguntas": [
+            {
+                "pregunta": "¿Por qué se llamó 'Guerra Fría'?",
+                "opciones": [
+                    "Porque se luchó en la nieve",
+                    "Porque no hubo enfrentamiento directo por miedo nuclear",
+                    "Porque se inventó la nevera",
+                    "Porque duró poco"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué símbolo dividía a la ciudad alemana de Berlín?",
+                "opciones": [
+                    "Una catedral",
+                    "Un Muro (el Muro de Berlín)",
+                    "Un canal",
+                    "Una autopista"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué alianza militar pertenecía EE.UU?",
+                "opciones": [
+                    "Pacto de Varsovia",
+                    "OTAN",
+                    "ONU",
+                    "G20"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué dos sistemas económicos se enfrentaban?",
+                "opciones": [
+                    "Trueque y Moneda",
+                    "Capitalismo y Comunismo",
+                    "Agricultura y Comercio",
+                    "Ocio y Trabajo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué año cayó el Muro de Berlín?",
+                "opciones": [
+                    "1945",
+                    "1989",
+                    "1991",
+                    "2001"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "La Transición Española a la Democracia",
+        "texto": "Tras la muerte de Franco en 1975, España vivió un proceso único llamado LA TRANSICIÓN. De forma pacífica, el país pasó de una dictadura a una democracia. Personajes clave como el Rey Juan Carlos I y Adolfo Suárez, junto con la oposición política, pactaron el regreso de las libertades. El gran hito fue la aprobación en referéndum de la CONSTITUCIÓN DE 1978, la ley de leyes que garantiza los derechos de todos los ciudadanos y define a España como un Estado social y democrático de derecho.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué evento marcó el inicio de la Transición?",
+                "opciones": [
+                    "Una guerra",
+                    "La muerte de Franco en 1975",
+                    "Un partido de fútbol",
+                    "La invención de la TV"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién fue el primer presidente de la democracia en 1976?",
+                "opciones": [
+                    "Felipe González",
+                    "Adolfo Suárez",
+                    "Mariano Rajoy",
+                    "Pedro Sánchez"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ley fundamental se aprobó en 1978?",
+                "opciones": [
+                    "La Ley del Talión",
+                    "La Constitución Española",
+                    "El Código Civil",
+                    "La Ley de Educación"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo fue el proceso de cambio según el texto?",
+                "opciones": [
+                    "Muy violento",
+                    "Pacífico y pactado entre diferentes fuerzas políticas",
+                    "Improvisado",
+                    "No hubo cambios"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué otorga la Constitución a los ciudadanos?",
+                "opciones": [
+                    "Obligaciones solamente",
+                    "Derechos y libertades garantizados",
+                    "Dinero",
+                    "Un coche"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "El Reto de la Globalización y el Terrorismo",
+        "texto": "El mundo actual es global e interconectado. Internet ha borrado las fronteras para la información y el dinero. A finales del siglo XX y principios del XXI han surgido nuevos desafíos: el TERRORISMO INTERNACIONAL (como el 11-S en Nueva York o el 11-M en Madrid), las grandes crisis económicas y los problemas ambientales globales. La humanidad busca ahora soluciones comunes a través de organismos como la ONU, intentando que el progreso tecnológico llegue a todos y respetando los Derechos Humanos en todo el planeta.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué ha borrado las fronteras informativas?",
+                "opciones": [
+                    "La radio",
+                    "Internet",
+                    "El ferrocarril",
+                    "El telégrafo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un reto negativo del siglo XXI mencionado:",
+                "opciones": [
+                    "Las vacunas",
+                    "El terrorismo internacional y las crisis ambientales",
+                    "Los viajes a la playa",
+                    "El cine"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué organismo internacional busca soluciones comunes?",
+                "opciones": [
+                    "OTAN",
+                    "ONU",
+                    "NBA",
+                    "LEGO"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué fecha marcó el inicio de la lucha global contra el terrorismo?",
+                "opciones": [
+                    "14 de julio",
+                    "11 de septiembre de 2001 (Ataque Torres Gemelas)",
+                    "1 de enero",
+                    "1 de mayo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debe respetarse en todo el planeta según el reto final?",
+                "opciones": [
+                    "La moneda única",
+                    "Los Derechos Humanos",
+                    "El horario inglés",
+                    "Nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

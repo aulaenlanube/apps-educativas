@@ -1,17 +1,122 @@
 {
-  "sector_primario": [
-    "agricultura", "ganadería", "pesca", "minería", "silvicultura", "secano", "regadío", "latifundio", "minifundio", "transgénico"
+  "sectores_economicos": [
+    "sector primario",
+    "sector secundario",
+    "sector terciario",
+    "agricultura",
+    "ganadería",
+    "minería",
+    "industria",
+    "comercio",
+    "turismo",
+    "servicios"
   ],
-  "sector_secundario": [
-    "industria", "fábrica", "construcción", "artesanía", "materia prima", "energía", "manufactura", "siderurgia", "textil", "polígono"
+  "poblacion_mundo": [
+    "natalidad",
+    "mortalidad",
+    "crecimiento natural",
+    "densidad",
+    "migración",
+    "emigración",
+    "inmigración",
+    "esperanza de vida",
+    "pirámide de población",
+    "censo"
   ],
-  "sector_terciario": [
-    "turismo", "comercio", "transporte", "sanidad", "educación", "finanzas", "banca", "servicios", "hostelería", "ocio"
+  "globalizacion_economia": [
+    "mercado común",
+    "multinacional",
+    "pib",
+    "desarrollo sostenible",
+    "desequilibrio",
+    "pobreza",
+    "país emergente",
+    "arancel",
+    "omc",
+    "comercio justo"
   ],
-  "organizacion_politica": [
-    "estado", "democracia", "monarquía", "república", "dictadura", "constitución", "parlamento", "frontera", "nación", "gobierno"
+  "espacios_industriales": [
+    "materia prima",
+    "fuente de energía",
+    "parque tecnológico",
+    "deslocalización",
+    "i+d",
+    "automatización",
+    "robótica",
+    "contaminación",
+    "astillero",
+    "polígono"
   ],
-  "demografia": [
-    "natalidad", "mortalidad", "migración", "censo", "padrón", "envejecimiento", "densidad", "población activa", "éxodo rural", "esperanza de vida"
+  "transporte_comunicacion": [
+    "red de transportes",
+    "ferrocarril",
+    "puerto",
+    "aeropuerto",
+    "satélite",
+    "fibra óptica",
+    "logística",
+    "infraestructura",
+    "intermodal",
+    "comercio electrónico"
+  ],
+  "turismo_ocio": [
+    "estacionalidad",
+    "turismo de sol y playa",
+    "turismo rural",
+    "turismo cultural",
+    "hostelería",
+    "itinerario",
+    "ocio",
+    "masificación",
+    "patrimonio",
+    "vuelos low cost"
+  ],
+  "geopolitica_actual": [
+    "onu",
+    "ue",
+    "otan",
+    "frontera",
+    "conflicto",
+    "ayuda humanitaria",
+    "derechos humanos",
+    "estado de derecho",
+    "dictadura",
+    "democracia"
+  ],
+  "medio_ambiente_retos": [
+    "cambio climático",
+    "efecto invernadero",
+    "desforestación",
+    "desertización",
+    "reciclaje",
+    "energía limpia",
+    "biodiversidad",
+    "vertido",
+    "capa de ozono",
+    "lluvia ácida"
+  ],
+  "actividad_agraria": [
+    "secano",
+    "regadío",
+    "monocultivo",
+    "policultivo",
+    "latifundio",
+    "minifundio",
+    "agricultura ecológica",
+    "transgénico",
+    "pesticida",
+    "abono"
+  ],
+  "ciudades_urbanismo": [
+    "área metropolitana",
+    "conurbación",
+    "megalópolis",
+    "centro histórico",
+    "ensanche",
+    "periferia",
+    "gentrificación",
+    "plano ortogonal",
+    "plano radiocéntrico",
+    "servicios urbanos"
   ]
 }

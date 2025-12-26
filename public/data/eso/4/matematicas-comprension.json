@@ -1,0 +1,568 @@
+[
+    {
+        "id": "1",
+        "titulo": "Logaritmos: El poder de los exponentes",
+        "texto": "Un logaritmo es el exponente al que hay que elevar una base para obtener un número determinado. Por ejemplo, el logaritmo en base 10 de 100 es 2 (porque 10² = 100). Fueron inventados para simplificar cálculos larguísimos, convirtiendo multiplicaciones en sumas. Hoy son esenciales para medir la intensidad de los terremotos (Escala Richter), el pH de las sustancias químicas o la intensidad del sonido (decibelios). Entender los logaritmos nos ayuda a comprender fenómenos que crecen de forma muy rápida o muy lenta.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un logaritmo?",
+                "opciones": [
+                    "Una raíz cuadrada",
+                    "El exponente al que se eleva una base",
+                    "Una suma de fracciones",
+                    "Un número negativo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué escala usa logaritmos para medir terremotos?",
+                "opciones": [
+                    "Escala Celsius",
+                    "Escala Richter",
+                    "Escala de Newton",
+                    "Escala de música"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué se inventaron originalmente?",
+                "opciones": [
+                    "Para dibujar",
+                    "Para simplificar cálculos complejos (multiplicaciones a sumas)",
+                    "Para contar ovejas",
+                    "Para asustar a los alumnos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el logaritmo en base 2 de 8?",
+                "opciones": [
+                    "2",
+                    "3 (porque 2³ = 8)",
+                    "4",
+                    "16"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué se mide la intensidad del sonido usando logaritmos?",
+                "opciones": [
+                    "Kilogramos",
+                    "Decibelios",
+                    "Metros",
+                    "Segundos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Trigonometría: El triángulo rectángulo",
+        "texto": "La trigonometría estudia las relaciones entre los lados y los ángulos de un triángulo. En un triángulo rectángulo, las tres razones principales son el SENO (cateto opuesto / hipotenusa), el COSENO (cateto contiguo / hipotenusa) y la TANGENTE (opuesto / contiguo). Gracias a estas fórmulas y a calculadoras modernas, podemos conocer la altura de una montaña o la distancia entre estrellas midiendo solo ángulos. El Teorema de Pitágoras es el punto de partida, pero la trigonometría nos permite ir mucho más allá en el mundo de la ingeniería.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué relación define al Seno de un ángulo?",
+                "opciones": [
+                    "Contiguo / Opuesto",
+                    "Opuesto / Hipotenusa",
+                    "Hipotenusa / 2",
+                    "Opuesto x Contiguo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Y la Tangente?",
+                "opciones": [
+                    "Opuesto / Hipotenusa",
+                    "Opuesto / Contiguo",
+                    "Contiguo / Hipotenusa",
+                    "Seno + Coseno"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el lado más largo de un triángulo rectángulo?",
+                "opciones": [
+                    "Cateto opuesto",
+                    "Hipotenusa",
+                    "Cateto contiguo",
+                    "Base"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la trigonometría en la vida real?",
+                "opciones": [
+                    "Para sumar",
+                    "Para calcular alturas y distancias inaccesibles mediante ángulos",
+                    "Para cocinar",
+                    "Para escribir"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué teorema es la base del estudio de los triángulos?",
+                "opciones": [
+                    "Teorema de Tales",
+                    "Teorema de Pitágoras",
+                    "Teorema de la suma",
+                    "No hay teorema"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Combinatoria: El arte de contar",
+        "texto": "La combinatoria nos enseña a contar el número de posibilidades de un evento sin tener que escribirlas todas. Usamos tres conceptos clave: VARIABLE (el orden importa y no entran todos), PERMUTACIÓN (el orden importa y entran todos; ej: ordenar libros en una balda) y COMBINACIÓN (el orden NO importa; ej: elegir 3 frutas de una cesta). El uso de los factoriales (n!) es fundamental. Se aplica en loterías, seguridad informática (contraseñas) y en el estudio de la genética para saber cuántas combinaciones de ADN son posibles.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué caso el orden NO importa?",
+                "opciones": [
+                    "Permutación",
+                    "Combinación",
+                    "Variación",
+                    "Contraseña"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es una permutación?",
+                "opciones": [
+                    "Elegir a dos personas",
+                    "Ordenar un conjunto de elementos donde el orden sí importa",
+                    "Sumar números",
+                    "Dividir por cero"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la combinatoria en informática?",
+                "opciones": [
+                    "Para limpiar el teclado",
+                    "Para calcular la seguridad y robustez de las contraseñas",
+                    "Para navegar por internet",
+                    "Para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué operación matemática usa el símbolo '!'?",
+                "opciones": [
+                    "Suma",
+                    "Factorial (ej: 4! = 4x3x2x1)",
+                    "Grito",
+                    "División"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Se aplica la combinatoria en biología?",
+                "opciones": [
+                    "No",
+                    "Sí, en genética y proteínas"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Geometría Analítica: Vectores",
+        "texto": "Un vector es un segmento orientado que tiene módulo (longitud), dirección y sentido. En el plano cartesiano, lo representamos mediante sus coordenadas (x, y). Los vectores nos permiten estudiar el movimiento en física (velocidad, fuerza) y la geometría mediante el álgebra. Podemos sumarlos, restarlos y multiplicarlos por un número. Dos vectores son paralelos si sus coordenadas son proporcionales. Dominar los vectores es el primer paso para entender el espacio 3D y el diseño asistido por ordenador.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué tres características definen a un vector?",
+                "opciones": [
+                    "Color, peso y tamaño",
+                    "Módulo, dirección y sentido",
+                    "Inicio, medio y fin",
+                    "X, Y y Z solamente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué representa el módulo de un vector?",
+                "opciones": [
+                    "Su color",
+                    "Su longitud o tamaño",
+                    "Su ángulo",
+                    "Su nombre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué se usan en física?",
+                "opciones": [
+                    "Para medir el tiempo",
+                    "Para representar magnitudes como la fuerza o la velocidad",
+                    "Para contar átomos",
+                    "No se usan"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo son paralelos dos vectores?",
+                "opciones": [
+                    "Cuando se cortan",
+                    "Cuando sus coordenadas son proporcionales",
+                    "Cuando miden lo mismo",
+                    "Siempre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se representan los vectores en 4º de ESO?",
+                "opciones": [
+                    "En una tabla",
+                    "En el plano cartesiano (ejes X e Y)",
+                    "En un círculo",
+                    "En papel sucio"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Funciones: Límite y Continuidad",
+        "texto": "A final de la ESO introducimos el concepto de LÍMITE. El límite de una función estudia a qué valor se aproxima la Y cuando la X se acerca a un punto determinado. Si el límite por la izquierda es igual al de la derecha, y coincide con el valor de la función en ese punto, decimos que la función es CONTINUA (se puede dibujar de un solo trazo). Si la función tiene saltos o agujeros, es DISCONTINUA. Este concepto es la puerta de entrada al CÁLCULO que se estudia en Bachillerato (derivadas e integrales).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué estudia el límite de una función?",
+                "opciones": [
+                    "El valor más alto",
+                    "A qué valor se aproxima la función cerca de un punto",
+                    "El final de la gráfica",
+                    "El color de la línea"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo es continua una función?",
+                "opciones": [
+                    "Cuando tiene muchos puntos",
+                    "Cuando se puede dibujar sin levantar el lápiz del papel (sin saltos)",
+                    "Cuando es una línea recta siempre",
+                    "Cuando es infinita"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si los límites laterales son diferentes?",
+                "opciones": [
+                    "La función es continua",
+                    "Existe una discontinuidad (salto)",
+                    "La función es cero",
+                    "El programa falla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El concepto de límite es fundamental para estudiar después las:",
+                "opciones": [
+                    "Sumas",
+                    "Derivadas",
+                    "Áreas de triángulos",
+                    "Raíces"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Puede una función tener un límite infinito?",
+                "opciones": [
+                    "No",
+                    "Sí"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Estadística Bidimensional: Correlación",
+        "texto": "A veces estudiamos dos variables a la vez para ver si tienen relación. Por ejemplo: ¿influye el tiempo de estudio en la nota? ¿influye la altura en el peso? Esto se llama Nube de Puntos. La CORRELACIÓN mide el grado de relación entre ellas. Si los puntos forman casi una línea recta, la correlación es fuerte. Si están dispersos, es débil. Saber interpretar estas gráficas es vital para la medicina, el marketing y las ciencias sociales, permitiendo predecir comportamientos futuros basados en datos pasados.",
+        "preguntas": [
+            {
+                "pregunta": "¿Para qué sirve la estadística bidimensional?",
+                "opciones": [
+                    "Para usar dos calculadoras",
+                    "Para ver si hay relación entre dos variables distintas",
+                    "Para sumar más rápido",
+                    "Para dibujar círculos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué mide la correlación?",
+                "opciones": [
+                    "El peso",
+                    "El grado de dependencia entre las dos variables",
+                    "La suma total",
+                    "La media"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es una nube de puntos?",
+                "opciones": [
+                    "Un dibujo del cielo",
+                    "La representación gráfica de los pares de datos (x, y)",
+                    "Un gráfico de barras",
+                    "Un error"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si al aumentar una variable aumenta la otra claramente, la correlación es:",
+                "opciones": [
+                    "Negativa",
+                    "Positiva",
+                    "Nula",
+                    "Mala"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Una correlación fuerte permite:",
+                "opciones": [
+                    "Borrar datos",
+                    "Hacer predicciones con mayor seguridad",
+                    "Gastar dinero",
+                    "No estudiar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Probabilidad condicionada",
+        "texto": "En 4º de ESO aprendemos que a veces la probabilidad de un suceso cambia si ya ha ocurrido otro antes. Esto se llama PROBABILIDAD CONDICIONADA. Por ejemplo, la probabilidad de sacar un rey de una baraja cambia si ya hemos sacado una carta y no la hemos devuelto. Usamos diagramas de árbol para visualizar todas las opciones. Es la base de la toma de decisiones en inteligencia artificial, en seguros médicos y en el cálculo de riesgos de cualquier proyecto de ingeniería.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la probabilidad condicionada?",
+                "opciones": [
+                    "La que depende de que haga sol",
+                    "La probabilidad de un suceso sabiendo que ya ha ocurrido otro",
+                    "Una probabilidad que es siempre 1",
+                    "Un tipo de examen"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué herramienta visual usamos para calcular estas probabilidades?",
+                "opciones": [
+                    "Regla de tres",
+                    "Diagramas de árbol",
+                    "Círculos cromáticos",
+                    "Escuadra y cartabón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué altera la probabilidad en el ejemplo de las cartas?",
+                "opciones": [
+                    "El color de la baraja",
+                    "No devolver la carta sacada (suceso dependiente)",
+                    "La suerte del jugador",
+                    "El clima"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se aplica este concepto?",
+                "opciones": [
+                    "En música",
+                    "En inteligencia artificial y cálculo de riesgos",
+                    "En dibujo",
+                    "En historia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si dos sucesos no tienen relación, se llaman:",
+                "opciones": [
+                    "Dependientes",
+                    "Independientes",
+                    "Iguales",
+                    "Malos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Sistemas de Ecuaciones No Lineales",
+        "texto": "A diferencia de los sistemas de 2º y 3º, en 4º resolvemos sistemas donde al menos una de las ecuaciones es de segundo grado o tiene raíces. Gráficamente, esto significa que buscamos dónde se cortan una recta y una curva (como una parábola o un círculo). A veces no hay solución, o puede haber una, dos o incluso más. Estos sistemas aparecen al calcular trayectorias de planetas, intersecciones de calles en un mapa o en problemas de optimización económica.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué diferencia a estos sistemas de los lineales?",
+                "opciones": [
+                    "Que son más cortos",
+                    "Que tienen ecuaciones de grado superior o con raíces",
+                    "Que no tienen solución",
+                    "Que se escriben en rojo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué estamos buscando gráficamente al resolver el sistema?",
+                "opciones": [
+                    "El final del papel",
+                    "Los puntos donde se cortan las gráficas de las ecuaciones",
+                    "El eje X solamente",
+                    "La suma de áreas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántas soluciones puede tener un sistema de recta y parábola?",
+                "opciones": [
+                    "Siempre una",
+                    "0, 1 o 2",
+                    "Infinitas siempre",
+                    "Solo negativas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué se usan en astronomía?",
+                "opciones": [
+                    "Para buscar estrellas por nombre",
+                    "Para calcular trayectorias y posibles colisiones",
+                    "Para nada",
+                    "Para hacer fotos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Para resolverlos solemos usar el método de:",
+                "opciones": [
+                    "Loro",
+                    "Sustitución",
+                    "Gritos",
+                    "Adivinar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Topografía: Aplicación de la Trigonometría",
+        "texto": "La topografía es la ciencia que describe la superficie de la Tierra. Los topógrafos usan aparatos llamados 'teodolitos' para medir ángulos horizontales y verticales con gran precisión. Usando la trigonometría, pueden calcular desniveles, distancias y áreas de terrenos. Es imprescindible antes de construir cualquier carretera, puente o edificio. Sin las matemáticas trigonométricas, las construcciones actuales serían imposibles de alinear y se derrumbarían o no encajarían con el terreno.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué ciencia se encarga de medir y describir el terreno?",
+                "opciones": [
+                    "Biología",
+                    "Topografía",
+                    "Historia",
+                    "Música"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué aparato mide ángulos con precisión?",
+                "opciones": [
+                    "Regla",
+                    "Teodolito",
+                    "Reloj",
+                    "Termómetro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué rama de las matemáticas usa el topógrafo?",
+                "opciones": [
+                    "Geometría",
+                    "Trigonometría",
+                    "Probabilidad",
+                    "Integrales"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es vital antes de hacer un puente?",
+                "opciones": [
+                    "Para que quede bonito",
+                    "Para asegurar que las piezas encajen y sea estable",
+                    "Para ahorrar agua",
+                    "No es vital"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué calculan principalmente?",
+                "opciones": [
+                    "Desniveles y distancias",
+                    "El peso de la tierra",
+                    "El color del suelo",
+                    "La edad de los árboles"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Inferencia Estadística: La Campana de Gauss",
+        "texto": "Muchos fenómenos naturales (estatura, inteligencia, errores de medida) siguen una distribución llamada 'Normal' o Campana de Gauss. Es una curva simétrica donde la mayoría de los datos se agrupan en el centro (la media). En 4º aprendemos a entender qué significan estas gráficas para tomar decisiones. Si un dato está muy alejado del centro, se considera excepcional. Es la base de los estudios sociológicos, los controles de calidad en fábricas y las encuestas electorales de todo el mundo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué forma tiene la distribución normal?",
+                "opciones": [
+                    "Forma de cuadrado",
+                    "Forma de campana (Campana de Gauss)",
+                    "Línea recta",
+                    "Círculo perfecto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se agrupan la mayoría de los datos en esta curva?",
+                "opciones": [
+                    "En los bordes",
+                    "En el centro (alrededor de la media)",
+                    "Al principio solamente",
+                    "Están dispersos por igual"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué nos dice un dato que está muy al extremo de la campana?",
+                "opciones": [
+                    "Que es un dato normal",
+                    "Que es un caso excepcional o muy poco frecuente",
+                    "Que el gráfico está mal",
+                    "Que es el mejor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un fenómeno que siga esta distribución:",
+                "opciones": [
+                    "La estatura de la población",
+                    "El precio del pan",
+                    "La fecha de hoy",
+                    "El color de los coches"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Para qué sirve en encuestas electorales?",
+                "opciones": [
+                    "Para saber quién vota",
+                    "Para estimar resultados y márgenes de error",
+                    "Para prohibir votos",
+                    "Para nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

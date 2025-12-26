@@ -1,320 +1,568 @@
 [
   {
     "id": "1",
-    "titulo": "El cumpleaños de Leo",
-    "texto": "Hoy es un día muy especial porque es el cumpleaños de Leo. Su mamá le ha preparado una tarta de chocolate con seis velas. Leo ha invitado a sus amigos del colegio a jugar al parque por la tarde. Su abuela le ha regalado un balón de fútbol nuevo de color rojo.",
+    "titulo": "Una mañana en el bosque",
+    "texto": "Había una vez un pequeño conejo llamado Saltarín que vivía cerca de un gran bosque. Una mañana fresca de primavera, decidió salir a explorar. Mientras caminaba, escuchó el canto de los pájaros y el murmullo de un río cercano. Encontró un arbusto lleno de moras silvestres y se dio un festín. De repente, vio a una ardilla que bajaba por el tronco de un pino para saludarlo.",
     "preguntas": [
       {
-        "pregunta": "¿De qué sabor es la tarta?",
-        "opciones": ["De fresa", "De chocolate"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuántas velas tiene la tarta?",
-        "opciones": ["Seis velas", "Ocho velas"],
+        "pregunta": "¿Cómo se llama el conejo?",
+        "opciones": [
+          "Saltarín",
+          "Corredor",
+          "Peludo",
+          "Orejas"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Quién le regaló el balón?",
-        "opciones": ["Su papá", "Su tía", "Su abuela", "Su hermano"],
+        "pregunta": "¿En qué estación del año sucede la historia?",
+        "opciones": [
+          "Invierno",
+          "Otoño",
+          "Verano",
+          "Primavera"
+        ],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Qué comió el conejo en el arbusto?",
+        "opciones": [
+          "Manzanas",
+          "Moras silvestres",
+          "Zanahorias",
+          "Hierba"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué animal bajó del pino?",
+        "opciones": [
+          "Un búho",
+          "Un gato",
+          "Una ardilla",
+          "Un pájaro"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿De qué color es el balón?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Dónde van a jugar?",
-        "opciones": ["En el cine", "En el parque", "En la playa", "En la escuela"],
+        "pregunta": "¿Qué sonido escuchó el conejo además del canto de los pájaros?",
+        "opciones": [
+          "Un trueno",
+          "El murmullo de un río",
+          "Un coche",
+          "Un grito"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "La mariposa Lola",
-    "texto": "Lola es una mariposa de muchos colores que vive en el jardín. Le gusta volar de flor en flor cuando sale el sol. Cuando llueve, Lola se esconde debajo de una hoja grande para no mojarse las alas. Su mejor amiga es una abeja que se llama Pepi.",
+    "titulo": "El secreto de la biblioteca",
+    "texto": "A Lucía le encanta ir a la biblioteca de su colegio todos los viernes. Allí hay estanterías llenas de libros de todos los colores. Su libro favorito trata sobre un pirata que buscaba un tesoro escondido en una isla desierta. La bibliotecaria, la señora Ana, siempre le recomienda cuentos nuevos. Lucía sabe que debe estar en silencio para que los demás puedan leer tranquilos.",
     "preguntas": [
       {
-        "pregunta": "¿Cómo se llama la mariposa?",
-        "opciones": ["Lola", "Pepi"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hace cuando llueve?",
-        "opciones": ["Sigue volando", "Se esconde"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Dónde vive Lola?",
-        "opciones": ["En una casa", "En el bosque", "En el mar", "En el jardín"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Quién es su mejor amiga?",
-        "opciones": ["Una hormiga", "Una abeja", "Una mariquita", "Un grillo"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuándo le gusta volar?",
-        "opciones": ["Cuando es de noche", "Cuando nieva", "Cuando sale el sol", "Cuando hay viento"],
+        "pregunta": "¿Qué día va Lucía a la biblioteca?",
+        "opciones": [
+          "Lunes",
+          "Miércoles",
+          "Viernes",
+          "Sábado"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Sobre qué trata su libro favorito?",
+        "opciones": [
+          "Sobre un robot",
+          "Sobre un pirata",
+          "Sobre un perro",
+          "Sobre un hada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llama la bibliotecaria?",
+        "opciones": [
+          "Señora Marta",
+          "Señora Ana",
+          "Señora Lucía",
+          "Señora Elena"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué regla debe cumplir Lucía en la biblioteca?",
+        "opciones": [
+          "Correr",
+          "Gritar",
+          "Estar en silencio",
+          "Comer chuches"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Dónde está escondido el tesoro del pirata?",
+        "opciones": [
+          "Bajo su cama",
+          "En la escuela",
+          "En un barco",
+          "En una isla desierta"
+        ],
+        "correcta": 3
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "El perro Toby",
-    "texto": "Toby es un perro blanco con manchas negras. Es muy juguetón y le encanta correr detrás de la pelota en el parque. Su dueño se llama Juan y siempre le lleva agua fresca. Hoy Toby ha encontrado un hueso muy grande debajo de un árbol.",
+    "titulo": "El viaje en tren de Dani",
+    "texto": "Dani estaba muy emocionado porque hoy viajaría en tren por primera vez. Iba a visitar a sus abuelos que viven en un pueblo de la montaña. El tren era muy largo y de color rojo brillante. Durante el viaje, vio por la ventana muchas vacas pastando y montañas con nieve en la cumbre. Cuando llegó a la estación, sus abuelos lo esperaban con un abrazo muy fuerte.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es Toby?",
-        "opciones": ["Marrón", "Blanco con manchas"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué encontró Toby?",
-        "opciones": ["Un hueso", "Un juguete"],
+        "pregunta": "¿Era la primera vez que Dani viajaba en tren?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Cómo se llama su dueño?",
-        "opciones": ["Luis", "Pedro", "Juan", "Carlos"],
-        "correcta": 2
+        "pregunta": "¿A quién iba a visitar Dani?",
+        "opciones": [
+          "A sus tíos",
+          "A sus abuelos",
+          "A sus primos",
+          "A sus amigos"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué le gusta perseguir?",
-        "opciones": ["Coches", "Gatos", "Pájaros", "La pelota"],
+        "pregunta": "¿De qué color era el tren?",
+        "opciones": [
+          "Azul",
+          "Blanco",
+          "Verde",
+          "Rojo"
+        ],
         "correcta": 3
       },
       {
-        "pregunta": "¿Dónde encontró el hueso?",
-        "opciones": ["En la casa", "Bajo un árbol", "En la calle", "En la cama"],
+        "pregunta": "¿Qué animales vio por la ventana?",
+        "opciones": [
+          "Caballos",
+          "Vacas",
+          "Cerdos",
+          "Ovejas"
+        ],
         "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde viven los abuelos de Dani?",
+        "opciones": [
+          "En la playa",
+          "En la ciudad",
+          "En un pueblo de la montaña",
+          "En el desierto"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "La excursión al zoo",
-    "texto": "La clase de primero ha ido de excursión al zoológico. Han ido todos juntos en un autobús amarillo. Han visto una jirafa muy alta comiendo hojas de un árbol. También vieron monos saltando y leones durmiendo. A la hora de comer tomaron bocadillos.",
+    "titulo": "La receta mágica",
+    "texto": "Marina decidió ayudar a su padre a preparar una tarta para la merienda. Siguieron una receta muy antigua de su abuela. Primero mezclaron harina y azúcar, luego añadieron huevos y por último trozos de manzana dulce. Marina se encargó de decorar la parte de arriba con canela. Cuando la tarta salió del horno, toda la casa olía de maravilla. ¡Estaba deliciosa!",
     "preguntas": [
       {
-        "pregunta": "¿En qué fueron al zoo?",
-        "opciones": ["En tren", "En autobús"],
+        "pregunta": "¿A quién ayudó Marina?",
+        "opciones": [
+          "A su madre",
+          "A su padre",
+          "A su hermano",
+          "A su abuela"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué comía la jirafa?",
-        "opciones": ["Hojas", "Carne"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿De qué color era el autobús?",
-        "opciones": ["Rojo", "Azul", "Verde", "Amarillo"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué hacían los leones?",
-        "opciones": ["Comer", "Dormir", "Correr", "Rugir"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué comieron los niños?",
-        "opciones": ["Pizza", "Sopa", "Bocadillos", "Fruta"],
+        "pregunta": "¿De quién era la receta antigua?",
+        "opciones": [
+          "De su tía",
+          "De la televisión",
+          "De su abuela",
+          "De una revista"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál fue el último ingrediente que añadieron a la mezcla?",
+        "opciones": [
+          "Harina",
+          "Huevos",
+          "Manzana dulce",
+          "Azúcar"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Con qué decoró Marina la tarta?",
+        "opciones": [
+          "Con chocolate",
+          "Con nata",
+          "Con canela",
+          "Con fresas"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Para qué momento del día era la tarta?",
+        "opciones": [
+          "Desayuno",
+          "Almuerzo",
+          "Cena",
+          "Merienda"
+        ],
+        "correcta": 3
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "El diente de Ana",
-    "texto": "A Ana se le mueve un diente de leche. Su mamá le ha dicho que cuando se le caiga, vendrá el Ratoncito Pérez. Ana está muy emocionada y se mira al espejo a cada rato. Por la noche, dejará el diente debajo de su almohada para tener una sorpresa.",
+    "titulo": "El espantapájaros solitario",
+    "texto": "En medio de un gran campo de maíz vivía un espantapájaros llamado Pipo. Pipo tenía un sombrero de paja y unos guantes viejos. Se sentía un poco solo porque los pájaros le tenían miedo y no se acercaban. Un día, un pequeño gorrión que estaba herido aterrizó en su hombro. Pipo lo cuidó del viento y del frío hasta que el gorrión pudo volar de nuevo. Desde entonces, son los mejores amigos.",
     "preguntas": [
       {
-        "pregunta": "¿Qué se le mueve a Ana?",
-        "opciones": ["Un diente", "Una uña"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Quién vendrá a visitarla?",
-        "opciones": ["Papá Noel", "El Ratoncito Pérez"],
+        "pregunta": "¿Qué protegía el espantapájaros?",
+        "opciones": [
+          "Trigo",
+          "Maíz",
+          "Tomates",
+          "Patatas"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde dejará el diente?",
-        "opciones": ["En la mesa", "En el suelo", "Bajo la almohada", "En una caja"],
+        "pregunta": "¿Cómo se llama el espantapájaros?",
+        "opciones": [
+          "Pepo",
+          "Pipo",
+          "Pepe",
+          "Pachi"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué animal aterrizó en su hombro?",
+        "opciones": [
+          "Un cuervo",
+          "Una paloma",
+          "Un gorrión",
+          "Un águila"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cómo se siente Ana?",
-        "opciones": ["Triste", "Enfadada", "Asustada", "Emocionada"],
-        "correcta": 3
+        "pregunta": "¿Por qué se sentía solo Pipo al principio?",
+        "opciones": [
+          "Porque no tenía ropa",
+          "Porque los pájaros le tenían miedo",
+          "Porque llovía mucho",
+          "Porque no sabía hablar"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Dónde se mira Ana?",
-        "opciones": ["En el espejo", "En la ventana", "En el agua", "En el móvil"],
-        "correcta": 0
+        "pregunta": "¿Qué tenía Pipo en la cabeza?",
+        "opciones": [
+          "Una gorra",
+          "Una corona",
+          "Un sombrero de paja",
+          "Un pañuelo"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "La bicicleta nueva",
-    "texto": "Pedro tiene una bicicleta nueva de color azul. Tiene un timbre que suena muy fuerte. Pedro va a la plaza con su papá para aprender a montar sin ruedines. Siempre se pone el casco para estar seguro y no hacerse daño si se cae.",
+    "titulo": "Un día de mercado",
+    "texto": "El sábado por la mañana, la plaza del pueblo se llena de puestos de colores. Hay puestos de frutas maduras, de quesos artesanos y de flores frescas que huelen muy bien. El abuelo de Pablo siempre compra un ramo de flores para la abuela y un poco de miel dulce. A Pablo le gusta observar cómo la gente saluda, charla y ríe mientras hace la compra.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es la bici?",
-        "opciones": ["Roja", "Azul"],
+        "pregunta": "¿Qué día se pone el mercado?",
+        "opciones": [
+          "Viernes",
+          "Sábado",
+          "Domingo",
+          "Lunes"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Con quién va a la plaza?",
-        "opciones": ["Con su papá", "Con su abuelo"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué usa para protegerse?",
-        "opciones": ["Gorra", "Bufanda", "Casco", "Guantes"],
+        "pregunta": "¿Qué compra el abuelo para la abuela?",
+        "opciones": [
+          "Miel",
+          "Queso",
+          "Flores",
+          "Frutas"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cómo suena el timbre?",
-        "opciones": ["Flojo", "Mal", "Raro", "Fuerte"],
-        "correcta": 3
+        "pregunta": "¿Cómo es la miel que compra el abuelo?",
+        "opciones": [
+          "Salada",
+          "Amarga",
+          "Dulce",
+          "Picante"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Dónde aprende a montar?",
-        "opciones": ["En el colegio", "En la plaza", "En el bosque", "En casa"],
-        "correcta": 1
+        "pregunta": "¿Dónde se celebra el mercado?",
+        "opciones": [
+          "En el parque",
+          "En la playa",
+          "En la plaza del pueblo",
+          "En el colegio"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué le gusta hacer a Pablo en el mercado?",
+        "opciones": [
+          "Correr",
+          "Dormir",
+          "Observar a la gente",
+          "Comer solo"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Un día en la playa",
-    "texto": "Sara ha ido a la playa porque es verano. Ha hecho un castillo de arena muy grande con su cubo y su pala. El agua del mar está un poco fría, pero le gusta saltar las olas. Ha visto un pececito pequeño nadando cerca de sus pies.",
+    "titulo": "El paraguas perdido",
+    "texto": "El martes empezó a llover muy fuerte justo cuando terminaron las clases. Marta no encontraba su paraguas amarillo en el perchero del pasillo. Buscó en su mochila, debajo de su mesa y en el patio, pero no aparecía. De repente, vio a su amigo Hugo que corría hacia ella. ¡Marta, te dejaste el paraguas en el comedor! dijo Hugo. Marta se puso muy contenta y le dio las gracias.",
     "preguntas": [
       {
-        "pregunta": "¿En qué estación es?",
-        "opciones": ["Verano", "Invierno"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo está el agua?",
-        "opciones": ["Caliente", "Fría"],
+        "pregunta": "¿Qué día de la semana llovió?",
+        "opciones": [
+          "Lunes",
+          "Martes",
+          "Jueves",
+          "Viernes"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué ha construido Sara?",
-        "opciones": ["Una casa", "Un puente", "Un coche", "Un castillo"],
+        "pregunta": "¿De qué color es el paraguas de Marta?",
+        "opciones": [
+          "Rojo",
+          "Verde",
+          "Azul",
+          "Amarillo"
+        ],
         "correcta": 3
       },
       {
-        "pregunta": "¿Qué animal ha visto?",
-        "opciones": ["Un cangrejo", "Un pez", "Una medusa", "Una gaviota"],
+        "pregunta": "¿Dónde buscó Marta su paraguas primero?",
+        "opciones": [
+          "En el comedor",
+          "En el perchero",
+          "En la calle",
+          "En el autobús"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué usó para el castillo?",
-        "opciones": ["Cubo y pala", "Tenedor", "Solo las manos", "Una red"],
-        "correcta": 0
+        "pregunta": "¿Quién encontró el paraguas de Marta?",
+        "opciones": [
+          "Su profesora",
+          "Su mamá",
+          "Su amigo Hugo",
+          "El conserje"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Dónde se había dejado realmente el paraguas?",
+        "opciones": [
+          "En el patio",
+          "En el comedor",
+          "En clase",
+          "En el baño"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El gatito Misu",
-    "texto": "Misu es un gatito gris muy curioso. Un día salió al jardín y se subió a un árbol muy alto persiguiendo a un pájaro. Luego le daba miedo bajar. Un bombero tuvo que venir con una escalera larga para ayudarle a bajar al suelo.",
+    "titulo": "La cometa de colores",
+    "texto": "Hacía un viento perfecto para volar cometas. Sergio y su hermana mayor, Elena, fueron a la colina con su cometa nueva. Era una cometa grande con forma de dragón y una cola muy larga de cintas de colores. Poco a poco, la cometa subió más y más alto hasta parecer un punto en el cielo azul. Sergio sujetaba el hilo con fuerza mientras sentía los tirones del viento.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es Misu?",
-        "opciones": ["Negro", "Gris"],
+        "pregunta": "¿Por qué era un buen día para volar cometas?",
+        "opciones": [
+          "Porque llovía",
+          "Porque hacía viento",
+          "Porque nevaba",
+          "Porque hacía calor"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿A quién perseguía?",
-        "opciones": ["A un ratón", "A un pájaro"],
+        "pregunta": "¿Qué forma tenía la cometa?",
+        "opciones": [
+          "De pájaro",
+          "De estrella",
+          "De dragón",
+          "De nube"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Con quién fue Sergio a volar la cometa?",
+        "opciones": [
+          "Con su abuelo",
+          "Con su hermana mayor",
+          "Con su primo",
+          "Con su amigo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde se subió?",
-        "opciones": ["Al tejado", "A una silla", "A un árbol", "A un coche"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Quién le ayudó?",
-        "opciones": ["Un policía", "Un médico", "Un bombero", "Su dueño"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué usó el bombero?",
-        "opciones": ["Una cuerda", "Una red", "Una cama", "Una escalera"],
+        "pregunta": "¿Cómo era la cola de la cometa?",
+        "opciones": [
+          "Corta y negra",
+          "De lana",
+          "De papel",
+          "De cintas de colores"
+        ],
         "correcta": 3
+      },
+      {
+        "pregunta": "¿Dónde fueron a volar la cometa?",
+        "opciones": [
+          "A la colina",
+          "A la playa",
+          "Al patio de casa",
+          "A la calle"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Haciendo galletas",
-    "texto": "Hugo y su hermana están cocinando galletas. Mezclan harina, azúcar y leche en un bol grande. Utilizan moldes con forma de estrella y de corazón. Cuando las meten en el horno, toda la cocina huele muy bien.",
+    "titulo": "El perro detective",
+    "texto": "Boby es un perro pequeño pero muy inteligente. Un día, las llaves de casa de su dueña, la señora Rosa, desaparecieron. Boby empezó a olfatear por todo el salón. Buscó debajo del sofá, detrás de las cortinas y cerca de la televisión. De pronto, Boby empezó a rascar la canasta de sus juguetes. ¡Allí estaban las llaves! Seguramente se le habían caído a la señora Rosa mientras jugaba con él.",
     "preguntas": [
       {
-        "pregunta": "¿Qué están cocinando?",
-        "opciones": ["Un pastel", "Galletas"],
+        "pregunta": "¿Qué objeto se había perdido?",
+        "opciones": [
+          "Un mando",
+          "Unas llaves",
+          "Una moneda",
+          "Un zapato"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Con qué forma las hacen?",
-        "opciones": ["Estrellas", "Coches"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué ingrediente usan?",
-        "opciones": ["Sal", "Pimienta", "Azúcar", "Queso"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Dónde las meten?",
-        "opciones": ["En la nevera", "En el horno", "En el cajón", "En la mesa"],
+        "pregunta": "¿Cómo se llama la dueña de Boby?",
+        "opciones": [
+          "Señora Ana",
+          "Señora Rosa",
+          "Señora Marta",
+          "Señora Clara"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo huele la cocina?",
-        "opciones": ["Mal", "A quemado", "Bien", "A nada"],
+        "pregunta": "¿Dónde encontró Boby las llaves?",
+        "opciones": [
+          "Bajo el sofá",
+          "Tras las cortinas",
+          "En su canasta de juguetes",
+          "En el jardín"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué hizo Boby para buscar las llaves?",
+        "opciones": [
+          "Saltar",
+          "Ladrar",
+          "Olfatear",
+          "Dormir"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo es Boby físicamente?",
+        "opciones": [
+          "Grande",
+          "Pequeño",
+          "Invisible",
+          "Muy lento"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El muñeco de nieve",
-    "texto": "Ha estado nevando toda la noche. Eva ha salido al patio muy abrigada. Ha hecho un muñeco de nieve con tres bolas grandes. Le ha puesto una zanahoria como nariz y una bufanda roja vieja para que no tenga frío.",
+    "titulo": "El primer día de natación",
+    "texto": "Hoy era el primer día de clase de natación de Adrián. Al principio, tenía un poco de miedo porque el agua de la piscina le parecía muy profunda. Su monitora, Carmen, le dio una tabla de color azul para que se sintiera más seguro. Al final de la clase, Adrián ya sabía chapotear y mover las piernas muy rápido. ¡Ya tenía ganas de que llegara el próximo lunes para volver!",
     "preguntas": [
       {
-        "pregunta": "¿Qué ha hecho Eva?",
-        "opciones": ["Un iglú", "Un muñeco de nieve"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué usó de nariz?",
-        "opciones": ["Una patata", "Una zanahoria"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De qué color es la bufanda?",
-        "opciones": ["Azul", "Verde", "Roja", "Negra"],
+        "pregunta": "¿Qué clase tenía Adrián hoy?",
+        "opciones": [
+          "Fútbol",
+          "Pintura",
+          "Natación",
+          "Inglés"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Dónde hizo el muñeco?",
-        "opciones": ["En el parque", "En el patio", "En la calle", "En el colegio"],
+        "pregunta": "¿Cómo se sentía Adrián al principio?",
+        "opciones": [
+          "Contento",
+          "Con miedo",
+          "Enfadado",
+          "Aburrido"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuándo nevó?",
-        "opciones": ["Por la mañana", "Por la tarde", "Toda la noche", "A mediodía"],
+        "pregunta": "¿Qué objeto le dio la monitora?",
+        "opciones": [
+          "Una pelota",
+          "Un silbato",
+          "Una tabla azul",
+          "Unas gafas"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llama la monitora?",
+        "opciones": [
+          "Elena",
+          "Carmen",
+          "Ana",
+          "Marta"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuándo será la próxima clase?",
+        "opciones": [
+          "Mañana",
+          "El martes",
+          "El próximo lunes",
+          "El fin de semana"
+        ],
         "correcta": 2
       }
     ]

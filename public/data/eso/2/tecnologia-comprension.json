@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "Mecanismos de Transmisión del Movimiento",
+        "texto": "Los mecanismos de transmisión permiten pasar el movimiento de un lugar a otro sin cambiar su tipo (de circular a circular). Los más comunes son: 1) POLEAS CON CORREA: transmiten el giro entre ejes alejados. 2) ENGRANAJES: ruedas dentadas que encajan entre sí; son más potentes porque no resbalan. 3) ENGRANAJES CON CADENA: como en la bicicleta, permite transmitir mucha fuerza. Si el eje de salida es más pequeño que el de entrada, la velocidad aumenta, pero si es más grande, la velocidad disminuye y ganamos fuerza.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué mecanismo usa una bicicleta para transmitir el movimiento?",
+                "opciones": [
+                    "Poleas con correa",
+                    "Engranajes con cadena",
+                    "Tornillo sin fin",
+                    "Cigüeñal"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la ventaja de los engranajes frente a las poleas?",
+                "opciones": [
+                    "Son más baratos",
+                    "No resbalan porque tienen dientes",
+                    "Son de goma",
+                    "Hacen menos ruido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un engranaje pequeño mueve a uno grande, ¿qué ocurre?",
+                "opciones": [
+                    "La velocidad aumenta",
+                    "La velocidad disminuye pero ganamos fuerza",
+                    "Se rompen",
+                    "Giran igual"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de movimiento transmiten estos sistemas?",
+                "opciones": [
+                    "Lineal a circular",
+                    "Circular a circular",
+                    "Circular a lineal",
+                    "Ninguno"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven las poleas con correa?",
+                "opciones": [
+                    "Para ejes muy juntos",
+                    "Para transmitir giro entre ejes alejados",
+                    "Para cortar metal",
+                    "Para iluminar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Mecanismos de Transformación del Movimiento",
+        "texto": "A veces necesitamos que el movimiento cambie de tipo, por ejemplo, pasar de GIRO a LINEAL. El sistema PIÑÓN-CREMALLERA (usado en las puertas de garaje o en la dirección de los coches) es un ejemplo claro. Otro es el CIGÜEÑAL Y LA BIELA, fundamental en los motores de gasolina: el movimiento lineal del pistón se transforma en el giro de las ruedas. También existe la LEVA, que al girar empuja una pieza de forma intermitente. Estos mecanismos son la base de casi toda la maquinaria industrial.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué hace un mecanismo de transformación?",
+                "opciones": [
+                    "Para el movimiento",
+                    "Cambia el tipo de movimiento (ej: de circular a lineal)",
+                    "Cambia el color de la pieza",
+                    "Solo cambia la velocidad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se usa el sistema piñón-cremallera?",
+                "opciones": [
+                    "En los relojes de pulsera",
+                    "En puertas de garaje y dirección de coches",
+                    "En las aspas de un molino",
+                    "En una bombilla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué mecanismo es clave en los motores de coches?",
+                "opciones": [
+                    "Tornillo sin fin",
+                    "Biela-Cigüeñal",
+                    "Polea",
+                    "Palanca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace una leva?",
+                "opciones": [
+                    "Gira siempre rápido",
+                    "Empuja una pieza de forma intermitente al girar",
+                    "Sujeta la máquina",
+                    "Produce calor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la pieza dentada plana en el sistema piñón-cremallera?",
+                "opciones": [
+                    "Eje",
+                    "Cremallera",
+                    "Biela",
+                    "Pistón"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Energías Renovables y No Renovables",
+        "texto": "La energía es necesaria para todo. Las fuentes NO RENOVABLES (carbón, petróleo, gas, uranio) se agotan con el uso y contaminan mucho. Por el contrario, las RENOVABLES son inagotables y limpias. Destacan la SOLAR (fotovoltaica y térmica), la EÓLICA (viento), la HIDRÁULICA (agua) y la BIOMASA (residuos orgánicos). En 2nd ESO estudiamos que el futuro depende de la transición energética: dejar de quemar combustibles fósiles para frenar el cambio climático y proteger el planeta.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el principal problema de las energías no renovables?",
+                "opciones": [
+                    "Son muy baratas",
+                    "Se agotan y contaminan (CO2)",
+                    "Son infinitas",
+                    "No funcionan de noche"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué fuente de energía usa el viento?",
+                "opciones": [
+                    "Solar",
+                    "Eólica",
+                    "Hidráulica",
+                    "Nuclear"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la biomasa?",
+                "opciones": [
+                    "Energía de las rocas",
+                    "Energía a partir de residuos orgánicos",
+                    "Energía de los imanes",
+                    "Energía de las pilas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un ejemplo de energía no renovable?",
+                "opciones": [
+                    "Sol",
+                    "Petróleo",
+                    "Viento",
+                    "Agua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Hacia qué modelo energético debemos ir?",
+                "opciones": [
+                    "Hacia el uso masivo de carbón",
+                    "Hacia la transición energética renovable",
+                    "Hacia no usar nada de energía",
+                    "Hacia las pilas usadas"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Electricidad: Ley de Ohm",
+        "texto": "Para entender un circuito eléctrico necesitamos tres valores fundamentales. La TENSIÓN (V), medida en voltios; la INTENSIDAD (I), medida en amperios; y la RESISTENCIA (R), medida en ohmios. El científico George Ohm descubrió que están relacionadas por una fórmula: V = I · R. Esto significa que si aumentamos la resistencia de un circuito, la corriente (intensidad) circulará con más dificultad y será menor. Esta ley es la base para diseñar cualquier aparato electrónico, desde una linterna hasta un ordenador.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué unidad se mide la resistencia eléctrica?",
+                "opciones": [
+                    "Voltios",
+                    "Amperios",
+                    "Ohmios (Ω)",
+                    "Metros"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál es la fórmula de la Ley de Ohm?",
+                "opciones": [
+                    "V = I + R",
+                    "V = I · R",
+                    "A = B · C",
+                    "I = V · R"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué unidad mide el 'caudal' o cantidad de corriente?",
+                "opciones": [
+                    "Voltio",
+                    "Amperio",
+                    "Ohmio",
+                    "Watt"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si mantenemos el voltaje y subimos la resistencia, ¿qué pasa con la intensidad?",
+                "opciones": [
+                    "Aumenta",
+                    "Disminuye",
+                    "Se queda igual",
+                    "Cambia de color"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién descubrió esta relación?",
+                "opciones": [
+                    "Newton",
+                    "George Ohm",
+                    "Einstein",
+                    "Edison"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Sistemas de Control y Sensores",
+        "texto": "Un sistema de control automático permite que una máquina funcione sola basándose en la información de su entorno. Los SENSORES son los dispositivos que captan esa información. Hay muchos tipos: LDR (detecta luz), NTC (detecta temperatura), de CONTACTO (pulsadores) o de DISTANCIA (ultrasonidos). Por ejemplo, las luces de una calle se encienden solas gracias a un sensor LDR que detecta cuando oscurece. El cerebro del sistema suele ser un circuito electrónico o un microcontrolador (como Arduino).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un sensor?",
+                "opciones": [
+                    "Un motor",
+                    "Un dispositivo que capta información del entorno",
+                    "Una batería",
+                    "Un cable largo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de sensor detecta la luz?",
+                "opciones": [
+                    "NTC",
+                    "LDR",
+                    "Pulsador",
+                    "Humedad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace un sistema de control automático?",
+                "opciones": [
+                    "Obliga a una persona a pulsar siempre",
+                    "Permite que la máquina funcione sola con datos del entorno",
+                    "Solo hace ruido",
+                    "Borra el programa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve un sensor NTC?",
+                "opciones": [
+                    "Para contar gente",
+                    "Para medir la temperatura",
+                    "Para ver colores",
+                    "Para medir la luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un ejemplo de sistema controlado por sensor?",
+                "opciones": [
+                    "Una mesa",
+                    "Luces de calle que se encienden solas",
+                    "Un lápiz",
+                    "Una bicicleta normal"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Dibujo Técnico: El Acotado",
+        "texto": "Dibujar un objeto no basta; hay que indicar cuánto mide exactamente para que alguien pueda fabricarlo. A esto se le llama ACOTRAR. Las normas de acotación son universales. Usamos LÍNEAS DE COTA (paralelas a la arista), LÍNEAS AUXILIARES (delmitan la medida) y CIFRAS DE COTA (el número). Las medidas se suelen poner en milímetros y no se deben repetir. Un dibujo bien acotado debe ser claro, limpio y contener toda la información necesaria sin que las líneas se crucen innecesariamente.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa acotar un dibujo?",
+                "opciones": [
+                    "Pintarlo de colores",
+                    "Indicar sus medidas reales mediante normas",
+                    "Hacerlo más pequeño",
+                    "Firmarlo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué unidad se suelen poner las medidas en dibujo técnico?",
+                "opciones": [
+                    "Metros",
+                    "Kilómetros",
+                    "Milímetros (mm)",
+                    "Pulgadas siempre"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Dónde se sitúa la cifra de cota?",
+                "opciones": [
+                    "En una hoja aparte",
+                    "Centrada sobre la línea de cota",
+                    "Debajo del dibujo",
+                    "No se pone"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Deben repetirse las medidas si ya aparecen en otra vista?",
+                "opciones": [
+                    "Sí, por si acaso",
+                    "No, hay que evitar repeticiones innecesarias",
+                    "Solo si el dibujo es grande",
+                    "Depende del profesor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven las líneas auxiliares de cota?",
+                "opciones": [
+                    "Para decorar",
+                    "Para delimitar dónde empieza y acaba la medida",
+                    "Para sombrear",
+                    "Para borrar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Introducción a los Plásticos",
+        "texto": "Los plásticos son materiales sintéticos derivados principalmente del petróleo. Su gran éxito se debe a que son baratos, ligeros, aislantes y fáciles de moldear. Los clasificamos en tres grupos: 1) TERMOPLÁSTICOS: se pueden fundir y reciclar muchas veces (como el PET de las botellas). 2) TERMOESTABLES: una vez moldeados no se pueden volver a fundir (como los mangos de sartenes). 3) ELASTÓMEROS: son muy elásticos (como el caucho de las ruedas o el neopreno). El gran reto actual es reducir su uso y mejorar el reciclaje para proteger los mares.",
+        "preguntas": [
+            {
+                "pregunta": "¿De dónde derivan la mayoría de los plásticos?",
+                "opciones": [
+                    "De las plantas",
+                    "Del petróleo",
+                    "De la arena",
+                    "De la leche"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué caracteriza a los termoplásticos?",
+                "opciones": [
+                    "Que no se queman",
+                    "Que se pueden fundir y deformar varias veces para reciclar",
+                    "Que son siempre transparentes",
+                    "Que son muy duros"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué grupo pertenecen los neumáticos de coche?",
+                "opciones": [
+                    "Termoplásticos",
+                    "Termoestables",
+                    "Elastómeros",
+                    "Metales"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Por qué los mangos de sartenes suelen ser termoestables?",
+                "opciones": [
+                    "Porque son baratos",
+                    "Porque no se funden con el calor de la cocina",
+                    "Porque brillan",
+                    "Porque flotan"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita una propiedad positiva de los plásticos:",
+                "opciones": [
+                    "Son pesados",
+                    "Son buenos aislantes eléctricos y térmicos",
+                    "Contaminan mucho",
+                    "Se rompen fácil"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Seguridad en la Red: Privacidad",
+        "texto": "En la era digital, nuestra privacidad es un tesoro. Todo lo que hacemos en internet deja un rastro. Debemos configurar bien nuestras REDES SOCIALES (perfiles privados), usar contraseñas fuertes y únicas para cada servicio, y desconfiar de los enlaces sospechosos. Es vital entender qué es la IDENTIDAD DIGITAL: la imagen que los demás tienen de nosotros basándose en lo que publicamos. Una vez que algo sube a la red, perdemos el control sobre ello. La mejor defensa es el pensamiento crítico y el sentido común antes de hacer clic.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la identidad digital?",
+                "opciones": [
+                    "Tu DNI escaneado",
+                    "La imagen que proyectas en la red según tus actos y publicaciones",
+                    "Un virus",
+                    "Tu nombre real"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debemos hacer con nuestras redes sociales sociales?",
+                "opciones": [
+                    "Hacerlas públicas para todos",
+                    "Configurar la privacidad y solo aceptar a conocidos",
+                    "No ponerles contraseña",
+                    "Poner muchas fotos de otros"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es buena idea usar la misma contraseña para todo?",
+                "opciones": [
+                    "Sí, para no olvidarla",
+                    "No, por seguridad deben ser diferentes",
+                    "Solo si es '1234'",
+                    "Depende del día"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre cuando subes una foto a internet?",
+                "opciones": [
+                    "Se borra a los 10 minutos",
+                    "Pierdes gran parte del control sobre ella",
+                    "Te pagan dinero",
+                    "No la ve nadie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la mejor herramienta de seguridad?",
+                "opciones": [
+                    "Un antivirus caro",
+                    "El sentido común y pensamiento crítico",
+                    "No encender el PC",
+                    "Un ratón nuevo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Hojas de Cálculo: Excel y similares",
+        "texto": "Una hoja de cálculo es una herramienta potente para organizar datos y realizar cálculos automáticamente. Se organiza en COLUMNAS (letras) y FILAS (números). El cruce de ambas se llama CELDA (ej: A5). Lo más importante son las FÓRMULAS: siempre empiezan con el signo IGUAL (=). Por ejemplo, '=A1+B1' sumará el contenido de esas dos celdas. También podemos crear GRÁFICOS para ver los datos de forma visual. Se usa en contabilidad, ciencias, ingeniería y hasta para organizar tu propio horario de estudio.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se indica una columna en una hoja de cálculo?",
+                "opciones": [
+                    "Con números",
+                    "Con letras (A, B, C...)",
+                    "Con colores",
+                    "Con nombres"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Con qué símbolo debe empezar siempre una fórmula?",
+                "opciones": [
+                    "+",
+                    "$",
+                    "=",
+                    "#"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué es una celda?",
+                "opciones": [
+                    "Una habitación",
+                    "La intersección de una fila y una columna",
+                    "Un tipo de virus",
+                    "El nombre del programa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué permitiría sumar las celdas C2 y C3?",
+                "opciones": [
+                    "Suma C2 C3",
+                    "=C2+C3",
+                    "C2+C3",
+                    "OK C2 C3"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se representan los datos visualmente?",
+                "opciones": [
+                    "Con párrafos",
+                    "Con gráficos (barras, tarta...)",
+                    "Con música",
+                    "No se puede"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Robótica: El flujo del programa",
+        "texto": "Programar un robot no es solo escribir órdenes, es diseñar un flujo lógico. Usamos DIAGRAMAS DE FLUJO para planificar antes de programar. Las formas tienen significado: el óvalo es el inicio/fin, el rectángulo es una acción (avanzar, encender luz) y el rombo es una DECISIÓN (¿hay una pared delante?). Si la respuesta es sí, el robot hace una cosa; si es no, hace otra. Este pensamiento lógico permite que las máquinas resuelvan problemas de forma autónoma, igual que un coche que frena solo si detecta un peatón.",
+        "preguntas": [
+            {
+                "pregunta": "¿Para qué sirve un diagrama de flujo?",
+                "opciones": [
+                    "Para dibujar el robot",
+                    "Para planificar la lógica del programa visualmente",
+                    "Para gastar papel",
+                    "Para medir cables"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué figura representa una decisión en el diagrama?",
+                "opciones": [
+                    "Círculo",
+                    "Rectángulo",
+                    "Rombo",
+                    "Triángulo"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué forma indica el inicio o el final?",
+                "opciones": [
+                    "Óvalo",
+                    "Cuadrado",
+                    "Flecha",
+                    "Pentágono"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué es una acción en programación robótica?",
+                "opciones": [
+                    "Una pregunta",
+                    "Una orden directa (ej: encender motor)",
+                    "Un error",
+                    "Una variable"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo ayuda la lógica al robot?",
+                "opciones": [
+                    "Para que sea más bonito",
+                    "Para resolver problemas de forma autónoma",
+                    "Para que no use batería",
+                    "Para que hable"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "Orientación Académica: Descubriendo mi camino",
+        "texto": "3º de ESO es un curso de transición fundamental. Empezamos a elegir asignaturas optativas que marcarán nuestro futuro en 4º y en Bachillerato o Formación Profesional. No debes elegir lo que elijan tus amigos solo por estar con ellos; debes pensar en qué se te da bien y qué te apasiona. El autoconocimiento es la clave. Hablar con el orientador del centro y con tus padres te ayudará a ver las opciones (Ciencias, Letras, Artes, Tecnología) con más claridad. Tu futuro lo construyes tú con cada decisión hoy.",
+        "preguntas": [
+            {
+                "pregunta": "¿Por qué es 3º de ESO un curso de transición?",
+                "opciones": [
+                    "Porque hay excursiones",
+                    "Porque empezamos a elegir optativas que definen nuestro camino académico",
+                    "Porque es el más fácil",
+                    "Porque no se estudia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué error debemos evitar al elegir asignaturas?",
+                "opciones": [
+                    "Elegir según nuestras notas",
+                    "Elegir lo mismo que los amigos solo para no estar solos",
+                    "Preguntar a los padres",
+                    "Mirar el libro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Con quién podemos hablar para orientarnos?",
+                "opciones": [
+                    "Con nadie",
+                    "Con el orientador del centro y la familia",
+                    "Solo con internet",
+                    "Con los de 1º de ESO"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El autoconocimiento significa:",
+                "opciones": [
+                    "Saber arreglar coches",
+                    "Conocer tus propias habilidades, gustos y valores",
+                    "Saber mucho de historia",
+                    "Tener muchos amigos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una rama académica mencionada:",
+                "opciones": [
+                    "Fútbol",
+                    "Ciencias, Letras, Artes o Tecnología",
+                    "Videojuegos",
+                    "Redes sociales"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Pensamiento Crítico ante la Información",
+        "texto": "Vivimos en la era de la sobreinformación. En redes sociales e internet recibimos miles de impactos diarios. El PENSAMIENTO CRÍTICO es la capacidad de analizar esa información de forma objetiva, sin creerlo todo a la primera. Debemos aprender a distinguir entre hechos (datos comprobables) y opiniones (puntos de vista personales). Una persona con pensamiento crítico se pregunta: ¿quién ha publicado esto? ¿qué intención tiene? ¿hay pruebas de lo que dice? No seas una marioneta de los algoritmos; piensa por ti mismo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el pensamiento crítico?",
+                "opciones": [
+                    "Criticar a todo el mundo",
+                    "Analizar la información de forma objetiva antes de aceptarla",
+                    "Saber mucho de memoria",
+                    "Ser pesimista"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la diferencia entre hecho y opinión?",
+                "opciones": [
+                    "Son lo mismo",
+                    "El hecho es comprobable y la opinión es un punto de vista personal",
+                    "El hecho ocurre en el pasado",
+                    "La opinión siempre es verdad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué pregunta nos ayuda a analizar una noticia?",
+                "opciones": [
+                    "¿Es muy larga?",
+                    "¿Quién la ha publicado y con qué intención?",
+                    "¿Tiene muchas fotos?",
+                    "¿La han visto mis amigos?"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es importante hoy en día?",
+                "opciones": [
+                    "Para sacar buena nota",
+                    "Para no ser manipulados en un mundo lleno de información y algoritmos",
+                    "Para leer más rápido",
+                    "Para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Ser una 'marioneta de los algoritmos' significa:",
+                "opciones": [
+                    "Trabajar en Google",
+                    "Creer y ver solo lo que las redes nos imponen sin reflexionar",
+                    "Ser experto en informática",
+                    "Tener muchos seguidores"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Relaciones Saludables: El Respeto Mutuo",
+        "texto": "En la adolescencia las relaciones (amistad o pareja) se vuelven más profundas. Una RELACIÓN SALUDABLE se basa en el respeto, la confianza y la libertad. Nadie tiene derecho a controlar tu móvil, decirte con quién puedes hablar o qué ropa debes ponerte. El control NO es amor; es abuso. La comunicación asertiva significa expresar tus sentimientos y límites con calma pero con firmeza. Si una relación te hace sentir miedo, tristeza o te aísla de tus amigos, es una 'relación tóxica' de la que debes alejarte.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué se basa una relación saludable?",
+                "opciones": [
+                    "En el dinero",
+                    "En el respeto, la confianza y la libertad",
+                    "En el control total",
+                    "En ser iguales"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es amor controlar el móvil de otra persona?",
+                "opciones": [
+                    "Sí, porque te preocupas",
+                    "No, es una forma de abuso y falta de respeto",
+                    "Solo si te deja",
+                    "Solo en 3º de ESO"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la comunicación asertiva?",
+                "opciones": [
+                    "Gritar mucho",
+                    "Expresar tus sentimientos y límites con respeto y firmeza",
+                    "No decir nunca lo que piensas",
+                    "Hablar solo de uno mismo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una señal de una relación tóxica:",
+                "opciones": [
+                    "Ir al cine juntos",
+                    "Que la otra persona te aísla de tus amigos y te controla",
+                    "Reírse de un chiste",
+                    "Hacer los deberes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debemos hacer ante una relación que nos hace sentir miedo o infelicidad?",
+                "opciones": [
+                    "Aguantar siempre",
+                    "Pedir ayuda y alejarse",
+                    "Hacer lo que el otro quiera",
+                    "No decir nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Adicciones sin sustancia: El juego y el móvil",
+        "texto": "No solo las drogas causan adicción. El uso abusivo del móvil, los videojuegos o las apuestas online (ludopatía) activan los mismos centros de placer del cerebro. La adicción ocurre cuando dejas de hacer tus tareas, pierdes horas de sueño o dejas de ver a tus amigos por estar conectado. El 'FOMO' (miedo a perderse algo) nos hace estar mirando el móvil cada minuto. Aprender a DESCONECTAR es fundamental para nuestra salud mental. El mundo real es mucho más rico que una pantalla de 6 pulgadas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Pueden las pantallas causar adicción como las drogas?",
+                "opciones": [
+                    "No, son inofensivas",
+                    "Sí, activan los mismos mecanismos de placer en el cerebro",
+                    "Solo si están rotas",
+                    "Solo en adultos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo se convierte un hobby en adicción?",
+                "opciones": [
+                    "Cuando lo haces bien",
+                    "Cuando interfiere en tus estudios, sueño y relaciones reales",
+                    "Cuando te gusta mucho",
+                    "Nunca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa la sigla FOMO?",
+                "opciones": [
+                    "Fuerza Obligatoria Muy Óptima",
+                    "Miedo a perderse algo (Fear Of Missing Out)",
+                    "Fotos de Muchos Objetos",
+                    "Forma de Organizar el Móvil"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es aconsejable para la salud mental?",
+                "opciones": [
+                    "Estar conectado 24h",
+                    "Aprender a desconectar y tener tiempo de ocio analógico",
+                    "Tener dos móviles",
+                    "No dormir"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La ludopatía es la adicción a:",
+                "opciones": [
+                    "La música",
+                    "El juego y las apuestas",
+                    "La comida",
+                    "El deporte"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "La Empatía y el Acoso",
+        "texto": "La empatía es la capacidad de ponerse en el lugar del otro. En el instituto, a veces vemos situaciones de injusticia o burlas hacia compañeros. El papel del 'observador' es clave: si te ríes o callas ante un acoso, estás ayudando al agresor. Ser valiente no es ser el que más grita, sino el que defiende al débil o avisa a un profesor cuando ve algo injusto. Un centro escolar sin acoso es responsabilidad de todos, no solo de los profesores. Trata a los demás como te gustaría que te trataran a ti.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la empatía?",
+                "opciones": [
+                    "Tener pena de alguien",
+                    "Capacidad de ponerse en el lugar del otro",
+                    "Saber muchos idiomas",
+                    "Ser muy simpático"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué papel es fundamental en una situación de acoso?",
+                "opciones": [
+                    "El del director solamente",
+                    "El del observador (el que ve lo que pasa)",
+                    "El del más gracioso",
+                    "El del que grita"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si ves una injusticia y te callas, ¿qué estás haciendo?",
+                "opciones": [
+                    "Ser prudente",
+                    "Apoyar indirectamente al agresor",
+                    "Ser buen amigo",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De quién es la responsabilidad de que no haya bullying?",
+                "opciones": [
+                    "Solo del conserje",
+                    "De toda la comunidad educativa (alumnos incluidos)",
+                    "Solo de la policía",
+                    "De nadie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la regla de oro mencionada?",
+                "opciones": [
+                    "Llegar pronto",
+                    "Tratar a los demás como te gustaría ser tratado",
+                    "Sacar dieces",
+                    "No hablar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Autoestima y Presión Estética",
+        "texto": "La autoestima es la valoración que tenemos de nosotros mismos. A menudo es baja porque nos comparamos con modelos de 'belleza' irreales que vemos en la publicidad o en redes sociales (cuerpos extremadamente delgados o musculosos). Debemos entender que la belleza real es diversa y que nuestro valor no depende de nuestro peso o nuestra ropa. Cuida tu cuerpo con deporte y comida sana, pero no te obsesiones con la imagen. Eres mucho más que un aspecto físico; eres tus ideas, tus sueños y tu forma de ser.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la autoestima?",
+                "opciones": [
+                    "Lo que piensan los demás de mí",
+                    "La valoración propia que tenemos de nosotros mismos",
+                    "Ser muy orgulloso",
+                    "Un tipo de coche"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué daña a menudo nuestra autoestima en la adolescencia?",
+                "opciones": [
+                    "Hacer deporte",
+                    "La comparación con modelos de belleza irreales en redes",
+                    "Comer fruta",
+                    "Dormir"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De qué NO depende tu valor como persona?",
+                "opciones": [
+                    "De tus ideas",
+                    "De tu aspecto físico o tu ropa",
+                    "De tu bondad",
+                    "De tu esfuerzo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo es la belleza real según el texto?",
+                "opciones": [
+                    "Única y perfecta siempre",
+                    "Diversa y plural",
+                    "Solo para modelos",
+                    "No existe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué parte de ti es realmente importante cultivar?",
+                "opciones": [
+                    "Solo el pelo",
+                    "Tus ideas, sueños y personalidad",
+                    "Solo los bíceps",
+                    "La marca de las zapatillas"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Gestión de las Emociones: El Estrés",
+        "texto": "En 3º de ESO el nivel de exigencia sube. Los exámenes, los trabajos y la vida social pueden generarnos ESTRÉS. El estrés no es malo en dosis pequeñas (nos ayuda a activarnos), pero si es constante daña nuestra salud. Aprender técnicas de relajación, organizar bien el tiempo de estudio (sin dejarlo para el último día) y dedicar tiempo al ocio son herramientas vitales. Si te sientes desbordado, no te guardes la ansiedad; hablar con un adulto o escribir tus sentimientos ayuda a ver el problema desde fuera y con más calma.",
+        "preguntas": [
+            {
+                "pregunta": "¿Es el estrés siempre malo?",
+                "opciones": [
+                    "Sí, siempre",
+                    "No, en dosis pequeñas ayuda a activarnos",
+                    "Solo si eres profesor",
+                    "Solo en exámenes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué técnica ayuda a reducir el estrés escolar?",
+                "opciones": [
+                    "Dejar todo para el último día",
+                    "Una buena organización del tiempo y técnicas de relajación",
+                    "No estudiar nada",
+                    "Beber mucho café"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si el estrés es constante?",
+                "opciones": [
+                    "Te haces más fuerte",
+                    "Daña la salud física y mental",
+                    "No pasa nada",
+                    "Te hace más listo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué aconseja el texto si te sientes desbordado?",
+                "opciones": [
+                    "Llorar a solas",
+                    "Hablar con alguien de confianza o escribir tus sentimientos",
+                    "Gritar a los compañeros",
+                    "Dejar el instituto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El ocio es:",
+                "opciones": [
+                    "Una pérdida de tiempo",
+                    "Necesario para recuperar el equilibrio",
+                    "Solo para el verano",
+                    "Hacer los deberes"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Valores Democráticos: La Participación",
+        "texto": "Vivir en democracia significa participar en la toma de decisiones. En el instituto, tienes cauces de participación como el DELEGADO de clase o el Consejo Escolar. Un buen ciudadano no es el que se queja de todo, sino el que propone soluciones y se involucra en mejorar su entorno. Escuchar la opinión de los demás (aunque sea distinta) y buscar el consenso es la base de la convivencia. El respeto a las normas que hemos puesto entre todos asegura que el instituto sea un lugar agradable para cada uno de nosotros.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa participar en democracia?",
+                "opciones": [
+                    "Hacer lo que uno quiera",
+                    "Involucrarse en las decisiones y proponer soluciones",
+                    "Ver las noticias",
+                    "Obedecer sin pensar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la función del delegado de clase?",
+                "opciones": [
+                    "Mandar a los demás",
+                    "Representar a sus compañeros ante los profesores",
+                    "Poner las notas",
+                    "No hacer nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué define a un buen ciudadano?",
+                "opciones": [
+                    "Quejarse mucho en redes",
+                    "Involucrarse en la mejora de su entorno y proponer",
+                    "Tener mucho dinero",
+                    "Ser el más fuerte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la base de la convivencia democratica?",
+                "opciones": [
+                    "El silencio",
+                    "La escucha y la búsqueda de consenso",
+                    "Que gane el que más grita",
+                    "La fuerza"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven las normas del instituto?",
+                "opciones": [
+                    "Para molestar",
+                    "Para asegurar un lugar agradable y de respeto para todos",
+                    "Para gastar papel",
+                    "Solo para el director"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Diversidad e Inclusión",
+        "texto": "Nuestro mundo es diverso: diferentes capacidades, culturas, religiones y orientaciones. La INCLUSIÓN es ir más allá de la tolerancia; es hacer que todas las personas, independientemente de sus características, se sientan parte del grupo con los mismos derechos. No dejes a nadie solo en el patio, no uses palabras hirientes ni hagas bromas sobre la condición de los demás. La diversidad nos hace más inteligentes porque nos permite aprender de realidades diferentes a la nuestra. ¡Celebra la diferencia, no la temas!",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la inclusión?",
+                "opciones": [
+                    "Dejar que otros estén cerca",
+                    "Hacer que todos se sientan parte del grupo con iguales derechos",
+                    "Separar a los que son distintos",
+                    "No hablar con nadie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué aporta la diversidad al grupo?",
+                "opciones": [
+                    "Líos e inconvenientes",
+                    "Nos hace más inteligentes y abre nuestra mente",
+                    "Que las clases sean lentas",
+                    "Que no nos entendamos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué actitud debemos evitar?",
+                "opciones": [
+                    "Ayudar al que no entiende",
+                    "Usar palabras hirientes o burlas por la condición del otro",
+                    "Hablar con todos",
+                    "Escuchar música de otros países"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un tipo de diversidad mencionada:",
+                "opciones": [
+                    "De capacidades, culturas o religiones",
+                    "Solo de ropa",
+                    "Solo de notas",
+                    "Solo de altura"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "La inclusión es responsabilidad de:",
+                "opciones": [
+                    "Solo del Gobierno",
+                    "De cada uno de nosotros en el día a día",
+                    "Solo de los padres de otros",
+                    "Nadie"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "El Valor del Esfuerzo y la Perseverancia",
+        "texto": "En la era de la inmediatez (todo con un clic), tendemos a frustrarnos si algo no nos sale a la primera. Sin embargo, las cosas que realmente valen la pena requieren TIEMPO y ESFUERZO. La perseverancia es la capacidad de seguir intentándolo a pesar de las dificultades. Sacar una carrera, aprender un instrumento o mejorar en un deporte no se consigue en un día. No busques el camino más corto, busca el camino que te haga crecer. Tu capacidad de superación es tu superpoder más grande; úsalo para alcanzar tus metas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la perseverancia?",
+                "opciones": [
+                    "Hacer lo mismo siempre",
+                    "Capacidad de seguir intentándolo ante las dificultades",
+                    "Rendirse rápido",
+                    "Tener mucha suerte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué nos frustramos hoy en día?",
+                "opciones": [
+                    "Porque todo es muy difícil",
+                    "Por la cultura de la inmediatez (quererlo todo ya)",
+                    "Por el calor",
+                    "Por no tener móvil"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Aprender algo difícil requiere:",
+                "opciones": [
+                    "Magia",
+                    "Tiempo, esfuerzo y paciencia",
+                    "Un clic",
+                    "Mucho dinero"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de camino nos hace crecer?",
+                "opciones": [
+                    "El más fácil",
+                    "El que supone un reto y requiere superación",
+                    "El que otros hacen por nosotros",
+                    "El que no tiene salida"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es tu 'superpoder' según el texto?",
+                "opciones": [
+                    "Volar",
+                    "Tu capacidad de superación",
+                    "Ser invisible",
+                    "Tener muchas consolas"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

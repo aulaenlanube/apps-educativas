@@ -1,320 +1,570 @@
 [
   {
     "id": "1",
-    "titulo": "La paella del diumenge",
-    "texto": "Hui és diumenge i mengem paella. El pare cuina al jardí amb llenya. La paella porta arròs, pollastre i bajoqueta. Tota la família seu a taula per a dinar. L'arròs està molt bo i groc.",
+    "titulo": "Jaume I el Conqueridor",
+    "texto": "Jaume I va ser el rei que va conquerir la ciutat de València l'any 1238. Va nàixer a Montpeller i des de molt jove va haver de lluitar per a defensar els seus territoris. Segons diu la llegenda, un rat penat va avisar al rei d'un atac sorpresa dels musulmans mentre dormia a la tenda. Per això, el rat penat apareix en l'escut de la ciutat de València. Jaume I no només va conquerir terres, sinó que va crear unes lleis anomenades Els Furs per a organitzar el nou regne.",
     "preguntas": [
       {
-        "pregunta": "Hui és dilluns?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quin any va conquerir Jaume I la ciutat de València?",
+        "opciones": [
+          "1200",
+          "1238",
+          "1492",
+          "2024"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Cuina la mare?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Què porta la paella?",
-        "opciones": ["Macarrons", "Arròs", "Creïlles", "Peix"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "On cuina el pare?",
-        "opciones": ["A la cuina", "Al bany", "Al jardí", "Al carrer"],
+        "pregunta": "Quin animal diu la llegenda que va avisar al rei?",
+        "opciones": [
+          "Un gos",
+          "Un lleó",
+          "Un rat penat",
+          "Un cavall"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "De quin color és l'arròs?",
-        "opciones": ["Blau", "Verd", "Roig", "Groc"],
-        "correcta": 3
+        "pregunta": "On apareix la figura del rat penat?",
+        "opciones": [
+          "A la bandera d'Espanya",
+          "A l'escut de València",
+          "Al menú del menjador",
+          "Als llibres de mates"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Com es deien les lleis que va crear Jaume I?",
+        "opciones": [
+          "La Constitució",
+          "Els Furs",
+          "Les Regles",
+          "Els Romans"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "On va nàixer Jaume I?",
+        "opciones": [
+          "A Castelló",
+          "A Alacant",
+          "A Montpeller",
+          "A Madrid"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Les Falles",
-    "texto": "Al mes de març celebrem les Falles. Al carrer hi ha ninots molt grans i colorits. Els xiquets i les xiquetes tiren petards i s'ho passen molt bé. També mengem bunyols amb xocolate calent.",
+    "titulo": "L'Orxata i la xufa",
+    "texto": "L'orxata és la beguda més famosa de l'estiu valencià. Es fa amb aigua, sucre i xufa. La xufa és un tubercle que només es cultiva en unes poques zones del món per les seues necessitats de clima i terra, i una d'elles és l'Horta de València, prop d'Alboraya. Conta la llegenda que una xica li va donar a provar la beguda al rei Jaume I. Ell va exclamar: 'Açò no és llet, açò és or, xata!', i d'ací vindria el nom d'or-xata.",
     "preguntas": [
       {
-        "pregunta": "Les Falles són al març?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Els xiquets tiren pedres?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Amb quin ingredient principal es fa l'orxata?",
+        "opciones": [
+          "Llet de vaca",
+          "Xufa",
+          "Llimona",
+          "Cafè"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què mengem?",
-        "opciones": ["Poma", "Bunyols", "Sopa", "Entrepà"],
+        "pregunta": "Què és la xufa realment?",
+        "opciones": [
+          "Una fruita",
+          "Un tubercle",
+          "Una herba",
+          "Peix"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què hi ha al carrer?",
-        "opciones": ["Cotxes", "Ninots grans", "Vaques", "Llits"],
+        "pregunta": "En quina localitat és molt típica la seua producció?",
+        "opciones": [
+          "Elx",
+          "Alboraya",
+          "Dénia",
+          "Morella"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Amb què prenem els bunyols?",
-        "opciones": ["Amb aigua", "Amb suc", "Amb xocolate", "Amb llet"],
-        "correcta": 2
+        "pregunta": "Segons la llegenda, qui li va posar el nom?",
+        "opciones": [
+          "Un cuiner",
+          "El rei Jaume I",
+          "Una xiqueta",
+          "Un agricultor"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Quin altre ingredient porta l'orxata?",
+        "opciones": [
+          "Sal",
+          "Sucre i aigua",
+          "Oli",
+          "Vinagre"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "El meu gosset Blai",
-    "texto": "El meu gos es diu Blai. És xicotet i té el pèl de color marró. Li agrada molt jugar amb la pilota al parc. Quan té son, dorm al seu llit redó i calentet.",
+    "titulo": "Enric Valor: El senyor de les paraules",
+    "texto": "Enric Valor va ser un escriptor molt important per a la nostra llengua. Va nàixer a Castalla i va dedicar gran part de la seua vida a arreplegar les 'rondalles'. Les rondalles són contes populars plens de màgia, gegants i personatges fantàstics que la gent es contava de viva veu. Gràcies a ell, aquestes històries no s'han perdut i podem llegir-les en llibres tan divertits com 'L'envejós d'Alcalà' o 'El jugador de petxina'.",
     "preguntas": [
       {
-        "pregunta": "El gos és gran?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Qui va ser Enric Valor?",
+        "opciones": [
+          "Un esportista",
+          "Un escriptor i gramàtic",
+          "Un metge",
+          "Un actor"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "És de color blau?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Què són les rondalles?",
+        "opciones": [
+          "Poemes curts",
+          "Contes populars de tradició oral",
+          "Cançons de bressol",
+          "Llibres de receptes"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Com es diu el gos?",
-        "opciones": ["Toby", "Rex", "Blai", "Roc"],
-        "correcta": 2
+        "pregunta": "On va nàixer aquest escriptor?",
+        "opciones": [
+          "A València",
+          "A Castalla",
+          "A Xàtiva",
+          "A Gandia"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Amb què juga?",
-        "opciones": ["Amb una pilota", "Amb un llibre", "Amb un llapis", "Amb un os"],
-        "correcta": 0
+        "pregunta": "Quin tipus de personatges apareixen a les seues rondalles?",
+        "opciones": [
+          "Només persones reals",
+          "Gegants i personatges fantàstics",
+          "Robots",
+          "Astronautes"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "On dorm Blai?",
-        "opciones": ["Al sofà", "Al llit", "A la cadira", "A terra"],
+        "pregunta": "Per què és important la seua labor?",
+        "opciones": [
+          "Perquè va inventar el cotxe",
+          "Perquè va salvar la tradició oral en llibres",
+          "Perquè volia ser famós",
+          "No és important"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "L'hora del pati",
-    "texto": "A l'escola, quan sona el timbre, eixim al pati. A mi m'agrada jugar a fet i amagar amb els amics. Hui he portat un entrepà de formatge i un suc de taronja per a esmorzar.",
+    "titulo": "El subjecte i el predicat",
+    "texto": "En 5é de primària aprenem a analitzar oracions. Tota oració completa té dues parts: el SUBJECTE i el PREDICAT. El subjecte ens diu qui fa l'acció (persona, animal o cosa), i el predicat ens diu què fa o què li passa al subjecte. Per exemple, en l'oració 'El gos corre pel parc', 'El gos' és el subjecte i 'corre pel parc' és el predicat. El nucli del subjecte sol ser un nom i el nucli del predicat és sempre un verb.",
     "preguntas": [
       {
-        "pregunta": "Sona el timbre?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quines són les dues parts principals de l'oració?",
+        "opciones": [
+          "Paraula i punt",
+          "Subjecte i Predicat",
+          "Nom i Adjectiu",
+          "Inici i Final"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quina part ens indica qui fa l'acció?",
+        "opciones": [
+          "Predicat",
+          "Subjecte",
+          "Complement",
+          "Verbe"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quin és el nucli del predicat?",
+        "opciones": [
+          "Un nom",
+          "Un verb",
+          "Un adjectiu",
+          "Una preposició"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "En 'Maria menja poma', quin és el subjecte?",
+        "opciones": [
+          "Maria",
+          "Menja",
+          "Poma",
+          "Maria menja"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "Eixim al carrer?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "En 'Els xiquets estudien', quin és el predicat?",
+        "opciones": [
+          "Els xiquets",
+          "Estudien",
+          "Els",
+          "No hi ha"
+        ],
         "correcta": 1
-      },
-      {
-        "pregunta": "A què juga?",
-        "opciones": ["A futbol", "A bàsquet", "A fet i amagar", "A cartes"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "De què és l'entrepà?",
-        "opciones": ["De pernil", "De formatge", "De xocolate", "De tonyina"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "De què és el suc?",
-        "opciones": ["De poma", "De pera", "De taronja", "De bresquilla"],
-        "correcta": 2
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "La taronja",
-    "texto": "La taronja és una fruita redona. Naix als tarongers, que són arbres amb fulles verdes. La taronja té molt de suc i és bona per a la salut. A València hi ha molts camps de taronges.",
+    "titulo": "Moros i Cristians",
+    "texto": "Les festes de Moros i Cristians se celebren en molts pobles del territori valencià, sobretot a la província d'Alacant, com Alcoi o la Vila Joiosa. Aquestes festes recorden les lluites que van tindre lloc fa segles. La gent es disfressa amb vestits espectaculars dividits en comparses o filades. Hi ha desfilades amb música de bandes, trabucs i molta alegria. Són unes festes plenes de color i tradició que atrauen turistes de tot el món.",
     "preguntas": [
       {
-        "pregunta": "La taronja és quadrada?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Sobre què tracten aquestes festes?",
+        "opciones": [
+          "Sobre el futur",
+          "Recorden les lluites antigues entre moros i cristians",
+          "Sobre les flors",
+          "Sobre els animals"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Les fulles són verdes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "On naixen les taronges?",
-        "opciones": ["Als pins", "Als tarongers", "A les roques", "Al mar"],
+        "pregunta": "Cita un poble famós per aquestes festes.",
+        "opciones": [
+          "Barcelona",
+          "Alcoi",
+          "Madrid",
+          "Bilbao"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què té la taronja?",
-        "opciones": ["Llet", "Aigua", "Suc", "Sal"],
+        "pregunta": "Com es divideixen els grups que es disfressen?",
+        "opciones": [
+          "En equips de futbol",
+          "En comparses o filades",
+          "En classes de col·legi",
+          "En famílies sols"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Què acompanya a les desfilades?",
+        "opciones": [
+          "Silenzi",
+          "Bandes de música",
+          "Pelicules",
+          "Cotxes de carreres"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "En quina província són més famoses?",
+        "opciones": [
+          "Castelló",
+          "València",
+          "Alacant",
+          "Terol"
+        ],
         "correcta": 2
-      },
-      {
-        "pregunta": "És bona per a la salut?",
-        "opciones": ["Sí, molt", "No, gens", "És roïna", "Fa mal"],
-        "correcta": 0
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Un dia de pluja",
-    "texto": "Hui el cel està gris i plou molt. M'he posat les botes d'aigua i l'impermeable groc. M'agrada saltar als tolls d'aigua, però la mare diu que em banye els peus.",
+    "titulo": "L'Horta de València",
+    "texto": "L'Horta és un paisatge únic que rodeja la ciutat de València. És un espai d'agricultura mil·lenària on s'utilitza un sistema de séquies inventat pels musulmans per a portar l'aigua del riu Túria als camps. Allí es cultiven hortalisses, verdures i tarongers. Es diu que és un 'museu viu' perquè encara es treballa la terra com feien els nostres avantpassats. Hem de protegir l'horta per a tindre aliments frescos i aire net.",
     "preguntas": [
       {
-        "pregunta": "Fa sol hui?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Qui va inventar el sistema de séquies de l'Horta?",
+        "opciones": [
+          "Els romans",
+          "Els musulmans",
+          "Els inventors actuals",
+          "Ningú"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "El cel està blau?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "De quin riu prové l'aigua per a regar l'Horta?",
+        "opciones": [
+          "Del riu Ebre",
+          "Del riu Túria",
+          "Del riu Xúquer",
+          "Del riu Segura"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "De quin color és l'impermeable?",
-        "opciones": ["Roig", "Groc", "Verd", "Negre"],
+        "pregunta": "¿Què es cultiva principalment?",
+        "opciones": [
+          "Blat i dacsa",
+          "Hortalisses, verdures i tarongers",
+          "Plàtans",
+          "Cafè"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "On salta?",
-        "opciones": ["Als tolls", "Al llit", "A la cadira", "Al sofà"],
+        "pregunta": "Per què es diu que és un 'museu viu'?",
+        "opciones": [
+          "Perquè hi ha quadres",
+          "Perquè encara es treballa la terra de forma tradicional",
+          "Perquè no hi ha gent",
+          "Perquè és molt vella"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Per a què és bo protegir l'Horta?",
+        "opciones": [
+          "Per a tindre aliments i aire net",
+          "Per a fer carreteres",
+          "Per a fer cases",
+          "Per a no anar a l'escola"
+        ],
         "correcta": 0
-      },
-      {
-        "pregunta": "Què es banya?",
-        "opciones": ["Les mans", "El cap", "Els peus", "El nas"],
-        "correcta": 2
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "La meua habitació",
-    "texto": "La meua habitació és de color blau. Tinc un llit gran i una taula per a fer els deures. A la prestatgeria tinc molts contes. El meu joguet preferit és un osset de peluix.",
+    "titulo": "Sons de la S: S sorda i S sonora",
+    "texto": "En valencià tenim dos tipus de S. La S SORDA sona com un xiulit (com 'set' o 'caça'). S'escriu amb s, ss, c o ç. La S SONORA sona com el brunzit d'una abella (como 'casa' o 'zero'). S'escriu amb s (entre vocals) o amb z. És molt important no confondre-les per a escriure correctament. Per exemple, no és el mateix una 'caça' (agafar animals) que una 'casa' (on vivim).",
     "preguntas": [
       {
-        "pregunta": "L'habitació és roja?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quants sons principals de S hi ha en valencià?",
+        "opciones": [
+          "Un",
+          "Dos (sorda i sonora)",
+          "Tres",
+          "Cap"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Té un llit gran?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "A què s'assembla el so de la S sonora?",
+        "opciones": [
+          "A un tro",
+          "Al brunzit d'una abella",
+          "A un ocell",
+          "Al vent"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "De quin color és l'habitació?",
-        "opciones": ["Blanca", "Verda", "Blava", "Rosa"],
-        "correcta": 2
+        "pregunta": "Amb quines lletres s'escriu la S sorda?",
+        "opciones": [
+          "z i s",
+          "s, ss, c, ç",
+          "g i j",
+          "h i l"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Què hi ha a la prestatgeria?",
-        "opciones": ["Plats", "Roba", "Contes", "Sabates"],
-        "correcta": 2
+        "pregunta": "Com s'escriu la S sonora entre vocals?",
+        "opciones": [
+          "Amb ss",
+          "Amb s",
+          "Amb ç",
+          "Amb x"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Quin és el joguet preferit?",
-        "opciones": ["Un cotxe", "Un osset", "Una nina", "Un tren"],
+        "pregunta": "La paraula 'zero' té so de...",
+        "opciones": [
+          "S sorda",
+          "S sonora",
+          "No té S",
+          "X"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Anem a la platja",
-    "texto": "A l'estiu fa molta calor i anem a la platja. L'aigua de la mar està fresqueta. Jo faig castells amb l'arena i el meu germà neda amb els manguitos. Després mengem gelat.",
+    "titulo": "El Palmerar d'Elx",
+    "texto": "El Palmerar d'Elx és el més gran d'Europa i un dels més grans del món. Va ser declarat Patrimoni de la Humanitat per la UNESCO l'any 2000. Té més de 200.000 palmeres, la majoria d'elles datileres. Encara que les palmeres ja existien abans, van ser els musulmans els qui van crear el sistema de reg i organització que li va donar la forma actual. És un bosc ple de pau al mig de la ciutat d'Elx.",
     "preguntas": [
       {
-        "pregunta": "Fa fred a l'estiu?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "On està situat aquest recinte?",
+        "opciones": [
+          "A València",
+          "A Elx",
+          "A Castelló",
+          "A Dénia"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "L'aigua està calenta?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quin títol li va donar la UNESCO?",
+        "opciones": [
+          "Millor parc",
+          "Patrimoni de la Humanitat",
+          "Monument Gran",
+          "Lloc divertit"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què faig amb l'arena?",
-        "opciones": ["Boles", "Castells", "Pastissos", "Cases"],
+        "pregunta": "Quantes palmeres té aproximadament?",
+        "opciones": [
+          "1.000",
+          "200.000",
+          "50",
+          "Un milió"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Amb què neda el germà?",
-        "opciones": ["Amb manguitos", "Amb barca", "Amb peus", "Amb res"],
-        "correcta": 0
+        "pregunta": "Quin fruit donen aquestes palmeres?",
+        "opciones": [
+          "Cocos",
+          "Dàtils",
+          "Pomes",
+          "Ametles"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Què mengen després?",
-        "opciones": ["Fruita", "Gelat", "Pa", "Peix"],
+        "pregunta": "Qui va crear el seu sistema de reg actual?",
+        "opciones": [
+          "Els romans",
+          "Els musulmans",
+          "Els egipcis",
+          "Els grecs"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "La classe de música",
-    "texto": "Hui tenim classe de música amb la mestra Anna. Aprenem a tocar la flauta i el tambor. La mestra toca la guitarra i nosaltres cantem una cançó molt bonica sobre la primavera.",
+    "titulo": "El gènere i el nombre: Plurals",
+    "texto": "Per a formar el plural en valencià, generalment afegim una -s (com 'llibre' -> 'llibres'). Però hi ha excepcions: les paraules acabades en -a solen canviar la -a per -es (com 'casa' -> 'cases'). També hem de vigilar els canvis ortogràfics: 'amiga' passa a 'amigues' (afegim una u perquè no canvie el so). Conèixer aquestes regles ens ajuda a parlar i escriure millor.",
     "preguntas": [
       {
-        "pregunta": "La mestra es diu Maria?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Com es fa el plural de 'llibre'?",
+        "opciones": [
+          "Llibro",
+          "Llibres",
+          "Llibrens",
+          "Llibresos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Toquem el piano?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quin és el plural de 'casa'?",
+        "opciones": [
+          "Casas",
+          "Cases",
+          "Casons",
+          "Caseres"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què toca la mestra?",
-        "opciones": ["El violí", "La guitarra", "La trompeta", "El piano"],
+        "pregunta": "¿Quin canvi fa el plural de 'amiga'?",
+        "opciones": [
+          "Amiges",
+          "Amigues",
+          "Amigas",
+          "Amigos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què toquen els xiquets?",
-        "opciones": ["Flauta i tambor", "Guitarra", "Piano", "Arpa"],
-        "correcta": 0
+        "pregunta": "Les paraules que acaben en -a fan el plural en...",
+        "opciones": [
+          "-as",
+          "-es",
+          "-is",
+          "-ons"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "De què és la cançó?",
-        "opciones": ["De l'hivern", "De la tardor", "De l'estiu", "De la primavera"],
-        "correcta": 3
+        "pregunta": "Per què s'afegix la 'u' en 'amigues'?",
+        "opciones": [
+          "Per fer-la més llarga",
+          "Per a mantenir el so de la G",
+          "Perquè sí",
+          "Es pot llevar"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "L'àvia Pepa",
-    "texto": "L'àvia Pepa viu al poble. Té una casa blanca amb un hort. A l'hort hi ha tomaques i encisams. L'àvia em conta contes de quan ella era xicoteta abans d'anar a dormir.",
+    "titulo": "La Serra Calderona",
+    "texto": "La Serra Calderona és un parc natural situat molt prop de València i Castelló. És un pulmó verd on molta gent va a fer senderisme i gaudir de la natura. Té cims famosos com el Garbí, des d'on es pot vore tota la costa i fins i tot les Illes Columbretes en els dies clars. Hem de tindre molta cura amb el foc per a evitar incendis i respectar als animals que viuen allí, com les àguiles i les raboses.",
     "preguntas": [
       {
-        "pregunta": "L'àvia viu a la ciutat?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Què és la Serra Calderona?",
+        "opciones": [
+          "Un riu",
+          "Un parc natural",
+          "Una platja",
+          "Una ciutat"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "La casa és negra?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Què hi ha a l'hort?",
-        "opciones": ["Tomaques", "Pomes", "Taronges", "Melons"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Quan conta contes?",
-        "opciones": ["Pel matí", "A la vesprada", "Abans de dormir", "A l'hora de dinar"],
+        "pregunta": "Quin cim famós té?",
+        "opciones": [
+          "El Teide",
+          "L'Everest",
+          "El Garbí",
+          "L'Aitana"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Com era l'àvia als contes?",
-        "opciones": ["Vella", "Xicoteta", "Alta", "Trista"],
+        "pregunta": "Què es pot vore des del cim en dies clars?",
+        "opciones": [
+          "Itàlia",
+          "Les Illes Columbretes i la costa",
+          "Un castell",
+          "Només núvols"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Quin gran perill hem d'evitar a la serra?",
+        "opciones": [
+          "La pluja",
+          "El foc (incendis)",
+          "El vent",
+          "La neu"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Quin animal viu allí segons el text?",
+        "opciones": [
+          "Lleons",
+          "Àguiles i raboses",
+          "Dofins",
+          "Pingüins"
+        ],
         "correcta": 1
       }
     ]

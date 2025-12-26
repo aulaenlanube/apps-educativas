@@ -1,0 +1,1531 @@
+{
+  "titulo": "Material de Estudio - Ed Fisica - 3º ESO",
+  "introduccion": "Repasa este vocabulario de Ed Fisica para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "agua",
+          "definicion": "Palabra común que empieza por A.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "aeróbico",
+          "definicion": "Ejercicio de intensidad media/baja y larga duración con consumo de oxígeno.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "abdominales",
+          "definicion": "Músculos situados en el vientre que estabilizan el tronco.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "atletismo",
+          "definicion": "Deporte que incluye carreras, saltos y lanzamientos.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "árbitro",
+          "definicion": "Persona encargada de hacer cumplir el reglamento en un partido.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "agujetas",
+          "definicion": "Dolor muscular que aparece horas después de un ejercicio intenso no habitual.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "articulación",
+          "definicion": "Unión entre dos o más huesos que permite el movimiento.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "anaeróbico",
+          "definicion": "Ejercicio de alta intensidad y corta duración con deuda de oxígeno.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "antagonista",
+          "definicion": "Músculo que realiza la acción contraria al agonista.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "alimentación",
+          "definicion": "Ingesta de alimentos necesaria para aportar energía al deportista.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "agilidad",
+          "definicion": "Capacidad de cambiar de dirección y posición rápidamente.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "baloncesto",
+          "definicion": "Deporte de equipo donde se encesta un balón en una canasta.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bádminton",
+          "definicion": "Deporte de raqueta donde se golpea un volante.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bíceps",
+          "definicion": "Músculo del brazo situado en la parte anterior.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "balonmano",
+          "definicion": "Deporte jugado con las manos donde se marca gol en una portería.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bloqueo",
+          "definicion": "Acción defensiva en voleibol para detener el remate.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "banquillo",
+          "definicion": "Lugar donde se sientan los suplentes.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "braza",
+          "definicion": "Estilo de natación.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "balón",
+          "definicion": "Objeto esférico usado en muchos deportes.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bate",
+          "definicion": "Instrumento para golpear la pelota en béisbol.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "burpee",
+          "definicion": "Ejercicio físico completo que combina flexión, sentencia y salto.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "calentamiento",
+          "definicion": "Parte inicial de la sesión para preparar el organismo.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cuádriceps",
+          "definicion": "Músculo grande situado en la parte anterior del muslo.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "coordinación",
+          "definicion": "Capacidad de sincronizar movimientos de diferentes partes del cuerpo.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "calambre",
+          "definicion": "Contracción muscular involuntaria y dolorosa.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "canasta",
+          "definicion": "Lugar donde se encesta en baloncesto.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "carrera",
+          "definicion": "Desplazamiento a pie a gran velocidad.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "corazón",
+          "definicion": "Órgano principal del sistema circulatorio que bombea sangre.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "circuito",
+          "definicion": "Recorrido con diferentes estaciones de ejercicios.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "campo",
+          "definicion": "Terreno de juego.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cualidades",
+          "definicion": "Capacidades físicas básicas (Fuerza, Resistencia, Velocidad...).",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "defensa",
+          "definicion": "Acción de proteger la portería o campo propio.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "delantero",
+          "definicion": "Jugador atacante en fútbol.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "deshidratación",
+          "definicion": "Pérdida excesiva de agua y sales minerales.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "deporte",
+          "definicion": "Actividad física reglada y competitiva.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dorsal",
+          "definicion": "Músculo de la espalda ancha.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dieta",
+          "definicion": "Régimen alimenticio.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "disco",
+          "definicion": "Objeto plano y redondo que se lanza en atletismo.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dopaje",
+          "definicion": "Uso de sustancias prohibidas para mejorar el rendimiento.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "desplazamiento",
+          "definicion": "Movimiento de un lugar a otro.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "distancia",
+          "definicion": "Longitud recorrida en una carrera.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "estiramiento",
+          "definicion": "Acción de alargar el músculo para mejorar la flexibilidad.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "equilibrio",
+          "definicion": "Capacidad de mantener el cuerpo estable.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "esprint",
+          "definicion": "Carrera a máxima velocidad (Sprint).",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "entrenador",
+          "definicion": "Persona que dirige al equipo.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "esguince",
+          "definicion": "Lesión de los ligamentos de una articulación.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "espalda",
+          "definicion": "Parte posterior del tronco.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "esqueleto",
+          "definicion": "Conjunto de huesos del cuerpo.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "ejercicio",
+          "definicion": "Actividad física planificada.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "estrategia",
+          "definicion": "Planificación general para conseguir un objetivo deportivo.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "Educación",
+          "definicion": "Asignatura escolar (Educación...).",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "Educación",
+          "definicion": "Parte de la asignatura que trabajamos (Educación...).",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "fuerza",
+          "definicion": "Capacidad de vencer una resistencia mediante contracción muscular.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "flexibilidad",
+          "definicion": "Capacidad de mover las articulaciones con amplitud (Elasticidad + Movilidad).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "frecuencia cardiaca",
+          "definicion": "Número de latidos por minuto (Frecuencia...).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "frecuencia cardiaca",
+          "definicion": "Ritmo del corazón (Frecuencia...).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "finta",
+          "definicion": "Engaño al adversario con el cuerpo o balón.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "falta",
+          "definicion": "Infracción del reglamento.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fútbol",
+          "definicion": "Deporte rey en España.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fatiga",
+          "definicion": "Cansancio físico tras el esfuerzo.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fibra",
+          "definicion": "Célula muscular (Fi...).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "flexión",
+          "definicion": "Movimiento de doblar una articulación.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fondo",
+          "definicion": "Prueba de resistencia en atletismo (carrera de...).",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "glúteo",
+          "definicion": "Músculo de las nalgas.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gimnasia",
+          "definicion": "Deporte con aparatos o ritmos musicales.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gol",
+          "definicion": "Tanto marcado en fútbol.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gemelos",
+          "definicion": "Nombre común de los músculos gastrocnemios (pantorrilla).",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "guardameta",
+          "definicion": "Portero.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grasa",
+          "definicion": "Sustancia de reserva energética del cuerpo.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "giros",
+          "definicion": "Rotaciones del cuerpo sobre un eje.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "ganar",
+          "definicion": "Vencer en la competición.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gimnasio",
+          "definicion": "Lugar cubierto para hacer deporte.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "Gesto",
+          "definicion": "Movimiento técnico (Gesto...).",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gesto",
+          "definicion": "Acción motriz técnica.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hidratación",
+          "definicion": "Reponer líquidos perdidos.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "higiene",
+          "definicion": "Limpieza y aseo personal tras el deporte.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hueso",
+          "definicion": "Estructura dura que forma el esqueleto.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hábitos",
+          "definicion": "Costumbres saludables (buenos...).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "halterofilia",
+          "definicion": "Deporte de levantamiento de pesas.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "habilidad",
+          "definicion": "Capacidad o destreza para realizar una tarea motriz.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hombro",
+          "definicion": "Articulación que une el brazo con el tronco.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hockey",
+          "definicion": "Deporte con stick y patines.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hipertrofia",
+          "definicion": "Aumento del tamaño muscular.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hierro",
+          "definicion": "Mineral importante para transportar oxígeno en sangre.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "intensidad",
+          "definicion": "Grado de esfuerzo de un ejercicio.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "isquiotibiales",
+          "definicion": "Músculos posteriores del muslo.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "interval",
+          "definicion": "Método de entrenamiento fraccionado (Inglés).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "infracción",
+          "definicion": "Incumplimiento de una norma.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inhalar",
+          "definicion": "Tomar aire durante la respiración.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "impacto",
+          "definicion": "Golpe del pie contra el suelo al correr.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "instalación",
+          "definicion": "Recinto deportivo.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "individual",
+          "definicion": "Deporte practicado por una sola persona.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "iniciación",
+          "definicion": "Comienzo del aprendizaje de un deporte (Deporte de...).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "indumentaria",
+          "definicion": "Ropa deportiva.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "juego",
+          "definicion": "Actividad lúdica.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jugador",
+          "definicion": "Participante de un equipo.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jabalina",
+          "definicion": "Lanzamiento de atletismo con una vara larga.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "judo",
+          "definicion": "Arte marcial y deporte olímpico de origen japonés.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juez",
+          "definicion": "Persona que puntúa o decide en una competición.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jugar",
+          "definicion": "Verbo de realizar un deporte o actividad lúdica.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juegos",
+          "definicion": "Evento deportivo mundial cada 4 años (... Olímpicos).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jta",
+          "definicion": "Salto horizontal con los pies juntos (Juego popular).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jota",
+          "definicion": "Tipo de baile o danza española (La...).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jiu",
+          "definicion": "Arte marcial brasileño (...-Jitsu).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jornada",
+          "definicion": "Día de competición en una liga.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "karate",
+          "definicion": "Arte marcial japonés de golpes.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilo",
+          "definicion": "Unidad de peso (Kilogramo).",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilocaloría",
+          "definicion": "Unidad de energía de los alimentos (Kcal).",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kayak",
+          "definicion": "Embarcación de remo.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kickboxing",
+          "definicion": "Deporte de combate con patadas y puñetazos.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "korfbal",
+          "definicion": "Deporte mixto de canasta similar al baloncesto.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kungfu",
+          "definicion": "Arte marcial chino.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilómetro",
+          "definicion": "Distancia de mil metros.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilogramo",
+          "definicion": "Movimiento de un segmento corporal (Cine... -tic).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kinesiotape",
+          "definicion": "Cinta elástica adhesiva para lesiones (Kinesio...).",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kimono",
+          "definicion": "Vestimenta para artes marciales (Ej. judo).",
+          "pista": "Empieza por K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "lanzamiento",
+          "definicion": "Acción de tirar un objeto.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lesión",
+          "definicion": "Daño físico producido por un accidente o sobrecarga.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "ligamento",
+          "definicion": "Tejido que une hueso con hueso en una articulación.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lateralidad",
+          "definicion": "Preferencia de uso de un lado del cuerpo (diestro/zurdo).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lúdico",
+          "definicion": "Relativo al juego y la diversión.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "línea",
+          "definicion": "Marca que delimita el campo.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "locomoción",
+          "definicion": "Capacidad de trasladarse.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "levantamiento",
+          "definicion": "Acción de subir un peso.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "libre",
+          "definicion": "Tiro sin barrera en baloncesto (Tiro...).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lumbar",
+          "definicion": "Músculo de la zona baja de la espalda.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "músculo",
+          "definicion": "Tejido contráctil del cuerpo.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "maratón",
+          "definicion": "Carrera de 42,195 km.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "metabolismo",
+          "definicion": "Procesos energéticos del cuerpo.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "movimiento",
+          "definicion": "Cambio de posición del cuerpo.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mancuerna",
+          "definicion": "Pesa de mano.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "menisco",
+          "definicion": "Cartílago de la rodilla.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "meta",
+          "definicion": "Línea de llegada.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "monitor",
+          "definicion": "Instructor deportivo.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "material",
+          "definicion": "Objetos usados en clase (balones, conos...).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "marcha",
+          "definicion": "Prueba atlética de caminar rápido sin correr.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "natación",
+          "definicion": "Deporte de desplazarse en el agua.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nutrición",
+          "definicion": "Ciencia de la alimentación.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "normas",
+          "definicion": "Reglas del juego.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nutriente",
+          "definicion": "Sustancia química del alimento.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nota",
+          "definicion": "Calificación escolar.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nervio",
+          "definicion": "Estructura que transmite el impulso eléctrico al músculo.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nudillos",
+          "definicion": "Parte de la mano para golpear en boxeo.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nado",
+          "definicion": "Estilo de natación de espalda.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "tenis",
+          "definicion": "Deporte con raqueta (Te... -nis).",
+          "pista": "Contiene la N"
+        },
+        {
+          "termino": "náuticos",
+          "definicion": "Deportes en embarcaciones (Vela, remo...).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "neutral",
+          "definicion": "Posición de la palanca de cambios o punto sin equipo.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "naismith",
+          "definicion": "Apellido del inventor del baloncesto (James...).",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "muñeca",
+          "definicion": "Articulación entre mano y antebrazo (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "montañismo",
+          "definicion": "Deporte de escalar cumbres (Monta... contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "compañero",
+          "definicion": "Amigo o pareja en el juego (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "pañuelo",
+          "definicion": "Juego infantil de pillar con prenda (Pa... contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "señal",
+          "definicion": "Indicación del árbitro o tráfico (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "puño",
+          "definicion": "Mano cerrada (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "caña",
+          "definicion": "Material para pescar o pierna delgada (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "baño",
+          "definicion": "Lugar de aseo (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "niño",
+          "definicion": "Infante (Ni... contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "año",
+          "definicion": "Temporada anual (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "oxígeno",
+          "definicion": "Gas esencial para el ejercicio aeróbico.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "orientación",
+          "definicion": "Deporte de encontrar balizas en la naturaleza con mapa.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "olimpiada",
+          "definicion": "Competición deportiva internacional (Juegos...).",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "objetivo",
+          "definicion": "Meta a alcanzar.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ocio",
+          "definicion": "Tiempo libre.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "organismo",
+          "definicion": "Cuerpo humano.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oposición",
+          "definicion": "Resistencia del rival.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ofensiva",
+          "definicion": "Ataque.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "obstáculo",
+          "definicion": "Elemento que hay que saltar en carrera de vallas.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "orden",
+          "definicion": "Mandato del árbitro o entrenador.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "pulsaciones",
+          "definicion": "Latidos del corazón.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "potencia",
+          "definicion": "Fuerza x Velocidad.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "portero",
+          "definicion": "Jugador que defiende la meta.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pase",
+          "definicion": "Acción de enviar el balón a un compañero.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "penalti",
+          "definicion": "Tiro de castigo en fútbol desde los 11 metros.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pista",
+          "definicion": "Superficie de juego.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "plancha",
+          "definicion": "Ejercicio isométrico abdominal.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pectoral",
+          "definicion": "Músculo del pecho.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pilates",
+          "definicion": "Método de entrenamiento cuerpo-mente.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "peso",
+          "definicion": "Objeto que se lanza en atletismo (bola pesada).",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "raqueta",
+          "definicion": "Instrumento para golpear en tenis (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "equipo",
+          "definicion": "Conjunto de jugadores (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "equitación",
+          "definicion": "Deporte con caballos (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "equilibrio",
+          "definicion": "Mantenerse sin caer (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "esquí",
+          "definicion": "Deporte de nieve (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "quema",
+          "definicion": "Juego de balón prisionero (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "arquero",
+          "definicion": "Jugador que defiende la portería (Ar... contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "bloqueo",
+          "definicion": "Acción de parar al atacante en baloncesto (Blo... contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "esqueleto",
+          "definicion": "Huesos del cuerpo (Es... contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "izquierda",
+          "definicion": "Lado del cuerpo (Iz... contiene Q).",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "resistencia",
+          "definicion": "Capacidad de aguantar un esfuerzo prolongado.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "ritmo",
+          "definicion": "Cadencia del movimiento o música.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "reglamento",
+          "definicion": "Normas escritas del deporte.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "regate",
+          "definicion": "Acción de esquivar contrarios con el balón.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "relajación",
+          "definicion": "Vuelta a la calma.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "respiración",
+          "definicion": "Intercambio de gases en los pulmones.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "repetición",
+          "definicion": "Volver a hacer un ejercicio.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rugby",
+          "definicion": "Deporte de contacto con balón ovalado.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "raqueta",
+          "definicion": "Instrumento para jugar al tenis o pádel.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "relevo",
+          "definicion": "Carrera donde se pasa un testigo.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "salud",
+          "definicion": "Estado de bienestar físico, mental y social.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sprint",
+          "definicion": "Carrera muy corta y rápida (Inglés).",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "salto",
+          "definicion": "Elevación del cuerpo en el aire.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "senderismo",
+          "definicion": "Actividad de caminar por el monte.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sentadilla",
+          "definicion": "Ejercicio de flexión de piernas.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sudor",
+          "definicion": "Líquido que segrega la piel para enfriar el cuerpo.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "saque",
+          "definicion": "Acción de poner el balón en juego.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "set",
+          "definicion": "Parte de un partido de tenis o voleibol.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sistema",
+          "definicion": "Conjunto de órganos (óseo, muscular...).",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "suelo",
+          "definicion": "Superficie donde se pisa.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "táctica",
+          "definicion": "Estrategia para ganar (plan de juego).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "técnica",
+          "definicion": "Ejecución correcta de los movimientos.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tenis",
+          "definicion": "Deporte de raqueta con red.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "torneo",
+          "definicion": "Competición con eliminatorias.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "trapecio",
+          "definicion": "Músculo de la parte superior de la espalda y cuello.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tríceps",
+          "definicion": "Músculo posterior del brazo.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tiempo",
+          "definicion": "Duración del partido.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "trote",
+          "definicion": "Correr suavemente.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "trampolín",
+          "definicion": "Cama elástica.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tarjeta",
+          "definicion": "Sanción mostrada por el árbitro (Amarilla o Roja).",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "uniforme",
+          "definicion": "Ropa idéntica del equipo.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uña",
+          "definicion": "Placa dura en el dedo, debe estar corta para no arañar.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "ultimate",
+          "definicion": "Deporte de equipo con un disco volador (Frisbee).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unihockey",
+          "definicion": "Hockey sala con sticks de plástico.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "usuario",
+          "definicion": "Persona que usa una instalación deportiva.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unión",
+          "definicion": "Cohesión del equipo.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "urgencia",
+          "definicion": "Situación médica grave.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "ubicación",
+          "definicion": "Posición en el espacio.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "umbral",
+          "definicion": "Límite de intensidad (Anaeróbico).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "utensilio",
+          "definicion": "Herramienta o objeto.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "velocidad",
+          "definicion": "Capacidad de realizar un movimiento en el menor tiempo posible.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "voleibol",
+          "definicion": "Deporte de red donde el balón no puede tocar el suelo.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "valla",
+          "definicion": "Obstáculo que se salta en atletismo.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "ventilación",
+          "definicion": "Intercambio de aire en los pulmones.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vuelta",
+          "definicion": "Regreso al estado inicial (... a la calma).",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vestuario",
+          "definicion": "Lugar para cambiarse de ropa.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vitaminas",
+          "definicion": "Micronutrientes esenciales (A, B, C...).",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "victoria",
+          "definicion": "Ganar el partido.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vertical",
+          "definicion": "Salto hacia arriba.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "viga",
+          "definicion": "Aparato de gimnasia artística de equilibrio.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "waterpolo",
+          "definicion": "Deporte de equipo en el agua con balón.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "windsurf",
+          "definicion": "Deporte de vela sobre tabla.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "kiwi",
+          "definicion": "Fruta saludable (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "taekwondo",
+          "definicion": "Arte marcial coreano (Taek... contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "sandwich",
+          "definicion": "Comida rápida emparedada (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "flow",
+          "definicion": "Movimiento fluido o estilo (Flow, contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "swing",
+          "definicion": "Golpe de golf o béisbol (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "show",
+          "definicion": "Espectáculo deportivo (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "walking",
+          "definicion": "Caminar rápido en inglés (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "snowboard",
+          "definicion": "Deporte de nieve con tabla ancha (Snow... contiene W).",
+          "pista": "Contiene la W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "flexión",
+          "definicion": "Doblar una articulación (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "extensión",
+          "definicion": "Estirar una articulación (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "exhalar",
+          "definicion": "Soltar aire (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "boxeo",
+          "definicion": "Deporte de combate con guantes (Bo... contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "tórax",
+          "definicion": "Pecho o caja torácica (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "mixto",
+          "definicion": "Competición masculina y femenina a la vez (Mi... contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "máximo",
+          "definicion": "Lo más alto o intenso (Má... contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "oxígeno",
+          "definicion": "Gas vital (O... contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "laxitud",
+          "definicion": "Capacidad de relajación excesiva de articulaciones (La... contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "explosivo",
+          "definicion": "Explosivo o muy rápido (E...plosivo contiene X).",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "yoga",
+          "definicion": "Actividad física y mental de origen indio.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "playa",
+          "definicion": "Lugar con arena y mar para deporte (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "apoyo",
+          "definicion": "Ayuda o soporte (Apo... contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ensayo",
+          "definicion": "Anotación en rugby (Ensa... contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "yarda",
+          "definicion": "Medida de longitud inglesa usada en fútbol americano.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "rayo",
+          "definicion": "Muy rápido (como un ra... contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "yincana",
+          "definicion": "Juego de pruebas variadas (Gincana).",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yema",
+          "definicion": "Parte amarilla del huevo, proteína (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "mayor",
+          "definicion": "Más grande (Ma... contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "hoyo",
+          "definicion": "Objetivo en golf (Ho... contiene Y).",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zapatilla",
+          "definicion": "Calzado deportivo.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zona",
+          "definicion": "Área del campo.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zancada",
+          "definicion": "Paso largo al correr.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zumba",
+          "definicion": "Actividad de baile aeróbico.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "lanzamiento",
+          "definicion": "Acción de tirar (Lan... contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "fuerza",
+          "definicion": "Capacidad muscular (Fuer... contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "destreza",
+          "definicion": "Habilidad (Destre... contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "corazón",
+          "definicion": "Órgano que bombea sangre (Cora... contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "braza",
+          "definicion": "Estilo de natación (Bra... contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "calzado",
+          "definicion": "Ropa de pies (Cal... contiene Z).",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

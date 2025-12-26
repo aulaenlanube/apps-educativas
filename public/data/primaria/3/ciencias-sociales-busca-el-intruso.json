@@ -1,73 +1,106 @@
 [
   {
-    "categoria": "Transporte Aéreo (Visual)",
+    "categoria": "Transporte Aéreo y Espacial (Visual)",
     "correctos": [
       "✈️",
       "🚁",
       "🚀",
       "🛫",
-      "🛬"
+      "🛬",
+      "🛸",
+      "🛰️",
+      "🛩️",
+      "🎈"
     ],
     "intrusos": [
       "🚗",
       "🚌",
       "🚲",
       "🚢",
-      "🚂"
+      "🚂",
+      "🚜",
+      "🚑",
+      "🛵",
+      "🛹",
+      "👟"
     ]
   },
   {
-    "categoria": "El Universo (Visual)",
+    "categoria": "El Universo y los Astros (Visual)",
     "correctos": [
       "☀️",
       "🌍",
       "🌕",
       "🪐",
       "⭐",
-      "☄️"
+      "☄️",
+      "🌌",
+      "🔭"
     ],
     "intrusos": [
       "✈️",
       "🦅",
       "🪁",
       "🚁",
-      "☁️"
+      "☁️",
+      "🌩️",
+      "🎈",
+      "🦟",
+      "🐝",
+      "🦉"
     ]
   },
   {
-    "categoria": "Señales (Visual)",
+    "categoria": "Señales de Tráfico y Seguridad (Visual)",
     "correctos": [
       "🛑",
       "⛔",
       "🚸",
       "🅿️",
       "♿",
-      "🚳"
+      "🚳",
+      "⚠️",
+      "🚧",
+      "🛂",
+      "🚭"
     ],
     "intrusos": [
       "🏁",
       "🚩",
       "🖼️",
       "📸",
-      "🎨"
+      "🎨",
+      "🎭",
+      "🎪",
+      "🎫",
+      "🎸",
+      "🎵"
     ]
   },
   {
-    "categoria": "Profesiones (Visual)",
+    "categoria": "Profesiones del Sector Público (Visual)",
     "correctos": [
       "👨‍⚕️",
       "👩‍🏫",
       "👮‍♂️",
       "👨‍🚒",
       "👩‍🍳",
-      "👨‍🌾"
+      "👨‍🌾",
+      "🕵️‍♂️",
+      "👨‍⚖️",
+      "👩‍🔬"
     ],
     "intrusos": [
       "👻",
       "👽",
       "🤖",
       "🐵",
-      "🗽"
+      "🗽",
+      "🧸",
+      "🪁",
+      "🏰",
+      "🧛",
+      "🧟"
     ]
   },
   {
@@ -78,84 +111,123 @@
       "Tierra",
       "Marte",
       "Júpiter",
-      "Saturno"
+      "Saturno",
+      "Urano",
+      "Neptuno"
     ],
     "intrusos": [
       "Luna",
       "Sol",
       "Cometa",
-      "Estrella",
-      "Nube"
+      "Estrella Polar",
+      "Nube",
+      "Asteroide Eros",
+      "Galaxia",
+      "Agujero negro"
     ]
   },
   {
-    "categoria": "Medios de Transporte",
+    "categoria": "Medios de Transporte de Viajeros",
     "correctos": [
       "Coche",
       "Autobús",
       "Tren",
       "Avión",
       "Barco",
-      "Bicicleta"
+      "Bicicleta",
+      "Metro",
+      "Tranvía",
+      "Helicóptero",
+      "Taxi"
     ],
     "intrusos": [
       "Zapato",
       "Casa",
       "Colegio",
       "Puente",
-      "Semáforo"
+      "Semáforo",
+      "Carretera",
+      "Vía",
+      "Puerto",
+      "Aeropuerto",
+      "Gasolinera"
     ]
   },
   {
-    "categoria": "Profesiones",
+    "categoria": "Profesiones Especializadas",
     "correctos": [
       "Médico",
       "Profesor",
       "Policía",
       "Bombero",
       "Agricultor",
-      "Cocinero"
+      "Cocinero",
+      "Arquitecto",
+      "Ingeniero",
+      "Veterinario",
+      "Enfermero"
     ],
     "intrusos": [
       "Estudiante",
       "Paciente",
       "Cliente",
       "Turista",
-      "Ladrón"
+      "Ladrón",
+      "Niño",
+      "Bebé",
+      "Pasajero",
+      "Peatón",
+      "Espectador"
     ]
   },
   {
-    "categoria": "Tipos de Paisaje",
+    "categoria": "Elementos del Paisaje Natural",
     "correctos": [
       "Montaña",
       "Llanura",
       "Costa",
       "Valle",
       "Meseta",
-      "Playa"
+      "Playa",
+      "Río",
+      "Lago",
+      "Acantilado",
+      "Isla"
     ],
     "intrusos": [
       "Edificio",
       "Carretera",
       "Fábrica",
       "Semáforo",
-      "Tienda"
+      "Tienda",
+      "Puente",
+      "Túnel",
+      "Glorieta",
+      "Puerto",
+      "Aeropuerto"
     ]
   },
   {
-    "categoria": "Servicios Municipales",
+    "categoria": "Servicios Municipales Ciudadanos",
     "correctos": [
-      "Limpieza",
+      "Limpieza viaria",
       "Bomberos",
-      "Policía",
-      "Jardinería",
-      "Transporte"
+      "Policía local",
+      "Jardinería pública",
+      "Transporte público",
+      "Correos",
+      "Alumbrado",
+      "Abastecimiento de agua"
     ],
     "intrusos": [
       "Cine",
       "Restaurante",
       "Discoteca",
-      "Gimnasio privado"
+      "Gimnasio privado",
+      "Ludoteca comercial",
+      "Academia de baile",
+      "Pueblo",
+      "Montaña"
     ]
   }
 ]

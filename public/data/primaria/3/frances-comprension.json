@@ -1,321 +1,571 @@
 [
   {
     "id": "1",
-    "titulo": "Bonjour !",
-    "texto": "Bonjour ! Je m'appelle Pierre. J'ai six ans. J'habite à Paris dans une grande maison. J'aime beaucoup le chocolat et les glaces.",
+    "titulo": "Ma Journée Typique",
+    "texto": "Je me réveille à sept heures. Je mange des céréales et je bois un jus d'orange. Depois, je range ma chambre et je prépare mon sac. À huit heures, je vais à l'école avec mon papa. J'adore apprendre le français avec mes amis!",
     "preguntas": [
       {
-        "pregunta": "Il s'appelle Pierre ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Il a dix ans ?",
-        "opciones": ["Oui", "Non"],
+        "pregunta": "À quelle heure l'enfant se réveille-t-il?",
+        "opciones": [
+          "Six heures",
+          "Sept heures",
+          "Huit heures",
+          "Neuf heures"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Quel âge a Pierre ?",
-        "opciones": ["Cinq ans", "Six ans", "Sept ans", "Huit ans"],
+        "pregunta": "Qu'est-ce qu'il mange pour le petit-déjeuner?",
+        "opciones": [
+          "Du pain",
+          "Des céréales",
+          "Des fruits",
+          "Rien"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Où habite Pierre ?",
-        "opciones": ["À Madrid", "À Londres", "À Paris", "À Rome"],
+        "pregunta": "Que fait-il avant d'aller à l'école?",
+        "opciones": [
+          "Il regarde la télé",
+          "Il range sa chambre",
+          "Il sort le chat",
+          "Il joue dans le jardin"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Avec qui va-t-il à l'école?",
+        "opciones": [
+          "Avec sa maman",
+          "Avec son frère",
+          "Avec son papa",
+          "À pied tout seul"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Qu'est-ce qu'il aime ?",
-        "opciones": ["Le poisson", "La salade", "Le chocolat", "Le fromage"],
-        "correcta": 2
+        "pregunta": "Qu'est-ce qu'il aime apprendre?",
+        "opciones": [
+          "Les maths",
+          "Le français",
+          "Le dessin",
+          "La musique"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Le chat noir",
-    "texto": "Voici mon chat. Il s'appelle Minou. Il est noir et petit. Il mange du poisson dans la cuisine. Il aime dormir sur le lit.",
+    "titulo": "Les Quatre Saisons",
+    "texto": "En automne, il y a du vent et les feuilles tombent. En hiver, il fait froid et il neige parfois. Au printemps, il y a beaucoup de fleurs rouges et bleues. En été, il fait très chaud et il y a du soleil. Ma saison préférée est l'été parce que je vais à la plage.",
     "preguntas": [
       {
-        "pregunta": "C'est un chien ?",
-        "opciones": ["Oui", "Non"],
+        "pregunta": "Que se passe-t-il en automne?",
+        "opciones": [
+          "Il neige",
+          "Il y a du vent et les feuilles tombent",
+          "Il fait chaud",
+          "C'est Noël"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Il est noir ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Comment s'appelle le chat ?",
-        "opciones": ["Rex", "Minou", "Félix", "Tom"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Qu'est-ce qu'il mange ?",
-        "opciones": ["Des pommes", "Du pain", "Du poisson", "Des gâteaux"],
+        "pregunta": "Quel temps fait-il en hiver?",
+        "opciones": [
+          "Beau",
+          "Chaud",
+          "Froid",
+          "Sec"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Où dort le chat ?",
-        "opciones": ["Sur le lit", "Dans le jardin", "Sur la table", "Dans la voiture"],
-        "correcta": 0
+        "pregunta": "Où y a-t-il des fleurs au printemps?",
+        "opciones": [
+          "Dans le ciel",
+          "Dans le jardin et les champs",
+          "Dans l'eau",
+          "À la maison"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Quelle est la saison préférée de l'enfant?",
+        "opciones": [
+          "L'automne",
+          "L'hiver",
+          "L'été",
+          "Le printemps"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Où va l'enfant en été?",
+        "opciones": [
+          "À la montagne",
+          "À la plage",
+          "À l'école",
+          "Au cinéma"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Ma famille",
-    "texto": "C'est ma famille. Voici mon papa Paul et ma maman Sophie. J'ai un petit frère, il s'appelle Léo. Nous sommes très contents ensemble.",
+    "titulo": "Ma Jolie Maison",
+    "texto": "J'habite dans une maison jaune. Au rez-de-chaussée, il y a la cuisine et le salon. Ma chambre est au premier étage. Elle est bleue. J'ai un grand lit, un bureau blanc et une étagère pour mes livres. J'aime lire dans mon lit le soir.",
     "preguntas": [
       {
-        "pregunta": "Le papa s'appelle Paul ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "J'ai une grande sœur ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Comment s'appelle la maman ?",
-        "opciones": ["Marie", "Julie", "Sophie", "Claire"],
+        "pregunta": "De quelle couleur est la maison?",
+        "opciones": [
+          "Bleue",
+          "Blanche",
+          "Jaune",
+          "Verte"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Qui est Léo ?",
-        "opciones": ["Le papa", "Le petit frère", "L'ami", "Le chat"],
+        "pregunta": "Où est la cuisine?",
+        "opciones": [
+          "Au premier étage",
+          "Au rez-de-chaussée",
+          "Dans le jardin",
+          "À la cave"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Comment est la famille ?",
-        "opciones": ["Triste", "Contente", "Petite", "Fâchée"],
+        "pregunta": "De quelle couleur est la chambre de l'enfant?",
+        "opciones": [
+          "Rose",
+          "Jaune",
+          "Bleue",
+          "Grise"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Quelle est la couleur du bureau?",
+        "opciones": [
+          "Noir",
+          "Blanc",
+          "Marron",
+          "Rouge"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Que fait l'enfant le soir?",
+        "opciones": [
+          "Il cuisine",
+          "Il lit dans son lit",
+          "Il court",
+          "Il étudie"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Les fruits",
-    "texto": "Dans le panier, il y a trois pommes rouges et deux bananes jaunes. J'aime les fruits. Les pommes sont délicieuses.",
+    "titulo": "Au Zoo de la Ville",
+    "texto": "Aujourd'hui, je visite le zoo avec ma classe. Il y a de grands éléphants gris et des girafes avec de longs cous. Les singes sont drôles parce qu'ils sautent partout. Je vois aussi un lion orange et noir qui dort au soleil. C'est une journée fantastique!",
     "preguntas": [
       {
-        "pregunta": "Il y a des fruits ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Les bananes sont bleues ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Combien de pommes il y a ?",
-        "opciones": ["Une", "Deux", "Trois", "Quatre"],
+        "pregunta": "Avec qui l'enfant visite-t-il le zoo?",
+        "opciones": [
+          "Sa famille",
+          "Ses amis",
+          "Sa classe",
+          "Son chien"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Quelle est la couleur des bananes ?",
-        "opciones": ["Rouge", "Jaune", "Verte", "Noire"],
+        "pregunta": "De quelle couleur sont les éléphants?",
+        "opciones": [
+          "Noirs",
+          "Gris",
+          "Blancs",
+          "Marrons"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Comment sont les pommes ?",
-        "opciones": ["Mauvaises", "Délicieuses", "Petites", "Salées"],
-        "correcta": 1
+        "pregunta": "Pourquoi les singes sont-ils drôles?",
+        "opciones": [
+          "Ils dorment",
+          "Ils mangent",
+          "Ils sautent partout",
+          "Ils parlent"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Que fait le lion?",
+        "opciones": [
+          "Il mange",
+          "Il court après les girafes",
+          "Il dort au soleil",
+          "Il nage"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "De quelle couleur est le lion selon le texte?",
+        "opciones": [
+          "Gris",
+          "Brun",
+          "Orange et noir",
+          "Jaune"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Mon école",
-    "texto": "Dans mon sac à dos, j'ai un livre bleu, une trousse rouge et deux crayons. J'adore mon école. Ma maîtresse est très gentille.",
+    "titulo": "Dans ma Ville",
+    "texto": "Ma ville est petite mais très belle. Il y a un grand parc avec un lac. Près du parc, il y a une boulangerie qui vend des croissants délicieux. Il y a aussi une école, une bibliothèque et un supermarché. Je vais au parc le samedi avec mon vélo.",
     "preguntas": [
       {
-        "pregunta": "Le livre est vert ?",
-        "opciones": ["Oui", "Non"],
+        "pregunta": "Comment est la ville?",
+        "opciones": [
+          "Grande et laide",
+          "Petite mais très belle",
+          "Ennuyeuse",
+          "Très bruyante"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "La maîtresse est gentille ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "De quelle couleur est la trousse ?",
-        "opciones": ["Bleue", "Rouge", "Jaune", "Noire"],
+        "pregunta": "Qu'y a-t-il dans le parc?",
+        "opciones": [
+          "Une montagne",
+          "Un lac",
+          "Un zoo",
+          "Une plage"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Qu'est-ce qu'il y a dans le sac ?",
-        "opciones": ["Un ballon", "Une poupée", "Un livre", "Un chat"],
+        "pregunta": "Que vend la boulangerie?",
+        "opciones": [
+          "Des gâteaux",
+          "Des fruits",
+          "Des croissants délicieux",
+          "Des jouets"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Combien de crayons j'ai ?",
-        "opciones": ["Un", "Deux", "Trois", "Dix"],
-        "correcta": 1
+        "pregunta": "Quand l'enfant va-t-il au parc?",
+        "opciones": [
+          "Le lundi",
+          "Le mercredi",
+          "Le samedi",
+          "Le dimanche"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Comment l'enfant va-t-il au parc?",
+        "opciones": [
+          "En voiture",
+          "À pied",
+          "Avec son vélo",
+          "En bus"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Le chien Rex",
-    "texto": "Rex est un grand chien marron. Il joue avec une balle verte dans le jardin. Il court très vite. Il est le meilleur ami de Pierre.",
+    "titulo": "J'aime le Sport!",
+    "texto": "Le sport est très important pour la santé. À l'école, je fais du foot avec mes camarades le mardi. Mon amie Sarah préfère la natation, elle va à la piscine le mercredi. Le week-end, je fais du vélo avec ma famille dans la forêt. Nous sommes très actifs!",
     "preguntas": [
       {
-        "pregunta": "Rex est un chat ?",
-        "opciones": ["Oui", "Non"],
+        "pregunta": "Quel jour l'enfant fait-il du foot?",
+        "opciones": [
+          "Lundi",
+          "Mardi",
+          "Jeudi",
+          "Vendredi"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Rex est petit ?",
-        "opciones": ["Oui", "Non"],
+        "pregunta": "Quel sport Sarah préfère-t-elle?",
+        "opciones": [
+          "Le basket",
+          "La natation",
+          "Le tennis",
+          "Le yoga"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "De quelle couleur est Rex ?",
-        "opciones": ["Noir", "Blanc", "Gris", "Marron"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "Avec quoi joue Rex ?",
-        "opciones": ["Une pomme", "Une balle", "Un stylo", "Une fleur"],
+        "pregunta": "Où va Sarah le mercredi?",
+        "opciones": [
+          "Au parc",
+          "À la piscine",
+          "À la bibliothèque",
+          "Chez Alice"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Qui est l'ami de Rex ?",
-        "opciones": ["Pierre", "Paul", "Marie", "Sophie"],
-        "correcta": 0
+        "pregunta": "Que fait l'enfant le week-end?",
+        "opciones": [
+          "Il dort",
+          "Il fait du vélo avec sa famille",
+          "Il joue aux jeux vidéo",
+          "Il étudie"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Où font-ils du vélo?",
+        "opciones": [
+          "En ville",
+          "Dans la forêt",
+          "Sur la plage",
+          "Dans le jardin"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Le corps",
-    "texto": "J'ai deux yeux pour voir et une bouche pour manger. J'ai deux mains avec dix doigts. Je marche avec mes deux jambes.",
+    "titulo": "Bon Appétit!",
+    "texto": "C'est l'heure du déjeuner. Aujourd'hui, maman prépare du poulet avec des frites. Comme dessert, il y a de la salade de fruits ou un yaourt à la fraise. Pour boire, il y a de l'eau ou du jus de pomme. J'adore le yaourt à la fraise, c'est mon préféré!",
     "preguntas": [
       {
-        "pregunta": "J'ai trois yeux ?",
-        "opciones": ["Oui", "Non"],
+        "pregunta": "Qu'est-ce que maman prépare pour le déjeuner?",
+        "opciones": [
+          "De la pizza",
+          "Du poulet avec des frites",
+          "Du poisson et du riz",
+          "Des pâtes"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "J'ai une bouche ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Combien de doigts j'ai ?",
-        "opciones": ["Cinq", "Huit", "Dix", "Vingt"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "Avec quoi je marche ?",
-        "opciones": ["Les mains", "Les jambes", "Le nez", "Les oreilles"],
+        "pregunta": "Quels sont les choix pour le dessert?",
+        "opciones": [
+          "Du gâteau ou du chocolat",
+          "De la salade de fruits ou un yaourt",
+          "Une glace",
+          "Rien"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "À quoi sert la bouche ?",
-        "opciones": ["À voir", "À marcher", "À manger", "À écouter"],
+        "pregunta": "Quel est le dessert préféré de l'enfant?",
+        "opciones": [
+          "La salade de fruits",
+          "Le yaourt à la fraise",
+          "La pomme",
+          "Le chocolat"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Que peut-on boire?",
+        "opciones": [
+          "Du lait",
+          "De l'eau ou du jus de pomme",
+          "Du thé",
+          "Du soda"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Le yaourt est à quel parfum?",
+        "opciones": [
+          "Vanille",
+          "Banane",
+          "Fraise",
+          "Citron"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Les jours de la semaine",
-    "texto": "Aujourd'hui, c'est lundi. Je vais à l'école. Le samedi et le dimanche, je reste à la maison. Le mercredi après-midi, je joue au football.",
+    "titulo": "Mon Cadeau d'Anniversaire",
+    "texto": "C'est mon anniversaire aujourd'hui! J'ai huit ans. Mes amis m'offrent des cadeaux. Lucie me donne un livre d'images et Marc me donne un petit robot bleu. Ma maman prépare un grand gâteau au chocolat avec huit bougies blanches. Je suis très heureux!",
     "preguntas": [
       {
-        "pregunta": "Je vais à l'école le lundi ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Le dimanche je vais à l'école ?",
-        "opciones": ["Oui", "Non"],
+        "pregunta": "Quel âge a l'enfant?",
+        "opciones": [
+          "Sept ans",
+          "Huit ans",
+          "Neuf ans",
+          "Dix ans"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Quand je joue au football ?",
-        "opciones": ["Lundi", "Mardi", "Mercredi", "Jeudi"],
+        "pregunta": "Que donne Lucie en cadeau?",
+        "opciones": [
+          "Un robot",
+          "Un livre d'images",
+          "Un ballon",
+          "Un puzzle"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Comment est le robot de Marc?",
+        "opciones": [
+          "Grand et rouge",
+          "Petit et bleu",
+          "Vieux et gris",
+          "De toutes les couleurs"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "De quoi est fait le gâteau?",
+        "opciones": [
+          "De fruits",
+          "De chocolat",
+          "De vanille",
+          "De fromage"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "De quelle couleur sont les bougies?",
+        "opciones": [
+          "Rouges",
+          "Jaunes",
+          "Blanches",
+          "Bleues"
+        ],
         "correcta": 2
-      },
-      {
-        "pregunta": "Quels jours je reste à la maison ?",
-        "opciones": ["Lundi et Mardi", "Samedi et Dimanche", "Jeudi et Vendredi", "Mardi et Mercredi"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "C'est quel jour aujourd'hui ?",
-        "opciones": ["Lundi", "Mardi", "Vendredi", "Samedi"],
-        "correcta": 0
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Il fait beau",
-    "texto": "En été, il fait chaud et il y a du soleil. J'aime aller à la plage pour nager. En hiver, il fait froid et il neige. Je porte un manteau chaud.",
+    "titulo": "Mes Vêtements",
+    "texto": "Aujourd'hui, il fait beau. Je porte un t-shirt vert, un short bleu et des chaussures de sport blanches. Mon frère porte un jean noir et un pull rouge parce qu'il a froid. Nous sommes prêts pour aller jouer au football au parc.",
     "preguntas": [
       {
-        "pregunta": "Il fait froid en été ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Il y a du soleil en été ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Où je vais en été ?",
-        "opciones": ["À l'école", "Au cinéma", "À la plage", "Au lit"],
+        "pregunta": "Quel temps fait-il?",
+        "opciones": [
+          "Il pleut",
+          "Il neige",
+          "Il fait beau",
+          "Il y a du brouillard"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Quand il neige ?",
-        "opciones": ["En été", "En hiver", "Au printemps", "En automne"],
+        "pregunta": "De quelle couleur est le t-shirt de l'enfant?",
+        "opciones": [
+          "Bleu",
+          "Vert",
+          "Rouge",
+          "Blanc"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Qu'est-ce que je porte en hiver ?",
-        "opciones": ["Un short", "Un t-shirt", "Un manteau", "Des sandales"],
-        "correcta": 2
+        "pregunta": "Que porte le frère?",
+        "opciones": [
+          "Un short",
+          "Un jean noir et un pull rouge",
+          "Une robe",
+          "Un pyjama"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Pourquoi le frère porte-t-il un pull?",
+        "opciones": [
+          "Pour faire joli",
+          "Parce qu'il a froid",
+          "C'est son préféré",
+          "Il ne sait pas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Où vont-ils jouer au football?",
+        "opciones": [
+          "À l'école",
+          "Au parc",
+          "Dans la rue",
+          "À la maison"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Les couleurs du jardin",
-    "texto": "Le ciel est bleu. L'herbe est verte. Le soleil est jaune. Les fleurs sont rouges et roses. C'est un très joli jardin.",
+    "titulo": "La Classe de Français",
+    "texto": "Dans ma classe de français, il y a vingt élèves. Nous avons des livres, des cahiers et des crayons. Sur les murs, il y a des cartes de la France. Madame Lambert est notre professeur. Elle est très patiente. Nous chantons des chansons en français.",
     "preguntas": [
       {
-        "pregunta": "Le ciel est vert ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "L'herbe est verte ?",
-        "opciones": ["Oui", "Non"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "De quelle couleur est le soleil ?",
-        "opciones": ["Rouge", "Jaune", "Noir", "Violet"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "De quelle couleur sont les fleurs ?",
-        "opciones": ["Bleues", "Grises", "Rouges et roses", "Marron"],
+        "pregunta": "Combien d'élèves y a-t-il dans la classe?",
+        "opciones": [
+          "Dix",
+          "Quinze",
+          "Vingt",
+          "Trente"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "Comment est le jardin ?",
-        "opciones": ["Joli", "Laid", "Triste", "Mauvais"],
+        "pregunta": "Qu'y a-t-il sur les murs?",
+        "opciones": [
+          "Des horloges",
+          "Des cartes de la France",
+          "Des miroirs",
+          "Rien"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Comment s'appelle le professeur?",
+        "opciones": [
+          "Madame Lambert",
+          "Madame Dupont",
+          "Monsieur Martin",
+          "Madame Claire"
+        ],
         "correcta": 0
+      },
+      {
+        "pregunta": "Comment est le professeur?",
+        "opciones": [
+          "Sévère",
+          "Patiente",
+          "Fatiguée",
+          "Drôle"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Que font les élèves en classe?",
+        "opciones": [
+          "Ils dorment",
+          "Ils chantent des chansons en français",
+          "Ils mangent",
+          "Ils crient"
+        ],
+        "correcta": 1
       }
     ]
   }

@@ -1,17 +1,122 @@
 {
+  "toma_decisiones": [
+    "opción",
+    "consecuencia",
+    "evaluación",
+    "objetivo",
+    "riesgo",
+    "alternativa",
+    "reflexión",
+    "decisión",
+    "compromiso",
+    "cambio"
+  ],
   "orientacion_academica": [
-    "bachillerato", "formación profesional", "grado medio", "universidad", "nota de corte", "optativa", "itinerario", "beca", "selectividad", "título"
+    "4º eso",
+    "itinerario",
+    "bachillerato",
+    "formación profesional",
+    "asignaturas optativas",
+    "estudios postobligatorios",
+    "título",
+    "consejo orientador",
+    "universidad",
+    "empleabilidad"
   ],
-  "habilidades_sociales": [
-    "empatía", "asertividad", "resiliencia", "escucha activa", "negociación", "liderazgo", "trabajo en equipo", "paciencia", "comunicación", "autoestima"
+  "habilidades_afectivas": [
+    "empatía",
+    "autoestima",
+    "asertividad",
+    "respeto mutuo",
+    "relaciones sanas",
+    "prevención de violencia",
+    "identidad de género",
+    "orientación sexual",
+    "diversidad",
+    "afecto"
   ],
-  "tecnicas_estudio": [
-    "resumen", "esquema", "mapa conceptual", "subrayado", "mnemotecnia", "planificación", "repaso", "concentración", "cronograma", "apuntes"
+  "salud_conductas": [
+    "alcohol",
+    "tabaco",
+    "vaper",
+    "drogas",
+    "juego online",
+    "adicción sin sustancia",
+    "prevención",
+    "entorno saludable",
+    "resiliencia",
+    "autoayuda"
   ],
-  "valores_civicos": [
-    "solidaridad", "respeto", "tolerancia", "igualdad", "justicia", "libertad", "responsabilidad", "ecología", "cooperación", "democracia"
+  "convivencia_mediacion": [
+    "mediador",
+    "acuerdo",
+    "empowerment",
+    "negociación",
+    "escucha activa",
+    "tolerancia cero",
+    "protocolo",
+    "clima escolar",
+    "apoyo entre iguales",
+    "diálogo"
   ],
-  "riesgos_adolescencia": [
-    "adicción", "acoso", "presión de grupo", "ansiedad", "estrés", "sedentarismo", "juego patológico", "redes sociales", "imagen corporal", "consumismo"
+  "identidad_digital": [
+    "privacidad",
+    "huella digital",
+    "ciberacoso",
+    "fake news",
+    "netiqueta",
+    "seguridad en internet",
+    "redes sociales",
+    "influencia",
+    "critica",
+    "protección"
+  ],
+  "voluntariado_solidaridad": [
+    "ong",
+    "colaboración",
+    "ayuda humanitaria",
+    "medio ambiente",
+    "compromiso social",
+    "comunidad",
+    "empatía social",
+    "proyecto social",
+    "donación",
+    "ciudadanía global"
+  ],
+  "tecnicas_trabajo_intelectual": [
+    "mapa conceptual",
+    "análisis",
+    "síntesis",
+    "memorización comprensiva",
+    "plan de estudio",
+    "atención sostenida",
+    "preparación de exámenes",
+    "fuentes de información",
+    "lectura crítica",
+    "organización"
+  ],
+  "autoconocimiento_profundo": [
+    "fortaleza",
+    "debilidad",
+    "interés",
+    "capacidad",
+    "aptitud",
+    "vocación",
+    "personalidad",
+    "valores éticos",
+    "motivación interna",
+    "metas personales"
+  ],
+  "igualdad_derechos": [
+    "feminismo",
+    "igualdad de oportunidades",
+    "brecha de género",
+    "corresponsabilidad",
+    "derechos humanos",
+    "constitucion",
+    "democracia",
+    "tolerancia",
+    "inclusión",
+    "diversidad cultural"
   ]
 }

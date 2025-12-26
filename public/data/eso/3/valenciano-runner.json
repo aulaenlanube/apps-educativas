@@ -1,17 +1,122 @@
 {
+  "gramatica_pronoms": [
+    "en",
+    "hi",
+    "el",
+    "la",
+    "els",
+    "les",
+    "li",
+    "em",
+    "et",
+    "es"
+  ],
+  "lexic_natura": [
+    "muntanya",
+    "barranc",
+    "font",
+    "riu",
+    "llac",
+    "mar",
+    "platja",
+    "penya-segat",
+    "illa",
+    "serra"
+  ],
+  "vocabular_tecnologia": [
+    "ordinador",
+    "mòbil",
+    "correu electrònic",
+    "xarxa",
+    "pantalla",
+    "teclat",
+    "ratolí",
+    "connexió",
+    "fitxer",
+    "clau"
+  ],
+  "ortografia_dièresi": [
+    "lluïs",
+    "agraïment",
+    "països",
+    "raïm",
+    "traduïdes",
+    "heroïna",
+    "conduïa",
+    "paruïre",
+    "veïna",
+    "arcaïtzant"
+  ],
+  "literatura_moderna": [
+    "renaixença",
+    "modernisme",
+    "poesia",
+    "assaig",
+    "novel·la",
+    "teatre",
+    "valència",
+    "escriptor",
+    "biblioteca",
+    "estil"
+  ],
+  "comprensio_lectora": [
+    "argument",
+    "trama",
+    "seqüència",
+    "diàleg",
+    "monòleg",
+    "punt de vista",
+    "narrador omniscient",
+    "context",
+    "final",
+    "personatge principal"
+  ],
   "sociolinguistica": [
-    "bilingüisme", "diglòssia", "llengua minoritària", "normalització", "dialecte", "estàndard", "registre", "parlants", "prejudici", "llengua oficial"
+    "llengua pròpia",
+    "oficial",
+    "estatut",
+    "normalització",
+    "bilingüisme",
+    "diglòssia",
+    "registre",
+    "parlant",
+    "comunitat",
+    "territori"
   ],
-  "categories_invariables": [
-    "adverbi", "preposició", "conjunció", "interjecció", "locució", "connector", "nexe", "partícula", "afixe", "mot"
+  "festes_tradicions": [
+    "falles",
+    "fogueres",
+    "magdalena",
+    "moros i cristians",
+    "muixeranga",
+    "danses",
+    "gegants",
+    "fira",
+    "romeria",
+    "setmana santa"
   ],
-  "literatura_medieval": [
-    "Ausiàs March", "Joanot Martorell", "Tirant lo Blanc", "Jaume Roig", "Sor Isabel de Villena", "segle d'or", "poesia", "novel·la de cavalleries", "prosa", "sàtira"
+  "gastronomia_local": [
+    "paella",
+    "arròs al forn",
+    "fideuà",
+    "orxata",
+    "fartons",
+    "pastís de moniato",
+    "all i pebre",
+    "coques",
+    "bunyols",
+    "fruita"
   ],
-  "mitjans_comunicacio": [
-    "notícia", "reportatge", "editorial", "crònica", "entrevista", "ràdio", "premsa", "televisió", "internet", "xarxes"
-  ],
-  "formacio_paraules": [
-    "derivadació", "composició", "prefix", "sufix", "parasíntesi", "sigla", "acrònim", "préstec", "neologisme", "família lèxica"
+  "oficis_tradicionals": [
+    "mariner",
+    "llaurador",
+    "pastor",
+    "ferrer",
+    "sabater",
+    "teixidor",
+    "espardenyer",
+    "fuster",
+    "mestre",
+    "forner"
   ]
 }

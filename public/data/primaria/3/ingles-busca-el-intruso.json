@@ -1,78 +1,126 @@
 [
   {
-    "categoria": "Animals (Icons)",
+    "categoria": "Mammals and Wild Animals (Icons)",
     "correctos": [
       "🐶",
       "🐱",
       "🦁",
       "🐯",
       "🐷",
-      "🐸"
+      "🐸",
+      "🦒",
+      "🦓",
+      "🐘",
+      "🦒",
+      "🦓",
+      "🐺",
+      "🐮",
+      "🐨",
+      "🐼"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "🏠",
       "✏️",
-      "⚽"
+      "⚽",
+      "🍔",
+      "🍕",
+      "🚲",
+      "🎸",
+      "⌚",
+      "💻",
+      "🧸"
     ]
   },
   {
-    "categoria": "Fruits (Icons)",
+    "categoria": "Healthy Food: Fruits (Icons)",
     "correctos": [
       "🍎",
       "🍌",
       "🍇",
       "🍊",
       "🍓",
-      "🍍"
+      "🍍",
+      "🍉",
+      "🍒",
+      "🍑",
+      "🥝",
+      "🥭",
+      "🍋"
     ],
     "intrusos": [
       "🥦",
       "🥕",
       "🍔",
       "🍕",
-      "🌭"
+      "🌭",
+      "🍟",
+      "🥓",
+      "🥐",
+      "🧀",
+      "🍗",
+      "🥪",
+      "🍳"
     ]
   },
   {
-    "categoria": "Weather (Icons)",
+    "categoria": "Weather and Nature (Icons)",
     "correctos": [
       "☀️",
       "☁️",
       "🌧️",
       "❄️",
       "⛈️",
-      "🌬️"
+      "🌬️",
+      "🌈",
+      "🌫️",
+      "🌪️",
+      "🌊"
     ],
     "intrusos": [
       "🏠",
       "🚗",
       "🐶",
       "📚",
-      "👓"
+      "👓",
+      "🍔",
+      "🛋️",
+      "🛁",
+      "🧸",
+      "🚲"
     ]
   },
   {
-    "categoria": "Sports (Icons)",
+    "categoria": "Popular Sports (Icons)",
     "correctos": [
       "⚽",
       "🏀",
       "🏈",
-      "⚾",
+      "Baseball",
       "🎾",
-      "🏐"
+      "🏐",
+      "🏓",
+      "🏸",
+      "🏹",
+      "🛹",
+      "⛸️"
     ],
     "intrusos": [
       "🍔",
       "🍟",
       "🍕",
       "🎮",
-      "📺"
+      "📺",
+      "📻",
+      "🎨",
+      "🎬",
+      "🎸",
+      "🎺"
     ]
   },
   {
-    "categoria": "Numbers 1-10",
+    "categoria": "Numbers (Words) 1-20",
     "correctos": [
       "One",
       "Two",
@@ -80,7 +128,13 @@
       "Four",
       "Five",
       "Six",
-      "Seven"
+      "Seven",
+      "Eight",
+      "Nine",
+      "Ten",
+      "Eleven",
+      "Twelve",
+      "Twenty"
     ],
     "intrusos": [
       "Red",
@@ -88,11 +142,17 @@
       "Dog",
       "Cat",
       "Yes",
-      "No"
+      "No",
+      "Small",
+      "Big",
+      "Happy",
+      "Sad",
+      "Today",
+      "Monday"
     ]
   },
   {
-    "categoria": "Colors",
+    "categoria": "Colors and Shades",
     "correctos": [
       "Red",
       "Blue",
@@ -100,42 +160,66 @@
       "Yellow",
       "Pink",
       "Black",
-      "White"
+      "White",
+      "Grey",
+      "Brown",
+      "Purple",
+      "Orange",
+      "Gold",
+      "Silver"
     ],
     "intrusos": [
       "Table",
       "Chair",
       "Book",
       "Pen",
-      "Car"
+      "Car",
+      "Bus",
+      "Dog",
+      "Cat",
+      "Apple",
+      "Banana",
+      "Doctor",
+      "Brother"
     ]
   },
   {
-    "categoria": "Family Members",
+    "categoria": "Immediate and Extended Family",
     "correctos": [
       "Mother",
       "Father",
       "Sister",
       "Brother",
       "Grandma",
-      "Baby"
+      "Baby",
+      "Grandad",
+      "Uncle",
+      "Aunt",
+      "Cousin",
+      "Parents"
     ],
     "intrusos": [
       "Teacher",
       "Doctor",
       "Driver",
       "Police",
-      "School"
+      "School",
+      "Dentist",
+      "Farmer",
+      "Chef",
+      "Nurse",
+      "Firefighter"
     ]
   },
   {
-    "categoria": "Days of the Week",
+    "categoria": "Time: Days of the Week",
     "correctos": [
       "Monday",
       "Tuesday",
       "Wednesday",
       "Thursday",
       "Friday",
+      "Saturday",
       "Sunday"
     ],
     "intrusos": [
@@ -143,25 +227,45 @@
       "March",
       "May",
       "Spring",
-      "Winter"
+      "Winter",
+      "Summer",
+      "Autumn",
+      "Month",
+      "Year",
+      "Morning",
+      "Night"
     ]
   },
   {
-    "categoria": "Action Verbs",
+    "categoria": "Action Verbs (Infinitive)",
     "correctos": [
       "Run",
       "Jump",
       "Swim",
       "Dance",
       "Sing",
-      "Play"
+      "Play",
+      "Read",
+      "Write",
+      "Sleep",
+      "Eat",
+      "Speak",
+      "Listen",
+      "Watch"
     ],
     "intrusos": [
       "Happy",
       "Sad",
       "Big",
       "Small",
-      "Fat"
+      "Fat",
+      "Thin",
+      "Red",
+      "Blue",
+      "Table",
+      "Dog",
+      "Fast",
+      "Slow"
     ]
   }
 ]

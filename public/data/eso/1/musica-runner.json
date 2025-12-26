@@ -1,17 +1,122 @@
 {
-  "figuras_musicales": [
-    "redonda", "blanca", "negra", "corchea", "semicorchea", "fusa", "semifusa", "puntillo", "ligadura", "calderón"
+  "cualidades_sonido": [
+    "altura",
+    "duración",
+    "intensidad",
+    "timbre",
+    "agudo",
+    "grave",
+    "fuerte",
+    "piano",
+    "largo",
+    "corto"
   ],
   "notas_musicales": [
-    "do", "re", "mi", "fa", "sol", "la", "si", "agudo", "grave", "bemol"
+    "do",
+    "re",
+    "mi",
+    "fa",
+    "sol",
+    "la",
+    "si",
+    "pentagrama",
+    "clave de sol",
+    "clave de fa"
   ],
-  "familias_instrumentos": [
-    "cuerda frotada", "cuerda pulsada", "cuerda percutida", "viento madera", "viento metal", "percusión afinada", "percusión no afinada", "electrófonos", "membranófonos", "idiófonos"
+  "figuras_musicales": [
+    "redonda",
+    "blanca",
+    "negra",
+    "corchea",
+    "semicorchea",
+    "fusa",
+    "semifusa",
+    "silencio",
+    "puntillo",
+    "ligadura"
   ],
-  "cualidades_sonido": [
-    "altura", "duración", "intensidad", "timbre", "fuerte", "piano", "largo", "corto", "pentagrama", "clave"
+  "instrumentos_cuerda": [
+    "violín",
+    "viola",
+    "violonchelo",
+    "contrabajo",
+    "guitarra",
+    "arpa",
+    "piano",
+    "laúd",
+    "banjo",
+    "ukelele"
   ],
-  "agrupaciones_vocales": [
-    "soprano", "mezzosoprano", "contralto", "tenor", "barítono", "bajo", "coro mixto", "escolanía", "dúo", "solista"
+  "instrumentos_viento": [
+    "flauta",
+    "oboe",
+    "clarinete",
+    "fagot",
+    "trompeta",
+    "trombón",
+    "trompa",
+    "tuba",
+    "saxofón",
+    "armónica"
+  ],
+  "instrumentos_percusion": [
+    "tambor",
+    "bombo",
+    "platillos",
+    "triángulo",
+    "xilófono",
+    "timbales",
+    "pandereta",
+    "castañuelas",
+    "maracas",
+    "caja"
+  ],
+  "voz_humana": [
+    "soprano",
+    "mezzosoprano",
+    "contralto",
+    "tenor",
+    "barítono",
+    "bajo",
+    "coro",
+    "solista",
+    "vocal",
+    "ópera"
+  ],
+  "generos_musicales": [
+    "clásica",
+    "pop",
+    "rock",
+    "jazz",
+    "blues",
+    "flamenco",
+    "rap",
+    "banda sonora",
+    "folk",
+    "electrónica"
+  ],
+  "ritmo_compas": [
+    "pulso",
+    "acento",
+    "compás",
+    "metrónomo",
+    "binario",
+    "ternario",
+    "cuaternario",
+    "síncopa",
+    "contratiempo",
+    "tempo"
+  ],
+  "agrupaciones": [
+    "orquesta",
+    "banda",
+    "cuarteto",
+    "trío",
+    "dúo",
+    "quinteto",
+    "coral",
+    "big band",
+    "grupo de cámara",
+    "charanga"
   ]
 }

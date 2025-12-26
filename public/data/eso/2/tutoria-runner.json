@@ -1,17 +1,122 @@
 {
-  "valores_convivencia": [
-    "respeto", "tolerancia", "empatía", "solidaridad", "cooperación", "responsabilidad", "justicia", "igualdad", "libertad", "honestidad"
+  "identidad_personal": [
+    "autoestima",
+    "autoconocimiento",
+    "personalidad",
+    "valores",
+    "fortalezas",
+    "debilidades",
+    "sueños",
+    "metas",
+    "carácter",
+    "imagen"
   ],
-  "habilidades_sociales": [
-    "escucha activa", "asertividad", "negociación", "liderazgo", "paciencia", "comunicación", "autocontrol", "persuasión", "crítica constructiva", "decisión"
-  ],
-  "emociones": [
-    "alegría", "tristeza", "ira", "miedo", "sorpresa", "asco", "vergüenza", "culpa", "envidia", "orgullo"
-  ],
-  "tecnicas_estudio": [
-    "planificación", "subrayado", "resumen", "esquema", "mapa mental", "reglas mnemotécnicas", "repaso", "lectura comprensiva", "toma de apuntes", "descanso"
+  "relaciones_grupo": [
+    "pertenencia",
+    "liderazgo",
+    "presión de grupo",
+    "amistad",
+    "complicidad",
+    "respeto",
+    "diversidad",
+    "tolerancia",
+    "lealtad",
+    "conflictos"
   ],
   "resolucion_conflictos": [
-    "diálogo", "mediación", "acuerdo", "disculpa", "perdón", "reparación", "consenso", "arbitraje", "paz", "comprensión"
+    "asertividad",
+    "diálogo",
+    "mediación",
+    "negociación",
+    "empate",
+    "acuerdo",
+    "escucha",
+    "paciencia",
+    "empatía",
+    "disculpa"
+  ],
+  "emociones_adolescencia": [
+    "cambios",
+    "frustración",
+    "inseguridad",
+    "ilusión",
+    "estrés",
+    "agobio",
+    "celos",
+    "amor",
+    "soledad",
+    "alegría"
+  ],
+  "adicciones_pantallas": [
+    "videojuegos",
+    "redes sociales",
+    "móvil",
+    "dependencia",
+    "aislamiento",
+    "acoso online",
+    "privacidad",
+    "hackers",
+    "engaño",
+    "desconexión"
+  ],
+  "orientacion_bachillerato": [
+    "ciencias",
+    "letras",
+    "artes",
+    "formación profesional",
+    "futuro",
+    "intereses",
+    "habilidades",
+    "profesión",
+    "estudios",
+    "esfuerzo"
+  ],
+  "salud_prevencion": [
+    "alimentación sana",
+    "trastorno alimentario",
+    "deporte",
+    "descanso",
+    "higiene",
+    "prevención de drogas",
+    "tabaco",
+    "alcohol",
+    "vapeo",
+    "estilo de vida"
+  ],
+  "bullying_ayuda": [
+    "acoso",
+    "víctima",
+    "agresor",
+    "espectador",
+    "denuncia",
+    "ayuda",
+    "orientador",
+    "tutor",
+    "familia",
+    "solidaridad"
+  ],
+  "derechos_deberes": [
+    "normas de convivencia",
+    "respeto",
+    "igualdad",
+    "libertad",
+    "responsabilidad",
+    "ciudadanía",
+    "voto",
+    "democracia",
+    "solidaridad",
+    "justicia"
+  ],
+  "tecnicas_planificacion": [
+    "agenda",
+    "horario",
+    "priorizar",
+    "concentración",
+    "objetivos",
+    "repaso",
+    "memoria",
+    "descansos",
+    "esquemas",
+    "autoevaluación"
   ]
 }

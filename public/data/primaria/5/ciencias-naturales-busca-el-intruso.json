@@ -1,11 +1,14 @@
 [
   {
-    "categoria": "Reino Fungi (Visual)",
+    "categoria": "Reino Fungi y Aplicaciones (Visual)",
     "correctos": [
       "🍄",
-      "🥖",
-      "🧀",
-      "🍺"
+      "🥖 (Levadura)",
+      "🧀 (Mohos)",
+      "🍺 (Fermentación)",
+      "🥣 (Miso)",
+      "🍷 (Levadura)",
+      "🦠 (Penicilina)"
     ],
     "intrusos": [
       "🌻",
@@ -13,165 +16,228 @@
       "🌹",
       "🌵",
       "🐶",
-      "🐱"
+      "🐱",
+      "🦁",
+      "🍎",
+      "🥦",
+      "🥛",
+      "🥚"
     ]
   },
   {
-    "categoria": "Energías (Visual)",
+    "categoria": "Fuentes y Formas de Energía (Visual)",
     "correctos": [
       "☀️",
       "🌬️",
       "🌊",
       "🔥",
       "⚡",
-      "🔋"
+      "🔋",
+      "💡",
+      "⛽",
+      "♨️",
+      "☢️"
     ],
     "intrusos": [
       "🛌",
       "🧸",
       "📚",
       "🎨",
-      "🧊"
+      "🧊",
+      "🛋️",
+      "🛁",
+      "👕",
+      "👟",
+      "🎩"
     ]
   },
   {
-    "categoria": "Microorganismos (Visual)",
+    "categoria": "Microbiología y Genética (Visual)",
     "correctos": [
       "🦠",
       "🧫",
       "🧬",
       "🩸",
-      "🔬"
+      "🔬",
+      "💉",
+      "💊",
+      "🥼",
+      "🧤"
     ],
     "intrusos": [
       "🐘",
       "🐋",
       "🦒",
       "🌲",
-      "🚗"
+      "🚗",
+      "🏠",
+      "🚲",
+      "🚁",
+      "🚂"
     ]
   },
   {
-    "categoria": "Alimentos (Visual)",
+    "categoria": "Nutrientes y Alimentos Saludables (Visual)",
     "correctos": [
       "🍎",
       "🍞",
       "🧀",
       "🍗",
       "🥛",
-      "🥚"
+      "🥚",
+      "🥗",
+      "🥦",
+      "🥕",
+      "🥑",
+      "🥬"
     ],
     "intrusos": [
       "💨",
       "👃",
       "👀",
       "🧠",
-      "🦴"
+      "🦴",
+      "🦾",
+      "🦿",
+      "🫀",
+      "🫁",
+      "👂"
     ]
   },
   {
-    "categoria": "Los Cinco Reinos",
+    "categoria": "Los Cinco Reinos de los Seres Vivos",
     "correctos": [
-      "Animales",
-      "Plantas",
-      "Hongos",
-      "Moneras",
-      "Protoctistas"
+      "Animales (Metazoos)",
+      "Plantas (Metafitas)",
+      "Hongos (Fungi)",
+      "Moneras (Bacterias)",
+      "Protoctistas (Algas y Protozoos)"
     ],
     "intrusos": [
       "Minerales",
       "Rocas",
       "Virus",
       "Plásticos",
-      "Gases"
+      "Gases",
+      "Materias inertes",
+      "Fragmentos solares",
+      "Lava"
     ]
   },
   {
-    "categoria": "Aparato Respiratorio",
+    "categoria": "Órganos y Vías del Aparato Respiratorio",
     "correctos": [
       "Fosas nasales",
       "Faringe",
       "Laringe",
       "Tráquea",
       "Bronquios",
-      "Pulmones"
+      "Bronquiolos",
+      "Alvéolos",
+      "Pulmones",
+      "Diafragma"
     ],
     "intrusos": [
       "Estómago",
       "Corazón",
       "Hígado",
       "Riñón",
-      "Intestino"
+      "Intestino delgado",
+      "Cerebro",
+      "Vejiga",
+      "Esófago",
+      "Páncreas"
     ]
   },
   {
-    "categoria": "Aparato Circulatorio",
+    "categoria": "Componentes del Aparato Circulatorio",
     "correctos": [
       "Corazón",
       "Arterias",
       "Venas",
       "Capilares",
-      "Sangre"
+      "Glóbulos rojos",
+      "Glóbulos blancos",
+      "Plaquetas",
+      "Plasma sanguíneo"
     ],
     "intrusos": [
       "Pulmón",
       "Cerebro",
       "Nervios",
       "Huesos",
-      "Músculos"
+      "Músculos",
+      "Cartílago",
+      "Piel",
+      "Uñas",
+      "Pelo",
+      "Dientes"
     ]
   },
   {
-    "categoria": "Tipos de Energía",
+    "categoria": "Formas de Energía en la Naturaleza",
     "correctos": [
-      "Mecánica",
-      "Lumínica",
-      "Calorífica",
-      "Eléctrica",
-      "Química",
-      "Nuclear"
+      "Energía Mecánica",
+      "Energía Lumínica",
+      "Energía Calorífica (Térmica)",
+      "Energía Eléctrica",
+      "Energía Química",
+      "Energía Nuclear",
+      "Energía Sonora"
     ],
     "intrusos": [
-      "Feliz",
-      "Rápida",
-      "Verde",
-      "Dura",
-      "Suave"
+      "Energía Feliz",
+      "Energía Rápida",
+      "Energía Verde",
+      "Energía Dura",
+      "Energía Suave",
+      "Energía Inteligente",
+      "Energía Antigua"
     ]
   },
   {
-    "categoria": "Partes de la Célula",
+    "categoria": "Estructuras de la Célula Eucariota",
     "correctos": [
-      "Membrana",
+      "Membrana plasmática",
       "Citoplasma",
       "Núcleo",
-      "Orgánulos",
-      "Pared celular"
+      "Orgánulos (Mitocondrias, etc.)",
+      "Pared celular (en plantas)",
+      "Vacuolas",
+      "Ribosomas",
+      "Retículo endoplasmático"
     ],
     "intrusos": [
-      "Tejido",
-      "Órgano",
-      "Sistema",
-      "Hueso",
-      "Piel"
+      "Tejido muscular",
+      "Órgano vital",
+      "Sistema corporal",
+      "Hueso largo",
+      "Piel externa",
+      "Uña",
+      "Pelo",
+      "Sangre",
+      "Músculo"
     ]
   },
   {
-    "categoria": "Máquinas Simples",
+    "categoria": "Máquinas Simples Modernas",
     "correctos": [
       "Palanca",
       "Polea",
       "Plano inclinado",
-      "Rueda",
+      "Rueda y eje",
       "Tornillo",
-      "Cuña"
+      "Cuña",
+      "Torno"
     ],
     "intrusos": [
-      "Motor",
-      "Ordenador",
-      "Robot",
-      "Lavadora",
-      "Coche"
+      "Motor eléctrico",
+      "Ordenador portátil",
+      "Robot androide",
+      "Lavadora automática",
+      "Coche híbrido",
+      "Televisor LED",
+      "Móvil táctil"
     ]
   }
 ]

@@ -1,161 +1,227 @@
 [
   {
-    "categoria": "Historia Contemporánea (Visual)",
+    "categoria": "Edad Contemporánea y Revolución Industrial (Visual)",
     "correctos": [
       "🏭",
       "🚂",
       "✈️",
       "🚀",
       "💻",
-      "🏙️"
+      "🏙️",
+      "🎥",
+      "☎️",
+      "📡",
+      "🛰️"
     ],
     "intrusos": [
       "🏰",
       "🗡️",
       "🛡️",
       "🏺",
-      "🐎"
+      "🐎",
+      "🛖",
+      "🛖",
+      "⚔️",
+      "🏹",
+      "🪶"
     ]
   },
   {
-    "categoria": "Unión Europea (Visual)",
+    "categoria": "Símbolos de la Unión Europea y el Euro (Visual)",
     "correctos": [
       "🇪🇺",
       "💶",
       "🏦",
       "🛂",
       "🚄",
-      "🗳️"
+      "🗳️",
+      "🚩",
+      "🗺️ (Europa)",
+      "🏛️",
+      "🇪🇺"
     ],
     "intrusos": [
       "🏯",
       "⛩️",
       "🕌",
       "🕋",
-      "🗿"
+      "🗿",
+      "🏮",
+      "🉐",
+      "🇺🇸",
+      "🗽",
+      "🤠",
+      "🌮"
     ]
   },
   {
-    "categoria": "Democracia (Visual)",
+    "categoria": "Democracia, Derechos y Justicia (Visual)",
     "correctos": [
       "🗳️",
       "⚖️",
       "🗣️",
       "🤝",
       "🏛️",
-      "📜"
+      "📜",
+      "🕊️",
+      "🌍",
+      "🤲",
+      "🖇️"
     ],
     "intrusos": [
       "👑",
       "🤴",
       "👸",
       "🔫",
-      "👮"
+      "👮",
+      "💣",
+      "🔥",
+      "🔪",
+      "⛓️",
+      "⛓️"
     ]
   },
   {
-    "categoria": "Cambio Climático (Visual)",
+    "categoria": "Impacto Ambiental y Cambio Climático (Visual)",
     "correctos": [
       "🏭",
       "🔥",
       "🏜️",
       "🌡️",
       "💨",
-      "🌫️"
+      "🌫️",
+      "🚱",
+      "🥀",
+      "🌊 (Inundación)"
     ],
     "intrusos": [
       "♻️",
       "🚲",
       "🌱",
       "🔋",
-      "🌬️"
+      "🌬️",
+      "☀️ (Limpia)",
+      "🐋",
+      "🌲",
+      "🐼",
+      "🌍 (Verde)"
     ]
   },
   {
-    "categoria": "Historia Contemporánea",
+    "categoria": "Hitos de la Historia Contemporánea (XIX-XXI)",
     "correctos": [
-      "Revolución Francesa",
-      "Constitución",
-      "Democracia",
-      "Derechos Humanos",
-      "Internet"
+      "Revolución Francesa (1789)",
+      "Constitución de Cádiz (1812)",
+      "Democracia parlamentaria",
+      "Derechos Humanos Universales",
+      "Llegada del hombre a la Luna",
+      "Invención de Internet",
+      "Caída del Muro de Berlín",
+      "Unión Europea"
     ],
     "intrusos": [
-      "Descubrimiento de América",
-      "Edad Media",
-      "Imperio Romano",
-      "Castillos",
-      "Faraones"
+      "Descubrimiento de América (1492)",
+      "Invasión de los bárbaros",
+      "Imperio Romano de Occidente",
+      "Construcción de Pirámides",
+      "Reinado de los Reyes Católicos",
+      "Guerra de Troya"
     ]
   },
   {
-    "categoria": "La Unión Europea",
+    "categoria": "Instituciones y Conceptos de la Unión Europea",
     "correctos": [
-      "Euro",
-      "Bruselas",
-      "Parlamento",
-      "Tratado",
-      "Fronteras"
+      "Moneda Euro",
+      "Bruselas (Sede)",
+      "Parlamento Europeo",
+      "Tratado de la Unión",
+      "Espacio Schengen (Sin fronteras)",
+      "Comisión Europea",
+      "Banco Central Europeo",
+      "Estrasburgo"
     ],
     "intrusos": [
-      "Dólar",
-      "Yen",
-      "Rey",
+      "Moneda Dólar",
+      "Yen japonés",
+      "Rey absoluto",
       "Emperador",
-      "Dictador"
+      "Presidente de EE.UU.",
+      "Naciones Unidas (ONU)",
+      "OTAN"
     ]
   },
   {
-    "categoria": "Sectores Económicos",
+    "categoria": "Actividades de los Tres Sectores Económicos",
     "correctos": [
-      "Agricultura",
-      "Industria",
-      "Servicios",
-      "Turismo",
-      "Comercio"
+      "Agricultura intensiva",
+      "Ganadería bovina",
+      "Industria siderúrgica",
+      "Sector servicios",
+      "Turismo de masas",
+      "Comercio internacional",
+      "Transporte de mercancías",
+      "Pesca de gran altura"
     ],
     "intrusos": [
-      "Colegio",
-      "Hospital",
-      "Ocio",
-      "Deporte",
-      "Cine"
+      "Estudiar en el colegio",
+      "Curarse en el hospital",
+      "Jugar a videojuegos",
+      "Hacer deporte",
+      "Ver una película de cine",
+      "Dormir en casa",
+      "Pasear por el parque"
     ]
   },
   {
-    "categoria": "Ríos de Europa",
+    "categoria": "Grandes Ríos del Continente Europeo",
     "correctos": [
       "Danubio",
       "Rin",
       "Volga",
       "Sena",
       "Támesis",
-      "Tíber"
+      "Tíber",
+      "Vístula",
+      "Elba",
+      "Po",
+      "Ródano"
     ],
     "intrusos": [
       "Nilo",
       "Amazonas",
       "Misisipi",
       "Yangtsé",
-      "Ebro"
+      "Ganges",
+      "Colorado",
+      "Murray",
+      "Orinoco",
+      "Congo",
+      "Huang He"
     ]
   },
   {
-    "categoria": "Capitales Europeas",
+    "categoria": "Capitales de Estados Miembros de la UE",
     "correctos": [
-      "Madrid",
-      "París",
-      "Roma",
-      "Berlín",
-      "Londres",
-      "Lisboa"
+      "Madrid (España)",
+      "París (Francia)",
+      "Roma (Italia)",
+      "Berlín (Alemania)",
+      "Varsovia (Polonia)",
+      "Lisboa (Portugal)",
+      "Atenas (Grecia)",
+      "Viena (Austria)",
+      "Bruselas (Bélgica)"
     ],
     "intrusos": [
       "Nueva York",
       "Tokio",
       "Pekín",
       "Buenos Aires",
-      "El Cairo"
+      "El Cairo",
+      "Moscú",
+      "Washington D.C.",
+      "Ciudad de México",
+      "Sídney"
     ]
   }
 ]

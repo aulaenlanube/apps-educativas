@@ -1,320 +1,570 @@
 [
   {
     "id": "1",
-    "titulo": "Mi familia",
-    "texto": "Vivo con mi familia en una casa pequeña. Mi familia está formada por mi mamá, mi papá y mi hermano mayor que se llama Luis. Los domingos viene mi abuela a comer paella con nosotros. Todos nos queremos mucho y nos ayudamos en casa.",
+    "titulo": "El relieve de España",
+    "texto": "España se encuentra en la Península Ibérica y tiene un relieve muy variado. En el centro de la península destaca la Meseta Central, que es una gran llanura elevada. Rodeando la meseta hay cordilleras como el Sistema Ibérico o Sierra Morena. Fuera de la meseta están los Pirineos, que forman la frontera natural con Francia, y las Béticas al sur. Además, España tiene dos archipiélagos: las Islas Baleares en el mar Mediterráneo y las Islas Canarias en el océano Atlántico.",
     "preguntas": [
       {
-        "pregunta": "¿El hermano es mayor o pequeño?",
-        "opciones": ["Mayor", "Pequeño"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cuándo viene la abuela?",
-        "opciones": ["Los lunes", "Los domingos"],
+        "pregunta": "¿En qué península se encuentra la mayor parte de España?",
+        "opciones": [
+          "Itálica",
+          "Ibérica",
+          "Balcánica",
+          "Escandinava"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se llama el hermano?",
-        "opciones": ["Juan", "Pedro", "Luis", "Carlos"],
-        "correcta": 2
+        "pregunta": "¿Qué es la Meseta Central?",
+        "opciones": [
+          "Una montaña muy alta",
+          "Una gran llanura elevada",
+          "Un río largo",
+          "Una isla"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué comen los domingos?",
-        "opciones": ["Pizza", "Sopa", "Ensalada", "Paella"],
-        "correcta": 3
+        "pregunta": "¿Qué cordillera hace de frontera con Francia?",
+        "opciones": [
+          "Sistema Central",
+          "Pirineos",
+          "Sierra Nevada",
+          "Cordillera Cantábrica"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Dónde viven?",
-        "opciones": ["En un castillo", "En una casa", "En un barco", "En una tienda"],
+        "pregunta": "¿Dónde se encuentran las Islas Canarias?",
+        "opciones": [
+          "En el mar Mediterráneo",
+          "En el océano Atlántico",
+          "En el mar Cantábrico",
+          "En el océano Índico"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál de estos es un archipiélago español?",
+        "opciones": [
+          "Las Azores",
+          "Las Baleares",
+          "Córcega",
+          "Sicilia"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "El colegio",
-    "texto": "En mi colegio aprendemos muchas cosas. Mi profesora se llama Elena y nos enseña a leer y a sumar. Tenemos un patio muy grande con una pista de baloncesto. Cuando suena el timbre, salimos al recreo a jugar con los amigos.",
+    "titulo": "Ríos y vertientes de la Península Ibérica",
+    "texto": "Los ríos de España desembocan en tres vertientes diferentes dependiendo del mar al que llegan. La vertiente cantábrica tiene ríos cortos y caudalosos porque llueve mucho (ej: el Navia). La vertiente atlántica tiene los ríos más largos de la península (ej: el Tajo o el Duero). La vertiente mediterránea tiene ríos cortos y poco caudalosos, a excepción del Ebro, que es el río más caudaloso de España.",
     "preguntas": [
       {
-        "pregunta": "¿Cómo se llama la profesora?",
-        "opciones": ["María", "Elena"],
+        "pregunta": "¿En qué vertiente desemboca el río Tajo?",
+        "opciones": [
+          "Cantábrica",
+          "Atlántica",
+          "Mediterránea",
+          "No desemboca en el mar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Tienen piscina en el patio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es el río más caudaloso de España?",
+        "opciones": [
+          "El Tajo",
+          "El Ebro",
+          "El Guadalquivir",
+          "El Duero"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hay en el patio?",
-        "opciones": ["Un huerto", "Una pista de baloncesto", "Un columpio", "Un tobogán"],
+        "pregunta": "¿Cómo son los ríos de la vertiente cantábrica?",
+        "opciones": [
+          "Largos y secos",
+          "Cortos y caudalosos",
+          "Largos y caudalosos",
+          "No existen"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hacen cuando suena el timbre?",
-        "opciones": ["Se duermen", "Comen", "Salen al recreo", "Se van a casa"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué aprenden en clase?",
-        "opciones": ["A leer y sumar", "A cocinar", "A conducir", "A nadar"],
+        "pregunta": "¿En qué vertiente los ríos suelen ser más largos?",
+        "opciones": [
+          "Atlántica",
+          "Cantábrica",
+          "Mediterránea",
+          "Interior"
+        ],
         "correcta": 0
+      },
+      {
+        "pregunta": "¿A qué vertiente pertenece el río Júcar?",
+        "opciones": [
+          "Atlántica",
+          "Cantábrica",
+          "Mediterránea",
+          "Francesa"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Las partes de la casa",
-    "texto": "Las casas tienen diferentes habitaciones. En la cocina preparamos la comida y guardamos los alimentos en la nevera. En el dormitorio dormimos por la noche en nuestra cama. En el baño nos lavamos los dientes y nos duchamos para estar limpios.",
+    "titulo": "La Prehistoria: Paleolítico y Neolítico",
+    "texto": "La Prehistoria es la etapa más larga de la humanidad. Se divide en varias etapas. En el Paleolítico, los seres humanos eran nómadas (se desplazaban buscando comida), vivían en cuevas y fabricaban herramientas de piedra tallada. Más tarde, en el Neolítico, se hicieron sedentarios porque aprendieron a cultivar la tierra (agricultura) y a domesticar animales (ganadería). Empezaron a vivir en aldeas y a fabricar cerámica.",
     "preguntas": [
       {
-        "pregunta": "¿Dónde dormimos?",
-        "opciones": ["En la cocina", "En el dormitorio"],
+        "pregunta": "¿Qué significa ser nómada?",
+        "opciones": [
+          "Vivir siempre en el mismo sitio",
+          "Desplazarse de un lugar a otro buscando comida",
+          "Vivir en ciudades",
+          "Estar siempre durmiendo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde nos duchamos?",
-        "opciones": ["En el baño", "En el salón"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hay en la cocina?",
-        "opciones": ["Una cama", "Una nevera", "Un sofá", "Una ducha"],
+        "pregunta": "¿En qué etapa empezó la agricultura?",
+        "opciones": [
+          "Paleolítico",
+          "Neolítico",
+          "Edad de los Metales",
+          "Edad Media"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuándo dormimos?",
-        "opciones": ["Por la mañana", "Por la tarde", "Por la noche", "A mediodía"],
-        "correcta": 2
+        "pregunta": "¿Dónde vivían los seres humanos del Paleolítico?",
+        "opciones": [
+          "En castillos",
+          "En cuevas",
+          "En edificios altos",
+          "En barcos"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué hacemos en el baño?",
-        "opciones": ["Cocinar", "Jugar", "Dormir", "Lavarnos los dientes"],
-        "correcta": 3
+        "pregunta": "¿Qué nuevo invento apareció en el Neolítico?",
+        "opciones": [
+          "La televisión",
+          "La cerámica",
+          "La rueda de metal",
+          "El internet"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué los humanos se hicieron sedentarios?",
+        "opciones": [
+          "Por pereza",
+          "Porque inventaron la agricultura y la ganadería",
+          "Porque hacía mucho frío",
+          "Porque no tenían piernas"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Educación vial",
-    "texto": "Para cruzar la calle debemos tener cuidado. Siempre hay que cruzar por el paso de peatones, que tiene rayas blancas en el suelo. También debemos mirar el semáforo. Si el muñeco está en verde podemos pasar, pero si está en rojo debemos esperar.",
+    "titulo": "Hispania Romana",
+    "texto": "Hace más de 2.000 años, los romanos llegaron a la Península Ibérica y la llamaron Hispania. Los romanos eran excelentes constructores y nos dejaron un gran legado: leyes, el idioma latín (del que procede el castellano), calzadas o carreteras de piedra, acueductos para llevar agua y anfiteatros. La sociedad romana estaba dividida entre personas libres (patricios y plebeyos) y esclavos.",
     "preguntas": [
       {
-        "pregunta": "¿Podemos cruzar con el semáforo en rojo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo llamaron los romanos a la Península Ibérica?",
+        "opciones": [
+          "España",
+          "Hispania",
+          "Iberia",
+          "Roma"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿De qué color son las rayas del suelo?",
-        "opciones": ["Blancas", "Azules"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Por dónde cruzamos?",
-        "opciones": ["Por el parque", "Por el paso de peatones", "Por la carretera", "Por donde queramos"],
+        "pregunta": "¿De qué idioma proceden el castellano, el valenciano o el francés?",
+        "opciones": [
+          "Inglés",
+          "Latín",
+          "Griego",
+          "Árabe"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué significa el muñeco verde?",
-        "opciones": ["Parar", "Correr", "Pasar", "Saltar"],
+        "pregunta": "¿Para qué servían los acueductos?",
+        "opciones": [
+          "Para luchar",
+          "Para transportar agua",
+          "Para rezar",
+          "Para correr caballos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quiénes no eran libres en la sociedad romana?",
+        "opciones": [
+          "Los patricios",
+          "Los plebeyos",
+          "Los esclavos",
+          "Los senadores"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué hacemos si está en rojo?",
-        "opciones": ["Esperar", "Cruzar rápido", "Gritar", "Bailar"],
-        "correcta": 0
+        "pregunta": "¿Qué tipo de construcciones hacían para sus carreteras?",
+        "opciones": [
+          "Túneles",
+          "Calzadas",
+          "Puentes colgantes",
+          "Vías de tren"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "El pueblo y la ciudad",
-    "texto": "Lucas vive en un pueblo pequeño. Allí las casas son bajas y hay pocos coches, todo es muy tranquilo. Su prima vive en la ciudad, donde hay edificios muy altos, muchas tiendas, semáforos y mucho ruido de tráfico.",
+    "titulo": "La organización de España",
+    "texto": "España es una democracia y su ley fundamental es la Constitución de 1978. El sistema de gobierno es una Monarquía Parlamentaria, donde el Rey es el Jefe del Estado, pero no gobierna. El poder reside en las Cortes Generales (Congreso y Senado), que hacen las leyes. España está organizada en 17 Comunidades Autónomas, dos ciudades autónomas (Ceuta y Melilla), provincias y municipios.",
     "preguntas": [
       {
-        "pregunta": "¿Dónde vive Lucas?",
-        "opciones": ["En el pueblo", "En la ciudad"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿En la ciudad hay mucho ruido?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo son las casas del pueblo?",
-        "opciones": ["Muy altas", "Bajas", "De cristal", "Flotantes"],
+        "pregunta": "¿Cuál es la ley más importante de España?",
+        "opciones": [
+          "El libro de lengua",
+          "La Constitución",
+          "El código de circulación",
+          "La ley del fútbol"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hay en la ciudad?",
-        "opciones": ["Pocas personas", "Edificios altos", "Muchos tractores", "Solo parques"],
+        "pregunta": "¿Quién es el Jefe del Estado en España?",
+        "opciones": [
+          "El Presidente",
+          "El Rey",
+          "El Alcalde",
+          "El Juez"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es el pueblo?",
-        "opciones": ["Ruidoso", "Grande", "Tranquilo", "Peligroso"],
+        "pregunta": "¿Dónde se elaboran y aprueban las leyes?",
+        "opciones": [
+          "En el hospital",
+          "En las Cortes Generales",
+          "En el colegio",
+          "En el banco"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántas Comunidades Autónomas tiene España?",
+        "opciones": [
+          "10",
+          "15",
+          "17",
+          "20"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué ciudades de África son ciudades autónomas de España?",
+        "opciones": [
+          "Madrid y Barcelona",
+          "Ceuta y Melilla",
+          "Canarias y Baleares",
+          "Sevilla y Valencia"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Los trabajos",
-    "texto": "Cada persona tiene un oficio diferente. El médico cura a los enfermos en el hospital. El bombero apaga los fuegos con su manguera y el camión rojo. El panadero hace pan y pasteles ricos en la panadería.",
+    "titulo": "Los sectores de la economía",
+    "texto": "Los trabajos se agrupan en tres sectores económicos. El sector primario obtiene recursos directamente de la naturaleza (agricultura, ganadería, pesca y minería). El sector secundario transforma las materias primas en productos elaborados (industria y construcción). El sector terciario o de servicios no produce objetos, sino que ofrece servicios (comercio, turismo, educación, sanidad y transporte).",
     "preguntas": [
       {
-        "pregunta": "¿El médico apaga fuegos?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Dónde trabaja el panadero?",
-        "opciones": ["En el hospital", "En la panadería"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Quién cura a los enfermos?",
-        "opciones": ["El policía", "El médico", "El profesor", "El cartero"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué usa el bombero?",
-        "opciones": ["Una manguera", "Un horno", "Un termómetro", "Una pizarra"],
+        "pregunta": "¿A qué sector pertenece un pescador?",
+        "opciones": [
+          "Primario",
+          "Secundario",
+          "Terciario",
+          "Cuaternario"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿De qué color es el camión de bomberos?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
+        "pregunta": "¿Qué hace el sector secundario?",
+        "opciones": [
+          "Vende comida",
+          "Transforma materias primas en productos",
+          "Cuida animales",
+          "Enseña a niños"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A qué sector pertenece un profesor o un médico?",
+        "opciones": [
+          "Primario",
+          "Secundario",
+          "Terciario",
+          "Ninguno"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál de estos es un trabajo del sector primario?",
+        "opciones": [
+          "Obrero",
+          "Minero",
+          "Abogado",
+          "Dependiente"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué sector es el más numeroso en España hoy en día?",
+        "opciones": [
+          "Primario",
+          "Secundario",
+          "Terciario",
+          "Extracción"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Los medios de transporte",
-    "texto": "Para viajar usamos medios de transporte. El coche y el autobús van por la tierra (carretera). El barco navega por el agua del mar. El avión vuela muy alto por el aire para llevarnos a sitios lejanos rápidamente.",
+    "titulo": "La población y sus cambios",
+    "texto": "La población de un lugar cambia por el movimiento natural (nacimientos y defunciones) y por el movimiento migratorio (emigración e inmigración). El crecimiento natural es la diferencia entre nacimientos y muertes. Si nacen más personas de las que mueren, la población aumenta. Además, la población de España se concentra sobre todo en las zonas de costa y en las grandes ciudades como Madrid.",
     "preguntas": [
       {
-        "pregunta": "¿El barco va por la carretera?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es la inmigración?",
+        "opciones": [
+          "Salir de tu país",
+          "Llegar a un país nuevo para vivir",
+          "Irse de vacaciones",
+          "Nacer en un hospital"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿El avión va por el aire?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué transporte va por tierra?",
-        "opciones": ["El barco", "El avión", "El coche", "El helicóptero"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Para qué sirve el avión?",
-        "opciones": ["Para ir despacio", "Para ir lejos", "Para navegar", "Para ir al colegio"],
+        "pregunta": "¿Cómo se calcula el crecimiento natural?",
+        "opciones": [
+          "Sumando todo",
+          "Diferencia entre nacimientos y defunciones",
+          "Contando los coches",
+          "Buscando en internet"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Por dónde va el autobús?",
-        "opciones": ["Por el mar", "Por el cielo", "Por la carretera", "Por el río"],
-        "correcta": 2
+        "pregunta": "¿Dónde vive más gente en España?",
+        "opciones": [
+          "En el centro interior (excepto Madrid)",
+          "En las costas y grandes ciudades",
+          "En los pueblos pequeños",
+          "En la cima de las montañas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es una defunción?",
+        "opciones": [
+          "Un nacimiento",
+          "Una muerte",
+          "Un viaje",
+          "Un trabajo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Si en un pueblo hay muchos nacimientos y pocas muertes, la población...",
+        "opciones": [
+          "Baja",
+          "Sube",
+          "Se queda igual",
+          "Desaparece"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El paisaje de montaña",
-    "texto": "En la montaña el aire es muy puro. Vemos montañas altas con nieve en la cima. En los valles hay ríos con agua fría y bosques llenos de árboles. En invierno hace mucho frío y podemos esquiar o jugar con la nieve.",
+    "titulo": "El Sistema Solar",
+    "texto": "El Sistema Solar está formado por el Sol y todos los astros que giran a su alrededor. Hay ocho planetas: Mercurio, Venus, Tierra y Marte (los más cercanos y rocosos), y Júpiter, Saturno, Urano y Neptuno (más lejanos y gaseosos). Además de planetas, hay satélites (como la Luna), planetas enanos (como Plutón), asteroides y cometas.",
     "preguntas": [
       {
-        "pregunta": "¿Hace calor en la montaña en invierno?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es la estrella central de nuestro sistema?",
+        "opciones": [
+          "La Luna",
+          "El Sol",
+          "Plutón",
+          "Marte"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Hay ríos en los valles?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hay en la cima de la montaña?",
-        "opciones": ["Arena", "Nieve", "Coches", "Mar"],
+        "pregunta": "¿Cuántos planetas hay en el Sistema Solar?",
+        "opciones": [
+          "Siete",
+          "Ocho",
+          "Nueve",
+          "Diez"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es el aire?",
-        "opciones": ["Sucio", "Puro", "Caliente", "Malo"],
-        "correcta": 1
+        "pregunta": "¿Cuál es un planeta gaseoso gigante?",
+        "opciones": [
+          "Mercurio",
+          "Tierra",
+          "Júpiter",
+          "Marte"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Qué podemos hacer en invierno?",
-        "opciones": ["Nadar", "Tomar el sol", "Esquiar", "Pescar"],
+        "pregunta": "¿Qué es la Luna?",
+        "opciones": [
+          "Un planeta",
+          "Una estrella",
+          "Un satélite",
+          "Un asteroide"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es el planeta más cercano al Sol?",
+        "opciones": [
+          "Tierra",
+          "Venus",
+          "Mercurio",
+          "Júpiter"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Los días de la semana",
-    "texto": "La semana tiene siete días. De lunes a viernes vamos al colegio para aprender. El sábado y el domingo es fin de semana y nos quedamos en casa para descansar o jugar con la familia. El lunes es el primer día de la semana.",
+    "titulo": "La atmósfera y el clima",
+    "texto": "La atmósfera es la capa de aire que rodea la Tierra. En ella ocurren los fenómenos meteorológicos como la lluvia, el viento o la nieve. El clima es el tiempo que predomina en un lugar durante muchos años. En España tenemos varios climas: el oceánico (norte, con muchas lluvias), el mediterráneo (este y sur, con veranos calurosos), el de montaña y el subtropical (en las Islas Canarias).",
     "preguntas": [
       {
-        "pregunta": "¿La semana tiene cinco días?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es la atmósfera?",
+        "opciones": [
+          "Capa de agua",
+          "Capa de aire",
+          "Capa de roca",
+          "Capa de flores"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Vamos al colegio el domingo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué clima tiene lluvias frecuentes y temperaturas suaves todo el año?",
+        "opciones": [
+          "Mediterráneo",
+          "Oceánico",
+          "Desértico",
+          "Polar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuál es el primer día?",
-        "opciones": ["Martes", "Viernes", "Lunes", "Domingo"],
-        "correcta": 2
+        "pregunta": "¿Qué clima es típico de las Islas Canarias?",
+        "opciones": [
+          "Oceánico",
+          "Subtropical",
+          "De montaña",
+          "Continental"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué días descansamos?",
-        "opciones": ["Lunes y martes", "Jueves y viernes", "Sábado y domingo", "Miércoles y jueves"],
-        "correcta": 2
+        "pregunta": "¿Dónde se producen los rayos y la lluvia?",
+        "opciones": [
+          "En el centro de la Tierra",
+          "En la atmósfera",
+          "En el espacio exterior",
+          "Debajo del mar"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos días vamos al cole?",
-        "opciones": ["Dos", "Cinco", "Siete", "Tres"],
+        "pregunta": "¿En qué zona de España es más común el clima mediterráneo?",
+        "opciones": [
+          "En el norte (Galicia)",
+          "En el centro y costa mediterránea",
+          "En los Pirineos",
+          "No existe en España"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El Sol y la Tierra",
-    "texto": "Vivimos en el planeta Tierra, que es redondo como una pelota. El Sol es una estrella muy grande que nos da luz y calor. Cuando el Sol se esconde, llega la noche y sale la Luna. La Tierra gira alrededor del Sol.",
+    "titulo": "Las aguas de la Tierra",
+    "texto": "La hidrosfera es el conjunto de toda el agua del planeta. La mayor parte es agua salada (océanos y mares) y solo una pequeña parte es agua dulce (ríos, lagos, glaciares y aguas subterráneas). El agua sigue un ciclo continuo: se evapora con el sol, forma nubes (condensación), cae como lluvia (precipitación) y vuelve a los ríos y mares.",
     "preguntas": [
       {
-        "pregunta": "¿La Tierra es plana?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué nombre recibe todo el conjunto del agua de la Tierra?",
+        "opciones": [
+          "Atmósfera",
+          "Geosfera",
+          "Hidrosfera",
+          "Biosfera"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Dónde se encuentra la mayor parte del agua dulce congelada?",
+        "opciones": [
+          "Océanos",
+          "Ríos",
+          "Glaciares",
+          "Grifos"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llama cuando el agua cae de las nubes?",
+        "opciones": [
+          "Evaporación",
+          "Condensación",
+          "Precipitación",
+          "Colección"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué el agua desaparece de los charcos cuando hace sol?",
+        "opciones": [
+          "Porque se congela",
+          "Por la evaporación",
+          "Porque se ensucia",
+          "Porque los pájaros se la beben"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿El Sol nos da frío?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué nos da el Sol?",
-        "opciones": ["Luz y calor", "Lluvia", "Viento", "Nieve"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué sale por la noche?",
-        "opciones": ["El Sol", "La Luna", "El arcoíris", "Las nubes"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cómo es la Tierra?",
-        "opciones": ["Cuadrada", "Redonda", "Pequeña", "Caliente"],
+        "pregunta": "¿Qué tipo de agua hay más en la Tierra?",
+        "opciones": [
+          "Dulce",
+          "Salada",
+          "Potable",
+          "Caliente"
+        ],
         "correcta": 1
       }
     ]

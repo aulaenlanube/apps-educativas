@@ -1,17 +1,122 @@
 {
-  "musica_escenica": [
-    "ópera", "zarzuela", "musical", "ballet", "aria", "recitativo", "libreto", "obertura", "coro", "escenario"
+  "clasicismo_musical": [
+    "haydn",
+    "mozart",
+    "beethoven",
+    "sinfonía",
+    "cuarteto de cuerda",
+    "sonata",
+    "órgano",
+    "clarinete",
+    "ópera bufa",
+    "equilibrio"
   ],
-  "musica_urbana_moderna": [
-    "jazz", "rock", "pop", "blues", "rap", "reguetón", "heavy metal", "punk", "electrónica", "indie"
+  "romanticismo_musical": [
+    "schubert",
+    "chopin",
+    "liszt",
+    "verdi",
+    "wagner",
+    "tchaikovsky",
+    "lied",
+    "poema sinfónico",
+    "virtuosismo",
+    "sentimiento"
+  ],
+  "nacionalismo_musical": [
+    "albéniz",
+    "falla",
+    "granados",
+    "grieg",
+    "sibelius",
+    "mussorgsky",
+    "folclore",
+    "identidad",
+    "danza popular",
+    "música española"
+  ],
+  "opera_zarzuela": [
+    "aria",
+    "recitativo",
+    "coro",
+    "obertura",
+    "libreto",
+    "tenor",
+    "soprano",
+    "género chico",
+    "género grande",
+    "teatro lírico"
+  ],
+  "formas_orquestales": [
+    "sinfonía",
+    "concierto",
+    "obertura",
+    "suite",
+    "música programática",
+    "poema sinfónico",
+    "ballet",
+    "orquesta filarmónica",
+    "batuta",
+    "director"
+  ],
+  "voz_humana_avanzada": [
+    "vibrato",
+    "falsete",
+    "registro",
+    "tesitura",
+    "canto lírico",
+    "laringe",
+    "diafragma",
+    "resonancia",
+    "vocalización",
+    "agilitá"
+  ],
+  "historia_instrumentos": [
+    "pianoforte",
+    "saxofón",
+    "tuba",
+    "metrónomo",
+    "percusión de orquesta",
+    "arpa de pedales",
+    "viento madera",
+    "viento metal",
+    "cuerda frotada",
+    "teclado"
   ],
   "musica_cine": [
-    "banda sonora", "leimotiv", "música incidental", "música diegética", "créditos", "efectos sonoros", "doblaje", "foley", "ambientación", "tema"
+    "banda sonora",
+    "leitmotiv",
+    "música diegética",
+    "música incidental",
+    "compositor de cine",
+    "orquestación",
+    "sincronización",
+    "clímax musical",
+    "atmósfera",
+    "créditos"
   ],
-  "texturas_musicales": [
-    "monodia", "polifonía", "homofonía", "melodía acompañada", "contrapunto", "canon", "fuga", "unísono", "acorde", "armonía"
+  "lenguaje_musical_3": [
+    "tonalidad",
+    "atonalidad",
+    "modalidad",
+    "modulación",
+    "escala cromática",
+    "escala pentatónica",
+    "acorde de séptima",
+    "disonancia",
+    "consonancia",
+    "textura contrapuntística"
   ],
-  "profesiones_musicales": [
-    "compositor", "director", "intérprete", "productor", "técnico de sonido", "luthier", "musicólogo", "crítico", "dj", "arreglista"
+  "musica_sociedad": [
+    "concierto público",
+    "conservatorio",
+    "derechos de autor",
+    "industria discográfica",
+    "crítica musical",
+    "mecenazgo",
+    "educación musical",
+    "musicología",
+    "terapia musical",
+    "gestión de eventos"
   ]
 }

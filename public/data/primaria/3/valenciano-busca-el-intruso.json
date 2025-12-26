@@ -1,38 +1,66 @@
 [
   {
-    "categoria": "Animals (Visual)",
+    "categoria": "Animals Salvatges i Domèstics (Visual)",
     "correctos": [
       "🐶",
       "🐱",
       "🦁",
       "🐯",
       "🐬",
-      "🦅"
+      "🦅",
+      "🐘",
+      "🦒",
+      "🦓",
+      "🐋",
+      "🦜",
+      "🐢",
+      "🦀",
+      "🐝"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "🏠",
       "✏️",
-      "⚽"
+      "⚽",
+      "🍔",
+      "🍕",
+      "🚲",
+      "🎸",
+      "⌚",
+      "💻",
+      "🧸"
     ]
   },
   {
-    "categoria": "L'Escola (Visual)",
+    "categoria": "Material Escolar i Aula (Visual)",
     "correctos": [
       "🎒",
       "📚",
       "✏️",
       "📏",
       "✂️",
-      "🖍️"
+      "🖍️",
+      "📓",
+      "🏫",
+      "🖊️",
+      "🎓",
+      "📖",
+      "📎"
     ],
     "intrusos": [
       "🛌",
       "🛁",
       "🍳",
       "📺",
-      "🎮"
+      "🎮",
+      "🧸",
+      "🍦",
+      "🥪",
+      "🛋️",
+      "📻",
+      "🚲",
+      "🚗"
     ]
   },
   {
@@ -44,72 +72,116 @@
       "Verd",
       "Blanc",
       "Negre",
-      "Morat"
+      "Morat",
+      "Rosa",
+      "Taronja",
+      "Marró",
+      "Lila",
+      "Gris",
+      "Violeta"
     ],
     "intrusos": [
       "Taula",
       "Cadira",
       "Gat",
       "Gos",
-      "Llibre"
+      "Llibre",
+      "Menja",
+      "Corre",
+      "Gran",
+      "Petit",
+      "Ahir",
+      "Hui"
     ]
   },
   {
-    "categoria": "Dies de la Setmana",
+    "categoria": "Dies de la Setmana i Mesos",
     "correctos": [
       "Dilluns",
       "Dimarts",
       "Dimecres",
       "Dijous",
       "Divendres",
-      "Dissabte"
-    ],
-    "intrusos": [
+      "Dissabte",
       "Gener",
       "Febrer",
+      "Març",
+      "Abril"
+    ],
+    "intrusos": [
       "Estiu",
       "Hivern",
-      "Matí"
+      "Matí",
+      "Vesprada",
+      "Nit",
+      "Festa",
+      "Any",
+      "Vermell",
+      "Blau",
+      "Gran",
+      "Petit"
     ]
   },
   {
-    "categoria": "La Família",
+    "categoria": "Membres de la Família",
     "correctos": [
       "Pare",
       "Mare",
       "Germà",
       "Germana",
       "Iaio",
-      "Oncle"
+      "Iaia",
+      "Oncle",
+      "Tieta",
+      "Cosí",
+      "Cosina",
+      "Nét",
+      "Néta"
     ],
     "intrusos": [
       "Mestre",
       "Metge",
       "Amic",
       "Veí",
-      "Policia"
+      "Policia",
+      "Bomber",
+      "Carter",
+      "Infermer",
+      "Advocat",
+      "Dentista"
     ]
   },
   {
-    "categoria": "Fruites",
+    "categoria": "Fruites i Aliments Vegetals",
     "correctos": [
       "Poma",
       "Pera",
       "Taronja",
       "Plàtan",
       "Raïm",
-      "Maduixa"
+      "Maduixa",
+      "Cirera",
+      "Llimona",
+      "Pinya",
+      "Sandia",
+      "Tomaca",
+      "Enciam"
     ],
     "intrusos": [
       "Pa",
       "Llet",
       "Carn",
       "Peix",
-      "Ou"
+      "Ou",
+      "Formatge",
+      "Iogurt",
+      "Pollastre",
+      "Arpilleres",
+      "Embotit"
     ]
   },
   {
-    "categoria": "El Cos",
+    "categoria": "Parts Externes del Cos",
     "correctos": [
       "Cap",
       "Braç",
@@ -117,14 +189,26 @@
       "Mà",
       "Peu",
       "Nas",
-      "Boca"
+      "Boca",
+      "Ull",
+      "Orella",
+      "Coll",
+      "Genoll",
+      "Colze",
+      "Hombro",
+      "Dits"
     ],
     "intrusos": [
       "Samarreta",
       "Pantalons",
       "Sabates",
       "Jaqueta",
-      "Barret"
+      "Barret",
+      "Calcetins",
+      "Ulleres",
+      "Rellotge",
+      "Mochilla",
+      "Llibre"
     ]
   }
 ]

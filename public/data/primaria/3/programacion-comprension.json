@@ -1,320 +1,556 @@
 [
   {
     "id": "1",
-    "titulo": "El robot Robi",
-    "texto": "Robi es un robot que obedece todo lo que le dices. Ana le da instrucciones para llegar a la silla. Le dice: 'Camina dos pasos hacia delante y gira a la derecha'. Robi lo hace perfectamente. Si Ana no le dice 'Para', Robi sigue caminando y se choca.",
+    "titulo": "Ahorra tiempo con bucles",
+    "texto": "Imagina que tienes que dibujar 10 cuadrados rojos. En lugar de decir 'Dibuja un cuadrado rojo' diez veces, en programación usamos un bucle. Un bucle es una instrucción que le dice al ordenador: 'Repite esto 10 veces'. Así nuestro código es mucho más corto y fácil de leer.",
     "preguntas": [
       {
-        "pregunta": "¿Robi es un niño?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es un bucle en programación?",
+        "opciones": [
+          "Un error",
+          "Una instrucción que repite algo",
+          "Un tipo de monitor",
+          "Un cable"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Robi obedece las órdenes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cuántos pasos camina?",
-        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
+        "pregunta": "¿Para qué sirve usar bucles?",
+        "opciones": [
+          "Para que el ordenador sea más lento",
+          "Para ahorrar tiempo y código",
+          "Para borrar archivos",
+          "Para pintar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Hacia dónde gira?",
-        "opciones": ["Izquierda", "Derecha", "Arriba", "Abajo"],
+        "pregunta": "Si queremos repetir una acción 5 veces, ¿qué usamos?",
+        "opciones": [
+          "Un clic",
+          "Un bucle",
+          "Un teclado",
+          "Un ratón"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué pasa si no le dicen 'Para'?",
-        "opciones": ["Se duerme", "Baila", "Se choca", "Vuela"],
-        "correcta": 2
+        "pregunta": "¿Cómo es el código cuando usamos bucles?",
+        "opciones": [
+          "Más largo",
+          "Más corto y fácil de leer",
+          "Más difícil",
+          "Colorido"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué dibujo menciona el ejemplo?",
+        "opciones": [
+          "Círculos azules",
+          "Cuadrados rojos",
+          "Triángulos verdes",
+          "Estrellas"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "La receta ordenada",
-    "texto": "Un algoritmo es como una receta de cocina: hay que seguir los pasos en orden. Para lavarse los dientes, primero ponemos pasta en el cepillo. Segundo, nos cepillamos los dientes. Tercero, nos enjuaguamos con agua. Si cambiamos el orden, no funciona bien.",
+    "titulo": "Si... entonces... sino",
+    "texto": "Un ordenador puede tomar decisiones. A esto lo llamamos condicional. Por ejemplo: 'SI hay conexión a Internet, ENTONCES abre el juego. SI NO, muestra un mensaje de error'. Es como cuando decides si llevar paraguas mirando por la ventana.",
     "preguntas": [
       {
-        "pregunta": "¿Hay que seguir un orden?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Un algoritmo es como una receta?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hacemos primero?",
-        "opciones": ["Enjuagar", "Poner pasta", "Dormir", "Comer"],
+        "pregunta": "¿Cómo se llama la instrucción para tomar decisiones?",
+        "opciones": [
+          "Bucle",
+          "Condicional",
+          "Variable",
+          "Icono"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hacemos al final?",
-        "opciones": ["Bailar", "Poner pasta", "Enjuagarnos", "Cepillar"],
-        "correcta": 2
+        "pregunta": "En el ejemplo, ¿cuándo se abre el juego?",
+        "opciones": [
+          "Siempre",
+          "Si hay conexión a Internet",
+          "Si el monitor está apagado",
+          "Si es lunes"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué pasa si cambiamos el orden?",
-        "opciones": ["Funciona mejor", "No funciona bien", "Es más rápido", "Es más divertido"],
+        "pregunta": "¿Qué ocurre 'SI NO' hay conexión?",
+        "opciones": [
+          "Se apaga el ordenador",
+          "Muestra un mensaje de error",
+          "Explota",
+          "Baila"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A qué se parece un condicional en la vida real?",
+        "opciones": [
+          "A caminar",
+          "A decidir si llevar paraguas",
+          "A comer sopa",
+          "A dormir"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué palabras clave usamos para el condicional?",
+        "opciones": [
+          "Hola y Adiós",
+          "Si y Entonces",
+          "Grande y Pequeño",
+          "Rojo y Azul"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "El ratón del ordenador",
-    "texto": "El ratón nos ayuda a movernos por la pantalla. Cuando mueves el ratón con tu mano sobre la mesa, una flechita se mueve en el ordenador. El ratón tiene dos botones para hacer 'clic'. Con el botón izquierdo abrimos los juegos.",
+    "titulo": "Cajas para guardar datos",
+    "texto": "En programación, una variable es como una caja con un nombre escrito donde guardamos un dato. Por ejemplo, podemos tener una caja llamada 'Puntos'. Cada vez que ganas en el juego, metemos un número mayor en esa caja. Al final, el ordenador mira dentro de la caja para saber tu puntuación.",
     "preguntas": [
       {
-        "pregunta": "¿El ratón mueve la flecha?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es una variable?",
+        "opciones": [
+          "Un cable",
+          "Una caja para guardar datos",
+          "Un dibujo",
+          "Un botón"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve la caja 'Puntos'?",
+        "opciones": [
+          "Para guardar la puntuación",
+          "Para guardar la hora",
+          "Para guardar el color",
+          "Para nada"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿El ratón tiene cinco botones?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué hace el ordenador al final del juego?",
+        "opciones": [
+          "Borra la caja",
+          "Mira dentro de la caja para saber el resultado",
+          "Pinta la caja",
+          "Llama a un amigo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde movemos el ratón?",
-        "opciones": ["En el aire", "En la mesa", "En el suelo", "En la cabeza"],
-        "correcta": 1
+        "pregunta": "¿Pueden cambiar los datos dentro de una variable?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 0
       },
       {
-        "pregunta": "¿Qué botón abre los juegos?",
-        "opciones": ["El derecho", "El de abajo", "El izquierdo", "El de atrás"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué hace el ratón?",
-        "opciones": ["Ladra", "Salta", "Hace 'clic'", "Come queso"],
+        "pregunta": "Si guardamos el nombre del jugador, ¿cómo llamarías a la variable?",
+        "opciones": [
+          "Color",
+          "Puntos",
+          "Nombre",
+          "Edad"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "El bucle de baile",
-    "texto": "Un bucle sirve para repetir algo muchas veces. Leo está programando un videojuego de baile. Escribe una instrucción que dice: 'Repetir 5 veces: Saltar'. El personaje del juego salta cinco veces seguidas sin parar. ¡Es muy cansado!",
+    "titulo": "El cerebro: la CPU",
+    "texto": "Dentro de la torre del ordenador o de la tablet hay un componente pequeño pero muy importante llamado CPU. Es el 'cerebro' del ordenador. Se encarga de procesar todas las órdenes que le damos con el ratón o el teclado y de hacer todos los cálculos matemáticos muy rápido.",
     "preguntas": [
       {
-        "pregunta": "¿El personaje salta solo una vez?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué significan las siglas CPU en este contexto?",
+        "opciones": [
+          "Caja Para Usar",
+          "El cerebro del ordenador",
+          "Color Por Unidad",
+          "Cable Para Usuarios"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Un bucle sirve para repetir?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cuántas veces salta?",
-        "opciones": ["Dos", "Tres", "Cuatro", "Cinco"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué está programando Leo?",
-        "opciones": ["Una lavadora", "Un videojuego", "Un coche", "Un robot"],
+        "pregunta": "¿Dónde se encuentra la CPU?",
+        "opciones": [
+          "En el monitor",
+          "Dentro de la torre o tablet",
+          "En la mesa",
+          "En el ratón"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hace el personaje?",
-        "opciones": ["Dormir", "Comer", "Saltar", "Nadar"],
-        "correcta": 2
+        "pregunta": "¿De qué se encarga la CPU?",
+        "opciones": [
+          "De limpiar",
+          "De procesar órdenes y cálculos",
+          "De dar luz",
+          "De imprimir"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo hace sus tareas la CPU?",
+        "opciones": [
+          "Muy lento",
+          "Muy rápido",
+          "A veces no funciona",
+          "Solo los lunes"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué periféricos le envían órdenes?",
+        "opciones": [
+          "La impresora",
+          "El ratón y el teclado",
+          "El altavoz",
+          "La pantalla"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Buscando el error",
-    "texto": "Sara ha creado un programa para que su coche de juguete llegue a la meta. Pero el coche se ha girado al revés. Sara revisa sus instrucciones y encuentra un error. Había puesto 'Izquierda' en vez de 'Derecha'. Ella arregla el fallo y el coche funciona.",
+    "titulo": "Navegar con seguridad",
+    "texto": "Internet es como una gran biblioteca mundial, pero hay que tener cuidado. Nunca debemos dar nuestra dirección, nombre completo o teléfono a desconocidos en Internet. Además, es muy importante usar contraseñas seguras que tengan letras, números y algún símbolo secreto.",
     "preguntas": [
       {
-        "pregunta": "¿El coche llegó a la meta al principio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿A qué se parece Internet según el texto?",
+        "opciones": [
+          "A un parque",
+          "A una biblioteca mundial",
+          "A una tienda",
+          "A un colegio"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Sara arregló el fallo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué encontró Sara?",
-        "opciones": ["Un premio", "Un error", "Una moneda", "Un gato"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué instrucción estaba mal?",
-        "opciones": ["Avanzar", "Parar", "Izquierda", "Saltar"],
+        "pregunta": "¿Qué datos NO debemos dar a desconocidos?",
+        "opciones": [
+          "Nuestro color favorito",
+          "Nombre de nuestra mascota",
+          "Dirección y teléfono",
+          "Tipo de helado"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué pasó después de arreglarlo?",
-        "opciones": ["El coche funcionó", "El coche explotó", "El coche voló", "Nada"],
+        "pregunta": "¿Cómo debe ser una contraseña segura?",
+        "opciones": [
+          "Muy corta",
+          "Con letras, números y símbolos",
+          "Solo números",
+          "Nuestra fecha de nacimiento"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Es peligroso hablar con desconocidos en la red?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 0
+      },
+      {
+        "pregunta": "¿A quién debemos preguntar si tenemos dudas en Internet?",
+        "opciones": [
+          "A nadie",
+          "A un adulto de confianza",
+          "A otro niño",
+          "A un programa"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Si llueve, coge paraguas",
-    "texto": "Los ordenadores saben tomar decisiones. Podemos decirles: 'Si llueve, cierra la ventana'. 'Si hace sol, abre la ventana'. Esto se llama una condición. Es como cuando tu mamá te dice: 'Si terminas la cena, te doy postre'.",
+    "titulo": "Algoritmos en la cocina",
+    "texto": "Un algoritmo es una lista de pasos ordenados para resolver un problema. Cuando seguimos una receta para hacer un bizcocho, estamos siguiendo un algoritmo. Si cambiamos el orden de los pasos (por ejemplo, meter al horno antes de mezclar), el resultado no será el mismo.",
     "preguntas": [
       {
-        "pregunta": "¿Los ordenadores toman decisiones?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es un algoritmo?",
+        "opciones": [
+          "Un tipo de robot",
+          "Una lista de pasos ordenados",
+          "Un juego de mesa",
+          "Una pantalla"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ejemplo de algoritmo pone el texto?",
+        "opciones": [
+          "Subir escaleras",
+          "Una receta de cocina",
+          "Bailar un vals",
+          "Dormir la siesta"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué pasa si cambiamos el orden de los pasos?",
+        "opciones": [
+          "El resultado es igual",
+          "El resultado no será el mismo",
+          "El ordenador se rompe",
+          "Se borra el código"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Es importante el orden en programación?",
+        "opciones": [
+          "Sí, mucho",
+          "No importa nada"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Si hace sol cerramos la ventana?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué pasa si llueve?",
-        "opciones": ["Abrimos la puerta", "Cerramos la ventana", "Ponemos música", "Comemos helado"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cómo se llama esto?",
-        "opciones": ["Canción", "Condición", "Camión", "Corazón"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué pasa si terminas la cena?",
-        "opciones": ["Te vas a dormir", "Te dan postre", "Te duchas", "Juegas"],
+        "pregunta": "¿Para qué sirve un algoritmo?",
+        "opciones": [
+          "Para dormir",
+          "Para resolver un problema",
+          "Para comer chuches",
+          "Para pintar"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Los cuadraditos de colores",
-    "texto": "Las imágenes de la pantalla están formadas por muchos cuadraditos pequeños llamados píxeles. Si te acercas mucho a la tele, puedes ver puntitos de colores. Juntos forman dibujos, como un mosaico de azulejos.",
+    "titulo": "El código secreto: Binario",
+    "texto": "Los ordenadores no entienden palabras como nosotros. Ellos usan un lenguaje secreto llamado código binario, que solo tiene dos números: el 0 y el 1. El 0 significa que no pasa electricidad (apagado) y el 1 significa que sí pasa (encendido). Con millones de ceros y unos, el sistema forma letras e imágenes.",
     "preguntas": [
       {
-        "pregunta": "¿Las imágenes tienen círculos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué números usa el código binario?",
+        "opciones": [
+          "1, 2 y 3",
+          "0 y 1",
+          "0 al 9",
+          "Solo el 100"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Los cuadraditos se llaman píxeles?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Qué significa el número 1 en binario?",
+        "opciones": [
+          "Cerrado",
+          "Encendido / Pasa electricidad",
+          "Error",
+          "Final"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué forman los píxeles?",
-        "opciones": ["Música", "Olores", "Dibujos", "Ruidos"],
-        "correcta": 2
+        "pregunta": "¿Qué significa el número 0?",
+        "opciones": [
+          "Encendido",
+          "Apagado / No pasa electricidad",
+          "Empezar",
+          "Borrar"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿A qué se parecen?",
-        "opciones": ["A un mosaico", "A una sopa", "A una nube", "A un libro"],
-        "correcta": 0
+        "pregunta": "¿Qué forma el ordenador con ceros y unos?",
+        "opciones": [
+          "Nada",
+          "Letras e imágenes",
+          "Cables",
+          "Agua"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué pasa si te acercas a la tele?",
-        "opciones": ["Te mojas", "Ves los puntitos", "Oyes mal", "Te duermes"],
+        "pregunta": "¿Los humanos usamos binario para hablar?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El teclado mágico",
-    "texto": "El teclado tiene muchas teclas con letras y números. La tecla más larga de todas está abajo y se llama 'barra espaciadora'. Sirve para separar las palabras cuando escribimos. Si no la usamos, todaslaspalabrasestánpegadas.",
+    "titulo": "Buscadores inteligentes",
+    "texto": "Cuando quieres buscar información sobre dinosaurios, usas un buscador como Google. Los buscadores usan programas especiales que recorren todas las páginas web del mundo y las ordenan para que encuentres lo que buscas lo más rápido posible. Hay que saber elegir bien las palabras clave.",
     "preguntas": [
       {
-        "pregunta": "¿El teclado tiene letras?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿La tecla larga está arriba?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Para qué sirve un buscador?",
+        "opciones": [
+          "Para jugar",
+          "Para encontrar información en Internet",
+          "Para apagar el monitor",
+          "Para pintar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se llama la tecla larga?",
-        "opciones": ["Enter", "Barra espaciadora", "Escape", "Borrar"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Para qué sirve?",
-        "opciones": ["Para borrar", "Para poner música", "Para separar palabras", "Para apagar"],
+        "pregunta": "¿Qué programa se menciona como ejemplo?",
+        "opciones": [
+          "Paint",
+          "Scratch",
+          "Google",
+          "Word"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué pasa si no la usamos?",
-        "opciones": ["Las palabras se pegan", "Se rompe el teclado", "Escribe en rojo", "No pasa nada"],
+        "pregunta": "¿Qué recorren los buscadores?",
+        "opciones": [
+          "Los cables",
+          "Las páginas web del mundo",
+          "Los parques",
+          "Las bibliotecas de casa"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hay que elegir bien para buscar?",
+        "opciones": [
+          "Los colores",
+          "Las palabras clave",
+          "El ratón",
+          "La silla"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Encuentran la información rápido?",
+        "opciones": [
+          "Sí",
+          "No, tardan días"
+        ],
         "correcta": 0
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Encendido y apagado",
-    "texto": "Los ordenadores funcionan con electricidad. Por dentro, hablan un idioma secreto de solo dos cosas: encendido y apagado (o 1 y 0). Es como un interruptor de la luz. Con muchos unos y ceros pueden hacer cosas increíbles.",
+    "titulo": "Programación visual: Scratch",
+    "texto": "Programar no siempre es escribir palabras difíciles. Existe la programación por bloques, como en Scratch. En lugar de escribir, encajamos piezas de colores como si fuera un LEGO. Cada pieza es una orden: 'Mover 10 pasos', 'Decir Hola' o 'Al pulsar bandera verde'.",
     "preguntas": [
       {
-        "pregunta": "¿Los ordenadores usan gasolina?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo se programa en Scratch?",
+        "opciones": [
+          "Escribiendo mucho",
+          "Encajando piezas de colores (bloques)",
+          "Dibujando con pincel",
+          "Soplando"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Entienden encendido y apagado?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué números usan?",
-        "opciones": ["1 y 0", "2 y 3", "8 y 9", "5 y 6"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿A qué se parece?",
-        "opciones": ["A un grifo", "A un interruptor", "A una puerta", "A una rueda"],
+        "pregunta": "¿A qué juego se parece encajar los bloques?",
+        "opciones": [
+          "Al escondite",
+          "Al LEGO",
+          "Al fútbol",
+          "Al parchís"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Con qué funcionan?",
-        "opciones": ["Con agua", "Con aire", "Con electricidad", "Con magia"],
-        "correcta": 2
+        "pregunta": "¿Qué indica el bloque 'Bandera verde'?",
+        "opciones": [
+          "Que el programa termina",
+          "Que el programa empieza",
+          "Que el programa tiene un error",
+          "Que el ordenador se apaga"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Es más fácil para niños la programación por bloques?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "Si queremos que un personaje camine, ¿qué bloque buscamos?",
+        "opciones": [
+          "Saltar",
+          "Mover pasos",
+          "Girar",
+          "Dormir"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Internet nos conecta",
-    "texto": "Internet es como una red gigante invisible que conecta todos los ordenadores del mundo. Gracias a Internet, podemos mandar un dibujo a un amigo que vive en otro país y le llega en un segundo. ¡Es rapidísimo!",
+    "titulo": "Robots con sensores",
+    "texto": "Para que un robot no choque contra la pared, necesita sensores. Los sensores son como los sentidos de las personas: ojos para ver obstáculos (sensores de luz o distancia) o tacto para notar si toca algo. El programa le dice al robot: 'SI el sensor detecta pared, ENTONCES para'.",
     "preguntas": [
       {
-        "pregunta": "¿Internet es visible?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué usa un robot para no chocar?",
+        "opciones": [
+          "Ruedas",
+          "Sensores",
+          "Gorra",
+          "Pintura"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Conecta solo dos ordenadores?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿A qué se parecen los sensores en los humanos?",
+        "opciones": [
+          "A los huesos",
+          "A los sentidos (ojos, tacto)",
+          "A la ropa",
+          "Al pelo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué es Internet?",
-        "opciones": ["Un juego", "Una red gigante", "Un robot", "Un cable"],
+        "pregunta": "¿Qué orden recibe el robot si detecta una pared?",
+        "opciones": [
+          "Avanzar más rápido",
+          "Parar",
+          "Saltar",
+          "Hablar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuánto tarda en llegar un mensaje?",
-        "opciones": ["Un año", "Una hora", "Un segundo", "Un día"],
-        "correcta": 2
+        "pregunta": "¿Puede un robot 'sentir' la distancia?",
+        "opciones": [
+          "Sí, con sensores",
+          "No, nunca"
+        ],
+        "correcta": 0
       },
       {
-        "pregunta": "¿A dónde podemos mandar dibujos?",
-        "opciones": ["A la Luna", "A otro país", "Al pasado", "A ningún sitio"],
+        "pregunta": "¿Quién le da las órdenes al robot?",
+        "opciones": [
+          "El robot solo",
+          "El programa informático",
+          "Nadie",
+          "La pared"
+        ],
         "correcta": 1
       }
     ]

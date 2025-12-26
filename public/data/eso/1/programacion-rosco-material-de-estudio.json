@@ -1,0 +1,681 @@
+{
+  "titulo": "Material de Estudio - Programacion - 1º ESO",
+  "introduccion": "Repasa este vocabulario de Programacion para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "algoritmo",
+          "definicion": "Pasos ordenados para resolver un problema.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "altavoz",
+          "definicion": "Parte del ordenador que saca el sonido.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "apagado",
+          "definicion": "Lo contrario de encendido.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "archivo",
+          "definicion": "Documento o juego guardado en el PC.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "bug",
+          "definicion": "Un error o fallo en un programa.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "batería",
+          "definicion": "Lo que da energía a la tablet sin cables.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "botón",
+          "definicion": "Pieza que pulsamos para dar una orden.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "borrar",
+          "definicion": "Quitar lo que hemos escrito o dibujado.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "código",
+          "definicion": "Instrucciones escritas para el ordenador.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "clic",
+          "definicion": "Pulsar el botón del ratón.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "carpeta",
+          "definicion": "Lugar amarillo donde guardamos archivos.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "contraseña",
+          "definicion": "Palabra secreta para entrar en tu cuenta.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "datos",
+          "definicion": "Información que usa el ordenador.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dedo",
+          "definicion": "Lo que usamos para tocar la tablet.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "descargar",
+          "definicion": "Bajar un juego de internet.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dibujo",
+          "definicion": "Imagen hecha en el ordenador.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "encender",
+          "definicion": "Poner en marcha el ordenador.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "error",
+          "definicion": "Fallo en el programa.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "emoji",
+          "definicion": "Carita divertida que usamos en mensajes.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "enchufar",
+          "definicion": "Conectar el cable a la pared.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "foto",
+          "definicion": "Imagen capturada con una cámara.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fondo",
+          "definicion": "Imagen decorativa detrás de los iconos.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "flecha",
+          "definicion": "Símbolo que indica dirección.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fin",
+          "definicion": "Cuando se acaba el juego.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "guardar",
+          "definicion": "Salvar tu trabajo para no perderlo.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "galería",
+          "definicion": "Lugar donde se ven todas tus fotos.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gamer",
+          "definicion": "Persona que juega a videojuegos.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "girar",
+          "definicion": "Moverse dando vueltas.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "herramienta",
+          "definicion": "Utensilio para arreglar o crear cosas.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hora",
+          "definicion": "Lo que marca el reloj de la pantalla.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "chat",
+          "definicion": "Hablar por escrito en el ordenador.",
+          "pista": "Contiene la H"
+        },
+        {
+          "termino": "deshacer",
+          "definicion": "Lo contrario de guardar.",
+          "pista": "Contiene la H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "icono",
+          "definicion": "Dibujo pequeño que se puede pulsar.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "impresora",
+          "definicion": "Máquina para pasar dibujos a papel.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "internet",
+          "definicion": "Red mundial de ordenadores.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inicio",
+          "definicion": "Botón o pantalla principal.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "juego",
+          "definicion": "Aplicación para divertirse.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jugar",
+          "definicion": "Acción de divertirse con el PC.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "joystick",
+          "definicion": "Mando con palanca para jugar.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jugador",
+          "definicion": "Persona que participa en la partida.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "karaoke",
+          "definicion": "Aplicación para cantar con música.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "sticker",
+          "definicion": "Pegatina digital divertida.",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "hacker",
+          "definicion": "Pirata informático.",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "link",
+          "definicion": "Enlace para ir a otra web.",
+          "pista": "Contiene la K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "lenguaje",
+          "definicion": "Idiomas que entiende el ordenador.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "luz",
+          "definicion": "Lo que sale de la pantalla y brilla.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lento",
+          "definicion": "Ordenador que va muy despacio.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lupa",
+          "definicion": "Herramienta de zoom para ver mejor.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "móvil",
+          "definicion": "Teléfono que llevamos en el bolsillo.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "micrófono",
+          "definicion": "Sirve para que el ordenador te escuche.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "menú",
+          "definicion": "Lista de opciones para elegir.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "memoria",
+          "definicion": "Donde el ordenador guarda las cosas.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "nube",
+          "definicion": "Internet, como si fuera el cielo.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "navegador",
+          "definicion": "Programa para visitar webs.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nota",
+          "definicion": "Mensaje corto de texto o voz.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nombre",
+          "definicion": "Palabra para identificarte (Usuario).",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "contraseña",
+          "definicion": "Clave secreta.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "señal",
+          "definicion": "Lo que nos permite tener Wifi.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "diseño",
+          "definicion": "Dibujo o creación artística.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "pestaña",
+          "definicion": "Ventana pequeña del navegador.",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "ordenador",
+          "definicion": "Máquina inteligente.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "orden",
+          "definicion": "Instrucción que damos.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "online",
+          "definicion": "Estar conectado a internet.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "opciones",
+          "definicion": "Cosas que podemos elegir.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "pantalla",
+          "definicion": "Parte del PC donde ves las imágenes.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "programar",
+          "definicion": "Crear código para el ordenador.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "papelera",
+          "definicion": "Cubo de basura del ordenador.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "perfil",
+          "definicion": "Tu foto y nombre en un juego.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "equipo",
+          "definicion": "Conjunto de aparatos informáticos.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "bloque",
+          "definicion": "Pieza de código como un ladrillo.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "izquierda",
+          "definicion": "Dirección contraria a la derecha.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "búsqueda",
+          "definicion": "Investigar algo en Google.",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "ratón",
+          "definicion": "Dispositivo para mover el cursor.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "robot",
+          "definicion": "Máquina que se mueve sola.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "red",
+          "definicion": "Wifi o conexión de cables.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "repetir",
+          "definicion": "Volver a hacer lo mismo.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "salir",
+          "definicion": "Cerrar el programa o juego.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sonido",
+          "definicion": "Lo que oímos por los altavoces.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "saltar",
+          "definicion": "Acción de elevarse del suelo.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "solución",
+          "definicion": "Respuesta a un problema.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "teclado",
+          "definicion": "Tiene muchas teclas y letras.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tablet",
+          "definicion": "Ordenador plano sin teclado físico.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tecla",
+          "definicion": "Cada botón del teclado.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "táctil",
+          "definicion": "Pantalla que se puede tocar.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "usuario",
+          "definicion": "Persona que usa el ordenador.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "usb",
+          "definicion": "Lápiz de memoria pequeño.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unir",
+          "definicion": "Juntar dos bloques.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "ubicación",
+          "definicion": "Saber dónde estás en el mapa.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "ventana",
+          "definicion": "Recuadro donde se abre un programa.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vídeo",
+          "definicion": "Película en el ordenador.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "virus",
+          "definicion": "Programa malo que estropea el PC.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "voz",
+          "definicion": "Hablarle al móvil o tablet.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "wifi",
+          "definicion": "Internet sin cables.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "web",
+          "definicion": "Página de internet.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "webcam",
+          "definicion": "Cámara de vídeo del ordenador.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "word",
+          "definicion": "Programa famoso para escribir.",
+          "pista": "Empieza por W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "texto",
+          "definicion": "Palabras escritas.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "píxel",
+          "definicion": "Puntito de luz en la pantalla.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "conexión",
+          "definicion": "Unión entre dos ordenadores.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "explorador",
+          "definicion": "Programa para ver carpetas.",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "youtube",
+          "definicion": "Web famosa de vídeos.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "play",
+          "definicion": "Botón triangular para ver un vídeo.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ayuda",
+          "definicion": "Pedir socorro o asistencia.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "joystick",
+          "definicion": "Palanca de juego.",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zoom",
+          "definicion": "Acercar la imagen para verla grande.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "altavoz",
+          "definicion": "Aparato que saca el sonido.",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "avanzar",
+          "definicion": "Ir hacia delante.",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "pizarra",
+          "definicion": "Pantalla blanca digital del cole.",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

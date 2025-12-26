@@ -1,0 +1,1496 @@
+{
+  "titulo": "Material de Estudio - Musica - 1º ESO",
+  "introduccion": "Repasa este vocabulario de Musica para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "altura",
+          "definicion": "Cualidad del sonido que nos permite distinguir sonidos graves y agudos.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "agudo",
+          "definicion": "Sonido de frecuencia alta, lo contrario de grave.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "afinación",
+          "definicion": "Ajustar la entonación de un instrumento o voz.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "armonía",
+          "definicion": "Elemento fundamental de la música junto a la melodía y el ritmo.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "acorde",
+          "definicion": "Conjunto de tres o más notas que suenan simultáneamente.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "allegro",
+          "definicion": "Término italiano para indicar un tempo rápido y alegre.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "adagio",
+          "definicion": "Término italiano para indicar un tempo lento.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "arpa",
+          "definicion": "Instrumento de cuerda pulsada con forma triangular y muchas cuerdas.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "anacrusa",
+          "definicion": "Nota o notas previas al primer tiempo fuerte del compás.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "auditorio",
+          "definicion": "Sala acondicionada para escuchar conciertos.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "batuta",
+          "definicion": "Varita que usa el director de orquesta.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "banda",
+          "definicion": "Agrupación musical formada principalmente por instrumentos de viento y percusión.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "blanca",
+          "definicion": "Figura musical que vale 2 tiempos.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bemol",
+          "definicion": "Alteración que baja medio tono la nota.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "barítono",
+          "definicion": "Voz masculina intermedia.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bajo",
+          "definicion": "Voz masculina más grave.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bombo",
+          "definicion": "Instrumento de percusión grande que marca el pulso en la banda.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "batería",
+          "definicion": "Instrumento principal de la música rock (percusión).",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "binario",
+          "definicion": "Ritmo o compás de dos tiempos.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "becuadro",
+          "definicion": "Signo que anula el efecto del sostenido o el bemol.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "clave",
+          "definicion": "Signo al principio del pentagrama que da nombre a las notas.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "compás",
+          "definicion": "División del tiempo en partes iguales.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "corchea",
+          "definicion": "Figura musical que vale medio tiempo.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cuerda",
+          "definicion": "Familia de instrumentos que vibran al ser tensados (ej: violín, guitarra).",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cualidades",
+          "definicion": "Altura, duración, intensidad y timbre son las... del sonido.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "coro",
+          "definicion": "Agrupación vocal.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "contratiempo",
+          "definicion": "Acentuación en una parte débil del compás.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "canon",
+          "definicion": "Forma musical basada en la imitación (ej: Frère Jacques).",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "clarinete",
+          "definicion": "Instrumento de viento madera de color negro.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "crescendo",
+          "definicion": "Término que indica aumentar la intensidad poco a poco.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "duración",
+          "definicion": "Cualidad del sonido que nos dice si es largo o corto.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "diapasón",
+          "definicion": "Objeto metálico en forma de U que da la nota La (440Hz).",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "decibelio",
+          "definicion": "Unidad de medida de la intensidad del sonido.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "director",
+          "definicion": "Persona que guía a la orquesta.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "diminuendo",
+          "definicion": "Término para disminuir la intensidad poco a poco.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dúo",
+          "definicion": "Obra musical para dos intérpretes.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "danza",
+          "definicion": "Movimiento corporal al ritmo de la música.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "disonancia",
+          "definicion": "Sonido desagradable o tensión armónica.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "do",
+          "definicion": "Primera nota de la escala natural.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "disco",
+          "definicion": "Soporte físico o digital para grabar música.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "escala",
+          "definicion": "Sucesión ordenada de notas.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "entonación",
+          "definicion": "Cantar afinado las notas.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "espacio",
+          "definicion": "Hueco entre las líneas del pentagrama.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "estilo",
+          "definicion": "Carácter propio que da personalidad a la música (Pop, Rock...).",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "escenario",
+          "definicion": "Lugar donde actúan los músicos.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "estribillo",
+          "definicion": "Parte de una canción que se repite (coro).",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "electrófono",
+          "definicion": "Instrumento que necesita electricidad (ej: guitarra eléctrica).",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "ensayo",
+          "definicion": "Práctica antes del concierto.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "eco",
+          "definicion": "Repetición de un sonido por reflejo.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "escucha",
+          "definicion": "Atención que prestamos a la música (Audición).",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "fuerte",
+          "definicion": "Término de dinámica: sonido potente.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "figura",
+          "definicion": "Signo que representa la duración del sonido (Negra, corchea...).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "flauta",
+          "definicion": "Instrumento de viento madera, dulce o travesera.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "familia",
+          "definicion": "Grupo de instrumentos (Cuerda, Viento, Percusión).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "folclore",
+          "definicion": "Música tradicional de un pueblo.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "frecuencia",
+          "definicion": "Número de vibraciones por segundo (Hertzios).",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fagot",
+          "definicion": "Instrumento de viento madera grave y largo.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fusa",
+          "definicion": "Figura musical muy rápida, vale media semicorchea.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "final",
+          "definicion": "Acabamiento de una obra.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "forma",
+          "definicion": "Estructura de una obra musical (ABA, Rondó...).",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "grave",
+          "definicion": "Sonido de frecuencia baja, lo contrario de agudo.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "guitarra",
+          "definicion": "Instrumento de 6 cuerdas muy popular.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gong",
+          "definicion": "Instrumento de percusión asiático, disco de metal.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "glissando",
+          "definicion": "Efecto de deslizar de una nota a otra.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gaita",
+          "definicion": "Instrumento de viento con una bolsa de aire.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "género",
+          "definicion": "Clasificación de obras musicales (Rock, Pop, Clásica...).",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grabación",
+          "definicion": "Registro de sonido para escucharlo luego.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "galop",
+          "definicion": "Danza rápida de compás binario.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grupo",
+          "definicion": "Conjunto de músicos.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grafía",
+          "definicion": "Forma de escribir la música.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hertzio",
+          "definicion": "Unidad de medida de la frecuencia (Hz).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "himno",
+          "definicion": "Canción solemne que representa a un país o grupo.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "homofonía",
+          "definicion": "Textura donde todas las voces llevan el mismo ritmo.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "habanera",
+          "definicion": "Danza de origen cubano con ritmo característico.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hilo musical",
+          "definicion": "Música ambiental suave.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "heavy metal",
+          "definicion": "Estilo de rock muy potente.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "historia",
+          "definicion": "Estudio del pasado de la música.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "habilidad",
+          "definicion": "Destreza para tocar un instrumento.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hueco",
+          "definicion": "Espacio vacío en la caja de resonancia.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hombro",
+          "definicion": "Parte del cuerpo donde se apoya el violín.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "intensidad",
+          "definicion": "Cualidad del sonido (fuerte o suave).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "instrumento",
+          "definicion": "Objeto para producir música.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "intervalo",
+          "definicion": "Distancia entre dos notas.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "idiófono",
+          "definicion": "Instrumento que suena al vibrar su propio cuerpo (triángulo, claves).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "improvisación",
+          "definicion": "Crear música al momento.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "invertido",
+          "definicion": "Intervalo tocado al revés.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "ictus",
+          "definicion": "Golpe o acento rítmico.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "intervalo",
+          "definicion": "Concepto musical que empieza por I.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "interpretación",
+          "definicion": "Acción de tocar una obra musical.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "intro",
+          "definicion": "Comienzo de una canción.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "italia",
+          "definicion": "País cuna de la ópera.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "jazz",
+          "definicion": "Estilo musical afroamericano basado en la improvisación.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juego",
+          "definicion": "Actividad lúdica musical.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jota",
+          "definicion": "Baile y canto tradicional de Aragón.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juglar",
+          "definicion": "Músico ambulante de la Edad Media.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juguetes",
+          "definicion": "Objeto para jugar (Sinfonía de los...).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jondo",
+          "definicion": "Cante flamenco profundo (... jondo).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jarana",
+          "definicion": "Diversión, fiesta.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jingle",
+          "definicion": "Canción corta publicitaria.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jubiloso",
+          "definicion": "Carácter alegre en la música.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "justa",
+          "definicion": "Competición musical medieval.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "karaoke",
+          "definicion": "Cantante aficionado con música de fondo.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilo",
+          "definicion": "Prefijo para mil hertzios.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "koto",
+          "definicion": "Instrumento de cuerda japonés.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "k-pop",
+          "definicion": "Estilo de pop coreano.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "rock",
+          "definicion": "Estilo de música y baile popular (contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "punk",
+          "definicion": "Estilo musical rebelde de los 70 (contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "folklore",
+          "definicion": "Música tradicional de un pueblo (contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "ukelele",
+          "definicion": "Guitarra pequeña hawaiana (contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "playback",
+          "definicion": "Hacer mímica de cantar una canción (contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "speaker",
+          "definicion": "Altavoz (contiene K).",
+          "pista": "Contiene la K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "largo",
+          "definicion": "Tempo muy lento.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "línea",
+          "definicion": "Rayas horizontales del pentagrama.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "ligadura",
+          "definicion": "Línea curva que une la duración de dos notas.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "laúd",
+          "definicion": "Instrumento de cuerda antiguo con forma de pera.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lento",
+          "definicion": "Contrario de rápido.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lengüeta",
+          "definicion": "Pieza de caña que vibra en el clarinete.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lutier",
+          "definicion": "Artesano que construye instrumentos.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "la",
+          "definicion": "Nota musical (la 6ª).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "litúrgica",
+          "definicion": "Música religiosa (Música...).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "libretista",
+          "definicion": "Escritor del texto de una ópera.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "melodía",
+          "definicion": "Sucesión de notas con sentido musical.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "música",
+          "definicion": "Arte de combinar los sonidos.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "matiz",
+          "definicion": "Indicación de intensidad (fuerte, piano...).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "metrónomo",
+          "definicion": "Aparato que marca el pulso.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mezzosoprano",
+          "definicion": "Voz femenina intermedia.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "membranófono",
+          "definicion": "Instrumento que suena por una membrana tensa (tambor).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mordente",
+          "definicion": "Adorno musical rápido.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "modo",
+          "definicion": "Escala musical (Mayor o menor).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "marcha",
+          "definicion": "Obra musical para desfilar.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "metal",
+          "definicion": "Familia de instrumentos de viento (Viento...).",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "nota",
+          "definicion": "Signo que representa la altura del sonido.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "negra",
+          "definicion": "Figura que vale un tiempo.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "natural",
+          "definicion": "Nota sin alteraciones (Becuadro).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "notación",
+          "definicion": "Sistema de escritura musical.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nana",
+          "definicion": "Canción de cuna.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nacionalismo",
+          "definicion": "Estilo musical que exalta lo propio de un país.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "negro",
+          "definicion": "Canto espiritual afroamericano (... spiritual).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nocturno",
+          "definicion": "Pieza musical tranquila y nocturna.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "neuma",
+          "definicion": "Signo antiguo de escritura musical.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "novena",
+          "definicion": "Sinfonía famosa de Beethoven.",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "caña",
+          "definicion": "Parte de la lengüeta del oboe (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "castañuela",
+          "definicion": "Instrumento de percusión de madera típico español (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "zampoña",
+          "definicion": "Flauta de pan andina (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "ruiseñor",
+          "definicion": "Pájaro cantor (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "tañer",
+          "definicion": "Acción de tocar un instrumento de cuerda o campanas (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "muñeira",
+          "definicion": "Danza tradicional gallega (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "niño",
+          "definicion": "Persona de poca edad que canta en escolanía (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "acompañar",
+          "definicion": "Tocar junto a otro músico (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "pequeño",
+          "definicion": "Instrumento de tamaño reducido (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "señal",
+          "definicion": "Indicación del director (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "orquesta",
+          "definicion": "Conjunto grande de instrumentos.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oído",
+          "definicion": "Sentido para escuchar música.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "onda",
+          "definicion": "Forma de transmisión del sonido.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "octava",
+          "definicion": "Intervalo de 8 notas.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "obertura",
+          "definicion": "Pieza instrumental al inicio de una ópera.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ópera",
+          "definicion": "Teatro cantado con orquesta y vestuario.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oboe",
+          "definicion": "Instrumento de viento madera de doble lengüeta.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "organología",
+          "definicion": "Ciencia que estudia los instrumentos musicales.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ostinato",
+          "definicion": "Ritmo o melodía que se repite constantemente.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "opus",
+          "definicion": "Palabra latina para 'obra'.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "pentagrama",
+          "definicion": "Conjunto de 5 líneas donde se escribe música.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pulso",
+          "definicion": "Latido constante de la música.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "piano",
+          "definicion": "Instrumento de tecla y cuerda percutida.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "partitura",
+          "definicion": "Documento con toda la música escrita.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "percusión",
+          "definicion": "Familia de instrumentos que se golpean.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "polifonía",
+          "definicion": "Varias melodías sonando a la vez.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "puntillo",
+          "definicion": "Punto que añade la mitad del valor a la nota.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "presto",
+          "definicion": "Tempo muy rápido.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "púa",
+          "definicion": "Pieza para tocar la guitarra.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "platillos",
+          "definicion": "Platos de metal de la batería.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "quinteto",
+          "definicion": "Grupo de cinco músicos.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quena",
+          "definicion": "Flauta andina.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quinta",
+          "definicion": "Intervalo de cinco notas.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "orquesta",
+          "definicion": "Conjunto de músicos (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "baqueta",
+          "definicion": "Palos para tocar el tambor (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "bloque",
+          "definicion": "Instrumento de percusión de madera (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "equísono",
+          "definicion": "Mismo sonido (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "boquilla",
+          "definicion": "Pieza para soplar en viento metal (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "queso",
+          "definicion": "Lugar para bailar (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "equilibrado",
+          "definicion": "Volumen sonoro balanceado (contiene Q).",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "ritmo",
+          "definicion": "Combinación de duraciones y acentos.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "redonda",
+          "definicion": "Figura que vale 4 tiempos.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "ruido",
+          "definicion": "Sonido indeterminado y molesto.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "repetición",
+          "definicion": "Signo para volver a tocar un fragmento.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "reggae",
+          "definicion": "Estilo musical de Jamaica.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rock",
+          "definicion": "Estilo musical con guitarras eléctricas.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rap",
+          "definicion": "Estilo musical hablado y rítmico.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "resonancia",
+          "definicion": "Amplificación del sonido.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "re",
+          "definicion": "Segunda nota musical.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "registro",
+          "definicion": "Rango de notas que puede cantar una voz.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "sonido",
+          "definicion": "Sensación producida en el oído por las vibraciones.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "silencio",
+          "definicion": "Ausencia de sonido.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "semicorchea",
+          "definicion": "Figura que vale un cuarto de tiempo.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "soprano",
+          "definicion": "Voz femenina más aguda.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "saxofón",
+          "definicion": "Instrumento de viento metal inventado por Adolphe Sax.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sol",
+          "definicion": "Quinta nota musical.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sostenido",
+          "definicion": "Alteración que sube medio tono.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sinfonía",
+          "definicion": "Gran obra para orquesta.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "suite",
+          "definicion": "Conjunto de danzas instrumentales.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "semitono",
+          "definicion": "Distancia de medio tono.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "timbre",
+          "definicion": "Cualidad del sonido que distingue instrumentos.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tiempo",
+          "definicion": "Velocidad de la música (tempo).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tenor",
+          "definicion": "Voz masculina aguda.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "trompeta",
+          "definicion": "Instrumento de viento metal agudo.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tambor",
+          "definicion": "Instrumento de percusión con membrana.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "teclado",
+          "definicion": "Conjunto de teclas de un piano.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tono",
+          "definicion": "Distancia de dos semitonos.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "triángulo",
+          "definicion": "Instrumento de percusión metálico triangular.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tuba",
+          "definicion": "Instrumento de viento metal más grave.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tercera",
+          "definicion": "Intervalo de tres notas.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "unísono",
+          "definicion": "Todos cantando la misma nota a la vez.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "ukelele",
+          "definicion": "Pequeña guitarra hawaiana.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uno",
+          "definicion": "Valor de la negra (un tiempo).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "urbana",
+          "definicion": "Música moderna de la ciudad (Música...).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "único",
+          "definicion": "Que no se repite, original.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unión",
+          "definicion": "Función de la ligadura.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "utilidad",
+          "definicion": "Para qué sirve la música.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unidad",
+          "definicion": "Parte de una obra (o lección).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uña",
+          "definicion": "Parte del dedo para tocar la guitarra.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "minueto",
+          "definicion": "Danza de 3 tiempos (contiene U).",
+          "pista": "Contiene la U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "violín",
+          "definicion": "Instrumento de cuerda frotada más agudo.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "velocidad",
+          "definicion": "Rapidez de la música.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vibración",
+          "definicion": "Movimiento rápido que produce sonido.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "viento",
+          "definicion": "Familia de instrumentos que se soplan.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "voz",
+          "definicion": "Sonido producido por el ser humano.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vals",
+          "definicion": "Baile de salón en 3/4.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "viola",
+          "definicion": "Instrumento de cuerda un poco más grande que el violín.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "violonchelo",
+          "definicion": "Instrumento de cuerda grave que se toca sentado.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vivace",
+          "definicion": "Tempo muy rápido.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vocal",
+          "definicion": "Música hecha solo con la voz.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "wagner",
+          "definicion": "Compositor famoso de óperas (Richard...).",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "walkman",
+          "definicion": "Reproductor de música portátil antiguo.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "twist",
+          "definicion": "Estilo de baile de los 60 (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "swing",
+          "definicion": "Estilo de jazz bailable (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "world music",
+          "definicion": "Música del mundo (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "woodblock",
+          "definicion": "Caja china o bloque de madera (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "western",
+          "definicion": "Película del oeste y su música (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "woofer",
+          "definicion": "Altavoz de graves (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "web",
+          "definicion": "Sitio web de música (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "hardware",
+          "definicion": "Componentes físicos de un equipo de sonido (contiene W).",
+          "pista": "Contiene la W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "xilófono",
+          "definicion": "Instrumento de láminas de madera.",
+          "pista": "Empieza por X"
+        },
+        {
+          "termino": "saxofón",
+          "definicion": "Instrumento de viento metal inventado por Sax (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "textura",
+          "definicion": "Entramado de las voces (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "mixto",
+          "definicion": "Coro de hombres y mujeres (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "expresión",
+          "definicion": "Transmitir sentimientos (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "extensión",
+          "definicion": "Rango de notas de un instrumento (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "clímax",
+          "definicion": "Punto culminante de una obra (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "contexto",
+          "definicion": "Entorno histórico de una obra (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "éxito",
+          "definicion": "Triunfo musical (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "examen",
+          "definicion": "Prueba de instrumento (contiene X).",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "yembe",
+          "definicion": "Tambor africano de copa (Djembe).",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yodel",
+          "definicion": "Canto tirolés.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yunque",
+          "definicion": "Bloque de metal que se golpea en algunas obras.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "mayor",
+          "definicion": "Modo de la escala alegre (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ensayo",
+          "definicion": "Práctica de un grupo (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ayuda",
+          "definicion": "Colaboración musical (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "leyenda",
+          "definicion": "Historia de un músico famoso (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "proyecto",
+          "definicion": "Plan de trabajo musical (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "hoy",
+          "definicion": "Música actual (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ayer",
+          "definicion": "Música antigua (contiene Y).",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zarzuela",
+          "definicion": "Género de teatro musical español.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zambomba",
+          "definicion": "Instrumento de percusión navideño.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zapateado",
+          "definicion": "Baile golpeando con los pies.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zortziko",
+          "definicion": "Ritmo vasco en 5/8.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "danza",
+          "definicion": "Movimiento corporal con música (contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "jazz",
+          "definicion": "Estilo afroamericano (contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "pieza",
+          "definicion": "Obra musical corta (contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "dulzaina",
+          "definicion": "Instrumento de viento tradicional (contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "voz",
+          "definicion": "Instrumento natural humano (contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "hertzio",
+          "definicion": "Unidad de frecuencia (contiene Z).",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

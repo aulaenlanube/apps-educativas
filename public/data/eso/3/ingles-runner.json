@@ -1,17 +1,122 @@
 {
-  "environment": [
-    "pollution", "recycling", "global warming", "waste", "climate change", "flood", "drought", "endangered", "greenhouse", "energy"
+  "past_continuous": [
+    "was playing",
+    "were studying",
+    "while",
+    "when",
+    "yesterday evening",
+    "at 5 o'clock",
+    "watching",
+    "reading",
+    "doing",
+    "wasn't"
   ],
-  "crime_and_law": [
-    "thief", "murder", "prison", "judge", "lawyer", "police", "witness", "trial", "robbery", "detective"
+  "present_perfect": [
+    "have seen",
+    "has gone",
+    "already",
+    "just",
+    "yet",
+    "ever",
+    "never",
+    "for",
+    "since",
+    "been"
   ],
-  "health_and_body": [
-    "disease", "injury", "treatment", "medicine", "surgeon", "pain", "flu", "recovery", "symptom", "virus"
+  "travel_transport": [
+    "boarding pass",
+    "departure",
+    "arrival",
+    "check-in",
+    "sightseeing",
+    "journey",
+    "tourist",
+    "guide",
+    "flight",
+    "delay"
   ],
-  "media_and_tech": [
-    "network", "software", "download", "keyboard", "screen", "broadcast", "journalist", "newspaper", "channel", "headline"
+  "food_cooking": [
+    "recipe",
+    "ingredients",
+    "boil",
+    "fry",
+    "bake",
+    "grill",
+    "tasty",
+    "sour",
+    "spicy",
+    "bitter"
   ],
-  "education": [
-    "subject", "degree", "exam", "homework", "teacher", "headmaster", "library", "classroom", "grade", "student"
+  "crime_justice": [
+    "police",
+    "thief",
+    "crime",
+    "judge",
+    "witness",
+    "trial",
+    "guilty",
+    "prison",
+    "investigation",
+    "clue"
+  ],
+  "science_invention": [
+    "discovery",
+    "experiment",
+    "laboratory",
+    "theory",
+    "research",
+    "space",
+    "planet",
+    "scientist",
+    "technology",
+    "innovative"
+  ],
+  "media_entertainment": [
+    "podcast",
+    "streaming",
+    "documentary",
+    "celebrity",
+    "audience",
+    "review",
+    "broadcast",
+    "viral",
+    "advertising",
+    "influencer"
+  ],
+  "nature_conservation": [
+    "safari",
+    "endangered",
+    "species",
+    "habitat",
+    "pollution",
+    "solar power",
+    "greenhouse effect",
+    "recycle",
+    "volunteer",
+    "earthquake"
+  ],
+  "relationships_adj": [
+    "reliable",
+    "sensible",
+    "stubborn",
+    "jealous",
+    "loyal",
+    "selfish",
+    "kind",
+    "confident",
+    "bossy",
+    "moody"
+  ],
+  "phrasal_verbs": [
+    "get up",
+    "look for",
+    "turn off",
+    "find out",
+    "give up",
+    "carry on",
+    "take off",
+    "go on",
+    "set off",
+    "wake up"
   ]
 }

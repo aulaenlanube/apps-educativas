@@ -1,14 +1,56 @@
 {
   "emociones_agradables": [
-    "alegría", "calma", "amor", "ilusión", "paz", "gozo", "felicidad", "cariño"
+    "alegría",
+    "calma",
+    "amor",
+    "ilusión",
+    "paz",
+    "gozo",
+    "felicidad",
+    "cariño",
+    "risa",
+    "beso",
+    "abrazo",
+    "juego",
+    "fiesta",
+    "regalo",
+    "amigo",
+    "amiga"
   ],
   "emociones_desagradables": [
-    "miedo", "ira", "tristeza", "asco", "enfado", "vergüenza", "celos", "dolor"
-  ],
-  "valores_escolares": [
-    "respeto", "ayuda", "amistad", "esfuerzo", "orden", "verdad", "compartir", "escuchar"
+    "miedo",
+    "ira",
+    "tristeza",
+    "asco",
+    "enfado",
+    "vergüenza",
+    "celos",
+    "dolor",
+    "llanto",
+    "grito",
+    "rabia",
+    "susto",
+    "pena",
+    "queja",
+    "mal",
+    "aburrimiento"
   ],
   "higiene_personal": [
-    "jabón", "ducha", "cepillo", "agua", "toalla", "peine", "baño", "lavarse"
+    "jabón",
+    "ducha",
+    "cepillo",
+    "agua",
+    "toalla",
+    "peine",
+    "baño",
+    "lavarse",
+    "manos",
+    "cara",
+    "dientes",
+    "pelo",
+    "esponja",
+    "colonia",
+    "limpio",
+    "aseo"
   ]
 }

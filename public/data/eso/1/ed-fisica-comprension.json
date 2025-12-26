@@ -1,0 +1,568 @@
+[
+    {
+        "id": "1",
+        "titulo": "El Calentamiento: Prepara tu máquina",
+        "texto": "Antes de cualquier actividad física, es fundamental realizar un calentamiento. Su objetivo es preparar al organismo para el esfuerzo, elevando la temperatura muscular y la frecuencia cardíaca de forma progresiva. Un buen calentamiento consta de tres partes: movilidad articular (mover las articulaciones), parte cardiovascular (carrera suave o juegos para sudar un poco) y estiramientos dinámicos. Realizarlo reduce drásticamente el riesgo de lesiones y mejora el rendimiento durante la clase, ya que tus músculos y articulaciones estarán 'engrasados' y listos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el objetivo principal del calentamiento?",
+                "opciones": [
+                    "Cansarse antes de empezar",
+                    "Preparar al cuerpo para el esfuerzo",
+                    "Aprobar la asignatura",
+                    "Hacer amigos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre con la temperatura muscular durante el calentamiento?",
+                "opciones": [
+                    "Baja",
+                    "Sube progresivamente",
+                    "Se queda igual",
+                    "Se enfría"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué parte del calentamiento consiste en mover las articulaciones?",
+                "opciones": [
+                    "Estiramientos",
+                    "Cardiovascular",
+                    "Movilidad articular",
+                    "Relajación final"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué beneficio importante tiene para la salud según el texto?",
+                "opciones": [
+                    "Ninguno",
+                    "Reduce el riesgo de lesiones",
+                    "Hace que crezcas más rápido",
+                    "Cura los resfriados"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo debe ser el aumento de la frecuencia cardíaca?",
+                "opciones": [
+                    "Súbito y rápido",
+                    "Progresivo",
+                    "No debe subir",
+                    "Solo al final"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Las Capacidades Físicas Básicas",
+        "texto": "Las capacidades físicas básicas son cuatro factores que determinan nuestra condición física. La RESISTENCIA es la capacidad de aguantar un esfuerzo durante mucho tiempo. La FUERZA es la capacidad de vencer o soportar una resistencia u oposición. La VELOCIDAD permite realizar movimientos en el menor tiempo posible. Finalmente, la FLEXIBILIDAD es la capacidad de estiramiento de los músculos y la movilidad de las articulaciones. Todos tenemos estas capacidades, pero podemos mejorarlas con entrenamiento específico y constancia.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la capacidad de soportar un esfuerzo largo tiempo?",
+                "opciones": [
+                    "Fuerza",
+                    "Velocidad",
+                    "Resistencia",
+                    "Flexibilidad"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué capacidad usamos al intentar mover una caja muy pesada?",
+                "opciones": [
+                    "Velocidad",
+                    "Fuerza",
+                    "Flexibilidad",
+                    "Resistencia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De qué depende la flexibilidad?",
+                "opciones": [
+                    "De la rapidez de los pies",
+                    "De los pulmones",
+                    "Del estiramiento muscular y movilidad articular",
+                    "Del peso del cuerpo"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuántas capacidades físicas básicas existen según el texto?",
+                "opciones": [
+                    "Dos",
+                    "Tres",
+                    "Cuatro",
+                    "Diez"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Hacer un sprint de 50 metros es principalmente un ejemplo de:",
+                "opciones": [
+                    "Resistencia",
+                    "Fuerza",
+                    "Velocidad",
+                    "Flexibilidad"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Higiene y Salud en el Deporte",
+        "texto": "La educación física no es solo moverse, también es cuidar nuestra salud personal e higiene. Después de la clase, es imprescindible ducharse y ponerse ropa limpia para evitar olores y problemas de piel. También es fundamental la alimentación: para tener energía necesitamos hidratos de carbono (pasta, arroz) y para recuperar los músculos, proteínas. Además, debemos hidratarnos bebiendo agua antes, durante y después del ejercicio, incluso si no tenemos mucha sed, ya que al sudar perdemos líquidos y sales minerales.",
+        "preguntas": [
+            {
+                "pregunta": "¿Por qué es importante ducharse tras el ejercicio?",
+                "opciones": [
+                    "Para gastar agua",
+                    "Para la higiene y evitar problemas de piel",
+                    "Para perder peso",
+                    "No es importante"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo debemos beber agua si hacemos ejercicio?",
+                "opciones": [
+                    "Solo al terminar",
+                    "Solo antes de empezar",
+                    "Antes, durante y después",
+                    "Nunca, es malo"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué nutrientes nos dan energía rápida según el texto?",
+                "opciones": [
+                    "Proteínas",
+                    "Vitaminas",
+                    "Hidratos de carbono",
+                    "Minerales"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué perdemos al sudar además de agua?",
+                "opciones": [
+                    "Grasa pura",
+                    "Sales minerales",
+                    "Energía eléctrica",
+                    "Músculo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es necesario ponerse ropa limpia tras la clase?",
+                "opciones": [
+                    "Sí",
+                    "No"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "El Atletismo: Deporte Rey",
+        "texto": "El atletismo es uno de los deportes más antiguos y naturales, basado en gestos básicos del ser humano: correr, saltar y lanzar. Se divide en pruebas de PISTA (carreras de velocidad, medio fondo, fondo y vallas), pruebas de SALTOS (longitud, triple salto, altura y pértiga) y pruebas de LANZAMIENTOS (peso, jabalina, disco y martillo). Al conjunto de diez pruebas para hombres se le llama decatlón, y de siete para mujeres, heptatlón. Es un deporte individual pero requiere mucho respeto por las normas y los compañeros.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué tres gestos básicos se basa el atletismo?",
+                "opciones": [
+                    "Nadar, correr y saltar",
+                    "Correr, saltar y lanzar",
+                    "Luchar, saltar y correr",
+                    "Correr, volar y lanzar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué grupo pertenece el lanzamiento de jabalina?",
+                "opciones": [
+                    "Pruebas de pista",
+                    "Pruebas de saltos",
+                    "Pruebas de lanzamientos",
+                    "Pruebas de relevos"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cómo se llama el conjunto de 10 pruebas combinadas masculinas?",
+                "opciones": [
+                    "Maratón",
+                    "Decatlón",
+                    "Heptatlón",
+                    "Pentatlón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de prueba es el salto de pértiga?",
+                "opciones": [
+                    "Lanzamiento",
+                    "Salto",
+                    "Carrera",
+                    "No es atletismo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué valores menciona el texto sobre el atletismo?",
+                "opciones": [
+                    "Envidia y odio",
+                    "Respeto por las normas y compañeros",
+                    "Solo ganar a toda costa",
+                    "Hacer trampas"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Deportes Colectivos: El Baloncesto",
+        "texto": "El baloncesto es un deporte de equipo muy dinámico donde dos conjuntos de cinco jugadores intentan introducir un balón en el aro contrario. Se juega en cuatro tiempos. La regla fundamental es que no se puede caminar con el balón en las manos (pasos) sin botarlo. Tampoco se puede botar, parar y volver a botar (dobles). Es un deporte donde el trabajo en equipo es vital, ya que la colaboración mediante pases permite superar la defensa rival de forma mucho más eficaz que intentándolo uno solo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuántos jugadores por equipo hay en el campo en baloncesto?",
+                "opciones": [
+                    "Cinco",
+                    "Siete",
+                    "Once",
+                    "Cuatro"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Cómo se llama la infracción de caminar sin botar el balón?",
+                "opciones": [
+                    "Falta personal",
+                    "Dobles",
+                    "Pasos",
+                    "Triple"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿En cuántos tiempos se divide un partido?",
+                "opciones": [
+                    "Uno",
+                    "Dos",
+                    "Tres",
+                    "Cuatro"
+                ],
+                "correcta": 3
+            },
+            {
+                "pregunta": "¿Qué ocurre si botas, paras y vuelves a botar?",
+                "opciones": [
+                    "Es canasta",
+                    "Es falta técnica",
+                    "Es la infracción de 'dobles'",
+                    "No pasa nada"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Por qué son importantes los pases?",
+                "opciones": [
+                    "Para perder el tiempo",
+                    "Para que todos toquen el balón",
+                    "Porque mejora la eficacia del equipo ante la defensa",
+                    "Porque el balón pesa mucho"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Juegos Populares y Tradicionales",
+        "texto": "Los juegos populares son aquellos que han pasado de padres a hijos y forman parte de nuestra cultura. Seguramente tus abuelos jugaban al pañuelo, a la comba, a las canicas o a la rayuela. Estos juegos son muy valiosos porque no requieren materiales caros y fomentan la socialización y el ingenio. Además, muchos de ellos desarrollan habilidades físicas como el equilibrio, el salto o la coordinación de forma divertida. Mantener vivos estos juegos es una forma de no perder nuestra identidad popular.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quién transmitía habitualmente los juegos populares?",
+                "opciones": [
+                    "Los profesores de universidad",
+                    "La televisión",
+                    "De padres a hijos (tradición oral)",
+                    "Unas instrucciones escritas"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál de estos es un juego tradicional mencionado?",
+                "opciones": [
+                    "Fortnite",
+                    "El pañuelo o la rayuela",
+                    "Fútbol profesional",
+                    "Ajedrez"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ventaja tienen estos juegos respeto al material?",
+                "opciones": [
+                    "Necesitas una consola",
+                    "No requieren materiales caros",
+                    "Solo se juega con oro",
+                    "Solo se juega en gimnasios"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué habilidades físicas desarrollan según el texto?",
+                "opciones": [
+                    "Solo la fuerza bruta",
+                    "Solo la lectura",
+                    "Equilibrio, salto o coordinación",
+                    "Ninguna"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Jugar a la comba mejora principalmente:",
+                "opciones": [
+                    "La visión nocturna",
+                    "La coordinación y el salto",
+                    "El dibujo",
+                    "La velocidad de escritura"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Orientación en la Naturaleza",
+        "texto": "Saber orientarse es fundamental para realizar actividades en el medio natural de forma segura. El instrumento básico es la BRÚJULA, que siempre señala al Norte magnético gracias a su aguja imantada. También usamos el MAPA, que es una representación del terreno vista desde arriba. Para orientarnos sin instrumentos, podemos observar el Sol (sale por el Este y se pone por el Oeste) o buscar el musgo en los árboles, que suele crecer en la cara Norte porque es la zona más húmeda y sombría.",
+        "preguntas": [
+            {
+                "pregunta": "¿Hacia dónde señala siempre la aguja de la brújula?",
+                "opciones": [
+                    "Al Este",
+                    "Al Norte magnético",
+                    "Al Sur",
+                    "Al Sol"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un mapa de orientación?",
+                "opciones": [
+                    "Un dibujo artístico",
+                    "Una representación del terreno vista desde arriba",
+                    "Un libro de historia",
+                    "Una foto del cielo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si no tienes brújula, ¿por dónde sale el Sol?",
+                "opciones": [
+                    "Norte",
+                    "Sur",
+                    "Este",
+                    "Oeste"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿En qué cara de los árboles suele haber más musgo en nuestro hemisferio?",
+                "opciones": [
+                    "Cara Sur",
+                    "Cara Norte (más húmeda)",
+                    "Cara Este",
+                    "Depende del árbol"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es importante saber orientarse?",
+                "opciones": [
+                    "Para llegar más rápido",
+                    "Para realizar actividades en la naturaleza de forma segura",
+                    "Para no mojarse",
+                    "Para encontrar comida"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "El Sistema Muscular",
+        "texto": "Nuestros músculos son los motores del cuerpo. Tenemos más de 600 y se encargan de producir movimiento al contraerse y relajarse. Los músculos voluntarios son los que movemos cuando queremos (como los bíceps al levantar el brazo). Para los deportistas es clave conocer los grandes grupos: los PECTORALES (pecho), los ABDOMINALES (abdomen), los CUÁDRICEPS (parte delantera del muslo) y los GEMELOS (parte trasera de la pierna). Estirar estos músculos después de entrenar ayuda a que no se lesionen y se recuperen mejor.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuántos músculos tenemos aproximadamente?",
+                "opciones": [
+                    "100",
+                    "200",
+                    "Más de 600",
+                    "1.000"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué es un músculo voluntario?",
+                "opciones": [
+                    "El que no podemos controlar",
+                    "El que movemos conscientemente",
+                    "El que nunca descansa",
+                    "El que no existe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se sitúan los cuádriceps?",
+                "opciones": [
+                    "En el brazo",
+                    "En la parte delantera del muslo",
+                    "En la espalda",
+                    "En la cara"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llaman los músculos del abdomen?",
+                "opciones": [
+                    "Pectorales",
+                    "Abdominales",
+                    "Gemelos",
+                    "Bíceps"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve estirar los músculos tras el ejercicio?",
+                "opciones": [
+                    "Para que crezcan más",
+                    "Para evitar lesiones y recuperar mejor",
+                    "Para enfriar el cuerpo",
+                    "Para estar más cansado"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Juego Limpio y Deportividad",
+        "texto": "El deporte no solo es ganar o perder, es una escuela de valores. El 'Fair Play' o Juego Limpio consiste en respetar las reglas, a los compañeros, al árbitro y a los rivales del equipo contrario. Ser deportivo significa aceptar la derrota con dignidad, no hacer trampas para ganar y ayudar a un rival si se lesiona. En clase de Educación Física, estos valores son más importantes que ser el más rápido o el más fuerte. Un buen deportista es aquel que disfruta del juego y hace que los demás también disfruten.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa Fair Play?",
+                "opciones": [
+                    "Jugar rápido",
+                    "Juego Limpio y respeto a las reglas",
+                    "Ganar a toda costa",
+                    "Juego con pelotas pequeñas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A quién debemos respetar según el texto?",
+                "opciones": [
+                    "Solo al profesor",
+                    "A compañeros, rivales y árbitros",
+                    "Solo a los del equipo propio",
+                    "A nadie si estamos perdiendo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace un deportista con 'deportividad' si pierde?",
+                "opciones": [
+                    "Se enfada y grita",
+                    "Acepta la derrota con dignidad",
+                    "Dice que es culpa del árbitro",
+                    "No vuelve a jugar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el valor más importante en la clase de Educación Física?",
+                "opciones": [
+                    "Ser el que más puntos mete",
+                    "La velocidad pura",
+                    "Los valores y el respeto",
+                    "Tener el mejor equipo"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Si un rival se cae y se hace daño, ¿qué debes hacer?",
+                "opciones": [
+                    "Reírte",
+                    "Seguir jugando rápido para ganar",
+                    "Parar y ayudarle",
+                    "Hacer como que no lo has visto"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Expresión Corporal y Ritmo",
+        "texto": "El cuerpo también sirve para comunicarnos sin usar palabras. Esto es la EXPRESIÓN CORPORAL. Mediante gestos, posturas y movimientos podemos transmitir emociones (alegría, miedo, sorpresa) o contar historias (mimo). El ritmo es una parte importante de la expresión; podemos movernos siguiendo el pulso de la música o crear percusión corporal chocando manos, pies o dedos. Estas actividades mejoran nuestra coordinación, imaginación y nos ayudan a perder la timidez delante de los demás.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la expresión corporal?",
+                "opciones": [
+                    "Hablar muy alto",
+                    "Comunicarse mediante gestos y movimientos del cuerpo",
+                    "Escribir poemas",
+                    "Cantar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué teatro usa solo gestos para contar historias?",
+                "opciones": [
+                    "Ópera",
+                    "Mimo",
+                    "Radio",
+                    "Cine de terror"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la percusión corporal?",
+                "opciones": [
+                    "Tocar la batería",
+                    "Hacer ritmos golpeando partes del propio cuerpo",
+                    "Tirarse al suelo",
+                    "Gritar a ritmo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué beneficio tiene esta actividad según el texto?",
+                "opciones": [
+                    "Mejora la coordinación y quita la timidez",
+                    "Te hace más alto",
+                    "Te enseña a leer mejor",
+                    "Ninguno"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Se pueden transmitir emociones sin hablar?",
+                "opciones": [
+                    "No",
+                    "Sí, con el cuerpo"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

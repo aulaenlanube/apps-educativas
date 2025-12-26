@@ -7,118 +7,208 @@
       "😂",
       "🥰",
       "😍",
-      "🙂"
+      "🙂",
+      "🥳",
+      "🤩",
+      "😊",
+      "😄",
+      "😆",
+      "😇",
+      "😚",
+      "😋"
     ],
     "intrusos": [
       "😢",
       "😭",
       "😡",
       "🤬",
-      "😱"
+      "😱",
+      "😤",
+      "🤢",
+      "😴",
+      "🙄",
+      "🤫",
+      "👽",
+      "👹"
     ]
   },
   {
-    "categoria": "Higiene (Visual)",
+    "categoria": "Higiene y Salud (Visual)",
     "correctos": [
       "🚿",
       "🛁",
       "🧼",
       "🪥",
       "🧴",
-      "🧻"
+      "🧻",
+      "🦷",
+      "🧴",
+      "🧖‍♀️",
+      "🍎",
+      "🥦",
+      "💧"
     ],
     "intrusos": [
       "🎮",
       "📺",
       "🍔",
       "⚽",
-      "🗑️"
+      "🗑️",
+      "🍭",
+      "🍫",
+      "🍩",
+      "🥤",
+      "🛋️",
+      "📱",
+      "🚗"
     ]
   },
   {
-    "categoria": "Juegos (Visual)",
+    "categoria": "Juegos y Diversión (Visual)",
     "correctos": [
       "⚽",
       "🏀",
       "🪁",
       "🧩",
       "🎲",
-      "🧸"
+      "🧸",
+      "🎠",
+      "🎡",
+      "🎨",
+      "🎭",
+      "🎪",
+      "🛴",
+      "🚲"
     ],
     "intrusos": [
       "📚",
       "✏️",
       "🧹",
       "🍳",
-      "🔨"
+      "🔨",
+      "💻",
+      "🗑️",
+      "🔧",
+      "🏥",
+      "🦷",
+      "💼",
+      "📎"
     ]
   },
   {
-    "categoria": "Emociones Buenas",
+    "categoria": "Emociones de Bienestar",
     "correctos": [
       "Alegría",
       "Amor",
       "Calma",
       "Diversión",
-      "Felicidad"
+      "Felicidad",
+      "Ilusión",
+      "Tranquilidad",
+      "Cariño",
+      "Amistad",
+      "Paz",
+      "Gozo",
+      "Esperanza"
     ],
     "intrusos": [
       "Miedo",
       "Tristeza",
       "Enfado",
       "Ira",
-      "Dolor"
+      "Dolor",
+      "Susto",
+      "Asco",
+      "Celos",
+      "Vergüenza",
+      "Cansancio",
+      "Hambre",
+      "Sed"
     ]
   },
   {
-    "categoria": "Palabras Mágicas",
+    "categoria": "Palabras Mágicas y de Respeto",
     "correctos": [
       "Gracias",
       "Por favor",
       "Perdón",
       "Hola",
-      "Adiós"
+      "Adiós",
+      "Buenas noches",
+      "Buen provecho",
+      "Enhorabuena",
+      "Bienvenido",
+      "Lo siento"
     ],
     "intrusos": [
       "Tonto",
       "Feo",
       "Malo",
       "Fuera",
-      "No"
+      "No",
+      "Calla",
+      "Mío",
+      "Vete",
+      "Lento",
+      "Pesado",
+      "Pequeño",
+      "Viejo"
     ]
   },
   {
-    "categoria": "Cosas Buenas",
+    "categoria": "Acciones de Convivencia",
     "correctos": [
       "Abrazar",
       "Besar",
       "Ayudar",
       "Compartir",
-      "Jugar"
+      "Jugar",
+      "Escuchar",
+      "Cuidar",
+      "Respetar",
+      "Saludar",
+      "Acompañar",
+      "Agradecer"
     ],
     "intrusos": [
       "Pegar",
       "Gritar",
       "Empujar",
       "Romper",
-      "Insultar"
+      "Insultar",
+      "Mentir",
+      "Escupir",
+      "Robar",
+      "Pisar",
+      "Morder",
+      "Arañar"
     ]
   },
   {
-    "categoria": "Hábitos Sanos",
+    "categoria": "Hábitos Saludables Diarios",
     "correctos": [
-      "Dormir",
+      "Dormir bien",
       "Comer fruta",
-      "Lavarse",
-      "Jugar",
-      "Leer"
+      "Lavarse las manos",
+      "Jugar al aire libre",
+      "Leer un libro",
+      "Beber agua",
+      "Ducharse",
+      "Hacer deporte",
+      "Recoger los juguetes",
+      "Desayunar sano"
     ],
     "intrusos": [
       "Comer chuches",
       "Ver mucha tele",
       "No bañarse",
-      "Pegar",
-      "Llorar"
+      "Pegar a los otros",
+      "Llorar por todo",
+      "Gritar fuerte",
+      "Comer rápido",
+      "Estar sucio",
+      "Dormir poco",
+      "No ayudar"
     ]
   }
 ]

@@ -1,321 +1,571 @@
 [
   {
     "id": "1",
-    "titulo": "Las manzanas de Ana",
-    "texto": "Ana ha ido al mercado con su cesta. Ha comprado tres manzanas rojas y dos manzanas verdes. Cuando iba camino a casa, le ha entrado hambre y se ha comido una manzana roja. Ahora su cesta pesa un poco menos.",
+    "titulo": "El ascensor y los números enteros",
+    "texto": "En un gran centro comercial, las plantas se organizan con números enteros. La planta baja es el 0, las tiendas están en las plantas positivas (+1, +2, +3) y el aparcamiento en las plantas negativas (-1, -2, -3). Si estamos en la planta -2 y subimos 5 plantas, necesitamos saber en qué planta acabaremos. Los números negativos nos sirven para representar situaciones por debajo de un nivel de referencia.",
     "preguntas": [
       {
-        "pregunta": "¿Ana ha comprado peras?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué planta representa el nivel de la calle?",
+        "opciones": [
+          "Planta 1",
+          "Planta 0",
+          "Planta -1",
+          "Planta 10"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Ha comprado más manzanas rojas que verdes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "Si estamos en el -2 y subimos 5 plantas, ¿a cuál llegamos?",
+        "opciones": [
+          "Planta 7",
+          "Planta 3",
+          "Planta -7",
+          "Planta 5"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas manzanas rojas compró al principio?",
-        "opciones": ["Una", "Dos", "Tres", "Cuatro"],
+        "pregunta": "¿Cuál es el opuesto de +3?",
+        "opciones": [
+          "0",
+          "+3",
+          "-3",
+          "1/3"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuántas manzanas verdes compró?",
-        "opciones": ["Una", "Dos", "Tres", "Cinco"],
+        "pregunta": "En invierno, si la temperatura baja de 0 grados, ¿cómo se expresa?",
+        "opciones": [
+          "Con números decimales",
+          "Con números negativos",
+          "Con fracciones",
+          "No se puede"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas manzanas le quedan en total al final?",
-        "opciones": ["Tres", "Cuatro", "Cinco", "Seis"],
+        "pregunta": "¿Qué número es mayor: -5 o -1?",
+        "opciones": [
+          "-5",
+          "-1",
+          "Son iguales",
+          "0"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "El autobús escolar",
-    "texto": "El autobús del colegio lleva a diez niños sentados. En la primera parada se bajan tres niños que ya han llegado a su casa. El conductor cierra la puerta y sigue conduciendo hasta la siguiente parada.",
+    "titulo": "Potencias y raíces cuadradas",
+    "texto": "Un programador está diseñando un servidor. La memoria se organiza en potencias de 2. Si tiene una memoria de 2 elevado a 4, ¿cuántos GB tiene? Además, para diseñar la base cuadrada de una torre, necesita encontrar un número que multiplicado por sí mismo dé 81. El programador usa la raíz cuadrada para hallar el lado de ese cuadrado perfecto.",
     "preguntas": [
       {
-        "pregunta": "¿El autobús va lleno de abuelos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuánto es 2 elevado a 4 (2⁴)?",
+        "opciones": [
+          "8",
+          "16",
+          "32",
+          "64"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Se bajan niños en la primera parada?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es la raíz cuadrada de 81?",
+        "opciones": [
+          "7",
+          "8",
+          "9",
+          "10"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "En la potencia 5³, ¿cuál es la base?",
+        "opciones": [
+          "5",
+          "3",
+          "15",
+          "125"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Cuántos niños había al principio?",
-        "opciones": ["Ocho", "Nueve", "Diez", "Once"],
-        "correcta": 2
+        "pregunta": "¿Cómo se escribe 'diez al cuadrado'?",
+        "opciones": [
+          "10²",
+          "10³",
+          "2¹⁰",
+          "100"
+        ],
+        "correcta": 0
       },
       {
-        "pregunta": "¿Cuántos niños se bajan?",
-        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cuántos niños quedan en el autobús?",
-        "opciones": ["Cinco", "Seis", "Siete", "Ocho"],
+        "pregunta": "¿Cuánto es 10³?",
+        "opciones": [
+          "30",
+          "100",
+          "1000",
+          "300"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Figuras en el parque",
-    "texto": "En el parque hay muchas formas diferentes. Las ruedas de las bicicletas son círculos redondos. El banco para sentarse es un rectángulo largo de madera. La señal de tráfico tiene forma de triángulo con el borde rojo.",
+    "titulo": "La regla de tres en la cocina",
+    "texto": "Para hacer un bizcocho para 4 personas necesitamos 200 gramos de harina. Hoy vienen a comer 10 personas y queremos utilizar la regla de tres para no equivocarnos con las cantidades. Si 4 personas necesitan 200 g, 10 personas necesitarán 'x' gramos. Es una relación de proporcionalidad directa: a más personas, más cantidad de harina.",
     "preguntas": [
       {
-        "pregunta": "¿Las ruedas son cuadradas?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué tipo de proporcionalidad es esta?",
+        "opciones": [
+          "Inversa",
+          "Directa",
+          "No hay proporcionalidad",
+          "Compuesta"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿La señal es un triángulo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántos gramos de harina necesitamos para 10 personas?",
+        "opciones": [
+          "400 g",
+          "500 g",
+          "600 g",
+          "800 g"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuánta harina se necesita por cada persona?",
+        "opciones": [
+          "25 g",
+          "50 g",
+          "100 g",
+          "200 g"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Si vinieran 2 personas, cuánta harina usaríamos?",
+        "opciones": [
+          "100 g",
+          "50 g",
+          "150 g",
+          "200 g"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué forma tienen las ruedas?",
-        "opciones": ["Cuadrado", "Círculo", "Triángulo", "Rombo"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué es un rectángulo?",
-        "opciones": ["La señal", "La rueda", "El banco", "El árbol"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿De qué color es el borde de la señal?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
+        "pregunta": "Si duplicamos el número de personas, ¿qué pasa con la harina?",
+        "opciones": [
+          "Se queda igual",
+          "Se triplica",
+          "Se duplica",
+          "Se reduce a la mitad"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "La hucha de Pablo",
-    "texto": "Pablo está ahorrando dinero en su hucha de cerdito. Tiene una moneda de dos euros y dos monedas de un euro. Quiere comprarse un coche de juguete que cuesta cinco euros. Tendrá que ahorrar un poco más.",
+    "titulo": "El IVA y los descuentos",
+    "texto": "He visto una consola de videojuegos que cuesta 200 € sin impuestos. En España, el IVA normal es del 21%. Debo calcular el 21% de 200 y sumárselo al precio original. Por otro lado, si la tienda ofrece un cupón del 10% de descuento sobre el precio final, ¿cuánto dinero me ahorraré al final? Saber porcentajes es vital para ser un buen consumidor.",
     "preguntas": [
       {
-        "pregunta": "¿La hucha tiene forma de perro?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuánto dinero es el 21% de 200 €?",
+        "opciones": [
+          "21 €",
+          "42 €",
+          "50 €",
+          "210 €"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Pablo quiere comprar chuches?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es el precio de la consola con el IVA incluido?",
+        "opciones": [
+          "221 €",
+          "242 €",
+          "200 €",
+          "300 €"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas monedas de un euro tiene?",
-        "opciones": ["Una", "Dos", "Tres", "Ninguna"],
+        "pregunta": "¿Cómo se calcula el 21% de una cantidad rápido?",
+        "opciones": [
+          "Dividiendo por 21",
+          "Multiplicando por 0,21",
+          "Restando 21",
+          "Sumando 21"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuánto dinero tiene en total?",
-        "opciones": ["Dos euros", "Tres euros", "Cuatro euros", "Cinco euros"],
-        "correcta": 2
+        "pregunta": "Si un pantalón de 50 € tiene un descuento del 20%, ¿cuál es la rebaja?",
+        "opciones": [
+          "5 €",
+          "10 €",
+          "20 €",
+          "30 €"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuánto cuesta el coche?",
-        "opciones": ["Tres euros", "Cuatro euros", "Cinco euros", "Seis euros"],
-        "correcta": 2
+        "pregunta": "¿Qué fracción representa el 50%?",
+        "opciones": [
+          "1/4",
+          "1/2",
+          "1/10",
+          "1/5"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "La torre de bloques",
-    "texto": "Sara está construyendo una torre muy alta. Ha puesto cuatro bloques azules en la base. Encima ha puesto tres bloques rojos. Y arriba del todo ha puesto un bloque amarillo. La torre no se cae.",
+    "titulo": "Cuerpos geométricos en la arquitectura",
+    "texto": "Un arquitecto diseña un moderno edificio con forma de prisma hexagonal. La entrada es una gran esfera de cristal y el tejado es una pirámide cuadrangular. Necesita diferenciar entre poliedros (caras planas) y cuerpos redondos. Para calcular cuánto cristal necesita, debe conocer las fórmulas de las áreas de estas figuras tridimensionales.",
     "preguntas": [
       {
-        "pregunta": "¿La torre se ha caído?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Hay bloques verdes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De qué color son los bloques de abajo?",
-        "opciones": ["Rojos", "Amarillos", "Azules", "Naranjas"],
+        "pregunta": "¿Cuál de estas figuras es un cuerpo redondo?",
+        "opciones": [
+          "El prisma",
+          "La pirámide",
+          "La esfera",
+          "El cubo"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuántos bloques rojos hay?",
-        "opciones": ["Dos", "Tres", "Cuatro", "Cinco"],
+        "pregunta": "¿Cómo son las caras de los poliedros?",
+        "opciones": [
+          "Curvas",
+          "Planas",
+          "No tienen caras",
+          "Líquidas"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos bloques hay en total?",
-        "opciones": ["Siete", "Ocho", "Nueve", "Diez"],
+        "pregunta": "¿Cuántas bases tiene un prisma?",
+        "opciones": [
+          "Una",
+          "Dos",
+          "Ninguna",
+          "Seis"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuántas bases tiene una pirámide?",
+        "opciones": [
+          "Una",
+          "Dos",
+          "Tres",
+          "Varía"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "Un cilindro es un...",
+        "opciones": [
+          "Poliedro",
+          "Cuerpo redondo",
+          "Triángulo",
+          "Ángulo"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "El reloj de pared",
-    "texto": "En la clase hay un reloj redondo en la pared. La aguja pequeña marca las horas y la aguja grande marca los minutos. Ahora la aguja pequeña señala el nueve y la grande el doce. ¡Es la hora de entrar a clase!",
+    "titulo": "Unidades de volumen y capacidad",
+    "texto": "En la piscina municipal quieren saber cuánta agua cabe. Las medidas son 25 m de largo, 10 m de ancho y 2 m de profundidad. Multiplicando las tres medidas obtenemos el volumen en metros cúbicos (m³). Como sabemos que 1 m³ equivale a 1.000 litros (1 kl), podremos calcular cuántos litros de agua se necesitan para llenarla completamente.",
     "preguntas": [
       {
-        "pregunta": "¿El reloj es cuadrado?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es el volumen de la piscina en m³?",
+        "opciones": [
+          "37 m³",
+          "500 m³",
+          "250 m³",
+          "1000 m³"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿La aguja pequeña marca los minutos?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué número señala la aguja pequeña?",
-        "opciones": ["El seis", "El doce", "El tres", "El nueve"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué hora es?",
-        "opciones": ["Las ocho", "Las nueve", "Las diez", "Las once"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué toca hacer ahora?",
-        "opciones": ["Irse a casa", "Comer", "Entrar a clase", "Dormir"],
+        "pregunta": "¿A cuántos litros equivale 1 metro cúbico?",
+        "opciones": [
+          "10 l",
+          "100 l",
+          "1.000 l",
+          "10.000 l"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos litros totales caben en la piscina?",
+        "opciones": [
+          "5.000 l",
+          "50.000 l",
+          "500.000 l",
+          "50.000.000 l"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué unidad se usa para medir el volumen de un dado pequeño?",
+        "opciones": [
+          "m³",
+          "km³",
+          "cm³",
+          "l"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se calcula el volumen de un ortoedro (caja)?",
+        "opciones": [
+          "Suma de lados",
+          "Largo x Ancho x Alto",
+          "Base + Altura",
+          "Área de la base / 2"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Izquierda y derecha",
-    "texto": "Luis está aprendiendo los lados. En su mano derecha lleva una pulsera de colores. Con su mano izquierda sujeta un balón. Su perro Toby está sentado a su derecha, moviendo la cola.",
+    "titulo": "Probabilidad en los juegos de mesa",
+    "texto": "Al lanzar un dado de 6 caras, la probabilidad de sacar un número concreto es de 1 entre 6 (1/6). Si queremos sacar un número par (2, 4 o 6), tenemos 3 casos favorables entre 6 casos posibles, lo que simplificado es 1/2 o el 50%. La probabilidad nos ayuda a predecir qué posibilidades tenemos de que ocurra un suceso aleatorio.",
     "preguntas": [
       {
-        "pregunta": "¿Toby es un gato?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es la probabilidad de sacar un 5 en un dado?",
+        "opciones": [
+          "1/2",
+          "1/6",
+          "5/6",
+          "1/1"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Luis lleva una pulsera?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿En qué mano lleva la pulsera?",
-        "opciones": ["Izquierda", "Derecha", "En las dos", "En ninguna"],
+        "pregunta": "¿Qué probabilidad hay de sacar un número par?",
+        "opciones": [
+          "25%",
+          "50%",
+          "75%",
+          "100%"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué tiene en la mano izquierda?",
-        "opciones": ["Un lápiz", "Una manzana", "Un balón", "Un libro"],
+        "pregunta": "¿Cómo se llaman los sucesos que dependen del azar?",
+        "opciones": [
+          "Deterministas",
+          "Aleatorios",
+          "Imposibles",
+          "Seguros"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Si en una bolsa hay 4 bolas rojas y 1 azul, ¿qué es más probable sacar?",
+        "opciones": [
+          "Azul",
+          "Roja",
+          "Igual probabilidad",
+          "Amarilla"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la probabilidad de un suceso seguro?",
+        "opciones": [
+          "0",
+          "0,5",
+          "1",
+          "10"
+        ],
         "correcta": 2
-      },
-      {
-        "pregunta": "¿Dónde está el perro?",
-        "opciones": ["A la izquierda", "A la derecha", "Delante", "Detrás"],
-        "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "La carrera de caracoles",
-    "texto": "Tres caracoles hacen una carrera. El caracol Rayo ha llegado el primero a la meta. El caracol Lento ha llegado el último. El caracol Fiti ha llegado entre los dos, en segunda posición.",
+    "titulo": "La estadística de la clase",
+    "texto": "Hemos medido la altura de 5 amigos: 150 cm, 160 cm, 155 cm, 150 cm y 165 cm. El profesor nos pide hallar la MODA (el valor que más se repite), la MEDIA (el promedio de todos) y el RANGO (diferencia entre el mayor y el menor). Estos datos estadísticos nos sirven para resumir la información de un grupo.",
     "preguntas": [
       {
-        "pregunta": "¿Son caracoles rápidos?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Han hecho una carrera?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es la MODA de las estaturas?",
+        "opciones": [
+          "150 cm",
+          "160 cm",
+          "165 cm",
+          "155 cm"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Quién ha ganado (primero)?",
-        "opciones": ["Lento", "Fiti", "Rayo", "Turbo"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿En qué puesto quedó Fiti?",
-        "opciones": ["Primero", "Segundo", "Tercero", "Cuarto"],
+        "pregunta": "¿Cuál es el RANGO de las estaturas?",
+        "opciones": [
+          "5 cm",
+          "15 cm",
+          "10 cm",
+          "20 cm"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Quién llegó el último?",
-        "opciones": ["Rayo", "Fiti", "Lento", "Bob"],
+        "pregunta": "¿Cómo se calcula la MEDIA?",
+        "opciones": [
+          "Restando los valores",
+          "Sumando todos y dividiendo entre 5",
+          "Eligiendo el del centro",
+          "Multiplicando"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la media aritmética de estas alturas?",
+        "opciones": [
+          "150 cm",
+          "158 cm",
+          "160 cm",
+          "154 cm"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Si ordenamos los datos, ¿cómo se llama el valor central?",
+        "opciones": [
+          "Media",
+          "Moda",
+          "Mediana",
+          "Rango"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Repartiendo caramelos",
-    "texto": "Tengo seis caramelos de fresa y quiero repartirlos con mi amigo. Le doy tres caramelos a él y yo me quedo con los otros tres. Ahora los dos tenemos la misma cantidad. ¡Qué ricos están!",
+    "titulo": "Operaciones combinadas complejos",
+    "texto": "Para resolver el enigma matemático: 5 + 2 x (10 - 4), debemos seguir la jerarquía de las operaciones. Primero resolvemos los paréntesis, luego las multiplicaciones y divisiones de izquierda a derecha, y por último las sumas y restas. Si no seguimos este orden, el resultado será incorrecto y no podremos abrir la caja fuerte del misterio.",
     "preguntas": [
       {
-        "pregunta": "¿Los caramelos son de limón?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué se resuelve primero según la jerarquía?",
+        "opciones": [
+          "La suma",
+          "La multiplicación",
+          "El paréntesis",
+          "La resta"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es el resultado de 5 + 2 x (10 - 4)?",
+        "opciones": [
+          "42",
+          "17",
+          "24",
+          "15"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Tenemos la misma cantidad?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Cuánto es 10 - 2 x 3?",
+        "opciones": [
+          "24",
+          "4",
+          "8",
+          "6"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos caramelos tenía al principio?",
-        "opciones": ["Cuatro", "Cinco", "Seis", "Ocho"],
-        "correcta": 2
+        "pregunta": "¿Qué ocurre si no hay paréntesis?",
+        "opciones": [
+          "Sumamos primero",
+          "Seguimos el orden normal (mult. antes que sumas)",
+          "No se puede hacer",
+          "Elegimos nosotros"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos le doy a mi amigo?",
-        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿De qué sabor son?",
-        "opciones": ["Menta", "Fresa", "Naranja", "Cola"],
+        "pregunta": "¿Cuál es la jerarquía correcta?",
+        "opciones": [
+          "Suma, Resta, Mult, Paréntesis",
+          "Paréntesis, Mult/Div, Suma/Resta",
+          "Mult, Div, Paréntesis, Suma",
+          "Cualquiera"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El calendario",
-    "texto": "El mes de enero tiene treinta y un días. Es el primer mes del año y hace frío. En el calendario he marcado en rojo el día de mi cumpleaños, que es el día quince. ¡Haré una fiesta!",
+    "titulo": "Sistemas de coordenadas cartesianas",
+    "texto": "Para localizar un punto en el plano, usamos dos ejes: el eje X (horizontal) y el eje Y (vertical). El punto donde se cortan es el origen (0,0). Si un barco está en la posición (-3, 4), sabemos que está 3 unidades a la izquierda del centro y 4 unidades hacia arriba. Este sistema es la base de la navegación y de los mapas digitales que usamos en el móvil.",
     "preguntas": [
       {
-        "pregunta": "¿Enero es el último mes?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo se llama el eje horizontal?",
+        "opciones": [
+          "Eje Y",
+          "Eje X",
+          "Eje Z",
+          "Eje Central"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Hace calor en enero?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué coordenadas tiene el origen?",
+        "opciones": [
+          "(1,1)",
+          "(0,0)",
+          "(10,10)",
+          "(0,1)"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos días tiene enero?",
-        "opciones": ["Veinte", "Treinta", "Treinta y uno", "Veintiocho"],
-        "correcta": 2
+        "pregunta": "En el punto (5, -2), ¿cuál es el valor de la Y?",
+        "opciones": [
+          "5",
+          "-2",
+          "3",
+          "0"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué día es el cumpleaños?",
-        "opciones": ["El uno", "El diez", "El quince", "El veinte"],
-        "correcta": 2
+        "pregunta": "Si un punto está a la izquierda del origen, su X es...",
+        "opciones": [
+          "Positiva",
+          "Negativa",
+          "Cero",
+          "Infinita"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿De qué color marcó el día?",
-        "opciones": ["Azul", "Verde", "Rojo", "Negro"],
-        "correcta": 2
+        "pregunta": "¿Para qué sirve este sistema?",
+        "opciones": [
+          "Para dibujar líneas locas",
+          "Para localizar puntos en el plano",
+          "Para sumar números",
+          "Para borrar dibujos"
+        ],
+        "correcta": 1
       }
     ]
   }

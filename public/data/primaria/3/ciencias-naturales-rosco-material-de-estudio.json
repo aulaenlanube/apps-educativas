@@ -1,0 +1,756 @@
+{
+  "titulo": "Material de Estudio - Ciencias Naturales - 3º PRIMARIA",
+  "introduccion": "Repasa este vocabulario de Ciencias Naturales para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "animal",
+          "definicion": "Ser vivo que se alimenta de otros seres vivos.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "anfibio",
+          "definicion": "Grupo de animales que viven en el agua y la tierra.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "atmósfera",
+          "definicion": "Gases que rodean la Tierra.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "articulación",
+          "definicion": "Unión de huesos que permite el movimiento.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "azúcar",
+          "definicion": "Nutriente que da energía inmediata.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "binocular",
+          "definicion": "Instrumento para observar cosas muy pequeñas.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bosque",
+          "definicion": "Lugar con mucha biodiversidad de árboles.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "murciélago",
+          "definicion": "Animal que vuela de noche y es mamífero.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "brisa",
+          "definicion": "Masa de aire que se mueve.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "biolo",
+          "definicion": "Grupo de bacterias o seres vivos.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "cráneo",
+          "definicion": "Conjunto de huesos que protegen el cerebro.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "circulación",
+          "definicion": "Movimiento de la sangre por el cuerpo.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "clorofila",
+          "definicion": "Parte de la planta donde ocurre la fotosíntesis.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "ovíparo",
+          "definicion": "Animal que nace de un huevo.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "columna",
+          "definicion": "Hueso de la espalda que nos mantiene rectos.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "digestión",
+          "definicion": "Proceso de descomponer la comida en el estómago.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "fruto",
+          "definicion": "Parte de la planta donde se fabrican semillas.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dientes",
+          "definicion": "Piezas blancas para masticar.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "delfín",
+          "definicion": "Mamífero que vive en el agua y es muy listo.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "digital",
+          "definicion": "Energía que hace funcionar la televisión.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "esqueleto",
+          "definicion": "Conjunto de huesos de un animal.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "excreción",
+          "definicion": "Eliminación de desechos del cuerpo.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "energía",
+          "definicion": "Lo que necesitamos para realizar cualquier trabajo.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "esturión",
+          "definicion": "Animal que tiene escamas y vive en el agua.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "estado",
+          "definicion": "Estado del agua cuando hace mucho frío.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "fotosíntesis",
+          "definicion": "Proceso de las plantas para fabricar su alimento.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "flor",
+          "definicion": "Parte reproductora de muchas plantas.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fuerza",
+          "definicion": "Cualquier empuje o tirón sobre un objeto.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fruto",
+          "definicion": "Parte de la planta que contiene la semilla.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "faisán",
+          "definicion": "Animal que vuela y tiene plumas.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "graduado",
+          "definicion": "Aparato para medir la temperatura.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gusto",
+          "definicion": "Sentido para notar los sabores.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gas",
+          "definicion": "Materia en estado como el aire.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "glándula",
+          "definicion": "Órgano que produce jugos gástricos.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gorila",
+          "definicion": "Gran mamífero de la selva.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "herbívoro",
+          "definicion": "Animal que solo come plantas.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hábitat",
+          "definicion": "Lugar natural donde vive un animal.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hielo",
+          "definicion": "Agua en estado sólido.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hoja",
+          "definicion": "Parte verde de la planta que capta luz.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "higiene",
+          "definicion": "Limpieza para evitar enfermedades.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "invertebrado",
+          "definicion": "Animal que no tiene columna vertebral.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "insecto",
+          "definicion": "Pequeño animal con seis patas y antenas.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "intestino",
+          "definicion": "Parte del tubo digestivo muy largo.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "microscopio",
+          "definicion": "Aparato para ver cosas muy pequeñas.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "impulso",
+          "definicion": "Respuesta instintiva de un animal.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "articulación",
+          "definicion": "Unión de dos huesos.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jugo",
+          "definicion": "Líquido digestivo del estómago.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jirafa",
+          "definicion": "Animal muy alto con cuello largo.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jaula",
+          "definicion": "Caja para pájaros.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jardín",
+          "definicion": "Lugar con flores.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "llet",
+          "definicion": "Líquido blanco de las madres mamíferas.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lengua",
+          "definicion": "Músculo de la boca para hablar y comer.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "líquido",
+          "definicion": "Materia en estado que fluye.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "luz",
+          "definicion": "Forma en que se mueven las plantas hacia el sol.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "luna",
+          "definicion": "Cuerpo celeste que no tiene luz propia.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "mamífero",
+          "definicion": "Animal que de pequeño mama leche.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "músculo",
+          "definicion": "Órgano que nos permite mover el cuerpo.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "materia",
+          "definicion": "Todo aquello que tiene masa y ocupa espacio.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "máquina",
+          "definicion": "Aparato formado por varias piezas para trabajar.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "metamorfosis",
+          "definicion": "Cambio que sufren algunos animales al crecer.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "nutrición",
+          "definicion": "Función vital de captar sustancias para vivir.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nervioso",
+          "definicion": "Sistema que controla todo el cuerpo por nervios.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nariz",
+          "definicion": "Órgano de la cara para oler.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "natal",
+          "definicion": "Lugar de nacimiento.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nube",
+          "definicion": "Nubes en el cielo.",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "araña",
+          "definicion": "Animal con ocho patas.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "piña",
+          "definicion": "Fruta con cáscara dura y escamas.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "montaña",
+          "definicion": "Terreno muy elevado.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "año",
+          "definicion": "Tiempo de 365 días.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "acompañar",
+          "definicion": "Acción de cuidar o proteger.",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "ovíparo",
+          "definicion": "Animal que nace de un huevo.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "omnívoro",
+          "definicion": "Animal que come de todo.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ojo",
+          "definicion": "Órgano de la cara para ver.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "olfato",
+          "definicion": "Sentido del olfato.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oído",
+          "definicion": "Órganos para captar sonidos.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "pulmones",
+          "definicion": "Órganos para respirar el aire.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "planta",
+          "definicion": "Ser vivo que fabrica su alimento.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pez",
+          "definicion": "Animal acuático con escamas.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "piel",
+          "definicion": "Capa que protege nuestro cuerpo.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "fémur",
+          "definicion": "Hueso del muslo, el más largo.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "esqueleto",
+          "definicion": "Huesos que forman el soporte del cuerpo.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "equipo",
+          "definicion": "Máquina que usamos para investigar.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "quieto",
+          "definicion": "Algo que no se mueve.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "parque",
+          "definicion": "Lugar con columpios.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "bosque",
+          "definicion": "Sinónimo de bosque.",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "reproducción",
+          "definicion": "Función vital de tener descendientes.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "respiración",
+          "definicion": "Proceso de tomar oxígeno del aire.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "raíz",
+          "definicion": "Parte de la planta bajo la tierra.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "reptil",
+          "definicion": "Animal con escamas que repta.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "relación",
+          "definicion": "Función vital de notar cambios en el entorno.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "sangre",
+          "definicion": "Líquido que lleva los nutrientes por todo el cuerpo.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sólido",
+          "definicion": "Cuerpo que tiene forma definida y es duro.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "semilla",
+          "definicion": "Donde nace una nueva planta.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sistema",
+          "definicion": "Centro de control del cuerpo.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sol",
+          "definicion": "Estrella que da calor a la Tierra.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "tallo",
+          "definicion": "Parte de la planta que sostiene hojas.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tráquea",
+          "definicion": "Aparato para respirar: nariz y...",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tacto",
+          "definicion": "Sentido de la piel.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tortuga",
+          "definicion": "Animal lento con caparazón.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "termómetro",
+          "definicion": "Unidad de temperatura.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "uña",
+          "definicion": "Fina capa en la punta del dedo.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "universo",
+          "definicion": "Conjunto de galaxias y estrellas.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "cucu",
+          "definicion": "Ave del bosque.",
+          "pista": "Contiene la U"
+        },
+        {
+          "termino": "radio",
+          "definicion": "Parte del brazo.",
+          "pista": "Contiene la U"
+        },
+        {
+          "termino": "uva",
+          "definicion": "Fruta dulce.",
+          "pista": "Contiene la U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "vertebrado",
+          "definicion": "Animal con columna vertebral.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vivíparo",
+          "definicion": "Animal que nace vivo de la madre.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vista",
+          "definicion": "Sentido de los ojos.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vespa",
+          "definicion": "Animal que produce miel.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vértebra",
+          "definicion": "Hueso de la columna.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "oxígeno",
+          "definicion": "Gas necesario para la vida.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "tórax",
+          "definicion": "Pecho de un animal o humano.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "exhalar",
+          "definicion": "Echar aire.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "explorar",
+          "definicion": "Investigar un cuerpo.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "coxis",
+          "definicion": "Hueso de la cadera.",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "yema",
+          "definicion": "Parte nutritiva del huevo.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "desayuno",
+          "definicion": "Primera comida nutritiva.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "apoyo",
+          "definicion": "Ayuda a un enfermo.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "raya",
+          "definicion": "Animal del mar.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "dieta",
+          "definicion": "Sinónimo de alimento.",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zorro",
+          "definicion": "Animal astuto naranja.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zumo",
+          "definicion": "Líquido de fruta exprimida.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zanahoria",
+          "definicion": "Raíz naranja para comer.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "raíz",
+          "definicion": "Parte de la planta bajo el suelo.",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "cereza",
+          "definicion": "Fruta roja.",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

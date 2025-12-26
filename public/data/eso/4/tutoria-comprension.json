@@ -1,0 +1,570 @@
+[
+    {
+        "id": "1",
+        "titulo": "Orientación Académica: ¿Bachillerato o Ciclos?",
+        "texto": "Al finalizar 4º de ESO se llega a una encrucijada vital. El BACHILLERATO es la vía académica para quienes quieren ir a la Universidad, con un enfoque más teórico. Los CICLOS FORMATIVOS (FP) ofrecen una formación práctica y directa para aprender un oficio (informática, sanidad, imagen...). Ninguna opción es mejor que otra; depende de tu estilo de aprendizaje y tus metas. Lo importante es informarse bien, conocer las salidas profesionales y, sobre todo, elegir algo que te apasione y en lo que te veas trabajando en el futuro.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué opción es mejor al acabar 4º de ESO?",
+                "opciones": [
+                    "Bachillerato",
+                    "Ciclos Formativos",
+                    "Ninguna es mejor por defecto, depende de tus intereses",
+                    "Dejar de estudiar"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál es la principal característica de la FP?",
+                "opciones": [
+                    "Es muy aburrida",
+                    "Formación práctica orientada a un oficio real",
+                    "No tiene exámenes",
+                    "Es solo para adultos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve el Bachillerato principalmente?",
+                "opciones": [
+                    "Para trabajar ya",
+                    "Como base teórica para acceder a la Universidad",
+                    "Para nada",
+                    "Para aprender a cocinar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué debe basarse la elección según el texto?",
+                "opciones": [
+                    "En lo que hagan mis amigos",
+                    "En el estilo de aprendizaje y la pasión personal",
+                    "En lo que diga la TV",
+                    "En elegir lo más fácil"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es una decisión irreversible?",
+                "opciones": [
+                    "Sí",
+                    "No, el sistema permite cambiar de vía más adelante"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Salud Mental: El manejo de la Ansiedad",
+        "texto": "La adolescencia y los exámenes finales pueden generar mucho estrés. La ANSIEDAD es una respuesta natural del cuerpo ante una amenaza, pero si es constante, nos hace daño. Se manifiesta con nerviosismo, falta de aire o insomnio. Para gestionarla es vital: dormir 8 horas, hacer deporte, organizar el estudio con tiempo para evitar agobios de última hora y, lo más importante, hablar de cómo nos sentimos con amigos, familia o profesores. Pedir ayuda no es signo de debilidad, sino de inteligencia y autocuidado.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la ansiedad según el texto?",
+                "opciones": [
+                    "Una enfermedad rara",
+                    "Una respuesta natural del cuerpo ante el estrés o amenazas",
+                    "Tener mucha hambre",
+                    "Pereza"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un síntoma común de ansiedad?",
+                "opciones": [
+                    "Tener mucha fuerza",
+                    "Nerviosismo e insomnio",
+                    "Sentirse muy feliz",
+                    "Tener frío"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo ayuda el deporte a la salud mental?",
+                "opciones": [
+                    "Para ganar medallas",
+                    "Ayuda a liberar tensiones y reducir el estrés",
+                    "Para no estudiar",
+                    "Para ser más alto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es malo pedir ayuda profesional o a amigos?",
+                "opciones": [
+                    "Sí, es de débiles",
+                    "No, es un acto de inteligencia y autocuidado",
+                    "Solo si estás muy mal",
+                    "Solo si eres pequeño"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hábito físico mejora la ansiedad?",
+                "opciones": [
+                    "Comer dulces",
+                    "Dormir las horas necesarias (8h)",
+                    "Mirar el móvil de noche",
+                    "Beber mucho café"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Igualdad y Prevención de la Violencia",
+        "texto": "La igualdad entre hombres y mujeres es un derecho fundamental. Sin embargo, todavía existen conductas de control que debemos identificar. El CONTROL del móvil, de la ropa que usas o de tus amistades NO ES AMOR; es una forma de violencia. El amor saludable se basa en el respeto, la confianza y la LIBERTAD. Una relación que te hace sentir pequeña o te aísla de tu entorno no es sana. Educarse en igualdad es la única forma de construir una sociedad donde todos podamos desarrollarnos sin miedo y con las mismas oportunidades.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué se basa una relación saludable?",
+                "opciones": [
+                    "En el control",
+                    "En el respeto, la confianza y la libertad",
+                    "En los celos",
+                    "En saber la contraseña del otro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es una señal de amor que te controlen el móvil?",
+                "opciones": [
+                    "Sí, se preocupa por mí",
+                    "No, es una conducta de control y falta de respeto",
+                    "Solo si hay una razón",
+                    "Es normal hoy en día"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debe hacer alguien ante una situación de abuso?",
+                "opciones": [
+                    "Callarse",
+                    "Pedir ayuda y contarle a alguien de confianza",
+                    "Esperar a que cambie",
+                    "Hacer lo mismo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué objetivo tiene la educación en igualdad?",
+                "opciones": [
+                    "Que todos sean iguales físicamente",
+                    "Construir una sociedad sin miedo y con igualdad de oportunidades",
+                    "Castigar a los hombres",
+                    "No sirve para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si una relación te aísla de tus amigos...",
+                "opciones": [
+                    "Es que te quiere mucho",
+                    "Es una relación tóxica y peligrosa",
+                    "Es normal al principio",
+                    "Es por tu seguridad"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Pensamiento Crítico ante las Fake News",
+        "texto": "En la era de internet, recibimos miles de noticias al día. Muchas son FAKE NEWS: mentiras diseñadas para manipular nuestra opinión o generar odio. Para no ser engañados debemos usar el PENSAMIENTO CRÍTICO. Antes de compartir, pregúntate: ¿Quién es el autor? ¿Sale en otros medios fiables? ¿Busca enfadarme? Un ciudadano bien informado es más libre y menos manipulable. No te creas todo lo que ves en TikTok o WhatsApp sin contrastar; la verdad requiere un pequeño esfuerzo de investigación.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué son las fake news?",
+                "opciones": [
+                    "Noticias del pasado",
+                    "Noticias falsas diseñadas para manipular o generar odio",
+                    "Anuncios de rebajas",
+                    "Noticias aburridas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué herramienta nos protege de la manipulación?",
+                "opciones": [
+                    "Un antivirus",
+                    "El pensamiento crítico y el contraste de información",
+                    "No leer nada",
+                    "Creer a los influencers"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debemos mirar antes de creer una noticia?",
+                "opciones": [
+                    "Si tiene muchas mayúsculas",
+                    "La fuente, el autor y si otros medios fiables lo confirman",
+                    "Si la ha pasado un amigo",
+                    "Si tiene una foto bonita"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué suelen buscar las noticias falsas?",
+                "opciones": [
+                    "Informar bien",
+                    "Generar emociones fuertes como rabia o miedo",
+                    "Enseñar ciencia",
+                    "Divertir"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Ser un ciudadano informado nos hace más:",
+                "opciones": [
+                    "Libres y menos manipulables",
+                    "Tristes",
+                    "Gente importante",
+                    "Ricos"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Ciberadicción y Dopamina",
+        "texto": "Las redes sociales y los videojuegos están diseñados para atrapar nuestra atención mediante la DOPAMINA. Cada 'like' o victoria nos da una pequeña recompensa cerebral que nos impulsa a seguir conectados. El problema surge cuando dejamos de dormir, estudiar o salir con amigos por estar ante la pantalla. Esto es la CIBERADICCIÓN. Para evitarlo, es sano marcarse horarios, usar el móvil fuera del dormitorio por la noche y redescubrir aficiones 'offline' que nos den una satisfacción real y duradera, no solo instantánea.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué hormona del cerebro busca la recompensa instantánea?",
+                "opciones": [
+                    "Adrenalina",
+                    "Dopamina",
+                    "Insulina",
+                    "Calcio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo el uso del móvil se convierte en adicción?",
+                "opciones": [
+                    "Cuando lo usas 5 minutos",
+                    "Cuando interfiere con tus tareas, el sueño y las relaciones sociales",
+                    "Cuando es de marca",
+                    "Nunca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una estrategia para controlar el uso del móvil:",
+                "opciones": [
+                    "Llevarlo siempre encima",
+                    "Ponerse horarios y dejarlo fuera del cuarto al dormir",
+                    "Usarlo en clase",
+                    "Mirarlo cada 2 minutos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo están diseñadas las redes sociales según el texto?",
+                "opciones": [
+                    "Para ayudarnos a estudiar",
+                    "Para atrapar nuestra atención el máximo tiempo posible",
+                    "Para gastar poca batería",
+                    "Para no usarlas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué son las aficiones 'offline'?",
+                "opciones": [
+                    "Juegos de internet",
+                    "Actividades fuera de las pantallas (leer, deporte, pasear...)",
+                    "Apps apagadas",
+                    "No existen"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "El Valor de la Diversidad",
+        "texto": "Vivimos en un mundo diverso. La diversidad de origen, religión, orientación sexual o capacidades físicas es una RIQUEZA, no un problema. El respeto a la diferencia es la base de la convivencia. El acoso escolar (bullying) a menudo nace del miedo a lo diferente. Debemos ser empáticos y ponernos en el lugar del otro. Una clase donde todos se sienten seguros de ser como son es una clase donde se aprende mejor. La tolerancia no es solo 'aguantar' al otro, sino valorar lo que su diferencia aporta al grupo.",
+        "preguntas": [
+            {
+                "pregunta": "La diversidad en un grupo debe verse como:",
+                "opciones": [
+                    "Un problema",
+                    "Una riqueza que aporta diferentes puntos de vista",
+                    "Algo que ocultar",
+                    "Algo aburrido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la base de la convivencia?",
+                "opciones": [
+                    "La fuerza",
+                    "El respeto a la diferencia",
+                    "Que todos piensen igual",
+                    "El silencio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De qué suele nacer el acoso escolar según el texto?",
+                "opciones": [
+                    "De la diversión",
+                    "Del miedo a lo diferente y la falta de empatía",
+                    "De la inteligencia",
+                    "De la suerte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la empatía?",
+                "opciones": [
+                    "Tener el mismo nombre",
+                    "Capacidad de ponerse en el lugar emocional del otro",
+                    "Saber mucho de todo",
+                    "Ser muy simpático"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo se aprende mejor en una clase?",
+                "opciones": [
+                    "Cuando hay muchos exámenes",
+                    "Cuando todos se sienten seguros de ser como son",
+                    "Cuando hay mucho silencio",
+                    "Cuando no hay profesor"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Responsabilidad Social y Voluntariado",
+        "texto": "Como jóvenes, tenéis el poder de mejorar vuestro entorno. La RESPONSABILIDAD SOCIAL implica entender que nuestras acciones afectan a los demás. El voluntariado (ayudar en protectoras de animales, acompañar a mayores, limpiar playas) es una forma increíble de crecer como persona. No solo ayudas a otros, sino que aprendes valores como la solidaridad, la paciencia y el compromiso. Sentirse útil y parte de la solución ante los problemas del mundo da un sentido de propósito que va más allá de los estudios.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la responsabilidad social?",
+                "opciones": [
+                    "Pagar multas",
+                    "Entender que nuestras acciones tienen impacto en la comunidad",
+                    "Hacer lo que uno quiera",
+                    "No tener amigos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una forma de voluntariado mencionada:",
+                "opciones": [
+                    "Jugar a la consola",
+                    "Ayudar en protectoras de animales o acompañar a mayores",
+                    "Estudiar para uno mismo",
+                    "Ver la tele"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué gana la persona que hace voluntariado?",
+                "opciones": [
+                    "Dinero",
+                    "Crecimiento personal, valores y sentido de propósito",
+                    "Más tiempo libre",
+                    "Nuevas zapatillas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es útil el voluntariado para la sociedad?",
+                "opciones": [
+                    "No, es perder el tiempo",
+                    "Sí, ayuda a solucionar problemas reales de forma solidaria",
+                    "Solo si sales en la tele",
+                    "Solo si eres rico"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Valores como la solidaridad se aprenden mejor:",
+                "opciones": [
+                    "Leyendo el diccionario",
+                    "Mediante la acción y el compromiso social",
+                    "Durmiendo",
+                    "En los exámenes"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Sustancias y Riesgos: La realidad de las Adicciones",
+        "texto": "En 4º de ESO se suele tener más libertad, pero con ella viene la responsabilidad de decir NO. El consumo de alcohol, tabaco o vapeadores a edades tempranas daña el desarrollo del cerebro, que aún no ha terminado de formarse. No te dejes presionar por el grupo; la verdadera madurez es saber tomar tus propias decisiones aunque otros no las entiendan. Informarse sobre los riesgos reales (adicción, daños pulmonares, pérdida de control) es la mejor arma para proteger tu futuro y tu salud física y mental.",
+        "preguntas": [
+            {
+                "pregunta": "¿Por qué es más peligroso el consumo de sustancias en la adolescencia?",
+                "opciones": [
+                    "Porque es más caro",
+                    "Porque el cerebro aún se está formando y el daño es mayor",
+                    "Porque no te dejan",
+                    "Porque no sabe bien"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la verdadera madurez según el texto?",
+                "opciones": [
+                    "Hacer lo mismo que los mayores",
+                    "Saber tomar decisiones propias y decir NO a la presión de grupo",
+                    "Tener coche",
+                    "Ir de fiesta siempre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Son seguros los vapeadores?",
+                "opciones": [
+                    "Sí, son agua",
+                    "No, conllevan riesgos de adicción y daños en la salud",
+                    "Solo los que no tienen nicotina",
+                    "Sí, porque huelen bien"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué arma nos protege ante estos riesgos?",
+                "opciones": [
+                    "La suerte",
+                    "La información real y la responsabilidad personal",
+                    "El miedo",
+                    "El dinero"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Decir que NO al grupo cuando algo no te conviene es un acto de:",
+                "opciones": [
+                    "Cobardía",
+                    "Valentía y personalidad",
+                    "Aburrimiento",
+                    "Odio"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Organización del Tiempo y Hábitos de Estudio",
+        "texto": "Llega el final de la etapa obligatoria y el volumen de trabajo sube. La clave del éxito no es estudiar más horas, sino estudiar MEJOR. Usa técnicas como los POMODOROS (25 min de estudio intenso, 5 de descanso) para no saturarte. Mantener un lugar de estudio ordenado y sin el móvil a la vista aumenta tu concentración un 40%. Planificar la semana en una agenda evita que todo se junte el día antes del examen. Estudiar con antelación permite que la información pase a la memoria a largo plazo y no se olvide tras el examen.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué consiste la técnica Pomodoro?",
+                "opciones": [
+                    "Comer muchos tomates",
+                    "Ciclos de 25 min de estudio y 5 min de descanso",
+                    "Estudiar 5 horas seguidas",
+                    "No estudiar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué aumenta la concentración según el texto?",
+                "opciones": [
+                    "Tener música alta",
+                    "Un lugar ordenado y SIN el móvil a la vista",
+                    "Comer chuches",
+                    "Estudiar con la TV puesta"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve una agenda?",
+                "opciones": [
+                    "Para dibujar",
+                    "Para planificar y que no se acumule el trabajo al final",
+                    "Es un adorno",
+                    "Para que la lleve el profesor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Estudiar con antelación ayuda a fijar la información en:",
+                "opciones": [
+                    "La memoria a corto plazo (se olvida pronto)",
+                    "La memoria a largo plazo (conocimiento real)",
+                    "El papel solamente",
+                    "En ningún sitio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué distracción reduce más el rendimiento escolar hoy?",
+                "opciones": [
+                    "Los libros",
+                    "Las notificaciones constantes del móvil",
+                    "El deporte",
+                    "El sueño"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "El Proyecto de Vida",
+        "texto": "Al acabar 4º de ESO cerramos una etapa importante. Es el momento de pensar en tu PROYECTO DE VIDA. ¿Quién quieres ser? ¿Qué huella quieres dejar en el mundo? Tu valor no depende de tus notas, sino de tu integridad, tu esfuerzo y tu capacidad de tratar bien a los demás. El éxito no es solo tener un buen trabajo o dinero, sino sentirte orgulloso de la persona en la que te estás convirtiendo. Sigue aprendiendo, sé curioso y nunca dejes de soñar en grande. El futuro está en tus manos.",
+        "preguntas": [
+            {
+                "pregunta": "¿De qué depende tu valor como persona?",
+                "opciones": [
+                    "De tus notas",
+                    "De tu integridad, esfuerzo y trato a los demás",
+                    "De tu marca de ropa",
+                    "De cuántos seguidores tienes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el éxito real según el texto?",
+                "opciones": [
+                    "Tener mucho dinero",
+                    "Sentirte orgulloso de la persona en la que te conviertes",
+                    "Ser el más famoso",
+                    "No trabajar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué importancia tiene cerrar la etapa de la ESO?",
+                "opciones": [
+                    "Ninguna",
+                    "Es el inicio del camino hacia tu vida adulta y tus sueños",
+                    "Es el fin de los estudios para todos",
+                    "Es solo un papel"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una actitud positiva para el futuro:",
+                "opciones": [
+                    "La pereza",
+                    "La curiosidad y el seguir aprendiendo siempre",
+                    "La queja constante",
+                    "El miedo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién tiene la llave de tu futuro?",
+                "opciones": [
+                    "Tus padres solamente",
+                    "Tú mismo con tus decisiones y esfuerzo",
+                    "La suerte",
+                    "El gobierno"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

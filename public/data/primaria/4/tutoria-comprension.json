@@ -1,320 +1,558 @@
 [
   {
     "id": "1",
-    "titulo": "Compartir es divertido",
-    "texto": "Juan tiene un balón nuevo. Su amigo Luis quiere jugar también, pero solo hay un balón. Juan piensa un poco y decide que es más divertido jugar los dos juntos pasándose la pelota. Se ríen mucho en el patio.",
+    "titulo": "El árbol de mis talentos",
+    "texto": "Hoy en tutoría hemos dibujado el 'Árbol de los Talentos'. Cada hoja representa algo que se nos da bien: dibujar, escuchar, correr rápido o resolver mates. Todos tenemos talentos diferentes, y darnos cuenta de lo que valemos nos ayuda a tener una autoestima sana. ¡Lo importante no es ser el mejor en todo, sino conocer nuestras fortalezas!",
     "preguntas": [
       {
-        "pregunta": "¿Juan tiene un balón nuevo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Juegan cada uno por su lado?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué representan las hojas del árbol?",
+        "opciones": [
+          "Los deberes",
+          "Las cosas que se nos dan bien (talentos)",
+          "Los pecados",
+          "Los sueños"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué deciden hacer?",
-        "opciones": ["Pelearse", "Jugar juntos", "Guardar el balón", "Romperlo"],
+        "pregunta": "¿Qué nos ayuda a tener una autoestima sana?",
+        "opciones": [
+          "Ser el mejor siempre",
+          "Conocer nuestras fortalezas",
+          "No hacer nada",
+          "Compararnos con otros"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se lo pasan?",
-        "opciones": ["Mal", "Aburridos", "Tristes", "Muy bien"],
-        "correcta": 3
+        "pregunta": "¿Todos tenemos los mismos talentos?",
+        "opciones": [
+          "Sí",
+          "No, son diferentes"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué valor aprenden?",
-        "opciones": ["A gritar", "A compartir", "A pegar", "A correr"],
+        "pregunta": "¿Cuál es el objetivo de la actividad?",
+        "opciones": [
+          "Pintar un árbol bonito",
+          "Descubrir nuestra valía",
+          "Aprender botánica",
+          "Hacer un examen"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es más importante según el texto?",
+        "opciones": [
+          "Ser el primero",
+          "Conocernos a nosotros mismos",
+          "Ser invisible",
+          "Ganar premios"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "La niña nueva",
-    "texto": "Hoy ha llegado una niña nueva a clase que se llama Aila. Viene de otro país y no conoce a nadie. Al principio estaba sola en el recreo. María y sus amigas la han visto y la han invitado a saltar a la comba con ellas.",
+    "titulo": "Saber decir que no",
+    "texto": "A veces, nuestros amigos nos piden que hagamos algo que sabemos que no está bien, como esconder el estuche de alguien o saltar en una zona peligrosa. A esto se le llama presión de grupo. Ser valiente significa saber decir 'no' de forma amable pero firme, para seguir nuestros propios valores y no meternos en problemas.",
     "preguntas": [
       {
-        "pregunta": "¿Aila es nueva en el colegio?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Tenía muchos amigos al principio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es la presión de grupo?",
+        "opciones": [
+          "Hacer deporte juntos",
+          "Sentir que debes hacer algo porque otros lo hacen",
+          "Ayudar a los amigos",
+          "Un tipo de juego"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿De dónde viene Aila?",
-        "opciones": ["De su casa", "De otro país", "Del parque", "De la tienda"],
+        "pregunta": "¿Cómo debemos decir que no?",
+        "opciones": [
+          "Gritando",
+          "De forma amable pero firme",
+          "Llorando",
+          "No diciendo nada"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿A qué la invitan a jugar?",
-        "opciones": ["Al fútbol", "Al escondite", "A la comba", "A las cartas"],
-        "correcta": 2
+        "pregunta": "¿Qué significa ser valiente en este caso?",
+        "opciones": [
+          "Hacer lo que los otros piden",
+          "Seguir nuestros propios valores",
+          "No tener miedo a nada",
+          "Correr mucho"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué han hecho María y sus amigas?",
-        "opciones": ["Ignorarla", "Molestarla", "Integrarla", "Gritarle"],
-        "correcta": 2
+        "pregunta": "¿Qué ejemplo de mala acción menciona el texto?",
+        "opciones": [
+          "Ayudar a un niño",
+          "Esconder el estuche de alguien",
+          "Pintar un cuadro",
+          "Comer fruta"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Si algo no nos parece bien, ¿debemos hacerlo?",
+        "opciones": [
+          "Sí, si mis amigos lo hacen",
+          "No"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Saber pedir perdón",
-    "texto": "Carlos corría por la clase y sin querer ha tirado el estuche de Ana al suelo. Todos los lápices se han desperdigado. Carlos se ha parado, le ha pedido perdón a Ana y le ha ayudado a recogerlos todos rápidamente.",
+    "titulo": "Un compañero de otro país",
+    "texto": "Ayer llegó a clase Ahmed, un niño que viene de Marruecos. Ahmed habla español, pero también sabe árabe y francés. Al principio estaba tímido, pero le hemos enseñado el colegio y los juegos del patio. Aprender sobre su cultura y sus tradiciones nos enriquece a todos. ¡La diversidad hace que nuestra clase sea mucho más interesante!",
     "preguntas": [
       {
-        "pregunta": "¿Carlos quería tirar el estuche?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿De qué país viene Ahmed?",
+        "opciones": [
+          "Francia",
+          "Marruecos",
+          "España",
+          "China"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Se han caído los lápices?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué ha hecho Carlos primero?",
-        "opciones": ["Reírse", "Irse corriendo", "Pedir perdón", "Gritar"],
+        "pregunta": "¿Qué idiomas habla Ahmed?",
+        "opciones": [
+          "Solo español",
+          "Solo árabe",
+          "Español, árabe y francés",
+          "Inglés"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué han hecho después?",
-        "opciones": ["Recogerlos", "Pisarlos", "Dejarlos ahí", "Llorar"],
-        "correcta": 0
+        "pregunta": "¿Cómo se sentía Ahmed al principio?",
+        "opciones": [
+          "Enfadado",
+          "Tímido",
+          "Muy alegre",
+          "Contento"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se ha comportado Carlos?",
-        "opciones": ["Mal", "Bien", "Regular", "Fatal"],
+        "pregunta": "¿Qué ventaja tiene la diversidad en clase?",
+        "opciones": [
+          "Es un lío",
+          "Nos enriquece a todos",
+          "Es aburrido",
+          "No tiene ventajas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo le han ayudado sus compañeros?",
+        "opciones": [
+          "Ignorándolo",
+          "Enseñándole el colegio",
+          "Dándole deberes",
+          "Haciéndole regalos"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Cuando estoy enfadado",
-    "texto": "A veces, cuando las cosas no salen bien, nos enfadamos. Dani estaba haciendo un dibujo y se le ha roto la punta del lápiz. Se ha enfadado mucho, pero ha respirado hondo tres veces para calmarse. Luego le ha sacado punta tranquilamente.",
+    "titulo": "La técnica del semáforo",
+    "texto": "Cuando nos enfadamos mucho, a veces perdemos el control. Para evitarlo, usamos la técnica del semáforo. ROJO: ¡Para! Respira hondo antes de actuar. AMARILLO: ¡Piensa! ¿Por qué estoy así? ¿Qué puedo hacer? VERDE: ¡Actúa! Elige la mejor solución sin herir a nadie. Controlar nuestras emociones nos ayuda a convivir mejor.",
     "preguntas": [
       {
-        "pregunta": "¿Dani estaba haciendo un puzle?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Para qué sirve el semáforo emocional?",
+        "opciones": [
+          "Para cruzar la calle",
+          "Para controlar el enfado",
+          "Para jugar a coches",
+          "Para nada"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Se le rompió el lápiz?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué debemos hacer en el color ROJO?",
+        "opciones": [
+          "Gritar",
+          "Parar y respirar",
+          "Pensar ideas",
+          "Caminar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hacemos en el color AMARILLO?",
+        "opciones": [
+          "Dormir",
+          "Pensar el motivo y las opciones",
+          "Actuar rápido",
+          "Saltar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hay que elegir en el color VERDE?",
+        "opciones": [
+          "La mejor solución sin herir",
+          "Pelearse",
+          "Irse corriendo",
+          "Comer"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué hizo para calmarse?",
-        "opciones": ["Gritar", "Pegar a la mesa", "Romper el papel", "Respirar hondo"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué emoción sentía Dani?",
-        "opciones": ["Alegría", "Enfado", "Miedo", "Sueño"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué hizo al final?",
-        "opciones": ["Sacar punta", "Irse a casa", "Llorar", "Dormir"],
+        "pregunta": "¿Ayuda esto a la convivencia?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 0
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Las palabras mágicas",
-    "texto": "En clase usamos las palabras mágicas para llevarnos bien. Si queremos pedir algo, decimos 'por favor'. Cuando alguien nos ayuda o nos da algo, decimos 'gracias'. Si queremos pasar y hay gente, decimos 'permiso'.",
+    "titulo": "La importancia del reciclaje",
+    "texto": "En 4º de Primaria somos los guardianes del reciclaje. En los pasillos tenemos contenedores especiales. El papel usado va al azul, los envases al amarillo y los restos orgánicos al marrón. Si separamos bien los residuos, ayudamos a que las fábricas vuelvan a usarlos y ahorramos energía del planeta. ¡Cada envase cuenta!",
     "preguntas": [
       {
-        "pregunta": "¿Existen palabras mágicas?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo se llaman los niños de la historia?",
+        "opciones": [
+          "Guardianes del reciclaje",
+          "Policías",
+          "Limpiadores",
+          "Alumnos"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Decimos 'gracias' para pedir algo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué decimos para pedir algo?",
-        "opciones": ["Dámelo", "Lo quiero", "Por favor", "Tonto"],
+        "pregunta": "¿A qué contenedor va el papel?",
+        "opciones": [
+          "Amarillo",
+          "Verde",
+          "Azul",
+          "Marrón"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué decimos cuando nos ayudan?",
-        "opciones": ["Adiós", "Gracias", "Hola", "Nada"],
+        "pregunta": "¿Qué va al contenedor amarillo?",
+        "opciones": [
+          "Vidrio",
+          "Envases",
+          "Papel",
+          "Fruta"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Para qué sirven estas palabras?",
-        "opciones": ["Para volar", "Para convivir mejor", "Para comer", "Para correr"],
+        "pregunta": "¿Qué ahorro supone reciclar?",
+        "opciones": [
+          "Dinero",
+          "Tiempo",
+          "Energía del planeta",
+          "Nada"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿En qué curso están los guardianes?",
+        "opciones": [
+          "3º",
+          "4º",
+          "5º",
+          "6º"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Trabajo en equipo",
-    "texto": "La clase estaba muy desordenada después de hacer manualidades. Había papeles y pegamento por todas partes. La profesora dijo: '¡Equipo de limpieza!'. Todos los niños ayudaron a recoger y en cinco minutos la clase estaba perfecta.",
+    "titulo": "Netiqueta: educación en la red",
+    "texto": "La 'netiqueta' son las normas de educación en Internet. Por ejemplo: no gritar (escribir en MAYÚSCULAS significa gritar), pedir permiso antes de subir la foto de un amigo y ser amable en los comentarios. Tratar a los demás en la red como nos gustaría que nos trataran a nosotros en persona es fundamental para una buena convivencia digital.",
     "preguntas": [
       {
-        "pregunta": "¿La clase estaba limpia al principio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es la netiqueta?",
+        "opciones": [
+          "Un juego de red",
+          "Normas de educación en Internet",
+          "Una marca de ropa",
+          "Un virus"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Ayudaron todos los niños?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Qué significa escribir todo en MAYÚSCULAS?",
+        "opciones": [
+          "Que es importante",
+          "Que estamos gritando",
+          "Que es más bonito",
+          "Que es broma"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué habían hecho antes?",
-        "opciones": ["Gimnasia", "Música", "Manualidades", "Matemáticas"],
-        "correcta": 2
+        "pregunta": "¿Qué debemos hacer antes de subir la foto de un amigo?",
+        "opciones": [
+          "Subirla ya",
+          "Pedir permiso",
+          "Borrarla",
+          "Pintarla"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuánto tardaron en limpiar?",
-        "opciones": ["Una hora", "Un día", "Cinco minutos", "Nada"],
-        "correcta": 2
+        "pregunta": "¿Cómo deben ser los comentarios en la red?",
+        "opciones": [
+          "Groseros",
+          "Amables",
+          "No hay que poner nada",
+          "En inglés"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es mejor trabajar?",
-        "opciones": ["Solos", "En equipo", "Peleando", "Mirando"],
+        "pregunta": "¿Bajo qué regla base funciona la netiqueta?",
+        "opciones": [
+          "Ganar al otro",
+          "Tratar a los demás como nos gustaría ser tratados",
+          "Ocultar la verdad",
+          "Ser el más rápido"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Todos somos diferentes",
-    "texto": "En mi grupo de amigos todos somos diferentes. Pablo es muy alto. Sara lleva gafas y lee muy bien. A mí se me da bien dibujar. Cada uno tiene cosas buenas y lo importante es que nos queremos tal como somos.",
+    "titulo": "La silla de ruedas de Jorge",
+    "texto": "Jorge ha venido hoy en su silla de ruedas nueva. Para que Jorge pueda entrar a todas las clases y al patio, el colegio ha construido rampas de madera y cemento. A veces, las personas con discapacidad física encuentran barreras que les impiden moverse libremente. Ayudar a que todos tengamos las mismas oportunidades es tarea de todos.",
     "preguntas": [
       {
-        "pregunta": "¿Son todos iguales?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué usa Jorge para moverse?",
+        "opciones": [
+          "Muletas",
+          "Silla de ruedas",
+          "Patinete",
+          "Bicicleta"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Pablo es bajo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué ha construido el colegio?",
+        "opciones": [
+          "Un ascensor",
+          "Rampas",
+          "Un muro",
+          "Una piscina"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué lleva Sara?",
-        "opciones": ["Gorra", "Gafas", "Coleta", "Bufanda"],
+        "pregunta": "¿Qué son las barreras en este texto?",
+        "opciones": [
+          "Vallas de saltar",
+          "Obstáculos que impiden el movimiento",
+          "Puertas cerradas",
+          "Nubes"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué se le da bien al narrador?",
-        "opciones": ["Cantar", "Bailar", "Dibujar", "Correr"],
-        "correcta": 2
+        "pregunta": "¿Cuál es la tarea de todos?",
+        "opciones": [
+          "Hacer rampas",
+          "Ayudar a que todos tengan las mismas oportunidades",
+          "Mirar nada más",
+          "No hacer nada"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué es lo importante?",
-        "opciones": ["Ser guapos", "Quererse y respetarse", "Tener juguetes", "Ser rápidos"],
-        "correcta": 1
+        "pregunta": "¿Jorge puede entrar al patio?",
+        "opciones": [
+          "Sí, gracias a las rampas",
+          "No, nunca"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Decir la verdad",
-    "texto": "Elena ha roto sin querer un vaso de agua en la cocina. Su mamá ha preguntado quién ha sido. Elena tenía miedo de que la riñeran, pero ha dicho la verdad: 'He sido yo'. Su mamá no se ha enfadado porque Elena ha sido sincera.",
+    "titulo": "El valor del esfuerzo",
+    "texto": "A Lucía no se le dan bien los dictados. Siempre tiene muchas faltas. Pero en lugar de rendirse, cada tarde practica diez minutos en casa. Poco a poco, sus notas están mejorando. El éxito no llega por suerte, sino por la constancia y el esfuerzo diario. ¡Estamos muy orgullosos de su superación personal!",
     "preguntas": [
       {
-        "pregunta": "¿Elena rompió un plato?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué se le da mal a Lucía?",
+        "opciones": [
+          "Las mates",
+          "Los dictados",
+          "La educación física",
+          "El dibujo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Elena dijo la verdad?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué se rompió?",
-        "opciones": ["Una taza", "Un vaso", "Una ventana", "Una botella"],
+        "pregunta": "¿Qué hace Lucía para mejorar?",
+        "opciones": [
+          "No hace nada",
+          "Practica 10 minutos cada tarde",
+          "Copia a su amigo",
+          "Se queja"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Por qué no se enfadó mamá?",
-        "opciones": ["Porque fue sincera", "Porque no lo vio", "Porque era viejo", "Porque no estaba"],
-        "correcta": 0
+        "pregunta": "¿Por qué llegan los éxitos según el texto?",
+        "opciones": [
+          "Por suerte",
+          "Por magia",
+          "Por constancia y esfuerzo",
+          "Por dinero"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Cómo se sentía Elena al principio?",
-        "opciones": ["Feliz", "Con miedo", "Enfadada", "Cansada"],
+        "pregunta": "¿Cómo están sus notas ahora?",
+        "opciones": [
+          "Peor",
+          "Igual de mal",
+          "Mejorando",
+          "Fatal"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué valor demuestra Lucía?",
+        "opciones": [
+          "Pereza",
+          "Superación personal",
+          "Miedo",
+          "Diversión"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Cuidamos los libros",
-    "texto": "Los libros de la biblioteca del colegio son de todos. No podemos pintar en ellos ni romper las hojas. Hay que tratarlos con cuidado. Si cuidamos los cuentos, otros niños podrán leerlos y disfrutar de las historias después de nosotros.",
+    "titulo": "Resolver conflictos hablando",
+    "texto": "Cuando dos compañeros se pelean por un balón, la mejor opción no es el grito ni el empujón. En nuestro colegio tenemos la 'mesa del diálogo'. Allí, los dos implicados se sientan, se escuchan sin interrumpir y llegan a un acuerdo. A veces, necesitamos a un mediador (otro compañero o el profe) para ayudarnos a encontrar una solución justa.",
     "preguntas": [
       {
-        "pregunta": "¿Los libros son solo míos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Para qué sirve la mesa del diálogo?",
+        "opciones": [
+          "Para comer",
+          "Para resolver conflictos hablando",
+          "Para pintar",
+          "Para hacer exámenes"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Podemos pintar en los libros?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué regla hay que seguir en la mesa?",
+        "opciones": [
+          "Gritar",
+          "Escucharse sin interrumpir",
+          "Hablar rápido",
+          "No decir nada"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo hay que tratar los libros?",
-        "opciones": ["Mal", "Con fuerza", "Con cuidado", "Arrugándolos"],
-        "correcta": 2
+        "pregunta": "¿Qué es un mediador?",
+        "opciones": [
+          "Un árbitro de fútbol",
+          "Alguien que ayuda a encontrar una solución",
+          "Un médico",
+          "Un policía"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿De dónde son los libros?",
-        "opciones": ["De la biblioteca", "De la tienda", "Del parque", "De la basura"],
-        "correcta": 0
+        "pregunta": "¿Qué soluciona un conflicto?",
+        "opciones": [
+          "El diálogo y el acuerdo",
+          "La pelea",
+          "El silencio",
+          "Irse"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Para qué los cuidamos?",
-        "opciones": ["Para que estén bonitos", "Para otros niños", "Para que pesen más", "Para nada"],
+        "pregunta": "¿Quién puede ser mediador?",
+        "opciones": [
+          "Solo el director",
+          "Un compañero o el profe",
+          "Nadie",
+          "Solo los padres"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Ayudar a los demás",
-    "texto": "En el recreo, Lucas se ha tropezado y se ha hecho daño en la rodilla. Estaba llorando en el suelo. Su amiga Inés ha ido corriendo a ayudarle. Le ha dado la mano para levantarse y le ha acompañado a buscar a la profesora.",
+    "titulo": "Consumo responsable",
+    "texto": "A veces queremos comprar todos los juguetes que salen en la tele. Pero tenemos que aprender que los recursos de la Tierra no son infinitos. Antes de comprar algo nuevo, debemos preguntarnos: '&iquest;Realmente lo necesito?'. Cuidar lo que ya tenemos y no malgastar el dinero es una forma de ser responsables con nuestro entorno y con nuestra familia.",
     "preguntas": [
       {
-        "pregunta": "¿Lucas se ha caído?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Son los recursos de la Tierra infinitos?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué pregunta debemos hacernos antes de comprar?",
+        "opciones": [
+          "¿Es barato?",
+          "¿Realmente lo necesito?",
+          "¿Es de colores?",
+          "¿Es el más grande?"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es ser responsable según el texto?",
+        "opciones": [
+          "Comprar mucho",
+          "Cuidar lo que tenemos y no malgastar",
+          "Tirar cosas viejas",
+          "Mirar la tele"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Con quién somos responsables al no malgastar?",
+        "opciones": [
+          "Con el entorno y la familia",
+          "Con los vendedores",
+          "Con los anuncios",
+          "Con nadie"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Inés se ha reído de él?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué le dolía a Lucas?",
-        "opciones": ["La cabeza", "El brazo", "La rodilla", "El pie"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué ha hecho Inés?",
-        "opciones": ["Empujarle", "Ayudarle", "Gritarle", "Ignorarle"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿A quién han buscado?",
-        "opciones": ["Al director", "A la profesora", "A la policía", "Al médico"],
+        "pregunta": "¿Debemos comprar todo lo que vemos en la tele?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 1
       }
     ]

@@ -1,0 +1,816 @@
+{
+  "titulo": "Material de Estudio - Lengua - 1º PRIMARIA",
+  "introduccion": "Repasa este vocabulario de Lengua para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "a",
+          "definicion": "La primera letra del abecedario.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "abeja",
+          "definicion": "Insecto que hace miel.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "abierto",
+          "definicion": "Contrario de cerrado.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "agua",
+          "definicion": "Líquido transparente que bebemos.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "amigo",
+          "definicion": "Compañero con el que juegas.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "boca",
+          "definicion": "Parte del cuerpo para hablar.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "balón",
+          "definicion": "Objeto redondo para jugar al fútbol.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bicicleta",
+          "definicion": "Vehículo de dos ruedas y pedales.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bueno",
+          "definicion": "Contrario de malo.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bota",
+          "definicion": "Calzado para la lluvia.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "casa",
+          "definicion": "Lugar donde vivimos.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "coche",
+          "definicion": "Vehículo con cuatro ruedas.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cama",
+          "definicion": "Objeto para dormir.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "conejo",
+          "definicion": "Animal con orejas largas.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "colegio",
+          "definicion": "Lugar donde vamos a aprender.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "dedo",
+          "definicion": "Parte de la mano.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "día",
+          "definicion": "Cuando hay sol es de...",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dientes",
+          "definicion": "Piezas blancas en la boca.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dos",
+          "definicion": "Número que va después del uno.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dominó",
+          "definicion": "Juego de fichas con puntos.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "elefante",
+          "definicion": "Animal grande con trompa.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "escuela",
+          "definicion": "Sinónimo de colegio.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "escoba",
+          "definicion": "Objeto para barrer.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "estrellas",
+          "definicion": "Puntos de luz en el cielo nocturno.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "espejo",
+          "definicion": "Objeto para vernos la cara.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "foca",
+          "definicion": "Animal del mar que aplaude.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "feo",
+          "definicion": "Lo contrario de guapo.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "familia",
+          "definicion": "Padres, hijos y abuelos.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fiesta",
+          "definicion": "Celebración divertida.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "frío",
+          "definicion": "Lo contrario de calor.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "gato",
+          "definicion": "Animal que maúlla.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gorra",
+          "definicion": "Prenda para la cabeza.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grande",
+          "definicion": "Contrario de pequeño.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "guantes",
+          "definicion": "Prenda para las manos.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "goma",
+          "definicion": "Objeto para borrar.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "huevo",
+          "definicion": "Lo ponen las gallinas.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hola",
+          "definicion": "Saludo cuando ves a alguien.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hielo",
+          "definicion": "Agua congelada.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hermano",
+          "definicion": "El hijo de mis padres.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hoja",
+          "definicion": "Parte verde de la planta.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "iglú",
+          "definicion": "Casa de hielo.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "isla",
+          "definicion": "Tierra rodeada de agua.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "imán",
+          "definicion": "Objeto que atrae metal.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "invierno",
+          "definicion": "Estación del año con frío.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "idea",
+          "definicion": "Pensamiento nuevo.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "jirafa",
+          "definicion": "Animal de cuello largo.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juguete",
+          "definicion": "Objeto para jugar.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jueves",
+          "definicion": "Día de la semana.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jamón",
+          "definicion": "Alimento salado del cerdo.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jardín",
+          "definicion": "Lugar con flores y plantas.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "kilo",
+          "definicion": "Mil gramos.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kiwi",
+          "definicion": "Fruta verde por dentro.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "karate",
+          "definicion": "Deporte con cinturones.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "koala",
+          "definicion": "Animal australiano.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "ketchup",
+          "definicion": "Salsa de tomate roja.",
+          "pista": "Empieza por K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "león",
+          "definicion": "El rey de la selva.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "libro",
+          "definicion": "Objeto para leer.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "luna",
+          "definicion": "Sale por la noche.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lápiz",
+          "definicion": "Sirve para escribir.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "leer",
+          "definicion": "Acción de comprender lo escrito.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "mamá",
+          "definicion": "La madre.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mesa",
+          "definicion": "Mueble para comer.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mano",
+          "definicion": "Tiene cinco dedos.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mapa",
+          "definicion": "Dibujo de la tierra.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "música",
+          "definicion": "Sonidos con ritmo.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "nube",
+          "definicion": "Está en el cielo y llueve.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nido",
+          "definicion": "Casa de los pájaros.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nariz",
+          "definicion": "Sirve para oler.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nieve",
+          "definicion": "Cae en invierno y es blanca.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "noche",
+          "definicion": "Cuando no hay sol.",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "piña",
+          "definicion": "Fruta tropical amarilla.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "araña",
+          "definicion": "Insecto de ocho patas.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "niño",
+          "definicion": "Persona de poca edad.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "pañuelo",
+          "definicion": "Tela para sonarse.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "año",
+          "definicion": "Tiempo de 365 días.",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "oso",
+          "definicion": "Animal peludo del bosque.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ojo",
+          "definicion": "Sirve para ver.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oreja",
+          "definicion": "Sirve para oír.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ocho",
+          "definicion": "Número después del siete.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ola",
+          "definicion": "Movimiento del mar.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "papá",
+          "definicion": "El padre.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "perro",
+          "definicion": "Mejor amigo del hombre.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pato",
+          "definicion": "Ave que nada.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pelota",
+          "definicion": "Juguete redondo.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pie",
+          "definicion": "Parte del cuerpo para andar.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "queso",
+          "definicion": "Alimento de leche.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quince",
+          "definicion": "Número 15.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "parque",
+          "definicion": "Lugar con columpios.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "pequeño",
+          "definicion": "Lo contrario de grande.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "raqueta",
+          "definicion": "Deporte con raqueta.",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "ratón",
+          "definicion": "Animal pequeño.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rosa",
+          "definicion": "Flor con espinas.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "río",
+          "definicion": "Corriente de agua.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "reloj",
+          "definicion": "Marca la hora.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rojo",
+          "definicion": "Color de la sangre.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "sol",
+          "definicion": "Nos da luz y calor.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "silla",
+          "definicion": "Sirve para sentarse.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sopa",
+          "definicion": "Comida líquida caliente.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sapo",
+          "definicion": "Animal parecido a la rana.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sal",
+          "definicion": "Condimento salado.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "tren",
+          "definicion": "Transporte sobre vías.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tijeras",
+          "definicion": "Sirve para cortar.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tortuga",
+          "definicion": "Animal muy lento.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tomate",
+          "definicion": "Verdura roja.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "taza",
+          "definicion": "Para beber leche.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "uva",
+          "definicion": "Fruta de la vid.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uña",
+          "definicion": "Parte dura del dedo.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uno",
+          "definicion": "El primer número.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unicornio",
+          "definicion": "Caballo con cuerno.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "universo",
+          "definicion": "Todo lo que existe.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "vaca",
+          "definicion": "Animal que da leche.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "ventana",
+          "definicion": "Abertura en la pared.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "verde",
+          "definicion": "Color de la hierba.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vaso",
+          "definicion": "Recipiente para beber.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "verano",
+          "definicion": "Estación de calor.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "web",
+          "definicion": "Página de internet.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "wifi",
+          "definicion": "Internet sin cables.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "kiwi",
+          "definicion": "Fruta con piel peluda.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "sandwich",
+          "definicion": "Comida de pan de molde.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "waterpolo",
+          "definicion": "Deporte en piscina.",
+          "pista": "Contiene la W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "xilófono",
+          "definicion": "Instrumento musical.",
+          "pista": "Empieza por X"
+        },
+        {
+          "termino": "taxi",
+          "definicion": "Coche de transporte.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "texto",
+          "definicion": "Palabras escritas.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "examen",
+          "definicion": "Prueba del cole.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "sexto",
+          "definicion": "Puesto número 6.",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "yo",
+          "definicion": "Pronombre personal.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yoyó",
+          "definicion": "Juguete que sube y baja.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "hoy",
+          "definicion": "El día presente.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "rey",
+          "definicion": "Monarca.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "desayuno",
+          "definicion": "Comida de la mañana.",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zapato",
+          "definicion": "Calzado.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zorro",
+          "definicion": "Animal astuto.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zanahoria",
+          "definicion": "Verdura naranja.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zumo",
+          "definicion": "Bebida de fruta.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "azul",
+          "definicion": "Color del cielo.",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

@@ -7,7 +7,13 @@
       "🖱️",
       "🖨️",
       "📱",
-      "🖥️"
+      "🖥️",
+      "🔋",
+      "🔌",
+      "🎧",
+      "📷",
+      "🕹️",
+      "💾"
     ],
     "intrusos": [
       "🍎",
@@ -15,7 +21,13 @@
       "⚽",
       "🧸",
       "🚗",
-      "🍕"
+      "🍕",
+      "🍦",
+      "🥪",
+      "🛋️",
+      "🛁",
+      "👕",
+      "👟"
     ]
   },
   {
@@ -26,14 +38,26 @@
       "🔋",
       "🔌",
       "💡",
-      "🛠️"
+      "🛠️",
+      "🔩",
+      "🏗️",
+      "📡",
+      "🛰️",
+      "🦾",
+      "🦿"
     ],
     "intrusos": [
       "🌸",
       "🍦",
       "🐱",
       "☁️",
-      "🎨"
+      "🎨",
+      "🧸",
+      "🍭",
+      "🦋",
+      "🌈",
+      "🍉",
+      "🧣"
     ]
   },
   {
@@ -44,14 +68,27 @@
       "🔍",
       "✉️",
       "🖼️",
-      "🎬"
+      "🎬",
+      "🎵",
+      "🕒",
+      "⚙️",
+      "🔒",
+      "📶",
+      "🔋",
+      "💾"
     ],
     "intrusos": [
       "🚲",
       "🦒",
       "🍔",
       "🎸",
-      "👞"
+      "👞",
+      "👕",
+      "👒",
+      "🛹",
+      "⚽",
+      "🍎",
+      "🏠"
     ]
   },
   {
@@ -62,14 +99,28 @@
       "⬆️",
       "⬇️",
       "➕",
-      "➖"
+      "➖",
+      "✖️",
+      "➗",
+      "🔄",
+      "↩️",
+      "🔢",
+      "🔣",
+      "🔡"
     ],
     "intrusos": [
       "🏠",
       "🚗",
       "🐶",
       "🌲",
-      "🍎"
+      "🍎",
+      "🍔",
+      "🍕",
+      "🧸",
+      "🛋️",
+      "🛁",
+      "👕",
+      "👟"
     ]
   },
   {
@@ -79,14 +130,26 @@
       "Girar",
       "Saltar",
       "Parar",
-      "Esperar"
+      "Esperar",
+      "Retroceder",
+      "Subir",
+      "Bajar",
+      "Encender luces",
+      "Emitir sonido",
+      "Detectar obstáculo",
+      "Bajar pinza"
     ],
     "intrusos": [
       "Comer",
       "Dormir",
       "Llorar",
       "Cantar",
-      "Soñar"
+      "Soñar",
+      "Bañarse",
+      "Peinarse",
+      "Abrocharse",
+      "Cenar",
+      "Desayunar"
     ]
   },
   {
@@ -97,14 +160,27 @@
       "Pantalla",
       "Altavoz",
       "Cámara",
-      "Batería"
+      "Batería",
+      "Cable",
+      "Puerto USB",
+      "Micrófono",
+      "Auriculares",
+      "Monitor",
+      "Torre",
+      "Botón de encendido"
     ],
     "intrusos": [
       "Zapato",
       "Cuchara",
       "Libreta",
       "Lápiz",
-      "Gorra"
+      "Gorra",
+      "Mesa",
+      "Silla",
+      "Vaso",
+      "Plato",
+      "Ventana",
+      "Puerta"
     ]
   },
   {
@@ -112,50 +188,82 @@
     "correctos": [
       "Web",
       "Vídeo",
-      "Juego",
-      "Correo",
+      "Juego online",
+      "Correo electrónico",
       "Foto",
-      "Mensaje"
+      "Mensaje",
+      "Buscador",
+      "Enlace",
+      "Aplicación",
+      "Blog",
+      "Wiki",
+      "Perfil"
     ],
     "intrusos": [
       "Piedra",
       "Árbol",
       "Bocadillo",
       "Pelota",
-      "Libro"
+      "Libro físico",
+      "Arena",
+      "Agua",
+      "Fuego",
+      "Cuchillo",
+      "Tenedor",
+      "Cama"
     ]
   },
   {
-    "categoria": "Acciones con el Ratón",
+    "categoria": "Acciones con el Ratón / Pantalla",
     "correctos": [
       "Clic",
       "Doble clic",
       "Arrastrar",
-      "Soltar"
+      "Soltar",
+      "Scroll",
+      "Pulsar",
+      "Deslizar",
+      "Mover el cursor",
+      "Seleccionar",
+      "Hacer zoom"
     ],
     "intrusos": [
-      "Pintar",
-      "Recortar",
-      "Pegar",
-      "Doblar",
-      "Escribir"
+      "Pintar con pincel",
+      "Recortar con tijeras",
+      "Pegar con pegamento",
+      "Doblar papel",
+      "Escribir con lápiz",
+      "Borrar con goma",
+      "Cerrar los ojos",
+      "Saltar a la comba"
     ]
   },
   {
-    "categoria": "Conceptos de Programación",
+    "categoria": "Conceptos de Programación inicial",
     "correctos": [
       "Código",
       "Bucle",
       "Algoritmo",
       "Instrucción",
-      "Condicional"
+      "Condicional",
+      "Variable",
+      "Secuencia",
+      "Depuración",
+      "Evento",
+      "Función",
+      "Bloque de comando"
     ],
     "intrusos": [
       "Cuento",
       "Canción",
-      "Receta",
+      "Receta de cocina",
       "Dibujo",
-      "Poesía"
+      "Poesía",
+      "Parque",
+      "Columpio",
+      "Siesta",
+      "Merienda",
+      "Excursión"
     ]
   }
 ]

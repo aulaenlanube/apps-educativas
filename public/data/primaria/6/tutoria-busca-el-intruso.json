@@ -1,124 +1,183 @@
 [
   {
-    "categoria": "Adolescencia (Visual)",
+    "categoria": "Transición a la Adolescencia (Visual)",
     "correctos": [
       "👫",
       "📱",
       "🎧",
+      "Skateboard",
+      "🎒 (Mochila)",
+      "👟 (Zapatillas)",
+      "🕶️",
+      "🧢",
+      "🎸",
+      "🎮",
       "🛹",
-      "🎒",
-      "👟"
+      "💬"
     ],
     "intrusos": [
       "👶",
       "🍼",
       "🧸",
       "🚼",
-      "🦴"
+      "🦴",
+      "🍭",
+      "🍼",
+      "🤱",
+      "🎠",
+      "🛝",
+      "🪁"
     ]
   },
   {
-    "categoria": "Redes Sociales (Visual)",
+    "categoria": "Interacción en Redes Sociales (Visual)",
     "correctos": [
       "👍",
       "❤️",
       "💬",
       "🔔",
       "📸",
-      "🤳"
+      "🤳",
+      "🎞️",
+      "🎶",
+      "📡",
+      "🌐",
+      "⚡ (Trending)"
     ],
     "intrusos": [
       "📚",
       "✏️",
       "🧹",
       "🍳",
-      "🔨"
+      "🔨",
+      "🪚",
+      "🚜",
+      "🧺",
+      "🪣",
+      "🧼",
+      "👕"
     ]
   },
   {
-    "categoria": "Peligros Red (Visual)",
+    "categoria": "Riesgos y Amenas en Entornos Digitales (Visual)",
     "correctos": [
       "😈",
       "🚫",
       "🕵️",
       "🦠",
       "💔",
-      "💣"
+      "💣",
+      "🛑",
+      "⚠️",
+      "🔞",
+      "🏴‍☠️",
+      "🤥"
     ],
     "intrusos": [
-      "🔒",
+      "🔒 (Seguro)",
       "🛡️",
       "🤝",
       "❤️",
-      "😊"
+      "😊",
+      "😇",
+      "💡",
+      "✅",
+      "🌟",
+      "🧼",
+      "🥤"
     ]
   },
   {
-    "categoria": "El Paso a Secundaria",
+    "categoria": "El Paso y Adaptación a Secundaria (Instituto)",
     "correctos": [
-      "Instituto",
-      "Profesores",
-      "Horario",
-      "Compañeros",
-      "Exámenes"
+      "Instituto / IES",
+      "Profesores de área",
+      "Horario rotativo",
+      "Nuevos compañeros",
+      "Exámenes trimestrales",
+      "Laboratorio",
+      "Biblioteca",
+      "Tutoría",
+      "Delegado",
+      "Orientador"
     ],
     "intrusos": [
+      "Escuela infantil",
       "Guardería",
-      "Jugar",
-      "Siesta",
-      "Columpios",
-      "Juguetes"
+      "Juego libre",
+      "Hora de la siesta",
+      "Columpios y tobogán",
+      "Juguetes de trapo",
+      "Bañador",
+      "Cesto de pañales"
     ]
   },
   {
-    "categoria": "Uso de Internet",
+    "categoria": "Ciudadanía Digital y Seguridad en Internet",
     "correctos": [
-      "Privacidad",
-      "Contraseña",
-      "Respeto",
-      "Bloquear",
-      "Reportar"
+      "Privacidad de perfil",
+      "Contraseña robusta",
+      "Respeto digital (Netiqueta)",
+      "Bloquear usuarios tóxicos",
+      "Reportar acoso",
+      "Verificación en 2 pasos",
+      "Huella digital positiva"
     ],
     "intrusos": [
-      "Insultar",
-      "Compartir todo",
-      "Desconocidos",
-      "Bullying",
-      "Virus"
+      "Insultar anónimamente",
+      "Compartir todo sin pensar",
+      "Quedar con desconocidos",
+      "Ciberbullying o acoso",
+      "Descargar virus",
+      "Publicar fotos de otros",
+      "Contraseñas débiles"
     ]
   },
   {
-    "categoria": "Emociones Complejas",
+    "categoria": "Emociones Complejas del Crecimiento",
     "correctos": [
       "Nostalgia",
-      "Euforia",
+      "Euforia de grupo",
       "Frustración",
-      "Empatía",
-      "Ansiedad"
+      "Empatía profunda",
+      "Ansiedad por el futuro",
+      "Inseguridad",
+      "Entusiasmo",
+      "Compasión",
+      "Resiliencia"
     ],
     "intrusos": [
-      "Hambre",
-      "Sed",
-      "Frío",
-      "Calor",
-      "Sueño"
+      "Hambre física",
+      "Sed de agua",
+      "Frío corporal",
+      "Calor ambiental",
+      "Sueño profundo",
+      "Picor de piel",
+      "Dolor de cabeza",
+      "Cansancio muscular"
     ]
   },
   {
-    "categoria": "Habilidades Sociales",
+    "categoria": "Habilidades Sociales y para la Convivencia",
     "correctos": [
-      "Escuchar",
-      "Dialogar",
-      "Negociar",
-      "Perdonar",
-      "Agradecer"
+      "Escucha empática",
+      "Diálogo constructivo",
+      "Negociación y pacto",
+      "Saber pedir perdón",
+      "Agradecimiento sincero",
+      "Asertividad",
+      "Trabajo en equipo",
+      "Liderazgo positivo"
     ],
     "intrusos": [
-      "Gritar",
-      "Pegar",
-      "Ignorar",
-      "Mentir",
-      "Odiar"
+      "Gritar por rabia",
+      "Pegar o agredir",
+      "Ignorar al grupo",
+      "Mentira compulsiva",
+      "Odio o rencor",
+      "Burlas o mofa",
+      "Discriminación",
+      "Manipulación"
     ]
   }
 ]

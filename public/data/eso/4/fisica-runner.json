@@ -1,17 +1,122 @@
 {
-  "cinematica": [
-    "velocidad", "aceleración", "trayectoria", "desplazamiento", "posición", "tiempo", "mru", "mrua", "caída libre", "gráfica"
+  "cinematica_4": [
+    "posicion vectorial",
+    "velocidad angular",
+    "aceleración tangencial",
+    "aceleración normal",
+    "mcu",
+    "tiro parabólico",
+    "caída libre",
+    "período",
+    "frecuencia",
+    "radián por segundo"
   ],
-  "dinamica_fuerzas": [
-    "newton", "inercia", "rozamiento", "peso", "gravedad", "normal", "tensión", "equilibrio", "acción-reacción", "fuerza resultante"
+  "dinamica_leyes": [
+    "primera ley de newton",
+    "segunda ley de newton",
+    "tercera ley de newton",
+    "fuerza neta",
+    "tensión",
+    "fuerza centrípeta",
+    "momento de una fuerza",
+    "cantidad de movimiento",
+    "impulso",
+    "equilibrio traslacional"
   ],
-  "trabajo_energia": [
-    "julio", "cinética", "potencial", "mecánica", "potencia", "vatio", "conservación", "calor", "temperatura", "trabajo"
+  "fuerzas_especiales": [
+    "gravitación universal",
+    "peso",
+    "constante g",
+    "fuerza elástica",
+    "ley de hooke",
+    "fuerza de rozamiento",
+    "coeficiente fricción",
+    "presión",
+    "principio de pascual",
+    "empuje de arquímedes"
   ],
-  "quimica_organica": [
-    "carbono", "hidrocarburo", "metano", "alcohol", "plástico", "petróleo", "combustión", "polímero", "enlace covalente", "cadena"
+  "energia_mecanica_4": [
+    "trabajo",
+    "potencia",
+    "vatio",
+    "julio",
+    "energía cinética",
+    "energía potencial gravitatoria",
+    "energía elástica",
+    "conservación de la energía",
+    "rendimiento",
+    "rozamiento"
   ],
-  "tabla_periodica": [
-    "alcalinos", "alcalinotérreos", "halógenos", "gases nobles", "periodo", "grupo", "metal", "no metal", "semimetal", "electronegatividad"
+  "calor_termodinamica": [
+    "temperatura",
+    "equilibrio térmico",
+    "calor específico",
+    "capacidad calorífica",
+    "cambio de estado",
+    "conducción",
+    "convección",
+    "radiación",
+    "dilatación",
+    "energía interna"
+  ],
+  "ondas_sonido": [
+    "frecuencia",
+    "longitud de onda",
+    "amplitud",
+    "periodo",
+    "reflexión",
+    "refracción",
+    "difracción",
+    "interferencia",
+    "intensidad sonora",
+    "decibelio"
+  ],
+  "optica_geometrica": [
+    "rayo inciente",
+    "indice de refraccion",
+    "lente convergente",
+    "lente divergente",
+    "espejo plano",
+    "espejo esférico",
+    "formación de imagen",
+    "foco",
+    "distancia focal",
+    "prisma"
+  ],
+  "electricidad_campos": [
+    "ley de coulomb",
+    "campo eléctrico",
+    "potencial eléctrico",
+    "carga eléctrica",
+    "voltaje",
+    "intensidad",
+    "resistencia",
+    "ley de ohm",
+    "potencia eléctrica",
+    "efecto joule"
+  ],
+  "magnetismo": [
+    "campo magnético",
+    "imán",
+    "brújula",
+    "electromagnetismo",
+    "inducción",
+    "ley de faraday",
+    "solenoide",
+    "fuerza de lorentz",
+    "espectrógrafo",
+    "motor eléctrico"
+  ],
+  "fisica_moderna": [
+    "relatividad",
+    "velocidad de la luz",
+    "cuanto de energía",
+    "efecto fotoeléctrico",
+    "modelo de bohr",
+    "fisión nuclear",
+    "fusión nuclear",
+    "radiactividad",
+    "partícula elemental",
+    "universo"
   ]
 }

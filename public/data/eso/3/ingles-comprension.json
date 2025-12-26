@@ -1,0 +1,564 @@
+[
+    {
+        "id": "1",
+        "titulo": "The Future of Space Travel",
+        "texto": "Space exploration has changed significantly since the moon landing in 1969. Today, private companies like SpaceX and Blue Origin are developing technology to take tourists into space. In the future, scientists hope to build a human colony on Mars. This will be a huge challenge because Mars has a thin atmosphere and no liquid water on the surface. We will need to invent new ways to grow food and produce oxygen. Many people believe that space travel is the only way to save humanity if Earth becomes uninhabitable.",
+        "preguntas": [
+            {
+                "pregunta": "When did the first moon landing happen?",
+                "opciones": [
+                    "In 1945",
+                    "In 1969",
+                    "In 2000",
+                    "Yesterday"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is the name of one of the private space companies mentioned?",
+                "opciones": [
+                    "NASA",
+                    "SpaceX",
+                    "Google",
+                    "Apple"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Where do scientists hope to build a colony ?",
+                "opciones": [
+                    "On the Sun",
+                    "On Mars",
+                    "On Jupiter",
+                    "In London"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Why is living on Mars difficult?",
+                "opciones": [
+                    "It's too crowded",
+                    "It has a thin atmosphere and no liquid water",
+                    "It's too close to the Sun",
+                    "There are no schools"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What will we need to invent for the Mars colony?",
+                "opciones": [
+                    "New video games",
+                    "Ways to grow food and produce oxygen",
+                    "Faster cars",
+                    "New languages"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "The Industrial Revolution",
+        "texto": "The Industrial Revolution started in Great Britain in the late 18th century. It was a period of great transformation. Machines replaced hand tools, and factories replaced small workshops. The invention of the steam engine by James Watt was a turning point because it allowed trains and ships to travel much faster. However, life wasn't easy for the workers. Many people moved from the countryside to the cities to work in factories, often in dangerous conditions. This period created the modern world we live in today.",
+        "preguntas": [
+            {
+                "pregunta": "Where did the Industrial Revolution start?",
+                "opciones": [
+                    "In France",
+                    "In Great Britain",
+                    "In the USA",
+                    "In China"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "When did it begin?",
+                "opciones": [
+                    "16th century",
+                    "Late 18th century",
+                    "20th century",
+                    "Middle Ages"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Who invented the steam engine?",
+                "opciones": [
+                    "Thomas Edison",
+                    "James Watt",
+                    "Albert Einstein",
+                    "Steve Jobs"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What happened to the workers during this time?",
+                "opciones": [
+                    "They stayed in the countryside",
+                    "They moved to cities to work in factories",
+                    "They became very rich",
+                    "They stopped working"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "How were the working conditions in the early factories?",
+                "opciones": [
+                    "Very safe",
+                    "Comfortable",
+                    "Often dangerous",
+                    "Excellent"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Environmental Issues: Plastic Pollution",
+        "texto": "Plastic is everywhere: in our clothes, our kitchen, and even our electronics. It is very useful, but it is also a huge problem for the environment. Millions of tons of plastic end up in the oceans every year, killing sea animals like turtles and whales. Scientists have discovered 'microplastics' even in our food and water. We must reduce the use of single-use plastics, like straws and bags, and improve recycling systems. If we don't act now, there will be more plastic than fish in the sea by 2050.",
+        "preguntas": [
+            {
+                "pregunta": "Why is plastic a problem for the ocean?",
+                "opciones": [
+                    "It's too expensive",
+                    "It kills sea animals",
+                    "It makes the water too warm",
+                    "It smells bad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What are 'microplastics'?",
+                "opciones": [
+                    "Large plastic bottles",
+                    "Tiny pieces of plastic found in food and water",
+                    "New plastic toys",
+                    "Phone cases"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What should we reduce the use of?",
+                "opciones": [
+                    "Computers",
+                    "Single-use plastics",
+                    "Bicycles",
+                    "Vegetables"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What prediction is made for the year 2050?",
+                "opciones": [
+                    "The sea will be blue",
+                    "There will be more plastic than fish",
+                    "Fish will learn to speak",
+                    "There will be no more plastic"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Is recycling mentioned as a solution?",
+                "opciones": [
+                    "No",
+                    "Yes, we must improve recycling systems"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "A Biography: Malala Yousafzai",
+        "texto": "Malala Yousafzai was born in Pakistan in 1997. She is a famous activist for female education. When she was a teenager, the Taliban banned girls from going to school in her region. Malala decided to write a blog about her life and fight for her rights. In 2012, she survived a dangerous attack and moved to the UK. In 2014, at the age of 17, she became the youngest person ever to receive the Nobel Peace Prize. Today, she continues to travel the world to ensure that every girl can go to school.",
+        "preguntas": [
+            {
+                "pregunta": "Where was Malala born?",
+                "opciones": [
+                    "In India",
+                    "In Pakistan",
+                    "In the UK",
+                    "In Canada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is she fighting for?",
+                "opciones": [
+                    "For animal rights",
+                    "For female education",
+                    "To be a famous singer",
+                    "For better food"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Why was her life difficult in Pakistan?",
+                "opciones": [
+                    "Because it was cold",
+                    "Because the Taliban banned girls from school",
+                    "Because she was poor",
+                    "Because she didn't have a house"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What happened in 2014?",
+                "opciones": [
+                    "She was born",
+                    "She won the Nobel Peace Prize",
+                    "She stopped studying",
+                    "She grew up"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "How old was she when she won the award?",
+                "opciones": [
+                    "10",
+                    "17",
+                    "25",
+                    "50"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Healthy Habits: Mental Health",
+        "texto": "Health is not only about exercising and eating vegetables; mental health is equally important. In our stressful modern world, many teenagers suffer from anxiety or depression because of school exams or social media pressure. To feel better, it is important to talk to someone you trust, like a friend or a teacher. Taking breaks from screens, meditating, and sleeping enough also help our brain to stay healthy. Remember, it's okay not to be okay sometimes, but you shouldn't be alone.",
+        "preguntas": [
+            {
+                "pregunta": "Is health only about physical exercise?",
+                "opciones": [
+                    "Yes",
+                    "No, mental health is also important"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Why do many teenagers suffer from anxiety?",
+                "opciones": [
+                    "Because of exams and social media pressure",
+                    "Because they sleep too much",
+                    "Because of sports",
+                    "They don't"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "What is a good advice if you feel sad?",
+                "opciones": [
+                    "Stay alone",
+                    "Talk to someone you trust",
+                    "Play more video games",
+                    "Drink coffee"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What helps the brain stay healthy?",
+                "opciones": [
+                    "Taking breaks from screens and sleeping enough",
+                    "Studying all night",
+                    "Eating only chocolate",
+                    "Shouting"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "What is the final message of the text?",
+                "opciones": [
+                    "You are always right",
+                    "It's okay not to be okay, but speak up",
+                    "School is easy",
+                    "Phones are bad"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "The Mystery of Stonehenge",
+        "texto": "Stonehenge is a prehistoric monument in England. It consists of a ring of standing stones, each around 4 meters high. It was built between 3000 BC and 2000 BC. But how did Neolithic people move such heavy stones without modern technology? And why did they build it? Some archaeologists believe it was a temple, others think it was an astronomical calendar to track the sun and the moon. Today, Stonehenge is one of the most famous places in the world and a UNESCO Heritage site.",
+        "preguntas": [
+            {
+                "pregunta": "What is Stonehenge?",
+                "opciones": [
+                    "A modern stadium",
+                    "A prehistoric monument in England",
+                    "A large castle",
+                    "A natural mountain"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "When was it built?",
+                "opciones": [
+                    "In the year 2000",
+                    "Between 3000 BC and 2000 BC",
+                    "In the Middle Ages",
+                    "100 years ago"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is one theory about its purpose?",
+                "opciones": [
+                    "A swimming pool",
+                    "An astronomical calendar",
+                    "A market",
+                    "A hotel"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is mysterious about it?",
+                "opciones": [
+                    "The color of the stones",
+                    "How people moved heavy stones without technology",
+                    "The language used",
+                    "The name"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Is it a UNESCO Heritage site?",
+                "opciones": [
+                    "Yes",
+                    "No"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Digital Citizenship: Fake News",
+        "texto": "In the digital age, information travels very fast. However, not all news on the internet is true. 'Fake news' are false stories that people share on social media to manipulate opinions or to get clicks. To be a good digital citizen, you should check the source of the information before sharing it. Ask yourself: Who wrote this? Does the headline sound too dramatic? Are there other websites reporting the same news? Critical thinking is our best weapon against lies in the online world.",
+        "preguntas": [
+            {
+                "pregunta": "What are 'fake news'?",
+                "opciones": [
+                    "Funny jokes",
+                    "False stories created to manipulate or get clicks",
+                    "Breaking news",
+                    "Expensive newspapers"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What should a good digital citizen do?",
+                "opciones": [
+                    "Share everything",
+                    "Check the source before sharing",
+                    "Believe only the first result",
+                    "Don't use the internet"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is a sign of fake news?",
+                "opciones": [
+                    "Too many photos",
+                    "A headline that sounds too dramatic",
+                    "A long text",
+                    "No videos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is our best weapon against online lies?",
+                "opciones": [
+                    "A faster computer",
+                    "Critical thinking",
+                    "A strong password",
+                    "An antivirus"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Why do people share fake news?",
+                "opciones": [
+                    "By mistake only",
+                    "To manipulate opinions or get money / clicks",
+                    "Because they are bored",
+                    "To help others"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Festivals: St. Patrick's Day",
+        "texto": "St. Patrick's Day is celebrated on March 17th. It is the national day of Ireland, but it is now celebrated all over the world. People wear green clothes and shamrocks (small plants with three leaves). In many cities, there are large parades with music and dancing. Why is everything green? Legend says that St. Patrick used the shamrock to explain the Holy Trinity and that green makes you invisible to leprechauns. In some places, they even dye the river water green to celebrate this day!",
+        "preguntas": [
+            {
+                "pregunta": "When is St. Patrick's Day?",
+                "opciones": [
+                    "February 14th",
+                    "March 17th",
+                    "October 31st",
+                    "December 25th"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Which country does it come from?",
+                "opciones": [
+                    "Scotland",
+                    "Ireland",
+                    "Spain",
+                    "The USA"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What color do people wear?",
+                "opciones": [
+                    "Red",
+                    "Green",
+                    "Blue",
+                    "Yellow"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What animal/creature is associated with the color green in the legend?",
+                "opciones": [
+                    "Dragons",
+                    "Leprechauns",
+                    "Cats",
+                    "Birds"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is a shamrock?",
+                "opciones": [
+                    "A type of hat",
+                    "A small plant with three leaves",
+                    "A traditional song",
+                    "A green drink"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Technology: The Internet of Things (IoT)",
+        "texto": "Imagine that your fridge can tell you when you need more milk, or your coffee machine starts working automatically when your alarm clock rings. This is the Internet of Things (IoT). It is a network of physical objects connected to the internet. This technology makes our lives easier and more efficient. However, it also has risks. If everything is connected, hackers could try to control our homes. We need to be careful with cybersecurity to protect our privacy while enjoying these modern inventions.",
+        "preguntas": [
+            {
+                "pregunta": "What is the 'Internet of Things'?",
+                "opciones": [
+                    "A new type of internet cable",
+                    "A network of physical objects connected to the internet",
+                    "A website for shopping",
+                    "A computer game"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Give an example of IoT mention in the text:",
+                "opciones": [
+                    "A flying car",
+                    "A fridge that tells you when you need milk",
+                    "A robot teacher",
+                    "A magical book"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is a benefit of this technology?",
+                "opciones": [
+                    "It's very expensive",
+                    "It makes life easier and more efficient",
+                    "It never breaks",
+                    "It doesn't need electricity"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is a risk of IoT?",
+                "opciones": [
+                    "It's boring",
+                    "Hackers could control our homes",
+                    "It's too fast",
+                    "There is no risks"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What do we need to protect our privacy?",
+                "opciones": [
+                    "New batteries",
+                    "Better cybersecurity",
+                    "A bigger TV",
+                    "A lot of friends"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Space Mysteries: Black Holes",
+        "texto": "Black holes are one of the most mysterious and powerful things in the universe. A black hole is a region in space where gravity is so strong that nothing, not even light, can escape from it. They are formed when a very large star dies and collapses. Scientists cannot see black holes directly because they are invisible, but they can see how they affect the stars and gas around them. Recently, scientists have even taken the first photo of a black hole! There is still a lot to learn about these cosmic monsters.",
+        "preguntas": [
+            {
+                "pregunta": "What is a black hole?",
+                "opciones": [
+                    "A big dark planet",
+                    "A region in space with extremely strong gravity",
+                    "A hole in the ground",
+                    "A dead moon"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Can light escape from a black hole?",
+                "opciones": [
+                    "Yes",
+                    "No"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "How are black holes formed?",
+                "opciones": [
+                    "When a star is born",
+                    "When a large star dies and collapses",
+                    "By aliens",
+                    "When two planets crash"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Can scientists see them directly?",
+                "opciones": [
+                    "Yes, easily",
+                    "No, because they are invisible",
+                    "Only at night",
+                    "Only from Earth"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What have scientists achieved recently?",
+                "opciones": [
+                    "They destroyed a black hole",
+                    "They took the first photo of a black hole",
+                    "They traveled inside one",
+                    "Nothing"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

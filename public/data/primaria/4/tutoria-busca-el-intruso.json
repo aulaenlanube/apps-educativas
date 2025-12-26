@@ -1,124 +1,187 @@
 [
   {
-    "categoria": "Emociones (Visual)",
+    "categoria": "Estados de Ánimo y Expresiones (Visual)",
     "correctos": [
       "😀",
       "😢",
       "😡",
       "😱",
       "😴",
-      "🤢"
+      "🤢",
+      "🤩",
+      "🤔",
+      "🥳",
+      "🤫",
+      "🙄",
+      "😤",
+      "🥰",
+      "🤒"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "🏠",
       "🐶",
-      "✏️"
+      "✏️",
+      "⚽",
+      "🍔",
+      "📱",
+      "💻",
+      "🎸",
+      "🚲"
     ]
   },
   {
-    "categoria": "Vida Activa (Visual)",
+    "categoria": "Hábito de Vida Activa y Saludable (Visual)",
     "correctos": [
       "🚴",
       "🏊",
       "🏃",
       "🤸",
       "🧗",
-      "⚽"
+      "⚽",
+      "🏀",
+      "🥗",
+      "🧗‍♂️",
+      "🧘",
+      "🚶",
+      "🎾"
     ],
     "intrusos": [
       "🛋️",
       "📺",
       "🎮",
       "📱",
-      "🛌"
+      "🛌",
+      "🍔",
+      "🍿",
+      "🥤",
+      "🍩",
+      "🍫",
+      "🎰"
     ]
   },
   {
-    "categoria": "Peligros (Visual)",
+    "categoria": "Elementos que Requieren Precaución (Visual)",
     "correctos": [
       "🔥",
       "🔌",
       "🔪",
       "💊",
       "🧪",
-      "✂️"
+      "✂️",
+      "🚧",
+      "⚠️",
+      "🚭",
+      "🧨",
+      "🥛 (lejía)",
+      "🧴"
     ],
     "intrusos": [
       "🧸",
       "📚",
       "⚽",
       "🍎",
-      "👕"
+      "👕",
+      "👟",
+      "🎨",
+      "🪁",
+      "🍦",
+      "🥪",
+      "🛋️"
     ]
   },
   {
-    "categoria": "Cualidades de un Amigo",
+    "categoria": "Cualidades de una Buena Amistad",
     "correctos": [
-      "Leal",
-      "Sincero",
-      "Divertido",
-      "Amable",
-      "Generoso"
+      "Lealtad",
+      "Sinceridad",
+      "Diversión compartida",
+      "Amabilidad",
+      "Generosidad",
+      "Confianza",
+      "Respeto",
+      "Apoyo",
+      "Paciencia",
+      "Empatía"
     ],
     "intrusos": [
       "Mentiroso",
       "Egoísta",
       "Envidioso",
       "Violento",
-      "Cruel"
+      "Cruel",
+      "Burlón",
+      "Traidor",
+      "Pesado",
+      "Interesado",
+      "Rencoroso"
     ]
   },
   {
-    "categoria": "Resolución de Conflictos",
+    "categoria": "Estrategias Pozitivas de Resolución de Conflictos",
     "correctos": [
-      "Hablar",
-      "Escuchar",
-      "Pedir perdón",
-      "Negociar",
-      "Calmarse"
+      "Hablar con calma",
+      "Escuchar al otro",
+      "Pedir perdón sinceramente",
+      "Llegar a un acuerdo / Negociar",
+      "Respirar hondo para calmarse",
+      "Pedir ayuda a un adulto",
+      "Ceder a veces"
     ],
     "intrusos": [
-      "Gritar",
-      "Pegar",
-      "Insultar",
-      "Ignorar",
-      "Amenazar"
+      "Gritar insultos",
+      "Pegar o empujar",
+      "Ignorar el problema",
+      "Amenazar con no ser amigo",
+      "Echar la culpa a los demás",
+      "Romper cosas del otro",
+      "Mentir para ganar"
     ]
   },
   {
-    "categoria": "Derechos del Niño",
+    "categoria": "Derechos Universales de la Infancia",
     "correctos": [
-      "Educación",
-      "Salud",
-      "Juego",
-      "Familia",
-      "Protección"
+      "Derecho a la Educación",
+      "Derecho a la Salud",
+      "Derecho al Juego",
+      "Derecho a tener una Familia",
+      "Derecho a la Protección",
+      "Derecho a la Identidad (Nombre)",
+      "Derecho a la Igualdad"
     ],
     "intrusos": [
-      "Trabajar",
-      "Guerra",
-      "Hambre",
-      "Violencia",
-      "Abandono"
+      "Obligación de trabajar",
+      "Derecho a la Guerra",
+      "Pasar hambre",
+      "Sufrir violencia",
+      "Vivir en el abandono",
+      "Ser discriminado",
+      "Recibir castigos físicos"
     ]
   },
   {
-    "categoria": "Emociones Básicas",
+    "categoria": "Emociones Básicas del Ser Humano",
     "correctos": [
       "Alegría",
       "Tristeza",
       "Miedo",
-      "Ira",
-      "Sorpresa"
+      "Ira o Rabia",
+      "Sorpresa",
+      "Asco",
+      "Curiosidad",
+      "Culpa",
+      "Vergüenza"
     ],
     "intrusos": [
       "Hambre",
       "Sed",
-      "Sueño",
-      "Dolor",
-      "Frío"
+      "Sueño profundo",
+      "Dolor de muela",
+      "Frío polar",
+      "Calor asfixiante",
+      "Cansancio extremo",
+      "Picor"
     ]
   }
 ]

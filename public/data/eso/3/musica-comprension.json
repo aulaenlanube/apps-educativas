@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "El Impresionismo Musical",
+        "texto": "A finales del siglo XIX, surge en Francia el Impresionismo, inspirado en la pintura de Monet. Compositores como Claude DEBUSSY y Maurice Ravel buscaban crear atmósferas y 'colores' sonoros en lugar de melodías claras. Usan escalas exóticas (como la escala hexatónica o de tonos enteros) y acordes que no se resuelven de forma tradicional. La música suena etérea, como un sueño o un paisaje con niebla. 'Claro de Luna' de Debussy es el ejemplo más famoso de este estilo que rompió con el Romanticismo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué buscaba la música impresionista?",
+                "opciones": [
+                    "Melodías muy pegadizas",
+                    "Crear atmósferas y 'colores' sonoros",
+                    "Seguir las reglas antiguas",
+                    "Hacer mucho ruido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién es el compositor principal del Impresionismo?",
+                "opciones": [
+                    "Beethoven",
+                    "Debussy",
+                    "Bach",
+                    "Mozart"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué arte se inspiró este movimiento musical?",
+                "opciones": [
+                    "Literatura",
+                    "Pintura (Monet)",
+                    "Arquitectura",
+                    "Cine"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo suena la música impresionista?",
+                "opciones": [
+                    "Muy agresiva",
+                    "Etérea y sugerente, como un paisaje",
+                    "Militar",
+                    "Sin instrumentos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una técnica usada:",
+                "opciones": [
+                    "Escalas de un solo tono",
+                    "Escalas exóticas y de tonos enteros",
+                    "Solo dos notas",
+                    "Gritos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "La Música en el Siglo XX: Ruptura",
+        "texto": "El siglo XX fue una época de experimentación radical. Arnold Schönberg inventó el DODECAFONISMO, un sistema donde las 12 notas de la escala cromática tienen la misma importancia (música atonal). Otros compositores como Ígor Stravinski provocaron escándalos con 'La Consagración de la Primavera' por sus ritmos violentos. Surgieron también la música concreta (grabar sonidos de la realidad) y la música aleatoria (donde parte de la obra se deja al azar). La música dejó de buscar solo la 'belleza' para buscar la expresión pura.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el dodecafonismo?",
+                "opciones": [
+                    "Música con 2 notas",
+                    "Sistema donde las 12 notas tienen el mismo valor (atonalismo)",
+                    "Tocar 12 instrumentos",
+                    "Un tipo de baile"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién inventó el dodecafonismo?",
+                "opciones": [
+                    "Vivaldi",
+                    "Arnold Schönberg",
+                    "John Lennon",
+                    "Mozart"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué compositor provocó un escándalo con ritmos violentos?",
+                "opciones": [
+                    "Bach",
+                    "Ígor Stravinski",
+                    "Haydn",
+                    "Debussy"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la música aleatoria?",
+                "opciones": [
+                    "Música muy rápida",
+                    "Música que deja parte de la obra al azar",
+                    "Música grabada en el campo",
+                    "No existe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué buscaba la música del siglo XX?",
+                "opciones": [
+                    "Ser siempre bonita",
+                    "La expresión pura y la experimentación",
+                    "Volver al pasado",
+                    "Ser silenciosa"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "El Jazz: De Nueva Orleans al Mundo",
+        "texto": "El jazz nació a principios del siglo XX en Estados Unidos, fruto de la mezcla de la cultura africana y europea. Sus raíces están en los cantos de trabajo de los esclavos (work songs) y el blues. Sus características principales son la IMPROVISACIÓN (el músico crea la música en el momento) y el ritmo con SWING. Instrumentos como la trompeta, el saxofón, el piano y la batería son protagonistas. Grandes figuras como Louis Armstrong o Miles Davis elevaron el jazz a la categoría de arte universal, influyendo en todos los géneros modernos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la característica más importante del Jazz?",
+                "opciones": [
+                    "Tener partituras muy largas",
+                    "La improvisación",
+                    "No tener ritmo",
+                    "Ser música religiosa siempre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde nació el Jazz?",
+                "opciones": [
+                    "En París",
+                    "En Estados Unidos (Nueva Orleans)",
+                    "En África",
+                    "En España"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un instrumento típico de Jazz:",
+                "opciones": [
+                    "Flauta dulce",
+                    "Saxofón o trompeta",
+                    "Arpa",
+                    "Órgano"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el swing?",
+                "opciones": [
+                    "Un tipo de silla",
+                    "Un ritmo característico del jazz, balanceante",
+                    "Un instrumento de madera",
+                    "La forma de vestir"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita una raíz del Jazz:",
+                "opciones": [
+                    "El Rock",
+                    "El Blues y los cantos de trabajo",
+                    "La Ópera",
+                    "El Flamenco"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "El Nacimiento del Rock and Roll",
+        "texto": "En los años 50, la unión del Rhythm and Blues y el Country dio lugar al ROCK AND ROLL. Era una música enérgica, joven y rebelde. Elvis Presley se convirtió en el 'Rey del Rock'. La formación básica suele ser: GUITARRA ELÉCTRICA (con distorsión), bajo eléctrico y batería. El Rock cambió la forma de vestir, de bailar y de pensar de los jóvenes de todo el mundo. Grupos como The Beatles o The Rolling Stones llevaron esta revolución a otro nivel en los años 60, convirtiéndola en un fenómeno de masas global.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué dos estilos se unieron para crear el Rock and Roll?",
+                "opciones": [
+                    "Clásica y Jazz",
+                    "Rhythm and Blues y Country",
+                    "Pop y Techno",
+                    "Ópera y Rap"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué instrumento es el alma del Rock?",
+                "opciones": [
+                    "El piano",
+                    "La guitarra eléctrica",
+                    "La flauta",
+                    "El violín"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién es conocido como el Rey del Rock?",
+                "opciones": [
+                    "Freddie Mercury",
+                    "Elvis Presley",
+                    "Michael Jackson",
+                    "Bob Dylan"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué década nació el Rock and Roll?",
+                "opciones": [
+                    "Años 20",
+                    "Años 50",
+                    "Años 80",
+                    "Año 2000"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un grupo británico famoso de los 60:",
+                "opciones": [
+                    "The Beatles",
+                    "Nirvana",
+                    "Daft Punk",
+                    "ABBA"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "La Música Pop: Melodía y Éxito",
+        "texto": "La música Pop (de 'popular') está diseñada para llegar a todo el mundo. Se caracteriza por tener estructuras sencillas (estrofa-estribillo), melodías pegadizas y una producción muy cuidada. Michael Jackson, el 'Rey del Pop', revolucionó el género no solo con su música, sino con el baile y los videoclips. El Pop se adapta constantemente a las modas, incorporando elementos del rock, el dance o el hip-hop. Su función principal es el entretenimiento, pero también refleja los cambios de la sociedad a través de sus letras e imagen.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa Pop?",
+                "opciones": [
+                    "Potente",
+                    "Popular (diseñado para las masas)",
+                    "Pequeño",
+                    "Poesía"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién es el Rey del Pop?",
+                "opciones": [
+                    "Elvis",
+                    "Michael Jackson",
+                    "Justin Bieber",
+                    "David Bowie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la estructura típica del pop?",
+                "opciones": [
+                    "Improvisación libre",
+                    "Estrofa y estribillo",
+                    "Fuga",
+                    "Solo de batería"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué importancia tiene el videoclip en el pop?",
+                "opciones": [
+                    "Ninguna",
+                    "Fundamental para la imagen y el éxito de la canción",
+                    "Solo para niños",
+                    "Se usa poco"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La música Pop se caracteriza por ser:",
+                "opciones": [
+                    "Muy difícil",
+                    "Pegadiza y sencilla",
+                    "Silenciosa",
+                    "Solo instrumental"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Hip-Hop y Rap: La voz de la calle",
+        "texto": "El Hip-Hop nació en el Bronx (Nueva York) en los años 70. Es una cultura que incluye el DJing, el Breakdance, el Graffiti y el MCing (Rap). El RAP consiste en recitar rimas rítmicamente sobre un 'beat' o base. Originalmente era una música de protesta social que denunciaba el racismo y la pobreza. Elementos clave son el SAMPLING (usar fragmentos de otras canciones) y el SCRATCHING del DJ. Hoy es el género más escuchado por los jóvenes en todo el mundo, con subgéneros como el Trap.",
+        "preguntas": [
+            {
+                "pregunta": "¿Dónde nació el Hip-Hop?",
+                "opciones": [
+                    "Los Ángeles",
+                    "El Bronx (Nueva York)",
+                    "Londres",
+                    "Tokio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el Rap?",
+                "opciones": [
+                    "Canto de ópera",
+                    "Recitar rimas rítmicamente sobre una base",
+                    "Un tipo de pintura",
+                    "Bailar con robot"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el sampling?",
+                "opciones": [
+                    "Cantar muy alto",
+                    "Usar fragmentos de otras grabaciones antiguas",
+                    "Romper discos",
+                    "Dibujar en el PC"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita un elemento de la cultura Hip-Hop:",
+                "opciones": [
+                    "Violín",
+                    "Graffiti o Breakdance",
+                    "Poesía escrita",
+                    "Piano clásico"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál era la función original del rap?",
+                "opciones": [
+                    "Vender ropa",
+                    "Protesta social y denuncia",
+                    "Música para dormir",
+                    "Educar a niños"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "La Música Electrónica",
+        "texto": "La música electrónica se crea utilizando instrumentos electrónicos y tecnología digital. Los SINTETIZADORES y las CAJAS DE RITMOS sustituyen a los instrumentos tradicionales. Surgió en laboratorios en los años 50, pero se hizo popular con grupos como Kraftwerk y más tarde con el nacimiento del Techno y el House. El DJ deja de ser alguien que 'pone música' para convertirse en un artista que mezcla y remezcla sonidos en directo. El ritmo repetitivo y el uso de efectos sonoros crean una experiencia hipnótica en las salas de baile.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué instrumentos son clave en la música electrónica?",
+                "opciones": [
+                    "Guitarra y piano",
+                    "Sintetizadores y cajas de ritmos",
+                    "Saxofón",
+                    "Tambores de madera"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un sintetizador?",
+                "opciones": [
+                    "Un micro",
+                    "Un instrumento que crea sonidos mediante señales eléctricas",
+                    "Un altavoz",
+                    "Un tipo de cable"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la función del DJ moderno?",
+                "opciones": [
+                    "Solo pone CDs",
+                    "Mezcla y remezcla sonidos como un artista",
+                    "Vender entradas",
+                    "Limpiar la sala"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita un estilo electrónico mencionado:",
+                "opciones": [
+                    "Vals",
+                    "Techno o House",
+                    "Blues",
+                    "Jota"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo es el ritmo habitual en esta música?",
+                "opciones": [
+                    "Lento y variable",
+                    "Repetitivo e hipnótico",
+                    "No tiene ritmo",
+                    "Solo hay voces"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Formas musicales: El Videoclip",
+        "texto": "En la música actual, el videoclip es tan importante como la canción misma. Es una forma de arte que combina IMAGEN, MÚSICA y NARRACIÓN. El lanzamiento de canales como MTV en los 80 hizo que el vídeo musical fuera imprescindible para el éxito. Permite al artista reforzar su mensaje, mostrar una estética concreta o contar una historia cinematográfica en pocos minutos. Hoy, plataformas como YouTube han hecho del videoclip el medio principal de consumo musical en todo el planeta.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué combina un videoclip?",
+                "opciones": [
+                    "Solo música",
+                    "Imagen, música y narración",
+                    "Música y olor",
+                    "Dibujo y texto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué canal de TV impulsó el éxito de los videoclips?",
+                "opciones": [
+                    "CNN",
+                    "MTV",
+                    "Disney Channel",
+                    "Eurosport"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve el videoclip al artista?",
+                "opciones": [
+                    "Para ganar tiempo",
+                    "Para reforzar su mensaje y estética",
+                    "Para no cantar en directo",
+                    "Para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la plataforma principal de videoclips hoy?",
+                "opciones": [
+                    "Spotify",
+                    "YouTube",
+                    "Radio",
+                    "Televisor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un videoclip puede contar una historia...",
+                "opciones": [
+                    "Cinematográfica",
+                    "Aburrida",
+                    "Inexistente",
+                    "Solo de letras"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Las Bandas Sonoras de Videojuegos",
+        "texto": "La música de los videojuegos ha evolucionado desde los simples pitidos ('8 bits') de los años 80 hasta grandes obras sinfónicas iguales a las del cine. Su gran diferencia es que la música de un juego debe ser INTERACTIVA: debe cambiar según lo que haga el jugador. Si hay un jefe final, la música es épica; si estás explorando un bosque, es tranquila. Compositores como Koji Kondo (Mario, Zelda) han creado melodías grabadas en la memoria de millones de personas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué diferencia la música de videojuegos de la del cine?",
+                "opciones": [
+                    "No tiene instrumentos",
+                    "Es interactiva (cambia según los actos del jugador)",
+                    "Es más corta",
+                    "Solo se oye en consolas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llamaba la música de los primeros juegos?",
+                "opciones": [
+                    "Clásica",
+                    "8 bits (Chiptune)",
+                    "Ópera",
+                    "Rock"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién compuso la música de Mario Bros y Zelda?",
+                "opciones": [
+                    "Beethoven",
+                    "Koji Kondo",
+                    "John Williams",
+                    "Michael Jackson"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un jugador entra en combate, la música suele volverse:",
+                "opciones": [
+                    "Triste",
+                    "Épica y rápida",
+                    "Silenciosa",
+                    "Lenta"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo es la música de los videojuegos hoy?",
+                "opciones": [
+                    "Muy mala",
+                    "Grandes producciones a menudo sinfónicas",
+                    "Solo pitidos",
+                    "No hay música"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "La Música como Negocio: Streaming",
+        "texto": "La industria musical ha cambiado radicalmente con el STREAMING (Spotify, Apple Music). Ya no compramos discos físicos (CD o vinilo), sino que pagamos por el acceso a millones de canciones en la nube. Esto ha democratizado la música (puedes escuchar cualquier cosa al instante), pero también ha hecho que los artistas ganen mucho menos por cada reproducción. Ahora, los CONCIERTOS en directo son la principal fuente de ingresos para los músicos, convirtiendo la experiencia en vivo en algo más valioso que nunca.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el streaming musical?",
+                "opciones": [
+                    "Grabar un disco",
+                    "Acceso a música online sin descargar el archivo físico",
+                    "Vender vinilos",
+                    "Cantar en el metro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ventaja tiene el streaming?",
+                "opciones": [
+                    "Que los discos son bonitos",
+                    "Acceso instantáneo a millones de canciones",
+                    "Que no gasta batería",
+                    "Que la música suena mejor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es hoy la principal fuente de ingresos de un músico?",
+                "opciones": [
+                    "Venta de CDs",
+                    "Conciertos en directo",
+                    "Reproducciones en radio",
+                    "Ninguna"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una plataforma de streaming:",
+                "opciones": [
+                    "Netflix",
+                    "Spotify",
+                    "Instagram",
+                    "WhatsApp"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo ha afectado el streaming al pago de los artistas?",
+                "opciones": [
+                    "Ganan mucho más",
+                    "Ganan mucho menos por reproducción individual",
+                    "Es igual",
+                    "No cobran"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

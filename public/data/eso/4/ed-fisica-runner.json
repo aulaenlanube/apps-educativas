@@ -1,17 +1,122 @@
 {
-  "cualidades_fisicas": [
-    "fuerza explosiva", "resistencia aeróbica", "flexibilidad", "velocidad de reacción", "agilidad", "equilibrio dinámico", "coordinación", "potencia", "resistencia anaeróbica", "ritmo"
+  "sistemas_entrenamiento": [
+    "fartlek",
+    "interval training",
+    "entrenamiento interválico",
+    "series de velocidad",
+    "circuito de fuerza",
+    "carrera continua",
+    "entrenamiento pliométrico",
+    "isometría",
+    "hipertrofia",
+    "recuperación"
   ],
-  "deportes_colectivos": [
-    "baloncesto", "balonmano", "voleibol", "fútbol", "rugby", "hockey", "waterpolo", "beisbol", "fútbol sala", "ultimate frisbee"
+  "fisiologia_avanzada": [
+    "frecuencia cardíaca máxima",
+    "zona de salud",
+    "zona de rendimiento",
+    "vo2 máx",
+    "lactato",
+    "umbral anaeróbico",
+    "metabolismo basal",
+    "gasto calórico",
+    "frecuencia respiratoria",
+    "vasodilatación"
   ],
-  "actividades_naturaleza": [
-    "senderismo", "escalada", "orientación", "piragüismo", "rápel", "acampada", "brújula", "mapa", "trekking", "barranquismo"
+  "prevencion_lesiones_rice": [
+    "reposo",
+    "hielo",
+    "compresión",
+    "elevación",
+    "esguince de ligamento",
+    "rotura fibrilar",
+    "tendinitis",
+    "luxación",
+    "calambre",
+    "vendaje funcional"
   ],
-  "primeros_auxilios": [
-    "rcp", "posición lateral", "hemorragia", "vendaje", "botiquín", "lesión", "esguince", "lipotimia", "quemadura", "fractura"
+  "nutricion_deportiva_4": [
+    "glucógeno muscular",
+    "proteína de alta calidad",
+    "grasas saludables",
+    "hidratación constante",
+    "bebida isotónica",
+    "recuperación post-esfuerzo",
+    "dieta equilibrada",
+    "vitaminas y minerales",
+    "suplementación",
+    "energía"
   ],
-  "anatomia_deportiva": [
-    "pectoral", "dorsal", "trapecio", "deltoides", "bíceps", "tríceps", "abdominales", "cuádriceps", "isquios", "gemelos"
+  "deportes_raqueta_4": [
+    "pádel",
+    "tenis",
+    "bádminton",
+    "drive",
+    "revés",
+    "mate",
+    "dejada",
+    "globo",
+    "volea",
+    "saque"
+  ],
+  "orientacion_naturaleza_4": [
+    "brújula",
+    "mapa topográfico",
+    "itinerario",
+    "rumbo",
+    "baliza",
+    "azimuto",
+    "escalada",
+    "rappel",
+    "senderismo",
+    "medio ambiente"
+  ],
+  "acrosport_figuras": [
+    "portor",
+    "ágil",
+    "ayudante",
+    "pirámide humana",
+    "equilibrio",
+    "estatua",
+    "figura grupal",
+    "transición",
+    "seguridad",
+    "confianza"
+  ],
+  "etica_dopaje_limpio": [
+    "fair play",
+    "respecto",
+    "sustancias prohibidas",
+    "dopaje",
+    "ética deportiva",
+    "igualdad",
+    "reglas de juego",
+    "control antidopaje",
+    "supeación",
+    "integridad"
+  ],
+  "expresion_teatro_baile": [
+    "coreografía",
+    "música",
+    "ritmo",
+    "sincronización",
+    "gesto",
+    "comunicación no verbal",
+    "estilo de danza",
+    "performance",
+    "expresividad",
+    "elenco"
+  ],
+  "deporte_sociedad_inversion": [
+    "deporte adaptado",
+    "juegos paralímpicos",
+    "deporte e inclusión",
+    "voluntariado deportivo",
+    "ocio activo",
+    "sedentarismo",
+    "salud pública",
+    "valores sociales",
+    "tradición",
+    "futuro"
   ]
 }

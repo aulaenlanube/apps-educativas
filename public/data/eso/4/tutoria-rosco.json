@@ -1,300 +1,2178 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Valoración que una persona tiene de sí misma.", "solucion": "autoestima", "materia": "tutoria" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Capacidad de expresar opiniones y sentimientos sin agredir a los demás.", "solucion": "asertividad", "materia": "tutoria" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Estado de agitación o inquietud del ánimo, común ante exámenes.", "solucion": "ansiedad", "materia": "tutoria" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Capacidad para obrar según el propio criterio, con independencia.", "solucion": "autonomía", "materia": "tutoria" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Conducta reiterada de maltrato entre escolares.", "solucion": "acoso", "materia": "tutoria" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Capacidad o habilidad para realizar cierta actividad o tarea.", "solucion": "aptitud", "materia": "tutoria" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Disposición de ánimo hacia algo o alguien.", "solucion": "actitud", "materia": "tutoria" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Dependencia de sustancias o actividades nocivas.", "solucion": "adicción", "materia": "tutoria" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Sentimiento de afecto y confianza entre personas.", "solucion": "amistad", "materia": "tutoria" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Proceso de conocerse a uno mismo.", "solucion": "autoconocimiento", "materia": "tutoria" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Etapa educativa post-obligatoria previa a la universidad.", "solucion": "bachillerato", "materia": "tutoria" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Estado de satisfacción física y mental.", "solucion": "bienestar", "materia": "tutoria" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Ayuda económica para cursar estudios.", "solucion": "beca", "materia": "tutoria" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Acoso escolar (término en inglés).", "solucion": "bullying", "materia": "tutoria" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Paralización mental ante una situación de estrés (quedarse en...).", "solucion": "blanco", "materia": "tutoria" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Acción de intentar encontrar empleo (... de empleo).", "solucion": "búsqueda", "materia": "tutoria" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Cualidad de ser bueno y tener inclinación a hacer el bien.", "solucion": "bondad", "materia": "tutoria" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Rama de ciencias en Bachillerato (... y Geología).", "solucion": "biología", "materia": "tutoria" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Impedimento u obstáculo.", "solucion": "barrera", "materia": "tutoria" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Documento oficial del Estado (Boletín Oficial del Estado).", "solucion": "boe", "materia": "tutoria" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Estudios universitarios o trayectoria profesional.", "solucion": "carrera", "materia": "tutoria" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Modalidad de Formación Profesional (... Formativo).", "solucion": "ciclo", "materia": "tutoria" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Relación entre personas que viven juntas o se relacionan.", "solucion": "convivencia", "materia": "tutoria" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Documento que resume la formación y experiencia laboral.", "solucion": "currículum", "materia": "tutoria" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Enfrentamiento o desacuerdo entre personas.", "solucion": "conflicto", "materia": "tutoria" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Forma de actuar de una persona.", "solucion": "conducta", "materia": "tutoria" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Intercambio de información.", "solucion": "comunicación", "materia": "tutoria" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Capacidad de centrar la atención en algo.", "solucion": "concentración", "materia": "tutoria" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Uso responsable de bienes y servicios (... responsable).", "solucion": "consumo", "materia": "tutoria" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Trabajo conjunto para lograr un fin.", "solucion": "colaboración", "materia": "tutoria" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Elección entre varias opciones (Toma de...).", "solucion": "decisión", "materia": "tutoria" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Sustancias que alteran el sistema nervioso y crean adicción.", "solucion": "drogas", "materia": "tutoria" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Normas fundamentales que protegen a las personas (... Humanos).", "solucion": "derechos", "materia": "tutoria" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Conversación entre dos o más personas para llegar a un acuerdo.", "solucion": "diálogo", "materia": "tutoria" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Variedad y diferencia entre personas o cosas.", "solucion": "diversidad", "materia": "tutoria" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Trato desigual y perjudicial hacia una persona o grupo.", "solucion": "discriminación", "materia": "tutoria" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Representante de los alumnos en la clase.", "solucion": "delegado", "materia": "tutoria" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Trastorno del estado de ánimo caracterizado por tristeza profunda.", "solucion": "depresión", "materia": "tutoria" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Obligación de cumplir con algo.", "solucion": "deber", "materia": "tutoria" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Proceso emocional tras una pérdida.", "solucion": "duelo", "materia": "tutoria" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Capacidad de ponerse en el lugar del otro.", "solucion": "empatía", "materia": "tutoria" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Reacción psicofisiológica ante estímulos (Alegría, tristeza...).", "solucion": "emoción", "materia": "tutoria" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Tensión física o emocional.", "solucion": "estrés", "materia": "tutoria" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Prueba de acceso a la universidad (anteriormente Selectividad).", "solucion": "ebau", "materia": "tutoria" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Uso de la energía para conseguir algo.", "solucion": "esfuerzo", "materia": "tutoria" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Triunfo o resultado feliz de una actuación.", "solucion": "éxito", "materia": "tutoria" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Educación Secundaria Obligatoria (siglas).", "solucion": "eso", "materia": "tutoria" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Acción de prestar atención a lo que se oye.", "solucion": "escucha", "materia": "tutoria" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Grupo de personas que trabajan juntas.", "solucion": "equipo", "materia": "tutoria" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Reunión para conseguir un trabajo.", "solucion": "entrevista", "materia": "tutoria" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Tiempo que está por venir.", "solucion": "futuro", "materia": "tutoria" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Estudios prácticos para aprender un oficio (... Profesional).", "solucion": "formación", "materia": "tutoria" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Sentimiento desagradable al no conseguir lo que se quiere.", "solucion": "frustración", "materia": "tutoria" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Grupo de personas emparentadas.", "solucion": "familia", "materia": "tutoria" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Movimiento social que pide la igualdad de derechos entre sexos.", "solucion": "feminismo", "materia": "tutoria" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Hábito nocivo de consumir tabaco.", "solucion": "fumar", "materia": "tutoria" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Virtud o cualidad positiva de una persona (opuesto a debilidad).", "solucion": "fortaleza", "materia": "tutoria" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Respuesta o devolución de información sobre el desempeño (anglicismo).", "solucion": "feedback", "materia": "tutoria" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Estado de grata satisfacción espiritual y física.", "solucion": "felicidad", "materia": "tutoria" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Cualidad de adaptarse a los cambios.", "solucion": "flexibilidad", "materia": "tutoria" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Título universitario de 4 años.", "solucion": "grado", "materia": "tutoria" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Título que se obtiene al terminar la ESO.", "solucion": "graduado", "materia": "tutoria" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Conjunto de personas reunidas.", "solucion": "grupo", "materia": "tutoria" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Construcción social de lo masculino y femenino.", "solucion": "género", "materia": "tutoria" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Acción de administrar el tiempo o recursos.", "solucion": "gestión", "materia": "tutoria" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Persona que orienta o dirige.", "solucion": "guía", "materia": "tutoria" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "Hábito de compartir con los demás.", "solucion": "generosidad", "materia": "tutoria" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Tendencia de los mercados y empresas a extenderse mundialmente.", "solucion": "globalización", "materia": "tutoria" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Hablar en voz muy alta (a evitar en conflictos).", "solucion": "gritar", "materia": "tutoria" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Sentimiento de agradecimiento.", "solucion": "gratitud", "materia": "tutoria" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Capacidades para relacionarse (Habilidades...).", "solucion": "sociales", "materia": "tutoria" }, 
-  { "id": "h1_fix", "letra": "H", "tipo": "empieza", "definicion": "Destrezas para realizar tareas (Habilidades).", "solucion": "habilidades", "materia": "tutoria" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Conducta repetida regularmente (ej. de estudio).", "solucion": "hábito", "materia": "tutoria" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Cualidad de decir la verdad.", "solucion": "honestidad", "materia": "tutoria" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Limpieza y aseo personal.", "solucion": "higiene", "materia": "tutoria" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Distribución del tiempo.", "solucion": "horario", "materia": "tutoria" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Modalidad de Bachillerato de letras.", "solucion": "humanidades", "materia": "tutoria" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Capacidad de percibir lo cómico.", "solucion": "humor", "materia": "tutoria" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Atracción hacia personas del otro sexo.", "solucion": "heterosexual", "materia": "tutoria" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Atracción hacia personas del mismo sexo.", "solucion": "homosexual", "materia": "tutoria" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Virtud de no presumir de los logros.", "solucion": "humildad", "materia": "tutoria" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Tipo de inteligencia para gestionar sentimientos (... Emocional).", "solucion": "inteligencia", "materia": "tutoria" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Centro de Educación Secundaria.", "solucion": "instituto", "materia": "tutoria" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Trato idéntico entre todas las personas.", "solucion": "igualdad", "materia": "tutoria" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Inclusión de personas en la sociedad.", "solucion": "integración", "materia": "tutoria" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Red informática mundial (cuidado con la privacidad).", "solucion": "internet", "materia": "tutoria" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Conjunto de rasgos que definen a una persona.", "solucion": "identidad", "materia": "tutoria" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Cualidad de empezar cosas por uno mismo.", "solucion": "iniciativa", "materia": "tutoria" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Atención que se pone en algo.", "solucion": "interés", "materia": "tutoria" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Inseguridad ante el futuro.", "solucion": "incertidumbre", "materia": "tutoria" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Independencia (no depender de otros).", "solucion": "independencia", "materia": "tutoria" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Principio moral de dar a cada uno lo que le corresponde.", "solucion": "justicia", "materia": "tutoria" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Etapa de la vida entre la infancia y la edad adulta.", "solucion": "juventud", "materia": "tutoria" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Retiro laboral (pensar en el futuro).", "solucion": "jubilación", "materia": "tutoria" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Actividad lúdica, puede generar adicción (ludopatía).", "solucion": "juego", "materia": "tutoria" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Día de puertas abiertas para conocer el centro.", "solucion": "jornada", "materia": "tutoria" },
-  { "id": "j6", "letra": "J", "tipo": "empieza", "definicion": "Capacidad de valorar algo (Sentido crítico / ... crítico).", "solucion": "juicio", "materia": "tutoria" },
-  { "id": "j7", "letra": "J", "tipo": "empieza", "definicion": "Orden de autoridad.", "solucion": "jerarquía", "materia": "tutoria" },
-  { "id": "j8", "letra": "J", "tipo": "empieza", "definicion": "Persona que manda en el trabajo.", "solucion": "jefe", "materia": "tutoria" },
-  { "id": "j9", "letra": "J", "tipo": "empieza", "definicion": "Dar razones para explicar una acción.", "solucion": "justificar", "materia": "tutoria" },
-  { "id": "j10", "letra": "J", "tipo": "empieza", "definicion": "Unidos o en compañía.", "solucion": "juntos", "materia": "tutoria" },
-
-  { "id": "k1", "letra": "K", "tipo": "contiene", "definicion": "Técnicas para promocionar la marca personal (contiene K).", "solucion": "marketing", "materia": "tutoria" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Acción y reacción, causa y efecto.", "solucion": "karma", "materia": "tutoria" },
-  { "id": "k3", "letra": "K", "tipo": "contiene", "definicion": "Clasificación por notas (Ran...ing, contiene K).", "solucion": "ranking", "materia": "tutoria" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Conjunto de materiales o herramientas.", "solucion": "kit", "materia": "tutoria" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Unidad de peso, relacionado con salud/trastornos.", "solucion": "kilo", "materia": "tutoria" },
-  { "id": "k6", "letra": "K", "tipo": "contiene", "definicion": "Experto en seguridad informática (contiene K).", "solucion": "hacker", "materia": "tutoria" },
-  { "id": "k7", "letra": "K", "tipo": "contiene", "definicion": "Enlace de internet (Lin..., contiene K).", "solucion": "link", "materia": "tutoria" },
-  { "id": "k8", "letra": "K", "tipo": "contiene", "definicion": "Retroalimentación o respuesta (Feedbac..., contiene K).", "solucion": "feedback", "materia": "tutoria" },
-  { "id": "k9", "letra": "K", "tipo": "contiene", "definicion": "Trabajar mucho (Wor...aholic, contiene K, coloquial).", "solucion": "workaholic", "materia": "tutoria" }, 
-  { "id": "k9_fix", "letra": "K", "tipo": "contiene", "definicion": "Red social de vídeos cortos (Ti...To..., contiene K).", "solucion": "tiktok", "materia": "tutoria" },
-  { "id": "k10", "letra": "K", "tipo": "contiene", "definicion": "Lugar para dejar el coche (Par...ing, contiene K).", "solucion": "parking", "materia": "tutoria" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Capacidad de elegir y actuar con responsabilidad.", "solucion": "libertad", "materia": "tutoria" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Persona que guía a un grupo.", "solucion": "líder", "materia": "tutoria" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Norma establecida por la autoridad.", "solucion": "ley", "materia": "tutoria" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Relativo al trabajo (Mundo...).", "solucion": "laboral", "materia": "tutoria" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Colectivo que agrupa la diversidad sexual.", "solucion": "lgtbi", "materia": "tutoria" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Éxito o consecución de una meta.", "solucion": "logro", "materia": "tutoria" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Capacidad de comunicación verbal.", "solucion": "lenguaje", "materia": "tutoria" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Hábito fundamental para el estudio.", "solucion": "lectura", "materia": "tutoria" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Línea que marca hasta dónde se puede llegar (poner...).", "solucion": "límite", "materia": "tutoria" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Capacidad de influencia (Liderazgo).", "solucion": "liderazgo", "materia": "tutoria" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Impulso que mueve a realizar una acción.", "solucion": "motivación", "materia": "tutoria" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Nivel de desarrollo personal y responsabilidad.", "solucion": "madurez", "materia": "tutoria" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Resolución de conflictos con un tercero neutral.", "solucion": "mediación", "materia": "tutoria" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Fin al que se dirigen las acciones.", "solucion": "meta", "materia": "tutoria" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Capacidad de recordar.", "solucion": "memoria", "materia": "tutoria" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Emoción ante un peligro real o imaginario.", "solucion": "miedo", "materia": "tutoria" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Entorno de oferta y demanda de trabajo (... laboral).", "solucion": "mercado", "materia": "tutoria" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Actitud de superioridad del hombre sobre la mujer.", "solucion": "machismo", "materia": "tutoria" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Dispositivo que puede causar adicción si se abusa.", "solucion": "móvil", "materia": "tutoria" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Salud relacionada con el bienestar psicológico (... mental).", "solucion": "mental", "materia": "tutoria" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Calificación escolar.", "solucion": "nota", "materia": "tutoria" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Regla de conducta.", "solucion": "norma", "materia": "tutoria" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Proceso para llegar a un acuerdo.", "solucion": "negociación", "materia": "tutoria" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Grado de exigencia o dificultad.", "solucion": "nivel", "materia": "tutoria" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Estado de inquietud (estar de...).", "solucion": "nervios", "materia": "tutoria" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Pensamiento pesimista.", "solucion": "negativo", "materia": "tutoria" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Relación amorosa entre jóvenes.", "solucion": "noviazgo", "materia": "tutoria" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Alimentación adecuada.", "solucion": "nutrición", "materia": "tutoria" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Carencia de algo.", "solucion": "necesidad", "materia": "tutoria" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Negación asertiva (saber decir...).", "solucion": "no", "materia": "tutoria" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Amigo o colega de clase (Compa...ero, contiene Ñ).", "solucion": "compañero", "materia": "tutoria" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Acto de educar (Ense...anza, contiene Ñ).", "solucion": "enseñanza", "materia": "tutoria" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Mentira o fraude (Enga...o, contiene Ñ).", "solucion": "engaño", "materia": "tutoria" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Curso escolar (A...o, contiene Ñ).", "solucion": "año", "materia": "tutoria" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Necesidad fisiológica de dormir (Sue...o, contiene Ñ).", "solucion": "sueño", "materia": "tutoria" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "contiene", "definicion": "Perjuicio (Da...o, contiene Ñ).", "solucion": "daño", "materia": "tutoria" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Afecto (Cari...o, contiene Ñ).", "solucion": "cariño", "materia": "tutoria" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Bronca o corrección (Rega...ina, contiene Ñ).", "solucion": "regañina", "materia": "tutoria" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "De baja estatura o edad (Peque...o, contiene Ñ).", "solucion": "pequeño", "materia": "tutoria" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "Pasar tiempo extra con alguien (Acompa...ar, contiene Ñ).", "solucion": "acompañar", "materia": "tutoria" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Proceso de ayuda para tomar decisiones (Académica/Profesional).", "solucion": "orientación", "materia": "tutoria" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Meta a alcanzar.", "solucion": "objetivo", "materia": "tutoria" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Juicio personal sobre algo.", "solucion": "opinión", "materia": "tutoria" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Posibilidad de hacer algo.", "solucion": "oportunidad", "materia": "tutoria" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Orden y planificación de tareas.", "solucion": "organización", "materia": "tutoria" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Trabajo manual o artesanal.", "solucion": "oficio", "materia": "tutoria" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Actitud positiva ante la vida.", "solucion": "optimismo", "materia": "tutoria" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Deber o tarea que hay que cumplir.", "solucion": "obligación", "materia": "tutoria" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Tiempo libre.", "solucion": "ocio", "materia": "tutoria" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Organización No Gubernamental (siglas).", "solucion": "ong", "materia": "tutoria" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Ocupación laboral.", "solucion": "profesión", "materia": "tutoria" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Conjunto de rasgos que definen a una persona.", "solucion": "personalidad", "materia": "tutoria" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Organización del tiempo de estudio.", "solucion": "planificación", "materia": "tutoria" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Influencia de los amigos (... de grupo).", "solucion": "presión", "materia": "tutoria" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Dificultad que hay que resolver.", "solucion": "problema", "materia": "tutoria" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Tomar parte en actividades.", "solucion": "participación", "materia": "tutoria" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Opinión previa y tenaz, por lo general desfavorable.", "solucion": "prejuicio", "materia": "tutoria" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Relación sentimental.", "solucion": "pareja", "materia": "tutoria" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Lo que es más importante.", "solucion": "prioridad", "materia": "tutoria" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Valor de las notas en la selectividad.", "solucion": "ponderación", "materia": "tutoria" },
-
-  { "id": "q1", "letra": "Q", "tipo": "contiene", "definicion": "Grupo de trabajo (E...ipo, contiene Q).", "solucion": "equipo", "materia": "tutoria" },
-  { "id": "q2", "letra": "Q", "tipo": "contiene", "definicion": "Norma de conducta (Eti...eta, contiene Q).", "solucion": "etiqueta", "materia": "tutoria" },
-  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Estabilidad emocional (E...ilibrio, contiene Q).", "solucion": "equilibrio", "materia": "tutoria" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Médico de salud mental (Psi...iatra, contiene Q).", "solucion": "psiquiatra", "materia": "tutoria" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Afinidad con alguien (Quí..., contiene Q).", "solucion": "química", "materia": "tutoria" },
-  { "id": "q6", "letra": "Q", "tipo": "contiene", "definicion": "Expresión de dolor o descontento (Que...a, contiene Q).", "solucion": "queja", "materia": "tutoria" },
-  { "id": "q7", "letra": "Q", "tipo": "contiene", "definicion": "Investigación activa (Bús...eda, contiene Q).", "solucion": "búsqueda", "materia": "tutoria" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "Condición necesaria (Re...isito, contiene Q).", "solucion": "requisito", "materia": "tutoria" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Resumen gráfico (Es...ema, contiene Q).", "solucion": "esquema", "materia": "tutoria" },
-  { "id": "q10", "letra": "Q", "tipo": "contiene", "definicion": "Paralización (Blo...eo, contiene Q).", "solucion": "bloqueo", "materia": "tutoria" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Consideración y valoración especial hacia alguien.", "solucion": "respeto", "materia": "tutoria" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Cumplimiento de las obligaciones.", "solucion": "responsabilidad", "materia": "tutoria" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Capacidad de superar situaciones traumáticas.", "solucion": "resiliencia", "materia": "tutoria" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Volver a estudiar lo aprendido.", "solucion": "repaso", "materia": "tutoria" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Vínculos con otras personas.", "solucion": "relaciones", "materia": "tutoria" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Posibilidad de daño.", "solucion": "riesgo", "materia": "tutoria" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Resultado obtenido en los estudios.", "solucion": "rendimiento", "materia": "tutoria" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Conjunto de normas.", "solucion": "reglamento", "materia": "tutoria" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Plataformas de interacción online (Sociales).", "solucion": "redes", "materia": "tutoria" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Discriminación por raza.", "solucion": "racismo", "materia": "tutoria" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Apoyo a causas ajenas.", "solucion": "solidaridad", "materia": "tutoria" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Estado de ánimo o emoción.", "solucion": "sentimiento", "materia": "tutoria" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Conjunto de condiciones anatómicas y afectivas.", "solucion": "sexualidad", "materia": "tutoria" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Estado de bienestar.", "solucion": "salud", "materia": "tutoria" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Verdad y falta de fingimiento.", "solucion": "sinceridad", "materia": "tutoria" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Relativo a la sociedad.", "solucion": "social", "materia": "tutoria" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Prueba de acceso a la universidad (nombre común).", "solucion": "selectividad", "materia": "tutoria" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Acto de quitarse la vida (Prevención del...).", "solucion": "suicidio", "materia": "tutoria" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "No aprobar.", "solucion": "suspenso", "materia": "tutoria" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Ausencia de ruido, necesario para estudiar.", "solucion": "silencio", "materia": "tutoria" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Respeto a las ideas ajenas.", "solucion": "tolerancia", "materia": "tutoria" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Actividad retribuida.", "solucion": "trabajo", "materia": "tutoria" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Capacidad especial.", "solucion": "talento", "materia": "tutoria" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Hora de clase dedicada a la orientación.", "solucion": "tutoría", "materia": "tutoria" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Duración de las cosas.", "solucion": "tiempo", "materia": "tutoria" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Diploma que acredita estudios.", "solucion": "título", "materia": "tutoria" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Elección (... de decisiones).", "solucion": "toma", "materia": "tutoria" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Sustancia adictiva legal.", "solucion": "tabaco", "materia": "tutoria" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Alteración de la salud (ej. Alimentario).", "solucion": "trastorno", "materia": "tutoria" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Método de estudio.", "solucion": "técnica", "materia": "tutoria" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Institución de enseñanza superior.", "solucion": "universidad", "materia": "tutoria" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Tema didáctico (... didáctica).", "solucion": "unidad", "materia": "tutoria" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Prisa o necesidad inmediata.", "solucion": "urgencia", "materia": "tutoria" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Empleo de algo (ej. ... responsable de pantallas).", "solucion": "uso", "materia": "tutoria" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Provecho o beneficio.", "solucion": "utilidad", "materia": "tutoria" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Acción de juntarse.", "solucion": "unión", "materia": "tutoria" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Solo uno, especial.", "solucion": "único", "materia": "tutoria" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Plan o sistema ideal.", "solucion": "utopía", "materia": "tutoria" },
-  { "id": "u9", "letra": "U", "tipo": "empieza", "definicion": "Persona que usa un servicio.", "solucion": "usuario", "materia": "tutoria" },
-  { "id": "u10", "letra": "U", "tipo": "empieza", "definicion": "Que pertenece a todos.", "solucion": "universal", "materia": "tutoria" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Cualidad moral positiva.", "solucion": "valor", "materia": "tutoria" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Agresión (... de género).", "solucion": "violencia", "materia": "tutoria" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Inclinación a una profesión.", "solucion": "vocación", "materia": "tutoria" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Trabajo altruista.", "solucion": "voluntariado", "materia": "tutoria" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Lo contrario a mentira.", "solucion": "verdad", "materia": "tutoria" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Derecho a elegir en elecciones.", "solucion": "voto", "materia": "tutoria" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Existencia.", "solucion": "vida", "materia": "tutoria" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Unión o relación emocional.", "solucion": "vínculo", "materia": "tutoria" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Sentimiento de timidez o culpa.", "solucion": "vergüenza", "materia": "tutoria" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Coraje para enfrentar el miedo.", "solucion": "valentía", "materia": "tutoria" },
-
-  { "id": "w1", "letra": "W", "tipo": "contiene", "definicion": "Página de internet (contiene W).", "solucion": "web", "materia": "tutoria" },
-  { "id": "w2", "letra": "W", "tipo": "contiene", "definicion": "Aplicación de mensajería (contiene W).", "solucion": "whatsapp", "materia": "tutoria" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Conexión inalámbrica (contiene W).", "solucion": "wifi", "materia": "tutoria" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Espectáculo o presentación pública (contiene W).", "solucion": "show", "materia": "tutoria" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Programas informáticos (contiene W).", "solucion": "software", "materia": "tutoria" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Componentes físicos del ordenador (contiene W).", "solucion": "hardware", "materia": "tutoria" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Red de contactos profesionales (Net...orking, contiene W).", "solucion": "networking", "materia": "tutoria" },
-  { "id": "w8", "letra": "W", "tipo": "contiene", "definicion": "Trabajo compartido (Co...orking, contiene W).", "solucion": "coworking", "materia": "tutoria" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "Enciclopedia colaborativa (contiene W).", "solucion": "wikipedia", "materia": "tutoria" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Cámara web (contiene W).", "solucion": "webcam", "materia": "tutoria" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Triunfo o resultado feliz (É...ito, contiene X).", "solucion": "éxito", "materia": "tutoria" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Condición biológica (Se...o, contiene X).", "solucion": "sexo", "materia": "tutoria" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Prueba de evaluación (E...amen, contiene X).", "solucion": "examen", "materia": "tutoria" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Esperanza de conseguir algo (E...pectativa, contiene X).", "solucion": "expectativa", "materia": "tutoria" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Conocimiento adquirido (E...periencia, contiene X).", "solucion": "experiencia", "materia": "tutoria" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Relación dañina (Tó...ico, contiene X).", "solucion": "tóxico", "materia": "tutoria" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Conjunto de dimensiones de la vida sexual (Se...ualidad, contiene X).", "solucion": "sexualidad", "materia": "tutoria" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Capacidad de adaptarse (Fle...ible, contiene X).", "solucion": "flexible", "materia": "tutoria" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Pensar detenidamente (Refle...ión, contiene X).", "solucion": "reflexión", "materia": "tutoria" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "Unión o vínculo (Cone...ión, contiene X).", "solucion": "conexión", "materia": "tutoria" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Pronombre personal.", "solucion": "yo", "materia": "tutoria" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Estar tumbado o descansar.", "solucion": "yacer", "materia": "tutoria" },
-  { "id": "y3", "letra": "Y", "tipo": "contiene", "definicion": "Colaboración (A...uda, contiene Y).", "solucion": "ayuda", "materia": "tutoria" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Adulto (Ma...or, contiene Y).", "solucion": "mayor", "materia": "tutoria" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Norma jurídica (Le..., contiene Y).", "solucion": "ley", "materia": "tutoria" },
-  { "id": "y6", "letra": "Y", "tipo": "contiene", "definicion": "Día presente (Ho..., contiene Y).", "solucion": "hoy", "materia": "tutoria" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Día pasado (A...er, contiene Y).", "solucion": "ayer", "materia": "tutoria" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Plan de futuro (Pro...ecto, contiene Y).", "solucion": "proyecto", "materia": "tutoria" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Soporte emocional (Apo...o, contiene Y).", "solucion": "apoyo", "materia": "tutoria" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Esposo o esposa (Cón...uge, contiene Y).", "solucion": "cónyuge", "materia": "tutoria" },
-
-  { "id": "z1", "letra": "Z", "tipo": "contiene", "definicion": "Ausencia de guerra o conflicto (Pa..., contiene Z).", "solucion": "paz", "materia": "tutoria" },
-  { "id": "z2", "letra": "Z", "tipo": "contiene", "definicion": "Ilusión por el futuro (Esperan...a, contiene Z).", "solucion": "esperanza", "materia": "tutoria" },
-  { "id": "z3", "letra": "Z", "tipo": "contiene", "definicion": "Seguridad en uno mismo (Confian...a, contiene Z).", "solucion": "confianza", "materia": "tutoria" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Estado de desarrollo adulto (Madure..., contiene Z).", "solucion": "madurez", "materia": "tutoria" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Empeño para lograr algo (Esfuer...o, contiene Z).", "solucion": "esfuerzo", "materia": "tutoria" },
-  { "id": "z6", "letra": "Z", "tipo": "contiene", "definicion": "Orden y planificación (Organi...ación, contiene Z).", "solucion": "organización", "materia": "tutoria" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Cumplimiento de metas (Reali...ación, contiene Z).", "solucion": "realización", "materia": "tutoria" },
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "Proceso de interactuar con otros (Sociali...ación, contiene Z).", "solucion": "socialización", "materia": "tutoria" },
-  { "id": "z9", "letra": "Z", "tipo": "contiene", "definicion": "Adquisición de conocimientos (Aprendi...aje, contiene Z).", "solucion": "aprendizaje", "materia": "tutoria" },
-  { "id": "z10", "letra": "Z", "tipo": "contiene", "definicion": "Capacidad de dirigir (Lidera...go, contiene Z).", "solucion": "liderazgo", "materia": "tutoria" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Valoración que una persona tiene de sí misma.",
+    "solucion": "autoestima",
+    "materia": "tutoria"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Capacidad de expresar opiniones y sentimientos sin agredir a los demás.",
+    "solucion": "asertividad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Estado de agitación o inquietud del ánimo, común ante exámenes.",
+    "solucion": "ansiedad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Capacidad para obrar según el propio criterio, con independencia.",
+    "solucion": "autonomía",
+    "materia": "tutoria"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Conducta reiterada de maltrato entre escolares.",
+    "solucion": "acoso",
+    "materia": "tutoria"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Capacidad o habilidad para realizar cierta actividad o tarea.",
+    "solucion": "aptitud",
+    "materia": "tutoria"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Disposición de ánimo hacia algo o alguien.",
+    "solucion": "actitud",
+    "materia": "tutoria"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Dependencia de sustancias o actividades nocivas.",
+    "solucion": "adicción",
+    "materia": "tutoria"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Sentimiento de afecto y confianza entre personas.",
+    "solucion": "amistad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Proceso de conocerse a uno mismo.",
+    "solucion": "autoconocimiento",
+    "materia": "tutoria"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Etapa educativa post-obligatoria previa a la universidad.",
+    "solucion": "bachillerato",
+    "materia": "tutoria"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Estado de satisfacción física y mental.",
+    "solucion": "bienestar",
+    "materia": "tutoria"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Ayuda económica para cursar estudios.",
+    "solucion": "beca",
+    "materia": "tutoria"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Acoso escolar (término en inglés).",
+    "solucion": "bullying",
+    "materia": "tutoria"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Paralización mental ante una situación de estrés (quedarse en...).",
+    "solucion": "blanco",
+    "materia": "tutoria"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Acción de intentar encontrar empleo (... de empleo).",
+    "solucion": "búsqueda",
+    "materia": "tutoria"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Cualidad de ser bueno y tener inclinación a hacer el bien.",
+    "solucion": "bondad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Rama de ciencias en Bachillerato (... y Geología).",
+    "solucion": "biología",
+    "materia": "tutoria"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Impedimento u obstáculo.",
+    "solucion": "barrera",
+    "materia": "tutoria"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Documento oficial del Estado (Boletín Oficial del Estado).",
+    "solucion": "boe",
+    "materia": "tutoria"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Estudios universitarios o trayectoria profesional.",
+    "solucion": "carrera",
+    "materia": "tutoria"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Modalidad de Formación Profesional (... Formativo).",
+    "solucion": "ciclo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Relación entre personas que viven juntas o se relacionan.",
+    "solucion": "convivencia",
+    "materia": "tutoria"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Documento que resume la formación y experiencia laboral.",
+    "solucion": "currículum",
+    "materia": "tutoria"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Enfrentamiento o desacuerdo entre personas.",
+    "solucion": "conflicto",
+    "materia": "tutoria"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Forma de actuar de una persona.",
+    "solucion": "conducta",
+    "materia": "tutoria"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Intercambio de información.",
+    "solucion": "comunicación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Capacidad de centrar la atención en algo.",
+    "solucion": "concentración",
+    "materia": "tutoria"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Uso responsable de bienes y servicios (... responsable).",
+    "solucion": "consumo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Trabajo conjunto para lograr un fin.",
+    "solucion": "colaboración",
+    "materia": "tutoria"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Elección entre varias opciones (Toma de...).",
+    "solucion": "decisión",
+    "materia": "tutoria"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Sustancias que alteran el sistema nervioso y crean adicción.",
+    "solucion": "drogas",
+    "materia": "tutoria"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Normas fundamentales que protegen a las personas (... Humanos).",
+    "solucion": "derechos",
+    "materia": "tutoria"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Conversación entre dos o más personas para llegar a un acuerdo.",
+    "solucion": "diálogo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Variedad y diferencia entre personas o cosas.",
+    "solucion": "diversidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Trato desigual y perjudicial hacia una persona o grupo.",
+    "solucion": "discriminación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Representante de los alumnos en la clase.",
+    "solucion": "delegado",
+    "materia": "tutoria"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Trastorno del estado de ánimo caracterizado por tristeza profunda.",
+    "solucion": "depresión",
+    "materia": "tutoria"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Obligación de cumplir con algo.",
+    "solucion": "deber",
+    "materia": "tutoria"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Proceso emocional tras una pérdida.",
+    "solucion": "duelo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Capacidad de ponerse en el lugar del otro.",
+    "solucion": "empatía",
+    "materia": "tutoria"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Reacción psicofisiológica ante estímulos (Alegría, tristeza...).",
+    "solucion": "emoción",
+    "materia": "tutoria"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Tensión física o emocional.",
+    "solucion": "estrés",
+    "materia": "tutoria"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Prueba de acceso a la universidad (anteriormente Selectividad).",
+    "solucion": "ebau",
+    "materia": "tutoria"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Uso de la energía para conseguir algo.",
+    "solucion": "esfuerzo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Triunfo o resultado feliz de una actuación.",
+    "solucion": "éxito",
+    "materia": "tutoria"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Educación Secundaria Obligatoria (siglas).",
+    "solucion": "eso",
+    "materia": "tutoria"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Acción de prestar atención a lo que se oye.",
+    "solucion": "escucha",
+    "materia": "tutoria"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Grupo de personas que trabajan juntas.",
+    "solucion": "equipo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Reunión para conseguir un trabajo.",
+    "solucion": "entrevista",
+    "materia": "tutoria"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Tiempo que está por venir.",
+    "solucion": "futuro",
+    "materia": "tutoria"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Estudios prácticos para aprender un oficio (... Profesional).",
+    "solucion": "formación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Sentimiento desagradable al no conseguir lo que se quiere.",
+    "solucion": "frustración",
+    "materia": "tutoria"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Grupo de personas emparentadas.",
+    "solucion": "familia",
+    "materia": "tutoria"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Movimiento social que pide la igualdad de derechos entre sexos.",
+    "solucion": "feminismo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Hábito nocivo de consumir tabaco.",
+    "solucion": "fumar",
+    "materia": "tutoria"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Virtud o cualidad positiva de una persona (opuesto a debilidad).",
+    "solucion": "fortaleza",
+    "materia": "tutoria"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Respuesta o devolución de información sobre el desempeño (anglicismo).",
+    "solucion": "feedback",
+    "materia": "tutoria"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Estado de grata satisfacción espiritual y física.",
+    "solucion": "felicidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Cualidad de adaptarse a los cambios.",
+    "solucion": "flexibilidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Título universitario de 4 años.",
+    "solucion": "grado",
+    "materia": "tutoria"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Título que se obtiene al terminar la ESO.",
+    "solucion": "graduado",
+    "materia": "tutoria"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Conjunto de personas reunidas.",
+    "solucion": "grupo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Construcción social de lo masculino y femenino.",
+    "solucion": "género",
+    "materia": "tutoria"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Acción de administrar el tiempo o recursos.",
+    "solucion": "gestión",
+    "materia": "tutoria"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Persona que orienta o dirige.",
+    "solucion": "guía",
+    "materia": "tutoria"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Hábito de compartir con los demás.",
+    "solucion": "generosidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Tendencia de los mercados y empresas a extenderse mundialmente.",
+    "solucion": "globalización",
+    "materia": "tutoria"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Hablar en voz muy alta (a evitar en conflictos).",
+    "solucion": "gritar",
+    "materia": "tutoria"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Sentimiento de agradecimiento.",
+    "solucion": "gratitud",
+    "materia": "tutoria"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Capacidades para relacionarse (Habilidades...).",
+    "solucion": "Habilidades",
+    "materia": "tutoria"
+  },
+  {
+    "id": "h1_fix",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Destrezas para realizar tareas (Habilidades).",
+    "solucion": "habilidades",
+    "materia": "tutoria"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Conducta repetida regularmente (ej. de estudio).",
+    "solucion": "hábito",
+    "materia": "tutoria"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Cualidad de decir la verdad.",
+    "solucion": "honestidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Limpieza y aseo personal.",
+    "solucion": "higiene",
+    "materia": "tutoria"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Distribución del tiempo.",
+    "solucion": "horario",
+    "materia": "tutoria"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Modalidad de Bachillerato de letras.",
+    "solucion": "humanidades",
+    "materia": "tutoria"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Capacidad de percibir lo cómico.",
+    "solucion": "humor",
+    "materia": "tutoria"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Atracción hacia personas del otro sexo.",
+    "solucion": "heterosexual",
+    "materia": "tutoria"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Atracción hacia personas del mismo sexo.",
+    "solucion": "homosexual",
+    "materia": "tutoria"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Virtud de no presumir de los logros.",
+    "solucion": "humildad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Tipo de inteligencia para gestionar sentimientos (... Emocional).",
+    "solucion": "inteligencia",
+    "materia": "tutoria"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Centro de Educación Secundaria.",
+    "solucion": "instituto",
+    "materia": "tutoria"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Trato idéntico entre todas las personas.",
+    "solucion": "igualdad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Inclusión de personas en la sociedad.",
+    "solucion": "integración",
+    "materia": "tutoria"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Red informática mundial (cuidado con la privacidad).",
+    "solucion": "internet",
+    "materia": "tutoria"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Conjunto de rasgos que definen a una persona.",
+    "solucion": "identidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Cualidad de empezar cosas por uno mismo.",
+    "solucion": "iniciativa",
+    "materia": "tutoria"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Atención que se pone en algo.",
+    "solucion": "interés",
+    "materia": "tutoria"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Inseguridad ante el futuro.",
+    "solucion": "incertidumbre",
+    "materia": "tutoria"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Independencia (no depender de otros).",
+    "solucion": "independencia",
+    "materia": "tutoria"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Principio moral de dar a cada uno lo que le corresponde.",
+    "solucion": "justicia",
+    "materia": "tutoria"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Etapa de la vida entre la infancia y la edad adulta.",
+    "solucion": "juventud",
+    "materia": "tutoria"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Retiro laboral (pensar en el futuro).",
+    "solucion": "jubilación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Actividad lúdica, puede generar adicción (ludopatía).",
+    "solucion": "juego",
+    "materia": "tutoria"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Día de puertas abiertas para conocer el centro.",
+    "solucion": "jornada",
+    "materia": "tutoria"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Capacidad de valorar algo (Sentido crítico / ... crítico).",
+    "solucion": "juicio",
+    "materia": "tutoria"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Orden de autoridad.",
+    "solucion": "jerarquía",
+    "materia": "tutoria"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Persona que manda en el trabajo.",
+    "solucion": "jefe",
+    "materia": "tutoria"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Dar razones para explicar una acción.",
+    "solucion": "justificar",
+    "materia": "tutoria"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Unidos o en compañía.",
+    "solucion": "juntos",
+    "materia": "tutoria"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Técnicas para promocionar la marca personal (contiene K).",
+    "solucion": "marketing",
+    "materia": "tutoria"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Acción y reacción, causa y efecto.",
+    "solucion": "karma",
+    "materia": "tutoria"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Clasificación por notas (Ran...ing, contiene K).",
+    "solucion": "ranking",
+    "materia": "tutoria"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Conjunto de materiales o herramientas.",
+    "solucion": "kit",
+    "materia": "tutoria"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unidad de peso, relacionado con salud/trastornos.",
+    "solucion": "kilo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Experto en seguridad informática (contiene K).",
+    "solucion": "hacker",
+    "materia": "tutoria"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Enlace de internet (Lin..., contiene K).",
+    "solucion": "link",
+    "materia": "tutoria"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Retroalimentación o respuesta (Feedbac..., contiene K).",
+    "solucion": "feedback",
+    "materia": "tutoria"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Trabajar mucho (Wor...aholic, contiene K, coloquial).",
+    "solucion": "workaholic",
+    "materia": "tutoria"
+  },
+  {
+    "id": "k9_fix",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Red social de vídeos cortos (Ti...To..., contiene K).",
+    "solucion": "tiktok",
+    "materia": "tutoria"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Lugar para dejar el coche (Par...ing, contiene K).",
+    "solucion": "parking",
+    "materia": "tutoria"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Capacidad de elegir y actuar con responsabilidad.",
+    "solucion": "libertad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Persona que guía a un grupo.",
+    "solucion": "líder",
+    "materia": "tutoria"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Norma establecida por la autoridad.",
+    "solucion": "ley",
+    "materia": "tutoria"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Relativo al trabajo (Mundo...).",
+    "solucion": "laboral",
+    "materia": "tutoria"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Colectivo que agrupa la diversidad sexual.",
+    "solucion": "lgtbi",
+    "materia": "tutoria"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Éxito o consecución de una meta.",
+    "solucion": "logro",
+    "materia": "tutoria"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Capacidad de comunicación verbal.",
+    "solucion": "lenguaje",
+    "materia": "tutoria"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Hábito fundamental para el estudio.",
+    "solucion": "lectura",
+    "materia": "tutoria"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Línea que marca hasta dónde se puede llegar (poner...).",
+    "solucion": "límite",
+    "materia": "tutoria"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Capacidad de influencia (Liderazgo).",
+    "solucion": "liderazgo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Impulso que mueve a realizar una acción.",
+    "solucion": "motivación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Nivel de desarrollo personal y responsabilidad.",
+    "solucion": "madurez",
+    "materia": "tutoria"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Resolución de conflictos con un tercero neutral.",
+    "solucion": "mediación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Fin al que se dirigen las acciones.",
+    "solucion": "meta",
+    "materia": "tutoria"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Capacidad de recordar.",
+    "solucion": "memoria",
+    "materia": "tutoria"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Emoción ante un peligro real o imaginario.",
+    "solucion": "miedo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Entorno de oferta y demanda de trabajo (... laboral).",
+    "solucion": "mercado",
+    "materia": "tutoria"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Actitud de superioridad del hombre sobre la mujer.",
+    "solucion": "machismo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Dispositivo que puede causar adicción si se abusa.",
+    "solucion": "móvil",
+    "materia": "tutoria"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Salud relacionada con el bienestar psicológico (... mental).",
+    "solucion": "mental",
+    "materia": "tutoria"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Calificación escolar.",
+    "solucion": "nota",
+    "materia": "tutoria"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Regla de conducta.",
+    "solucion": "norma",
+    "materia": "tutoria"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Proceso para llegar a un acuerdo.",
+    "solucion": "negociación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Grado de exigencia o dificultad.",
+    "solucion": "nivel",
+    "materia": "tutoria"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Estado de inquietud (estar de...).",
+    "solucion": "nervios",
+    "materia": "tutoria"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Pensamiento pesimista.",
+    "solucion": "negativo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Relación amorosa entre jóvenes.",
+    "solucion": "noviazgo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Alimentación adecuada.",
+    "solucion": "nutrición",
+    "materia": "tutoria"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Carencia de algo.",
+    "solucion": "necesidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Negación asertiva (saber decir...).",
+    "solucion": "no",
+    "materia": "tutoria"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Amigo o colega de clase (Compa...ero, contiene Ñ).",
+    "solucion": "compañero",
+    "materia": "tutoria"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Acto de educar (Ense...anza, contiene Ñ).",
+    "solucion": "enseñanza",
+    "materia": "tutoria"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Mentira o fraude (Enga...o, contiene Ñ).",
+    "solucion": "engaño",
+    "materia": "tutoria"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Curso escolar (A...o, contiene Ñ).",
+    "solucion": "año",
+    "materia": "tutoria"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Necesidad fisiológica de dormir (Sue...o, contiene Ñ).",
+    "solucion": "sueño",
+    "materia": "tutoria"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Perjuicio (Da...o, contiene Ñ).",
+    "solucion": "daño",
+    "materia": "tutoria"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Afecto (Cari...o, contiene Ñ).",
+    "solucion": "cariño",
+    "materia": "tutoria"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Bronca o corrección (Rega...ina, contiene Ñ).",
+    "solucion": "regañina",
+    "materia": "tutoria"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "De baja estatura o edad (Peque...o, contiene Ñ).",
+    "solucion": "pequeño",
+    "materia": "tutoria"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Pasar tiempo extra con alguien (Acompa...ar, contiene Ñ).",
+    "solucion": "acompañar",
+    "materia": "tutoria"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Proceso de ayuda para tomar decisiones (Académica/Profesional).",
+    "solucion": "orientación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Meta a alcanzar.",
+    "solucion": "objetivo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Juicio personal sobre algo.",
+    "solucion": "opinión",
+    "materia": "tutoria"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Posibilidad de hacer algo.",
+    "solucion": "oportunidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Orden y planificación de tareas.",
+    "solucion": "organización",
+    "materia": "tutoria"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Trabajo manual o artesanal.",
+    "solucion": "oficio",
+    "materia": "tutoria"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Actitud positiva ante la vida.",
+    "solucion": "optimismo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Deber o tarea que hay que cumplir.",
+    "solucion": "obligación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Tiempo libre.",
+    "solucion": "ocio",
+    "materia": "tutoria"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Organización No Gubernamental (siglas).",
+    "solucion": "ong",
+    "materia": "tutoria"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Ocupación laboral.",
+    "solucion": "profesión",
+    "materia": "tutoria"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Conjunto de rasgos que definen a una persona.",
+    "solucion": "personalidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Organización del tiempo de estudio.",
+    "solucion": "planificación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Influencia de los amigos (... de grupo).",
+    "solucion": "presión",
+    "materia": "tutoria"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Dificultad que hay que resolver.",
+    "solucion": "problema",
+    "materia": "tutoria"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Tomar parte en actividades.",
+    "solucion": "participación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Opinión previa y tenaz, por lo general desfavorable.",
+    "solucion": "prejuicio",
+    "materia": "tutoria"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Relación sentimental.",
+    "solucion": "pareja",
+    "materia": "tutoria"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Lo que es más importante.",
+    "solucion": "prioridad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Valor de las notas en la selectividad.",
+    "solucion": "ponderación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Grupo de trabajo (E...ipo, contiene Q).",
+    "solucion": "equipo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Norma de conducta (Eti...eta, contiene Q).",
+    "solucion": "etiqueta",
+    "materia": "tutoria"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Estabilidad emocional (E...ilibrio, contiene Q).",
+    "solucion": "equilibrio",
+    "materia": "tutoria"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Médico de salud mental (Psi...iatra, contiene Q).",
+    "solucion": "psiquiatra",
+    "materia": "tutoria"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Afinidad con alguien (Quí..., contiene Q).",
+    "solucion": "química",
+    "materia": "tutoria"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Expresión de dolor o descontento (Que...a, contiene Q).",
+    "solucion": "queja",
+    "materia": "tutoria"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Investigación activa (Bús...eda, contiene Q).",
+    "solucion": "búsqueda",
+    "materia": "tutoria"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Condición necesaria (Re...isito, contiene Q).",
+    "solucion": "requisito",
+    "materia": "tutoria"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Resumen gráfico (Es...ema, contiene Q).",
+    "solucion": "esquema",
+    "materia": "tutoria"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Paralización (Blo...eo, contiene Q).",
+    "solucion": "bloqueo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Consideración y valoración especial hacia alguien.",
+    "solucion": "respeto",
+    "materia": "tutoria"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Cumplimiento de las obligaciones.",
+    "solucion": "responsabilidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Capacidad de superar situaciones traumáticas.",
+    "solucion": "resiliencia",
+    "materia": "tutoria"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Volver a estudiar lo aprendido.",
+    "solucion": "repaso",
+    "materia": "tutoria"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Vínculos con otras personas.",
+    "solucion": "relaciones",
+    "materia": "tutoria"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Posibilidad de daño.",
+    "solucion": "riesgo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Resultado obtenido en los estudios.",
+    "solucion": "rendimiento",
+    "materia": "tutoria"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Conjunto de normas.",
+    "solucion": "reglamento",
+    "materia": "tutoria"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Plataformas de interacción online (Sociales).",
+    "solucion": "redes",
+    "materia": "tutoria"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Discriminación por raza.",
+    "solucion": "racismo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Apoyo a causas ajenas.",
+    "solucion": "solidaridad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Estado de ánimo o emoción.",
+    "solucion": "sentimiento",
+    "materia": "tutoria"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de condiciones anatómicas y afectivas.",
+    "solucion": "sexualidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Estado de bienestar.",
+    "solucion": "salud",
+    "materia": "tutoria"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Verdad y falta de fingimiento.",
+    "solucion": "sinceridad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Relativo a la sociedad.",
+    "solucion": "social",
+    "materia": "tutoria"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Prueba de acceso a la universidad (nombre común).",
+    "solucion": "selectividad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Acto de quitarse la vida (Prevención del...).",
+    "solucion": "suicidio",
+    "materia": "tutoria"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "No aprobar.",
+    "solucion": "suspenso",
+    "materia": "tutoria"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Ausencia de ruido, necesario para estudiar.",
+    "solucion": "silencio",
+    "materia": "tutoria"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Respeto a las ideas ajenas.",
+    "solucion": "tolerancia",
+    "materia": "tutoria"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Actividad retribuida.",
+    "solucion": "trabajo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Capacidad especial.",
+    "solucion": "talento",
+    "materia": "tutoria"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Hora de clase dedicada a la orientación.",
+    "solucion": "tutoría",
+    "materia": "tutoria"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Duración de las cosas.",
+    "solucion": "tiempo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Diploma que acredita estudios.",
+    "solucion": "título",
+    "materia": "tutoria"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Elección (... de decisiones).",
+    "solucion": "toma",
+    "materia": "tutoria"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Sustancia adictiva legal.",
+    "solucion": "tabaco",
+    "materia": "tutoria"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Alteración de la salud (ej. Alimentario).",
+    "solucion": "trastorno",
+    "materia": "tutoria"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Método de estudio.",
+    "solucion": "técnica",
+    "materia": "tutoria"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Institución de enseñanza superior.",
+    "solucion": "universidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Tema didáctico (... didáctica).",
+    "solucion": "unidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Prisa o necesidad inmediata.",
+    "solucion": "urgencia",
+    "materia": "tutoria"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Empleo de algo (ej. ... responsable de pantallas).",
+    "solucion": "uso",
+    "materia": "tutoria"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Provecho o beneficio.",
+    "solucion": "utilidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Acción de juntarse.",
+    "solucion": "unión",
+    "materia": "tutoria"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Solo uno, especial.",
+    "solucion": "único",
+    "materia": "tutoria"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Plan o sistema ideal.",
+    "solucion": "utopía",
+    "materia": "tutoria"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Persona que usa un servicio.",
+    "solucion": "usuario",
+    "materia": "tutoria"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Que pertenece a todos.",
+    "solucion": "universal",
+    "materia": "tutoria"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Cualidad moral positiva.",
+    "solucion": "valor",
+    "materia": "tutoria"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Agresión (... de género).",
+    "solucion": "violencia",
+    "materia": "tutoria"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Inclinación a una profesión.",
+    "solucion": "vocación",
+    "materia": "tutoria"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Trabajo altruista.",
+    "solucion": "voluntariado",
+    "materia": "tutoria"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Lo contrario a mentira.",
+    "solucion": "verdad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Derecho a elegir en elecciones.",
+    "solucion": "voto",
+    "materia": "tutoria"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Existencia.",
+    "solucion": "vida",
+    "materia": "tutoria"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Unión o relación emocional.",
+    "solucion": "vínculo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Sentimiento de timidez o culpa.",
+    "solucion": "vergüenza",
+    "materia": "tutoria"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Coraje para enfrentar el miedo.",
+    "solucion": "valentía",
+    "materia": "tutoria"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Página de internet (contiene W).",
+    "solucion": "web",
+    "materia": "tutoria"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Aplicación de mensajería (contiene W).",
+    "solucion": "whatsapp",
+    "materia": "tutoria"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Conexión inalámbrica (contiene W).",
+    "solucion": "wifi",
+    "materia": "tutoria"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Espectáculo o presentación pública (contiene W).",
+    "solucion": "show",
+    "materia": "tutoria"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Programas informáticos (contiene W).",
+    "solucion": "software",
+    "materia": "tutoria"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Componentes físicos del ordenador (contiene W).",
+    "solucion": "hardware",
+    "materia": "tutoria"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Red de contactos profesionales (Net...orking, contiene W).",
+    "solucion": "networking",
+    "materia": "tutoria"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Trabajo compartido (Co...orking, contiene W).",
+    "solucion": "coworking",
+    "materia": "tutoria"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Enciclopedia colaborativa (contiene W).",
+    "solucion": "wikipedia",
+    "materia": "tutoria"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Cámara web (contiene W).",
+    "solucion": "webcam",
+    "materia": "tutoria"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Triunfo o resultado feliz (É...ito, contiene X).",
+    "solucion": "éxito",
+    "materia": "tutoria"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Condición biológica (Se...o, contiene X).",
+    "solucion": "sexo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Prueba de evaluación (E...amen, contiene X).",
+    "solucion": "examen",
+    "materia": "tutoria"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Esperanza de conseguir algo (E...pectativa, contiene X).",
+    "solucion": "expectativa",
+    "materia": "tutoria"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Conocimiento adquirido (E...periencia, contiene X).",
+    "solucion": "experiencia",
+    "materia": "tutoria"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Relación dañina (Tó...ico, contiene X).",
+    "solucion": "tóxico",
+    "materia": "tutoria"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Conjunto de dimensiones de la vida sexual (Se...ualidad, contiene X).",
+    "solucion": "sexualidad",
+    "materia": "tutoria"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Capacidad de adaptarse (Fle...ible, contiene X).",
+    "solucion": "flexible",
+    "materia": "tutoria"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Pensar detenidamente (Refle...ión, contiene X).",
+    "solucion": "reflexión",
+    "materia": "tutoria"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Unión o vínculo (Cone...ión, contiene X).",
+    "solucion": "conexión",
+    "materia": "tutoria"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Pronombre personal.",
+    "solucion": "yo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Estar tumbado o descansar.",
+    "solucion": "yacer",
+    "materia": "tutoria"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Colaboración (A...uda, contiene Y).",
+    "solucion": "ayuda",
+    "materia": "tutoria"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Adulto (Ma...or, contiene Y).",
+    "solucion": "mayor",
+    "materia": "tutoria"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Norma jurídica (Le..., contiene Y).",
+    "solucion": "ley",
+    "materia": "tutoria"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Día presente (Ho..., contiene Y).",
+    "solucion": "hoy",
+    "materia": "tutoria"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Día pasado (A...er, contiene Y).",
+    "solucion": "ayer",
+    "materia": "tutoria"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Plan de futuro (Pro...ecto, contiene Y).",
+    "solucion": "proyecto",
+    "materia": "tutoria"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Soporte emocional (Apo...o, contiene Y).",
+    "solucion": "apoyo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Esposo o esposa (Cón...uge, contiene Y).",
+    "solucion": "cónyuge",
+    "materia": "tutoria"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Ausencia de guerra o conflicto (Pa..., contiene Z).",
+    "solucion": "paz",
+    "materia": "tutoria"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Ilusión por el futuro (Esperan...a, contiene Z).",
+    "solucion": "esperanza",
+    "materia": "tutoria"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Seguridad en uno mismo (Confian...a, contiene Z).",
+    "solucion": "confianza",
+    "materia": "tutoria"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Estado de desarrollo adulto (Madure..., contiene Z).",
+    "solucion": "madurez",
+    "materia": "tutoria"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Empeño para lograr algo (Esfuer...o, contiene Z).",
+    "solucion": "esfuerzo",
+    "materia": "tutoria"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Orden y planificación (Organi...ación, contiene Z).",
+    "solucion": "organización",
+    "materia": "tutoria"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Cumplimiento de metas (Reali...ación, contiene Z).",
+    "solucion": "realización",
+    "materia": "tutoria"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Proceso de interactuar con otros (Sociali...ación, contiene Z).",
+    "solucion": "socialización",
+    "materia": "tutoria"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Adquisición de conocimientos (Aprendi...aje, contiene Z).",
+    "solucion": "aprendizaje",
+    "materia": "tutoria"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Capacidad de dirigir (Lidera...go, contiene Z).",
+    "solucion": "liderazgo",
+    "materia": "tutoria"
+  }
 ]

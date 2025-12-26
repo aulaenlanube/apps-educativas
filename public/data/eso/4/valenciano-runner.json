@@ -1,17 +1,122 @@
 {
-  "sociolinguistica": [
-    "bilingüisme", "diglòssia", "llengua minoritzada", "normalització", "estandardització", "dialecte", "registre", "prejudici", "ús social", "llei d'ús"
+  "literatura_contemporanea": [
+    "vicent andrés estellés",
+    "joan fuster",
+    "assaig",
+    "poesia de postguerra",
+    "novel·la actual",
+    "enric valor",
+    "mercé rodoreda",
+    "obra",
+    "autor",
+    "premi"
+  ],
+  "sintaxis_subordinacio": [
+    "subordinada substantiva",
+    "subordinada adjectiva de relatiu",
+    "subordinada adverbial",
+    "nexe",
+    "conjunció",
+    "pronom relatiu",
+    "qualsevol",
+    "perquè",
+    "encara que",
+    "ja que"
+  ],
+  "ortografia_diacritica": [
+    "bé",
+    "déu",
+    "és",
+    "mà",
+    "món",
+    "pèl",
+    "què",
+    "sé",
+    "sí",
+    "sòl"
+  ],
+  "lexic_neologismes": [
+    "clicar",
+    "programari",
+    "maquinari",
+    "correu",
+    "enllaç",
+    "xarxa",
+    "baixa",
+    "puja",
+    "pestaña",
+    "servidor"
   ],
   "historia_llengua": [
-    "llatí", "àrab", "mossàrab", "jaume i", "repoblació", "segle d'or", "decadència", "renaixença", "normes de castelló", "pompeu fabra"
+    "renaixença",
+    "normes de castelló",
+    "pompeu fabra",
+    "institució",
+    "diccionari",
+    "gramàtica",
+    "català-valencià-balear",
+    "unitat",
+    "fuster",
+    "literatura medieval"
   ],
-  "gramatica": [
-    "pronom feble", "accentuació", "dièresi", "apostrofació", "guió", "verb", "adjectiu", "conjunció", "preposició", "perífrasi"
+  "comprensio_lectura_avancada": [
+    "tesi",
+    "argument",
+    "contraargument",
+    "ironia",
+    "connotació",
+    "recurs estilístic",
+    "estructura del text",
+    "públic objectiu",
+    "propòsit",
+    "estil"
   ],
-  "literatura_autors": [
-    "ausiàs march", "joanot martorell", "jaume roig", "isabel de villena", "vicent andrés estellés", "carles salvador", "sanchis guarner", "joan fuster", "enric valor", "mrcel·la de juan"
+  "sociolinguistica_4": [
+    "diglòssia",
+    "normalització",
+    "ús social",
+    "manteniment de la llengua",
+    "conflicte lingüístic",
+    "identitat",
+    "comunitat",
+    "llengua minoritzada",
+    "prestigi",
+    "oficialitat"
   ],
-  "connectors_textuals": [
-    "tanmateix", "aleshores", "doncs", "per tant", "així que", "en canvi", "d'altra banda", "finalment", "primerament", "conseqüentment"
+  "oficis_tecnologia": [
+    "especialista",
+    "creador de continguts",
+    "analista",
+    "programador",
+    "investigador",
+    "dissenyador",
+    "tècnic",
+    "gestor de projectes",
+    "enginyer",
+    "expert"
+  ],
+  "vocabular_especific": [
+    "ecosistema",
+    "sostenibilitat",
+    "globalització",
+    "intel·ligència artificial",
+    "ètica",
+    "diversitat",
+    "solidaritat",
+    "cooperació",
+    "democràcia",
+    "drets"
+  ],
+  "formes_verbals_complexes": [
+    "perifràstica",
+    "subjuntiu present",
+    "subjuntiu imperfet",
+    "condicional",
+    "plusquamperfet",
+    "imperatiu",
+    "futur",
+    "formes no personals",
+    "arrel i desinència",
+    "irregular"
   ]
 }

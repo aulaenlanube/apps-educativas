@@ -1,0 +1,568 @@
+[
+    {
+        "id": "1",
+        "titulo": "¿Qué es la Programación?",
+        "texto": "Programar consiste en dar una serie de instrucciones precisas a un ordenador o a un robot para que realice una tarea. El conjunto de estas instrucciones se llama ALGORITMO. Un ordenador no es inteligente, solo es muy rápido ejecutando órdenes. Si damos una orden mal escrita o en el orden equivocado, el programa fallará (a esto se le llama 'bug' o error). Por tanto, un programador debe ser muy lógico y detallista para que las máquinas hagan exactamente lo que él desea.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un algoritmo?",
+                "opciones": [
+                    "Un tipo de ordenador",
+                    "Un conjunto de instrucciones ordenadas",
+                    "Un error de pantalla",
+                    "Un robot"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es inteligente un ordenador por sí mismo?",
+                "opciones": [
+                    "Sí, sabe pensarlo todo",
+                    "No, solo ejecuta instrucciones rápido",
+                    "A veces",
+                    "Solo si es nuevo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama un error en programación?",
+                "opciones": [
+                    "Virus",
+                    "Bug",
+                    "Glow",
+                    "Crash"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué cualidad debe tener un buen programador?",
+                "opciones": [
+                    "Ser muy fuerte",
+                    "Ser lógico y detallista",
+                    "Hablar muchos idiomas",
+                    "Saber dibujar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si el orden de las instrucciones es incorrecto?",
+                "opciones": [
+                    "Nada",
+                    "El programa no funcionará bien",
+                    "El ordenador se rompe",
+                    "Se borra todo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Programación por bloques: Scratch",
+        "texto": "Para aprender a programar en 1º de ESO usamos lenguajes visuales como SCRATCH. En lugar de escribir código con el teclado, encajamos bloques de colores como si fuera un puzzle. Cada color indica una función: Azul para movimiento, Amarillo para eventos (ej: 'al presionar bandera verde'), Naranja para variables y Control. Esta forma de programar nos permite centraros en la lógica del algoritmo sin preocuparnos de cometer faltas de ortografía en el código escrito.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué tipo de lenguaje es Scratch?",
+                "opciones": [
+                    "Código escrito",
+                    "Lenguaje visual por bloques",
+                    "Lenguaje de gestos",
+                    "Solo para dibujos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se inician normalmente los programas en Scratch?",
+                "opciones": [
+                    "Al apagar el PC",
+                    "Al presionar la bandera verde (evento)",
+                    "Escribiendo 'START'",
+                    "Pulsando escape"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven los bloques azules?",
+                "opciones": [
+                    "Sonidos",
+                    "Movimiento",
+                    "Variables",
+                    "Dibujo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la ventaja de programar por bloques?",
+                "opciones": [
+                    "Es más lento",
+                    "Evita errores de sintaxis u ortografía",
+                    "No hace falta pensar",
+                    "Se usa sin ratón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué se parece el sistema de encajar bloques?",
+                "opciones": [
+                    "A un libro",
+                    "A un puzzle",
+                    "A una red",
+                    "A una lista"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Las Variables: Cajas para guardar datos",
+        "texto": "En programación, una VARIABLE es un espacio en la memoria donde guardamos un dato que puede cambiar durante el programa. Imagina que es una caja con una etiqueta. Por ejemplo, en un videojuego, la variable 'PUNTOS' empieza en 0 y aumenta cada vez que ganamos. También podemos tener variables con nombres (texto). Es muy importante poner nombres claros a las variables para no confundir el 'NombreJugador' con el 'TiempoRestante'. El nombre no debe tener espacios ni caracteres raros.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es una variable?",
+                "opciones": [
+                    "Una instrucción que no cambia",
+                    "Un espacio para guardar datos que pueden variar",
+                    "Un tipo de color",
+                    "Un error del sistema"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué valor suele tener la variable PUNTOS al empezar un juego?",
+                "opciones": [
+                    "100",
+                    "0",
+                    "Nadie sabe",
+                    "Infinito"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es importante el nombre de la variable?",
+                "opciones": [
+                    "Para que sea bonito",
+                    "Para saber qué dato estamos guardando en esa 'caja'",
+                    "Porque es obligatorio por ley",
+                    "No es importante"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Debe una variable tener espacios en su nombre?",
+                "opciones": [
+                    "Sí",
+                    "No, se recomienda usar CamelCase o guiones bajos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué puede contener una variable?",
+                "opciones": [
+                    "Solo números",
+                    "Solo texto",
+                    "Números, texto o valores lógicos",
+                    "Nada"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Condicionales: Tomando decisiones",
+        "texto": "Un programa puede tomar diferentes caminos según ocurra o no una condición. Para esto usamos el bloque 'SI... ENTONCES...'. Por ejemplo: 'SI el personaje toca el borde, ENTONCES rebota'. También existe el 'SI... ENTONCES... SI NO...', que nos permite hacer otra cosa si la condición es falsa. Los condicionales permiten que los programas sean inteligentes y reaccionen a lo que hace el usuario o a lo que pasa en el entorno digital.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué bloque usamos para que el programa tome decisiones?",
+                "opciones": [
+                    "Mover 10 pasos",
+                    "Decir Hola",
+                    "Condicional SI... ENTONCES...",
+                    "Esperar 1 segundo"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Para qué sirve el 'SI NO' en un condicional?",
+                "opciones": [
+                    "Para borrar el programa",
+                    "Para ejecutar instrucciones si la condición NO se cumple",
+                    "Para preguntar el nombre",
+                    "Para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si la condición es 'Puntos > 10', ¿cuándo se cumple?",
+                "opciones": [
+                    "Cuando tienes 5 puntos",
+                    "Cuando tienes 11 o más puntos",
+                    "Cuando tienes 10 exactamente",
+                    "Siempre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué permiten los condicionales en un programa?",
+                "opciones": [
+                    "Que sea más corto",
+                    "Que reaccione a diferentes situaciones o eventos",
+                    "Que tenga más colores",
+                    "Que el ordenador gaste menos luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama este tipo de estructura lógica?",
+                "opciones": [
+                    "Bucle",
+                    "Selección o Condicional",
+                    "Variable",
+                    "Evento"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Bucles: Repetir tares",
+        "texto": "A veces necesitamos que una acción se repita muchas veces, como el latido de un corazón o el movimiento de un enemigo en un juego. Para no escribir la misma instrucción cien veces, usamos los BUCLES o estructuras de repetición. En Scratch tenemos 'por siempre', que no para nunca, o 'repetir 10 veces'. Los bucles ahorran mucho tiempo de programación y hacen que el código sea mucho más limpio y eficiente.",
+        "preguntas": [
+            {
+                "pregunta": "¿Para qué sirve un bucle?",
+                "opciones": [
+                    "Para terminar el programa",
+                    "Para repetir instrucciones automáticamente",
+                    "Para cambiar de personaje",
+                    "Para dibujar círculos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si quieres que un personaje se mueva siempre, usas:",
+                "opciones": [
+                    "Repetir 1 vez",
+                    "Por siempre",
+                    "Si... entonces",
+                    "Al presionar tecla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ventaja principal tiene usar bucles?",
+                "opciones": [
+                    "El personaje corre más",
+                    "El código es más limpio y eficiente",
+                    "No hay que pensar",
+                    "Aumenta la batería"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué pasa si pones un bucle 'por siempre' sin nada dentro?",
+                "opciones": [
+                    "Se llena la pantalla",
+                    "El programa se queda en pausa o bucle infinito sin hacer nada",
+                    "El ordenador explota",
+                    "Se borra el código"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama también a los bucles?",
+                "opciones": [
+                    "Condiciones",
+                    "Iteraciones o repeticiones",
+                    "Eventos",
+                    "Variables"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Hardware de un Robot",
+        "texto": "Un robot es una máquina programable capaz de interactuar con el mundo. Se compone de tres partes: 1) SENSORES (los sentidos): detectan luz, sonido, distancia o contacto. 2) CONTROLADOR (el cerebro): es la placa (como Arduino o Micro:bit) que procesa los datos de los sensores. 3) ACTUADORES (los músculos): son los motores, ruedas, luces o altavoces que ejecutan el movimiento. Para que el robot funcione, debemos escribir un programa en el computador y cargarlo en la placa del controlador.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué parte del robot actúa como sus 'sentidos'?",
+                "opciones": [
+                    "Motores",
+                    "Sensores",
+                    "Batería",
+                    "Carcasa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el 'cerebro' del robot?",
+                "opciones": [
+                    "Las ruedas",
+                    "El controlador (placa programable)",
+                    "Los cables",
+                    "El sensor de luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un actuador?",
+                "opciones": [
+                    "Un interruptor",
+                    "Un elemento que produce movimiento o luz (motor, LED)",
+                    "Un tipo de cable",
+                    "Lo que detecta el color"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre tras escribir el programa en el ordenador?",
+                "opciones": [
+                    "Se borra",
+                    "Hay que cargarlo en el controlador del robot",
+                    "El robot lo adivina por WiFi solo",
+                    "No hace falta hacer nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué sensor usarías para que un robot no choque con la pared?",
+                "opciones": [
+                    "Sensor de temperatura",
+                    "Sensor de ultrasonidos o distancia",
+                    "Altavoz",
+                    "Pulsador"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Pensamiento Computacional",
+        "texto": "El pensamiento computacional no es solo saber usar ordenadores, es una forma de resolver problemas complejos dividiéndolos en pequeñas partes. Se basa en tres pilares: DESCOMPOSICIÓN (dividir el problema en tareas pequeñas), RECONOCIMIENTO DE PATRONES (buscar similitudes con problemas ya resueltos) y ABSTRACCIÓN (quedarse solo con lo importante). Esta habilidad es útil no solo para programar, sino también para estudiar matemáticas, cocinar o planificar un viaje.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la descomposición en pensamiento computacional?",
+                "opciones": [
+                    "Que el ordenador se rompa",
+                    "Dividir un problema grande en partes pequeñas manejables",
+                    "Mezclar todas las ideas",
+                    "Borrar el código mal hecho"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve el reconocimiento de patrones?",
+                "opciones": [
+                    "Para dibujar mejor",
+                    "Para identificar similitudes y soluciones repetidas",
+                    "Para poner contraseñas",
+                    "Para ver el futuro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa abstracción?",
+                "opciones": [
+                    "Centrarse solo en la información relevante, eliminando lo innecesario",
+                    "Pensar en muchas cosas a la vez",
+                    "Dormir profundamente",
+                    "Usar colores abstractos"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Es el pensamiento computacional solo para informática?",
+                "opciones": [
+                    "Sí",
+                    "No, sirve para resolver cualquier tipo de problema"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el objetivo final de estas técnicas?",
+                "opciones": [
+                    "Gastar menos luz",
+                    "Encontrar soluciones eficaces a los problemas",
+                    "Comprar más robots",
+                    "Escribir más rápido"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Sistemas de numeración: El Binario",
+        "texto": "Mientras los humanos usamos el sistema decimal (base 10, del 0 al 9), los ordenadores funcionan en BINARIO (base 2). El binario solo utiliza dos dígitos: 0 y 1. Esto es porque los circuitos electrónicos solo tienen dos estados: apagado (0) o encendido (1). Cada 0 o 1 es la unidad mínima de información y se llama BIT. Un conjunto de 8 bits forma un BYTE, que es capaz de representar un carácter (una letra o un número). Toda la música, fotos y vídeos que ves en tu móvil son, en realidad, cadenas gigantes de ceros y unos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué dígitos usa el sistema binario?",
+                "opciones": [
+                    "Del 0 al 9",
+                    "Solo 0 y 1",
+                    "Solo letras",
+                    "1, 2 y 3"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué los ordenadores usan binario?",
+                "opciones": [
+                    "Porque es más difícil",
+                    "Por los estados de corriente (encendido/apagado)",
+                    "Para que ocupen menos",
+                    "Para no usar letras"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la unidad mínima de información?",
+                "opciones": [
+                    "Byte",
+                    "Bit",
+                    "Píxel",
+                    "Mega"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántos bits tiene un Byte?",
+                "opciones": [
+                    "2",
+                    "4",
+                    "8",
+                    "16"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué representa un Byte normalmente?",
+                "opciones": [
+                    "Una foto entera",
+                    "Un carácter o letra",
+                    "Un vídeo de un minuto",
+                    "Toda la memoria"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Internet y las Redes",
+        "texto": "Internet es una 'red de redes' que conecta millones de dispositivos en todo el mundo. Cuando envías un mensaje, el protocolo TCP/IP divide la información en pequeños PAQUETES. Estos paquetes viajan por diferentes caminos (cables de fibra óptica, satélites, WiFi) y se vuelven a unir en el dispositivo de destino. Cada dispositivo en internet tiene una dirección única llamada IP (como el DNI del ordenador) para que los paquetes sepan exactamente a dónde ir sin perderse.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es internet en esencia?",
+                "opciones": [
+                    "Un satélite",
+                    "Una red global que conecta dispositivos",
+                    "Un programa de televisión",
+                    "Un cable muy largo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo viaja la información por internet?",
+                "opciones": [
+                    "De golpe en una pieza",
+                    "Dividida en pequeños paquetes",
+                    "Como una señal de audio",
+                    "En camiones"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la dirección IP?",
+                "opciones": [
+                    "Una contraseña",
+                    "Un número único que identifica a cada dispositivo en la red",
+                    "El nombre del usuario",
+                    "El precio del router"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tecnología suele usar el cableado de alta velocidad?",
+                "opciones": [
+                    "Cobre viejo",
+                    "Fibra óptica",
+                    "Hilos de seda",
+                    "Mangueras"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve el protocolo TCP/IP?",
+                "opciones": [
+                    "Para dibujar webs",
+                    "Para organizar y asegurar el envío de datos",
+                    "Para borrar virus",
+                    "Para que el ratón funcione"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Ética y Ciudadanía Digital",
+        "texto": "Vivir en el mundo digital requiere seguir unas normas de comportamiento llamadas NETIQUETA. Debemos ser respetuosos en chats y redes sociales, igual que en la vida real. Es fundamental saber que cuando subes una foto o escribes un comentario, dejas una HUELLA DIGITAL que puede durar para siempre. Por eso, antes de publicar algo, piensa si te gustaría que lo viera tu familia o tus futuros jefes dentro de diez años. Ser un buen ciudadano digital significa usar la tecnología para crear, colaborar y mejorar el mundo, no para herir a los demás.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la netiqueta?",
+                "opciones": [
+                    "La marca del ordenador",
+                    "Normas de educación y respeto en internet",
+                    "Un tipo de virus",
+                    "Un código secreto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la huella digital?",
+                "opciones": [
+                    "Desbloquear el móvil con el dedo",
+                    "El rastro de información que dejamos al usar internet",
+                    "Un dibujo digital",
+                    "La marca de grasa en la pantalla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuánto tiempo puede durar lo que publicas en internet?",
+                "opciones": [
+                    "Un día",
+                    "Una hora",
+                    "Para siempre o mucho tiempo",
+                    "Se borra solo"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué debes hacer antes de publicar algo?",
+                "opciones": [
+                    "Hacerlo muy rápido",
+                    "Pensar en las consecuencias futuras y en el respeto",
+                    "Pedir dinero",
+                    "Cerrar los ojos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué define a un buen ciudadano digital?",
+                "opciones": [
+                    "Tener muchos seguidores",
+                    "Usar la tecnología de forma responsable y constructiva",
+                    "Saber hackear",
+                    "Comprar lo último en móviles"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

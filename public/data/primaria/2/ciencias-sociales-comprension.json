@@ -1,321 +1,563 @@
 [
   {
     "id": "1",
-    "titulo": "Mi familia",
-    "texto": "Vivo con mi familia en una casa pequeña. Mi familia está formada por mi mamá, mi papá y mi hermano mayor que se llama Luis. Los domingos viene mi abuela a comer paella con nosotros. Todos nos queremos mucho y nos ayudamos en casa.",
+    "titulo": "Mi localidad",
+    "texto": "Yo vivo en un pueblo pequeño y acogedor. En mi localidad hay un ayuntamiento donde trabaja el alcalde o la alcaldesa y los concejales. También tenemos una plaza mayor con una fuente y un centro de salud para cuando nos ponemos enfermos. Los barrenderos se encargan de mantener las calles siempre limpias.",
     "preguntas": [
       {
-        "pregunta": "¿El hermano es mayor o pequeño?",
-        "opciones": ["Mayor", "Pequeño"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cuándo viene la abuela?",
-        "opciones": ["Los lunes", "Los domingos"],
+        "pregunta": "¿Quién trabaja en el ayuntamiento?",
+        "opciones": [
+          "El médico",
+          "El alcalde o alcaldesa",
+          "El panadero",
+          "Los bomberos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se llama el hermano?",
-        "opciones": ["Juan", "Pedro", "Luis", "Carlos"],
+        "pregunta": "¿Qué hay en la plaza mayor?",
+        "opciones": [
+          "Un hospital",
+          "Una fuente",
+          "Un cine",
+          "Un bosque"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A dónde vamos cuando estamos enfermos?",
+        "opciones": [
+          "Al ayuntamiento",
+          "Al parque",
+          "Al centro de salud",
+          "A la plaza"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué comen los domingos?",
-        "opciones": ["Pizza", "Sopa", "Ensalada", "Paella"],
-        "correcta": 3
+        "pregunta": "¿Quién limpia las calles?",
+        "opciones": [
+          "Los vecinos",
+          "Los barrenderos",
+          "El alcalde",
+          "Nadie"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Dónde viven?",
-        "opciones": ["En un castillo", "En una casa", "En un barco", "En una tienda"],
+        "pregunta": "¿Cómo es el pueblo del protagonista?",
+        "opciones": [
+          "Grande y ruidoso",
+          "Pequeño y acogedor",
+          "Está desierto",
+          "Es una ciudad"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "El colegio",
-    "texto": "En mi colegio aprendemos muchas cosas. Mi profesora se llama Elena y nos enseña a leer y a sumar. Tenemos un patio muy grande con una pista de baloncesto. Cuando suena el timbre, salimos al recreo a jugar con los amigos.",
+    "titulo": "El agua en el paisaje",
+    "texto": "El agua se encuentra en muchos lugares de la naturaleza. Los ríos son corrientes de agua dulce que desembocan en el mar o en otro río. Los océanos y los mares son grandes extensiones de agua salada que cubren la mayor parte de la Tierra. También hay agua dulce en los lagos y debajo de la tierra.",
     "preguntas": [
       {
-        "pregunta": "¿Cómo se llama la profesora?",
-        "opciones": ["María", "Elena"],
+        "pregunta": "¿Cómo es el agua de los ríos?",
+        "opciones": [
+          "Salada",
+          "Dulce",
+          "Picante",
+          "Amarga"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Tienen piscina en el patio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Dónde desembocan los ríos?",
+        "opciones": [
+          "En la montaña",
+          "En el mar",
+          "En las nubes",
+          "En la carretera"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hay en el patio?",
-        "opciones": ["Un huerto", "Una pista de baloncesto", "Un columpio", "Un tobogán"],
+        "pregunta": "¿Qué son los océanos?",
+        "opciones": [
+          "Ríos pequeños",
+          "Grandes extensiones de agua salada",
+          "Montañas de agua",
+          "Pozos de agua dulce"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hacen cuando suena el timbre?",
-        "opciones": ["Se duermen", "Comen", "Salen al recreo", "Se van a casa"],
+        "pregunta": "¿Dónde más hay agua dulce además de en los ríos?",
+        "opciones": [
+          "En el mar",
+          "En los lagos",
+          "En los charcos",
+          "No hay más"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué cubre la mayor parte de la Tierra?",
+        "opciones": [
+          "La arena",
+          "El hielo",
+          "El agua",
+          "Las rocas"
+        ],
         "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué aprenden en clase?",
-        "opciones": ["A leer y sumar", "A cocinar", "A conducir", "A nadar"],
-        "correcta": 0
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Las partes de la casa",
-    "texto": "Las casas tienen diferentes habitaciones. En la cocina preparamos la comida y guardamos los alimentos en la nevera. En el dormitorio dormimos por la noche en nuestra cama. En el baño nos lavamos los dientes y nos duchamos para estar limpios.",
+    "titulo": "Las profesiones de mi barrio",
+    "texto": "En mi barrio hay muchas personas que trabajan para los demás. El panadero hace pan y pasteles riquísimos cada mañana. La cartera reparte las cartas y los paquetes en las casas. El policía local regula el tráfico cerca del colegio para que crucemos seguros por el paso de cebra.",
     "preguntas": [
       {
-        "pregunta": "¿Dónde dormimos?",
-        "opciones": ["En la cocina", "En el dormitorio"],
+        "pregunta": "¿Qué hace el panadero?",
+        "opciones": [
+          "Lleva paquetes",
+          "Hace pan y pasteles",
+          "Corta el pelo",
+          "Arregla coches"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde nos duchamos?",
-        "opciones": ["En el baño", "En el salón"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hay en la cocina?",
-        "opciones": ["Una cama", "Una nevera", "Un sofá", "Una ducha"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuándo dormimos?",
-        "opciones": ["Por la mañana", "Por la tarde", "Por la noche", "A mediodía"],
+        "pregunta": "¿Quién reparte las cartas?",
+        "opciones": [
+          "El barrendero",
+          "El policía",
+          "La cartera",
+          "El médico"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué hacemos en el baño?",
-        "opciones": ["Cocinar", "Jugar", "Dormir", "Lavarnos los dientes"],
-        "correcta": 3
+        "pregunta": "¿Para qué regula el tráfico el policía?",
+        "opciones": [
+          "Para jugar",
+          "Para que crucemos seguros",
+          "Para hacer ruido",
+          "Para correr más"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por dónde debemos cruzar la calle?",
+        "opciones": [
+          "Por cualquier sitio",
+          "Por el paso de cebra",
+          "Corriendo",
+          "Con los ojos cerrados"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuándo hace el pan el panadero?",
+        "opciones": [
+          "Por la noche",
+          "Cada mañana",
+          "Por la tarde",
+          "Nunca"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Educación vial",
-    "texto": "Para cruzar la calle debemos tener cuidado. Siempre hay que cruzar por el paso de peatones, que tiene rayas blancas en el suelo. También debemos mirar el semáforo. Si el muñeco está en verde podemos pasar, pero si está en rojo debemos esperar.",
+    "titulo": "El Sistema Solar",
+    "texto": "El Sistema Solar está formado por el Sol y todos los astros que giran a su alrededor. El Sol es una estrella que nos da luz y calor. Hay ocho planetas, y la Tierra es el tercero más cercano al Sol. La Luna no es un planeta, es un satélite que gira alrededor de la Tierra.",
     "preguntas": [
       {
-        "pregunta": "¿Podemos cruzar con el semáforo en rojo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es el Sol?",
+        "opciones": [
+          "Un planeta",
+          "Una estrella",
+          "Un satélite",
+          "Un cometa"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿De qué color son las rayas del suelo?",
-        "opciones": ["Blancas", "Azules"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Por dónde cruzamos?",
-        "opciones": ["Por el parque", "Por el paso de peatones", "Por la carretera", "Por donde queramos"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué significa el muñeco verde?",
-        "opciones": ["Parar", "Correr", "Pasar", "Saltar"],
+        "pregunta": "¿Cuántos planetas hay en el Sistema Solar?",
+        "opciones": [
+          "Cinco",
+          "Siete",
+          "Ocho",
+          "Diez"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué hacemos si está en rojo?",
-        "opciones": ["Esperar", "Cruzar rápido", "Gritar", "Bailar"],
-        "correcta": 0
+        "pregunta": "¿Qué lugar ocupa la Tierra desde el Sol?",
+        "opciones": [
+          "El primero",
+          "El segundo",
+          "El tercero",
+          "El último"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es la Luna?",
+        "opciones": [
+          "Un planeta pequeño",
+          "Una estrella",
+          "Un satélite",
+          "Un trozo de queso"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Alrededor de qué gira la Luna?",
+        "opciones": [
+          "Del Sol",
+          "De la Tierra",
+          "De Marte",
+          "De nada"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "El pueblo y la ciudad",
-    "texto": "Lucas vive en un pueblo pequeño. Allí las casas son bajas y hay pocos coches, todo es muy tranquilo. Su prima vive en la ciudad, donde hay edificios muy altos, muchas tiendas, semáforos y mucho ruido de tráfico.",
+    "titulo": "Viajando seguros",
+    "texto": "Existen muchos medios de transporte para viajar por tierra, mar y aire. Cuando vamos en coche, siempre debemos ponernos el cinturón de seguridad. Si usamos el transporte público, como el autobús o el tren, ayuda a reducir la contaminación. Los aviones son los transportes más rápidos para ir a lugares lejanos.",
     "preguntas": [
       {
-        "pregunta": "¿Dónde vive Lucas?",
-        "opciones": ["En el pueblo", "En la ciudad"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿En la ciudad hay mucho ruido?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo son las casas del pueblo?",
-        "opciones": ["Muy altas", "Bajas", "De cristal", "Flotantes"],
+        "pregunta": "¿Qué debemos ponernos siempre en el coche?",
+        "opciones": [
+          "El casco",
+          "El cinturón de seguridad",
+          "Gorra",
+          "Mochila"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hay en la ciudad?",
-        "opciones": ["Pocas personas", "Edificios altos", "Muchos tractores", "Solo parques"],
+        "pregunta": "¿Qué ayuda a reducir el transporte público?",
+        "opciones": [
+          "El ruido",
+          "La contaminación",
+          "La velocidad",
+          "La gente"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo es el pueblo?",
-        "opciones": ["Ruidoso", "Grande", "Tranquilo", "Peligroso"],
+        "pregunta": "¿Cuál es el transporte más rápido para ir lejos?",
+        "opciones": [
+          "El barco",
+          "El coche",
+          "El avión",
+          "La bicicleta"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Por dónde viajan los barcos?",
+        "opciones": [
+          "Por tierra",
+          "Por mar",
+          "Por aire",
+          "Por raíles"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿El tren es un medio de transporte?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Los trabajos",
-    "texto": "Cada persona tiene un oficio diferente. El médico cura a los enfermos en el hospital. El bombero apaga los fuegos con su manguera y el camión rojo. El panadero hace pan y pasteles ricos en la panadería.",
+    "titulo": "Cuidamos el medio ambiente",
+    "texto": "Cuidar nuestro entorno es responsabilidad de todos. Debemos tirar cada basura en su contenedor: el papel al azul, el vidrio al verde y los envases al amarillo. También es importante ahorrar agua cerrando el grifo mientras nos lavamos los dientes y apagar las luces si no las necesitamos.",
     "preguntas": [
       {
-        "pregunta": "¿El médico apaga fuegos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿A qué contenedor va el papel?",
+        "opciones": [
+          "Al amarillo",
+          "Al azul",
+          "Al verde",
+          "Al gris"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde trabaja el panadero?",
-        "opciones": ["En el hospital", "En la panadería"],
+        "pregunta": "¿Qué debemos tirar en el contenedor verde?",
+        "opciones": [
+          "Papel",
+          "Vidrio",
+          "Comida",
+          "Pilas"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Quién cura a los enfermos?",
-        "opciones": ["El policía", "El médico", "El profesor", "El cartero"],
+        "pregunta": "¿Cómo podemos ahorrar agua en casa?",
+        "opciones": [
+          "Bañándonos mucho",
+          "Cerrando el grifo",
+          "Usando más mangueras",
+          "No lavándose"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué usa el bombero?",
-        "opciones": ["Una manguera", "Un horno", "Un termómetro", "Una pizarra"],
-        "correcta": 0
+        "pregunta": "¿Qué contenedor es para los envases?",
+        "opciones": [
+          "Azul",
+          "Amarillo",
+          "Verde",
+          "Marrón"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿De qué color es el camión de bomberos?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
+        "pregunta": "¿De quién es la responsabilidad de cuidar el entorno?",
+        "opciones": [
+          "Solo de los padres",
+          "De nadie",
+          "De todos",
+          "Solo del profesor"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Los medios de transporte",
-    "texto": "Para viajar usamos medios de transporte. El coche y el autobús van por la tierra (carretera). El barco navega por el agua del mar. El avión vuela muy alto por el aire para llevarnos a sitios lejanos rápidamente.",
+    "titulo": "El tiempo atmosférico",
+    "texto": "El tiempo atmosférico cambia cada día. A veces sale el sol y hace calor, y otras veces hay nubes y llueve. Cuando hace mucho viento, las ramas de los árboles se mueven con fuerza. Para saber el tiempo que va a hacer, miramos el pronóstico en la televisión o el periódico.",
     "preguntas": [
       {
-        "pregunta": "¿El barco va por la carretera?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿El tiempo atmosférico es siempre igual?",
+        "opciones": [
+          "Sí",
+          "No, cambia cada día"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿El avión va por el aire?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué transporte va por tierra?",
-        "opciones": ["El barco", "El avión", "El coche", "El helicóptero"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Para qué sirve el avión?",
-        "opciones": ["Para ir despacio", "Para ir lejos", "Para navegar", "Para ir al colegio"],
+        "pregunta": "¿Qué ocurre cuando hay mucho viento?",
+        "opciones": [
+          "Sale el sol",
+          "Se mueven las ramas de los árboles",
+          "Nieva",
+          "Hace calor"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Por dónde va el autobús?",
-        "opciones": ["Por el mar", "Por el cielo", "Por la carretera", "Por el río"],
+        "pregunta": "¿Dónde podemos mirar el tiempo que va a hacer?",
+        "opciones": [
+          "En un espejo",
+          "En el pronóstico de la tele",
+          "En un libro de mates",
+          "En la despensa"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué necesitamos si hay nubes y llueve?",
+        "opciones": [
+          "Gafas de sol",
+          "Paraguas",
+          "Bañador",
+          "Ventilador"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué estrella sale cuando hace calor?",
+        "opciones": [
+          "La Luna",
+          "Marte",
+          "El Sol",
+          "La Polar"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El paisaje de montaña",
-    "texto": "En la montaña el aire es muy puro. Vemos montañas altas con nieve en la cima. En los valles hay ríos con agua fría y bosques llenos de árboles. En invierno hace mucho frío y podemos esquiar o jugar con la nieve.",
+    "titulo": "Los planos",
+    "texto": "Un plano es un dibujo que representa un lugar visto desde arriba, como si fuéramos un pájaro volando. Podemos hacer el plano de nuestra habitación, de nuestra clase o incluso del barrio. En los planos usamos símbolos para indicar dónde están las puertas, las ventanas o los muebles.",
     "preguntas": [
       {
-        "pregunta": "¿Hace calor en la montaña en invierno?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Hay ríos en los valles?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hay en la cima de la montaña?",
-        "opciones": ["Arena", "Nieve", "Coches", "Mar"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cómo es el aire?",
-        "opciones": ["Sucio", "Puro", "Caliente", "Malo"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué podemos hacer en invierno?",
-        "opciones": ["Nadar", "Tomar el sol", "Esquiar", "Pescar"],
+        "pregunta": "¿Desde dónde se ve un lugar en un plano?",
+        "opciones": [
+          "Desde el suelo",
+          "Desde un lado",
+          "Desde arriba",
+          "Desde debajo"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿A qué se parece mirar un plano?",
+        "opciones": [
+          "A leer un libro",
+          "A un pájaro volando",
+          "A cerrar los ojos",
+          "A pintar un cuadro"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De qué podemos hacer un plano?",
+        "opciones": [
+          "De nuestra clase",
+          "De nuestra habitación",
+          "Del barrio",
+          "De todas las anteriores"
+        ],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Qué usamos en los planos para indicar cosas?",
+        "opciones": [
+          "Fotos reales",
+          "Símbolos",
+          "Letras grandes",
+          "Colores brillantes"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve un plano?",
+        "opciones": [
+          "Para dormir",
+          "Para representar un lugar",
+          "Para comer",
+          "Para viajar al espacio"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Los días de la semana",
-    "texto": "La semana tiene siete días. De lunes a viernes vamos al colegio para aprender. El sábado y el domingo es fin de semana y nos quedamos en casa para descansar o jugar con la familia. El lunes es el primer día de la semana.",
+    "titulo": "Las etapas de la vida",
+    "texto": "Todas las personas pasamos por diferentes etapas a lo largo de nuestra vida. Al nacer somos bebés y necesitamos muchos cuidados. Luego pasamos a la infancia, que es cuando vamos al colegio. Después viene la adolescencia, la edad adulta y, finalmente, la vejez, cuando nos convertimos en abuelos.",
     "preguntas": [
       {
-        "pregunta": "¿La semana tiene cinco días?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo se llama la etapa al nacer?",
+        "opciones": [
+          "Infancia",
+          "Bebé",
+          "Adultez",
+          "Vejez"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Vamos al colegio el domingo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuál es el primer día?",
-        "opciones": ["Martes", "Viernes", "Lunes", "Domingo"],
+        "pregunta": "¿En qué etapa estamos cuando vamos a primaria?",
+        "opciones": [
+          "Vejez",
+          "Adolescencia",
+          "Infancia",
+          "Adultez"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué días descansamos?",
-        "opciones": ["Lunes y martes", "Jueves y viernes", "Sábado y domingo", "Miércoles y jueves"],
+        "pregunta": "¿Qué etapa viene después de la infancia?",
+        "opciones": [
+          "La vejez",
+          "El nacimiento",
+          "La adolescencia",
+          "La de ser abuelo"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuántos días vamos al cole?",
-        "opciones": ["Dos", "Cinco", "Siete", "Tres"],
-        "correcta": 1
+        "pregunta": "¿Quiénes están en la etapa de la vejez?",
+        "opciones": [
+          "Los bebés",
+          "Nuestros padres",
+          "Los abuelos",
+          "Los niños del cole"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cambia nuestro cuerpo en cada etapa?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El Sol y la Tierra",
-    "texto": "Vivimos en el planeta Tierra, que es redondo como una pelota. El Sol es una estrella muy grande que nos da luz y calor. Cuando el Sol se esconde, llega la noche y sale la Luna. La Tierra gira alrededor del Sol.",
+    "titulo": "Vivir en sociedad",
+    "texto": "Para que todos vivamos felices, existen unas normas de convivencia. Las normas del colegio nos ayudan a aprender mejor y a respetarnos. En casa también hay normas, como recoger los juguetes. En la calle debemos respetar las señales de tráfico y usar las papeleras para tirar los desperdicios.",
     "preguntas": [
       {
-        "pregunta": "¿La Tierra es plana?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Para qué sirven las normas del colegio?",
+        "opciones": [
+          "Para nada",
+          "Para aprender y respetarnos",
+          "Para estar enfadados",
+          "Para gritar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿El Sol nos da frío?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué norma podemos tener en casa?",
+        "opciones": [
+          "Tirar la comida",
+          "Recoger los juguetes",
+          "Pintar las paredes",
+          "Saltar en la mesa"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué nos da el Sol?",
-        "opciones": ["Luz y calor", "Lluvia", "Viento", "Nieve"],
+        "pregunta": "¿Dónde debemos tirar la basura en la calle?",
+        "opciones": [
+          "Al suelo",
+          "A las papeleras",
+          "A la carretera",
+          "Al jardín"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué debemos respetar en la calle?",
+        "opciones": [
+          "Solo a los amigos",
+          "Las señales de tráfico",
+          "Nada",
+          "Solo los semáforos verdes"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Las normas son importantes para vivir felices?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué sale por la noche?",
-        "opciones": ["El Sol", "La Luna", "El arcoíris", "Las nubes"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cómo es la Tierra?",
-        "opciones": ["Cuadrada", "Redonda", "Pequeña", "Caliente"],
-        "correcta": 1
       }
     ]
   }

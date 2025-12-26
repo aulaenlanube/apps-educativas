@@ -1,17 +1,122 @@
 {
-  "conceptos_algebra": [
-    "monomio", "polinomio", "coeficiente", "variable", "incógnita", "grado", "identidad", "ecuación", "solución", "paréntesis"
+  "numeros_enteros": [
+    "positivo",
+    "negativo",
+    "valor absoluto",
+    "opuesto",
+    "paréntesis",
+    "jerarquía de operaciones",
+    "recta entera",
+    "coordenadas",
+    "cuadrante",
+    "eje cartesiano"
   ],
-  "cuerpos_geometricos": [
-    "prisma", "pirámide", "cilindro", "cono", "esfera", "octaedro", "dodecaedro", "icosaedro", "tetraedro", "cubo"
+  "potencias_raices": [
+    "base",
+    "exponente",
+    "potencia de base 10",
+    "notación científica",
+    "raíz cuadrada exacta",
+    "radicando",
+    "índice",
+    "cuadrado perfecto",
+    "cubo",
+    "propiedades"
   ],
-  "estadistica": [
-    "media", "moda", "mediana", "rango", "frecuencia", "población", "muestra", "gráfico", "sector", "variable"
+  "fracciones_decimales": [
+    "fracción irreducible",
+    "mcm",
+    "común denominador",
+    "decimal exacto",
+    "decimal periódico puro",
+    "decimal periódico mixto",
+    "fracción generatriz",
+    "redondeo",
+    "truncamiento",
+    "error"
   ],
-  "numeros_y_operaciones": [
-    "potencia", "raíz", "múltiplo", "divisor", "primo", "compuesto", "fracción", "decimal", "entero", "porcentaje"
+  "proporcionalidad": [
+    "razón",
+    "proporción",
+    "magnitud directa",
+    "magnitud inversa",
+    "regla de tres",
+    "constante de proporcionalidad",
+    "porcentaje",
+    "descuento",
+    "incremento",
+    "interés simple"
   ],
-  "unidades_medida": [
-    "metro", "litro", "gramo", "segundo", "hectárea", "grado", "radián", "julio", "vatio", "byte"
+  "expresiones_algebricas": [
+    "monomio",
+    "polinomio",
+    "grado",
+    "coeficiente",
+    "término independiente",
+    "identidad notable",
+    "factor común",
+    "valor numérico",
+    "semejante",
+    "operación"
+  ],
+  "ecuaciones_lineales": [
+    "incógnita",
+    "miembro",
+    "término",
+    "solución",
+    "transposición",
+    "primer grado",
+    "sistema",
+    "sustitución",
+    "igualación",
+    "reducción"
+  ],
+  "funciones_graficas": [
+    "variable independiente",
+    "variable dependiente",
+    "dominio",
+    "recorrido",
+    "crecimiento",
+    "decrecimiento",
+    "máximo",
+    "mínimo",
+    "continuidad",
+    "pendiente"
+  ],
+  "geometria_espacio": [
+    "prisma",
+    "pirámide",
+    "cilindro",
+    "cono",
+    "esfera",
+    "volumen",
+    "área lateral",
+    "área total",
+    "teorema de pitágoras",
+    "poliedro"
+  ],
+  "estadistica_analisis": [
+    "media aritmética",
+    "moda",
+    "mediana",
+    "rango",
+    "frecuencia absoluta",
+    "frecuencia relativa",
+    "diagrama de barras",
+    "gráfico de sectores",
+    "población",
+    "muestra"
+  ],
+  "teoremas_basicos": [
+    "pitágoras",
+    "tales",
+    "cateto",
+    "hipotenusa",
+    "semejanza",
+    "triángulo rectángulo",
+    "escala",
+    "segmento",
+    "ángulo",
+    "vértice"
   ]
 }

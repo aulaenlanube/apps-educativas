@@ -1,67 +1,116 @@
 [
   {
-    "categoria": "Emociones (Visual)",
+    "categoria": "Estados de Ánimo Positivos (Visual)",
     "correctos": [
       "😀",
       "😁",
       "😂",
       "🥰",
       "😍",
-      "🙂"
+      "🙂",
+      "🥳",
+      "🤩",
+      "😊",
+      "😄",
+      "😆",
+      "😇",
+      "😌",
+      "😎",
+      "😻"
     ],
     "intrusos": [
       "😢",
       "😭",
       "😡",
       "🤬",
-      "😱"
+      "😱",
+      "😤",
+      "🤢",
+      "😴",
+      "🙄",
+      "🤫",
+      "👽",
+      "👿",
+      "💀",
+      "👻"
     ]
   },
   {
-    "categoria": "Higiene (Visual)",
+    "categoria": "Higiene y Cuidado Personal (Visual)",
     "correctos": [
       "🚿",
       "🛁",
       "🧼",
       "🪥",
       "🧴",
-      "🧻"
+      "🧻",
+      "🦷",
+      "🧖‍♀️",
+      "🧴",
+      "🧼",
+      "✂️",
+      "🧺"
     ],
     "intrusos": [
       "🎮",
       "📺",
       "🍔",
       "⚽",
-      "🗑️"
+      "🗑️",
+      "🍭",
+      "🍫",
+      "🍩",
+      "🥤",
+      "🛋️",
+      "📱",
+      "🚗",
+      "🎰"
     ]
   },
   {
-    "categoria": "Comida Sana (Visual)",
+    "categoria": "Dieta Saludable y Nutritiva (Visual)",
     "correctos": [
       "🥗",
       "🍎",
       "🥦",
       "🥕",
       "🍇",
-      "🍊"
+      "🍊",
+      "🍌",
+      "🍑",
+      "🍉",
+      "🍒",
+      "🥛",
+      "🥣"
     ],
     "intrusos": [
       "🍔",
       "🍟",
       "🍕",
       "🍩",
-      "🍬"
+      "🍬",
+      "🍭",
+      "🥤",
+      "🥤",
+      "🥓",
+      "🍿",
+      "🥞"
     ]
   },
   {
-    "categoria": "Emociones Agradables",
+    "categoria": "Emociones que Nos Hacen Sentir Bien",
     "correctos": [
       "Alegría",
       "Felicidad",
       "Calma",
       "Amor",
       "Ilusión",
-      "Paz"
+      "Paz",
+      "Valentía",
+      "Orgullo sano",
+      "Compasión",
+      "Gratitud",
+      "Seguridad"
     ],
     "intrusos": [
       "Miedo",
@@ -69,59 +118,90 @@
       "Ira",
       "Enfado",
       "Asco",
-      "Vergüenza"
+      "Vergüenza",
+      "Celos",
+      "Envidia",
+      "Culpa",
+      "Rencor",
+      "Soledad",
+      "Desprecio"
     ]
   },
   {
-    "categoria": "Buenos Modales",
+    "categoria": "Normas de Cortesía y Respeto",
     "correctos": [
       "Gracias",
       "Por favor",
-      "Perdón",
-      "Hola",
-      "Adiós",
-      "Permiso"
+      "Perdón / Lo siento",
+      "Hola / Adiós",
+      "Permiso",
+      "Buen provecho",
+      "Enhorabuena",
+      "Bienvenido",
+      "Disculpa"
     ],
     "intrusos": [
       "Tonto",
       "Cállate",
-      "Fuera",
+      "Fuera de aquí",
       "Empujar",
-      "Insultar"
+      "Insultar",
+      "Mentir",
+      "Mío solo móvil",
+      "Gritar",
+      "Ignorar",
+      "Burlarse"
     ]
   },
   {
-    "categoria": "Valores",
+    "categoria": "Valores para la Convivencia",
     "correctos": [
       "Respeto",
       "Amistad",
       "Sinceridad",
       "Generosidad",
-      "Esfuerzo"
+      "Esfuerzo",
+      "Tolerancia",
+      "Empatía",
+      "Paciencia",
+      "Solidaridad",
+      "Justicia"
     ],
     "intrusos": [
       "Mentira",
       "Egoísmo",
       "Pereza",
       "Violencia",
-      "Odio"
+      "Odio",
+      "Discriminación",
+      "Bulería",
+      "Venganza",
+      "Burla",
+      "Acoso"
     ]
   },
   {
-    "categoria": "Hábitos Saludables",
+    "categoria": "Hábitos Saludables para el Cuerpo y la Mente",
     "correctos": [
-      "Dormir bien",
-      "Comer fruta",
-      "Hacer deporte",
-      "Beber agua",
-      "Leer"
+      "Dormir 10 horas",
+      "Comer fruta y verdura",
+      "Hacer deporte a diario",
+      "Beber mucha agua",
+      "Leer libros",
+      "Estudiar un poco",
+      "Reciclar basura",
+      "Ayudar en casa",
+      "Hablar de mis sentimientos"
     ],
     "intrusos": [
-      "Comer chuches",
-      "Ver mucha tele",
-      "Gritar",
-      "Pegar",
-      "Fumar"
+      "Comer muchas chuches",
+      "Ver demasiada tele",
+      "Gritar a los padres",
+      "Pegar a los compañeros",
+      "Fumar o beber alcohol",
+      "Estar todo el día con el móvil",
+      "Acostarse muy tarde",
+      "No lavarse los dientes"
     ]
   }
 ]

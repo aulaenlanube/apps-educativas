@@ -1,17 +1,122 @@
 {
-  "categories_gramaticals": [
-    "substantiu", "adjectiu", "verb", "pronom", "determinant", "adverbi", "preposició", "conjunció", "interjecció", "article"
+  "salutacions": [
+    "bon dia",
+    "bona vesprada",
+    "bona nit",
+    "hola",
+    "adéu",
+    "fins després",
+    "moltes gràcies",
+    "de res",
+    "per favor",
+    "disculpa"
   ],
-  "elements_natura": [
-    "muntanya", "riu", "platja", "bosc", "núvol", "pluja", "vent", "sol", "lluna", "estrela"
+  "casa": [
+    "cuina",
+    "habitació",
+    "bany",
+    "menjador",
+    "saló",
+    "terrassa",
+    "finestra",
+    "porta",
+    "taulell",
+    "sofà"
   ],
-  "parts_casa": [
-    "cuina", "menjador", "habitació", "bany", "rebedor", "passadís", "balcó", "jardí", "garatge", "traster"
+  "escola": [
+    "bolígraf",
+    "llapis",
+    "goma",
+    "llibre",
+    "quadern",
+    "motxilla",
+    "professor",
+    "clase",
+    "pissarra",
+    "pati"
   ],
-  "aliments_tipics": [
-    "arròs", "paella", "taronja", "orxata", "fartó", "oli", "vi", "ametla", "tomata", "peix"
+  "menjar": [
+    "pa",
+    "llet",
+    "aigua",
+    "arròs",
+    "fruita",
+    "verdura",
+    "carn",
+    "peix",
+    "formatge",
+    "suc"
   ],
-  "pronoms_personals": [
-    "jo", "tu", "ell", "ella", "nosaltres", "vosaltres", "ells", "elles", "vostè", "vostés"
+  "animals": [
+    "gat",
+    "gos",
+    "ocell",
+    "cavall",
+    "vaca",
+    "porc",
+    "gallina",
+    "conill",
+    "lleó",
+    "elefant"
+  ],
+  "dies_mesos": [
+    "dilluns",
+    "dimarts",
+    "gener",
+    "febrer",
+    "març",
+    "abril",
+    "maig",
+    "juny",
+    "juliol",
+    "agost"
+  ],
+  "part_cos": [
+    "cap",
+    "braç",
+    "cama",
+    "mà",
+    "peu",
+    "ull",
+    "nas",
+    "boca",
+    "orella",
+    "dit"
+  ],
+  "vestuari": [
+    "samarreta",
+    "pantalons",
+    "sabates",
+    "jersei",
+    "faldilla",
+    "vestit",
+    "capell",
+    "mitjons",
+    "jaqueta",
+    "camisa"
+  ],
+  "natura": [
+    "muntanya",
+    "riu",
+    "mar",
+    "platja",
+    "arbre",
+    "flor",
+    "bosc",
+    "sol",
+    "lluna",
+    "estel"
+  ],
+  "accions": [
+    "menjar",
+    "beure",
+    "dormir",
+    "parlar",
+    "llegir",
+    "escriure",
+    "córrer",
+    "saltar",
+    "cantar",
+    "ballar"
   ]
 }

@@ -1,320 +1,566 @@
 [
   {
     "id": "1",
-    "titulo": "La paella del diumenge",
-    "texto": "Hui és diumenge i mengem paella. El pare cuina al jardí amb llenya. La paella porta arròs, pollastre i bajoqueta. Tota la família seu a taula per a dinar. L'arròs està molt bo i groc.",
+    "titulo": "L'Albufera de València",
+    "texto": "L'Albufera és un llac d'aigua dolça situat prop de la ciutat de València. És un dels aiguamolls més importants de la Península Ibèrica. Està separada de la mar Mediterrània per una barra d'arena anomenada Devesa del Saler, plena de pins i dunes. En l'Albufera conviuen moltes aus, com els flamencs o els anànecs, i també s'hi cultiva l'arròs, ingredient principal de la paella valenciana. Els pescadors usen unes barques típiques per a navegar pels seus canals.",
     "preguntas": [
       {
-        "pregunta": "Hui és dilluns?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Què és l'Albufera?",
+        "opciones": [
+          "Una muntanya",
+          "Un llac d'aigua dolça",
+          "Un oceà",
+          "Un bosc sec"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Cuina la mare?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Com es diu la zona de pins que la separa del mar?",
+        "opciones": [
+          "La Marina",
+          "La Devesa del Saler",
+          "L'Horta",
+          "La Albufereta"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què porta la paella?",
-        "opciones": ["Macarrons", "Arròs", "Creïlles", "Peix"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "On cuina el pare?",
-        "opciones": ["A la cuina", "Al bany", "Al jardí", "Al carrer"],
+        "pregunta": "Quin cultiu és típic d'aquesta zona?",
+        "opciones": [
+          "El blat",
+          "Les taronges",
+          "L'arròs",
+          "Les olives"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "De quin color és l'arròs?",
-        "opciones": ["Blau", "Verd", "Roig", "Groc"],
-        "correcta": 3
+        "pregunta": "Quines aus podem trobar-hi segons el text?",
+        "opciones": [
+          "Àguiles i falcons",
+          "Flamencs i ànecs",
+          "Pingüins",
+          "Gallines"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Com naveguen els pescadors per l'Albufera?",
+        "opciones": [
+          "Amb vaixells grans",
+          "Amb barques típiques",
+          "Amb submarins",
+          "Nedant"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Les Falles",
-    "texto": "Al mes de març celebrem les Falles. Al carrer hi ha ninots molt grans i colorits. Els xiquets i les xiquetes tiren petards i s'ho passen molt bé. També mengem bunyols amb xocolate calent.",
+    "titulo": "Jaume I el Conqueridor",
+    "texto": "Jaume I va ser un rei molt important en la nostra història. Va nàixer a Montpeller l'any 1208. El 9 d'octubre de 1238, el rei Jaume I va entrar a la ciutat de València després d'haver-la conquerit als musulmans. Aquest fet va marcar el naixement del poble valencià com a regne dins de la Corona d'Aragó. Per això, cada 9 d'octubre celebrem el dia de la Comunitat Valenciana i els enamorats es regalen la 'Mocadorà'.",
     "preguntas": [
       {
-        "pregunta": "Les Falles són al març?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Els xiquets tiren pedres?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quin dia va entrar Jaume I a la ciutat de València?",
+        "opciones": [
+          "El 19 de març",
+          "El 9 d'octubre",
+          "El 25 de desembre",
+          "L'1 de gener"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què mengem?",
-        "opciones": ["Poma", "Bunyols", "Sopa", "Entrepà"],
+        "pregunta": "A qui va conquerir la ciutat el rei Jaume I?",
+        "opciones": [
+          "Als romans",
+          "Als musulmans",
+          "Als francesos",
+          "Als anglesos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què hi ha al carrer?",
-        "opciones": ["Cotxes", "Ninots grans", "Vaques", "Llits"],
+        "pregunta": "Dins de quina corona es va crear el Regne de València?",
+        "opciones": [
+          "Corona de Castella",
+          "Corona d'Aragó",
+          "Regne de Navarra",
+          "Imperi Romà"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Amb què prenem els bunyols?",
-        "opciones": ["Amb aigua", "Amb suc", "Amb xocolate", "Amb llet"],
+        "pregunta": "Què celebren els valencians el 9 d'octubre?",
+        "opciones": [
+          "Les Falles",
+          "La Magdalena",
+          "El dia de la Comunitat Valenciana",
+          "La Pasqua"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "Com es diu el regal típic dels enamorats aquest dia?",
+        "opciones": [
+          "La Palmera",
+          "La Mocadorà",
+          "L'Entrepà",
+          "La mona"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "El meu gosset Blai",
-    "texto": "El meu gos es diu Blai. És xicotet i té el pèl de color marró. Li agrada molt jugar amb la pilota al parc. Quan té son, dorm al seu llit redó i calentet.",
+    "titulo": "El Palmerar d'Elx",
+    "texto": "El Palmerar d'Elx, situat a la província d'Alacant, és el bosc de palmeres més gran d'Europa i un dels més grans del món. Va ser declarat Patrimoni de la Humanitat per la UNESCO l'any 2000. Les palmeres van ser plantades fa segles pels musulmans, que van crear un sistema de reg per a cuidar-les. La fruita que donen les palmeres són els dàtils, que són molt dolços i bons per a la salut.",
     "preguntas": [
       {
-        "pregunta": "El gos és gran?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "On està situat el Palmerar més gran d'Europa?",
+        "opciones": [
+          "A Castelló",
+          "A Elx",
+          "A Gandia",
+          "A Sagunt"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "És de color blau?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quin títol va rebre de la UNESCO?",
+        "opciones": [
+          "Millor parc del món",
+          "Patrimoni de la Humanitat",
+          "Capital de la palmera",
+          "Gran Bosc Verd"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Com es diu el gos?",
-        "opciones": ["Toby", "Rex", "Blai", "Roc"],
-        "correcta": 2
+        "pregunta": "Qui va crear el sistema de reg del palmerar?",
+        "opciones": [
+          "Els romans",
+          "Els musulmans",
+          "Els castellans",
+          "Els vikings"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Amb què juga?",
-        "opciones": ["Amb una pilota", "Amb un llibre", "Amb un llapis", "Amb un os"],
-        "correcta": 0
+        "pregunta": "Com es diu el fruit de la palmera?",
+        "opciones": [
+          "Nou",
+          "Dàtil",
+          "Advocat",
+          "Coco"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "On dorm Blai?",
-        "opciones": ["Al sofà", "Al llit", "A la cadira", "A terra"],
+        "pregunta": "És el palmerar més xicotet d'Espanya?",
+        "opciones": [
+          "Sí",
+          "No, és el més gran d'Europa"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "L'hora del pati",
-    "texto": "A l'escola, quan sona el timbre, eixim al pati. A mi m'agrada jugar a fet i amagar amb els amics. Hui he portat un entrepà de formatge i un suc de taronja per a esmorzar.",
+    "titulo": "La llegenda de la Rat penada",
+    "texto": "Segons conta la llegenda, quan el rei Jaume I estava acampat fora de València, una rat penada es va posar sobre la seua tenda. De nit, la rat penada va començar a colpejar un tambor per avisar els soldats que els enemics s'acostaven. Gràcies a aquest avís, el rei va poder guanyar la batalla. Per agrair-li el seu gest, Jaume I va posar la rat penada en l'escut de la ciutat de València, on encara la podem veure hui en dia.",
     "preguntas": [
       {
-        "pregunta": "Sona el timbre?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Sobre quin animal parla la llegenda?",
+        "opciones": [
+          "D'un lleó",
+          "D'una rat penada",
+          "D'un cavall",
+          "D'un gos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Què va fer la rat penada per a avisar els soldats?",
+        "opciones": [
+          "Va cridar molt",
+          "Va colpejar un tambor",
+          "Va volar en cercles",
+          "Va mossegar el rei"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Per què era important l'avís de l'animal?",
+        "opciones": [
+          "Perquè s'acostaven els enemics",
+          "Perquè anava a ploure",
+          "Perquè el sopar estava cremant-se",
+          "Perquè era l'hora de dormir"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "Eixim al carrer?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "On podem veure hui en dia la rat penada?",
+        "opciones": [
+          "En la bandera d'Espanya",
+          "En l'escut de València",
+          "En el museu del joguet",
+          "En els parcs"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "A què juga?",
-        "opciones": ["A futbol", "A bàsquet", "A fet i amagar", "A cartes"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "De què és l'entrepà?",
-        "opciones": ["De pernil", "De formatge", "De xocolate", "De tonyina"],
+        "pregunta": "Qui era el rei de la llegenda?",
+        "opciones": [
+          "Felip II",
+          "Jaume I",
+          "Alfons el Savi",
+          "Carles III"
+        ],
         "correcta": 1
-      },
-      {
-        "pregunta": "De què és el suc?",
-        "opciones": ["De poma", "De pera", "De taronja", "De bresquilla"],
-        "correcta": 2
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "La taronja",
-    "texto": "La taronja és una fruita redona. Naix als tarongers, que són arbres amb fulles verdes. La taronja té molt de suc i és bona per a la salut. A València hi ha molts camps de taronges.",
+    "titulo": "Les muntanyes i el Penyagolosa",
+    "texto": "La Comunitat Valenciana és una terra de muntanyes. Una de les més famoses és el Penyagolosa, situada a la província de Castelló. Té una altura de 1.813 metres i se la coneix com el 'gegant de pedra'. Des de dalt, es pot veure una gran part del territori i fins i tot la mar els dies clars. Moltes persones hi pugen per fer senderisme i gaudir de la natura, els pins i la neu a l'hivern.",
     "preguntas": [
       {
-        "pregunta": "La taronja és quadrada?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Les fulles són verdes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "On naixen les taronges?",
-        "opciones": ["Als pins", "Als tarongers", "A les roques", "Al mar"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Què té la taronja?",
-        "opciones": ["Llet", "Aigua", "Suc", "Sal"],
+        "pregunta": "En quina província està el Penyagolosa?",
+        "opciones": [
+          "València",
+          "Alacant",
+          "Castelló",
+          "Múrcia"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "És bona per a la salut?",
-        "opciones": ["Sí, molt", "No, gens", "És roïna", "Fa mal"],
-        "correcta": 0
+        "pregunta": "Quin sobrenom rep aquesta muntanya?",
+        "opciones": [
+          "La roca gran",
+          "El gegant de pedra",
+          "El sostre del món",
+          "La muntanya blava"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Quants metres d'altura té?",
+        "opciones": [
+          "500 metres",
+          "1.813 metres",
+          "3.000 metres",
+          "1.000 metres"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Què es pot veure des de dalt els dies clars?",
+        "opciones": [
+          "França",
+          "La mar",
+          "Àfrica",
+          "Madrid"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Quina activitat és típica fer allí?",
+        "opciones": [
+          "Nadar",
+          "Senderisme",
+          "Anar en cotxe",
+          "Dormir"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Un dia de pluja",
-    "texto": "Hui el cel està gris i plou molt. M'he posat les botes d'aigua i l'impermeable groc. M'agrada saltar als tolls d'aigua, però la mare diu que em banye els peus.",
+    "titulo": "Enric Valor i les Rondalles",
+    "texto": "Enric Valor va ser un escriptor valencià molt important, nascut a Castalla. Es va dedicar a recollir històries populars que la gent contava en veu alta i les va escriure en llibres anomenats 'Rondalles Valencianes'. Gràcies a ell, no s'han perdut històries fantàstiques de gegants, bruixes i herois de la nostra terra. També va treballar molt per ensenyar a la gent a escriure correctament en valencià.",
     "preguntas": [
       {
-        "pregunta": "Fa sol hui?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Qui va ser Enric Valor?",
+        "opciones": [
+          "Un pintor",
+          "Un escriptor valencià",
+          "Un astronauta",
+          "Un rei"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "El cel està blau?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "De quin color és l'impermeable?",
-        "opciones": ["Roig", "Groc", "Verd", "Negre"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "On salta?",
-        "opciones": ["Als tolls", "Al llit", "A la cadira", "Al sofà"],
+        "pregunta": "Com se citen les històries que va recollir?",
+        "opciones": [
+          "Rondalles Valencianes",
+          "Poemes d'Amor",
+          "Contes de Por",
+          "Novel·les Modernes"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "Què es banya?",
-        "opciones": ["Les mans", "El cap", "Els peus", "El nas"],
-        "correcta": 2
+        "pregunta": "On va nàixer Enric Valor?",
+        "opciones": [
+          "Altea",
+          "Castalla",
+          "Morella",
+          "Torrent"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "De què tracten les seues històries?",
+        "opciones": [
+          "De cotxes antics",
+          "De gegants, bruixes i herois",
+          "De l'espai",
+          "De cuina"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Quina altra tasca important va fer?",
+        "opciones": [
+          "Va inventar la ràdio",
+          "Va ensenyar a escriure bé en valencià",
+          "Va fer una pel·lícula",
+          "Va viatjar a Amèrica"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "La meua habitació",
-    "texto": "La meua habitació és de color blau. Tinc un llit gran i una taula per a fer els deures. A la prestatgeria tinc molts contes. El meu joguet preferit és un osset de peluix.",
+    "titulo": "La dieta mediterrània",
+    "texto": "Els valencians seguim la dieta mediterrània, que és considerada una de les més saludables del món. Es basa en el consum de productes frescos i de proximitat, com les verdures de l'horta, les fruites (com les taronges de la Ribera), el peix de la nostra mar i, sobretot, l'oli d'oliva. També són molt importants els llegums i la fruita seca. Menjar bé ens ajuda a créixer forts i a tindre energia per a tot el dia.",
     "preguntas": [
       {
-        "pregunta": "L'habitació és roja?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Com s'anomena la dieta que seguim?",
+        "opciones": [
+          "Dieta Atlàntica",
+          "Dieta Mediterrània",
+          "Dieta Ràpida",
+          "Dieta de les Fruites"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Té un llit gran?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "Quin ingredient és fonamental en aquesta dieta?",
+        "opciones": [
+          "La mantega",
+          "L'oli d'oliva",
+          "El sucre",
+          "La llet condensada"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "De quin color és l'habitació?",
-        "opciones": ["Blanca", "Verda", "Blava", "Rosa"],
-        "correcta": 2
+        "pregunta": "Què ens aporta menjar bé?",
+        "opciones": [
+          "Son",
+          "Força i energia",
+          "Avorriment",
+          "Set"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Què hi ha a la prestatgeria?",
-        "opciones": ["Plats", "Roba", "Contes", "Sabates"],
-        "correcta": 2
+        "pregunta": "Quins productes de l'horta són típics?",
+        "opciones": [
+          "Pastissos",
+          "Verdures i fruites",
+          "Hamburgueses",
+          "Refrescos"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Quin és el joguet preferit?",
-        "opciones": ["Un cotxe", "Un osset", "Una nina", "Un tren"],
+        "pregunta": "Per què és bona la dieta mediterrània?",
+        "opciones": [
+          "Perquè és cara",
+          "Perquè és saludable",
+          "Per l'olor",
+          "Perquè es menja molt ràpid"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Anem a la platja",
-    "texto": "A l'estiu fa molta calor i anem a la platja. L'aigua de la mar està fresqueta. Jo faig castells amb l'arena i el meu germà neda amb els manguitos. Després mengem gelat.",
+    "titulo": "Les festes de la Magdalena",
+    "texto": "Les festes de la Magdalena se celebren a la ciutat de Castelló de la Plana. Commemoren el trasllat de la ciutat des de la muntanya fins a la plana l'any 1252. L'acte més important és la 'Romeria de les Canyes', on la gent puja a l'ermita amb una canya i una cinta verda. També són famoses les 'Gaiates', que són monuments de llum que s'exposen pels carrers durant la setmana de festes.",
     "preguntas": [
       {
-        "pregunta": "Fa fred a l'estiu?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "A quina ciutat se celebren les festes de la Magdalena?",
+        "opciones": [
+          "Alacant",
+          "Castelló de la Plana",
+          "Sagunt",
+          "Xàtiva"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "L'aigua està calenta?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Què commemoren aquestes festes?",
+        "opciones": [
+          "La collita de l'arròs",
+          "El trasllat de la ciutat",
+          "L'arribada dels romans",
+          "La fi de l'estiu"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què faig amb l'arena?",
-        "opciones": ["Boles", "Castells", "Pastissos", "Cases"],
+        "pregunta": "Quin objecte porta la gent en la Romeria?",
+        "opciones": [
+          "Una espasa",
+          "Una canya amb cinta verda",
+          "Un fanal",
+          "Un rellotge"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Amb què neda el germà?",
-        "opciones": ["Amb manguitos", "Amb barca", "Amb peus", "Amb res"],
-        "correcta": 0
+        "pregunta": "Què són les Gaiates?",
+        "opciones": [
+          "Dolços de xocolata",
+          "Monuments de llum",
+          "Barques de pesca",
+          "Vestits antics"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Què mengen després?",
-        "opciones": ["Fruita", "Gelat", "Pa", "Peix"],
+        "pregunta": "De quin color és la cinta típica?",
+        "opciones": [
+          "Blava",
+          "Verda",
+          "Roja",
+          "Groga"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "La classe de música",
-    "texto": "Hui tenim classe de música amb la mestra Anna. Aprenem a tocar la flauta i el tambor. La mestra toca la guitarra i nosaltres cantem una cançó molt bonica sobre la primavera.",
+    "titulo": "L'invent de la ràdio",
+    "texto": "Fa molts anys, la gent no tenia televisió ni internet. La ràdio va ser un invent màgic que permetia escoltar música i notícies des de molt lluny. A València, les primeres emissores van començar a parlar fa quasi cent anys. Les famílies s'ajuntaven al voltant de l'aparell per escoltar les històries i els partits de futbol. Encara que hui tenim moltes pantalles, la ràdio continua sent molt important.",
     "preguntas": [
       {
-        "pregunta": "La mestra es diu Maria?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Què permetia fer la ràdio quan es va inventar?",
+        "opciones": [
+          "Veure pel·lícules",
+          "Escoltar música i notícies",
+          "Fer fotos",
+          "Cuinar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Toquem el piano?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Hi havia internet quan es va inventar la ràdio?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què toca la mestra?",
-        "opciones": ["El violí", "La guitarra", "La trompeta", "El piano"],
+        "pregunta": "Què feien les famílies amb la ràdio?",
+        "opciones": [
+          "La tancaven en un armari",
+          "S'ajuntaven al voltant per escoltar-la",
+          "La portaven al col·legi",
+          "La miraven fixament"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què toquen els xiquets?",
-        "opciones": ["Flauta i tambor", "Guitarra", "Piano", "Arpa"],
-        "correcta": 0
+        "pregunta": "Fa quants anys aproximadament va començar a València?",
+        "opciones": [
+          "Deu anys",
+          "Quasi cent anys",
+          "Mil anys",
+          "Cinc anys"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "De què és la cançó?",
-        "opciones": ["De l'hivern", "De la tardor", "De l'estiu", "De la primavera"],
-        "correcta": 3
+        "pregunta": "Continua sent important la ràdio hui en dia?",
+        "opciones": [
+          "No, ja no s'usa",
+          "Sí, encara és molt important",
+          "Només la usen els avions",
+          "Només per a dormir"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "L'àvia Pepa",
-    "texto": "L'àvia Pepa viu al poble. Té una casa blanca amb un hort. A l'hort hi ha tomaques i encisams. L'àvia em conta contes de quan ella era xicoteta abans d'anar a dormir.",
+    "titulo": "El Misteri d'Elx",
+    "texto": "El Misteri d'Elx és una representació teatral i musical d'origen medieval que se celebra cada mes d'agost a la Basílica de Santa Maria. És l'única obra de teatre que es pot representar dins d'una església gràcies a un permís especial del Papa. Els actors i cantants són tots homes i xiquets de la ciutat. L'escenari té una part en el sostre d'on baixen aparells amb àngels, com la gran 'Granada' o el 'Araceli'.",
     "preguntas": [
       {
-        "pregunta": "L'àvia viu a la ciutat?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "En quin lloc es representa el Misteri d'Elx?",
+        "opciones": [
+          "En un teatre",
+          "En la Basílica de Santa Maria",
+          "En el carrer",
+          "En el pati del cole"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "La casa és negra?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quin és l'origen d'aquesta obra?",
+        "opciones": [
+          "Modern",
+          "Medieval",
+          "Romà",
+          "Prehistòric"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què hi ha a l'hort?",
-        "opciones": ["Tomaques", "Pomes", "Taronges", "Melons"],
-        "correcta": 0
+        "pregunta": "Qui actua en l'obra?",
+        "opciones": [
+          "Professionals de Hollywood",
+          "Homes i xiquets de la ciutat",
+          "Només dones",
+          "Animals ensinistrats"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Quan conta contes?",
-        "opciones": ["Pel matí", "A la vesprada", "Abans de dormir", "A l'hora de dinar"],
-        "correcta": 2
+        "pregunta": "En quin mes se celebra?",
+        "opciones": [
+          "Gener",
+          "Agost",
+          "Maig",
+          "Desembre"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Com era l'àvia als contes?",
-        "opciones": ["Vella", "Xicoteta", "Alta", "Trista"],
+        "pregunta": "Com es diuen alguns dels aparells que baixen del sostre?",
+        "opciones": [
+          "L'Ascensor",
+          "La Granada o l'Araceli",
+          "El globus",
+          "L'avió"
+        ],
         "correcta": 1
       }
     ]

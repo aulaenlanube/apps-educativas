@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "La comunicación y sus elementos",
+        "texto": "La comunicación es el proceso mediante el cual se transmite información de un punto a otro. Para que este proceso ocurra, son necesarios varios elementos. El emisor es quien elabora y envía el mensaje; el receptor es quien lo recibe e interpreta. El mensaje es la información transmitida, que viaja a través de un canal (el aire, un cable, papel). Todo esto se realiza usando un código común, como el idioma español. Si el receptor no conoce el código del emisor (por ejemplo, idiomas distintos), la comunicación fracasa. Finalmente, el mensaje se emite en un contexto o situación determinada que ayuda a entender su significado exacto.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quién se encarga de recibir e interpretar la información?",
+                "opciones": [
+                    "El emisor",
+                    "El receptor",
+                    "El canal",
+                    "El código"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué nombre recibe el soporte físico por el que viaja el mensaje?",
+                "opciones": [
+                    "Código",
+                    "Contexto",
+                    "Canal",
+                    "Referente"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Por qué es fundamental que emisor y receptor compartan el mismo código?",
+                "opciones": [
+                    "Para que el canal no se rompa",
+                    "Para que el mensaje sea más largo",
+                    "Para que el receptor pueda interpretar el mensaje",
+                    "No es necesario compartir el código"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué elemento es la información que se transmite?",
+                "opciones": [
+                    "El mensaje",
+                    "El ruido",
+                    "La respuesta",
+                    "El emisor"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿De qué depende el significado exacto de un mensaje según el texto?",
+                "opciones": [
+                    "Del volumen de voz",
+                    "Del contexto o situación",
+                    "Del papel utilizado",
+                    "Del nombre del emisor"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Las funciones del lenguaje",
+        "texto": "No siempre usamos la lengua con el mismo objetivo. Dependiendo de nuestra intención, el lenguaje cumple distintas funciones. Cuando queremos transmitir información objetiva de la realidad, usamos la función REPRESENTATIVA (ej: 'Hoy es martes'). Si expresamos sentimientos o estados de ánimo, estamos ante la función EXPRESIVA (ej: '¡Qué alegría verte!'). Cuando intentamos influir en el comportamiento del receptor para que haga algo, usamos la función APELATIVA (ej: 'Cierra la puerta'). También existen la función POÉTICA (centrada en la belleza del mensaje), la FÁTICA (para comprobar que el canal funciona) y la METALINGÜÍSTICA (cuando usamos la lengua para hablar de la propia lengua).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué función predomina en la frase: '¡Ojalá apruebe el examen!'?",
+                "opciones": [
+                    "Representativa",
+                    "Apelativa",
+                    "Expresiva",
+                    "Fática"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál es el objetivo de la función apelativa?",
+                "opciones": [
+                    "Expresar belleza",
+                    "Transmitir datos objetivos",
+                    "Influir en el receptor",
+                    "Comprobar el canal"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Si un libro de gramática explica qué es un sustantivo, ¿qué función cumple?",
+                "opciones": [
+                    "Metalingüística",
+                    "Poética",
+                    "Fática",
+                    "Apelativa"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "La frase 'Diga, diga... ¿me oye?' es un ejemplo de función:",
+                "opciones": [
+                    "Expresiva",
+                    "Fática",
+                    "Representativa",
+                    "Poética"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué se centra la función poética principalmente?",
+                "opciones": [
+                    "En el receptor",
+                    "En la belleza y forma del mensaje",
+                    "En el canal",
+                    "En la realidad exterior"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "La narración y sus elementos",
+        "texto": "Narrar consiste en contar unos hechos, reales o imaginarios, que les suceden a unos personajes en un tiempo y lugar determinados. En toda narración encontramos el Narrador, que es la voz que cuenta la historia (no confundir con el autor). Los Personajes pueden ser protagonistas (quienes llevan el peso de la acción) o secundarios. La Acción es el conjunto de sucesos que ocurren, organizados normalmente en Introducción (presentación), Nudo (conflicto principal) y Desenlace (resolución). El Marco Narrativo incluye el tiempo (época y duración) y el espacio (lugar físico o imaginario) donde transcurre el relato.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué elemento incluye el tiempo y el espacio de la historia?",
+                "opciones": [
+                    "El nudo",
+                    "El marco narrativo",
+                    "El narrador",
+                    "El desenlace"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es lo mismo el autor que el narrador?",
+                "opciones": [
+                    "Sí, siempre",
+                    "No, el narrador es una voz ficticia creada por el autor",
+                    "Depende de si la historia es real",
+                    "Solo en las biografías"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué parte de la estructura se presenta el conflicto principal?",
+                "opciones": [
+                    "Introducción",
+                    "Nudo",
+                    "Desenlace",
+                    "Marco"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llaman los personajes que tienen menos importancia en la obra?",
+                "opciones": [
+                    "Protagonistas",
+                    "Antagonistas",
+                    "Secundarios",
+                    "Narradores"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué diferencia la introducción del desenlace?",
+                "opciones": [
+                    "Ninguna",
+                    "La introducción presenta y el desenlace resuelve",
+                    "La introducción es más larga",
+                    "El desenlace no tiene personajes"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Mitos y Leyendas",
+        "texto": "Los mitos y las leyendas son relatos muy antiguos que forman parte de la identidad de los pueblos. Los MITOS son historias sagradas, situadas en un tiempo remoto, que explican el origen del mundo o de fenómenos naturales a través de dioses y héroes (como el mito de Prometeo). Por otro lado, las LEYENDAS son relatos que parten de un hecho real o histórico al que se le añaden elementos fantásticos o sobrenaturales, y suelen estar ligadas a un lugar concreto (como la leyenda de la Alhambra). Ambos se transmitían oralmente de generación en generación hasta que fueron recogidos por escrito.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué diferencia principal hay entre mito y leyenda según el texto?",
+                "opciones": [
+                    "Ninguna",
+                    "El mito explica el origen y la leyenda suele basarse en algo histórico",
+                    "El mito es moderno y la leyenda antigua",
+                    "El mito siempre es verdad y la leyenda mentira"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quiénes suelen protagonizar los mitos?",
+                "opciones": [
+                    "Personas normales del siglo XXI",
+                    "Dioses y héroes",
+                    "Animales que hablan solamente",
+                    "Científicos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué suelen estar ligadas las leyendas?",
+                "opciones": [
+                    "A un lugar concreto",
+                    "A todo el universo",
+                    "A los laboratorios",
+                    "A ninguna parte"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Cómo se transmitían originalmente estas historias?",
+                "opciones": [
+                    "Por correo electrónico",
+                    "Oralmente de generación en generación",
+                    "Solo por libros",
+                    "Por radio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un relato que explica por qué hay truenos usando a un dios sería un...",
+                "opciones": [
+                    "Mito",
+                    "Leyenda",
+                    "Noticia",
+                    "Diccionario"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Sustantivos y Adjetivos",
+        "texto": "Para construir oraciones usamos distintas clases de palabras. El SUSTANTIVO o nombre sirve para designar realidades: personas, animales, objetos o ideas (ej: perro, libertad, Madrid). Los sustantivos tienen género (masculino/femenino) y número (singular/plural). El ADJETIVO CALIFICATIVO es la palabra que acompaña al sustantivo para expresar una cualidad o estado (ej: gato negro, día caluroso). El adjetivo siempre debe concordar en género y número con el sustantivo al que se refiere. Si decimos 'las nubes blancas', tanto el sustantivo como el adjetivo son femeninos y plurales.",
+        "preguntas": [
+            {
+                "pregunta": "¿Para qué sirve el sustantivo?",
+                "opciones": [
+                    "Expresar acciones",
+                    "Designar seres, objetos o ideas",
+                    "Indicar cualidades",
+                    "Unir oraciones"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué indica el adjetivo calificativo?",
+                "opciones": [
+                    "Quién hace la acción",
+                    "Una cualidad o estado del sustantivo",
+                    "El lugar de la acción",
+                    "La cantidad exacta"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa que el adjetivo debe 'concordar' con el sustantivo?",
+                "opciones": [
+                    "Que deben rimar",
+                    "Que deben tener el mismo género y número",
+                    "Que deben empezar por la misma letra",
+                    "Que deben ser sinónimos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál de estas palabras es un adjetivo?",
+                "opciones": [
+                    "Mesa",
+                    "Correr",
+                    "Inteligente",
+                    "Ellos"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "En la frase 'Unos libros pesados', ¿en qué concuerdan nombre y adjetivo?",
+                "opciones": [
+                    "Femenino singular",
+                    "Masculino plural",
+                    "Masculino singular",
+                    "Femenino plural"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "El género lírico: La rima",
+        "texto": "La lírica es el género literario donde el autor expresa sus sentimientos y emociones, generalmente en verso. Un elemento clave de la poesía es la rima, que es la repetición de sonidos al final de los versos a partir de la última vocal acentuada. Hay dos tipos: la rima CONSONANTE, cuando coinciden todos los sonidos (vocales y consonantes, ej: canción/atención), y la rima ASONANTE, cuando solo coinciden las vocales (ej: casa/pasa es consonante, pero casa/rama es asonante). El conjunto de versos forma una estrofa, y el conjunto de estrofas forma el poema.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué caracteriza principalmente al género lírico?",
+                "opciones": [
+                    "Contar batallas",
+                    "Expresar sentimientos y emociones",
+                    "Dar instrucciones de uso",
+                    "Presentar noticias"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué rima tenemos si solo coinciden las vocales?",
+                "opciones": [
+                    "Consonante",
+                    "Asonante",
+                    "Libre",
+                    "Blanca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A partir de qué sonido se cuenta la rima?",
+                "opciones": [
+                    "La primera letra",
+                    "La última vocal acentuada",
+                    "El medio del verso",
+                    "Cualquier vocal"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es una estrofa?",
+                "opciones": [
+                    "Un tipo de rima",
+                    "Un conjunto de versos",
+                    "El título del poema",
+                    "Un instrumento musical"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Las palabras 'viento' y 'siento' tienen rima...",
+                "opciones": [
+                    "Asonante",
+                    "Consonante",
+                    "No riman",
+                    "Libre"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Ortografía: Las reglas de acentuación",
+        "texto": "Para poner las tildes correctamente, debemos saber en qué sílaba recae el acento (sílaba tónica). Las palabras AGUDAS tienen la fuerza en la última sílaba y llevan tilde si acaban en vocal, -n o -s (ej: camión). Las LLANAS tienen la fuerza en la penúltima sílaba y llevan tilde si NO acaban en vocal, -n o -s (ej: lápiz). Las ESDRÚIXOLAS tienen la fuerza en la antepenúltima sílaba y SIEMPRE llevan tilde (ej: pájaro). Dominar estas reglas es esencial para una correcta expresión escrita y evitar malentendidos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuándo llevan tilde siempre las palabras?",
+                "opciones": [
+                    "Agudas",
+                    "Llanas",
+                    "Esdrújulas",
+                    "Nunca"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Dónde tienen la sílaba tónica las palabras agudas?",
+                "opciones": [
+                    "Antepenúltima",
+                    "Penúltima",
+                    "Última",
+                    "Cualquiera"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Lleva tilde la palabra 'sofá'?",
+                "opciones": [
+                    "Sí, porque es aguda acabada en vocal",
+                    "No, porque es llana",
+                    "No, porque es aguda acabada en -a",
+                    "Sí, porque es esdrújula"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "La palabra 'caracol' es...",
+                "opciones": [
+                    "Aguda",
+                    "Llana",
+                    "Esdrújula",
+                    "Sobreesdrújula"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Cuándo lleva tilde una palabra llana?",
+                "opciones": [
+                    "Siempre",
+                    "Si acaba en vocal, -n o -s",
+                    "Si NO acaba en vocal, -n o -s",
+                    "Nunca"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "El Diccionario y el sentido de las palabras",
+        "texto": "El diccionario es una herramienta que recoge las palabras de una lengua y explica sus significados o acepciones. Las palabras pueden tener un sentido DENOTATIVO, que es el significado objetivo y literal (ej: 'El sol es una estrella'). Pero también pueden usarse con sentido CONNOTATIVO, cargado de sentimientos o valores subjetivos (ej: 'Eres un sol', que significa que eres buena persona). Además, es importante conocer los sinónimos (palabras con significado parecido) y antónimos (palabras con significado opuesto) para enriquecer nuestro vocabulario.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el sentido denotativo?",
+                "opciones": [
+                    "Significado inventado",
+                    "Significado objetivo y literal",
+                    "Significado grosero",
+                    "Un sentimiento"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si digo 'Tiene un corazón de oro', ¿qué sentido uso?",
+                "opciones": [
+                    "Denotativo",
+                    "Connotativo",
+                    "Científico",
+                    "Ninguno"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llaman las palabras que significan lo contrario?",
+                "opciones": [
+                    "Sinónimos",
+                    "Antónimos",
+                    "Polisémicas",
+                    "Homónimas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué encontramos en una acepción del diccionario?",
+                "opciones": [
+                    "Un dibujo",
+                    "Uno de los significados de la palabra",
+                    "La historia del autor",
+                    "El precio del libro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Antónimo de 'alegre' es...",
+                "opciones": [
+                    "Contento",
+                    "Triste",
+                    "Rápido",
+                    "Fuerte"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "El texto y sus propiedades",
+        "texto": "Un texto no es solo un conjunto de palabras, debe cumplir tres propiedades fundamentales. La ADECUACIÓN significa que el texto debe adaptarse a la situación y al receptor (no hablamos igual a un bebé que a un médico). La COHERENCIA exige que el texto tenga sentido, que las ideas estén relacionadas y no se contradigan. Por último, la COHESIÓN asegura que las frases estén bien unidas mediante conectores (pero, además, por tanto) y otros mecanismos lingüísticos. Si un texto es adecuado, coherente y está cohesionado, el mensaje llegará correctamente.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué propiedad hace que el texto se adapte al receptor?",
+                "opciones": [
+                    "Coherencia",
+                    "Adecuación",
+                    "Cohesión",
+                    "Ortografía"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la coherencia?",
+                "opciones": [
+                    "Que las ideas tengan sentido y no se contradigan",
+                    "Que no haya faltas",
+                    "Que sea muy largo",
+                    "Que tenga dibujos"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Para qué sirven los conectores en la cohesión?",
+                "opciones": [
+                    "Para separar oraciones",
+                    "Para unir y relacionar las frases",
+                    "Para que el texto sea más difícil",
+                    "No sirven para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si hablas con lenguaje muy técnico a un niño pequeño, fallas en:",
+                "opciones": [
+                    "Coherencia",
+                    "Adecuación",
+                    "Cohesión",
+                    "Caligrafía"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántas propiedades fundamentales debe cumplir un texto según el texto?",
+                "opciones": [
+                    "Una",
+                    "Dos",
+                    "Tres",
+                    "Diez"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "El teatro: Un arte para ser visto",
+        "texto": "El género dramático o teatral se diferencia de los demás porque no tiene narrador. La historia se conoce a través del diálogo de los personajes y está escrita para ser representada en un escenario. En un texto teatral encontramos el DIÁLOGO (lo que dicen los actores) y las ACOTACIONES (indicaciones del autor sobre gestos, luz o decorado, que suelen ir entre paréntesis o en cursiva). Las obras se dividen en ACTOS (marcados por la caída del telón) y ESCENAS (marcadas por la entrada o salida de personajes).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué elemento falta en el teatro a diferencia de la novela?",
+                "opciones": [
+                    "Personajes",
+                    "Narrador",
+                    "Diálogos",
+                    "Escenario"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es una acotación?",
+                "opciones": [
+                    "Lo que dice el protagonista",
+                    "Indicaciones del autor sobre la representación",
+                    "El final de la obra",
+                    "Un tipo de aplauso"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se marcan las escenas en el teatro?",
+                "opciones": [
+                    "Por el paso del tiempo",
+                    "Por la entrada y salida de personajes",
+                    "Por el número de páginas",
+                    "Por los gritos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué está escrito principalmente un texto teatral?",
+                "opciones": [
+                    "Para ser leído en silencio",
+                    "Para ser representado por actores",
+                    "Para ser cantado",
+                    "Para ser pintado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde suelen ir escritas las acotaciones?",
+                "opciones": [
+                    "Al final del libro",
+                    "Entre paréntesis o cursiva",
+                    "En el título",
+                    "No se escriben"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

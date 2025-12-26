@@ -1,0 +1,570 @@
+[
+    {
+        "id": "1",
+        "titulo": "Las Capacidades Físicas Básicas",
+        "texto": "Las capacidades físicas básicas son los pilares sobre los que se construye nuestro movimiento. Son cuatro: RESISTENCIA (capacidad de mantener un esfuerzo mucho tiempo), FUERZA (vencer una resistencia), VELOCIDAD (hacer movimientos en el menor tiempo) y FLEXIBILIDAD (capacidad de estiramiento de músculos y articulaciones). En 2nd ESO buscamos mejorar estas capacidades de forma equilibrada. Una buena condición física no solo mejora nuestro rendimiento deportivo, sino que protege nuestro corazón y nos da más energía para estudiar.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuáles son las cuatro capacidades físicas básicas?",
+                "opciones": [
+                    "Salto, carrera, nado y lucha",
+                    "Resistencia, Fuerza, Velocidad y Flexibilidad",
+                    "Comer, dormir, jugar y correr",
+                    "Altura, peso, fuerza y color"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué capacidad nos permite aguantar mucho tiempo corriendo?",
+                "opciones": [
+                    "Fuerza",
+                    "Resistencia",
+                    "Velocidad",
+                    "Potencia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la flexibilidad?",
+                "opciones": [
+                    "Correr rápido",
+                    "Vencer pesas",
+                    "La capacidad de estiramiento de músculos y articulaciones",
+                    "Saltar muy alto"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Por qué es bueno tener una buena condición física?",
+                "opciones": [
+                    "Para ser famoso",
+                    "Protege el corazón y da energía",
+                    "Para no comer",
+                    "No sirve para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Vencer una resistencia (como una pesa) requiere:",
+                "opciones": [
+                    "Fuerza",
+                    "Velocidad",
+                    "Flexibilidad",
+                    "Agilidad"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "El Calentamiento Específico",
+        "texto": "Ya sabemos que el calentamiento prepara el cuerpo para el ejercicio. Pero en 2nd ESO introducimos el CALENTAMIENTO ESPECÍFICO. A diferencia del general, este se centra en los músculos y articulaciones que vamos a usar en un deporte concreto. Por ejemplo, si vamos a jugar a baloncesto, incluiremos ejercicios de movilidad de muñeca y lanzamientos suaves. Un calentamiento bien hecho aumenta la temperatura muscular, mejora la concentración y, sobre todo, reduce drásticamente el riesgo de lesiones graves como esguinces o roturas.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué se diferencia el calentamiento específico del general?",
+                "opciones": [
+                    "Es más corto",
+                    "Se centra en los músculos que se usarán en un deporte concreto",
+                    "Se hace después de clase",
+                    "No usa música"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si vas a jugar al fútbol, un calentamiento específico incluiría:",
+                "opciones": [
+                    "Lanzar balones con la mano",
+                    "Toques y pases con los pies",
+                    "Nadar",
+                    "Dormir"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el beneficio más importante del calentamiento?",
+                "opciones": [
+                    "Cansarse antes",
+                    "Reducir el riesgo de lesiones",
+                    "Ponerse moreno",
+                    "Llegar tarde"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué aumenta en nuestros músculos durante el calentamiento?",
+                "opciones": [
+                    "El frío",
+                    "La temperatura",
+                    "El tamaño de los huesos",
+                    "La grasa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Mejora la concentración el calentamiento?",
+                "opciones": [
+                    "Sí",
+                    "No"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Atletismo: Las Carreras de Relevos",
+        "texto": "El atletismo es el deporte base. Una de las pruebas más espectaculares son los RELEVOS (4x100 o 4x400 metros). En esta prueba, cuatro atletas corren una distancia y deben pasarse un cilindro llamado TESTIGO. El cambio debe hacerse dentro de una zona de 20 metros llamada 'zona de transferencia'. Si el testigo se cae o se entrega fuera de la zona, el equipo es descalificado. Es vital la coordinación y la confianza entre los compañeros para no perder velocidad durante el intercambio.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llama el objeto que se pasan los corredores?",
+                "opciones": [
+                    "Bastón",
+                    "Testigo",
+                    "Palo",
+                    "Cilindro deportivo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántos atletas forman un equipo de relevos?",
+                "opciones": [
+                    "Dos",
+                    "Cuatro",
+                    "Diez",
+                    "Cien"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si se entrega el testigo fuera de la zona señalada?",
+                "opciones": [
+                    "Dan más puntos",
+                    "Descalifican al equipo",
+                    "No pasa nada",
+                    "Se repite la carrera"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántos metros mide la zona de transferencia?",
+                "opciones": [
+                    "5 metros",
+                    "20 metros",
+                    "100 metros",
+                    "1 metro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué capacidad es más importante en un 4x100?",
+                "opciones": [
+                    "Resistencia aeróbica",
+                    "Velocidad y coordinación",
+                    "Flexibilidad",
+                    "Fuerza bruta"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Balonmano: Técnica y Táctica",
+        "texto": "El balonmano es un deporte de equipo rápido e intenso. No se puede dar más de tres pasos con el balón en las manos sin botarlo. El área del portero es 'sagrada': ningún jugador de campo puede pisarla (solo pueden saltar sobre ella y lanzar antes de caer). Técnicamente, destaca el 'ciclo de pasos' y el lanzamiento en suspensión. Tácticamente, es fundamental la defensa en línea (6-0) para evitar que el equipo contrario encuentre huecos. El respeto al árbitro y a los rivales es esencial en este deporte de contacto frecuente.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuántos pasos puedes dar máximo sin botar el balón?",
+                "opciones": [
+                    "Uno",
+                    "Tres",
+                    "Diez",
+                    "Todos los que quieras"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién puede pisar el área de portería?",
+                "opciones": [
+                    "Todos",
+                    "Solo el portero",
+                    "El capitán",
+                    "Nadie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un lanzamiento en suspensión?",
+                "opciones": [
+                    "Lanzar sentado",
+                    "Lanzar mientras saltas en el aire",
+                    "Lanzar desde el suelo",
+                    "No lanzar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el 6-0 en balonmano?",
+                "opciones": [
+                    "El resultado final",
+                    "Un sistema defensivo con todos los jugadores en línea",
+                    "El número de balones",
+                    "Un tipo de pase"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Se permite el contacto físico en balonmano?",
+                "opciones": [
+                    "No, nunca",
+                    "Sí, es un deporte de contacto reglamentado",
+                    "Solo si el árbitro no mira",
+                    "Solo entre porteros"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "La Frecuencia Cardíaca",
+        "texto": "La frecuencia cardíaca (FC) es el número de veces que nuestro corazón late por minuto (ppm). Es el mejor indicador de la intensidad del ejercicio. En reposo, lo normal es tener entre 60 y 80 ppm. Durante el ejercicio intenso, puede subir hasta las 180 o 200 ppm. Para calcular tu Frecuencia Cardíaca Máxima teórica, usamos la fórmula: 220 menos tu edad. Si tienes 14 años, tu máximo sería 206 ppm. Controlar el pulso nos ayuda a entrenar de forma segura y eficiente.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significan las siglas ppm?",
+                "opciones": [
+                    "Pasos por metro",
+                    "Pulsaciones por minuto",
+                    "Peso por minuto",
+                    "Potencia por minuto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la FC normal en reposo?",
+                "opciones": [
+                    "200 ppm",
+                    "60-80 ppm",
+                    "10 ppm",
+                    "500 ppm"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la fórmula para la FC Máxima teórica?",
+                "opciones": [
+                    "220 + edad",
+                    "220 - edad",
+                    "100 x edad",
+                    "Edad / 2"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un alumno de 15 años mide su pulso, ¿cuál es su máxima?",
+                "opciones": [
+                    "220",
+                    "205",
+                    "180",
+                    "200"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve controlar el pulso?",
+                "opciones": [
+                    "Para saber la hora",
+                    "Para medir la intensidad y entrenar con seguridad",
+                    "Para adelgazar rápido",
+                    "Para nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Voleibol: El juego de los tres toques",
+        "texto": "El voleibol es un deporte donde el balón no puede tocar el suelo. Cada equipo tiene un máximo de tres toques para pasar el balón al campo contrario (normalmente: recepción, colocación y remate). No se puede tocar la red ni invadir el campo contrario. Un elemento técnico clave es el TOQUE DE DEDOS (para colocar con precisión) y el TOQUE DE ANTEBRAZOS (para defender balones fuertes). La rotación es obligatoria cada vez que se recupera el saque, lo que obliga a todos los jugadores a pasar por todas las posiciones.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el máximo de toques por equipo?",
+                "opciones": [
+                    "Uno",
+                    "Dos",
+                    "Tres",
+                    "Ilimitados"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Se puede tocar la red con el cuerpo?",
+                "opciones": [
+                    "Sí",
+                    "No, es falta",
+                    "Solo si eres el capitán",
+                    "Solo si el balón pasa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué toque se usa habitualmente para defender un balón fuerte?",
+                "opciones": [
+                    "Toque de dedos",
+                    "Toque de antebrazos",
+                    "Patada",
+                    "Cabezazo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo se realiza la rotación?",
+                "opciones": [
+                    "Cada 5 minutos",
+                    "Cada vez que se recupera el servicio o saque",
+                    "Nunca",
+                    "Al final del partido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve el toque de dedos?",
+                "opciones": [
+                    "Para rematar fuerte",
+                    "Para colocar el balón con precisión",
+                    "Para sacar",
+                    "Para protegerse la cara"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Orientación en el Medio Natural",
+        "texto": "Saber orientarse es vital para realizar actividades seguras en la naturaleza. Los instrumentos básicos son el MAPA y la BRÚJULA. En un mapa, el norte siempre está arriba. La brújula tiene una aguja imantada que siempre señala al NORTE MAGNÉTICO. También podemos usar elementos naturales: el musgo suele crecer en la cara norte de los árboles (donde hay más sombra y humedad), y el sol siempre sale por el ESTE. Nunca debemos salir a la montaña sin avisar a alguien y sin llevar agua y ropa adecuada.",
+        "preguntas": [
+            {
+                "pregunta": "¿Hacia dónde señala siempre la aguja de la brújula?",
+                "opciones": [
+                    "Al Sur",
+                    "Al Norte magnético",
+                    "A tu casa",
+                    "Al Sol"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Hacia dónde está el norte en un mapa convencional?",
+                "opciones": [
+                    "Derecha",
+                    "Izquierda",
+                    "Arriba",
+                    "Abajo"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Dónde suele crecer el musgo en los árboles?",
+                "opciones": [
+                    "En el sur (al sol)",
+                    "En el norte (más humedad/sombra)",
+                    "En las raíces",
+                    "En la copa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por dónde sale el sol?",
+                "opciones": [
+                    "Oeste",
+                    "Este",
+                    "Norte",
+                    "Sur"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es fundamental antes de ir a la montaña?",
+                "opciones": [
+                    "Ir solo",
+                    "No llevar agua",
+                    "Avisar a alguien y llevar material adecuado",
+                    "Llevar solo el móvil"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Los Beneficios del Estiramiento",
+        "texto": "Estirar al finalizar la actividad física es tan importante como calentar al principio. Al hacer ejercicio, los músculos se contraen y se acortan. Los estiramientos ayudan a que el músculo recupere su longitud natural, mejorando la circulación y eliminando tensiones. Esto acelera la RECUPERACIÓN y evita las molestas agujetas. Además, trabajar la flexibilidad a largo plazo nos permite realizar movimientos más amplios y previene dolores de espalda causados por malas posturas al estar sentados estudiando.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuándo es más recomendable hacer estiramientos largos?",
+                "opciones": [
+                    "Al empezar rápido",
+                    "Al finalizar la actividad física",
+                    "Mientras corres",
+                    "Nunca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué le ocurre al músculo durante el ejercicio?",
+                "opciones": [
+                    "Se alarga",
+                    "Se contrae y se acorta",
+                    "Desaparece",
+                    "Se enfría"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Estirar correctamente ayuda a evitar:",
+                "opciones": [
+                    "El hambre",
+                    "Las agujetas y tensiones musculares",
+                    "El sueño",
+                    "La lluvia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La flexibilidad previene dolores de:",
+                "opciones": [
+                    "Dientes",
+                    "Espalda",
+                    "Pelo",
+                    "Uñas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué mejora el estiramiento en el músculo?",
+                "opciones": [
+                    "La circulación y recuperación",
+                    "La fuerza bruta",
+                    "La velocidad",
+                    "El color de la piel"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "El Doping y el Juego Limpio",
+        "texto": "El deporte no solo es salud, también son valores. El 'Doping' consiste en el uso de sustancias prohibidas para mejorar el rendimiento de forma artificial e ilegal. Es PELIGROSO para la salud (puede causar problemas graves de corazón e hígado) y es una TRAMPA que rompe la igualdad de condiciones. El verdadero deportista practica el FAIR PLAY (juego limpio): respeta las normas, acepta la derrota con dignidad, no engaña y ayuda al compañero o rival si este se lesiona.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el doping?",
+                "opciones": [
+                    "Comer mucha fruta",
+                    "Uso de sustancias prohibidas para mejorar el rendimiento",
+                    "Entrenar mucho",
+                    "Dormir 8 horas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es malo el doping además de por ser trampa?",
+                "opciones": [
+                    "Es muy barato",
+                    "Es muy peligroso para la salud",
+                    "No cansa",
+                    "Hace que corras menos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa Fair Play?",
+                "opciones": [
+                    "Ganar a toda costa",
+                    "Juego Limpio y respeto",
+                    "Jugar muy rápido",
+                    "Comprar al árbitro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace un buen deportista ante la derrota?",
+                "opciones": [
+                    "Llorar y gritar",
+                    "Aceptarla con dignidad",
+                    "Insultar al rival",
+                    "Romper el material"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Ayudar a un rival lesionado es un ejemplo de:",
+                "opciones": [
+                    "Debilidad",
+                    "Valores deportivos y fair play",
+                    "Error",
+                    "Miedo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Sustancias Nocivas: El Tabaco y el Alcohol",
+        "texto": "Desde la educación física defendemos un estilo de vida saludable. Sustancias como el tabaco y el alcohol son muy perjudiciales, especialmente en la adolescencia cuando el cuerpo está creciendo. El tabaco destruye los alvéolos pulmonares, disminuyendo drásticamente tu capacidad de resistencia y provocando enfermedades graves a largo plazo. El alcohol afecta al sistema nervioso y al hígado. Elegir no consumir estas sustancias es la mejor decisión que puedes tomar para tu rendimiento deportivo y para tu salud futura.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué parte del cuerpo daña directamente el tabaco?",
+                "opciones": [
+                    "Los pulmones (alvéolos)",
+                    "Las uñas",
+                    "El pelo",
+                    "Los codos"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué capacidad física disminuye mucho al fumar?",
+                "opciones": [
+                    "Fuerza",
+                    "Resistencia",
+                    "Flexibilidad",
+                    "Agilidad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué sistemas afecta principalmente el alcohol?",
+                "opciones": [
+                    "Linfático",
+                    "Nervioso e hígado",
+                    "Inmune solamente",
+                    "Óseo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es peor consumir estas sustancias en la adolescencia?",
+                "opciones": [
+                    "Porque es más caro",
+                    "Porque el cuerpo está en pleno desarrollo y crecimiento",
+                    "Porque no hay tiempo",
+                    "No es peor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la mejor decisión según el texto?",
+                "opciones": [
+                    "Probar un poco",
+                    "No consumir sustancias nocivas",
+                    "Beber solo en fiestas",
+                    "Fumar poco"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

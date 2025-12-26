@@ -1,160 +1,218 @@
 [
   {
-    "categoria": "Electricidad (Visual)",
+    "categoria": "Fenómenos Eléctricos y Circuitos (Visual)",
     "correctos": [
       "⚡",
       "💡",
       "🔋",
       "🔌",
       "🔦",
-      "📺"
+      "📺",
+      "💻",
+      "📟",
+      "🕹️",
+      "📡"
     ],
     "intrusos": [
       "🕯️",
       "🔥",
       "💨",
       "💧",
-      "🌱"
+      "🌱",
+      "🪵",
+      "🦴",
+      "🐚",
+      "🛖",
+      "🛖"
     ]
   },
   {
-    "categoria": "Salud y Medicina (Visual)",
+    "categoria": "Conceptos de Medicina y Patógenos (Visual)",
     "correctos": [
       "🦠",
       "💉",
       "💊",
       "😷",
       "🌡️",
-      "🚑"
+      "🚑",
+      "🏥",
+      "🧪",
+      "🧫",
+      "🩸",
+      "🧤",
+      "🔬"
     ],
     "intrusos": [
       "⚽",
       "🥊",
       "🎮",
       "🍔",
-      "🍩"
+      "donut",
+      "🍫",
+      "🍭",
+      "🍿",
+      "🥤",
+      "🎰"
     ]
   },
   {
-    "categoria": "Tecnología y Máquinas (Visual)",
+    "categoria": "Industria y Tecnología Mecánica (Visual)",
     "correctos": [
       "🦾",
       "🤖",
       "⚙️",
       "🏭",
       "🔧",
-      "🔩"
+      "🔩",
+      "🏗️",
+      "🔨",
+      "🗜️",
+      "🛠️"
     ],
     "intrusos": [
       "🌿",
       "🐾",
       "🍄",
       "🐚",
-      "🪵"
+      "🪵",
+      "🌸",
+      "🦋",
+      "🌈",
+      "🌅",
+      "🦜"
     ]
   },
   {
-    "categoria": "Sistema Nervioso (Visual)",
+    "categoria": "Sistema Nervioso y Órganos sensoriales (Visual)",
     "correctos": [
       "🧠",
       "👀",
       "👂",
       "👃",
       "✋",
-      "👅"
+      "👅",
+      "👃",
+      "🧠",
+      "🧬",
+      "👁️‍🗨️"
     ],
     "intrusos": [
       "🦴",
       "💪",
       "🦷",
       "💇",
-      "💅"
+      "💅",
+      "👞",
+      "👕",
+      "👒",
+      "👓",
+      "🧤"
     ]
   },
   {
-    "categoria": "La Electricidad",
+    "categoria": "Componentes de la Corriente Eléctrica",
     "correctos": [
-      "Conductor",
-      "Aislante",
-      "Circuito",
-      "Interruptor",
-      "Pila",
-      "Corriente"
+      "Material Conductor (Cobre)",
+      "Material Aislante (Goma)",
+      "Circuito en serie",
+      "Interruptor de paso",
+      "Generador o Pila",
+      "Corriente eléctrica",
+      "Motor eléctrico"
     ],
     "intrusos": [
-      "Imán",
+      "Imán natural",
+      "Brújula magnética",
+      "Fuerza de Gravedad",
+      "Eco sonoro",
+      "Sombra proyectada",
+      "Reflejo en espejo",
+      "Inercia"
+    ]
+  },
+  {
+    "categoria": "Magnetismo y Electromagnetismo",
+    "correctos": [
+      "Imán de neodimio",
+      "Polo Norte magnético",
+      "Polo Sur magnético",
+      "Atracción entre polos",
+      "Repulsión entre iguales",
       "Brújula",
-      "Gravedad",
-      "Sonido",
-      "Eco"
-    ]
-  },
-  {
-    "categoria": "El Magnetismo",
-    "correctos": [
-      "Imán",
-      "Polo Norte",
-      "Polo Sur",
-      "Atracción",
-      "Repulsión"
+      "Campo magnético",
+      "Electroimán"
     ],
     "intrusos": [
-      "Electricidad",
-      "Enchufe",
-      "Interruptor",
-      "Madera",
-      "Plástico"
+      "Enchufe de pared",
+      "Bombilla LED",
+      "Madera de pino",
+      "Plástico aislante",
+      "Agua destilada",
+      "Papel de seda",
+      "Vaso de cristal"
     ]
   },
   {
-    "categoria": "Reproducción Humana",
+    "categoria": "Funciones y Etapas de la Reproducción Humana",
     "correctos": [
-      "Óvulo",
+      "Célula Óvulo",
       "Espermatozoide",
-      "Fecundación",
-      "Embarazo",
-      "Parto"
+      "Fecundación cigoto",
+      "Embarazo fetal",
+      "Parto o Alumbramiento",
+      "Pubertad",
+      "Caracteres sexuales",
+      "Placenta"
     ],
     "intrusos": [
-      "Digestión",
-      "Respiración",
-      "Corazón",
-      "Cerebro",
-      "Estómago"
+      "Digestión de grasas",
+      "Respiración traqueal",
+      "Latido del corazón",
+      "Memoria a largo plazo",
+      "Filtración renal",
+      "Excreción",
+      "Circulación"
     ]
   },
   {
-    "categoria": "Fuentes de Energía No Renovables",
+    "categoria": "Fuentes de Energía Contaminantes / No Renovables",
     "correctos": [
       "Petróleo",
-      "Carbón",
+      "Carbón mineral",
       "Gas natural",
-      "Uranio",
-      "Plutonio"
+      "Energía Nuclear (Uranio)",
+      "Plutonio",
+      "Fracking"
     ],
     "intrusos": [
-      "Sol",
-      "Viento",
-      "Agua",
-      "Biomasa",
-      "Geotérmica"
+      "Radiación Solar",
+      "Energía Eólica (Viento)",
+      "Energía Hidráulica (Agua)",
+      "Biomasa forestal",
+      "Energía Geotérmica",
+      "Energía Mareomotriz"
     ]
   },
   {
-    "categoria": "Ecosistemas",
+    "categoria": "Interacciones en los Ecosistemas (Niveles Tróficos)",
     "correctos": [
-      "Productor",
-      "Consumidor",
+      "Productor (Plantas)",
+      "Consumidor primario",
+      "Consumidor secundario",
       "Descomponedor",
       "Depredador",
-      "Presa"
+      "Relación de simbiosis",
+      "Comensalismo",
+      "Parasitismo"
     ],
     "intrusos": [
-      "Célula",
-      "Tejido",
-      "Órgano",
-      "Aparato",
-      "Sistema"
+      "Célula animal",
+      "Tejido óseo",
+      "Órgano corazón",
+      "Aparato digestivo",
+      "Sistema muscular",
+      "Átomo",
+      "Molécula"
     ]
   }
 ]

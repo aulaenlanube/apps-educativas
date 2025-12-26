@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "Imagen Digital: Píxel y Vector",
+        "texto": "Existen dos tipos de imágenes digitales. El MAPA DE BITS (o ráster) está compuesto por píxeles; si la ampliamos mucho, pierde calidad ('se pixela'). Es ideal para fotografías. Por otro lado, la imagen VECTORIAL se basa en fórmulas matemáticas de puntos y líneas; podemos ampliarla infinitamente sin que pierda nitidez. Es la que se usa para logotipos y tipografía. Formatos comunes de píxel son JPG o PNG, mientras que para vectores el estándar es el SVG. Conocer esta diferencia es clave para el diseño profesional.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué ocurre si ampliamos mucho una imagen de píxeles?",
+                "opciones": [
+                    "Se ve mejor",
+                    "Pierde nitidez y se ven los cuadros (se pixela)",
+                    "No cambia nada",
+                    "Se borra"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la ventaja de la imagen vectorial?",
+                "opciones": [
+                    "Pesa menos siempre",
+                    "Se puede ampliar infinitamente sin perder calidad",
+                    "Tiene más colores",
+                    "Solo se ve en blanco y negro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué se usa preferentemente el diseño vectorial?",
+                "opciones": [
+                    "Para fotos de familia",
+                    "Para logotipos, iconos y tipografía",
+                    "Para películas",
+                    "Para imprimir en papel sucio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un formato de imagen de mapa de bits:",
+                "opciones": [
+                    "SVG",
+                    "JPG o PNG",
+                    "MP3",
+                    "PDF solamente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué se basa técnicamente un vector?",
+                "opciones": [
+                    "En puntos de colores",
+                    "En fórmulas matemáticas de líneas y puntos",
+                    "En la luz",
+                    "En el escaneo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Perspectiva Cónica Oblicua",
+        "texto": "A diferencia de la perspectiva central, la CÓNICA OBLICUA utiliza DOS PUNTOS DE FUGA situados en la línea del horizonte. Es la que usamos cuando vemos un edificio desde una esquina. Todas las líneas paralelas entre sí convergen hacia uno de los dos puntos. Esto proporciona un realismo tridimensional superior para dibujar volúmenes complejos y arquitectura. Dominar este sistema requiere precisión con la regla y el cartabón, pero permite crear bocetos arquitectónicos que parecen reales ante la vista humana.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuántos puntos de fuga usa la perspectiva cónica oblicua?",
+                "opciones": [
+                    "Uno",
+                    "Dos",
+                    "Tres",
+                    "Ninguno"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo solemos usar este tipo de perspectiva?",
+                "opciones": [
+                    "Para dibujar de frente",
+                    "Para representar objetos o edificios vistos desde una esquina",
+                    "Para mapas",
+                    "Para círculos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se sitúan los puntos de fuga?",
+                "opciones": [
+                    "En el centro del objeto",
+                    "Sobre la línea del horizonte",
+                    "Al final del papel solamente",
+                    "No tienen sitio fijo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué sensación produce este sistema?",
+                "opciones": [
+                    "Plana",
+                    "Gran realismo tridimensional",
+                    "Confusa",
+                    "De dibujo antiguo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Las líneas verticales en este sistema suelen dibujarse:",
+                "opciones": [
+                    "Inclinadas",
+                    "Perpendiculares a la línea de tierra (verticales)",
+                    "Hacia el punto de fuga",
+                    "No se dibujan"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "La Teoría del Color: Síntesis Aditiva y Sustractiva",
+        "texto": "El color no existe fuera de nuestra mente, es luz. Hay dos modelos básicos: 1) SÍNTESIS ADITIVA (RGB): se basa en la luz (Rojo, Verde, Azul). Es la que usan pantallas y móviles; la suma de todos crea el blanco. 2) SÍNTESIS SUSTRACTIVA (CMYK): se basa en pigmentos (Cian, Magenta, Amarillo y Negro). Es la que usa la imprenta. Conocer estos modelos es vital para que lo que vemos en la pantalla se parezca a lo que sale impreso en papel, evitando sorpresas y errores de diseño.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué colores forman el modelo RGB?",
+                "opciones": [
+                    "Rojo, Verde y Azul",
+                    "Rojo, Gris y Blanco",
+                    "Rosa, Grana y Beige",
+                    "Rojo, Gualda y Blanco"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Dónde se usa el modelo RGB?",
+                "opciones": [
+                    "En las revistas",
+                    "En las pantallas de móviles y ordenadores (luz)",
+                    "En la pintura al óleo",
+                    "En las pizarras"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el modelo para imprimir?",
+                "opciones": [
+                    "RGB",
+                    "CMYK (Cian, Magenta, Amarillo, Negro)",
+                    "BN",
+                    "HTML"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En el modelo de luz (RGB), la suma de todos los colores da:",
+                "opciones": [
+                    "Negro",
+                    "Blanco",
+                    "Gris",
+                    "Marrón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En el modelo de pigmentos (CMYK), la suma de los tres básicos da un color cercano al:",
+                "opciones": [
+                    "Blanco",
+                    "Negro",
+                    "Amarillo",
+                    "Verde"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "El Lenguaje de la Imagen: La Retórica Visual",
+        "texto": "Al igual que la literatura tiene figuras retóricas, la imagen también. La METÁFORA VISUAL consiste en sustituir un objeto por otro para transmitir una idea (ej: un libro con alas para significar que la lectura te hace libre). La HIPÉRBOLE es una exageración (un helado más grande que un edificio). Estas figuras son fundamentales en la publicidad para llamar la atención y convencer al espectador de forma creativa, yendo más allá de la simple descripción del producto.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es una metáfora visual?",
+                "opciones": [
+                    "Hacer un dibujo muy grande",
+                    "Representar una idea sustituyendo un objeto por otro relacionado",
+                    "Pintar solo con dos colores",
+                    "Un error de dibujo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la exageración desmesurada en una imagen?",
+                "opciones": [
+                    "Metonimia",
+                    "Hipérbole",
+                    "Personificación",
+                    "Copia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se usa más la retórica visual?",
+                "opciones": [
+                    "En el dibujo técnico",
+                    "En la publicidad y el diseño gráfico",
+                    "Solo en los museos",
+                    "En las facturas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si dibujo una bombilla sobre una cabeza, ¿qué metáfora es?",
+                "opciones": [
+                    "Que tiene calor",
+                    "Que tiene una idea",
+                    "Que es electricista",
+                    "Que brilla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La retórica visual ayuda a comunicar de forma:",
+                "opciones": [
+                    "Aburrida",
+                    "Creativa e impactante",
+                    "Incomprensible",
+                    "Lenta"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Dibujo Técnico: Tangencias",
+        "texto": "Dos líneas o curvas son TANGENTES cuando se tocan en un solo punto sin cortarse. En diseño industrial es fundamental para que las piezas encajen suavemente. Existen reglas matemáticas para trazar tangencias entre rectas y circunferencias, o entre dos circunferencias. El punto de tangencia es el lugar exacto de contacto. Sin el dominio de las tangencias, sería imposible diseñar desde la carrocería de un coche aerodinámico hasta el mango ergonómico de un cepillo de dientes.",
+        "preguntas": [
+            {
+                "pregunta": "¿En cuántos puntos se tocan dos líneas tangentes?",
+                "opciones": [
+                    "En dos",
+                    "En uno solo",
+                    "En muchos",
+                    "En ninguno"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si las líneas se cruzan?",
+                "opciones": [
+                    "Son tangentes",
+                    "Son secantes (no tangentes)",
+                    "Son paralelas",
+                    "Son iguales"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve en el diseño industrial?",
+                "opciones": [
+                    "Para que las piezas sean baratas",
+                    "Para que las superficies sean suaves y los empalmes perfectos",
+                    "Para que pesen menos",
+                    "Para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un objeto que requiera tangencias para su diseño:",
+                "opciones": [
+                    "Un ladrillo",
+                    "La carrocería de un coche",
+                    "Un papel cuadrado",
+                    "Un clavo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El lugar donde se tocan se llama:",
+                "opciones": [
+                    "Centro",
+                    "Punto de tangencia",
+                    "Final",
+                    "Radio"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "El Cómic: Narrativa Visual",
+        "texto": "El cómic o 'novena arte' combina imagen y texto de forma secuencial. Sus elementos propios son: la VIÑETA (recuadro con la acción), el BOCADILLO o globo (donde va el diálogo) y las ONOMATOPEYAS (representación gráfica de sonidos). El uso del color y el tipo de plano (primer plano, plano general) ayudan a dirigir la atención del lector y marcar el ritmo de la historia. Es un lenguaje muy potente que hoy se usa no solo para el entretenimiento, sino también en la educación y el periodismo gráfico.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llama el recuadro que contiene un dibujo en el cómic?",
+                "opciones": [
+                    "Bocadillo",
+                    "Viñeta",
+                    "Cuadro",
+                    "Pantalla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es una onomatopeya?",
+                "opciones": [
+                    "Un sentimiento",
+                    "La representación gráfica de un sonido (ej: ¡BOOM!)",
+                    "Un dibujo de fondo",
+                    "Una firma"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué indica la forma del bocadillo?",
+                "opciones": [
+                    "Nada",
+                    "El tono de voz (nube=pensamiento, pinchos=grito...)",
+                    "La edad del personaje",
+                    "El precio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se conoce también al cómic?",
+                "opciones": [
+                    "Séptimo arte",
+                    "Noveno arte",
+                    "Primer arte",
+                    "Quinto arte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve el tipo de plano en el cómic?",
+                "opciones": [
+                    "Para gastar papel",
+                    "Para marcar el ritmo y dirigir la atención",
+                    "Para nada",
+                    "Para que sea más difícil"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Diseño de Espacios: Escala y Acotación",
+        "texto": "Para dibujar un edificio o un mueble en un papel pequeño, usamos las ESCALAS. Una escala 1:50 significa que cada centímetro del papel son 50 en la realidad. La ACOTACIÓN consiste en poner las medidas reales sobre el dibujo mediante líneas y números, siguiendo unas normas estrictas para que cualquier fabricante pueda entenderlas. Un plano sin acotar es inútil para la construcción. El dibujo técnico es el lenguaje universal que permite transformar una idea mental en un objeto físico real.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significa una escala 1:100?",
+                "opciones": [
+                    "Que el dibujo es 100 veces más grande",
+                    "Que la realidad es 100 veces mayor que el dibujo",
+                    "Que hay 100 colores",
+                    "Que el dibujo mide 100 metros"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la acotación?",
+                "opciones": [
+                    "Poner colores",
+                    "Poner las medidas reales en el plano siguiendo normas",
+                    "Dibujar árboles",
+                    "Firmar el plano"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es importante la acotación?",
+                "opciones": [
+                    "Para que sea bonito",
+                    "Para que se pueda fabricar o construir con exactitud",
+                    "Para que ocupe menos",
+                    "No es importante"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un objeto mide 10 metros y lo dibujo a 10 metros, la escala es:",
+                "opciones": [
+                    "1:100",
+                    "1:1 (Escala natural)",
+                    "2:1",
+                    "1:2"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué unidad se suele usar en arquitectura para acotar?",
+                "opciones": [
+                    "Milímetros",
+                    "Metros o centímetros",
+                    "Kilómetros",
+                    "Pulgadas"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "La Imagen en Movimiento: Fotogramas",
+        "texto": "El cine y el vídeo son una ilusión óptica. Se basan en proyectar muchas imágenes fijas (FOTOGRAMAS) muy rápido. Nuestro cerebro las une y cree que hay movimiento. En cine se usan tradicionalmente 24 fotogramas por segundo (fps). Si hay pocos fps, la imagen se ve a saltos; si hay muchos, se ve muy fluida. Hoy, con los móviles y cámaras digitales, podemos grabar a cámara lenta usando cientos de fotogramas por segundo para captar detalles imposibles de ver a simple vista.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un fotograma?",
+                "opciones": [
+                    "Una foto muy grande",
+                    "Cada una de las imágenes fijas que forman un vídeo",
+                    "Un tipo de cámara",
+                    "Un error de luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la velocidad estándar del cine tradicional?",
+                "opciones": [
+                    "10 fps",
+                    "24 fps",
+                    "100 fps",
+                    "1 fps"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué vemos movimiento?",
+                "opciones": [
+                    "Porque las fotos se mueven",
+                    "Por una ilusión óptica en nuestro cerebro",
+                    "Por la luz",
+                    "Porque es magia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se logra la cámara lenta?",
+                "opciones": [
+                    "Grabando a pocos fps",
+                    "Grabando a muchos fps y reproduciendo a velocidad normal",
+                    "Pintando encima",
+                    "Moviendo la cámara despacio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significan las siglas fps?",
+                "opciones": [
+                    "Fotos por sitio",
+                    "Fotogramas por segundo",
+                    "Fondo para siempre",
+                    "Fin por sistema"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Arquitectura y Sostenibilidad",
+        "texto": "La arquitectura moderna busca el equilibrio con el medio ambiente. Se usan materiales ecológicos, paneles solares y diseños que aprovechan la luz natural para no gastar calefacción. Es lo que llamamos ARQUITECTURA BIOCLIMÁTICA. Los arquitectos analizan la orientación del sol y el viento antes de poner un solo ladrillo. El objetivo es crear ciudades 'verdes' y cómodas donde el consumo de energía sea el mínimo posible, respetando el entorno y los recursos naturales del planeta.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué busca la arquitectura bioclimática?",
+                "opciones": [
+                    "Casas con mucho aire",
+                    "Aprovechar las condiciones naturales del clima para ahorrar energía",
+                    "Hacer casas de cristal",
+                    "Gastar más luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un recurso usado para la sostenibilidad:",
+                "opciones": [
+                    "Chimeneas grandes",
+                    "Paneles solares y luz natural",
+                    "Muebles de plástico",
+                    "Pintura negra"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es importante la orientación de la casa?",
+                "opciones": [
+                    "Por el precio",
+                    "Para captar mejor el calor del sol y evitar el viento frío",
+                    "Por las vistas",
+                    "No importa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Una ciudad 'verde' se caracteriza por:",
+                "opciones": [
+                    "Tener pocos edificios",
+                    "Integración de naturaleza y eficiencia energética",
+                    "Estar pintada de verde",
+                    "No tener coches"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Sostenibilidad significa construir para:",
+                "opciones": [
+                    "Hoy y mañana (respetando recursos)",
+                    "Solo mañana",
+                    "Solo hoy",
+                    "Pasado mañana"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Análisis de la Obra de Arte",
+        "texto": "Para analizar un cuadro o escultura, seguimos tres pasos. 1) DESCRIPCIÓN: lo que vemos (colores, personajes, técnica). 2) ANÁLISIS: cómo está compuesto (dónde está el peso, el equilibrio, la luz). 3) INTERPRETACIÓN: qué quiere decirnos el autor o qué sentía en esa época histórica. No hace falta que un cuadro sea 'bonito' para que sea una obra maestra; lo importante es su capacidad para transmitir un mensaje o una emoción nueva al espectador.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el primer paso para analizar una obra?",
+                "opciones": [
+                    "Interpretar",
+                    "Descripción objetiva (qué vemos)",
+                    "Comprarla",
+                    "Borrarka"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué se mira en la fase de análisis?",
+                "opciones": [
+                    "El precio",
+                    "La composición, la luz y el equilibrio",
+                    "El nombre de la tienda",
+                    "Los ojos del pintor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué buscamos en la interpretación?",
+                "opciones": [
+                    "El tamaño",
+                    "El mensaje, la intención del autor y el contexto histórico",
+                    "Los errores",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Debe ser un cuadro siempre 'bonito'?",
+                "opciones": [
+                    "Sí",
+                    "No, su valor puede estar en su mensaje o innovación",
+                    "Solo si es antiguo",
+                    "Solo si es grande"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La técnica del claroscuro se analiza en:",
+                "opciones": [
+                    "La interpretación",
+                    "El análisis formal (luz)",
+                    "La descripción",
+                    "La firma"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

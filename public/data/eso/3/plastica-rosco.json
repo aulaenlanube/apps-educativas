@@ -1,298 +1,2162 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Mezcla de pigmento con agua, sin blanco opaco, que se aplica sobre papel.", "solucion": "acuarela", "materia": "plastica" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Forma de arte que no representa objetos de la realidad, sino formas y colores puros.", "solucion": "abstracto", "materia": "plastica" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "La vista principal de un objeto en el sistema de representación diédrico.", "solucion": "alzado", "materia": "plastica" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Técnica de pintura donde el aglutinante es un polímero acrílico.", "solucion": "acrílico", "materia": "plastica" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "La combinación placentera de colores en el círculo cromático.", "solucion": "armonía", "materia": "plastica" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Se dice de los colores que no tienen croma: blanco, negro y gris.", "solucion": "acromático", "materia": "plastica" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Línea o borde exterior de una forma geométrica.", "solucion": "arista", "materia": "plastica" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Punto de vista desde el que se observa una representación en perspectiva.", "solucion": "ángulo", "materia": "plastica" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Dibujo rápido y esquemático que sirve como idea inicial.", "solucion": "apunte", "materia": "plastica" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "El conjunto de actividades humanas con fines estéticos y comunicativos.", "solucion": "arte", "materia": "plastica" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Dibujo rápido y esquemático de una idea, sin entrar en detalles (Sketch).", "solucion": "boceto", "materia": "plastica" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Escala cromática sin color (de blanco a negro).", "solucion": "gris", "materia": "plastica" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Color acromático, opuesto al negro, que refleja toda la luz.", "solucion": "blanco", "materia": "plastica" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Cualidad de un color: su luminosidad.", "solucion": "brillo", "materia": "plastica" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Escuela de arquitectura, arte y diseño alemana influyente en el s.XX.", "solucion": "bauhaus", "materia": "plastica" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Técnica de grabado donde se usa una plancha de metal y ácido.", "solucion": "aguafuerte", "materia": "plastica" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Escultura o representación que solo abarca el torso y la cabeza.", "solucion": "busto", "materia": "plastica" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Estilo artístico del siglo XVII, sucesor del Renacimiento, recargado y contrastado.", "solucion": "barroco", "materia": "plastica" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Unidad más pequeña de una imagen digital (Picture Element).", "solucion": "píxel", "materia": "plastica" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Línea o contorno que delimita una figura (Borde).", "solucion": "borde", "materia": "plastica" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Elemento esencial de la expresión plástica: su tono, valor y saturación.", "solucion": "color", "materia": "plastica" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Color que se sitúa justo enfrente de otro en el círculo cromático, generando el máximo contraste.", "solucion": "complementario", "materia": "plastica" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Distribución equilibrada de los elementos en un espacio.", "solucion": "composición", "materia": "plastica" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Estilo de arte de principios del s.XX que fragmenta las formas y representa múltiples puntos de vista.", "solucion": "cubismo", "materia": "plastica" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Recorte de papeles y pegado sobre un soporte (Técnica de...).", "solucion": "collage", "materia": "plastica" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Material cocido, arcilla que se usa para modelar.", "solucion": "cerámica", "materia": "plastica" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Cuerpo geométrico con seis caras cuadradas.", "solucion": "cubo", "materia": "plastica" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Instrumento para dibujar círculos y arcos.", "solucion": "compás", "materia": "plastica" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Elemento clave de la composición, se logra por diferencia (ej. luz-sombra).", "solucion": "contraste", "materia": "plastica" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Se dice del color que tiene croma (opuesto a acromático).", "solucion": "cromático", "materia": "plastica" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Representación gráfica de un objeto o idea sobre una superficie.", "solucion": "dibujo", "materia": "plastica" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "La vista de un objeto desde arriba en el sistema diédrico.", "solucion": "planta", "materia": "plastica" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Artista surrealista famoso por sus relojes blandos (Salvador...).", "solucion": "dalí", "materia": "plastica" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Paso gradual entre dos tonos o colores sin saltos.", "solucion": "degradado", "materia": "plastica" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Línea que une dos vértices no contiguos de un polígono.", "solucion": "diagonal", "materia": "plastica" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Disciplina que busca crear productos y objetos funcionales y estéticos.", "solucion": "diseño", "materia": "plastica" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Movimiento que se genera por la interacción del espectador con la obra (Arte...).", "solucion": "cinético", "materia": "plastica" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Parte de una imagen que concentra la atención.", "solucion": "detalle", "materia": "plastica" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Trabajo artístico en soportes electrónicos (Arte...).", "solucion": "digital", "materia": "plastica" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Espacio que ocupa una figura (Volumen, superficie, ...).", "solucion": "dimensión", "materia": "plastica" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Obra de arte tridimensional, modelada o tallada.", "solucion": "escultura", "materia": "plastica" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Principio compositivo de estabilidad y compensación de pesos visuales.", "solucion": "equilibrio", "materia": "plastica" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Técnica de Leonardo da Vinci para difuminar los contornos y dar sensación de niebla.", "solucion": "esfumado", "materia": "plastica" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Movimiento artístico de principios del s.XX que exagera los sentimientos y la subjetividad.", "solucion": "expresionismo", "materia": "plastica" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Relación entre el tamaño del dibujo y el tamaño real del objeto.", "solucion": "escala", "materia": "plastica" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Transformación geométrica donde una figura se refleja en un eje.", "solucion": "simetría", "materia": "plastica" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Región o área en el plano o en el volumen.", "solucion": "espacio", "materia": "plastica" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Estructura principal sobre la que se construye una obra.", "solucion": "estructura", "materia": "plastica" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Conjunto de convenciones que caracterizan el arte de una época o lugar.", "solucion": "estilo", "materia": "plastica" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Recta central alrededor de la que se organiza la composición.", "solucion": "eje", "materia": "plastica" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Apariencia de un objeto, puede ser bidimensional o tridimensional.", "solucion": "forma", "materia": "plastica" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Verdadero o exacto (ej. copia...).", "solucion": "fiel", "materia": "plastica" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Composición mural sobre una pared con cal húmeda y pigmentos.", "solucion": "fresco", "materia": "plastica" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Imagen capturada por una cámara.", "solucion": "fotografía", "materia": "plastica" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "El elemento central de la composición, lo opuesto al fondo.", "solucion": "figura", "materia": "plastica" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Término dinámico que indica tocar fuerte (Forte).", "solucion": "forte", "materia": "plastica" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Lugar de donde parece venir la luz.", "solucion": "foco", "materia": "plastica" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "La superficie trasera donde se sitúa el motivo principal.", "solucion": "fondo", "materia": "plastica" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Combinación de varios tipos de textura o material.", "solucion": "fusión", "materia": "plastica" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Punto de vista opuesto a la vista de perfil.", "solucion": "frontal", "materia": "plastica" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Se dice de las formas compuestas por líneas y curvas matemáticas (círculo, cuadrado, etc.).", "solucion": "geométrico", "materia": "plastica" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Color acromático intermedio entre el blanco y el negro.", "solucion": "gris", "materia": "plastica" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Obra de arte que se realiza imprimiendo un dibujo sobre una plancha.", "solucion": "grabado", "materia": "plastica" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Técnica de pintura similar a la acuarela pero más opaca y con más cuerpo.", "solucion": "gouache", "materia": "plastica" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "El arte de construir edificios (Arquitectura).", "solucion": "arquitectura", "materia": "plastica" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Sentimiento o idea que se busca expresar con un trazo (Ej. Trazo...).", "solucion": "gesto", "materia": "plastica" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "El cuerpo y su tamaño (Grande, pequeño...).", "solucion": "grosor", "materia": "plastica" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Lugar de exposición de arte.", "solucion": "galería", "materia": "plastica" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Conjunto de artistas con un mismo estilo (Movimiento).", "solucion": "grupo", "materia": "plastica" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "El color con el croma más puro y sin mezclas (Croma).", "solucion": "croma", "materia": "plastica" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Técnica de dibujo a base de líneas paralelas cruzadas para crear zonas de sombra.", "solucion": "hachurado", "materia": "plastica" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Estilo de pintura que busca la máxima fidelidad fotográfica (S. XX).", "solucion": "hiperrealismo", "materia": "plastica" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Orientación de una línea o plano (opuesto a vertical).", "solucion": "horizontal", "materia": "plastica" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Componente estructural para edificios.", "solucion": "hormigón", "materia": "plastica" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Objeto o instrumento para realizar trabajos manuales.", "solucion": "herramienta", "materia": "plastica" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "La capacidad de reflejar la luz.", "solucion": "luminosidad", "materia": "plastica" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Técnica de dibujo a base de puntos (Puntillismo).", "solucion": "puntillismo", "materia": "plastica" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Elemento de una obra con sonido (ej. instalación).", "solucion": "sonido", "materia": "plastica" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "El elemento esencial de una línea (Línea).", "solucion": "línea", "materia": "plastica" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Objeto en el espacio, opuesto a sólido.", "solucion": "hueco", "materia": "plastica" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Movimiento artístico del s.XIX que captura el momento y los efectos de la luz.", "solucion": "impresionismo", "materia": "plastica" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Elemento clave para crear sombras y contrastes.", "solucion": "iluminación", "materia": "plastica" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Obra tridimensional que ocupa un espacio y con la que el espectador interactúa (Arte...).", "solucion": "instalación", "materia": "plastica" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Relación entre el dibujo y la escala real (Escala).", "solucion": "escala", "materia": "plastica" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Ilustrador o grabador (Dibujante).", "solucion": "ilustrador", "materia": "plastica" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Grado de pureza de un color (Saturación).", "solucion": "intensidad", "materia": "plastica" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Concepto o plan inicial para crear la obra.", "solucion": "idea", "materia": "plastica" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Producto visual que comunica un mensaje.", "solucion": "imagen", "materia": "plastica" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Conjunto de normas o reglas de una obra.", "solucion": "instrucciones", "materia": "plastica" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Arte que no representa figuras (Abstracto).", "solucion": "abstracto", "materia": "plastica" },
-
-  { "id": "j1", "letra": "J", "tipo": "contiene", "definicion": "Pintura con acuarelas o tintas (Acuarela contiene J).", "solucion": "acuarela", "materia": "plastica" },
-  { "id": "j2", "letra": "J", "tipo": "contiene", "definicion": "Mano derecha (Diestro).", "solucion": "diestro", "materia": "plastica" },
-  { "id": "j3", "letra": "J", "tipo": "contiene", "definicion": "El elemento principal de la composición (Figura).", "solucion": "figura", "materia": "plastica" },
-  { "id": "j4", "letra": "J", "tipo": "contiene", "definicion": "El elemento que ocupa el espacio (Cuerpo).", "solucion": "cuerpo", "materia": "plastica" },
-  { "id": "j5", "letra": "J", "tipo": "contiene", "definicion": "Dibujo a mano alzada (Trazo).", "solucion": "trazo", "materia": "plastica" },
-  { "id": "j6", "letra": "J", "tipo": "contiene", "definicion": "Línea que marca la división (Eje).", "solucion": "eje", "materia": "plastica" },
-  { "id": "j7", "letra": "J", "tipo": "contiene", "definicion": "Transformación geométrica (Simetría).", "solucion": "simetría", "materia": "plastica" },
-  { "id": "j8", "letra": "J", "tipo": "contiene", "definicion": "Estilo de arte (Clasicismo).", "solucion": "clasicismo", "materia": "plastica" },
-  { "id": "j9", "letra": "J", "tipo": "contiene", "definicion": "Objeto tridimensional (Volumen).", "solucion": "volumen", "materia": "plastica" },
-  { "id": "j10", "letra": "J", "tipo": "contiene", "definicion": "Mesa de trabajo (Tablero).", "solucion": "tablero", "materia": "plastica" },
-
-  { "id": "k1", "letra": "K", "tipo": "contiene", "definicion": "La unidad de medida de frecuencia (Frecuencia).", "solucion": "frecuencia", "materia": "plastica" },
-  { "id": "k2", "letra": "K", "tipo": "contiene", "definicion": "Conjunto de materiales para una tarea (Kit).", "solucion": "kit", "materia": "plastica" },
-  { "id": "k3", "letra": "K", "tipo": "contiene", "definicion": "La velocidad de una obra (Ritmo).", "solucion": "ritmo", "materia": "plastica" },
-  { "id": "k4", "letra": "K", "tipo": "contiene", "definicion": "La cualidad del sonido (Altura).", "solucion": "altura", "materia": "plastica" },
-  { "id": "k5", "letra": "K", "tipo": "contiene", "definicion": "La medida de fuerza (Newton).", "solucion": "newton", "materia": "plastica" },
-  { "id": "k6", "letra": "K", "tipo": "contiene", "definicion": "Escala de temperatura (Kelvin).", "solucion": "kelvin", "materia": "plastica" },
-  { "id": "k7", "letra": "K", "tipo": "contiene", "definicion": "Arte que incorpora movimiento (Cinético).", "solucion": "cinético", "materia": "plastica" },
-  { "id": "k8", "letra": "K", "tipo": "contiene", "definicion": "Técnica de grabado (Buril).", "solucion": "buril", "materia": "plastica" },
-  { "id": "k9", "letra": "K", "tipo": "contiene", "definicion": "Tipo de diseño (Gráfico).", "solucion": "gráfico", "materia": "plastica" },
-  { "id": "k10", "letra": "K", "tipo": "contiene", "definicion": "Material para teñir (Laca).", "solucion": "laca", "materia": "plastica" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Elemento gráfico de un solo trazo: dirección, longitud y grosor.", "solucion": "línea", "materia": "plastica" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Cualidad de un color: su luminosidad.", "solucion": "luz", "materia": "plastica" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Herramienta de dibujo que se borra.", "solucion": "lápiz", "materia": "plastica" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Soporte de tela donde se pinta con óleo o acrílico.", "solucion": "lienzo", "materia": "plastica" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "La vista de un objeto de lado en el sistema diédrico.", "solucion": "lateral", "materia": "plastica" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Tipo de grabado sobre piedra.", "solucion": "litografía", "materia": "plastica" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "La capacidad de reflejar la luz.", "solucion": "luminosidad", "materia": "plastica" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Se dice del color puro que no está matizado con otros tonos.", "solucion": "local", "materia": "plastica" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Conjunto de elementos visuales (línea, color, forma...).", "solucion": "lenguaje", "materia": "plastica" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Tipo de dibujo técnico que representa objetos tridimensionales.", "solucion": "isométrica", "materia": "plastica" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Cuerpo geométrico o persona real que sirve de referencia para una obra.", "solucion": "modelo", "materia": "plastica" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Técnica de pintura con pigmentos mezclados con aceite.", "solucion": "óleo", "materia": "plastica" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Técnica de decoración con pequeñas piezas de colores (teselas).", "solucion": "mosaico", "materia": "plastica" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Museo de arte moderno de Nueva York (Siglas).", "solucion": "moma", "materia": "plastica" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Color terciario que se obtiene al mezclar rojo y azul.", "solucion": "morado", "materia": "plastica" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Aplicación de una capa de pintura sobre el soporte.", "solucion": "mancha", "materia": "plastica" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Técnica de pintura a mano, opuesto a digital.", "solucion": "manual", "materia": "plastica" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Representación de una figura humana sin ropa.", "solucion": "desnudo", "materia": "plastica" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "La segunda vista de un objeto en el sistema diédrico (Planta).", "solucion": "planta", "materia": "plastica" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Obra de arte que representa el rostro de una persona.", "solucion": "retrato", "materia": "plastica" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Color acromático, opuesto al blanco, que absorbe toda la luz.", "solucion": "negro", "materia": "plastica" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Color que se obtiene al mezclar blanco y negro (Gris).", "solucion": "neutro", "materia": "plastica" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Movimiento artístico del s.XVIII que recupera la claridad y la sencillez clásica.", "solucion": "neoclasicismo", "materia": "plastica" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Motivo frecuente del paisajismo.", "solucion": "naturaleza", "materia": "plastica" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Relación entre el dibujo y la escala real (Escala).", "solucion": "escala", "materia": "plastica" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Técnica de modelado donde se crea un lazo con el material.", "solucion": "nudo", "materia": "plastica" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Pintor que se especializa en paisajes (ej. Turner).", "solucion": "paisajista", "materia": "plastica" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Obra de arte que representa el rostro de una persona.", "solucion": "retrato", "materia": "plastica" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Punto de vista opuesto a la vista de perfil.", "solucion": "frontal", "materia": "plastica" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "La capacidad de reflejar la luz.", "solucion": "luminosidad", "materia": "plastica" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Disciplina que busca crear productos y objetos funcionales y estéticos (Diseño).", "solucion": "diseño", "materia": "plastica" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Color terciario que se obtiene al mezclar rojo y azul (Morado).", "solucion": "morado", "materia": "plastica" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Medida de la superficie de una figura (Área).", "solucion": "área", "materia": "plastica" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "La vista de un objeto desde arriba en el sistema diédrico (Planta).", "solucion": "planta", "materia": "plastica" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "La capacidad de reflejar la luz (Luminosidad).", "solucion": "luminosidad", "materia": "plastica" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "contiene", "definicion": "Línea o contorno que delimita una figura (Contorno).", "solucion": "contorno", "materia": "plastica" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Elemento gráfico de un solo trazo (Línea).", "solucion": "línea", "materia": "plastica" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Mano derecha (Diestro).", "solucion": "diestro", "materia": "plastica" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "El elemento principal de la composición (Figura).", "solucion": "figura", "materia": "plastica" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "Color azulado (Azul).", "solucion": "azul", "materia": "plastica" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Técnica de pintura con pigmentos mezclados con aceite.", "solucion": "óleo", "materia": "plastica" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Obra o creación artística.", "solucion": "obra", "materia": "plastica" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Posición de una línea o plano, inclinada (Perspectiva...).", "solucion": "oblicua", "materia": "plastica" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Contrario del blanco: el color más oscuro.", "solucion": "negro", "materia": "plastica" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Color que se sitúa justo enfrente de otro en el círculo cromático, generando el máximo contraste.", "solucion": "complementario", "materia": "plastica" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Material que no deja pasar la luz (contrario a transparente).", "solucion": "opaco", "materia": "plastica" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Tono de un color (Oscuro).", "solucion": "oscuro", "materia": "plastica" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Principio compositivo de estabilidad y compensación de pesos visuales.", "solucion": "equilibrio", "materia": "plastica" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Figura geométrica con forma de huevo.", "solucion": "óvalo", "materia": "plastica" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Composición mural sobre una pared con cal húmeda y pigmentos.", "solucion": "fresco", "materia": "plastica" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Método de representación de la profundidad en el plano.", "solucion": "perspectiva", "materia": "plastica" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Color puro que no se obtiene por mezcla (rojo, azul o amarillo).", "solucion": "primario", "materia": "plastica" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Elemento gráfico sin dimensiones, origen de la línea.", "solucion": "punto", "materia": "plastica" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Técnica de pintura con barras de color secas.", "solucion": "pastel", "materia": "plastica" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Cuerpo geométrico con varias caras.", "solucion": "poliedro", "materia": "plastica" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Lámina de vidrio o material que se usa en fotografía.", "solucion": "placa", "materia": "plastica" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Voz femenina más aguda (Música).", "solucion": "soprano", "materia": "plastica" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Relación entre las partes y el todo de una figura.", "solucion": "proporción", "materia": "plastica" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Herramienta para aplicar pintura (Brocha pequeña).", "solucion": "pincel", "materia": "plastica" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "La vista de un objeto desde arriba en el sistema diédrico.", "solucion": "planta", "materia": "plastica" },
-
-  { "id": "q1", "letra": "Q", "tipo": "contiene", "definicion": "El elemento gráfico de un solo trazo (Línea).", "solucion": "línea", "materia": "plastica" },
-  { "id": "q2", "letra": "Q", "tipo": "contiene", "definicion": "Punto de vista desde el que se observa una representación (Ángulo).", "solucion": "ángulo", "materia": "plastica" },
-  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "La vista de un objeto de lado en el sistema diédrico (Lateral).", "solucion": "lateral", "materia": "plastica" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Medida de la superficie de una figura (Área).", "solucion": "área", "materia": "plastica" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Disciplina que busca crear productos y objetos funcionales y estéticos (Diseño).", "solucion": "diseño", "materia": "plastica" },
-  { "id": "q6", "letra": "Q", "tipo": "contiene", "definicion": "Cuerpo geométrico con seis caras cuadradas (Cubo).", "solucion": "cubo", "materia": "plastica" },
-  { "id": "q7", "letra": "Q", "tipo": "contiene", "definicion": "Color terciario que se obtiene al mezclar rojo y azul (Morado).", "solucion": "morado", "materia": "plastica" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "Estilo de arte de principios del s.XX que fragmenta las formas (Cubismo).", "solucion": "cubismo", "materia": "plastica" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Material cocido, arcilla que se usa para modelar (Cerámica).", "solucion": "cerámica", "materia": "plastica" },
-  { "id": "q10", "letra": "Q", "tipo": "contiene", "definicion": "Punto de vista opuesto a la vista de perfil (Frontal).", "solucion": "frontal", "materia": "plastica" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Época del arte (s.XV-XVI) que retoma la cultura clásica y el Humanismo.", "solucion": "renacimiento", "materia": "plastica" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Sucesión de elementos visuales que crea movimiento y cadencia en la composición.", "solucion": "ritmo", "materia": "plastica" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Género pictórico que busca la imitación fiel de la realidad (opuesto a abstracto).", "solucion": "realismo", "materia": "plastica" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "El color primario de las fresas.", "solucion": "rojo", "materia": "plastica" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "La disciplina de representar objetos tridimensionales en un plano (Dibujo...).", "solucion": "representación", "materia": "plastica" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Cualidad de un material difícil de doblar (opuesto a flexible).", "solucion": "rígido", "materia": "plastica" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Pieza de tela o dibujo que se rasga en una composición.", "solucion": "rasgado", "materia": "plastica" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Mundo imaginario o irreal que a veces se representa en el arte (ej. Dalí).", "solucion": "surrealismo", "materia": "plastica" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Repetición de un elemento en la composición.", "solucion": "repetición", "materia": "plastica" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Documento que establece las condiciones de un trabajo de diseño.", "solucion": "briefing", "materia": "plastica" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Término dinámico que indica tocar suave.", "solucion": "suave", "materia": "plastica" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Efecto visual que aparece en la parte opuesta a la luz.", "solucion": "sombra", "materia": "plastica" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Color que se obtiene mezclando dos primarios (verde, naranja, violeta).", "solucion": "secundario", "materia": "plastica" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Grado de pureza de un color (Intensidad).", "solucion": "saturación", "materia": "plastica" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Transformación geométrica donde una figura se refleja en un eje.", "solucion": "simetría", "materia": "plastica" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Cuerpo geométrico que se usa para modelar.", "solucion": "sólido", "materia": "plastica" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Borde o contorno exterior de una figura.", "solucion": "silueta", "materia": "plastica" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Tipo de arte que se basa en la representación del mundo onírico (Sueño).", "solucion": "surrealismo", "materia": "plastica" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Soporte sobre el que se realiza la obra.", "solucion": "soporte", "materia": "plastica" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Línea que marca la división (Eje).", "solucion": "eje", "materia": "plastica" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Apariencia de la superficie de un material (rugoso, liso, suave...).", "solucion": "textura", "materia": "plastica" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Color que se obtiene al mezclar un color primario con uno secundario (ej. ocre, verde amarillento).", "solucion": "terciario", "materia": "plastica" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Grosor o grosor de la línea.", "solucion": "trazo", "materia": "plastica" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Grado de transparencia de un material.", "solucion": "transparente", "materia": "plastica" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "El nombre de un color (ej. rojo).", "solucion": "tono", "materia": "plastica" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "El elemento que ocupa el espacio (Volumen).", "solucion": "volumen", "materia": "plastica" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Serie de líneas finas paralelas para crear tonos intermedios (Hachurado).", "solucion": "trama", "materia": "plastica" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Obra de arte en relieve sobre una pared (Mural).", "solucion": "mural", "materia": "plastica" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Tipo de pintura con huevo como aglutinante.", "solucion": "temple", "materia": "plastica" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Manera de hacer algo artístico (Dibujo, pintura, ...).", "solucion": "técnica", "materia": "plastica" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Principio compositivo de cohesión y armonía.", "solucion": "unidad", "materia": "plastica" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Movimiento que se genera por la interacción del espectador con la obra (Arte Cinético).", "solucion": "cinético", "materia": "plastica" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Arte que no representa figuras (Abstracto).", "solucion": "abstracto", "materia": "plastica" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Color azul violeta.", "solucion": "ultramar", "materia": "plastica" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Arte de diseñar ciudades.", "solucion": "urbanismo", "materia": "plastica" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Se dice del arte que es igual o constante en todos sus elementos.", "solucion": "uniforme", "materia": "plastica" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Término que describe lo que es útil o provechoso.", "solucion": "utilidad", "materia": "plastica" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Unión de varios elementos en un conjunto.", "solucion": "unión", "materia": "plastica" },
-  { "id": "u9", "letra": "U", "tipo": "empieza", "definicion": "Diseño relacionado con la ciudad.", "solucion": "urbano", "materia": "plastica" },
-  { "id": "u10", "letra": "U", "tipo": "empieza", "definicion": "El elemento principal de una composición (Unidad de...).", "solucion": "motivo", "materia": "plastica" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "El espacio ocupado por un cuerpo tridimensional.", "solucion": "volumen", "materia": "plastica" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Orientación de una línea o plano (opuesto a horizontal).", "solucion": "vertical", "materia": "plastica" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Cualquier movimiento artístico de principios del siglo XX (Cubismo, Expresionismo...).", "solucion": "vanguardia", "materia": "plastica" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "El color terciario más frío (mezcla de azul y rojo).", "solucion": "violeta", "materia": "plastica" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Tono de un color (Claro, Oscuro...).", "solucion": "valor", "materia": "plastica" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Instrumento de cuerda frotada, el más pequeño y agudo.", "solucion": "violín", "materia": "plastica" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Cuerpo geométrico con seis caras cuadradas (Cubo).", "solucion": "cubo", "materia": "plastica" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Material transparente que se usa en arquitectura.", "solucion": "vidrio", "materia": "plastica" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Punto donde se unen los lados de un polígono.", "solucion": "vértice", "materia": "plastica" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "La vista de un objeto de lado en el sistema diédrico (Lateral).", "solucion": "lateral", "materia": "plastica" },
-
-  { "id": "w1", "letra": "W", "tipo": "contiene", "definicion": "Técnica de pintura donde el aglutinante es agua (Acuarela).", "solucion": "acuarela", "materia": "plastica" },
-  { "id": "w2", "letra": "W", "tipo": "contiene", "definicion": "Estilo de arte (Clasicismo).", "solucion": "clasicismo", "materia": "plastica" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Línea o contorno que delimita una figura (Contorno).", "solucion": "contorno", "materia": "plastica" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "El elemento principal de la composición (Figura).", "solucion": "figura", "materia": "plastica" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Arte que incorpora movimiento (Cinético).", "solucion": "cinético", "materia": "plastica" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Composición mural sobre una pared con cal húmeda y pigmentos (Fresco).", "solucion": "fresco", "materia": "plastica" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Cuerpo geométrico con seis caras cuadradas (Cubo).", "solucion": "cubo", "materia": "plastica" },
-  { "id": "w8", "letra": "W", "tipo": "contiene", "definicion": "Instrumento de grabado (Buril).", "solucion": "buril", "materia": "plastica" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "El cuerpo y su tamaño (Grosor).", "solucion": "grosor", "materia": "plastica" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Mano derecha (Diestro).", "solucion": "diestro", "materia": "plastica" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "La capacidad de comunicar sentimientos con la obra.", "solucion": "expresión", "materia": "plastica" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Técnica de pintura con pigmentos mezclados (Mixta).", "solucion": "mixta", "materia": "plastica" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Estilo que exagera los sentimientos (Expresionismo).", "solucion": "expresionismo", "materia": "plastica" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Parte de un trabajo que se muestra al público (Exposición).", "solucion": "exposición", "materia": "plastica" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Apariencia de la superficie de un material (Textura).", "solucion": "textura", "materia": "plastica" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Estudio de las partes exteriores (Exterior).", "solucion": "exterior", "materia": "plastica" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Coloración (Croma).", "solucion": "croma", "materia": "plastica" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Arte que no representa figuras (Abstracto).", "solucion": "abstracto", "materia": "plastica" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Lugar de exposición de arte (Galería).", "solucion": "galería", "materia": "plastica" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "La capacidad de reflejar la luz (Luminosidad).", "solucion": "luminosidad", "materia": "plastica" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "La vista de un objeto de lado en el sistema diédrico (Lateral).", "solucion": "lateral", "materia": "plastica" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Composición con elementos relacionados.", "solucion": "proyecto", "materia": "plastica" },
-  { "id": "y3", "letra": "Y", "tipo": "contiene", "definicion": "El elemento gráfico de un solo trazo (Línea).", "solucion": "línea", "materia": "plastica" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "La vista de un objeto desde arriba en el sistema diédrico (Planta).", "solucion": "planta", "materia": "plastica" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Disciplina que busca crear productos y objetos funcionales y estéticos (Diseño).", "solucion": "diseño", "materia": "plastica" },
-  { "id": "y6", "letra": "Y", "tipo": "contiene", "definicion": "El elemento principal de la composición (Figura).", "solucion": "figura", "materia": "plastica" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Punto de vista desde el que se observa una representación (Ángulo).", "solucion": "ángulo", "materia": "plastica" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Escala cromática sin color (Gris).", "solucion": "gris", "materia": "plastica" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Tono de un color (Valor).", "solucion": "valor", "materia": "plastica" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Arte que no representa objetos de la realidad (Abstracto).", "solucion": "abstracto", "materia": "plastica" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Tipo de obra teatral musical española con partes habladas y cantadas (Zarzuela).", "solucion": "zarzuela", "materia": "plastica" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Cuerpo geométrico con seis caras cuadradas (Cubo).", "solucion": "cubo", "materia": "plastica" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Material cocido, arcilla que se usa para modelar (Cerámica).", "solucion": "cerámica", "materia": "plastica" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Dibujo a mano alzada (Trazo).", "solucion": "trazo", "materia": "plastica" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "El color primario del cielo.", "solucion": "azul", "materia": "plastica" },
-  { "id": "z6", "letra": "Z", "tipo": "contiene", "definicion": "Herramienta de dibujo (Lápiz).", "solucion": "lápiz", "materia": "plastica" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Escala cromática sin color (Gris).", "solucion": "gris", "materia": "plastica" },
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "El elemento principal de la composición (Figura).", "solucion": "figura", "materia": "plastica" },
-  { "id": "z9", "letra": "Z", "tipo": "contiene", "definicion": "Tipo de arte que se basa en la representación del mundo onírico (Sueño).", "solucion": "surrealismo", "materia": "plastica" },
-  { "id": "z10", "letra": "Z", "tipo": "contiene", "definicion": "Línea que marca la división (Eje).", "solucion": "eje", "materia": "plastica" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Mezcla de pigmento con agua, sin blanco opaco, que se aplica sobre papel.",
+    "solucion": "acuarela",
+    "materia": "plastica"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Forma de arte que no representa objetos de la realidad, sino formas y colores puros.",
+    "solucion": "abstracto",
+    "materia": "plastica"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "La vista principal de un objeto en el sistema de representación diédrico.",
+    "solucion": "alzado",
+    "materia": "plastica"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Técnica de pintura donde el aglutinante es un polímero acrílico.",
+    "solucion": "acrílico",
+    "materia": "plastica"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "La combinación placentera de colores en el círculo cromático.",
+    "solucion": "armonía",
+    "materia": "plastica"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Se dice de los colores que no tienen croma: blanco, negro y gris.",
+    "solucion": "acromático",
+    "materia": "plastica"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Línea o borde exterior de una forma geométrica.",
+    "solucion": "arista",
+    "materia": "plastica"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Punto de vista desde el que se observa una representación en perspectiva.",
+    "solucion": "ángulo",
+    "materia": "plastica"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Dibujo rápido y esquemático que sirve como idea inicial.",
+    "solucion": "apunte",
+    "materia": "plastica"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "El conjunto de actividades humanas con fines estéticos y comunicativos.",
+    "solucion": "arte",
+    "materia": "plastica"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Dibujo rápido y esquemático de una idea, sin entrar en detalles (Sketch).",
+    "solucion": "boceto",
+    "materia": "plastica"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Escala cromática sin color (de blanco a negro).",
+    "solucion": "banio maria",
+    "materia": "plastica"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Color acromático, opuesto al negro, que refleja toda la luz.",
+    "solucion": "blanco",
+    "materia": "plastica"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Cualidad de un color: su luminosidad.",
+    "solucion": "brillo",
+    "materia": "plastica"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Escuela de arquitectura, arte y diseño alemana influyente en el s.XX.",
+    "solucion": "bauhaus",
+    "materia": "plastica"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Técnica de grabado donde se usa una plancha de metal y ácido.",
+    "solucion": "banio maria",
+    "materia": "plastica"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Escultura o representación que solo abarca el torso y la cabeza.",
+    "solucion": "busto",
+    "materia": "plastica"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Estilo artístico del siglo XVII, sucesor del Renacimiento, recargado y contrastado.",
+    "solucion": "barroco",
+    "materia": "plastica"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Unidad más pequeña de una imagen digital (Picture Element).",
+    "solucion": "banio maria",
+    "materia": "plastica"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Línea o contorno que delimita una figura (Borde).",
+    "solucion": "borde",
+    "materia": "plastica"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Elemento esencial de la expresión plástica: su tono, valor y saturación.",
+    "solucion": "color",
+    "materia": "plastica"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Color que se sitúa justo enfrente de otro en el círculo cromático, generando el máximo contraste.",
+    "solucion": "complementario",
+    "materia": "plastica"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Distribución equilibrada de los elementos en un espacio.",
+    "solucion": "composición",
+    "materia": "plastica"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Estilo de arte de principios del s.XX que fragmenta las formas y representa múltiples puntos de vista.",
+    "solucion": "cubismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Recorte de papeles y pegado sobre un soporte (Técnica de...).",
+    "solucion": "collage",
+    "materia": "plastica"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Material cocido, arcilla que se usa para modelar.",
+    "solucion": "cerámica",
+    "materia": "plastica"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Cuerpo geométrico con seis caras cuadradas.",
+    "solucion": "cubo",
+    "materia": "plastica"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Instrumento para dibujar círculos y arcos.",
+    "solucion": "compás",
+    "materia": "plastica"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Elemento clave de la composición, se logra por diferencia (ej. luz-sombra).",
+    "solucion": "contraste",
+    "materia": "plastica"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Se dice del color que tiene croma (opuesto a acromático).",
+    "solucion": "cromático",
+    "materia": "plastica"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Representación gráfica de un objeto o idea sobre una superficie.",
+    "solucion": "dibujo",
+    "materia": "plastica"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "La vista de un objeto desde arriba en el sistema diédrico.",
+    "solucion": "dioxido de carbono",
+    "materia": "plastica"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Artista surrealista famoso por sus relojes blandos (Salvador...).",
+    "solucion": "dalí",
+    "materia": "plastica"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Paso gradual entre dos tonos o colores sin saltos.",
+    "solucion": "degradado",
+    "materia": "plastica"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Línea que une dos vértices no contiguos de un polígono.",
+    "solucion": "diagonal",
+    "materia": "plastica"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Disciplina que busca crear productos y objetos funcionales y estéticos.",
+    "solucion": "diseño",
+    "materia": "plastica"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Movimiento que se genera por la interacción del espectador con la obra (Arte...).",
+    "solucion": "dioxido de carbono",
+    "materia": "plastica"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Parte de una imagen que concentra la atención.",
+    "solucion": "detalle",
+    "materia": "plastica"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Trabajo artístico en soportes electrónicos (Arte...).",
+    "solucion": "digital",
+    "materia": "plastica"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Espacio que ocupa una figura (Volumen, superficie, ...).",
+    "solucion": "dimensión",
+    "materia": "plastica"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Obra de arte tridimensional, modelada o tallada.",
+    "solucion": "escultura",
+    "materia": "plastica"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Principio compositivo de estabilidad y compensación de pesos visuales.",
+    "solucion": "equilibrio",
+    "materia": "plastica"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Técnica de Leonardo da Vinci para difuminar los contornos y dar sensación de niebla.",
+    "solucion": "esfumado",
+    "materia": "plastica"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Movimiento artístico de principios del s.XX que exagera los sentimientos y la subjetividad.",
+    "solucion": "expresionismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Relación entre el tamaño del dibujo y el tamaño real del objeto.",
+    "solucion": "escala",
+    "materia": "plastica"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Transformación geométrica donde una figura se refleja en un eje.",
+    "solucion": "energia no renovable",
+    "materia": "plastica"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Región o área en el plano o en el volumen.",
+    "solucion": "espacio",
+    "materia": "plastica"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Estructura principal sobre la que se construye una obra.",
+    "solucion": "estructura",
+    "materia": "plastica"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Conjunto de convenciones que caracterizan el arte de una época o lugar.",
+    "solucion": "estilo",
+    "materia": "plastica"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Recta central alrededor de la que se organiza la composición.",
+    "solucion": "eje",
+    "materia": "plastica"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Apariencia de un objeto, puede ser bidimensional o tridimensional.",
+    "solucion": "forma",
+    "materia": "plastica"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Verdadero o exacto (ej. copia...).",
+    "solucion": "fiel",
+    "materia": "plastica"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Composición mural sobre una pared con cal húmeda y pigmentos.",
+    "solucion": "fresco",
+    "materia": "plastica"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Imagen capturada por una cámara.",
+    "solucion": "fotografía",
+    "materia": "plastica"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "El elemento central de la composición, lo opuesto al fondo.",
+    "solucion": "figura",
+    "materia": "plastica"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Término dinámico que indica tocar fuerte (Forte).",
+    "solucion": "forte",
+    "materia": "plastica"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Lugar de donde parece venir la luz.",
+    "solucion": "foco",
+    "materia": "plastica"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "La superficie trasera donde se sitúa el motivo principal.",
+    "solucion": "fondo",
+    "materia": "plastica"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Combinación de varios tipos de textura o material.",
+    "solucion": "fusión",
+    "materia": "plastica"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Punto de vista opuesto a la vista de perfil.",
+    "solucion": "frontal",
+    "materia": "plastica"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Se dice de las formas compuestas por líneas y curvas matemáticas (círculo, cuadrado, etc.).",
+    "solucion": "geométrico",
+    "materia": "plastica"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Color acromático intermedio entre el blanco y el negro.",
+    "solucion": "gris",
+    "materia": "plastica"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Obra de arte que se realiza imprimiendo un dibujo sobre una plancha.",
+    "solucion": "grabado",
+    "materia": "plastica"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Técnica de pintura similar a la acuarela pero más opaca y con más cuerpo.",
+    "solucion": "gouache",
+    "materia": "plastica"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por G.",
+    "solucion": "gato",
+    "materia": "plastica"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Sentimiento o idea que se busca expresar con un trazo (Ej. Trazo...).",
+    "solucion": "gesto",
+    "materia": "plastica"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "El cuerpo y su tamaño (Grande, pequeño...).",
+    "solucion": "grosor",
+    "materia": "plastica"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Lugar de exposición de arte.",
+    "solucion": "galería",
+    "materia": "plastica"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Conjunto de artistas con un mismo estilo (Movimiento).",
+    "solucion": "grupo",
+    "materia": "plastica"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por G.",
+    "solucion": "gato",
+    "materia": "plastica"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Técnica de dibujo a base de líneas paralelas cruzadas para crear zonas de sombra.",
+    "solucion": "hachurado",
+    "materia": "plastica"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Estilo de pintura que busca la máxima fidelidad fotográfica (S. XX).",
+    "solucion": "hiperrealismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Orientación de una línea o plano (opuesto a vertical).",
+    "solucion": "horizontal",
+    "materia": "plastica"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Componente estructural para edificios.",
+    "solucion": "hormigón",
+    "materia": "plastica"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Objeto o instrumento para realizar trabajos manuales.",
+    "solucion": "herramienta",
+    "materia": "plastica"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "La capacidad de reflejar la luz.",
+    "solucion": "homo sapiens",
+    "materia": "plastica"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Técnica de dibujo a base de puntos (Puntillismo).",
+    "solucion": "homo sapiens",
+    "materia": "plastica"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Elemento de una obra con sonido (ej. instalación).",
+    "solucion": "homo sapiens",
+    "materia": "plastica"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "El elemento esencial de una línea (Línea).",
+    "solucion": "homo sapiens",
+    "materia": "plastica"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Objeto en el espacio, opuesto a sólido.",
+    "solucion": "hueco",
+    "materia": "plastica"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Movimiento artístico del s.XIX que captura el momento y los efectos de la luz.",
+    "solucion": "impresionismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Elemento clave para crear sombras y contrastes.",
+    "solucion": "iluminación",
+    "materia": "plastica"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Obra tridimensional que ocupa un espacio y con la que el espectador interactúa (Arte...).",
+    "solucion": "instalación",
+    "materia": "plastica"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por I.",
+    "solucion": "isla",
+    "materia": "plastica"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Ilustrador o grabador (Dibujante).",
+    "solucion": "ilustrador",
+    "materia": "plastica"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Grado de pureza de un color (Saturación).",
+    "solucion": "intensidad",
+    "materia": "plastica"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Concepto o plan inicial para crear la obra.",
+    "solucion": "idea",
+    "materia": "plastica"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Producto visual que comunica un mensaje.",
+    "solucion": "imagen",
+    "materia": "plastica"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Conjunto de normas o reglas de una obra.",
+    "solucion": "instrucciones",
+    "materia": "plastica"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por I.",
+    "solucion": "isla",
+    "materia": "plastica"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Pintura con acuarelas o tintas (Acuarela contiene J).",
+    "solucion": "juegos olimpicos",
+    "materia": "plastica"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Mano derecha (Diestro).",
+    "solucion": "juegos olimpicos",
+    "materia": "plastica"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "El elemento principal de la composición (Figura).",
+    "solucion": "juegos olimpicos",
+    "materia": "plastica"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "El elemento que ocupa el espacio (Cuerpo).",
+    "solucion": "juegos olimpicos",
+    "materia": "plastica"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Dibujo a mano alzada (Trazo).",
+    "solucion": "juegos olimpicos",
+    "materia": "plastica"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Línea que marca la división (Eje).",
+    "solucion": "eje",
+    "materia": "plastica"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Transformación geométrica (Simetría).",
+    "solucion": "juegos olimpicos",
+    "materia": "plastica"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Estilo de arte (Clasicismo).",
+    "solucion": "juegos olimpicos",
+    "materia": "plastica"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Objeto tridimensional (Volumen).",
+    "solucion": "juegos olimpicos",
+    "materia": "plastica"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Mesa de trabajo (Tablero).",
+    "solucion": "juegos olimpicos",
+    "materia": "plastica"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "La unidad de medida de frecuencia (Frecuencia).",
+    "solucion": "sketch",
+    "materia": "plastica"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Conjunto de materiales para una tarea (Kit).",
+    "solucion": "kit",
+    "materia": "plastica"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "La velocidad de una obra (Ritmo).",
+    "solucion": "sketch",
+    "materia": "plastica"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "La cualidad del sonido (Altura).",
+    "solucion": "sketch",
+    "materia": "plastica"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "La medida de fuerza (Newton).",
+    "solucion": "sketch",
+    "materia": "plastica"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Escala de temperatura (Kelvin).",
+    "solucion": "kelvin",
+    "materia": "plastica"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Arte que incorpora movimiento (Cinético).",
+    "solucion": "sketch",
+    "materia": "plastica"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Técnica de grabado (Buril).",
+    "solucion": "sketch",
+    "materia": "plastica"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Tipo de diseño (Gráfico).",
+    "solucion": "sketch",
+    "materia": "plastica"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Material para teñir (Laca).",
+    "solucion": "sketch",
+    "materia": "plastica"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Elemento gráfico de un solo trazo: dirección, longitud y grosor.",
+    "solucion": "línea",
+    "materia": "plastica"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Cualidad de un color: su luminosidad.",
+    "solucion": "luz",
+    "materia": "plastica"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Herramienta de dibujo que se borra.",
+    "solucion": "lápiz",
+    "materia": "plastica"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Soporte de tela donde se pinta con óleo o acrílico.",
+    "solucion": "lienzo",
+    "materia": "plastica"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "La vista de un objeto de lado en el sistema diédrico.",
+    "solucion": "lateral",
+    "materia": "plastica"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Tipo de grabado sobre piedra.",
+    "solucion": "litografía",
+    "materia": "plastica"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "La capacidad de reflejar la luz.",
+    "solucion": "luminosidad",
+    "materia": "plastica"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Se dice del color puro que no está matizado con otros tonos.",
+    "solucion": "local",
+    "materia": "plastica"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Conjunto de elementos visuales (línea, color, forma...).",
+    "solucion": "lenguaje",
+    "materia": "plastica"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Tipo de dibujo técnico que representa objetos tridimensionales.",
+    "solucion": "lugar geometrico",
+    "materia": "plastica"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Cuerpo geométrico o persona real que sirve de referencia para una obra.",
+    "solucion": "modelo",
+    "materia": "plastica"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Técnica de pintura con pigmentos mezclados con aceite.",
+    "solucion": "mano alzada",
+    "materia": "plastica"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Técnica de decoración con pequeñas piezas de colores (teselas).",
+    "solucion": "mosaico",
+    "materia": "plastica"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Museo de arte moderno de Nueva York (Siglas).",
+    "solucion": "moma",
+    "materia": "plastica"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Color terciario que se obtiene al mezclar rojo y azul.",
+    "solucion": "morado",
+    "materia": "plastica"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Aplicación de una capa de pintura sobre el soporte.",
+    "solucion": "mancha",
+    "materia": "plastica"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Técnica de pintura a mano, opuesto a digital.",
+    "solucion": "manual",
+    "materia": "plastica"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Representación de una figura humana sin ropa.",
+    "solucion": "mano alzada",
+    "materia": "plastica"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "La segunda vista de un objeto en el sistema diédrico (Planta).",
+    "solucion": "mano alzada",
+    "materia": "plastica"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Obra de arte que representa el rostro de una persona.",
+    "solucion": "mano alzada",
+    "materia": "plastica"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Color acromático, opuesto al blanco, que absorbe toda la luz.",
+    "solucion": "negro",
+    "materia": "plastica"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Color que se obtiene al mezclar blanco y negro (Gris).",
+    "solucion": "neutro",
+    "materia": "plastica"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Movimiento artístico del s.XVIII que recupera la claridad y la sencillez clásica.",
+    "solucion": "neoclasicismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Motivo frecuente del paisajismo.",
+    "solucion": "naturaleza",
+    "materia": "plastica"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Relación entre el dibujo y la escala real (Escala).",
+    "solucion": "numero atomico",
+    "materia": "plastica"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Técnica de modelado donde se crea un lazo con el material.",
+    "solucion": "nudo",
+    "materia": "plastica"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Pintor que se especializa en paisajes (ej. Turner).",
+    "solucion": "numero atomico",
+    "materia": "plastica"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Obra de arte que representa el rostro de una persona.",
+    "solucion": "numero atomico",
+    "materia": "plastica"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Punto de vista opuesto a la vista de perfil.",
+    "solucion": "numero atomico",
+    "materia": "plastica"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "La capacidad de reflejar la luz.",
+    "solucion": "numero atomico",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Disciplina que busca crear productos y objetos funcionales y estéticos (Diseño).",
+    "solucion": "diseño",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra Ñ.",
+    "solucion": "mañana",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra Ñ.",
+    "solucion": "mañana",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra Ñ.",
+    "solucion": "mañana",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra Ñ.",
+    "solucion": "mañana",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra Ñ.",
+    "solucion": "mañana",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra Ñ.",
+    "solucion": "mañana",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra Ñ.",
+    "solucion": "mañana",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra Ñ.",
+    "solucion": "mañana",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra Ñ.",
+    "solucion": "mañana",
+    "materia": "plastica"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Técnica de pintura con pigmentos mezclados con aceite.",
+    "solucion": "óleo",
+    "materia": "plastica"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Obra o creación artística.",
+    "solucion": "obra",
+    "materia": "plastica"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Posición de una línea o plano, inclinada (Perspectiva...).",
+    "solucion": "oblicua",
+    "materia": "plastica"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por O.",
+    "solucion": "ojo",
+    "materia": "plastica"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por O.",
+    "solucion": "ojo",
+    "materia": "plastica"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Material que no deja pasar la luz (contrario a transparente).",
+    "solucion": "opaco",
+    "materia": "plastica"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Tono de un color (Oscuro).",
+    "solucion": "oscuro",
+    "materia": "plastica"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por O.",
+    "solucion": "ojo",
+    "materia": "plastica"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Figura geométrica con forma de huevo.",
+    "solucion": "óvalo",
+    "materia": "plastica"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por O.",
+    "solucion": "ojo",
+    "materia": "plastica"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Método de representación de la profundidad en el plano.",
+    "solucion": "perspectiva",
+    "materia": "plastica"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Color puro que no se obtiene por mezcla (rojo, azul o amarillo).",
+    "solucion": "primario",
+    "materia": "plastica"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Elemento gráfico sin dimensiones, origen de la línea.",
+    "solucion": "punto",
+    "materia": "plastica"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Técnica de pintura con barras de color secas.",
+    "solucion": "pastel",
+    "materia": "plastica"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Cuerpo geométrico con varias caras.",
+    "solucion": "poliedro",
+    "materia": "plastica"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Lámina de vidrio o material que se usa en fotografía.",
+    "solucion": "placa",
+    "materia": "plastica"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Voz femenina más aguda (Música).",
+    "solucion": "presion de grupo",
+    "materia": "plastica"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Relación entre las partes y el todo de una figura.",
+    "solucion": "proporción",
+    "materia": "plastica"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Herramienta para aplicar pintura (Brocha pequeña).",
+    "solucion": "pincel",
+    "materia": "plastica"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "La vista de un objeto desde arriba en el sistema diédrico.",
+    "solucion": "planta",
+    "materia": "plastica"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "El elemento gráfico de un solo trazo (Línea).",
+    "solucion": "queso",
+    "materia": "plastica"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Punto de vista desde el que se observa una representación (Ángulo).",
+    "solucion": "queso",
+    "materia": "plastica"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "La vista de un objeto de lado en el sistema diédrico (Lateral).",
+    "solucion": "queso",
+    "materia": "plastica"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Medida de la superficie de una figura (Área).",
+    "solucion": "queso",
+    "materia": "plastica"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Disciplina que busca crear productos y objetos funcionales y estéticos (Diseño).",
+    "solucion": "queso",
+    "materia": "plastica"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Cuerpo geométrico con seis caras cuadradas (Cubo).",
+    "solucion": "queso",
+    "materia": "plastica"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Color terciario que se obtiene al mezclar rojo y azul (Morado).",
+    "solucion": "queso",
+    "materia": "plastica"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Estilo de arte de principios del s.XX que fragmenta las formas (Cubismo).",
+    "solucion": "queso",
+    "materia": "plastica"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Material cocido, arcilla que se usa para modelar (Cerámica).",
+    "solucion": "queso",
+    "materia": "plastica"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Punto de vista opuesto a la vista de perfil (Frontal).",
+    "solucion": "queso",
+    "materia": "plastica"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Época del arte (s.XV-XVI) que retoma la cultura clásica y el Humanismo.",
+    "solucion": "renacimiento",
+    "materia": "plastica"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Sucesión de elementos visuales que crea movimiento y cadencia en la composición.",
+    "solucion": "ritmo",
+    "materia": "plastica"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Género pictórico que busca la imitación fiel de la realidad (opuesto a abstracto).",
+    "solucion": "realismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "El color primario de las fresas.",
+    "solucion": "rojo",
+    "materia": "plastica"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "La disciplina de representar objetos tridimensionales en un plano (Dibujo...).",
+    "solucion": "representación",
+    "materia": "plastica"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Cualidad de un material difícil de doblar (opuesto a flexible).",
+    "solucion": "rígido",
+    "materia": "plastica"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Pieza de tela o dibujo que se rasga en una composición.",
+    "solucion": "rasgado",
+    "materia": "plastica"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Mundo imaginario o irreal que a veces se representa en el arte (ej. Dalí).",
+    "solucion": "rosa de los vientos",
+    "materia": "plastica"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Repetición de un elemento en la composición.",
+    "solucion": "repetición",
+    "materia": "plastica"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Documento que establece las condiciones de un trabajo de diseño.",
+    "solucion": "rosa de los vientos",
+    "materia": "plastica"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Término dinámico que indica tocar suave.",
+    "solucion": "suave",
+    "materia": "plastica"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Efecto visual que aparece en la parte opuesta a la luz.",
+    "solucion": "sombra",
+    "materia": "plastica"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Color que se obtiene mezclando dos primarios (verde, naranja, violeta).",
+    "solucion": "secundario",
+    "materia": "plastica"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Grado de pureza de un color (Intensidad).",
+    "solucion": "saturación",
+    "materia": "plastica"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Transformación geométrica donde una figura se refleja en un eje.",
+    "solucion": "simetría",
+    "materia": "plastica"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Cuerpo geométrico que se usa para modelar.",
+    "solucion": "sólido",
+    "materia": "plastica"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Borde o contorno exterior de una figura.",
+    "solucion": "silueta",
+    "materia": "plastica"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Tipo de arte que se basa en la representación del mundo onírico (Sueño).",
+    "solucion": "surrealismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Soporte sobre el que se realiza la obra.",
+    "solucion": "soporte",
+    "materia": "plastica"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por S.",
+    "solucion": "sol",
+    "materia": "plastica"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Apariencia de la superficie de un material (rugoso, liso, suave...).",
+    "solucion": "textura",
+    "materia": "plastica"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Color que se obtiene al mezclar un color primario con uno secundario (ej. ocre, verde amarillento).",
+    "solucion": "terciario",
+    "materia": "plastica"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Grosor o grosor de la línea.",
+    "solucion": "trazo",
+    "materia": "plastica"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Grado de transparencia de un material.",
+    "solucion": "transparente",
+    "materia": "plastica"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "El nombre de un color (ej. rojo).",
+    "solucion": "tono",
+    "materia": "plastica"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "El elemento que ocupa el espacio (Volumen).",
+    "solucion": "toma de decisiones",
+    "materia": "plastica"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Serie de líneas finas paralelas para crear tonos intermedios (Hachurado).",
+    "solucion": "trama",
+    "materia": "plastica"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Obra de arte en relieve sobre una pared (Mural).",
+    "solucion": "toma de decisiones",
+    "materia": "plastica"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Tipo de pintura con huevo como aglutinante.",
+    "solucion": "temple",
+    "materia": "plastica"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Manera de hacer algo artístico (Dibujo, pintura, ...).",
+    "solucion": "técnica",
+    "materia": "plastica"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Principio compositivo de cohesión y armonía.",
+    "solucion": "unidad",
+    "materia": "plastica"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por U.",
+    "solucion": "uno",
+    "materia": "plastica"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por U.",
+    "solucion": "uno",
+    "materia": "plastica"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Color azul violeta.",
+    "solucion": "ultramar",
+    "materia": "plastica"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Arte de diseñar ciudades.",
+    "solucion": "urbanismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Se dice del arte que es igual o constante en todos sus elementos.",
+    "solucion": "uniforme",
+    "materia": "plastica"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Término que describe lo que es útil o provechoso.",
+    "solucion": "utilidad",
+    "materia": "plastica"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Unión de varios elementos en un conjunto.",
+    "solucion": "unión",
+    "materia": "plastica"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Diseño relacionado con la ciudad.",
+    "solucion": "urbano",
+    "materia": "plastica"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "El elemento principal de una composición (Unidad de...).",
+    "solucion": "Unidad",
+    "materia": "plastica"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "El espacio ocupado por un cuerpo tridimensional.",
+    "solucion": "volumen",
+    "materia": "plastica"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Orientación de una línea o plano (opuesto a horizontal).",
+    "solucion": "vertical",
+    "materia": "plastica"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Cualquier movimiento artístico de principios del siglo XX (Cubismo, Expresionismo...).",
+    "solucion": "vanguardia",
+    "materia": "plastica"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "El color terciario más frío (mezcla de azul y rojo).",
+    "solucion": "violeta",
+    "materia": "plastica"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Tono de un color (Claro, Oscuro...).",
+    "solucion": "valor",
+    "materia": "plastica"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Instrumento de cuerda frotada, el más pequeño y agudo.",
+    "solucion": "violín",
+    "materia": "plastica"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Cuerpo geométrico con seis caras cuadradas (Cubo).",
+    "solucion": "vaso de precipitados",
+    "materia": "plastica"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Material transparente que se usa en arquitectura.",
+    "solucion": "vidrio",
+    "materia": "plastica"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Punto donde se unen los lados de un polígono.",
+    "solucion": "vértice",
+    "materia": "plastica"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "La vista de un objeto de lado en el sistema diédrico (Lateral).",
+    "solucion": "vaso de precipitados",
+    "materia": "plastica"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra W.",
+    "solucion": "kiwi",
+    "materia": "plastica"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra W.",
+    "solucion": "kiwi",
+    "materia": "plastica"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra W.",
+    "solucion": "kiwi",
+    "materia": "plastica"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra W.",
+    "solucion": "kiwi",
+    "materia": "plastica"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra W.",
+    "solucion": "kiwi",
+    "materia": "plastica"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra W.",
+    "solucion": "kiwi",
+    "materia": "plastica"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra W.",
+    "solucion": "kiwi",
+    "materia": "plastica"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra W.",
+    "solucion": "kiwi",
+    "materia": "plastica"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra W.",
+    "solucion": "kiwi",
+    "materia": "plastica"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Palabra común que contiene la letra W.",
+    "solucion": "kiwi",
+    "materia": "plastica"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "La capacidad de comunicar sentimientos con la obra.",
+    "solucion": "expresión",
+    "materia": "plastica"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Técnica de pintura con pigmentos mezclados (Mixta).",
+    "solucion": "mixta",
+    "materia": "plastica"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Estilo que exagera los sentimientos (Expresionismo).",
+    "solucion": "expresionismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Parte de un trabajo que se muestra al público (Exposición).",
+    "solucion": "exposición",
+    "materia": "plastica"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Apariencia de la superficie de un material (Textura).",
+    "solucion": "textura",
+    "materia": "plastica"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Estudio de las partes exteriores (Exterior).",
+    "solucion": "exterior",
+    "materia": "plastica"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Coloración (Croma).",
+    "solucion": "examen",
+    "materia": "plastica"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Arte que no representa figuras (Abstracto).",
+    "solucion": "examen",
+    "materia": "plastica"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Lugar de exposición de arte (Galería).",
+    "solucion": "examen",
+    "materia": "plastica"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "La capacidad de reflejar la luz (Luminosidad).",
+    "solucion": "examen",
+    "materia": "plastica"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por Y.",
+    "solucion": "yate",
+    "materia": "plastica"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por Y.",
+    "solucion": "yate",
+    "materia": "plastica"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "El elemento gráfico de un solo trazo (Línea).",
+    "solucion": "espacios y lineas",
+    "materia": "plastica"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "La vista de un objeto desde arriba en el sistema diédrico (Planta).",
+    "solucion": "espacios y lineas",
+    "materia": "plastica"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Disciplina que busca crear productos y objetos funcionales y estéticos (Diseño).",
+    "solucion": "espacios y lineas",
+    "materia": "plastica"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "El elemento principal de la composición (Figura).",
+    "solucion": "espacios y lineas",
+    "materia": "plastica"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Punto de vista desde el que se observa una representación (Ángulo).",
+    "solucion": "espacios y lineas",
+    "materia": "plastica"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Escala cromática sin color (Gris).",
+    "solucion": "espacios y lineas",
+    "materia": "plastica"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Tono de un color (Valor).",
+    "solucion": "espacios y lineas",
+    "materia": "plastica"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Arte que no representa objetos de la realidad (Abstracto).",
+    "solucion": "espacios y lineas",
+    "materia": "plastica"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Tipo de obra teatral musical española con partes habladas y cantadas (Zarzuela).",
+    "solucion": "zarzuela",
+    "materia": "plastica"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por Z.",
+    "solucion": "zona",
+    "materia": "plastica"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Palabra común que empieza por Z.",
+    "solucion": "zona",
+    "materia": "plastica"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Dibujo a mano alzada (Trazo).",
+    "solucion": "trazo",
+    "materia": "plastica"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "El color primario del cielo.",
+    "solucion": "azul",
+    "materia": "plastica"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Herramienta de dibujo (Lápiz).",
+    "solucion": "lápiz",
+    "materia": "plastica"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Escala cromática sin color (Gris).",
+    "solucion": "capa de ozono",
+    "materia": "plastica"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "El elemento principal de la composición (Figura).",
+    "solucion": "capa de ozono",
+    "materia": "plastica"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Tipo de arte que se basa en la representación del mundo onírico (Sueño).",
+    "solucion": "capa de ozono",
+    "materia": "plastica"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Línea que marca la división (Eje).",
+    "solucion": "capa de ozono",
+    "materia": "plastica"
+  }
 ]

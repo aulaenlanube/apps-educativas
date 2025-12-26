@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "El Sonido y sus Cualidades",
+        "texto": "El sonido es una forma de energía que se propaga por ondas a través de un medio físico (aire, agua, sólidos). Para que sea música, debemos controlar sus cuatro cualidades. La ALTURA nos permite distinguir sonidos agudos y graves (depende de la frecuencia). La DURACIÓN distingue sonidos largos y cortos (se representa con las figuras musicales). La INTENSIDAD diferencia sonidos fuertes y suaves (depende de la amplitud de la onda). Por último, el TIMBRE es la característica que nos permite identificar qué instrumento o voz está sonando, incluso si tocan la misma nota.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué cualidad permite distinguir entre un sonido agudo y uno grave?",
+                "opciones": [
+                    "Intensidad",
+                    "Altura",
+                    "Timbre",
+                    "Duración"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué cualidad nos referimos si decimos que un sonido es fuerte o suave?",
+                "opciones": [
+                    "Timbre",
+                    "Duración",
+                    "Intensidad",
+                    "Altura"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué es el timbre según el texto?",
+                "opciones": [
+                    "El volumen del sonido",
+                    "Lo que dura una nota",
+                    "La característica que identifica la fuente del sonido",
+                    "Un tipo de instrumento"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Por qué medios se propaga el sonido?",
+                "opciones": [
+                    "Solo por el aire",
+                    "Por el vacío",
+                    "Por medios físicos como aire, agua o sólidos",
+                    "Por ninguna parte"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué elementos representan la duración en música?",
+                "opciones": [
+                    "Las letras",
+                    "Las figuras musicales",
+                    "Los colores",
+                    "Los números de página"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Las Figuras Musicales y el Ritmo",
+        "texto": "El ritmo es la organización de los sonidos en el tiempo. Para medir la duración de los sonidos usamos las figuras musicales. La REDONDA es la figura de mayor duración (4 pulsos). Le siguen la BLANCA (2 pulsos), la NEGRA (1 pulso), la CORCHEA (medio pulso) y la SEMICORCHEA (un cuarto de pulso). También existen los SILENCIOS, que tienen la misma duración que sus figuras correspondientes pero sin emitir sonido. Los silencios son fundamentales en la música para crear tensión, descanso y estructura rítmica.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuántos pulsos dura una redonda?",
+                "opciones": [
+                    "Uno",
+                    "Dos",
+                    "Cuatro",
+                    "Ocho"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué figura dura exactamente 2 pulsos?",
+                "opciones": [
+                    "Negra",
+                    "Blanca",
+                    "Corchea",
+                    "Redonda"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven los silencios en la música?",
+                "opciones": [
+                    "Para irse a casa",
+                    "Para crear tensión, descanso y estructura",
+                    "Para que la canción sea más corta",
+                    "No sirven para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la figura que dura 1 pulso?",
+                "opciones": [
+                    "Blanca",
+                    "Corchea",
+                    "Negra",
+                    "Redonda"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cómo se llama la organización de sonidos en el tiempo?",
+                "opciones": [
+                    "Melodía",
+                    "Armonía",
+                    "Ritmo",
+                    "Acorde"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "El Pentagrama y las Notas",
+        "texto": "Para escribir música usamos el PENTAGRAMA, que es un conjunto de cinco líneas y cuatro espacios. Al principio del pentagrama se coloca la CLAVE (como la Clave de Sol), que nos indica el nombre de las notas en cada línea o espacio. Las notas musicales son siete: Do, Re, Mi, Fa, Sol, La, Si. Si las líneas del pentagrama no son suficientes para notas muy graves o muy agudas, usamos LÍNEAS ADICIONALES. El lugar que ocupa una nota en el pentagrama determina su altura (más arriba es más aguda).",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuántas líneas tiene un pentagrama?",
+                "opciones": [
+                    "Cuatro",
+                    "Cinco",
+                    "Siete",
+                    "Doce"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la clave al principio del pentagrama?",
+                "opciones": [
+                    "Para decorar",
+                    "Para saber el nombre de las notas",
+                    "Para indicar el final",
+                    "Para que no se escape el sonido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántas notas musicales básicas existen en nuestro sistema?",
+                "opciones": [
+                    "Cinco",
+                    "Siete",
+                    "Diez",
+                    "Infinite"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué usamos para escribir notas fuera del pentagrama?",
+                "opciones": [
+                    "Papel extra",
+                    "Líneas adicionales",
+                    "Letras mayúsculas",
+                    "Dibujos de estrellas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué determina la altura de una nota en el pentagrama?",
+                "opciones": [
+                    "Su color",
+                    "Su posición (arriba o abajo)",
+                    "Su forma",
+                    "El nombre del compositor"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Instrumentos: La familia de Cuerda",
+        "texto": "Los cordófonos o instrumentos de cuerda producen el sonido mediante la vibración de cuerdas tensadas. Se clasifican según cómo se hace vibrar la cuerda. Cuerda FROTADA (se usa un arco, ej: violín, violonchelo), cuerda PULSADA (se usan los dedos o púa, ej: guitarra, arpa) y cuerda PERCUTIDA (se golpea la cuerda con un macillo, ej: piano). El piano es curioso porque, aunque lo tocamos con teclas, por dentro unos martillos golpean las cuerdas, por eso es de percusión mecánica pero familia de cuerda.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo producen el sonido los instrumentos cordófonos?",
+                "opciones": [
+                    "Soplando",
+                    "Por la vibración de cuerdas tensadas",
+                    "Golpeando parches",
+                    "Electrónicamente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué subgrupo pertenece el violín?",
+                "opciones": [
+                    "Cuerda pulsada",
+                    "Cuerda frotada",
+                    "Cuerda percutida",
+                    "Viento"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué el piano se considera de cuerda percutida?",
+                "opciones": [
+                    "Porque es de madera",
+                    "Porque unos martillos golpean las cuerdas",
+                    "Porque se toca con los pies",
+                    "No es de cuerda"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál de estos es un instrumento de cuerda pulsada?",
+                "opciones": [
+                    "Trompeta",
+                    "Guitarra",
+                    "Flauta",
+                    "Tambor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué se utiliza para tocar instrumentos de cuerda frotada?",
+                "opciones": [
+                    "Una púa",
+                    "Un arco",
+                    "Una baqueta",
+                    "Un ventilador"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Instrumentos: La familia de Viento",
+        "texto": "Los aerófonos o instrumentos de viento producen sonido mediante la vibración de una columna de aire. Se dividen en dos grupos principales según su material y boquilla. VIENTO-MADERA: suelen tener lengüeta o bisel (ej: flauta, clarinete, saxofón). Curiosamente, el saxofón es de metal pero su boquilla usa una caña de madera, por eso es viento-madera. VIENTO-METAL: tienen boquillas de metal con forma de copa (ej: trompeta, trombón, tuba). En estos últimos, el instrumentista hace vibrar sus propios labios contra la boquilla para producir el sonido.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué hace vibrar el sonido en los aerófonos?",
+                "opciones": [
+                    "Una cuerda",
+                    "Una columna de aire",
+                    "Un parche de cuero",
+                    "Un cristal"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué el saxofón se clasifica como viento-madera?",
+                "opciones": [
+                    "Porque es marrón",
+                    "Porque usa una lengüeta de caña de madera",
+                    "Porque suena suave",
+                    "Es un error, es metal"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál de estos es un instrumento de viento-metal?",
+                "opciones": [
+                    "Flauta travesera",
+                    "Trompeta",
+                    "Oboe",
+                    "Fagot"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo producen el sonido los músicos de viento-metal?",
+                "opciones": [
+                    "Soplando muy flojo",
+                    "Haciendo vibrar los labios en la boquilla",
+                    "Usando un arco",
+                    "Pulsando cuerdas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué grupo suele tener boquilla en forma de copa?",
+                "opciones": [
+                    "Viento-madera",
+                    "Viento-metal",
+                    "Cuerda frotada",
+                    "Percusión"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Instrumentos: La familia de Percusión",
+        "texto": "Los instrumentos de percusión producen sonido al ser golpeados, sacudidos o rascados. Se dividen según si producen notas musicales afinadas o no. Percusión de AFINACIÓN DETERMINADA: pueden tocar melodías (ej: xilófono, timbales, carillón). Percusión de AFINACIÓN INDETERMINADA: producen sonidos rítmicos pero no notas concretas (ej: bombo, platillos, castañuelas, triángulo). Esta familia es la más antigua de la historia, ya que los humanos primitivos ya usaban piedras y maderas para crear ritmos.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué se basa la clasificación de la percusión?",
+                "opciones": [
+                    "En el tamaño",
+                    "En si producen notas afinadas o no",
+                    "En el material de las baquetas",
+                    "En el precio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál de estos instrumentos puede tocar una melodía?",
+                "opciones": [
+                    "Bombo",
+                    "Xilófono",
+                    "Platillos",
+                    "Caja"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la afinación indeterminada?",
+                "opciones": [
+                    "Que suena muy afinado",
+                    "Que no produce notas musicales concretas, solo ritmos",
+                    "Que se toca con las manos",
+                    "Que es de madera"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuáles son los instrumentos más antiguos de la historia según el texto?",
+                "opciones": [
+                    "Los sintetizadores",
+                    "La percusión",
+                    "El piano",
+                    "El violonchelo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué instrumento es de percusión?",
+                "opciones": [
+                    "Tuba",
+                    "Timbales",
+                    "Violín",
+                    "Arpa"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "La Voz Humana",
+        "texto": "La voz es el instrumento más natural que existe. Se produce cuando el aire de los pulmones hace vibrar las cuerdas vocales en la laringe. Las voces se clasifican por su tesitura (rango de notas que pueden cantar). Las voces femeninas o infantiles son agudas: SOPRANO (aguda) y CONTRALTO (grave). Las voces masculinas son graves: TENOR (aguda) y BAJO (grave). Un grupo de personas que cantan juntas se llama CORO. Cantar en un coro requiere mucha escucha y trabajo en equipo para que todas las voces armonicen perfectamente.",
+        "preguntas": [
+            {
+                "pregunta": "¿Dónde se encuentran las cuerdas vocales?",
+                "opciones": [
+                    "En la boca",
+                    "En la laringe",
+                    "En el pecho",
+                    "En la nariz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la voz femenina más aguda?",
+                "opciones": [
+                    "Bajo",
+                    "Soprano",
+                    "Tenor",
+                    "Contralto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un coro?",
+                "opciones": [
+                    "Un instrumento de cuerda",
+                    "Un grupo de personas que cantan juntas",
+                    "Un tipo de ritmo",
+                    "Un lugar del escenario"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la voz masculina más grave?",
+                "opciones": [
+                    "Tenor",
+                    "Soprano",
+                    "Bajo",
+                    "Contralto"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué se necesita para que un coro suene bien?",
+                "opciones": [
+                    "Gritar mucho",
+                    "Escucha y trabajo en equipo",
+                    "Cantar cada uno una cosa",
+                    "Tener micro"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "La Orquesta Sinfónica",
+        "texto": "La orquesta sinfónica es un gran conjunto de instrumentos que tocan juntos dirigidos por un DIRECTOR. El director usa una batuta para marcar el tiempo y la intensidad de la música. Los instrumentos se colocan en el escenario de forma estratégica: los de cuerda delante (son los más numerosos), el viento detrás y la percusión al fondo (por su gran volumen). El músico más importante de la sección de cuerda es el SOLISTA o CONCERTINO, que ayuda al director y suele tocar los solos de violín.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quién se encarga de guiar a todos los músicos de la orquesta?",
+                "opciones": [
+                    "El pianista",
+                    "El director de orquesta",
+                    "El público",
+                    "El cantante"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la batuta?",
+                "opciones": [
+                    "Para tocar el tambor",
+                    "Para marcar el tiempo e indicaciones",
+                    "Para rascarse",
+                    "Para afinar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué la percusión se coloca al fondo?",
+                "opciones": [
+                    "Porque son tímidos",
+                    "Porque tienen mucho volumen",
+                    "Porque es tradición",
+                    "Porque no caben delante"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué sección es la más numerosa en la orquesta?",
+                "opciones": [
+                    "Viento",
+                    "Cuerda",
+                    "Percusión",
+                    "Coro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el violinista principal?",
+                "opciones": [
+                    "Director",
+                    "Concertino",
+                    "Director técnico",
+                    "Ayudante"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "La Textura Musical",
+        "texto": "La textura musical es la forma en que se combinan las melodías y ritmos en una obra. Existen tres tipos básicos. MONODIA: una sola línea melódica, todos cantan o tocan lo mismo (como los cantos gregorianos). HOMOFONÍA: varias voces que se mueven al mismo ritmo formando acordes. POLIFONÍA: varias melodías independientes que se cruzan y suenan a la vez con ritmos distintos. La polifonía es más compleja y requiere que el oyente preste atención a las diferentes líneas musicales simultáneas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la monodia?",
+                "opciones": [
+                    "Muchas melodías juntas",
+                    "Una sola línea melódica",
+                    "Música de monos",
+                    "Un tipo de instrumento"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama cuando varias voces se mueven al mismo ritmo?",
+                "opciones": [
+                    "Monodia",
+                    "Homofonía",
+                    "Polifonía",
+                    "Silencio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La polifonía consiste en:",
+                "opciones": [
+                    "Varias melodías independientes que suenan a la vez",
+                    "Una sola voz sola",
+                    "Música sin ritmo",
+                    "Gritar a la vez"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Cuál de estas texturas es la más compleja según el texto?",
+                "opciones": [
+                    "Monodia",
+                    "Polifonía",
+                    "Homofonía",
+                    "Silencio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un canto donde todos hacen lo mismo sin acompañamiento es:",
+                "opciones": [
+                    "Polifonía",
+                    "Monodia",
+                    "Homofonía",
+                    "Rock"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "El Folklore y la Música Tradicional",
+        "texto": "La música tradicional o folklore es la música de los pueblos que se transmite de generación en generación. No suele tener autor conocido y refleja las costumbres, fiestas y lenguas de cada lugar. En España tenemos un folklore muy rico: el FLAMENCO en Andalucía, la JOTA en Aragón y Valencia, las MUINEIRAS en Galicia o los SARDANAS en Cataluña. Utilizan instrumentos propios como las castañuelas, la dulzaina o la gaita. Conocer nuestra música tradicional es fundamental para valorar nuestras raíces culturales.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se transmite la música tradicional?",
+                "opciones": [
+                    "Solo por YouTube",
+                    "De generación en generación (transmisión oral)",
+                    "Por leyes del gobierno",
+                    "No se transmite"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué suele caracterizar al autor de una canción folklórica?",
+                "opciones": [
+                    "Es muy famoso",
+                    "Suele ser anónimo (desconocido)",
+                    "Es un científico",
+                    "Es de otro país"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un baile tradicional de Aragón y Valencia?",
+                "opciones": [
+                    "Flamenco",
+                    "Jota",
+                    "Muineira",
+                    "Sardana"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué instrumento es típico de la música tradicional mencionada?",
+                "opciones": [
+                    "Guitarra eléctrica",
+                    "Dulzaina o gaita",
+                    "Sintetizador",
+                    "Violonchelo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es importante el folklore?",
+                "opciones": [
+                    "Para ganar dinero",
+                    "Refleja las costumbres y raíces de un pueblo",
+                    "Para saber historia de otros países",
+                    "No es importante"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

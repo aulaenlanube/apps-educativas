@@ -1,0 +1,122 @@
+{
+    "modelos_atomicos_4": [
+        "thomson",
+        "rutherford",
+        "bohr",
+        "modelo cuántico",
+        "orbital",
+        "núcleo",
+        "nube electrónica",
+        "número atómico",
+        "isótopo",
+        "masa atómica"
+    ],
+    "tabla_periodica_avanzada": [
+        "radio atómico",
+        "energía de ionización",
+        "afinidad electrónica",
+        "electronegatividad",
+        "carácter metálico",
+        "configuración electrónica",
+        "lantánido",
+        "actínido",
+        "gas noble",
+        "halógeno"
+    ],
+    "enlaces_estabilidad": [
+        "enlace iónico",
+        "enlace covalente",
+        "enlace metálico",
+        "regla del octeto",
+        "fuerzas de van der waals",
+        "puente de hidrógeno",
+        "polaridad",
+        "geometría molecular",
+        "red cristalina",
+        "molécula"
+    ],
+    "estequiometria_moles": [
+        "mol",
+        "masa molar",
+        "volumen molar",
+        "número de avogadro",
+        "reactivo limitante",
+        "rendimiento",
+        "ajuste de reacción",
+        "masa molecular",
+        "relación estequiométrica",
+        "ley de lavoisier"
+    ],
+    "disoluciones_concentracion": [
+        "molaridad",
+        "concentración en masa",
+        "porcentaje en masa",
+        "soluto",
+        "disolvente",
+        "disolución saturada",
+        "solubilidad",
+        "dilución",
+        "densidad",
+        "parte por millón"
+    ],
+    "formulacion_inorganica_4": [
+        "óxido",
+        "anhídrido",
+        "hidruro",
+        "sales binarias",
+        "hidróxido",
+        "oxácido",
+        "oxisal",
+        "valencia",
+        "estado de oxidación",
+        "iupac"
+    ],
+    "quimica_carbono_organica": [
+        "alcano",
+        "alqueno",
+        "alquino",
+        "alcohol",
+        "aldehído",
+        "cetona",
+        "ácido carboxílico",
+        "éster",
+        "isómero",
+        "cadena carbonada"
+    ],
+    "reacciones_energia_ph": [
+        "ácido",
+        "base",
+        "ph",
+        "indicador",
+        "neutralización",
+        "reacción exotérmica",
+        "reacción endotérmica",
+        "entalpía",
+        "oxidación",
+        "corrosión"
+    ],
+    "quimica_sustentable": [
+        "polímero",
+        "plástico",
+        "bioplástico",
+        "biodegradable",
+        "reciclaje químico",
+        "química verde",
+        "efecto invernadero",
+        "capa de ozono",
+        "lluvia ácida",
+        "sostenibilidad"
+    ],
+    "laboratorio_seguridad": [
+        "bureta",
+        "matraz erlenmeyer",
+        "pipeta aforada",
+        "balanza analítica",
+        "espectrofotómetro",
+        "pictograma de peligro",
+        "ph-metro",
+        "centrifugadora",
+        "agitador magnético",
+        "campana de gases"
+    ]
+}

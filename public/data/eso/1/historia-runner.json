@@ -1,17 +1,122 @@
 {
-  "etapas_prehistoria": [
-    "paleolítico", "neolítico", "edad de cobre", "edad de bronce", "edad de hierro", "bipedismo", "sedentarismo", "nómada", "pintura rupestre", "megalitismo"
+  "universo_tierra": [
+    "galaxia",
+    "planeta",
+    "estrella",
+    "satélite",
+    "cometa",
+    "órbita",
+    "rotación",
+    "traslación",
+    "eje",
+    "atmósfera"
   ],
-  "civilizacion_egipcia": [
-    "faraón", "pirámide", "nilo", "jeroglífico", "momia", "sarcófago", "esfinge", "papiro", "templo", "politeísmo"
+  "prehistoria": [
+    "paleolítico",
+    "neolítico",
+    "edad de los metales",
+    "nómada",
+    "sedentario",
+    "pintura rupestre",
+    "dolmen",
+    "menhir",
+    "sílex",
+    "cerámica"
   ],
-  "rios_espana": [
-    "ebro", "tajo", "duero", "guadiana", "guadalquivir", "miño", "júcar", "segura", "nalón", "bidasoa"
+  "mesopotamia_egipto": [
+    "zigurat",
+    "pirámide",
+    "faraón",
+    "escriba",
+    "jeroglífico",
+    "cuneiforme",
+    "nilo",
+    "eufrates",
+    "papiro",
+    "momia"
   ],
-  "continentes_oceanos": [
-    "europa", "asia", "áfrica", "américa", "oceanía", "antártida", "atlántico", "pacífico", "índico", "ártico"
+  "grecia_antigua": [
+    "polis",
+    "democracia",
+    "acrópolis",
+    "ágora",
+    "partenón",
+    "olimpiada",
+    "filosofía",
+    "hoplita",
+    "tragedia",
+    "mito"
+  ],
+  "roma_antigua": [
+    "senado",
+    "patricio",
+    "plebeyo",
+    "esclavo",
+    "legión",
+    "foro",
+    "coliseo",
+    "acueducto",
+    "vía",
+    "emperador"
   ],
   "relieve_terrestre": [
-    "montaña", "valle", "meseta", "llanura", "depresión", "golfo", "cabo", "península", "isla", "dorsal"
+    "montaña",
+    "valle",
+    "meseta",
+    "llanura",
+    "depresión",
+    "golfo",
+    "cabo",
+    "península",
+    "isla",
+    "archipiélago"
+  ],
+  "climas_mundo": [
+    "ecuatorial",
+    "tropical",
+    "desértico",
+    "oceánico",
+    "mediterráneo",
+    "continental",
+    "polar",
+    "alta montaña",
+    "humedad",
+    "precipitaciones"
+  ],
+  "aguas_tierra": [
+    "océano",
+    "mar",
+    "río",
+    "lago",
+    "acuífero",
+    "glaciar",
+    "marea",
+    "corriente",
+    "caudal",
+    "desembocadura"
+  ],
+  "planisferio_mapas": [
+    "ecuador",
+    "meridiano",
+    "paralelo",
+    "latitud",
+    "longitud",
+    "escala",
+    "leyenda",
+    "brújula",
+    "hemisferio",
+    "proyección"
+  ],
+  "continentes": [
+    "europa",
+    "asia",
+    "áfrica",
+    "américa",
+    "oceanía",
+    "antártida",
+    "población",
+    "frontera",
+    "país",
+    "capital"
   ]
 }

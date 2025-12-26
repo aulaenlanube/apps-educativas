@@ -1,17 +1,112 @@
 {
-  "seguridad_internet": [
-    "contraseña", "privacidad", "bloqueo", "antivirus", "reporte", "perfil", "desconectar", "cuidar", "respetar", "intimidad"
+  "seguridad_en_internet": [
+    "contraseña robusta",
+    "ajustes de privacidad",
+    "bloqueo de contactos",
+    "software antivirus",
+    "reporte de abuso",
+    "verificación en dos pasos",
+    "desconexión digital",
+    "huella digital positiva",
+    "protección de datos",
+    "intimidad personal",
+    "navegación segura",
+    "actualización de sistema",
+    "copia de seguridad",
+    "gestor de claves",
+    "pestaña de incógnito",
+    "cortafuegos activo",
+    "alerta de seguridad",
+    "perfil privado",
+    "identidad digital",
+    "reputación online"
   ],
-  "valores_sociales": [
-    "tolerancia", "igualdad", "solidaridad", "respeto", "justicia", "paz", "diálogo", "cooperación", "empatía", "gratitud"
+  "valores_y_ciudadania": [
+    "tolerancia activa",
+    "igualdad de género",
+    "solidaridad global",
+    "respeto mutuo",
+    "justicia equitativa",
+    "paz social",
+    "diálogo asertivo",
+    "cooperación grupal",
+    "empatía emocional",
+    "gratitud sincera",
+    "honradez intachable",
+    "lealtad inquebrantable",
+    "humildad verdadera",
+    "responsabilidad ciudadana",
+    "compromiso ético",
+    "libertad de pensamiento",
+    "diversidad cultural",
+    "derechos fundamentales",
+    "conciencia social",
+    "bien común"
   ],
-  "habilidades_personales": [
-    "liderazgo", "esfuerzo", "constancia", "creatividad", "organización", "atención", "memoria", "autonomía", "confianza", "calma"
+  "habilidades_y_actitud": [
+    "liderazgo positivo",
+    "esfuerzo constante",
+    "constancia diaria",
+    "creatividad ilimitada",
+    "organización semanal",
+    "atención plena",
+    "memoria operativa",
+    "autonomía personal",
+    "confianza en uno mismo",
+    "calma interior",
+    "resiliencia ante el fallo",
+    "pensamiento crítico",
+    "toma de decisiones",
+    "gestión del tiempo",
+    "proactividad laboral",
+    "perseverancia férrea",
+    "curiosidad intelectual",
+    "disciplina académica",
+    "orientación a metas",
+    "autoanálisis"
   ],
-  "riesgos_digitales": [
-    "ciberacoso", "adicción", "estafa", "virus", "falsedad", "rumor", "insulto", "engaño", "desconocido", "exceso"
+  "riesgos_digitales_y_clima": [
+    "ciberacoso escolar",
+    "adicción a videojuegos",
+    "estafa bancaria online",
+    "virus informático",
+    "falsedad informativa",
+    "rumor malintencionado",
+    "insulto en redes",
+    "engaño publicitario",
+    "contacto con desconocidos",
+    "exceso de información",
+    "phishing bancario",
+    "suplantación de identidad",
+    "grooming digital",
+    "sexting forzado",
+    "desinformación masiva",
+    "aislamiento social",
+    "ciberdependencia",
+    "vulnerabilidad en la red",
+    "amenaza virtual",
+    "contenido inadecuado"
   ],
-  "metas_futuro": [
-    "instituto", "estudios", "profesión", "carrera", "trabajo", "viaje", "sueño", "proyecto", "ilusión", "aprender"
+  "metas_y_orientacion": [
+    "paso al instituto",
+    "estudios secundarios",
+    "profesión vocacional",
+    "carrera universitaria",
+    "mundo del trabajo",
+    "viaje de estudios",
+    "sueño personal",
+    "proyecto de vida",
+    "ilusión académica",
+    "aprender idiomas",
+    "tutoría académica",
+    "orientación laboral",
+    "formación técnica",
+    "especialización profesional",
+    "beca de estudios",
+    "desarrollo de carrera",
+    "éxito personal",
+    "plan de estudios",
+    "bachillerato",
+    "formación superior"
   ]
 }

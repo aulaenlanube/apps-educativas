@@ -1,17 +1,122 @@
 {
-  "movimientos_literarios": [
-    "romanticismo", "realismo", "naturalismo", "modernismo", "generación del 98", "generación del 27", "vanguardias", "posguerra", "realismo mágico", "literatura actual"
+  "generos_literarios": [
+    "realismo",
+    "naturalismo",
+    "modernismo",
+    "generación del 98",
+    "novecentismo",
+    "vanguardias",
+    "generación del 27",
+    "novela de posguerra",
+    "boom latinoamericano",
+    "literatura actual"
   ],
-  "autores_destacados": [
-    "Bécquer", "Galdós", "Clarín", "Machado", "Lorca", "Alberti", "Cernuda", "Miguel Hernández", "Cela", "Delibes"
+  "lexicologia_historica": [
+    "etimología latína",
+    "helenismo",
+    "arabismo",
+    "germanismo",
+    "anglicismo",
+    "galicismo",
+    "americanismo",
+    "indigenismo",
+    "latinismo",
+    "romance"
   ],
-  "sintaxis_oracion_compuesta": [
-    "coordinada", "subordinada", "yuxtapuesta", "copulativa", "disyuntiva", "adversativa", "sustantiva", "adjetiva", "adverbial", "nexo"
+  "sintaxis_compleja": [
+    "oración subordinada sustantiva",
+    "oración subordinada adjetiva",
+    "especificativa",
+    "explicativa",
+    "oración subordinada adverbial",
+    "causal",
+    "concesiva",
+    "consecutiva",
+    "final",
+    "condicional"
   ],
-  "tipologia_textual": [
-    "argumentativo", "expositivo", "narrativo", "descriptivo", "instructivo", "periodístico", "científico", "humanístico", "jurídico", "publicitario"
+  "analisis_textual": [
+    "intertextualidad",
+    "polifonía",
+    "deixis",
+    "anáfora",
+    "catáfora",
+    "elipsis",
+    "coherencia global",
+    "isotopía",
+    "marcador discursivo",
+    "conector lógico"
   ],
-  "figuras_retoricas": [
-    "metáfora", "símil", "hipérbole", "personificación", "anáfora", "metonimia", "sinestesia", "hipérbaton", "ironía", "paradoja"
+  "literatura_siglo_xx": [
+    "juan ramón jiménez",
+    "machado",
+    "lorca",
+    "unamuno",
+    "baroja",
+    "valle-inclán",
+    "cela",
+    "delibes",
+    "esther tusquets",
+    "matute"
+  ],
+  "ortografia_academica": [
+    "puntuación en diálogos",
+    "uso de b y v",
+    "uso de g y j",
+    "uso de h",
+    "uso de c, z, q, k",
+    "acentuación de palabras compuestas",
+    "guion de fin de línea",
+    "mayúsculas en cargos",
+    "siglas y acrónimos",
+    "extranjerismos adaptados"
+  ],
+  "variedades_sociales": [
+    "sociolecto",
+    "idialecto",
+    "tecnolecto",
+    "vulgarismo",
+    "ultracorrección",
+    "eufemismo laboral",
+    "lenguaje inclusivo",
+    "discurso político",
+    "argot juvenil",
+    "jerga profesional"
+  ],
+  "poetica_vanguardia": [
+    "caligrama",
+    "haiku",
+    "verso libre",
+    "imagen visionaria",
+    "automatismo",
+    "surrealismo",
+    "futurismo",
+    "creacionismo",
+    "ultraísmo",
+    "dadaísmo"
+  ],
+  "textos_administrativos": [
+    "instancia",
+    "currículum vitae",
+    "carta de presentación",
+    "acta",
+    "informe",
+    "contrato",
+    "recurso",
+    "disposicion propia",
+    "boe",
+    "estatuto"
+  ],
+  "pragmalinguistica": [
+    "acto de habla",
+    "intención comunicativa",
+    "cortesía",
+    "contexto compartido",
+    "implicatura",
+    "presuposición",
+    "ironía",
+    "doble sentido",
+    "relevancia",
+    "máximas de grice"
   ]
 }

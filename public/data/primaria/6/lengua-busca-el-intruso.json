@@ -1,177 +1,266 @@
 [
   {
-    "categoria": "Teatro y Cine (Visual)",
+    "categoria": "Artes Escénicas y Audiovisuales (Visual)",
     "correctos": [
       "🎭",
       "🎟️",
       "🎬",
       "🍿",
       "📹",
-      "🎪"
+      "🎪",
+      "📽️",
+      "📻",
+      "🎙️",
+      "📺"
     ],
     "intrusos": [
       "⚽",
       "🏊",
       "🚜",
       "🏔️",
-      "🏥"
+      "🏥",
+      "🏢",
+      "🏛️",
+      "🛤️",
+      "🏙️",
+      "🌉",
+      "🏗️"
     ]
   },
   {
-    "categoria": "Tecnología (Visual)",
+    "categoria": "Comunicaciones Digitales Modernas (Visual)",
     "correctos": [
       "📧",
       "💬",
       "🤳",
       "🌐",
       "📶",
-      "💻"
+      "💻",
+      "📱",
+      "🖱️",
+      "⌨️",
+      "🖥️"
     ],
     "intrusos": [
       "📠",
-      "📼",
+      " cassette",
       "💾",
       "🎞️",
-      "🕰️"
+      "🕰️",
+      "📺 antiguo",
+      "📟",
+      "📜",
+      "🏺"
     ]
   },
   {
-    "categoria": "Géneros Literarios (Visual)",
+    "categoria": "Elementos de la Narrativa y el Relato (Visual)",
     "correctos": [
       "📖",
       "📜",
-      "🧛",
-      "👽",
-      "🧚",
-      "🏰"
+      "🧛 (Personaje)",
+      "👽 (Ficción)",
+      "🧚 (Fantasía)",
+      "🏰 (Escenario)",
+      "🖋️",
+      "✍️",
+      "🪶"
     ],
     "intrusos": [
       "🧪",
       "🔢",
       "📐",
       "🍳",
-      "🏋️"
+      "🏋️",
+      "🧯",
+      "🧤",
+      "🥾",
+      "🌂",
+      "🔋"
     ]
   },
   {
-    "categoria": "Sentimientos Intensos (Visual)",
+    "categoria": "Expresiones Emocionales Complejas (Visual)",
     "correctos": [
-      "😍",
-      "😭",
-      "🤯",
-      "😡",
-      "😱",
-      "🥰"
+      "😍 (Amor)",
+      "😭 (Angustia)",
+      "🤯 (Asombro)",
+      "😡 (Ira)",
+      "😱 (Pánico)",
+      "🥰 (Afecto)",
+      "🤢 (Asco)",
+      "🧐 (Duda)",
+      "🥳 (Euforia)"
     ],
     "intrusos": [
       "😐",
       "😶",
       "🥱",
       "😴",
-      "🤥"
+      "🤥",
+      "🤖",
+      "👹",
+      "👽",
+      "👻",
+      "💀"
     ]
   },
   {
-    "categoria": "Géneros Literarios",
+    "categoria": "Géneros y Subgéneros Literarios",
     "correctos": [
       "Narrativa",
       "Lírica",
-      "Teatro",
+      "Teatral / Dramático",
       "Cuento",
       "Novela",
-      "Poesía"
+      "Poesía",
+      "Fábula",
+      "Leyenda",
+      "Mito",
+      "Epopeya",
+      "Tragedia",
+      "Comedia"
     ],
     "intrusos": [
       "Matemáticas",
       "Noticia",
       "Receta",
       "Instrucciones",
-      "Diccionario"
+      "Diccionario",
+      "Calendario",
+      "Mapa",
+      "Biografía real",
+      "Manual técnico"
     ]
   },
   {
-    "categoria": "Análisis Sintáctico",
+    "categoria": "Funciones Sintácticas de la Oración",
     "correctos": [
       "Sujeto",
-      "Predicado",
-      "Núcleo",
+      "Predicado Verbal",
+      "Núcleo del Sintagma",
       "Atributo",
-      "Complemento"
+      "Complemento Directo",
+      "Complemento Indirecto",
+      "Complemento Circunstancial",
+      "Predicado Nominal"
     ],
     "intrusos": [
       "Aguda",
       "Llana",
       "Esdrújula",
       "Prefijo",
-      "Sufijo"
+      "Sufijo",
+      "Sílaba tónica",
+      "Tilde",
+      "Coma",
+      "Punto",
+      "Paréntesis"
     ]
   },
   {
-    "categoria": "Tipos de Estrofas",
+    "categoria": "Estructuras Métricas y Estrofismo",
     "correctos": [
       "Pareado",
       "Terceto",
       "Cuarteto",
       "Redondilla",
-      "Soneto"
+      "Soneto",
+      "Lira",
+      "Décima",
+      "Serventesio",
+      "Cuaderna vía"
     ],
     "intrusos": [
       "Capítulo",
       "Párrafo",
       "Título",
       "Índice",
-      "Portada"
+      "Portada",
+      "Epílogo",
+      "Prólogo",
+      "Glosario",
+      "Anuncio"
     ]
   },
   {
-    "categoria": "Clases de Palabras",
+    "categoria": "Categorías Gramaticales (Clases de Palabras)",
     "correctos": [
       "Sustantivo",
       "Adjetivo",
       "Verbo",
       "Adverbio",
-      "Preposición"
+      "Preposición",
+      "Conjunción",
+      "Interjección",
+      "Pronombre",
+      "Determinante"
     ],
     "intrusos": [
       "Sujeto",
       "Predicado",
-      "Oración",
+      "Oración compuesta",
       "Sílaba",
-      "Acento"
+      "Acento",
+      "Diéresis",
+      "Punto y seguido",
+      "Guion",
+      "Interrogación"
     ]
   },
   {
-    "categoria": "Figuras Literarias",
+    "categoria": "Recursos Estilísticos y Figuras Literarias",
     "correctos": [
       "Metáfora",
-      "Comparación",
+      "Comparación o Símil",
       "Hipérbole",
       "Aliteración",
-      "Personificación"
+      "Personificación",
+      "Anáfora",
+      "Metonimia",
+      "Antítesis",
+      "Onomatopeya",
+      "Hipérbaton"
     ],
     "intrusos": [
-      "Rima",
-      "Verso",
+      "Rima asonante",
+      "Verso alejandrino",
       "Estrofa",
-      "Punto",
-      "Coma"
+      "Punto final",
+      "Coma",
+      "Dos puntos",
+      "Comillas",
+      "Guion largo"
     ]
   },
   {
-    "categoria": "Palabras con H intercalada",
+    "categoria": "Ortografía: Palabras con H Intercalada",
     "correctos": [
       "Búho",
       "Zanahoria",
       "Almohada",
       "Ahorrar",
-      "Cohete"
+      "Cohete",
+      "Prohibir",
+      "Exhibir",
+      "Bahía",
+      "Ahogar",
+      "Rehen",
+      "Alcohol",
+      "Moho"
     ],
     "intrusos": [
       "Huevo",
       "Hielo",
       "Hierba",
       "Hueso",
-      "Huerto"
+      "Huerto",
+      "Hablar",
+      "Hacer",
+      "Hormiga",
+      "Hijo",
+      "Hora",
+      "Hambre"
     ]
   }
 ]

@@ -1,128 +1,248 @@
 [
   {
-    "categoria": "Les Pays (Drapeaux)",
+    "categoria": "Drapeaux des Pays Francophones et Européens (Visual)",
     "correctos": [
       "🇫🇷",
+      "🇧🇪",
+      "🇨🇭",
+      "🇨🇦",
+      "🇱🇺",
+      "🇲🇨",
       "🇪🇸",
       "🇮🇹",
       "🇩🇪",
-      "🇬🇧",
-      "🇧🇪"
+      "🇬🇧"
     ],
     "intrusos": [
       "🌍",
       "🗺️",
       "✈️",
       "🧳",
-      "🛳️"
+      "🛳️",
+      "🚗",
+      "🚲",
+      "🏠",
+      "🌲",
+      "⚽"
     ]
   },
   {
-    "categoria": "La Technologie (Visual)",
+    "categoria": "La Technologie et le Numérique (Visual)",
     "correctos": [
       "💻",
       "📱",
       "🖱️",
       "⌨️",
       "🖥️",
-      "🎧"
+      "🎧",
+      "📷",
+      "🔋",
+      "📶",
+      "📡",
+      "🖱️"
     ],
     "intrusos": [
       "📚",
       "🖊️",
       "🕯️",
       "🕰️",
-      "🔨"
+      "🔨",
+      "🛖",
+      "🏹",
+      "🛡️",
+      "⚔️",
+      "🐎",
+      "🧱"
     ]
   },
   {
-    "categoria": "La Ville (Visual)",
+    "categoria": "Lieux Publics de la Ville (Visual)",
     "correctos": [
       "🏥",
       "🏫",
       "🏦",
       "📫",
-      "⛲",
-      "🏬"
+      " fountain",
+      "🏬",
+      "🏤",
+      "🏛️",
+      "🏟️",
+      "🏗️",
+      "⛪"
     ],
     "intrusos": [
       "🏜️",
       "🏝️",
       "🌋",
       "🌲",
-      "🐄"
+      "🐄",
+      "🐑",
+      "🐪",
+      "🦉",
+      "🍄",
+      "🛶"
     ]
   },
   {
-    "categoria": "Les Métiers",
+    "categoria": "Les Professions et Métiers Internationaux",
     "correctos": [
       "Professeur",
       "Médecin",
       "Policier",
       "Pompier",
       "Coiffeur",
-      "Boulanger"
+      "Boulanger",
+      "Infirmier",
+      "Architecte",
+      "Ingénieur",
+      "Vétérinaire",
+      "Journaliste"
     ],
     "intrusos": [
       "École",
       "Hôpital",
       "Baguette",
       "Croissant",
-      "Maison"
+      "Maison",
+      "Livre",
+      "Stylo",
+      "Cahier",
+      "Bureau",
+      "Usine",
+      "Garage"
     ]
   },
   {
-    "categoria": "Les Pays",
+    "categoria": "Les Pays du Monde et l'Europe",
     "correctos": [
       "France",
       "Espagne",
       "Italie",
       "Allemagne",
       "Belgique",
-      "Angleterre"
+      "Suisse",
+      "Canada",
+      "Luxembourg",
+      "Maroc",
+      "Sénégal",
+      "Grèce"
     ],
     "intrusos": [
       "Paris",
       "Madrid",
       "Rome",
       "Londres",
-      "Berlin"
+      "Berlin",
+      "Lisbonne",
+      "Bruxelles",
+      "Genève",
+      "Québec",
+      "Montréal",
+      "Lyon"
     ]
   },
   {
-    "categoria": "Les Adjectifs Possessifs",
+    "categoria": "Les Adjectifs Possessifs (Singulier et Pluriel)",
     "correctos": [
       "Mon",
       "Ma",
       "Mes",
       "Ton",
       "Ta",
-      "Tes"
+      "Tes",
+      "Son",
+      "Sa",
+      "Ses",
+      "Notre",
+      "Votre",
+      "Leur"
     ],
     "intrusos": [
       "Je",
       "Tu",
       "Il",
       "Elle",
-      "Nous"
+      "Nous",
+      "Vous",
+      "Ils",
+      "Elles",
+      "Le",
+      "La",
+      "Les",
+      "Un",
+      "Une",
+      "Des"
     ]
   },
   {
-    "categoria": "Verbe Avoir",
+    "categoria": "Conjugaison du Verbe Avoir (Indicatif Présent)",
     "correctos": [
       "J'ai",
       "Tu as",
-      "Il a",
+      "Il a / Elle a",
       "Nous avons",
       "Vous avez",
-      "Ils ont"
+      "Ils ont / Elles ont"
     ],
     "intrusos": [
       "Je suis",
       "Tu es",
       "Il est",
       "Nous sommes",
-      "Vous êtes"
+      "Vous êtes",
+      "Ils sont",
+      "J'aime",
+      "J'habite",
+      "Je regarde"
+    ]
+  },
+  {
+    "categoria": "Les Repas et la Gastronomie",
+    "correctos": [
+      "Petit-déjeuner",
+      "Déjeuner",
+      "Dîner",
+      "Goûter",
+      "Baguette",
+      "Fromage",
+      "Croissant",
+      "Salade",
+      "Poulet",
+      "Poisson"
+    ],
+    "intrusos": [
+      "Ciseaux",
+      "Crayon",
+      "Règle",
+      "Gomme",
+      "Sac à dos",
+      "Vêtement",
+      "Chaussure",
+      "Chapeau",
+      "Gants"
+    ]
+  },
+  {
+    "categoria": "Les Adjectifs de Nationalité (Masculin)",
+    "correctos": [
+      "Français",
+      "Espagnol",
+      "Italien",
+      "Allemand",
+      "Belge",
+      "Suisse",
+      "Canadien",
+      "Anglais"
+    ],
+    "intrusos": [
+      "France",
+      "Espagne",
+      "Italie",
+      "Allemagne",
+      "Belgique",
+      "Suisse",
+      "Canada",
+      "Angleterre"
     ]
   }
 ]

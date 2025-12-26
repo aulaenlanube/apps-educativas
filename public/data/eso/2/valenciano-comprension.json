@@ -1,0 +1,570 @@
+[
+    {
+        "id": "1",
+        "titulo": "Bon dia, 2n d'ESO!",
+        "texto": "Ja som a segon d'ESO! Sembla que va ser ahir quan vam entrar a l'institut per primera vegada. Aquest curs és un poc més difícil perquè tenim assignatures noves com Física i Química, però també som més majors i responsables. El Marc i la Laia estan contents perquè han tornat a coincidir en la mateixa classe. Enguany han promès que estudiaran cada dia una estoneta per a no haver de córrer a última hora. El valencià serà important per a conèixer millor la nostra literatura i expressar-nos amb propietat.",
+        "preguntas": [
+            {
+                "pregunta": "En quin curs han començat els protagonistes?",
+                "opciones": [
+                    "1r d'ESO",
+                    "2n d'ESO",
+                    "3r d'ESO",
+                    "6é de Primària"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quina assignatura apareix com a novetat aquest curs?",
+                "opciones": [
+                    "Valencià",
+                    "Física i Química",
+                    "Educació Física",
+                    "Anglés"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què han promès el Marc i la Laia?",
+                "opciones": [
+                    "Estudiar cada dia",
+                    "No anar a l'institut",
+                    "Jugar tot el dia",
+                    "Dormir en classe"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Per a què serà important el valencià enguany?",
+                "opciones": [
+                    "Per a viatjar",
+                    "Per a conèixer la literatura i expressar-se millor",
+                    "Per a fer matemàtiques",
+                    "Per a res"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com se senten els protagonistes?",
+                "opciones": [
+                    "Tristos",
+                    "Contents",
+                    "Enfadats",
+                    "Avorrits"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "L'accentuació: Paraules de 2n",
+        "texto": "Recordem les regles de l'accent: les AGUDES s'accentuen quan acaben en vocal, vocal+s, -en o -in. Les PLANES quan NO acaben en aquestes terminacions. I les ESDRÚIXOLES sempre. Però compte amb els accents DIACRÍTICS! Són aquells que serveixen per a distingir paraules que s'escriuen igual però tenen significats diferents. Per exemple: 'déu' (divinitat) porta accent per a diferenciar-se de 'deu' (el número 10 o el verb deure). Altres exemples són 'bé/be', 'mà/ma' o 'són/son'.",
+        "preguntas": [
+            {
+                "pregunta": "Quan s'accentuen les paraules agudes?",
+                "opciones": [
+                    "Sempre",
+                    "Vocal, vocal+s, -en, -in",
+                    "Mai",
+                    "Si acaben en consonant"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Què és un accent diacrític?",
+                "opciones": [
+                    "Un accent molt gran",
+                    "El que serveix per a diferenciar paraules que s'escriuen igual",
+                    "Un error",
+                    "El que es posa als noms propis"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quina paraula porta accent diacrític per a referir-se a una divinitat?",
+                "opciones": [
+                    "Deu",
+                    "Déu",
+                    "Déu-vos-guard",
+                    "Deu-n'hi-do"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La paraula 'esdrúixola' s'accentua...",
+                "opciones": [
+                    "Mai",
+                    "A vegades",
+                    "Sempre",
+                    "Si és llarga"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Quin és el significat de 'mà' amb accent?",
+                "opciones": [
+                    "La meua",
+                    "Part del cos",
+                    "Un número",
+                    "Un animal"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "El Misteri d'Elx",
+        "texto": "El Misteri d'Elx és un drama sacre-líric d'origen medieval que es representa cada mes d'agost a la Basílica de Santa Maria d'Elx. És l'única obra de teatre medieval que s'ha representat sense interrupció fins a l'actualitat. El text està escrit principalment en valencià antic i la música és una meravella. Tots els actors són homes, fins i tot els que fan de Mare de Déu, com es feia en l'edat mitjana. L'any 2001, la UNESCO el va declarar Obra Mestra del Patrimoni Oral i Immaterial de la Humanitat.",
+        "preguntas": [
+            {
+                "pregunta": "En quina ciutat es representa aquesta obra?",
+                "opciones": [
+                    "València",
+                    "Castelló",
+                    "Elx",
+                    "Alacant"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "En quina època té el seu origen?",
+                "opciones": [
+                    "Època moderna",
+                    "Edat Mitjana",
+                    "Època romana",
+                    "Ahir"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qui fa els papers femenins en l'obra?",
+                "opciones": [
+                    "Dones professionals",
+                    "Homes (mantenint la tradició)",
+                    "Nens i nenes",
+                    "Ningú"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin títol li va atorgar la UNESCO?",
+                "opciones": [
+                    "Millor teatre del món",
+                    "Patrimoni Oral i Immaterial de la Humanitat",
+                    "Premi a la música antiga",
+                    "Monument històric"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "On es representa exactament?",
+                "opciones": [
+                    "En un estadi",
+                    "Al carrer",
+                    "A la Basílica de Santa Maria",
+                    "En un pavelló"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Joanot Martorell i Tirant lo Blanc",
+        "texto": "Al segle XV, el valencià Joanot Martorell va escriure una de les novel·les més importants de la literatura universal: 'Tirant lo Blanc'. A diferència d'altres llibres de cavalleries de l'època, en Tirant el protagonista no és un heroi màgic amb poders, sinó un cavaller de carn i ossos que guanya les batalles amb intel·ligència i esforç. Tirant viatja per tot el Mediterrani i s'enamora de Carmesina. Miguel de Cervantes va dir en el Quixot que era 'el millor llibre del món' pel seu realisme i humor.",
+        "preguntas": [
+            {
+                "pregunta": "Qui va escriure 'Tirant lo Blanc'?",
+                "opciones": [
+                    "Miguel de Cervantes",
+                    "Joanot Martorell",
+                    "Ausiàs March",
+                    "Enric Valor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "A quin segle pertany aquesta obra?",
+                "opciones": [
+                    "X",
+                    "XV",
+                    "XX",
+                    "XXI"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què diferencia Tirant d'altres cavallers medievals?",
+                "opciones": [
+                    "Que és un mag",
+                    "Que és un home real, sense poders màgics",
+                    "Que és un gegant",
+                    "Que no té cavall"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qui es va enamorar de Tirant?",
+                "opciones": [
+                    "Isabel",
+                    "Carmesina",
+                    "Dolça",
+                    "Maria"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què va dir Cervantes sobre aquest llibre?",
+                "opciones": [
+                    "Que era avorrit",
+                    "Que era el millor llibre del món",
+                    "Que no li agradava",
+                    "Que era molt curt"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "L'ús de la lletra H",
+        "texto": "En valencià, la lletra H és muda, és a dir, no es pronuncia. S'escriuen amb H moltes paraules que provenen del llatí, com 'home', 'hora' o 'herba'. També les formes del verb 'haver' (he, has, ha, hem...). Però hem de recordar que hi ha paraules que en castellà porten H i en valencià NO (com 'orgull', 'ou' o 'orfe'). I d'altres que en valencià porten H i en castellà NO (com 'harmonia' o 'heura'). Consultar el diccionari és la millor manera d'assegurar-nos si volem escriure amb correcció.",
+        "preguntas": [
+            {
+                "pregunta": "Es pronuncia la lletra H en valencià?",
+                "opciones": [
+                    "A vegades",
+                    "Mai, és muda",
+                    "Sempre",
+                    "Sona com una J"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quina d'aquestes paraules NO porta H en valencià?",
+                "opciones": [
+                    "Home",
+                    "Ou",
+                    "Herba",
+                    "Haver"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Les formes de quin verb porten sempre H?",
+                "opciones": [
+                    "Anar",
+                    "Haver",
+                    "Ser",
+                    "Vindre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com s'escriu la paraula 'orgull' en valencià?",
+                "opciones": [
+                    "Horgull",
+                    "Orgull",
+                    "Orhull",
+                    "Orgulh"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què hem de fer si tenim dubtes amb la H?",
+                "opciones": [
+                    "No posar-la mai",
+                    "Consultar el diccionari",
+                    "Preguntar al veí",
+                    "Inventar-la"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Els Parcs Naturals: El Penyal d'Ifac",
+        "texto": "El Penyal d'Ifac és un dels parcs naturals més emblemàtics de la Comunitat Valenciana. Està situat a Calp i és una roca gegantina de 332 metres d'altura que s'endinsa en la mar Mediterrània. És un niu per a moltes aus marines i té plantes que només creixen allí. Molta gent puja fins al cim per un túnel excavat en la roca per a gaudir de les vistes espectaculars. És molt important no deixar brossa i respectar els camins senyalitzats per a protegir aquest ecosistema tan fràgil i bonic.",
+        "preguntas": [
+            {
+                "pregunta": "On està situat el Penyal d'Ifac?",
+                "opciones": [
+                    "Gandia",
+                    "Calp",
+                    "Castelló",
+                    "València"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quina altura té aproximadament?",
+                "opciones": [
+                    "100 metres",
+                    "332 metres",
+                    "1.000 metres",
+                    "50 metres"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per on es puja a la part final del cim?",
+                "opciones": [
+                    "Per un ascensor",
+                    "Per un túnel excavat en la roca",
+                    "Per una escala mecànica",
+                    "Nant"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quines recomanacions dóna el text per als visitants?",
+                "opciones": [
+                    "Cridar molt",
+                    "No deixar brossa i respectar els camins",
+                    "Agafar flors",
+                    "Donar menjar als pardals"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "És un lloc important per a...",
+                "opciones": [
+                    "Els cotxes",
+                    "Les aus marines i plantes úniques",
+                    "Els submarins",
+                    "L'agricultura"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Ausiàs March: El poeta del cor",
+        "texto": "Ausiàs March va ser el poeta valencià més gran del segle XV. Va ser el primer a la seua època que va deixar d'escriure en provençal per a fer-ho en el valencià de la seua terra. La seua poesia no parla de castells i dracs, sinó de sentiments reals: l'amor, el dolor, la por a la mort i la relació amb Déu. El seu estil és culte i reflexiu, i va influir en molts poetes posteriors de tota Europa. Els seus 'Cants d'amor' i 'Cants de mort' encara emocionen als lectors d'avui dia.",
+        "preguntas": [
+            {
+                "pregunta": "En quina llengua va decidir escriure Ausiàs March?",
+                "opciones": [
+                    "Llatí",
+                    "Provençal",
+                    "Valencià",
+                    "Castellà"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Sobre quin tema tracten principalment els seus poemes?",
+                "opciones": [
+                    "Guerres medievals",
+                    "Sentiments reals (amor, por, mort)",
+                    "Cuina",
+                    "Geografia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin títol tenen alguns dels seus cants famós?",
+                "opciones": [
+                    "Cants de l'horta",
+                    "Cants d'amor i cants de mort",
+                    "Cants del rei",
+                    "Cants de la mar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Va tindre influència en altres poetes?",
+                "opciones": [
+                    "No, ningú el coneixia",
+                    "Sí, en molts poetes posteriors d'Europa",
+                    "Només al seu poble",
+                    "Sols en els seus amics"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com és el seu estil poètic?",
+                "opciones": [
+                    "Molt infantil",
+                    "Culte i reflexiu",
+                    "Molt alegre sempre",
+                    "Només per a nens"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "L'apòstrof: Una marca del valencià",
+        "texto": "L'apòstrof (') serveix per a indicar que ha caigut una vocal quan s'ajunten l'article o una preposició amb una paraula que comença per vocal o H. Diem 'l'escola' o 'l'home'. Però hi ha excepcions! No apostrofem davant de paraules femenines que comencen per I o U tòniques (com 'la idea' o 'la universitat'). Tampoc davant de la preposició 'de' si la paraula següent comença per I o U àtones (com 'de Udine'). Dominar l'apostrofament és clau per a escriure amb l'elegància pròpia de la nostra llengua.",
+        "preguntas": [
+            {
+                "pregunta": "Per a què serveix l'apòstrof?",
+                "opciones": [
+                    "Per a fer la paraula més llarga",
+                    "Per a indicar que ha caigut una vocal",
+                    "Per a marcar l'accent",
+                    "Indica plural"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com s'escriu l'article davant de 'home'?",
+                "opciones": [
+                    "El home",
+                    "L'home",
+                    "La home",
+                    "Lo home"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Apostrofem davant de 'idea'?",
+                "opciones": [
+                    "Sí (l'idea)",
+                    "No (la idea, perquè la I és tònica i és femení)",
+                    "Només si volem",
+                    "Sempre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què passa amb la paraula 'universitat'?",
+                "opciones": [
+                    "S'apostrofa",
+                    "No s'apostrofa (la universitat)",
+                    "S'escriu amb H",
+                    "Porta accent"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "L'apòstrof és propi de la llengua valenciana?",
+                "opciones": [
+                    "Sí",
+                    "No"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "La Dieta Mediterrània",
+        "texto": "La dieta mediterrània és considerada un dels estils de vida més saludables del món. Es basa en el consum de productes de proximitat: oli d'oliva, fruita, verdura, llegums i peix. A la nostra terra tenim la sort de tindre l'horta, que ens ofereix productes frescos cada dia. Menjar bé no sols ens ajuda a estar sans físicament, sinó que també millora el nostre rendiment a l'institut. Hem d'evitar els processats i el sucre per a tindre una vida llarga i plena d'energia.",
+        "preguntas": [
+            {
+                "pregunta": "Quins aliments són la base d'aquesta dieta?",
+                "opciones": [
+                    "Hamburgueses i pizzes",
+                    "Oli d'oliva, fruita, verdura i peix",
+                    "Només carn",
+                    "Salses i dolços"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin lloc ens dóna productes frescos cada dia a València?",
+                "opciones": [
+                    "La platja",
+                    "L'horta",
+                    "La muntanya",
+                    "El desert"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què hem d'evitar per a estar sans?",
+                "opciones": [
+                    "La fruita",
+                    "Els processats i el sucre",
+                    "L'aigua",
+                    "El dormir"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Té relació el menjar amb el rendiment escolar?",
+                "opciones": [
+                    "No",
+                    "Sí, menjar bé millora el rendiment",
+                    "Només en gimnàstica",
+                    "Depén de la nota"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com considera el món aquest estil de vida?",
+                "opciones": [
+                    "Com el pitjor",
+                    "Com un dels més saludables",
+                    "Com molt car",
+                    "Com avorrit"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "La Solidaritat: El voluntariat",
+        "texto": "Ser solidari significa ajudar als altres sense esperar res a canvi. Molts joves participen en activitats de voluntariat: ajudar a gent gran, recollir aliments per a famílies necessitades o cuidar animals en protectores. La solidaritat ens ensenya valors com el respecte i la tolerància. En 2n d'ESO podem ser solidaris cada dia ajudant a un company que no entén un exercici o integrant a algú que està sol al pati. Un món més solidari és un món millor per a totes i tots.",
+        "preguntas": [
+            {
+                "pregunta": "Què significa ser solidari?",
+                "opciones": [
+                    "Donar ordres",
+                    "Ajudar als altres sense esperar res a canvi",
+                    "Tindre molts diners",
+                    "Guanyar sempre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita una activitat de voluntariat esmentada:",
+                "opciones": [
+                    "Anar al cine",
+                    "Ajudar a gent gran o recollir aliments",
+                    "Jugar a la consola",
+                    "Dormir"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com podem ser solidaris a l'institut?",
+                "opciones": [
+                    "No fent res",
+                    "Ajudant un company o integrant algú sol",
+                    "Estudiant poc",
+                    "Cridant molt"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quins valors ens ensenya la solidaritat?",
+                "opciones": [
+                    "L'egoisme",
+                    "Respecte i tolerància",
+                    "L'avarícia",
+                    "La velocitat"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quina és la conclusió del text sobre la solidaritat?",
+                "opciones": [
+                    "Que és avorrida",
+                    "Que fa un món millor per a tots",
+                    "Que no serveix per a res",
+                    "Que és difícil"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

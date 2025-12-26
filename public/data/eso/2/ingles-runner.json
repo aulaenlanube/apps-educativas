@@ -1,17 +1,122 @@
 {
-  "travel_vocabulary": [
-    "passport", "luggage", "ticket", "airport", "station", "flight", "hotel", "tourist", "platform", "customs"
+  "past_events": [
+    "yesterday",
+    "last week",
+    "ago",
+    "was",
+    "were",
+    "went",
+    "saw",
+    "did",
+    "happened",
+    "finished"
   ],
-  "technology": [
-    "screen", "keyboard", "mouse", "laptop", "password", "website", "download", "wifi", "battery", "charger"
+  "travel_holidays": [
+    "airport",
+    "hotel",
+    "suitcase",
+    "passport",
+    "sightseeing",
+    "beach",
+    "mountains",
+    "booking",
+    "ticket",
+    "destination"
   ],
-  "irregular_verbs_past": [
-    "went", "saw", "bought", "thought", "caught", "drove", "flew", "swam", "broke", "spoke"
+  "technology_gadgets": [
+    "smartphone",
+    "laptop",
+    "tablet",
+    "headphones",
+    "charger",
+    "app",
+    "website",
+    "online",
+    "screen",
+    "keyboard"
   ],
-  "feelings_emotions": [
-    "excited", "bored", "worried", "surprised", "tired", "angry", "frightened", "embarrassed", "proud", "confused"
+  "environment": [
+    "pollution",
+    "recycling",
+    "global warming",
+    "solar energy",
+    "plastic",
+    "forest",
+    "wildlife",
+    "ocean",
+    "nature",
+    "protect"
   ],
-  "weather_conditions": [
-    "sunny", "rainy", "cloudy", "windy", "stormy", "foggy", "snowy", "hail", "freezing", "humid"
+  "clothes_fashion": [
+    "t-shirt",
+    "jeans",
+    "jacket",
+    "shoes",
+    "trainers",
+    "dress",
+    "skirt",
+    "shirt",
+    "sunglasses",
+    "outfit"
+  ],
+  "sports_equipment": [
+    "racket",
+    "ball",
+    "helmet",
+    "goggles",
+    "goal",
+    "court",
+    "pitch",
+    "gloves",
+    "net",
+    "bat"
+  ],
+  "jobs_professions": [
+    "doctor",
+    "teacher",
+    "engineer",
+    "nurse",
+    "artist",
+    "chef",
+    "pilot",
+    "lawyer",
+    "scientist",
+    "actor"
+  ],
+  "health_problems": [
+    "cold",
+    "flu",
+    "headache",
+    "toothache",
+    "stomach ache",
+    "cough",
+    "sore throat",
+    "fever",
+    "medicine",
+    "pill"
+  ],
+  "future_plans": [
+    "going to",
+    "will",
+    "tomorrow",
+    "next year",
+    "hope",
+    "plan",
+    "intent",
+    "prediction",
+    "dream",
+    "career"
+  ],
+  "personality_adj": [
+    "funny",
+    "brave",
+    "honest",
+    "lazy",
+    "hard-working",
+    "shy",
+    "friendly",
+    "quiet",
+    "selfish",
+    "kind"
   ]
 }

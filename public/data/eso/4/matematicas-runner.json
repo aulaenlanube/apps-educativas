@@ -1,17 +1,122 @@
 {
-  "trigonometria": [
-    "seno", "coseno", "tangente", "ángulo", "hipotenusa", "cateto", "grado", "radián", "teorema", "razón"
+  "aritmetica_logaritmos": [
+    "número e",
+    "logaritmo decimal",
+    "logaritmo neperiano",
+    "base",
+    "argumento",
+    "propiedades",
+    "notación científica",
+    "error absoluto",
+    "error relativo",
+    "aproximación"
   ],
-  "analisis_funciones": [
-    "dominio", "recorrido", "continuidad", "crecimiento", "máximo", "mínimo", "asíntota", "pendiente", "curvatura", "límite"
+  "polinomios_ruffini": [
+    "raíz de un polinomio",
+    "teorema del factor",
+    "teorema del resto",
+    "factor de grado 1",
+    "identidades notables",
+    "fracción algebraica",
+    "simplificación",
+    "mcm de polinomios",
+    "división sintética",
+    "factorización completa"
   ],
-  "tipos_funciones": [
-    "lineal", "cuadrática", "exponencial", "logarítmica", "polinómica", "racional", "inversa", "a trozos", "periódica", "constante"
+  "ecuaciones_avanzadas": [
+    "ecuación bicuadrada",
+    "ecuación irracional",
+    "ecuación de segundo grado completa",
+    "discriminante",
+    "ecuación exponencial",
+    "ecuación logarítmica",
+    "sistema no lineal",
+    "inecuación",
+    "intervalo solución",
+    "método de gauss"
   ],
-  "estadistica_probabilidad": [
-    "media", "varianza", "desviación típica", "cuartil", "diagrama de caja", "experimento", "suceso", "espacio muestral", "combinatoria", "azar"
+  "trigonometria_4": [
+    "radián",
+    "grado sexagesimal",
+    "seno",
+    "coseno",
+    "tangente",
+    "identidad fundamental",
+    "teorema del seno",
+    "teorema del coseno",
+    "resolución de triángulos",
+    "circunferencia goniométrica"
   ],
-  "numeros_reales": [
-    "racional", "irracional", "intervalo", "entorno", "valor absoluto", "aproximación", "error", "raíz", "potencia", "logaritmo"
+  "geometria_analitica": [
+    "vector",
+    "módulo",
+    "dirección",
+    "sentido",
+    "punto medio",
+    "distancia entre puntos",
+    "ecuación punto-pendiente",
+    "ecuación explícita",
+    "ecuación general",
+    "pendiente"
+  ],
+  "funciones_analisis": [
+    "dominio",
+    "recorrido",
+    "continuidad",
+    "asíntota vertical",
+    "asíntota horizontal",
+    "punto de corte",
+    "crecimiento",
+    "máximo absoluto",
+    "periodicidad",
+    "curvatura"
+  ],
+  "limites_continuidad": [
+    "límite infinito",
+    "indeterminación",
+    "cero entre cero",
+    "infinito entre infinito",
+    "continuidad lateral",
+    "discontinuidad evitable",
+    "discontinuidad de salto",
+    "tendencia",
+    "entorno",
+    "función a trozos"
+  ],
+  "estadistica_bidimensional": [
+    "diagrama de dispersión",
+    "nube de puntos",
+    "correlación",
+    "coeficiente de pearson",
+    "recta de regresión",
+    "variable dependiente",
+    "variable independiente",
+    "covarianza",
+    "estimación",
+    "centro de gravedad"
+  ],
+  "probabilidad_combinatoria": [
+    "permutación",
+    "variación",
+    "combinación",
+    "suceso independiente",
+    "probabilidad condicionada",
+    "teorema de bayes",
+    "probabilidad total",
+    "unión de sucesos",
+    "intersección de sucesos",
+    "complementario"
+  ],
+  "derivadas_basicas": [
+    "tasa de variación media",
+    "derivada en un punto",
+    "pendiente de la tangente",
+    "Función derivada",
+    "regla de la cadena",
+    "derivada de la potencia",
+    "derivada del seno",
+    "derivada del coseno",
+    "crecimiento",
+    "extremo relativo"
   ]
 }

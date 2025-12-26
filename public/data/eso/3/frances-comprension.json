@@ -1,0 +1,570 @@
+[
+    {
+        "id": "1",
+        "titulo": "Mon projet d'avenir",
+        "texto": "Cette année en troisième, nous devons réfléchir à notre orientation. C'est une étape importante avant le lycée. Moi, je passionné par les langues et les cultures étrangères. J'aimerais devenir traducteur ou travailler dans le tourisme international. Pour réussir, je sais que je dois travailler dur, surtout en anglais et en espagnol. Plus tard, je rêve de faire un stage à l'étranger pour améliorer mes compétences. Mon professeur m'a conseillé de bien m'informer sur les différentes filières du baccalauréat.",
+        "preguntas": [
+            {
+                "pregunta": "Quelle est l'étape importante mentionnée au début du texte ?",
+                "opciones": [
+                    "Le voyage scolaire",
+                    "L'orientation avant le lycée",
+                    "Le déjeuner",
+                    "L'achat de vêtements"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle est la passion de l'élève ?",
+                "opciones": [
+                    "Les mathématiques",
+                    "Les langues et les cultures étrangères",
+                    "Le football",
+                    "Le dessin"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quels métiers l'élève aimerait-il exercer ?",
+                "opciones": [
+                    "Médecin ou infirmier",
+                    "Traducteur ou travailler dans le tourisme",
+                    "Policier",
+                    "Cuisinier"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel est son rêve pour le futur ?",
+                "opciones": [
+                    "Acheter une voiture",
+                    "Faire un stage à l'étranger",
+                    "Dormir plus",
+                    "Gagner au loto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel conseil le professeur a-t-il donné ?",
+                "opciones": [
+                    "De ne pas étudier",
+                    "De bien s'informer sur les filières du bac",
+                    "De changer d'école",
+                    "De faire du sport"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Paris : Une ville-musée",
+        "texto": "Paris est souvent appelée « la Ville Lumière ». C'est l'une des destinations les plus visitées au monde. En plus de la Tour Eiffel, il y a des musées incroyables comme le Louvre ou le Musée d'Orsay. On peut se promener le long de la Seine et admirer l'architecture gothique de la cathédrale Notre-Dame de Paris. Malgré sa beauté, Paris est aussi une ville moderne avec beaucoup de défis : la pollution, le prix des loyers et le trafic intense. C'est un mélange fascinant d'histoire et de vie contemporaine.",
+        "preguntas": [
+            {
+                "pregunta": "Comment appelle-t-on souvent Paris ?",
+                "opciones": [
+                    "La Ville Rose",
+                    "La Ville Lumière",
+                    "La Ville Morte",
+                    "La Cité Verte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Citez un célèbre musée parisien mentionné.",
+                "opciones": [
+                    "Le Prado",
+                    "Le Louvre",
+                    "Le British Museum",
+                    "Le Guggenheim"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel style architectural est associé à Notre-Dame de Paris ?",
+                "opciones": [
+                    "Roman",
+                    "Gothique",
+                    "Baroque",
+                    "Moderne"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quels sont les problèmes de la ville mentionnés ?",
+                "opciones": [
+                    "Le manque de pain",
+                    "La pollution et le trafic",
+                    "Il n'y a pas de bus",
+                    "Il fait trop froid"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où peut-on se promener à Paris ?",
+                "opciones": [
+                    "Sur la plage",
+                    "Le long de la Seine",
+                    "Dans le désert",
+                    "Sur la Lune"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "La Francophonie dans le monde",
+        "texto": "Le français n'est pas seulement parlé en France. Plus de 300 millions de personnes parlent français sur les cinq continents ! C'est une langue officielle au Canada (au Québec), en Suisse, en Belgique, mais aussi dans de nombreux pays d'Afrique comme le Sénégal ou la Côte d'Ivoire. La Francophonie est une organisation qui regroupe ces pays pour coopérer dans l'éducation et la culture. Apprendre le français, c'est s'ouvrir à une immense diversité culturelle et à de nombreuses opportunités professionnelles.",
+        "preguntas": [
+            {
+                "pregunta": "Combien de locuteurs de français y a-t-il environ dans le monde ?",
+                "opciones": [
+                    "10 millions",
+                    "300 millions",
+                    "1 milliard",
+                    "50 millions"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Citez une région canadienne où le français est officiel.",
+                "opciones": [
+                    "Toronto",
+                    "Québec",
+                    "Vancouver",
+                    "Ottawa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Sur combien de continents parle-t-on français ?",
+                "opciones": [
+                    "Seulement en Europe",
+                    "Sur les cinq continents",
+                    "En Afrique et en Asie seulement",
+                    "Deux"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel pays d'Afrique est mentionné ?",
+                "opciones": [
+                    "L'Égypte",
+                    "Le Sénégal",
+                    "L'Afrique du Sud",
+                    "Le Kenya"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel est l'intérêt d'apprendre le français selon le texte ?",
+                "opciones": [
+                    "C'est obligatoire",
+                    "S'ouvrir à la diversité et aux opportunités professionnelles",
+                    "C'est la langue la plus facile",
+                    "Pour manger"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Gastronomie : Le repas des Français",
+        "texto": "En France, le repas est un moment sacré de convivialité. En 2010, le repas gastronomique français a été inscrit au patrimoine culturel immatériel de l'humanité par l'UNESCO. On adore manger du fromage, du pain et déguster des pâtisseries délicieuses comme les macarons. Habituellement, on mange un entrée, puis un plat principal et on finit par un dessert ou un fromage. Les Français passent beaucoup de temps à table pour discuter avec leurs amis ou leur famille. C'est une part essentielle de l'identité française.",
+        "preguntas": [
+            {
+                "pregunta": "Comment est considéré le repas en France ?",
+                "opciones": [
+                    "Comme une perte de temps",
+                    "Comme un moment sacré de convivialité",
+                    "Comme un sport",
+                    "C'est interdit"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle organisation a reconnu la gastronomie française ?",
+                "opciones": [
+                    "L'OMS",
+                    "L'UNESCO",
+                    "La NASA",
+                    "Le FBI"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Citez une pâtisserie célèbre mentionnée.",
+                "opciones": [
+                    "Le gâteau au chocolat",
+                    "Les macarons",
+                    "La pizza",
+                    "Le sushi"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel est l'ordre habituel du repas ?",
+                "opciones": [
+                    "Dessert d'abord",
+                    "Entrée, plat principal et dessert/fromage",
+                    "Plat principal seulement",
+                    "Rien du tout"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Que font les Français pendant le repas ?",
+                "opciones": [
+                    "Ils dorment",
+                    "Ils discutent beaucoup",
+                    "Ils courent",
+                    "Ils lisent"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Le 14 Juillet : La fête nationale",
+        "texto": "Le 14 juillet est la fête nationale française. Elle commémore la prise de la Bastille en 1789, qui est le début de la Révolution française. C'est une journée de célébration partout dans le pays. Le matin, il y a un grand défilé militaire sur les Champs-Élysées à Paris, en présence du Président. Le soir, on peut voir des feux d'artifice magnifiques et participer à des « bals populaires » avec de la musique et de la danse. C'est un moment de fierté et d'unité pour tous les citoyens français.",
+        "preguntas": [
+            {
+                "pregunta": "Quelle est la date de la fête nationale française ?",
+                "opciones": [
+                    "1er janvier",
+                    "14 juillet",
+                    "25 décembre",
+                    "1er mai"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel événement historique célèbre-t-on ?",
+                "opciones": [
+                    "La fin de la guerre",
+                    "La prise de la Bastille (Révolution)",
+                    "Le couronnement d'un roi",
+                    "Le tour de France"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où se déroule le défilé militaire ?",
+                "opciones": [
+                    "À Lyon",
+                    "Sur les Champs-Élysées à Paris",
+                    "À l'école",
+                    "Dans un stade"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Que peut-on voir le soir du 14 juillet ?",
+                "opciones": [
+                    "De la neige",
+                    "Des feux d'artifice",
+                    "Des nuages",
+                    "Rien"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'est-ce qu'un « bal populaire » ?",
+                "opciones": [
+                    "Un examen",
+                    "Une fête avec musique et danse",
+                    "Un dîner sérieux",
+                    "Une course"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Protection de l'environnement : Le recyclage",
+        "texto": "Le réchauffement climatique nous oblige à changer nos habitudes. Le tri des déchets est une action simple mais indispensable. En France, il y a des poubelles de différentes couleurs : jaune pour le plastique et le carton, vert pour le verre et marron pour les déchets organiques. Réduire notre consommation d'énergie est aussi crucial. Par exemple, on peut baisser le chauffage ou prendre le bus au lieu de la voiture. Si nous voulons protéger la planète pour les générations futures, nous devons tous être plus éco-responsables dès aujourd'hui.",
+        "preguntas": [
+            {
+                "pregunta": "Pourquoi devons-nous changer nos habitudes ?",
+                "opciones": [
+                    "À cause du réchauffement climatique",
+                    "Parce que c'est la mode",
+                    "Parce qu'on s'ennuie",
+                    "Cela n'est pas nécessaire"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Quelle est la couleur de la poubelle pour le verre ?",
+                "opciones": [
+                    "Jaune",
+                    "Vert",
+                    "Bleu",
+                    "Rouge"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'est-ce qu'on met dans la poubelle jaune ?",
+                "opciones": [
+                    "Le verre",
+                    "Le plastique et le carton",
+                    "Les restes de nourriture",
+                    "Rien"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Citez une action pour économiser l'énergie.",
+                "opciones": [
+                    "Prendre l'avion",
+                    "Baisser le chauffage ou prendre le bus",
+                    "Manger plus",
+                    "Laisser les lumières allumées"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel est l'objectif de ces actions ?",
+                "opciones": [
+                    "Devenir riche",
+                    "Protéger la planète pour le futur",
+                    "Gagner du temps",
+                    "Vendre des poubelles"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Le cinéma français : De Méliès à aujourd'hui",
+        "texto": "La France est le pays d'origine du cinéma avec les Frères Lumière en 1895. Depuis, le cinéma français est très dynamique. Georges Méliès a inventé les premiers effets spéciaux dans son film « Le voyage dans la Lune ». Aujourd'hui, des films français comme « Le Fabuleux Destin d'Amélie Poulain » ou « Intouchables » connaissent un grand succès international. Chaque année, le Festival de Cannes récompense les meilleurs films du monde. C'est un événement prestigieux qui se déroule sur la Côte d'Azur au mois de mai.",
+        "preguntas": [
+            {
+                "pregunta": "Qui sont les inventeurs du cinéma ?",
+                "opciones": [
+                    "Victor Hugo",
+                    "Les Frères Lumière",
+                    "Napoléon",
+                    "Zidane"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'a inventé Georges Méliès ?",
+                "opciones": [
+                    "Le premier ordinateur",
+                    "Les premiers effets spéciaux",
+                    "La radio",
+                    "L'avion"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel festival célèbre le cinéma en France ?",
+                "opciones": [
+                    "Le Festival de Musique",
+                    "Le Festival de Cannes",
+                    "Le Festival de Noël",
+                    "Le Tour de France"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où se déroule le Festival de Cannes ?",
+                "opciones": [
+                    "À Paris",
+                    "Sur la Côte d'Azur",
+                    "Dans les Alpes",
+                    "En Bretagne"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Citez un film français à succès international mentionné.",
+                "opciones": [
+                    "Star Wars",
+                    "Amélie Poulain ou Intouchables",
+                    "La Reine des Neiges",
+                    "Harry Potter"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Internet et les réseaux sociaux : Avantages et risques",
+        "texto": "Aujourd'hui, il est difficile d'imaginer la vie sans Internet. Nous l'utilisons pour étudier, communiquer avec nos amis et nous divertir. C'est un outil de connaissance extraordinaire. Cependant, il existe des dangers comme le cyber-harcèlement ou la diffusion de fausses informations (fake news). Il est très important de protéger ses données personnelles et de ne pas partager des informations trop privées. Nous devons être responsables et polis quand nous interagissons en ligne. La courtoisie numérique est aussi importante que la politesse réelle.",
+        "preguntas": [
+            {
+                "pregunta": "Pour quoi utilisons-nous Internet ?",
+                "opciones": [
+                    "Pour dormir",
+                    "Pour étudier, communiquer et se divertir",
+                    "Seulement pour jouer",
+                    "Pour rien"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Citez un danger d'Internet mentionné.",
+                "opciones": [
+                    "La pluie",
+                    "Le cyber-harcèlement",
+                    "Le froid",
+                    "L'ennui"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Que faut-il faire pour protéger ses données ?",
+                "opciones": [
+                    "Les donner à tout le monde",
+                    "Ne pas partager d'informations trop privées",
+                    "Ne pas avoir de mot de passe",
+                    "Crier fort"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Comment devons-nous nous comporter en ligne ?",
+                "opciones": [
+                    "On peut être méchant",
+                    "Responsables et polis (courtoisie numérique)",
+                    "Il n'y a pas de règles",
+                    "En majuscules seulement"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Internet est-il considéré comme un outil de connaissance ?",
+                "opciones": [
+                    "Oui, extraordinaire",
+                    "Non, pas du tout"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Un monument historique : Le Mont Saint-Michel",
+        "texto": "Le Mont Saint-Michel est une île rocheuse située en Normandie. Célèbre pour son abbaye gothique, c'est l'un des lieux les plus spectaculaires de France. Ce qui est unique, c'est que le paysage change selon les marées. Quand la marée est haute, le Mont devient une île. Quand elle est basse, on peut marcher sur le sable autour. Chaque année, des millions de pèlerins et de touristes visitent ce village médiéval. Il est classé au patrimoine mondial de l'UNESCO depuis 1979 et raconte des siècles d'histoire.",
+        "preguntas": [
+            {
+                "pregunta": "Où se situe le Mont Saint-Michel ?",
+                "opciones": [
+                    "En Bretagne uniquement",
+                    "En Normandie",
+                    "À Paris",
+                    "Au sud de la France"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'y a-t-il de construit sur le rocher ?",
+                "opciones": [
+                    "Une tour de métal",
+                    "Une abbaye gothique",
+                    "Un aéroport",
+                    "Une plage"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel phénomène naturel change le paysage ?",
+                "opciones": [
+                    "Le vent",
+                    "Les marées",
+                    "La neige",
+                    "Le tonnerre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Que se passe-t-il quand la marée est haute ?",
+                "opciones": [
+                    "Il fait chaud",
+                    "Le Mont devient une île",
+                    "On peut courir",
+                    "Rien"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Depuis quelle année est-il classé à l'UNESCO ?",
+                "opciones": [
+                    "1879",
+                    "1979",
+                    "2029",
+                    "1500"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Le sport en France : Le Tour de France",
+        "texto": "Le Tour de France est la course cycliste la plus célèbre du monde. Elle a été créée en 1903. Chaque été, pendant trois semaines, les coureurs parcourent plus de 3 000 kilomètres à travers les montagnes, les campagnes et les villes de France. L'étape finale se déroule toujours sur les Champs-Élysées à Paris. Le leader de la course porte le « maillot jaune ». C'est un événement gratuit pour les spectateurs, ce qui le rend très populaire. Des millions de personnes attendent les cyclistes sur le bord des routes pour les encourager.",
+        "preguntas": [
+            {
+                "pregunta": "Quel sport concerne le Tour de France ?",
+                "opciones": [
+                    "La natation",
+                    "Le cyclisme",
+                    "Le football",
+                    "Le tennis"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Combien de temps dure la course ?",
+                "opciones": [
+                    "Une journée",
+                    "Trois semaines",
+                    "Un mois",
+                    "Un an"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle est la couleur du maillot du leader ?",
+                "opciones": [
+                    "Rouge",
+                    "Jaune",
+                    "Vert",
+                    "Bleu"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où se termine toujours le tour ?",
+                "opciones": [
+                    "À Lyon",
+                    "Aux Champs-Élysées à Paris",
+                    "En Espagne",
+                    "À la plage"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Pourquoi cette course est-elle très populaire pour les spectateurs ?",
+                "opciones": [
+                    "Parce que c'est gratuit",
+                    "Parce qu'ils reçoivent de l'argent",
+                    "Parce qu'elle est courte",
+                    "Elle n'est pas populaire"
+                ],
+                "correcta": 0
+            }
+        ]
+    }
+]

@@ -1,0 +1,816 @@
+{
+  "titulo": "Material de Estudio - Ciencias Sociales - 3º PRIMARIA",
+  "introduccion": "Repasa este vocabulario de Ciencias Sociales para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "atmósfera",
+          "definicion": "Capa de gases que rodea la Tierra.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "acuífero",
+          "definicion": "Gran masa de agua salada.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "alcalde",
+          "definicion": "Jefe de un ayuntamiento.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "agricultura",
+          "definicion": "Trabajo de cultivar la tierra.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "astro",
+          "definicion": "Relativo al sol.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "barrio",
+          "definicion": "Conjunto de casas en una ciudad.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bahía",
+          "definicion": "Costa curva donde entra el mar.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bomberos",
+          "definicion": "Personas que apagan fuegos.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "biblioteca",
+          "definicion": "Lugar con muchos libros públicos.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bordar",
+          "definicion": "Coser ropa o fabricar telas.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "ciudad",
+          "definicion": "Gran población con muchos servicios.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cultivo",
+          "definicion": "Cura de la tierra para obtener plantas.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "costa",
+          "definicion": "Lugar junto al mar.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "oeste",
+          "definicion": "Puntos cardinales: Norte, Sur, Este y...",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cierzo",
+          "definicion": "Corriente de aire.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "derechos",
+          "definicion": "Lo que todos los ciudadanos tenemos para ser libres.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "desembolso",
+          "definicion": "Gastar dinero para comprar algo.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "densidad",
+          "definicion": "Lugar donde vive mucha gente.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "domingo",
+          "definicion": "Día de la fiesta del pueblo.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "doctor",
+          "definicion": "Médico que cuida la salud social.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "este",
+          "definicion": "Punto cardinal por donde sale el sol.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "españa",
+          "definicion": "Nuestro país.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "eléctrico",
+          "definicion": "Aparato que consume energía.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "emigrar",
+          "definicion": "Vivir en un lugar.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "escuela",
+          "definicion": "Lugar para aprender fuera de casa.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "fábrica",
+          "definicion": "Acción de fabricar productos en serie.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fin",
+          "definicion": "Frontera entre dos países.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "faro",
+          "definicion": "Luz que guía a los barcos de noche.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "familia",
+          "definicion": "Personas que forman un hogar.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "festivo",
+          "definicion": "Tiempo de vacaciones.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "ganaderos",
+          "definicion": "Personas que crían vacas, ovejas o cerdos.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "geosfera",
+          "definicion": "Capa de roca sólida de la Tierra.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "globo",
+          "definicion": "Dibujo que representa la Tierra entera.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gobierno",
+          "definicion": "Grupo de gobernantes del pueblo.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "garganta",
+          "definicion": "Caída de agua en un río.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hidrosfera",
+          "definicion": "Capa de toda el agua de la Tierra.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "historia",
+          "definicion": "Pasado de las personas.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hábitat",
+          "definicion": "Lugar donde vive el ser humano.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "habana",
+          "definicion": "Donde se paran los barcos.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "habitante",
+          "definicion": "Personas de un lugar.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "isla",
+          "definicion": "Tierra rodeada de agua por todas partes.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "ibérica",
+          "definicion": "Península donde está España.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "incendio",
+          "definicion": "Fuego forestal.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "industria",
+          "definicion": "Conjunto de fábricas.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inmigrante",
+          "definicion": "Persona que vive fuera de su país.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "juez",
+          "definicion": "Persona que hace leyes en el juzgado.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jardinero",
+          "definicion": "Persona que cuida el parque.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "junio",
+          "definicion": "Mes después de mayo.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "júpiter",
+          "definicion": "Planeta más grande del sistema solar.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jornada",
+          "definicion": "Trabajar para ganar dinero.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "kilómetro",
+          "definicion": "Mil metros.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kiosco",
+          "definicion": "Lugar de venta de periódicos.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "alaska",
+          "definicion": "Estado de USA con mucha nieve.",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "pueblo",
+          "definicion": "Sinónimo de pueblo.",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "km",
+          "definicion": "Abreviatura de kilómetro.",
+          "pista": "Contiene la K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "localidad",
+          "definicion": "Lugar habitado por gente.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "llanura",
+          "definicion": "Relieve de la tierra.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "leyenda",
+          "definicion": "Puntos de un mapa.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "luna",
+          "definicion": "Satélite de la Tierra.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "oficina",
+          "definicion": "Donde se mandan cartas.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "montaña",
+          "definicion": "Elevación natural del terreno.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mapa",
+          "definicion": "Dibujo de una ciudad o país.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "madrid",
+          "definicion": "Municipio presidido por una capital.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "marte",
+          "definicion": "Planeta rojo.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "museo",
+          "definicion": "Lugar de exposición de historia.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "norte",
+          "definicion": "Punto cardinal opuesto al sur.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nube",
+          "definicion": "Masa de agua en el cielo.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "navío",
+          "definicion": "Barco para viajar en el mar.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "norma",
+          "definicion": "Regla de convivencia.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "natal",
+          "definicion": "Número de habitantes.",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "montaña",
+          "definicion": "Relieve muy alto.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "españa",
+          "definicion": "Donde vivimos todos.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "año",
+          "definicion": "365 días.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "cumpleaños",
+          "definicion": "Día que cumples edad.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "bañar",
+          "definicion": "Poner la ropa.",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "oeste",
+          "definicion": "Punto cardinal opuesto al este.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "océano",
+          "definicion": "Masa gigante de agua salada.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ocio",
+          "definicion": "Sector de servicios.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "otoño",
+          "definicion": "Tiempo de hojas secas.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ordenador",
+          "definicion": "Máquina de cálculo.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "península",
+          "definicion": "Tierra rodeada de agua salvo por una parte.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "población",
+          "definicion": "Personas que viven en un lugar.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "planeta",
+          "definicion": "Cuerpo celeste que gira alrededor del sol.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pueblo",
+          "definicion": "Sinónimo de pueblo.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pampa",
+          "definicion": "Gran extensión de llanura.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "tractor",
+          "definicion": "Máquina del sector primario.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "vecino",
+          "definicion": "Persona que vive al lado.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "parque",
+          "definicion": "Lugar de juegos del pueblo.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "caserío",
+          "definicion": "Población mui pequeña.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "buque",
+          "definicion": "Barco de carga.",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "río",
+          "definicion": "Corriente continua de agua dulce.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rotación",
+          "definicion": "Movimiento de la tierra sobre sí misma.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rural",
+          "definicion": "Área de campo fuera de ciudad.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rotonda",
+          "definicion": "Signo de tráfico.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rompeolas",
+          "definicion": "Muro del mar.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "sol",
+          "definicion": "Estrella del centro del sistema.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sur",
+          "definicion": "Punto cardinal opuesto al norte.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "servicios",
+          "definicion": "Sector que ofrece servicios.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "saturno",
+          "definicion": "Planeta con anillos.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "satélite",
+          "definicion": "Aparato que gira alrededor de la tierra.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "traslación",
+          "definicion": "Movimiento de la tierra alrededor del sol.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tierras",
+          "definicion": "Todo el agua de la tierra.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "transporte",
+          "definicion": "Bus, metro o avión.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tienda",
+          "definicion": "Sector terciario comercial.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "teatro",
+          "definicion": "Lugar de teatro.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "urbano",
+          "definicion": "Paisaje de la ciudad.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "universo",
+          "definicion": "Todo el espacio con galaxias.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "urna",
+          "definicion": "Caja para votar alcaldes.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "urano",
+          "definicion": "Planeta gaseoso frío.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "muro",
+          "definicion": "Parte de una casa.",
+          "pista": "Contiene la U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "vecino",
+          "definicion": "Persona que vive en tu calle.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "verano",
+          "definicion": "Estación de calor.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vía",
+          "definicion": "Camino de los coches.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "viento",
+          "definicion": "Aire que mueve las hojas.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "volcán",
+          "definicion": "País con volcán.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "wifi",
+          "definicion": "Internet en el colegio.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "web",
+          "definicion": "Página social.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "waterpolo",
+          "definicion": "Deporte de piscina.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "watch",
+          "definicion": "Reloj de muñeca en inglés.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "wolf",
+          "definicion": "Lugar de nieve.",
+          "pista": "Contiene la W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "excursión",
+          "definicion": "Visita con el cole.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "taxi",
+          "definicion": "Coche público.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "explicar",
+          "definicion": "Sinónimo de decir.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "examinar",
+          "definicion": "Mirar algo con detalle.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "éxodo",
+          "definicion": "País al norte de África.",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "hoy",
+          "definicion": "Día entre hoy y mañana.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "playa",
+          "definicion": "Arena de playa.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "familia",
+          "definicion": "Padres y hermanos.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ayer",
+          "definicion": "Día antes de hoy.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "monarquía",
+          "definicion": "Gobierno de rey.",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zoo",
+          "definicion": "Lugar con animales salvajes.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zona",
+          "definicion": "Parte de un pueblo.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "izquierda",
+          "definicion": "Lado contrario a derecha.",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "plaza",
+          "definicion": "Sitio abierto y público.",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "luz",
+          "definicion": "Luz de la sala.",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

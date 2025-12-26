@@ -1,0 +1,568 @@
+[
+    {
+        "id": "1",
+        "titulo": "Los elementos del lenguaje visual: El Punto",
+        "texto": "El punto es el elemento gráfico más pequeño que podemos dibujar. No tiene dimensiones, solo posición. En el lenguaje visual, un solo punto atrae la mirada. Si ponemos muchos puntos juntos, podemos crear la sensación de volumen, sombra o textura. Esta técnica se llama PUNTILLISMO. Artistas como Georges Seurat usaban millones de puntos de colores puros para que el ojo del espectador mezclara los colores al ver el cuadro desde lejos. El punto también puede ser el centro de atención de una composición.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el punto en el lenguaje visual?",
+                "opciones": [
+                    "Una línea larga",
+                    "El elemento gráfico más pequeño",
+                    "Un color brillante",
+                    "Un tipo de lápiz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la técnica que usa puntos para crear imágenes?",
+                "opciones": [
+                    "Puntillismo",
+                    "Cubismo",
+                    "Linalismo",
+                    "Sombreado"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué artista destaca por usar el puntillismo?",
+                "opciones": [
+                    "Picasso",
+                    "Georges Seurat",
+                    "Leonardo da Vinci",
+                    "Velázquez"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si agrupamos muchos puntos?",
+                "opciones": [
+                    "Se borran",
+                    "Crean volumen, sombra o textura",
+                    "Se vuelven blancos",
+                    "Causan confusión"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Tiene dimensiones reales el punto matemático según el texto?",
+                "opciones": [
+                    "Sí",
+                    "No, solo posición"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "La Línea: Camino de un punto",
+        "texto": "La línea es un punto en movimiento. Es el elemento básico del dibujo y sirve para definir formas, crear contornos y transmitir sensaciones. Las líneas HORIZONTALES transmiten calma y descanso. Las VERTICALES dan sensación de equilibrio y elevación. Las líneas OBLICUAS o diagonales sugieren movimiento e inestabilidad. Por último, las líneas CURVAS evocan suavidad y ritmo. Según su grosor y estilo, una línea puede ser expresiva (con manchas) o técnica (limpia y perfecta como en arquitectura).",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se define la línea?",
+                "opciones": [
+                    "Un círculo grande",
+                    "Un punto en movimiento",
+                    "Una mancha de color",
+                    "Un tipo de papel"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué sensación transmiten las líneas horizontales?",
+                "opciones": [
+                    "Movimiento",
+                    "Calma y descanso",
+                    "Grito",
+                    "Inestabilidad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si queremos dar sensación de movimiento, ¿qué línea usarías?",
+                "opciones": [
+                    "Horizontal",
+                    "Vertical",
+                    "Oblicua o diagonal",
+                    "Ninguna"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué sugieren las líneas curvas?",
+                "opciones": [
+                    "Miedo",
+                    "Suavidad y ritmo",
+                    "Dureza",
+                    "Peligro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de línea se usa en arquitectura normalmente?",
+                "opciones": [
+                    "Línea técnica limpia",
+                    "Línea borrosa",
+                    "Garabatos",
+                    "Línea invisible"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "El Color: Primarios y Secundarios",
+        "texto": "El color es luz que se refleja en los objetos. Los COLORES PRIMARIOS son aquellos que no se pueden obtener mezclando otros: Rojo, Amarillo y Azul. Si mezclamos los primarios entre sí, obtenemos los COLORES SECUNDARIOS: Naranja (Rojo+Amarillo), Verde (Azul+Amarillo) y Violeta (Rojo+Azul). Al conjunto de colores organizados en forma de rueda lo llamamos CÍRCULO CROMÁTICO. Los colores también tienen temperatura: los CÁLIDOS (rojos, naranjas) transmiten calor y energía, mientras que los FRÍOS (azules, verdes) transmiten frescura y serenidad.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuáles son los colores primarios?",
+                "opciones": [
+                    "Verde, Naranja y Violeta",
+                    "Rojo, Amarillo y Azul",
+                    "Blanco y Negro",
+                    "Rosa y Gris"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué color obtenemos al mezclar Azul y Amarillo?",
+                "opciones": [
+                    "Rojo",
+                    "Verde",
+                    "Violeta",
+                    "Marrón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué transmiten los colores cálidos?",
+                "opciones": [
+                    "Frío",
+                    "Calor y energía",
+                    "Tristeza profunda",
+                    "Soledad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el gráfico circular que ordena los colores?",
+                "opciones": [
+                    "Cuadrado de color",
+                    "Círculo cromático",
+                    "Triángulo de luz",
+                    "Mapa de manchas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El azul es un color...",
+                "opciones": [
+                    "Cálido",
+                    "Secundario",
+                    "Frío",
+                    "Invisible"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La Textura: Tocar con los ojos",
+        "texto": "La textura es la cualidad táctil o visual de la superficie de los objetos. Existen dos tipos. La textura TÁCTIL es aquella que podemos sentir físicamente al tocar el objeto (rugoso, suave, punzante). La textura VISUAL es una ilusión creada en un dibujo o foto; parece que tiene relieve pero al tocar el papel está liso. Los artistas usan texturas para dar realismo a sus obras o para transmitir emociones (una textura rugosa puede ser más agresiva que una suave).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la textura visual?",
+                "opciones": [
+                    "La que pinchamos con el dedo",
+                    "Una que parece real pero está lisa en el papel",
+                    "Un tipo de color",
+                    "El ruido del papel"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuáles son ejemplos de texturas táctiles?",
+                "opciones": [
+                    "Rojo y azul",
+                    "Rugoso, suave, punzante",
+                    "Alto y bajo",
+                    "Dulce y salado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué usan los artistas las texturas?",
+                "opciones": [
+                    "Para gastar pintura",
+                    "Para dar realismo o transmitir emociones",
+                    "Para que el cuadro no se caiga",
+                    "Solo para decorar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un dibujo parece una piedra pero el papel está liso, la textura es:",
+                "opciones": [
+                    "Táctil",
+                    "Visual",
+                    "Natural",
+                    "Inexistente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué sensación puede dar una textura rugosa?",
+                "opciones": [
+                    "Extrema suavidad",
+                    "Agresividad o fuerza",
+                    "Frío",
+                    "Transparencia"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "La Composición y el Equilibrio",
+        "texto": "La composición es la forma de organizar los elementos (puntos, líneas, colores) dentro de un espacio. Para que una obra sea agradable debe tener EQUILIBRIO. El equilibrio puede ser SIMÉTRICO, si las dos mitades son iguales como un espejo, transmitiendo orden y seriedad. También puede ser ASIMÉTRICO, cuando las partes son distintas pero 'pesan' visualmente lo mismo, transmitiendo dinamismo y modernidad. El centro de interés es el lugar donde el artista quiere que miremos primero.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la composición artística?",
+                "opciones": [
+                    "Mezclar colores",
+                    "Organizar los elementos en el espacio",
+                    "Limpiar los pinceles",
+                    "Poner un marco"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo es el equilibrio simétrico?",
+                "opciones": [
+                    "Las dos mitades son iguales",
+                    "Todo está desordenado",
+                    "No hay colores",
+                    "Es muy pequeño"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué transmite una composición asimétrica?",
+                "opciones": [
+                    "Aburrimiento",
+                    "Dinamismo y modernidad",
+                    "Orden absoluto",
+                    "Miedo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el centro de interés?",
+                "opciones": [
+                    "El precio del cuadro",
+                    "Donde el artista quiere que miremos primero",
+                    "La esquina de abajo",
+                    "El nombre del autor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es necesario el equilibrio para que una obra sea estable visualmente?",
+                "opciones": [
+                    "No",
+                    "Sí, es fundamental"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Sustancias y Mezclas Pictóricas",
+        "texto": "Para pintar usamos PIGMENTOS (el polvo de color) mezclados con un AGLUTINANTE (la sustancia que pega el color al soporte). Según el aglutinante, tenemos distintas técnicas. La ACUARELA usa goma arábiga y agua, es transparente y luminosa. El ÓLEO usa aceites vegetales, tarda mucho en secar y permite rectificar. El ACRÍLICO usa resinas plásticas, seca muy rápido y los colores son muy intensos. Cada técnica requiere soportes distintos: papel para acuarela, lienzo de tela para óleo o acrílico.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el aglutinante?",
+                "opciones": [
+                    "El color en polvo",
+                    "La sustancia que pega el color al soporte",
+                    "El pincel",
+                    "El marco del cuadro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué caracteriza a la acuarela?",
+                "opciones": [
+                    "Ser muy opaca",
+                    "Su transparencia y luminosidad",
+                    "Tardar meses en secar",
+                    "Ser plástica"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la ventaja principal del óleo?",
+                "opciones": [
+                    "Seca en un minuto",
+                    "Permite rectificar porque seca lento",
+                    "No tiene olor",
+                    "Se puede comer"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La técnica que usa resinas plásticas y seca rápido es:",
+                "opciones": [
+                    "Óleo",
+                    "Acuarela",
+                    "Acrílico",
+                    "Pastel"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cómo se llama el polvo de color puro?",
+                "opciones": [
+                    "Arena",
+                    "Pigmento",
+                    "Tiza",
+                    "Barniz"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Geometría Plana: Instrumentos de Dibujo",
+        "texto": "El dibujo técnico requiere precisión. Usamos instrumentos como la REGLA (para medir y trazar rectas), la ESCUADRA y el CARTABÓN (para trazar ángulos de 90º, 45º, 60º y 30º, y líneas paralelas o perpendiculares) y el COMPÁS (para trazar circunferencias y arcos). Es vital mantener la punta de los lápices afilada y usar lápices de dureza H (duros y finos) para trazados auxiliares y HB o B (blandos) para el acabado final. La limpieza es la clave de un buen dibujo técnico.",
+        "preguntas": [
+            {
+                "pregunta": "¿Para qué sirve el compás?",
+                "opciones": [
+                    "Para medir líneas",
+                    "Para trazar circunferencias y arcos",
+                    "Para borrar",
+                    "Para afilar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ángulos podemos hacer con la escuadra y el cartabón?",
+                "opciones": [
+                    "Solo el de 90º",
+                    "Ángulos básicos como 90º, 45º y 60º",
+                    "Cualquier ángulo libre",
+                    "Solo ángulos muy pequeños"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué lápiz es mejor para el trazado final?",
+                "opciones": [
+                    "Un lápiz H muy duro",
+                    "Un lápiz HB o B (blandos)",
+                    "Un rotulador gordo",
+                    "Una tiza"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es esencial en el dibujo técnico además de la precisión?",
+                "opciones": [
+                    "Que tenga muchos colores",
+                    "La limpieza del papel",
+                    "Que sea muy grande",
+                    "Usar solo la mano libre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué dibujo es más preciso?",
+                "opciones": [
+                    "Dibujo artístico",
+                    "Dibujo técnico",
+                    "Un boceto rápido",
+                    "Garabatos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "La Formas: Orgánicas y Geométricas",
+        "texto": "Las formas son superficies cerradas. Las formas GEOMÉTRICAS son regulares y se hacen con instrumentos (rectángulos, círculos, triángulos). Transmiten orden y estructura humana. Las formas ORGÁNICAS son irregulares y libres, como las que encontramos en la naturaleza (nubes, hojas, manchas). Transmiten libertad y naturalidad. Un buen artista combina ambas para crear mundos interesantes. Las formas también pueden ser positivas (el objeto ocupado) o negativas (el espacio vacío alrededor).",
+        "preguntas": [
+            {
+                "pregunta": "Un círculo es una forma...",
+                "opciones": [
+                    "Orgánica",
+                    "Geométrica",
+                    "Invisible",
+                    "Natural"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué se parecen las formas orgánicas?",
+                "opciones": [
+                    "A edificios",
+                    "A la naturaleza (hojas, nubes)",
+                    "A cajas de cartón",
+                    "A reglas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué transmiten las formas geométricas?",
+                "opciones": [
+                    "Nerviosismo",
+                    "Orden y estructura",
+                    "Miedo",
+                    "Caos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la forma negativa en una composición?",
+                "opciones": [
+                    "Un dibujo feo",
+                    "El espacio vacío que rodea al objeto",
+                    "La que está pintada de negro",
+                    "Una forma rota"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Las hojas de un árbol tienen formas predominantes:",
+                "opciones": [
+                    "Geométricas perfectas",
+                    "Orgánicas",
+                    "Rectas",
+                    "Metálicas"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "El Lenguaje del Cómic",
+        "texto": "El cómic es una narración mediante imágenes en secuencia. Utiliza elementos únicos: la VIÑETA (el recuadro de la acción), el BOCADILLO o globo (donde va el texto), la CARTELA (cuadro con la voz del narrador) y las ONOMATOPEYAS (letras que imitan sonidos, ej: ¡BOOM!). También usa líneas de movimiento para dar dinamismo a los personajes. El cómic es un arte que combina el lenguaje visual y el verbal de forma inseparable para contar una historia.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el bocadillo en un cómic?",
+                "opciones": [
+                    "La comida del autor",
+                    "El espacio donde se escribe el diálogo",
+                    "El borde del papel",
+                    "Un tipo de color"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la onomatopeya?",
+                "opciones": [
+                    "Para dibujar caras",
+                    "Para imitar sonidos con letras",
+                    "Para separar los actos",
+                    "Para poner el nombre del autor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el recuadro individual que contiene cada escena?",
+                "opciones": [
+                    "Página",
+                    "Bocadillo",
+                    "Viñeta",
+                    "Cartela"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué indica el narrador en la cartela?",
+                "opciones": [
+                    "Lo que piensa el perro",
+                    "Información de contexto de la historia",
+                    "Gritos de batalla",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué lenguaje combina el cómic?",
+                "opciones": [
+                    "Solo visual",
+                    "Sólo verbal",
+                    "Visual y verbal",
+                    "Matemático"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "La Imagen Publicitaria",
+        "texto": "La publicidad usa imágenes para convencernos de comprar algo o cambiar una actitud. Suele usar un lenguaje muy cuidado con dos funciones. La función DENOTATIVA muestra el producto tal cual es. La función CONNOTATIVA asocia el producto a valores positivos (éxito, belleza, felicidad). El LOGOTIPO es la imagen que identifica a la marca de forma rápida. La publicidad actual es muy poderosa y debemos aprender a analizarla críticamente para que no nos engañen con falsas promesas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el objetivo principal de la publicidad?",
+                "opciones": [
+                    "Hacer arte",
+                    "Convencer o vender un producto/idea",
+                    "Gastar papel",
+                    "Instruir en ciencia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la función connotativa en un anuncio?",
+                "opciones": [
+                    "Decir el precio",
+                    "Asociar el producto a sensaciones positivas",
+                    "Mostrar cómo funciona",
+                    "Poner la dirección"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el símbolo visual que representa a una marca?",
+                "opciones": [
+                    "Anuncio",
+                    "Logotipo",
+                    "Texto",
+                    "Grito"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es importante el análisis crítico de la publicidad?",
+                "opciones": [
+                    "Para no comprar nada",
+                    "Para distinguir la realidad de las promesas del anuncio",
+                    "Para ser diseñador",
+                    "No es importante"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué muestra la función denotativa?",
+                "opciones": [
+                    "Sueños",
+                    "El producto tal y como es",
+                    "Sentimientos",
+                    "Chistes"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

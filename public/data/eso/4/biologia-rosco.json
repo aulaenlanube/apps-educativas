@@ -1,301 +1,2186 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Molécula portadora de la información genética.", "solucion": "adn", "materia": "biologia" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Cada una de las formas alternativas de un gen.", "solucion": "alelo", "materia": "biologia" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Ácido nucleico que participa en la síntesis de proteínas.", "solucion": "arn", "materia": "biologia" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Base nitrogenada complementaria de la Timina.", "solucion": "adenina", "materia": "biologia" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Característica que mejora la supervivencia de un ser vivo.", "solucion": "adaptación", "materia": "biologia" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Fase de la mitosis donde se separan las cromátidas.", "solucion": "anafase", "materia": "biologia" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Género de homínidos anterior al Homo (Lucy).", "solucion": "australopithecus", "materia": "biologia" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Capa gaseosa que envuelve la Tierra.", "solucion": "atmósfera", "materia": "biologia" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Ser vivo que produce su propio alimento.", "solucion": "autótrofo", "materia": "biologia" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Pliegue de las capas rocosas con forma de arco (A...).", "solucion": "anticlinal", "materia": "biologia" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Variedad de vida en la Tierra.", "solucion": "biodiversidad", "materia": "biologia" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Parte viva del ecosistema (Comunidad).", "solucion": "biocenosis", "materia": "biologia" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Capa de la Tierra donde se desarrolla la vida.", "solucion": "biosfera", "materia": "biologia" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Organismo procariota unicelular.", "solucion": "bacteria", "materia": "biologia" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Uso de organismos vivos para obtener productos.", "solucion": "biotecnología", "materia": "biologia" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Capacidad de andar sobre dos piernas.", "solucion": "bipedismo", "materia": "biologia" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Elemento químico que forma parte de los seres vivos.", "solucion": "bioelemento", "materia": "biologia" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Gran ecosistema terrestre definido por el clima (ej. Tundra).", "solucion": "bioma", "materia": "biologia" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Teoría sobre el origen del universo.", "solucion": "big bang", "materia": "biologia" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Lugar físico donde vive una comunidad.", "solucion": "biotopo", "materia": "biologia" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Estructura de ADN y proteínas visible en la división celular.", "solucion": "cromosoma", "materia": "biologia" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Unidad básica de la vida.", "solucion": "célula", "materia": "biologia" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "División del citoplasma.", "solucion": "citocinesis", "materia": "biologia" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Orgánulo donde ocurre la fotosíntesis.", "solucion": "cloroplasto", "materia": "biologia" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Secuencia de sucesos en la vida de una célula (Ciclo...).", "solucion": "celular", "materia": "biologia" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Obtención de organismos genéticamente idénticos.", "solucion": "clonación", "materia": "biologia" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Conjunto de cromosomas de una especie ordenados.", "solucion": "cariotipo", "materia": "biologia" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Capa más externa de la Tierra.", "solucion": "corteza", "materia": "biologia" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Teoría de Wegener: Deriva...", "solucion": "continental", "materia": "biologia" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Organismo que se alimenta de otros.", "solucion": "consumidor", "materia": "biologia" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Naturalista padre de la teoría de la evolución por selección natural.", "solucion": "darwin", "materia": "biologia" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Célula con dos juegos de cromosomas (2n).", "solucion": "diploide", "materia": "biologia" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Alelo que se manifiesta en el fenotipo aunque haya otro diferente.", "solucion": "dominante", "materia": "biologia" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Movimiento de los continentes (Deriva...).", "solucion": "continental", "materia": "biologia" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Organismo que recicla la materia orgánica.", "solucion": "descomponedor", "materia": "biologia" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Relación interespecífica donde uno caza a otro.", "solucion": "depredación", "materia": "biologia" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Cordillera submarina.", "solucion": "dorsal", "materia": "biologia" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Determinación de la edad de las rocas.", "solucion": "datación", "materia": "biologia" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Pérdida de un fragmento de cromosoma (Mutación).", "solucion": "deleción", "materia": "biologia" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Variedad biológica (Bio...).", "solucion": "diversidad", "materia": "biologia" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Proceso de cambio de los seres vivos a lo largo del tiempo.", "solucion": "evolución", "materia": "biologia" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Grupo de organismos capaces de reproducirse y tener descendencia fértil.", "solucion": "especie", "materia": "biologia" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Sistema formado por el biotopo y la biocenosis.", "solucion": "ecosistema", "materia": "biologia" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Ciencia que estudia los ecosistemas.", "solucion": "ecología", "materia": "biologia" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Célula con núcleo diferenciado.", "solucion": "eucariota", "materia": "biologia" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Proteína que acelera reacciones químicas.", "solucion": "enzima", "materia": "biologia" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Capa horizontal de roca sedimentaria.", "solucion": "estrato", "materia": "biologia" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Desaparición total de una especie.", "solucion": "extinción", "materia": "biologia" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Teoría del origen de la célula eucariota (Lynn Margulis).", "solucion": "endosimbiosis", "materia": "biologia" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Capacidad para realizar trabajo, fluye en el ecosistema.", "solucion": "energía", "materia": "biologia" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Resto de un organismo del pasado conservado en roca.", "solucion": "fósil", "materia": "biologia" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Proceso de convertir energía luminosa en química.", "solucion": "fotosíntesis", "materia": "biologia" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Expresión observable del genotipo.", "solucion": "fenotipo", "materia": "biologia" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Teoría antigua que decía que las especies no cambian.", "solucion": "fijismo", "materia": "biologia" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Historia evolutiva de una especie.", "solucion": "filogenia", "materia": "biologia" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Fractura en el terreno con desplazamiento de bloques.", "solucion": "falla", "materia": "biologia" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Unión del óvulo y el espermatozoide.", "solucion": "fecundación", "materia": "biologia" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Elemento del medio que influye en los seres vivos (Abiótico/Biótico).", "solucion": "factor", "materia": "biologia" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Proceso celular de 'comer' partículas.", "solucion": "fagocitosis", "materia": "biologia" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Movimiento de energía en el ecosistema (... de energía).", "solucion": "flujo", "materia": "biologia" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Fragmento de ADN que contiene información para un carácter.", "solucion": "gen", "materia": "biologia" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Ciencia que estudia la herencia.", "solucion": "genética", "materia": "biologia" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Conjunto de genes de un organismo.", "solucion": "genotipo", "materia": "biologia" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Célula reproductora haploide.", "solucion": "gameto", "materia": "biologia" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Monje considerado el padre de la genética.", "solucion": "gregor mendel", "materia": "biologia" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Teoría evolutiva de cambios lentos y constantes.", "solucion": "gradualismo", "materia": "biologia" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "Biomolécula energética (Hidrato de carbono).", "solucion": "glúcido", "materia": "biologia" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Base nitrogenada complementaria de la Citosina.", "solucion": "guanina", "materia": "biologia" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Ciencia que estudia la Tierra.", "solucion": "geología", "materia": "biologia" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Periodo de clima muy frío.", "solucion": "glaciación", "materia": "biologia" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Transmisión de caracteres de padres a hijos.", "solucion": "herencia", "materia": "biologia" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Célula con un solo juego de cromosomas (n).", "solucion": "haploide", "materia": "biologia" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Proceso evolutivo que dio lugar a la especie humana.", "solucion": "hominización", "materia": "biologia" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Lugar físico donde vive una especie.", "solucion": "hábitat", "materia": "biologia" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Individuo con dos alelos diferentes para un carácter (Aa).", "solucion": "heterocigoto", "materia": "biologia" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Individuo con dos alelos iguales para un carácter (AA o aa).", "solucion": "homocigoto", "materia": "biologia" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Género al que pertenece el ser humano.", "solucion": "homo", "materia": "biologia" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Geólogo padre del uniformismo (James...).", "solucion": "hutton", "materia": "biologia" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Estructura formada en la división celular (... acromático).", "solucion": "huso", "materia": "biologia" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Capa de agua de la Tierra.", "solucion": "hidrosfera", "materia": "biologia" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Fase del ciclo celular entre divisiones (crecimiento).", "solucion": "interfase", "materia": "biologia" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Calentamiento global por gases (... invernadero).", "solucion": "invernadero", "materia": "biologia" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Átomo inestable usado en datación absoluta.", "solucion": "isótopo", "materia": "biologia" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Manipulación de genes (Ingeniería...).", "solucion": "ingeniería", "materia": "biologia" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Efecto de la actividad humana sobre el medio.", "solucion": "impacto", "materia": "biologia" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Capacidad de resistir una infección.", "solucion": "inmunidad", "materia": "biologia" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Fuerza de un terremoto (Escala de Mercalli).", "solucion": "intensidad", "materia": "biologia" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Parte interna de la Tierra (Núcleo...).", "solucion": "interior", "materia": "biologia" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Animal sin columna vertebral.", "solucion": "invertebrado", "materia": "biologia" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Lugar donde Wallace estudió especies.", "solucion": "isla", "materia": "biologia" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Periodo intermedio del Mesozoico (Dinosaurios).", "solucion": "jurásico", "materia": "biologia" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Animal usado por Lamarck para explicar su teoría.", "solucion": "jirafa", "materia": "biologia" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Lugar donde Mendel cultivó sus guisantes.", "solucion": "jardín", "materia": "biologia" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Paleontólogo codirector de Atapuerca (... Luis Arsuaga).", "solucion": "juan", "materia": "biologia" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Grietas en las rocas sin desplazamiento.", "solucion": "juntas", "materia": "biologia" },
-  { "id": "j6", "letra": "J", "tipo": "empieza", "definicion": "Líquido digestivo (... gástrico).", "solucion": "jugo", "materia": "biologia" },
-  { "id": "j7", "letra": "J", "tipo": "empieza", "definicion": "Unidad de energía en el ecosistema.", "solucion": "joule", "materia": "biologia" },
-  { "id": "j8", "letra": "J", "tipo": "empieza", "definicion": "Etapa inicial de un río.", "solucion": "joven", "materia": "biologia" },
-  { "id": "j9", "letra": "J", "tipo": "empieza", "definicion": "Instrumento para inyectar o extraer líquidos.", "solucion": "jeringuilla", "materia": "biologia" },
-  { "id": "j10", "letra": "J", "tipo": "empieza", "definicion": "Depredador felino de América.", "solucion": "jaguar", "materia": "biologia" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Unidad de energía en nutrición.", "solucion": "kilocaloría", "materia": "biologia" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Símbolo químico del Potasio.", "solucion": "k", "materia": "biologia" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Ciclo metabólico de la respiración celular (Ciclo de...).", "solucion": "krebs", "materia": "biologia" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Modelado del relieve en rocas calizas.", "solucion": "karst", "materia": "biologia" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Unidad de masa.", "solucion": "kilogramo", "materia": "biologia" },
-  { "id": "k6", "letra": "K", "tipo": "empieza", "definicion": "Ave de Nueva Zelanda.", "solucion": "kiwi", "materia": "biologia" },
-  { "id": "k7", "letra": "K", "tipo": "empieza", "definicion": "Marsupial australiano.", "solucion": "koala", "materia": "biologia" },
-  { "id": "k8", "letra": "K", "tipo": "empieza", "definicion": "Pequeños crustáceos del plancton.", "solucion": "krill", "materia": "biologia" },
-  { "id": "k9", "letra": "K", "tipo": "empieza", "definicion": "Unidad de temperatura absoluta.", "solucion": "kelvin", "materia": "biologia" },
-  { "id": "k10", "letra": "K", "tipo": "empieza", "definicion": "Límite geológico de la extinción de los dinosaurios (Límite...).", "solucion": "kt", "materia": "biologia" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Naturalista que propuso la herencia de los caracteres adquiridos.", "solucion": "lamarck", "materia": "biologia" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Capa sólida externa de la Tierra (placas).", "solucion": "litosfera", "materia": "biologia" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Biomoléculas que almacenan energía (grasas).", "solucion": "lípidos", "materia": "biologia" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Orgánulo encargado de la digestión celular.", "solucion": "lisosoma", "materia": "biologia" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Padre de la taxonomía moderna.", "solucion": "linneo", "materia": "biologia" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Magma desgasificado que sale a la superficie.", "solucion": "lava", "materia": "biologia" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Lugar físico que ocupa un gen en el cromosoma.", "solucion": "locus", "materia": "biologia" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Hongo unicelular usado en fermentación.", "solucion": "levadura", "materia": "biologia" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Precipitación contaminante (... ácida).", "solucion": "lluvia", "materia": "biologia" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Piroclastos volcánicos de tamaño medio.", "solucion": "lapilli", "materia": "biologia" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "División celular que genera células idénticas.", "solucion": "mitosis", "materia": "biologia" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "División celular que reduce los cromosomas a la mitad.", "solucion": "meiosis", "materia": "biologia" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Cambio en la secuencia del ADN.", "solucion": "mutación", "materia": "biologia" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Padre de la genética.", "solucion": "mendel", "materia": "biologia" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Roca fundida en el interior de la Tierra.", "solucion": "magma", "materia": "biologia" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Proceso geológico de transformación de rocas por presión y temperatura.", "solucion": "metamorfismo", "materia": "biologia" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Clase de vertebrados que maman.", "solucion": "mamífero", "materia": "biologia" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Unión de átomos.", "solucion": "molécula", "materia": "biologia" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Cubierta de la célula.", "solucion": "membrana", "materia": "biologia" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Orgánulo de la respiración celular.", "solucion": "mitocondria", "materia": "biologia" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Parte central de la célula eucariota con el ADN.", "solucion": "núcleo", "materia": "biologia" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Unidad básica del ADN.", "solucion": "nucleótido", "materia": "biologia" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Función de una especie en el ecosistema (Nicho...).", "solucion": "ecológico", "materia": "biologia" }, 
-  { "id": "n3_fix", "letra": "N", "tipo": "empieza", "definicion": "Papel de una especie (Nicho).", "solucion": "nicho", "materia": "biologia" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Posición en la cadena alimentaria (Nivel...).", "solucion": "trófico", "materia": "biologia" }, 
-  { "id": "n4_fix", "letra": "N", "tipo": "empieza", "definicion": "Eslabón alimentario (Nivel).", "solucion": "nivel", "materia": "biologia" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Especie humana extinta (Homo...).", "solucion": "neandertal", "materia": "biologia" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Gas más abundante de la atmósfera y ciclo biogeoquímico.", "solucion": "nitrógeno", "materia": "biologia" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Función vital de obtener materia y energía.", "solucion": "nutrición", "materia": "biologia" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Teoría sintética de la evolución.", "solucion": "neodarwinismo", "materia": "biologia" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Agrupación de vapor de agua.", "solucion": "nube", "materia": "biologia" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Célula del sistema nervioso.", "solucion": "neurona", "materia": "biologia" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Órgano excretor (contiene Ñ).", "solucion": "riñón", "materia": "biologia" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Elevación del terreno (contiene Ñ).", "solucion": "montaña", "materia": "biologia" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Artrópodo de 8 patas (contiene Ñ).", "solucion": "araña", "materia": "biologia" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Hongo comestible (contiene Ñ).", "solucion": "champiñón", "materia": "biologia" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Animal que come cadáveres (contiene Ñ).", "solucion": "carroñero", "materia": "biologia" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "contiene", "definicion": "Tallo vegetal (contiene Ñ).", "solucion": "caña", "materia": "biologia" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Perjuicio al medio ambiente (contiene Ñ).", "solucion": "daño", "materia": "biologia" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Unidad de tiempo geológico (365 días, contiene Ñ).", "solucion": "año", "materia": "biologia" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "De tamaño reducido (contiene Ñ).", "solucion": "pequeño", "materia": "biologia" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "Molécula de comunicación celular (Se... contiene Ñ).", "solucion": "señal", "materia": "biologia" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Estructura celular con función específica (Orgánulo).", "solucion": "orgánulo", "materia": "biologia" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Paso de agua a través de membrana semipermeable.", "solucion": "osmosis", "materia": "biologia" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Gas esencial para la respiración aerobia.", "solucion": "oxígeno", "materia": "biologia" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Libro famoso de Darwin (... de las especies).", "solucion": "origen", "materia": "biologia" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Animal que come plantas y carne.", "solucion": "omnívoro", "materia": "biologia" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Gran masa de agua salada.", "solucion": "océano", "materia": "biologia" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Proceso de formación de montañas.", "solucion": "orogénesis", "materia": "biologia" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Vibración sísmica (P o S).", "solucion": "onda", "materia": "biologia" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Gónada femenina.", "solucion": "ovario", "materia": "biologia" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Gas que forma una capa protectora en la estratosfera.", "solucion": "ozono", "materia": "biologia" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Biomolécula formada por aminoácidos.", "solucion": "proteína", "materia": "biologia" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Fragmento de litosfera que se mueve (Placa...).", "solucion": "tectónica", "materia": "biologia" }, 
-  { "id": "p2_fix", "letra": "P", "tipo": "empieza", "definicion": "Fragmento de litosfera.", "solucion": "placa", "materia": "biologia" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Supercontinente que existió hace millones de años.", "solucion": "pangea", "materia": "biologia" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Ciencia que estudia los fósiles.", "solucion": "paleontología", "materia": "biologia" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Célula sin núcleo definido.", "solucion": "procariota", "materia": "biologia" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Deformación plástica de las rocas.", "solucion": "pliegue", "materia": "biologia" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Representación gráfica de los niveles tróficos.", "solucion": "pirámide", "materia": "biologia" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Organismo que fabrica su materia orgánica (planta).", "solucion": "productor", "materia": "biologia" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Conjunto de individuos de la misma especie.", "solucion": "población", "materia": "biologia" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Orden de mamíferos al que pertenece el ser humano.", "solucion": "primate", "materia": "biologia" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Obtención de energía a partir de compuestos químicos, sin luz.", "solucion": "quimiosíntesis", "materia": "biologia" },
-  { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Proteína estructural de pelo y uñas.", "solucion": "queratina", "materia": "biologia" },
-  { "id": "q3", "letra": "Q", "tipo": "empieza", "definicion": "Estructura de resistencia de algunos microorganismos.", "solucion": "quiste", "materia": "biologia" },
-  { "id": "q4", "letra": "Q", "tipo": "empieza", "definicion": "Ciencia que estudia la composición de la materia.", "solucion": "química", "materia": "biologia" },
-  { "id": "q5", "letra": "Q", "tipo": "empieza", "definicion": "Artrópodo con quelíceros (ej. araña).", "solucion": "quelicerado", "materia": "biologia" },
-  { "id": "q6", "letra": "Q", "tipo": "empieza", "definicion": "Papilla formada en el estómago.", "solucion": "quimo", "materia": "biologia" },
-  { "id": "q7", "letra": "Q", "tipo": "empieza", "definicion": "Líquido formado en el intestino.", "solucion": "quilo", "materia": "biologia" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "Conjunto de huesos (contiene Q).", "solucion": "esqueleto", "materia": "biologia" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Caballo (E... contiene Q).", "solucion": "equino", "materia": "biologia" },
-  { "id": "q10", "letra": "Q", "tipo": "contiene", "definicion": "Fósil marino común en el Paleozoico (Bra... contiene Q).", "solucion": "braquiópodo", "materia": "biologia" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Orgánulo que sintetiza proteínas.", "solucion": "ribosoma", "materia": "biologia" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Función vital de perpetuar la especie.", "solucion": "reproducción", "materia": "biologia" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Agregado natural de minerales.", "solucion": "roca", "materia": "biologia" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Forma de la superficie terrestre.", "solucion": "relieve", "materia": "biologia" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Alelo que solo se manifiesta en homocigosis.", "solucion": "recesivo", "materia": "biologia" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Conjunto interconectado de cadenas alimentarias.", "solucion": "red trófica", "materia": "biologia" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Proceso de copia del ADN.", "solucion": "replicación", "materia": "biologia" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Clasificación taxonómica superior (Animal, Vegetal...).", "solucion": "reino", "materia": "biologia" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Conjunto de fósiles encontrados (... fósil).", "solucion": "registro", "materia": "biologia" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Valle central en una dorsal oceánica.", "solucion": "rift", "materia": "biologia" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Mecanismo evolutivo propuesto por Darwin (... natural).", "solucion": "selección", "materia": "biologia" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Relación estrecha entre dos especies con beneficio mutuo.", "solucion": "simbiosis", "materia": "biologia" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Conjunto de órganos (Solar, Digestivo...).", "solucion": "sistema", "materia": "biologia" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Tipo de roca formada por acumulación de materiales.", "solucion": "sedimentaria", "materia": "biologia" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Capa superficial de la corteza donde crecen plantas.", "solucion": "suelo", "materia": "biologia" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Gráfico que registra las ondas sísmicas.", "solucion": "sismograma", "materia": "biologia" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Comunicación entre neuronas.", "solucion": "sinapsis", "materia": "biologia" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Teoría evolutiva que propone cambios bruscos.", "solucion": "saltacionismo", "materia": "biologia" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Organismo que se alimenta de materia en descomposición.", "solucion": "saprofito", "materia": "biologia" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Proceso de hundimiento de una placa bajo otra.", "solucion": "subducción", "materia": "biologia" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Teoría de las placas (... de placas).", "solucion": "tectónica", "materia": "biologia" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Proceso de síntesis de proteínas a partir del ARN.", "solucion": "traducción", "materia": "biologia" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Paso de información de ADN a ARN.", "solucion": "transcripción", "materia": "biologia" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Ciencia de la clasificación de los seres vivos.", "solucion": "taxonomía", "materia": "biologia" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Conjunto de células especializadas.", "solucion": "tejido", "materia": "biologia" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Nivel alimentario en el ecosistema.", "solucion": "trófico", "materia": "biologia" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Escala cronológica de la historia de la Tierra (... geológico).", "solucion": "tiempo", "materia": "biologia" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Temblor de tierra por liberación de energía.", "solucion": "terremoto", "materia": "biologia" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Ola gigante provocada por un sismo submarino.", "solucion": "tsunami", "materia": "biologia" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Base nitrogenada exclusiva del ADN.", "solucion": "timina", "materia": "biologia" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Base nitrogenada exclusiva del ARN.", "solucion": "uracilo", "materia": "biologia" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Todo lo que existe (Origen del...).", "solucion": "universo", "materia": "biologia" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Organismo formado por una sola célula.", "solucion": "unicelular", "materia": "biologia" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Conducto de salida de la orina.", "solucion": "uretra", "materia": "biologia" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Órgano de gestación.", "solucion": "útero", "materia": "biologia" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Límite mínimo de estímulo para la respuesta.", "solucion": "umbral", "materia": "biologia" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Medida estándar (ej. ... Astronómica).", "solucion": "unidad", "materia": "biologia" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Consumidor final en la cadena.", "solucion": "usuario", "materia": "biologia" },
-  { "id": "u9", "letra": "U", "tipo": "empieza", "definicion": "Estructura de queratina en los dedos.", "solucion": "uña", "materia": "biologia" },
-  { "id": "u10", "letra": "U", "tipo": "empieza", "definicion": "Orden de anfibios con cola (Salamandra).", "solucion": "urodelo", "materia": "biologia" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Orgánulo de almacenamiento en células vegetales.", "solucion": "vacuola", "materia": "biologia" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Agente infeccioso acelular.", "solucion": "virus", "materia": "biologia" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Estructura geológica que expulsa magma.", "solucion": "volcán", "materia": "biologia" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Objeto de estudio de la biología.", "solucion": "vida", "materia": "biologia" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Animal con esqueleto interno.", "solucion": "vertebrado", "materia": "biologia" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Reino de las plantas.", "solucion": "vegetal", "materia": "biologia" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Agente geológico externo (aire).", "solucion": "viento", "materia": "biologia" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Forma de relieve fluvial o glaciar.", "solucion": "valle", "materia": "biologia" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Rapidez de propagación de ondas sísmicas.", "solucion": "velocidad", "materia": "biologia" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Diversidad genética en una población.", "solucion": "variabilidad", "materia": "biologia" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Científico codescubridor de la estructura del ADN.", "solucion": "watson", "materia": "biologia" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Autor de la teoría de la deriva continental.", "solucion": "wegener", "materia": "biologia" },
-  { "id": "w3", "letra": "W", "tipo": "empieza", "definicion": "Ciclo de apertura y cierre de océanos (Ciclo de...).", "solucion": "wilson", "materia": "biologia" },
-  { "id": "w4", "letra": "W", "tipo": "empieza", "definicion": "Naturalista codescubridor de la selección natural.", "solucion": "wallace", "materia": "biologia" },
-  { "id": "w5", "letra": "W", "tipo": "empieza", "definicion": "Mineral de alto punto de fusión.", "solucion": "wolframio", "materia": "biologia" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Naturalista autor de 'El Origen de las Especies' (Dar...).", "solucion": "darwin", "materia": "biologia" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Tritón en inglés, anfibio (Ne...t, contiene W).", "solucion": "newt", "materia": "biologia" },
-  { "id": "w8", "letra": "W", "tipo": "contiene", "definicion": "Ave no voladora de Nueva Zelanda (Ki...i, contiene W).", "solucion": "kiwi", "materia": "biologia" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "Conexiones alimentarias (Red, en inglés Web).", "solucion": "web", "materia": "biologia" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Punto caliente volcánico (Ha...ai, contiene W).", "solucion": "hawai", "materia": "biologia" },
-
-  { "id": "x1", "letra": "X", "tipo": "empieza", "definicion": "Tejido conductor de savia bruta.", "solucion": "xilema", "materia": "biologia" },
-  { "id": "x2", "letra": "X", "tipo": "empieza", "definicion": "Organismo adaptado a ambientes secos.", "solucion": "xerófilo", "materia": "biologia" },
-  { "id": "x3", "letra": "X", "tipo": "empieza", "definicion": "Fragmento de roca extraña en un magma.", "solucion": "xenolito", "materia": "biologia" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Ciencia de la clasificación (Ta...onomía).", "solucion": "taxonomía", "materia": "biologia" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Compuesto con oxígeno (Ó...ido).", "solucion": "óxido", "materia": "biologia" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Género biológico (Se...o).", "solucion": "sexo", "materia": "biologia" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Eliminación de desechos (E...creción).", "solucion": "excreción", "materia": "biologia" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Desaparición de una especie (E...tinción).", "solucion": "extinción", "materia": "biologia" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Parte del cuerpo de los artrópodos (Tóra...).", "solucion": "tórax", "materia": "biologia" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "Gas respiratorio (Dió...ido de carbono).", "solucion": "dióxido", "materia": "biologia" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Lugar con restos fósiles.", "solucion": "yacimiento", "materia": "biologia" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Parte nutritiva del huevo.", "solucion": "yema", "materia": "biologia" },
-  { "id": "y3", "letra": "Y", "tipo": "empieza", "definicion": "Bioelemento traza necesario para la tiroides.", "solucion": "yodo", "materia": "biologia" },
-  { "id": "y4", "letra": "Y", "tipo": "empieza", "definicion": "Vena del cuello.", "solucion": "yugular", "materia": "biologia" },
-  { "id": "y5", "letra": "Y", "tipo": "empieza", "definicion": "Hueso del oído.", "solucion": "yunque", "materia": "biologia" },
-  { "id": "y6", "letra": "Y", "tipo": "empieza", "definicion": "Mineral de sulfato de calcio.", "solucion": "yeso", "materia": "biologia" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Curso de agua pequeño (Arro...o).", "solucion": "arroyo", "materia": "biologia" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Zona costera de arena (Pla...a).", "solucion": "playa", "materia": "biologia" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Más grande (Ma...or).", "solucion": "mayor", "materia": "biologia" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Relámpago (Ra...o).", "solucion": "rayo", "materia": "biologia" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Célula resultante de la fecundación.", "solucion": "zigoto", "materia": "biologia" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Rama de la biología que estudia los animales.", "solucion": "zoología", "materia": "biologia" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Área de subducción.", "solucion": "zona", "materia": "biologia" },
-  { "id": "z4", "letra": "Z", "tipo": "empieza", "definicion": "Cánido silvestre.", "solucion": "zorro", "materia": "biologia" },
-  { "id": "z5", "letra": "Z", "tipo": "empieza", "definicion": "Marsupial americano.", "solucion": "zarigüeya", "materia": "biologia" },
-  { "id": "z6", "letra": "Z", "tipo": "contiene", "definicion": "Era geológica antigua (Paleo...oico).", "solucion": "paleozoico", "materia": "biologia" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Era de los dinosaurios (Meso...oico).", "solucion": "mesozoico", "materia": "biologia" },
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "Era actual (Ceno...oico).", "solucion": "cenozoico", "materia": "biologia" },
-  { "id": "z9", "letra": "Z", "tipo": "contiene", "definicion": "Color del planeta Tierra (A...ul).", "solucion": "azul", "materia": "biologia" },
-  { "id": "z10", "letra": "Z", "tipo": "contiene", "definicion": "Órgano de la planta (Raí... contiene Z).", "solucion": "raíz", "materia": "biologia" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Molécula portadora de la información genética.",
+    "solucion": "adn",
+    "materia": "biologia"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Cada una de las formas alternativas de un gen.",
+    "solucion": "alelo",
+    "materia": "biologia"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Ácido nucleico que participa en la síntesis de proteínas.",
+    "solucion": "arn",
+    "materia": "biologia"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Base nitrogenada complementaria de la Timina.",
+    "solucion": "adenina",
+    "materia": "biologia"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Característica que mejora la supervivencia de un ser vivo.",
+    "solucion": "adaptación",
+    "materia": "biologia"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Fase de la mitosis donde se separan las cromátidas.",
+    "solucion": "anafase",
+    "materia": "biologia"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Género de homínidos anterior al Homo (Lucy).",
+    "solucion": "australopithecus",
+    "materia": "biologia"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Capa gaseosa que envuelve la Tierra.",
+    "solucion": "atmósfera",
+    "materia": "biologia"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Ser vivo que produce su propio alimento.",
+    "solucion": "autótrofo",
+    "materia": "biologia"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Pliegue de las capas rocosas con forma de arco (A...).",
+    "solucion": "anticlinal",
+    "materia": "biologia"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Variedad de vida en la Tierra.",
+    "solucion": "biodiversidad",
+    "materia": "biologia"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Parte viva del ecosistema (Comunidad).",
+    "solucion": "biocenosis",
+    "materia": "biologia"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Capa de la Tierra donde se desarrolla la vida.",
+    "solucion": "biosfera",
+    "materia": "biologia"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Organismo procariota unicelular.",
+    "solucion": "bacteria",
+    "materia": "biologia"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Uso de organismos vivos para obtener productos.",
+    "solucion": "biotecnología",
+    "materia": "biologia"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Capacidad de andar sobre dos piernas.",
+    "solucion": "bipedismo",
+    "materia": "biologia"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Elemento químico que forma parte de los seres vivos.",
+    "solucion": "bioelemento",
+    "materia": "biologia"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Gran ecosistema terrestre definido por el clima (ej. Tundra).",
+    "solucion": "bioma",
+    "materia": "biologia"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Teoría sobre el origen del universo.",
+    "solucion": "big bang",
+    "materia": "biologia"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Lugar físico donde vive una comunidad.",
+    "solucion": "biotopo",
+    "materia": "biologia"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Estructura de ADN y proteínas visible en la división celular.",
+    "solucion": "cromosoma",
+    "materia": "biologia"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Unidad básica de la vida.",
+    "solucion": "célula",
+    "materia": "biologia"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "División del citoplasma.",
+    "solucion": "citocinesis",
+    "materia": "biologia"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Orgánulo donde ocurre la fotosíntesis.",
+    "solucion": "cloroplasto",
+    "materia": "biologia"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Secuencia de sucesos en la vida de una célula (Ciclo...).",
+    "solucion": "celular",
+    "materia": "biologia"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Obtención de organismos genéticamente idénticos.",
+    "solucion": "clonación",
+    "materia": "biologia"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Conjunto de cromosomas de una especie ordenados.",
+    "solucion": "cariotipo",
+    "materia": "biologia"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Capa más externa de la Tierra.",
+    "solucion": "corteza",
+    "materia": "biologia"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Teoría de Wegener: Deriva...",
+    "solucion": "continental",
+    "materia": "biologia"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Organismo que se alimenta de otros.",
+    "solucion": "consumidor",
+    "materia": "biologia"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Naturalista padre de la teoría de la evolución por selección natural.",
+    "solucion": "darwin",
+    "materia": "biologia"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Célula con dos juegos de cromosomas (2n).",
+    "solucion": "diploide",
+    "materia": "biologia"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Alelo que se manifiesta en el fenotipo aunque haya otro diferente.",
+    "solucion": "dominante",
+    "materia": "biologia"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Movimiento de los continentes (Deriva...).",
+    "solucion": "Deriva",
+    "materia": "biologia"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Organismo que recicla la materia orgánica.",
+    "solucion": "descomponedor",
+    "materia": "biologia"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Relación interespecífica donde uno caza a otro.",
+    "solucion": "depredación",
+    "materia": "biologia"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Cordillera submarina.",
+    "solucion": "dorsal",
+    "materia": "biologia"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Determinación de la edad de las rocas.",
+    "solucion": "datación",
+    "materia": "biologia"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Pérdida de un fragmento de cromosoma (Mutación).",
+    "solucion": "deleción",
+    "materia": "biologia"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Variedad biológica (Bio...).",
+    "solucion": "diversidad",
+    "materia": "biologia"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Proceso de cambio de los seres vivos a lo largo del tiempo.",
+    "solucion": "evolución",
+    "materia": "biologia"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Grupo de organismos capaces de reproducirse y tener descendencia fértil.",
+    "solucion": "especie",
+    "materia": "biologia"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Sistema formado por el biotopo y la biocenosis.",
+    "solucion": "ecosistema",
+    "materia": "biologia"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia los ecosistemas.",
+    "solucion": "ecología",
+    "materia": "biologia"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Célula con núcleo diferenciado.",
+    "solucion": "eucariota",
+    "materia": "biologia"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Proteína que acelera reacciones químicas.",
+    "solucion": "enzima",
+    "materia": "biologia"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Capa horizontal de roca sedimentaria.",
+    "solucion": "estrato",
+    "materia": "biologia"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Desaparición total de una especie.",
+    "solucion": "extinción",
+    "materia": "biologia"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Teoría del origen de la célula eucariota (Lynn Margulis).",
+    "solucion": "endosimbiosis",
+    "materia": "biologia"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Capacidad para realizar trabajo, fluye en el ecosistema.",
+    "solucion": "energía",
+    "materia": "biologia"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Resto de un organismo del pasado conservado en roca.",
+    "solucion": "fósil",
+    "materia": "biologia"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Proceso de convertir energía luminosa en química.",
+    "solucion": "fotosíntesis",
+    "materia": "biologia"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Expresión observable del genotipo.",
+    "solucion": "fenotipo",
+    "materia": "biologia"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Teoría antigua que decía que las especies no cambian.",
+    "solucion": "fijismo",
+    "materia": "biologia"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Historia evolutiva de una especie.",
+    "solucion": "filogenia",
+    "materia": "biologia"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Fractura en el terreno con desplazamiento de bloques.",
+    "solucion": "falla",
+    "materia": "biologia"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Unión del óvulo y el espermatozoide.",
+    "solucion": "fecundación",
+    "materia": "biologia"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Elemento del medio que influye en los seres vivos (Abiótico/Biótico).",
+    "solucion": "factor",
+    "materia": "biologia"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Proceso celular de 'comer' partículas.",
+    "solucion": "fagocitosis",
+    "materia": "biologia"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Movimiento de energía en el ecosistema (... de energía).",
+    "solucion": "flujo",
+    "materia": "biologia"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Fragmento de ADN que contiene información para un carácter.",
+    "solucion": "gen",
+    "materia": "biologia"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia la herencia.",
+    "solucion": "genética",
+    "materia": "biologia"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Conjunto de genes de un organismo.",
+    "solucion": "genotipo",
+    "materia": "biologia"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Célula reproductora haploide.",
+    "solucion": "gameto",
+    "materia": "biologia"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Monje considerado el padre de la genética.",
+    "solucion": "gregor mendel",
+    "materia": "biologia"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Teoría evolutiva de cambios lentos y constantes.",
+    "solucion": "gradualismo",
+    "materia": "biologia"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Biomolécula energética (Hidrato de carbono).",
+    "solucion": "glúcido",
+    "materia": "biologia"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Base nitrogenada complementaria de la Citosina.",
+    "solucion": "guanina",
+    "materia": "biologia"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia la Tierra.",
+    "solucion": "geología",
+    "materia": "biologia"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Periodo de clima muy frío.",
+    "solucion": "glaciación",
+    "materia": "biologia"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Transmisión de caracteres de padres a hijos.",
+    "solucion": "herencia",
+    "materia": "biologia"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Célula con un solo juego de cromosomas (n).",
+    "solucion": "haploide",
+    "materia": "biologia"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Proceso evolutivo que dio lugar a la especie humana.",
+    "solucion": "hominización",
+    "materia": "biologia"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Lugar físico donde vive una especie.",
+    "solucion": "hábitat",
+    "materia": "biologia"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Individuo con dos alelos diferentes para un carácter (Aa).",
+    "solucion": "heterocigoto",
+    "materia": "biologia"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Individuo con dos alelos iguales para un carácter (AA o aa).",
+    "solucion": "homocigoto",
+    "materia": "biologia"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Género al que pertenece el ser humano.",
+    "solucion": "homo",
+    "materia": "biologia"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Geólogo padre del uniformismo (James...).",
+    "solucion": "hutton",
+    "materia": "biologia"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Estructura formada en la división celular (... acromático).",
+    "solucion": "huso",
+    "materia": "biologia"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Capa de agua de la Tierra.",
+    "solucion": "hidrosfera",
+    "materia": "biologia"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Fase del ciclo celular entre divisiones (crecimiento).",
+    "solucion": "interfase",
+    "materia": "biologia"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Calentamiento global por gases (... invernadero).",
+    "solucion": "invernadero",
+    "materia": "biologia"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Átomo inestable usado en datación absoluta.",
+    "solucion": "isótopo",
+    "materia": "biologia"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Manipulación de genes (Ingeniería...).",
+    "solucion": "ingeniería",
+    "materia": "biologia"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Efecto de la actividad humana sobre el medio.",
+    "solucion": "impacto",
+    "materia": "biologia"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Capacidad de resistir una infección.",
+    "solucion": "inmunidad",
+    "materia": "biologia"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Fuerza de un terremoto (Escala de Mercalli).",
+    "solucion": "intensidad",
+    "materia": "biologia"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Parte interna de la Tierra (Núcleo...).",
+    "solucion": "interior",
+    "materia": "biologia"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Animal sin columna vertebral.",
+    "solucion": "invertebrado",
+    "materia": "biologia"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Lugar donde Wallace estudió especies.",
+    "solucion": "isla",
+    "materia": "biologia"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Periodo intermedio del Mesozoico (Dinosaurios).",
+    "solucion": "jurásico",
+    "materia": "biologia"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Animal usado por Lamarck para explicar su teoría.",
+    "solucion": "jirafa",
+    "materia": "biologia"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Lugar donde Mendel cultivó sus guisantes.",
+    "solucion": "jardín",
+    "materia": "biologia"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Paleontólogo codirector de Atapuerca (... Luis Arsuaga).",
+    "solucion": "juan",
+    "materia": "biologia"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Grietas en las rocas sin desplazamiento.",
+    "solucion": "juntas",
+    "materia": "biologia"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Líquido digestivo (... gástrico).",
+    "solucion": "jugo",
+    "materia": "biologia"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Unidad de energía en el ecosistema.",
+    "solucion": "joule",
+    "materia": "biologia"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Etapa inicial de un río.",
+    "solucion": "joven",
+    "materia": "biologia"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Instrumento para inyectar o extraer líquidos.",
+    "solucion": "jeringuilla",
+    "materia": "biologia"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Depredador felino de América.",
+    "solucion": "jaguar",
+    "materia": "biologia"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unidad de energía en nutrición.",
+    "solucion": "kilocaloría",
+    "materia": "biologia"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Símbolo químico del Potasio.",
+    "solucion": "k",
+    "materia": "biologia"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Ciclo metabólico de la respiración celular (Ciclo de...).",
+    "solucion": "krebs",
+    "materia": "biologia"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Modelado del relieve en rocas calizas.",
+    "solucion": "karst",
+    "materia": "biologia"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unidad de masa.",
+    "solucion": "kilogramo",
+    "materia": "biologia"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Ave de Nueva Zelanda.",
+    "solucion": "kiwi",
+    "materia": "biologia"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Marsupial australiano.",
+    "solucion": "koala",
+    "materia": "biologia"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Pequeños crustáceos del plancton.",
+    "solucion": "krill",
+    "materia": "biologia"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unidad de temperatura absoluta.",
+    "solucion": "kelvin",
+    "materia": "biologia"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Límite geológico de la extinción de los dinosaurios (Límite...).",
+    "solucion": "kt",
+    "materia": "biologia"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Naturalista que propuso la herencia de los caracteres adquiridos.",
+    "solucion": "lamarck",
+    "materia": "biologia"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Capa sólida externa de la Tierra (placas).",
+    "solucion": "litosfera",
+    "materia": "biologia"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Biomoléculas que almacenan energía (grasas).",
+    "solucion": "lípidos",
+    "materia": "biologia"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Orgánulo encargado de la digestión celular.",
+    "solucion": "lisosoma",
+    "materia": "biologia"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Padre de la taxonomía moderna.",
+    "solucion": "linneo",
+    "materia": "biologia"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Magma desgasificado que sale a la superficie.",
+    "solucion": "lava",
+    "materia": "biologia"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Lugar físico que ocupa un gen en el cromosoma.",
+    "solucion": "locus",
+    "materia": "biologia"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Hongo unicelular usado en fermentación.",
+    "solucion": "levadura",
+    "materia": "biologia"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Precipitación contaminante (... ácida).",
+    "solucion": "lluvia",
+    "materia": "biologia"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Piroclastos volcánicos de tamaño medio.",
+    "solucion": "lapilli",
+    "materia": "biologia"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "División celular que genera células idénticas.",
+    "solucion": "mitosis",
+    "materia": "biologia"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "División celular que reduce los cromosomas a la mitad.",
+    "solucion": "meiosis",
+    "materia": "biologia"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Cambio en la secuencia del ADN.",
+    "solucion": "mutación",
+    "materia": "biologia"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Padre de la genética.",
+    "solucion": "mendel",
+    "materia": "biologia"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Roca fundida en el interior de la Tierra.",
+    "solucion": "magma",
+    "materia": "biologia"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Proceso geológico de transformación de rocas por presión y temperatura.",
+    "solucion": "metamorfismo",
+    "materia": "biologia"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Clase de vertebrados que maman.",
+    "solucion": "mamífero",
+    "materia": "biologia"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Unión de átomos.",
+    "solucion": "molécula",
+    "materia": "biologia"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Cubierta de la célula.",
+    "solucion": "membrana",
+    "materia": "biologia"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Orgánulo de la respiración celular.",
+    "solucion": "mitocondria",
+    "materia": "biologia"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Parte central de la célula eucariota con el ADN.",
+    "solucion": "núcleo",
+    "materia": "biologia"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Unidad básica del ADN.",
+    "solucion": "nucleótido",
+    "materia": "biologia"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Función de una especie en el ecosistema (Nicho...).",
+    "solucion": "Nicho",
+    "materia": "biologia"
+  },
+  {
+    "id": "n3_fix",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Papel de una especie (Nicho).",
+    "solucion": "nicho",
+    "materia": "biologia"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Posición en la cadena alimentaria (Nivel...).",
+    "solucion": "Nivel",
+    "materia": "biologia"
+  },
+  {
+    "id": "n4_fix",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Eslabón alimentario (Nivel).",
+    "solucion": "nivel",
+    "materia": "biologia"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Especie humana extinta (Homo...).",
+    "solucion": "neandertal",
+    "materia": "biologia"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Gas más abundante de la atmósfera y ciclo biogeoquímico.",
+    "solucion": "nitrógeno",
+    "materia": "biologia"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Función vital de obtener materia y energía.",
+    "solucion": "nutrición",
+    "materia": "biologia"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Teoría sintética de la evolución.",
+    "solucion": "neodarwinismo",
+    "materia": "biologia"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Agrupación de vapor de agua.",
+    "solucion": "nube",
+    "materia": "biologia"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Célula del sistema nervioso.",
+    "solucion": "neurona",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Órgano excretor (contiene Ñ).",
+    "solucion": "riñón",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Elevación del terreno (contiene Ñ).",
+    "solucion": "montaña",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Artrópodo de 8 patas (contiene Ñ).",
+    "solucion": "araña",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Hongo comestible (contiene Ñ).",
+    "solucion": "champiñón",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Animal que come cadáveres (contiene Ñ).",
+    "solucion": "carroñero",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Tallo vegetal (contiene Ñ).",
+    "solucion": "caña",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Perjuicio al medio ambiente (contiene Ñ).",
+    "solucion": "daño",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Unidad de tiempo geológico (365 días, contiene Ñ).",
+    "solucion": "año",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "De tamaño reducido (contiene Ñ).",
+    "solucion": "pequeño",
+    "materia": "biologia"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Molécula de comunicación celular (Se... contiene Ñ).",
+    "solucion": "señal",
+    "materia": "biologia"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Estructura celular con función específica (Orgánulo).",
+    "solucion": "orgánulo",
+    "materia": "biologia"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Paso de agua a través de membrana semipermeable.",
+    "solucion": "osmosis",
+    "materia": "biologia"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gas esencial para la respiración aerobia.",
+    "solucion": "oxígeno",
+    "materia": "biologia"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Libro famoso de Darwin (... de las especies).",
+    "solucion": "origen",
+    "materia": "biologia"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Animal que come plantas y carne.",
+    "solucion": "omnívoro",
+    "materia": "biologia"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gran masa de agua salada.",
+    "solucion": "océano",
+    "materia": "biologia"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Proceso de formación de montañas.",
+    "solucion": "orogénesis",
+    "materia": "biologia"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Vibración sísmica (P o S).",
+    "solucion": "onda",
+    "materia": "biologia"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gónada femenina.",
+    "solucion": "ovario",
+    "materia": "biologia"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gas que forma una capa protectora en la estratosfera.",
+    "solucion": "ozono",
+    "materia": "biologia"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Biomolécula formada por aminoácidos.",
+    "solucion": "proteína",
+    "materia": "biologia"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Fragmento de litosfera que se mueve (Placa...).",
+    "solucion": "Placa",
+    "materia": "biologia"
+  },
+  {
+    "id": "p2_fix",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Fragmento de litosfera.",
+    "solucion": "placa",
+    "materia": "biologia"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Supercontinente que existió hace millones de años.",
+    "solucion": "pangea",
+    "materia": "biologia"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia los fósiles.",
+    "solucion": "paleontología",
+    "materia": "biologia"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Célula sin núcleo definido.",
+    "solucion": "procariota",
+    "materia": "biologia"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Deformación plástica de las rocas.",
+    "solucion": "pliegue",
+    "materia": "biologia"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Representación gráfica de los niveles tróficos.",
+    "solucion": "pirámide",
+    "materia": "biologia"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Organismo que fabrica su materia orgánica (planta).",
+    "solucion": "productor",
+    "materia": "biologia"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Conjunto de individuos de la misma especie.",
+    "solucion": "población",
+    "materia": "biologia"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Orden de mamíferos al que pertenece el ser humano.",
+    "solucion": "primate",
+    "materia": "biologia"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Obtención de energía a partir de compuestos químicos, sin luz.",
+    "solucion": "quimiosíntesis",
+    "materia": "biologia"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Proteína estructural de pelo y uñas.",
+    "solucion": "queratina",
+    "materia": "biologia"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Estructura de resistencia de algunos microorganismos.",
+    "solucion": "quiste",
+    "materia": "biologia"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia la composición de la materia.",
+    "solucion": "química",
+    "materia": "biologia"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Artrópodo con quelíceros (ej. araña).",
+    "solucion": "quelicerado",
+    "materia": "biologia"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Papilla formada en el estómago.",
+    "solucion": "quimo",
+    "materia": "biologia"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Líquido formado en el intestino.",
+    "solucion": "quilo",
+    "materia": "biologia"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Conjunto de huesos (contiene Q).",
+    "solucion": "esqueleto",
+    "materia": "biologia"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Caballo (E... contiene Q).",
+    "solucion": "equino",
+    "materia": "biologia"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Fósil marino común en el Paleozoico (Bra... contiene Q).",
+    "solucion": "braquiópodo",
+    "materia": "biologia"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Orgánulo que sintetiza proteínas.",
+    "solucion": "ribosoma",
+    "materia": "biologia"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Función vital de perpetuar la especie.",
+    "solucion": "reproducción",
+    "materia": "biologia"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Agregado natural de minerales.",
+    "solucion": "roca",
+    "materia": "biologia"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Forma de la superficie terrestre.",
+    "solucion": "relieve",
+    "materia": "biologia"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Alelo que solo se manifiesta en homocigosis.",
+    "solucion": "recesivo",
+    "materia": "biologia"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Conjunto interconectado de cadenas alimentarias.",
+    "solucion": "red trófica",
+    "materia": "biologia"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Proceso de copia del ADN.",
+    "solucion": "replicación",
+    "materia": "biologia"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Clasificación taxonómica superior (Animal, Vegetal...).",
+    "solucion": "reino",
+    "materia": "biologia"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Conjunto de fósiles encontrados (... fósil).",
+    "solucion": "registro",
+    "materia": "biologia"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Valle central en una dorsal oceánica.",
+    "solucion": "rift",
+    "materia": "biologia"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Mecanismo evolutivo propuesto por Darwin (... natural).",
+    "solucion": "selección",
+    "materia": "biologia"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Relación estrecha entre dos especies con beneficio mutuo.",
+    "solucion": "simbiosis",
+    "materia": "biologia"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de órganos (Solar, Digestivo...).",
+    "solucion": "sistema",
+    "materia": "biologia"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Tipo de roca formada por acumulación de materiales.",
+    "solucion": "sedimentaria",
+    "materia": "biologia"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Capa superficial de la corteza donde crecen plantas.",
+    "solucion": "suelo",
+    "materia": "biologia"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Gráfico que registra las ondas sísmicas.",
+    "solucion": "sismograma",
+    "materia": "biologia"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Comunicación entre neuronas.",
+    "solucion": "sinapsis",
+    "materia": "biologia"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Teoría evolutiva que propone cambios bruscos.",
+    "solucion": "saltacionismo",
+    "materia": "biologia"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Organismo que se alimenta de materia en descomposición.",
+    "solucion": "saprofito",
+    "materia": "biologia"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Proceso de hundimiento de una placa bajo otra.",
+    "solucion": "subducción",
+    "materia": "biologia"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Teoría de las placas (... de placas).",
+    "solucion": "tectónica",
+    "materia": "biologia"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Proceso de síntesis de proteínas a partir del ARN.",
+    "solucion": "traducción",
+    "materia": "biologia"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Paso de información de ADN a ARN.",
+    "solucion": "transcripción",
+    "materia": "biologia"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Ciencia de la clasificación de los seres vivos.",
+    "solucion": "taxonomía",
+    "materia": "biologia"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Conjunto de células especializadas.",
+    "solucion": "tejido",
+    "materia": "biologia"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Nivel alimentario en el ecosistema.",
+    "solucion": "trófico",
+    "materia": "biologia"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Escala cronológica de la historia de la Tierra (... geológico).",
+    "solucion": "tiempo",
+    "materia": "biologia"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Temblor de tierra por liberación de energía.",
+    "solucion": "terremoto",
+    "materia": "biologia"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Ola gigante provocada por un sismo submarino.",
+    "solucion": "tsunami",
+    "materia": "biologia"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Base nitrogenada exclusiva del ADN.",
+    "solucion": "timina",
+    "materia": "biologia"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Base nitrogenada exclusiva del ARN.",
+    "solucion": "uracilo",
+    "materia": "biologia"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Todo lo que existe (Origen del...).",
+    "solucion": "universo",
+    "materia": "biologia"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Organismo formado por una sola célula.",
+    "solucion": "unicelular",
+    "materia": "biologia"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Conducto de salida de la orina.",
+    "solucion": "uretra",
+    "materia": "biologia"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Órgano de gestación.",
+    "solucion": "útero",
+    "materia": "biologia"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Límite mínimo de estímulo para la respuesta.",
+    "solucion": "umbral",
+    "materia": "biologia"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Medida estándar (ej. ... Astronómica).",
+    "solucion": "unidad",
+    "materia": "biologia"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Consumidor final en la cadena.",
+    "solucion": "usuario",
+    "materia": "biologia"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Estructura de queratina en los dedos.",
+    "solucion": "uña",
+    "materia": "biologia"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Orden de anfibios con cola (Salamandra).",
+    "solucion": "urodelo",
+    "materia": "biologia"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Orgánulo de almacenamiento en células vegetales.",
+    "solucion": "vacuola",
+    "materia": "biologia"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Agente infeccioso acelular.",
+    "solucion": "virus",
+    "materia": "biologia"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Estructura geológica que expulsa magma.",
+    "solucion": "volcán",
+    "materia": "biologia"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Objeto de estudio de la biología.",
+    "solucion": "vida",
+    "materia": "biologia"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Animal con esqueleto interno.",
+    "solucion": "vertebrado",
+    "materia": "biologia"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Reino de las plantas.",
+    "solucion": "vegetal",
+    "materia": "biologia"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Agente geológico externo (aire).",
+    "solucion": "viento",
+    "materia": "biologia"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Forma de relieve fluvial o glaciar.",
+    "solucion": "valle",
+    "materia": "biologia"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Rapidez de propagación de ondas sísmicas.",
+    "solucion": "velocidad",
+    "materia": "biologia"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Diversidad genética en una población.",
+    "solucion": "variabilidad",
+    "materia": "biologia"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Científico codescubridor de la estructura del ADN.",
+    "solucion": "watson",
+    "materia": "biologia"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Autor de la teoría de la deriva continental.",
+    "solucion": "wegener",
+    "materia": "biologia"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Ciclo de apertura y cierre de océanos (Ciclo de...).",
+    "solucion": "wilson",
+    "materia": "biologia"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Naturalista codescubridor de la selección natural.",
+    "solucion": "wallace",
+    "materia": "biologia"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Mineral de alto punto de fusión.",
+    "solucion": "wolframio",
+    "materia": "biologia"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Naturalista autor de 'El Origen de las Especies' (Dar...).",
+    "solucion": "darwin",
+    "materia": "biologia"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Tritón en inglés, anfibio (Ne...t, contiene W).",
+    "solucion": "newt",
+    "materia": "biologia"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Ave no voladora de Nueva Zelanda (Ki...i, contiene W).",
+    "solucion": "kiwi",
+    "materia": "biologia"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Conexiones alimentarias (Red, en inglés Web).",
+    "solucion": "web",
+    "materia": "biologia"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Punto caliente volcánico (Ha...ai, contiene W).",
+    "solucion": "hawai",
+    "materia": "biologia"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "empieza",
+    "definicion": "Tejido conductor de savia bruta.",
+    "solucion": "xilema",
+    "materia": "biologia"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "empieza",
+    "definicion": "Organismo adaptado a ambientes secos.",
+    "solucion": "xerófilo",
+    "materia": "biologia"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "empieza",
+    "definicion": "Fragmento de roca extraña en un magma.",
+    "solucion": "xenolito",
+    "materia": "biologia"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Ciencia de la clasificación (Ta...onomía).",
+    "solucion": "taxonomía",
+    "materia": "biologia"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Compuesto con oxígeno (Ó...ido).",
+    "solucion": "óxido",
+    "materia": "biologia"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Género biológico (Se...o).",
+    "solucion": "sexo",
+    "materia": "biologia"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Eliminación de desechos (E...creción).",
+    "solucion": "excreción",
+    "materia": "biologia"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Desaparición de una especie (E...tinción).",
+    "solucion": "extinción",
+    "materia": "biologia"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Parte del cuerpo de los artrópodos (Tóra...).",
+    "solucion": "tórax",
+    "materia": "biologia"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Gas respiratorio (Dió...ido de carbono).",
+    "solucion": "dióxido",
+    "materia": "biologia"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Lugar con restos fósiles.",
+    "solucion": "yacimiento",
+    "materia": "biologia"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Parte nutritiva del huevo.",
+    "solucion": "yema",
+    "materia": "biologia"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Bioelemento traza necesario para la tiroides.",
+    "solucion": "yodo",
+    "materia": "biologia"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Vena del cuello.",
+    "solucion": "yugular",
+    "materia": "biologia"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Hueso del oído.",
+    "solucion": "yunque",
+    "materia": "biologia"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Mineral de sulfato de calcio.",
+    "solucion": "yeso",
+    "materia": "biologia"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Curso de agua pequeño (Arro...o).",
+    "solucion": "arroyo",
+    "materia": "biologia"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Zona costera de arena (Pla...a).",
+    "solucion": "playa",
+    "materia": "biologia"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Más grande (Ma...or).",
+    "solucion": "mayor",
+    "materia": "biologia"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Relámpago (Ra...o).",
+    "solucion": "rayo",
+    "materia": "biologia"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Célula resultante de la fecundación.",
+    "solucion": "zigoto",
+    "materia": "biologia"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Rama de la biología que estudia los animales.",
+    "solucion": "zoología",
+    "materia": "biologia"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Área de subducción.",
+    "solucion": "zona",
+    "materia": "biologia"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Cánido silvestre.",
+    "solucion": "zorro",
+    "materia": "biologia"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Marsupial americano.",
+    "solucion": "zarigüeya",
+    "materia": "biologia"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Era geológica antigua (Paleo...oico).",
+    "solucion": "paleozoico",
+    "materia": "biologia"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Era de los dinosaurios (Meso...oico).",
+    "solucion": "mesozoico",
+    "materia": "biologia"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Era actual (Ceno...oico).",
+    "solucion": "cenozoico",
+    "materia": "biologia"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Color del planeta Tierra (A...ul).",
+    "solucion": "azul",
+    "materia": "biologia"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Órgano de la planta (Raí... contiene Z).",
+    "solucion": "raíz",
+    "materia": "biologia"
+  }
 ]

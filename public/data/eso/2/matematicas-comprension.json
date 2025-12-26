@@ -1,0 +1,568 @@
+[
+    {
+        "id": "1",
+        "titulo": "Sistemas de numeración y Números Enteros",
+        "texto": "Los números enteros (Z) son fundamentales en matemáticas para representar situaciones opuestas. Se componen de los naturales (positivos), el cero y los negativos. En las operaciones, recordamos la REGLA DE LOS SIGNOS para la multiplicación y división: signos iguales dan positivo (+ x + = +; - x - = +), y signos distintos dan negativo (+ x - = -; - x + = -). En sumas y restas, si tenemos un paréntesis precedido de un signo menos, todo lo que hay dentro cambia de signo al quitarlo. El valor absoluto de un número es su distancia al cero y siempre es positivo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el resultado de (-5) x (-2)?",
+                "opciones": [
+                    "-10",
+                    "10",
+                    "7",
+                    "-7"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre al quitar un paréntesis precedido de un signo menos (-) ?",
+                "opciones": [
+                    "Nada",
+                    "Todo lo de dentro cambia de signo",
+                    "Se borran los números",
+                    "Se vuelven todos positivos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el valor absoluto de -8?",
+                "opciones": [
+                    "-8",
+                    "0",
+                    "8",
+                    "1"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué resultado da multiplicar un positivo por un negativo?",
+                "opciones": [
+                    "Positivo",
+                    "Negativo",
+                    "Cero",
+                    "No se puede"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si sumas -10 + 4, el resultado es:",
+                "opciones": [
+                    "-14",
+                    "-6",
+                    "6",
+                    "14"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Fracciones y Decimales",
+        "texto": "Las fracciones representan partes de una unidad. Para sumar o restar fracciones con distinto denominador, debemos reducirlas a COMÚN DENOMINADOR usando el m.c.m. Las fracciones también pueden escribirse como números decimales dividiendo el numerador entre el denominador. Podemos encontrar decimales EXACTOS (0,25), periódicos PUROS (0,333...) o periódicos MIXTOS (0,1666...). Para realizar operaciones combinadas, recuerda siempre la jerarquía: primero paréntesis, luego multiplicaciones/divisiones y finalmente sumas/restas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué necesitamos para sumar fracciones con distinto denominador?",
+                "opciones": [
+                    "Sumar los de arriba",
+                    "Mínimo común múltiplo para el denominador común",
+                    "Nada",
+                    "Cualquier número"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el decimal 0,777...?",
+                "opciones": [
+                    "Exacto",
+                    "Periódico puro",
+                    "Periódico mixto",
+                    "Entero"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la jerarquía de operaciones?",
+                "opciones": [
+                    "Primero sumas y luego restas",
+                    "Primero paréntesis, luego x/ y luego +/-",
+                    "Al revés",
+                    "La que quieras"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo pasas de fracción a decimal?",
+                "opciones": [
+                    "Multiplicando",
+                    "Dividiendo el numerador entre el denominador",
+                    "Restando uno",
+                    "Con un dibujo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es 1/2 en formato decimal?",
+                "opciones": [
+                    "0,2",
+                    "0,5",
+                    "1,2",
+                    "2,0"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Potencias y Notación Científica",
+        "texto": "Una potencia es una multiplicación repetida. En 2nd ESO aprendemos propiedades clave: al multiplicar potencias de la misma base se suman los exponentes (aⁿ · aᵐ = aⁿ⁺ᵐ) y al dividir se restan. Cualquier número elevado a 0 es igual a 1. La NOTACIÓN CIENTÍFICA se usa para escribir números muy grandes o muy pequeños de forma cómoda usando potencias de base 10. Por ejemplo, la distancia a una estrella o el tamaño de un virus. Un número en notación científica tiene una sola cifra (del 1 al 9) antes del decimal multiplicada por 10 elevado a un exponente.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuánto es 5⁰?",
+                "opciones": [
+                    "0",
+                    "1",
+                    "5",
+                    "10"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué haces con los exponentes al multiplicar potencias de la misma base?",
+                "opciones": [
+                    "Los multiplicas",
+                    "Los sumas",
+                    "Los restas",
+                    "Los divides"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la notación científica?",
+                "opciones": [
+                    "Para sumar mejor",
+                    "Para escribir números muy grandes o muy pequeños",
+                    "Para decorar los cuadernos",
+                    "Para aprender inglés"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el resultado de 2³ · 2²?",
+                "opciones": [
+                    "2⁶",
+                    "2⁵ (32)",
+                    "4⁵",
+                    "10"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es correcto escribir 25 x 10³ como notación científica estándar?",
+                "opciones": [
+                    "Sí",
+                    "No, debe ser 2,5 x 10⁴"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Proporcionalidad Directa e Inversa",
+        "texto": "Dos magnitudes son DIRECTAMENTE proporcionales si al aumentar una, la otra también aumenta en la misma proporción (ej: peso y precio). Se resuelve multiplicando en cruz. Pero hay magnitudes INVERSAMENTE proporcionales: al aumentar una, la otra disminuye (ej: número de obreros y tiempo en hacer una obra). Si más gente trabaja, tardan menos tiempo. En la proporcionalidad inversa no se multiplica en cruz, sino en línea (a x b = c x d). Es vital identificar el tipo de relación antes de empezar a calcular.",
+        "preguntas": [
+            {
+                "pregunta": "Si vas al doble de velocidad y tardas la mitad de tiempo, ¿qué proporcionalidad es?",
+                "opciones": [
+                    "Directa",
+                    "Inversa",
+                    "Ninguna",
+                    "Mixta"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En proporcionalidad directa, si 2 kilos cuestan 4 €, 4 kilos cuestan:",
+                "opciones": [
+                    "6 €",
+                    "8 €",
+                    "12 €",
+                    "2 €"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se resuelve un problema de proporcionalidad inversa?",
+                "opciones": [
+                    "Multiplicando en cruz",
+                    "Multiplicando en línea (constante de proporcionalidad)",
+                    "Restando",
+                    "Sumando cien"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Ejemplo de proporcionalidad directa:",
+                "opciones": [
+                    "Velocidad y tiempo",
+                    "Obreros y días",
+                    "Páginas de un libro y peso del libro",
+                    "Número de amigos y trozos de pizza para cada uno"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué pasa en la inversa si divides la primera magnitud por 3?",
+                "opciones": [
+                    "La segunda se divide por 3",
+                    "La segunda se multiplica por 3",
+                    "La segunda se queda igual",
+                    "La segunda desaparece"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Expresiones Algebraicas y Polinomios",
+        "texto": "El álgebra es el lenguaje que usa letras y números. Un MONOMIO es una expresión del tipo 3x², donde 3 es el coeficiente y x² la parte literal. Solo podemos sumar o restar monomios si son SEMEJANTES (tienen la misma parte literal). Un POLINOMIO es la suma de varios monomios. El VALOR NUMÉRICO de una expresión algebraica se obtiene sustituyendo las letras por números y operando. Aprender álgebra nos permite generalizar reglas y resolver problemas complejos que no se pueden hacer con aritmética simple.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuándo se pueden sumar dos monomios?",
+                "opciones": [
+                    "Siempre",
+                    "Solo si tienen la misma parte literal (son semejantes)",
+                    "Solo si tienen el mismo número",
+                    "Nunca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En el monomio -4y³, ¿cuál es el coeficiente?",
+                "opciones": [
+                    "y",
+                    "3",
+                    "-4",
+                    "y³"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cómo se halla el valor numérico de una expresión?",
+                "opciones": [
+                    "Cambiando el color",
+                    "Sustituyendo las letras por números y calculando",
+                    "Borrando las letras",
+                    "Mirando en el libro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un polinomio?",
+                "opciones": [
+                    "Una figura de muchos lados",
+                    "La suma o resta de varios monomios",
+                    "Un tipo de número primo",
+                    "Un ángulo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuánto vale x + 2 si x = 5?",
+                "opciones": [
+                    "2",
+                    "5",
+                    "7",
+                    "10"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Ecuaciones de Primer Grado",
+        "texto": "Una ecuación es una igualdad que solo es cierta para algunos valores de la incógnita. Resolverla es hallar ese valor. En 2nd ESO resolvemos ecuaciones con paréntesis y denominadores. Procedimiento: 1) Quitar paréntesis. 2) Quitar denominadores usando el m.c.m. 3) Transponer términos (lo que suma pasa restando, lo que multiplica pasa dividiendo). 4) Reducir términos semejantes. 5) Despejar la x. Es fundamental realizar las mismas operaciones en ambos miembros de la ecuación para mantener el equilibrio.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la solución de 2x = 10?",
+                "opciones": [
+                    "10",
+                    "2",
+                    "5",
+                    "20"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Si un número está dividiendo a la x, ¿cómo pasa al otro lado?",
+                "opciones": [
+                    "Restando",
+                    "Multiplicando",
+                    "Sigue dividiendo",
+                    "Se borra"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué usamos para quitar denominadores de una ecuación?",
+                "opciones": [
+                    "La goma de borrar",
+                    "El mínimo común múltiplo (m.c.m.)",
+                    "Un dibujo",
+                    "Sumar 10"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa resolver una ecuación?",
+                "opciones": [
+                    "Escribirla muy clara",
+                    "Encontrar el valor de la incógnita que hace cierta la igualdad",
+                    "Hacerla más larga",
+                    "Ponerle nombre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En x - 3 = 7, el valor de x es:",
+                "opciones": [
+                    "4",
+                    "10",
+                    "7",
+                    "-4"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Sistemas de Ecuaciones",
+        "texto": "Un sistema de ecuaciones es un conjunto de dos ecuaciones con dos incógnitas (generalmente x e y). Resolverlo significa encontrar el par de valores que cumple AMBAS ecuaciones a la vez. Existen tres métodos principales: SUSTITUCIÓN (despejas una letra en una y la pones en la otra), IGUALACIÓN (despejas la misma letra en las dos e igualas) y REDUCCIÓN (operas para eliminar una letra sumando las ecuaciones). Si las representamos gráficamente, la solución es el punto donde se cortan las dos rectas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuántos valores buscamos en un sistema de dos ecuaciones?",
+                "opciones": [
+                    "Uno (x)",
+                    "Dos (x e y)",
+                    "Ninguno",
+                    "Diez"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué método consiste en eliminar una incógnita sumando las ecuaciones?",
+                "opciones": [
+                    "Sustitución",
+                    "Igualación",
+                    "Reducción",
+                    "Dibujo"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Si representas el sistema en una gráfica, ¿qué es la solución?",
+                "opciones": [
+                    "El eje X",
+                    "El eje Y",
+                    "El punto de corte de las dos rectas",
+                    "Cualquier punto"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿En qué método despejas la x en las dos ecuaciones?",
+                "opciones": [
+                    "Sustitución",
+                    "Igualación",
+                    "Reducción",
+                    "Multiplicación"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es válido el mismo par de valores para las dos ecuaciones?",
+                "opciones": [
+                    "No",
+                    "Sí, es lo que buscamos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Pitágoras y Semejanza",
+        "texto": "El TEOREMA DE PITÁGORAS solo se aplica a triángulos rectángulos (con un ángulo de 90º). Dice que el cuadrado de la hipotenusa (lado largo) es igual a la suma de los cuadrados de los catetos (H² = C₁² + C₂²). Por otro lado, dos figuras son SEMEJANTES si tienen la misma forma pero distinto tamaño; sus ángulos son iguales y sus lados son proporcionales. La escala de un mapa es un ejemplo de semejanza. Si un triángulo tiene lados el doble de largos que otro, decimos que tienen una razón de semejanza de 2.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué tipo de triángulos se usa el Teorema de Pitágoras?",
+                "opciones": [
+                    "Equiláteros",
+                    "Acutángulos",
+                    "Rectángulos",
+                    "Cualquiera"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Si los catetos miden 3 y 4, ¿cuánto vale la hipotenusa?",
+                "opciones": [
+                    "7",
+                    "1",
+                    "5 (3²+4²=9+16=25; raíz de 25=5)",
+                    "12"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué define a dos figuras semejantes?",
+                "opciones": [
+                    "Son gemelas idénticas",
+                    "Tienen la misma forma pero distinto tamaño",
+                    "Tienen el mismo color",
+                    "Tienen áreas iguales"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo son los ángulos en figuras semejantes?",
+                "opciones": [
+                    "Diferentes",
+                    "Iguales",
+                    "Suman cero",
+                    "No tienen"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el lado más largo de un triángulo rectángulo?",
+                "opciones": [
+                    "Cateto",
+                    "Hipotenusa",
+                    "Base",
+                    "Altura"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Áreas y Volúmenes de Cuerpos Geométricos",
+        "texto": "En 2nd ESO pasamos de figuras planas a cuerpos en 3D. Distinguimos los POLIEDROS (caras planas como prismas y pirámides) y los CUERPOS DE REVOLUCIÓN (caras curvas como cilindro, cono y esfera). El VOLUMEN mide el espacio que ocupa un cuerpo y se mide en unidades cúbicas (m³, cm³). Una fórmula general de volumen para prismas y cilindros es: 'Área de la base x altura'. Para pirámides y conos, se divide el resultado anterior por 3. Es vital no confundir el área (superficie externa) con el volumen (capacidad interna).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué unidades se usan para medir el volumen?",
+                "opciones": [
+                    "Metros (m)",
+                    "Metros cuadrados (m²)",
+                    "Metros cúbicos (m³)",
+                    "Litros solamente"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál de estos es un cuerpo de revolución?",
+                "opciones": [
+                    "Cubo",
+                    "Cilindro",
+                    "Pirámide",
+                    "Prisma"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se calcula el volumen de un prisma?",
+                "opciones": [
+                    "Lado + Lado",
+                    "Área de la base x altura",
+                    "(Base x altura) / 2",
+                    "Solo sumando lados"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué diferencia hay entre área y volumen?",
+                "opciones": [
+                    "Ninguna",
+                    "Área es la superficie; Volumen es el espacio que ocupa",
+                    "Volumen es para dibujos planos",
+                    "Área es más grande"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un cono y un cilindro tienen la misma base y altura, ¿cuál tiene menos volumen?",
+                "opciones": [
+                    "Cilindro",
+                    "Cono (es la tercera parte)",
+                    "Son iguales",
+                    "No se sabe"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Funciones y Gráficas",
+        "texto": "Una función es una relación entre dos magnitudes (x e y) de forma que a cada valor de x le corresponde un ÚNICO valor de y. La x es la variable independiente y la y es la variable dependiente. Podemos representar funciones mediante una tabla de valores, una expresión algebraica (ej: y = 2x + 1) o una gráfica en unos ejes de coordenadas. Si la gráfica es una línea recta que pasa por el origen, es una función de PROPORCIONALIDAD DIRECTA. La pendiente de la recta nos indica cuánto aumenta la y por cada unidad de x.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llama la variable x?",
+                "opciones": [
+                    "Dependiente",
+                    "Independiente",
+                    "Incógnita final",
+                    "Resultado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué representa una función con gráfica de línea recta?",
+                "opciones": [
+                    "Una curva",
+                    "Una relación lineal o proporcional",
+                    "Un círculo",
+                    "Puntos sueltos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántos valores de 'y' corresponden a cada 'x' en una función?",
+                "opciones": [
+                    "Ninguno",
+                    "Uno solo",
+                    "Dos",
+                    "Infinite"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la pendiente?",
+                "opciones": [
+                    "El color de la línea",
+                    "La inclinación de la recta (cuánto crece la y)",
+                    "La longitud total",
+                    "El punto de corte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la variable dependiente?",
+                "opciones": [
+                    "x",
+                    "y",
+                    "z",
+                    "Ninguna"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

@@ -1,6 +1,151 @@
 [
-  "🌱", "🌿", "🍀", "🌾", "🌳", "🌲", "🌴", "🌵", "🌺", "🌻",
-  "🌷", "🌹", "🥀", "🌸", "💐", "🍄", "🐛", "🦋", "🐌", "🐞",
-  "🐝", "🪲", "🦗", "🕷️", "🦂", "🦟", "🪰", "🪱", "🦠", "💧",
-  "☀️", "🌙", "⭐", "🌟", "☁️", "⛅", "🌤️", "🌦️", "🌧️", "⛈️"
+  {
+    "categoria": "Animales (Visual)",
+    "correctos": [
+      "🐶",
+      "🐱",
+      "🦁",
+      "🐰",
+      "🐸",
+      "🐵",
+      "🦊"
+    ],
+    "intrusos": [
+      "🍎",
+      "🥦",
+      "🥕",
+      "🍕",
+      "🍦",
+      "🍪"
+    ]
+  },
+  {
+    "categoria": "Plantas y Flores (Visual)",
+    "correctos": [
+      "🌳",
+      "🌲",
+      "🌻",
+      "🌹",
+      "🌵",
+      "🌷",
+      "🌱"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🦁",
+      "🚗",
+      "🚲",
+      "🏠"
+    ]
+  },
+  {
+    "categoria": "Frutas y Verduras (Visual)",
+    "correctos": [
+      "🍎",
+      "🍌",
+      "🍇",
+      "🥦",
+      "🥕",
+      "🌽"
+    ],
+    "intrusos": [
+      "🍕",
+      "🍔",
+      "🍦",
+      "🍩",
+      "🍟",
+      "🍭"
+    ]
+  },
+  {
+    "categoria": "El Tiempo (Visual)",
+    "correctos": [
+      "☀️",
+      "☁️",
+      "🌧️",
+      "❄️",
+      "⛈️",
+      "🌬️"
+    ],
+    "intrusos": [
+      "🏠",
+      "🚗",
+      "🎒",
+      "🧸",
+      "👟",
+      "👕"
+    ]
+  },
+  {
+    "categoria": "Partes del Cuerpo",
+    "correctos": [
+      "Mano",
+      "Pie",
+      "Ojo",
+      "Boca",
+      "Nariz",
+      "Pelo",
+      "Oreja"
+    ],
+    "intrusos": [
+      "Zapato",
+      "Gorra",
+      "Guante",
+      "Reloj",
+      "Gafas",
+      "Peine"
+    ]
+  },
+  {
+    "categoria": "Sentidos (Órganos)",
+    "correctos": [
+      "Ojos",
+      "Oídos",
+      "Nariz",
+      "Lengua",
+      "Manos"
+    ],
+    "intrusos": [
+      "Bota",
+      "Cuchara",
+      "Libro",
+      "Pelota",
+      "Coche"
+    ]
+  },
+  {
+    "categoria": "Animales que vuelan",
+    "correctos": [
+      "Pájaro",
+      "Águila",
+      "Loro",
+      "Canario",
+      "Búho"
+    ],
+    "intrusos": [
+      "Pez",
+      "Ballena",
+      "Tortuga",
+      "Pulpo",
+      "Delfín"
+    ]
+  },
+  {
+    "categoria": "Animales que nadan",
+    "correctos": [
+      "Pez",
+      "Ballena",
+      "Delfín",
+      "Tiburón",
+      "Pulpo"
+    ],
+    "intrusos": [
+      "Perro",
+      "Gato",
+      "León",
+      "Vaca",
+      "Oveja"
+    ]
+  }
 ]

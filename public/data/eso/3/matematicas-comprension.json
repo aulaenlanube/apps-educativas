@@ -1,0 +1,570 @@
+[
+    {
+        "id": "1",
+        "titulo": "Conjuntos Numéricos: Los Irracionales",
+        "texto": "Ya conocemos los números naturales, enteros y racionales (los que se pueden poner como fracción). Pero en 3º de ESO profundizamos en los números IRRACIONALES. Son números cuya expresión decimal tiene infinitas cifras no periódicas. El ejemplo más famoso es PI (π), pero también lo es el número áureo (Phi) o las raíces no exactas como la raíz de 2. El conjunto de todos estos números (racionales e irracionales) forma la recta de los Números REALES (R). Comprender que hay números que no se pueden medir con exactitud absoluta cambió la historia de la ciencia.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué define a un número irracional?",
+                "opciones": [
+                    "Que es negativo",
+                    "Que tiene infinitas cifras decimales no periódicas",
+                    "Que se puede poner como fracción",
+                    "Que es igual a cero"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué conjunto forma la unión de racionales e irracionales?",
+                "opciones": [
+                    "Enteros",
+                    "Naturales",
+                    "Números Reales (R)",
+                    "Complejos"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál de estos es un número irracional famoso?",
+                "opciones": [
+                    "0.5",
+                    "1/4",
+                    "Pi (π)",
+                    "10"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "La raíz cuadrada de 2 es un número...",
+                "opciones": [
+                    "Racional",
+                    "Entero",
+                    "Irracional",
+                    "Natural"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Se pueden expresar los irracionales como una fracción de enteros?",
+                "opciones": [
+                    "Sí",
+                    "No"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Polinomios: El lenguaje del álgebra",
+        "texto": "Un polinomio es una expresión algebraica formada por la suma de varios monomios. En este curso aprendemos a operar con ellos (suma, resta, multiplicación y división simple). El GRADO de un polinomio lo marca el mayor exponente de su variable. El 'valor numérico' es el resultado que obtenemos al sustituir la X por un número concreto. Son fundamentales para resolver problemas complejos de física y economía. El dominio de las identidades notables (cuadrado de una suma, etc.) nos permite simplificar cálculos que de otro modo serían larguísimos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué determina el grado de un polinomio?",
+                "opciones": [
+                    "El número de términos",
+                    "El exponente más alto de la variable (X)",
+                    "La letra que usa",
+                    "El color del texto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el valor numérico de un polinomio?",
+                "opciones": [
+                    "El grado",
+                    "El resultado de sustituir la incógnita por un número",
+                    "El coeficiente principal",
+                    "No existe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Las identidades notables sirven para:",
+                "opciones": [
+                    "Dibujar",
+                    "Simplificar cálculos algebraicos",
+                    "Multiplicar por cero",
+                    "No sirven para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un binomio?",
+                "opciones": [
+                    "Un polinomio de un término",
+                    "Un polinomio de dos términos",
+                    "Un número solo",
+                    "Una raíz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En un polinomio, los números que acompañan a las letras se llaman:",
+                "opciones": [
+                    "Grados",
+                    "Coeficientes",
+                    "Exponentes",
+                    "Signos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Sucesiones y Progresiones",
+        "texto": "Una sucesión es un conjunto ordenado de números que siguen una regla. Si cada término se obtiene sumando una cantidad fija al anterior, hablamos de Progresión ARITMÉTICA (ej: 2, 5, 8, 11...). Si se obtiene multiplicando por una cantidad fija, es una Progresión GEOMÉTRICA (ej: 3, 6, 12, 24...). El 'término general' (an) es la fórmula mágica que nos permite calcular cualquier posición (como el término 100) sin tener que escribir todos los anteriores. Se usan para calcular intereses bancarios o el crecimiento de poblaciones.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué define a una progresión aritmética?",
+                "opciones": [
+                    "Cada término se multiplica por otro",
+                    "Cada término se obtiene sumando una cantidad fija (diferencia)",
+                    "Los números son aleatorios",
+                    "Solo tiene tres números"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el término general (an)?",
+                "opciones": [
+                    "El primer número",
+                    "Una fórmula para calcular cualquier término de la sucesión",
+                    "El nombre de la sucesión",
+                    "Un error"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En la sucesión 2, 4, 8, 16..., ¿de qué tipo es?",
+                "opciones": [
+                    "Aritmética",
+                    "Geométrica (multiplica por 2)",
+                    "Decreciente",
+                    "No es una sucesión"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué se usan las progresiones en la vida real?",
+                "opciones": [
+                    "Para cocinar",
+                    "Intereses bancarios o crecimiento de población",
+                    "Para dormir",
+                    "Solo para exámenes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la cantidad fija que se suma en las aritméticas?",
+                "opciones": [
+                    "Razón",
+                    "Diferencia",
+                    "Índice",
+                    "Suma"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Ecuaciones de Segundo Grado",
+        "texto": "Una ecuación de segundo grado tiene la forma general ax² + bx + c = 0. A diferencia de las de primer grado, pueden tener hasta dos soluciones distintas. Para resolver las completas usamos la famosa fórmula cuadrática. El DISCRIMINANTE (b² - 4ac) es la clave: si es positivo, hay dos soluciones; si es cero, una; y si es negativo, no hay solución real. Estas ecuaciones modelan el movimiento de proyectiles o el área de superficies, siendo una de las herramientas más potentes del álgebra de secundaria.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuántas soluciones puede tener una ecuación de segundo grado?",
+                "opciones": [
+                    "Solo una",
+                    "Máximo dos",
+                    "Infinitas",
+                    "Ninguna siempre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué parte de la fórmula nos dice cuántas soluciones hay?",
+                "opciones": [
+                    "La X",
+                    "El discriminante (b² - 4ac)",
+                    "El término C",
+                    "La suma inicial"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si el discriminante es negativo?",
+                "opciones": [
+                    "Hay dos soluciones",
+                    "No existe solución en los números reales",
+                    "La solución es cero",
+                    "Se rompe el papel"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué forma tiene la gráfica de estas ecuaciones?",
+                "opciones": [
+                    "Una línea recta",
+                    "Una parábola",
+                    "Un círculo",
+                    "Un cuadrado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En ax² + bx + c = 0, ¿qué representa 'a'?",
+                "opciones": [
+                    "El término independiente",
+                    "El coeficiente de x²",
+                    "La incógnita",
+                    "El resultado"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Geometría: Teorema de Tales",
+        "texto": "El matemático griego Tales de Mileto descubrió que si dos rectas secantes son cortadas por varias rectas paralelas, los segmentos determinados en una de las rectas son proporcionales a los de la otra. Esto se llama SEMEJANZA. Dos figuras son semejantes si tienen la misma forma (mismo ángulos) pero diferente tamaño. Gracias a esto, podemos calcular alturas imposibles (como la de una pirámide o un edificio) midiendo simplemente su sombra y comparándola con un objeto pequeño.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué condición hace que dos figuras sean semejantes?",
+                "opciones": [
+                    "Que sean de distinto color",
+                    "Misma forma (ángulos iguales) pero distinto tamaño proporcional",
+                    "Que sean cuadradas",
+                    "Que midan lo mismo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve el Teorema de Tales?",
+                "opciones": [
+                    "Para sumar fracciones",
+                    "Para calcular medidas inaccesibles mediante proporciones",
+                    "Para borrar dibujos",
+                    "Para contar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Tales midió la altura de una pirámide usando:",
+                "opciones": [
+                    "Una cinta métrica gigante",
+                    "Su propia sombra y la de la pirámide (proporcionalidad)",
+                    "Un avión",
+                    "Un mapa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En semejanza, si aplicamos un factor k = 2, el objeto resultante es:",
+                "opciones": [
+                    "La mitad",
+                    "El doble de grande",
+                    "Igual",
+                    "No cambia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué rectas deben ser paralelas en el Teorema de Tales?",
+                "opciones": [
+                    "Las que cortan a las secantes",
+                    "Las secantes",
+                    "Ninguna",
+                    "Todas"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Funciones: Características y Gráficas",
+        "texto": "Una función es una relación entre dos variables (X e Y) donde a cada valor de X le corresponde un ÚNICO valor de Y. Al estudiarlas, buscamos varios puntos clave: el DOMINIO (valores de X que funcionan), los PUNTOS DE CORTE con los ejes, la CONTINUIDAD, y dónde la función es CRECIENTE o DECRECIENTE. Las funciones lineales se representan como rectas, mientras que las de segundo grado son parábolas. Representar funciones nos permite visualizar tendencias, como la subida de precios o el clima.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el dominio de una función?",
+                "opciones": [
+                    "El punto más alto",
+                    "El conjunto de valores que puede tomar la variable X",
+                    "El nombre de la gráfica",
+                    "El resultado final"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántos valores de Y puede tener cada valor de X en una función?",
+                "opciones": [
+                    "Varios",
+                    "Solo uno",
+                    "Diez",
+                    "Ninguno"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el punto donde la gráfica toca al eje vertical?",
+                "opciones": [
+                    "Punto de corte con el eje Y",
+                    "Origen",
+                    "Final",
+                    "Cero de la función"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué forma tiene la gráfica de una función lineal (y = mx + n)?",
+                "opciones": [
+                    "Círculo",
+                    "Recta",
+                    "Parábola",
+                    "Ondulada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si al aumentar X, la Y también aumenta, la función es:",
+                "opciones": [
+                    "Decreciente",
+                    "Creciente",
+                    "Constante",
+                    "Negativa"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Estadística: Parámetros de Dispersión",
+        "texto": "En 2º de ESO aprendimos a calcular la media y la moda. En 3º vamos un paso más allá con la DISPERSIÓN. No basta con saber la media de una clase; queremos saber si todos sacaron notas parecidas o si hubo muchos 1 y muchos 10. Para ello usamos el RANGO (diferencia entre el mayor y el menor), la VARIANZA y, sobre todo, la DESVIACIÓN TÍPICA. Cuanto mayor sea la desviación típica, más alejados están los datos de la media. Es una herramienta vital para el control de calidad y la investigación científica.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué indican los parámetros de dispersión?",
+                "opciones": [
+                    "El valor central",
+                    "Cómo de alejados o agrupados están los datos respecto a la media",
+                    "El número de personas",
+                    "La suma total"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el parámetro de dispersión más utilizado en ciencia?",
+                "opciones": [
+                    "Media",
+                    "Moda",
+                    "Desviación típica",
+                    "Suma"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué es el rango?",
+                "opciones": [
+                    "La suma de todos",
+                    "La diferencia entre el valor máximo y el mínimo",
+                    "El número medio",
+                    "Un tipo de coche"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si la desviación típica es muy baja (casi cero), significa que:",
+                "opciones": [
+                    "Los datos son muy variados",
+                    "Casi todos los datos son iguales o muy parecidos a la media",
+                    "No hay datos",
+                    "Los datos están mal"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve el control de dispersión en una fábrica?",
+                "opciones": [
+                    "Para gastar más",
+                    "Para asegurar que todos los productos sean iguales (calidad)",
+                    "Para despedir gente",
+                    "Para nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Probabilidad: La Regla de Laplace",
+        "texto": "La probabilidad mide la posibilidad de que ocurra un evento al azar. Para sucesos elementales equiprobables (como tirar un dado normal), usamos la REGLA DE LAPLACE: el número de casos favorables dividido por el número de casos posibles. La probabilidad siempre es un número entre 0 (imposible) y 1 (seguro). Por ejemplo, la probabilidad de sacar un número par en un dado es 3/6 = 0.5. El azar rige muchos aspectos de nuestra vida, desde los juegos hasta el clima o la genética.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la fórmula de la Regla de Laplace?",
+                "opciones": [
+                    "P = Casos posibles / Casos favorables",
+                    "P = Casos favorables / Casos posibles",
+                    "P = Suma / 100",
+                    "P = Casos x 2"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué valor representa un suceso imposible?",
+                "opciones": [
+                    "1",
+                    "0",
+                    "0.5",
+                    "100"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Entre qué valores se encuentra siempre una probabilidad?",
+                "opciones": [
+                    "-1 y 1",
+                    "0 y 1",
+                    "0 y 100 siempre",
+                    "Cualquier número"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En una moneda, ¿cuál es la probabilidad de sacar cara?",
+                "opciones": [
+                    "1",
+                    "0.5 (o 1/2)",
+                    "0.25",
+                    "0"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un suceso es SEGURO, ¿cuál es su probabilidad?",
+                "opciones": [
+                    "0",
+                    "1",
+                    "0.9",
+                    "0.5"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Geometría del Espacio: Áreas y Volúmenes",
+        "texto": "En 3º de ESO pasamos de las figuras planas a los CUERPOS GEOMÉTRICOS. Prismas, pirámides, cilindros, conos y esferas. El área mide la superficie exterior (cuánta pintura necesito para pintarlo), mientras que el VOLUMEN mide el espacio interior (cuánta agua cabe dentro). Es fundamental conocer el número Pi para los cuerpos redondos. Por ejemplo, el volumen de un cilindro es el área de la base por la altura. Aplicar estas fórmulas es clave en arquitectura, diseño de envases y transporte de mercancías.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué mide el volumen de un cuerpo?",
+                "opciones": [
+                    "El peso",
+                    "El espacio que ocupa en su interior",
+                    "El color",
+                    "La longitud del borde"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué cuerpo geométrico no tiene caras planas ni vértices?",
+                "opciones": [
+                    "Pirámide",
+                    "Prisma",
+                    "Esfera",
+                    "Cubo"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué número es esencial para calcular áreas de cilindros o esferas?",
+                "opciones": [
+                    "Número 1",
+                    "Número Pi (π)",
+                    "Número 10",
+                    "Número 0"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La superficie exterior de un cuerpo se calcula con el...",
+                "opciones": [
+                    "Volumen",
+                    "Área total",
+                    "Perímetro",
+                    "Radio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un ejemplo de prisma en la vida real?",
+                "opciones": [
+                    "Una pelota",
+                    "Una caja de zapatos",
+                    "Un helado de cono",
+                    "Un anillo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Finanzas: El Interés Compuesto",
+        "texto": "A diferencia del interés simple, donde el beneficio siempre se calcula sobre la misma cantidad, en el INTERÉS COMPUESTO los intereses generados se añaden al capital inicial para producir nuevos intereses. Esto produce un crecimiento exponencial del dinero con el tiempo. La fórmula usa potencias (el tiempo está en el exponente). Es la base del funcionamiento de los bancos, los préstamos y las inversiones. Entenderlo es fundamental para nuestra educación financiera y para tomar decisiones responsables sobre el ahorro en el futuro.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué caracteriza al interés compuesto?",
+                "opciones": [
+                    "Los intereses no se suman",
+                    "Los intereses se suman al capital y generan nuevos intereses",
+                    "Es ilegal",
+                    "Solo se paga una vez"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de crecimiento produce este interés?",
+                "opciones": [
+                    "Lineal (lento)",
+                    "Exponencial (cada vez más rápido)",
+                    "Ninguno",
+                    "Decreciente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se aplica este concepto principalmente?",
+                "opciones": [
+                    "En el fútbol",
+                    "En bancos, préstamos e inversiones",
+                    "En la frutería",
+                    "En el dibujo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué elemento de la fórmula representa el tiempo?",
+                "opciones": [
+                    "La base",
+                    "El exponente",
+                    "El signo más",
+                    "La letra C"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve entender el interés compuesto?",
+                "opciones": [
+                    "Para gastar más",
+                    "Para tener educación financiera y ahorrar mejor",
+                    "Para saber historia",
+                    "Para nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

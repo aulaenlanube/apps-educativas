@@ -1,0 +1,1531 @@
+{
+  "titulo": "Material de Estudio - Matematicas - 2º ESO",
+  "introduccion": "Repasa este vocabulario de Matematicas para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "álgebra",
+          "definicion": "Rama de las matemáticas que usa letras y números.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "apotema",
+          "definicion": "Segmento que va del centro de un polígono regular al centro de uno de sus lados.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "área",
+          "definicion": "Medida de la superficie de una figura.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "agudo",
+          "definicion": "Ángulo menor de 90 grados.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "arista",
+          "definicion": "Línea donde se cortan dos caras de un poliedro.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "altura",
+          "definicion": "Distancia vertical de un cuerpo geométrico.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "abscisas",
+          "definicion": "Coordenada horizontal en un eje cartesiano (Eje de...).",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "abertura",
+          "definicion": "Amplitud de un ángulo.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "aleatorio",
+          "definicion": "Evento que depende de la suerte.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "ampliación",
+          "definicion": "Aumentar una figura manteniendo la forma (Semejanza).",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "binomio",
+          "definicion": "Expresión algebraica formada por la suma o resta de dos monomios.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bisectriz",
+          "definicion": "Semirrecta que divide un ángulo en dos partes iguales.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "base",
+          "definicion": "Lado inferior de una figura geométrica.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "baricentro",
+          "definicion": "Punto donde se cortan las medianas de un triángulo.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "billón",
+          "definicion": "Un millón de millones.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bidimensional",
+          "definicion": "Que tiene dos dimensiones.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "barras",
+          "definicion": "Tipo de gráfico estadístico.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "balanza",
+          "definicion": "Instrumento de medida de masa.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "base",
+          "definicion": "Número que se eleva en una potencia.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "biyectiva",
+          "definicion": "Correspondencia uno a uno (función).",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "cateto",
+          "definicion": "Cada uno de los dos lados menores de un triángulo rectángulo.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cilindro",
+          "definicion": "Cuerpo geométrico con dos bases circulares y una superficie curva.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "circunferencia",
+          "definicion": "Línea curva cerrada y plana cuyos puntos equidistan del centro.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cono",
+          "definicion": "Cuerpo geométrico con base circular y un vértice.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cubo",
+          "definicion": "Cuerpo geométrico de seis caras cuadradas iguales.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "coordenadas",
+          "definicion": "Valores que definen la posición de un punto (x, y).",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cociente",
+          "definicion": "Resultado de la división.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cuadrilátero",
+          "definicion": "Polígono de cuatro lados.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "constante",
+          "definicion": "Valor que no cambia en una fórmula.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cuerda",
+          "definicion": "Segmento que une dos puntos de la circunferencia.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "diagonal",
+          "definicion": "Segmento que une dos vértices no consecutivos.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "diámetro",
+          "definicion": "Segmento que pasa por el centro y une dos puntos de la circunferencia.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "divisor",
+          "definicion": "Número que divide a otro de forma exacta.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "denominador",
+          "definicion": "Parte inferior de una fracción.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "decimal",
+          "definicion": "Número con parte entera y parte fraccionaria separadas por una coma.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "despejar",
+          "definicion": "Dejar sola la incógnita en una ecuación.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "diagrama",
+          "definicion": "Representación gráfica (de barras, de sectores...).",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dodecágono",
+          "definicion": "Polígono de doce lados.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dato",
+          "definicion": "Información numérica.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dodecaedro",
+          "definicion": "Poliedro regular de 12 caras.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "ecuación",
+          "definicion": "Igualdad algebraica que se cumple para ciertos valores (incógnitas).",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "esfera",
+          "definicion": "Cuerpo geométrico cuyos puntos equidistan del centro.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "exponente",
+          "definicion": "Número pequeño que indica cuántas veces se multiplica la base.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "estadística",
+          "definicion": "Rama de las matemáticas que trata el análisis de datos.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "equilátero",
+          "definicion": "Triángulo con los tres lados iguales.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "ejes",
+          "definicion": "Líneas que marcan las coordenadas (X e Y).",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "escaleno",
+          "definicion": "Triángulo con tres lados diferentes.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "equivalente",
+          "definicion": "Semejante o del mismo valor.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "exacta",
+          "definicion": "División con resto 0.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "eje",
+          "definicion": "Línea de simetría.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "fracción",
+          "definicion": "Expresión de una cantidad dividida entre otra.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "función",
+          "definicion": "Relación entre dos magnitudes donde a cada valor le corresponde uno único.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fórmula",
+          "definicion": "Expresión simbólica de una ley matemática.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "frecuencia",
+          "definicion": "Número de veces que se repite un dato.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "factorizar",
+          "definicion": "Descomponer un número en factores.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "figura",
+          "definicion": "Objeto geométrico.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "factor",
+          "definicion": "Cada uno de los números que se multiplican.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fúncion lineal",
+          "definicion": "Tipo de función que es una línea recta.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "función",
+          "definicion": "Función cuya gráfica es una recta.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "finito",
+          "definicion": "Polígono con fin.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "foco",
+          "definicion": "Uno de los focos de la elipse.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "geometría",
+          "definicion": "Rama de las matemáticas sobre el espacio y figuras.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grado",
+          "definicion": "Medida de los ángulos.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gráfica",
+          "definicion": "Representación visual de una función.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "generatriz",
+          "definicion": "Línea que al girar engendra un cuerpo de revolución.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "giro",
+          "definicion": "Movimiento de rotación.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grado",
+          "definicion": "Exponente mayor de un polinomio.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gramo",
+          "definicion": "Unidad de masa.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "ganancia",
+          "definicion": "Beneficio obtenido.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grupo",
+          "definicion": "Conjunto de elementos.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grande",
+          "definicion": "Lo contrario de pequeño.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hipotenusa",
+          "definicion": "Lado opuesto al ángulo recto en un triángulo rectángulo.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hexágono",
+          "definicion": "Polígono de seis lados.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "heptágono",
+          "definicion": "Polígono de siete lados.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hectómetro",
+          "definicion": "Cien metros.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hectárea",
+          "definicion": "Unidad de superficie agraria.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "histograma",
+          "definicion": "Tipo de gráfico de barras para variables continuas.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hora",
+          "definicion": "Medida de tiempo.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hipérbola",
+          "definicion": "Curva abierta de dos ramas.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hemisferio",
+          "definicion": "Mitad de la esfera terrestre.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "horizontal",
+          "definicion": "Línea paralela al horizonte.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "incógnita",
+          "definicion": "Valor desconocido en una ecuación.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "igualdad",
+          "definicion": "Símbolo de que dos cosas valen lo mismo (=).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "impar",
+          "definicion": "Número entero no divisible por 2.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "infinito",
+          "definicion": "Que no tiene fin.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "isósceles",
+          "definicion": "Triángulo con dos lados iguales.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inversa",
+          "definicion": "Operación contraria.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "irreducible",
+          "definicion": "Fracción que no se puede simplificar.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "interés",
+          "definicion": "Beneficio de un capital prestado.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "intervalo",
+          "definicion": "Conjunto de números comprendidos entre dos valores.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "identidad",
+          "definicion": "Igualdad algebraica que es cierta para cualquier valor.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "jerarquía",
+          "definicion": "Orden de las operaciones matemáticas.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "justificar",
+          "definicion": "Demostrar o dar razones.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "eje",
+          "definicion": "Línea de coordenadas (contiene J).",
+          "pista": "Contiene la J"
+        },
+        {
+          "termino": "despejar",
+          "definicion": "Aislar la incógnita (contiene J).",
+          "pista": "Contiene la J"
+        },
+        {
+          "termino": "semejanza",
+          "definicion": "Figuras con la misma forma (contiene J).",
+          "pista": "Contiene la J"
+        },
+        {
+          "termino": "conjunto",
+          "definicion": "Agrupación de elementos (contiene J).",
+          "pista": "Contiene la J"
+        },
+        {
+          "termino": "porcentaje",
+          "definicion": "Tanto por ciento (contiene J).",
+          "pista": "Contiene la J"
+        },
+        {
+          "termino": "caja",
+          "definicion": "Cuerpo geométrico (Ca... contiene J).",
+          "pista": "Contiene la J"
+        },
+        {
+          "termino": "reflejo",
+          "definicion": "Imagen especular (contiene J).",
+          "pista": "Contiene la J"
+        },
+        {
+          "termino": "bajada",
+          "definicion": "Disminución de precio (Ba... contiene J).",
+          "pista": "Contiene la J"
+        },
+        {
+          "termino": "ejemplo",
+          "definicion": "Símbolos de agrupación ( ) (contiene J, errata, son paréntesis). Usaremos: Ejemplo.",
+          "pista": "Contiene la J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "kilómetro",
+          "definicion": "Mil metros.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilogramo",
+          "definicion": "Unidad de masa.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilo",
+          "definicion": "Prefijo para 1000.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilo",
+          "definicion": "Área de 100x100 metros (contiene K, es Hectárea).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kilolitro",
+          "definicion": "Mil litros (contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kilobyte",
+          "definicion": "Medida de datos (contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kilovatio",
+          "definicion": "Mil vatios (contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kiwi",
+          "definicion": "Fruta usada en problemas de peso (contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "karate",
+          "definicion": "Deporte en problemas de tiempo (contiene K).",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kilo",
+          "definicion": "Nombre común del kilogramo.",
+          "pista": "Contiene la K"
+        },
+        {
+          "termino": "kilómetros",
+          "definicion": "Distancia maratón (42 ...).",
+          "pista": "Contiene la K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "lado",
+          "definicion": "Segmento que delimita un polígono.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "litro",
+          "definicion": "Unidad de capacidad.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "línea",
+          "definicion": "Sucesión de puntos.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "longitud",
+          "definicion": "Magnitud física de distancia.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lateral",
+          "definicion": "Área de los costados de un prisma.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "losange",
+          "definicion": "Nombre culto del rombo.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "ley",
+          "definicion": "Norma matemática.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "límite",
+          "definicion": "Valor al que tiende una función.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lugar geométrico",
+          "definicion": "Conjunto de puntos que cumplen una propiedad (Lugar...).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lugar",
+          "definicion": "Lugar de puntos que cumplen una propiedad (... geométrico).",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "libra",
+          "definicion": "Unidad de peso inglesa.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "monomio",
+          "definicion": "Expresión algebraica de un solo término.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "multiplicación",
+          "definicion": "Operación de sumar reiteradamente.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "media",
+          "definicion": "Promedio de un conjunto de datos.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mediana",
+          "definicion": "Valor central de datos ordenados.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "moda",
+          "definicion": "Valor que más se repite en estadística.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "múltiplo",
+          "definicion": "Número divisible por otro.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "metro",
+          "definicion": "Unidad de longitud.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mitad",
+          "definicion": "Parte dividida por dos.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "menor",
+          "definicion": "Menor que cero o que otro número.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "múltiplo",
+          "definicion": "m.c.m (Mínimo Común ...).",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "número",
+          "definicion": "Símbolo de cantidad.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "numerador",
+          "definicion": "Parte de arriba de una fracción.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "naturales",
+          "definicion": "Números positivos enteros (1, 2, 3...).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "negativo",
+          "definicion": "Número menor que cero.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "notación",
+          "definicion": "Forma abreviada de escribir números grandes (Científica).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nulo",
+          "definicion": "Valor cero o vacío.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nonágono",
+          "definicion": "Polígono de 9 lados.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "normal",
+          "definicion": "Perpendicular a un plano.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "notable",
+          "definicion": "Identidad algebraica (Producto...).",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "novecientos",
+          "definicion": "900.",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "año",
+          "definicion": "365 días (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "pequeño",
+          "definicion": "De poco tamaño (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "añadir",
+          "definicion": "Aumentar una cantidad (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "señal",
+          "definicion": "Signo (+ o -) (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "puño",
+          "definicion": "Medida manual informal (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "montaña",
+          "definicion": "Gráfico de líneas picudas (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "pestaña",
+          "definicion": "Elemento de Excel (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "diseñar",
+          "definicion": "Diseñar (contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "mañana",
+          "definicion": "Palabra común que contiene la letra Ñ.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "teñir",
+          "definicion": "Color en gráficos (Te...ir, contiene Ñ).",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "origen",
+          "definicion": "Punto (0,0) del sistema de coordenadas.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ordenada",
+          "definicion": "Coordenada vertical Y.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "obtuso",
+          "definicion": "Ángulo mayor de 90 grados.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "octógono",
+          "definicion": "Polígono de 8 lados.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "operación",
+          "definicion": "Cálculo matemático.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ordenar",
+          "definicion": "Colocar de menor a mayor.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ortocentro",
+          "definicion": "Punto de corte de las alturas.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "opuesto",
+          "definicion": "Número con signo contrario.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "óvalo",
+          "definicion": "Figura curva cerrada.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "octavo",
+          "definicion": "Ordinal de 8.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "polinomio",
+          "definicion": "Suma de términos algebraicos.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pitágoras",
+          "definicion": "Teorema de los triángulos rectángulos.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "potencia",
+          "definicion": "Producto de factores iguales.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pirámide",
+          "definicion": "Cuerpo geométrico que acaba en punta.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "prisma",
+          "definicion": "Cuerpo geométrico con dos bases iguales.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "perímetro",
+          "definicion": "Suma de los lados.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "porcentaje",
+          "definicion": "Tanto por ciento.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "probabilidad",
+          "definicion": "Medida de la posibilidad de un suceso.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "polígono",
+          "definicion": "Figura de muchos lados.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "proporción",
+          "definicion": "Relación de igualdad entre dos razones.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "quince",
+          "definicion": "Número 15.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quebrado",
+          "definicion": "Fracción (número...).",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "equilátero",
+          "definicion": "Triángulo regular (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "equivalentes",
+          "definicion": "Fracciones que valen lo mismo (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "izquierda",
+          "definicion": "Resto de la división (contiene Q? No, empieza por R). Use: Izquierda.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "izquierda",
+          "definicion": "Lado contrario a derecha (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "esquema",
+          "definicion": "Resumen gráfico (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "etiqueta",
+          "definicion": "Nombre del dato en un gráfico (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "bloque",
+          "definicion": "Cuerpo de 4 lados (Prisma rect..., Blo..., contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "paquete",
+          "definicion": "Polígono de cuatro lados (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "pequeño",
+          "definicion": "De menor tamaño (contiene Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "arquímedes",
+          "definicion": "Medida de peso (contiene Q? no). Use: Arquímedes.",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "raíz",
+          "definicion": "Operación inversa a la potencia.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "radio",
+          "definicion": "Línea del centro a la circunferencia.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "regla de tres",
+          "definicion": "Método para resolver problemas de proporcionalidad (Regla de...).",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "regla de tres",
+          "definicion": "Método de cálculo proporcional.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rombo",
+          "definicion": "Cuadrilátero de lados iguales.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rectángulo",
+          "definicion": "Cuadrilátero de ángulos rectos.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "recta",
+          "definicion": "Línea recta infinita.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "resto",
+          "definicion": "Lo que sobra en la división.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "regular",
+          "definicion": "Polígono con lados y ángulos iguales.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "razón",
+          "definicion": "Cociente de dos números.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "reducción",
+          "definicion": "Método para resolver ecuaciones (sustitución, igualación...).",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "sistema",
+          "definicion": "Conjunto de dos o más ecuaciones.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "suma",
+          "definicion": "Operación de añadir.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sexagesimal",
+          "definicion": "Sistema de medida de ángulos y tiempo.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "semejanza",
+          "definicion": "Propiedad de figuras con la misma forma.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "segmento",
+          "definicion": "Parte de una recta delimitada por dos puntos.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sector",
+          "definicion": "Parte del círculo.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "solución",
+          "definicion": "Valor que hace cierta una ecuación.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "segundo",
+          "definicion": "Unidad de tiempo.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "superficie",
+          "definicion": "Medida del área.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "signo",
+          "definicion": "Indica positivo o negativo.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "triángulo",
+          "definicion": "Polígono de tres lados.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tales",
+          "definicion": "Matemático griego famoso por su teorema de triángulos.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "teorema",
+          "definicion": "Afirmación demostrable (Pitágoras).",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "trapecio",
+          "definicion": "Cuadrilátero con dos lados paralelos.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "término",
+          "definicion": "Cada parte de un polinomio.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tabla",
+          "definicion": "Lista de valores X e Y.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "total",
+          "definicion": "Resultado de la suma.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tangente",
+          "definicion": "Línea que toca en un punto.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "transportador",
+          "definicion": "Instrumento para medir ángulos.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tercio",
+          "definicion": "Fracción de 1/3.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "uno",
+          "definicion": "El número 1.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unidad",
+          "definicion": "Cantidad de referencia para medir.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unión",
+          "definicion": "Conjunto de todos los elementos.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "último",
+          "definicion": "El final.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "unir",
+          "definicion": "Juntar.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "único",
+          "definicion": "Exclusivo.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "universal",
+          "definicion": "Conjunto total (U).",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uniforme",
+          "definicion": "Mismo valor.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "undécimo",
+          "definicion": "Ordinal de 11.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "utilidad",
+          "definicion": "Beneficio.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "volumen",
+          "definicion": "Medida del espacio 3D.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vértice",
+          "definicion": "Punto de unión de aristas.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "variable",
+          "definicion": "Letra que representa un número.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "valor",
+          "definicion": "Resultado numérico.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vertical",
+          "definicion": "Línea vertical.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vacío",
+          "definicion": "Conjunto sin elementos.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "veinte",
+          "definicion": "Número 20.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vuelta",
+          "definicion": "Giro de 360 grados.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "velocidad",
+          "definicion": "Magnitud física.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "veces",
+          "definicion": "Multiplicación (veces).",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "kilowatio",
+          "definicion": "Unidad de potencia eléctrica (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "newton",
+          "definicion": "Físico inglés de la gravedad (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "hardware",
+          "definicion": "Componentes físicos PC (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "software",
+          "definicion": "Programas PC (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "web",
+          "definicion": "Red mundial (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "watt",
+          "definicion": "Unidad de potencia (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "kiwi",
+          "definicion": "Fruta (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "sandwich",
+          "definicion": "Bocadillo (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "wifi",
+          "definicion": "Conexión (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "show",
+          "definicion": "Espectáculo (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "waterpolo",
+          "definicion": "Deporte (contiene W).",
+          "pista": "Contiene la W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "x",
+          "definicion": "Incógnita habitual.",
+          "pista": "Empieza por X"
+        },
+        {
+          "termino": "hexágono",
+          "definicion": "Polígono de 6 lados (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "sexagesimal",
+          "definicion": "Sistema de 60 unidades (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "exacta",
+          "definicion": "División resto 0 (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "exponente",
+          "definicion": "Número elevado (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "máximo",
+          "definicion": "Valor más alto (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "extremo",
+          "definicion": "Punto final (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "próximo",
+          "definicion": "Cercano (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "sexto",
+          "definicion": "Ordinal de 6 (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "mixto",
+          "definicion": "Número con fracción (contiene X).",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "y",
+          "definicion": "Incógnita vertical.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yarda",
+          "definicion": "Unidad inglesa.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yotta",
+          "definicion": "Prefijo grande (Yotta).",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "mayor",
+          "definicion": "Más grande (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "ayer",
+          "definicion": "Día pasado (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "hoy",
+          "definicion": "Día actual (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "rayo",
+          "definicion": "Línea de luz (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "adyacentes",
+          "definicion": "Ángulos contiguos (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "cuyo",
+          "definicion": "De quien (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "suyo",
+          "definicion": "De él (contiene Y).",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zona",
+          "definicion": "Área.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zigzag",
+          "definicion": "Línea quebrada.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "azar",
+          "definicion": "Suerte (contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "raíz",
+          "definicion": "Opuesto a potencia (contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "diez",
+          "definicion": "10 (contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "diez",
+          "definicion": "Número que contiene la letra Z (ej: diez).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "diez",
+          "definicion": "Número que contiene la letra Z (ej: diez).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "diez",
+          "definicion": "Número que contiene la letra Z (ej: diez).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "diez",
+          "definicion": "Número que contiene la letra Z (ej: diez).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "diez",
+          "definicion": "Número que contiene la letra Z (ej: diez).",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

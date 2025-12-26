@@ -1,172 +1,947 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Ángulo que mide menos de 90 grados.", "solucion": "agudo" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Medida de la superficie de una figura.", "solucion": "área" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Línea donde se unen dos caras de un cuerpo geométrico.", "solucion": "arista" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Triángulo con los tres ángulos agudos.", "solucion": "acutángulo" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Abertura formada por dos semirrectas que se unen en un vértice.", "solucion": "ángulo" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Lado inferior sobre el que se apoya una figura geométrica.", "solucion": "base" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Instrumento que sirve para medir la masa (el peso).", "solucion": "balanza" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Dinero en papel.", "solucion": "billete" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Un millón es un uno seguido de seis...", "solucion": "burbujas" }, 
-  { "id": "b4_fix", "letra": "B", "tipo": "empieza", "definicion": "Gráfico de rectángulos para representar datos.", "solucion": "barras" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Operación de buscar un dato.", "solucion": "búsqueda" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Resultado de la división.", "solucion": "cociente" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Figura plana redonda.", "solucion": "círculo" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Polígono de cuatro lados.", "solucion": "cuadrilátero" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Unidad de longitud, cien hacen un metro.", "solucion": "centímetro" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Cuerpo geométrico con dos bases circulares.", "solucion": "cilindro" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Número que vamos a dividir.", "solucion": "dividendo" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Número por el que dividimos.", "solucion": "divisor" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Parte de la unidad en los números decimales (0,1).", "solucion": "décima" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Línea que une dos puntos de la circunferencia pasando por el centro.", "solucion": "diámetro" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Operación de repartir en partes iguales.", "solucion": "división" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Cuerpo geométrico redondo como un balón.", "solucion": "esfera" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Triángulo con los tres lados de distinta medida.", "solucion": "escaleno" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Triángulo con los tres lados iguales.", "solucion": "equilátero" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "División cuyo resto es cero.", "solucion": "exacta" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Línea imaginaria de simetría.", "solucion": "eje" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Número que representa una parte de la unidad (ej: 1/2).", "solucion": "fracción" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Forma geométrica plana o con volumen.", "solucion": "figura" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Términos de la multiplicación.", "solucion": "factores" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Objetos ordenados horizontalmente.", "solucion": "fila" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Mes que puede tener 28 o 29 días.", "solucion": "febrero" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Unidad de medida de ángulos.", "solucion": "grado" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Unidad principal de masa.", "solucion": "gramo" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Movimiento circular.", "solucion": "giro" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Dibujo para representar datos.", "solucion": "gráfico" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Lo contrario de pequeño.", "solucion": "grande" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Polígono de seis lados.", "solucion": "hexágono" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Polígono de siete lados.", "solucion": "heptágono" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Línea que va de izquierda a derecha, como el horizonte.", "solucion": "horizontal" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Medida de tiempo, tiene 60 minutos.", "solucion": "hora" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Medida de longitud igual a 100 metros.", "solucion": "hectómetro" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Triángulo con dos lados iguales y uno desigual.", "solucion": "isósceles" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Número que no es divisible por 2 (ej: 3, 5, 7).", "solucion": "impar" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Símbolo de dos rayitas (=).", "solucion": "igual" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "División cuyo resto no es cero.", "solucion": "inexacta" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Que no tiene fin.", "solucion": "infinito" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Recipiente para medir capacidad (líquidos).", "solucion": "jarra" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Medida de distancia antigua o paso.", "solucion": "jarda" }, 
-  { "id": "j2_fix", "letra": "J", "tipo": "empieza", "definicion": "Mes del año con 31 días.", "solucion": "julio" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Mes del año con 30 días.", "solucion": "junio" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Unir dos cantidades.", "solucion": "juntar" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Día de la semana.", "solucion": "jueves" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Mil metros.", "solucion": "kilómetro" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Mil gramos.", "solucion": "kilogramo" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Unidad de masa en la báscula.", "solucion": "kilo" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Mil litros.", "solucion": "kilolitro" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Prefijo que significa mil.", "solucion": "kilo" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Unidad principal de capacidad.", "solucion": "litro" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Cada una de las líneas que forman un polígono.", "solucion": "lado" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Distancia entre dos puntos.", "solucion": "longitud" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Sucesión continua de puntos.", "solucion": "línea" },
-  { "id": "l5", "letra": "L", "tipo": "contiene", "definicion": "Mil mililitros (contiene L).", "solucion": "litro" }, 
-  { "id": "l5_fix", "letra": "L", "tipo": "contiene", "definicion": "Figura de 4 lados iguales pero sin ángulos rectos (Rombo, también llamado...).", "solucion": "losange" }, 
-  { "id": "l5_final", "letra": "L", "tipo": "empieza", "definicion": "Parte lateral de una figura.", "solucion": "lateral" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Operación de sumar el mismo número varias veces.", "solucion": "multiplicación" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Unidad principal de longitud.", "solucion": "metro" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Medida de tiempo, 60 segundos.", "solucion": "minuto" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Dividir entre dos es hallar la...", "solucion": "mitad" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Número más pequeño común en varias tablas (mínimo común...).", "solucion": "múltiplo" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Parte de arriba de una fracción.", "solucion": "numerador" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Símbolo para contar.", "solucion": "número" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Números para contar (1, 2, 3...): Números...", "solucion": "naturales" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "3 x 3.", "solucion": "nueve" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Número 900.", "solucion": "novecientos" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Tiempo que tarda la Tierra en dar la vuelta al Sol.", "solucion": "año" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Lo contrario de grande.", "solucion": "pequeño" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Instrumento de medida que se engancha en el dedo (contiene Ñ).", "solucion": "aliñador" }, 
-  { "id": "ñ3_fix", "letra": "Ñ", "tipo": "contiene", "definicion": "Medir con la mano cerrada (contiene Ñ).", "solucion": "puño" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Agregar algo a una mezcla o suma (contiene Ñ).", "solucion": "añadir" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Gráfico lineal parecido a una sierra (contiene Ñ).", "solucion": "montaña" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Ángulo que mide más de 90 grados.", "solucion": "obtuso" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Polígono de ocho lados.", "solucion": "octógono" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Colocar números de menor a mayor.", "solucion": "ordenar" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Número ordinal 8º.", "solucion": "octavo" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Punto donde se cruzan los ejes de coordenadas.", "solucion": "origen" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Figura plana cerrada con lados rectos.", "solucion": "polígono" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Suma de todos los lados de una figura.", "solucion": "perímetro" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Cuerpo geométrico con base y pico.", "solucion": "pirámide" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Resultado de la multiplicación.", "solucion": "producto" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Cuerpo geométrico con dos bases iguales y caras rectangulares.", "solucion": "prisma" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Número 15.", "solucion": "quince" },
-  { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Número ordinal 5º.", "solucion": "quinto" },
-  { "id": "q3", "letra": "Q", "tipo": "empieza", "definicion": "Lo que sobra en una división.", "solucion": "queda" }, 
-  { "id": "q3_fix", "letra": "Q", "tipo": "contiene", "definicion": "Triángulo de lados iguales (contiene Q).", "solucion": "equilátero" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Dibujo resumen de un problema (contiene Q).", "solucion": "esquema" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Polígono de cuatro lados (contiene Q).", "solucion": "paquete" }, 
-  { "id": "q5_fix", "letra": "Q", "tipo": "empieza", "definicion": "Parte de una unidad dividida en 5.", "solucion": "quinto" }, 
-  { "id": "q5_final", "letra": "Q", "tipo": "empieza", "definicion": "Número 500.", "solucion": "quinientos" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Línea que va del centro al borde de la circunferencia.", "solucion": "radio" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Lo que sobra en una división inexacta.", "solucion": "resto" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Ángulo de 90 grados.", "solucion": "recto" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Cuadrilátero con lados iguales dos a dos y ángulos rectos.", "solucion": "rectángulo" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Cuadrilátero con lados iguales pero ángulos no rectos.", "solucion": "rombo" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Operación de juntar cantidades.", "solucion": "suma" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Parte de una recta con principio pero sin fin.", "solucion": "semirrecta" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Unidad de tiempo muy pequeña.", "solucion": "segundo" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Conjunto de números ordenados.", "solucion": "serie" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Mitad de una esfera.", "solucion": "semiesfera" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Polígono de tres lados.", "solucion": "triángulo" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Lista de multiplicaciones.", "solucion": "tabla" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Cuadrilátero con solo dos lados paralelos.", "solucion": "trapecio" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Una de las tres partes iguales de algo.", "solucion": "tercio" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Resultado de la suma.", "solucion": "total" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Lo que vale 1.", "solucion": "unidad" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "El número 1.", "solucion": "uno" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "El que está al final de la fila.", "solucion": "último" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Ordinal 11º.", "solucion": "undécimo" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Juntar puntos.", "solucion": "unir" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Punto donde se unen los lados de un ángulo o figura.", "solucion": "vértice" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Espacio que ocupa un cuerpo.", "solucion": "volumen" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Número 20.", "solucion": "veinte" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Línea que va de arriba a abajo.", "solucion": "vertical" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Cuánto cuesta algo.", "solucion": "valor" },
-
-  { "id": "w1", "letra": "W", "tipo": "contiene", "definicion": "Fruta que se vende por peso (contiene W).", "solucion": "kiwi" },
-  { "id": "w2", "letra": "W", "tipo": "contiene", "definicion": "Deporte en el agua que dura tiempos (contiene W).", "solucion": "waterpolo" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Medida de potencia eléctrica (contiene W).", "solucion": "vatio" }, 
-  { "id": "w3_fix", "letra": "W", "tipo": "contiene", "definicion": "Comida partida en triángulos (contiene W).", "solucion": "sandwich" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Red informática (contiene W).", "solucion": "web" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Lugar lejano del oeste (contiene W).", "solucion": "western" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "División con resto cero (contiene X).", "solucion": "exacta" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Polígono de seis lados (contiene X).", "solucion": "hexágono" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "El número ordinal 6º (contiene X).", "solucion": "sexto" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Número que sigue a otro (contiene X).", "solucion": "próximo" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Lo más grande (contiene X).", "solucion": "máximo" },
-
-  { "id": "y1", "letra": "Y", "tipo": "contiene", "definicion": "Más grande que (contiene Y).", "solucion": "mayor" },
-  { "id": "y2", "letra": "Y", "tipo": "contiene", "definicion": "Líneas que no se cruzan (contiene Y, difícil). Usaremos: Rayas.", "solucion": "rayas" },
-  { "id": "y3", "letra": "Y", "tipo": "contiene", "definicion": "El día de hoy (contiene Y).", "solucion": "hoy" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Día antes de hoy (contiene Y).", "solucion": "ayer" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Mes del año con 31 días (contiene Y).", "solucion": "mayo" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Paso largo para medir distancia.", "solucion": "zancada" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Lugar o superficie.", "solucion": "zona" },
-  { "id": "z3", "letra": "Z", "tipo": "contiene", "definicion": "Diez unidades (contiene Z).", "solucion": "diez" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Número 11 (contiene Z).", "solucion": "once" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Contrario de derecha (contiene Z).", "solucion": "izquierda" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Ángulo que mide menos de 90 grados.",
+    "solucion": "agudo"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Superficie de una figura plana.",
+    "solucion": "área"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Línea donde se unen dos caras de un cuerpo geométrico.",
+    "solucion": "arista"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Número que va antes de otro.",
+    "solucion": "anterior"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Operación de sumar o añadir.",
+    "solucion": "adición"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Línea que divide un ángulo en dos partes iguales.",
+    "solucion": "bisectriz"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Instrumento para pesar objetos.",
+    "solucion": "balanza"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Cuerpo geométrico con forma de lata.",
+    "solucion": "bidón"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "contiene",
+    "definicion": "Sistema de numeración que solo usa 0 y 1.",
+    "solucion": "binario"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "contiene",
+    "definicion": "Polígono de cuatro lados (contiene la B).",
+    "solucion": "cuadrilátero"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Número que ocupa el tercer lugar de derecha a izquierda.",
+    "solucion": "centena"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Resultado de la división.",
+    "solucion": "cociente"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Línea curva que rodea al círculo.",
+    "solucion": "circunferencia"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Número formado por cien unidades.",
+    "solucion": "cien"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Capacidad de contener algo.",
+    "solucion": "capacidad"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Número de abajo en una fracción.",
+    "solucion": "denominador"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Número que se divide en una división.",
+    "solucion": "dividendo"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Número por el que se divide.",
+    "solucion": "divisor"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Línea que une dos vértices no vecinos.",
+    "solucion": "diagonal"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Número con coma.",
+    "solucion": "decimal"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Cuerpo geométrico perfectamente redondo.",
+    "solucion": "esfera"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Triángulo con los tres lados iguales.",
+    "solucion": "equilátero"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Regla triangular para dibujar ángulos rectos.",
+    "solucion": "escuadra"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Lugar en una recta o gráfico.",
+    "solucion": "eje"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Representación de datos con barras o puntos.",
+    "solucion": "estadística"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Expresión de una parte de la unidad como 1/2.",
+    "solucion": "fracción"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Cada uno de los números que se multiplican.",
+    "solucion": "factor"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Forma o dibujo geométrico.",
+    "solucion": "figura"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Número de veces que se repite un dato.",
+    "solucion": "frecuencia"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Lugar donde acaba una línea.",
+    "solucion": "final"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Unidad de medida de ángulos.",
+    "solucion": "grado"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Unidad de masa mil veces menor que el kilo.",
+    "solucion": "gramo"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Dibujo de barras para mostrar datos.",
+    "solucion": "gráfico"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia las figuras geométricas.",
+    "solucion": "geometría"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Ancho de un cuerpo.",
+    "solucion": "grosor"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Figura plana de seis lados.",
+    "solucion": "hexágono"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Cien metros.",
+    "solucion": "hectómetro"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Cien gramos.",
+    "solucion": "hectogramo"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "contiene",
+    "definicion": "Número 80.",
+    "solucion": "ochenta"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "contiene",
+    "definicion": "Línea paralela al suelo.",
+    "solucion": "horizontal"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Triángulo con dos lados iguales.",
+    "solucion": "isósceles"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Número que no es par.",
+    "solucion": "impar"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Símbolo que indica el mismo valor (=).",
+    "solucion": "igual"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Que no tiene fin.",
+    "solucion": "infinito"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "contiene",
+    "definicion": "Cien veces diez (contiene la I).",
+    "solucion": "mil"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Día de la semana número cuatro.",
+    "solucion": "jueves"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Medir algo con precisión (contiene la J).",
+    "solucion": "ajustar"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Puntos que están uno al lado de otro.",
+    "solucion": "juntos"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Mes sexto del año.",
+    "solucion": "junio"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Mes séptimo del año.",
+    "solucion": "julio"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Mil gramos.",
+    "solucion": "kilogramo"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Mil metros.",
+    "solucion": "kilómetro"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Abreviatura de kilogramo.",
+    "solucion": "kg"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Fruta marrón peluda para pesar.",
+    "solucion": "kiwi"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Coche de carreras muy pequeño.",
+    "solucion": "kart"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Unidad de capacidad.",
+    "solucion": "litro"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Línea que forma parte de un polígono.",
+    "solucion": "lado"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Distancia entre dos puntos.",
+    "solucion": "longitud"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "contiene",
+    "definicion": "Número que se escribe con ceros y un uno (contiene la L).",
+    "solucion": "millón"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "contiene",
+    "definicion": "Figura de cuatro lados iguales dadeada.",
+    "solucion": "rombo"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Unidad principal de longitud.",
+    "solucion": "metro"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Operación de calcular el producto.",
+    "solucion": "multiplicación"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "El número mayor en una resta.",
+    "solucion": "minuendo"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Número formado por mil unidades.",
+    "solucion": "millar"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "La suma de una parte con su propia igual.",
+    "solucion": "mitad"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Número de arriba en una fracción.",
+    "solucion": "numerador"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Número formado por 9 unidades.",
+    "solucion": "nueve"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Símbolo gráfico para contar.",
+    "solucion": "número"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "contiene",
+    "definicion": "Número 50.",
+    "solucion": "cincuenta"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "contiene",
+    "definicion": "Número que indica orden (contiene la N).",
+    "solucion": "ordinal"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Periodo de 365 días.",
+    "solucion": "año"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Lo contrario de grande.",
+    "solucion": "pequeño"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Estación del año.",
+    "solucion": "otoño"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Parte del día que empieza al amanecer.",
+    "solucion": "mañana"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Acción de añadir (contiene la Ñ).",
+    "solucion": "añadir"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Ángulo que mide más de 90 grados.",
+    "solucion": "obtuso"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Figura plana de ocho lados.",
+    "solucion": "octógono"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Número 4 + 4.",
+    "solucion": "ocho"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Poner en fila según el valor.",
+    "solucion": "ordenar"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Posición número 8.",
+    "solucion": "octavo"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Suma de todos los lados de un polígono.",
+    "solucion": "perímetro"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Figura cerrada de lados rectos.",
+    "solucion": "polígono"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Resultado de la multiplicación.",
+    "solucion": "producto"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Cuerpo geométrico con dos bases iguales.",
+    "solucion": "prisma"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Que tiene la misma distancia y nunca se corta.",
+    "solucion": "paralelo"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Número 15.",
+    "solucion": "quince"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Número que indica la quinta posición.",
+    "solucion": "quinto"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Figura de cuatro lados.",
+    "solucion": "cuadrilátero"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Lado opuesto al derecho.",
+    "solucion": "izquierdo"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Algo muy pequeño (contiene la Q).",
+    "solucion": "poquito"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Línea que une el centro del círculo con el borde.",
+    "solucion": "radio"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Ángulo de 90 grados.",
+    "solucion": "recto"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Lo que sobra en una división.",
+    "solucion": "resto"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Operación de quitar cantidades.",
+    "solucion": "resta"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Línea sin curvas.",
+    "solucion": "recta"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Operación de añadir o juntar.",
+    "solucion": "suma"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Unidad de tiempo muy pequeña.",
+    "solucion": "segundo"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Línea de números ordenada.",
+    "solucion": "serie"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Número que va después de otro.",
+    "solucion": "siguiente"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Cada número que se suma.",
+    "solucion": "sumando"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Polígono de tres lados.",
+    "solucion": "triángulo"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Figura de cuatro lados con dos paralelos.",
+    "solucion": "trapecio"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Resultado final de una suma.",
+    "solucion": "total"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Mil veces mil.",
+    "solucion": "tonelada"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Número 13.",
+    "solucion": "trece"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "La cantidad más pequeña.",
+    "solucion": "unidad"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Lugar que ocupa el número uno.",
+    "solucion": "uno"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Puntos que están en la misma línea.",
+    "solucion": "unidos"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Figura redonda (contiene la U).",
+    "solucion": "círculo"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Figura de cuatro lados iguales (contiene la U).",
+    "solucion": "cuadrado"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Punto donde se juntan dos lados.",
+    "solucion": "vértice"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Línea de arriba a abajo.",
+    "solucion": "vertical"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Lo que vale un número.",
+    "solucion": "valor"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Número que indica la veces que se repite algo.",
+    "solucion": "veces"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Número 20.",
+    "solucion": "veinte"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Deporte acuático con balón.",
+    "solucion": "waterpolo"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Fruta marrón con pelitos que se pesa.",
+    "solucion": "kiwi"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Conexión a internet.",
+    "solucion": "wifi"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Reloj en inglés (con W).",
+    "solucion": "watch"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Página social.",
+    "solucion": "web"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Número que ocupa la posición seis.",
+    "solucion": "sexto"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Resultado correcto.",
+    "solucion": "exacto"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Dar una explicación.",
+    "solucion": "explicar"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Figura de seis lados.",
+    "solucion": "hexágono"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Número que va después.",
+    "solucion": "próximo"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Signo de que algo es más grande (>).",
+    "solucion": "mayor"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Día anterior a hoy.",
+    "solucion": "ayer"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Mes quinto del año.",
+    "solucion": "mayo"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Rayas paralelas del sol.",
+    "solucion": "rayas"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Eje vertical de una gráfica (eje Y).",
+    "solucion": "y"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Lado izquierdo.",
+    "solucion": "izquierda"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Trazar una línea con regla.",
+    "solucion": "trazar"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Utensilio para escribir.",
+    "solucion": "lápiz"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Acción de medir distancias con pasos largos.",
+    "solucion": "zancada"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "La parte de abajo de una planta (usada para contar raíces).",
+    "solucion": "raíz"
+  }
 ]

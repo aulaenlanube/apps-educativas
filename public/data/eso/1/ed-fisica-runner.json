@@ -1,17 +1,122 @@
 {
-  "fases_calentamiento": [
-    "movilidad articular", "carrera continua", "estiramientos", "activación", "desplazamientos", "juegos previos", "vuelta a la calma", "trote suave", "skipping", "talones glúteo"
+  "capacidades_fisicas": [
+    "resistencia",
+    "fuerza",
+    "velocidad",
+    "flexibilidad",
+    "coordinación",
+    "agilidad",
+    "equilibrio",
+    "potencia",
+    "reflejos",
+    "ritmo"
+  ],
+  "partes_calentamiento": [
+    "movilidad articular",
+    "carrera suave",
+    "estiramientos",
+    "juego",
+    "ejercicio específico",
+    "pulsaciones",
+    "calor",
+    "respiración",
+    "activación",
+    "progresión"
+  ],
+  "deportes_individuales": [
+    "atletismo",
+    "natación",
+    "gimnasia rítmica",
+    "bádminton",
+    "ciclismo",
+    "tenis",
+    "judo",
+    "karate",
+    "patinaje",
+    "esgrima"
   ],
   "deportes_colectivos": [
-    "baloncesto", "balonmano", "fútbol", "voleibol", "rugby", "waterpolo", "hockey", "beisbol", "fútbol sala", "ultimate"
+    "fútbol",
+    "baloncesto",
+    "balonmano",
+    "voleibol",
+    "hockey",
+    "rugby",
+    "waterpolo",
+    "béisbol",
+    "fútbol sala",
+    "korfbal"
   ],
-  "huesos_cuerpo": [
-    "fémur", "húmero", "tibia", "peroné", "radio", "cúbito", "cráneo", "costilla", "esternón", "pelvis"
+  "salud_deporte": [
+    "higiene",
+    "ducha",
+    "alimentación",
+    "agua",
+    "descanso",
+    "lesión",
+    "postura",
+    "ropa deportiva",
+    "zapatillas",
+    "hidratación"
   ],
-  "musculos_cuerpo": [
-    "bíceps", "tríceps", "cuádriceps", "pectoral", "abdominal", "gemelo", "dorsal", "trapecio", "deltoides", "glúteo"
+  "juegos_populares": [
+    "pañuelo",
+    "pilla pilla",
+    "escondite",
+    "canicas",
+    "trompo",
+    "comba",
+    "goma",
+    "chapas",
+    "rayuela",
+    "carreras de sacos"
   ],
-  "capacidades_fisicas": [
-    "resistencia", "fuerza", "velocidad", "flexibilidad", "agilidad", "coordinación", "equilibrio", "potencia", "ritmo", "reacción"
+  "expresion_corporal": [
+    "baile",
+    "mimo",
+    "teatro",
+    "ritmo",
+    "gesto",
+    "mirada",
+    "postura",
+    "coreografía",
+    "música",
+    "sentimiento"
+  ],
+  "natura_actividades": [
+    "senderismo",
+    "orientación",
+    "brújula",
+    "mapa",
+    "escalada",
+    "piragüismo",
+    "acampada",
+    "mochila",
+    "naturaleza",
+    "medio ambiente"
+  ],
+  "anatonomia_basica": [
+    "hueso",
+    "músculo",
+    "articulación",
+    "corazón",
+    "pulmón",
+    "columna",
+    "fémur",
+    "bíceps",
+    "cráneo",
+    "rodilla"
+  ],
+  "valore_deporte": [
+    "superación",
+    "esfuerzo",
+    "compañerismo",
+    "respeto",
+    "fair play",
+    "reglas",
+    "equipo",
+    "lucha",
+    "disciplina",
+    "victoria"
   ]
 }

@@ -1,79 +1,116 @@
 [
   {
-    "categoria": "Animales (Visual)",
+    "categoria": "Animales Salvajes (Visual)",
     "correctos": [
+      "🦁",
+      "🐯",
+      "🐘",
+      "🦒",
+      "🦓",
+      "🐊",
+      "🦍",
+      "🐆",
+      "🐺",
+      "🐻",
+      "🦏",
+      "🌍"
+    ],
+    "intrusos": [
+      "🐮",
+      "🐷",
+      "🐔",
+      "🐑",
+      "🐴",
       "🐶",
       "🐱",
-      "🐰",
-      "🐹",
-      "🦊",
-      "🐻"
-    ],
-    "intrusos": [
       "🍎",
       "🚗",
-      "⚽",
-      "🏠",
-      "👠"
+      "🚲"
     ]
   },
   {
-    "categoria": "Ropa (Visual)",
+    "categoria": "Ropa de Invierno (Visual)",
     "correctos": [
-      "👕",
-      "👖",
-      "👗",
       "🧥",
-      "👟",
-      "🧢"
+      "🧣",
+      "🧤",
+      "🧦",
+      "👢",
+      "🧢",
+      "🧶",
+      "⛷️",
+      "🎿",
+      "🏂"
     ],
     "intrusos": [
-      "🍌",
-      "🚙",
-      "⏰",
-      "👓",
-      "🗝️"
+      "🩳",
+      "🕶️",
+      "⛱️",
+      "🏖️",
+      "🍦",
+      "🍎",
+      "🎒",
+      "🚲",
+      "🍉",
+      "👕"
     ]
   },
   {
-    "categoria": "Frutas (Visual)",
+    "categoria": "Frutas y Verduras (Visual)",
     "correctos": [
       "🍎",
       "🍐",
       "🍊",
-      "🍋",
       "🍌",
       "🍇",
-      "🍓"
-    ],
-    "intrusos": [
+      "🍓",
       "🥦",
       "🥕",
       "🌽",
-      "🍗",
-      "🧀"
-    ]
-  },
-  {
-    "categoria": "Transporte (Visual)",
-    "correctos": [
-      "🚗",
-      "🚌",
-      "🚑",
-      "🚒",
-      "🚕",
-      "🚜"
+      "🍅",
+      "🥬",
+      "🍆"
     ],
     "intrusos": [
-      "🏠",
-      "🏫",
-      "🏥",
-      "🌳",
-      "🐕"
+      "🍗",
+      "🧀",
+      "🍕",
+      "🍔",
+      "🍟",
+      "🥤",
+      "🍪",
+      "🍩",
+      "🧁",
+      "🥓"
     ]
   },
   {
-    "categoria": "Verbos (Acciones)",
+    "categoria": "Transporte aéreo y espacial (Visual)",
+    "correctos": [
+      "✈️",
+      "🚁",
+      "🚀",
+      "🛸",
+      "🛩️",
+      "🛰️",
+      "🎈",
+      "🪂"
+    ],
+    "intrusos": [
+      "🚗",
+      "🚌",
+      "🚂",
+      "🚢",
+      "🚲",
+      "🛵",
+      "🚜",
+      "🏘️",
+      "🏫",
+      "🌳"
+    ]
+  },
+  {
+    "categoria": "Verbos en Infinitivo (-ar, -er, -ir)",
     "correctos": [
       "Correr",
       "Saltar",
@@ -81,7 +118,14 @@
       "Escribir",
       "Dormir",
       "Comer",
-      "Jugar"
+      "Jugar",
+      "Bailar",
+      "Pintar",
+      "Subir",
+      "Abrir",
+      "Soñar",
+      "Nadar",
+      "Vivir"
     ],
     "intrusos": [
       "Mesa",
@@ -89,25 +133,43 @@
       "Perro",
       "Gato",
       "Casa",
-      "Lápiz"
+      "Lápiz",
+      "Cantando",
+      "Jugado",
+      "Rápido",
+      "Azul",
+      "Ayer",
+      "Hoy"
     ]
   },
   {
-    "categoria": "Sustantivos (Cosas)",
+    "categoria": "Sustantivos Propios (Nombres)",
     "correctos": [
-      "Mesa",
-      "Libro",
-      "Coche",
-      "Árbol",
-      "Ordenador",
-      "Zapato"
+      "Pedro",
+      "España",
+      "Madrid",
+      "Amazonas",
+      "Ebro",
+      "Marte",
+      "Lucía",
+      "Pirineos",
+      "Europa",
+      "Jaime",
+      "Valencia"
     ],
     "intrusos": [
       "Rápido",
       "Feliz",
       "Verde",
-      "Cantando",
-      "Ayer"
+      "Mesa",
+      "Árbol",
+      "Casa",
+      "Coche",
+      "Libro",
+      "Perro",
+      "Flor",
+      "Ciudad",
+      "Río"
     ]
   },
   {
@@ -119,18 +181,30 @@
       "Pequeño",
       "Rojo",
       "Amable",
-      "Fuerte"
+      "Fuerte",
+      "Lento",
+      "Rápido",
+      "Valiente",
+      "Triste",
+      "Alegre",
+      "Limpio",
+      "Sucio"
     ],
     "intrusos": [
       "Pedro",
       "España",
       "Madrid",
       "Saltar",
-      "Comer"
+      "Comer",
+      "Mesa",
+      "Lápiz",
+      "Dormir",
+      "Juan",
+      "Coche"
     ]
   },
   {
-    "categoria": "Palabras Agudas",
+    "categoria": "Palabras Agudas con Tilde",
     "correctos": [
       "Camión",
       "Papá",
@@ -138,49 +212,79 @@
       "Café",
       "Ratón",
       "Avión",
-      "Jardín"
+      "Jardín",
+      "Sofá",
+      "Parchís",
+      "Canapé",
+      "Botón",
+      "Compás",
+      "Bebé"
     ],
     "intrusos": [
       "Mesa",
       "Silla",
       "Libro",
       "Árbol",
-      "Lápiz"
+      "Lápiz",
+      "Azúcar",
+      "Césped",
+      "Fútbol",
+      "Cómic",
+      "Lámpara",
+      "Pájaro"
     ]
   },
   {
-    "categoria": "Sinónimos de 'Feliz'",
+    "categoria": "Sinónimos de 'Contento'",
     "correctos": [
-      "Contento",
       "Alegre",
       "Dichoso",
       "Satisfecho",
-      "Radiante"
+      "Radiante",
+      "Feliz",
+      "Jubiloso",
+      "Encantado",
+      "Entusiasmado",
+      "Plácido"
     ],
     "intrusos": [
       "Triste",
       "Enojado",
       "Lloroso",
       "Preocupado",
-      "Enfadado"
+      "Enfadado",
+      "Aburrido",
+      "Cansado",
+      "Hambriento",
+      "Solo"
     ]
   },
   {
-    "categoria": "Palabras con B",
+    "categoria": "Palabras con B (Ortografía)",
     "correctos": [
       "Barco",
       "Bueno",
       "Blanco",
       "Buscar",
       "Abuelo",
-      "Nube"
+      "Nube",
+      "Bailar",
+      "Bajo",
+      "Boda",
+      "Botella",
+      "Burbuja"
     ],
     "intrusos": [
       "Vaca",
       "Vela",
       "Viento",
       "Volar",
-      "Uva"
+      "Uva",
+      "Vaso",
+      "Verde",
+      "Vivir",
+      "Vidrio",
+      "Viaje"
     ]
   }
 ]

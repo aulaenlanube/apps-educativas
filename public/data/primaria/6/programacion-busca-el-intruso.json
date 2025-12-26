@@ -1,13 +1,23 @@
 [
   {
-    "categoria": "Hardware: Cosas que toco (Visual)",
+    "categoria": "Hardware de Almacenamiento y Conexión (Visual)",
     "correctos": [
       "💻",
       "⌨️",
       "🖱️",
       "🖨️",
       "📱",
-      "🖥️"
+      "🖥️",
+      "🔋",
+      "🔌",
+      "💾",
+      "📡",
+      "🛰️",
+      "📠",
+      "📥",
+      "📤",
+      "🌡️",
+      "⏲️"
     ],
     "intrusos": [
       "🍎",
@@ -15,147 +25,239 @@
       "⚽",
       "🧸",
       "🚗",
-      "🍕"
+      "🍕",
+      "🍦",
+      "🥪",
+      "🛋️",
+      "🛁",
+      "👕",
+      "👞",
+      "帽子",
+      "🌻"
     ]
   },
   {
-    "categoria": "Robótica (Visual)",
+    "categoria": "Sistemas de Automatización y Robótica (Visual)",
     "correctos": [
       "🤖",
       "⚙️",
       "🔋",
       "🔌",
       "💡",
-      "🛠️"
+      "🛠️",
+      "🔩",
+      "🎛️",
+      "🌡️",
+      "⏲️",
+      "🛰️",
+      "🦾",
+      "🦿",
+      "🏗️"
     ],
     "intrusos": [
       "🌸",
-      "🍦",
       "🐱",
-      "☁️",
-      "🎨"
+      "🍦",
+      "🌈",
+      "🦋",
+      "🎨",
+      "🧸",
+      "👒",
+      "🧥",
+      "🧣",
+      "🧤",
+      "👟",
+      "👒"
     ]
   },
   {
-    "categoria": "Iconos de la pantalla (Visual)",
+    "categoria": "Entorno Web y Correo Electrónico (Visual)",
     "correctos": [
       "📁",
       "🗑️",
       "🔍",
       "✉️",
-      "🖼️",
-      "🎬"
+      "📧",
+      "🌐",
+      "🔗",
+      "📶",
+      "📶",
+      "🔔",
+      "📍",
+      "📥",
+      "📤",
+      "💾",
+      "📥"
     ],
     "intrusos": [
       "🚲",
       "🦒",
       "🍔",
       "🎸",
-      "👞"
+      "👞",
+      "👕",
+      "👒",
+      "🛹",
+      "⚽",
+      "🍎",
+      "🏠",
+      "🌲",
+      "🌳",
+      "🌻",
+      "🦆"
     ]
   },
   {
-    "categoria": "Símbolos de Código (Visual)",
+    "categoria": "Pensamiento Computacional: Operadores (Visual)",
     "correctos": [
       "➡️",
       "⬅️",
       "⬆️",
       "⬇️",
       "➕",
-      "➖"
+      "➖",
+      "✖️",
+      "➗",
+      "🔄",
+      "♾️",
+      "✅",
+      "❌",
+      "🔗",
+      "〰️",
+      "🔣"
     ],
     "intrusos": [
       "🏠",
       "🚗",
       "🐶",
       "🌲",
-      "🍎"
+      "🍎",
+      "🍔",
+      "🍕",
+      "🧸",
+      "🛋️",
+      "🛁",
+      "👕",
+      "👟",
+      "👞",
+      "🧢",
+      "👒",
+      "🚲"
     ]
   },
   {
-    "categoria": "Órdenes para un Robot",
+    "categoria": "Funciones y Bloques Personalizados (Scratch)",
     "correctos": [
-      "Avanzar",
-      "Girar",
-      "Saltar",
-      "Parar",
-      "Esperar"
+      "Definir bloque",
+      "Llamar función",
+      "Variable de lista",
+      "Si... entonces... si no",
+      "Repetir 10 veces",
+      "Al hacer clic en bandera",
+      "Tocar sonido",
+      "Cambiar efecto",
+      "Borrar todo"
     ],
     "intrusos": [
-      "Comer",
-      "Dormir",
-      "Llorar",
-      "Cantar",
-      "Soñar"
+      "Escribir una carta",
+      "Dibujar un paisaje",
+      "Cantar una canción",
+      "Cocinar una cena",
+      "Ir de vacaciones",
+      "Dormir por la noche",
+      "Comer fruta",
+      "Hacer deporte"
     ]
   },
   {
-    "categoria": "Partes de un Ordenador",
+    "categoria": "Periféricos e Infraestructura de Red",
     "correctos": [
-      "Teclado",
-      "Ratón",
-      "Pantalla",
-      "Altavoz",
-      "Cámara",
-      "Batería"
+      "Router WiFi",
+      "Cable de datos RJ45",
+      "Servidor central",
+      "Switch de red",
+      "Módem",
+      "Plataforma en la nube",
+      "Dirección IP",
+      "Ancho de banda"
     ],
     "intrusos": [
-      "Zapato",
-      "Cuchara",
-      "Libreta",
-      "Lápiz",
-      "Gorra"
+      "Zapato de marca",
+      "Cuchara de postre",
+      "Libreta de notas",
+      "Lápiz de cera",
+      "Gorra de sol",
+      "Silla de plástico",
+      "Puerta de cristal",
+      "Ventana de madera"
     ]
   },
   {
-    "categoria": "Cosas que hay en Internet",
+    "categoria": "Seguridad Ética y Privacidad Online",
     "correctos": [
-      "Web",
-      "Vídeo",
-      "Juego",
-      "Correo",
-      "Foto",
-      "Mensaje"
+      "Huella digital",
+      "Cifrado de datos",
+      "Política de privacidad",
+      "Derechos de autor",
+      "Licencia Creative Commons",
+      "Software libre",
+      "Código abierto",
+      "Copias de seguridad"
     ],
     "intrusos": [
-      "Piedra",
-      "Árbol",
-      "Bocadillo",
-      "Pelota",
-      "Libro"
+      "Piedra pómez",
+      "Árbol de navidad",
+      "Bocadillo de jamón",
+      "Pelota de golf",
+      "Libro de poemas",
+      "Agua de lluvia",
+      "Fuego de campamento",
+      "Cuchillo de sierra"
     ]
   },
   {
-    "categoria": "Acciones con el Ratón",
+    "categoria": "Metodología de Desarrollo de Software",
     "correctos": [
-      "Clic",
-      "Doble clic",
-      "Arrastrar",
-      "Soltar"
+      "Análisis de requisitos",
+      "Diseño de algoritmos",
+      "Escritura de código",
+      "Pruebas de errores",
+      "Depuración (Debug)",
+      "Lanzamiento / Release",
+      "Mantenimiento",
+      "Actualización"
     ],
     "intrusos": [
-      "Pintar",
-      "Recortar",
-      "Pegar",
-      "Doblar",
-      "Escribir"
+      "Pintar con óleo",
+      "Recortar con sierra",
+      "Pegar con cemento",
+      "Doblar una toalla",
+      "Correr una maratón",
+      "Saltar en paracaídas",
+      "Comer en restaurante"
     ]
   },
   {
-    "categoria": "Conceptos de Programación",
+    "categoria": "Estructuras Lógicas Avanzadas",
     "correctos": [
-      "Código",
-      "Bucle",
-      "Algoritmo",
-      "Instrucción",
-      "Condicional"
+      "Bucle While (Mientras)",
+      "Bucle For (Para)",
+      "Condicional anidado",
+      "Variable booleana",
+      "Lista de elementos (Array)",
+      "Operador lógico AND / OR",
+      "Función con retorno",
+      "Parámetro"
     ],
     "intrusos": [
-      "Cuento",
-      "Canción",
-      "Receta",
-      "Dibujo",
-      "Poesía"
+      "Cuento de hadas",
+      "Receta de cocina",
+      "Dibujo lineal",
+      "Poesía lírica",
+      "Novela policíaca",
+      "Guion cinematográfico",
+      "Mapa de carreteras",
+      "Diccionario de lengua"
     ]
   }
 ]

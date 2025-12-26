@@ -1,164 +1,259 @@
 [
   {
-    "categoria": "Jobs (Icons)",
+    "categoria": "Common Jobs and Occupations (Icons)",
     "correctos": [
       "👮",
       "👩‍⚕️",
       "👨‍🏫",
       "👨‍🚒",
       "👩‍🚀",
-      "👨‍🍳"
+      "👨‍🍳",
+      "🕵️‍♂️",
+      "👨‍🎨",
+      "👩‍🔬",
+      "👷‍♂️",
+      "👩‍🌾"
     ],
     "intrusos": [
       "🐶",
       "🐱",
       "🏠",
       "🚗",
-      "🌳"
+      "🌳",
+      "🧸",
+      "🪁",
+      "🎒",
+      "🍔",
+      "🍦"
     ]
   },
   {
-    "categoria": "Clothes (Icons)",
+    "categoria": "Clothes and Footwear (Icons)",
     "correctos": [
       "👕",
       "👖",
       "👗",
       "🧥",
       "👟",
-      "🧢"
+      "🧢",
+      "👚",
+      "🧤",
+      "🧣",
+      "🧦",
+      "👔",
+      "👢",
+      "👙"
     ],
     "intrusos": [
       "🍎",
       "🍌",
       "🚙",
       "⌚",
-      "👓"
+      "👓",
+      "📱",
+      "💻",
+      "🎸",
+      "🥣",
+      "🚲"
     ]
   },
   {
-    "categoria": "Weather (Icons)",
+    "categoria": "Weather and Atmospheric Conditions (Icons)",
     "correctos": [
       "☀️",
       "☁️",
       "🌧️",
       "❄️",
       "⛈️",
-      "🌬️"
+      "🌬️",
+      "🌈",
+      "🌫️",
+      "🌪️",
+      "🌊"
     ],
     "intrusos": [
       "🏠",
       "🚗",
       "🐶",
       "📚",
-      "✏️"
+      "✏️",
+      "🍔",
+      "🛋️",
+      "🛁",
+      "🧸",
+      "🚲"
     ]
   },
   {
-    "categoria": "Food (Icons)",
+    "categoria": "Food and Dining (Icons)",
     "correctos": [
       "🍕",
       "🍔",
       "🥗",
       "🍝",
       "🍦",
-      "🍎"
+      "🍎",
+      "🍗",
+      "🥪",
+      "🍳",
+      "🥣",
+      "🍿",
+      "🍩"
     ],
     "intrusos": [
       "⚽",
       "🏀",
       "🚗",
       "✏️",
-      "👕"
+      "👕",
+      "👟",
+      "🚲",
+      "🏠",
+      "📱",
+      "💻",
+      "🎸"
     ]
   },
   {
-    "categoria": "Jobs (Words)",
+    "categoria": "Professions (Words)",
     "correctos": [
       "Teacher",
       "Doctor",
       "Nurse",
-      "Police",
+      "Police Officer",
       "Firefighter",
-      "Vet"
+      "Vet",
+      "Chef",
+      "Artist",
+      "Astronaut",
+      "Scientist",
+      "Pilot"
     ],
     "intrusos": [
       "School",
       "Hospital",
-      "Station",
+      "Police Station",
+      "Fire Station",
+      "Zoo",
+      "Kitchen",
+      "Airport",
       "Park",
-      "House"
+      "House",
+      "Garden"
     ]
   },
   {
-    "categoria": "Action Verbs",
+    "categoria": "Active Action Verbs",
     "correctos": [
       "Run",
       "Jump",
       "Swim",
       "Dance",
       "Sing",
-      "Read"
+      "Read",
+      "Write",
+      "Ride a bike",
+      "Play football",
+      "Climb",
+      "Fly"
     ],
     "intrusos": [
       "Happy",
       "Sad",
       "Big",
       "Small",
-      "Red"
+      "Red",
+      "Blue",
+      "Hot",
+      "Cold",
+      "Beautiful",
+      "Ugly",
+      "Fast",
+      "Slow"
     ]
   },
   {
-    "categoria": "Places in Town",
+    "categoria": "Public Places in Town",
     "correctos": [
       "School",
       "Park",
       "Hospital",
       "Cinema",
       "Supermarket",
-      "Library"
+      "Library",
+      "Museum",
+      "Bus Station",
+      "Toy Shop",
+      "Zoo",
+      "Post Office"
     ],
     "intrusos": [
       "Teacher",
       "Doctor",
       "Book",
       "Apple",
-      "Car"
+      "Car",
+      "Pencil",
+      "Shoes",
+      "Pizza",
+      "Chair",
+      "Table"
     ]
   },
   {
-    "categoria": "Clothes (Words)",
+    "categoria": "Clothing Items (Words)",
     "correctos": [
       "T-shirt",
       "Jeans",
       "Dress",
       "Skirt",
       "Shoes",
-      "Coat"
+      "Coat",
+      "Hat",
+      "Gloves",
+      "Scarf",
+      "Socks",
+      "Sweater",
+      "Shirt"
     ],
     "intrusos": [
       "Leg",
       "Arm",
       "Head",
       "Hand",
-      "Foot"
+      "Foot",
+      "Ear",
+      "Nose",
+      "Eye",
+      "Mouth",
+      "Shoulder"
     ]
   },
   {
-    "categoria": "Weather (Words)",
+    "categoria": "Weather Descriptions (Adjectives)",
     "correctos": [
       "Sunny",
       "Rainy",
       "Cloudy",
       "Windy",
       "Snowy",
-      "Hot"
+      "Hot",
+      "Cold",
+      "Stormy",
+      "Foggy",
+      "Chilly"
     ],
     "intrusos": [
       "Monday",
       "Summer",
       "Blue",
       "Happy",
-      "Sad"
+      "Sad",
+      "Dog",
+      "Cat",
+      "School",
+      "Pizza",
+      "Morning"
     ]
   }
 ]

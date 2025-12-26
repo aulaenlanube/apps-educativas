@@ -1,17 +1,122 @@
 {
-  "mecanismos": [
-    "palanca", "polea", "engranaje", "tornillo sin fin", "biela", "cigüeñal", "leva", "rueda dentada", "piñón", "cremallera"
-  ],
   "materiales_metales": [
-    "hierro", "acero", "cobre", "aluminio", "bronce", "latón", "cinc", "plomo", "estaño", "titanio"
+    "acero",
+    "fundición",
+    "cobre",
+    "aluminio",
+    "latón",
+    "bronce",
+    "estaño",
+    "plomo",
+    "zinc",
+    "oxidación"
   ],
-  "componentes_electricos": [
-    "pila", "batería", "interruptor", "pulsador", "conmutador", "bombilla", "motor", "zumbador", "resistencia", "fusible"
+  "mecanismos_transmision": [
+    "engranaje",
+    "polea con correa",
+    "rueda de fricción",
+    "cadena",
+    "tornillo sin fin",
+    "piñón",
+    "relación de transmisión",
+    "eje",
+    "árbol",
+    "cardán"
   ],
-  "herramientas": [
-    "alicates", "destornillador", "llave inglesa", "sierra de metal", "martillo", "lima", "broca", "taladro", "soldador", "metro"
+  "mecanismos_transformacion": [
+    "biela-manivela",
+    "leva",
+    "cigüeñal",
+    "piñón-cremallera",
+    "tornillo-tuerca",
+    "trinquete",
+    "excéntrica",
+    "movimiento lineal",
+    "movimiento circular",
+    "alternativo"
   ],
-  "informatica_hardware": [
-    "procesador", "disco duro", "memoria ram", "placa base", "fuente de alimentación", "ventilador", "tarjeta gráfica", "puerto usb", "periférico", "chip"
+  "fuerza_momento": [
+    "newton",
+    "julio",
+    "par de fuerzas",
+    "potencia",
+    "velocidad angular",
+    "trabajo",
+    "rendimiento",
+    "freno",
+    "embrague",
+    "muelle"
+  ],
+  "electricidad_circuitos": [
+    "pila",
+    "batería",
+    "pulsador",
+    "conmutador",
+    "motor eléctrico",
+    "zumbador",
+    "led",
+    "resistencia",
+    "fusible",
+    "multímetro"
+  ],
+  "ley_ohm": [
+    "voltaje",
+    "intensidad",
+    "resistencia",
+    "vatios",
+    "amperios",
+    "voltios",
+    "ohmios",
+    "serie",
+    "paralelo",
+    "caída de tensión"
+  ],
+  "proceso_tecnologico": [
+    "boceto",
+    "croquis",
+    "plano",
+    "presupuesto",
+    "hoja de procesos",
+    "evaluación",
+    "maqueta",
+    "normas de seguridad",
+    "taller",
+    "herramienta"
+  ],
+  "materiales_plasticos": [
+    "termoplástico",
+    "termoestable",
+    "elastómero",
+    "pvc",
+    "pet",
+    "poliestireno",
+    "resina",
+    "nailon",
+    "moldeo",
+    "extrusión"
+  ],
+  "informatica_redes": [
+    "router",
+    "internet",
+    "lan",
+    "wan",
+    "wifi",
+    "ip",
+    "servidor",
+    "nube",
+    "navegador",
+    "seguridad informática"
+  ],
+  "sostenibilidad_energia": [
+    "energía solar",
+    "eólica",
+    "hidráulica",
+    "biomasa",
+    "reciclaje",
+    "eficiencia energética",
+    "huella de carbono",
+    "residuo",
+    "impacto ambiental",
+    "renovable"
   ]
 }

@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "Salut ! Je me présente",
+        "texto": "Bonjour ! Je m'appelle Antoine et j'ai treize ans. J'habite à Lyon, une très belle ville en France. Je suis en classe de cinquième. J'ai un frère, il s'appelle Thomas, et une petite sœur, elle s'appelle Chloé. À la maison, nous avons un chat noir qui s'appelle Figaro. Mes parents sont professeurs. J'adore le français et la musique, mais je n'aime pas beaucoup les mathématiques parce que c'est difficile pour moi. Et toi, comment tu t'appelles ?",
+        "preguntas": [
+            {
+                "pregunta": "Quel âge a Antoine ?",
+                "opciones": [
+                    "Douze ans",
+                    "Treize ans",
+                    "Quatorze ans",
+                    "Dix ans"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où habite-t-il ?",
+                "opciones": [
+                    "À Paris",
+                    "À Lyon",
+                    "À Marseille",
+                    "À Bordeaux"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Comment s'appelle son frère ?",
+                "opciones": [
+                    "Figaro",
+                    "Thomas",
+                    "Antoine",
+                    "Chloé"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'est-ce qu'Antoine n'aime pas ?",
+                "opciones": [
+                    "La musique",
+                    "Le français",
+                    "Les mathématiques",
+                    "Le chat"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Quelle est la profession de ses parents ?",
+                "opciones": [
+                    "Médecins",
+                    "Professeurs",
+                    "Acteurs",
+                    "Boulangers"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Ma journée au collège",
+        "texto": "Le matin, je me lève à sept heures. Je prends mon petit-déjeuner et je vais au collège à huit heures avec mon sac à dos. Les cours commencent à huit heures et demie. Le lundi, j'ai français, anglais et géographie. À midi, je mange à la cantine avec mes amis. Les cours terminent à quatre heures de l'après-midi. Après le collège, je fais mes devoirs et je joue au football. Je dîne avec ma famille à huit heures du soir et je me couche à dix heures.",
+        "preguntas": [
+            {
+                "pregunta": "À quelle heure Antoine se lève-t-il ?",
+                "opciones": [
+                    "À 6h00",
+                    "À 7h00",
+                    "À 8h00",
+                    "À 9h00"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelles matières a-t-il le lundi ?",
+                "opciones": [
+                    "Musique et dessin",
+                    "Français, anglais et géo",
+                    "Maths et sport",
+                    "Informatique"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où mange-t-il à midi ?",
+                "opciones": [
+                    "À la maison",
+                    "À la cantine",
+                    "Au restaurant",
+                    "Dans le parc"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "À quelle heure terminent les cours ?",
+                "opciones": [
+                    "À 14h00",
+                    "À 15h00",
+                    "À 16h00",
+                    "À 17h00"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Que fait-il après ses devoirs ?",
+                "opciones": [
+                    "Il dort",
+                    "Il joue au football",
+                    "Il regarde la télé",
+                    "Il cuisine"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "La famille de Marie",
+        "texto": "Marie présente sa famille sur une photo. Voici son père, il est grand et il porte des lunettes. Sa mère est blonde et elle est très sympathique. Marie a une grand-mère qui habite à la campagne et un grand-père qui adore cuisiner. Sur la photo, il y a aussi son oncle et sa tante avec ses deux cousins. Marie est très contente parce que toute sa famille est réunie pour fêter son anniversaire. Elle adore les gâteaux au chocolat !",
+        "preguntas": [
+            {
+                "pregunta": "Comment est le père de Marie ?",
+                "opciones": [
+                    "Petit",
+                    "Grand avec des lunettes",
+                    "Roux",
+                    "Triste"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où habite sa grand-mère ?",
+                "opciones": [
+                    "À la ville",
+                    "À la campagne",
+                    "À l'école",
+                    "En Italie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'est-ce que son grand-père adore faire ?",
+                "opciones": [
+                    "Lire",
+                    "Dormir",
+                    "Cuisiner",
+                    "Courir"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Pourquoi Marie est-elle contente ?",
+                "opciones": [
+                    "Parce qu'il pleut",
+                    "Parce que toute sa famille est réunie",
+                    "Parce qu'elle n'a pas de devoirs",
+                    "Parce qu'elle a un chat"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel type de gâteau Marie aime-t-elle ?",
+                "opciones": [
+                    "Aux pommes",
+                    "Au chocolat",
+                    "Au citron",
+                    "À la vanille"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Dans ma trousse et mon sac",
+        "texto": "Dans mon sac à dos, il y a beaucoup de choses pour le collège. J'ai trois cahiers, un livre de mathématiques et un agenda bleu. Dans ma trousse, j'ai deux stylos (un bleu et un noir), un crayon à papier, une gomme et une règle. J'ai aussi des feutres de toutes les couleurs pour mon cours de dessin. Le professeur dit : « Ouvrez vos trousses et prenez un stylo rouge pour corriger ! ». Mais je n'ai pas de stylo rouge !",
+        "preguntas": [
+            {
+                "pregunta": "De quelle couleur est l'agenda ?",
+                "opciones": [
+                    "Rouge",
+                    "Vert",
+                    "Bleu",
+                    "Jaune"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Qu'est-ce qu'il y a dans la trousse ?",
+                "opciones": [
+                    "Un sandwich",
+                    "Des stylos, un crayon, une gomme",
+                    "Un ballon",
+                    "Un chat"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "À quoi servent les feutres ?",
+                "opciones": [
+                    "Pour les maths",
+                    "Pour le cours de dessin",
+                    "Pour le sport",
+                    "Pour déjeuner"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel stylo Antoine n'a pas ?",
+                "opciones": [
+                    "Bleu",
+                    "Noir",
+                    "Rouge",
+                    "Vert"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Combien de cahiers Antoine a-t-il ?",
+                "opciones": [
+                    "Un",
+                    "Deux",
+                    "Trois",
+                    "Quatre"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Les animaux de compagnie",
+        "texto": "En France, beaucoup de familles ont un animal de compagnie. Le chien est l'animal préféré, il est fidèle et il aime se promener au parc. Le chat est aussi très populaire, il est indépendant et il aime dormir sur le canapé. Certaines personnes ont des animaux plus petits, comme un lapin, un hamster ou des poissons rouges. Avoir un animal est une grande responsabilité : il faut lui donner à manger, de l'eau et beaucoup d'affection.",
+        "preguntas": [
+            {
+                "pregunta": "Quel est l'animal préféré des Français selon le texte ?",
+                "opciones": [
+                    "Le chat",
+                    "Le chien",
+                    "Le lapin",
+                    "Le lion"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Comment est décrit le chat ?",
+                "opciones": [
+                    "Actif",
+                    "Indépendant et il aime dormir",
+                    "Très grand",
+                    "Vert"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où le chien aime-t-il se promener ?",
+                "opciones": [
+                    "À la cuisine",
+                    "Au parc",
+                    "Sur la table",
+                    "Dans la chambre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Citez un petit animal mentionné.",
+                "opciones": [
+                    "Un éléphant",
+                    "Un hamster",
+                    "Un girafe",
+                    "Un ours"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'est-ce qu'il faut donner à un animal ?",
+                "opciones": [
+                    "Des jouets seulement",
+                    "À manger, de l'eau et de l'affection",
+                    "De l'argent",
+                    "Des devoirs"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "La France et ses couleurs",
+        "texto": "La France est un pays hexagonal en Europe. Son drapeau est bleu, blanc et rouge. La capitale est Paris, célèbre pour la Tour Eiffel et le musée du Louvre. Mais la France, c'est aussi la montagne avec les Alpes, et la mer avec la Méditerranée. Les Français adorent la gastronomie : le fromage, le pain (la baguette) et les croissants sont très célèbres dans tout le monde. La langue française est parlée dans beaucoup d'autres pays, comme au Canada ou en Afrique.",
+        "preguntas": [
+            {
+                "pregunta": "Quelles sont les couleurs du drapeau français ?",
+                "opciones": [
+                    "Rouge et jaune",
+                    "Bleu, blanc, rouge",
+                    "Vert et blanc",
+                    "Noir et rouge"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle est la capitale de la France ?",
+                "opciones": [
+                    "Londres",
+                    "Paris",
+                    "Lyon",
+                    "Madrid"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Citez un monument célèbre de Paris.",
+                "opciones": [
+                    "Le Colisée",
+                    "La Tour Eiffel",
+                    "La Maison Blanche",
+                    "L'Alhambra"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel aliment français est mentionné ?",
+                "opciones": [
+                    "La paella",
+                    "La baguette",
+                    "Le sushi",
+                    "La pizza"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où parle-t-on aussi français ?",
+                "opciones": [
+                    "Au Japon",
+                    "Au Canada ou en Afrique",
+                    "En Australie",
+                    "Au Brésil"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Les quatre saisons",
+        "texto": "Il y a quatre saisons dans l'année. Au printemps, les fleurs poussent et les oiseaux chantent. En été, il fait très chaud et c'est le temps des vacances à la plage. En automne, les feuilles des arbres tombent et il y a souvent du vent. En hiver, il fait froid, il neige parfois et nous fêtons Noël en décembre. Ma saison préférée est l'automne parce que j'adore les couleurs des arbres : orange, rouge et marron.",
+        "preguntas": [
+            {
+                "pregunta": "Que se passe-t-il au printemps ?",
+                "opciones": [
+                    "Il neige",
+                    "Les fleurs poussent",
+                    "On va à la plage",
+                    "Il fait froid"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle saison est associée aux vacances à la plage ?",
+                "opciones": [
+                    "L'hiver",
+                    "L'automne",
+                    "L'été",
+                    "Le printemps"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Quand fêtons-nous Noël ?",
+                "opciones": [
+                    "En été",
+                    "En hiver",
+                    "Au printemps",
+                    "En automne"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "De quelle couleur sont les feuilles en automne ?",
+                "opciones": [
+                    "Bleues",
+                    "Vertes",
+                    "Orange, rouge et marron",
+                    "Blanches"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Pourquoi Antoine aime-t-il l'automne ?",
+                "opciones": [
+                    "Parce qu'il fait chaud",
+                    "Pour les couleurs des arbres",
+                    "Pour manger des glaces",
+                    "Pour faire du ski"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Mes vêtements préférés",
+        "texto": "Aujourd'hui, il fait un peu froid. Je porte un pantalon noir, un pull en laine gris et des chaussures de sport vertes. J'ai aussi un manteau bleu dans mon casier. Quand il fait chaud, en été, je préfère porter un short, un tee-shirt et des sandales. Pour faire du sport au collège, je porte un survêtement bleu et blanc. Ma couleur préférée pour les vêtements est le vert parce que c'est la couleur de la nature.",
+        "preguntas": [
+            {
+                "pregunta": "Que porte Antoine aujourd'hui ?",
+                "opciones": [
+                    "Un short",
+                    "Un pantalon noir et un pull",
+                    "Un pyjama",
+                    "Un costume"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où est son manteau ?",
+                "opciones": [
+                    "Sur la table",
+                    "Dans son casier",
+                    "À la maison",
+                    "Dans son sac"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Que porte-t-il en été quand il fait chaud ?",
+                "opciones": [
+                    "Un pull",
+                    "Un short et un tee-shirt",
+                    "Un manteau",
+                    "Des bottes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle est sa couleur préférée pour s'habiller ?",
+                "opciones": [
+                    "Le noir",
+                    "Le vert",
+                    "Le bleu",
+                    "Le rose"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Que porte-t-il pour faire du sport ?",
+                "opciones": [
+                    "Un jean",
+                    "Un survêtement",
+                    "Une robe",
+                    "Rien"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Au marché",
+        "texto": "Le samedi matin, je vais au marché avec ma mère. C'est un endroit fantastique avec beaucoup de parfums et de couleurs. Nous achetons des fruits : des pommes, des oranges et des bananes. Nous achetons aussi des légumes pour faire une soupe : des carottes, des pommes de terre et des poireaux. Ma mère achète des fleurs pour mettre sur la table du salon. Après le marché, nous allons à la boulangerie pour acheter du pain frais et des croissants pour le dimanche.",
+        "preguntas": [
+            {
+                "pregunta": "Quand Antoine va-t-il au marché ?",
+                "opciones": [
+                    "Le lundi",
+                    "Le samedi matin",
+                    "Le soir",
+                    "Tous les jours"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quels fruits achètent-ils ?",
+                "opciones": [
+                    "Fraises",
+                    "Pommes, oranges, bananes",
+                    "Melons",
+                    "Ananas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Pourquoi achètent-ils des légumes ?",
+                "opciones": [
+                    "Pour faire un gâteau",
+                    "Pour faire une soupe",
+                    "Pour le chat",
+                    "Pour décorer"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où vont-ils après le marché ?",
+                "opciones": [
+                    "Au cinéma",
+                    "À la boulangerie",
+                    "À l'école",
+                    "À la piscine"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'achètent-ils à la boulangerie ?",
+                "opciones": [
+                    "Des fleurs",
+                    "Du pain et des croissants",
+                    "De la viande",
+                    "Des jouets"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Les loisirs et les sports",
+        "texto": "Pendant mon temps libre, j'ai beaucoup d'activités ! J'aime beaucoup écouter de la musique et regarder des films au cinéma. Le mercredi, je fais de la natation à la piscine municipale. Mon ami Lucas préfère jouer aux jeux vidéo ou faire du vélo dans le parc. Le week-end, nous aimons aller à la montagne pour faire des randonnées. Le sport est très important pour la santé et pour s'amuser avec les copains !",
+        "preguntas": [
+            {
+                "pregunta": "Qu'est-ce qu'Antoine aime faire pendant son temps libre ?",
+                "opciones": [
+                    "Étudier",
+                    "Écouter de la musique et aller au ciné",
+                    "Travailler",
+                    "Cuisiner"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel sport fait-il le mercredi ?",
+                "opciones": [
+                    "Du tennis",
+                    "De la natation",
+                    "Du judo",
+                    "Du basket"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'est-ce que Lucas préfère faire ?",
+                "opciones": [
+                    "Lire",
+                    "Jeux vidéo ou vélo",
+                    "Dormir",
+                    "Chanter"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où vont-ils le week-end ?",
+                "opciones": [
+                    "À la ville",
+                    "À la montagne",
+                    "À la bibliothèque",
+                    "Au supermarché"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Pourquoi le sport est-il important ?",
+                "opciones": [
+                    "Pour gagner de l'argent",
+                    "Pour la santé et s'amuser",
+                    "Pour être célèbre",
+                    "Pour ne pas dormir"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

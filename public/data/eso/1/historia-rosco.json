@@ -1,302 +1,2194 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Capa gaseosa que envuelve la Tierra.", "solucion": "atmósfera", "materia": "historia" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Ciencia que estudia los restos materiales del pasado.", "solucion": "arqueología", "materia": "historia" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Cueva famosa en España por sus pinturas rupestres (bisontes).", "solucion": "altamira", "materia": "historia" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Plaza pública en las ciudades griegas.", "solucion": "ágora", "materia": "historia" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Canal artificial para transportar agua en Roma.", "solucion": "acueducto", "materia": "historia" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Actividad del Neolítico que consiste en cultivar la tierra.", "solucion": "agricultura", "materia": "historia" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Arte de diseñar y construir edificios.", "solucion": "arquitectura", "materia": "historia" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Edificio romano de forma ovalada para luchas de gladiadores.", "solucion": "anfiteatro", "materia": "historia" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Distancia vertical de un punto respecto al nivel del mar.", "solucion": "altitud", "materia": "historia" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Continente donde surgieron los primeros homínidos.", "solucion": "áfrica", "materia": "historia" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Hacha de piedra tallada por las dos caras del Paleolítico.", "solucion": "bifaz", "materia": "historia" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Capa de la Tierra donde se desarrolla la vida.", "solucion": "biosfera", "materia": "historia" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Metal mezcla de cobre y estaño.", "solucion": "bronce", "materia": "historia" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Pueblos que vivían fuera de las fronteras romanas.", "solucion": "bárbaros", "materia": "historia" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Ciudad importante de Mesopotamia con jardines colgantes.", "solucion": "babilonia", "materia": "historia" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Capacidad de andar sobre dos piernas.", "solucion": "bipedismo", "materia": "historia" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Instrumento para medir la presión atmosférica.", "solucion": "barómetro", "materia": "historia" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Instrumento de orientación con una aguja imantada.", "solucion": "brújula", "materia": "historia" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Relieve costero, entrada de mar (más grande que cala, más pequeña que golfo).", "solucion": "bahía", "materia": "historia" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Nombre antiguo de la capital del Imperio Romano de Oriente (Constantinopla).", "solucion": "bizancio", "materia": "historia" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Sociedad compleja con ciudades, leyes y escritura.", "solucion": "civilización", "materia": "historia" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Estado medio de la atmósfera en un lugar durante mucho tiempo.", "solucion": "clima", "materia": "historia" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Monumento megalítico circular.", "solucion": "cromlech", "materia": "historia" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Tipo de escritura de Mesopotamia con forma de cuña.", "solucion": "cuneiforme", "materia": "historia" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Gran extensión de tierra separada por océanos.", "solucion": "continente", "materia": "historia" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Capa externa y sólida de la Tierra.", "solucion": "corteza", "materia": "historia" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Habitante de pleno derecho en Roma o Grecia.", "solucion": "ciudadano", "materia": "historia" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Anfiteatro más famoso de Roma.", "solucion": "coliseo", "materia": "historia" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Religión que nació en el Imperio Romano con Jesús.", "solucion": "cristianismo", "materia": "historia" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Recuento de la población de un lugar.", "solucion": "censo", "materia": "historia" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Sistema político donde el pueblo gobierna (Grecia).", "solucion": "democracia", "materia": "historia" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Monumento megalítico con forma de mesa.", "solucion": "dolmen", "materia": "historia" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Terreno triangular en la desembocadura de un río.", "solucion": "delta", "materia": "historia" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Serie de gobernantes de la misma familia (Egipto).", "solucion": "dinastía", "materia": "historia" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Seres superiores a los que se adoraba.", "solucion": "dioses", "materia": "historia" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Casa unifamiliar romana de gente rica.", "solucion": "domus", "materia": "historia" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Moneda de plata romana.", "solucion": "denario", "materia": "historia" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Montaña de arena en el desierto o playa.", "solucion": "duna", "materia": "historia" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Ciencia que estudia la población (nacimientos, muertes...).", "solucion": "demografía", "materia": "historia" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Gobierno de una sola persona con poder total (Roma).", "solucion": "dictadura", "materia": "historia" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Línea imaginaria que divide la Tierra en dos hemisferios.", "solucion": "ecuador", "materia": "historia" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Invención que marca el fin de la Prehistoria.", "solucion": "escritura", "materia": "historia" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Civilización del río Nilo.", "solucion": "egipto", "materia": "historia" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Persona que no es libre y pertenece a otro.", "solucion": "esclavo", "materia": "historia" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Desgaste del suelo por el viento o agua.", "solucion": "erosión", "materia": "historia" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Ciudad-estado griega guerrera.", "solucion": "esparta", "materia": "historia" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Esculturas egipcias con cuerpo de león y cabeza humana.", "solucion": "esfinge", "materia": "historia" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Paso estrecho de mar entre dos tierras.", "solucion": "estrecho", "materia": "historia" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Capa de la atmósfera donde está el ozono.", "solucion": "estratosfera", "materia": "historia" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Momento del año en que el día y la noche duran lo mismo.", "solucion": "equinoccio", "materia": "historia" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Rey del antiguo Egipto.", "solucion": "faraón", "materia": "historia" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Resto petrificado de un ser vivo antiguo.", "solucion": "fósil", "materia": "historia" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Documento u objeto que da información histórica.", "solucion": "fuente", "materia": "historia" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Pueblo comerciante y navegante del Mediterráneo.", "solucion": "fenicios", "materia": "historia" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Descubrimiento clave del Paleolítico para calentarse.", "solucion": "fuego", "materia": "historia" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Plaza principal de la ciudad romana.", "solucion": "foro", "materia": "historia" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Conjunto de animales de una región.", "solucion": "fauna", "materia": "historia" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Fractura en la corteza terrestre.", "solucion": "falla", "materia": "historia" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Relativo a los ríos (Régimen...).", "solucion": "fluvial", "materia": "historia" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Conjunto de plantas de una región.", "solucion": "flora", "materia": "historia" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Ciencia que estudia la Tierra y sus habitantes.", "solucion": "geografía", "materia": "historia" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Masa grande de hielo.", "solucion": "glaciar", "materia": "historia" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Civilización antigua cuna de la democracia.", "solucion": "grecia", "materia": "historia" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Luchador en el circo romano.", "solucion": "gladiador", "materia": "historia" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Sistema de posicionamiento global.", "solucion": "gps", "materia": "historia" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Conflicto armado.", "solucion": "guerra", "materia": "historia" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "Cría de animales domésticos.", "solucion": "ganadería", "materia": "historia" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Modelo esférico de la Tierra (Globo...).", "solucion": "globo", "materia": "historia" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Piedra pequeña redondeada por el agua.", "solucion": "guijarro", "materia": "historia" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Teoría que decía que la Tierra era el centro.", "solucion": "geocéntrica", "materia": "historia" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Ciencia que estudia el pasado de la humanidad.", "solucion": "historia", "materia": "historia" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Antepasado del ser humano.", "solucion": "homínido", "materia": "historia" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Especie humana actual (Homo...).", "solucion": "sapiens", "materia": "historia" }, 
-  { "id": "h3_fix", "letra": "H", "tipo": "empieza", "definicion": "Género al que pertenecemos los humanos.", "solucion": "homo", "materia": "historia" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Capa de agua de la Tierra.", "solucion": "hidrosfera", "materia": "historia" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Cada una de las mitades de la esfera terrestre.", "solucion": "hemisferio", "materia": "historia" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Escritura sagrada de Egipto.", "solucion": "hieroglífico", "materia": "historia" }, 
-  { "id": "h6_fix", "letra": "H", "tipo": "contiene", "definicion": "Escritura sagrada de Egipto (contiene H).", "solucion": "jeroglífico", "materia": "historia" }, 
-  { "id": "h6_final", "letra": "H", "tipo": "empieza", "definicion": "Franja horaria (Huso...).", "solucion": "horario", "materia": "historia" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Rey de Babilonia famoso por su código de leyes.", "solucion": "hammurabi", "materia": "historia" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Cultura griega extendida por Alejandro Magno.", "solucion": "helenismo", "materia": "historia" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Tumba subterránea egipcia.", "solucion": "hipogeo", "materia": "historia" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Soldado griego de infantería pesada.", "solucion": "hoplita", "materia": "historia" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Organización política que domina muchos territorios.", "solucion": "imperio", "materia": "historia" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Pueblo prerromano de la península (costa este).", "solucion": "iberos", "materia": "historia" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Religión monoteísta surgida en Arabia.", "solucion": "islam", "materia": "historia" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Península donde está España.", "solucion": "ibérica", "materia": "historia" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Desbordamiento de un río (el Nilo lo hacía).", "solucion": "inundación", "materia": "historia" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Porción de tierra rodeada de agua.", "solucion": "isla", "materia": "historia" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Franja de tierra que une dos continentes.", "solucion": "istmo", "materia": "historia" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Roca formada por el enfriamiento del magma.", "solucion": "ígnea", "materia": "historia" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Pueblo originario de un lugar.", "solucion": "indígena", "materia": "historia" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Río importante de Asia (civilización del...).", "solucion": "indo", "materia": "historia" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Planeta más grande del Sistema Solar.", "solucion": "júpiter", "materia": "historia" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Escritura egipcia con dibujos.", "solucion": "jeroglífico", "materia": "historia" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Periodo de los dinosaurios (Era Mesozoica).", "solucion": "jurásico", "materia": "historia" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "General romano asesinado en el senado (César).", "solucion": "julio", "materia": "historia" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Competiciones deportivas en honor a Zeus.", "solucion": "juegos", "materia": "historia" },
-  { "id": "j6", "letra": "J", "tipo": "empieza", "definicion": "Religión de los hebreos.", "solucion": "judaísmo", "materia": "historia" },
-  { "id": "j7", "letra": "J", "tipo": "empieza", "definicion": "Orden dórico, corintio y...", "solucion": "jónico", "materia": "historia" },
-  { "id": "j8", "letra": "J", "tipo": "empieza", "definicion": "Persona que aplica la ley.", "solucion": "juez", "materia": "historia" },
-  { "id": "j9", "letra": "J", "tipo": "empieza", "definicion": "Objeto valioso de adorno.", "solucion": "joya", "materia": "historia" },
-  { "id": "j10", "letra": "J", "tipo": "empieza", "definicion": "Día de la semana dedicado a Júpiter.", "solucion": "jueves", "materia": "historia" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Faraón de la Gran Pirámide.", "solucion": "keops", "materia": "historia" },
-  { "id": "k2", "letra": "K", "tipo": "contiene", "definicion": "Relieve formado por la disolución de roca caliza (contiene K).", "solucion": "kárstico", "materia": "historia" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "País de África donde se han hallado muchos homínidos.", "solucion": "kenia", "materia": "historia" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Unidad de medida de distancia (1000 m).", "solucion": "kilómetro", "materia": "historia" },
-  { "id": "k5", "letra": "K", "tipo": "contiene", "definicion": "Pueblo guerrero del norte de Europa (contiene K).", "solucion": "vikingo", "materia": "historia" },
-  { "id": "k6", "letra": "K", "tipo": "contiene", "definicion": "Lengua prerromana del norte de España (contiene K).", "solucion": "euskera", "materia": "historia" },
-  { "id": "k7", "letra": "K", "tipo": "contiene", "definicion": "Ciudad antigua de Mesopotamia, Uruk o... (contiene K).", "solucion": "akad", "materia": "historia" },
-  { "id": "k8", "letra": "K", "tipo": "empieza", "definicion": "Fuerza vital o espíritu en Egipto.", "solucion": "ka", "materia": "historia" },
-  { "id": "k9", "letra": "K", "tipo": "contiene", "definicion": "País asiático del río Indo (contiene K).", "solucion": "pakistan", "materia": "historia" },
-  { "id": "k10", "letra": "K", "tipo": "contiene", "definicion": "Expresión griega 'lo he encontrado' (contiene K).", "solucion": "eureka", "materia": "historia" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Distancia desde el ecuador a un punto.", "solucion": "latitud", "materia": "historia" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Distancia desde el meridiano de Greenwich.", "solucion": "longitud", "materia": "historia" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Capa sólida externa de la Tierra.", "solucion": "litosfera", "materia": "historia" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Satélite de la Tierra.", "solucion": "luna", "materia": "historia" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Idioma de los romanos.", "solucion": "latín", "materia": "historia" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Soldado del ejército romano.", "solucion": "legionario", "materia": "historia" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Norma establecida por la autoridad.", "solucion": "ley", "materia": "historia" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Precipitación líquida.", "solucion": "lluvia", "materia": "historia" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Terreno plano sin montañas.", "solucion": "llanura", "materia": "historia" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Relativo a la piedra (Paleo...).", "solucion": "lítico", "materia": "historia" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Tierra entre dos ríos (Tigris y Éufrates).", "solucion": "mesopotamia", "materia": "historia" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Representación plana de la Tierra.", "solucion": "mapa", "materia": "historia" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Línea imaginaria que va de polo a polo.", "solucion": "meridiano", "materia": "historia" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Llanura elevada.", "solucion": "meseta", "materia": "historia" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Gran elevación natural del terreno.", "solucion": "montaña", "materia": "historia" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Cadáver preservado en Egipto.", "solucion": "momia", "materia": "historia" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Monumento prehistórico de grandes piedras.", "solucion": "megalito", "materia": "historia" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Material duro y brillante (Edad de los...).", "solucion": "metales", "materia": "historia" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Pieza de metal usada como dinero.", "solucion": "moneda", "materia": "historia" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Forma de gobierno con un rey.", "solucion": "monarquía", "materia": "historia" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Periodo de la piedra nueva o pulida.", "solucion": "neolítico", "materia": "historia" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Que no vive en un lugar fijo, se desplaza.", "solucion": "nómada", "materia": "historia" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Río principal de Egipto.", "solucion": "nilo", "materia": "historia" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Masa de vapor de agua en el cielo.", "solucion": "nube", "materia": "historia" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Punto cardinal opuesto al sur.", "solucion": "norte", "materia": "historia" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Cementerio antiguo (Ciudad de los muertos).", "solucion": "necrópolis", "materia": "historia" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Arte de viajar por el agua.", "solucion": "navegación", "materia": "historia" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Clase social privilegiada.", "solucion": "nobleza", "materia": "historia" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Altura del mar (Cota cero).", "solucion": "nivel", "materia": "historia" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Ciudad celtíbera famosa por su resistencia.", "solucion": "numancia", "materia": "historia" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Tiempo que tarda la Tierra en orbitar al Sol (contiene Ñ).", "solucion": "año", "materia": "historia" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Gran elevación de terreno (contiene Ñ).", "solucion": "montaña", "materia": "historia" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "País de la península Ibérica (contiene Ñ).", "solucion": "españa", "materia": "historia" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Terreno llano dedicado al cultivo (contiene Ñ).", "solucion": "campiña", "materia": "historia" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Madera para el fuego (recurso) (contiene Ñ).", "solucion": "leña", "materia": "historia" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "contiene", "definicion": "Vía para el ganado (contiene Ñ).", "solucion": "cañada", "materia": "historia" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Roca grande en el mar, como Gibraltar (contiene Ñ).", "solucion": "peñón", "materia": "historia" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Estación del año (contiene Ñ).", "solucion": "otoño", "materia": "historia" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "Dibujo o plan de un objeto (contiene Ñ).", "solucion": "diseño", "materia": "historia" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "Labor del maestro (contiene Ñ).", "solucion": "enseñanza", "materia": "historia" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Punto cardinal por donde se pone el sol.", "solucion": "oeste", "materia": "historia" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Lugar de la Tierra situado al Este.", "solucion": "oriente", "materia": "historia" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Gran masa de agua salada.", "solucion": "océano", "materia": "historia" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Monte sagrado de los dioses griegos.", "solucion": "olimpo", "materia": "historia" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Monumento egipcio alargado y con punta.", "solucion": "obelisco", "materia": "historia" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Movimiento de las olas.", "solucion": "oleaje", "materia": "historia" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Gas que nos protege de los rayos UV (Capa de...).", "solucion": "ozono", "materia": "historia" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Camino de un planeta alrededor del sol.", "solucion": "órbita", "materia": "historia" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Árbol fundamental en la agricultura mediterránea.", "solucion": "olivo", "materia": "historia" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Arte de trabajar metales preciosos (oro/plata).", "solucion": "orfebrería", "materia": "historia" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Periodo más largo de la historia (piedra antigua).", "solucion": "paleolítico", "materia": "historia" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Etapa antes de la Historia escrita.", "solucion": "prehistoria", "materia": "historia" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Tumba de los faraones con forma triangular.", "solucion": "pirámide", "materia": "historia" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Planta egipcia usada para hacer papel.", "solucion": "papiro", "materia": "historia" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Templo de Atenas en la Acrópolis.", "solucion": "partenón", "materia": "historia" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Persona que se dedica al gobierno de la ciudad.", "solucion": "político", "materia": "historia" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Ciudad-estado griega.", "solucion": "polis", "materia": "historia" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Clase social rica de Roma.", "solucion": "patricios", "materia": "historia" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Tierra rodeada de agua menos por una parte.", "solucion": "península", "materia": "historia" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Cuerpo celeste como la Tierra o Marte.", "solucion": "planeta", "materia": "historia" },
-
-  { "id": "q1", "letra": "Q", "tipo": "contiene", "definicion": "Arte de construir edificios (contiene Q).", "solucion": "arquitectura", "materia": "historia" },
-  { "id": "q2", "letra": "Q", "tipo": "contiene", "definicion": "Edad de Piedra Nueva (contiene Q).", "solucion": "neolítico", "materia": "historia" },
-  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Edad de Piedra Antigua (contiene Q).", "solucion": "paleolítico", "materia": "historia" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Conjunto de huesos (contiene Q).", "solucion": "esqueleto", "materia": "historia" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Igualdad de día y noche (contiene Q).", "solucion": "equinoccio", "materia": "historia" },
-  { "id": "q6", "letra": "Q", "tipo": "contiene", "definicion": "Canal de riego árabe (contiene Q).", "solucion": "acequia", "materia": "historia" },
-  { "id": "q7", "letra": "Q", "tipo": "contiene", "definicion": "Piedra grande de construcción (contiene Q).", "solucion": "bloque", "materia": "historia" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "Muro para contener el agua (contiene Q).", "solucion": "dique", "materia": "historia" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Científico que estudia el pasado (contiene Q).", "solucion": "arqueólogo", "materia": "historia" },
-  { "id": "q10", "letra": "Q", "tipo": "contiene", "definicion": "Ganar un territorio por la fuerza (contiene Q).", "solucion": "conquista", "materia": "historia" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Capital del mayor imperio de la antigüedad.", "solucion": "roma", "materia": "historia" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Forma de gobierno sin rey.", "solucion": "república", "materia": "historia" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Formas de la superficie terrestre.", "solucion": "relieve", "materia": "historia" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Corriente de agua continua.", "solucion": "río", "materia": "historia" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Movimiento de la Tierra sobre su eje.", "solucion": "rotación", "materia": "historia" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Material sólido de la corteza terrestre.", "solucion": "roca", "materia": "historia" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Símbolo que marca los puntos cardinales (Rosa de los...).", "solucion": "vientos", "materia": "historia" }, 
-  { "id": "r7_fix", "letra": "R", "tipo": "empieza", "definicion": "Arte pintado en rocas (Pintura...).", "solucion": "rupestre", "materia": "historia" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Invento circular clave para el transporte.", "solucion": "rueda", "materia": "historia" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Proceso de adoptar la cultura romana.", "solucion": "romanización", "materia": "historia" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Fundador mítico de Roma junto a Remo.", "solucion": "rómulo", "materia": "historia" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Estrella central de nuestro sistema.", "solucion": "sol", "materia": "historia" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Conjunto de planetas que giran alrededor del Sol.", "solucion": "sistema solar", "materia": "historia" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Estilo de vida en un lugar fijo (Neolítico).", "solucion": "sedentario", "materia": "historia" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Piedra usada en la prehistoria para herramientas.", "solucion": "sílex", "materia": "historia" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Ataúd egipcio.", "solucion": "sarcófago", "materia": "historia" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Asamblea de gobierno en Roma.", "solucion": "senado", "materia": "historia" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Conjunto de personas que viven juntas.", "solucion": "sociedad", "materia": "historia" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Periodo de 100 años.", "solucion": "siglo", "materia": "historia" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Bosque tropical denso y húmedo.", "solucion": "selva", "materia": "historia" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Paisaje de clima tropical seco con hierbas altas.", "solucion": "sabana", "materia": "historia" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Planeta donde vivimos.", "solucion": "tierra", "materia": "historia" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Movimiento de la Tierra alrededor del Sol.", "solucion": "traslación", "materia": "historia" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Estado de la atmósfera en un momento dado.", "solucion": "tiempo", "materia": "historia" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Grado de calor del aire.", "solucion": "temperatura", "materia": "historia" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Instrumento para medir la temperatura.", "solucion": "termómetro", "materia": "historia" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Edificio religioso para los dioses.", "solucion": "templo", "materia": "historia" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Lugar de enterramiento.", "solucion": "tumba", "materia": "historia" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Grupo de familias en la prehistoria.", "solucion": "tribu", "materia": "historia" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Intercambio de productos sin dinero.", "solucion": "trueque", "materia": "historia" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Baños públicos romanos.", "solucion": "termas", "materia": "historia" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Conjunto de todo lo que existe.", "solucion": "universo", "materia": "historia" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Relativo a la ciudad.", "solucion": "urbano", "materia": "historia" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Séptimo planeta del sistema solar.", "solucion": "urano", "materia": "historia" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Primera ciudad de la historia en Mesopotamia.", "solucion": "uruk", "materia": "historia" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Herramienta u objeto de uso manual.", "solucion": "utensilio", "materia": "historia" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Cantidad estándar para medir.", "solucion": "unidad", "materia": "historia" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Alianza entre países (ej: Europea).", "solucion": "unión", "materia": "historia" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Cauce de un río seco en zonas desérticas.", "solucion": "uadi", "materia": "historia" },
-  { "id": "u9", "letra": "U", "tipo": "empieza", "definicion": "Crema o aceite usado en la antigüedad.", "solucion": "ungüento", "materia": "historia" },
-  { "id": "u10", "letra": "U", "tipo": "empieza", "definicion": "Recipiente para guardar cenizas o votos.", "solucion": "urna", "materia": "historia" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Terreno llano entre montañas.", "solucion": "valle", "materia": "historia" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Abertura de la tierra por donde sale lava.", "solucion": "volcán", "materia": "historia" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Aire en movimiento.", "solucion": "viento", "materia": "historia" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Carretera o camino romano.", "solucion": "vía", "materia": "historia" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Planeta vecino de la Tierra.", "solucion": "venus", "materia": "historia" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Plantas de un lugar.", "solucion": "vegetación", "materia": "historia" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Recipiente de cerámica antiguo.", "solucion": "vasija", "materia": "historia" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Tela para mover barcos con el viento.", "solucion": "vela", "materia": "historia" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Casa de campo romana.", "solucion": "villa", "materia": "historia" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Pueblo bárbaro que invadió Hispania.", "solucion": "visigodos", "materia": "historia" },
-
-  { "id": "w1", "letra": "W", "tipo": "contiene", "definicion": "Científico que propuso la deriva continental (contiene W).", "solucion": "wegener", "materia": "historia" },
-  { "id": "w2", "letra": "W", "tipo": "contiene", "definicion": "Meridiano cero (contiene W).", "solucion": "greenwich", "materia": "historia" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Naturalista de la evolución (contiene W).", "solucion": "darwin", "materia": "historia" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Capital de EE.UU (contiene W).", "solucion": "washington", "materia": "historia" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Metal usado en la industria (contiene W).", "solucion": "wolframio", "materia": "historia" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Isla de volcanes en el Pacífico (contiene W).", "solucion": "hawaii", "materia": "historia" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Fruta de Nueva Zelanda (contiene W).", "solucion": "kiwi", "materia": "historia" },
-  { "id": "w8", "letra": "W", "tipo": "contiene", "definicion": "Científico de la gravedad (contiene W).", "solucion": "newton", "materia": "historia" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "País de África (contiene W).", "solucion": "zimbabwe", "materia": "historia" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Cine americano (contiene W).", "solucion": "hollywood", "materia": "historia" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Trabajo arqueológico de cavar (contiene X).", "solucion": "excavación", "materia": "historia" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Agrupación de estrellas y planetas (contiene X).", "solucion": "galaxia", "materia": "historia" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Desaparición de una especie (contiene X).", "solucion": "extinción", "materia": "historia" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Fuente histórica escrita (contiene X).", "solucion": "texto", "materia": "historia" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Cercano al Oriente (contiene X).", "solucion": "próximo", "materia": "historia" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Cargo religioso romano, Pontifex... (contiene X).", "solucion": "máximo", "materia": "historia" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Capa más externa de la atmósfera (contiene X).", "solucion": "exosfera", "materia": "historia" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Reacción del metal con el aire (contiene X).", "solucion": "oxidación", "materia": "historia" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Parte de fuera (contiene X).", "solucion": "exterior", "materia": "historia" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "Ave mitológica que renace (contiene X).", "solucion": "fénix", "materia": "historia" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Lugar con restos arqueológicos.", "solucion": "yacimiento", "materia": "historia" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Mineral blanco usado en construcción y arte.", "solucion": "yeso", "materia": "historia" },
-  { "id": "y3", "letra": "Y", "tipo": "empieza", "definicion": "Pieza de madera para unir bueyes.", "solucion": "yugo", "materia": "historia" },
-  { "id": "y4", "letra": "Y", "tipo": "empieza", "definicion": "Hembra del caballo, usada en transporte antiguo.", "solucion": "yegua", "materia": "historia" },
-  { "id": "y5", "letra": "Y", "tipo": "empieza", "definicion": "Estatua que está tumbada.", "solucion": "yacente", "materia": "historia" },
-  { "id": "y6", "letra": "Y", "tipo": "contiene", "definicion": "Día presente (contiene Y).", "solucion": "hoy", "materia": "historia" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Día anterior (contiene Y).", "solucion": "ayer", "materia": "historia" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Mes del año (contiene Y).", "solucion": "mayo", "materia": "historia" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Lugar de costa con arena (contiene Y).", "solucion": "playa", "materia": "historia" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Río pequeño (contiene Y).", "solucion": "arroyo", "materia": "historia" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Área o región.", "solucion": "zona", "materia": "historia" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Mercado árabe.", "solucion": "zoco", "materia": "historia" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Dios principal de los griegos.", "solucion": "zeus", "materia": "historia" },
-  { "id": "z4", "letra": "Z", "tipo": "empieza", "definicion": "Templo mesopotámico con forma de torre escalonada.", "solucion": "zigurat", "materia": "historia" },
-  { "id": "z5", "letra": "Z", "tipo": "empieza", "definicion": "Excavación larga y estrecha.", "solucion": "zanja", "materia": "historia" },
-  { "id": "z6", "letra": "Z", "tipo": "empieza", "definicion": "Banda climática de la Tierra (fría, templada...).", "solucion": "zona", "materia": "historia" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Punto más alto del cielo sobre nuestra cabeza (contiene Z).", "solucion": "cenit", "materia": "historia" }, 
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "Línea donde se juntan cielo y tierra (contiene Z).", "solucion": "horizonte", "materia": "historia" },
-  { "id": "z9", "letra": "Z", "tipo": "contiene", "definicion": "Sociedad avanzada (contiene Z).", "solucion": "civilización", "materia": "historia" },
-  { "id": "z10", "letra": "Z", "tipo": "contiene", "definicion": "Roca sedimentaria común (contiene Z).", "solucion": "caliza", "materia": "historia" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Capa gaseosa que envuelve la Tierra.",
+    "solucion": "atmósfera",
+    "materia": "historia"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia los restos materiales del pasado.",
+    "solucion": "arqueología",
+    "materia": "historia"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Cueva famosa en España por sus pinturas rupestres (bisontes).",
+    "solucion": "altamira",
+    "materia": "historia"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Plaza pública en las ciudades griegas.",
+    "solucion": "ágora",
+    "materia": "historia"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Canal artificial para transportar agua en Roma.",
+    "solucion": "acueducto",
+    "materia": "historia"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Actividad del Neolítico que consiste en cultivar la tierra.",
+    "solucion": "agricultura",
+    "materia": "historia"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Arte de diseñar y construir edificios.",
+    "solucion": "arquitectura",
+    "materia": "historia"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Edificio romano de forma ovalada para luchas de gladiadores.",
+    "solucion": "anfiteatro",
+    "materia": "historia"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Distancia vertical de un punto respecto al nivel del mar.",
+    "solucion": "altitud",
+    "materia": "historia"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Continente donde surgieron los primeros homínidos.",
+    "solucion": "áfrica",
+    "materia": "historia"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Hacha de piedra tallada por las dos caras del Paleolítico.",
+    "solucion": "bifaz",
+    "materia": "historia"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Capa de la Tierra donde se desarrolla la vida.",
+    "solucion": "biosfera",
+    "materia": "historia"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Metal mezcla de cobre y estaño.",
+    "solucion": "bronce",
+    "materia": "historia"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Pueblos que vivían fuera de las fronteras romanas.",
+    "solucion": "bárbaros",
+    "materia": "historia"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Ciudad importante de Mesopotamia con jardines colgantes.",
+    "solucion": "babilonia",
+    "materia": "historia"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Capacidad de andar sobre dos piernas.",
+    "solucion": "bipedismo",
+    "materia": "historia"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Instrumento para medir la presión atmosférica.",
+    "solucion": "barómetro",
+    "materia": "historia"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Instrumento de orientación con una aguja imantada.",
+    "solucion": "brújula",
+    "materia": "historia"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Relieve costero, entrada de mar (más grande que cala, más pequeña que golfo).",
+    "solucion": "bahía",
+    "materia": "historia"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Nombre antiguo de la capital del Imperio Romano de Oriente (Constantinopla).",
+    "solucion": "bizancio",
+    "materia": "historia"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Sociedad compleja con ciudades, leyes y escritura.",
+    "solucion": "civilización",
+    "materia": "historia"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Estado medio de la atmósfera en un lugar durante mucho tiempo.",
+    "solucion": "clima",
+    "materia": "historia"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Monumento megalítico circular.",
+    "solucion": "cromlech",
+    "materia": "historia"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Tipo de escritura de Mesopotamia con forma de cuña.",
+    "solucion": "cuneiforme",
+    "materia": "historia"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Gran extensión de tierra separada por océanos.",
+    "solucion": "continente",
+    "materia": "historia"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Capa externa y sólida de la Tierra.",
+    "solucion": "corteza",
+    "materia": "historia"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Habitante de pleno derecho en Roma o Grecia.",
+    "solucion": "ciudadano",
+    "materia": "historia"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Anfiteatro más famoso de Roma.",
+    "solucion": "coliseo",
+    "materia": "historia"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Religión que nació en el Imperio Romano con Jesús.",
+    "solucion": "cristianismo",
+    "materia": "historia"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Recuento de la población de un lugar.",
+    "solucion": "censo",
+    "materia": "historia"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Sistema político donde el pueblo gobierna (Grecia).",
+    "solucion": "democracia",
+    "materia": "historia"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Monumento megalítico con forma de mesa.",
+    "solucion": "dolmen",
+    "materia": "historia"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Terreno triangular en la desembocadura de un río.",
+    "solucion": "delta",
+    "materia": "historia"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Serie de gobernantes de la misma familia (Egipto).",
+    "solucion": "dinastía",
+    "materia": "historia"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Seres superiores a los que se adoraba.",
+    "solucion": "dioses",
+    "materia": "historia"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Casa unifamiliar romana de gente rica.",
+    "solucion": "domus",
+    "materia": "historia"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Moneda de plata romana.",
+    "solucion": "denario",
+    "materia": "historia"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Montaña de arena en el desierto o playa.",
+    "solucion": "duna",
+    "materia": "historia"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia la población (nacimientos, muertes...).",
+    "solucion": "demografía",
+    "materia": "historia"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Gobierno de una sola persona con poder total (Roma).",
+    "solucion": "dictadura",
+    "materia": "historia"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Línea imaginaria que divide la Tierra en dos hemisferios.",
+    "solucion": "ecuador",
+    "materia": "historia"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Invención que marca el fin de la Prehistoria.",
+    "solucion": "escritura",
+    "materia": "historia"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Civilización del río Nilo.",
+    "solucion": "egipto",
+    "materia": "historia"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Persona que no es libre y pertenece a otro.",
+    "solucion": "esclavo",
+    "materia": "historia"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Desgaste del suelo por el viento o agua.",
+    "solucion": "erosión",
+    "materia": "historia"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Ciudad-estado griega guerrera.",
+    "solucion": "esparta",
+    "materia": "historia"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Esculturas egipcias con cuerpo de león y cabeza humana.",
+    "solucion": "esfinge",
+    "materia": "historia"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Paso estrecho de mar entre dos tierras.",
+    "solucion": "estrecho",
+    "materia": "historia"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Capa de la atmósfera donde está el ozono.",
+    "solucion": "estratosfera",
+    "materia": "historia"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Momento del año en que el día y la noche duran lo mismo.",
+    "solucion": "equinoccio",
+    "materia": "historia"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Rey del antiguo Egipto.",
+    "solucion": "faraón",
+    "materia": "historia"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Resto petrificado de un ser vivo antiguo.",
+    "solucion": "fósil",
+    "materia": "historia"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Documento u objeto que da información histórica.",
+    "solucion": "fuente",
+    "materia": "historia"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Pueblo comerciante y navegante del Mediterráneo.",
+    "solucion": "fenicios",
+    "materia": "historia"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Descubrimiento clave del Paleolítico para calentarse.",
+    "solucion": "fuego",
+    "materia": "historia"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Plaza principal de la ciudad romana.",
+    "solucion": "foro",
+    "materia": "historia"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Conjunto de animales de una región.",
+    "solucion": "fauna",
+    "materia": "historia"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Fractura en la corteza terrestre.",
+    "solucion": "falla",
+    "materia": "historia"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Relativo a los ríos (Régimen...).",
+    "solucion": "fluvial",
+    "materia": "historia"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Conjunto de plantas de una región.",
+    "solucion": "flora",
+    "materia": "historia"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia la Tierra y sus habitantes.",
+    "solucion": "geografía",
+    "materia": "historia"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Masa grande de hielo.",
+    "solucion": "glaciar",
+    "materia": "historia"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Civilización antigua cuna de la democracia.",
+    "solucion": "grecia",
+    "materia": "historia"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Luchador en el circo romano.",
+    "solucion": "gladiador",
+    "materia": "historia"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Sistema de posicionamiento global.",
+    "solucion": "gps",
+    "materia": "historia"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Conflicto armado.",
+    "solucion": "guerra",
+    "materia": "historia"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Cría de animales domésticos.",
+    "solucion": "ganadería",
+    "materia": "historia"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Modelo esférico de la Tierra (Globo...).",
+    "solucion": "globo",
+    "materia": "historia"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Piedra pequeña redondeada por el agua.",
+    "solucion": "guijarro",
+    "materia": "historia"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Teoría que decía que la Tierra era el centro.",
+    "solucion": "geocéntrica",
+    "materia": "historia"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia el pasado de la humanidad.",
+    "solucion": "historia",
+    "materia": "historia"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Antepasado del ser humano.",
+    "solucion": "homínido",
+    "materia": "historia"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Especie humana actual (Homo...).",
+    "solucion": "homo sapiens",
+    "materia": "historia"
+  },
+  {
+    "id": "h3_fix",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Género al que pertenecemos los humanos.",
+    "solucion": "homo",
+    "materia": "historia"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Capa de agua de la Tierra.",
+    "solucion": "hidrosfera",
+    "materia": "historia"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Cada una de las mitades de la esfera terrestre.",
+    "solucion": "hemisferio",
+    "materia": "historia"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Escritura sagrada de Egipto.",
+    "solucion": "hieroglífico",
+    "materia": "historia"
+  },
+  {
+    "id": "h6_fix",
+    "letra": "H",
+    "tipo": "contiene",
+    "definicion": "Escritura sagrada de Egipto (contiene H).",
+    "solucion": "homo sapiens",
+    "materia": "historia"
+  },
+  {
+    "id": "h6_final",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Franja horaria (Huso...).",
+    "solucion": "horario",
+    "materia": "historia"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Rey de Babilonia famoso por su código de leyes.",
+    "solucion": "hammurabi",
+    "materia": "historia"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Cultura griega extendida por Alejandro Magno.",
+    "solucion": "helenismo",
+    "materia": "historia"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Tumba subterránea egipcia.",
+    "solucion": "hipogeo",
+    "materia": "historia"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Soldado griego de infantería pesada.",
+    "solucion": "hoplita",
+    "materia": "historia"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Organización política que domina muchos territorios.",
+    "solucion": "imperio",
+    "materia": "historia"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Pueblo prerromano de la península (costa este).",
+    "solucion": "iberos",
+    "materia": "historia"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Religión monoteísta surgida en Arabia.",
+    "solucion": "islam",
+    "materia": "historia"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Península donde está España.",
+    "solucion": "ibérica",
+    "materia": "historia"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Desbordamiento de un río (el Nilo lo hacía).",
+    "solucion": "inundación",
+    "materia": "historia"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Porción de tierra rodeada de agua.",
+    "solucion": "isla",
+    "materia": "historia"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Franja de tierra que une dos continentes.",
+    "solucion": "istmo",
+    "materia": "historia"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Roca formada por el enfriamiento del magma.",
+    "solucion": "ígnea",
+    "materia": "historia"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Pueblo originario de un lugar.",
+    "solucion": "indígena",
+    "materia": "historia"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Río importante de Asia (civilización del...).",
+    "solucion": "indo",
+    "materia": "historia"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Planeta más grande del Sistema Solar.",
+    "solucion": "júpiter",
+    "materia": "historia"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Escritura egipcia con dibujos.",
+    "solucion": "jeroglífico",
+    "materia": "historia"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Periodo de los dinosaurios (Era Mesozoica).",
+    "solucion": "jurásico",
+    "materia": "historia"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "General romano asesinado en el senado (César).",
+    "solucion": "julio",
+    "materia": "historia"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Competiciones deportivas en honor a Zeus.",
+    "solucion": "juegos",
+    "materia": "historia"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Religión de los hebreos.",
+    "solucion": "judaísmo",
+    "materia": "historia"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Orden dórico, corintio y...",
+    "solucion": "jónico",
+    "materia": "historia"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Persona que aplica la ley.",
+    "solucion": "juez",
+    "materia": "historia"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Objeto valioso de adorno.",
+    "solucion": "joya",
+    "materia": "historia"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Día de la semana dedicado a Júpiter.",
+    "solucion": "jueves",
+    "materia": "historia"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Faraón de la Gran Pirámide.",
+    "solucion": "keops",
+    "materia": "historia"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Relieve formado por la disolución de roca caliza (contiene K).",
+    "solucion": "kárstico",
+    "materia": "historia"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "País de África donde se han hallado muchos homínidos.",
+    "solucion": "kenia",
+    "materia": "historia"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Unidad de medida de distancia (1000 m).",
+    "solucion": "kilómetro",
+    "materia": "historia"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Pueblo guerrero del norte de Europa (contiene K).",
+    "solucion": "vikingo",
+    "materia": "historia"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Lengua prerromana del norte de España (contiene K).",
+    "solucion": "euskera",
+    "materia": "historia"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Ciudad antigua de Mesopotamia, Uruk o... (contiene K).",
+    "solucion": "akad",
+    "materia": "historia"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Fuerza vital o espíritu en Egipto.",
+    "solucion": "ka",
+    "materia": "historia"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "País asiático del río Indo (contiene K).",
+    "solucion": "pakistan",
+    "materia": "historia"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Expresión griega 'lo he encontrado' (contiene K).",
+    "solucion": "eureka",
+    "materia": "historia"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Distancia desde el ecuador a un punto.",
+    "solucion": "latitud",
+    "materia": "historia"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Distancia desde el meridiano de Greenwich.",
+    "solucion": "longitud",
+    "materia": "historia"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Capa sólida externa de la Tierra.",
+    "solucion": "litosfera",
+    "materia": "historia"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Satélite de la Tierra.",
+    "solucion": "luna",
+    "materia": "historia"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Idioma de los romanos.",
+    "solucion": "latín",
+    "materia": "historia"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Soldado del ejército romano.",
+    "solucion": "legionario",
+    "materia": "historia"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Norma establecida por la autoridad.",
+    "solucion": "ley",
+    "materia": "historia"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Precipitación líquida.",
+    "solucion": "lluvia",
+    "materia": "historia"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Terreno plano sin montañas.",
+    "solucion": "llanura",
+    "materia": "historia"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Relativo a la piedra (Paleo...).",
+    "solucion": "lítico",
+    "materia": "historia"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Tierra entre dos ríos (Tigris y Éufrates).",
+    "solucion": "mesopotamia",
+    "materia": "historia"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Representación plana de la Tierra.",
+    "solucion": "mapa",
+    "materia": "historia"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Línea imaginaria que va de polo a polo.",
+    "solucion": "meridiano",
+    "materia": "historia"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Llanura elevada.",
+    "solucion": "meseta",
+    "materia": "historia"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Gran elevación natural del terreno.",
+    "solucion": "montaña",
+    "materia": "historia"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Cadáver preservado en Egipto.",
+    "solucion": "momia",
+    "materia": "historia"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Monumento prehistórico de grandes piedras.",
+    "solucion": "megalito",
+    "materia": "historia"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Material duro y brillante (Edad de los...).",
+    "solucion": "metales",
+    "materia": "historia"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Pieza de metal usada como dinero.",
+    "solucion": "moneda",
+    "materia": "historia"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Forma de gobierno con un rey.",
+    "solucion": "monarquía",
+    "materia": "historia"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Periodo de la piedra nueva o pulida.",
+    "solucion": "neolítico",
+    "materia": "historia"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Que no vive en un lugar fijo, se desplaza.",
+    "solucion": "nómada",
+    "materia": "historia"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Río principal de Egipto.",
+    "solucion": "nilo",
+    "materia": "historia"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Masa de vapor de agua en el cielo.",
+    "solucion": "nube",
+    "materia": "historia"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Punto cardinal opuesto al sur.",
+    "solucion": "norte",
+    "materia": "historia"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Cementerio antiguo (Ciudad de los muertos).",
+    "solucion": "necrópolis",
+    "materia": "historia"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Arte de viajar por el agua.",
+    "solucion": "navegación",
+    "materia": "historia"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Clase social privilegiada.",
+    "solucion": "nobleza",
+    "materia": "historia"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Altura del mar (Cota cero).",
+    "solucion": "nivel",
+    "materia": "historia"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Ciudad celtíbera famosa por su resistencia.",
+    "solucion": "numancia",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Tiempo que tarda la Tierra en orbitar al Sol (contiene Ñ).",
+    "solucion": "año",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Gran elevación de terreno (contiene Ñ).",
+    "solucion": "montaña",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "País de la península Ibérica (contiene Ñ).",
+    "solucion": "españa",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Terreno llano dedicado al cultivo (contiene Ñ).",
+    "solucion": "campiña",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Madera para el fuego (recurso) (contiene Ñ).",
+    "solucion": "leña",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Vía para el ganado (contiene Ñ).",
+    "solucion": "cañada",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Roca grande en el mar, como Gibraltar (contiene Ñ).",
+    "solucion": "peñón",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Estación del año (contiene Ñ).",
+    "solucion": "otoño",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Dibujo o plan de un objeto (contiene Ñ).",
+    "solucion": "diseño",
+    "materia": "historia"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Labor del maestro (contiene Ñ).",
+    "solucion": "enseñanza",
+    "materia": "historia"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Punto cardinal por donde se pone el sol.",
+    "solucion": "oeste",
+    "materia": "historia"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Lugar de la Tierra situado al Este.",
+    "solucion": "oriente",
+    "materia": "historia"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gran masa de agua salada.",
+    "solucion": "océano",
+    "materia": "historia"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Monte sagrado de los dioses griegos.",
+    "solucion": "olimpo",
+    "materia": "historia"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Monumento egipcio alargado y con punta.",
+    "solucion": "obelisco",
+    "materia": "historia"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Movimiento de las olas.",
+    "solucion": "oleaje",
+    "materia": "historia"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Gas que nos protege de los rayos UV (Capa de...).",
+    "solucion": "ozono",
+    "materia": "historia"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Camino de un planeta alrededor del sol.",
+    "solucion": "órbita",
+    "materia": "historia"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Árbol fundamental en la agricultura mediterránea.",
+    "solucion": "olivo",
+    "materia": "historia"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Arte de trabajar metales preciosos (oro/plata).",
+    "solucion": "orfebrería",
+    "materia": "historia"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Periodo más largo de la historia (piedra antigua).",
+    "solucion": "paleolítico",
+    "materia": "historia"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Etapa antes de la Historia escrita.",
+    "solucion": "prehistoria",
+    "materia": "historia"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Tumba de los faraones con forma triangular.",
+    "solucion": "pirámide",
+    "materia": "historia"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Planta egipcia usada para hacer papel.",
+    "solucion": "papiro",
+    "materia": "historia"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Templo de Atenas en la Acrópolis.",
+    "solucion": "partenón",
+    "materia": "historia"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Persona que se dedica al gobierno de la ciudad.",
+    "solucion": "político",
+    "materia": "historia"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Ciudad-estado griega.",
+    "solucion": "polis",
+    "materia": "historia"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Clase social rica de Roma.",
+    "solucion": "patricios",
+    "materia": "historia"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Tierra rodeada de agua menos por una parte.",
+    "solucion": "península",
+    "materia": "historia"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Cuerpo celeste como la Tierra o Marte.",
+    "solucion": "planeta",
+    "materia": "historia"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Arte de construir edificios (contiene Q).",
+    "solucion": "arquitectura",
+    "materia": "historia"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Edad de Piedra Nueva (contiene Q).",
+    "solucion": "conquista",
+    "materia": "historia"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Edad de Piedra Antigua (contiene Q).",
+    "solucion": "conquista",
+    "materia": "historia"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Conjunto de huesos (contiene Q).",
+    "solucion": "esqueleto",
+    "materia": "historia"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Igualdad de día y noche (contiene Q).",
+    "solucion": "equinoccio",
+    "materia": "historia"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Canal de riego árabe (contiene Q).",
+    "solucion": "acequia",
+    "materia": "historia"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Piedra grande de construcción (contiene Q).",
+    "solucion": "bloque",
+    "materia": "historia"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Muro para contener el agua (contiene Q).",
+    "solucion": "dique",
+    "materia": "historia"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Científico que estudia el pasado (contiene Q).",
+    "solucion": "arqueólogo",
+    "materia": "historia"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Ganar un territorio por la fuerza (contiene Q).",
+    "solucion": "conquista",
+    "materia": "historia"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Capital del mayor imperio de la antigüedad.",
+    "solucion": "roma",
+    "materia": "historia"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Forma de gobierno sin rey.",
+    "solucion": "república",
+    "materia": "historia"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Formas de la superficie terrestre.",
+    "solucion": "relieve",
+    "materia": "historia"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Corriente de agua continua.",
+    "solucion": "río",
+    "materia": "historia"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Movimiento de la Tierra sobre su eje.",
+    "solucion": "rotación",
+    "materia": "historia"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Material sólido de la corteza terrestre.",
+    "solucion": "roca",
+    "materia": "historia"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Símbolo que marca los puntos cardinales (Rosa de los...).",
+    "solucion": "rosa de los vientos",
+    "materia": "historia"
+  },
+  {
+    "id": "r7_fix",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Arte pintado en rocas (Pintura...).",
+    "solucion": "rupestre",
+    "materia": "historia"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Invento circular clave para el transporte.",
+    "solucion": "rueda",
+    "materia": "historia"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Proceso de adoptar la cultura romana.",
+    "solucion": "romanización",
+    "materia": "historia"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Fundador mítico de Roma junto a Remo.",
+    "solucion": "rómulo",
+    "materia": "historia"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Estrella central de nuestro sistema.",
+    "solucion": "sol",
+    "materia": "historia"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de planetas que giran alrededor del Sol.",
+    "solucion": "sistema solar",
+    "materia": "historia"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Estilo de vida en un lugar fijo (Neolítico).",
+    "solucion": "sedentario",
+    "materia": "historia"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Piedra usada en la prehistoria para herramientas.",
+    "solucion": "sílex",
+    "materia": "historia"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Ataúd egipcio.",
+    "solucion": "sarcófago",
+    "materia": "historia"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Asamblea de gobierno en Roma.",
+    "solucion": "senado",
+    "materia": "historia"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de personas que viven juntas.",
+    "solucion": "sociedad",
+    "materia": "historia"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Periodo de 100 años.",
+    "solucion": "siglo",
+    "materia": "historia"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Bosque tropical denso y húmedo.",
+    "solucion": "selva",
+    "materia": "historia"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Paisaje de clima tropical seco con hierbas altas.",
+    "solucion": "sabana",
+    "materia": "historia"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Planeta donde vivimos.",
+    "solucion": "tierra",
+    "materia": "historia"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Movimiento de la Tierra alrededor del Sol.",
+    "solucion": "traslación",
+    "materia": "historia"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Estado de la atmósfera en un momento dado.",
+    "solucion": "tiempo",
+    "materia": "historia"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Grado de calor del aire.",
+    "solucion": "temperatura",
+    "materia": "historia"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Instrumento para medir la temperatura.",
+    "solucion": "termómetro",
+    "materia": "historia"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Edificio religioso para los dioses.",
+    "solucion": "templo",
+    "materia": "historia"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Lugar de enterramiento.",
+    "solucion": "tumba",
+    "materia": "historia"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Grupo de familias en la prehistoria.",
+    "solucion": "tribu",
+    "materia": "historia"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Intercambio de productos sin dinero.",
+    "solucion": "trueque",
+    "materia": "historia"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Baños públicos romanos.",
+    "solucion": "termas",
+    "materia": "historia"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Conjunto de todo lo que existe.",
+    "solucion": "universo",
+    "materia": "historia"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Relativo a la ciudad.",
+    "solucion": "urbano",
+    "materia": "historia"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Séptimo planeta del sistema solar.",
+    "solucion": "urano",
+    "materia": "historia"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Primera ciudad de la historia en Mesopotamia.",
+    "solucion": "uruk",
+    "materia": "historia"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Herramienta u objeto de uso manual.",
+    "solucion": "utensilio",
+    "materia": "historia"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Cantidad estándar para medir.",
+    "solucion": "unidad",
+    "materia": "historia"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Alianza entre países (ej: Europea).",
+    "solucion": "unión",
+    "materia": "historia"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Cauce de un río seco en zonas desérticas.",
+    "solucion": "uadi",
+    "materia": "historia"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Crema o aceite usado en la antigüedad.",
+    "solucion": "ungüento",
+    "materia": "historia"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Recipiente para guardar cenizas o votos.",
+    "solucion": "urna",
+    "materia": "historia"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Terreno llano entre montañas.",
+    "solucion": "valle",
+    "materia": "historia"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Abertura de la tierra por donde sale lava.",
+    "solucion": "volcán",
+    "materia": "historia"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Aire en movimiento.",
+    "solucion": "viento",
+    "materia": "historia"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Carretera o camino romano.",
+    "solucion": "vía",
+    "materia": "historia"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Planeta vecino de la Tierra.",
+    "solucion": "venus",
+    "materia": "historia"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Plantas de un lugar.",
+    "solucion": "vegetación",
+    "materia": "historia"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Recipiente de cerámica antiguo.",
+    "solucion": "vasija",
+    "materia": "historia"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Tela para mover barcos con el viento.",
+    "solucion": "vela",
+    "materia": "historia"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Casa de campo romana.",
+    "solucion": "villa",
+    "materia": "historia"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Pueblo bárbaro que invadió Hispania.",
+    "solucion": "visigodos",
+    "materia": "historia"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Científico que propuso la deriva continental (contiene W).",
+    "solucion": "wegener",
+    "materia": "historia"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Meridiano cero (contiene W).",
+    "solucion": "greenwich",
+    "materia": "historia"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Naturalista de la evolución (contiene W).",
+    "solucion": "darwin",
+    "materia": "historia"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Capital de EE.UU (contiene W).",
+    "solucion": "washington",
+    "materia": "historia"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Metal usado en la industria (contiene W).",
+    "solucion": "wolframio",
+    "materia": "historia"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Isla de volcanes en el Pacífico (contiene W).",
+    "solucion": "hawaii",
+    "materia": "historia"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Fruta de Nueva Zelanda (contiene W).",
+    "solucion": "kiwi",
+    "materia": "historia"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Científico de la gravedad (contiene W).",
+    "solucion": "newton",
+    "materia": "historia"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "País de África (contiene W).",
+    "solucion": "zimbabwe",
+    "materia": "historia"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Cine americano (contiene W).",
+    "solucion": "hollywood",
+    "materia": "historia"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Trabajo arqueológico de cavar (contiene X).",
+    "solucion": "excavación",
+    "materia": "historia"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Agrupación de estrellas y planetas (contiene X).",
+    "solucion": "galaxia",
+    "materia": "historia"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Desaparición de una especie (contiene X).",
+    "solucion": "extinción",
+    "materia": "historia"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Fuente histórica escrita (contiene X).",
+    "solucion": "texto",
+    "materia": "historia"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Cercano al Oriente (contiene X).",
+    "solucion": "próximo",
+    "materia": "historia"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Cargo religioso romano, Pontifex... (contiene X).",
+    "solucion": "máximo",
+    "materia": "historia"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Capa más externa de la atmósfera (contiene X).",
+    "solucion": "exosfera",
+    "materia": "historia"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Reacción del metal con el aire (contiene X).",
+    "solucion": "oxidación",
+    "materia": "historia"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Parte de fuera (contiene X).",
+    "solucion": "exterior",
+    "materia": "historia"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Ave mitológica que renace (contiene X).",
+    "solucion": "fénix",
+    "materia": "historia"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Lugar con restos arqueológicos.",
+    "solucion": "yacimiento",
+    "materia": "historia"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Mineral blanco usado en construcción y arte.",
+    "solucion": "yeso",
+    "materia": "historia"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Pieza de madera para unir bueyes.",
+    "solucion": "yugo",
+    "materia": "historia"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Hembra del caballo, usada en transporte antiguo.",
+    "solucion": "yegua",
+    "materia": "historia"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Estatua que está tumbada.",
+    "solucion": "yacente",
+    "materia": "historia"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Día presente (contiene Y).",
+    "solucion": "hoy",
+    "materia": "historia"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Día anterior (contiene Y).",
+    "solucion": "ayer",
+    "materia": "historia"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Mes del año (contiene Y).",
+    "solucion": "mayo",
+    "materia": "historia"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Lugar de costa con arena (contiene Y).",
+    "solucion": "playa",
+    "materia": "historia"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Río pequeño (contiene Y).",
+    "solucion": "arroyo",
+    "materia": "historia"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Área o región.",
+    "solucion": "zona",
+    "materia": "historia"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Mercado árabe.",
+    "solucion": "zoco",
+    "materia": "historia"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Dios principal de los griegos.",
+    "solucion": "zeus",
+    "materia": "historia"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Templo mesopotámico con forma de torre escalonada.",
+    "solucion": "zigurat",
+    "materia": "historia"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Excavación larga y estrecha.",
+    "solucion": "zanja",
+    "materia": "historia"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Banda climática de la Tierra (fría, templada...).",
+    "solucion": "zona",
+    "materia": "historia"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Punto más alto del cielo sobre nuestra cabeza (contiene Z).",
+    "solucion": "capa de ozono",
+    "materia": "historia"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Línea donde se juntan cielo y tierra (contiene Z).",
+    "solucion": "horizonte",
+    "materia": "historia"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Sociedad avanzada (contiene Z).",
+    "solucion": "civilización",
+    "materia": "historia"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Roca sedimentaria común (contiene Z).",
+    "solucion": "caliza",
+    "materia": "historia"
+  }
 ]

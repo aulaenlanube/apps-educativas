@@ -1,17 +1,122 @@
 {
-  "atletismo": [
-    "maratón", "jabalina", "relevos", "vallas", "salto de altura", "pértiga", "peso", "disco", "velocidad", "salida"
+  "condicion_fisica": [
+    "resistencia",
+    "fuerza explosiva",
+    "velocidad reacción",
+    "flexibilidad estática",
+    "flexibilidad dinámica",
+    "agilidad",
+    "equilibrio",
+    "potencia",
+    "ritmo",
+    "coordinación"
   ],
-  "baloncesto": [
-    "triple", "tiro libre", "pívot", "base", "alero", "rebote", "mate", "pasos", "dobles", "tapón"
+  "calentamiento_general": [
+    "movilidad",
+    "trote",
+    "estiramiento",
+    "ejercicios",
+    "pulsaciones",
+    "frecuencia cardíaca",
+    "calor",
+    "sudor",
+    "preparación",
+    "preventivo"
   ],
-  "futbol": [
-    "penalti", "córner", "fuera de juego", "portero", "delantero", "defensa", "tarjeta", "saque de banda", "prórroga", "gol"
+  "balonmano_reglas": [
+    "pasos",
+    "dobles",
+    "área",
+    "golpe franco",
+    "penalti",
+    "extremo",
+    "pivote",
+    "central",
+    "lateral",
+    "portero"
   ],
-  "musculos_pierna": [
-    "cuádriceps", "gemelo", "isquiotibial", "sóleo", "abductor", "glúteo", "tibial", "sartorio", "peroneo", "aductor"
+  "voleibol_tecnica": [
+    "saque",
+    "recepción",
+    "colocación",
+    "remate",
+    "bloqueo",
+    "toque de dedos",
+    "toque de antebrazos",
+    "red",
+    "rotación",
+    "líbero"
   ],
-  "huesos_tronco": [
-    "esternón", "costilla", "clavícula", "omóplato", "vértebra", "sacro", "cóccix", "ilion", "pubis", "isquion"
+  "baloncesto_fundamentos": [
+    "bote",
+    "pase de pecho",
+    "bandeja",
+    "triple",
+    "personal",
+    "rebote",
+    "defensa",
+    "pérdida",
+    "tiro libre",
+    "canasta"
+  ],
+  "salud_postural": [
+    "columna",
+    "escoliosis",
+    "mochila",
+    "sentarse bien",
+    "estiramiento espalda",
+    "núcleo",
+    "abdominales",
+    "lumbares",
+    "pesos",
+    "descanso"
+  ],
+  "juegos_tradicionales": [
+    "brilé",
+    "balón prisionero",
+    "bolos",
+    "peonza",
+    "chapas",
+    "combates",
+    "relevos",
+    "saltos",
+    "lucha",
+    "juegos de fuerza"
+  ],
+  "senderismo_orientacion": [
+    "brújula",
+    "mapa",
+    "baliza",
+    "rumbo",
+    "norte",
+    "curva de nivel",
+    "escala",
+    "itinerario",
+    "naturaleza",
+    "biodiversidad"
+  ],
+  "expresion_baile": [
+    "ritmo",
+    "paso",
+    "coreografía",
+    "música",
+    "espacio",
+    "gesto",
+    "coordinación grupal",
+    "danza",
+    "mimo",
+    "creatividad"
+  ],
+  "fair_play_valores": [
+    "respeto",
+    "ayuda",
+    "tolerancia",
+    "disciplina",
+    "esfuerzo",
+    "superación",
+    "compañerismo",
+    "humildad",
+    "victoria",
+    "derrota"
   ]
 }

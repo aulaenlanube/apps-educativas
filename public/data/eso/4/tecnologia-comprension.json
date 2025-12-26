@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "Electrónica Analógica y Digital",
+        "texto": "La electrónica se divide en dos grandes ramas. La ANALÓGICA maneja señales que varían de forma continua (como el sonido de un vinilo) y usa componentes como TRANSISTORES o termistores. La DIGITAL solo entiende dos estados: 0 (apagado) y 1 (encendido), que es el lenguaje de los ordenadores. El componente estrella de la electrónica moderna es el microchip, que puede contener millones de transistores en un espacio diminuto, permitiendo que tu móvil sea más potente que los ordenadores que llevaron al hombre a la Luna.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué estados entiende la electrónica digital?",
+                "opciones": [
+                    "Infinita variedad",
+                    "Solo el 0 y el 1 (binario)",
+                    "Rojo y azul",
+                    "Alto y bajo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el componente básico de la electrónica moderna?",
+                "opciones": [
+                    "El cable",
+                    "El transistor",
+                    "La pila de petaca",
+                    "La madera"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué diferencia la señal analógica de la digital?",
+                "opciones": [
+                    "La analógica es continua y la digital es discreta (saltos)",
+                    "Son iguales",
+                    "La digital es más lenta",
+                    "La analógica no usa electricidad"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "¿Qué permite que un móvil sea tan potente?",
+                "opciones": [
+                    "La pantalla",
+                    "La miniaturización de millones de transistores en microchips",
+                    "El color",
+                    "La batería"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un aparato analógico típico:",
+                "opciones": [
+                    "Móvil",
+                    "Termómetro de mercurio o vinilo",
+                    "Reloj digital",
+                    "Ordenador"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Neumática e Hidráulica",
+        "texto": "Ambas tecnologías usan fluidos para transmitir fuerza y movimiento. La NEUMÁTICA utiliza aire comprimido; es limpia, rápida y segura, ideal para puertas de autobuses o herramientas de taller. La HIDRÁULICA utiliza aceite; es capaz de transmitir fuerzas enormes, por lo que se usa en frenos de coches, excavadoras o prensas industriales. El elemento que realiza el trabajo final es el CILINDRO, cuyo émbolo se desplaza cuando recibe la presión del fluido, transformando la energía del gas o líquido en movimiento mecánico.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué fluido usa la neumática?",
+                "opciones": [
+                    "Aceite",
+                    "Aire comprimido",
+                    "Agua",
+                    "Gasolina"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Y la hidráulica?",
+                "opciones": [
+                    "Aire",
+                    "Aceite (fluido líquido)",
+                    "Vapor",
+                    "Viento"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve un cilindro en estos sistemas?",
+                "opciones": [
+                    "Para guardar el aire",
+                    "Para transformar la presión en movimiento lineal (trabajo)",
+                    "Para medir la temperatura",
+                    "Para decorar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una aplicación típica de la hidráulica:",
+                "opciones": [
+                    "Hinflar un globo",
+                    "Frenos de coche o excavadoras",
+                    "Taladros dentista",
+                    "Puertas bus"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué se usa hidráulica para mover grandes pesos?",
+                "opciones": [
+                    "Es más barata",
+                    "Porque los líquidos no se comprimen y transmiten fuerzas gigantescas",
+                    "Porque es más rápida",
+                    "Por el olor"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Sistemas de Control: Lógica Programada",
+        "texto": "Un sistema de control automático puede ser de lazo abierto (no mira el resultado) o de LAZO CERRADO (usa un sensor para corregirse). Hoy usamos la lógica programada mediante microcontroladores como ARDUINO. Programamos el 'cerebro' del sistema para que tome decisiones basadas en los sensores: si la temperatura sube de 25ºC, enciende el ventilador. Esto permite crear casas inteligentes (domótica), procesos industriales robotizados y sistemas de seguridad que funcionan solos las 24 horas del día.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué caracteriza a un sistema de lazo cerrado?",
+                "opciones": [
+                    "Que gasta mucha luz",
+                    "Que usa sensores para retroalimentarse y corregir su acción",
+                    "Que no se puede apagar",
+                    "Que es circular"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un microcontrolador como Arduino?",
+                "opciones": [
+                    "Un sensor de luz",
+                    "Un pequeño ordenador o 'cerebro' programable",
+                    "Un tipo de cable",
+                    "Una batería inteligente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la domótica?",
+                "opciones": [
+                    "Para limpiar la ropa",
+                    "Para automatizar y controlar de forma inteligente las viviendas",
+                    "Para estudiar más",
+                    "No existe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un semáforo que cambia siempre al mismo tiempo es de:",
+                "opciones": [
+                    "Lazo abierto (no depende del tráfico)",
+                    "Lazo cerrado",
+                    "Lazo roto",
+                    "Mucha fuerza"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "La gran ventaja de la lógica programada es:",
+                "opciones": [
+                    "Es más pesada",
+                    "Su flexibilidad (se puede cambiar la función cambiando el código)",
+                    "Que no usa cables",
+                    "Que es gratis"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Instalaciones en la Vivienda: Electricidad",
+        "texto": "La instalación eléctrica de nuestra casa empieza en el CUADRO DE MANDO, donde están los dispositivos de seguridad. El ICP controla la potencia contratada. El Diferencial (ID) salta si hay una fuga de corriente, protegiendo a las personas de calambres. Los PIAs protegen cada circuito (luces, enchufes...) de cortocircuitos. Es vital que nuestro edificio tenga TOMA DE TIERRA: un cable verde y amarillo que desvía las fugas de corriente al suelo para evitar accidentes mortales.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué dispositivo protege a las personas de descargas eléctricas?",
+                "opciones": [
+                    "El enchufe",
+                    "El Interruptor Diferencial (ID)",
+                    "La bombilla",
+                    "El contador"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven los PIAs?",
+                "opciones": [
+                    "Para pagar la luz",
+                    "Para proteger cada circuito de sobrecargas",
+                    "Para encender la TV",
+                    "Para medir el agua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De qué color es el cable de toma de tierra?",
+                "opciones": [
+                    "Azul",
+                    "Verde y amarillo",
+                    "Marrón",
+                    "Rojo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si superas la potencia contratada?",
+                "opciones": [
+                    "Se funden las bombillas",
+                    "Salta el ICP (se va la luz)",
+                    "No pasa nada",
+                    "Te multan"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se sitúan todos estos interruptores?",
+                "opciones": [
+                    "En el tejado",
+                    "En el Cuadro General de Mando y Protección",
+                    "En la cocina",
+                    "En el jardín"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Materiales para la Construcción",
+        "texto": "En 4º de ESO estudiamos materiales pétreos (piedras, mármol), cerámicos (ladrillos, azulejos) y aglutinantes. Los AGLUTINANTES son materiales que, mezclados con agua, se vuelven pastosos y luego endurecen, como el yeso o el cemento. El HORMIGÓN es una mezcla de cemento, agua, arena y grava; si le añadimos varillas de acero, tenemos HORMIGÓN ARMADO, el material que permite construir los rascacielos y puentes actuales por su enorme resistencia a la compresión y tracción.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué tres ingredientes básicos tiene el hormigón?",
+                "opciones": [
+                    "Piedra, barro y paja",
+                    "Cemento, agua y áridos (arena/grava)",
+                    "Hierro, luz y agua",
+                    "Plástico y madera"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el hormigón armado?",
+                "opciones": [
+                    "Hormigón con armas",
+                    "Hormigón con una estructura interna de acero",
+                    "Hormigón muy duro",
+                    "Hormigón de colores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un material aglutinante?",
+                "opciones": [
+                    "El que no se pega",
+                    "El que sirve para unir otros materiales tras endurecer",
+                    "El que es muy elástico",
+                    "Un tipo de cristal"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un material cerámico:",
+                "opciones": [
+                    "Mármol",
+                    "Ladrillo o teja",
+                    "Viga de acero",
+                    "Plástico"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es tan usado el hormigón armado?",
+                "opciones": [
+                    "Porque es barato",
+                    "Por su gran resistencia a todo tipo de esfuerzos",
+                    "Porque es transparente",
+                    "Porque no pesa"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Robótica: Sensores de proximidad",
+        "texto": "Un robot interactúa con el mundo mediante sensores. Los más usados en 4º de ESO son los sensores de ULTRASONIDOS, que funcionan como el radar de un murciélago: envían una onda sonora y miden cuánto tarda en volver para saber la distancia a un objeto. También usamos sensores IR (infrarrojos) para seguir líneas negras en el suelo. Estos componentes permiten que los robots esquiven obstáculos o realicen tareas industriales de precisión sin chocar con nada.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo funciona un sensor de ultrasonidos?",
+                "opciones": [
+                    "Haciendo fotos",
+                    "Enviando ondas sonoras y midiendo el tiempo de rebote",
+                    "Pesando los objetos",
+                    "Midiendo el calor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve un sensor infrarrojo (IR) en un robot sencillo?",
+                "opciones": [
+                    "Para hablar",
+                    "Para detectar la línea negra del suelo (siguelíneas)",
+                    "Para saltar",
+                    "Para iluminar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ventaja tiene el sensor de ultrasonidos respecto al de contacto?",
+                "opciones": [
+                    "Es más lento",
+                    "Permite detectar el obstáculo sin necesidad de chocar con él",
+                    "Es más barato",
+                    "Se rompe menos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un murciélago usa un sistema parecido al sensor de:",
+                "opciones": [
+                    "Luz",
+                    "Ultrasonidos",
+                    "Humedad",
+                    "Giro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Sin sensores, un robot sería:",
+                "opciones": [
+                    "Más inteligente",
+                    "Una máquina ciega que solo repetiría movimientos",
+                    "Más rápido",
+                    "Un ordenador"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Telecomunicaciones: La Fibra Óptica",
+        "texto": "La comunicación ha revolucionado el mundo. Hemos pasado de los cables de cobre a la FIBRA ÓPTICA. Se trata de hilos de vidrio finísimos por los que viaja la luz (láser) transportando información. Su ventaja es la velocidad increíble y que no le afectan las interferencias eléctricas de otros cables. Complementariamente, las redes inalámbricas (Wi-Fi, 5G) usan ONDAS ELECTROMAGNÉTICAS para que podamos estar conectados sin cables en cualquier lugar, permitiendo la era del Big Data y el streaming.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué viaja por el interior de los cables de fibra óptica?",
+                "opciones": [
+                    "Agua",
+                    "Luz (señales luminosas)",
+                    "Electricidad pura",
+                    "Aire"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De qué material están hechos los hilos de fibra óptica?",
+                "opciones": [
+                    "Plomo",
+                    "Vidrio o plástico muy puro",
+                    "Cobre",
+                    "Oro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ventaja tiene respecto al cobre?",
+                "opciones": [
+                    "Es más pesado",
+                    "Mayor velocidad y sin interferencias",
+                    "Es más fácil de soldar",
+                    "Es más bonito"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué usan las redes Wi-Fi para transmitir?",
+                "opciones": [
+                    "Cables invisibles",
+                    "Ondas electromagnéticas",
+                    "Espejos",
+                    "Sonido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La velocidad de la fibra se mide hoy comúnmente en:",
+                "opciones": [
+                    "Kilómetros",
+                    "Gigabits por segundo (Gbps)",
+                    "Litros",
+                    "Vatios"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Energía Nuclear y Fusión",
+        "texto": "La energía nuclear actual se basa en la FISIÓN (romper átomos de uranio), lo que genera mucha energía pero también residuos peligrosos. El futuro de la tecnología es la FUSIÓN nuclear: unir átomos de hidrógeno (como hace el Sol). Si logramos dominarla, tendremos una fuente de energía inagotable, limpia (sin residuos de larga duración) y segura. Países de todo el mundo colaboran en proyectos como el ITER para construir reactores de fusión que podrían solucionar definitivamente la crisis energética del planeta.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué proceso usan las centrales nucleares actuales?",
+                "opciones": [
+                    "Quemar carbón",
+                    "Fisión nuclear (romper átomos)",
+                    "Fusión nuclear",
+                    "Viento"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la fusión nuclear?",
+                "opciones": [
+                    "Romper madera",
+                    "Unir núcleos de átomos (como en las estrellas)",
+                    "Fundir metales",
+                    "Mezclar cables"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una ventaja de la futura fusión nuclear:",
+                "opciones": [
+                    "Es muy cara",
+                    "Combustible inagotable y casi sin residuos peligrosos",
+                    "No da energía",
+                    "Solo sirve para bombas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué material se suele usar en la fisión actual?",
+                "opciones": [
+                    "Hierro",
+                    "Uranio",
+                    "Plata",
+                    "Petróleo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El proyecto internacional para investigar la fusión se llama:",
+                "opciones": [
+                    "NASA",
+                    "ITER",
+                    "APPLE",
+                    "CERN"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Fabricación Digital: Impresión 3D",
+        "texto": "La impresión 3D (fabricación aditiva) está cambiando la industria. En lugar de quitar material (como al tallar), el objeto se crea CAPA A CAPA depositando plástico fundido o resina. Permite crear formas imposibles de fabricar de otra manera y prototipos rápidos en pocas horas. En tecnología usamos software de diseño (CAD) para crear el modelo y luego lo 'laminamos' para enviarlo a la impresora. Se aplica ya en medicina (prótesis), arquitectura y hasta en la cocina (impresión de comida).",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo construye los objetos una impresora 3D?",
+                "opciones": [
+                    "Tallando un bloque",
+                    "Capa a capa, depositando material (fabricación aditiva)",
+                    "Mediante un molde",
+                    "Con pegamento"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el software para diseñar las piezas?",
+                "opciones": [
+                    "Word",
+                    "CAD (Diseño Asistido por Ordenador)",
+                    "WhatsApp",
+                    "YouTube"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una aplicación práctica mencionada:",
+                "opciones": [
+                    "Limpieza",
+                    "Fabricación de prótesis médicas",
+                    "Lavar ropa",
+                    "Pintar paredes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la principal ventaja para un inventor?",
+                "opciones": [
+                    "Es muy lento",
+                    "Permite crear prototipos rápidos a bajo coste",
+                    "No gasta luz",
+                    "Es mágica"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El material más común para imprimir en el aula es el plástico:",
+                "opciones": [
+                    "Agua",
+                    "PLA (derivado del maíz)",
+                    "Hierro",
+                    "Madera pura"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Tecnología y Medio Ambiente: El Reciclaje",
+        "texto": "La tecnología genera una gran cantidad de basura electrónica (e-waste) que contiene metales pesados tóxicos. Es vital el RECICLAJE técnico: separar el cobre, el oro y los plásticos de los móviles y PCs viejos para reutilizarlos. Además, la tendencia actual es el ECOD DISEÑO: diseñar productos para que duren más tiempo, sean fáciles de reparar y fáciles de reciclar al final de su vida. Cuidar el ciclo de vida de los productos tecnológicos es la única forma de evitar que nuestro progreso destruya la naturaleza.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el e-waste?",
+                "opciones": [
+                    "Comida podrida",
+                    "Basura electrónica (dispositivos viejos)",
+                    "Un tipo de batería",
+                    "Un virus"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es peligroso tirar un móvil a la basura normal?",
+                "opciones": [
+                    "Porque ocupa sitio",
+                    "Porque contiene metales pesados tóxicos",
+                    "Porque puede explotar",
+                    "No es peligroso"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un metal valioso que se recupera al reciclar PCs:",
+                "opciones": [
+                    "Plástico",
+                    "Oro o Cobre",
+                    "Madera",
+                    "Papel"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué busca el ecodiseño?",
+                "opciones": [
+                    "Que sea barato",
+                    "Productos duraderos, fáciles de reparar y reciclar",
+                    "Que sea verde",
+                    "Que no use electricidad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El objetivo final de la tecnología verde es:",
+                "opciones": [
+                    "No usar máquinas",
+                    "Un progreso sostenible que respete la naturaleza",
+                    "Vivir en el pasado",
+                    "Ser más ricos"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

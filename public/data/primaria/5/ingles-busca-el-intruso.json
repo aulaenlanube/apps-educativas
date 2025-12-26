@@ -1,78 +1,130 @@
 [
   {
-    "categoria": "Technology (Icons)",
+    "categoria": "Modern Technology and Gadgets (Icons)",
     "correctos": [
       "💻",
       "📱",
       "🖱️",
       "⌨️",
       "🖥️",
-      "🔋"
+      "🔋",
+      "🔌",
+      "🎧",
+      "📷",
+      "🕹️",
+      "📡",
+      "🛰️"
     ],
     "intrusos": [
       "📜",
       "✒️",
       "🕯️",
       "🕰️",
-      "🔨"
+      "🔨",
+      "🛖",
+      "🏹",
+      "🛡️",
+      "⚔️",
+      "🐎",
+      "🧱"
     ]
   },
   {
-    "categoria": "Wild Animals (Icons)",
+    "categoria": "Wild and Exotic Animals (Icons)",
     "correctos": [
       "🦁",
       "🐯",
       "🦓",
       "🦒",
       "🐘",
-      "🐊"
+      "🐊",
+      "🦍",
+      "🦏",
+      "🦛",
+      "🐆",
+      "🐘",
+      "🦓",
+      "🐒"
     ],
     "intrusos": [
       "🐶",
       "🐱",
       "🐮",
       "🐷",
-      "🐔"
+      "🐔",
+      "🐑",
+      "🐴",
+      "🐰",
+      "🐥",
+      "🐭",
+      "🐹"
     ]
   },
   {
-    "categoria": "Travel (Icons)",
+    "categoria": "International Travel and Tourism (Icons)",
     "correctos": [
       "✈️",
       "🧳",
       "🗺️",
       "🗽",
       "🗼",
-      "📸"
+      "📸",
+      "🚢",
+      "🛂",
+      "🕌",
+      "⛩️",
+      "🏰",
+      "🏜️",
+      "🏝️"
     ],
     "intrusos": [
       "🏠",
       "🛋️",
       "🛌",
       "📺",
-      "🧹"
+      "🧹",
+      "🚿",
+      "🍳",
+      "🚽",
+      "🧺",
+      "🧸",
+      "🏡"
     ]
   },
   {
-    "categoria": "Feelings (Icons)",
+    "categoria": "Human Emotions and Feelings (Icons)",
     "correctos": [
       "😀",
       "😢",
       "😡",
       "😴",
       "🤔",
-      "😍"
+      "😍",
+      "🥳",
+      "😱",
+      "🤢",
+      "🤩",
+      "😌",
+      "🙄",
+      "😤"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "🏠",
       "🐶",
-      "✏️"
+      "✏️",
+      "⚽",
+      "🍔",
+      "📱",
+      "💻",
+      "🎸",
+      "🚲",
+      "🌲"
     ]
   },
   {
-    "categoria": "Irregular Verbs (Past)",
+    "categoria": "Irregular Verbs (Past Simple Tense)",
     "correctos": [
       "Went",
       "Ate",
@@ -80,104 +132,171 @@
       "Saw",
       "Ran",
       "Swam",
-      "Wrote"
+      "Wrote",
+      "Bought",
+      "Caught",
+      "Taught",
+      "Made",
+      "Built",
+      "Gave",
+      "Did"
     ],
     "intrusos": [
       "Played",
       "Cooked",
       "Walked",
       "Jumped",
-      "Listened"
+      "Listened",
+      "Watched",
+      "Cleaned",
+      "Lived",
+      "Started",
+      "Finished",
+      "Talked"
     ]
   },
   {
-    "categoria": "Wild Animals (Words)",
+    "categoria": "Specific Wild Animal Vocabulary",
     "correctos": [
       "Rhino",
       "Hippo",
       "Cheetah",
       "Gorilla",
       "Eagle",
-      "Snake"
+      "Snake",
+      "Leopard",
+      "Buffalo",
+      "Ostrich",
+      "Hyena",
+      "Elephant"
     ],
     "intrusos": [
       "Dog",
       "Cat",
       "Cow",
       "Chicken",
-      "Sheep"
+      "Sheep",
+      "Goat",
+      "Pig",
+      "Donkey",
+      "Duck",
+      "Golden Retriever"
     ]
   },
   {
-    "categoria": "Frequency Adverbs",
+    "categoria": "Adverbs of Frequency (How often)",
     "correctos": [
       "Always",
       "Usually",
       "Often",
       "Sometimes",
       "Never",
-      "Rarely"
+      "Rarely",
+      "Hardly ever",
+      "Frequently",
+      "Occasionally"
     ],
     "intrusos": [
       "Yesterday",
       "Tomorrow",
       "Now",
-      "House",
-      "Blue"
+      "Today",
+      "Soon",
+      "Late",
+      "Early",
+      "Every day",
+      "Long ago",
+      "Next week"
     ]
   },
   {
-    "categoria": "Question Words",
+    "categoria": "Wh- Question Words",
     "correctos": [
       "What",
       "Where",
       "When",
       "Who",
       "Why",
-      "How"
+      "How",
+      "Which",
+      "Whose",
+      "How much",
+      "How many",
+      "How long"
     ],
     "intrusos": [
       "Yes",
       "No",
       "Because",
       "And",
-      "But"
+      "But",
+      "So",
+      "Or",
+      "Then",
+      "After",
+      "Before",
+      "While"
     ]
   },
   {
-    "categoria": "Sports Equipment",
+    "categoria": "Sports Equipment and Gear",
     "correctos": [
       "Ball",
       "Racket",
       "Bat",
       "Helmet",
       "Net",
-      "Gloves"
+      "Gloves",
+      "Goggles",
+      "Skis",
+      "Board",
+      "Boots",
+      "Club",
+      "Tee"
     ],
     "intrusos": [
       "Piano",
       "Guitar",
       "Book",
       "Pen",
-      "Sofa"
+      "Sofa",
+      "Computer",
+      "Phone",
+      "Bed",
+      "Table",
+      "Cup",
+      "Plate"
     ]
   },
   {
-    "categoria": "Comparatives",
+    "categoria": "Comparative Adjectives (-er / more)",
     "correctos": [
       "Bigger",
       "Smaller",
       "Faster",
       "Slower",
       "Taller",
-      "Better"
+      "Better",
+      "Worse",
+      "More beautiful",
+      "More expensive",
+      "Easier",
+      "Harder"
     ],
     "intrusos": [
       "Big",
       "Small",
       "Fast",
       "Slow",
-      "Tall"
+      "Tall",
+      "Good",
+      "Bad",
+      "Beautiful",
+      "Expensive",
+      "Easy",
+      "Hard",
+      "The biggest",
+      "The best"
     ]
   }
 ]

@@ -1,17 +1,122 @@
 {
-  "clases_palabras": [
-    "sustantivo", "adjetivo", "verb", "adverbio", "preposición", "conjunción", "determinante", "pronombre", "interjección", "artículo"
-  ],
-  "funciones_sintacticas": [
-    "sujeto", "predicado", "núcleo", "complemento directo", "complemento indirecto", "atributo", "complemento circunstancial", "agente", "predicativo", "régimen"
-  ],
-  "figuras_literarias": [
-    "metáfora", "símil", "personificación", "hipérbole", "anáfora", "aliteración", "antítesis", "hipérbaton", "encabalgamiento", "paradoja"
-  ],
   "generos_literarios": [
-    "novela", "cuento", "poema", "tragedia", "comedia", "drama", "epopeya", "romance", "fábula", "leyenda"
+    "narrativa",
+    "lírica",
+    "teatral",
+    "épica",
+    "novela caballeresca",
+    "soneto",
+    "égloga",
+    "oda",
+    "tragedia",
+    "entremés"
   ],
-  "prefijos_sufijos": [
-    "pre", "ante", "sub", "bi", "tele", "cracia", "logía", "fobia", "filia", "geo"
+  "lexicologia": [
+    "sinónimo",
+    "antónimo",
+    "polisemia",
+    "homonimia",
+    "hiperónimo",
+    "hipónimo",
+    "familia léxica",
+    "campo semántico",
+    "prefijo",
+    "sufijo"
+  ],
+  "morfologia_verbo": [
+    "indicativo",
+    "subjuntivo",
+    "imperativo",
+    "infinitivo",
+    "gerundio",
+    "participio",
+    "voz pasiva",
+    "perífrasis",
+    "irregular",
+    "clítico"
+  ],
+  "sintaxis_sujeto": [
+    "sujeto omitido",
+    "sujeto paciente",
+    "sujeto agente",
+    "núcleo",
+    "modificador",
+    "aposición",
+    "oración impersonal",
+    "nominalización",
+    "concordancia",
+    "determinante"
+  ],
+  "literatura_medieval": [
+    "juglar",
+    "clerecía",
+    "cantares de gesta",
+    "romancero",
+    "trovador",
+    "cid",
+    "amor cortés",
+    "moraleja",
+    "cuento medieval",
+    "monasterio"
+  ],
+  "tipos_oraciones": [
+    "enunciativa",
+    "interrogativa",
+    "exclamativa",
+    "dubitativa",
+    "desiderativa",
+    "exhortativa",
+    "simple",
+    "compuesta",
+    "activa",
+    "pasiva"
+  ],
+  "ortografia_avanzada": [
+    "tilde diacrítica",
+    "punto y coma",
+    "comillas",
+    "paréntesis",
+    "guion",
+    "raya",
+    "siglas",
+    "abreviaturas",
+    "uso de la h",
+    "uso de b y v"
+  ],
+  "propiedades_texto": [
+    "adecuación",
+    "coherencia",
+    "cohesión",
+    "conectores",
+    "párrafo",
+    "estructura",
+    "registro",
+    "tema",
+    "idea principal",
+    "resumen"
+  ],
+  "textos_periodisticos": [
+    "noticia",
+    "entrevista",
+    "reportaje",
+    "crónica",
+    "titular",
+    "entradilla",
+    "cuerpo",
+    "opinión",
+    "editorial",
+    "columna"
+  ],
+  "recursos_estilisticos": [
+    "personificación",
+    "metáfora",
+    "hipérbole",
+    "comparación",
+    "paralelismo",
+    "anáfora",
+    "aliteración",
+    "metonimia",
+    "paradoja",
+    "elipsis"
   ]
 }

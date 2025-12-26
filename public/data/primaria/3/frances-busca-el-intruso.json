@@ -1,60 +1,102 @@
 [
   {
-    "categoria": "Animaux (Visual)",
+    "categoria": "Animaux Sauvages et Domestiques (Visual)",
     "correctos": [
       "🐶",
       "🐱",
       "🐭",
       "🐰",
       "🦊",
-      "🐻"
+      "🐻",
+      "🦁",
+      "🐯",
+      "🐵",
+      "🐬",
+      "🦅",
+      "🐘",
+      "🦒",
+      "🦓"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "⚽",
       "🏠",
-      "✏️"
+      "✏️",
+      "🍕",
+      "🍔",
+      "🚲",
+      "🎸",
+      "⌚",
+      "💻",
+      "🧸"
     ]
   },
   {
-    "categoria": "École (Visual)",
+    "categoria": "Fournitures de l'École (Visual)",
     "correctos": [
       "📚",
       "✏️",
       "🎒",
       "📏",
       "✂️",
-      "🖍️"
+      "🖍️",
+      "📓",
+      "🏫",
+      "🖊️",
+      "🎓",
+      "📖",
+      "📎"
     ],
     "intrusos": [
       "🛌",
       "📺",
       "🍔",
       "🐶",
-      "🚗"
+      "🚗",
+      "🍦",
+      "🥪",
+      "🛋️",
+      "📻",
+      "🚲",
+      "🛴"
     ]
   },
   {
-    "categoria": "Couleurs (Mots)",
+    "categoria": "Les Couleurs et Nuances",
     "correctos": [
       "Rouge",
       "Bleu",
       "Vert",
       "Jaune",
       "Noir",
-      "Blanc"
+      "Blanc",
+      "Rose",
+      "Orange",
+      "Gris",
+      "Violet",
+      "Marron",
+      "Beige",
+      "Argent",
+      "Or"
     ],
     "intrusos": [
       "Chien",
       "Chat",
       "Maison",
       "Un",
-      "Deux"
+      "Deux",
+      "Table",
+      "Chaise",
+      "Livre",
+      "Stylo",
+      "Pomme",
+      "Manger",
+      "Dormir"
     ]
   },
   {
-    "categoria": "Nombres 1-10",
+    "categoria": "Les Nombres 1-20",
     "correctos": [
       "Un",
       "Deux",
@@ -62,65 +104,110 @@
       "Quatre",
       "Cinq",
       "Six",
-      "Dix"
+      "Sept",
+      "Huit",
+      "Neuf",
+      "Dix",
+      "Onze",
+      "Douze",
+      "Treize",
+      "Vingt"
     ],
     "intrusos": [
       "Bonjour",
       "Merci",
       "Oui",
       "Non",
-      "Rouge"
+      "Rouge",
+      "Bleu",
+      "Chien",
+      "Chat",
+      "Maison",
+      "Petit",
+      "Grand",
+      "Aujourd'hui"
     ]
   },
   {
-    "categoria": "Salutations",
+    "categoria": "Salutations et Formules de Politesse",
     "correctos": [
       "Bonjour",
       "Salut",
       "Au revoir",
       "Bonsoir",
-      "Merci"
+      "Bonne nuit",
+      "Merci",
+      "S'il vous plaît",
+      "Pardon",
+      "Enchanté",
+      "De rien"
     ],
     "intrusos": [
       "Rouge",
       "Bleu",
       "Chat",
       "Chien",
-      "Pomme"
+      "Pomme",
+      "Banane",
+      "Un",
+      "Deux",
+      "Trois",
+      "Maison",
+      "Table",
+      "Chaise"
     ]
   },
   {
-    "categoria": "La Famille",
+    "categoria": "Les Membres de la Famille",
     "correctos": [
       "Père",
       "Mère",
       "Frère",
       "Sœur",
-      "Bébé"
+      "Bébé",
+      "Grand-père",
+      "Grand-mère",
+      "Oncle",
+      "Tante",
+      "Cousin",
+      "Cousine"
     ],
     "intrusos": [
       "Stylo",
       "Gomme",
       "Cahier",
       "Professeur",
-      "École"
+      "École",
+      "Classe",
+      "Livre",
+      "Règle",
+      "Ciseaux",
+      "Sac à dos"
     ]
   },
   {
-    "categoria": "Les Jours",
+    "categoria": "Les Jours de la Semaine",
     "correctos": [
       "Lundi",
       "Mardi",
       "Mercredi",
       "Jeudi",
-      "Vendredi"
+      "Vendredi",
+      "Samedi",
+      "Dimanche"
     ],
     "intrusos": [
       "Janvier",
       "Février",
       "Mars",
       "Noël",
-      "Pâques"
+      "Pâques",
+      "Été",
+      "Hiver",
+      "Automne",
+      "Printemps",
+      "Matin",
+      "Soir"
     ]
   }
 ]

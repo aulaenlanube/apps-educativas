@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "Mes vacances d'été",
+        "texto": "L'été dernier, je suis parti en vacances avec ma famille en Bretagne. C'est une région magnifique dans le nord-ouest de la France. Nous avons loué une petite maison près de la mer. Chaque matin, nous mangions des crêpes pour le petit-déjeuner. J'ai fait beaucoup de promenades sur la côte et j'ai appris à faire du surf. Il n'a pas fait très chaud, mais l'eau était très belle. J'ai aussi visité des petits villages de pêcheurs et j'ai mangé des fruits de mer. C'étaient les meilleures vacances de ma vie !",
+        "preguntas": [
+            {
+                "pregunta": "Où est allé l'élève l'été dernier ?",
+                "opciones": [
+                    "À Paris",
+                    "En Bretagne",
+                    "Au Canada",
+                    "En Espagne"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qu'est-ce qu'ils mangeaient au petit-déjeuner ?",
+                "opciones": [
+                    "Des croissants",
+                    "Des crêpes",
+                    "Des œufs",
+                    "Rien"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel sport Antoine a-t-il appris ?",
+                "opciones": [
+                    "Le football",
+                    "Le surf",
+                    "Le tennis",
+                    "La natation"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel temps a-t-il fait ?",
+                "opciones": [
+                    "Très chaud",
+                    "Pas très chaud",
+                    "Il a neigé",
+                    "Il y a eu une tempête"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où ont-ils dormi ?",
+                "opciones": [
+                    "Dans un grand hôtel",
+                    "Dans une petite maison louée",
+                    "Dans une tente",
+                    "Dans la voiture"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Ma ville : Bordeaux",
+        "texto": "Bordeaux est une grande ville historique située dans le sud-ouest de la France. Elle est célèbre pour son architecture classique et ses vignobles. On appelle Bordeaux « la Perle d'Aquitaine ». Le centre-ville est classé au patrimoine mondial de l'UNESCO. On peut se déplacer facilement en tramway ou à vélo. Le monument que je préfère est la Place de la Bourse avec son miroir d'eau ! C'est magique de voir les bâtiments se refléter dans l'eau. Bordeaux est une ville dynamique et parfaite pour les étudiants.",
+        "preguntas": [
+            {
+                "pregunta": "Où se situe Bordeaux ?",
+                "opciones": [
+                    "Au nord",
+                    "Dans le sud-ouest de la France",
+                    "À l'est",
+                    "En Italie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel est le surnom de la ville ?",
+                "opciones": [
+                    "La Ville Rose",
+                    "La Perle d'Aquitaine",
+                    "La Capitale",
+                    "La Belle Dormante"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel est le monument préféré du narrateur ?",
+                "opciones": [
+                    "La Tour Eiffel",
+                    "La Place de la Bourse",
+                    "Le Louvre",
+                    "La Gare"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Comment peut-on se déplacer en ville ?",
+                "opciones": [
+                    "En avion",
+                    "En tramway ou à vélo",
+                    "À cheval",
+                    "Seulement à pied"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Bordeaux est classée au patrimoine de quel organisme ?",
+                "opciones": [
+                    "ONU",
+                    "UNESCO",
+                    "NASA",
+                    "FIFA"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Les loisirs des Français",
+        "texto": "Les Français aiment beaucoup profiter de leur temps libre. La lecture est l'une de leurs activités préférées, surtout les bandes dessinées comme Astérix ou Tintin. Ils adorent aussi aller au cinéma (le premier film a été inventé en France !). Le sport est important : le football et le cyclisme (avec le Tour de France) sont très populaires. Pendant le week-end, beaucoup de gens font des promenades en forêt ou au bord de la mer. Pour les jeunes, passer du temps sur les réseaux sociaux est l'activité principale.",
+        "preguntas": [
+            {
+                "pregunta": "Quelle activité de lecture est mentionnée ?",
+                "opciones": [
+                    "Les journaux",
+                    "Les bandes dessinées (BD)",
+                    "Les poèmes",
+                    "Les dictionnaires"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel sport est associé à une grande course célèbre ?",
+                "opciones": [
+                    "Le football",
+                    "Le cyclisme",
+                    "Le rugby",
+                    "Le tennis"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle invention française est citée ?",
+                "opciones": [
+                    "La télévision",
+                    "Le cinéma",
+                    "L'ordinateur",
+                    "La radio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Que font les gens le week-end ?",
+                "opciones": [
+                    "Ils travaillent",
+                    "Ils font des promenades",
+                    "Ils dorment tout le temps",
+                    "Ils vont à l'école"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quelle est l'activité principale des jeunes aujourd'hui ?",
+                "opciones": [
+                    "La cuisine",
+                    "Les réseaux sociaux",
+                    "Le jardinage",
+                    "Le tricot"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La mode et le shopping",
+        "texto": "Paris est considérée comme la capitale mondiale de la mode. On y trouve des grandes marques de luxe comme Chanel ou Dior, mais aussi des petites boutiques très originales. Les Françaises aiment le style « chic et simple ». Pendant les soldes d'hiver et d'été, les magasins sont très fréquentés parce que les prix sont plus bas. J'ai besoin d'acheter de nouveaux vêtements pour l'école : une veste, deux pantalons noirs et une paire de baskets. J'aime aussi porter des accessoires comme un bonnet ou une écharpe quand il fait froid.",
+        "preguntas": [
+            {
+                "pregunta": "Quelle ville est la capitale de la mode ?",
+                "opciones": [
+                    "Londres",
+                    "Paris",
+                    "Berlin",
+                    "Rome"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Citez une marque de luxe française mentionnée.",
+                "opciones": [
+                    "Nike",
+                    "Chanel",
+                    "Apple",
+                    "Renault"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quand est-ce que les gens font beaucoup de shopping ?",
+                "opciones": [
+                    "Toutes les nuits",
+                    "Pendant les soldes",
+                    "Le lundi matin",
+                    "Jamais"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "De quoi l'élève a-t-il besoin d'acheter ?",
+                "opciones": [
+                    "Une robe",
+                    "Une veste, deux pantalons et des baskets",
+                    "Un chapeau",
+                    "Un cartable"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quels accessoires porte-t-il quand il fait froid ?",
+                "opciones": [
+                    "Des lunettes",
+                    "Un bonnet et une écharpe",
+                    "Une montre",
+                    "Rien"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Une alimentation saine",
+        "texto": "Pour être en forme au collège, il est essentiel de bien manger. On doit prendre trois repas équilibrés par jour. Le petit-déjeuner est fondamental pour avoir de l'énergie le matin. À midi, à la cantine, on mange souvent une viande ou un poisson avec des légumes. Il faut aussi boire beaucoup d'eau et éviter les boissons trop sucrées comme les sodas. Les experts disent qu'il faut manger cinq fruits et légumes par jour. Moi, mon fruit préféré, c'est la pomme ! Et toi, quel est ton plat favori ?",
+        "preguntas": [
+            {
+                "pregunta": "Combien de repas faut-il faire par jour ?",
+                "opciones": [
+                    "Un",
+                    "Deux",
+                    "Trois",
+                    "Cinq"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Quel repas est fondamental pour l'énergie du matin ?",
+                "opciones": [
+                    "Le dîner",
+                    "Le petit-déjeuner",
+                    "Le goûter",
+                    "Le brunch"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Que doit-on éviter de boire ?",
+                "opciones": [
+                    "L'eau",
+                    "Les boissons trop sucrées",
+                    "Le lait",
+                    "Le jus naturel"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Combien de fruits et légumes faut-il manger par jour ?",
+                "opciones": [
+                    "Un",
+                    "Cinq",
+                    "Dix",
+                    "Infinite"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel est le fruit préféré du narrateur ?",
+                "opciones": [
+                    "L'orange",
+                    "La fraise",
+                    "La pomme",
+                    "La banane"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Le système scolaire en France",
+        "texto": "En France, les enfants vont à l'école maternelle, puis à l'école élémentaire. À onze ans, ils entrent au collège. Le collège dure quatre ans : la sixième, la cinquième, la quatrième et la troisième. Après le collège, les élèves vont au lycée pour préparer le baccalauréat. Les cours commencent généralement vers huit heures et finissent vers dix-sept heures. Le mercredi après-midi, il n'y a pas de cours dans beaucoup d'établissements. Les vacances scolaires sont nombreuses : toutes les six ou sept semaines !",
+        "preguntas": [
+            {
+                "pregunta": "À quel âge entre-t-on au collège en France ?",
+                "opciones": [
+                    "À 6 ans",
+                    "À 11 ans",
+                    "À 15 ans",
+                    "À 18 ans"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Comment s'appelle l'examen final à la fin du lycée ?",
+                "opciones": [
+                    "Le brevet",
+                    "Le baccalauréat",
+                    "Le diplôme",
+                    "La licence"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Combien de temps dure le collège ?",
+                "opciones": [
+                    "Trois ans",
+                    "Quatre ans",
+                    "Huit ans",
+                    "Cinq ans"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel jour n'y a-t-il souvent pas de cours l'après-midi ?",
+                "opciones": [
+                    "Lundi",
+                    "Mercredi",
+                    "Vendredi",
+                    "Dimanche"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "À quelle fréquence ont lieu les vacances ?",
+                "opciones": [
+                    "Une fois par an",
+                    "Tous les mois",
+                    "Toutes les 6 ou 7 semaines",
+                    "Jamais"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "La fête de la musique",
+        "texto": "Le 21 juin, c'est le jour le plus long de l'année, mais c'est aussi la Fête de la Musique en France ! Dans toutes les villes, les musiciens sortent dans la rue pour jouer du jazz, du rock, du rap ou de la musique classique. Tous les concerts sont gratuits. C'est une ambiance très joyeuse et tout le monde danse dans les rues jusqu'à tard le soir. Cette fête a été créée en 1982 par le ministre de la culture Jack Lang. C'est une manière de célébrer l'art et l'arrivée de l'été.",
+        "preguntas": [
+            {
+                "pregunta": "Quelle est la date de la Fête de la Musique ?",
+                "opciones": [
+                    "Le 1er mai",
+                    "Le 21 juin",
+                    "Le 14 juillet",
+                    "Le 25 décembre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Où jouent les musiciens ce jour-là ?",
+                "opciones": [
+                    "Seulement au théâtre",
+                    "Dans la rue",
+                    "À l'école",
+                    "Dans le bus"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Combien coûtent les concerts ?",
+                "opciones": [
+                    "C'est très cher",
+                    "C'est gratuit",
+                    "10 euros",
+                    "On ne dit pas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En quelle année cette fête a-t-elle été créée ?",
+                "opciones": [
+                    "1882",
+                    "1982",
+                    "2002",
+                    "2020"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel événement de saison cette fête célèbre-t-elle ?",
+                "opciones": [
+                    "Noël",
+                    "L'arrivée de l'été",
+                    "Halloween",
+                    "Pâques"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Protégons les océans",
+        "texto": "Les océans couvrent plus de 70% de la surface de notre planète. Malheureusement, ils sont très pollués par les plastiques et les produits chimiques. Cela tue beaucoup de poissons et de tortues marines. Pour sauver les océans, nous devons agir maintenant ! On ne doit pas jeter de déchets sur les plages. On peut aussi utiliser des bouteilles en verre à la place du plastique. Chaque petit geste est important pour garder notre terre bleue et propre pour le futur.",
+        "preguntas": [
+            {
+                "pregunta": "Quel pourcentage de la planète est couvert par les océans ?",
+                "opciones": [
+                    "50%",
+                    "Plus de 70%",
+                    "10%",
+                    "90%"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel matériau pollue principalement les eaux ?",
+                "opciones": [
+                    "Le bois",
+                    "Le plastique",
+                    "Le fer",
+                    "Le sable"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quels animaux sont en danger selon le texte ?",
+                "opciones": [
+                    "Les chats",
+                    "Les poissons et les tortues marines",
+                    "Les oiseaux de forêt",
+                    "Les éléphants"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel conseil est donné pour les bouteilles ?",
+                "opciones": [
+                    "Utiliser du verre",
+                    "Utiliser du métal",
+                    "Ne rien boire",
+                    "Les jeter à la mer"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Où ne doit-on pas jeter de déchets ?",
+                "opciones": [
+                    "Dans les poubelles",
+                    "Sur les plages",
+                    "À la maison",
+                    "Dans le jardin"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Un personnage : Victor Hugo",
+        "texto": "Victor Hugo est l'un des plus grands écrivains français du 19ème siècle. Il est né en 1802. Il a écrit des poèmes, des pièces de théâtre et des romans célèbres dans le monde entier. Ses deux chefs-d'œuvre sont « Les Misérables » et « Notre-Dame de Paris » (avec le personnage de Quasimodo). Il n'était pas seulement un écrivain, il était aussi un homme politique qui luttait pour la liberté et contre la peine de mort. Quand il est mort en 1885, des millions de personnes ont assisté à ses funérailles à Paris.",
+        "preguntas": [
+            {
+                "pregunta": "Au quel siècle Victor Hugo a-t-il vécu ?",
+                "opciones": [
+                    "18ème",
+                    "19ème",
+                    "20ème",
+                    "21ème"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Citez un roman célèbre de Victor Hugo.",
+                "opciones": [
+                    "Harry Potter",
+                    "Les Misérables",
+                    "Le Petit Prince",
+                    "Astérix"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel personnage célèbre habite à Notre-Dame ?",
+                "opciones": [
+                    "Napoléon",
+                    "Quasimodo",
+                    "Astérix",
+                    "Tintin"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel était son autre métier à part écrivain ?",
+                "opciones": [
+                    "Médecin",
+                    "Homme politique",
+                    "Chanteur",
+                    "Cuisinier"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Pour quelle cause luttait-il ?",
+                "opciones": [
+                    "Pour la guerre",
+                    "Pour la liberté et contre la peine de mort",
+                    "Pour l'esclavage",
+                    "Pour le sport"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Le futur : La technologie de demain",
+        "texto": "Comment sera le monde en 2050 ? Les scientifiques pensent que nous aurons des voitures autonomes (sans conducteurs) et peut-être des maisons intelligentes contrôlées par la voix. La réalité virtuelle sera utilisée à l'école pour voyager dans l'histoire ou visiter des planètes lointaines. Mais le plus grand défi sera technologique et écologique : créer des machines qui ne polluent pas. Le futur est passionnant mais nous devons être responsables pour protéger notre environnement et notre vie privée.",
+        "preguntas": [
+            {
+                "pregunta": "Comment seront les voitures en 2050 ?",
+                "opciones": [
+                    "Très bruyantes",
+                    "Autonomes (sans conducteurs)",
+                    "Elles n'existeront plus",
+                    "Volantes seulement"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "À quoi servira la réalité virtuelle à l'école ?",
+                "opciones": [
+                    "À dormir",
+                    "À voyager dans l'histoire ou l'espace",
+                    "À manger",
+                    "À rien"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quel sera le plus grand défi ?",
+                "opciones": [
+                    "Avoir internet partout",
+                    "Créer des machines qui ne polluent pas",
+                    "Manger plus de frites",
+                    "Gagner au loto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Comment seront contrôlées les maisons intelligentes ?",
+                "opciones": [
+                    "Par la voix",
+                    "Par des sifflets",
+                    "Par la météo",
+                    "Par les yeux"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Que devons-nous protéger à part l'environnement ?",
+                "opciones": [
+                    "Nos vieux livres",
+                    "Notre vie privée",
+                    "Nos chaussures",
+                    "Les supermarchés"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

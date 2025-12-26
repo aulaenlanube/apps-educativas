@@ -1,0 +1,921 @@
+{
+  "titulo": "Material de Estudio - Ciencias Naturales - 5º PRIMARIA",
+  "introduccion": "Repasa este vocabulario de Ciencias Naturales para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "alveolo",
+          "definicion": "Unidad más pequeña del aparato respiratorio donde ocurre el intercambio de gases.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "atmósfera",
+          "definicion": "Capa de gases que envuelve la Tierra.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "arteria",
+          "definicion": "Vaso sanguíneo que lleva la sangre desde el corazón a los órganos.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "ovíparo",
+          "definicion": "Animal que nace de un huevo.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "ayuda",
+          "definicion": "Relación entre seres vivos donde ambos se benefician.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "amperímetro",
+          "definicion": "Instrumento para medir la intensidad de la corriente eléctrica.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "biocenosis",
+          "definicion": "Conjunto de seres vivos de un ecosistema.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bacteria",
+          "definicion": "Ser vivo unicelular y procariota del reino moneras.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "biodiversidad",
+          "definicion": "Variedad de especies de seres vivos en un lugar determinado.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bilis",
+          "definicion": "Líquido producido por el hígado que ayuda a digerir las grasas.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "biología",
+          "definicion": "Rama de la ciencia que estudia los seres vivos.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "célula",
+          "definicion": "Unidad básica y estructural de todos los seres vivos.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "clorofila",
+          "definicion": "Sustancia verde de las plantas que capta la luz solar.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "capilar",
+          "definicion": "Vaso sanguíneo muy fino donde se intercambian nutrientes y desechos.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cloroplasto",
+          "definicion": "Orgánulo celular vegetal donde se realiza la fotosíntesis.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "calor",
+          "definicion": "Forma de energía que se transfiere entre cuerpos a distinta temperatura.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "densidad",
+          "definicion": "Relación entre la masa de un cuerpo y el volumen que ocupa.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "digestión",
+          "definicion": "Proceso por el cual el cuerpo obtiene nutrientes de los alimentos.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "carbono",
+          "definicion": "Gas que las plantas absorben durante la fotosíntesis (Dióxido de...).",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "diafragma",
+          "definicion": "Músculo que separa el tórax del abdomen y ayuda a respirar.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "degradar",
+          "definicion": "Acción de descomponer sustancias complejas en simples.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "ecosistema",
+          "definicion": "Conjunto formado por el biotopo y la biocenosis.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "estomas",
+          "definicion": "Orificios microscópicos en las hojas para el intercambio de gases.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "elasticidad",
+          "definicion": "Propiedad de algunos materiales de recuperar su forma original.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "energía",
+          "definicion": "Capacidad de la materia para producir cambios o realizar trabajo.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "espermatozoide",
+          "definicion": "Célula sexual masculina.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "fotosíntesis",
+          "definicion": "Proceso por el cual las plantas fabrican materia orgánica.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fuerza",
+          "definicion": "Interacción capaz de cambiar el estado de movimiento de un cuerpo.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fecundación",
+          "definicion": "Unión del gameto masculino con el femenino.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "flotabilidad",
+          "definicion": "Propiedad de los cuerpos de mantenerse sobre la superficie de un líquido.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "levadura",
+          "definicion": "Hongo microscópico que se usa para hacer pan.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "flor",
+          "definicion": "Parte de la planta encargada de la reproducción sexual.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "gameto",
+          "definicion": "Célula reproductora especializada (óvulo o espermatozoide).",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gravedad",
+          "definicion": "Fuerza de atracción entre dos masas grandes como la Tierra.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "glándula",
+          "definicion": "Órgano que produce sustancias como hormonas o saliva.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "glóbulos",
+          "definicion": "Células de la sangre que transportan oxígeno.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gaseoso",
+          "definicion": "Estado de la materia sin volumen ni forma propia.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hábitat",
+          "definicion": "Lugar que reúne las condiciones para que viva una especie.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "herbívoro",
+          "definicion": "Ser vivo que se alimenta de productores (plantas).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hongos",
+          "definicion": "Reino al que pertenecen las setas y los mohos.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "homogénea",
+          "definicion": "Mezcla de sustancias que tienen aspecto uniforme.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hormonas",
+          "definicion": "Sustancias químicas que regulan funciones del cuerpo.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "invertebrado",
+          "definicion": "Animal que carece de columna vertebral.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "aislante",
+          "definicion": "Material que no deja pasar la electricidad o el calor.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "intestino",
+          "definicion": "Órgano del aparato digestivo donde se absorben los nutrientes.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "irradiar",
+          "definicion": "Acción de introducir los datos del entorno mediante los sentidos.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inmiscibles",
+          "definicion": "Propiedad de los líquidos que no se pueden mezclar.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "imantación",
+          "definicion": "Efecto de atracción que produce un imán.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "inspiración",
+          "definicion": "Proceso de entrada de aire a los pulmones.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "jugos",
+          "definicion": "Líquidos digestivos segregados por el estómago: ... gástricos.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "medusa",
+          "definicion": "Animal invertebrado marino con cuerpo gelatinoso y tentáculos.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juntura",
+          "definicion": "Punto de unión entre dos huesos para permitir el movimiento.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "chorro",
+          "definicion": "Estado de la materia que fluye (líquido o gas).",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "julio",
+          "definicion": "Unidad de energía en el Sistema Internacional.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jabón",
+          "definicion": "Materia grasa para fabricar jabón.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jardín",
+          "definicion": "Lugar donde se cultivan plantas.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "kilogramo",
+          "definicion": "Unidad de masa mil veces mayor que el gramo.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilómetro",
+          "definicion": "Mil metros de distancia.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "cinética",
+          "definicion": "Energía debida al movimiento de un cuerpo.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "citoquinina",
+          "definicion": "Hormona vegetal que regula el crecimiento.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "queratina",
+          "definicion": "Proteína que forma el pelo y las uñas.",
+          "pista": "Empieza por K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "linfa",
+          "definicion": "Líquido del sistema circulatorio que protege de infecciones.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "líquido",
+          "definicion": "Estado de la materia con volumen fijo pero forma variable.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "laringe",
+          "definicion": "Órgano del aparato respiratorio donde están las cuerdas vocales.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "litosfera",
+          "definicion": "Capa externa sólida de la Tierra.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "luz",
+          "definicion": "Energía que emiten los cuerpos luminosos.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "metamorfosis",
+          "definicion": "Cambio profundo de forma que experimentan algunos animales al crecer.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "materia",
+          "definicion": "Todo aquello que tiene masa y ocupa un lugar en el espacio.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "espora",
+          "definicion": "Órgano vegetal de las plantas sin flores para reproducirse (musgos, helechos).",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "moneras",
+          "definicion": "Reino al que pertenecen las bacterias.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "molares",
+          "definicion": "Órgano del aparato digestivo que rompe los alimentos: ... dientes.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "heterogénea",
+          "definicion": "Mezcla de sustancias que se pueden distinguir a simple vista.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "músculo",
+          "definicion": "Órgano que permite el movimiento mediante contracción.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "núcleo",
+          "definicion": "Parte de la célula que contiene la información genética.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nutrientes",
+          "definicion": "Sustancias químicas que los seres vivos necesitan para vivir.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nervios",
+          "definicion": "Prolongaciones de las neuronas que transmiten impulsos.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nutrición",
+          "definicion": "Relación entre un ser vivo y su entorno para obtener materiales y energía.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "dendrita",
+          "definicion": "Estructura celular de las neuronas que recibe señales.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nomenclatura",
+          "definicion": "Ciencia que clasifica y nombra a los seres vivos.",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "riñones",
+          "definicion": "Órgano que filtra la sangre para formar la orina (plural, contiene la Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "otoño",
+          "definicion": "Estación del año donde muchas plantas pierden las hojas (contiene la Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "araña",
+          "definicion": "Animal invertebrado de ocho patas que teje telas (contiene la Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "daño",
+          "definicion": "Daño que causamos al medio ambiente (contiene la Ñ).",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "retoño",
+          "definicion": "Planta joven que acaba de germinar (contiene la Ñ).",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "oxígeno",
+          "definicion": "Gas residual de la fotosíntesis vital para nuestra respiración.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "omnívoro",
+          "definicion": "Ser vivo que se alimenta tanto de plantas como de animales.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "órgano",
+          "definicion": "Conjunto de tejidos que realizan una función específica.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "óvulo",
+          "definicion": "Célula sexual femenina.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "orgánulos",
+          "definicion": "Estructuras internas de la célula con funciones especiales.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "productor",
+          "definicion": "Ser vivo que fabrica su propio alimento mediante fotosíntesis.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "procariota",
+          "definicion": "Célula sin núcleo definido (como las bacterias).",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "polen",
+          "definicion": "Pequeños granos de las flores para la reproducción.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "corazón",
+          "definicion": "Órgano muscular que bombea la sangre.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "permeabilidad",
+          "definicion": "Capacidad de un material de dejar pasar líquidos.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "consumidor",
+          "definicion": "Ser vivo que se alimenta de otros seres vivos.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "páncreas",
+          "definicion": "Glándula que segrega jugo pancreático.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "quitina",
+          "definicion": "Sustancia que forma el esqueleto de los insectos.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "química",
+          "definicion": "Energía almacenada en los alimentos y combustibles.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "esqueleto",
+          "definicion": "Conjunto de todos los huesos del cuerpo (contiene la Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "tráquea",
+          "definicion": "Conducto del aparato respiratorio (contiene la Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "líquido",
+          "definicion": "Propiedad de la materia de ocupar un lugar (contiene la Q, trampa). Buscamos: Líquido.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "sinapsis",
+          "definicion": "Puntos de contacto entre neuronas (contiene la Q).",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "licuación",
+          "definicion": "Cambio de estado de gas a líquido (contiene la Q).",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "reproducción",
+          "definicion": "Función vital para asegurar la supervivencia de la especie.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "relación",
+          "definicion": "Función vital para captar información del medio y reaccionar.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "riñones",
+          "definicion": "Órganos que filtran la sangre.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "reino",
+          "definicion": "Cada uno de los grandes grupos en que se clasifican los seres vivos.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "torácica",
+          "definicion": "Estructura que protege el corazón y los pulmones (Caja...).",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "sinapsis",
+          "definicion": "Unión entre dos neuronas para transmitir información.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "savia",
+          "definicion": "Líquido que circula por las plantas (Bruta o Elaborada).",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "hematíes",
+          "definicion": "Células de la sangre que transportan oxígeno (sinónimo).",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sangre",
+          "definicion": "Tejido líquido que transporta nutrientes y gases.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "locomotor",
+          "definicion": "Aparato encargado de sostener y mover el cuerpo.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "simbiosis",
+          "definicion": "Relación entre dos especies donde ambas salen ganando.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sólido",
+          "definicion": "Estado de la materia con volumen y forma definida.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "tejido",
+          "definicion": "Conjunto de células del mismo tipo que realizan una función.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tráquea",
+          "definicion": "Conducto del aparato respiratorio reforzado con anillos de cartílago.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "temperatura",
+          "definicion": "Magnitud física que indica el nivel de calor de un cuerpo.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "trófico",
+          "definicion": "Nivel de la cadena alimentaria donde se sitúa un ser vivo.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "estómago",
+          "definicion": "Órgano elástico del aparato digestivo que almacena comida.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tamizado",
+          "definicion": "Técnica para separar mezclas de sólidos de distinto tamaño.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "unicelular",
+          "definicion": "Ser vivo formado por una sola célula.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uréter",
+          "definicion": "Conducto que lleva la orina desde el riñón a la vejiga.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "orina",
+          "definicion": "Líquido de desecho producido por los riñones.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "útero",
+          "definicion": "Órgano femenino donde se desarrolla el feto.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uña",
+          "definicion": "Extremidad de los dedos que nos protege.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "vertebrado",
+          "definicion": "Animal que posee columna vertebral y esqueleto interno.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vena",
+          "definicion": "Conducto que devuelve la sangre desde los órganos al corazón.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vejiga",
+          "definicion": "Órgano donde se almacena la orina.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "volumen",
+          "definicion": "Espacio que ocupa un cuerpo.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vacuna",
+          "definicion": "Preparado médico que previene enfermedades infecciosas.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "vatio",
+          "definicion": "Unidad de medida de la potencia eléctrica.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "web",
+          "definicion": "Red global de comunicación (contiene la W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "wolframio",
+          "definicion": "Elemento químico usado en filamentos de bombillas.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "waterpolo",
+          "definicion": "Deporte acuático que se juega con balón.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "vatio",
+          "definicion": "Medida de la potencia en honor a James Watt.",
+          "pista": "Contiene la W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "xilema",
+          "definicion": "Tejido vegetal que transporta la savia bruta (contiene la X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "oxígeno",
+          "definicion": "Gas residual de la fotosíntesis (contiene la X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "dióxido",
+          "definicion": "Gas que expulsamos al respirar (contiene la X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "tórax",
+          "definicion": "Parte del cuerpo que protegemos (contiene la X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "experimento",
+          "definicion": "Prueba para comprobar una hipótesis (contiene la X).",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "yacimiento",
+          "definicion": "Lugar rico en minerales o fósiles.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yodo",
+          "definicion": "Líquido antiséptico para curar heridas.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "rayo",
+          "definicion": "Descarga eléctrica en una tormenta (contiene la Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "inyectar",
+          "definicion": "Digestión de los alimentos (contiene la Y, trampa). Buscamos: Inyectar.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "coágulo",
+          "definicion": "Masa de sangre que se forma para detener una hemorragia (contiene la Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "mayor",
+          "definicion": "Sistema circulatorio que transporta oxígeno (contiene la Y).",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "geológica",
+          "definicion": "Mesozoico es una era... (contiene la Z).",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "citoplasma",
+          "definicion": "Parte de una célula que contiene los orgánulos.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zoología",
+          "definicion": "Ciencia que estudia los animales.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "amapola",
+          "definicion": "Planta herbácea con flor roja.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "tritón",
+          "definicion": "Animal vertebrado anfibio con cola (tipo de...).",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zorro",
+          "definicion": "Animal carnívoro de la familia de los cánidos.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "corazón",
+          "definicion": "Órgano que bombea la sangre (contiene la Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "raíz",
+          "definicion": "Parte de la planta bajo el suelo (contiene la Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "ozono",
+          "definicion": "Gas que protege de los rayos ultravioleta (contiene la Z).",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

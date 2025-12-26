@@ -1,321 +1,567 @@
 [
   {
     "id": "1",
-    "titulo": "El cumpleaños de Leo",
-    "texto": "Hoy es un día muy especial porque es el cumpleaños de Leo. Su mamá le ha preparado una tarta de chocolate con seis velas. Leo ha invitado a sus amigos del colegio a jugar al parque por la tarde. Su abuela le ha regalado un balón de fútbol nuevo de color rojo.",
+    "titulo": "El Caballero de la Triste Figura",
+    "texto": "Miguel de Cervantes Saavedra publicó en 1605 la primera parte de 'El ingenioso hidalgo Don Quijote de la Mancha'. Esta obra no solo es la cumbre de la literatura española, sino que sentó las bases de la novela moderna. El protagonista, Alonso Quijano, es un hidalgo que, tras leer demasiados libros de caballería, pierde el juicio y decide convertirse en caballero andante bajo el nombre de Don Quijote. Junto a su fiel escudero Sancho Panza, recorre las tierras de la Mancha buscando aventuras, confundiendo molinos con gigantes y defendiendo el honor de su amada Dulcinea del Toboso. La obra destaca por su dualismo: el idealismo de Quijote frente al realismo de Sancho.",
     "preguntas": [
       {
-        "pregunta": "¿De qué sabor es la tarta?",
-        "opciones": ["De fresa", "De chocolate"],
+        "pregunta": "¿En qué año se publicó la primera parte del Quijote?",
+        "opciones": [
+          "1506",
+          "1605",
+          "1615",
+          "1705"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas velas tiene la tarta?",
-        "opciones": ["Seis velas", "Ocho velas"],
-        "correcta": 0
+        "pregunta": "¿Qué motivo llevó a Alonso Quijano a convertirte en caballero?",
+        "opciones": [
+          "La falta de sueño",
+          "La lectura excesiva de libros de caballería",
+          "Un viaje largo por la Mancha",
+          "Su amistad con Sancho Panza"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Quién le regaló el balón?",
-        "opciones": ["Su papá", "Su tía", "Su abuela", "Su hermano"],
+        "pregunta": "¿Con qué confunde Don Quijote a los molinos de viento?",
+        "opciones": [
+          "Con castillos",
+          "Con ejércitos",
+          "Con gigantes",
+          "Con dragones"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿De qué color es el balón?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
-        "correcta": 2
+        "pregunta": "¿Qué importancia tiene esta obra para la literatura?",
+        "opciones": [
+          "Es el primer libro impreso",
+          "Sentó las bases de la novela moderna",
+          "Es una recopilación de poemas",
+          "Solo es famosa en España"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Dónde van a jugar?",
-        "opciones": ["En el cine", "En el parque", "En la playa", "En la escuela"],
+        "pregunta": "¿Qué representa Sancho Panza frente a Don Quijote?",
+        "opciones": [
+          "El idealismo",
+          "El realismo",
+          "La maldad",
+          "La cobardía"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "La mariposa Lola",
-    "texto": "Lola es una mariposa de muchos colores que vive en el jardín. Le gusta volar de flor en flor cuando sale el sol. Cuando llueve, Lola se esconde debajo de una hoja grande para no mojarse las alas. Su mejor amiga es una abeja que se llama Pepi.",
+    "titulo": "El Origen de Nuestra Lengua",
+    "texto": "El castellano o español es una lengua romance, lo que significa que deriva del latín vulgar hablado por los romanos que colonizaron la Península Ibérica. Sin embargo, nuestro idioma es el resultado de un largo proceso de mestizaje. Tras la caída del Imperio Romano, las invasiones germánicas aportaron términos guerreros. Más tarde, la presencia árabe durante ocho siglos dejó más de 4.000 palabras relacionadas con la agricultura, la ciencia y la arquitectura. Con el descubrimiento de América, se incorporaron indigenismos como 'canoa', 'chocolate' o 'huracán'. Hoy en día, los préstamos del inglés o anglicismos son frecuentes por el avance tecnológico.",
     "preguntas": [
       {
-        "pregunta": "¿Cómo se llama la mariposa?",
-        "opciones": ["Lola", "Pepi"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hace cuando llueve?",
-        "opciones": ["Sigue volando", "Se esconde"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Dónde vive Lola?",
-        "opciones": ["En una casa", "En el bosque", "En el mar", "En el jardín"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Quién es su mejor amiga?",
-        "opciones": ["Una hormiga", "Una abeja", "Una mariquita", "Un grillo"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuándo le gusta volar?",
-        "opciones": ["Cuando es de noche", "Cuando nieva", "Cuando sale el sol", "Cuando hay viento"],
+        "pregunta": "¿De qué lengua deriva principalmente el español?",
+        "opciones": [
+          "Del griego",
+          "Del árabe",
+          "Del latín vulgar",
+          "Del germánico"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos siglos aproximadamente duró la presencia árabe en España?",
+        "opciones": [
+          "Dos siglos",
+          "Cinco siglos",
+          "Ocho siglos",
+          "Diez siglos"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿A qué campo pertenecen muchas palabras heredadas del árabe?",
+        "opciones": [
+          "Derecho y leyes",
+          "Agricultura y arquitectura",
+          "Religión y política",
+          "Deportes y ocio"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es 'huracán' según el texto?",
+        "opciones": [
+          "Un anglicismo",
+          "Un germanismo",
+          "Un indigenismo",
+          "Un latinismo"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Por qué usamos hoy muchos anglicismos?",
+        "opciones": [
+          "Por la llegada de Colón",
+          "Por el avance tecnológico",
+          "Por el latín",
+          "No usamos"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "El perro Toby",
-    "texto": "Toby es un perro blanco con manchas negras. Es muy juguetón y le encanta correr detrás de la pelota en el parque. Su dueño se llama Juan y siempre le lleva agua fresca. Hoy Toby ha encontrado un hueso muy grande debajo de un árbol.",
+    "titulo": "La Generación del 27",
+    "texto": "En 1927, un grupo de poetas españoles se reunió en Sevilla para homenajear a Luis de Góngora en el tercer centenario de su muerte. Este grupo, conocido como la Generación del 27, incluía nombres como Federico García Lorca, Rafael Alberti y Pedro Salinas. Su poesía buscaba el equilibrio entre la tradición española (como el romancero) y la vanguardia más moderna y experimental. Lorca, por ejemplo, mezclaba símbolos tradicionales como la luna y los caballos con imágenes surrealistas y profundas. Fue una 'Edad de Plata' para la cultura española.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es Toby?",
-        "opciones": ["Marrón", "Blanco con manchas"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué encontró Toby?",
-        "opciones": ["Un hueso", "Un juguete"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo se llama su dueño?",
-        "opciones": ["Luis", "Pedro", "Juan", "Carlos"],
+        "pregunta": "¿A qué autor homenajeaba el grupo en su primer encuentro?",
+        "opciones": [
+          "Cervantes",
+          "Lope de Vega",
+          "Luis de Góngora",
+          "Bécquer"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué le gusta perseguir?",
-        "opciones": ["Coches", "Gatos", "Pájaros", "La pelota"],
-        "correcta": 3
+        "pregunta": "¿Quién de estos NO pertenece a la Generación del 27?",
+        "opciones": [
+          "Federico García Lorca",
+          "Rafael Alberti",
+          "Miguel de Cervantes",
+          "Pedro Salinas"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Dónde encontró el hueso?",
-        "opciones": ["En la casa", "Bajo un árbol", "En la calle", "En la cama"],
+        "pregunta": "¿Qué buscaba la poesía de este grupo?",
+        "opciones": [
+          "Solo copiar el pasado",
+          "Solo ser modernos",
+          "Equilibrio entre tradición y vanguardia",
+          "Escribir solo en inglés"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué símbolos usaba Lorca frecuentemente?",
+        "opciones": [
+          "Coches y aviones",
+          "La luna y los caballos",
+          "Móviles y redes",
+          "Relojes de arena"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Con qué nombre se conoce esta etapa cultural?",
+        "opciones": [
+          "Siglo de Oro",
+          "Edad de Plata",
+          "Edad de Bronce",
+          "Ilustración"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "La excursión al zoo",
-    "texto": "La clase de primero ha ido de excursión al zoológico. Han ido todos juntos en un autobús amarillo. Han visto una jirafa muy alta comiendo hojas de un árbol. También vieron monos saltando y leones durmiendo. A la hora de comer tomaron bocadillos.",
+    "titulo": "El análisis sintáctico: Sujeto y Predicado",
+    "texto": "Para analizar una oración, primero buscamos el verbo (núcleo del predicado). Una vez localizado, preguntamos '¿quién realiza la acción?' para hallar el Sujeto. Por ejemplo, en 'Aquel valiente caballero luchó contra los gigantes', el verbo es 'luchó' y el sujeto es 'Aquel valiente caballero'. Dentro del sujeto, 'caballero' es el núcleo. Si el sujeto no aparece escrito, decimos que es un 'sujeto elíptico' o tácito (ej: 'Comimos pizza' -> Sujeto elíptico: nosotros).",
     "preguntas": [
       {
-        "pregunta": "¿En qué fueron al zoo?",
-        "opciones": ["En tren", "En autobús"],
+        "pregunta": "¿Qué es lo primero que buscamos para analizar una oración?",
+        "opciones": [
+          "El punto",
+          "El verbo",
+          "El adjetivo",
+          "La mayúscula"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué comía la jirafa?",
-        "opciones": ["Hojas", "Carne"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿De qué color era el autobús?",
-        "opciones": ["Rojo", "Azul", "Verde", "Amarillo"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué hacían los leones?",
-        "opciones": ["Comer", "Dormir", "Correr", "Rugir"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué comieron los niños?",
-        "opciones": ["Pizza", "Sopa", "Bocadillos", "Fruta"],
+        "pregunta": "¿Cuál es el núcleo del sujeto en la frase del caballero?",
+        "opciones": [
+          "Aquel",
+          "Valiente",
+          "Caballero",
+          "Luchó"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llama el sujeto que no está escrito en la oración?",
+        "opciones": [
+          "Sujeto invisible",
+          "Sujeto elíptico",
+          "Sujeto extraño",
+          "No existe"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el sujeto elíptico de 'Fuiste al cine'?",
+        "opciones": [
+          "Él",
+          "Nosotros",
+          "Tú",
+          "Ellos"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿De qué parte es núcleo el verbo?",
+        "opciones": [
+          "Del Sujeto",
+          "Del Predicado",
+          "Del Adyacente",
+          "Del Complemento"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "El diente de Ana",
-    "texto": "A Ana se le mueve un diente de leche. Su mamá le ha dicho que cuando se le caiga, vendrá el Ratoncito Pérez. Ana está muy emocionada y se mira al espejo a cada rato. Por la noche, dejará el diente debajo de su almohada para tener una sorpresa.",
+    "titulo": "Los Géneros Literarios",
+    "texto": "La literatura se divide en tres grandes géneros. El género NARRATIVO utiliza un narrador para contar una historia (como en la novela o el cuento). El género LÍRICO sirve para expresar sentimientos y emociones, normalmente en verso (poesía). Por último, el género TEATRAL o DRAMÁTICO está escrito en diálogos para ser representado por actores en un escenario. Cada género tiene sus propias reglas y recursos, como la rima en la lírica o las acotaciones en el teatro.",
     "preguntas": [
       {
-        "pregunta": "¿Qué se le mueve a Ana?",
-        "opciones": ["Un diente", "Una uña"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Quién vendrá a visitarla?",
-        "opciones": ["Papá Noel", "El Ratoncito Pérez"],
+        "pregunta": "¿Qué género se caracteriza por tener un narrador?",
+        "opciones": [
+          "Lírico",
+          "Narrativo",
+          "Teatral",
+          "Científico"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde dejará el diente?",
-        "opciones": ["En la mesa", "En el suelo", "Bajo la almohada", "En una caja"],
-        "correcta": 2
+        "pregunta": "¿Para qué sirve el género lírico?",
+        "opciones": [
+          "Para contar noticias",
+          "Para expresar sentimientos",
+          "Para dar instrucciones",
+          "Para actuar"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se siente Ana?",
-        "opciones": ["Triste", "Enfadada", "Asustada", "Emocionada"],
-        "correcta": 3
+        "pregunta": "¿En qué se basa el género teatral?",
+        "opciones": [
+          "Solo en la descripción",
+          "En diálogos para ser representados",
+          "Solo en poemas largos",
+          "En dibujos"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Dónde se mira Ana?",
-        "opciones": ["En el espejo", "En la ventana", "En el agua", "En el móvil"],
-        "correcta": 0
+        "pregunta": "¿Qué es una acotación?",
+        "opciones": [
+          "Un poema corto",
+          "Una indicación del autor en teatro",
+          "Un tipo de rima",
+          "El nombre del narrador"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Un cuento es un ejemplo de...",
+        "opciones": [
+          "Género lírico",
+          "Género narrativo",
+          "Género dramático",
+          "Género expositivo"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "La bicicleta nueva",
-    "texto": "Pedro tiene una bicicleta nueva de color azul. Tiene un timbre que suena muy fuerte. Pedro va a la plaza con su papá para aprender a montar sin ruedines. Siempre se pone el casco para estar seguro y no hacerse daño si se cae.",
+    "titulo": "El Periodismo: Información y Opinión",
+    "texto": "En los periódicos y medios digitales encontramos distintos tipos de textos. El más importante es la noticia, que debe ser objetiva y contar hechos reales sin dar la opinión del periodista. En cambio, en los artículos de opinión o las editoriales, el autor expresa libremente lo que piensa sobre un tema de actualidad. Es fundamental que los lectores sepamos diferenciar lo que es un hecho de lo que es un juicio de valor o una opinión personal.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es la bici?",
-        "opciones": ["Roja", "Azul"],
+        "pregunta": "¿Cómo debe ser la noticia?",
+        "opciones": [
+          "Divertida",
+          "Objetiva y real",
+          "Inventada",
+          "Larga"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Con quién va a la plaza?",
-        "opciones": ["Con su papá", "Con su abuelo"],
+        "pregunta": "¿Qué expresa un artículo de opinión?",
+        "opciones": [
+          "Solo datos numéricos",
+          "Lo que piensa el autor",
+          "La cartelera de cine",
+          "El horóscopo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es un 'hecho'?",
+        "opciones": [
+          "Algo que ha ocurrido de verdad",
+          "Una suposición",
+          "Un sueño",
+          "Un deseo"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué usa para protegerse?",
-        "opciones": ["Gorra", "Bufanda", "Casco", "Guantes"],
-        "correcta": 2
+        "pregunta": "¿Por qué es importante diferenciar opinión de información?",
+        "opciones": [
+          "No es importante",
+          "Para ser lectores con pensamiento crítico",
+          "Para leer más rápido",
+          "Para comprar el periódico"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cómo suena el timbre?",
-        "opciones": ["Flojo", "Mal", "Raro", "Fuerte"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Dónde aprende a montar?",
-        "opciones": ["En el colegio", "En la plaza", "En el bosque", "En casa"],
+        "pregunta": "¿Puede un periodista dar su opinión en una noticia?",
+        "opciones": [
+          "Sí, siempre",
+          "No, debe ser objetivo",
+          "A veces",
+          "Solo si le pagan"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Un día en la playa",
-    "texto": "Sara ha ido a la playa porque es verano. Ha hecho un castillo de arena muy grande con su cubo y su pala. El agua del mar está un poco fría, pero le gusta saltar las olas. Ha visto un pececito pequeño nadando cerca de sus pies.",
+    "titulo": "Lope de Vega y el Corral de Comedias",
+    "texto": "Félix Lope de Vega fue apodado 'Fénix de los ingenios' por su increíble capacidad para escribir cientos de obras. Fue quien revolucionó el teatro en el Siglo de Oro español, creando la 'comedia nueva'. Sus obras se representaban en los corrales de comedias, que eran patios de casas habilitados para el teatro. Lope mezclaba lo cómico con lo trágico y dividió las obras en tres actos, haciendo el teatro mucho más popular y dinámico para el pueblo.",
     "preguntas": [
       {
-        "pregunta": "¿En qué estación es?",
-        "opciones": ["Verano", "Invierno"],
-        "correcta": 0
+        "pregunta": "¿Cómo apodaban a Lope de Vega?",
+        "opciones": [
+          "Manco de Lepanto",
+          "El Sabio",
+          "Fénix de los ingenios",
+          "El Guerrero"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Cómo está el agua?",
-        "opciones": ["Caliente", "Fría"],
+        "pregunta": "¿Dónde se representaban sus obras?",
+        "opciones": [
+          "En el cine",
+          "En los corrales de comedias",
+          "En la calle solo",
+          "En castillos cerrados"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué ha construido Sara?",
-        "opciones": ["Una casa", "Un puente", "Un coche", "Un castillo"],
-        "correcta": 3
+        "pregunta": "¿En cuántos actos dividió Lope sus comedias?",
+        "opciones": [
+          "Uno",
+          "Dos",
+          "Tres",
+          "Cinco"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Qué animal ha visto?",
-        "opciones": ["Un cangrejo", "Un pez", "Una medusa", "Una gaviota"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué usó para el castillo?",
-        "opciones": ["Cubo y pala", "Tenedor", "Solo las manos", "Una red"],
+        "pregunta": "¿Qué mezcla hacía Lope en sus obras?",
+        "opciones": [
+          "Cómico y trágico",
+          "Francés e inglés",
+          "Dibujo y música",
+          "Solo tragedia"
+        ],
         "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué consiguió Lope con sus cambios?",
+        "opciones": [
+          "Hacer el teatro aburrido",
+          "Hacerlo popular y dinámico",
+          "Que nadie fuera a verlo",
+          "Hacerlo más difícil"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El gatito Misu",
-    "texto": "Misu es un gatito gris muy curioso. Un día salió al jardín y se subió a un árbol muy alto persiguiendo a un pájaro. Luego le daba miedo bajar. Un bombero tuvo que venir con una escalera larga para ayudarle a bajar al suelo.",
+    "titulo": "Figuras Retóricas: Metáfora y Símil",
+    "texto": "Los poetas utilizan figuras retóricas para embellecer el lenguaje. El SÍMIL o comparación relaciona dos realidades usando el nexo 'como' (ej: 'Sus ojos son como esmeraldas'). La METÁFORA, en cambio, identifica una cosa con otra directamente para sugerirlo (ej: 'Las esmeraldas de su cara'). Otra figura común es la PERSONIFICACIÓN, que consiste en dar cualidades humanas a objetos o animales (ej: 'El viento silbaba una canción').",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es Misu?",
-        "opciones": ["Negro", "Gris"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿A quién perseguía?",
-        "opciones": ["A un ratón", "A un pájaro"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Dónde se subió?",
-        "opciones": ["Al tejado", "A una silla", "A un árbol", "A un coche"],
+        "pregunta": "¿Qué palabra suele usar el símil para comparar?",
+        "opciones": [
+          "Porque",
+          "Pero",
+          "Como",
+          "Aunque"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Quién le ayudó?",
-        "opciones": ["Un policía", "Un médico", "Un bombero", "Su dueño"],
-        "correcta": 2
+        "pregunta": "'El sol es el farol del mundo' es una...",
+        "opciones": [
+          "Metáfora",
+          "Personificación",
+          "Hipérbole",
+          "Símil"
+        ],
+        "correcta": 0
       },
       {
-        "pregunta": "¿Qué usó el bombero?",
-        "opciones": ["Una cuerda", "Una red", "Una cama", "Una escalera"],
-        "correcta": 3
+        "pregunta": "¿Qué es la personificación?",
+        "opciones": [
+          "Escribir sobre personas",
+          "Dar cualidades humanas a objetos/animales",
+          "Hacer rimas",
+          "Dibujar a alguien"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "'Sus dientes son como perlas' es un...",
+        "opciones": [
+          "Metáfora",
+          "Símil",
+          "Sinónimo",
+          "Antónimo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirven estas figuras?",
+        "opciones": [
+          "Para liar al lector",
+          "Para embellecer el lenguaje",
+          "Para escribir rápido",
+          "Para los diccionarios"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Haciendo galletas",
-    "texto": "Hugo y su hermana están cocinando galletas. Mezclan harina, azúcar y leche en un bol grande. Utilizan moldes con forma de estrella y de corazón. Cuando las meten en el horno, toda la cocina huele muy bien.",
+    "titulo": "La publicidad: El poder del eslogan",
+    "texto": "En 6º de primaria analizamos los anuncios publicitarios. Un buen anuncio tiene una parte informativa (qué vende) y una parte persuasiva (por qué comprarlo). El eslogan es la frase clave: debe ser breve, directa y fácil de recordar. Además, la publicidad utiliza estereotipos o imágenes ideales para atraer nuestra atención. Es importante ser consumidores críticos y entender que los anuncios no siempre cuentan la verdad completa del producto.",
     "preguntas": [
       {
-        "pregunta": "¿Qué están cocinando?",
-        "opciones": ["Un pastel", "Galletas"],
+        "pregunta": "¿Qué partes tiene un anuncio?",
+        "opciones": [
+          "Solo dibujos",
+          "Informativa y persuasiva",
+          "Precio y peso",
+          "Inicio y fin"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Con qué forma las hacen?",
-        "opciones": ["Estrellas", "Coches"],
+        "pregunta": "¿Cómo debe ser un eslogan?",
+        "opciones": [
+          "Largo y detallado",
+          "Breve y fácil de recordar",
+          "Escrito en pequeñito",
+          "Cualquier frase"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué usan los anuncios para atraer la atención?",
+        "opciones": [
+          "Imágenes ideales y persuasión",
+          "Mucha letra pequeña",
+          "Papel viejo",
+          "Ruido molesto"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué ingrediente usan?",
-        "opciones": ["Sal", "Pimienta", "Azúcar", "Queso"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Dónde las meten?",
-        "opciones": ["En la nevera", "En el horno", "En el cajón", "En la mesa"],
+        "pregunta": "¿Qué significa ser un 'consumidor crítico'?",
+        "opciones": [
+          "Criticar a todo el mundo",
+          "Analizar si la publicidad es real o exagerada",
+          "Comprar todo lo que sale en la tele",
+          "No comprar nunca nada"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo huele la cocina?",
-        "opciones": ["Mal", "A quemado", "Bien", "A nada"],
-        "correcta": 2
+        "pregunta": "¿La publicidad cuenta siempre toda la verdad?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El muñeco de nieve",
-    "texto": "Ha estado nevando toda la noche. Eva ha salido al patio muy abrigada. Ha hecho un muñeco de nieve con tres bolas grandes. Le ha puesto una zanahoria como nariz y una bufanda roja vieja para que no tenga frío.",
+    "titulo": "La Carta Formal: Uso del registro",
+    "texto": "No escribimos igual a un amigo que al director de un museo. En la CARTA FORMAL usamos un registro más cuidado y cortés. Debemos incluir: lugar y fecha, encabezamiento (ej: 'Estimado Sr.'), cuerpo (el motivo de la carta), despedida formal (ej: 'Atentamente') y firma. Es importante vigilar la ortografía y evitar palabras coloquiales para demostrar respeto a la persona a la que nos dirigimos.",
     "preguntas": [
       {
-        "pregunta": "¿Qué ha hecho Eva?",
-        "opciones": ["Un iglú", "Un muñeco de nieve"],
+        "pregunta": "¿A quién solemos escribir una carta formal?",
+        "opciones": [
+          "A un amigo",
+          "A una autoridad o entidad",
+          "A nuestra mascota",
+          "A nosotros mismos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué usó de nariz?",
-        "opciones": ["Una patata", "Una zanahoria"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De qué color es la bufanda?",
-        "opciones": ["Azul", "Verde", "Roja", "Negra"],
+        "pregunta": "¿Cuál es un saludo adecuado en una carta formal?",
+        "opciones": [
+          "¡Hola, tío!",
+          "¿Qué pasa?",
+          "Estimado Sr./Sra.",
+          "Buenas"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Dónde hizo el muñeco?",
-        "opciones": ["En el parque", "En el patio", "En la calle", "En el colegio"],
+        "pregunta": "¿Qué despedida es más apropiada?",
+        "opciones": [
+          "Chao",
+          "Besos",
+          "Atentamente",
+          "Hasta luego"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué debemos evitar en este tipo de cartas?",
+        "opciones": [
+          "La firma",
+          "Las palabras coloquiales",
+          "La fecha",
+          "El motivo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuándo nevó?",
-        "opciones": ["Por la mañana", "Por la tarde", "Toda la noche", "A mediodía"],
-        "correcta": 2
+        "pregunta": "¿Importa la ortografía en una carta formal?",
+        "opciones": [
+          "Sí, demuestra respeto y cuidado",
+          "No, da igual"
+        ],
+        "correcta": 0
       }
     ]
   }

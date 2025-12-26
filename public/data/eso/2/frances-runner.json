@@ -1,17 +1,122 @@
 {
-  "pieces_maison": [
-    "cuisine", "salon", "chambre", "salle de bain", "toilettes", "jardin", "garage", "balcon", "couloir", "grenier"
+  "ma_journee": [
+    "se lever",
+    "se doucher",
+    "s'habiller",
+    "petit déjeuner",
+    "aller au collège",
+    "déjeuner",
+    "rentrer",
+    "dîner",
+    "se coucher",
+    "dormir"
   ],
-  "meubles": [
-    "lit", "table", "chaise", "armoire", "canapé", "fauteuil", "bureau", "étagère", "lampe", "tapis"
+  "mon_college": [
+    "matière",
+    "professeur",
+    "salle de classe",
+    "cours",
+    "examen",
+    "note",
+    "emploi du temps",
+    "cantine",
+    "cour de récré",
+    "devoirs"
   ],
-  "vetements": [
-    "pantalon", "robe", "jupe", "chemise", "pull", "manteau", "chaussures", "chapeau", "écharpe", "bottes"
+  "le_logement": [
+    "maison",
+    "appartement",
+    "étage",
+    "cuisine",
+    "chambre",
+    "salon",
+    "salle de bains",
+    "jardin",
+    "meuble",
+    "loyer"
   ],
-  "nourriture": [
-    "pain", "fromage", "pomme", "lait", "viande", "poisson", "gâteau", "salade", "chocolat", "beurre"
+  "les_loisirs": [
+    "sport",
+    "musique",
+    "cinéma",
+    "lecture",
+    "jeux vidéo",
+    "sortir",
+    "amis",
+    "voyager",
+    "dessiner",
+    "danser"
   ],
-  "magasins": [
-    "boulangerie", "pharmacie", "librairie", "supermarché", "boucherie", "poissonnerie", "épicerie", "fleuriste", "bijouterie", "kiosque"
+  "les_vetements": [
+    "pantalon",
+    "chemise",
+    "robe",
+    "jupe",
+    "chaussures",
+    "manteau",
+    "pull",
+    "casquette",
+    "sac",
+    "écharpe"
+  ],
+  "la_nature": [
+    "mer",
+    "montagne",
+    "forêt",
+    "campagne",
+    "fleur",
+    "arbre",
+    "soleil",
+    "pluie",
+    "neige",
+    "vent"
+  ],
+  "les_commerces": [
+    "boulangerie",
+    "boucherie",
+    "supermarché",
+    "magasin",
+    "marché",
+    "librairie",
+    "cinéma",
+    "pharmacie",
+    "banque",
+    "poste"
+  ],
+  "la_sante": [
+    "médecin",
+    "hôpital",
+    "malade",
+    "douleur",
+    "tête",
+    "ventre",
+    "médicament",
+    "froid",
+    "grippe",
+    "santé"
+  ],
+  "les_pays": [
+    "france",
+    "espagne",
+    "italie",
+    "allemagne",
+    "angleterre",
+    "belgique",
+    "suisse",
+    "portugal",
+    "canada",
+    "maroc"
+  ],
+  "mots_interrogatifs": [
+    "qui",
+    "quoi",
+    "où",
+    "quand",
+    "comment",
+    "pourquoi",
+    "combien",
+    "quel",
+    "est-ce que",
+    "si"
   ]
 }

@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Vertebrados (Visual)",
+    "categoria": "Animales Vertebrados (Visual)",
     "correctos": [
       "🐶",
       "🐱",
@@ -8,53 +8,86 @@
       "🦅",
       "🐍",
       "🐸",
-      "🐟"
+      "🐟",
+      "🦒",
+      "🦓",
+      "🐊",
+      "🦈",
+      "🐳",
+      "🐧",
+      "🐢"
     ],
     "intrusos": [
       "🐜",
       "🦋",
       "🕷️",
       "🦟",
-      "🐌"
+      "🐌",
+      "🐙",
+      "🦀",
+      "🦐",
+      "🐝",
+      "🐞",
+      "🐛"
     ]
   },
   {
-    "categoria": "Insectos (Visual)",
+    "categoria": "Insectos de seis patas (Visual)",
     "correctos": [
       "🐜",
       "🐝",
       "🐞",
       "🦋",
       "🦗",
-      "🦟"
+      "🦟",
+      "🐛",
+      "🪰",
+      "🪲",
+      "🪳",
+      "🪻"
     ],
     "intrusos": [
       "🐍",
       "🐢",
       "🐊",
       "🦈",
-      "🐈"
+      "🐈",
+      "🕷️",
+      "🦂",
+      "🦞",
+      "🦀",
+      "🐡",
+      "🐙"
     ]
   },
   {
-    "categoria": "El Tiempo: Lluvia",
+    "categoria": "El Tiempo: Precipitaciones y Humedad",
     "correctos": [
       "🌧️",
       "⛈️",
       "☔",
       "💧",
-      "☁️"
+      "☁️",
+      "❄️",
+      "🌨️",
+      "🌫️",
+      "🌦️"
     ],
     "intrusos": [
       "☀️",
       "🌵",
       "🔥",
       "😎",
-      "🏜️"
+      "🏜️",
+      "🏙️",
+      "🏭",
+      "🏠",
+      "🚗",
+      "🚲"
     ]
   },
   {
-    "categoria": "Plantas y Flores",
+    "categoria": "Seres del Reino Vegetal",
     "correctos": [
       "🌳",
       "🌲",
@@ -62,18 +95,30 @@
       "🌵",
       "🌻",
       "🌹",
-      "🌷"
+      "🌷",
+      "🌱",
+      "🌿",
+      "🎋",
+      "🍃",
+      "🍄",
+      "🏵️"
     ],
     "intrusos": [
       "🦓",
       "🚗",
       "🏠",
       "🧸",
-      "⚽"
+      "⚽",
+      "🍔",
+      "🍕",
+      "📱",
+      "💻",
+      "🎸",
+      "🥣"
     ]
   },
   {
-    "categoria": "Partes del Cuerpo",
+    "categoria": "Partes Externas del Cuerpo Humano",
     "correctos": [
       "Cabeza",
       "Tronco",
@@ -81,84 +126,133 @@
       "Brazo",
       "Pierna",
       "Mano",
-      "Pie"
+      "Pie",
+      "Cuello",
+      "Codo",
+      "Rodilla",
+      "Hombro",
+      "Espalda",
+      "Barriga"
     ],
     "intrusos": [
       "Camisa",
       "Pantalón",
       "Zapato",
       "Gorro",
-      "Reloj"
+      "Reloj",
+      "Mochila",
+      "Libro",
+      "Silla",
+      "Mesa",
+      "Lápiz"
     ]
   },
   {
-    "categoria": "Los 5 Sentidos",
+    "categoria": "Los 5 Sentidos y sus Órganos",
     "correctos": [
       "Vista",
       "Oído",
       "Olfato",
       "Gusto",
-      "Tacto"
+      "Tacto",
+      "Ojos",
+      "Orejas",
+      "Nariz",
+      "Lengua",
+      "Piel"
     ],
     "intrusos": [
       "Hambre",
       "Sueño",
       "Miedo",
       "Alegría",
-      "Sed"
+      "Sed",
+      "Cansancio",
+      "Dolor",
+      "Pena",
+      "Sorpresa",
+      "Prisa",
+      "Dientes",
+      "Pelo"
     ]
   },
   {
-    "categoria": "Alimentos Saludables",
+    "categoria": "Nutrientes y Alimentos Saludables",
     "correctos": [
       "Manzana",
       "Lechuga",
       "Pescado",
       "Pollo",
       "Lentejas",
-      "Agua"
+      "Agua",
+      "Arroz integral",
+      "Huevo",
+      "Leche",
+      "Nueces",
+      "Plátano"
     ],
     "intrusos": [
       "Golosinas",
       "Refrescos",
-      "Bollería",
+      "Bollería industrial",
       "Fritos",
-      "Azúcar"
+      "Azúcar",
+      "Patatas chips",
+      "Helado chocolate",
+      "Pizza",
+      "Hamburguesa"
     ]
   },
   {
-    "categoria": "Partes de la Planta",
+    "categoria": "Órganos y Funciones de la Planta",
     "correctos": [
       "Raíz",
       "Tallo",
       "Hoja",
       "Flor",
       "Fruto",
-      "Semilla"
+      "Semilla",
+      "Fotosíntesis",
+      "Clorofila",
+      "Savia",
+      "Estoma"
     ],
     "intrusos": [
       "Pata",
       "Cola",
       "Hocico",
       "Ala",
-      "Aleta"
+      "Aleta",
+      "Pulmones",
+      "Corazón",
+      "Estómago",
+      "Cerebro",
+      "Huesos"
     ]
   },
   {
-    "categoria": "Estados del Agua",
+    "categoria": "Estados de la Materia y Agua",
     "correctos": [
       "Sólido",
       "Líquido",
       "Gaseoso",
       "Hielo",
-      "Vapor"
+      "Vapor de agua",
+      "Nieve",
+      "Granizo",
+      "Glaciar",
+      "Nube"
     ],
     "intrusos": [
       "Tierra",
       "Fuego",
       "Madera",
       "Plástico",
-      "Metal"
+      "Metal",
+      "Cristal",
+      "Papel",
+      "Cartón",
+      "Tela"
     ]
   }
 ]

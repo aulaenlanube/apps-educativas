@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "Benvinguts a l'Institut!",
+        "texto": "Hola! Sóc el Marc i acabe de començar 1r d'ESO. Estava molt nerviós el primer dia perquè l'institut és molt més gran que la meua escola de primària. Ara ja conec molts companys nous i els professors són simpàtics, encara que ens posen molts deures. La meua assignatura preferida és Valencià perquè m'agrada molt llegir històries i aprendre noves paraules. També m'agrada molt el pati, on juguem a bàsquet o simplement xerrem sota el sol. L'ESO és una etapa nova i estic segur que aprendré moltes coses interessants.",
+        "preguntas": [
+            {
+                "pregunta": "En quin curs està el Marc?",
+                "opciones": [
+                    "6é de Primària",
+                    "1r d'ESO",
+                    "Batxillerat",
+                    "Cicle Formatiu"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com se sentia el primer dia?",
+                "opciones": [
+                    "Molt trist",
+                    "Molt nerviós",
+                    "Avorrit",
+                    "Molt enfadat"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quina és la seua assignatura preferida?",
+                "opciones": [
+                    "Matemàtiques",
+                    "Educació Física",
+                    "Valencià",
+                    "Anglés"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Per què li agrada aquesta assignatura?",
+                "opciones": [
+                    "Perquè no fan res",
+                    "Perquè li agrada llegir històries i paraules",
+                    "Perquè l'aula és gran",
+                    "Perquè el professor no parla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què fan al pati el Marc i els seus amics?",
+                "opciones": [
+                    "Estudien",
+                    "Dormen",
+                    "Juguen a bàsquet o xerren",
+                    "Dinen"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "El tribunal de les aigües",
+        "texto": "El Tribunal de les Aigües de la Vega de València és la institució de justícia més antiga d'Europa. Es reuneix cada dijous a les dotze del migdia a la Porta dels Apòstols de la Catedral de València. Els seus membres són agricultors que decideixen sobre els conflictes de l'aigua de les séquies de l'horta. El més curiós és que tot el procés és oral, no s'escriu res, i les seues decisions són respectades per tots. La UNESCO el va declarar Patrimoni Immaterial de la Humanitat l'any 2009 per la seua gran importància cultural.",
+        "preguntas": [
+            {
+                "pregunta": "Cada quan es reuneix el Tribunal de les Aigües?",
+                "opciones": [
+                    "Cada dia",
+                    "Cada dijous",
+                    "Un cop al mes",
+                    "Només a l'estiu"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "On es reuneixen exactament?",
+                "opciones": [
+                    "A l'Ajuntament",
+                    "A la Porta dels Apòstols de la Catedral",
+                    "Enmig de l'horta",
+                    "En un teatre"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Sobre quin tema decideixen els membres del tribunal?",
+                "opciones": [
+                    "Sobre els camps de futbol",
+                    "Sobre els conflictes de l'aigua de les séquies",
+                    "Sobre el preu de la fruita",
+                    "Sobre les festes del poble"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin títol li va donar la UNESCO?",
+                "opciones": [
+                    "Millor monument",
+                    "Ciutat de les arts",
+                    "Patrimoni Immaterial de la Humanitat",
+                    "Premi al regadiu"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Com és el procés de decisió?",
+                "opciones": [
+                    "Tot per escrit",
+                    "Mitjançant ordinadors",
+                    "Totalment oral",
+                    "Amb advocats"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "L'accentuació en valencià",
+        "texto": "En valencià, les normes d'accentuació són fonamentals per a escriure correctament. Posem accent quan la paraula és AGUDA i acaba en vocal, vocal+s, -en o -in. Les paraules PLANES porten accent si NO acaben en cap d'aquestes terminacions. Finalment, les paraules ESDRÚIXOLES s'accentuen sempre. A més, hem de recordar que en valencià tenim l'accent OBERT (`) i l'accent TANCAT (´). Per exemple, la paraula 'café' porta accent tancat, mentre que 'valencià' porta accent obert. Saber distingir-los ens ajuda a pronunciar millor.",
+        "preguntas": [
+            {
+                "pregunta": "Quan s'accentuen les paraules esdrúixoles?",
+                "opciones": [
+                    "Només si acaben en vocal",
+                    "Sempre",
+                    "Mai",
+                    "Si són llargues"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quins tipus d'accent hi ha en valencià?",
+                "opciones": [
+                    "Només un",
+                    "Obert i tancat",
+                    "Recte i corbat",
+                    "Dalt i baix"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si una paraula aguda acaba en -in, porta accent?",
+                "opciones": [
+                    "Sí",
+                    "No",
+                    "Depén de la vocal",
+                    "Només si és un verb"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Quin accent porta la paraula 'valencià'?",
+                "opciones": [
+                    "Tancat",
+                    "Obert",
+                    "Cap",
+                    "Circumflex"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Una paraula plana que acaba en -a, porta accent?",
+                "opciones": [
+                    "Sí",
+                    "No",
+                    "Només si és un nom",
+                    "Sempre"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La llegenda del Drac del Patriarca",
+        "texto": "Al Col·legi del Patriarca de València hi ha un caiman dissecat a la paret que tothom coneix com 'el drac'. Diu la llegenda que fa segles aquest animal vivia al riu Túria i espantava a la gent que hi passava per prop. Un dia, un jove presoner es va oferir a matar la bèstia a canvi de la seua llibertat. Es va fer una armadura plena de espills. Quan el drac el va anar a atacar, es va quedar enlluernat pel seu propi reflex i el jove va aprofitar per a matar-lo. Encara avui podem vore el caiman a l'entrada de l'església del Patriarca.",
+        "preguntas": [
+            {
+                "pregunta": "Quin animal és realment el 'drac' del Patriarca?",
+                "opciones": [
+                    "Un lleó",
+                    "Un caiman",
+                    "Un dinosaure",
+                    "Una serp"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Segons la llegenda, on vivia aquest animal?",
+                "opciones": [
+                    "En una cova",
+                    "Al riu Túria",
+                    "A dalt d'una torre",
+                    "En un castell"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com va aconseguir el jove enlluernar al drac?",
+                "opciones": [
+                    "Amb una llanterna",
+                    "Amb una armadura de espills",
+                    "Amb foc",
+                    "Amb cristalls de colors"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "On podem vore aquest animal avui dia?",
+                "opciones": [
+                    "Al zoo",
+                    "Al Col·legi del Patriarca",
+                    "A l'Ajuntament",
+                    "Al museu de ciències"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què va guanyar el jove per matar el drac?",
+                "opciones": [
+                    "Molts diners",
+                    "La seua llibertat",
+                    "Un castell",
+                    "Una corona"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "L'Albufera: Un tresor natural",
+        "texto": "L'Albufera de València és un estany d'aigua dolça envoltat de camps d'arròs i de la devesa del Saler, una zona de bosc mediterrani. És un lloc fonamental per a les aus que migren cada any. Antigament l'aigua era salada, però amb el temps s'ha convertit en dolça. Els pescadors de la zona utilitzen unes barques típiques de fons pla per a moure's per l'estany perquè és poc profund. La posta de sol a l'Albufera és considerada una de les més boniques del món. També és el lloc on va nàixer el plat valencià més famós: la paella.",
+        "preguntas": [
+            {
+                "pregunta": "De quin tipus és l'aigua de l'Albufera actualment?",
+                "opciones": [
+                    "Salada",
+                    "Dolça",
+                    "Picant",
+                    "Gelada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què es cultiva al voltant de l'estany?",
+                "opciones": [
+                    "Taronges",
+                    "Arròs",
+                    "Blat",
+                    "Gira-sols"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per a quin tipus d'animals és molt important aquest lloc?",
+                "opciones": [
+                    "Per als peixos de mar",
+                    "Per a les aus migratòries",
+                    "Per als mamífers grans",
+                    "Per als animals del desert"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com són les barques típiques dels pescadors?",
+                "opciones": [
+                    "Molt altes",
+                    "Amb fons pla",
+                    "Submarines",
+                    "Velers"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin menjar famós té el seu origen en aquesta zona?",
+                "opciones": [
+                    "L'orxata",
+                    "La paella",
+                    "Els xurros",
+                    "El pastís de carn"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "La dièresi i els seus usos",
+        "texto": "La dièresi (¨) són dos punts que es posen sobre la vocal I o sobre la vocal U. Serveix per a dues coses principals. Primer, per a indicar que la U es pronuncia en els grups GUE, GUI, QUE, QUI (com en les paraules 'aigües' o 'pingüí'). Segon, per a marcar que la I o la U no formen un diptong (sonen separades de la vocal anterior), com en 'raïm' o 'veïna'. Hem de tindre cura perquè hi ha paraules que, encara que semblen portar-la, no en tenen per regla general (com els sufixos -isme o -ista, per exemple 'egoisme').",
+        "preguntas": [
+            {
+                "pregunta": "Sobre quines vocals es posa la dièresi?",
+                "opciones": [
+                    "A i E",
+                    "I i U",
+                    "O i U",
+                    "A, E, I, O, U"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per a què serveix en la paraula 'pingüí'?",
+                "opciones": [
+                    "Per a fer-la més bonica",
+                    "Per a indicar que la U es pronuncia",
+                    "Per a separar les síl·labes",
+                    "Per a marcar l'accent"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Què indica la dièresi en la paraula 'raïm'?",
+                "opciones": [
+                    "Que la I és tònica",
+                    "Que la I no forma diptong (sona separada)",
+                    "Que és un plural",
+                    "Que és una paraula d'origen llatí"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Porta dièresi la paraula 'egoisme'?",
+                "opciones": [
+                    "Sí",
+                    "No (és una excepció per sufix)",
+                    "Només si és plural",
+                    "Depén de qui l'escriga"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quants punts formen la dièresi?",
+                "opciones": [
+                    "Un",
+                    "Dos",
+                    "Tres",
+                    "És una ratlla"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Enric Valor i les seues Rondalles",
+        "texto": "Enric Valor va ser un escriptor i gramàtic fonamental per a la llengua valenciana. Va nàixer a Castalla (l'Alacantí) i va fer una gran labor arreplegant les històries que la gent es contava oralment als pobles. El seu llibre 'Rondalles Valencianes' conté contes plens de màgia, com 'El castell de la solana' o 'I queixals de la vella'. Gràcies a ell, el vocabulari més ric de la nostra terra no s'ha perdut i els joves d'avui podem gaudir d'aquestes aventures fantàstiques.",
+        "preguntas": [
+            {
+                "pregunta": "Qui va ser Enric Valor?",
+                "opciones": [
+                    "Un polític",
+                    "Un escriptor i gramàtic",
+                    "Un metge",
+                    "Un pintor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "On va nàixer Enric Valor?",
+                "opciones": [
+                    "A València",
+                    "A Castalla",
+                    "A Castelló",
+                    "A Elx"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què va fer especialment Enric Valor amb les rondalles?",
+                "opciones": [
+                    "Cantar-les",
+                    "Arreplegar-les del llegat oral i escriure-les",
+                    "Inventar-les totes ell",
+                    "Cremar-les"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "De què estan plenes les seues rondalles?",
+                "opciones": [
+                    "De dades científiques",
+                    "De màgia i aventures tradicionals",
+                    "De notícies de l'ajuntament",
+                    "D'instruccions de cuina"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per a què ha servit la seua obra segons el text?",
+                "opciones": [
+                    "Per a viatjar",
+                    "Per a no perdre el vocabulari ric de la terra",
+                    "Per a fer pel·lícules",
+                    "Per a res"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Els plurals en valencià",
+        "texto": "Formar el plural generalment és fàcil: afegim una -s. Però hi ha casos especials. Si la paraula acaba en -a, el plural sol ser en -es (com 'casa' -> 'cases'). Si acaba en -i o -u tòniques, afegim -ns (com 'camió' -> 'camions'). Hi ha altres paraules que acaben en -s i no canvien (com 'llapis' o 'dilluns'). També és important recordar canvis ortogràfics: si tenim una paraula que acaba en -ca, el plural serà en -ques (com 'orca' -> 'orques') perquè no canvie el so de la lletra C.",
+        "preguntas": [
+            {
+                "pregunta": "Quin és el plural de la paraula 'casa'?",
+                "opciones": [
+                    "Casas",
+                    "Cases",
+                    "Casons",
+                    "Casils"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què li passa a la paraula 'dilluns' en plural?",
+                "opciones": [
+                    "S'afegix una -e",
+                    "No canvia, es queda igual",
+                    "Es diu 'dillunses'",
+                    "Es diu 'dillunns'"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin és el plural de 'camió'?",
+                "opciones": [
+                    "Camiós",
+                    "Camions",
+                    "Camines",
+                    "Camionns"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com s'escriu el plural de 'mosca'?",
+                "opciones": [
+                    "Moscas",
+                    "Mosques",
+                    "Moschs",
+                    "Mosqués"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per què canviem la C per QU en alguns plurals?",
+                "opciones": [
+                    "Perquè siga més difícil",
+                    "Per a mantindre el so fort de la C",
+                    "Per error",
+                    "No es fa mai"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "La Muixeranga d'Algemesí",
+        "texto": "La Muixeranga és una tradició d'Algemesí que barreja torres humanes, danses i música. Se celebra durant les festes de la Mare de Déu de la Salut al setembre. Els muixeranguers porten uns vestits de ratlles molt característics fets de tela de matalàs antiga. La música de la taba i la dolçaina acompanya la construcció de les figures. Molta gent diu que la Muixeranga és l'origen dels castellers de Catalunya. És una mostra d'esforç, equilibri i solidaritat de tot un poble.",
+        "preguntas": [
+            {
+                "pregunta": "En quina ciutat se celebra la Muixeranga?",
+                "opciones": [
+                    "A Alacant",
+                    "A Algemesí",
+                    "A Morella",
+                    "A Vinaròs"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què fan els muixeranguers principalment?",
+                "opciones": [
+                    "Nadant al riu",
+                    "Torres humanes, danses i música",
+                    "Cures de bellesa",
+                    "Carreres de cavalls"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com són els seus vestits?",
+                "opciones": [
+                    "Tot blancs",
+                    "De ratlles de colors",
+                    "De pell d'animal",
+                    "Amb capa negra"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quins instruments acompanyen la festa?",
+                "opciones": [
+                    "Piano i violí",
+                    "Taba i dolçaina",
+                    "Guitarra elèctrica",
+                    "Cap"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què diuen molts sobre l'origen dels castellers?",
+                "opciones": [
+                    "Que va nàixer a França",
+                    "Que tenen el seu origen en la Muixeranga",
+                    "Que són més antics que la Muixeranga",
+                    "No tenen relació"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "El canvi climàtic a les nostres costes",
+        "texto": "El canvi climàtic és un problema global que afecta especialment al territori valencià per la nostra dependència del Mar Mediterrani. L'augment de la temperatura de l'aigua pot fer que apareguen espècies noves i que marxen les que són d'ací. També estem patint més temporals forts (com la DANA) que poden erosionar les platges i destruir el litorals. Hem de reduir la contaminació i cuidar l'aire que respirem per a protegir la nostra terra per a les generacions futures.",
+        "preguntas": [
+            {
+                "pregunta": "Quin mar banya les nostres costes?",
+                "opciones": [
+                    "Cantàbric",
+                    "Mediterrani",
+                    "Atlàntic",
+                    "Mar Mort"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin efecte té l'augment de temperatura a l'aigua?",
+                "opciones": [
+                    "L'aigua estarà més bona",
+                    "Canvi en les espècies de peixos",
+                    "Cap efecte",
+                    "L'aigua desapareixerà"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin tipus de temporal fort s'esmenta?",
+                "opciones": [
+                    "Nevada",
+                    "DANA",
+                    "Tsunami",
+                    "Sorra del desert"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per a qui hem de protegir la terra?",
+                "opciones": [
+                    "Per als rics",
+                    "Per a les generacions futures",
+                    "Per als animals sols",
+                    "No hem de fer res"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quina solució proposa el text?",
+                "opciones": [
+                    "Comprar més cotxes",
+                    "Reduir la contaminació",
+                    "No anar a la platja",
+                    "Gritar molt"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

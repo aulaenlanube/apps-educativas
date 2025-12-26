@@ -1,163 +1,912 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "La primera letra del abecedario.", "solucion": "a" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Insecto que hace miel.", "solucion": "abeja" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Contrario de cerrado.", "solucion": "abierto" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Líquido transparente que bebemos.", "solucion": "agua" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Compañero con el que juegas.", "solucion": "amigo" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Parte del cuerpo para hablar.", "solucion": "boca" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Objeto redondo para jugar al fútbol.", "solucion": "balón" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Vehículo de dos ruedas y pedales.", "solucion": "bicicleta" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Contrario de malo.", "solucion": "bueno" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Calzado para la lluvia.", "solucion": "bota" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Lugar donde vivimos.", "solucion": "casa" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Vehículo con cuatro ruedas.", "solucion": "coche" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Objeto para dormir.", "solucion": "cama" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Animal con orejas largas.", "solucion": "conejo" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Lugar donde vamos a aprender.", "solucion": "colegio" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Parte de la mano.", "solucion": "dedo" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Cuando hay sol es de...", "solucion": "día" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Piezas blancas en la boca.", "solucion": "dientes" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Número que va después del uno.", "solucion": "dos" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Juego de fichas con puntos.", "solucion": "dominó" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Animal grande con trompa.", "solucion": "elefante" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Sinónimo de colegio.", "solucion": "escuela" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Objeto para barrer.", "solucion": "escoba" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Puntos de luz en el cielo nocturno.", "solucion": "estrellas" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Objeto para vernos la cara.", "solucion": "espejo" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Animal del mar que aplaude.", "solucion": "foca" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Lo contrario de guapo.", "solucion": "feo" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Padres, hijos y abuelos.", "solucion": "familia" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Celebración divertida.", "solucion": "fiesta" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Lo contrario de calor.", "solucion": "frío" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Animal que maúlla.", "solucion": "gato" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Prenda para la cabeza.", "solucion": "gorra" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Contrario de pequeño.", "solucion": "grande" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Prenda para las manos.", "solucion": "guantes" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Objeto para borrar.", "solucion": "goma" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Lo ponen las gallinas.", "solucion": "huevo" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Saludo cuando ves a alguien.", "solucion": "hola" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Agua congelada.", "solucion": "hielo" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "El hijo de mis padres.", "solucion": "hermano" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Parte verde de la planta.", "solucion": "hoja" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Casa de hielo.", "solucion": "iglú" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Tierra rodeada de agua.", "solucion": "isla" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Objeto que atrae metal.", "solucion": "imán" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Estación del año con frío.", "solucion": "invierno" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Pensamiento nuevo.", "solucion": "idea" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Animal de cuello largo.", "solucion": "jirafa" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Objeto para jugar.", "solucion": "juguete" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Día de la semana.", "solucion": "jueves" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Alimento salado del cerdo.", "solucion": "jamón" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Lugar con flores y plantas.", "solucion": "jardín" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Mil gramos.", "solucion": "kilo" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Fruta verde por dentro.", "solucion": "kiwi" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Deporte con cinturones.", "solucion": "karate" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Animal australiano.", "solucion": "koala" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Salsa de tomate roja.", "solucion": "ketchup" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "El rey de la selva.", "solucion": "león" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Objeto para leer.", "solucion": "libro" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Sale por la noche.", "solucion": "luna" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Sirve para escribir.", "solucion": "lápiz" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Acción de comprender lo escrito.", "solucion": "leer" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "La madre.", "solucion": "mamá" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Mueble para comer.", "solucion": "mesa" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Tiene cinco dedos.", "solucion": "mano" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Dibujo de la tierra.", "solucion": "mapa" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Sonidos con ritmo.", "solucion": "música" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Está en el cielo y llueve.", "solucion": "nube" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Casa de los pájaros.", "solucion": "nido" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Sirve para oler.", "solucion": "nariz" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Cae en invierno y es blanca.", "solucion": "nieve" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Cuando no hay sol.", "solucion": "noche" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Fruta tropical amarilla.", "solucion": "piña" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Insecto de ocho patas.", "solucion": "araña" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Persona de poca edad.", "solucion": "niño" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Tela para sonarse.", "solucion": "pañuelo" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Tiempo de 365 días.", "solucion": "año" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Animal peludo del bosque.", "solucion": "oso" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Sirve para ver.", "solucion": "ojo" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Sirve para oír.", "solucion": "oreja" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Número después del siete.", "solucion": "ocho" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Movimiento del mar.", "solucion": "ola" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "El padre.", "solucion": "papá" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Mejor amigo del hombre.", "solucion": "perro" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Ave que nada.", "solucion": "pato" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Juguete redondo.", "solucion": "pelota" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Parte del cuerpo para andar.", "solucion": "pie" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Alimento de leche.", "solucion": "queso" },
-  { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Número 15.", "solucion": "quince" },
-  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Lugar con columpios.", "solucion": "parque" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Lo contrario de grande.", "solucion": "pequeño" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Deporte con raqueta.", "solucion": "raqueta" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Animal pequeño.", "solucion": "ratón" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Flor con espinas.", "solucion": "rosa" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Corriente de agua.", "solucion": "río" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Marca la hora.", "solucion": "reloj" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Color de la sangre.", "solucion": "rojo" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Nos da luz y calor.", "solucion": "sol" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Sirve para sentarse.", "solucion": "silla" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Comida líquida caliente.", "solucion": "sopa" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Animal parecido a la rana.", "solucion": "sapo" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Condimento salado.", "solucion": "sal" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Transporte sobre vías.", "solucion": "tren" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Sirve para cortar.", "solucion": "tijeras" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Animal muy lento.", "solucion": "tortuga" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Verdura roja.", "solucion": "tomate" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Para beber leche.", "solucion": "taza" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Fruta de la vid.", "solucion": "uva" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Parte dura del dedo.", "solucion": "uña" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "El primer número.", "solucion": "uno" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Caballo con cuerno.", "solucion": "unicornio" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Todo lo que existe.", "solucion": "universo" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Animal que da leche.", "solucion": "vaca" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Abertura en la pared.", "solucion": "ventana" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Color de la hierba.", "solucion": "verde" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Recipiente para beber.", "solucion": "vaso" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Estación de calor.", "solucion": "verano" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Página de internet.", "solucion": "web" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Internet sin cables.", "solucion": "wifi" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Fruta con piel peluda.", "solucion": "kiwi" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Comida de pan de molde.", "solucion": "sandwich" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Deporte en piscina.", "solucion": "waterpolo" },
-
-  { "id": "x1", "letra": "X", "tipo": "empieza", "definicion": "Instrumento musical.", "solucion": "xilófono" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Coche de transporte.", "solucion": "taxi" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Palabras escritas.", "solucion": "texto" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Prueba del cole.", "solucion": "examen" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Puesto número 6.", "solucion": "sexto" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Pronombre personal.", "solucion": "yo" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Juguete que sube y baja.", "solucion": "yoyó" },
-  { "id": "y3", "letra": "Y", "tipo": "contiene", "definicion": "El día presente.", "solucion": "hoy" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Monarca.", "solucion": "rey" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Comida de la mañana.", "solucion": "desayuno" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Calzado.", "solucion": "zapato" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Animal astuto.", "solucion": "zorro" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Verdura naranja.", "solucion": "zanahoria" },
-  { "id": "z4", "letra": "Z", "tipo": "empieza", "definicion": "Bebida de fruta.", "solucion": "zumo" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Color del cielo.", "solucion": "azul" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Palabra que dice cómo es algo.",
+    "solucion": "adjetivo"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Palabra que significa lo contrario.",
+    "solucion": "antónimo"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Orden de las letras: A, B, C...",
+    "solucion": "abecedario"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Palabra que acompaña al nombre: el, la.",
+    "solucion": "artículo"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Libro con mapas.",
+    "solucion": "atlas"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Lugar con muchos libros.",
+    "solucion": "biblioteca"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Borrar lo escrito.",
+    "solucion": "borrador"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Palabra con dos sílabas.",
+    "solucion": "bisílaba"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Animal que vuela de noche.",
+    "solucion": "búho"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Antes de P y B se escribe...",
+    "solucion": "m"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Signo de pausa corta.",
+    "solucion": "coma"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Nombre para seres de la misma especie.",
+    "solucion": "común"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Historia de fantasía corta.",
+    "solucion": "cuento"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Libro de clase.",
+    "solucion": "cuaderno"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Mes de diciembre.",
+    "solucion": "calendario"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Libro de significados.",
+    "solucion": "diccionario"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Charla entre dos personas.",
+    "solucion": "diálogo"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Separar sílabas.",
+    "solucion": "dividir"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Decir cómo es algo.",
+    "solucion": "describir"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Hacer un dibujo.",
+    "solucion": "dibujar"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Signos de sorpresa (¡!).",
+    "solucion": "exclamación"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Poner letras en papel.",
+    "solucion": "escribir"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Grupo de palabras con sentido.",
+    "solucion": "enunciado"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Sinónimo de colegio.",
+    "solucion": "escuela"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Letra mayúscula o...",
+    "solucion": "escritura"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Conjunto de palabras con sentido.",
+    "solucion": "frase"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Historias de animales con consejo.",
+    "solucion": "fábula"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Palabras con la misma raíz.",
+    "solucion": "familia"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Género de 'niña'.",
+    "solucion": "femenino"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Tiempo de lo que pasará.",
+    "solucion": "futuro"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Signo de dos puntos en la Ü.",
+    "solucion": "diéresis"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Tipo de palabra para acciones.",
+    "solucion": "verbo"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Persona que escribe un blog.",
+    "solucion": "guía"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Cosas que son enormes.",
+    "solucion": "gigante"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Letra muda en GUERRA.",
+    "solucion": "u"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Letra que no suena.",
+    "solucion": "h"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Cosas que pasaron antes.",
+    "solucion": "historia"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Hablar o conversar.",
+    "solucion": "hablar"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "contiene",
+    "definicion": "Persona con la que vives.",
+    "solucion": "hermano"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "contiene",
+    "definicion": "Animal que relincha.",
+    "solucion": "caballo"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Signo de pregunta (¿?).",
+    "solucion": "interrogación"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Imagen de un libro.",
+    "solucion": "ilustración"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Forma básica del verbo (-ar, -er, -ir).",
+    "solucion": "infinitivo"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Hacer historias en la mente.",
+    "solucion": "imaginar"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Palabra que significa lo mismo.",
+    "solucion": "sinónimo"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Letra que suena fuerte.",
+    "solucion": "j"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Unir palabras.",
+    "solucion": "juntar"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Actividad con reglas.",
+    "solucion": "juego"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Persona mayor: viejo o...",
+    "solucion": "joven"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Mes número 7.",
+    "solucion": "julio"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Fruta marrón peluda.",
+    "solucion": "kiwi"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Deporte de kimono.",
+    "solucion": "karate"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Mil gramos.",
+    "solucion": "kilo"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Persona que ataca PC.",
+    "solucion": "hacker"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Coche de carreras pequeño.",
+    "solucion": "kart"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Idioma o sistema de hablar.",
+    "solucion": "lengua"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Entender un texto.",
+    "solucion": "leer"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Nombre para muchas cosas (plural o...).",
+    "solucion": "lista"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Historia de seres fantásticos.",
+    "solucion": "leyenda"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Utensilio para escribir con mina.",
+    "solucion": "lápiz"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Letra al inicio de párrafo.",
+    "solucion": "mayúscula"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Género de 'niño'.",
+    "solucion": "masculino"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Palabra de una sola sílaba.",
+    "solucion": "monosílaba"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Letra antes de B.",
+    "solucion": "m"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Sinónimo de profesor.",
+    "solucion": "maestro"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Palabra para nombrar cosas.",
+    "solucion": "nombre"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Uno o varios: singular o...",
+    "solucion": "número"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Información del periódico.",
+    "solucion": "noticia"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Hijo de mi hijo.",
+    "solucion": "nieto"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Cuando no hay sol.",
+    "solucion": "noche"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Persona pequeña.",
+    "solucion": "niño"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Tiempo de 12 meses.",
+    "solucion": "año"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Estación de hojas secas.",
+    "solucion": "otoño"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Día que cumples años.",
+    "solucion": "cumpleaños"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Animal con telaraña.",
+    "solucion": "araña"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Escribir bien las palabras.",
+    "solucion": "ortografía"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Idea completa con palabras.",
+    "solucion": "oración"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Persona que escribe el libro.",
+    "solucion": "autor"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Escuchar sonidos o palabras.",
+    "solucion": "oír"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Animal con lana.",
+    "solucion": "oveja"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Signo de final de frase.",
+    "solucion": "punto"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Más de uno: singular o...",
+    "solucion": "plural"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Nombre para una persona concreta.",
+    "solucion": "propio"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Texto con rima.",
+    "solucion": "poesía"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Tiempo de lo que ya pasó.",
+    "solucion": "pasado"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Letra con U muda para QUE, QUI.",
+    "solucion": "q"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Comida de leche.",
+    "solucion": "queso"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Persona que corta pelo.",
+    "solucion": "peluquero"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Algo de poco tamaño.",
+    "solucion": "pequeño"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Pala para jugar tenis.",
+    "solucion": "raqueta"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Repetir sonidos al final.",
+    "solucion": "rima"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Letra que suena fuerte sola al inicio.",
+    "solucion": "r"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Contar una aventura.",
+    "solucion": "relatar"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Parte de planta bajo tierra.",
+    "solucion": "raíz"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Flor con espinas.",
+    "solucion": "rosa"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Palabra con significado igual.",
+    "solucion": "sinónimo"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Cuando solo hay un objeto.",
+    "solucion": "singular"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Golpe de voz de una palabra.",
+    "solucion": "sílaba"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Nombre de persona, animal o cosa.",
+    "solucion": "sustantivo"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Día de descanso.",
+    "solucion": "sábado"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Nombre de la historia arriba.",
+    "solucion": "título"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Palabra de tres sílabas.",
+    "solucion": "trisílaba"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Lo que estamos leyendo ahora.",
+    "solucion": "texto"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Signos de pregunta o...",
+    "solucion": "tildes"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Animal muy lento.",
+    "solucion": "tortuga"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Persona que escribe.",
+    "solucion": "autor"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Fruta de la vid.",
+    "solucion": "uva"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Todo lo que existe.",
+    "solucion": "universo"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Persona que lee.",
+    "solucion": "lector"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Animal mágico.",
+    "solucion": "unicornio"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Palabra de acción.",
+    "solucion": "verbo"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Línea de una poesía.",
+    "solucion": "verso"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "A, E, I, O, U.",
+    "solucion": "vocales"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Época de calor.",
+    "solucion": "verano"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Animal de granja.",
+    "solucion": "vaca"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Prueba del cole.",
+    "solucion": "examen"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Palabras escritas.",
+    "solucion": "texto"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Sexta posición.",
+    "solucion": "sexto"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Sinónimo de decir.",
+    "solucion": "explicar"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Coche de transporte.",
+    "solucion": "taxi"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Uno mismo.",
+    "solucion": "yo"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Juguete que sube y baja.",
+    "solucion": "yoyó"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Día presente.",
+    "solucion": "hoy"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Persona que manda.",
+    "solucion": "rey"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Comida matutina.",
+    "solucion": "desayuno"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Zapato o calzado.",
+    "solucion": "zapato"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Bebida de frutas.",
+    "solucion": "zumo"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Verdura naranja.",
+    "solucion": "zanahoria"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Color del cielo.",
+    "solucion": "azul"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Animal marino.",
+    "solucion": "pez"
+  }
 ]

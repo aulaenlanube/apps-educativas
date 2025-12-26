@@ -1,0 +1,566 @@
+[
+    {
+        "id": "1",
+        "titulo": "Curvas Técnicas y Evolventes",
+        "texto": "En 3º de ESO avanzamos en el dibujo geométrico con las CURVAS TÉCNICAS. A diferencia de la circunferencia, estas curvas tienen varios centros o fórmulas más complejas. Destaca el ÓVALO (curva cerrada de cuatro arcos de circunferencia) y el OVOIDE (forma de huevo con un solo eje de simetría). También estudiamos la ESPIRAL, una curva abierta que se aleja de un punto central. Estas formas son fundamentales en el diseño de logotipos, envases y elementos decorativos que buscan suavidad y elegancia.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué se diferencia el ovoide del óvalo?",
+                "opciones": [
+                    "En el color",
+                    "El ovoide solo tiene un eje de simetría (forma de huevo) y el óvalo tiene dos",
+                    "No tienen diferencia",
+                    "El óvalo es una espiral"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es una espiral?",
+                "opciones": [
+                    "Una curva cerrada",
+                    "Una curva abierta que se aleja de un punto central",
+                    "Una línea recta",
+                    "Un polígono"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuántos centros suele tener un óvalo?",
+                "opciones": [
+                    "Uno",
+                    "Cuatro",
+                    "Diez",
+                    "Ninguno"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde se suelen aplicar estas curvas técnicas?",
+                "opciones": [
+                    "En la cocina",
+                    "En diseño de logotipos y envases",
+                    "Solo en matemáticas",
+                    "En ninguna parte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El óvalo es una curva...",
+                "opciones": [
+                    "Abierta",
+                    "Cerrada",
+                    "Recta",
+                    "Infinita"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Imagen Corporativa: Logotipos e Identidad",
+        "texto": "Una marca no es solo un dibujo; es una IDENTIDAD CORPORATIVA. El LOGOTIPO es el texto de la marca escrito de forma especial. El ISOTIPO es el símbolo gráfico (como la manzana de Apple). Cuando se usan los dos juntos, hablamos de IMAGOTIPO o ISOLOGO. Una buena marca debe ser: legible, reproducible en cualquier tamaño, memorable y reflejar los valores de la empresa. El color y la tipografía (el tipo de letra) se eligen cuidadosamente para transmitir sensaciones como confianza, lujo o modernidad.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el isotipo?",
+                "opciones": [
+                    "El nombre escrito",
+                    "El símbolo gráfico de la marca",
+                    "Un tipo de color",
+                    "Un error de impresión"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama el texto de la marca con una tipografía especial?",
+                "opciones": [
+                    "Logotipo",
+                    "Icono",
+                    "Señal",
+                    "Firma"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Una buena marca debe ser, ante todo:",
+                "opciones": [
+                    "Muy complicada",
+                    "Legible y memorable",
+                    "De muchos colores",
+                    "Muy grande"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué se elige una tipografía concreta?",
+                "opciones": [
+                    "Al azar",
+                    "Para transmitir los valores de la empresa (modernidad, lujo...)",
+                    "Porque es gratis",
+                    "No importa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La manzana de Apple es un ejemplo de:",
+                "opciones": [
+                    "Logotipo",
+                    "Isotipo",
+                    "Eslogan",
+                    "Envase"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Antropometría y Ergonomía",
+        "texto": "El diseño debe adaptarse al ser humano. La ANTROPOMETRÍA estudia las medidas del cuerpo humano para diseñar objetos (sillas, mesas, consolas). La ERGONOMÍA busca que esos objetos sean cómodos y no causen lesiones. Un mal diseño de mochila o de silla de estudio puede provocar dolores de espalda a largo plazo. En dibujo técnico, usamos estas medidas para crear planos de objetos que sean funcionales y seguros. El diseño 'humano' mejora nuestra calidad de vida y previene enfermedades.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué estudia la antropometría?",
+                "opciones": [
+                    "Las estrellas",
+                    "Las medidas del cuerpo humano",
+                    "Los insectos",
+                    "Los colores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la ergonomía?",
+                "opciones": [
+                    "Un tipo de pintura",
+                    "La búsqueda de la comodidad y salud en el diseño de objetos",
+                    "Hacer cosas muy grandes",
+                    "No usar máquinas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué consecuencia puede tener un diseño no ergonómico?",
+                "opciones": [
+                    "Que sea más caro",
+                    "Dolores y lesiones físicas",
+                    "Que sea más bonito",
+                    "Ninguna"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un ejemplo de diseño ergonómico sería:",
+                "opciones": [
+                    "Un taburete de piedra",
+                    "Una silla que se adapta a la espalda",
+                    "Una mesa muy alta",
+                    "Un lápiz cuadrado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Diseñar para el ser humano permite:",
+                "opciones": [
+                    "Gastar más",
+                    "Mejorar la calidad de vida y prevenir enfermedades",
+                    "Perder tiempo",
+                    "No estudiar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La Fotografía como Arte",
+        "texto": "La fotografía no consiste solo en 'disparar' la cámara. Se basa en tres pilares: la COMPOSICIÓN (donde colocamos los objetos), la ILUMINACIÓN (la dirección y tipo de luz) y el ENCUADRE. La 'Regla de los Tercios' es fundamental: consiste en dividir la imagen en 9 partes y colocar el sujeto en los puntos donde se cruzan las líneas para que la foto sea más dinámica. Una buena fotografía transmite emociones y cuenta historias sin necesidad de palabras, convirtiéndose en un lenguaje visual universal.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuáles son los pilares de la fotografía?",
+                "opciones": [
+                    "Pilas, cables y luz",
+                    "Composición, iluminación y encuadre",
+                    "Color, tamaño y peso",
+                    "Papel y tinta"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué consiste la Regla de los Tercios?",
+                "opciones": [
+                    "En hacer 3 fotos",
+                    "En dividir la imagen en 9 partes y situar al sujeto en los puntos de intersección",
+                    "En borrar un tercio de la imagen",
+                    "En usar solo tres colores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué efecto tiene usar la regla de los tercios?",
+                "opciones": [
+                    "La foto parece antigua",
+                    "La imagen es más dinámica y equilibrada",
+                    "La foto sale borrosa",
+                    "No tiene efecto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve el encuadre?",
+                "opciones": [
+                    "Para poner un marco de madera",
+                    "Para decidir qué parte de la realidad entra en la foto",
+                    "Para limpiar la cámara",
+                    "Para cargar la batería"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué importancia tiene la luz?",
+                "opciones": [
+                    "Ninguna",
+                    "Vital (la fotografía es 'escribir con luz')",
+                    "Solo si es de día",
+                    "Solo para las bombillas"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Perspectiva Cónica Central",
+        "texto": "La perspectiva cónica es la que más se parece a cómo ven nuestros ojos. Se basa en un PUNTO DE FUGA situado sobre la Línea del Horizonte. Todas las líneas que se alejan de nosotros van a morir a ese punto. Esto crea una sensación de profundidad realista. Si el punto de fuga es único, se llama 'Central' o de un punto. Es el sistema que usaron los grandes pintores del Renacimiento para crear habitaciones y paisajes profundos en lienzos planos, revolucionando la historia del arte.",
+        "preguntas": [
+            {
+                "pregunta": "¿A qué se parece la perspectiva cónica?",
+                "opciones": [
+                    "A un dibujo infantil",
+                    "A cómo ven realmente nuestros ojos el mundo",
+                    "A un mapa de carreteras",
+                    "A un círculo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es el punto de fuga?",
+                "opciones": [
+                    "Donde se guardan los lápices",
+                    "El lugar donde convergen las líneas paralelas que se alejan",
+                    "El centro del papel",
+                    "Donde termina el color"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Sobre qué línea se sitúa el punto de fuga?",
+                "opciones": [
+                    "Línea de tierra",
+                    "Línea del horizonte (altura de los ojos)",
+                    "En el borde del papel",
+                    "En ninguna"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué sensación crea este sistema?",
+                "opciones": [
+                    "Sensación de frío",
+                    "Sensación de profundidad realista",
+                    "Sensación de caos",
+                    "Sensación de dibujo plano"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué época se revolucionó el uso de esta perspectiva?",
+                "opciones": [
+                    "Prehistoria",
+                    "Renacimiento",
+                    "Barroco",
+                    "Siglo XXI"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "El Cartelismo y su Función",
+        "texto": "Un cartel es un mensaje visual diseñado para ser visto rápidamente por mucha gente. Debe tener un equilibrio entre IMAGEN y TEXTO (eslogan). El texto debe ser corto y directo. La imagen debe ser potente y estar relacionada con el mensaje. La finalidad puede ser informativa, publicitaria o social (como avisar de peligros o pedir reciclaje). El diseño de un cartel requiere elegir colores que llamen la atención (contrastes) y una tipografía que se lea bien incluso de lejos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la característica principal de un buen cartel?",
+                "opciones": [
+                    "Tener mucho texto pequeño",
+                    "Ser visto y entendido rápidamente",
+                    "No tener colores",
+                    "Ser de cristal"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la frase corta y directa de un cartel?",
+                "opciones": [
+                    "Cuento",
+                    "Eslogan",
+                    "Índice",
+                    "Subtítulo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué debe haber entre imagen y texto?",
+                "opciones": [
+                    "Guerra",
+                    "Equilibrio",
+                    "Mucha distancia",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Usa colores con contraste para...",
+                "opciones": [
+                    "Que no se vea bien",
+                    "Llamar la atención del espectador",
+                    "Gastar pintura",
+                    "Que parezca triste"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un cartel contra el abandono de animales tiene función:",
+                "opciones": [
+                    "Comercial",
+                    "Social / Concienciación",
+                    "Mala",
+                    "Religiosa"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Sistemas de Representación: Diédrico",
+        "texto": "El sistema diédrico es el más usado en ingeniería para definir piezas industriales. Se basa en proyectar el objeto sobre dos planos perpendiculares: el Plano Horizontal (PH) y el Plano Vertical (PV). La intersección entre ambos es la Línea de Tierra (LT). Gracias a este sistema podemos saber la altura exacta, la anchura y la profundidad de un objeto sin que haya deformaciones por la perspectiva. Es un sistema 'frío' pero el más exacto de todos para la fabricación.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué ámbito se usa más el sistema diédrico?",
+                "opciones": [
+                    "Pintura artística",
+                    "Ingeniería y fabricación industrial",
+                    "Cómics",
+                    "Publicidad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo son los planos de proyección entre sí?",
+                "opciones": [
+                    "Paralelos",
+                    "Perpendiculares (90º)",
+                    "Inclinados",
+                    "Circulares"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la LT?",
+                "opciones": [
+                    "Luz Total",
+                    "Línea de Tierra (intersección de planos)",
+                    "Lado Tercero",
+                    "Límite de Trazo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Tiene este sistema deformaciones por perspectiva?",
+                "opciones": [
+                    "Sí",
+                    "No, mantiene las medidas reales según proyecciones"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la proyección sobre el plano horizontal?",
+                "opciones": [
+                    "Alzado",
+                    "Planta",
+                    "Perfil",
+                    "Fondo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "El Lenguaje Audiovisual: El Montaje",
+        "texto": "El cine no se hace solo grabando escenas; se hace en el MONTAJE. El montaje consiste en unir diferentes planos para crear una historia con sentido. Puede haber saltos de tiempo (flashbacks) o de lugar de forma que el espectador no se pierda. Un montaje rápido transmite nerviosismo o acción; un montaje lento da sensación de calma o tensión. El montador es como un 'arquitecto de imágenes' que decide el ritmo y el orden final para emocionar a la audiencia.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el montaje en cine?",
+                "opciones": [
+                    "Montar los muebles del set",
+                    "La unión de planos para crear la historia y el ritmo",
+                    "Pintar los actores",
+                    "Hacer los disfraces"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué transmite un montaje con planos muy cortos?",
+                "opciones": [
+                    "Aburrimiento",
+                    "Acción y dinamismo",
+                    "Paz",
+                    "Sueño"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un salto al pasado en el tiempo se llama:",
+                "opciones": [
+                    "Salto mortal",
+                    "Flashback",
+                    "Corte rápido",
+                    "Fin"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve el ritmo en el montaje?",
+                "opciones": [
+                    "Para poner música",
+                    "Para controlar las emociones y la atención del espectador",
+                    "Para nada",
+                    "Para que la peli dure menos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es el montaje importante para el sentido de la historia?",
+                "opciones": [
+                    "Sí, es fundamental",
+                    "No, con grabar vale"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Análisis de la Imagen: Connotación",
+        "texto": "Las imágenes tienen dos niveles de lectura. La DENOTACIÓN es lo que vemos directamente (ej: un perro). La CONNOTACIÓN es lo que nos sugiere o transmite (ej: fidelidad, compañía, alegría). Los artistas y publicistas usan la connotación para enviarnos mensajes 'ocultos' o emocionales. Un anuncio de un coche en una montaña solitaria connota libertad y aventura. Aprender a leer las connotaciones nos ayuda a ser ciudadanos más críticos y menos manipulables por la publicidad.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la denotación de una imagen?",
+                "opciones": [
+                    "Lo que significa en secreto",
+                    "La descripción objetiva de lo que se ve",
+                    "El precio",
+                    "La firma"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la connotación?",
+                "opciones": [
+                    "El color del fondo",
+                    "Los significados subjetivos o emocionales que sugiere",
+                    "El tamaño de la foto",
+                    "El autor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si un perfume usa un color dorado, ¿qué connota?",
+                "opciones": [
+                    "Pobreza",
+                    "Lujo y exclusividad",
+                    "Hambre",
+                    "Frío"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quiénes usan principalmente la connotación?",
+                "opciones": [
+                    "Científicos",
+                    "Artistas y publicistas",
+                    "Solo niños",
+                    "Nadie"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Saber leer connotaciones nos hace ciudadanos:",
+                "opciones": [
+                    "Más enfadados",
+                    "Más críticos ante los mensajes visuales",
+                    "Más lentos",
+                    "Más tontos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Arte Contemporáneo: Nuevos Lenguajes",
+        "texto": "A partir del siglo XX, el arte dejó de intentar 'copiar' la realidad para expresar ideas. Surgió la ABSTRACCIÓN (dibujos de manchas o líneas que no representan objetos reales), el ARTE URBANO (graffiti) y las INSTALACIONES (obras que ocupan toda una habitación). Algunos artistas usan materiales reciclados o incluso luz para sus obras. Lo importante en el arte contemporáneo no es siempre la habilidad técnica de 'dibujar bien', sino el concepto o la idea que el artista quiere hacernos pensar.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué caracteriza al arte abstracto?",
+                "opciones": [
+                    "Parece una foto",
+                    "No representa objetos reales (usa líneas, manchas y colores)",
+                    "Solo usa blanco y negro",
+                    "Es muy pequeño"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es más importante en el arte contemporáneo?",
+                "opciones": [
+                    "Saber dibujar como los antiguos",
+                    "El concepto o la idea del artista",
+                    "Usar marcos de oro",
+                    "Que sea muy barato"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un ejemplo de arte contemporáneo es:",
+                "opciones": [
+                    "Una pirámide de Egipto",
+                    "Un grafiti o una instalación con luces",
+                    "Un cuadro de un rey antiguo",
+                    "Una ánfora griega"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Puede el arte contemporáneo usar basura o materiales reciclados?",
+                "opciones": [
+                    "Sí",
+                    "No"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "A partir de qué siglo cambia el concepto de arte tradicional:",
+                "opciones": [
+                    "Siglo XII",
+                    "Siglo XX",
+                    "Siglo V",
+                    "Prehistoria"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

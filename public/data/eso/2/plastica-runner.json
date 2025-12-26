@@ -1,17 +1,122 @@
 {
-  "elementos_geometria": [
-    "mediatriz", "bisectriz", "radio", "diámetro", "cuerda", "tangente", "secante", "arco", "vértice", "lado"
+  "trazados_geometricos": [
+    "mediatriz",
+    "bisectriz",
+    "perpendicular",
+    "paralela",
+    "tangencia",
+    "enlace",
+    "polígono regular",
+    "estrella",
+    "arco",
+    "curva"
   ],
-  "poligonos": [
-    "triángulo", "cuadrado", "pentágono", "hexágono", "heptágono", "octógono", "eneágono", "decágono", "trapecio", "rombo"
+  "color_percepcion": [
+    "círculo cromático",
+    "gama fría",
+    "gama cálida",
+    "saturación",
+    "luminosidad",
+    "tono",
+    "monocromía",
+    "contraste",
+    "armonía",
+    "pigmento"
   ],
-  "perspectiva": [
-    "punto de fuga", "línea de horizonte", "plano de tierra", "línea de tierra", "punto de vista", "profundidad", "escorzo", "superposición", "disminución", "convergencia"
+  "sistemas_representacion": [
+    "perspectiva caballera",
+    "perspectiva isométrica",
+    "diedro",
+    "alzado",
+    "planta",
+    "perfil",
+    "eje x",
+    "eje y",
+    "eje z",
+    "escala"
   ],
-  "tecnicas_artisticas": [
-    "acuarela", "óleo", "témpera", "carboncillo", "collage", "grabado", "escultura", "mosaico", "fresco", "pastel"
+  "arte_historia": [
+    "románico",
+    "gótico",
+    "renacimiento",
+    "barroco",
+    "impresionismo",
+    "cubismo",
+    "escultura",
+    "arquitectura",
+    "pintura",
+    "canon"
   ],
-  "colores_propiedades": [
-    "matiz", "saturación", "brillo", "luminosidad", "tono", "valor", "contraste", "gama", "frío", "cálido"
+  "diseno_grafico": [
+    "tipografía",
+    "maquetación",
+    "logotipo",
+    "marca",
+    "eslogan",
+    "cartel",
+    "folleto",
+    "página web",
+    "pixel",
+    "vector"
+  ],
+  "textura_materiales": [
+    "textura visual",
+    "textura táctil",
+    "natural",
+    "artificial",
+    "rugoso",
+    "suave",
+    "mate",
+    "brillante",
+    "esponjado",
+    "estampado"
+  ],
+  "imagen_digital": [
+    "fotografía",
+    "cámara",
+    "encuadre",
+    "iluminación",
+    "filtro",
+    "edición",
+    "escaneo",
+    "impresión",
+    "resolución",
+    "formato"
+  ],
+  "comics_narrativa": [
+    "viñeta",
+    "bocadillo",
+    "clímax",
+    "guion",
+    "personaje",
+    "onomatopeya",
+    "plano cinematográfico",
+    "secuencia",
+    "ritmo visual",
+    "metáfora visual"
+  ],
+  "volumen_modelado": [
+    "arcilla",
+    "jabón",
+    "cartón",
+    "maqueta",
+    "ensamblaje",
+    "vaciado",
+    "proporción",
+    "espacio tridimensional",
+    "hueco",
+    "masa"
+  ],
+  "simetria_ritmo": [
+    "simetría axial",
+    "simetría radial",
+    "traslación",
+    "giro",
+    "móvil",
+    "módulo",
+    "red modular",
+    "estructura",
+    "repetición",
+    "variación"
   ]
 }

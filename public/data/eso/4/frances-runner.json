@@ -1,17 +1,122 @@
 {
-  "projets_avenir": [
-    "université", "travail", "voyage", "métier", "indépendance", "appartement", "permis", "bouse", "stage", "carrière"
+  "opinions_debats": [
+    "je pense que",
+    "à mon avis",
+    "je suis d'accord",
+    "je ne crois pas",
+    "d'un côté",
+    "de l'autre côté",
+    "néanmoins",
+    "pourtant",
+    "pour conclure",
+    "argumenter"
   ],
-  "sentiments_opinions": [
-    "doute", "certitude", "avis", "point de vue", "accord", "désaccord", "joie", "tristesse", "peur", "espoir"
+  "le_monde_travail": [
+    "métier",
+    "salaire",
+    "entretien d'embauche",
+    "cv",
+    "stage",
+    "entreprise",
+    "patron",
+    "employé",
+    "chômage",
+    "carrière"
   ],
-  "environnement": [
-    "pollution", "recyclage", "déchets", "réchauffement", "énergie", "écologie", "protection", "nature", "climat", "planète"
+  "la_francophonie": [
+    "langue française",
+    "culture",
+    "afrique",
+    "québec",
+    "belgique",
+    "suisse",
+    "monde",
+    "partage",
+    "francophonie",
+    "molière"
   ],
-  "connecteurs_logiques": [
-    "pourtant", "donc", "parce que", "cependant", "alors", "en plus", "d'abord", "ensuite", "enfin", "car"
+  "environnement_climat": [
+    "changement climatique",
+    "développement durable",
+    "énergie renouvelable",
+    "pollution",
+    "recyclage",
+    "biodiversité",
+    "planète",
+    "écologie",
+    "réchauffement",
+    "sauver"
   ],
-  "technologie_media": [
-    "internet", "réseau social", "ordinateur", "portable", "écran", "message", "journal", "publicité", "information", "téléchargement"
+  "media_societe": [
+    "réseaux sociaux",
+    "information",
+    "fake news",
+    "internet",
+    "presse",
+    "journal",
+    "télévision",
+    "influenceur",
+    "publicité",
+    "numérique"
+  ],
+  "voyages_decouvertes": [
+    "étranger",
+    "découvrir",
+    "aventure",
+    "visa",
+    "vol",
+    "itinéraire",
+    "guide voyage",
+    "culture",
+    "langue",
+    "paysage"
+  ],
+  "art_cinema": [
+    "film",
+    "réalisateur",
+    "acteur",
+    "festival cannes",
+    "peinture",
+    "musée",
+    "littérature",
+    "théâtre",
+    "spectacle",
+    "chef-d'œuvre"
+  ],
+  "sante_bien_etre": [
+    "équilibre",
+    "alimentation",
+    "exercice",
+    "stress",
+    "sommeil",
+    "santé mentale",
+    "yoga",
+    "méditation",
+    "médecine",
+    "vitamine"
+  ],
+  "histoire_france_europe": [
+    "révolution",
+    "monarchie",
+    "république",
+    "union européenne",
+    "guerre",
+    "paix",
+    "patrimoine",
+    "monument",
+    "siècle",
+    "progrès"
+  ],
+  "structures_complexes": [
+    "subjonctif",
+    "conditionnel",
+    "gérondif",
+    "pronoms relatifs",
+    "y et en",
+    "plus-que-parfait",
+    "futur simple",
+    "discours indirect",
+    "passive",
+    "hypotése"
   ]
 }

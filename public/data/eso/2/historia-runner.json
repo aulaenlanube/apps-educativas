@@ -1,17 +1,122 @@
 {
-  "sociedad_feudal": [
-    "rey", "noble", "caballero", "vasallo", "siervo", "campesino", "clero", "obispo", "monje", "señor"
+  "islam_alandalus": [
+    "mahoma",
+    "corán",
+    "mezquita",
+    "califa",
+    "emirato",
+    "reino de taifas",
+    "alhambra",
+    "mezquita de córdoba",
+    "acequia",
+    "zoco"
+  ],
+  "europa_feudal": [
+    "vasallaje",
+    "feudo",
+    "señor feudal",
+    "siervo",
+    "estamento",
+    "caballero",
+    "castillo",
+    "monasterio",
+    "clero",
+    "nobleza"
+  ],
+  "imperio_bizantino": [
+    "constantinopla",
+    "justiniano",
+    "basílica",
+    "mosaico",
+    "cisma de oriente",
+    "icono",
+    "teodora",
+    "griego",
+    "ortodoxo",
+    "murallas"
   ],
   "arte_romanico": [
-    "arco de medio punto", "bóveda de cañón", "contrafuerte", "absidiolo", "pantocrátor", "gruros muros", "oscuridad", "planta cruz latina", "capitel", "portada"
+    "arco de medio punto",
+    "bóveda de cañón",
+    "muro grueso",
+    "panteón",
+    "pantocrátor",
+    "ábside",
+    "planta de cruz latina",
+    "canecillo",
+    "contrafuerte",
+    "oscuro"
   ],
   "arte_gotico": [
-    "arco apuntado", "bóveda de crucería", "arbotante", "vidriera", "rosetón", "pináculo", "gárgola", "verticalidad", "luminosidad", "catedral"
+    "arco apuntado",
+    "bóveda de crucería",
+    "vidriera",
+    "rosetón",
+    "gárgola",
+    "catedral",
+    "arbotante",
+    "pináculo",
+    "luz",
+    "verticalidad"
   ],
-  "conceptos_demografia": [
-    "natalidad", "mortalidad", "esperanza de vida", "migración", "inmigrante", "emigrante", "censo", "padrón", "densidad", "envejecimiento"
+  "monarquia_autoritaria": [
+    "reyes católicos",
+    "unión dinástica",
+    "inquisición",
+    "expansión",
+    "consejos",
+    "ejercito profesional",
+    "corregidor",
+    "embajador",
+    "tercio",
+    "estado moderno"
   ],
-  "islam_alandalus": [
-    "mezquita", "califa", "emir", "corán", "alcazaba", "zoco", "medina", "alhambra", "arco de herradura", "minarete"
+  "descubrimientos_geo": [
+    "colón",
+    "magallanes",
+    "elcano",
+    "carabela",
+    "astrolabio",
+    "brújula",
+    "ruta de las especias",
+    "nuevo mundo",
+    "cartografía",
+    "imperio colonial"
+  ],
+  "renacimiento_humanismo": [
+    "antropocentrismo",
+    "mecenas",
+    "da vinci",
+    "miguel ángel",
+    "rafael",
+    "imprenta",
+    "reforma",
+    "erasmo",
+    "perspectiva",
+    "proporción"
+  ],
+  "reforma_contrarreforma": [
+    "lutero",
+    "calvino",
+    "concilio de trento",
+    "jesuitas",
+    "indulgencias",
+    "protestantismo",
+    "catolicismo",
+    "excomunión",
+    "biblia",
+    "papa"
+  ],
+  "ciudades_medievales": [
+    "gremio",
+    "burgo",
+    "burguesía",
+    "ayuntamiento",
+    "fuero",
+    "feria",
+    "comercio",
+    "aprendiz",
+    "maestro",
+    "catedral"
   ]
 }

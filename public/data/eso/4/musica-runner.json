@@ -1,17 +1,122 @@
 {
-  "generos_modernos": [
-    "jazz", "blues", "rock", "pop", "punk", "metal", "reggae", "hip hop", "electrónica", "indie"
+  "musica_siglo_xx": [
+    "impresionismo",
+    "atonalismo",
+    "dodecafonismo",
+    "minimalismo",
+    "música concreta",
+    "música electrónica",
+    "jazz",
+    "stravinsky",
+    "debussy",
+    "schoenberg"
   ],
-  "historia_siglo_xx": [
-    "impresionismo", "expresionismo", "dodecafonismo", "minimalismo", "música concreta", "nacionalismo", "neoclasicismo", "vanguardia", "serialismo", "futurismo"
+  "pop_rock_historia": [
+    "beatles",
+    "elvis presley",
+    "queen",
+    "rock and roll",
+    "punk",
+    "heavy metal",
+    "pop",
+    "disco",
+    "indie",
+    "grunge"
   ],
-  "tecnologia_musical": [
-    "micrófono", "mesa de mezclas", "amplificador", "altavoz", "sintetizador", "sampler", "midi", "secuenciador", "grabación", "ecualizador"
+  "musica_tecnologia_pro": [
+    "daw",
+    "plugin",
+    "ecualizador",
+    "compresor",
+    "reverb",
+    "samplear",
+    "sintetizador",
+    "mezcla",
+    "masterización",
+    "interfaz"
   ],
-  "industria_musical": [
-    "discográfica", "productor", "copyright", "streaming", "concierto", "festival", "manager", "videoclip", "royalties", "plataforma"
+  "musica_cine_tv": [
+    "banda sonora",
+    "leitmotiv",
+    "música incidental",
+    "partitura",
+    "compositor",
+    "efecto de sonido",
+    "foley",
+    "doblaje",
+    "música ambiental",
+    "publicidad"
   ],
-  "profesiones": [
-    "compositor", "intérprete", "arreglista", "técnico de sonido", "dj", "luthier", "musicoterapeuta", "crítico", "director", "editor"
+  "flamenco_folclore": [
+    "palo",
+    "cante",
+    "toque",
+    "baile",
+    "quejío",
+    "compás",
+    "guitarra flamenca",
+    "cajón",
+    "castañuelas",
+    "tablao"
+  ],
+  "derechos_autor_industria": [
+    "sgae",
+    "copyright",
+    "creative commons",
+    "streaming",
+    "regalías",
+    "discográfica",
+    "productora",
+    "manager",
+    "promotor",
+    "piratería"
+  ],
+  "generos_urbanos": [
+    "hip hop",
+    "rap",
+    "trap",
+    "reggaetón",
+    "dancehall",
+    "freestyle",
+    "mixtape",
+    "flow",
+    "dj",
+    "turntablism"
+  ],
+  "analisis_musical_4": [
+    "textura homofónica",
+    "textura polifónica",
+    "forma sonata",
+    "forma rondó",
+    "escala mayor",
+    "escala menor",
+    "modulación",
+    "disonancia",
+    "intervalo",
+    "armonización"
+  ],
+  "musica_directo": [
+    "concierto",
+    "festival",
+    "escenario",
+    "monitor",
+    "sistema pa",
+    "acústica",
+    "iluminación",
+    "merchandise",
+    "backstage",
+    "público"
+  ],
+  "musicoterapia_salud": [
+    "relajación",
+    "estimulación",
+    "bienestar",
+    "ritmo cardiaco",
+    "expresión emocional",
+    "terapia",
+    "memoria musical",
+    "concentración",
+    "neurociencia",
+    "salud mental"
   ]
 }

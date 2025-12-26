@@ -1,17 +1,122 @@
 {
-  "tipos_fuerzas": [
-    "gravedad", "rozamiento", "magnética", "eléctrica", "nuclear", "tensión", "normal", "empuje", "centrípeta", "elástica"
+  "metodo_cientifico": [
+    "observación",
+    "hipótesis",
+    "experimentación",
+    "análisis",
+    "conclusión",
+    "teoría",
+    "ley",
+    "variable",
+    "datos",
+    "laboratorio"
   ],
-  "magnitudes_fisicas": [
-    "velocidad", "aceleración", "tiempo", "masa", "distancia", "fuerza", "energía", "potencia", "temperatura", "densidad"
+  "materia_medida": [
+    "masa",
+    "volumen",
+    "densidad",
+    "unidad",
+    "magnitud",
+    "balanza",
+    "probeta",
+    "gramo",
+    "litro",
+    "metro cúbico"
   ],
-  "metodos_separacion": [
-    "filtración", "decantación", "destilación", "evaporación", "cristalización", "cromatografía", "imantación", "tamizado", "centrifugación", "electrólisis"
+  "quimica_atoma": [
+    "protón",
+    "neutrón",
+    "electrón",
+    "núcleo",
+    "isótopo",
+    "ión",
+    "catión",
+    "anión",
+    "número atómico",
+    "masa atómica"
   ],
-  "simbolos_quimicos": [
-    "Fe", "Au", "Ag", "O", "H", "Na", "Cl", "C", "N", "Ca"
+  "tabla_periodica": [
+    "elemento",
+    "símbolo",
+    "metal",
+    "no metal",
+    "gas noble",
+    "hidrógeno",
+    "carbono",
+    "oxígeno",
+    "hierro",
+    "oro"
   ],
-  "fuentes_energia": [
-    "petróleo", "carbón", "gas natural", "uranio", "sol", "viento", "agua", "biomasa", "geotérmica", "hidrógeno"
+  "enlace_quimico": [
+    "molécula",
+    "enlace iónico",
+    "enlace covalente",
+    "enlace metálico",
+    "compuesto",
+    "h2o",
+    "co2",
+    "nacl",
+    "valencia",
+    "agregación"
+  ],
+  "cinematica_basica": [
+    "movimiento",
+    "trayectoria",
+    "desplazamiento",
+    "velocidad",
+    "aceleración",
+    "mru",
+    "mrua",
+    "reposo",
+    "metro por segundo",
+    "tiempo"
+  ],
+  "fuerzas_naturaleza": [
+    "newton",
+    "dinamómetro",
+    "gravedad",
+    "peso",
+    "rozamiento",
+    "magnética",
+    "eléctrica",
+    "equilibrio",
+    "tensión",
+    "presión"
+  ],
+  "energia_calor": [
+    "temperatura",
+    "julio",
+    "caloría",
+    "conducción",
+    "convección",
+    "radiación",
+    "aislante",
+    "conductor térmico",
+    "termómetro",
+    "fusión"
+  ],
+  "electricidad_circuitos": [
+    "voltaje",
+    "intensidad",
+    "resistencia",
+    "ohmio",
+    "generador",
+    "receptor",
+    "conductor",
+    "serie",
+    "paralelo",
+    "amperio"
+  ],
+  "luz_sonido": [
+    "frecuencia",
+    "longitud de onda",
+    "reflexión",
+    "refracción",
+    "prisma",
+    "espejo",
+    "lente",
+    "eco",
+    "decibelio",
+    "vibración"
   ]
 }

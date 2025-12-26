@@ -7,14 +7,27 @@
       "🟢",
       "🟡",
       "🟣",
-      "⚫"
+      "⚫",
+      "⚪",
+      "🟠",
+      "🟤",
+      "🟥",
+      "🟦",
+      "🟩",
+      "🟨"
     ],
     "intrusos": [
       "🐶",
       "🐱",
       "🚗",
       "🏠",
-      "✏️"
+      "✏️",
+      "🍔",
+      "🧸",
+      "🚲",
+      "👟",
+      "🧢",
+      "📱"
     ]
   },
   {
@@ -25,14 +38,30 @@
       "🐭",
       "🐰",
       "🦊",
-      "🐻"
+      "🐻",
+      "🦁",
+      "🐯",
+      "🐵",
+      "🐙",
+      "🐋",
+      "🦜",
+      "🐄",
+      "🐷",
+      "🐸"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "⚽",
       "🏠",
-      "✏️"
+      "✏️",
+      "🍕",
+      "🍔",
+      "🚲",
+      "🎸",
+      "⌚",
+      "💻",
+      "🧸"
     ]
   },
   {
@@ -43,14 +72,27 @@
       "✏️",
       "📏",
       "✂️",
-      "🖍️"
+      "🖍️",
+      "🗒️",
+      "🏫",
+      "🖊️",
+      "🎓",
+      "📖",
+      "📎"
     ],
     "intrusos": [
       "🛌",
       "🛁",
       "🍳",
       "📺",
-      "🎮"
+      "🎮",
+      "🧸",
+      "🍦",
+      "🥪",
+      "🛋️",
+      "📻",
+      "🚲",
+      "🚗"
     ]
   },
   {
@@ -61,32 +103,60 @@
       "🍕",
       "🍔",
       "🍦",
-      "🍪"
+      "🍪",
+      "🍗",
+      "🥪",
+      "🍳",
+      "🍿",
+      "🍩",
+      "🍇"
     ],
     "intrusos": [
       "⚽",
       "🏀",
       "🚗",
       "✏️",
-      "👕"
+      "👕",
+      "👟",
+      "🚲",
+      "🏠",
+      "📱",
+      "💻",
+      "🎸"
     ]
   },
   {
-    "categoria": "Numbers 1-10",
+    "categoria": "Numbers 1-20",
     "correctos": [
       "One",
       "Two",
       "Three",
       "Four",
       "Five",
-      "Ten"
+      "Six",
+      "Seven",
+      "Eight",
+      "Nine",
+      "Ten",
+      "Eleven",
+      "Twelve",
+      "Thirteen",
+      "Twenty"
     ],
     "intrusos": [
       "Red",
       "Blue",
       "Dog",
       "Cat",
-      "Yes"
+      "Yes",
+      "No",
+      "Table",
+      "Chair",
+      "Pencil",
+      "Happy",
+      "Sad",
+      "Small",
+      "Big"
     ]
   },
   {
@@ -97,14 +167,28 @@
       "Green",
       "Yellow",
       "Pink",
-      "Black"
+      "Black",
+      "White",
+      "Grey",
+      "Brown",
+      "Purple",
+      "Orange",
+      "Gold",
+      "Silver"
     ],
     "intrusos": [
       "Table",
       "Chair",
       "Book",
       "Pen",
-      "Car"
+      "Car",
+      "Bus",
+      "Dog",
+      "Cat",
+      "Apple",
+      "Banana",
+      "Happy",
+      "Sad"
     ]
   },
   {
@@ -115,14 +199,29 @@
       "Lion",
       "Tiger",
       "Fish",
-      "Bird"
+      "Bird",
+      "Monkey",
+      "Elephant",
+      "Zebra",
+      "Giraffe",
+      "Cow",
+      "Pig",
+      "Rabbit",
+      "Mouse"
     ],
     "intrusos": [
       "Apple",
       "Banana",
       "Car",
       "Bus",
-      "Pen"
+      "Pen",
+      "Pencil",
+      "Book",
+      "Red",
+      "Blue",
+      "Green",
+      "Table",
+      "Chair"
     ]
   },
   {
@@ -132,14 +231,26 @@
       "Dad",
       "Sister",
       "Brother",
-      "Granny"
+      "Granny",
+      "Grandad",
+      "Uncle",
+      "Aunt",
+      "Cousin",
+      "Baby",
+      "Mother",
+      "Father"
     ],
     "intrusos": [
       "Teacher",
       "Doctor",
       "School",
       "Park",
-      "House"
+      "House",
+      "Car",
+      "Police",
+      "Cook",
+      "Nurse",
+      "Firefighter"
     ]
   },
   {
@@ -150,14 +261,29 @@
       "Leg",
       "Foot",
       "Nose",
-      "Eye"
+      "Eye",
+      "Ear",
+      "Mouth",
+      "Arm",
+      "Knee",
+      "Shoulder",
+      "Finger",
+      "Toe",
+      "Neck"
     ],
     "intrusos": [
       "Pen",
       "Pencil",
       "Book",
       "Bag",
-      "Desk"
+      "Desk",
+      "Chair",
+      "Table",
+      "School",
+      "T-shirt",
+      "Shoes",
+      "Shorts",
+      "Hat"
     ]
   }
 ]

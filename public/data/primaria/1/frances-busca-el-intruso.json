@@ -1,5 +1,153 @@
 [
-  "🥐", "🥖", "🧀", "🍷", "☕", "🎨", "🗼", "🏰", "👨‍🎨",
-  "🥗", "🍰", "🎂", "🧁", "🍮", "🍪", "🌹", "💐", "🎭", "🎪"
-  
+  {
+    "categoria": "Les Couleurs (Visual)",
+    "correctos": [
+      "🔴",
+      "🔵",
+      "🟢",
+      "🟡",
+      "🟠",
+      "🟣"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🍎",
+      "🏠",
+      "🚗"
+    ]
+  },
+  {
+    "categoria": "Les Animaux de la Ferme (Visual)",
+    "correctos": [
+      "🐷",
+      "🐮",
+      "🐔",
+      "🐑",
+      "🐴",
+      "🦆"
+    ],
+    "intrusos": [
+      "🦁",
+      "🐘",
+      "🦒",
+      "🦓",
+      "🐊"
+    ]
+  },
+  {
+    "categoria": "Les Fruits Sains (Visual)",
+    "correctos": [
+      "🍎",
+      "🍌",
+      "🍇",
+      "🍊",
+      "🍓",
+      "🍐"
+    ],
+    "intrusos": [
+      "🍕",
+      "🍔",
+      "🍟",
+      "🍩",
+      "🍦"
+    ]
+  },
+  {
+    "categoria": "Fournitures Scolaires (Visual)",
+    "correctos": [
+      "🎒",
+      "📚",
+      "✏️",
+      "📏",
+      "✂️",
+      "🖍️"
+    ],
+    "intrusos": [
+      "🍎",
+      "🐶",
+      "🚗",
+      "🏠",
+      "🍕"
+    ]
+  },
+  {
+    "categoria": "Les Nombres 1-10",
+    "correctos": [
+      "Un",
+      "Deux",
+      "Trois",
+      "Quatre",
+      "Cinq",
+      "Six",
+      "Sept",
+      "Huit",
+      "Neuf",
+      "Dix"
+    ],
+    "intrusos": [
+      "Rouge",
+      "Bleu",
+      "Vert",
+      "Chien",
+      "Chat",
+      "Pomme"
+    ]
+  },
+  {
+    "categoria": "Les Couleurs (Mots)",
+    "correctos": [
+      "Rouge",
+      "Bleu",
+      "Jaune",
+      "Vert",
+      "Rose",
+      "Blanc",
+      "Noir"
+    ],
+    "intrusos": [
+      "Un",
+      "Deux",
+      "Maman",
+      "Papa",
+      "Livre",
+      "Crayon"
+    ]
+  },
+  {
+    "categoria": "La Famille",
+    "correctos": [
+      "Maman",
+      "Papa",
+      "Frère",
+      "Sœur",
+      "Bébé",
+      "Grand-père",
+      "Grand-mère"
+    ],
+    "intrusos": [
+      "Chat",
+      "Chien",
+      "Maison",
+      "Voiture",
+      "Velo"
+    ]
+  },
+  {
+    "categoria": "Salutations et Mots Gentils",
+    "correctos": [
+      "Bonjour",
+      "Salut",
+      "Merci",
+      "S'il vous plaît",
+      "Au revoir"
+    ],
+    "intrusos": [
+      "Table",
+      "Chaise",
+      "Lit",
+      "Porte",
+      "Fenêtre"
+    ]
+  }
 ]

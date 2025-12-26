@@ -1,17 +1,122 @@
 {
-  "orientacion_futuro": [
-    "bachillerato", "formación profesional", "universidad", "nota de corte", "carrera", "grado", "oficio", "mercado laboral", "emprendimiento", "vocación"
+  "orientacion_academica": [
+    "bachillerato ciencias",
+    "bachillerato letras",
+    "bachillerato artes",
+    "fp grado medio",
+    "fp grado superior",
+    "universidad",
+    "selectividad",
+    "evau",
+    "itinerario",
+    "salida profesional"
   ],
-  "habilidades_sociales": [
-    "asertividad", "empatía", "escucha activa", "resiliencia", "negociación", "liderazgo", "trabajo en equipo", "comunicación", "respeto", "tolerancia"
+  "orientacion_profesional": [
+    "mercado laboral",
+    "currículum vitae",
+    "entrevista",
+    "competencias",
+    "habilidades blandas",
+    "vocación",
+    "emprendimiento",
+    "autónomo",
+    "sectores emergentes",
+    "perfil profesional"
   ],
-  "gestion_emocional": [
-    "autoestima", "ansiedad", "estrés", "motivación", "frustración", "autocontrol", "confianza", "optimismo", "miedo", "superación"
+  "salud_mental_bienestar": [
+    "ansiedad",
+    "estrés",
+    "autoestima",
+    "resiliencia",
+    "asertividad",
+    "gestión emocional",
+    "apoyo psicológico",
+    "prevención",
+    "descanso",
+    "equilibrio"
   ],
-  "valores_civicos": [
-    "igualdad", "justicia", "solidaridad", "libertad", "responsabilidad", "ecología", "derechos humanos", "ciudadanía", "democracia", "diversidad"
+  "relaciones_afectivas": [
+    "respeto",
+    "consentimiento",
+    "igualdad de género",
+    "prevención de violencia",
+    "diversidad sexual",
+    "afecto",
+    "comunicación sana",
+    "empatía",
+    "límites personales",
+    "amor propio"
   ],
-  "tecnicas_estudio": [
-    "organización", "horario", "concentración", "resumen", "esquema", "mapa mental", "memoria", "repaso", "descanso", "objetivos"
+  "adicciones_prevencion_4": [
+    "prevención de drogas",
+    "alcoholismo",
+    "vapeo",
+    "juego patológico",
+    "adicción a redes",
+    "fármacos",
+    "entorno protector",
+    "riesgo",
+    "decisión propia",
+    "ayuda"
+  ],
+  "derechos_ciudadania": [
+    "constitución española",
+    "derechos humanos",
+    "voto",
+    "democracia",
+    "justicia social",
+    "igualdad",
+    "solidaridad",
+    "participación ciudadana",
+    "ue",
+    "compromiso"
+  ],
+  "etica_valores_4": [
+    "honestidad",
+    "responsabilidad",
+    "tolerancia",
+    "respeto",
+    "libertad",
+    "paz",
+    "justicia",
+    "diversidad",
+    "cooperación",
+    "ética profesional"
+  ],
+  "habilidades_sociales_pro": [
+    "trabajo en equipo",
+    "liderazgo",
+    "comunicación persuasiva",
+    "negociación",
+    "resolución de conflictos",
+    "escucha activa",
+    "empatía social",
+    "redes de apoyo",
+    "oratoria",
+    "debate"
+  ],
+  "planificacion_futuro": [
+    "metas a largo plazo",
+    "proyecto de vida",
+    "autonomía",
+    "independencia",
+    "toma de decisiones",
+    "perseverancia",
+    "adaptación al cambio",
+    "aprendizaje continuo",
+    "sueños",
+    "realidad"
+  ],
+  "tecnologia_etica_4": [
+    "identidad digital",
+    "huella digital",
+    "ciberseguridad",
+    "privacidad",
+    "fake news",
+    "uso responsable",
+    "redes sociales",
+    "influencia",
+    "critica informativa",
+    "seguridad"
   ]
 }

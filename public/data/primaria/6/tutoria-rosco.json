@@ -1,163 +1,982 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Valor que consiste en el afecto y la relación cercana entre personas.", "solucion": "amistad" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Sentimiento positivo de satisfacción y felicidad.", "solucion": "alegría" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Capacidad de ponerse en el lugar de otro para entenderlo.", "solucion": "amor" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Dar soporte o ayuda a alguien.", "solucion": "apoyo" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Sentirse seguro de uno mismo y valorarse.", "solucion": "autoestima" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Cualidad de ser bueno y hacer el bien.", "solucion": "bondad" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Estado de satisfacción y tranquilidad.", "solucion": "bienestar" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Contrario de maldad.", "solucion": "bueno" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Gesto físico para mostrar cariño o saludo.", "solucion": "beso" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Lo que no debemos hacer a los compañeros (reírse de ellos).", "solucion": "burlas" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Vivir en compañía de otros respetando las normas.", "solucion": "convivencia" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Trabajar juntos para lograr un fin común.", "solucion": "colaborar" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Dar a otros parte de lo que tienes.", "solucion": "compartir" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Seguridad que se tiene en alguien o algo.", "solucion": "confianza" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Intercambio de información entre personas.", "solucion": "comunicación" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Conjunto de normas que protegen a las personas.", "solucion": "derechos" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Conversación entre dos o más personas.", "solucion": "diálogo" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Obligaciones que tenemos que cumplir.", "solucion": "deberes" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Respeto que merece una persona por ser quien es.", "solucion": "dignidad" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Pedir perdón.", "solucion": "disculpa" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Capacidad de sentir lo que siente el otro.", "solucion": "empatía" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Sentimientos como la alegría, la tristeza o el miedo.", "solucion": "emociones" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Trabajo y constancia para conseguir una meta.", "solucion": "esfuerzo" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Prestar atención a lo que dicen los demás.", "solucion": "escuchar" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Grupo de personas con un objetivo común.", "solucion": "equipo" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Grupo de personas formado por padres, hijos, etc.", "solucion": "familia" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Estado de ánimo de quien está contento.", "solucion": "felicidad" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Confianza y lealtad hacia una persona.", "solucion": "fidelidad" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Fuerza de ánimo para afrontar dificultades.", "solucion": "fortaleza" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Creencia personal en algo o alguien.", "solucion": "fe" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Hábito de dar o compartir con los demás.", "solucion": "generosidad" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Sentimiento de agradecimiento.", "solucion": "gratitud" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Conjunto de personas reunidas.", "solucion": "grupo" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Cualidad de lo que es agradable y atractivo.", "solucion": "gracia" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Elevar la voz, algo que debemos evitar al hablar.", "solucion": "gritar" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Cualidad de decir la verdad y ser justo.", "solucion": "honestidad" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Reconocer las propias limitaciones y errores.", "solucion": "humildad" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Conductas que repetimos a diario (estudio, higiene...).", "solucion": "hábitos" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Capacidades o destrezas para hacer algo.", "solucion": "habilidades" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Limpieza y cuidado del cuerpo.", "solucion": "higiene" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Trato idéntico para todas las personas.", "solucion": "igualdad" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Unir o incorporar a alguien al grupo.", "solucion": "integración" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Capacidad de crear cosas nuevas en la mente.", "solucion": "imaginación" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Deseo de hacer algo.", "solucion": "ilusión" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Cualidad de quien actúa con rectitud.", "solucion": "integridad" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Dar a cada uno lo que le corresponde.", "solucion": "justicia" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Actividad recreativa con normas.", "solucion": "juego" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Estar unidos realizando una actividad.", "solucion": "juntos" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Emitir un dictamen o valoración sobre alguien.", "solucion": "juzgar" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Etapa de la vida entre la infancia y la edad adulta.", "solucion": "juventud" },
-
-  { "id": "k1", "letra": "K", "tipo": "contiene", "definicion": "Resolver un problema o llegar a un acuerdo (contiene K).", "solucion": "ok" },
-  { "id": "k2", "letra": "K", "tipo": "contiene", "definicion": "Masa o peso de las decisiones (contiene K).", "solucion": "kilo" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Filosofía del orden y destino (proviene de oriente).", "solucion": "karma" },
-  { "id": "k4", "letra": "K", "tipo": "contiene", "definicion": "Deporte que requiere disciplina (empieza por K).", "solucion": "karate" },
-  { "id": "k5", "letra": "K", "tipo": "contiene", "definicion": "Habilidad o destreza en inglés (contiene K).", "solucion": "skill" }, 
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Capacidad de decidir por uno mismo.", "solucion": "libertad" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Fidelidad y honor.", "solucion": "lealtad" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Lo que marca lo que se puede y no se puede hacer.", "solucion": "límite" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Esfuerzo para conseguir un objetivo.", "solucion": "lucha" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Norma establecida por la autoridad.", "solucion": "ley" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Lo contrario de la verdad.", "solucion": "mentira" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Sentimiento desagradable ante un peligro.", "solucion": "miedo" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Razón que nos impulsa a actuar.", "solucion": "motivación" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Educación y buenos modales.", "solucion": "modales" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "El que nos guía en el aprendizaje.", "solucion": "maestro" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Regla que regula la conducta.", "solucion": "norma" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Respuesta negativa necesaria para poner límites.", "solucion": "no" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Estado de agitación o inquietud.", "solucion": "nervios" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Lo que es habitual o común.", "solucion": "normal" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Carencia o falta de algo.", "solucion": "necesidad" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Amigo de la clase o del grupo (contiene Ñ).", "solucion": "compañero" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Muestra de afecto y amor (contiene Ñ).", "solucion": "cariño" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Echar de menos a alguien (contiene Ñ).", "solucion": "añorar" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Hacer daño a alguien (contiene Ñ).", "solucion": "dañar" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Enseñar algo a alguien (contiene Ñ).", "solucion": "enseñar" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Organización y colocación de las cosas.", "solucion": "orden" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Actitud positiva ante la vida.", "solucion": "optimismo" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Cumplir lo que se manda.", "solucion": "obedecer" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Lo que estamos obligados a hacer.", "solucion": "obligación" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Dar un punto de vista sobre algo.", "solucion": "opinar" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Ausencia de guerra y violencia.", "solucion": "paz" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Disculpa que se pide tras un error.", "solucion": "perdón" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Capacidad de esperar con tranquilidad.", "solucion": "paciencia" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Colaboración en una actividad común.", "solucion": "participación" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Ser humano con derechos y deberes.", "solucion": "persona" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Sentir afecto por alguien.", "solucion": "querer" },
-  { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Reclamación o protesta.", "solucion": "queja" },
-  { "id": "q3", "letra": "Q", "tipo": "empieza", "definicion": "Estar en silencio y calmado.", "solucion": "quieto" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Estado de calma y sosiego (contiene Q).", "solucion": "tranquilidad" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Igualdad en el trato (contiene Q).", "solucion": "equidad" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Consideración y valoración hacia los demás.", "solucion": "respeto" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Cumplimiento de las obligaciones.", "solucion": "responsabilidad" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Pensar detenidamente sobre algo.", "solucion": "reflexionar" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Aceptar los errores y corregirlos.", "solucion": "rectificar" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Volver a ser amigos tras una pelea.", "solucion": "reconciliación" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Ayuda mutua entre personas.", "solucion": "solidaridad" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Verdad y honestidad en lo que se dice.", "solucion": "sinceridad" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Estado de ánimo (alegría, tristeza...).", "solucion": "sentimiento" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Capacidad de superarse a uno mismo.", "solucion": "superación" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Gesto de alegría con la boca.", "solucion": "sonrisa" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Respeto a las ideas y opiniones de otros.", "solucion": "tolerancia" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Actividad que requiere esfuerzo.", "solucion": "trabajo" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Sentimiento de pena o dolor.", "solucion": "tristeza" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Habilidad que se tiene para algo.", "solucion": "talento" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Persona que ayuda y guía a un alumno.", "solucion": "tutor" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Acción de juntarse para un fin común.", "solucion": "unión" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Que sirve para algo y ayuda.", "solucion": "útil" },
-  { "id": "u3", "letra": "U", "tipo": "contiene", "definicion": "Acción de ayudar (contiene U).", "solucion": "ayuda" },
-  { "id": "u4", "letra": "U", "tipo": "contiene", "definicion": "Comportamiento adecuado (contiene U).", "solucion": "conducta" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Que es especial y diferente a los demás.", "solucion": "único" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Cualidad positiva (respeto, amor...).", "solucion": "valor" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Decir lo que es cierto.", "solucion": "verdad" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Enfrentar el miedo con decisión.", "solucion": "valentía" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Uso de la fuerza (algo a evitar).", "solucion": "violencia" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Cualidad moral de la persona.", "solucion": "virtud" },
-
-  { "id": "w1", "letra": "W", "tipo": "contiene", "definicion": "Página de internet para informarse (contiene W).", "solucion": "web" },
-  { "id": "w2", "letra": "W", "tipo": "contiene", "definicion": "Red informática (contiene W).", "solucion": "wifi" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Apellido de quien inventó la bombilla (esfuerzo, contiene W).", "solucion": "edison" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Aplicación de mensajes (contiene W).", "solucion": "whatsapp" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Fruta sana (contiene W).", "solucion": "kiwi" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Lograr una meta o triunfo (contiene X).", "solucion": "éxito" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Pretextos para no hacer algo (contiene X).", "solucion": "excusas" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Prueba de conocimientos (contiene X).", "solucion": "examen" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Poner algo al descubierto o explicar (contiene X).", "solucion": "exponer" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Pedir algo con fuerza (contiene X).", "solucion": "exigir" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Pronombre personal, uno mismo.", "solucion": "yo" },
-  { "id": "y2", "letra": "Y", "tipo": "contiene", "definicion": "Echar una mano (contiene Y).", "solucion": "ayudar" },
-  { "id": "y3", "letra": "Y", "tipo": "contiene", "definicion": "Que es el más grande de edad (contiene Y).", "solucion": "mayor" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Que es propio de ti (contiene Y).", "solucion": "tuyo" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Conversar o discutir (contiene Y).", "solucion": "dialogar" }, 
-
-  { "id": "z1", "letra": "Z", "tipo": "contiene", "definicion": "Ausencia de guerra y conflictos (contiene Z).", "solucion": "paz" },
-  { "id": "z2", "letra": "Z", "tipo": "contiene", "definicion": "Capaz de lograr objetivos (contiene Z).", "solucion": "capaz" },
-  { "id": "z3", "letra": "Z", "tipo": "contiene", "definicion": "Afecto o amor (contiene Z).", "solucion": "dulzura" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Firmeza y seguridad (contiene Z).", "solucion": "certeza" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Dar un abrazo (contiene Z).", "solucion": "abrazar" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Habilidad de expresar tus opiniones y sentimientos de forma clara y respetuosa, sin herir a los demás.",
+    "solucion": "asertividad"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Valor que consiste en ayudar a los demás de forma desinteresada.",
+    "solucion": "altruismo"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Capacidad de organizar y dirigir uno mismo sus propias tareas y tiempo.",
+    "solucion": "autogestión"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Valoración positiva que una persona tiene de sí misma.",
+    "solucion": "autoestima"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Sentimiento de afecto y cariño entre dos personas.",
+    "solucion": "amistad"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Acoso escolar o maltrato físico o psicológico continuado que sufre un alumno por parte de otros.",
+    "solucion": "bullying"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Estado de satisfacción y tranquilidad personal, tanto física como mental.",
+    "solucion": "bienestar"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Cualidad de ser bueno y realizar acciones positivas para los demás.",
+    "solucion": "bondad"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Dicho de algo que beneficia a la salud o al ánimo.",
+    "solucion": "beneficioso"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Gesto de afecto que se da con los labios.",
+    "solucion": "beso"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Grado de unión y acuerdo entre los miembros de un grupo o clase (Cohesión...).",
+    "solucion": "grupal"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Acuerdo adoptado por todos los miembros de un grupo sin necesidad de votación.",
+    "solucion": "consenso"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Conjunto de derechos y deberes a los cuales el ciudadano está sujeto en su relación con la sociedad.",
+    "solucion": "ciudadanía"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Trabajar en común con otras personas para lograr un mismo fin.",
+    "solucion": "colaborar"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Seguridad y esperanza que se tiene en una persona o en uno mismo.",
+    "solucion": "confianza"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Cualidad de lo que es variado o diferente dentro de un grupo.",
+    "solucion": "diversidad"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Situación en la que es difícil elegir entre dos opciones que parecen correctas o incorrectas (Dilema...).",
+    "solucion": "ético"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Intercambio de ideas y opiniones entre personas para llegar a un entendimiento.",
+    "solucion": "diálogo"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Valor inherente a todo ser humano de ser respetado y valorado como ser individual y social.",
+    "solucion": "dignidad"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Aceptación de las diferencias de los demás sin juzgarlas negativamente.",
+    "solucion": "deferencia"
+  },
+  {
+    "id": "d5_fix",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Pedir perdón por una falta cometida.",
+    "solucion": "disculparse"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Capacidad de ponerse en el lugar de otra persona para comprender sus sentimientos y emociones.",
+    "solucion": "empatía"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Imagen o idea aceptada comúnmente por un grupo con carácter inmutable sobre otro grupo.",
+    "solucion": "estereotipo"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Prestar atención plena a lo que alguien nos dice, demostrando interés (Escucha...).",
+    "solucion": "activa"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Sentimiento de satisfacción por los logros propios o ajenos.",
+    "solucion": "entusiasmo"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Conjunto de personas que trabajan juntas para conseguir una meta.",
+    "solucion": "equipo"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Sentimiento de tristeza o decepción cuando no conseguimos lo que queremos (Baja tolerancia a la...).",
+    "solucion": "frustración"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Información que se da a alguien sobre su comportamiento o trabajo para ayudarle a mejorar.",
+    "solucion": "feedback"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Grupo de personas vinculadas por parentesco o afecto.",
+    "solucion": "familia"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Capacidad de mantenerse firme ante las dificultades (Fuerza de...).",
+    "solucion": "fortaleza"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Estado de ánimo de quien se siente plenamente satisfecho.",
+    "solucion": "felicidad"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Habilidad para resolver disputas entre personas de forma constructiva (Gestión de...).",
+    "solucion": "conflictos"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Valor que consiste en dar a los demás sin esperar nada a cambio.",
+    "solucion": "generosidad"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Sentimiento de agradecimiento hacia alguien que nos ha ayudado.",
+    "solucion": "gratitud"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Cualidad de ser agradecido y reconocer los beneficios recibidos.",
+    "solucion": "garante"
+  },
+  {
+    "id": "g4_fix",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Gesto de la cara que muestra alegría.",
+    "solucion": "guiño"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Conjunto de personas que comparten una misma actividad o espacio.",
+    "solucion": "grupo"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Cualidad de ser sincero y actuar con rectitud y justicia.",
+    "solucion": "honestidad"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Capacidad de reconocer las propias limitaciones y errores.",
+    "solucion": "humildad"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Destreza o capacidad para realizar una tarea con éxito.",
+    "solucion": "habilidad"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Comportamiento que se repite de forma constante (estudio, salud...).",
+    "solucion": "hábito"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Lo que nos hace humanos y nos une a los demás.",
+    "solucion": "humanidad"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Acción de asegurar que todas las personas se sientan parte del grupo, sin importar sus diferencias.",
+    "solucion": "inclusión"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Capacidad de comprender, usar y gestionar nuestras propias emociones (Inteligencia...).",
+    "solucion": "emocional"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Derecho de todos a ser tratados con el mismo respeto y tener las mismas oportunidades.",
+    "solucion": "igualdad"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Actuar con rectitud y de acuerdo a nuestros valores, incluso cuando nadie nos ve.",
+    "solucion": "integridad"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Unir a alguien nuevo a un grupo de forma acogedora.",
+    "solucion": "integrar"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Dar a cada uno lo que se merece o lo que necesita.",
+    "solucion": "justicia"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Valorar algo o a alguien con rectitud.",
+    "solucion": "juzgar"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Actividad divertida que sirve para aprender y compartir.",
+    "solucion": "juego"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Persona que está en la etapa previa a la edad adulta.",
+    "solucion": "joven"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Unión de personas para un fin común o celebración (Junta).",
+    "solucion": "junta"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Saber o conocimiento en inglés (contiene K).",
+    "solucion": "knowledge"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Habilidad o destreza en algo (contiene K).",
+    "solucion": "skill"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Hacer las cosas con amabilidad (Kindness, contiene K).",
+    "solucion": "kindness"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Filosofía del orden y el destino (contiene K).",
+    "solucion": "karma"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Estar de acuerdo o decir que sí (contiene la K).",
+    "solucion": "ok"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Fidelidad y compromiso hacia los amigos, la familia o los ideales.",
+    "solucion": "lealtad"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Capacidad de decidir y actuar por uno mismo respetando a los demás.",
+    "solucion": "libertad"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Cualidad de la persona que guía y motiva a un grupo.",
+    "solucion": "liderazgo"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Barrera o norma que indica lo que no se debe hacer.",
+    "solucion": "límite"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Esfuerzo constante para superar dificultades.",
+    "solucion": "lucha"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Intervención de una persona neutral para ayudar a resolver un conflicto entre otras (Mediación...).",
+    "solucion": "escolar"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Mentalidad de crecimiento o forma de pensar ante los retos (M...).",
+    "solucion": "mindset"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Razón o impulso que nos anima a hacer algo.",
+    "solucion": "motivación"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Sentimiento de angustia ante una situación de peligro.",
+    "solucion": "miedo"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Buenos comportamientos en el trato con los demás.",
+    "solucion": "modales"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Regla que indica cómo debemos comportarnos para una buena convivencia.",
+    "solucion": "norma"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Palabra necesaria para poner límites y decir que algo no nos gusta.",
+    "solucion": "no"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Cualidad de lo que es justo y no toma partido por nadie.",
+    "solucion": "neutralidad"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Dicho de algo que no hace daño (In...nocuo). No. Buscamos: Nobleza.",
+    "solucion": "nobleza"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Falta de algo que es necesario para la vida.",
+    "solucion": "necesidad"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Muestra de amor y afecto hacia alguien (contiene Ñ).",
+    "solucion": "cariño"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Persona de la misma clase o grupo de trabajo (contiene Ñ).",
+    "solucion": "compañero"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Echar de menos a alguien que no está (contiene Ñ).",
+    "solucion": "añorar"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Hacer daño o ofender a alguien (contiene Ñ).",
+    "solucion": "dañar"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Sentir satisfacción por el trabajo bien hecho (contiene la Ñ - No existe). Usaremos: Empeño.",
+    "solucion": "empeño"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Punto de vista positivo que nos hace ver el lado bueno de las cosas.",
+    "solucion": "optimismo"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Colocar las cosas en su sitio y seguir un método.",
+    "solucion": "orden"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Capacidad de expresar nuestra opinión de forma libre.",
+    "solucion": "opinar"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Hacer lo que se nos pide por respeto a las normas.",
+    "solucion": "obedecer"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Meta o fin que se quiere conseguir.",
+    "solucion": "objetivo"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Tomar la iniciativa para que algo suceda sin esperar a que otros lo hagan.",
+    "solucion": "proactividad"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Opinión negativa sobre alguien antes de conocerlo realmente.",
+    "solucion": "prejuicio"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Capacidad de esperar con calma y sin desesperarse.",
+    "solucion": "paciencia"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Estado de tranquilidad y ausencia de conflictos.",
+    "solucion": "paz"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Acción de pedir perdón por una falta cometida.",
+    "solucion": "pedir disculpas"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Sentir estima o afecto por una persona.",
+    "solucion": "querer"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Expresión de dolor o disgusto por algo.",
+    "solucion": "queja"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Mantenerse en calma y sin ruido.",
+    "solucion": "quieto"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Dar a cada uno lo que necesita de forma justa (Equidad, contiene Q).",
+    "solucion": "equidad"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Estado de calma mental (Tranquilidad, contiene Q).",
+    "solucion": "tranquilidad"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Capacidad humana de superar situaciones traumáticas o difíciles y salir fortalecido.",
+    "solucion": "resiliencia"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Valorar a los demás y tratar a las personas con dignidad.",
+    "solucion": "respeto"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Cumplir con los deberes y asumir las consecuencias de nuestros actos.",
+    "solucion": "responsabilidad"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Llegar a una solución de un problema sin usar la violencia (Resolución...).",
+    "solucion": "pacífica"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Pensar con cuidado y calma sobre un tema.",
+    "solucion": "reflexionar"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Ayudar y apoyar a los demás en situaciones difíciles.",
+    "solucion": "solidaridad"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Apoyo y unión entre mujeres (referencia a igualdad y fraternidad).",
+    "solucion": "sororidad"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Decir siempre la verdad y ser honesto.",
+    "solucion": "sinceridad"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Respuesta física a una situación de mucha presión o agobio.",
+    "solucion": "estrés"
+  },
+  {
+    "id": "s4_fix",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Esfuerzo por superar las propias marcas o límites.",
+    "solucion": "superación"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Gesto de la boca que indica alegría.",
+    "solucion": "sonrisa"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Respetar las opiniones y formas de ser de los demás aunque sean diferentes.",
+    "solucion": "tolerancia"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Habilidad o capacidad especial para hacer algo muy bien.",
+    "solucion": "talento"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Sentimiento de pena por algo malo que ha pasado.",
+    "solucion": "tristeza"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Trabajar junto a otros para una meta (Trabajo en...).",
+    "solucion": "equipo"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Persona que ayuda al alumno en su aprendizaje y desarrollo.",
+    "solucion": "tutor"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Estar juntos para conseguir una meta común.",
+    "solucion": "unión"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Dicho de algo que es el único en su especie y muy valioso.",
+    "solucion": "único"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Acción de dar ayuda a quien lo necesita (contiene U).",
+    "solucion": "ayudar"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Forma en que se comporta una persona (contiene U).",
+    "solucion": "conducta"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Dicho de algo que sirve para alcanzar un fin.",
+    "solucion": "útil"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Cualidad positiva que nos ayuda a ser mejores personas (respeto, paz...).",
+    "solucion": "valor"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Acción de ayudar en proyectos sociales sin cobrar nada por ello.",
+    "solucion": "voluntariado"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Cualidad de ser valiente ante los retos.",
+    "solucion": "valentía"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Lo que es cierto y no es mentira.",
+    "solucion": "verdad"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Energía y ganas de vivir.",
+    "solucion": "vitalidad"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Página de la red para informarse de valores (contiene W).",
+    "solucion": "web"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Conexión a la red para estudiar (contiene W).",
+    "solucion": "wifi"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Hacer las cosas con amabilidad (Kindness en inglés, contiene K y W). No. Usaremos: Show.",
+    "solucion": "show"
+  },
+  {
+    "id": "w3_fix",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Aplicación de mensajes (contiene W).",
+    "solucion": "whatsapp"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Persona que ayuda a los demás (Social Worker, contiene W).",
+    "solucion": "worker"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Fruto seco saludable (contiene la W). No. Usaremos: Kiwi.",
+    "solucion": "kiwi"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Lograr una meta u objetivo (contiene X).",
+    "solucion": "éxito"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Hacer una prueba para demostrar lo aprendido (contiene X).",
+    "solucion": "examen"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Contar o mostrar algo a los demás (contiene X).",
+    "solucion": "exponer"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Dar razones para no hacer algo (contiene X).",
+    "solucion": "excusas"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Pedir algo con firmeza (contiene X).",
+    "solucion": "exigir"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Pronombre que se refiere a uno mismo.",
+    "solucion": "yo"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Prestar socorro o auxilio (contiene Y).",
+    "solucion": "ayudar"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Dicho de algo que pertenece a otra persona (contiene Y).",
+    "solucion": "tuyo"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Hablar de forma calmada (contiene la Y). No. Usaremos: Diálogo.",
+    "solucion": "diálogo"
+  },
+  {
+    "id": "y4_fix",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Persona que tiene más edad (contiene Y).",
+    "solucion": "mayor"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Estar unido a alguien (contiene la Y). No. Usaremos: Apoyo.",
+    "solucion": "apoyo"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Ausencia de guerra o conflicto (contiene Z).",
+    "solucion": "paz"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Capacidad de hacer algo (contiene Z).",
+    "solucion": "capaz"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Dar un apretón con los brazos (contiene Z).",
+    "solucion": "abrazo"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Felicidad y tranquilidad (contiene la Z). No. Usaremos: Gozo.",
+    "solucion": "gozo"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Dicho de algo que es dulce y suave (contiene Z).",
+    "solucion": "dulzura"
+  }
 ]

@@ -1,17 +1,122 @@
 {
-  "fotografia_cine": [
-    "encuadre", "plano", "picado", "contrapicado", "zoom", "enfoque", "guion", "montaje", "secuencia", "iluminación"
+  "dibujo_tecnico_pro": [
+    "geometría plana",
+    "paralelas y perpendiculares",
+    "polígonos regulares",
+    "tangencias",
+    "enlaces",
+    "curvas cónicas",
+    "elipse",
+    "parábola",
+    "hipérbola",
+    "escala de reducción"
   ],
-  "diseno_grafico": [
-    "logotipo", "marca", "tipografía", "cartel", "packaging", "boceto", "maquetación", "vector", "píxel", "resolución"
+  "sistemas_representacion_4": [
+    "sistema diédrico",
+    "normalización",
+    "acotación",
+    "isométrico",
+    "caballera",
+    "perspectiva cónica frontal",
+    "perspectiva cónica oblicua",
+    "plano de cuadro",
+    "punto de fuga",
+    "horizonte"
   ],
-  "dibujo_tecnico": [
-    "diédrico", "alzado", "planta", "perfil", "isométrica", "caballera", "acotación", "escala", "perspectiva", "vistas"
+  "diseno_grafico_digital": [
+    "pixel",
+    "vector",
+    "rgb",
+    "cmyk",
+    "capa",
+    "filtro",
+    "máscara de capa",
+    "tipografía",
+    "identidad visual",
+    "infografía"
   ],
-  "elementos_imagen": [
-    "punto", "línea", "plano", "textura", "color", "composición", "ritmo", "equilibrio", "contraste", "simetría"
+  "imagen_fotografia": [
+    "diafragma",
+    "velocidad de obturación",
+    "iso",
+    "exposición",
+    "profundidad de campo",
+    "encuadre",
+    "regla de los tercios",
+    "zoom",
+    "formato raw",
+    "edición"
   ],
-  "historia_arte_sXX": [
-    "cubismo", "surrealismo", "expresionismo", "pop art", "abstracción", "fauvismo", "dadaísmo", "bauhaus", "graffiti", "performance"
+  "narrativa_audiovisual": [
+    "planificación",
+    "storyboard",
+    "guion técnico",
+    "montaje",
+    "postproducción",
+    "animación",
+    "stop motion",
+    "frame",
+    "frame rate",
+    "composición de imagen"
+  ],
+  "historia_arte_contemp": [
+    "arquitectura de hierro",
+    "modernismo",
+    "vanguardias",
+    "impresionismo",
+    "cubismo",
+    "abstracción",
+    "surrealismo",
+    "pop art",
+    "minimalismo",
+    "arte conceptual"
+  ],
+  "diseno_espacios": [
+    "arquitectura",
+    "urbanismo",
+    "interiorismo",
+    "mobiliario",
+    "maqueta",
+    "luz y espacio",
+    "materiales constructivos",
+    "ergonomía",
+    "accesibilidad",
+    "sostenibilidad"
+  ],
+  "tecnicas_pictoricas": [
+    "óleo",
+    "acrílico",
+    "acuarela",
+    "gouache",
+    "pastel",
+    "técnica mixta",
+    "textura",
+    "difuminado",
+    "veladura",
+    "collage"
+  ],
+  "analisis_visual": [
+    "retórica visual",
+    "metáfora",
+    "hipérbole visual",
+    "personificación",
+    "símbolo",
+    "icono",
+    "mensaje publicitario",
+    "manipulación visual",
+    "propaganda",
+    "estética"
+  ],
+  "volumen_escultura": [
+    "modelado",
+    "talla",
+    "vaciado",
+    "ensamblado",
+    "espacio negativo",
+    "textura táctil",
+    "fundición",
+    "móvil",
+    "instalación",
+    "intervención urbana"
   ]
 }

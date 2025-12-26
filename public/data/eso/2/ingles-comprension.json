@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "Teenagers and Smartphones",
+        "texto": "Today, most teenagers in the UK own a smartphone. They use them for many things, but social media is the most popular activity. Apps like TikTok, Instagram, and Snapchat allow them to share videos and photos with their friends. However, some experts are worried. They say that teens spend too much time on their screens and not enough time sleeping or doing exercise. A recent study says that students who use their phones late at night often have worse grades at school. It is important to find a balance between technology and real life.",
+        "preguntas": [
+            {
+                "pregunta": "What is the most popular activity on smartphones for UK teens?",
+                "opciones": [
+                    "Playing video games",
+                    "Doing homework",
+                    "Social Media",
+                    "Making phone calls"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Why are experts worried?",
+                "opciones": [
+                    "Because phones are very expensive",
+                    "Because teens don't sleep or exercise enough",
+                    "Because apps are boring",
+                    "Because the internet is slow"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What happens to students who use phones late at night?",
+                "opciones": [
+                    "They get better grades",
+                    "They often have worse grades",
+                    "They become stronger",
+                    "Nothing happens"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Which apps are mentioned in the text?",
+                "opciones": [
+                    "Facebook and Twitter",
+                    "TikTok, Instagram and Snapchat",
+                    "YouTube and Netflix",
+                    "WhatsApp only"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is the main advice of the text?",
+                "opciones": [
+                    "To buy a new phone",
+                    "To delete all apps",
+                    "To find a balance between technology and real life",
+                    "To sleep in class"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Climate Change: A Global Problem",
+        "texto": "Climate change is one of the biggest challenges for our planet. The Earth's temperature is rising because of greenhouse gases from factories, cars, and planes. This is causing polar ice to melt and sea levels to rise. Extreme weather, like heatwaves and heavy storms, is becoming more frequent. Young people around the world are protesting and asking governments to take action. We can help by recycling, using less plastic, and saving energy at home. Every small action counts to protect our environment.",
+        "preguntas": [
+            {
+                "pregunta": "Why is the Earth's temperature rising?",
+                "opciones": [
+                    "Because of the moon",
+                    "Because of greenhouse gases",
+                    "Because the sun is closer",
+                    "Because there are more people"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is happening to polar ice?",
+                "opciones": [
+                    "It is growing",
+                    "It is melting",
+                    "It is turning blue",
+                    "Nothing"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What type of weather is becoming more frequent?",
+                "opciones": [
+                    "Perfect weather",
+                    "Extreme weather (heatwaves, storms)",
+                    "Just rain",
+                    "Snow everywhere"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "How can we help at home?",
+                "opciones": [
+                    "By buying more things",
+                    "By recycling and saving energy",
+                    "By watching more TV",
+                    "We cannot help"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Who is protesting around the world?",
+                "opciones": [
+                    "Only robots",
+                    "Young people",
+                    "Just scientists",
+                    "Nobody"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "The Legend of King Arthur",
+        "texto": "King Arthur is a legendary British leader who lived many centuries ago. According to the legend, he became king because he was the only person who could pull a magic sword, Excalibur, out of a stone. He lived in a castle called Camelot with his beautiful queen, Guinevere. Arthur was famous for his Knights of the Round Table. They were brave men who fought for justice and helped people in danger. Although historians don't know if Arthur was a real person, his stories are still very popular in books and movies today.",
+        "preguntas": [
+            {
+                "pregunta": "How did Arthur become king?",
+                "opciones": [
+                    "His father gave him the crown",
+                    "He pulled a sword out of a stone",
+                    "He won a race",
+                    "He was very rich"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What was the name of his magic sword?",
+                "opciones": [
+                    "Excalibur",
+                    "Camelot",
+                    "Guinevere",
+                    "Merlin"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Where did he live?",
+                "opciones": [
+                    "London",
+                    "Camelot",
+                    "Stonehenge",
+                    "Oxford"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Who were the Knights of the Round Table?",
+                "opciones": [
+                    "Arthur's enemies",
+                    "Brave men who fought for justice",
+                    "Magicians",
+                    "Artisans"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Do historians know if he was real?",
+                "opciones": [
+                    "Yes, they are 100% sure",
+                    "No, they don't know for sure",
+                    "He was definitely a myth",
+                    "He died in 2020"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Travel: Backpacking in Thailand",
+        "texto": "Thailand is a popular destination for young travellers. Many students go there after finishing school or university. It is a beautiful country with amazing beaches, ancient temples, and delicious street food. Most backpackers stay in cheap hostels to save money. They travel around by train or 'tuk-tuk', a traditional three-wheeled taxi. People in Thailand are very friendly, which is why it is called 'The Land of Smiles'. However, it is important to respect the local culture and follow the rules in temples.",
+        "preguntas": [
+            {
+                "pregunta": "When do many students go to Thailand?",
+                "opciones": [
+                    "Before starting school",
+                    "After finishing school or university",
+                    "During winter",
+                    "Only when they are 50"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is a 'tuk-tuk'?",
+                "opciones": [
+                    "A type of spicy food",
+                    "A three-wheeled taxi",
+                    "A religious temple",
+                    "A tropical fish"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Why is Thailand called 'The Land of Smiles'?",
+                "opciones": [
+                    "Because it's very hot",
+                    "Because the people are very friendly",
+                    "Because of the masks",
+                    "Because the food is sweet"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Where do most backpackers stay?",
+                "opciones": [
+                    "At expensive hotels",
+                    "At home",
+                    "In cheap hostels",
+                    "In tents on the beach"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "What should travellers respect in Thailand?",
+                "opciones": [
+                    "Only the food",
+                    "The local culture and temple rules",
+                    "The monkeys",
+                    "Nothing"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "The History of Video Games",
+        "texto": "Video games have changed a lot since they started. The first video game was 'Pong', a very simple tennis game created in the 1970s. In the 1980s, games like Pac-Man and Mario became worldwide hits. Today, graphics are incredible and we can play with people from different countries using the internet. Some people think that video games are bad for your health, but other studies show that they can improve your coordination and problem-solving skills. The future of gaming is Virtual Reality, which makes you feel like you are inside the game!",
+        "preguntas": [
+            {
+                "pregunta": "What was the first video game?",
+                "opciones": [
+                    "Mario",
+                    "Pac-Man",
+                    "Pong",
+                    "Minecraft"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "When were Pac-Man and Mario worldwide hits?",
+                "opciones": [
+                    "1950s",
+                    "1970s",
+                    "1980s",
+                    "2010s"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "What is a positive effect of video games?",
+                "opciones": [
+                    "They make you tired",
+                    "They improve coordination and problem-solving",
+                    "They are very loud",
+                    "They help you sleep"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "How can we play with people from other countries?",
+                "opciones": [
+                    "Sending letters",
+                    "Using the internet",
+                    "By phone",
+                    "It's impossible"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What technology is the future of gaming?",
+                "opciones": [
+                    "Radio",
+                    "Virtual Reality",
+                    "Game Boys",
+                    "Paper games"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Inventions: The Printing Press",
+        "texto": "Before the 15th century, books were written by hand. This was very slow and books were very expensive. In 1440, Johannes Gutenberg invented the printing press in Germany. This machine could print many pages quickly using metal letters. Because of this invention, books became cheaper and more people learned how to read and write. Scientists could share their discoveries and ideas easily. Many people believe the printing press is one of the most important inventions in human history because it started a revolution in knowledge.",
+        "preguntas": [
+            {
+                "pregunta": "How were books made before the 15th century?",
+                "opciones": [
+                    "With machines",
+                    "By hand",
+                    "They didn't exist",
+                    "With cameras"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Who invented the printing press?",
+                "opciones": [
+                    "Newton",
+                    "Gutenberg",
+                    "Einstein",
+                    "Colón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Why did more people learn to read?",
+                "opciones": [
+                    "Books were free",
+                    "Books became cheaper and easier to find",
+                    "Because schools were better",
+                    "They didn't learn"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Where was the printing press invented?",
+                "opciones": [
+                    "England",
+                    "USA",
+                    "Germany",
+                    "France"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "What did scientists share thanks to this invention?",
+                "opciones": [
+                    "Food",
+                    "Discoveries and ideas",
+                    "Money",
+                    "Clothes"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Space Exploration: Mars",
+        "texto": "Mars is often called 'The Red Planet' because of its iron-rich soil. Scientists are very interested in Mars because they think there was water there in the past. Today, robots called 'rovers' are exploring the surface and sending photos back to Earth. In the future, NASA wants to send humans to Mars. It is a dangerous mission because the trip takes about six or seven months. Astronauts will have to live in special habitats because there is no oxygen and it is very cold. It will be the greatest adventure of the 21st century!",
+        "preguntas": [
+            {
+                "pregunta": "Why is Mars red?",
+                "opciones": [
+                    "Because of the heat",
+                    "Because of iron-rich soil",
+                    "It is painted",
+                    "Because of the plants"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What are 'rovers'?",
+                "opciones": [
+                    "Astronauts",
+                    "Exploring robots",
+                    "Alien ships",
+                    "Dogs in space"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "How long does a trip to Mars take?",
+                "opciones": [
+                    "One week",
+                    "One month",
+                    "Six or seven months",
+                    "Two years"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Why is it difficult to live on Mars?",
+                "opciones": [
+                    "It's too loud",
+                    "There is no oxygen and it's cold",
+                    "There are too many people",
+                    "It's too sunny"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What agency wants to send humans to Mars?",
+                "opciones": [
+                    "LEGO",
+                    "NASA",
+                    "UNESCO",
+                    "FBI"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "A Healthy Diet",
+        "texto": "Eating a balanced diet is the best way to stay healthy. You should eat at least five portions of fruit and vegetables every day. They have many vitamins and minerals. It is also important to eat protein, like fish, chicken, eggs or beans, to help your muscles grow. You should avoid eating too much sugar because it's bad for your teeth and your heart. Drinking plenty of water is better than drinking soda. Remember: 'You are what you eat', so choose your food carefully!",
+        "preguntas": [
+            {
+                "pregunta": "How many portions of fruit and veg should you eat?",
+                "opciones": [
+                    "One",
+                    "Two",
+                    "At least five",
+                    "Ten"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "What food is good for your muscles?",
+                "opciones": [
+                    "Sweets",
+                    "Protein (fish, eggs, beans)",
+                    "Chips",
+                    "Bread only"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Why is too much sugar bad?",
+                "opciones": [
+                    "It makes you taller",
+                    "It's bad for teeth and heart",
+                    "It's very expensive",
+                    "It makes you sleep"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What is better than soda?",
+                "opciones": [
+                    "Juice with sugar",
+                    "Water",
+                    "Milkshakes",
+                    "Energy drinks"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What famous phrase is mentioned?",
+                "opciones": [
+                    "Time is money",
+                    "You are what you eat",
+                    "Eat and run",
+                    "Food is good"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "William Shakespeare",
+        "texto": "William Shakespeare is the most famous writer in the history of the English language. He was born in 1564 in Stratford-upon-Avon, England. He wrote 38 plays and many poems. His plays are divided into comedies, like 'A Midsummer Night's Dream', and tragedies, like 'Romeo and Juliet' or 'Hamlet'. He was also an actor and he owned a theatre called 'The Globe' in London. Today, his works are translated into every language and people still perform them in theatres all over the world.",
+        "preguntas": [
+            {
+                "pregunta": "Where was Shakespeare born?",
+                "opciones": [
+                    "London",
+                    "New York",
+                    "Stratford-upon-Avon",
+                    "Manchester"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "How many plays did he write?",
+                "opciones": [
+                    "10",
+                    "38",
+                    "100",
+                    "500"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What type of play is 'Romeo and Juliet'?",
+                "opciones": [
+                    "A comedy",
+                    "A tragedy",
+                    "A musical",
+                    "A news report"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "What was the name of his theatre?",
+                "opciones": [
+                    "The World",
+                    "The Circle",
+                    "The Globe",
+                    "National Theatre"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "Was he only a writer?",
+                "opciones": [
+                    "Yes",
+                    "No, he was also an actor",
+                    "He was a doctor",
+                    "He was the king"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Artificial Intelligence",
+        "texto": "Artificial Intelligence, or AI, is technology that allows computers to 'think' and learn like humans. You can find AI in many places, like the voice assistants on your phone or the recommendations on Netflix. AI can help doctors find diseases or tell us the best route to avoid traffic. However, some people are afraid of AI. They think that robots might take people's jobs in the future. It is important to use AI responsibly and make sure it is safe for everyone. AI is not the future; it is already here!",
+        "preguntas": [
+            {
+                "pregunta": "What does AI allow computers to do?",
+                "opciones": [
+                    "To speak 100 languages",
+                    "To 'think' and learn like humans",
+                    "To fly",
+                    "To cook"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Where can you find AI today?",
+                "opciones": [
+                    "Voice assistants and Netflix recommendations",
+                    "Only in space",
+                    "Only in books",
+                    "Nowhere yet"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "How can AI help doctors?",
+                "opciones": [
+                    "By cleaning the hospital",
+                    "By helping them find diseases",
+                    "By singing to patients",
+                    "AI cannot help"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Why are some people afraid of AI?",
+                "opciones": [
+                    "Because it's very loud",
+                    "Because robots might take people's jobs",
+                    "Because it is very old",
+                    "Because it is expensive"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Is AI only a future technology?",
+                "opciones": [
+                    "Yes",
+                    "No, it is already here",
+                    "It will never happen",
+                    "Only for children"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

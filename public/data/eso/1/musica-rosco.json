@@ -1,299 +1,2170 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Cualidad del sonido que nos permite distinguir sonidos graves y agudos.", "solucion": "altura", "materia": "musica" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Sonido de frecuencia alta, lo contrario de grave.", "solucion": "agudo", "materia": "musica" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Ajustar la entonación de un instrumento o voz.", "solucion": "afinación", "materia": "musica" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Elemento fundamental de la música junto a la melodía y el ritmo.", "solucion": "armonía", "materia": "musica" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Conjunto de tres o más notas que suenan simultáneamente.", "solucion": "acorde", "materia": "musica" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Término italiano para indicar un tempo rápido y alegre.", "solucion": "allegro", "materia": "musica" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Término italiano para indicar un tempo lento.", "solucion": "adagio", "materia": "musica" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Instrumento de cuerda pulsada con forma triangular y muchas cuerdas.", "solucion": "arpa", "materia": "musica" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Nota o notas previas al primer tiempo fuerte del compás.", "solucion": "anacrusa", "materia": "musica" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Sala acondicionada para escuchar conciertos.", "solucion": "auditorio", "materia": "musica" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Varita que usa el director de orquesta.", "solucion": "batuta", "materia": "musica" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Agrupación musical formada principalmente por instrumentos de viento y percusión.", "solucion": "banda", "materia": "musica" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Figura musical que vale 2 tiempos.", "solucion": "blanca", "materia": "musica" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Alteración que baja medio tono la nota.", "solucion": "bemol", "materia": "musica" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Voz masculina intermedia.", "solucion": "barítono", "materia": "musica" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Voz masculina más grave.", "solucion": "bajo", "materia": "musica" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Instrumento de percusión grande que marca el pulso en la banda.", "solucion": "bombo", "materia": "musica" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Instrumento principal de la música rock (percusión).", "solucion": "batería", "materia": "musica" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Ritmo o compás de dos tiempos.", "solucion": "binario", "materia": "musica" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Signo que anula el efecto del sostenido o el bemol.", "solucion": "becuadro", "materia": "musica" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Signo al principio del pentagrama que da nombre a las notas.", "solucion": "clave", "materia": "musica" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "División del tiempo en partes iguales.", "solucion": "compás", "materia": "musica" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Figura musical que vale medio tiempo.", "solucion": "corchea", "materia": "musica" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Familia de instrumentos que vibran al ser tensados (ej: violín, guitarra).", "solucion": "cuerda", "materia": "musica" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Altura, duración, intensidad y timbre son las... del sonido.", "solucion": "cualidades", "materia": "musica" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Agrupación vocal.", "solucion": "coro", "materia": "musica" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Acentuación en una parte débil del compás.", "solucion": "contratiempo", "materia": "musica" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Forma musical basada en la imitación (ej: Frère Jacques).", "solucion": "canon", "materia": "musica" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Instrumento de viento madera de color negro.", "solucion": "clarinete", "materia": "musica" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Término que indica aumentar la intensidad poco a poco.", "solucion": "crescendo", "materia": "musica" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Cualidad del sonido que nos dice si es largo o corto.", "solucion": "duración", "materia": "musica" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Objeto metálico en forma de U que da la nota La (440Hz).", "solucion": "diapasón", "materia": "musica" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Unidad de medida de la intensidad del sonido.", "solucion": "decibelio", "materia": "musica" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Persona que guía a la orquesta.", "solucion": "director", "materia": "musica" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Término para disminuir la intensidad poco a poco.", "solucion": "diminuendo", "materia": "musica" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Obra musical para dos intérpretes.", "solucion": "dúo", "materia": "musica" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Movimiento corporal al ritmo de la música.", "solucion": "danza", "materia": "musica" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Sonido desagradable o tensión armónica.", "solucion": "disonancia", "materia": "musica" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Primera nota de la escala natural.", "solucion": "do", "materia": "musica" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Soporte físico o digital para grabar música.", "solucion": "disco", "materia": "musica" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Sucesión ordenada de notas.", "solucion": "escala", "materia": "musica" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Cantar afinado las notas.", "solucion": "entonación", "materia": "musica" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Hueco entre las líneas del pentagrama.", "solucion": "espacio", "materia": "musica" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Carácter propio que da personalidad a la música (Pop, Rock...).", "solucion": "estilo", "materia": "musica" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Lugar donde actúan los músicos.", "solucion": "escenario", "materia": "musica" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Parte de una canción que se repite (coro).", "solucion": "estribillo", "materia": "musica" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Instrumento que necesita electricidad (ej: guitarra eléctrica).", "solucion": "electrófono", "materia": "musica" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Práctica antes del concierto.", "solucion": "ensayo", "materia": "musica" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Repetición de un sonido por reflejo.", "solucion": "eco", "materia": "musica" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Atención que prestamos a la música (Audición).", "solucion": "escucha", "materia": "musica" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Término de dinámica: sonido potente.", "solucion": "fuerte", "materia": "musica" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Signo que representa la duración del sonido (Negra, corchea...).", "solucion": "figura", "materia": "musica" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Instrumento de viento madera, dulce o travesera.", "solucion": "flauta", "materia": "musica" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Grupo de instrumentos (Cuerda, Viento, Percusión).", "solucion": "familia", "materia": "musica" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Música tradicional de un pueblo.", "solucion": "folclore", "materia": "musica" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Número de vibraciones por segundo (Hertzios).", "solucion": "frecuencia", "materia": "musica" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Instrumento de viento madera grave y largo.", "solucion": "fagot", "materia": "musica" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Figura musical muy rápida, vale media semicorchea.", "solucion": "fusa", "materia": "musica" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Acabamiento de una obra.", "solucion": "final", "materia": "musica" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Estructura de una obra musical (ABA, Rondó...).", "solucion": "forma", "materia": "musica" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Sonido de frecuencia baja, lo contrario de agudo.", "solucion": "grave", "materia": "musica" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Instrumento de 6 cuerdas muy popular.", "solucion": "guitarra", "materia": "musica" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Instrumento de percusión asiático, disco de metal.", "solucion": "gong", "materia": "musica" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Efecto de deslizar de una nota a otra.", "solucion": "glissando", "materia": "musica" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Instrumento de viento con una bolsa de aire.", "solucion": "gaita", "materia": "musica" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Clasificación de obras musicales (Rock, Pop, Clásica...).", "solucion": "género", "materia": "musica" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "Registro de sonido para escucharlo luego.", "solucion": "grabación", "materia": "musica" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Danza rápida de compás binario.", "solucion": "galop", "materia": "musica" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Conjunto de músicos.", "solucion": "grupo", "materia": "musica" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Forma de escribir la música.", "solucion": "grafía", "materia": "musica" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Unidad de medida de la frecuencia (Hz).", "solucion": "hertzio", "materia": "musica" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Canción solemne que representa a un país o grupo.", "solucion": "himno", "materia": "musica" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Textura donde todas las voces llevan el mismo ritmo.", "solucion": "homofonía", "materia": "musica" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Danza de origen cubano con ritmo característico.", "solucion": "habanera", "materia": "musica" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Música ambiental suave.", "solucion": "hilo musical", "materia": "musica" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Estilo de rock muy potente.", "solucion": "heavy metal", "materia": "musica" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Estudio del pasado de la música.", "solucion": "historia", "materia": "musica" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Destreza para tocar un instrumento.", "solucion": "habilidad", "materia": "musica" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Espacio vacío en la caja de resonancia.", "solucion": "hueco", "materia": "musica" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Parte del cuerpo donde se apoya el violín.", "solucion": "hombro", "materia": "musica" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Cualidad del sonido (fuerte o suave).", "solucion": "intensidad", "materia": "musica" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Objeto para producir música.", "solucion": "instrumento", "materia": "musica" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Distancia entre dos notas.", "solucion": "intervalo", "materia": "musica" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Instrumento que suena al vibrar su propio cuerpo (triángulo, claves).", "solucion": "idiófono", "materia": "musica" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Crear música al momento.", "solucion": "improvisación", "materia": "musica" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Intervalo tocado al revés.", "solucion": "invertido", "materia": "musica" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Golpe o acento rítmico.", "solucion": "ictus", "materia": "musica" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Canción representativa de un país.", "solucion": "himno", "materia": "musica" }, 
-  { "id": "i8_fix", "letra": "I", "tipo": "empieza", "definicion": "Acción de tocar una obra musical.", "solucion": "interpretación", "materia": "musica" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Comienzo de una canción.", "solucion": "intro", "materia": "musica" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "País cuna de la ópera.", "solucion": "italia", "materia": "musica" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Estilo musical afroamericano basado en la improvisación.", "solucion": "jazz", "materia": "musica" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Actividad lúdica musical.", "solucion": "juego", "materia": "musica" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Baile y canto tradicional de Aragón.", "solucion": "jota", "materia": "musica" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Músico ambulante de la Edad Media.", "solucion": "juglar", "materia": "musica" },
-  { "id": "j5", "letra": "J", "tipo": "empieza", "definicion": "Objeto para jugar (Sinfonía de los...).", "solucion": "juguetes", "materia": "musica" },
-  { "id": "j6", "letra": "J", "tipo": "empieza", "definicion": "Cante flamenco profundo (... jondo).", "solucion": "jondo", "materia": "musica" },
-  { "id": "j7", "letra": "J", "tipo": "empieza", "definicion": "Diversión, fiesta.", "solucion": "jarana", "materia": "musica" },
-  { "id": "j8", "letra": "J", "tipo": "empieza", "definicion": "Canción corta publicitaria.", "solucion": "jingle", "materia": "musica" },
-  { "id": "j9", "letra": "J", "tipo": "empieza", "definicion": "Carácter alegre en la música.", "solucion": "jubiloso", "materia": "musica" },
-  { "id": "j10", "letra": "J", "tipo": "empieza", "definicion": "Competición musical medieval.", "solucion": "justa", "materia": "musica" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Cantante aficionado con música de fondo.", "solucion": "karaoke", "materia": "musica" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Prefijo para mil hertzios.", "solucion": "kilo", "materia": "musica" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Instrumento de cuerda japonés.", "solucion": "koto", "materia": "musica" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Estilo de pop coreano.", "solucion": "k-pop", "materia": "musica" },
-  { "id": "k5", "letra": "K", "tipo": "contiene", "definicion": "Estilo de música y baile popular (contiene K).", "solucion": "rock", "materia": "musica" },
-  { "id": "k6", "letra": "K", "tipo": "contiene", "definicion": "Estilo musical rebelde de los 70 (contiene K).", "solucion": "punk", "materia": "musica" },
-  { "id": "k7", "letra": "K", "tipo": "contiene", "definicion": "Música tradicional de un pueblo (contiene K).", "solucion": "folklore", "materia": "musica" },
-  { "id": "k8", "letra": "K", "tipo": "contiene", "definicion": "Guitarra pequeña hawaiana (contiene K).", "solucion": "ukelele", "materia": "musica" },
-  { "id": "k9", "letra": "K", "tipo": "contiene", "definicion": "Hacer mímica de cantar una canción (contiene K).", "solucion": "playback", "materia": "musica" },
-  { "id": "k10", "letra": "K", "tipo": "contiene", "definicion": "Altavoz (contiene K).", "solucion": "speaker", "materia": "musica" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Tempo muy lento.", "solucion": "largo", "materia": "musica" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Rayas horizontales del pentagrama.", "solucion": "línea", "materia": "musica" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Línea curva que une la duración de dos notas.", "solucion": "ligadura", "materia": "musica" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Instrumento de cuerda antiguo con forma de pera.", "solucion": "laúd", "materia": "musica" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Contrario de rápido.", "solucion": "lento", "materia": "musica" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Pieza de caña que vibra en el clarinete.", "solucion": "lengüeta", "materia": "musica" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Artesano que construye instrumentos.", "solucion": "lutier", "materia": "musica" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Nota musical (la 6ª).", "solucion": "la", "materia": "musica" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Música religiosa (Música...).", "solucion": "litúrgica", "materia": "musica" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Escritor del texto de una ópera.", "solucion": "libretista", "materia": "musica" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Sucesión de notas con sentido musical.", "solucion": "melodía", "materia": "musica" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Arte de combinar los sonidos.", "solucion": "música", "materia": "musica" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Indicación de intensidad (fuerte, piano...).", "solucion": "matiz", "materia": "musica" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Aparato que marca el pulso.", "solucion": "metrónomo", "materia": "musica" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Voz femenina intermedia.", "solucion": "mezzosoprano", "materia": "musica" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Instrumento que suena por una membrana tensa (tambor).", "solucion": "membranófono", "materia": "musica" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Adorno musical rápido.", "solucion": "mordente", "materia": "musica" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Escala musical (Mayor o menor).", "solucion": "modo", "materia": "musica" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Obra musical para desfilar.", "solucion": "marcha", "materia": "musica" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Familia de instrumentos de viento (Viento...).", "solucion": "metal", "materia": "musica" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Signo que representa la altura del sonido.", "solucion": "nota", "materia": "musica" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Figura que vale un tiempo.", "solucion": "negra", "materia": "musica" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Nota sin alteraciones (Becuadro).", "solucion": "natural", "materia": "musica" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Sistema de escritura musical.", "solucion": "notación", "materia": "musica" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Canción de cuna.", "solucion": "nana", "materia": "musica" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Estilo musical que exalta lo propio de un país.", "solucion": "nacionalismo", "materia": "musica" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Canto espiritual afroamericano (... spiritual).", "solucion": "negro", "materia": "musica" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Pieza musical tranquila y nocturna.", "solucion": "nocturno", "materia": "musica" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Signo antiguo de escritura musical.", "solucion": "neuma", "materia": "musica" },
-  { "id": "n10", "letra": "N", "tipo": "empieza", "definicion": "Sinfonía famosa de Beethoven.", "solucion": "novena", "materia": "musica" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Parte de la lengüeta del oboe (contiene Ñ).", "solucion": "caña", "materia": "musica" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Instrumento de percusión de madera típico español (contiene Ñ).", "solucion": "castañuela", "materia": "musica" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Flauta de pan andina (contiene Ñ).", "solucion": "zampoña", "materia": "musica" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Pájaro cantor (contiene Ñ).", "solucion": "ruiseñor", "materia": "musica" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Acción de tocar un instrumento de cuerda o campanas (contiene Ñ).", "solucion": "tañer", "materia": "musica" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "contiene", "definicion": "Danza tradicional gallega (contiene Ñ).", "solucion": "muñeira", "materia": "musica" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Persona de poca edad que canta en escolanía (contiene Ñ).", "solucion": "niño", "materia": "musica" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Tocar junto a otro músico (contiene Ñ).", "solucion": "acompañar", "materia": "musica" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "Instrumento de tamaño reducido (contiene Ñ).", "solucion": "pequeño", "materia": "musica" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "Indicación del director (contiene Ñ).", "solucion": "señal", "materia": "musica" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Conjunto grande de instrumentos.", "solucion": "orquesta", "materia": "musica" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Sentido para escuchar música.", "solucion": "oído", "materia": "musica" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Forma de transmisión del sonido.", "solucion": "onda", "materia": "musica" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Intervalo de 8 notas.", "solucion": "octava", "materia": "musica" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Pieza instrumental al inicio de una ópera.", "solucion": "obertura", "materia": "musica" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Teatro cantado con orquesta y vestuario.", "solucion": "ópera", "materia": "musica" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Instrumento de viento madera de doble lengüeta.", "solucion": "oboe", "materia": "musica" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Ciencia que estudia los instrumentos musicales.", "solucion": "organología", "materia": "musica" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Ritmo o melodía que se repite constantemente.", "solucion": "ostinato", "materia": "musica" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Palabra latina para 'obra'.", "solucion": "opus", "materia": "musica" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Conjunto de 5 líneas donde se escribe música.", "solucion": "pentagrama", "materia": "musica" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Latido constante de la música.", "solucion": "pulso", "materia": "musica" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Instrumento de tecla y cuerda percutida.", "solucion": "piano", "materia": "musica" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Documento con toda la música escrita.", "solucion": "partitura", "materia": "musica" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Familia de instrumentos que se golpean.", "solucion": "percusión", "materia": "musica" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Varias melodías sonando a la vez.", "solucion": "polifonía", "materia": "musica" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Punto que añade la mitad del valor a la nota.", "solucion": "puntillo", "materia": "musica" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Tempo muy rápido.", "solucion": "presto", "materia": "musica" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Pieza para tocar la guitarra.", "solucion": "púa", "materia": "musica" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Platos de metal de la batería.", "solucion": "platillos", "materia": "musica" },
-
-  { "id": "q1", "letra": "Q", "tipo": "empieza", "definicion": "Grupo de cinco músicos.", "solucion": "quinteto", "materia": "musica" },
-  { "id": "q2", "letra": "Q", "tipo": "empieza", "definicion": "Flauta andina.", "solucion": "quena", "materia": "musica" },
-  { "id": "q3", "letra": "Q", "tipo": "empieza", "definicion": "Intervalo de cinco notas.", "solucion": "quinta", "materia": "musica" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Conjunto de músicos (contiene Q).", "solucion": "orquesta", "materia": "musica" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Palos para tocar el tambor (contiene Q).", "solucion": "baqueta", "materia": "musica" },
-  { "id": "q6", "letra": "Q", "tipo": "contiene", "definicion": "Instrumento de percusión de madera (contiene Q).", "solucion": "bloque", "materia": "musica" },
-  { "id": "q7", "letra": "Q", "tipo": "contiene", "definicion": "Mismo sonido (contiene Q).", "solucion": "equísono", "materia": "musica" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "Pieza para soplar en viento metal (contiene Q).", "solucion": "boquilla", "materia": "musica" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Lugar para bailar (contiene Q).", "solucion": "discoteca", "materia": "musica" },
-  { "id": "q10", "letra": "Q", "tipo": "contiene", "definicion": "Volumen sonoro balanceado (contiene Q).", "solucion": "equilibrado", "materia": "musica" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Combinación de duraciones y acentos.", "solucion": "ritmo", "materia": "musica" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Figura que vale 4 tiempos.", "solucion": "redonda", "materia": "musica" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Sonido indeterminado y molesto.", "solucion": "ruido", "materia": "musica" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Signo para volver a tocar un fragmento.", "solucion": "repetición", "materia": "musica" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Estilo musical de Jamaica.", "solucion": "reggae", "materia": "musica" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Estilo musical con guitarras eléctricas.", "solucion": "rock", "materia": "musica" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Estilo musical hablado y rítmico.", "solucion": "rap", "materia": "musica" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Amplificación del sonido.", "solucion": "resonancia", "materia": "musica" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Segunda nota musical.", "solucion": "re", "materia": "musica" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Rango de notas que puede cantar una voz.", "solucion": "registro", "materia": "musica" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Sensación producida en el oído por las vibraciones.", "solucion": "sonido", "materia": "musica" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Ausencia de sonido.", "solucion": "silencio", "materia": "musica" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Figura que vale un cuarto de tiempo.", "solucion": "semicorchea", "materia": "musica" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Voz femenina más aguda.", "solucion": "soprano", "materia": "musica" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Instrumento de viento metal inventado por Adolphe Sax.", "solucion": "saxofón", "materia": "musica" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Quinta nota musical.", "solucion": "sol", "materia": "musica" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Alteración que sube medio tono.", "solucion": "sostenido", "materia": "musica" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Gran obra para orquesta.", "solucion": "sinfonía", "materia": "musica" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Conjunto de danzas instrumentales.", "solucion": "suite", "materia": "musica" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Distancia de medio tono.", "solucion": "semitono", "materia": "musica" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Cualidad del sonido que distingue instrumentos.", "solucion": "timbre", "materia": "musica" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Velocidad de la música (tempo).", "solucion": "tiempo", "materia": "musica" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Voz masculina aguda.", "solucion": "tenor", "materia": "musica" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Instrumento de viento metal agudo.", "solucion": "trompeta", "materia": "musica" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Instrumento de percusión con membrana.", "solucion": "tambor", "materia": "musica" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Conjunto de teclas de un piano.", "solucion": "teclado", "materia": "musica" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Distancia de dos semitonos.", "solucion": "tono", "materia": "musica" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Instrumento de percusión metálico triangular.", "solucion": "triángulo", "materia": "musica" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Instrumento de viento metal más grave.", "solucion": "tuba", "materia": "musica" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Intervalo de tres notas.", "solucion": "tercera", "materia": "musica" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Todos cantando la misma nota a la vez.", "solucion": "unísono", "materia": "musica" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Pequeña guitarra hawaiana.", "solucion": "ukelele", "materia": "musica" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Valor de la negra (un tiempo).", "solucion": "uno", "materia": "musica" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Música moderna de la ciudad (Música...).", "solucion": "urbana", "materia": "musica" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Que no se repite, original.", "solucion": "único", "materia": "musica" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Función de la ligadura.", "solucion": "unión", "materia": "musica" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Para qué sirve la música.", "solucion": "utilidad", "materia": "musica" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Parte de una obra (o lección).", "solucion": "unidad", "materia": "musica" },
-  { "id": "u9", "letra": "U", "tipo": "empieza", "definicion": "Parte del dedo para tocar la guitarra.", "solucion": "uña", "materia": "musica" },
-  { "id": "u10", "letra": "U", "tipo": "contiene", "definicion": "Danza de 3 tiempos (contiene U).", "solucion": "minueto", "materia": "musica" }, 
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Instrumento de cuerda frotada más agudo.", "solucion": "violín", "materia": "musica" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Rapidez de la música.", "solucion": "velocidad", "materia": "musica" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Movimiento rápido que produce sonido.", "solucion": "vibración", "materia": "musica" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Familia de instrumentos que se soplan.", "solucion": "viento", "materia": "musica" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Sonido producido por el ser humano.", "solucion": "voz", "materia": "musica" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Baile de salón en 3/4.", "solucion": "vals", "materia": "musica" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Instrumento de cuerda un poco más grande que el violín.", "solucion": "viola", "materia": "musica" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Instrumento de cuerda grave que se toca sentado.", "solucion": "violonchelo", "materia": "musica" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Tempo muy rápido.", "solucion": "vivace", "materia": "musica" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Música hecha solo con la voz.", "solucion": "vocal", "materia": "musica" },
-
-  { "id": "w1", "letra": "W", "tipo": "empieza", "definicion": "Compositor famoso de óperas (Richard...).", "solucion": "wagner", "materia": "musica" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Reproductor de música portátil antiguo.", "solucion": "walkman", "materia": "musica" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Estilo de baile de los 60 (contiene W).", "solucion": "twist", "materia": "musica" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Estilo de jazz bailable (contiene W).", "solucion": "swing", "materia": "musica" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Música del mundo (contiene W).", "solucion": "world music", "materia": "musica" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Caja china o bloque de madera (contiene W).", "solucion": "woodblock", "materia": "musica" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Película del oeste y su música (contiene W).", "solucion": "western", "materia": "musica" },
-  { "id": "w8", "letra": "W", "tipo": "contiene", "definicion": "Altavoz de graves (contiene W).", "solucion": "woofer", "materia": "musica" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "Sitio web de música (contiene W).", "solucion": "web", "materia": "musica" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Componentes físicos de un equipo de sonido (contiene W).", "solucion": "hardware", "materia": "musica" },
-
-  { "id": "x1", "letra": "X", "tipo": "empieza", "definicion": "Instrumento de láminas de madera.", "solucion": "xilófono", "materia": "musica" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Instrumento de viento metal inventado por Sax (contiene X).", "solucion": "saxofón", "materia": "musica" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Entramado de las voces (contiene X).", "solucion": "textura", "materia": "musica" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Coro de hombres y mujeres (contiene X).", "solucion": "mixto", "materia": "musica" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Transmitir sentimientos (contiene X).", "solucion": "expresión", "materia": "musica" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Rango de notas de un instrumento (contiene X).", "solucion": "extensión", "materia": "musica" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Punto culminante de una obra (contiene X).", "solucion": "clímax", "materia": "musica" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Entorno histórico de una obra (contiene X).", "solucion": "contexto", "materia": "musica" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Triunfo musical (contiene X).", "solucion": "éxito", "materia": "musica" },
-  { "id": "x10", "letra": "X", "tipo": "contiene", "definicion": "Prueba de instrumento (contiene X).", "solucion": "examen", "materia": "musica" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Tambor africano de copa (Djembe).", "solucion": "yembe", "materia": "musica" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Canto tirolés.", "solucion": "yodel", "materia": "musica" },
-  { "id": "y3", "letra": "Y", "tipo": "empieza", "definicion": "Bloque de metal que se golpea en algunas obras.", "solucion": "yunque", "materia": "musica" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Modo de la escala alegre (contiene Y).", "solucion": "mayor", "materia": "musica" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Práctica de un grupo (contiene Y).", "solucion": "ensayo", "materia": "musica" },
-  { "id": "y6", "letra": "Y", "tipo": "contiene", "definicion": "Colaboración musical (contiene Y).", "solucion": "ayuda", "materia": "musica" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Historia de un músico famoso (contiene Y).", "solucion": "leyenda", "materia": "musica" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Plan de trabajo musical (contiene Y).", "solucion": "proyecto", "materia": "musica" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Música actual (contiene Y).", "solucion": "hoy", "materia": "musica" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Música antigua (contiene Y).", "solucion": "ayer", "materia": "musica" },
-
-  { "id": "z1", "letra": "Z", "tipo": "empieza", "definicion": "Género de teatro musical español.", "solucion": "zarzuela", "materia": "musica" },
-  { "id": "z2", "letra": "Z", "tipo": "empieza", "definicion": "Instrumento de percusión navideño.", "solucion": "zambomba", "materia": "musica" },
-  { "id": "z3", "letra": "Z", "tipo": "empieza", "definicion": "Baile golpeando con los pies.", "solucion": "zapateado", "materia": "musica" },
-  { "id": "z4", "letra": "Z", "tipo": "empieza", "definicion": "Ritmo vasco en 5/8.", "solucion": "zortziko", "materia": "musica" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Movimiento corporal con música (contiene Z).", "solucion": "danza", "materia": "musica" },
-  { "id": "z6", "letra": "Z", "tipo": "contiene", "definicion": "Estilo afroamericano (contiene Z).", "solucion": "jazz", "materia": "musica" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Obra musical corta (contiene Z).", "solucion": "pieza", "materia": "musica" },
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "Instrumento de viento tradicional (contiene Z).", "solucion": "dulzaina", "materia": "musica" },
-  { "id": "z9", "letra": "Z", "tipo": "contiene", "definicion": "Instrumento natural humano (contiene Z).", "solucion": "voz", "materia": "musica" },
-  { "id": "z10", "letra": "Z", "tipo": "contiene", "definicion": "Unidad de frecuencia (contiene Z).", "solucion": "hertzio", "materia": "musica" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Cualidad del sonido que nos permite distinguir sonidos graves y agudos.",
+    "solucion": "altura",
+    "materia": "musica"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Sonido de frecuencia alta, lo contrario de grave.",
+    "solucion": "agudo",
+    "materia": "musica"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Ajustar la entonación de un instrumento o voz.",
+    "solucion": "afinación",
+    "materia": "musica"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Elemento fundamental de la música junto a la melodía y el ritmo.",
+    "solucion": "armonía",
+    "materia": "musica"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Conjunto de tres o más notas que suenan simultáneamente.",
+    "solucion": "acorde",
+    "materia": "musica"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Término italiano para indicar un tempo rápido y alegre.",
+    "solucion": "allegro",
+    "materia": "musica"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Término italiano para indicar un tempo lento.",
+    "solucion": "adagio",
+    "materia": "musica"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Instrumento de cuerda pulsada con forma triangular y muchas cuerdas.",
+    "solucion": "arpa",
+    "materia": "musica"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Nota o notas previas al primer tiempo fuerte del compás.",
+    "solucion": "anacrusa",
+    "materia": "musica"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Sala acondicionada para escuchar conciertos.",
+    "solucion": "auditorio",
+    "materia": "musica"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Varita que usa el director de orquesta.",
+    "solucion": "batuta",
+    "materia": "musica"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Agrupación musical formada principalmente por instrumentos de viento y percusión.",
+    "solucion": "banda",
+    "materia": "musica"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Figura musical que vale 2 tiempos.",
+    "solucion": "blanca",
+    "materia": "musica"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Alteración que baja medio tono la nota.",
+    "solucion": "bemol",
+    "materia": "musica"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Voz masculina intermedia.",
+    "solucion": "barítono",
+    "materia": "musica"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Voz masculina más grave.",
+    "solucion": "bajo",
+    "materia": "musica"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Instrumento de percusión grande que marca el pulso en la banda.",
+    "solucion": "bombo",
+    "materia": "musica"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Instrumento principal de la música rock (percusión).",
+    "solucion": "batería",
+    "materia": "musica"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Ritmo o compás de dos tiempos.",
+    "solucion": "binario",
+    "materia": "musica"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Signo que anula el efecto del sostenido o el bemol.",
+    "solucion": "becuadro",
+    "materia": "musica"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Signo al principio del pentagrama que da nombre a las notas.",
+    "solucion": "clave",
+    "materia": "musica"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "División del tiempo en partes iguales.",
+    "solucion": "compás",
+    "materia": "musica"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Figura musical que vale medio tiempo.",
+    "solucion": "corchea",
+    "materia": "musica"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Familia de instrumentos que vibran al ser tensados (ej: violín, guitarra).",
+    "solucion": "cuerda",
+    "materia": "musica"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Altura, duración, intensidad y timbre son las... del sonido.",
+    "solucion": "cualidades",
+    "materia": "musica"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Agrupación vocal.",
+    "solucion": "coro",
+    "materia": "musica"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Acentuación en una parte débil del compás.",
+    "solucion": "contratiempo",
+    "materia": "musica"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Forma musical basada en la imitación (ej: Frère Jacques).",
+    "solucion": "canon",
+    "materia": "musica"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Instrumento de viento madera de color negro.",
+    "solucion": "clarinete",
+    "materia": "musica"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Término que indica aumentar la intensidad poco a poco.",
+    "solucion": "crescendo",
+    "materia": "musica"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Cualidad del sonido que nos dice si es largo o corto.",
+    "solucion": "duración",
+    "materia": "musica"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Objeto metálico en forma de U que da la nota La (440Hz).",
+    "solucion": "diapasón",
+    "materia": "musica"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Unidad de medida de la intensidad del sonido.",
+    "solucion": "decibelio",
+    "materia": "musica"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Persona que guía a la orquesta.",
+    "solucion": "director",
+    "materia": "musica"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Término para disminuir la intensidad poco a poco.",
+    "solucion": "diminuendo",
+    "materia": "musica"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Obra musical para dos intérpretes.",
+    "solucion": "dúo",
+    "materia": "musica"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Movimiento corporal al ritmo de la música.",
+    "solucion": "danza",
+    "materia": "musica"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Sonido desagradable o tensión armónica.",
+    "solucion": "disonancia",
+    "materia": "musica"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Primera nota de la escala natural.",
+    "solucion": "do",
+    "materia": "musica"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Soporte físico o digital para grabar música.",
+    "solucion": "disco",
+    "materia": "musica"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Sucesión ordenada de notas.",
+    "solucion": "escala",
+    "materia": "musica"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Cantar afinado las notas.",
+    "solucion": "entonación",
+    "materia": "musica"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Hueco entre las líneas del pentagrama.",
+    "solucion": "espacio",
+    "materia": "musica"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Carácter propio que da personalidad a la música (Pop, Rock...).",
+    "solucion": "estilo",
+    "materia": "musica"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Lugar donde actúan los músicos.",
+    "solucion": "escenario",
+    "materia": "musica"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Parte de una canción que se repite (coro).",
+    "solucion": "estribillo",
+    "materia": "musica"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Instrumento que necesita electricidad (ej: guitarra eléctrica).",
+    "solucion": "electrófono",
+    "materia": "musica"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Práctica antes del concierto.",
+    "solucion": "ensayo",
+    "materia": "musica"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Repetición de un sonido por reflejo.",
+    "solucion": "eco",
+    "materia": "musica"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Atención que prestamos a la música (Audición).",
+    "solucion": "escucha",
+    "materia": "musica"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Término de dinámica: sonido potente.",
+    "solucion": "fuerte",
+    "materia": "musica"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Signo que representa la duración del sonido (Negra, corchea...).",
+    "solucion": "figura",
+    "materia": "musica"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Instrumento de viento madera, dulce o travesera.",
+    "solucion": "flauta",
+    "materia": "musica"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Grupo de instrumentos (Cuerda, Viento, Percusión).",
+    "solucion": "familia",
+    "materia": "musica"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Música tradicional de un pueblo.",
+    "solucion": "folclore",
+    "materia": "musica"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Número de vibraciones por segundo (Hertzios).",
+    "solucion": "frecuencia",
+    "materia": "musica"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Instrumento de viento madera grave y largo.",
+    "solucion": "fagot",
+    "materia": "musica"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Figura musical muy rápida, vale media semicorchea.",
+    "solucion": "fusa",
+    "materia": "musica"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Acabamiento de una obra.",
+    "solucion": "final",
+    "materia": "musica"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Estructura de una obra musical (ABA, Rondó...).",
+    "solucion": "forma",
+    "materia": "musica"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Sonido de frecuencia baja, lo contrario de agudo.",
+    "solucion": "grave",
+    "materia": "musica"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Instrumento de 6 cuerdas muy popular.",
+    "solucion": "guitarra",
+    "materia": "musica"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Instrumento de percusión asiático, disco de metal.",
+    "solucion": "gong",
+    "materia": "musica"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Efecto de deslizar de una nota a otra.",
+    "solucion": "glissando",
+    "materia": "musica"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Instrumento de viento con una bolsa de aire.",
+    "solucion": "gaita",
+    "materia": "musica"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Clasificación de obras musicales (Rock, Pop, Clásica...).",
+    "solucion": "género",
+    "materia": "musica"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Registro de sonido para escucharlo luego.",
+    "solucion": "grabación",
+    "materia": "musica"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Danza rápida de compás binario.",
+    "solucion": "galop",
+    "materia": "musica"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Conjunto de músicos.",
+    "solucion": "grupo",
+    "materia": "musica"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Forma de escribir la música.",
+    "solucion": "grafía",
+    "materia": "musica"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Unidad de medida de la frecuencia (Hz).",
+    "solucion": "hertzio",
+    "materia": "musica"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Canción solemne que representa a un país o grupo.",
+    "solucion": "himno",
+    "materia": "musica"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Textura donde todas las voces llevan el mismo ritmo.",
+    "solucion": "homofonía",
+    "materia": "musica"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Danza de origen cubano con ritmo característico.",
+    "solucion": "habanera",
+    "materia": "musica"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Música ambiental suave.",
+    "solucion": "hilo musical",
+    "materia": "musica"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Estilo de rock muy potente.",
+    "solucion": "heavy metal",
+    "materia": "musica"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Estudio del pasado de la música.",
+    "solucion": "historia",
+    "materia": "musica"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Destreza para tocar un instrumento.",
+    "solucion": "habilidad",
+    "materia": "musica"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Espacio vacío en la caja de resonancia.",
+    "solucion": "hueco",
+    "materia": "musica"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Parte del cuerpo donde se apoya el violín.",
+    "solucion": "hombro",
+    "materia": "musica"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Cualidad del sonido (fuerte o suave).",
+    "solucion": "intensidad",
+    "materia": "musica"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Objeto para producir música.",
+    "solucion": "instrumento",
+    "materia": "musica"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Distancia entre dos notas.",
+    "solucion": "intervalo",
+    "materia": "musica"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Instrumento que suena al vibrar su propio cuerpo (triángulo, claves).",
+    "solucion": "idiófono",
+    "materia": "musica"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Crear música al momento.",
+    "solucion": "improvisación",
+    "materia": "musica"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Intervalo tocado al revés.",
+    "solucion": "invertido",
+    "materia": "musica"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Golpe o acento rítmico.",
+    "solucion": "ictus",
+    "materia": "musica"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Concepto musical que empieza por I.",
+    "solucion": "intervalo",
+    "materia": "musica"
+  },
+  {
+    "id": "i8_fix",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Acción de tocar una obra musical.",
+    "solucion": "interpretación",
+    "materia": "musica"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Comienzo de una canción.",
+    "solucion": "intro",
+    "materia": "musica"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "País cuna de la ópera.",
+    "solucion": "italia",
+    "materia": "musica"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Estilo musical afroamericano basado en la improvisación.",
+    "solucion": "jazz",
+    "materia": "musica"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Actividad lúdica musical.",
+    "solucion": "juego",
+    "materia": "musica"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Baile y canto tradicional de Aragón.",
+    "solucion": "jota",
+    "materia": "musica"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Músico ambulante de la Edad Media.",
+    "solucion": "juglar",
+    "materia": "musica"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Objeto para jugar (Sinfonía de los...).",
+    "solucion": "juguetes",
+    "materia": "musica"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Cante flamenco profundo (... jondo).",
+    "solucion": "jondo",
+    "materia": "musica"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Diversión, fiesta.",
+    "solucion": "jarana",
+    "materia": "musica"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Canción corta publicitaria.",
+    "solucion": "jingle",
+    "materia": "musica"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Carácter alegre en la música.",
+    "solucion": "jubiloso",
+    "materia": "musica"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Competición musical medieval.",
+    "solucion": "justa",
+    "materia": "musica"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Cantante aficionado con música de fondo.",
+    "solucion": "karaoke",
+    "materia": "musica"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Prefijo para mil hertzios.",
+    "solucion": "kilo",
+    "materia": "musica"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Instrumento de cuerda japonés.",
+    "solucion": "koto",
+    "materia": "musica"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Estilo de pop coreano.",
+    "solucion": "k-pop",
+    "materia": "musica"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Estilo de música y baile popular (contiene K).",
+    "solucion": "rock",
+    "materia": "musica"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Estilo musical rebelde de los 70 (contiene K).",
+    "solucion": "punk",
+    "materia": "musica"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Música tradicional de un pueblo (contiene K).",
+    "solucion": "folklore",
+    "materia": "musica"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Guitarra pequeña hawaiana (contiene K).",
+    "solucion": "ukelele",
+    "materia": "musica"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Hacer mímica de cantar una canción (contiene K).",
+    "solucion": "playback",
+    "materia": "musica"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Altavoz (contiene K).",
+    "solucion": "speaker",
+    "materia": "musica"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Tempo muy lento.",
+    "solucion": "largo",
+    "materia": "musica"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Rayas horizontales del pentagrama.",
+    "solucion": "línea",
+    "materia": "musica"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Línea curva que une la duración de dos notas.",
+    "solucion": "ligadura",
+    "materia": "musica"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Instrumento de cuerda antiguo con forma de pera.",
+    "solucion": "laúd",
+    "materia": "musica"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Contrario de rápido.",
+    "solucion": "lento",
+    "materia": "musica"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Pieza de caña que vibra en el clarinete.",
+    "solucion": "lengüeta",
+    "materia": "musica"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Artesano que construye instrumentos.",
+    "solucion": "lutier",
+    "materia": "musica"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Nota musical (la 6ª).",
+    "solucion": "la",
+    "materia": "musica"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Música religiosa (Música...).",
+    "solucion": "litúrgica",
+    "materia": "musica"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Escritor del texto de una ópera.",
+    "solucion": "libretista",
+    "materia": "musica"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Sucesión de notas con sentido musical.",
+    "solucion": "melodía",
+    "materia": "musica"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Arte de combinar los sonidos.",
+    "solucion": "música",
+    "materia": "musica"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Indicación de intensidad (fuerte, piano...).",
+    "solucion": "matiz",
+    "materia": "musica"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Aparato que marca el pulso.",
+    "solucion": "metrónomo",
+    "materia": "musica"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Voz femenina intermedia.",
+    "solucion": "mezzosoprano",
+    "materia": "musica"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Instrumento que suena por una membrana tensa (tambor).",
+    "solucion": "membranófono",
+    "materia": "musica"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Adorno musical rápido.",
+    "solucion": "mordente",
+    "materia": "musica"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Escala musical (Mayor o menor).",
+    "solucion": "modo",
+    "materia": "musica"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Obra musical para desfilar.",
+    "solucion": "marcha",
+    "materia": "musica"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Familia de instrumentos de viento (Viento...).",
+    "solucion": "metal",
+    "materia": "musica"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Signo que representa la altura del sonido.",
+    "solucion": "nota",
+    "materia": "musica"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Figura que vale un tiempo.",
+    "solucion": "negra",
+    "materia": "musica"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Nota sin alteraciones (Becuadro).",
+    "solucion": "natural",
+    "materia": "musica"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Sistema de escritura musical.",
+    "solucion": "notación",
+    "materia": "musica"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Canción de cuna.",
+    "solucion": "nana",
+    "materia": "musica"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Estilo musical que exalta lo propio de un país.",
+    "solucion": "nacionalismo",
+    "materia": "musica"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Canto espiritual afroamericano (... spiritual).",
+    "solucion": "negro",
+    "materia": "musica"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Pieza musical tranquila y nocturna.",
+    "solucion": "nocturno",
+    "materia": "musica"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Signo antiguo de escritura musical.",
+    "solucion": "neuma",
+    "materia": "musica"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Sinfonía famosa de Beethoven.",
+    "solucion": "novena",
+    "materia": "musica"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Parte de la lengüeta del oboe (contiene Ñ).",
+    "solucion": "caña",
+    "materia": "musica"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Instrumento de percusión de madera típico español (contiene Ñ).",
+    "solucion": "castañuela",
+    "materia": "musica"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Flauta de pan andina (contiene Ñ).",
+    "solucion": "zampoña",
+    "materia": "musica"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Pájaro cantor (contiene Ñ).",
+    "solucion": "ruiseñor",
+    "materia": "musica"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Acción de tocar un instrumento de cuerda o campanas (contiene Ñ).",
+    "solucion": "tañer",
+    "materia": "musica"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Danza tradicional gallega (contiene Ñ).",
+    "solucion": "muñeira",
+    "materia": "musica"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Persona de poca edad que canta en escolanía (contiene Ñ).",
+    "solucion": "niño",
+    "materia": "musica"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Tocar junto a otro músico (contiene Ñ).",
+    "solucion": "acompañar",
+    "materia": "musica"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Instrumento de tamaño reducido (contiene Ñ).",
+    "solucion": "pequeño",
+    "materia": "musica"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Indicación del director (contiene Ñ).",
+    "solucion": "señal",
+    "materia": "musica"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Conjunto grande de instrumentos.",
+    "solucion": "orquesta",
+    "materia": "musica"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Sentido para escuchar música.",
+    "solucion": "oído",
+    "materia": "musica"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Forma de transmisión del sonido.",
+    "solucion": "onda",
+    "materia": "musica"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Intervalo de 8 notas.",
+    "solucion": "octava",
+    "materia": "musica"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Pieza instrumental al inicio de una ópera.",
+    "solucion": "obertura",
+    "materia": "musica"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Teatro cantado con orquesta y vestuario.",
+    "solucion": "ópera",
+    "materia": "musica"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Instrumento de viento madera de doble lengüeta.",
+    "solucion": "oboe",
+    "materia": "musica"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia los instrumentos musicales.",
+    "solucion": "organología",
+    "materia": "musica"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Ritmo o melodía que se repite constantemente.",
+    "solucion": "ostinato",
+    "materia": "musica"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Palabra latina para 'obra'.",
+    "solucion": "opus",
+    "materia": "musica"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Conjunto de 5 líneas donde se escribe música.",
+    "solucion": "pentagrama",
+    "materia": "musica"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Latido constante de la música.",
+    "solucion": "pulso",
+    "materia": "musica"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Instrumento de tecla y cuerda percutida.",
+    "solucion": "piano",
+    "materia": "musica"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Documento con toda la música escrita.",
+    "solucion": "partitura",
+    "materia": "musica"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Familia de instrumentos que se golpean.",
+    "solucion": "percusión",
+    "materia": "musica"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Varias melodías sonando a la vez.",
+    "solucion": "polifonía",
+    "materia": "musica"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Punto que añade la mitad del valor a la nota.",
+    "solucion": "puntillo",
+    "materia": "musica"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Tempo muy rápido.",
+    "solucion": "presto",
+    "materia": "musica"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Pieza para tocar la guitarra.",
+    "solucion": "púa",
+    "materia": "musica"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Platos de metal de la batería.",
+    "solucion": "platillos",
+    "materia": "musica"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Grupo de cinco músicos.",
+    "solucion": "quinteto",
+    "materia": "musica"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Flauta andina.",
+    "solucion": "quena",
+    "materia": "musica"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Intervalo de cinco notas.",
+    "solucion": "quinta",
+    "materia": "musica"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Conjunto de músicos (contiene Q).",
+    "solucion": "orquesta",
+    "materia": "musica"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Palos para tocar el tambor (contiene Q).",
+    "solucion": "baqueta",
+    "materia": "musica"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Instrumento de percusión de madera (contiene Q).",
+    "solucion": "bloque",
+    "materia": "musica"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Mismo sonido (contiene Q).",
+    "solucion": "equísono",
+    "materia": "musica"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Pieza para soplar en viento metal (contiene Q).",
+    "solucion": "boquilla",
+    "materia": "musica"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Lugar para bailar (contiene Q).",
+    "solucion": "queso",
+    "materia": "musica"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Volumen sonoro balanceado (contiene Q).",
+    "solucion": "equilibrado",
+    "materia": "musica"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Combinación de duraciones y acentos.",
+    "solucion": "ritmo",
+    "materia": "musica"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Figura que vale 4 tiempos.",
+    "solucion": "redonda",
+    "materia": "musica"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Sonido indeterminado y molesto.",
+    "solucion": "ruido",
+    "materia": "musica"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Signo para volver a tocar un fragmento.",
+    "solucion": "repetición",
+    "materia": "musica"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Estilo musical de Jamaica.",
+    "solucion": "reggae",
+    "materia": "musica"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Estilo musical con guitarras eléctricas.",
+    "solucion": "rock",
+    "materia": "musica"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Estilo musical hablado y rítmico.",
+    "solucion": "rap",
+    "materia": "musica"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Amplificación del sonido.",
+    "solucion": "resonancia",
+    "materia": "musica"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Segunda nota musical.",
+    "solucion": "re",
+    "materia": "musica"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Rango de notas que puede cantar una voz.",
+    "solucion": "registro",
+    "materia": "musica"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Sensación producida en el oído por las vibraciones.",
+    "solucion": "sonido",
+    "materia": "musica"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Ausencia de sonido.",
+    "solucion": "silencio",
+    "materia": "musica"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Figura que vale un cuarto de tiempo.",
+    "solucion": "semicorchea",
+    "materia": "musica"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Voz femenina más aguda.",
+    "solucion": "soprano",
+    "materia": "musica"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Instrumento de viento metal inventado por Adolphe Sax.",
+    "solucion": "saxofón",
+    "materia": "musica"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Quinta nota musical.",
+    "solucion": "sol",
+    "materia": "musica"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Alteración que sube medio tono.",
+    "solucion": "sostenido",
+    "materia": "musica"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Gran obra para orquesta.",
+    "solucion": "sinfonía",
+    "materia": "musica"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de danzas instrumentales.",
+    "solucion": "suite",
+    "materia": "musica"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Distancia de medio tono.",
+    "solucion": "semitono",
+    "materia": "musica"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Cualidad del sonido que distingue instrumentos.",
+    "solucion": "timbre",
+    "materia": "musica"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Velocidad de la música (tempo).",
+    "solucion": "tiempo",
+    "materia": "musica"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Voz masculina aguda.",
+    "solucion": "tenor",
+    "materia": "musica"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Instrumento de viento metal agudo.",
+    "solucion": "trompeta",
+    "materia": "musica"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Instrumento de percusión con membrana.",
+    "solucion": "tambor",
+    "materia": "musica"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Conjunto de teclas de un piano.",
+    "solucion": "teclado",
+    "materia": "musica"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Distancia de dos semitonos.",
+    "solucion": "tono",
+    "materia": "musica"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Instrumento de percusión metálico triangular.",
+    "solucion": "triángulo",
+    "materia": "musica"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Instrumento de viento metal más grave.",
+    "solucion": "tuba",
+    "materia": "musica"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Intervalo de tres notas.",
+    "solucion": "tercera",
+    "materia": "musica"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Todos cantando la misma nota a la vez.",
+    "solucion": "unísono",
+    "materia": "musica"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Pequeña guitarra hawaiana.",
+    "solucion": "ukelele",
+    "materia": "musica"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Valor de la negra (un tiempo).",
+    "solucion": "uno",
+    "materia": "musica"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Música moderna de la ciudad (Música...).",
+    "solucion": "urbana",
+    "materia": "musica"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Que no se repite, original.",
+    "solucion": "único",
+    "materia": "musica"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Función de la ligadura.",
+    "solucion": "unión",
+    "materia": "musica"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Para qué sirve la música.",
+    "solucion": "utilidad",
+    "materia": "musica"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Parte de una obra (o lección).",
+    "solucion": "unidad",
+    "materia": "musica"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Parte del dedo para tocar la guitarra.",
+    "solucion": "uña",
+    "materia": "musica"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "contiene",
+    "definicion": "Danza de 3 tiempos (contiene U).",
+    "solucion": "minueto",
+    "materia": "musica"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Instrumento de cuerda frotada más agudo.",
+    "solucion": "violín",
+    "materia": "musica"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Rapidez de la música.",
+    "solucion": "velocidad",
+    "materia": "musica"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Movimiento rápido que produce sonido.",
+    "solucion": "vibración",
+    "materia": "musica"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Familia de instrumentos que se soplan.",
+    "solucion": "viento",
+    "materia": "musica"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Sonido producido por el ser humano.",
+    "solucion": "voz",
+    "materia": "musica"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Baile de salón en 3/4.",
+    "solucion": "vals",
+    "materia": "musica"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Instrumento de cuerda un poco más grande que el violín.",
+    "solucion": "viola",
+    "materia": "musica"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Instrumento de cuerda grave que se toca sentado.",
+    "solucion": "violonchelo",
+    "materia": "musica"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Tempo muy rápido.",
+    "solucion": "vivace",
+    "materia": "musica"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Música hecha solo con la voz.",
+    "solucion": "vocal",
+    "materia": "musica"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Compositor famoso de óperas (Richard...).",
+    "solucion": "wagner",
+    "materia": "musica"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Reproductor de música portátil antiguo.",
+    "solucion": "walkman",
+    "materia": "musica"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Estilo de baile de los 60 (contiene W).",
+    "solucion": "twist",
+    "materia": "musica"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Estilo de jazz bailable (contiene W).",
+    "solucion": "swing",
+    "materia": "musica"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Música del mundo (contiene W).",
+    "solucion": "world music",
+    "materia": "musica"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Caja china o bloque de madera (contiene W).",
+    "solucion": "woodblock",
+    "materia": "musica"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Película del oeste y su música (contiene W).",
+    "solucion": "western",
+    "materia": "musica"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Altavoz de graves (contiene W).",
+    "solucion": "woofer",
+    "materia": "musica"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Sitio web de música (contiene W).",
+    "solucion": "web",
+    "materia": "musica"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Componentes físicos de un equipo de sonido (contiene W).",
+    "solucion": "hardware",
+    "materia": "musica"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "empieza",
+    "definicion": "Instrumento de láminas de madera.",
+    "solucion": "xilófono",
+    "materia": "musica"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Instrumento de viento metal inventado por Sax (contiene X).",
+    "solucion": "saxofón",
+    "materia": "musica"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Entramado de las voces (contiene X).",
+    "solucion": "textura",
+    "materia": "musica"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Coro de hombres y mujeres (contiene X).",
+    "solucion": "mixto",
+    "materia": "musica"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Transmitir sentimientos (contiene X).",
+    "solucion": "expresión",
+    "materia": "musica"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Rango de notas de un instrumento (contiene X).",
+    "solucion": "extensión",
+    "materia": "musica"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Punto culminante de una obra (contiene X).",
+    "solucion": "clímax",
+    "materia": "musica"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Entorno histórico de una obra (contiene X).",
+    "solucion": "contexto",
+    "materia": "musica"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Triunfo musical (contiene X).",
+    "solucion": "éxito",
+    "materia": "musica"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Prueba de instrumento (contiene X).",
+    "solucion": "examen",
+    "materia": "musica"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Tambor africano de copa (Djembe).",
+    "solucion": "yembe",
+    "materia": "musica"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Canto tirolés.",
+    "solucion": "yodel",
+    "materia": "musica"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Bloque de metal que se golpea en algunas obras.",
+    "solucion": "yunque",
+    "materia": "musica"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Modo de la escala alegre (contiene Y).",
+    "solucion": "mayor",
+    "materia": "musica"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Práctica de un grupo (contiene Y).",
+    "solucion": "ensayo",
+    "materia": "musica"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Colaboración musical (contiene Y).",
+    "solucion": "ayuda",
+    "materia": "musica"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Historia de un músico famoso (contiene Y).",
+    "solucion": "leyenda",
+    "materia": "musica"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Plan de trabajo musical (contiene Y).",
+    "solucion": "proyecto",
+    "materia": "musica"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Música actual (contiene Y).",
+    "solucion": "hoy",
+    "materia": "musica"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Música antigua (contiene Y).",
+    "solucion": "ayer",
+    "materia": "musica"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Género de teatro musical español.",
+    "solucion": "zarzuela",
+    "materia": "musica"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Instrumento de percusión navideño.",
+    "solucion": "zambomba",
+    "materia": "musica"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Baile golpeando con los pies.",
+    "solucion": "zapateado",
+    "materia": "musica"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Ritmo vasco en 5/8.",
+    "solucion": "zortziko",
+    "materia": "musica"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Movimiento corporal con música (contiene Z).",
+    "solucion": "danza",
+    "materia": "musica"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Estilo afroamericano (contiene Z).",
+    "solucion": "jazz",
+    "materia": "musica"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Obra musical corta (contiene Z).",
+    "solucion": "pieza",
+    "materia": "musica"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Instrumento de viento tradicional (contiene Z).",
+    "solucion": "dulzaina",
+    "materia": "musica"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Instrumento natural humano (contiene Z).",
+    "solucion": "voz",
+    "materia": "musica"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Unidad de frecuencia (contiene Z).",
+    "solucion": "hertzio",
+    "materia": "musica"
+  }
 ]

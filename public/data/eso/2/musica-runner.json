@@ -1,17 +1,122 @@
 {
-  "periodos_musicales": [
-    "edad media", "renacimiento", "barroco", "clasicismo", "romanticismo", "nacionalismo", "siglo xx", "contemporánea", "prehistoria", "antigüedad"
+  "musica_medieval": [
+    "canto gregoriano",
+    "monofonía",
+    "polifonía",
+    "neumas",
+    "juglar",
+    "trovador",
+    "monasterio",
+    "música sacra",
+    "música profana",
+    "guido d'arezzo"
   ],
-  "voces_humanas": [
-    "soprano", "mezzosoprano", "contralto", "tenor", "barítono", "bajo", "blanca", "aguda", "grave", "castrato"
+  "renacimiento_musical": [
+    "madrigal",
+    "misa",
+    "motete",
+    "villancico",
+    "humanismo",
+    "imprenta musical",
+    "viola da gamba",
+    "consort",
+    "reforma",
+    "palestrina"
   ],
-  "matices_intensidad": [
-    "pianissimo", "piano", "mezzopiano", "mezzoforte", "forte", "fortissimo", "crescendo", "diminuendo", "sforzando", "calderón"
+  "instrumentos_barroco": [
+    "clave",
+    "órgano",
+    "laúd",
+    "viola",
+    "oboe",
+    "trompeta natural",
+    "violín",
+    "fagot",
+    "flauta de pico",
+    "vincenzo galilei"
   ],
-  "tempos_velocidad": [
-    "largo", "adagio", "andante", "moderato", "allegro", "presto", "vivace", "accelerando", "ritardando", "lento"
+  "formas_musicales": [
+    "canon",
+    "fuga",
+    "sonata",
+    "concierto",
+    "sinfonía",
+    "ópera",
+    "zarzuela",
+    "oratorio",
+    "rondó",
+    "minué"
   ],
-  "signos_musicales": [
-    "clave de sol", "clave de fa", "becuadro", "sostenido", "bemol", "pentagrama", "compás", "barra de repetición", "ligadura", "puntillo"
+  "teoria_avanzada": [
+    "armonía",
+    "melodía",
+    "textura",
+    "intervalo",
+    "acorde",
+    "escala mayor",
+    "escala menor",
+    "tonalidad",
+    "modulación",
+    "cadencia"
+  ],
+  "agrupaciones_camara": [
+    "dúo",
+    "trío",
+    "cuarteto de cuerda",
+    "quinteto de viento",
+    "sexteto",
+    "agrupación vocal",
+    "coro mixto",
+    "orquesta de cámara",
+    "solista",
+    "acompañamiento"
+  ],
+  "tecnologia_musical": [
+    "micrófono",
+    "altavoz",
+    "grabadora",
+    "sintetizador",
+    "secuenciador",
+    "midi",
+    "wav",
+    "mp3",
+    "mezclador",
+    "amplificador"
+  ],
+  "musica_tradicional": [
+    "folclore",
+    "danza",
+    "instrumento étnico",
+    "tradición oral",
+    "romance",
+    "copla",
+    "fandango",
+    "jota",
+    "muñeira",
+    "sardana"
+  ],
+  "elementos_partitura": [
+    "armadura",
+    "indicación de tempo",
+    "dinámica",
+    "matiz",
+    "articulación",
+    "staccato",
+    "legato",
+    "da capo",
+    "codas",
+    "barras de repetición"
+  ],
+  "oficios_musica": [
+    "compositor",
+    "director",
+    "intérprete",
+    "luthier",
+    "productor",
+    "técnico de sonido",
+    "crítico",
+    "editor",
+    "gestor cultural",
+    "profesor"
   ]
 }

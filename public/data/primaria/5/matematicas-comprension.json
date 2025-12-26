@@ -1,321 +1,564 @@
 [
   {
     "id": "1",
-    "titulo": "Las manzanas de Ana",
-    "texto": "Ana ha ido al mercado con su cesta. Ha comprado tres manzanas rojas y dos manzanas verdes. Cuando iba camino a casa, le ha entrado hambre y se ha comido una manzana roja. Ahora su cesta pesa un poco menos.",
+    "titulo": "El gran censo de la ciudad",
+    "texto": "La ciudad de Villaesperanza ha realizado un censo. En el barrio norte viven 456.780 personas, en el barrio sur 312.450 y en el centro 230.800. El ayuntamiento necesita saber la población total para planificar los nuevos hospitales y escuelas. Además, quieren saber cuántas centenas de millar hay en el total de habitantes.",
     "preguntas": [
       {
-        "pregunta": "¿Ana ha comprado peras?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántos habitantes tiene el barrio sur?",
+        "opciones": [
+          "456.780",
+          "312.450",
+          "230.800",
+          "1.000.000"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Ha comprado más manzanas rojas que verdes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Cuál es la población total de la ciudad?",
+        "opciones": [
+          "999.999",
+          "1.000.030",
+          "989.100",
+          "2.000.000"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas manzanas rojas compró al principio?",
-        "opciones": ["Una", "Dos", "Tres", "Cuatro"],
+        "pregunta": "¿En qué barrio vive menos gente?",
+        "opciones": [
+          "Barrio Norte",
+          "Barrio Sur",
+          "Barrio Centro",
+          "Viven los mismos"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuántas manzanas verdes compró?",
-        "opciones": ["Una", "Dos", "Tres", "Cinco"],
+        "pregunta": "En el número 456.780, ¿qué cifra ocupa las decenas de millar?",
+        "opciones": [
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas manzanas le quedan en total al final?",
-        "opciones": ["Tres", "Cuatro", "Cinco", "Seis"],
-        "correcta": 1
+        "pregunta": "Si redondeamos 230.800 a la centena de millar más cercana, ¿qué obtenemos?",
+        "opciones": [
+          "200.000",
+          "231.000",
+          "230.000",
+          "300.000"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "El autobús escolar",
-    "texto": "El autobús del colegio lleva a diez niños sentados. En la primera parada se bajan tres niños que ya han llegado a su casa. El conductor cierra la puerta y sigue conduciendo hasta la siguiente parada.",
+    "titulo": "El secreto de la pirámide de números",
+    "texto": "Un arqueólogo ha encontrado una inscripción que dice: 'La llave de la cámara está en el mínimo común múltiplo (mcm) de 12 y 18'. También indica que para abrir el cofre necesita el máximo común divisor (mcd) de esos mismos números. El arqueólogo necesita recordar sus clases de 5º de primaria para no cometer errores.",
     "preguntas": [
       {
-        "pregunta": "¿El autobús va lleno de abuelos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es el mínimo común múltiplo (mcm) de 12 y 18?",
+        "opciones": [
+          "6",
+          "12",
+          "36",
+          "72"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es el máximo común divisor (mcd) de 12 y 18?",
+        "opciones": [
+          "2",
+          "3",
+          "4",
+          "6"
+        ],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Es 12 un múltiplo de 18?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Se bajan niños en la primera parada?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Es 6 un divisor de ambos números?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Cuántos niños había al principio?",
-        "opciones": ["Ocho", "Nueve", "Diez", "Once"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cuántos niños se bajan?",
-        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cuántos niños quedan en el autobús?",
-        "opciones": ["Cinco", "Seis", "Siete", "Ocho"],
+        "pregunta": "¿Cuál es el primer múltiplo común de 12 y 18 distinto de cero?",
+        "opciones": [
+          "12",
+          "18",
+          "36",
+          "48"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Figuras en el parque",
-    "texto": "En el parque hay muchas formas diferentes. Las ruedas de las bicicletas son círculos redondos. El banco para sentarse es un rectángulo largo de madera. La señal de tráfico tiene forma de triángulo con el borde rojo.",
+    "titulo": "Las fracciones de la tarta",
+    "texto": "En el cumpleaños de Ana, han dividido una tarta en 8 partes iguales. Juan se ha comido 2/8 y María se ha comido 3/8. La madre de Ana quiere saber qué fracción de tarta queda para los demás invitados. Para ello, primero debe sumar lo que han comido y luego restarlo de la tarta completa (8/8).",
     "preguntas": [
       {
-        "pregunta": "¿Las ruedas son cuadradas?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué fracción de tarta se han comido entre Juan y María?",
+        "opciones": [
+          "1/8",
+          "5/8",
+          "6/8",
+          "2/8"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿La señal es un triángulo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué fracción de tarta queda en la mesa?",
+        "opciones": [
+          "5/8",
+          "3/8",
+          "4/8",
+          "8/8"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Si dividimos la tarta en 16 partes, ¿cuántas partes serían equivalentes a los 2/8 de Juan?",
+        "opciones": [
+          "2 partes",
+          "4 partes",
+          "8 partes",
+          "16 partes"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Es 3/8 mayor o menor que 2/8?",
+        "opciones": [
+          "Mayor",
+          "Menor",
+          "Igual"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué forma tienen las ruedas?",
-        "opciones": ["Cuadrado", "Círculo", "Triángulo", "Rombo"],
+        "pregunta": "¿Cuál es la tarta completa expresada en fracción?",
+        "opciones": [
+          "1/8",
+          "8/8",
+          "0/8",
+          "4/8"
+        ],
         "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué es un rectángulo?",
-        "opciones": ["La señal", "La rueda", "El banco", "El árbol"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿De qué color es el borde de la señal?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
-        "correcta": 2
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "La hucha de Pablo",
-    "texto": "Pablo está ahorrando dinero en su hucha de cerdito. Tiene una moneda de dos euros y dos monedas de un euro. Quiere comprarse un coche de juguete que cuesta cinco euros. Tendrá que ahorrar un poco más.",
+    "titulo": "El problema del cambio",
+    "texto": "En la papelería, un cuaderno cuesta 3,45 €, un bolígrafo 1,20 € y una mochila 25,90 €. He pagado con un billete de 50 €. El dependiente primero ha sumado todos los precios usando números decimales, asegurándose de alinear bien las comas. Ahora debe calcular el cambio exacto que me tiene que devolver.",
     "preguntas": [
       {
-        "pregunta": "¿La hucha tiene forma de perro?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuánto han costado en total el cuaderno y el bolígrafo?",
+        "opciones": [
+          "4,65 €",
+          "5,65 €",
+          "3,65 €",
+          "4,45 €"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuál es el precio total de la compra?",
+        "opciones": [
+          "29,55 €",
+          "30,55 €",
+          "31,55 €",
+          "25,90 €"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Pablo quiere comprar chuches?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuánto dinero me tienen que devolver si pago con 50 €?",
+        "opciones": [
+          "20,45 €",
+          "19,45 €",
+          "29,45 €",
+          "10,45 €"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas monedas de un euro tiene?",
-        "opciones": ["Una", "Dos", "Tres", "Ninguna"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuánto dinero tiene en total?",
-        "opciones": ["Dos euros", "Tres euros", "Cuatro euros", "Cinco euros"],
+        "pregunta": "¿Cuántos céntimos hay en el precio del bolígrafo?",
+        "opciones": [
+          "2",
+          "12",
+          "20",
+          "120"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuánto cuesta el coche?",
-        "opciones": ["Tres euros", "Cuatro euros", "Cinco euros", "Seis euros"],
-        "correcta": 2
+        "pregunta": "Si redondeamos el precio de la mochila a la unidad de euro más cercana, ¿cuánto es?",
+        "opciones": [
+          "25 €",
+          "26 €",
+          "30 €",
+          "20 €"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "La torre de bloques",
-    "texto": "Sara está construyendo una torre muy alta. Ha puesto cuatro bloques azules en la base. Encima ha puesto tres bloques rojos. Y arriba del todo ha puesto un bloque amarillo. La torre no se cae.",
+    "titulo": "¡Vaya rebajas!",
+    "texto": "Unas zapatillas que costaban 60 € tienen un descuento del 25%. Para calcular cuánto voy a pagar, primero tengo que calcular el 25% de 60 (multiplicar 60 por 25 y dividir entre 100). Luego, debo restar ese descuento al precio original. ¡Espero que me llegue el dinero de mi hucha!",
     "preguntas": [
       {
-        "pregunta": "¿La torre se ha caído?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es el precio original de las zapatillas?",
+        "opciones": [
+          "25 €",
+          "60 €",
+          "100 €",
+          "35 €"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Hay bloques verdes?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuánto dinero es el 25% de 60?",
+        "opciones": [
+          "10 €",
+          "15 €",
+          "20 €",
+          "25 €"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿De qué color son los bloques de abajo?",
-        "opciones": ["Rojos", "Amarillos", "Azules", "Naranjas"],
+        "pregunta": "¿Cuál es el precio final de las zapatillas con el descuento?",
+        "opciones": [
+          "35 €",
+          "40 €",
+          "45 €",
+          "50 €"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cuántos bloques rojos hay?",
-        "opciones": ["Dos", "Tres", "Cuatro", "Cinco"],
+        "pregunta": "¿Qué fracción equivale al 25%?",
+        "opciones": [
+          "1/2",
+          "1/4",
+          "1/5",
+          "1/10"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos bloques hay en total?",
-        "opciones": ["Siete", "Ocho", "Nueve", "Diez"],
+        "pregunta": "Si el descuento fuera del 50%, ¿cuánto costarían?",
+        "opciones": [
+          "40 €",
+          "30 €",
+          "20 €",
+          "10 €"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "El reloj de pared",
-    "texto": "En la clase hay un reloj redondo en la pared. La aguja pequeña marca las horas y la aguja grande marca los minutos. Ahora la aguja pequeña señala el nueve y la grande el doce. ¡Es la hora de entrar a clase!",
+    "titulo": "Unidades de medida en el jardín",
+    "texto": "El patio del colegio mide 0,5 kilómetros de largo. El jardinero quiere colocar una valla cada 10 metros. También ha comprado 12,5 kilolitros de agua para regar los árboles este mes. Necesita pasar los kilómetros a metros y los kilolitros a litros para saber exactamente cuánto material y agua tiene.",
     "preguntas": [
       {
-        "pregunta": "¿El reloj es cuadrado?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿La aguja pequeña marca los minutos?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué número señala la aguja pequeña?",
-        "opciones": ["El seis", "El doce", "El tres", "El nueve"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué hora es?",
-        "opciones": ["Las ocho", "Las nueve", "Las diez", "Las once"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué toca hacer ahora?",
-        "opciones": ["Irse a casa", "Comer", "Entrar a clase", "Dormir"],
+        "pregunta": "¿Cuántos metros son 0,5 kilómetros?",
+        "opciones": [
+          "5 m",
+          "50 m",
+          "500 m",
+          "5000 m"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos metros hay en un kilómetro?",
+        "opciones": [
+          "100",
+          "500",
+          "1000",
+          "10000"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos litros son 12,5 kilolitros (kl)?",
+        "opciones": [
+          "125 l",
+          "1250 l",
+          "12500 l",
+          "125000 l"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "Si el jardinero usa 1000 litros cada día, ¿para cuántos días tiene agua?",
+        "opciones": [
+          "10 días",
+          "12,5 días",
+          "12 días",
+          "20 días"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué unidad es mayor: el hectómetro o el decámetro?",
+        "opciones": [
+          "Hectómetro",
+          "Decámetro"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Izquierda y derecha",
-    "texto": "Luis está aprendiendo los lados. En su mano derecha lleva una pulsera de colores. Con su mano izquierda sujeta un balón. Su perro Toby está sentado a su derecha, moviendo la cola.",
+    "titulo": "Ángulos en el campo de fútbol",
+    "texto": "Durante el entrenamiento de fútbol, el entrenador explica las trayectorias de los pases. Un pase recto perfecto es un ángulo llano de 180 grados. Si un jugador gira un ángulo recto para tirar a puerta, gira exactamente 90 grados. Si el giro es más cerrado que el recto, es un ángulo agudo, y si es más abierto, es obtuso.",
     "preguntas": [
       {
-        "pregunta": "¿Toby es un gato?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuántos grados tiene un ángulo recto?",
+        "opciones": [
+          "45º",
+          "90º",
+          "180º",
+          "360º"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Luis lleva una pulsera?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿En qué mano lleva la pulsera?",
-        "opciones": ["Izquierda", "Derecha", "En las dos", "En ninguna"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué tiene en la mano izquierda?",
-        "opciones": ["Un lápiz", "Una manzana", "Un balón", "Un libro"],
+        "pregunta": "¿Cómo se llama el ángulo de 180 grados?",
+        "opciones": [
+          "Recto",
+          "Agudo",
+          "Llano",
+          "Obtuso"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Dónde está el perro?",
-        "opciones": ["A la izquierda", "A la derecha", "Delante", "Detrás"],
-        "correcta": 1
+        "pregunta": "Si un ángulo mide 60 grados, ¿de qué tipo es?",
+        "opciones": [
+          "Agudo",
+          "Obtuso",
+          "Recto",
+          "Llano"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "Si mide 120 grados, ¿cómo se clasifica?",
+        "opciones": [
+          "Agudo",
+          "Recto",
+          "Obtuso",
+          "Completo"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos grados tiene un ángulo completo o de vuelta entera?",
+        "opciones": [
+          "90º",
+          "180º",
+          "270º",
+          "360º"
+        ],
+        "correcta": 3
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "La carrera de caracoles",
-    "texto": "Tres caracoles hacen una carrera. El caracol Rayo ha llegado el primero a la meta. El caracol Lento ha llegado el último. El caracol Fiti ha llegado entre los dos, en segunda posición.",
+    "titulo": "Perímetro y área del huerto",
+    "texto": "Nuestra clase está cuidando un huerto rectangular que mide 12 metros de largo y 5 metros de ancho. Queremos poner una red alrededor para que no entren los pájaros (perímetro) y queremos comprar abono para cubrir toda la superficie (área). El abono se vende en sacos que cubren 10 metros cuadrados cada uno.",
     "preguntas": [
       {
-        "pregunta": "¿Son caracoles rápidos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es el perímetro del huerto?",
+        "opciones": [
+          "17 m",
+          "34 m",
+          "60 m",
+          "24 m"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Han hecho una carrera?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Quién ha ganado (primero)?",
-        "opciones": ["Lento", "Fiti", "Rayo", "Turbo"],
+        "pregunta": "¿Cuál es el área (superficie) del huerto?",
+        "opciones": [
+          "17 m²",
+          "34 m²",
+          "60 m²",
+          "30 m²"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿En qué puesto quedó Fiti?",
-        "opciones": ["Primero", "Segundo", "Tercero", "Cuarto"],
+        "pregunta": "¿Cómo se calcula el área de un rectángulo?",
+        "opciones": [
+          "Lado + Lado",
+          "Base por altura",
+          "Lado por 4",
+          "Suma de todos los lados"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Quién llegó el último?",
-        "opciones": ["Rayo", "Fiti", "Lento", "Bob"],
-        "correcta": 2
+        "pregunta": "¿Cuántos sacos de abono necesitamos si cada uno cubre 10 m²?",
+        "opciones": [
+          "3 sacos",
+          "4 sacos",
+          "5 sacos",
+          "6 sacos"
+        ],
+        "correcta": 3
+      },
+      {
+        "pregunta": "Si el huerto fuera un cuadrado de 5 metros de lado, ¿cuál sería su área?",
+        "opciones": [
+          "20 m²",
+          "25 m²",
+          "10 m²",
+          "15 m²"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Repartiendo caramelos",
-    "texto": "Tengo seis caramelos de fresa y quiero repartirlos con mi amigo. Le doy tres caramelos a él y yo me quedo con los otros tres. Ahora los dos tenemos la misma cantidad. ¡Qué ricos están!",
+    "titulo": "Las notas del examen",
+    "texto": "En el último examen de matemáticas, 5 alumnos sacaron un 8, 3 alumnos sacaron un 6, y 2 alumnos sacaron un 10. El profesor quiere calcular la nota media de estos 10 estudiantes. Para ello, debe sumar todas las notas y dividir el resultado entre el número total de alumnos.",
     "preguntas": [
       {
-        "pregunta": "¿Los caramelos son de limón?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
+        "pregunta": "¿Cuántas personas sacaron un 8?",
+        "opciones": [
+          "2",
+          "3",
+          "5",
+          "10"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Tenemos la misma cantidad?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es la frecuencia absoluta de la nota 10?",
+        "opciones": [
+          "2",
+          "3",
+          "5",
+          "10"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Cuántos caramelos tenía al principio?",
-        "opciones": ["Cuatro", "Cinco", "Seis", "Ocho"],
-        "correcta": 2
+        "pregunta": "¿Cuánto suman todas las notas juntas?",
+        "opciones": [
+          "78",
+          "80",
+          "60",
+          "90"
+        ],
+        "correcta": 0
       },
       {
-        "pregunta": "¿Cuántos le doy a mi amigo?",
-        "opciones": ["Uno", "Dos", "Tres", "Cuatro"],
-        "correcta": 2
+        "pregunta": "¿Cuál es la nota media del grupo?",
+        "opciones": [
+          "7",
+          "7,8",
+          "8",
+          "6,5"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿De qué sabor son?",
-        "opciones": ["Menta", "Fresa", "Naranja", "Cola"],
+        "pregunta": "¿Cuál es la moda (la nota que más se repite)?",
+        "opciones": [
+          "6",
+          "8",
+          "10",
+          "No hay"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El calendario",
-    "texto": "El mes de enero tiene treinta y un días. Es el primer mes del año y hace frío. En el calendario he marcado en rojo el día de mi cumpleaños, que es el día quince. ¡Haré una fiesta!",
+    "titulo": "Escalas en el mapa",
+    "texto": "Tengo un mapa de España con una escala 1:1.000.000. Esto significa que 1 centímetro en el mapa representa 1.000.000 de centímetros en la realidad. Si la distancia entre dos ciudades en el mapa es de 5 centímetros, necesito calcular cuántos kilómetros reales hay entre ellas para planificar el viaje de vacaciones.",
     "preguntas": [
       {
-        "pregunta": "¿Enero es el último mes?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué representa 1 cm en el mapa según la escala?",
+        "opciones": [
+          "1 km",
+          "10 km",
+          "10.000 cm",
+          "1.000.000 cm"
+        ],
+        "correcta": 3
+      },
+      {
+        "pregunta": "¿Cuántos centímetros reales son 5 cm en el mapa?",
+        "opciones": [
+          "50.000 cm",
+          "5.000.000 cm",
+          "500.000 cm",
+          "5.000 cm"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Hace calor en enero?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿A cuántos kilómetros equivalen 5.000.000 de centímetros?",
+        "opciones": [
+          "5 km",
+          "50 km",
+          "500 km",
+          "5.000 km"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántos días tiene enero?",
-        "opciones": ["Veinte", "Treinta", "Treinta y uno", "Veintiocho"],
+        "pregunta": "¿Cuántos centímetros hay en un kilómetro?",
+        "opciones": [
+          "1.000",
+          "10.000",
+          "100.000",
+          "1.000.000"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué día es el cumpleaños?",
-        "opciones": ["El uno", "El diez", "El quince", "El veinte"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿De qué color marcó el día?",
-        "opciones": ["Azul", "Verde", "Rojo", "Negro"],
-        "correcta": 2
+        "pregunta": "Si la distancia fuera de 10 cm en el mapa, ¿cuántos km reales serían?",
+        "opciones": [
+          "10 km",
+          "100 km",
+          "1.000 km",
+          "200 km"
+        ],
+        "correcta": 1
       }
     ]
   }

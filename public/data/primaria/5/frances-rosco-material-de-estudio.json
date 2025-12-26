@@ -1,0 +1,786 @@
+{
+  "titulo": "Material de Estudio - Frances - 5º PRIMARIA",
+  "introduccion": "Repasa este vocabulario de Frances para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "ami",
+          "definicion": "Amigo en francés.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "arbre",
+          "definicion": "Árbol en francés.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "avion",
+          "definicion": "Avión en francés.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "au revoir",
+          "definicion": "Adiós en francés.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "araignée",
+          "definicion": "Araña en francés.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "bonjour",
+          "definicion": "Buenos días en francés.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "blanc",
+          "definicion": "Color blanco en francés.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bouche",
+          "definicion": "Boca en francés.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bateau",
+          "definicion": "Barco en francés.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "beau",
+          "definicion": "Bonito/Guapo en francés.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "chat",
+          "definicion": "Gato en francés.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "chien",
+          "definicion": "Perro en francés.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cahier",
+          "definicion": "Cuaderno en francés.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cheval",
+          "definicion": "Caballo en francés.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cuisine",
+          "definicion": "Cocina en francés.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "dimanche",
+          "definicion": "Domingo en francés.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dix",
+          "definicion": "Diez en francés.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "douche",
+          "definicion": "Ducha en francés.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "danser",
+          "definicion": "Bailar en francés.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "dent",
+          "definicion": "Diente en francés.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "école",
+          "definicion": "Escuela en francés.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "élève",
+          "definicion": "Estudiante/Alumno en francés.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "été",
+          "definicion": "Verano en francés.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "écouter",
+          "definicion": "Escuchar en francés.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "eau",
+          "definicion": "Agua en francés.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "famille",
+          "definicion": "Familia en francés.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "frère",
+          "definicion": "Hermano en francés.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fromage",
+          "definicion": "Queso en francés.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "froid",
+          "definicion": "Frío en francés.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fille",
+          "definicion": "Hija o niña en francés.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "garçon",
+          "definicion": "Chico en francés.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gris",
+          "definicion": "Color gris en francés.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grand",
+          "definicion": "Grande en francés.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gâteau",
+          "definicion": "Pastel en francés.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "glace",
+          "definicion": "Hielo o helado en francés.",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hiver",
+          "definicion": "Invierno en francés.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "huit",
+          "definicion": "Ocho en francés.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "heure",
+          "definicion": "Hora en francés.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "habiter",
+          "definicion": "Vivir en francés (verbo).",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hamster",
+          "definicion": "Hámster en francés.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "île",
+          "definicion": "Isla en francés.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "image",
+          "definicion": "Imagen en francés.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "informatique",
+          "definicion": "Informática en francés.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "il",
+          "definicion": "Pronombre 'Él' en francés.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "insecte",
+          "definicion": "Insecto en francés.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "jeudi",
+          "definicion": "Jueves en francés.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jaune",
+          "definicion": "Amarillo en francés.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jouer",
+          "definicion": "Jugar en francés.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jambe",
+          "definicion": "Pierna en francés.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jupe",
+          "definicion": "Falda en francés.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "kangourou",
+          "definicion": "Canguro en francés.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kiwi",
+          "definicion": "Kiwi en francés.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilo",
+          "definicion": "Kilo en francés.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "koala",
+          "definicion": "Koala en francés.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "képi",
+          "definicion": "Gorra militar (o quepis) en francés.",
+          "pista": "Empieza por K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "livre",
+          "definicion": "Libro en francés.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lundi",
+          "definicion": "Lunes en francés.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lit",
+          "definicion": "Cama en francés.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lapin",
+          "definicion": "Conejo en francés.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "loup",
+          "definicion": "Lobo en francés.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "maison",
+          "definicion": "Casa en francés.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mère",
+          "definicion": "Madre en francés.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "manger",
+          "definicion": "Comer en francés.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mardi",
+          "definicion": "Martes en francés.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "main",
+          "definicion": "Mano en francés.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "noir",
+          "definicion": "Color negro en francés.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "neuf",
+          "definicion": "Nueve en francés.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nuit",
+          "definicion": "Noche en francés.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nager",
+          "definicion": "Nadar en francés.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nez",
+          "definicion": "Nariz en francés.",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "oiseau",
+          "definicion": "Pájaro en francés.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "orange",
+          "definicion": "Naranja en francés (color y fruta).",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ours",
+          "definicion": "Oso en francés.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "onze",
+          "definicion": "Once en francés.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oreille",
+          "definicion": "Oreja en francés.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "père",
+          "definicion": "Padre en francés.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pomme",
+          "definicion": "Manzana en francés.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "petit",
+          "definicion": "Pequeño en francés.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "pantalon",
+          "definicion": "Pantalón en francés.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "poisson",
+          "definicion": "Pez en francés.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "quatre",
+          "definicion": "Cuatro en francés.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quatorze",
+          "definicion": "Catorce en francés.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "qui",
+          "definicion": "Quién en francés.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quoi",
+          "definicion": "Qué en francés.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "quarante",
+          "definicion": "Cuarenta en francés.",
+          "pista": "Empieza por Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "rouge",
+          "definicion": "Color rojo en francés.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "robe",
+          "definicion": "Vestido en francés.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "regarder",
+          "definicion": "Mirar en francés.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rose",
+          "definicion": "Color rosa en francés.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "rue",
+          "definicion": "Calle en francés.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "samedi",
+          "definicion": "Sábado en francés.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "soeur",
+          "definicion": "Hermana en francés.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "stylo",
+          "definicion": "Bolígrafo en francés.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "soleil",
+          "definicion": "Sol en francés.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "serpent",
+          "definicion": "Serpiente en francés.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "trois",
+          "definicion": "Tres en francés.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tête",
+          "definicion": "Cabeza en francés.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "train",
+          "definicion": "Tren en francés.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "table",
+          "definicion": "Mesa en francés.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tortue",
+          "definicion": "Tortuga en francés.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "un",
+          "definicion": "Uno en francés.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "une",
+          "definicion": "Una en francés.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "auto",
+          "definicion": "Coche (contiene U).",
+          "pista": "Contiene la U"
+        },
+        {
+          "termino": "uniforme",
+          "definicion": "Uniforme en francés.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "bus",
+          "definicion": "Autobús (contiene U).",
+          "pista": "Contiene la U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "vert",
+          "definicion": "Color verde en francés.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "voiture",
+          "definicion": "Coche en francés.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vendredi",
+          "definicion": "Viernes en francés.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vélo",
+          "definicion": "Bicicleta en francés.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vache",
+          "definicion": "Vaca en francés.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "weekend",
+          "definicion": "Fin de semana en francés.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "sandwich",
+          "definicion": "Sandwich (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "kiwi",
+          "definicion": "Kiwi (contiene W).",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "wagon",
+          "definicion": "Vagón en francés.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "wifi",
+          "definicion": "Wifi en francés.",
+          "pista": "Empieza por W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "xylophone",
+          "definicion": "Xilófono en francés.",
+          "pista": "Empieza por X"
+        },
+        {
+          "termino": "six",
+          "definicion": "Seis (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "dix",
+          "definicion": "Diez (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "deux",
+          "definicion": "Dos (contiene X).",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "vieux",
+          "definicion": "Viejo (contiene X).",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "yeux",
+          "definicion": "Ojos en francés.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "yaourt",
+          "definicion": "Yogur en francés.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "stylo",
+          "definicion": "Bolígrafo (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "voyage",
+          "definicion": "Viaje (contiene Y).",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "pyjama",
+          "definicion": "Pijama (contiene Y).",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "zéro",
+          "definicion": "Cero en francés.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zèbre",
+          "definicion": "Cebra en francés.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "zoo",
+          "definicion": "Zoo en francés.",
+          "pista": "Empieza por Z"
+        },
+        {
+          "termino": "onze",
+          "definicion": "Once (contiene Z).",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "douze",
+          "definicion": "Doce (contiene Z).",
+          "pista": "Contiene la Z"
+        }
+      ]
+    }
+  ]
+}

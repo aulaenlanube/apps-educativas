@@ -1,299 +1,2170 @@
 [
-  { "id": "a1", "letra": "A", "tipo": "empieza", "definicion": "Indicación de las medidas reales en un plano.", "solucion": "acotación", "materia": "plastica" },
-  { "id": "a2", "letra": "A", "tipo": "empieza", "definicion": "Vista de frente de un objeto en sistema diédrico.", "solucion": "alzado", "materia": "plastica" },
-  { "id": "a3", "letra": "A", "tipo": "empieza", "definicion": "Sistema de representación con ejes XYZ (Perspectiva...).", "solucion": "axonometría", "materia": "plastica" },
-  { "id": "a4", "letra": "A", "tipo": "empieza", "definicion": "Porción de curva limitada por dos puntos.", "solucion": "arco", "materia": "plastica" },
-  { "id": "a5", "letra": "A", "tipo": "empieza", "definicion": "Abertura formada por dos rectas que se cortan en un vértice.", "solucion": "ángulo", "materia": "plastica" },
-  { "id": "a6", "letra": "A", "tipo": "empieza", "definicion": "Arte de no representar la realidad figurativa.", "solucion": "abstracción", "materia": "plastica" },
-  { "id": "a7", "letra": "A", "tipo": "empieza", "definicion": "Técnica de pintura al agua transparente.", "solucion": "acuarela", "materia": "plastica" },
-  { "id": "a8", "letra": "A", "tipo": "empieza", "definicion": "Color primario pigmento.", "solucion": "amarillo", "materia": "plastica" },
-  { "id": "a9", "letra": "A", "tipo": "empieza", "definicion": "Color primario mezcla aditiva (Luz).", "solucion": "azul", "materia": "plastica" },
-  { "id": "a10", "letra": "A", "tipo": "empieza", "definicion": "Relación estética entre las partes de un todo.", "solucion": "armonía", "materia": "plastica" },
-
-  { "id": "b1", "letra": "B", "tipo": "empieza", "definicion": "Dibujo previo o apunte rápido.", "solucion": "boceto", "materia": "plastica" },
-  { "id": "b2", "letra": "B", "tipo": "empieza", "definicion": "Recta que divide un ángulo en dos partes iguales.", "solucion": "bisectriz", "materia": "plastica" },
-  { "id": "b3", "letra": "B", "tipo": "empieza", "definicion": "Lápiz de mina blanda y oscura (tipo B).", "solucion": "blando", "materia": "plastica" },
-  { "id": "b4", "letra": "B", "tipo": "empieza", "definicion": "Escuela de diseño alemana fundada en 1919.", "solucion": "bauhaus", "materia": "plastica" },
-  { "id": "b5", "letra": "B", "tipo": "empieza", "definicion": "Que tiene dos dimensiones (alto y ancho).", "solucion": "bidimensional", "materia": "plastica" },
-  { "id": "b6", "letra": "B", "tipo": "empieza", "definicion": "Estilo artístico recargado del siglo XVII.", "solucion": "barroco", "materia": "plastica" },
-  { "id": "b7", "letra": "B", "tipo": "empieza", "definicion": "Género artístico de objetos inanimados.", "solucion": "bodegón", "materia": "plastica" },
-  { "id": "b8", "letra": "B", "tipo": "empieza", "definicion": "Cualidad de reflejar luz.", "solucion": "brillo", "materia": "plastica" },
-  { "id": "b9", "letra": "B", "tipo": "empieza", "definicion": "Color suma de todos los colores luz.", "solucion": "blanco", "materia": "plastica" },
-  { "id": "b10", "letra": "B", "tipo": "empieza", "definicion": "Utensilio para eliminar trazos de lápiz.", "solucion": "borrador", "materia": "plastica" },
-
-  { "id": "c1", "letra": "C", "tipo": "empieza", "definicion": "Instrumento para trazar arcos y circunferencias.", "solucion": "compás", "materia": "plastica" },
-  { "id": "c2", "letra": "C", "tipo": "empieza", "definicion": "Línea curva cerrada y plana.", "solucion": "circunferencia", "materia": "plastica" },
-  { "id": "c3", "letra": "C", "tipo": "empieza", "definicion": "Polígono regular de cuatro lados.", "solucion": "cuadrado", "materia": "plastica" },
-  { "id": "c4", "letra": "C", "tipo": "empieza", "definicion": "Punto donde se cortan las mediatrices.", "solucion": "circuncentro", "materia": "plastica" },
-  { "id": "c5", "letra": "C", "tipo": "empieza", "definicion": "Perspectiva axonométrica con un ángulo de 90º.", "solucion": "caballera", "materia": "plastica" },
-  { "id": "c6", "letra": "C", "tipo": "empieza", "definicion": "Perspectiva que usa puntos de fuga.", "solucion": "cónica", "materia": "plastica" },
-  { "id": "c7", "letra": "C", "tipo": "empieza", "definicion": "Color primario sustractivo (azul claro).", "solucion": "cian", "materia": "plastica" },
-  { "id": "c8", "letra": "C", "tipo": "empieza", "definicion": "Cualidad visual de los objetos.", "solucion": "color", "materia": "plastica" },
-  { "id": "c9", "letra": "C", "tipo": "empieza", "definicion": "Diferencia notable entre elementos (Claro-oscuro).", "solucion": "contraste", "materia": "plastica" },
-  { "id": "c10", "letra": "C", "tipo": "empieza", "definicion": "Técnica de dar volumen con luz y sombra.", "solucion": "claroscuro", "materia": "plastica" },
-
-  { "id": "d1", "letra": "D", "tipo": "empieza", "definicion": "Sistema de representación de vistas (Sistema...).", "solucion": "diédrico", "materia": "plastica" },
-  { "id": "d2", "letra": "D", "tipo": "empieza", "definicion": "Planificación de un objeto funcional.", "solucion": "diseño", "materia": "plastica" },
-  { "id": "d3", "letra": "D", "tipo": "empieza", "definicion": "Representación gráfica.", "solucion": "dibujo", "materia": "plastica" },
-  { "id": "d4", "letra": "D", "tipo": "empieza", "definicion": "Segmento que une dos puntos de la circunferencia pasando por el centro.", "solucion": "diámetro", "materia": "plastica" },
-  { "id": "d5", "letra": "D", "tipo": "empieza", "definicion": "Polígono de doce lados.", "solucion": "dodecágono", "materia": "plastica" },
-  { "id": "d6", "letra": "D", "tipo": "empieza", "definicion": "Polígono de diez lados.", "solucion": "decágono", "materia": "plastica" },
-  { "id": "d7", "letra": "D", "tipo": "empieza", "definicion": "Transición suave de color.", "solucion": "degradado", "materia": "plastica" },
-  { "id": "d8", "letra": "D", "tipo": "empieza", "definicion": "Herramienta de papel para suavizar trazos.", "solucion": "difumino", "materia": "plastica" },
-  { "id": "d9", "letra": "D", "tipo": "empieza", "definicion": "Imagen creada por ordenador.", "solucion": "digital", "materia": "plastica" },
-  { "id": "d10", "letra": "D", "tipo": "empieza", "definicion": "Movimiento anti-arte de principios del s. XX.", "solucion": "dadaísmo", "materia": "plastica" },
-
-  { "id": "e1", "letra": "E", "tipo": "empieza", "definicion": "Relación matemática entre el dibujo y la realidad.", "solucion": "escala", "materia": "plastica" },
-  { "id": "e2", "letra": "E", "tipo": "empieza", "definicion": "Regla triangular isósceles (45º).", "solucion": "escuadra", "materia": "plastica" },
-  { "id": "e3", "letra": "E", "tipo": "empieza", "definicion": "Curva abierta de dos focos.", "solucion": "elipse", "materia": "plastica" },
-  { "id": "e4", "letra": "E", "tipo": "empieza", "definicion": "Curva que se aleja del centro indefinidamente.", "solucion": "espiral", "materia": "plastica" },
-  { "id": "e5", "letra": "E", "tipo": "empieza", "definicion": "Línea central de simetría.", "solucion": "eje", "materia": "plastica" },
-  { "id": "e6", "letra": "E", "tipo": "empieza", "definicion": "Lugar que ocupan las formas (3D).", "solucion": "espacio", "materia": "plastica" },
-  { "id": "e7", "letra": "E", "tipo": "empieza", "definicion": "Armazón interno de una forma.", "solucion": "estructura", "materia": "plastica" },
-  { "id": "e8", "letra": "E", "tipo": "empieza", "definicion": "Arte en tres dimensiones.", "solucion": "escultura", "materia": "plastica" },
-  { "id": "e9", "letra": "E", "tipo": "empieza", "definicion": "Movimiento artístico que deforma la realidad para expresar emoción.", "solucion": "expresionismo", "materia": "plastica" },
-  { "id": "e10", "letra": "E", "tipo": "empieza", "definicion": "Dibujo previo para encuadrar la composición.", "solucion": "encaje", "materia": "plastica" },
-
-  { "id": "f1", "letra": "F", "tipo": "empieza", "definicion": "Punto donde convergen las líneas en perspectiva.", "solucion": "fuga", "materia": "plastica" },
-  { "id": "f2", "letra": "F", "tipo": "empieza", "definicion": "Aspecto exterior de un objeto.", "solucion": "forma", "materia": "plastica" },
-  { "id": "f3", "letra": "F", "tipo": "empieza", "definicion": "Parte de atrás de una imagen.", "solucion": "fondo", "materia": "plastica" },
-  { "id": "f4", "letra": "F", "tipo": "empieza", "definicion": "Elemento protagonista de la imagen.", "solucion": "figura", "materia": "plastica" },
-  { "id": "f5", "letra": "F", "tipo": "empieza", "definicion": "Arte que representa objetos reconocibles.", "solucion": "figurativo", "materia": "plastica" },
-  { "id": "f6", "letra": "F", "tipo": "empieza", "definicion": "Técnica de capturar imágenes con luz.", "solucion": "fotografía", "materia": "plastica" },
-  { "id": "f7", "letra": "F", "tipo": "empieza", "definicion": "Colores que sugieren baja temperatura (azul, verde...).", "solucion": "fríos", "materia": "plastica" },
-  { "id": "f8", "letra": "F", "tipo": "empieza", "definicion": "Tamaño del soporte.", "solucion": "formato", "materia": "plastica" },
-  { "id": "f9", "letra": "F", "tipo": "empieza", "definicion": "Técnica de frotar sobre una textura.", "solucion": "frotage", "materia": "plastica" },
-  { "id": "f10", "letra": "F", "tipo": "empieza", "definicion": "Movimiento artístico que exalta la velocidad.", "solucion": "futurismo", "materia": "plastica" },
-
-  { "id": "g1", "letra": "G", "tipo": "empieza", "definicion": "Parte de las matemáticas que estudia el espacio y las figuras.", "solucion": "geometría", "materia": "plastica" },
-  { "id": "g2", "letra": "G", "tipo": "empieza", "definicion": "Mineral de las minas de lápiz.", "solucion": "grafito", "materia": "plastica" },
-  { "id": "g3", "letra": "G", "tipo": "empieza", "definicion": "Serie o escala de colores.", "solucion": "gama", "materia": "plastica" },
-  { "id": "g4", "letra": "G", "tipo": "empieza", "definicion": "Paso gradual de un tono a otro.", "solucion": "gradación", "materia": "plastica" },
-  { "id": "g5", "letra": "G", "tipo": "empieza", "definicion": "Técnica de incisión en una plancha.", "solucion": "grabado", "materia": "plastica" },
-  { "id": "g6", "letra": "G", "tipo": "empieza", "definicion": "Movimiento de rotación.", "solucion": "giro", "materia": "plastica" },
-  { "id": "g7", "letra": "G", "tipo": "empieza", "definicion": "Unidad de medida de ángulos.", "solucion": "grado", "materia": "plastica" },
-  { "id": "g8", "letra": "G", "tipo": "empieza", "definicion": "Pintura opaca al agua.", "solucion": "gouache", "materia": "plastica" },
-  { "id": "g9", "letra": "G", "tipo": "empieza", "definicion": "Arte urbano en muros.", "solucion": "graffiti", "materia": "plastica" },
-  { "id": "g10", "letra": "G", "tipo": "empieza", "definicion": "Relativo al dibujo y la imprenta.", "solucion": "gráfico", "materia": "plastica" },
-
-  { "id": "h1", "letra": "H", "tipo": "empieza", "definicion": "Línea que separa el cielo de la tierra.", "solucion": "horizonte", "materia": "plastica" },
-  { "id": "h2", "letra": "H", "tipo": "empieza", "definicion": "Transformación geométrica de tamaño (semejanza).", "solucion": "homotecia", "materia": "plastica" },
-  { "id": "h3", "letra": "H", "tipo": "empieza", "definicion": "Polígono de seis lados.", "solucion": "hexágono", "materia": "plastica" },
-  { "id": "h4", "letra": "H", "tipo": "empieza", "definicion": "Polígono de siete lados.", "solucion": "heptágono", "materia": "plastica" },
-  { "id": "h5", "letra": "H", "tipo": "empieza", "definicion": "Curva abierta de dos ramas.", "solucion": "hipérbola", "materia": "plastica" },
-  { "id": "h6", "letra": "H", "tipo": "empieza", "definicion": "Lápiz duro (Hard).", "solucion": "h", "materia": "plastica" },
-  { "id": "h7", "letra": "H", "tipo": "empieza", "definicion": "Técnica de pintura con agua (acuarela, témpera).", "solucion": "húmeda", "materia": "plastica" },
-  { "id": "h8", "letra": "H", "tipo": "empieza", "definicion": "Espacio vacío.", "solucion": "hueco", "materia": "plastica" },
-  { "id": "h9", "letra": "H", "tipo": "empieza", "definicion": "Evolución del arte en el tiempo.", "solucion": "historia", "materia": "plastica" },
-  { "id": "h10", "letra": "H", "tipo": "empieza", "definicion": "Dirección paralela a la línea de tierra.", "solucion": "horizontal", "materia": "plastica" },
-
-  { "id": "i1", "letra": "I", "tipo": "empieza", "definicion": "Perspectiva axonométrica con ejes a 120º.", "solucion": "isométrica", "materia": "plastica" },
-  { "id": "i2", "letra": "I", "tipo": "empieza", "definicion": "Punto donde se cortan las bisectrices.", "solucion": "incentro", "materia": "plastica" },
-  { "id": "i3", "letra": "I", "tipo": "empieza", "definicion": "Representación visual.", "solucion": "imagen", "materia": "plastica" },
-  { "id": "i4", "letra": "I", "tipo": "empieza", "definicion": "Dibujo que acompaña a un texto.", "solucion": "ilustración", "materia": "plastica" },
-  { "id": "i5", "letra": "I", "tipo": "empieza", "definicion": "Grado de fuerza de la luz o color.", "solucion": "intensidad", "materia": "plastica" },
-  { "id": "i6", "letra": "I", "tipo": "empieza", "definicion": "Signo visual simplificado (digital).", "solucion": "icono", "materia": "plastica" },
-  { "id": "i7", "letra": "I", "tipo": "empieza", "definicion": "Triángulo con dos lados iguales.", "solucion": "isósceles", "materia": "plastica" },
-  { "id": "i8", "letra": "I", "tipo": "empieza", "definicion": "Relación de formas idénticas.", "solucion": "igualdad", "materia": "plastica" },
-  { "id": "i9", "letra": "I", "tipo": "empieza", "definicion": "Movimiento artístico de Monet (Impres...).", "solucion": "impresionismo", "materia": "plastica" },
-  { "id": "i10", "letra": "I", "tipo": "empieza", "definicion": "Luz que incide sobre un objeto.", "solucion": "iluminación", "materia": "plastica" },
-
-  { "id": "j1", "letra": "J", "tipo": "empieza", "definicion": "Instrumento de dibujo (Juego de escuadras).", "solucion": "juego", "materia": "plastica" },
-  { "id": "j2", "letra": "J", "tipo": "empieza", "definicion": "Estilo artístico influido por Japón.", "solucion": "japonismo", "materia": "plastica" },
-  { "id": "j3", "letra": "J", "tipo": "empieza", "definicion": "Punto de unión.", "solucion": "juntura", "materia": "plastica" },
-  { "id": "j4", "letra": "J", "tipo": "empieza", "definicion": "Objeto de orfebrería.", "solucion": "joya", "materia": "plastica" },
-  { "id": "j5", "letra": "J", "tipo": "contiene", "definicion": "Color primario pigmento (contiene J).", "solucion": "rojo", "materia": "plastica" },
-  { "id": "j6", "letra": "J", "tipo": "contiene", "definicion": "Representación de la naturaleza (Paisa..., contiene J).", "solucion": "paisaje", "materia": "plastica" },
-  { "id": "j7", "letra": "J", "tipo": "contiene", "definicion": "Cosa material representada (Ob..., contiene J).", "solucion": "objeto", "materia": "plastica" },
-  { "id": "j8", "letra": "J", "tipo": "contiene", "definicion": "Herramienta de corte (contiene J).", "solucion": "tijeras", "materia": "plastica" },
-  { "id": "j9", "letra": "J", "tipo": "contiene", "definicion": "Órgano de la visión (contiene J).", "solucion": "ojo", "materia": "plastica" },
-  { "id": "j10", "letra": "J", "tipo": "contiene", "definicion": "Arte de representación gráfica (Dibu..., contiene J).", "solucion": "dibujo", "materia": "plastica" },
-
-  { "id": "k1", "letra": "K", "tipo": "empieza", "definicion": "Pintor abstracto ruso (Wassily...).", "solucion": "kandinsky", "materia": "plastica" },
-  { "id": "k2", "letra": "K", "tipo": "empieza", "definicion": "Papel resistente marrón.", "solucion": "kraft", "materia": "plastica" },
-  { "id": "k3", "letra": "K", "tipo": "empieza", "definicion": "Estilo artístico de mal gusto.", "solucion": "kitsch", "materia": "plastica" },
-  { "id": "k4", "letra": "K", "tipo": "empieza", "definicion": "Pintor de 'El Beso' (Gustav...).", "solucion": "klimt", "materia": "plastica" },
-  { "id": "k5", "letra": "K", "tipo": "empieza", "definicion": "Marca histórica de fotografía.", "solucion": "kodak", "materia": "plastica" },
-  { "id": "k6", "letra": "K", "tipo": "contiene", "definicion": "Apunte o boceto rápido (contiene K).", "solucion": "sketch", "materia": "plastica" },
-  { "id": "k7", "letra": "K", "tipo": "contiene", "definicion": "Envase de cartón y aluminio (contiene K).", "solucion": "brik", "materia": "plastica" },
-  { "id": "k8", "letra": "K", "tipo": "contiene", "definicion": "Color negro en cuatricromía CMYK (Key, contiene K).", "solucion": "black", "materia": "plastica" },
-  { "id": "k9", "letra": "K", "tipo": "contiene", "definicion": "Arte popular (Fol..., contiene K).", "solucion": "folk", "materia": "plastica" },
-  { "id": "k10", "letra": "K", "tipo": "contiene", "definicion": "Color militar (contiene K o empieza).", "solucion": "kaki", "materia": "plastica" },
-
-  { "id": "l1", "letra": "L", "tipo": "empieza", "definicion": "Trazo continuo.", "solucion": "línea", "materia": "plastica" },
-  { "id": "l2", "letra": "L", "tipo": "empieza", "definicion": "Hoja de dibujo técnico.", "solucion": "lámina", "materia": "plastica" },
-  { "id": "l3", "letra": "L", "tipo": "empieza", "definicion": "Energía que hace visible los objetos.", "solucion": "luz", "materia": "plastica" },
-  { "id": "l4", "letra": "L", "tipo": "empieza", "definicion": "Soporte de tela para pintar.", "solucion": "lienzo", "materia": "plastica" },
-  { "id": "l5", "letra": "L", "tipo": "empieza", "definicion": "Utensilio de grafito y madera.", "solucion": "lápiz", "materia": "plastica" },
-  { "id": "l6", "letra": "L", "tipo": "empieza", "definicion": "Conjunto de puntos que cumplen una propiedad (... geométrico).", "solucion": "lugar", "materia": "plastica" },
-  { "id": "l7", "letra": "L", "tipo": "empieza", "definicion": "Símbolo gráfico de una marca.", "solucion": "logotipo", "materia": "plastica" },
-  { "id": "l8", "letra": "L", "tipo": "empieza", "definicion": "Cualidad de claro u oscuro.", "solucion": "luminosidad", "materia": "plastica" },
-  { "id": "l9", "letra": "L", "tipo": "empieza", "definicion": "Técnica de impresión en piedra.", "solucion": "litografía", "materia": "plastica" },
-  { "id": "l10", "letra": "L", "tipo": "empieza", "definicion": "Color violeta claro.", "solucion": "lila", "materia": "plastica" },
-
-  { "id": "m1", "letra": "M", "tipo": "empieza", "definicion": "Recta perpendicular a un segmento por su punto medio.", "solucion": "mediatriz", "materia": "plastica" },
-  { "id": "m2", "letra": "M", "tipo": "empieza", "definicion": "Dar forma a un material blando.", "solucion": "modelado", "materia": "plastica" },
-  { "id": "m3", "letra": "M", "tipo": "empieza", "definicion": "Unidad que se repite en una red.", "solucion": "módulo", "materia": "plastica" },
-  { "id": "m4", "letra": "M", "tipo": "empieza", "definicion": "Combinación de colores.", "solucion": "mezcla", "materia": "plastica" },
-  { "id": "m5", "letra": "M", "tipo": "empieza", "definicion": "Color primario sustractivo (rosa fucsia).", "solucion": "magenta", "materia": "plastica" },
-  { "id": "m6", "letra": "M", "tipo": "empieza", "definicion": "Pintura de un solo color.", "solucion": "monocromía", "materia": "plastica" },
-  { "id": "m7", "letra": "M", "tipo": "empieza", "definicion": "Composición con pequeñas piezas (teselas).", "solucion": "mosaico", "materia": "plastica" },
-  { "id": "m8", "letra": "M", "tipo": "empieza", "definicion": "Dibujo a mano alzada (Mano...).", "solucion": "alzada", "materia": "plastica" }, 
-  { "id": "m8_fix", "letra": "M", "tipo": "empieza", "definicion": "Representación a escala (M...).", "solucion": "modelo", "materia": "plastica" },
-  { "id": "m9", "letra": "M", "tipo": "empieza", "definicion": "Pintura en gran formato sobre pared.", "solucion": "mural", "materia": "plastica" },
-  { "id": "m10", "letra": "M", "tipo": "empieza", "definicion": "Lugar de exposición de arte.", "solucion": "museo", "materia": "plastica" },
-
-  { "id": "n1", "letra": "N", "tipo": "empieza", "definicion": "Perpendicular a un plano.", "solucion": "normal", "materia": "plastica" },
-  { "id": "n2", "letra": "N", "tipo": "empieza", "definicion": "Color acromático.", "solucion": "negro", "materia": "plastica" },
-  { "id": "n3", "letra": "N", "tipo": "empieza", "definicion": "Color secundario (rojo+amarillo).", "solucion": "naranja", "materia": "plastica" },
-  { "id": "n4", "letra": "N", "tipo": "empieza", "definicion": "Reglas para el dibujo técnico.", "solucion": "normalización", "materia": "plastica" },
-  { "id": "n5", "letra": "N", "tipo": "empieza", "definicion": "Grado de altura en un plano (Cota de...).", "solucion": "nivel", "materia": "plastica" },
-  { "id": "n6", "letra": "N", "tipo": "empieza", "definicion": "Estilo que recupera el clásico.", "solucion": "neoclasicismo", "materia": "plastica" },
-  { "id": "n7", "letra": "N", "tipo": "empieza", "definicion": "Género artístico (Bodegón o ... muerta).", "solucion": "naturaleza", "materia": "plastica" },
-  { "id": "n8", "letra": "N", "tipo": "empieza", "definicion": "Arte de contar historias visualmente.", "solucion": "narrativa", "materia": "plastica" },
-  { "id": "n9", "letra": "N", "tipo": "empieza", "definicion": "Color poco saturado o grisáceo.", "solucion": "neutro", "materia": "plastica" },
-  { "id": "n10", "letra": "N", "tipo": "contiene", "definicion": "Grado de oscuridad o claridad (To..., contiene N).", "solucion": "tono", "materia": "plastica" },
-
-  { "id": "ñ1", "letra": "Ñ", "tipo": "contiene", "definicion": "Planificación creativa (contiene Ñ).", "solucion": "diseño", "materia": "plastica" },
-  { "id": "ñ2", "letra": "Ñ", "tipo": "contiene", "definicion": "Dimensiones de una obra (contiene Ñ).", "solucion": "tamaño", "materia": "plastica" },
-  { "id": "ñ3", "letra": "Ñ", "tipo": "contiene", "definicion": "Color azul oscuro (contiene Ñ).", "solucion": "añil", "materia": "plastica" },
-  { "id": "ñ4", "letra": "Ñ", "tipo": "contiene", "definicion": "Pieza de madera en ángulo (contiene Ñ).", "solucion": "cuña", "materia": "plastica" },
-  { "id": "ñ5", "letra": "Ñ", "tipo": "contiene", "definicion": "Recuadro de cómic (contiene Ñ).", "solucion": "viñeta", "materia": "plastica" },
-  { "id": "ñ6", "letra": "Ñ", "tipo": "contiene", "definicion": "Figura articulada para dibujar (contiene Ñ).", "solucion": "muñeca", "materia": "plastica" },
-  { "id": "ñ7", "letra": "Ñ", "tipo": "contiene", "definicion": "Elemento de una ventana web (contiene Ñ).", "solucion": "pestaña", "materia": "plastica" },
-  { "id": "ñ8", "letra": "Ñ", "tipo": "contiene", "definicion": "Proyector de luz (contiene Ñ).", "solucion": "cañón", "materia": "plastica" },
-  { "id": "ñ9", "letra": "Ñ", "tipo": "contiene", "definicion": "Color marrón rojizo (contiene Ñ).", "solucion": "castaño", "materia": "plastica" },
-  { "id": "ñ10", "letra": "Ñ", "tipo": "contiene", "definicion": "Elemento de sujeción o limpieza (contiene Ñ).", "solucion": "pañuelo", "materia": "plastica" },
-
-  { "id": "o1", "letra": "O", "tipo": "empieza", "definicion": "Punto de corte de las alturas de un triángulo.", "solucion": "ortocentro", "materia": "plastica" },
-  { "id": "o2", "letra": "O", "tipo": "empieza", "definicion": "Curva técnica plana y cerrada con un eje de simetría.", "solucion": "ovoide", "materia": "plastica" },
-  { "id": "o3", "letra": "O", "tipo": "empieza", "definicion": "Curva técnica con dos ejes de simetría.", "solucion": "óvalo", "materia": "plastica" },
-  { "id": "o4", "letra": "O", "tipo": "empieza", "definicion": "Pintura al aceite.", "solucion": "óleo", "materia": "plastica" },
-  { "id": "o5", "letra": "O", "tipo": "empieza", "definicion": "Creación de un artista.", "solucion": "obra", "materia": "plastica" },
-  { "id": "o6", "letra": "O", "tipo": "empieza", "definicion": "Metal precioso amarillo.", "solucion": "oro", "materia": "plastica" },
-  { "id": "o7", "letra": "O", "tipo": "empieza", "definicion": "Colocación de elementos (Composición).", "solucion": "orden", "materia": "plastica" },
-  { "id": "o8", "letra": "O", "tipo": "empieza", "definicion": "Color tierra amarillento.", "solucion": "ocre", "materia": "plastica" },
-  { "id": "o9", "letra": "O", "tipo": "empieza", "definicion": "Punto (0,0) de coordenadas.", "solucion": "origen", "materia": "plastica" },
-  { "id": "o10", "letra": "O", "tipo": "empieza", "definicion": "Material que no deja pasar la luz.", "solucion": "opaco", "materia": "plastica" },
-
-  { "id": "p1", "letra": "P", "tipo": "empieza", "definicion": "Sistema de representación de la profundidad.", "solucion": "perspectiva", "materia": "plastica" },
-  { "id": "p2", "letra": "P", "tipo": "empieza", "definicion": "Vista superior de un objeto.", "solucion": "planta", "materia": "plastica" },
-  { "id": "p3", "letra": "P", "tipo": "empieza", "definicion": "Vista lateral de un objeto.", "solucion": "perfil", "materia": "plastica" },
-  { "id": "p4", "letra": "P", "tipo": "empieza", "definicion": "Figura plana cerrada de lados rectos.", "solucion": "polígono", "materia": "plastica" },
-  { "id": "p5", "letra": "P", "tipo": "empieza", "definicion": "Elemento básico del dibujo.", "solucion": "punto", "materia": "plastica" },
-  { "id": "p6", "letra": "P", "tipo": "empieza", "definicion": "Recta que nunca se corta con otra.", "solucion": "paralela", "materia": "plastica" },
-  { "id": "p7", "letra": "P", "tipo": "empieza", "definicion": "Recta que corta a otra a 90 grados.", "solucion": "perpendicular", "materia": "plastica" },
-  { "id": "p8", "letra": "P", "tipo": "empieza", "definicion": "Técnica de pintura seca.", "solucion": "pastel", "materia": "plastica" },
-  { "id": "p9", "letra": "P", "tipo": "empieza", "definicion": "Relación de tamaño.", "solucion": "proporción", "materia": "plastica" },
-  { "id": "p10", "letra": "P", "tipo": "empieza", "definicion": "Colores básicos (Rojo, Azul, Amarillo en pigmento).", "solucion": "primarios", "materia": "plastica" },
-
-  { "id": "q1", "letra": "Q", "tipo": "contiene", "definicion": "Dibujo rápido a mano alzada (contiene Q).", "solucion": "croquis", "materia": "plastica" },
-  { "id": "q2", "letra": "Q", "tipo": "contiene", "definicion": "Dibujo simplificado (Es..., contiene Q).", "solucion": "esquema", "materia": "plastica" },
-  { "id": "q3", "letra": "Q", "tipo": "contiene", "definicion": "Apunte rápido (Bos..., contiene Q).", "solucion": "bosquejo", "materia": "plastica" },
-  { "id": "q4", "letra": "Q", "tipo": "contiene", "definicion": "Estabilidad visual (contiene Q).", "solucion": "equilibrio", "materia": "plastica" },
-  { "id": "q5", "letra": "Q", "tipo": "contiene", "definicion": "Modelo a escala (contiene Q).", "solucion": "maqueta", "materia": "plastica" },
-  { "id": "q6", "letra": "Q", "tipo": "contiene", "definicion": "Arte de edificios (contiene Q).", "solucion": "arquitectura", "materia": "plastica" },
-  { "id": "q7", "letra": "Q", "tipo": "contiene", "definicion": "Color azul verdoso (contiene Q).", "solucion": "turquesa", "materia": "plastica" },
-  { "id": "q8", "letra": "Q", "tipo": "contiene", "definicion": "Masa sólida o cuaderno (contiene Q).", "solucion": "bloque", "materia": "plastica" },
-  { "id": "q9", "letra": "Q", "tipo": "contiene", "definicion": "Identificación de una obra (contiene Q).", "solucion": "etiqueta", "materia": "plastica" },
-  { "id": "q10", "letra": "Q", "tipo": "contiene", "definicion": "Producto de laboratorio (contiene Q).", "solucion": "químico", "materia": "plastica" },
-
-  { "id": "r1", "letra": "R", "tipo": "empieza", "definicion": "Línea del centro a la circunferencia.", "solucion": "radio", "materia": "plastica" },
-  { "id": "r2", "letra": "R", "tipo": "empieza", "definicion": "Línea sin curvas.", "solucion": "recta", "materia": "plastica" },
-  { "id": "r3", "letra": "R", "tipo": "empieza", "definicion": "Instrumento para medir.", "solucion": "regla", "materia": "plastica" },
-  { "id": "r4", "letra": "R", "tipo": "empieza", "definicion": "Repetición de formas.", "solucion": "ritmo", "materia": "plastica" },
-  { "id": "r5", "letra": "R", "tipo": "empieza", "definicion": "Estructura que se repite (R... modular).", "solucion": "red", "materia": "plastica" },
-  { "id": "r6", "letra": "R", "tipo": "empieza", "definicion": "Color primario.", "solucion": "rojo", "materia": "plastica" },
-  { "id": "r7", "letra": "R", "tipo": "empieza", "definicion": "Estilo que copia la realidad.", "solucion": "realismo", "materia": "plastica" },
-  { "id": "r8", "letra": "R", "tipo": "empieza", "definicion": "Escultura que sobresale.", "solucion": "relieve", "materia": "plastica" },
-  { "id": "r9", "letra": "R", "tipo": "empieza", "definicion": "Dibujo de una cara.", "solucion": "retrato", "materia": "plastica" },
-  { "id": "r10", "letra": "R", "tipo": "empieza", "definicion": "Época de Miguel Ángel.", "solucion": "renacimiento", "materia": "plastica" },
-
-  { "id": "s1", "letra": "S", "tipo": "empieza", "definicion": "Propiedad de figuras con la misma forma pero distinto tamaño.", "solucion": "semejanza", "materia": "plastica" },
-  { "id": "s2", "letra": "S", "tipo": "empieza", "definicion": "Correspondencia exacta respecto a un eje.", "solucion": "simetría", "materia": "plastica" },
-  { "id": "s3", "letra": "S", "tipo": "empieza", "definicion": "Parte de recta entre dos puntos.", "solucion": "segmento", "materia": "plastica" },
-  { "id": "s4", "letra": "S", "tipo": "empieza", "definicion": "Recta que corta a una circunferencia.", "solucion": "secante", "materia": "plastica" },
-  { "id": "s5", "letra": "S", "tipo": "empieza", "definicion": "Color mezcla de dos primarios.", "solucion": "secundario", "materia": "plastica" },
-  { "id": "s6", "letra": "S", "tipo": "empieza", "definicion": "Zona sin luz.", "solucion": "sombra", "materia": "plastica" },
-  { "id": "s7", "letra": "S", "tipo": "empieza", "definicion": "Pureza de un color.", "solucion": "saturación", "materia": "plastica" },
-  { "id": "s8", "letra": "S", "tipo": "empieza", "definicion": "Contorno de una figura.", "solucion": "silueta", "materia": "plastica" },
-  { "id": "s9", "letra": "S", "tipo": "empieza", "definicion": "Material donde se pinta.", "solucion": "soporte", "materia": "plastica" },
-  { "id": "s10", "letra": "S", "tipo": "empieza", "definicion": "Mezcla de pigmentos (Síntesis...).", "solucion": "sustractiva", "materia": "plastica" },
-
-  { "id": "t1", "letra": "T", "tipo": "empieza", "definicion": "Unión suave de dos líneas (un punto en común).", "solucion": "tangencia", "materia": "plastica" },
-  { "id": "t2", "letra": "T", "tipo": "empieza", "definicion": "Polígono de tres lados.", "solucion": "triángulo", "materia": "plastica" },
-  { "id": "t3", "letra": "T", "tipo": "empieza", "definicion": "Cuadrilátero con dos lados paralelos.", "solucion": "trapecio", "materia": "plastica" },
-  { "id": "t4", "letra": "T", "tipo": "empieza", "definicion": "Cualidad de la superficie.", "solucion": "textura", "materia": "plastica" },
-  { "id": "t5", "letra": "T", "tipo": "empieza", "definicion": "Grado de luz de un color.", "solucion": "tono", "materia": "plastica" },
-  { "id": "t6", "letra": "T", "tipo": "empieza", "definicion": "Pintura al agua opaca.", "solucion": "témpera", "materia": "plastica" },
-  { "id": "t7", "letra": "T", "tipo": "empieza", "definicion": "Procedimiento artístico.", "solucion": "técnica", "materia": "plastica" },
-  { "id": "t8", "letra": "T", "tipo": "empieza", "definicion": "Línea dibujada.", "solucion": "trazo", "materia": "plastica" },
-  { "id": "t9", "letra": "T", "tipo": "empieza", "definicion": "Instrumento para medir ángulos.", "solucion": "transportador", "materia": "plastica" },
-  { "id": "t10", "letra": "T", "tipo": "empieza", "definicion": "Con tres dimensiones.", "solucion": "tridimensional", "materia": "plastica" },
-
-  { "id": "u1", "letra": "U", "tipo": "empieza", "definicion": "Herramienta.", "solucion": "útil", "materia": "plastica" },
-  { "id": "u2", "letra": "U", "tipo": "empieza", "definicion": "Conexión.", "solucion": "unión", "materia": "plastica" },
-  { "id": "u3", "letra": "U", "tipo": "empieza", "definicion": "Ropa igual.", "solucion": "uniforme", "materia": "plastica" },
-  { "id": "u4", "letra": "U", "tipo": "empieza", "definicion": "Arte de la ciudad.", "solucion": "urbano", "materia": "plastica" },
-  { "id": "u5", "letra": "U", "tipo": "empieza", "definicion": "Objeto manual.", "solucion": "utensilio", "materia": "plastica" },
-  { "id": "u6", "letra": "U", "tipo": "empieza", "definicion": "Lugar.", "solucion": "ubicación", "materia": "plastica" },
-  { "id": "u7", "letra": "U", "tipo": "empieza", "definicion": "Uno solo.", "solucion": "unidad", "materia": "plastica" },
-  { "id": "u8", "letra": "U", "tipo": "empieza", "definicion": "Luz invisible (UV).", "solucion": "ultravioleta", "materia": "plastica" },
-  { "id": "u9", "letra": "U", "tipo": "empieza", "definicion": "Sombra oscura.", "solucion": "umbra", "materia": "plastica" },
-  { "id": "u10", "letra": "U", "tipo": "empieza", "definicion": "Aplicar pegamento o pintura.", "solucion": "untar", "materia": "plastica" },
-
-  { "id": "v1", "letra": "V", "tipo": "empieza", "definicion": "Proyecciones de un objeto (Alzado, Planta...).", "solucion": "vistas", "materia": "plastica" },
-  { "id": "v2", "letra": "V", "tipo": "empieza", "definicion": "Punto de unión de lados.", "solucion": "vértice", "materia": "plastica" },
-  { "id": "v3", "letra": "V", "tipo": "empieza", "definicion": "Medida del espacio 3D.", "solucion": "volumen", "materia": "plastica" },
-  { "id": "v4", "letra": "V", "tipo": "empieza", "definicion": "Luminosidad.", "solucion": "valor", "materia": "plastica" },
-  { "id": "v5", "letra": "V", "tipo": "empieza", "definicion": "Línea de arriba a abajo.", "solucion": "vertical", "materia": "plastica" },
-  { "id": "v6", "letra": "V", "tipo": "empieza", "definicion": "Color secundario.", "solucion": "verde", "materia": "plastica" },
-  { "id": "v7", "letra": "V", "tipo": "empieza", "definicion": "Color secundario.", "solucion": "violeta", "materia": "plastica" },
-  { "id": "v8", "letra": "V", "tipo": "empieza", "definicion": "Arte moderno innovador.", "solucion": "vanguardia", "materia": "plastica" },
-  { "id": "v9", "letra": "V", "tipo": "empieza", "definicion": "Sentido de ver.", "solucion": "visión", "materia": "plastica" },
-  { "id": "v10", "letra": "V", "tipo": "empieza", "definicion": "Capa transparente de pintura.", "solucion": "veladura", "materia": "plastica" },
-
-  { "id": "w1", "letra": "W", "tipo": "contiene", "definicion": "Diseño de páginas (contiene W).", "solucion": "web", "materia": "plastica" },
-  { "id": "w2", "letra": "W", "tipo": "empieza", "definicion": "Artista Pop (Andy...).", "solucion": "warhol", "materia": "plastica" },
-  { "id": "w3", "letra": "W", "tipo": "contiene", "definicion": "Luz de bombilla (contiene W).", "solucion": "wolframio", "materia": "plastica" },
-  { "id": "w4", "letra": "W", "tipo": "contiene", "definicion": "Programa de diseño (Soft..., contiene W).", "solucion": "software", "materia": "plastica" },
-  { "id": "w5", "letra": "W", "tipo": "contiene", "definicion": "Parte física del PC (contiene W).", "solucion": "hardware", "materia": "plastica" },
-  { "id": "w6", "letra": "W", "tipo": "contiene", "definicion": "Conexión (contiene W).", "solucion": "wifi", "materia": "plastica" },
-  { "id": "w7", "letra": "W", "tipo": "contiene", "definicion": "Película del oeste (contiene W).", "solucion": "western", "materia": "plastica" },
-  { "id": "w8", "letra": "W", "tipo": "contiene", "definicion": "Objeto pop art (Sand..., contiene W).", "solucion": "sandwich", "materia": "plastica" },
-  { "id": "w9", "letra": "W", "tipo": "contiene", "definicion": "Color verde fruta (contiene W).", "solucion": "kiwi", "materia": "plastica" },
-  { "id": "w10", "letra": "W", "tipo": "contiene", "definicion": "Espectáculo (contiene W).", "solucion": "show", "materia": "plastica" },
-
-  { "id": "x1", "letra": "X", "tipo": "contiene", "definicion": "Calidad táctil (contiene X).", "solucion": "textura", "materia": "plastica" },
-  { "id": "x2", "letra": "X", "tipo": "contiene", "definicion": "Técnica combinada (contiene X).", "solucion": "mixta", "materia": "plastica" },
-  { "id": "x3", "letra": "X", "tipo": "contiene", "definicion": "Polígono de 6 lados (contiene X).", "solucion": "hexágono", "materia": "plastica" },
-  { "id": "x4", "letra": "X", "tipo": "contiene", "definicion": "Entorno (contiene X).", "solucion": "contexto", "materia": "plastica" },
-  { "id": "x5", "letra": "X", "tipo": "contiene", "definicion": "Punto final (contiene X).", "solucion": "extremo", "materia": "plastica" },
-  { "id": "x6", "letra": "X", "tipo": "contiene", "definicion": "Fuera (contiene X).", "solucion": "exterior", "materia": "plastica" },
-  { "id": "x7", "letra": "X", "tipo": "contiene", "definicion": "Curva hacia fuera (contiene X).", "solucion": "convexo", "materia": "plastica" },
-  { "id": "x8", "letra": "X", "tipo": "contiene", "definicion": "Manifestación artística (E...presión, contiene X).", "solucion": "expresión", "materia": "plastica" },
-  { "id": "x9", "letra": "X", "tipo": "contiene", "definicion": "Punto de imagen (contiene X).", "solucion": "pixel", "materia": "plastica" },
-  { "id": "x10", "letra": "X", "tipo": "empieza", "definicion": "Grabado en madera.", "solucion": "xilografía", "materia": "plastica" },
-
-  { "id": "y1", "letra": "Y", "tipo": "empieza", "definicion": "Parte del huevo (aglutinante).", "solucion": "yema", "materia": "plastica" },
-  { "id": "y2", "letra": "Y", "tipo": "empieza", "definicion": "Material para moldes.", "solucion": "yeso", "materia": "plastica" },
-  { "id": "y3", "letra": "Y", "tipo": "empieza", "definicion": "Tejido rugoso.", "solucion": "yute", "materia": "plastica" },
-  { "id": "y4", "letra": "Y", "tipo": "contiene", "definicion": "Color primario (contiene Y, común).", "solucion": "amarillo", "materia": "plastica" },
-  { "id": "y5", "letra": "Y", "tipo": "contiene", "definicion": "Más grande (contiene Y).", "solucion": "mayor", "materia": "plastica" },
-  { "id": "y6", "letra": "Y", "tipo": "contiene", "definicion": "Líneas (contiene Y).", "solucion": "rayas", "materia": "plastica" },
-  { "id": "y7", "letra": "Y", "tipo": "contiene", "definicion": "Lápiz de cera (contiene Y).", "solucion": "crayon", "materia": "plastica" },
-  { "id": "y8", "letra": "Y", "tipo": "contiene", "definicion": "Plan de obra (contiene Y).", "solucion": "proyecto", "materia": "plastica" },
-  { "id": "y9", "letra": "Y", "tipo": "contiene", "definicion": "Aerosol (contiene Y).", "solucion": "spray", "materia": "plastica" },
-  { "id": "y10", "letra": "Y", "tipo": "contiene", "definicion": "Apoyo (contiene Y).", "solucion": "apoyo", "materia": "plastica" },
-
-  { "id": "z1", "letra": "Z", "tipo": "contiene", "definicion": "Color del cielo (contiene Z).", "solucion": "azul", "materia": "plastica" },
-  { "id": "z2", "letra": "Z", "tipo": "contiene", "definicion": "Línea dibujada (contiene Z).", "solucion": "trazo", "materia": "plastica" },
-  { "id": "z3", "letra": "Z", "tipo": "contiene", "definicion": "Tiza (contiene Z).", "solucion": "tiza", "materia": "plastica" },
-  { "id": "z4", "letra": "Z", "tipo": "contiene", "definicion": "Tablero negro (contiene Z).", "solucion": "pizarra", "materia": "plastica" },
-  { "id": "z5", "letra": "Z", "tipo": "contiene", "definicion": "Variación de color (contiene Z).", "solucion": "matiz", "materia": "plastica" },
-  { "id": "z6", "letra": "Z", "tipo": "contiene", "definicion": "Combinación (contiene Z).", "solucion": "mezcla", "materia": "plastica" },
-  { "id": "z7", "letra": "Z", "tipo": "contiene", "definicion": "Claridad (contiene Z).", "solucion": "luz", "materia": "plastica" },
-  { "id": "z8", "letra": "Z", "tipo": "contiene", "definicion": "Utensilio de grafito (contiene Z).", "solucion": "lápiz", "materia": "plastica" },
-  { "id": "z9", "letra": "Z", "tipo": "empieza", "definicion": "Línea quebrada.", "solucion": "zigzag", "materia": "plastica" },
-  { "id": "z10", "letra": "Z", "tipo": "empieza", "definicion": "Parte de un dibujo.", "solucion": "zona", "materia": "plastica" }
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Indicación de las medidas reales en un plano.",
+    "solucion": "acotación",
+    "materia": "plastica"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Vista de frente de un objeto en sistema diédrico.",
+    "solucion": "alzado",
+    "materia": "plastica"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Sistema de representación con ejes XYZ (Perspectiva...).",
+    "solucion": "axonometría",
+    "materia": "plastica"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Porción de curva limitada por dos puntos.",
+    "solucion": "arco",
+    "materia": "plastica"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Abertura formada por dos rectas que se cortan en un vértice.",
+    "solucion": "ángulo",
+    "materia": "plastica"
+  },
+  {
+    "id": "a6",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Arte de no representar la realidad figurativa.",
+    "solucion": "abstracción",
+    "materia": "plastica"
+  },
+  {
+    "id": "a7",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Técnica de pintura al agua transparente.",
+    "solucion": "acuarela",
+    "materia": "plastica"
+  },
+  {
+    "id": "a8",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Color primario pigmento.",
+    "solucion": "amarillo",
+    "materia": "plastica"
+  },
+  {
+    "id": "a9",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Color primario mezcla aditiva (Luz).",
+    "solucion": "azul",
+    "materia": "plastica"
+  },
+  {
+    "id": "a10",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Relación estética entre las partes de un todo.",
+    "solucion": "armonía",
+    "materia": "plastica"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Dibujo previo o apunte rápido.",
+    "solucion": "boceto",
+    "materia": "plastica"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Recta que divide un ángulo en dos partes iguales.",
+    "solucion": "bisectriz",
+    "materia": "plastica"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Lápiz de mina blanda y oscura (tipo B).",
+    "solucion": "blando",
+    "materia": "plastica"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Escuela de diseño alemana fundada en 1919.",
+    "solucion": "bauhaus",
+    "materia": "plastica"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Que tiene dos dimensiones (alto y ancho).",
+    "solucion": "bidimensional",
+    "materia": "plastica"
+  },
+  {
+    "id": "b6",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Estilo artístico recargado del siglo XVII.",
+    "solucion": "barroco",
+    "materia": "plastica"
+  },
+  {
+    "id": "b7",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Género artístico de objetos inanimados.",
+    "solucion": "bodegón",
+    "materia": "plastica"
+  },
+  {
+    "id": "b8",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Cualidad de reflejar luz.",
+    "solucion": "brillo",
+    "materia": "plastica"
+  },
+  {
+    "id": "b9",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Color suma de todos los colores luz.",
+    "solucion": "blanco",
+    "materia": "plastica"
+  },
+  {
+    "id": "b10",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Utensilio para eliminar trazos de lápiz.",
+    "solucion": "borrador",
+    "materia": "plastica"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Instrumento para trazar arcos y circunferencias.",
+    "solucion": "compás",
+    "materia": "plastica"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Línea curva cerrada y plana.",
+    "solucion": "circunferencia",
+    "materia": "plastica"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Polígono regular de cuatro lados.",
+    "solucion": "cuadrado",
+    "materia": "plastica"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Punto donde se cortan las mediatrices.",
+    "solucion": "circuncentro",
+    "materia": "plastica"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Perspectiva axonométrica con un ángulo de 90º.",
+    "solucion": "caballera",
+    "materia": "plastica"
+  },
+  {
+    "id": "c6",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Perspectiva que usa puntos de fuga.",
+    "solucion": "cónica",
+    "materia": "plastica"
+  },
+  {
+    "id": "c7",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Color primario sustractivo (azul claro).",
+    "solucion": "cian",
+    "materia": "plastica"
+  },
+  {
+    "id": "c8",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Cualidad visual de los objetos.",
+    "solucion": "color",
+    "materia": "plastica"
+  },
+  {
+    "id": "c9",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Diferencia notable entre elementos (Claro-oscuro).",
+    "solucion": "contraste",
+    "materia": "plastica"
+  },
+  {
+    "id": "c10",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Técnica de dar volumen con luz y sombra.",
+    "solucion": "claroscuro",
+    "materia": "plastica"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Sistema de representación de vistas (Sistema...).",
+    "solucion": "diédrico",
+    "materia": "plastica"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Planificación de un objeto funcional.",
+    "solucion": "diseño",
+    "materia": "plastica"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Representación gráfica.",
+    "solucion": "dibujo",
+    "materia": "plastica"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Segmento que une dos puntos de la circunferencia pasando por el centro.",
+    "solucion": "diámetro",
+    "materia": "plastica"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Polígono de doce lados.",
+    "solucion": "dodecágono",
+    "materia": "plastica"
+  },
+  {
+    "id": "d6",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Polígono de diez lados.",
+    "solucion": "decágono",
+    "materia": "plastica"
+  },
+  {
+    "id": "d7",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Transición suave de color.",
+    "solucion": "degradado",
+    "materia": "plastica"
+  },
+  {
+    "id": "d8",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Herramienta de papel para suavizar trazos.",
+    "solucion": "difumino",
+    "materia": "plastica"
+  },
+  {
+    "id": "d9",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Imagen creada por ordenador.",
+    "solucion": "digital",
+    "materia": "plastica"
+  },
+  {
+    "id": "d10",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Movimiento anti-arte de principios del s. XX.",
+    "solucion": "dadaísmo",
+    "materia": "plastica"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Relación matemática entre el dibujo y la realidad.",
+    "solucion": "escala",
+    "materia": "plastica"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Regla triangular isósceles (45º).",
+    "solucion": "escuadra",
+    "materia": "plastica"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Curva abierta de dos focos.",
+    "solucion": "elipse",
+    "materia": "plastica"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Curva que se aleja del centro indefinidamente.",
+    "solucion": "espiral",
+    "materia": "plastica"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Línea central de simetría.",
+    "solucion": "eje",
+    "materia": "plastica"
+  },
+  {
+    "id": "e6",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Lugar que ocupan las formas (3D).",
+    "solucion": "espacio",
+    "materia": "plastica"
+  },
+  {
+    "id": "e7",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Armazón interno de una forma.",
+    "solucion": "estructura",
+    "materia": "plastica"
+  },
+  {
+    "id": "e8",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Arte en tres dimensiones.",
+    "solucion": "escultura",
+    "materia": "plastica"
+  },
+  {
+    "id": "e9",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Movimiento artístico que deforma la realidad para expresar emoción.",
+    "solucion": "expresionismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "e10",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Dibujo previo para encuadrar la composición.",
+    "solucion": "encaje",
+    "materia": "plastica"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Punto donde convergen las líneas en perspectiva.",
+    "solucion": "fuga",
+    "materia": "plastica"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Aspecto exterior de un objeto.",
+    "solucion": "forma",
+    "materia": "plastica"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Parte de atrás de una imagen.",
+    "solucion": "fondo",
+    "materia": "plastica"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Elemento protagonista de la imagen.",
+    "solucion": "figura",
+    "materia": "plastica"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Arte que representa objetos reconocibles.",
+    "solucion": "figurativo",
+    "materia": "plastica"
+  },
+  {
+    "id": "f6",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Técnica de capturar imágenes con luz.",
+    "solucion": "fotografía",
+    "materia": "plastica"
+  },
+  {
+    "id": "f7",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Colores que sugieren baja temperatura (azul, verde...).",
+    "solucion": "fríos",
+    "materia": "plastica"
+  },
+  {
+    "id": "f8",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Tamaño del soporte.",
+    "solucion": "formato",
+    "materia": "plastica"
+  },
+  {
+    "id": "f9",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Técnica de frotar sobre una textura.",
+    "solucion": "frotage",
+    "materia": "plastica"
+  },
+  {
+    "id": "f10",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Movimiento artístico que exalta la velocidad.",
+    "solucion": "futurismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Parte de las matemáticas que estudia el espacio y las figuras.",
+    "solucion": "geometría",
+    "materia": "plastica"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Mineral de las minas de lápiz.",
+    "solucion": "grafito",
+    "materia": "plastica"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Serie o escala de colores.",
+    "solucion": "gama",
+    "materia": "plastica"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Paso gradual de un tono a otro.",
+    "solucion": "gradación",
+    "materia": "plastica"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Técnica de incisión en una plancha.",
+    "solucion": "grabado",
+    "materia": "plastica"
+  },
+  {
+    "id": "g6",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Movimiento de rotación.",
+    "solucion": "giro",
+    "materia": "plastica"
+  },
+  {
+    "id": "g7",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Unidad de medida de ángulos.",
+    "solucion": "grado",
+    "materia": "plastica"
+  },
+  {
+    "id": "g8",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Pintura opaca al agua.",
+    "solucion": "gouache",
+    "materia": "plastica"
+  },
+  {
+    "id": "g9",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Arte urbano en muros.",
+    "solucion": "graffiti",
+    "materia": "plastica"
+  },
+  {
+    "id": "g10",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Relativo al dibujo y la imprenta.",
+    "solucion": "gráfico",
+    "materia": "plastica"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Línea que separa el cielo de la tierra.",
+    "solucion": "horizonte",
+    "materia": "plastica"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Transformación geométrica de tamaño (semejanza).",
+    "solucion": "homotecia",
+    "materia": "plastica"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Polígono de seis lados.",
+    "solucion": "hexágono",
+    "materia": "plastica"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Polígono de siete lados.",
+    "solucion": "heptágono",
+    "materia": "plastica"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Curva abierta de dos ramas.",
+    "solucion": "hipérbola",
+    "materia": "plastica"
+  },
+  {
+    "id": "h6",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Lápiz duro (Hard).",
+    "solucion": "h",
+    "materia": "plastica"
+  },
+  {
+    "id": "h7",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Técnica de pintura con agua (acuarela, témpera).",
+    "solucion": "húmeda",
+    "materia": "plastica"
+  },
+  {
+    "id": "h8",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Espacio vacío.",
+    "solucion": "hueco",
+    "materia": "plastica"
+  },
+  {
+    "id": "h9",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Evolución del arte en el tiempo.",
+    "solucion": "historia",
+    "materia": "plastica"
+  },
+  {
+    "id": "h10",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Dirección paralela a la línea de tierra.",
+    "solucion": "horizontal",
+    "materia": "plastica"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Perspectiva axonométrica con ejes a 120º.",
+    "solucion": "isométrica",
+    "materia": "plastica"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Punto donde se cortan las bisectrices.",
+    "solucion": "incentro",
+    "materia": "plastica"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Representación visual.",
+    "solucion": "imagen",
+    "materia": "plastica"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Dibujo que acompaña a un texto.",
+    "solucion": "ilustración",
+    "materia": "plastica"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Grado de fuerza de la luz o color.",
+    "solucion": "intensidad",
+    "materia": "plastica"
+  },
+  {
+    "id": "i6",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Signo visual simplificado (digital).",
+    "solucion": "icono",
+    "materia": "plastica"
+  },
+  {
+    "id": "i7",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Triángulo con dos lados iguales.",
+    "solucion": "isósceles",
+    "materia": "plastica"
+  },
+  {
+    "id": "i8",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Relación de formas idénticas.",
+    "solucion": "igualdad",
+    "materia": "plastica"
+  },
+  {
+    "id": "i9",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Movimiento artístico de Monet (Impres...).",
+    "solucion": "impresionismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "i10",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Luz que incide sobre un objeto.",
+    "solucion": "iluminación",
+    "materia": "plastica"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Instrumento de dibujo (Juego de escuadras).",
+    "solucion": "juego",
+    "materia": "plastica"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Estilo artístico influido por Japón.",
+    "solucion": "japonismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Punto de unión.",
+    "solucion": "juntura",
+    "materia": "plastica"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Objeto de orfebrería.",
+    "solucion": "joya",
+    "materia": "plastica"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Color primario pigmento (contiene J).",
+    "solucion": "rojo",
+    "materia": "plastica"
+  },
+  {
+    "id": "j6",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Representación de la naturaleza (Paisa..., contiene J).",
+    "solucion": "paisaje",
+    "materia": "plastica"
+  },
+  {
+    "id": "j7",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Cosa material representada (Ob..., contiene J).",
+    "solucion": "objeto",
+    "materia": "plastica"
+  },
+  {
+    "id": "j8",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Herramienta de corte (contiene J).",
+    "solucion": "tijeras",
+    "materia": "plastica"
+  },
+  {
+    "id": "j9",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Órgano de la visión (contiene J).",
+    "solucion": "ojo",
+    "materia": "plastica"
+  },
+  {
+    "id": "j10",
+    "letra": "J",
+    "tipo": "contiene",
+    "definicion": "Arte de representación gráfica (Dibu..., contiene J).",
+    "solucion": "dibujo",
+    "materia": "plastica"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Pintor abstracto ruso (Wassily...).",
+    "solucion": "kandinsky",
+    "materia": "plastica"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Papel resistente marrón.",
+    "solucion": "kraft",
+    "materia": "plastica"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Estilo artístico de mal gusto.",
+    "solucion": "kitsch",
+    "materia": "plastica"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Pintor de 'El Beso' (Gustav...).",
+    "solucion": "klimt",
+    "materia": "plastica"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Marca histórica de fotografía.",
+    "solucion": "kodak",
+    "materia": "plastica"
+  },
+  {
+    "id": "k6",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Apunte o boceto rápido (contiene K).",
+    "solucion": "sketch",
+    "materia": "plastica"
+  },
+  {
+    "id": "k7",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Envase de cartón y aluminio (contiene K).",
+    "solucion": "brik",
+    "materia": "plastica"
+  },
+  {
+    "id": "k8",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Color negro en cuatricromía CMYK (Key, contiene K).",
+    "solucion": "black",
+    "materia": "plastica"
+  },
+  {
+    "id": "k9",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Arte popular (Fol..., contiene K).",
+    "solucion": "folk",
+    "materia": "plastica"
+  },
+  {
+    "id": "k10",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Color militar (contiene K o empieza).",
+    "solucion": "kaki",
+    "materia": "plastica"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Trazo continuo.",
+    "solucion": "línea",
+    "materia": "plastica"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Hoja de dibujo técnico.",
+    "solucion": "lámina",
+    "materia": "plastica"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Energía que hace visible los objetos.",
+    "solucion": "luz",
+    "materia": "plastica"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Soporte de tela para pintar.",
+    "solucion": "lienzo",
+    "materia": "plastica"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Utensilio de grafito y madera.",
+    "solucion": "lápiz",
+    "materia": "plastica"
+  },
+  {
+    "id": "l6",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Conjunto de puntos que cumplen una propiedad (... geométrico).",
+    "solucion": "lugar",
+    "materia": "plastica"
+  },
+  {
+    "id": "l7",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Símbolo gráfico de una marca.",
+    "solucion": "logotipo",
+    "materia": "plastica"
+  },
+  {
+    "id": "l8",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Cualidad de claro u oscuro.",
+    "solucion": "luminosidad",
+    "materia": "plastica"
+  },
+  {
+    "id": "l9",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Técnica de impresión en piedra.",
+    "solucion": "litografía",
+    "materia": "plastica"
+  },
+  {
+    "id": "l10",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Color violeta claro.",
+    "solucion": "lila",
+    "materia": "plastica"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Recta perpendicular a un segmento por su punto medio.",
+    "solucion": "mediatriz",
+    "materia": "plastica"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Dar forma a un material blando.",
+    "solucion": "modelado",
+    "materia": "plastica"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Unidad que se repite en una red.",
+    "solucion": "módulo",
+    "materia": "plastica"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Combinación de colores.",
+    "solucion": "mezcla",
+    "materia": "plastica"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Color primario sustractivo (rosa fucsia).",
+    "solucion": "magenta",
+    "materia": "plastica"
+  },
+  {
+    "id": "m6",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Pintura de un solo color.",
+    "solucion": "monocromía",
+    "materia": "plastica"
+  },
+  {
+    "id": "m7",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Composición con pequeñas piezas (teselas).",
+    "solucion": "mosaico",
+    "materia": "plastica"
+  },
+  {
+    "id": "m8",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Dibujo a mano alzada (Mano...).",
+    "solucion": "Mano",
+    "materia": "plastica"
+  },
+  {
+    "id": "m8_fix",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Representación a escala (M...).",
+    "solucion": "modelo",
+    "materia": "plastica"
+  },
+  {
+    "id": "m9",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Pintura en gran formato sobre pared.",
+    "solucion": "mural",
+    "materia": "plastica"
+  },
+  {
+    "id": "m10",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Lugar de exposición de arte.",
+    "solucion": "museo",
+    "materia": "plastica"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Perpendicular a un plano.",
+    "solucion": "normal",
+    "materia": "plastica"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Color acromático.",
+    "solucion": "negro",
+    "materia": "plastica"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Color secundario (rojo+amarillo).",
+    "solucion": "naranja",
+    "materia": "plastica"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Reglas para el dibujo técnico.",
+    "solucion": "normalización",
+    "materia": "plastica"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Grado de altura en un plano (Cota de...).",
+    "solucion": "nivel",
+    "materia": "plastica"
+  },
+  {
+    "id": "n6",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Estilo que recupera el clásico.",
+    "solucion": "neoclasicismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "n7",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Género artístico (Bodegón o ... muerta).",
+    "solucion": "naturaleza",
+    "materia": "plastica"
+  },
+  {
+    "id": "n8",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Arte de contar historias visualmente.",
+    "solucion": "narrativa",
+    "materia": "plastica"
+  },
+  {
+    "id": "n9",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Color poco saturado o grisáceo.",
+    "solucion": "neutro",
+    "materia": "plastica"
+  },
+  {
+    "id": "n10",
+    "letra": "N",
+    "tipo": "contiene",
+    "definicion": "Grado de oscuridad o claridad (To..., contiene N).",
+    "solucion": "tono",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ1",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Planificación creativa (contiene Ñ).",
+    "solucion": "diseño",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ2",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Dimensiones de una obra (contiene Ñ).",
+    "solucion": "tamaño",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ3",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Color azul oscuro (contiene Ñ).",
+    "solucion": "añil",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ4",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Pieza de madera en ángulo (contiene Ñ).",
+    "solucion": "cuña",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ5",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Recuadro de cómic (contiene Ñ).",
+    "solucion": "viñeta",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ6",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Figura articulada para dibujar (contiene Ñ).",
+    "solucion": "muñeca",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ7",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Elemento de una ventana web (contiene Ñ).",
+    "solucion": "pestaña",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ8",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Proyector de luz (contiene Ñ).",
+    "solucion": "cañón",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ9",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Color marrón rojizo (contiene Ñ).",
+    "solucion": "castaño",
+    "materia": "plastica"
+  },
+  {
+    "id": "ñ10",
+    "letra": "Ñ",
+    "tipo": "contiene",
+    "definicion": "Elemento de sujeción o limpieza (contiene Ñ).",
+    "solucion": "pañuelo",
+    "materia": "plastica"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Punto de corte de las alturas de un triángulo.",
+    "solucion": "ortocentro",
+    "materia": "plastica"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Curva técnica plana y cerrada con un eje de simetría.",
+    "solucion": "ovoide",
+    "materia": "plastica"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Curva técnica con dos ejes de simetría.",
+    "solucion": "óvalo",
+    "materia": "plastica"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Pintura al aceite.",
+    "solucion": "óleo",
+    "materia": "plastica"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Creación de un artista.",
+    "solucion": "obra",
+    "materia": "plastica"
+  },
+  {
+    "id": "o6",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Metal precioso amarillo.",
+    "solucion": "oro",
+    "materia": "plastica"
+  },
+  {
+    "id": "o7",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Colocación de elementos (Composición).",
+    "solucion": "orden",
+    "materia": "plastica"
+  },
+  {
+    "id": "o8",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Color tierra amarillento.",
+    "solucion": "ocre",
+    "materia": "plastica"
+  },
+  {
+    "id": "o9",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Punto (0,0) de coordenadas.",
+    "solucion": "origen",
+    "materia": "plastica"
+  },
+  {
+    "id": "o10",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Material que no deja pasar la luz.",
+    "solucion": "opaco",
+    "materia": "plastica"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Sistema de representación de la profundidad.",
+    "solucion": "perspectiva",
+    "materia": "plastica"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Vista superior de un objeto.",
+    "solucion": "planta",
+    "materia": "plastica"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Vista lateral de un objeto.",
+    "solucion": "perfil",
+    "materia": "plastica"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Figura plana cerrada de lados rectos.",
+    "solucion": "polígono",
+    "materia": "plastica"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Elemento básico del dibujo.",
+    "solucion": "punto",
+    "materia": "plastica"
+  },
+  {
+    "id": "p6",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Recta que nunca se corta con otra.",
+    "solucion": "paralela",
+    "materia": "plastica"
+  },
+  {
+    "id": "p7",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Recta que corta a otra a 90 grados.",
+    "solucion": "perpendicular",
+    "materia": "plastica"
+  },
+  {
+    "id": "p8",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Técnica de pintura seca.",
+    "solucion": "pastel",
+    "materia": "plastica"
+  },
+  {
+    "id": "p9",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Relación de tamaño.",
+    "solucion": "proporción",
+    "materia": "plastica"
+  },
+  {
+    "id": "p10",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Colores básicos (Rojo, Azul, Amarillo en pigmento).",
+    "solucion": "primarios",
+    "materia": "plastica"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Dibujo rápido a mano alzada (contiene Q).",
+    "solucion": "croquis",
+    "materia": "plastica"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Dibujo simplificado (Es..., contiene Q).",
+    "solucion": "esquema",
+    "materia": "plastica"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Apunte rápido (Bos..., contiene Q).",
+    "solucion": "bosquejo",
+    "materia": "plastica"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Estabilidad visual (contiene Q).",
+    "solucion": "equilibrio",
+    "materia": "plastica"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Modelo a escala (contiene Q).",
+    "solucion": "maqueta",
+    "materia": "plastica"
+  },
+  {
+    "id": "q6",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Arte de edificios (contiene Q).",
+    "solucion": "arquitectura",
+    "materia": "plastica"
+  },
+  {
+    "id": "q7",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Color azul verdoso (contiene Q).",
+    "solucion": "turquesa",
+    "materia": "plastica"
+  },
+  {
+    "id": "q8",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Masa sólida o cuaderno (contiene Q).",
+    "solucion": "bloque",
+    "materia": "plastica"
+  },
+  {
+    "id": "q9",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Identificación de una obra (contiene Q).",
+    "solucion": "etiqueta",
+    "materia": "plastica"
+  },
+  {
+    "id": "q10",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Producto de laboratorio (contiene Q).",
+    "solucion": "químico",
+    "materia": "plastica"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Línea del centro a la circunferencia.",
+    "solucion": "radio",
+    "materia": "plastica"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Línea sin curvas.",
+    "solucion": "recta",
+    "materia": "plastica"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Instrumento para medir.",
+    "solucion": "regla",
+    "materia": "plastica"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Repetición de formas.",
+    "solucion": "ritmo",
+    "materia": "plastica"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Estructura que se repite (R... modular).",
+    "solucion": "red",
+    "materia": "plastica"
+  },
+  {
+    "id": "r6",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Color primario.",
+    "solucion": "rojo",
+    "materia": "plastica"
+  },
+  {
+    "id": "r7",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Estilo que copia la realidad.",
+    "solucion": "realismo",
+    "materia": "plastica"
+  },
+  {
+    "id": "r8",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Escultura que sobresale.",
+    "solucion": "relieve",
+    "materia": "plastica"
+  },
+  {
+    "id": "r9",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Dibujo de una cara.",
+    "solucion": "retrato",
+    "materia": "plastica"
+  },
+  {
+    "id": "r10",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Época de Miguel Ángel.",
+    "solucion": "renacimiento",
+    "materia": "plastica"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Propiedad de figuras con la misma forma pero distinto tamaño.",
+    "solucion": "semejanza",
+    "materia": "plastica"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Correspondencia exacta respecto a un eje.",
+    "solucion": "simetría",
+    "materia": "plastica"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Parte de recta entre dos puntos.",
+    "solucion": "segmento",
+    "materia": "plastica"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Recta que corta a una circunferencia.",
+    "solucion": "secante",
+    "materia": "plastica"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Color mezcla de dos primarios.",
+    "solucion": "secundario",
+    "materia": "plastica"
+  },
+  {
+    "id": "s6",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Zona sin luz.",
+    "solucion": "sombra",
+    "materia": "plastica"
+  },
+  {
+    "id": "s7",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Pureza de un color.",
+    "solucion": "saturación",
+    "materia": "plastica"
+  },
+  {
+    "id": "s8",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Contorno de una figura.",
+    "solucion": "silueta",
+    "materia": "plastica"
+  },
+  {
+    "id": "s9",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Material donde se pinta.",
+    "solucion": "soporte",
+    "materia": "plastica"
+  },
+  {
+    "id": "s10",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Mezcla de pigmentos (Síntesis...).",
+    "solucion": "sustractiva",
+    "materia": "plastica"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Unión suave de dos líneas (un punto en común).",
+    "solucion": "tangencia",
+    "materia": "plastica"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Polígono de tres lados.",
+    "solucion": "triángulo",
+    "materia": "plastica"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Cuadrilátero con dos lados paralelos.",
+    "solucion": "trapecio",
+    "materia": "plastica"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Cualidad de la superficie.",
+    "solucion": "textura",
+    "materia": "plastica"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Grado de luz de un color.",
+    "solucion": "tono",
+    "materia": "plastica"
+  },
+  {
+    "id": "t6",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Pintura al agua opaca.",
+    "solucion": "témpera",
+    "materia": "plastica"
+  },
+  {
+    "id": "t7",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Procedimiento artístico.",
+    "solucion": "técnica",
+    "materia": "plastica"
+  },
+  {
+    "id": "t8",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Línea dibujada.",
+    "solucion": "trazo",
+    "materia": "plastica"
+  },
+  {
+    "id": "t9",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Instrumento para medir ángulos.",
+    "solucion": "transportador",
+    "materia": "plastica"
+  },
+  {
+    "id": "t10",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Con tres dimensiones.",
+    "solucion": "tridimensional",
+    "materia": "plastica"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Herramienta.",
+    "solucion": "útil",
+    "materia": "plastica"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Conexión.",
+    "solucion": "unión",
+    "materia": "plastica"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Ropa igual.",
+    "solucion": "uniforme",
+    "materia": "plastica"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Arte de la ciudad.",
+    "solucion": "urbano",
+    "materia": "plastica"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Objeto manual.",
+    "solucion": "utensilio",
+    "materia": "plastica"
+  },
+  {
+    "id": "u6",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Lugar.",
+    "solucion": "ubicación",
+    "materia": "plastica"
+  },
+  {
+    "id": "u7",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Uno solo.",
+    "solucion": "unidad",
+    "materia": "plastica"
+  },
+  {
+    "id": "u8",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Luz invisible (UV).",
+    "solucion": "ultravioleta",
+    "materia": "plastica"
+  },
+  {
+    "id": "u9",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Sombra oscura.",
+    "solucion": "umbra",
+    "materia": "plastica"
+  },
+  {
+    "id": "u10",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Aplicar pegamento o pintura.",
+    "solucion": "untar",
+    "materia": "plastica"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Proyecciones de un objeto (Alzado, Planta...).",
+    "solucion": "vistas",
+    "materia": "plastica"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Punto de unión de lados.",
+    "solucion": "vértice",
+    "materia": "plastica"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Medida del espacio 3D.",
+    "solucion": "volumen",
+    "materia": "plastica"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Luminosidad.",
+    "solucion": "valor",
+    "materia": "plastica"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Línea de arriba a abajo.",
+    "solucion": "vertical",
+    "materia": "plastica"
+  },
+  {
+    "id": "v6",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Color secundario.",
+    "solucion": "verde",
+    "materia": "plastica"
+  },
+  {
+    "id": "v7",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Color secundario.",
+    "solucion": "violeta",
+    "materia": "plastica"
+  },
+  {
+    "id": "v8",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Arte moderno innovador.",
+    "solucion": "vanguardia",
+    "materia": "plastica"
+  },
+  {
+    "id": "v9",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Sentido de ver.",
+    "solucion": "visión",
+    "materia": "plastica"
+  },
+  {
+    "id": "v10",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Capa transparente de pintura.",
+    "solucion": "veladura",
+    "materia": "plastica"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Diseño de páginas (contiene W).",
+    "solucion": "web",
+    "materia": "plastica"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Artista Pop (Andy...).",
+    "solucion": "warhol",
+    "materia": "plastica"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Luz de bombilla (contiene W).",
+    "solucion": "wolframio",
+    "materia": "plastica"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Programa de diseño (Soft..., contiene W).",
+    "solucion": "software",
+    "materia": "plastica"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Parte física del PC (contiene W).",
+    "solucion": "hardware",
+    "materia": "plastica"
+  },
+  {
+    "id": "w6",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Conexión (contiene W).",
+    "solucion": "wifi",
+    "materia": "plastica"
+  },
+  {
+    "id": "w7",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Película del oeste (contiene W).",
+    "solucion": "western",
+    "materia": "plastica"
+  },
+  {
+    "id": "w8",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Objeto pop art (Sand..., contiene W).",
+    "solucion": "sandwich",
+    "materia": "plastica"
+  },
+  {
+    "id": "w9",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Color verde fruta (contiene W).",
+    "solucion": "kiwi",
+    "materia": "plastica"
+  },
+  {
+    "id": "w10",
+    "letra": "W",
+    "tipo": "contiene",
+    "definicion": "Espectáculo (contiene W).",
+    "solucion": "show",
+    "materia": "plastica"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Calidad táctil (contiene X).",
+    "solucion": "textura",
+    "materia": "plastica"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Técnica combinada (contiene X).",
+    "solucion": "mixta",
+    "materia": "plastica"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Polígono de 6 lados (contiene X).",
+    "solucion": "hexágono",
+    "materia": "plastica"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Entorno (contiene X).",
+    "solucion": "contexto",
+    "materia": "plastica"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Punto final (contiene X).",
+    "solucion": "extremo",
+    "materia": "plastica"
+  },
+  {
+    "id": "x6",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Fuera (contiene X).",
+    "solucion": "exterior",
+    "materia": "plastica"
+  },
+  {
+    "id": "x7",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Curva hacia fuera (contiene X).",
+    "solucion": "convexo",
+    "materia": "plastica"
+  },
+  {
+    "id": "x8",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Manifestación artística (E...presión, contiene X).",
+    "solucion": "expresión",
+    "materia": "plastica"
+  },
+  {
+    "id": "x9",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Punto de imagen (contiene X).",
+    "solucion": "pixel",
+    "materia": "plastica"
+  },
+  {
+    "id": "x10",
+    "letra": "X",
+    "tipo": "empieza",
+    "definicion": "Grabado en madera.",
+    "solucion": "xilografía",
+    "materia": "plastica"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Parte del huevo (aglutinante).",
+    "solucion": "yema",
+    "materia": "plastica"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Material para moldes.",
+    "solucion": "yeso",
+    "materia": "plastica"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "Tejido rugoso.",
+    "solucion": "yute",
+    "materia": "plastica"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Color primario (contiene Y, común).",
+    "solucion": "espacios y lineas",
+    "materia": "plastica"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Más grande (contiene Y).",
+    "solucion": "mayor",
+    "materia": "plastica"
+  },
+  {
+    "id": "y6",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Líneas (contiene Y).",
+    "solucion": "rayas",
+    "materia": "plastica"
+  },
+  {
+    "id": "y7",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Lápiz de cera (contiene Y).",
+    "solucion": "crayon",
+    "materia": "plastica"
+  },
+  {
+    "id": "y8",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Plan de obra (contiene Y).",
+    "solucion": "proyecto",
+    "materia": "plastica"
+  },
+  {
+    "id": "y9",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Aerosol (contiene Y).",
+    "solucion": "spray",
+    "materia": "plastica"
+  },
+  {
+    "id": "y10",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Apoyo (contiene Y).",
+    "solucion": "apoyo",
+    "materia": "plastica"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Color del cielo (contiene Z).",
+    "solucion": "azul",
+    "materia": "plastica"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Línea dibujada (contiene Z).",
+    "solucion": "trazo",
+    "materia": "plastica"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Tiza (contiene Z).",
+    "solucion": "tiza",
+    "materia": "plastica"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Tablero negro (contiene Z).",
+    "solucion": "pizarra",
+    "materia": "plastica"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Variación de color (contiene Z).",
+    "solucion": "matiz",
+    "materia": "plastica"
+  },
+  {
+    "id": "z6",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Combinación (contiene Z).",
+    "solucion": "mezcla",
+    "materia": "plastica"
+  },
+  {
+    "id": "z7",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Claridad (contiene Z).",
+    "solucion": "luz",
+    "materia": "plastica"
+  },
+  {
+    "id": "z8",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Utensilio de grafito (contiene Z).",
+    "solucion": "lápiz",
+    "materia": "plastica"
+  },
+  {
+    "id": "z9",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Línea quebrada.",
+    "solucion": "zigzag",
+    "materia": "plastica"
+  },
+  {
+    "id": "z10",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Parte de un dibujo.",
+    "solucion": "zona",
+    "materia": "plastica"
+  }
 ]

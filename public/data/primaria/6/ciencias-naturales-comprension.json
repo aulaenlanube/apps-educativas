@@ -1,320 +1,285 @@
 [
   {
     "id": "1",
-    "titulo": "El Sistema Nervioso y los Actos Reflejos",
-    "texto": "El sistema nervioso coordina todo lo que hacemos. Se divide en el Sistema Nervioso Central (cerebro, cerebelo, bulbo raquídeo y médula espinal) y el Periférico (nervios). Los actos voluntarios son acciones conscientes que decide el cerebro, como caminar. En cambio, los actos reflejos son respuestas automáticas y rápidas ante un peligro, coordinadas directamente por la médula espinal sin esperar la orden del cerebro. Esto sucede, por ejemplo, cuando pinchamos un dedo y lo retiramos instantáneamente. Además, el cerebelo es vital para el equilibrio y la precisión de los movimientos finos.",
+    "titulo": "La Célula: Unidad de Vida",
+    "texto": "Todos los seres vivos están formados por células. En el siglo XIX, la teoría celular estableció que la célula es la unidad estructural, funcional y de origen de la vida. Existen dos grandes tipos: las procariotas, más sencillas y sin núcleo definido (como las bacterias), y las eucariotas, más complejas y con el material genético protegido en un núcleo. Dentro de las eucariotas, diferenciamos la célula animal de la vegetal; esta última posee una pared celular rígida y cloroplastos para realizar la fotosíntesis. En el citoplasma se encuentran los orgánulos, como las mitocondrias, encargadas de la respiración celular y de proporcionar energía.",
     "preguntas": [
       {
-        "pregunta": "¿Qué parte del sistema nervioso central coordina los actos reflejos?",
-        "opciones": ["Cerebro", "Médula espinal", "Nervios ópticos", "Huesos"],
+        "pregunta": "¿Qué caracteriza a las células procariotas?",
+        "opciones": [
+          "Tienen un núcleo muy grande",
+          "No tienen un núcleo definido",
+          "Son propias de las plantas",
+          "Solo viven en el agua"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué es un acto voluntario?",
-        "opciones": ["Latir el corazón", "Retirar la mano del fuego", "Decidir saltar un charco", "Digerir la comida"],
+        "pregunta": "¿Cuál es la función de las mitocondrias?",
+        "opciones": [
+          "Realizar la fotosíntesis",
+          "Proteger la célula",
+          "La respiración celular y energía",
+          "Almacenar agua"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Para qué sirve el cerebelo?",
-        "opciones": ["Para pensar", "Para el equilibrio y precisión", "Para ver colores", "Para respirar"],
-        "correcta": 1
+        "pregunta": "¿Qué contiene la célula vegetal que no tiene la animal?",
+        "opciones": [
+          "Núcleo",
+          "Citoplasma",
+          "Pared celular y cloroplastos",
+          "Membrana"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Cómo se llama el sistema formado por los nervios de todo el cuerpo?",
-        "opciones": ["S. N. Central", "S. N. Periférico", "S. N. Muscular", "S. N. Digestivo"],
-        "correcta": 1
+        "pregunta": "¿Quiénes son los seres vivos procariotas más conocidos?",
+        "opciones": [
+          "Los animales",
+          "Las plantas",
+          "Las bacterias",
+          "Los hongos"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Qué parte controla funciones vitales involuntarias como el latido cardíaco?",
-        "opciones": ["Cerebelo", "Bulbo raquídeo", "Cráneo", "Oído"],
+        "pregunta": "¿Qué establece la teoría celular sobre el origen de la vida?",
+        "opciones": [
+          "Que la vida viene del espacio",
+          "Que toda célula proviene de otra anterior",
+          "Que las piedras tienen células",
+          "Que el núcleo no es importante"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "El Sistema Endocrino y las Hormonas",
-    "texto": "Junto al sistema nervioso, el sistema endocrino controla el funcionamiento del cuerpo mediante mensajeros químicos llamados hormonas. Las glándulas endocrinas las vierten directamente en la sangre. Algunas glándulas importantes son: la hipófisis (controla el crecimiento), el tiroides (regula la energía), el páncreas (controla el azúcar mediante la insulina) y las glándulas suprarrenales (producen adrenalina ante el estrés o miedo). Este sistema actúa más lentamente que el nervioso, pero sus efectos son más duraderos, influyendo en el crecimiento, el metabolismo y la reproducción.",
+    "titulo": "Genética y Herencia: El ADN",
+    "texto": "El ADN (ácido desoxirribonucleico) es la molécula que contiene las instrucciones genéticas para el desarrollo y funcionamiento de todos los seres vivos. Se organiza en estructuras llamadas cromosomas, situadas dentro del núcleo celular. Los genes son fragmentos de ADN que determinan características específicas, como el color de los ojos o el tipo de pelo. Durante la reproducción, los progenitores transmiten su información genética a la descendencia. Gracias a los estudios de Gregor Mendel, hoy entendemos cómo se heredan los rasgos dominantes y recesivos, lo que explica por qué nos parecemos a nuestros padres pero somos seres únicos.",
     "preguntas": [
       {
-        "pregunta": "¿Qué son las hormonas?",
-        "opciones": ["Células nerviosas", "Mensajeros químicos", "Nutrientes líquidos", "Huesos pequeños"],
+        "pregunta": "¿Dónde se encuentran los cromosomas?",
+        "opciones": [
+          "En el citoplasma",
+          "En el núcleo celular",
+          "En las mitocondrias",
+          "En la pared celular"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué glándula regula el azúcar en la sangre?",
-        "opciones": ["Tiroides", "Páncreas", "Hipófisis", "Corazón"],
+        "pregunta": "¿Qué es un gen según el texto?",
+        "opciones": [
+          "Una parte de la célula",
+          "Un fragmento de ADN con información",
+          "Un tipo de bacteria",
+          "Una hormona"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Para qué sirve la adrenalina?",
-        "opciones": ["Para dormir", "Para crecer", "Para preparar el cuerpo ante peligro", "Para digerir"],
+        "pregunta": "¿Quién fue el precursor de los estudios sobre herencia genética?",
+        "opciones": [
+          "Isaac Newton",
+          "Albert Einstein",
+          "Gregor Mendel",
+          "Charles Darwin"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Dónde vierten las glándulas las hormonas?",
-        "opciones": ["En el estómago", "En la orina", "En la sangre", "En la piel"],
-        "correcta": 2
+        "pregunta": "¿Por qué nos parecemos a nuestros progenitores?",
+        "opciones": [
+          "Por la alimentación",
+          "Por la transmisión del ADN",
+          "Por el entorno",
+          "Por casualidad"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuál es la función principal de la hipófisis?",
-        "opciones": ["Controlar el crecimiento", "Fabricar sangre", "Ver en la oscuridad", "Mover los brazos"],
-        "correcta": 0
+        "pregunta": "¿Qué forma tiene la molécula de ADN habitualmente?",
+        "opciones": [
+          "Circular",
+          "Doble hélice",
+          "Plana",
+          "Piramidal"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Salud, Ciencia y Avances Médicos",
-    "texto": "La medicina ha avanzado enormemente para protegernos de las enfermedades. Las vacunas son fundamentales: introducen gérmenes debilitados para que nuestro sistema inmunitario aprenda a fabricar anticuerpos sin enfermarnos. Los antibióticos son medicamentos que matan bacterias, pero no funcionan contra los virus (como la gripe). Otros avances incluyen las radiografías (ver huesos rotos), las ecografías (ver bebés en el útero) y las cirugías con robots. Mantener hábitos saludables como una dieta equilibrada, ejercicio y horas de sueño suficientes sigue siendo la mejor prevención.",
+    "titulo": "El Sistema Nervioso y la Función de Relación",
+    "texto": "La función de relación nos permite percibir información del entorno y reaccionar ante ella. El sistema nervioso central, compuesto por el encéfalo y la médula espinal, procesa los estímulos captados por los órganos de los sentidos. El cerebro interpreta la información y elabora respuestas. Los actos voluntarios, como escribir, son decididos por la corteza cerebral, mientras que los actos reflejos son automáticos y coordinados por la médula. Además, el cerebelo se encarga de la precisión y el equilibrio. Las neuronas son las células especializadas que transmiten estos impulsos eléctricos mediante la sinapsis, una conexión química entre ellas.",
     "preguntas": [
       {
-        "pregunta": "¿Cómo funcionan las vacunas?",
-        "opciones": ["Matan bacterias directamente", "Ayudan a crear anticuerpos", "Dan energía instantánea", "Son solo vitaminas"],
+        "pregunta": "¿Qué órganos forman el sistema nervioso central?",
+        "opciones": [
+          "Los pulmones y el corazón",
+          "Los nervios periféricos",
+          "El encéfalo y la médula espinal",
+          "Solo los ojos"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es la sinapsis?",
+        "opciones": [
+          "Un tipo de hueso",
+          "La conexión entre neuronas",
+          "Un músculo del cerebro",
+          "Una glándula"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Contra qué microorganismos NO sirven los antibióticos?",
-        "opciones": ["Bacterias", "Virus", "Hongos", "Parásitos"],
+        "pregunta": "¿Qué parte controla el equilibrio de nuestro cuerpo?",
+        "opciones": [
+          "El cerebro",
+          "El cerebelo",
+          "La médula espinal",
+          "El bulbo raquídeo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué técnica médica se usa para ver huesos?",
-        "opciones": ["Ecografía", "Radiografía", "Análisis de sangre", "Estetoscopio"],
+        "pregunta": "¿En qué se diferencia un acto reflejo de uno voluntario?",
+        "opciones": [
+          "En que el reflejo es más lento",
+          "En que el reflejo es automático y no pasa por el cerebro",
+          "No hay diferencia",
+          "En que el voluntario es más rápido"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Quién fabrica los anticuerpos en nuestro cuerpo?",
-        "opciones": ["El cerebro", "El sistema inmunitario", "Los pulmones", "Las vitaminas"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Por qué es malo abusar de los antibióticos?",
-        "opciones": ["Porque son caros", "Porque las bacterias se hacen resistentes", "Porque dan sueño", "Porque no pasa nada"],
+        "pregunta": "¿Cuál es la función de las neuronas?",
+        "opciones": [
+          "Fabricar sangre",
+          "Transmitir impulsos eléctricos",
+          "Digerir alimentos",
+          "Proteger la piel"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Mezclas y Métodos de Separación",
-    "texto": "En la naturaleza es raro encontrar sustancias puras. Una mezcla es la unión de varias sustancias. En las homogéneas o disoluciones no se distinguen los componentes (como agua con azúcar). En las heterogéneas sí se ven (como agua con arena). Para separarlas usamos métodos físicos: la filtración (usar un filtro para sólidos y líquidos), la decantación (separar líquidos de distinta densidad como agua y aceite), la evaporación (calentar para que el líquido se evapore y quede el sólido, como en las salinas) y la destilación (para separar líquidos con distinto punto de ebullición).",
+    "titulo": "Energía y Materia: Las Leyes de la Física",
+    "texto": "La física estudia las propiedades de la materia y de la energía. La energía no se crea ni se destruye, solo se transforma (principio de conservación). Existen diversas fuentes: renovables (sol, viento, agua) y no renovables (petróleo, carbón, gas). La luz es una forma de energía electromagnética que viaja en línea recta y presenta fenómenos como la reflexión (rebote en superficies) y la refracción (cambio de dirección al cambiar de medio). Por otro lado, la electricidad es el flujo de electrones a través de un conductor. Comprender estas leyes ha permitido el desarrollo de motores, circuitos eléctricos y centrales generadoras de energía limpia.",
     "preguntas": [
       {
-        "pregunta": "¿Cómo se llama una mezcla donde no se ven los componentes?",
-        "opciones": ["Heterogénea", "Sustancia pura", "Homogénea", "Compuesto"],
+        "pregunta": "¿Qué afirma el principio de conservación de la energía?",
+        "opciones": [
+          "Que la energía desaparece",
+          "Que se crea de la nada",
+          "Que solo se transforma",
+          "Que siempre es renovable"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué método usarías para separar arena de agua?",
-        "opciones": ["Evaporación", "Filtración", "Magnetismo", "Destilación"],
+        "pregunta": "¿Qué ocurre en la refracción de la luz?",
+        "opciones": [
+          "La luz se detiene",
+          "La luz rebota como en un espejo",
+          "La luz cambia de dirección al pasar de un medio a otro",
+          "La luz se vuelve oscura"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál de estas es una fuente de energía NO renovable?",
+        "opciones": [
+          "El viento",
+          "La luz solar",
+          "El petróleo",
+          "La fuerza del agua"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es la corriente eléctrica?",
+        "opciones": [
+          "Agua fluyendo",
+          "Flujo de electrones",
+          "Aire caliente",
+          "Imanes frotándose"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Para qué sirve la decantación?",
-        "opciones": ["Separar gases", "Separar líquidos de distinta densidad", "Limpiar el aire", "Fabricar sal"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cómo se obtiene la sal del mar en las salinas?",
-        "opciones": ["Filtración", "Evaporación", "Decantación", "Tamizado"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué es la destilación?",
-        "opciones": ["Separar sólidos por tamaño", "Separar líquidos por punto de ebullición", "Usar un imán", "Batir fuerte"],
-        "correcta": 1
+        "pregunta": "¿Cómo viaja la luz habitualmente?",
+        "opciones": [
+          "En círculos",
+          "En zigzag",
+          "En línea recta",
+          "No se mueve"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Reacciones Químicas: Oxidación y Combustión",
-    "texto": "A diferencia de las mezclas, en las reacciones químicas las sustancias se transforman en otras nuevas. La oxidación ocurre cuando una sustancia se combina con el oxígeno del aire (como un clavo de hierro que se vuelve rojizo). La combustión es una oxidación muy rápida que desprende luz y calor (fuego). Para que haya fuego se necesita combustible (madera, gas), comburente (oxígeno) y calor. Otra reacción importante es la fermentación, realizada por microorganismos como levaduras para fabricar pan o yogur. También está la fotosíntesis, que es una reacción química vital realizada por las plantas.",
+    "titulo": "Ecosistemas y Desarrollo Sostenible",
+    "texto": "Un ecosistema es el conjunto de seres vivos (biocenosis) y el medio físico donde habitan (biotopo), junto a sus relaciones. La energía fluye a través de las cadenas tróficas, desde los productores (plantas) hasta los consumidores y descomponedores. Sin embargo, la actividad humana está alterando el equilibrio natural debido a la contaminación, la deforestación y el cambio climático inducido por el exceso de gases de efecto invernadero. El desarrollo sostenible busca satisfacer nuestras necesidades actuales sin comprometer las de las futuras generaciones, promoviendo el reciclaje, el consumo responsable y la protección de la biodiversidad.",
     "preguntas": [
       {
-        "pregunta": "¿Qué gas es necesario para que ocurra una oxidación?",
-        "opciones": ["Nitrógeno", "Helio", "Oxígeno", "Dióxido de carbono"],
+        "pregunta": "¿Qué forma un ecosistema?",
+        "opciones": [
+          "Solo los animales",
+          "Biocenosis, biotopo y sus relaciones",
+          "Solo el clima",
+          "Las granjas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quiénes son los productores en una cadena trófica?",
+        "opciones": [
+          "Los leones",
+          "Los hongos",
+          "Las plantas (seres fotosintéticos)",
+          "Los insectos"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué diferencia una reacción química de una mezcla?",
-        "opciones": ["El color", "Que aparecen sustancias nuevas", "Que se puede separar fácil", "Nada"],
+        "pregunta": "¿Qué es la biocenosis?",
+        "opciones": [
+          "El medio físico (rocas, agua, aire)",
+          "El conjunto de seres vivos del ecosistema",
+          "Un tipo de energía",
+          "La destrucción del bosque"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué elementos se necesitan para una combustión?",
-        "opciones": ["Solo madera", "Combustible, oxígeno y calor", "Agua y sol", "Electricidad y frío"],
+        "pregunta": "¿Cuál es el objetivo del desarrollo sostenible?",
+        "opciones": [
+          "Gastar todos los recursos rápido",
+          "Proteger el futuro usando los recursos con sabiduría",
+          "Eliminar la tecnología",
+          "No hacer nada"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se llama la reacción para hacer pan?",
-        "opciones": ["Oxidación", "Combustión", "Fermentación", "Evaporación"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué le pasa al hierro cuando se oxida?",
-        "opciones": ["Se vuelve azul", "Se convierte en oro", "Cambia su superficie y color", "Se evapora"],
-        "correcta": 2
-      }
-    ]
-  },
-  {
-    "id": "6",
-    "titulo": "Electricidad y Circuitos Eléctricos",
-    "texto": "La electricidad es el movimiento de cargas eléctricas. Para aprovecharla usamos circuitos eléctricos. Un circuito básico tiene: un generador (pila o batería) que da la energía; conductores (cables de cobre) por donde viajan las cargas; receptores (bombillas, motores) que transforman la electricidad en luz o movimiento; y un interruptor para abrir o cerrar el paso. Los materiales conductores (metales) dejan pasar la corriente fácilmente, mientras que los aislantes (plástico, madera, goma) la bloquean. Es vital manejar la electricidad con precaución, pues el cuerpo humano es conductor y puede sufrir descargas.",
-    "preguntas": [
-      {
-        "pregunta": "¿Qué componente del circuito proporciona la energía?",
-        "opciones": ["Interruptor", "Generador", "Cable", "Bombilla"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuál de estos materiales es un buen conductor?",
-        "opciones": ["Plástico", "Vidrio", "Cobre", "Madera"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué hace el interruptor?",
-        "opciones": ["Produce energía", "Controla el paso de la corriente", "Brilla", "Se calienta"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Para qué sirve el aislante en un cable?",
-        "opciones": ["Para que pese menos", "Para protegernos de descargas", "Para que la luz sea más fuerte", "Para nada"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué es un receptor en un circuito?",
-        "opciones": ["La pila", "El cable", "La bombilla", "El dedo"],
-        "correcta": 2
-      }
-    ]
-  },
-  {
-    "id": "7",
-    "titulo": "Magnetismo y Electromagnetismo",
-    "texto": "El magnetismo es la propiedad de atraer objetos de hierro o acero. Los imanes tienen un polo norte y un polo sur. Polos opuestos se atraen y polos iguales se repelen. La Tierra funciona como un imán gigante con polos magnéticos que permiten usar brújulas para orientarnos. Además, existe una relación entre electricidad y magnetismo: el electromagnetismo. Si enrollamos un cable por el que pasa corriente alrededor de un objeto de hierro, creamos un electroimán. Esta tecnología se usa en timbres, grúas de desguace y motores eléctricos, permitiendo activar o desactivar el magnetismo a voluntad.",
-    "preguntas": [
-      {
-        "pregunta": "¿Qué ocurre si acercas dos polos norte de dos imanes?",
-        "opciones": ["Se atraen", "Se repelen", "Se rompen", "Se calientan"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué es un electroimán?",
-        "opciones": ["Un imán de piedra", "Un imán que funciona con electricidad", "Una pila magnética", "Una brújula rota"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Para qué sirve una brújula?",
-        "opciones": ["Para medir temperatura", "Para orientarse con el magnetismo terrestre", "Para dar luz", "Para cargar el móvil"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Dónde se usa el electromagnetismo?",
-        "opciones": ["En una cuchara", "En timbres y motores", "En un libro", "En una vela"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué materiales atrae un imán?",
-        "opciones": ["Plástico y madera", "Hierro y acero", "Agua y aire", "Oro y plata"],
-        "correcta": 1
-      }
-    ]
-  },
-  {
-    "id": "8",
-    "titulo": "Luz y Sonido: Propiedades Físicas",
-    "texto": "La luz y el sonido son formas de energía que viajan en ondas. La luz viaja muy rápido (300.000 km/s) y en línea recta. Tiene dos propiedades clave: la reflexión (rebotar en espejos) y la refracción (cambiar de dirección al pasar de un medio a otro, como del aire al agua). El sonido es más lento y necesita un medio (aire, agua, sólido) para viajar; no se propaga en el vacío. Sus cualidades son: intensidad (fuerte/débil), tono (agudo/grave) y timbre (permite distinguir una guitarra de un piano). El eco es la reflexión del sonido al chocar con un obstáculo lejano.",
-    "preguntas": [
-      {
-        "pregunta": "¿Qué propiedad de la luz permite vernos en un espejo?",
-        "opciones": ["Refracción", "Reflexión", "Digestión", "Sombra"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Puede el sonido viajar por el espacio vacío?",
-        "opciones": ["Sí", "No, necesita un medio material", "Solo si hay luz", "Solo de día"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué es la refracción?",
-        "opciones": ["El rebote de la luz", "El cambio de dirección de la luz en medios distintos", "La falta de luz", "El color blanco"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué cualidad del sonido distingue un grito de un susurro?",
-        "opciones": ["Tono", "Intensidad", "Timbre", "Eco"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿A qué velocidad viaja la luz aproximadamente?",
-        "opciones": ["100 km/h", "300.000 km/s", "1.000 m/s", "A la del sonido"],
-        "correcta": 1
-      }
-    ]
-  },
-  {
-    "id": "9",
-    "titulo": "Máquinas: De las Simples a las Complejas",
-    "texto": "Las máquinas nos ayudan a realizar tareas con menos esfuerzo. Las máquinas simples tienen pocas piezas: palanca, polea, plano inclinado, torno y rueda. Las máquinas complejas están formadas por la unión de muchas máquinas simples y otros componentes como motores, engranajes y circuitos. Una bicicleta es una máquina compleja que usa palancas (frenos), engranajes (piñones) y ruedas. Las máquinas modernas ahorran tiempo y energía, pero requieren mantenimiento y seguridad. Hoy en día, muchas incorporan sensores y ordenadores para funcionar de forma automática o inteligente.",
-    "preguntas": [
-      {
-        "pregunta": "¿Cuál de estas es una máquina simple?",
-        "opciones": ["Coche", "Polea", "Ordenador", "Reloj"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué piezas transmiten el movimiento circular en las máquinas?",
-        "opciones": ["Palancas", "Engranajes", "Rampas", "Cables"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué forma una máquina compleja?",
-        "opciones": ["Solo plástico", "Muchas máquinas simples y componentes", "Solo un motor", "Nada especial"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Para qué sirve el plano inclinado?",
-        "opciones": ["Para cortar", "Para elevar pesos con menos esfuerzo", "Para girar", "Para iluminar"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué componente controla las máquinas automáticas?",
-        "opciones": ["Ruedas", "Sensores y circuitos electrónicos", "Cuerdas", "Martillos"],
-        "correcta": 1
-      }
-    ]
-  },
-  {
-    "id": "10",
-    "titulo": "Medio Ambiente y Cambio Climático",
-    "texto": "La Tierra se enfrenta a graves retos ambientales. El aumento de gases como el dióxido de carbono por la quema de combustibles fósiles potencia el efecto invernadero, causando el calentamiento global. Esto provoca el deshielo de los polos y climas extremos. Otros problemas son la deforestación (pérdida de bosques) y la contaminación de océanos por plásticos. Para combatir esto, debemos aplicar el Desarrollo Sostenible: usar energías limpias, proteger la biodiversidad y practicar las 3R (Reducir, Reutilizar, Reciclar). Cuidar el medio ambiente es responsabilidad de todos para garantizar el futuro de las próximas generaciones.",
-    "preguntas": [
-      {
-        "pregunta": "¿Qué gas principal aumenta el efecto invernadero?",
-        "opciones": ["Oxígeno", "Dióxido de carbono", "Argón", "Vapor de agua"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué es el calentamiento global?",
-        "opciones": ["Un día de mucho calor", "El aumento de la temperatura media de la Tierra", "El calor del sol", "Una estación del año"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué significa Desarrollo Sostenible?",
-        "opciones": ["Gastar todo ahora", "Usar recursos sin dañar el futuro", "No usar tecnología", "Vivir en cuevas"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Cuál es una consecuencia del cambio climático?",
-        "opciones": ["Más nieve en verano", "Deshielo de los polos", "Aire más limpio", "Peces más grandes"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué podemos hacer individualmente para ayudar?",
-        "opciones": ["Gastar mucha agua", "Reciclar y ahorrar energía", "Tirar basura al suelo", "Nada, no sirve"],
+        "pregunta": "¿Qué causa el calentamiento global según el texto?",
+        "opciones": [
+          "La falta de nubes",
+          "El exceso de gases de efecto invernadero",
+          "El uso de bicicletas",
+          "La luz de la luna"
+        ],
         "correcta": 1
       }
     ]

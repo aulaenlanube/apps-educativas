@@ -1,321 +1,543 @@
 [
   {
     "id": "1",
-    "titulo": "Compartir es divertido",
-    "texto": "Juan tiene un balón nuevo. Su amigo Luis quiere jugar también, pero solo hay un balón. Juan piensa un poco y decide que es más divertido jugar los dos juntos pasándose la pelota. Se ríen mucho en el patio.",
+    "titulo": "Nuestro cuerpo está creciendo",
+    "texto": "Al llegar a 5º de primaria, muchos niños y niñas notan que su cuerpo empieza a cambiar. Es el comienzo de la pubertad. Es normal crecer muy rápido, que aparezca vello o que cambie la voz. Cada persona tiene su propio ritmo y no debemos compararnos. Lo más importante es mantener una buena higiene personal y respetar los cambios de los demás con naturalidad.",
     "preguntas": [
       {
-        "pregunta": "¿Juan tiene un balón nuevo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo se llama la etapa de cambios físicos?",
+        "opciones": [
+          "Infancia",
+          "Pubertad",
+          "Vejez",
+          "Nacimiento"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué cambios menciona el texto?",
+        "opciones": [
+          "Crecer, vello, cambio de voz",
+          "Cambio de color de ojos",
+          "Aprender a volar",
+          "Ninguno"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Juegan cada uno por su lado?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Debemos compararnos con los demás?",
+        "opciones": [
+          "Sí",
+          "No, cada uno tiene su ritmo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué deciden hacer?",
-        "opciones": ["Pelearse", "Jugar juntos", "Guardar el balón", "Romperlo"],
-        "correcta": 1
+        "pregunta": "¿Qué hábito es fundamental en esta etapa?",
+        "opciones": [
+          "Higiene personal",
+          "Dormir todo el día",
+          "Comer chuches",
+          "No bañarse"
+        ],
+        "correcta": 0
       },
       {
-        "pregunta": "¿Cómo se lo pasan?",
-        "opciones": ["Mal", "Aburridos", "Tristes", "Muy bien"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué valor aprenden?",
-        "opciones": ["A gritar", "A compartir", "A pegar", "A correr"],
+        "pregunta": "¿Cómo debemos tratar los cambios de los compañeros?",
+        "opciones": [
+          "Con risas",
+          "Con respeto y naturalidad",
+          "Ignorándolos",
+          "Con miedo"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "La niña nueva",
-    "texto": "Hoy ha llegado una niña nueva a clase que se llama Aila. Viene de otro país y no conoce a nadie. Al principio estaba sola en el recreo. María y sus amigas la han visto y la han invitado a saltar a la comba con ellas.",
+    "titulo": "La realidad tras la pantalla",
+    "texto": "A veces vemos en las redes sociales fotos de personas perfectas, en lugares increíbles y siempre felices. Sin embargo, muchas de esas imágenes tienen filtros o son solo una pequeña parte de la realidad. Comparar nuestra vida con lo que vemos en la pantalla puede hacernos sentir tristes. Debemos recordar que nadie es perfecto y que lo más valioso es lo que somos en persona, sin filtros.",
     "preguntas": [
       {
-        "pregunta": "¿Aila es nueva en el colegio?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Tenía muchos amigos al principio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Son reales todas las fotos de las redes sociales?",
+        "opciones": [
+          "Sí, siempre",
+          "No, suelen tener filtros o ser solo una parte"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿De dónde viene Aila?",
-        "opciones": ["De su casa", "De otro país", "Del parque", "De la tienda"],
+        "pregunta": "¿Qué sentimiento puede causar compararse con esas fotos?",
+        "opciones": [
+          "Mucha alegría",
+          "Tristeza o inseguridad",
+          "Hambre",
+          "Sueño"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿A qué la invitan a jugar?",
-        "opciones": ["Al fútbol", "Al escondite", "A la comba", "A las cartas"],
-        "correcta": 2
+        "pregunta": "¿Qué es lo más valioso según el texto?",
+        "opciones": [
+          "Tener muchos 'likes'",
+          "Lo que somos en persona",
+          "Tener el mejor móvil",
+          "Saber usar filtros"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué han hecho María y sus amigas?",
-        "opciones": ["Ignorarla", "Molestarla", "Integrarla", "Gritarle"],
-        "correcta": 2
+        "pregunta": "¿Existe la persona perfecta?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirven los filtros en las fotos?",
+        "opciones": [
+          "Para limpiar la lente",
+          "Para cambiar el aspecto de la realidad",
+          "Para que el móvil pese menos",
+          "Para nada"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Saber pedir perdón",
-    "texto": "Carlos corría por la clase y sin querer ha tirado el estuche de Ana al suelo. Todos los lápices se han desperdigado. Carlos se ha parado, le ha pedido perdón a Ana y le ha ayudado a recogerlos todos rápidamente.",
+    "titulo": "Técnicas para estudiar mejor",
+    "texto": "Estudiar no es solo leer y repetir de memoria. Existen técnicas que nos ayudan a entender mejor los temas. Por ejemplo, hacer un esquema o un mapa mental con colores ayuda visualmente a nuestro cerebro. También es útil explicar el tema a un familiar o a un peluche como si fuéramos profesores. ¡Si puedes explicarlo, es que lo has aprendido de verdad!",
     "preguntas": [
       {
-        "pregunta": "¿Carlos quería tirar el estuche?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Estudiar es solo repetir de memoria?",
+        "opciones": [
+          "Sí",
+          "No, es entender"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Se han caído los lápices?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué ha hecho Carlos primero?",
-        "opciones": ["Reírse", "Irse corriendo", "Pedir perdón", "Gritar"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué han hecho después?",
-        "opciones": ["Recogerlos", "Pisarlos", "Dejarlos ahí", "Llorar"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo se ha comportado Carlos?",
-        "opciones": ["Mal", "Bien", "Regular", "Fatal"],
+        "pregunta": "¿Qué técnica visual menciona el texto?",
+        "opciones": [
+          "Cerrar los ojos",
+          "Esquemas o mapas mentales",
+          "Mirar el techo",
+          "Pintar la pared"
+        ],
         "correcta": 1
+      },
+      {
+        "pregunta": "¿A quién podemos explicar el tema para practicar?",
+        "opciones": [
+          "A nadie",
+          "A un familiar o un peluche",
+          "Solo al profesor",
+          "Al televisor"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué demuestra que hemos aprendido algo?",
+        "opciones": [
+          "Si lo olvidamos rápido",
+          "Si somos capaces de explicarlo",
+          "Si tenemos el libro nuevo",
+          "Si el examen es largo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Ayudan los colores en los esquemas?",
+        "opciones": [
+          "Sí, ayudan al cerebro",
+          "No, distraen"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Cuando estoy enfadado",
-    "texto": "A veces, cuando las cosas no salen bien, nos enfadamos. Dani estaba haciendo un dibujo y se le ha roto la punta del lápiz. Se ha enfadado mucho, pero ha respirado hondo tres veces para calmarse. Luego le ha sacado punta tranquilamente.",
+    "titulo": "Solidarios con los demás",
+    "texto": "Este trimestre, nuestro colegio ha organizado una recogida de alimentos. La solidaridad consiste en ayudar a los demás sin esperar nada a cambio. Al traer un paquete de arroz o legumbres, estamos colaborando para que familias que pasan dificultades puedan comer mejor. Ser solidario nos ayuda a ser mejores personas y a valorar lo que tenemos.",
     "preguntas": [
       {
-        "pregunta": "¿Dani estaba haciendo un puzle?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es la solidaridad?",
+        "opciones": [
+          "Comprar cosas baratas",
+          "Ayudar sin esperar nada a cambio",
+          "Hacer deporte",
+          "Ganar concursos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Se le rompió el lápiz?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hizo para calmarse?",
-        "opciones": ["Gritar", "Pegar a la mesa", "Romper el papel", "Respirar hondo"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué emoción sentía Dani?",
-        "opciones": ["Alegría", "Enfado", "Miedo", "Sueño"],
+        "pregunta": "¿Qué actividad ha organizado el colegio?",
+        "opciones": [
+          "Un partido de fútbol",
+          "Una recogida de alimentos",
+          "Un viaje a la playa",
+          "Un examen extra"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hizo al final?",
-        "opciones": ["Sacar punta", "Irse a casa", "Llorar", "Dormir"],
-        "correcta": 0
+        "pregunta": "¿Qué alimentos se mencionan como ejemplo?",
+        "opciones": [
+          "Helados",
+          "Arroz y legumbres",
+          "Gominolas",
+          "Refrescos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué nos beneficia ser solidarios?",
+        "opciones": [
+          "En nada",
+          "En ser mejores personas y valorar lo que tenemos",
+          "En ganar dinero",
+          "En tener más deberes"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A quién va dirigida la ayuda?",
+        "opciones": [
+          "A los profesores",
+          "A familias con dificultades",
+          "A los astronautas",
+          "A los animales del zoo"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Las palabras mágicas",
-    "texto": "En clase usamos las palabras mágicas para llevarnos bien. Si queremos pedir algo, decimos 'por favor'. Cuando alguien nos ayuda o nos da algo, decimos 'gracias'. Si queremos pasar y hay gente, decimos 'permiso'.",
+    "titulo": "Los derechos de la infancia",
+    "texto": "Todos los niños del mundo tienen los mismos derechos, sin importar su país o su religión. Tienen derecho a tener un nombre, una familia, a ir a la escuela, a recibir atención médica y a jugar. Pero los derechos también traen deberes: por ejemplo, si tenemos derecho a la educación, tenemos el deber de estudiar y respetar a nuestros maestros y compañeros.",
     "preguntas": [
       {
-        "pregunta": "¿Existen palabras mágicas?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Quién tiene estos derechos?",
+        "opciones": [
+          "Solo los niños ricos",
+          "Todos los niños del mundo",
+          "Solo los adultos",
+          "Nadie"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál de estos es un derecho?",
+        "opciones": [
+          "Tener un móvil caro",
+          "Tener un nombre y una familia",
+          "Dormir hasta tarde",
+          "Comer solo chocolate"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué traen consigo los derechos?",
+        "opciones": [
+          "Premios",
+          "Deberes o responsabilidades",
+          "Dinero",
+          "Más juguetes"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Si tenemos derecho a la educación, ¿cuál es nuestro deber?",
+        "opciones": [
+          "Jugar todo el rato",
+          "Estudiar y respetar",
+          "No ir a clase",
+          "Gritar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Tienen todos los niños derecho a jugar?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 0
-      },
-      {
-        "pregunta": "¿Decimos 'gracias' para pedir algo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué decimos para pedir algo?",
-        "opciones": ["Dámelo", "Lo quiero", "Por favor", "Tonto"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué decimos cuando nos ayudan?",
-        "opciones": ["Adiós", "Gracias", "Hola", "Nada"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Para qué sirven estas palabras?",
-        "opciones": ["Para volar", "Para convivir mejor", "Para comer", "Para correr"],
-        "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Trabajo en equipo",
-    "texto": "La clase estaba muy desordenada después de hacer manualidades. Había papeles y pegamento por todas partes. La profesora dijo: '¡Equipo de limpieza!'. Todos los niños ayudaron a recoger y en cinco minutos la clase estaba perfecta.",
+    "titulo": "Igualdad entre hombres y mujeres",
+    "texto": "Antiguamente, se pensaba que había trabajos para hombres y trabajos para mujeres. Hoy sabemos que esto no es verdad. Tanto hombres como mujeres pueden ser excelentes médicos, ingenieros, maestros o bomberos. En casa, también es importante que todos colaboren en la limpieza y la cocina. La igualdad significa tener las mismas oportunidades y el mismo respeto.",
     "preguntas": [
       {
-        "pregunta": "¿La clase estaba limpia al principio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Hay trabajos exclusivos para hombres?",
+        "opciones": [
+          "Sí",
+          "No, ambos pueden hacer cualquier trabajo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Ayudaron todos los niños?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué tareas deben repartirse en casa?",
+        "opciones": [
+          "Ninguna",
+          "La limpieza y la cocina",
+          "Solo las que quiera mamá",
+          "Solo las que quiera papá"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué significa la igualdad según el texto?",
+        "opciones": [
+          "Ser idénticos",
+          "Tener las mismas oportunidades y respeto",
+          "Hacer lo mismo siempre",
+          "No trabajar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Puede una mujer ser bombera?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué habían hecho antes?",
-        "opciones": ["Gimnasia", "Música", "Manualidades", "Matemáticas"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cuánto tardaron en limpiar?",
-        "opciones": ["Una hora", "Un día", "Cinco minutos", "Nada"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cómo es mejor trabajar?",
-        "opciones": ["Solos", "En equipo", "Peleando", "Mirando"],
-        "correcta": 1
+        "pregunta": "¿Puede un hombre ser maestro?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Todos somos diferentes",
-    "texto": "En mi grupo de amigos todos somos diferentes. Pablo es muy alto. Sara lleva gafas y lee muy bien. A mí se me da bien dibujar. Cada uno tiene cosas buenas y lo importante es que nos queremos tal como somos.",
+    "titulo": "Tu salud es lo primero",
+    "texto": "A veces, para parecer 'mayores', algunos adolescentes prueban el tabaco o el vapeo. Es importante saber que estas sustancias dañan nuestros pulmones y nuestro corazón desde el primer momento. Las empresas que los fabrican usan colores y sabores dulces para engañar a los jóvenes. Ser inteligente es saber decir 'no' y cuidar nuestro cuerpo, que es nuestra herramienta para vivir.",
     "preguntas": [
       {
-        "pregunta": "¿Son todos iguales?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué órganos dañan el tabaco y el vapeo?",
+        "opciones": [
+          "Los ojos",
+          "Pulmones y corazón",
+          "El pelo",
+          "Las uñas"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Pablo es bajo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo intentan las empresas engañar a los jóvenes?",
+        "opciones": [
+          "Con precios altos",
+          "Con colores y sabores dulces",
+          "Con avisos de peligro",
+          "No hacen nada"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué lleva Sara?",
-        "opciones": ["Gorra", "Gafas", "Coleta", "Bufanda"],
+        "pregunta": "¿Por qué algunos prueban estas cosas?",
+        "opciones": [
+          "Para estar sanos",
+          "Para parecer 'mayores'",
+          "Porque es bueno",
+          "Para correr más"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué se le da bien al narrador?",
-        "opciones": ["Cantar", "Bailar", "Dibujar", "Correr"],
-        "correcta": 2
+        "pregunta": "¿Qué significa ser inteligente en este caso?",
+        "opciones": [
+          "Probarlo todo",
+          "Saber decir 'no' y cuidar el cuerpo",
+          "Esconderse",
+          "Comprar mucho"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué es lo importante?",
-        "opciones": ["Ser guapos", "Quererse y respetarse", "Tener juguetes", "Ser rápidos"],
+        "pregunta": "¿El vapeo es sano?",
+        "opciones": [
+          "Sí",
+          "No, es peligroso"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Decir la verdad",
-    "texto": "Elena ha roto sin querer un vaso de agua en la cocina. Su mamá ha preguntado quién ha sido. Elena tenía miedo de que la riñeran, pero ha dicho la verdad: 'He sido yo'. Su mamá no se ha enfadado porque Elena ha sido sincera.",
+    "titulo": "Vivir en democracia",
+    "texto": "España es una democracia. Esto significa que los ciudadanos eligen a sus representantes mediante el voto. La Constitución es la ley más importante, donde se recogen nuestros derechos y deberes. En democracia, es fundamental el respeto a las opiniones de los demás, aunque sean diferentes a las nuestras. El diálogo es la base para resolver los problemas de convivencia.",
     "preguntas": [
       {
-        "pregunta": "¿Elena rompió un plato?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es una democracia?",
+        "opciones": [
+          "Donde manda uno solo",
+          "Donde los ciudadanos eligen con el voto",
+          "Donde no hay leyes",
+          "Un tipo de deporte"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Elena dijo la verdad?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es la ley más importante en España?",
+        "opciones": [
+          "El libro de texto",
+          "La Constitución",
+          "Las normas del fútbol",
+          "El diccionario"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es fundamental para la convivencia?",
+        "opciones": [
+          "Gritar más fuerte",
+          "El respeto a las opiniones diferentes",
+          "Hacer lo que yo diga",
+          "Pelearse"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se deben resolver los problemas?",
+        "opciones": [
+          "Con el diálogo",
+          "Con el silencio",
+          "Con la fuerza",
+          "Cambiando de país"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué se rompió?",
-        "opciones": ["Una taza", "Un vaso", "Una ventana", "Una botella"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Por qué no se enfadó mamá?",
-        "opciones": ["Porque fue sincera", "Porque no lo vio", "Porque era viejo", "Porque no estaba"],
+        "pregunta": "¿Los ciudadanos tienen deberes?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
         "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo se sentía Elena al principio?",
-        "opciones": ["Feliz", "Con miedo", "Enfadada", "Cansada"],
-        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Cuidamos los libros",
-    "texto": "Los libros de la biblioteca del colegio son de todos. No podemos pintar en ellos ni romper las hojas. Hay que tratarlos con cuidado. Si cuidamos los cuentos, otros niños podrán leerlos y disfrutar de las historias después de nosotros.",
+    "titulo": "La amistad verdadera",
+    "texto": "Un buen amigo no es solo aquel con el que nos divertimos. Un amigo de verdad es el que nos apoya cuando estamos tristes, el que nos dice la verdad aunque nos duela y el que nos ayuda a ser mejores personas. En 5º de primaria, las amistades se vuelven más profundas. Debemos aprender a valorar a quienes están a nuestro lado en los momentos difíciles.",
     "preguntas": [
       {
-        "pregunta": "¿Los libros son solo míos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo es un buen amigo?",
+        "opciones": [
+          "El que solo quiere jugar",
+          "El que nos apoya y nos dice la verdad",
+          "El que nos da dinero",
+          "El que se ríe de nosotros"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Podemos pintar en los libros?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué hace un amigo si estamos tristes?",
+        "opciones": [
+          "Nos deja solos",
+          "Nos apoya",
+          "Se enfada",
+          "No hace nada"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo hay que tratar los libros?",
-        "opciones": ["Mal", "Con fuerza", "Con cuidado", "Arrugándolos"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿De dónde son los libros?",
-        "opciones": ["De la biblioteca", "De la tienda", "Del parque", "De la basura"],
+        "pregunta": "¿Son importantes los momentos difíciles en la amistad?",
+        "opciones": [
+          "Sí, para ver quién es amigo de verdad",
+          "No, solo los buenos"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Para qué los cuidamos?",
-        "opciones": ["Para que estén bonitos", "Para otros niños", "Para que pesen más", "Para nada"],
+        "pregunta": "¿Debemos decir la verdad a los amigos?",
+        "opciones": [
+          "Sí, aunque a veces duela",
+          "No, hay que mentir siempre"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cómo son las amistades en estas edades?",
+        "opciones": [
+          "Iguales que en infantil",
+          "Se vuelven más profundas",
+          "Más tontas",
+          "Desaparecen"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Ayudar a los demás",
-    "texto": "En el recreo, Lucas se ha tropezado y se ha hecho daño en la rodilla. Estaba llorando en el suelo. Su amiga Inés ha ido corriendo a ayudarle. Le ha dado la mano para levantarse y le ha acompañado a buscar a la profesora.",
+    "titulo": "Nuestro compromiso con el planeta",
+    "texto": "El cambio climático es una realidad que nos afecta a todos. Como ciudadanos, tenemos la responsabilidad de consumir solo lo necesario y reducir los residuos. Gestos como llevar una botella reutilizable al cole o usar el transporte público ayudan mucho. El futuro del planeta depende de las decisiones que tomemos hoy. ¡Hagamos que nuestra huella sea positiva!",
     "preguntas": [
       {
-        "pregunta": "¿Lucas se ha caído?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿De quién es la responsabilidad de cuidar el planeta?",
+        "opciones": [
+          "Solo de los políticos",
+          "De todos nosotros como ciudadanos",
+          "De nadie",
+          "Solo de los científicos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué gesto ayuda a reducir residuos?",
+        "opciones": [
+          "Usar botellas reutilizables",
+          "Comprar muchas cosas nuevas",
+          "Tirar basura al río",
+          "Encender todas las luces"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Inés se ha reído de él?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿De qué depende el futuro del planeta?",
+        "opciones": [
+          "De la suerte",
+          "De nuestras decisiones de hoy",
+          "Del pasado",
+          "No hay esperanza"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué le dolía a Lucas?",
-        "opciones": ["La cabeza", "El brazo", "La rodilla", "El pie"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué ha hecho Inés?",
-        "opciones": ["Empujarle", "Ayudarle", "Gritarle", "Ignorarle"],
+        "pregunta": "¿Qué debemos reducir?",
+        "opciones": [
+          "Los amigos",
+          "Los residuos y el consumo innecesario",
+          "Las horas de sueño",
+          "La comida sana"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿A quién han buscado?",
-        "opciones": ["Al director", "A la profesora", "A la policía", "Al médico"],
-        "correcta": 1
+        "pregunta": "¿Es mejor el transporte público para el planeta?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 0
       }
     ]
   }

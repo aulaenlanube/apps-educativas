@@ -1,17 +1,85 @@
 {
   "la_familia": [
-    "mamá", "papá", "abuelo", "abuela", "tío", 
-    "tía", "primo", "prima", "bebé", "hermano"
+    "mamá",
+    "papá",
+    "abuelo",
+    "abuela",
+    "tío",
+    "tía",
+    "primo",
+    "prima",
+    "bebé",
+    "hermano",
+    "hermana",
+    "yayito",
+    "yayita",
+    "hijo",
+    "hija",
+    "papi",
+    "mami",
+    "familia",
+    "pariente",
+    "nieto"
   ],
-  "la_casa": [
-    "baño", "salón", "cocina", "cama", "mesa", 
-    "silla", "sofá", "puerta", "suelo", "techo"
+  "muebles_de_casa": [
+    "cama",
+    "mesa",
+    "silla",
+    "sofá",
+    "armario",
+    "nevera",
+    "bañera",
+    "espejo",
+    "lámpara",
+    "estantería",
+    "televisión",
+    "horno",
+    "mecedora",
+    "cuna",
+    "cómoda",
+    "tapete",
+    "cuadro",
+    "reloj de pared",
+    "alfombra",
+    "cortina"
   ],
-  "el_colegio": [
-    "lápiz", "goma", "libro", "mesa", "patio", 
-    "clase", "profe", "tiza", "papel", "babi"
+  "material_de_clase": [
+    "lápiz",
+    "goma de borrar",
+    "libro",
+    "pizarra",
+    "estuche",
+    "profe",
+    "tiza",
+    "papel",
+    "babi escolar",
+    "mochila",
+    "colores",
+    "pegamento",
+    "sacapuntas",
+    "regla",
+    "tijeras",
+    "cuaderno",
+    "pincel",
+    "pupitre",
+    "agenda",
+    "mapa"
   ],
-  "dias_semana": [
-    "lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"
+  "dias_de_la_semana": [
+    "lunes",
+    "martes",
+    "miércoles",
+    "jueves",
+    "viernes",
+    "sábado",
+    "domingo",
+    "hoy",
+    "ayer",
+    "mañana",
+    "semana",
+    "finde",
+    "festivo",
+    "clase",
+    "descanso"
   ]
 }

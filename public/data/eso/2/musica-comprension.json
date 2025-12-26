@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "El Canto Gregoriano",
+        "texto": "El Canto Gregoriano es la música de la Iglesia Católica durante la Edad Media. Se llama así en honor al Papa Gregorio I. Sus características principales son: es música vocal (sin instrumentos), en latín, con ritmo libre y de textura MONODICA (todos cantan la misma melodía a la vez). No buscaba el lucimiento del cantante, sino la oración y el recogimiento. Los monjes lo escribían en pergaminos usando una notación antigua llamada NEUMAS, que eran signos que indicaban si la voz subía o bajaba.",
+        "preguntas": [
+            {
+                "pregunta": "¿En qué idioma se cantaba el Canto Gregoriano?",
+                "opciones": [
+                    "Español",
+                    "Latín",
+                    "Griego",
+                    "Alemán"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué instrumentos acompañaban al canto gregoriano?",
+                "opciones": [
+                    "Órgano",
+                    "Laúd",
+                    "Ninguno, era solo vocal",
+                    "Tambores"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Cuál es su textura musical?",
+                "opciones": [
+                    "Polifonía",
+                    "Monodia",
+                    "Homofonía",
+                    "Contrapunto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llamaban los primeros signos de notación musical?",
+                "opciones": [
+                    "Notas",
+                    "Claves",
+                    "Neumas",
+                    "Letras"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿A qué época pertenece este estilo?",
+                "opciones": [
+                    "Edad Media",
+                    "Renacimiento",
+                    "Barroco",
+                    "Clasicismo"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "La Polifonía Medieval",
+        "texto": "A partir del siglo IX, la música empezó a evolucionar y surgió la POLIFONÍA: varias líneas melódicas que suenan a la vez. El primer tipo de polifonía se llamó ORGANUM, que consistía en añadir una segunda voz paralela a la melodía del canto gregoriano. Con el tiempo, el Ars Antiqua y el Ars Nova hicieron que esta polifonía fuera mucho más compleja y rítmica. Este avance es fundamental porque supuso el nacimiento de la armonía y la necesidad de una escritura musical mucho más precisa.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la polifonía?",
+                "opciones": [
+                    "Un solo cantante",
+                    "Varias líneas melódicas que suenan a la vez",
+                    "Música sin ritmo",
+                    "Cantar muy alto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llamó la primera forma de polifonía?",
+                "opciones": [
+                    "Motete",
+                    "Organum",
+                    "Misa",
+                    "Ópera"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué dos periodos de la polifonía medieval menciona el texto?",
+                "opciones": [
+                    "Rock y Pop",
+                    "Ars Antiqua y Ars Nova",
+                    "Barroco y Renacimiento",
+                    "Antiguo y Moderno"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La polifonía dio origen a:",
+                "opciones": [
+                    "El silencio",
+                    "La armonía",
+                    "La danza",
+                    "La pintura"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué la polifonía cambió la escritura musical?",
+                "opciones": [
+                    "Para que fuera más bonita",
+                    "Porque hacía falta ser más precisos con el ritmo y las notas",
+                    "Para gastar menos papel",
+                    "No cambió nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Música Profana: Trovadores y Juglares",
+        "texto": "No toda la música de la Edad Media era religiosa. Existía la música profana, que hablaba de amor, guerras y fiestas. Los TROVADORES eran músicos cultos, a menudo de la nobleza, que componían sus canciones y versos. Por el contrario, los JUGLARES eran artistas callejeros que viajaban de pueblo en pueblo entreteniendo a la gente con música, acrobacias y noticias; ellos solían interpretar las canciones de los trovadores. Utilizaban instrumentos como el laúd, la zanfona, la flauta y diversos tipos de percusión.",
+        "preguntas": [
+            {
+                "pregunta": "¿De qué temas hablaba la música profana?",
+                "opciones": [
+                    "Solo de Dios",
+                    "Amor, guerras y fiestas",
+                    "De matemáticas",
+                    "No tenía temas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quiénes eran los músicos cultos y poetas?",
+                "opciones": [
+                    "Juglares",
+                    "Trovadores",
+                    "Monjes",
+                    "Reyes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hacían los juglares además de cantar?",
+                "opciones": [
+                    "Dormir",
+                    "Acrobacias y contar noticias",
+                    "Construir iglesias",
+                    "Inventar el latín"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál era la principal diferencia social entre ellos?",
+                "opciones": [
+                    "Ninguna",
+                    "Trovadores eran cultos/nobles; Juglares eran artistas callejeros",
+                    "Los juglares eran reyes",
+                    "Los trovadores vivían en el campo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita un instrumento mencionado:",
+                "opciones": [
+                    "Piano",
+                    "Laúd o zanfona",
+                    "Guitarra eléctrica",
+                    "Sintetizador"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "La Música en el Renacimiento",
+        "texto": "En el Renacimiento (siglos XV y XVI), la música buscó la belleza y el equilibrio. La polifonía alcanzó su máximo esplendor. Surge el ideal del humanismo, dando más importancia al hombre. Aparecen instrumentos más perfeccionados y géneros nuevos: el MADRIGAL (canción profana polifónica) y el MOTETE (religioso). La imprenta musical permitió que las partituras llegaran a más gente. En España destacaron compositores como Tomás Luis de Victoria, considerado uno de los mejores de la historia de la música sacra.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué buscaba la música en el Renacimiento?",
+                "opciones": [
+                    "El ruido",
+                    "La belleza y el equilibrio",
+                    "La oscuridad",
+                    "La tristeza"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un madrigal?",
+                "opciones": [
+                    "Un instrumento",
+                    "Una canción profana polifónica",
+                    "Un tipo de baile rápido",
+                    "Un libro sagrado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué invento ayudó a difundir las partituras?",
+                "opciones": [
+                    "Internet",
+                    "La imprenta musical",
+                    "El CD",
+                    "La radio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién fue el compositor español más importante mencionado?",
+                "opciones": [
+                    "Manuel de Falla",
+                    "Tomás Luis de Victoria",
+                    "Mozart",
+                    "Beethoven"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué se le daba más importancia en el Renacimiento?",
+                "opciones": [
+                    "A los animales",
+                    "Al ser humano (humanismo)",
+                    "Solo a los reyes",
+                    "A las máquinas"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "El Barroco: El nacimiento de la Ópera",
+        "texto": "El periodo Barroco (1600-1750) es la época de los contrastes, la ornamentación y el drama. El gran hito fue el nacimiento de la ÓPERA en Italia, una obra de teatro cantada con acompañamiento instrumental. Claudio Monteverdi fue el pionero con 'Orfeo'. En esta época también surgió la orquesta y el concepto de tonalidad. Instrumentos como el violín alcanzaron una gran importancia gracias a constructores de leyenda como Stradivarius. La música barroca suena enérgica, con un bajo continuo que mantiene el ritmo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la ópera?",
+                "opciones": [
+                    "Un cuadro pintado",
+                    "Una obra de teatro cantada con orquesta",
+                    "Un poema sin música",
+                    "Un tipo de flauta"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién escribió la primera gran ópera, 'Orfeo'?",
+                "opciones": [
+                    "Bach",
+                    "Claudio Monteverdi",
+                    "Vivaldi",
+                    "Mozart"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué instrumento fue protagonista en el Barroco?",
+                "opciones": [
+                    "Piano",
+                    "Violín",
+                    "Sintesizador",
+                    "Clarinete"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué nombre recibe el acompañamiento constante del Barroco?",
+                "opciones": [
+                    "Solo alto",
+                    "Bajo continuo",
+                    "Silencio total",
+                    "Eco"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se describe el estilo barroco?",
+                "opciones": [
+                    "Simple y plano",
+                    "De contrastes y ornamentación",
+                    "Mudo",
+                    "Sin ritmo"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Los Genios del Barroco: Bach y Vivaldi",
+        "texto": "Dos de los más grandes compositores de la historia vivieron en el Barroco. Johann Sebastian BACH, en Alemania, perfeccionó la polifonía y el contrapunto; su música es técnica y espiritual. Por otro lado, Antonio VIVALDI, en Italia, fue un genio del violín y del concierto. Su obra más famosa, 'Las cuatro estaciones', es música programática, es decir, música que intenta describir escenas de la naturaleza (pájaros, tormentas, nieve) a través de los instrumentos sin necesidad de palabras.",
+        "preguntas": [
+            {
+                "pregunta": "¿De qué nacionalidad era Bach?",
+                "opciones": [
+                    "Español",
+                    "Alemán",
+                    "Italiano",
+                    "Francés"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la obra más famosa de Vivaldi?",
+                "opciones": [
+                    "Himno de la alegría",
+                    "Las cuatro estaciones",
+                    "La flauta mágica",
+                    "El lago de los cisnes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la música programática?",
+                "opciones": [
+                    "Música para ordenador",
+                    "Música que describe escenas o historias",
+                    "Música sin ritmo",
+                    "Cantar con micro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué técnica perfeccionó Bach?",
+                "opciones": [
+                    "El rock",
+                    "La polifonía y el contrapunto",
+                    "El baile moderno",
+                    "La pintura al óleo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué instrumento dominaba Vivaldi?",
+                "opciones": [
+                    "Piano",
+                    "Violín",
+                    "Trompeta",
+                    "Flauta"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "El Clasicismo: Orden y Claridad",
+        "texto": "El Clasicismo (siglo XVIII) reacciona contra el exceso del Barroco buscando la sencillez, el orden y la claridad. La melodía se vuelve más pegadiza y fácil de seguir. Es la época de oro de la SINFONÍA y del CUARTETO de cuerda. El piano (llamado entonces pianoforte) sustituye al clavecín porque permite hacer sonidos fuertes y pianos. Los tres grandes genios de esta época vivieron en Viena: HAYDN (el padre de la sinfonía), MOZART (el niño prodigio) y BEETHOVEN (quien abriría las puertas al Romanticismo).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué buscaba la música clásica frente al Barroco?",
+                "opciones": [
+                    "Más adornos",
+                    "Sencillez, orden y claridad",
+                    "Oscuridad",
+                    "Música electrónica"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué instrumento sustituyó al clavecín?",
+                "opciones": [
+                    "Guitarra",
+                    "Pianoforte (Piano)",
+                    "Órgano",
+                    "Arpa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién es conocido como el niño prodigio del Clasicismo?",
+                "opciones": [
+                    "Beethoven",
+                    "Mozart",
+                    "Bach",
+                    "Vivaldi"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué forma musical alcanzó su 'época de oro'?",
+                "opciones": [
+                    "Canto gregoriano",
+                    "La sinfonía",
+                    "El rock",
+                    "La jota"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué ciudad vivieron los grandes genios clásicos?",
+                "opciones": [
+                    "París",
+                    "Londres",
+                    "Viena",
+                    "Madrid"
+                ],
+                "correcta": 2
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Forma Musical: Repetición y Contraste",
+        "texto": "La forma musical es la estructura de una obra, como el 'plano' de una casa pero en música. Los compositores usan dos recursos básicos: REPETICIÓN (volvemos a escuchar algo igual para recordarlo) y CONTRASTE (escuchamos algo diferente para no aburrirnos). Una forma común es la BINARIA (A-B) o la TERNARIA (A-B-A). También el RONDÓ, donde un tema principal (A) aparece siempre después de cada contraste (A-B-A-C-A). Conocer la forma nos ayuda a entender mejor lo que escuchamos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la forma musical?",
+                "opciones": [
+                    "El volumen",
+                    "La estructura o plano de una obra",
+                    "El color del piano",
+                    "El nombre de la canción"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuáles son los dos recursos básicos de la forma?",
+                "opciones": [
+                    "Susto y risa",
+                    "Repetición y Contraste",
+                    "Grito y silencio",
+                    "Cantar y bailar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué estructura tiene una forma ternaria?",
+                "opciones": [
+                    "A-B",
+                    "A-B-C",
+                    "A-B-A",
+                    "A-A-A"
+                ],
+                "correcta": 2
+            },
+            {
+                "pregunta": "¿Qué caracteriza al Rondó?",
+                "opciones": [
+                    "No se repite nada",
+                    "El tema principal vuelve siempre entre contrastes",
+                    "Es solo para tambor",
+                    "No tiene final"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve el contraste en la música?",
+                "opciones": [
+                    "Para que sea más difícil",
+                    "Para no aburrir al oyente con lo mismo",
+                    "Para afinar",
+                    "No sirve para nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "La Agrupación de Cámara",
+        "texto": "La música de cámara es aquella escrita para un grupo pequeño de instrumentos que cabrían en una sala o 'cámara'. Cada músico toca una parte diferente (son solistas). La agrupación más famosa es el CUARTETO DE CUERDA, formado por dos violines, una viola y un violonchelo. También existen quintetos de viento o tríos con piano. Al no haber director, los músicos deben comunicarse visualmente y escucharse con mucha atención. Es una música íntima y llena de detalles.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué define a la música de cámara?",
+                "opciones": [
+                    "Se toca en una cámara de fotos",
+                    "Escrita para un grupo pequeño de instrumentos",
+                    "Solo para cantantes",
+                    "Se toca en estadios grandes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué instrumentos forman el cuarteto de cuerda?",
+                "opciones": [
+                    "Tres guitarras y un bajo",
+                    "Dos violines, una viola y un violonchelo",
+                    "Un piano y tres flautas",
+                    "Cuatro tambores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Hay director en la música de cámara?",
+                "opciones": [
+                    "Sí, siempre",
+                    "Normalmente no, se comunican entre ellos",
+                    "Solo en el siglo XXI",
+                    "Solo si son muchos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En estas agrupaciones cada músico es un...",
+                "opciones": [
+                    "Aprendiz",
+                    "Solista (toca una parte única)",
+                    "Extra",
+                    "Director"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué habilidad es vital para estos músicos?",
+                "opciones": [
+                    "Gritar",
+                    "La escucha atenta y comunicación visual",
+                    "Tocar con los ojos cerrados",
+                    "Correr por el escenario"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "La Música en el Cine",
+        "texto": "La música es una parte vital de las películas. Al principio, el cine era MUDO, pero siempre había un pianista tocando en directo en la sala para dar emoción y tapar el ruido del proyector. Su función es AMBIENTAR (darnos la época o lugar), EXPRESAR (sentimientos de los personajes) o ANTICIPAR (avisarnos de que algo va a pasar, como en Tiburón). Grandes compositores como John Williams (Star Wars) o Hans Zimmer son famosos en todo el mundo por crear bandas sonoras inolvidables.",
+        "preguntas": [
+            {
+                "pregunta": "¿Había música en el cine mudo?",
+                "opciones": [
+                    "No, era silencio total",
+                    "Sí, un pianista tocaba en directo",
+                    "Solo si la gente cantaba",
+                    "Solo al final"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita una función de la música en el cine:",
+                "opciones": [
+                    "Hacer que la gente coma palomitas",
+                    "Ambientar, expresar o anticipar situaciones",
+                    "Vender entradas",
+                    "Limpiar la pantalla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Quién compuso la música de Star Wars?",
+                "opciones": [
+                    "Mozart",
+                    "John Williams",
+                    "Beethoven",
+                    "Michael Jackson"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si escuchamos una música de tensión antes de que aparezca un monstruo, ¿qué función cumple?",
+                "opciones": [
+                    "Ambientar",
+                    "Anticipar",
+                    "Finalizar",
+                    "Divertir"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la banda sonora?",
+                "opciones": [
+                    "Un grupo de rock",
+                    "El conjunto de música y sonidos de una película",
+                    "El guión escrito",
+                    "El nombre de los actores"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

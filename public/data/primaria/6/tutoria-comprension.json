@@ -1,321 +1,561 @@
 [
   {
     "id": "1",
-    "titulo": "Compartir es divertido",
-    "texto": "Juan tiene un balón nuevo. Su amigo Luis quiere jugar también, pero solo hay un balón. Juan piensa un poco y decide que es más divertido jugar los dos juntos pasándose la pelota. Se ríen mucho en el patio.",
+    "titulo": "El gran salto: Camino al Instituto",
+    "texto": "Terminar 6º de primaria significa cerrar una etapa muy bonita para empezar otra emocionante: la Educación Secundaria Obligatoria (ESO). Es normal sentir un poco de miedo o nervios. En el instituto habrá más profesores, nuevos compañeros y materias diferentes. Lo importante es mantener una actitud positiva, ser organizados y no tener miedo a pedir ayuda si nos sentimos perdidos. ¡Es el comienzo de una gran aventura!",
     "preguntas": [
       {
-        "pregunta": "¿Juan tiene un balón nuevo?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Juegan cada uno por su lado?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué etapa educativa empieza después de 6º?",
+        "opciones": [
+          "La guardería",
+          "La ESO",
+          "La universidad",
+          "El trabajo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué deciden hacer?",
-        "opciones": ["Pelearse", "Jugar juntos", "Guardar el balón", "Romperlo"],
+        "pregunta": "¿Es normal sentir nervios ante el cambio?",
+        "opciones": [
+          "No, es de cobardes",
+          "Sí, es algo nuevo y es normal",
+          "Solo si eres pequeño",
+          "No, nadie siente nada"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se lo pasan?",
-        "opciones": ["Mal", "Aburridos", "Tristes", "Muy bien"],
-        "correcta": 3
+        "pregunta": "¿Qué cambios habrá en el instituto?",
+        "opciones": [
+          "Nada cambia",
+          "Más profesores y nuevas materias",
+          "Solo habrá recreos",
+          "No habrá libros"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué valor aprenden?",
-        "opciones": ["A gritar", "A compartir", "A pegar", "A correr"],
+        "pregunta": "¿Qué consejo da el texto para el instituto?",
+        "opciones": [
+          "No estudiar nada",
+          "Ser organizados y positivos",
+          "No hablar con nadie",
+          "Estar asustados"
+        ],
         "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué debemos hacer si nos sentimos perdidos?",
+        "opciones": [
+          "Llorar",
+          "No decir nada",
+          "Pedir ayuda",
+          "Irse a casa"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "La niña nueva",
-    "texto": "Hoy ha llegado una niña nueva a clase que se llama Aila. Viene de otro país y no conoce a nadie. Al principio estaba sola en el recreo. María y sus amigas la han visto y la han invitado a saltar a la comba con ellas.",
+    "titulo": "Creciendo por dentro y por fuera",
+    "texto": "Durante este curso muchos notáis que vuestro cuerpo está cambiando. Es la pubertad. No solo cambiamos físicamente (estirones, cambios en la voz o en la piel), sino que también cambian nuestras emociones. A veces podemos sentirnos muy alegres y, al rato, algo tristes sin motivo. Aprender a conocer estos cambios y aceptarlos con naturalidad es fundamental para nuestra autoestima. Todos crecemos a ritmos diferentes, y eso está bien.",
     "preguntas": [
       {
-        "pregunta": "¿Aila es nueva en el colegio?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Tenía muchos amigos al principio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cómo se llama la etapa de cambios físicos y emocionales?",
+        "opciones": [
+          "La niñez",
+          "La pubertad",
+          "La vejez",
+          "El invierno"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿De dónde viene Aila?",
-        "opciones": ["De su casa", "De otro país", "Del parque", "De la tienda"],
+        "pregunta": "¿Solo cambia el cuerpo por fuera?",
+        "opciones": [
+          "Sí",
+          "No, también cambian las emociones",
+          "No cambia nada",
+          "Solo cambia el pelo"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿A qué la invitan a jugar?",
-        "opciones": ["Al fútbol", "Al escondite", "A la comba", "A las cartas"],
-        "correcta": 2
+        "pregunta": "¿Es malo cambiar de humor de repente en esta etapa?",
+        "opciones": [
+          "Sí, es una enfermedad",
+          "No, es parte del proceso emocional",
+          "Solo si eres niña",
+          "Sí, hay que evitarlo"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué han hecho María y sus amigas?",
-        "opciones": ["Ignorarla", "Molestarla", "Integrarla", "Gritarle"],
-        "correcta": 2
+        "pregunta": "¿Crecemos todos al mismo tiempo?",
+        "opciones": [
+          "Sí, por ley",
+          "No, cada uno lleva su ritmo",
+          "Sí, según el mes de nacimiento",
+          "Solo los que comen mucho"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué es fundamental conocer estos cambios?",
+        "opciones": [
+          "Para aprobar mates",
+          "Para nuestra autoestima",
+          "Para correr más",
+          "Para dormir"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "Saber pedir perdón",
-    "texto": "Carlos corría por la clase y sin querer ha tirado el estuche de Ana al suelo. Todos los lápices se han desperdigado. Carlos se ha parado, le ha pedido perdón a Ana y le ha ayudado a recogerlos todos rápidamente.",
+    "titulo": "La ilusión de las redes sociales",
+    "texto": "En las redes sociales solemos ver solo la parte 'perfecta' de la vida de los demás: viajes, ropa increíble y caras felices. Pero debemos recordar que eso es solo una pequeña parte de la realidad, a veces retocada con filtros. Comparar nuestra vida real con la vida digital de otros puede hacernos sentir mal injustamente. Tu valor no depende de los 'likes' que recibas, sino de quién eres y cómo tratas a los demás.",
     "preguntas": [
       {
-        "pregunta": "¿Carlos quería tirar el estuche?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué solemos ver en las redes sociales?",
+        "opciones": [
+          "Toda la verdad",
+          "Solo la parte perfecta o retocada",
+          "La gente cuando limpia",
+          "Solo noticias tristes"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Se han caído los lápices?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "¿Debemos comparar nuestra vida con lo que vemos online?",
+        "opciones": [
+          "Sí, para mejorar",
+          "No, porque no es toda la realidad",
+          "A veces",
+          "Solo si tenemos filtros"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué ha hecho Carlos primero?",
-        "opciones": ["Reírse", "Irse corriendo", "Pedir perdón", "Gritar"],
-        "correcta": 2
+        "pregunta": "¿De qué NO depende tu valor personal?",
+        "opciones": [
+          "De tu bondad",
+          "De los 'likes' en las fotos",
+          "De tu esfuerzo",
+          "De tu empatía"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué han hecho después?",
-        "opciones": ["Recogerlos", "Pisarlos", "Dejarlos ahí", "Llorar"],
-        "correcta": 0
+        "pregunta": "¿Qué usan algunas personas para mejorar sus fotos?",
+        "opciones": [
+          "Gafas",
+          "Filtros y retoques",
+          "Mucha comida",
+          "Libros"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se ha comportado Carlos?",
-        "opciones": ["Mal", "Bien", "Regular", "Fatal"],
+        "pregunta": "¿Qué es lo más importante en una persona?",
+        "opciones": [
+          "Su ropa",
+          "Quién es y cómo trata a los demás",
+          "Su móvil",
+          "Sus seguidores"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "Cuando estoy enfadado",
-    "texto": "A veces, cuando las cosas no salen bien, nos enfadamos. Dani estaba haciendo un dibujo y se le ha roto la punta del lápiz. Se ha enfadado mucho, pero ha respirado hondo tres veces para calmarse. Luego le ha sacado punta tranquilamente.",
+    "titulo": "¿Es verdad? Pensamiento crítico",
+    "texto": "Hoy en día recibimos muchísima información por Internet y WhatsApp. Algunas de estas noticias son falsas ('fake news') y solo buscan engañar o crear miedo. Antes de compartir algo, debemos preguntarnos: ¿Es creíble? ¿Quién es la fuente? ¿Parece una broma? Tener pensamiento crítico significa no creerse todo a la primera y buscar la verdad para no ayudar a difundir mentiras que pueden hacer daño.",
     "preguntas": [
       {
-        "pregunta": "¿Dani estaba haciendo un puzle?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué son las 'fake news'?",
+        "opciones": [
+          "Noticias divertidas",
+          "Noticias falsas que engañan",
+          "Noticias muy rápidas",
+          "Noticias de animales"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Se le rompió el lápiz?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hizo para calmarse?",
-        "opciones": ["Gritar", "Pegar a la mesa", "Romper el papel", "Respirar hondo"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Qué emoción sentía Dani?",
-        "opciones": ["Alegría", "Enfado", "Miedo", "Sueño"],
+        "pregunta": "¿Qué debemos hacer antes de compartir una noticia?",
+        "opciones": [
+          "Compartirla rápido",
+          "Pensar si es creíble y ver la fuente",
+          "Borrarla siempre",
+          "Llamar a la policía"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué hizo al final?",
-        "opciones": ["Sacar punta", "Irse a casa", "Llorar", "Dormir"],
+        "pregunta": "¿Qué significa tener pensamiento crítico?",
+        "opciones": [
+          "Criticar a los amigos",
+          "No creerse todo sin antes analizarlo",
+          "Pensar mucho en el examen",
+          "No tener opinión"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué se crean noticias falsas según el texto?",
+        "opciones": [
+          "Por error",
+          "Para engañar o crear miedo",
+          "Para ayudar a la gente",
+          "Por aburrimiento"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Si compartes una mentira, ¿puedes hacer daño?",
+        "opciones": [
+          "Sí",
+          "No, es solo Internet"
+        ],
         "correcta": 0
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "Las palabras mágicas",
-    "texto": "En clase usamos las palabras mágicas para llevarnos bien. Si queremos pedir algo, decimos 'por favor'. Cuando alguien nos ayuda o nos da algo, decimos 'gracias'. Si queremos pasar y hay gente, decimos 'permiso'.",
+    "titulo": "La fuerza de la palabra: Asertividad",
+    "texto": "Cuando algo nos molesta, tenemos tres formas de reaccionar. La agresiva (gritar o insultar), la pasiva (callarse y aguantar) y la ASERTIVA. Ser asertivo es decir lo que piensas y sientes con respeto, sin atacar a los demás pero defendiendo tus derechos. Por ejemplo, decir: 'Me molesta que cojas mis cosas sin permiso, por favor pídeme permiso la próxima vez'. La asertividad es la llave para resolver conflictos con madurez.",
     "preguntas": [
       {
-        "pregunta": "¿Existen palabras mágicas?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Decimos 'gracias' para pedir algo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es la asertividad?",
+        "opciones": [
+          "Gritar más fuerte",
+          "Decir lo que sientes con respeto",
+          "No decir nada nunca",
+          "Pegar al que molesta"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué decimos para pedir algo?",
-        "opciones": ["Dámelo", "Lo quiero", "Por favor", "Tonto"],
+        "pregunta": "Si insultas a alguien, ¿cómo estás actuando?",
+        "opciones": [
+          "De forma pasiva",
+          "De forma asertiva",
+          "De forma agresiva",
+          "De forma divertida"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué decimos cuando nos ayudan?",
-        "opciones": ["Adiós", "Gracias", "Hola", "Nada"],
+        "pregunta": "¿Qué es la reacción pasiva?",
+        "opciones": [
+          "Callarse y aguantar aunque te moleste",
+          "Hablar tranquilamente",
+          "Irse corriendo",
+          "Hacer un dibujo"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Para qué es la llave la asertividad?",
+        "opciones": [
+          "Para abrir la clase",
+          "Para resolver conflictos con madurez",
+          "Para aprobar lengua",
+          "Para ganar amigos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Para qué sirven estas palabras?",
-        "opciones": ["Para volar", "Para convivir mejor", "Para comer", "Para correr"],
+        "pregunta": "¿Se puede ser asertivo y educado a la vez?",
+        "opciones": [
+          "No",
+          "Sí, es el objetivo"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Trabajo en equipo",
-    "texto": "La clase estaba muy desordenada después de hacer manualidades. Había papeles y pegamento por todas partes. La profesora dijo: '¡Equipo de limpieza!'. Todos los niños ayudaron a recoger y en cinco minutos la clase estaba perfecta.",
+    "titulo": "Diversidad: Un mundo de colores",
+    "texto": "En nuestra clase hay personas de diferentes culturas, con distintas capacidades, gustos y formas de pensar. Esa diversidad es una riqueza, no un problema. Aprender de alguien que piensa distinto a nosotros nos hace más inteligentes y abiertos. La inclusión consiste en que todos, sin importar nuestras diferencias, tengamos las mismas oportunidades de participar y sentirnos parte del grupo.",
     "preguntas": [
       {
-        "pregunta": "¿La clase estaba limpia al principio?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es la diversidad según el texto?",
+        "opciones": [
+          "Un problema",
+          "Una riqueza",
+          "Algo aburrido",
+          "Una clase de gimnasia"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Ayudaron todos los niños?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué nos hace aprender de gente distinta?",
+        "opciones": [
+          "Más tontos",
+          "Más inteligentes y abiertos",
+          "Más bajitos",
+          "Nada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué consiste la inclusión?",
+        "opciones": [
+          "En que todos participen y se sientan parte",
+          "En separar a los diferentes",
+          "En que solo unos pocos jueguen",
+          "En no hablar con extraños"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Qué habían hecho antes?",
-        "opciones": ["Gimnasia", "Música", "Manualidades", "Matemáticas"],
-        "correcta": 2
+        "pregunta": "¿Hay alguien 'normal' y otros 'raros'?",
+        "opciones": [
+          "Sí",
+          "No, todos somos diferentes y eso está bien"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cuánto tardaron en limpiar?",
-        "opciones": ["Una hora", "Un día", "Cinco minutos", "Nada"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Cómo es mejor trabajar?",
-        "opciones": ["Solos", "En equipo", "Peleando", "Mirando"],
+        "pregunta": "¿Qué debemos respetar en los demás?",
+        "opciones": [
+          "Solo su dinero",
+          "Su cultura, gustos y capacidades",
+          "Su marca de ropa",
+          "Solo si nos caen bien"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Todos somos diferentes",
-    "texto": "En mi grupo de amigos todos somos diferentes. Pablo es muy alto. Sara lleva gafas y lee muy bien. A mí se me da bien dibujar. Cada uno tiene cosas buenas y lo importante es que nos queremos tal como somos.",
+    "titulo": "Responsabilidad y Autonomía",
+    "texto": "En 6º ya somos los mayores del colegio. Eso conlleva más responsabilidad. Ser autónomo significa ser capaz de hacer las cosas por uno mismo: preparar la mochila, organizar el tiempo de estudio sin que nos lo digan constantemente o cuidar nuestro material. La autonomía nos prepara para el instituto, donde nadie estará tan pendiente de nosotros como en primaria. ¡Tú puedes hacerlo!",
     "preguntas": [
       {
-        "pregunta": "¿Son todos iguales?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué significa ser autónomo?",
+        "opciones": [
+          "Tener un coche",
+          "Hacer las cosas por uno mismo con responsabilidad",
+          "No ir al colegio",
+          "Hacer lo que uno quiera siempre"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Pablo es bajo?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Cuál es un ejemplo de autonomía?",
+        "opciones": [
+          "Que tu madre te haga la mochila",
+          "Preparar tú mismo el material escolar",
+          "No estudiar nada",
+          "Perder los libros"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué lleva Sara?",
-        "opciones": ["Gorra", "Gafas", "Coleta", "Bufanda"],
+        "pregunta": "¿Para qué nos prepara la autonomía?",
+        "opciones": [
+          "Para las vacaciones",
+          "Para el instituto",
+          "Para la fiesta de fin de curso",
+          "Para nada"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué se le da bien al narrador?",
-        "opciones": ["Cantar", "Bailar", "Dibujar", "Correr"],
-        "correcta": 2
+        "pregunta": "¿Por qué es importante en el instituto?",
+        "opciones": [
+          "Porque es obligatorio",
+          "Porque los profesores estarán menos pendientes de tus tareas diarias",
+          "Porque allí no hay libros",
+          "Porque es más divertido"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué es lo importante?",
-        "opciones": ["Ser guapos", "Quererse y respetarse", "Tener juguetes", "Ser rápidos"],
+        "pregunta": "¿Deben decirnos siempre cuándo estudiar?",
+        "opciones": [
+          "Sí, siempre",
+          "No, debemos aprender a organizar nuestro tiempo"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Decir la verdad",
-    "texto": "Elena ha roto sin querer un vaso de agua en la cocina. Su mamá ha preguntado quién ha sido. Elena tenía miedo de que la riñeran, pero ha dicho la verdad: 'He sido yo'. Su mamá no se ha enfadado porque Elena ha sido sincera.",
+    "titulo": "Empatía ante el acoso",
+    "texto": "El acoso escolar (bullying) no es un juego de niños ni una broma. Ocurre cuando alguien ataca, insulta o excluye a otra persona de forma repetida. La pieza más importante para pararlo no es solo el profesor, sino los testigos (los compañeros que lo ven). Si vemos algo injusto, debemos tener la valentía de apoyarlos y contarlo. No es ser un 'chivato', es ser un valiente que defiende lo que está bien.",
     "preguntas": [
       {
-        "pregunta": "¿Elena rompió un plato?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué es el acoso escolar?",
+        "opciones": [
+          "Una broma divertida",
+          "Ataque o exclusión repetida hacia alguien",
+          "Un juego de patio",
+          "Hacer deberes juntos"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Elena dijo la verdad?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué se rompió?",
-        "opciones": ["Una taza", "Un vaso", "Una ventana", "Una botella"],
+        "pregunta": "¿Quién es clave para parar el acoso?",
+        "opciones": [
+          "Solo el director",
+          "Los testigos (compañeros)",
+          "Nadie puede",
+          "Los padres solamente"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Por qué no se enfadó mamá?",
-        "opciones": ["Porque fue sincera", "Porque no lo vio", "Porque era viejo", "Porque no estaba"],
-        "correcta": 0
+        "pregunta": "¿Es de 'chivatos' contar un caso de acoso?",
+        "opciones": [
+          "Sí, muy feo",
+          "No, es de valientes que defienden la justicia",
+          "A veces",
+          "Solo si es grave"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se sentía Elena al principio?",
-        "opciones": ["Feliz", "Con miedo", "Enfadada", "Cansada"],
+        "pregunta": "¿Cómo se siente la persona acosada?",
+        "opciones": [
+          "Muy feliz",
+          "Triste, asustada y sola",
+          "Enfadada solamente",
+          "No siente nada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué debemos hacer si vemos una injusticia?",
+        "opciones": [
+          "Mirar a otro lado",
+          "Apoyar a la víctima y contarlo",
+          "Reírnos",
+          "Huir"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Cuidamos los libros",
-    "texto": "Los libros de la biblioteca del colegio son de todos. No podemos pintar en ellos ni romper las hojas. Hay que tratarlos con cuidado. Si cuidamos los cuentos, otros niños podrán leerlos y disfrutar de las historias después de nosotros.",
+    "titulo": "La importancia de la Salud Mental",
+    "texto": "A veces nos preocupamos por un examen, por una pelea con un amigo o por el futuro. Sentir estrés o ansiedad es normal, pero debemos aprender a gestionarlo. Hablar de lo que sentimos con adultos de confianza o amigos, practicar deporte o simplemente respirar hondo son formas de cuidar nuestra salud mental. Estar bien psicológicamente es tan importante como estar bien físicamente.",
     "preguntas": [
       {
-        "pregunta": "¿Los libros son solo míos?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Es normal sentir estrés a veces?",
+        "opciones": [
+          "No, nunca",
+          "Sí, es una emoción humana",
+          "Solo los adultos",
+          "Solo si suspendes"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Podemos pintar en los libros?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué ayuda a cuidar la salud mental?",
+        "opciones": [
+          "Guardarse todo dentro",
+          "Hablar de lo que sentimos",
+          "Ver la tele 10 horas",
+          "Gritar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo hay que tratar los libros?",
-        "opciones": ["Mal", "Con fuerza", "Con cuidado", "Arrugándolos"],
-        "correcta": 2
+        "pregunta": "¿Con quién debemos hablar de nuestros problemas?",
+        "opciones": [
+          "Con nadie",
+          "Con adultos de confianza o amigos",
+          "Con desconocidos de Internet",
+          "Con la pared"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿De dónde son los libros?",
-        "opciones": ["De la biblioteca", "De la tienda", "Del parque", "De la basura"],
-        "correcta": 0
+        "pregunta": "¿Importa la salud mental?",
+        "opciones": [
+          "No, solo el cuerpo",
+          "Sí, tanto como la física",
+          "No existe",
+          "Solo en el hospital"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Para qué los cuidamos?",
-        "opciones": ["Para que estén bonitos", "Para otros niños", "Para que pesen más", "Para nada"],
+        "pregunta": "¿Qué técnica de relajación menciona el texto?",
+        "opciones": [
+          "Correr 50 km",
+          "Respirar hondo",
+          "Comer postres",
+          "Jugar a la consola"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "Ayudar a los demás",
-    "texto": "En el recreo, Lucas se ha tropezado y se ha hecho daño en la rodilla. Estaba llorando en el suelo. Su amiga Inés ha ido corriendo a ayudarle. Le ha dado la mano para levantarse y le ha acompañado a buscar a la profesora.",
+    "titulo": "Solidaridad: Ayudar a los demás",
+    "texto": "Ser solidario significa preocuparse por personas que lo están pasando mal, ya sea en nuestro barrio o en la otra punta del mundo. Podemos ser solidarios donando alimentos, participando en una carrera benéfica o simplemente ayudando a un compañero que no entiende un ejercicio. La solidaridad nos hace mejores personas y ayuda a construir un mundo más justo y amable para todos.",
     "preguntas": [
       {
-        "pregunta": "¿Lucas se ha caído?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué significa ser solidario?",
+        "opciones": [
+          "Tener mucho dinero",
+          "Preocuparse y ayudar a quien lo necesita",
+          "Ser el más listo",
+          "Viajar mucho"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Ayudar a un compañero en clase es...",
+        "opciones": [
+          "Solidaridad",
+          "Perder el tiempo",
+          "Hacer trampas",
+          "Ser tonto"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "¿Inés se ha reído de él?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "¿Qué acciones solidarias menciona el texto?",
+        "opciones": [
+          "Donar alimentos y carreras benéficas",
+          "Comprar juguetes caros",
+          "Ir de vacaciones",
+          "Ver la tele"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿A quién beneficia la solidaridad?",
+        "opciones": [
+          "A nadie",
+          "A la sociedad y a uno mismo",
+          "Solo a los ricos",
+          "Solo a los niños"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué le dolía a Lucas?",
-        "opciones": ["La cabeza", "El brazo", "La rodilla", "El pie"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué ha hecho Inés?",
-        "opciones": ["Empujarle", "Ayudarle", "Gritarle", "Ignorarle"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿A quién han buscado?",
-        "opciones": ["Al director", "A la profesora", "A la policía", "Al médico"],
-        "correcta": 1
+        "pregunta": "¿Ayuda la solidaridad a construir un mundo mejor?",
+        "opciones": [
+          "Sí",
+          "No"
+        ],
+        "correcta": 0
       }
     ]
   }

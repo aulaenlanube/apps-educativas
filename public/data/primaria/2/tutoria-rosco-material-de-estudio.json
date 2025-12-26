@@ -1,0 +1,816 @@
+{
+  "titulo": "Material de Estudio - Tutoria - 2º PRIMARIA",
+  "introduccion": "Repasa este vocabulario de Tutoria para ganar en el Rosco.",
+  "secciones": [
+    {
+      "letra": "A",
+      "conceptos": [
+        {
+          "termino": "amigo",
+          "definicion": "Persona con la que juegas y te llevas bien.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "alegría",
+          "definicion": "Sentimiento cuando estás muy contento y te ríes.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "ayudar",
+          "definicion": "Echar una mano a alguien que lo necesita.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "abrazar",
+          "definicion": "Rodear con los brazos a alguien para demostrar cariño.",
+          "pista": "Empieza por A"
+        },
+        {
+          "termino": "amor",
+          "definicion": "Sentimiento de mucho cariño hacia la familia.",
+          "pista": "Empieza por A"
+        }
+      ]
+    },
+    {
+      "letra": "B",
+      "conceptos": [
+        {
+          "termino": "bueno",
+          "definicion": "Lo contrario de malo.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "basura",
+          "definicion": "Lo que tiramos a la papelera para no ensuciar.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "beso",
+          "definicion": "Gesto de cariño que se da con los labios.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bien",
+          "definicion": "Cómo hay que portarse en clase.",
+          "pista": "Empieza por B"
+        },
+        {
+          "termino": "bondad",
+          "definicion": "Cualidad de ser buena persona.",
+          "pista": "Empieza por B"
+        }
+      ]
+    },
+    {
+      "letra": "C",
+      "conceptos": [
+        {
+          "termino": "compañero",
+          "definicion": "Niño o niña que va a tu misma clase.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "compartir",
+          "definicion": "Dejar tus cosas a los demás.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "colegio",
+          "definicion": "Lugar donde venimos a aprender.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "cariño",
+          "definicion": "Amor o afecto que sentimos por alguien.",
+          "pista": "Empieza por C"
+        },
+        {
+          "termino": "colaborar",
+          "definicion": "Trabajar juntos para hacer algo.",
+          "pista": "Empieza por C"
+        }
+      ]
+    },
+    {
+      "letra": "D",
+      "conceptos": [
+        {
+          "termino": "disculpa",
+          "definicion": "Pedir perdón.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "deberes",
+          "definicion": "Tareas que hacemos en casa.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "descanso",
+          "definicion": "Tiempo de recreo para jugar y descansar.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "diálogo",
+          "definicion": "Hablar dos personas para solucionar un problema.",
+          "pista": "Empieza por D"
+        },
+        {
+          "termino": "divertido",
+          "definicion": "Algo que te hace reír y pasarlo bien.",
+          "pista": "Empieza por D"
+        }
+      ]
+    },
+    {
+      "letra": "E",
+      "conceptos": [
+        {
+          "termino": "escuchar",
+          "definicion": "Poner atención a lo que dicen los demás.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "equipo",
+          "definicion": "Grupo de personas que juegan o trabajan juntas.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "esfuerzo",
+          "definicion": "Trabajar mucho para conseguir algo difícil.",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "emoción",
+          "definicion": "Alegría, tristeza, miedo o ira son una...",
+          "pista": "Empieza por E"
+        },
+        {
+          "termino": "enfadado",
+          "definicion": "Cuando algo no te gusta y estás molesto.",
+          "pista": "Empieza por E"
+        }
+      ]
+    },
+    {
+      "letra": "F",
+      "conceptos": [
+        {
+          "termino": "familia",
+          "definicion": "Padres, hermanos, abuelos y tíos.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "feliz",
+          "definicion": "Sinónimo de contento.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fiesta",
+          "definicion": "Celebración alegre, como un cumpleaños.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "feo",
+          "definicion": "Palabra que no debemos decir a nadie sobre su aspecto.",
+          "pista": "Empieza por F"
+        },
+        {
+          "termino": "fila",
+          "definicion": "Ponerse uno detrás de otro.",
+          "pista": "Empieza por F"
+        }
+      ]
+    },
+    {
+      "letra": "G",
+      "conceptos": [
+        {
+          "termino": "gracias",
+          "definicion": "Palabra mágica para agradecer algo.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "grupo",
+          "definicion": "Conjunto de amigos o compañeros.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "generoso",
+          "definicion": "Persona que comparte lo que tiene.",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gritar",
+          "definicion": "Hablar muy fuerte (no se debe hacer en clase).",
+          "pista": "Empieza por G"
+        },
+        {
+          "termino": "gusta",
+          "definicion": "Cuando algo te parece bien, te...",
+          "pista": "Empieza por G"
+        }
+      ]
+    },
+    {
+      "letra": "H",
+      "conceptos": [
+        {
+          "termino": "hola",
+          "definicion": "Palabra para saludar.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hablar",
+          "definicion": "Decir cosas con palabras.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "higiene",
+          "definicion": "Estar limpio y aseado.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "hermano",
+          "definicion": "Hijo de tus padres.",
+          "pista": "Empieza por H"
+        },
+        {
+          "termino": "honesto",
+          "definicion": "Persona que no miente y dice la verdad.",
+          "pista": "Empieza por H"
+        }
+      ]
+    },
+    {
+      "letra": "I",
+      "conceptos": [
+        {
+          "termino": "igualdad",
+          "definicion": "Que todos tengamos los mismos derechos.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "idea",
+          "definicion": "Pensamiento nuevo que se te ocurre.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "insultar",
+          "definicion": "Decir palabras malas a alguien (está mal).",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "invitar",
+          "definicion": "Pedir a alguien que venga a jugar.",
+          "pista": "Empieza por I"
+        },
+        {
+          "termino": "imaginación",
+          "definicion": "Capacidad para inventar historias.",
+          "pista": "Empieza por I"
+        }
+      ]
+    },
+    {
+      "letra": "J",
+      "conceptos": [
+        {
+          "termino": "jugar",
+          "definicion": "Hacer algo divertido con amigos.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juguete",
+          "definicion": "Objeto para jugar.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "juntos",
+          "definicion": "Lo contrario de separados.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "justo",
+          "definicion": "Que da a cada uno lo que merece.",
+          "pista": "Empieza por J"
+        },
+        {
+          "termino": "jamás",
+          "definicion": "Sinónimo de nunca.",
+          "pista": "Empieza por J"
+        }
+      ]
+    },
+    {
+      "letra": "K",
+      "conceptos": [
+        {
+          "termino": "kilo",
+          "definicion": "Mil gramos.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "karate",
+          "definicion": "Deporte de artes marciales.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kiosco",
+          "definicion": "Lugar para comprar chuches o periódicos.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kiwi",
+          "definicion": "Fruta verde muy sana.",
+          "pista": "Empieza por K"
+        },
+        {
+          "termino": "kilómetro",
+          "definicion": "Distancia larga, mil metros.",
+          "pista": "Empieza por K"
+        }
+      ]
+    },
+    {
+      "letra": "L",
+      "conceptos": [
+        {
+          "termino": "leer",
+          "definicion": "Comprender lo escrito en un libro.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "libertad",
+          "definicion": "Poder elegir lo que quieres hacer.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "limpio",
+          "definicion": "Lo contrario de sucio.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "llorar",
+          "definicion": "Echar lágrimas cuando estás triste.",
+          "pista": "Empieza por L"
+        },
+        {
+          "termino": "lavar",
+          "definicion": "Limpiar las manos con agua y jabón.",
+          "pista": "Empieza por L"
+        }
+      ]
+    },
+    {
+      "letra": "M",
+      "conceptos": [
+        {
+          "termino": "miedo",
+          "definicion": "Sentimiento cuando ves un monstruo o hay oscuridad.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mentira",
+          "definicion": "Lo contrario de verdad.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mamá",
+          "definicion": "La madre.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "maestro",
+          "definicion": "El que enseña en el colegio.",
+          "pista": "Empieza por M"
+        },
+        {
+          "termino": "mano",
+          "definicion": "La levantamos para pedir turno de palabra.",
+          "pista": "Empieza por M"
+        }
+      ]
+    },
+    {
+      "letra": "N",
+      "conceptos": [
+        {
+          "termino": "normas",
+          "definicion": "Reglas que hay que cumplir en clase.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "no",
+          "definicion": "Lo contrario de sí.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nombre",
+          "definicion": "Cómo te llaman.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nervioso",
+          "definicion": "Lo contrario de tranquilo.",
+          "pista": "Empieza por N"
+        },
+        {
+          "termino": "nadie",
+          "definicion": "Ninguna persona.",
+          "pista": "Empieza por N"
+        }
+      ]
+    },
+    {
+      "letra": "Ñ",
+      "conceptos": [
+        {
+          "termino": "compañero",
+          "definicion": "Amigo de la clase.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "cariño",
+          "definicion": "Amor o afecto.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "riña",
+          "definicion": "Pelea o discusión.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "cumpleaños",
+          "definicion": "Fiesta de cada año cuando creces.",
+          "pista": "Contiene la Ñ"
+        },
+        {
+          "termino": "engañar",
+          "definicion": "Decir mentiras a alguien.",
+          "pista": "Contiene la Ñ"
+        }
+      ]
+    },
+    {
+      "letra": "O",
+      "conceptos": [
+        {
+          "termino": "orden",
+          "definicion": "Tener las cosas recogidas en su sitio.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "obedecer",
+          "definicion": "Hacer caso a los mayores.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "oír",
+          "definicion": "Escuchar con los oídos.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "optimista",
+          "definicion": "Ver el lado bueno de las cosas.",
+          "pista": "Empieza por O"
+        },
+        {
+          "termino": "ojos",
+          "definicion": "Usar los ojos para mirar.",
+          "pista": "Empieza por O"
+        }
+      ]
+    },
+    {
+      "letra": "P",
+      "conceptos": [
+        {
+          "termino": "perdón",
+          "definicion": "Palabra para disculparse.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "paz",
+          "definicion": "Cuando no hay peleas ni guerras.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "papá",
+          "definicion": "El padre.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "profesor",
+          "definicion": "El que enseña en la escuela.",
+          "pista": "Empieza por P"
+        },
+        {
+          "termino": "patio",
+          "definicion": "Lugar del recreo.",
+          "pista": "Empieza por P"
+        }
+      ]
+    },
+    {
+      "letra": "Q",
+      "conceptos": [
+        {
+          "termino": "querer",
+          "definicion": "Sentir amor por alguien.",
+          "pista": "Empieza por Q"
+        },
+        {
+          "termino": "tranquilo",
+          "definicion": "Estar relajado, sin nervios.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "equipo",
+          "definicion": "Grupo de personas que juegan juntas.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "pequeño",
+          "definicion": "Lo contrario de grande.",
+          "pista": "Contiene la Q"
+        },
+        {
+          "termino": "parque",
+          "definicion": "Lugar con columpios para jugar.",
+          "pista": "Contiene la Q"
+        }
+      ]
+    },
+    {
+      "letra": "R",
+      "conceptos": [
+        {
+          "termino": "respeto",
+          "definicion": "Tratar bien a los demás y a las cosas.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "reír",
+          "definicion": "Hacer jaja.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "responsable",
+          "definicion": "Que cumple con sus tareas y deberes.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "regalo",
+          "definicion": "Lo que te dan en tu cumpleaños.",
+          "pista": "Empieza por R"
+        },
+        {
+          "termino": "reglas",
+          "definicion": "Normas del juego.",
+          "pista": "Empieza por R"
+        }
+      ]
+    },
+    {
+      "letra": "S",
+      "conceptos": [
+        {
+          "termino": "saludo",
+          "definicion": "Decir hola cuando llegas.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sonrisa",
+          "definicion": "Gesto de alegría con la boca.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "silencio",
+          "definicion": "Estar callado.",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sentimientos",
+          "definicion": "Alegría, pena, miedo son...",
+          "pista": "Empieza por S"
+        },
+        {
+          "termino": "sincero",
+          "definicion": "Que siempre dice la verdad.",
+          "pista": "Empieza por S"
+        }
+      ]
+    },
+    {
+      "letra": "T",
+      "conceptos": [
+        {
+          "termino": "trabajo",
+          "definicion": "Lo que hacemos en clase para aprender.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "turno",
+          "definicion": "Momento en que te toca a ti hablar o jugar.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "triste",
+          "definicion": "Lo contrario de contento.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tranquilo",
+          "definicion": "Sin nervios, relajado.",
+          "pista": "Empieza por T"
+        },
+        {
+          "termino": "tarea",
+          "definicion": "Deberes del colegio.",
+          "pista": "Empieza por T"
+        }
+      ]
+    },
+    {
+      "letra": "U",
+      "conceptos": [
+        {
+          "termino": "unir",
+          "definicion": "Juntar cosas o personas.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uno",
+          "definicion": "Tú mismo, una sola persona.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "útil",
+          "definicion": "Que sirve para algo.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "uniforme",
+          "definicion": "Ropa que llevamos al colegio.",
+          "pista": "Empieza por U"
+        },
+        {
+          "termino": "único",
+          "definicion": "Que no hay otro igual.",
+          "pista": "Empieza por U"
+        }
+      ]
+    },
+    {
+      "letra": "V",
+      "conceptos": [
+        {
+          "termino": "verdad",
+          "definicion": "Lo contrario de mentira.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "valor",
+          "definicion": "Cualidad de ser valiente.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vida",
+          "definicion": "Estar vivo.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "vergüenza",
+          "definicion": "Sentimiento cuando todos te miran y te pones rojo.",
+          "pista": "Empieza por V"
+        },
+        {
+          "termino": "valiente",
+          "definicion": "Que no tiene miedo.",
+          "pista": "Empieza por V"
+        }
+      ]
+    },
+    {
+      "letra": "W",
+      "conceptos": [
+        {
+          "termino": "kiwi",
+          "definicion": "Fruta sana de color verde.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "web",
+          "definicion": "Página de internet.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "sandwich",
+          "definicion": "Comida de dos panes.",
+          "pista": "Contiene la W"
+        },
+        {
+          "termino": "wifi",
+          "definicion": "Conexión a internet sin cables.",
+          "pista": "Empieza por W"
+        },
+        {
+          "termino": "waterpolo",
+          "definicion": "Deporte que se juega en el agua.",
+          "pista": "Empieza por W"
+        }
+      ]
+    },
+    {
+      "letra": "X",
+      "conceptos": [
+        {
+          "termino": "éxito",
+          "definicion": "Hacerlo muy bien y ganar.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "excusas",
+          "definicion": "Razones para no hacer algo.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "examen",
+          "definicion": "Prueba para ver lo que has aprendido.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "sexto",
+          "definicion": "El curso de los mayores del colegio.",
+          "pista": "Contiene la X"
+        },
+        {
+          "termino": "texto",
+          "definicion": "Palabras escritas.",
+          "pista": "Contiene la X"
+        }
+      ]
+    },
+    {
+      "letra": "Y",
+      "conceptos": [
+        {
+          "termino": "ayudar",
+          "definicion": "Echar una mano a alguien.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "yo",
+          "definicion": "Pronombre personal, primera persona.",
+          "pista": "Empieza por Y"
+        },
+        {
+          "termino": "hoy",
+          "definicion": "El día presente.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "mayor",
+          "definicion": "Más grande que los niños.",
+          "pista": "Contiene la Y"
+        },
+        {
+          "termino": "desayuno",
+          "definicion": "Primera comida del día.",
+          "pista": "Contiene la Y"
+        }
+      ]
+    },
+    {
+      "letra": "Z",
+      "conceptos": [
+        {
+          "termino": "paz",
+          "definicion": "Estar tranquilo, sin peleas.",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "abrazar",
+          "definicion": "Dar un abrazo.",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "feliz",
+          "definicion": "Estar contento.",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "corazón",
+          "definicion": "Órgano del amor.",
+          "pista": "Contiene la Z"
+        },
+        {
+          "termino": "zapato",
+          "definicion": "Calzado que debe estar ordenado.",
+          "pista": "Empieza por Z"
+        }
+      ]
+    }
+  ]
+}

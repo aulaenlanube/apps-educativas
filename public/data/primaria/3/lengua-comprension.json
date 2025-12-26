@@ -1,321 +1,571 @@
 [
   {
     "id": "1",
-    "titulo": "El cumpleaños de Leo",
-    "texto": "Hoy es un día muy especial porque es el cumpleaños de Leo. Su mamá le ha preparado una tarta de chocolate con seis velas. Leo ha invitado a sus amigos del colegio a jugar al parque por la tarde. Su abuela le ha regalado un balón de fútbol nuevo de color rojo.",
+    "titulo": "El león y el ratón agradecido",
+    "texto": "Un pequeño ratón jugaba cerca de un león que dormía profundamente. Sin querer, el ratón despertó al león, quien lo atrapó con su gran garra. '¡Por favor, no me comas!', suplicó el ratón, 'algún día podría ayudarte'. El león se rió de la idea de que un animal tan pequeño pudiera ayudarle, pero lo dejó ir. Unas semanas después, el león quedó atrapado en una red de cazadores. El ratón, al oír sus rugidos, corrió y royó las cuerdas de la red hasta que el león quedó libre. Desde entonces, el león comprendió que todos los amigos son valiosos, sin importar su tamaño.",
     "preguntas": [
       {
-        "pregunta": "¿De qué sabor es la tarta?",
-        "opciones": ["De fresa", "De chocolate"],
+        "pregunta": "¿Qué hizo el ratón al principio de la historia?",
+        "opciones": [
+          "Comer queso",
+          "Despertar al león sin querer",
+          "Cazar al león",
+          "Rugir fuerte"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuántas velas tiene la tarta?",
-        "opciones": ["Seis velas", "Ocho velas"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Quién le regaló el balón?",
-        "opciones": ["Su papá", "Su tía", "Su abuela", "Su hermano"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿De qué color es el balón?",
-        "opciones": ["Azul", "Verde", "Rojo", "Amarillo"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Dónde van a jugar?",
-        "opciones": ["En el cine", "En el parque", "En la playa", "En la escuela"],
+        "pregunta": "¿Por qué el león dejó ir al ratón?",
+        "opciones": [
+          "Porque tenía mucha hambre",
+          "Porque el ratón le dio risa",
+          "Porque eran familia",
+          "Porque el ratón se escapó"
+        ],
         "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué le pasó al león semanas después?",
+        "opciones": [
+          "Se puso enfermo",
+          "Se perdió en la selva",
+          "Cayó en una red de cazadores",
+          "Encontró un tesoro"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo ayudó el ratón al león?",
+        "opciones": [
+          "Llamando a otros leones",
+          "Rugiendo fuerte",
+          "Royendo las cuerdas de la red",
+          "Trayéndole comida"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es la enseñanza o moraleja de esta historia?",
+        "opciones": [
+          "Los ratones son peligrosos",
+          "No hay que dormir en la selva",
+          "Nadie es tan pequeño que no pueda ayudar",
+          "Los leones mandan siempre"
+        ],
+        "correcta": 2
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "La mariposa Lola",
-    "texto": "Lola es una mariposa de muchos colores que vive en el jardín. Le gusta volar de flor en flor cuando sale el sol. Cuando llueve, Lola se esconde debajo de una hoja grande para no mojarse las alas. Su mejor amiga es una abeja que se llama Pepi.",
+    "titulo": "El Parque de las Ardillas",
+    "texto": "El Parque de las Ardillas es un lugar maravilloso situado en el centro de la ciudad. Lo que más llama la atención son sus enormes robles centenarios, donde viven decenas de ardillas muy juguetonas. Los visitantes suelen llevarles nueces y avellanas, aunque los carteles indican que no se debe alimentar a los animales salvajes para que no olviden cómo buscar comida por sí mismos. Además, el parque cuenta con una fuente de piedra que se construyó hace más de cien años y un pequeño estanque con patos de colores.",
     "preguntas": [
       {
-        "pregunta": "¿Cómo se llama la mariposa?",
-        "opciones": ["Lola", "Pepi"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué hace cuando llueve?",
-        "opciones": ["Sigue volando", "Se esconde"],
+        "pregunta": "¿Dónde está situado el parque?",
+        "opciones": [
+          "En la montaña",
+          "En el centro de la ciudad",
+          "Cerca de la playa",
+          "En un pueblo lejano"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde vive Lola?",
-        "opciones": ["En una casa", "En el bosque", "En el mar", "En el jardín"],
-        "correcta": 3
+        "pregunta": "¿Qué tipo de árboles hay en el parque?",
+        "opciones": [
+          "Pinos",
+          "Palmeras",
+          "Robles centenarios",
+          "Naranjos"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Quién es su mejor amiga?",
-        "opciones": ["Una hormiga", "Una abeja", "Una mariquita", "Un grillo"],
+        "pregunta": "¿Qué suelen llevar los visitantes a las ardillas?",
+        "opciones": [
+          "Pan",
+          "Nueces y avellanas",
+          "Fruta",
+          "Lechuga"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuándo le gusta volar?",
-        "opciones": ["Cuando es de noche", "Cuando nieva", "Cuando sale el sol", "Cuando hay viento"],
+        "pregunta": "¿Por qué dicen los carteles que no se debe alimentar a las ardillas?",
+        "opciones": [
+          "Porque es muy caro",
+          "Para que no engorden",
+          "Para que no olviden buscar comida solas",
+          "Porque las ardillas muerden"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué otros animales se mencionan además de las ardillas?",
+        "opciones": [
+          "Perros",
+          "Gatos",
+          "Patos",
+          "Peces"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "El perro Toby",
-    "texto": "Toby es un perro blanco con manchas negras. Es muy juguetón y le encanta correr detrás de la pelota en el parque. Su dueño se llama Juan y siempre le lleva agua fresca. Hoy Toby ha encontrado un hueso muy grande debajo de un árbol.",
+    "titulo": "Un invento revolucionario: la imprenta",
+    "texto": "Antes de la invención de la imprenta, los libros se escribían a mano uno por uno. ¡Era un trabajo larguísimo! Por eso, había muy pocos libros y eran carísimos. En el siglo XV, Johannes Gutenberg inventó una máquina que permitía copiar muchas páginas rápidamente: la imprenta. Gracias a este invento, los libros se volvieron más baratos y muchas más personas pudieron aprender a leer y descubrir nuevas ideas. Fue uno de los cambios más importantes de la historia.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es Toby?",
-        "opciones": ["Marrón", "Blanco con manchas"],
+        "pregunta": "¿Cómo se hacían los libros antes de la imprenta?",
+        "opciones": [
+          "Con máquinas",
+          "Escritos a mano",
+          "Con fotos",
+          "No existían"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué encontró Toby?",
-        "opciones": ["Un hueso", "Un juguete"],
-        "correcta": 0
+        "pregunta": "¿Quién inventó la imprenta?",
+        "opciones": [
+          "Cristóbal Colón",
+          "Johannes Gutenberg",
+          "Isaac Newton",
+          "Leonardo da Vinci"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Cómo se llama su dueño?",
-        "opciones": ["Luis", "Pedro", "Juan", "Carlos"],
+        "pregunta": "¿En qué siglo se inventó la imprenta?",
+        "opciones": [
+          "Siglo X",
+          "Siglo XV",
+          "Siglo XX",
+          "Siglo XVIII"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué consecuencia tuvo la invención de la imprenta?",
+        "opciones": [
+          "Los libros fueron más caros",
+          "Los libros fueron más baratos",
+          "Se prohibieron los libros",
+          "La gente dejó de leer"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la idea principal del texto?",
+        "opciones": [
+          "A Gutenberg le gustaba escribir",
+          "Los libros antiguos eran bonitos",
+          "La importancia del invento de la imprenta",
+          "Cómo se fabrica el papel"
+        ],
         "correcta": 2
-      },
-      {
-        "pregunta": "¿Qué le gusta perseguir?",
-        "opciones": ["Coches", "Gatos", "Pájaros", "La pelota"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Dónde encontró el hueso?",
-        "opciones": ["En la casa", "Bajo un árbol", "En la calle", "En la cama"],
-        "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "La excursión al zoo",
-    "texto": "La clase de primero ha ido de excursión al zoológico. Han ido todos juntos en un autobús amarillo. Han visto una jirafa muy alta comiendo hojas de un árbol. También vieron monos saltando y leones durmiendo. A la hora de comer tomaron bocadillos.",
+    "titulo": "La Luna y sus fases",
+    "texto": "Si miras al cielo por la noche, verás que la Luna no siempre tiene la misma forma. A veces es un círculo brillante y otras veces parece una pequeña 'C'. Esto sucede porque la Luna gira alrededor de la Tierra y el Sol la ilumina desde distintos ángulos. Las cuatro fases principales son: Luna nueva (cuando no se ve), Cuarto creciente (cuando crece), Luna llena (un círculo completo) y Cuarto menguante (cuando 'encoge'). El ciclo completo tarda unos 28 días.",
     "preguntas": [
       {
-        "pregunta": "¿En qué fueron al zoo?",
-        "opciones": ["En tren", "En autobús"],
+        "pregunta": "¿Por qué la Luna cambia de forma aparente?",
+        "opciones": [
+          "Porque se rompe",
+          "Por la luz del Sol y su movimiento",
+          "Porque tiene nubes",
+          "Porque es mágica"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué comía la jirafa?",
-        "opciones": ["Hojas", "Carne"],
-        "correcta": 0
+        "pregunta": "¿Cómo se llama la fase en la que la Luna se ve como un círculo completo?",
+        "opciones": [
+          "Luna nueva",
+          "Cuarto creciente",
+          "Luna llena",
+          "Luna redonda"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿De qué color era el autobús?",
-        "opciones": ["Rojo", "Azul", "Verde", "Amarillo"],
-        "correcta": 3
+        "pregunta": "¿En qué fase la Luna no se ve desde la Tierra?",
+        "opciones": [
+          "Luna llena",
+          "Cuarto menguante",
+          "Luna nueva",
+          "Eclipse"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Qué hacían los leones?",
-        "opciones": ["Comer", "Dormir", "Correr", "Rugir"],
+        "pregunta": "¿Qué significa que la Luna está en 'Cuarto menguante'?",
+        "opciones": [
+          "Que va a desaparecer",
+          "Que parece que se hace más pequeña",
+          "Que está naciendo",
+          "Que brilla mucho"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué comieron los niños?",
-        "opciones": ["Pizza", "Sopa", "Bocadillos", "Fruta"],
+        "pregunta": "¿Cuánto tarda el ciclo completo de la Luna?",
+        "opciones": [
+          "Un día",
+          "Siete días",
+          "28 días",
+          "Un año"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "El diente de Ana",
-    "texto": "A Ana se le mueve un diente de leche. Su mamá le ha dicho que cuando se le caiga, vendrá el Ratoncito Pérez. Ana está muy emocionada y se mira al espejo a cada rato. Por la noche, dejará el diente debajo de su almohada para tener una sorpresa.",
+    "titulo": "El examen de Clara",
+    "texto": "Clara estaba muy nerviosa porque hoy tenía un examen de lengua. Anoche repasó los sustantivos, los adjetivos y las reglas de acentuación. Al llegar a clase, su profesor, el Sr. Ruiz, repartió las hojas en silencio. Clara leyó las preguntas con atención y se dio cuenta de que lo sabía todo. Al final, entregó el examen con una sonrisa y salió al recreo a jugar con sus amigos. ¡El esfuerzo había valido la pena!",
     "preguntas": [
       {
-        "pregunta": "¿Qué se le mueve a Ana?",
-        "opciones": ["Un diente", "Una uña"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Quién vendrá a visitarla?",
-        "opciones": ["Papá Noel", "El Ratoncito Pérez"],
+        "pregunta": "¿Por qué estaba nerviosa Clara?",
+        "opciones": [
+          "Se perdió",
+          "Tenía un examen de lengua",
+          "No quería jugar",
+          "Tenía hambre"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Dónde dejará el diente?",
-        "opciones": ["En la mesa", "En el suelo", "Bajo la almohada", "En una caja"],
+        "pregunta": "¿Qué temas repasó Clara?",
+        "opciones": [
+          "Sumas y restas",
+          "Sustantivos, adjetivos y acentos",
+          "Los planetas",
+          "Los animales"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quién es el Sr. Ruiz?",
+        "opciones": [
+          "El padre de Clara",
+          "El conserje",
+          "Su profesor",
+          "Su amigo"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cómo se siente Ana?",
-        "opciones": ["Triste", "Enfadada", "Asustada", "Emocionada"],
-        "correcta": 3
+        "pregunta": "¿Cómo se sintió Clara al final?",
+        "opciones": [
+          "Triste",
+          "Satisfecha y feliz",
+          "Cansada",
+          "Enfadada"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Dónde se mira Ana?",
-        "opciones": ["En el espejo", "En la ventana", "En el agua", "En el móvil"],
-        "correcta": 0
+        "pregunta": "¿Qué valor destaca la historia?",
+        "opciones": [
+          "La suerte",
+          "El esfuerzo",
+          "El dibujo",
+          "La velocidad"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "La bicicleta nueva",
-    "texto": "Pedro tiene una bicicleta nueva de color azul. Tiene un timbre que suena muy fuerte. Pedro va a la plaza con su papá para aprender a montar sin ruedines. Siempre se pone el casco para estar seguro y no hacerse daño si se cae.",
+    "titulo": "El robot cocinero",
+    "texto": "En el año 2050, las familias tienen robots que ayudan en casa. El robot de la familia Pérez se llama Chef-Bot y es experto en cocinar platos saludables. Cada mañana, Chef-Bot escanea la nevera y decide el menú del día basándose en las vitaminas necesarias. Aunque es una máquina, a veces emite una melodía graciosa mientras bate los huevos. A los niños les encanta ayudarle a programar nuevas recetas de galletas de avena.",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es la bici?",
-        "opciones": ["Roja", "Azul"],
+        "pregunta": "¿Cómo se llama el robot?",
+        "opciones": [
+          "Coci-Bot",
+          "Chef-Bot",
+          "Súper-Robot",
+          "Pérez-Bot"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Con quién va a la plaza?",
-        "opciones": ["Con su papá", "Con su abuelo"],
-        "correcta": 0
+        "pregunta": "¿En qué es experto el robot?",
+        "opciones": [
+          "En limpiar",
+          "En cocinar platos saludables",
+          "En arreglar coches",
+          "En dormir"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "¿Qué usa para protegerse?",
-        "opciones": ["Gorra", "Bufanda", "Casco", "Guantes"],
+        "pregunta": "¿Qué hace el robot antes de decidir el menú?",
+        "opciones": [
+          "Llama a la abuela",
+          "Escanea la nevera",
+          "Mira la tele",
+          "Sale a comprar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hace Chef-Bot mientras bate huevos?",
+        "opciones": [
+          "Habla mucho",
+          "Baila",
+          "Emite una melodía graciosa",
+          "Se apaga"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Cómo suena el timbre?",
-        "opciones": ["Flojo", "Mal", "Raro", "Fuerte"],
-        "correcta": 3
-      },
-      {
-        "pregunta": "¿Dónde aprende a montar?",
-        "opciones": ["En el colegio", "En la plaza", "En el bosque", "En casa"],
+        "pregunta": "¿Qué recetas les gusta programar a los niños?",
+        "opciones": [
+          "Galletas de chocolate",
+          "Galletas de avena",
+          "Pizza de queso",
+          "Sopa de tomate"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "Un día en la playa",
-    "texto": "Sara ha ido a la playa porque es verano. Ha hecho un castillo de arena muy grande con su cubo y su pala. El agua del mar está un poco fría, pero le gusta saltar las olas. Ha visto un pececito pequeño nadando cerca de sus pies.",
+    "titulo": "La leyenda del arcoíris",
+    "texto": "Cuentan los antiguos que el arcoíris es un puente mágico que une la tierra con el cielo. Según la leyenda, al final de cada arcoíris hay una gran vasija de oro escondida por un duende travieso. Pero el verdadero secreto es que el arcoíris solo aparece cuando el Sol y la Lluvia se dan la mano. Los siete colores son el regalo que el Sol hace a la Lluvia por refrescar los campos y limpiar el aire.",
     "preguntas": [
       {
-        "pregunta": "¿En qué estación es?",
-        "opciones": ["Verano", "Invierno"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Cómo está el agua?",
-        "opciones": ["Caliente", "Fría"],
+        "pregunta": "¿Qué es el arcoíris según la leyenda?",
+        "opciones": [
+          "Un camino de piedras",
+          "Un puente mágico",
+          "Una luz de colores",
+          "Una escalera"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué ha construido Sara?",
-        "opciones": ["Una casa", "Un puente", "Un coche", "Un castillo"],
-        "correcta": 3
+        "pregunta": "¿Quién esconde la vasija de oro?",
+        "opciones": [
+          "Un gigante",
+          "Un hada",
+          "Un duende travieso",
+          "Un mago"
+        ],
+        "correcta": 2
       },
       {
-        "pregunta": "¿Qué animal ha visto?",
-        "opciones": ["Un cangrejo", "Un pez", "Una medusa", "Una gaviota"],
+        "pregunta": "¿Cuándo aparece el arcoíris?",
+        "opciones": [
+          "Cuando nieva",
+          "Solo cuando llueve mucho",
+          "Cuando el Sol y la Lluvia se juntan",
+          "Por la noche"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuántos colores tiene el arcoíris?",
+        "opciones": [
+          "Cinco",
+          "Siete",
+          "Diez",
+          "Tres"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Qué usó para el castillo?",
-        "opciones": ["Cubo y pala", "Tenedor", "Solo las manos", "Una red"],
-        "correcta": 0
+        "pregunta": "¿Por qué el Sol regala los colores a la Lluvia?",
+        "opciones": [
+          "Por ser su amiga",
+          "Por refrescar los campos",
+          "Porque sí",
+          "Para que deje de llover"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "El gatito Misu",
-    "texto": "Misu es un gatito gris muy curioso. Un día salió al jardín y se subió a un árbol muy alto persiguiendo a un pájaro. Luego le daba miedo bajar. Un bombero tuvo que venir con una escalera larga para ayudarle a bajar al suelo.",
+    "titulo": "Un correo electrónico para Marta",
+    "texto": "De: pablo_super@email.com \nPara: marta_lol@email.com \nAsunto: ¡Nos vemos pronto! \n\nHola Marta, ¿cómo estás? Te escribo porque este fin de semana iré a tu ciudad con mis padres. Me gustaría mucho que pudiéramos ir juntos al museo de ciencias el sábado por la tarde. Mi madre dice que hay una exposición de dinosaurios increíble. Llámame cuando leas esto o contéstame al correo. ¡Un abrazo!",
     "preguntas": [
       {
-        "pregunta": "¿De qué color es Misu?",
-        "opciones": ["Negro", "Gris"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿A quién perseguía?",
-        "opciones": ["A un ratón", "A un pájaro"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Dónde se subió?",
-        "opciones": ["Al tejado", "A una silla", "A un árbol", "A un coche"],
+        "pregunta": "¿Quién escribe el correo?",
+        "opciones": [
+          "Marta",
+          "La madre de Pablo",
+          "Pablo",
+          "El museo"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Quién le ayudó?",
-        "opciones": ["Un policía", "Un médico", "Un bombero", "Su dueño"],
+        "pregunta": "¿Cuál es el asunto del mensaje?",
+        "opciones": [
+          "Dinosaurios",
+          "Museo de ciencias",
+          "¡Nos vemos pronto!",
+          "Fin de semana"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Qué usó el bombero?",
-        "opciones": ["Una cuerda", "Una red", "Una cama", "Una escalera"],
-        "correcta": 3
+        "pregunta": "¿A dónde quiere ir Pablo el sábado?",
+        "opciones": [
+          "Al cine",
+          "Al museo de ciencias",
+          "A la playa",
+          "Al parque"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De qué trata la exposición del museo?",
+        "opciones": [
+          "De insectos",
+          "De planetas",
+          "De dinosaurios",
+          "De inventos"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo termina Pablo su mensaje?",
+        "opciones": [
+          "Hasta luego",
+          "Un abrazo",
+          "Atentamente",
+          "Besos"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "Haciendo galletas",
-    "texto": "Hugo y su hermana están cocinando galletas. Mezclan harina, azúcar y leche en un bol grande. Utilizan moldes con forma de estrella y de corazón. Cuando las meten en el horno, toda la cocina huele muy bien.",
+    "titulo": "La montaña mágica de Montserrat",
+    "texto": "En Cataluña hay una montaña con formas muy extrañas llamada Montserrat. Sus cumbres parecen dedos de piedra que apuntan al cielo o serradas por una sierra gigante. Por eso su nombre significa 'monte serrado'. Es un lugar muy importante para los excursionistas y para mucha gente que visita su antiguo monasterio. Dicen que hace muchos años, unos niños vieron unas luces misteriosas y escucharon música bajando de sus cuevas.",
     "preguntas": [
       {
-        "pregunta": "¿Qué están cocinando?",
-        "opciones": ["Un pastel", "Galletas"],
+        "pregunta": "¿Dónde se encuentra la montaña de Montserrat?",
+        "opciones": [
+          "En Madrid",
+          "En Cataluña",
+          "En Andalucía",
+          "En Galicia"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Con qué forma las hacen?",
-        "opciones": ["Estrellas", "Coches"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "¿Qué ingrediente usan?",
-        "opciones": ["Sal", "Pimienta", "Azúcar", "Queso"],
-        "correcta": 2
-      },
-      {
-        "pregunta": "¿Dónde las meten?",
-        "opciones": ["En la nevera", "En el horno", "En el cajón", "En la mesa"],
+        "pregunta": "¿Qué significa el nombre Montserrat?",
+        "opciones": [
+          "Montaña alta",
+          "Monte serrado",
+          "Dedo de piedra",
+          "Cueva mágica"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cómo huele la cocina?",
-        "opciones": ["Mal", "A quemado", "Bien", "A nada"],
+        "pregunta": "¿A qué se parecen sus cumbres?",
+        "opciones": [
+          "A castillos",
+          "A dedos de piedra",
+          "A casas",
+          "A nubes"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hay construido en la montaña?",
+        "opciones": [
+          "Un hotel",
+          "Un cine",
+          "Un antiguo monasterio",
+          "Un aeropuerto"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué vieron los niños según la leyenda?",
+        "opciones": [
+          "Un dragón",
+          "Luces misteriosas",
+          "Un gigante",
+          "Un tesoro"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "El muñeco de nieve",
-    "texto": "Ha estado nevando toda la noche. Eva ha salido al patio muy abrigada. Ha hecho un muñeco de nieve con tres bolas grandes. Le ha puesto una zanahoria como nariz y una bufanda roja vieja para que no tenga frío.",
+    "titulo": "El anuncio de 'Fruta-Fresh'",
+    "texto": "¿Cansado de tener sed después del recreo? ¡Llega Fruta-Fresh! La bebida hecha cien por cien con zumo de naranja y fresa. Sin azúcares añadidos y en un envase reciclable que puedes llevar a cualquier parte. Búscanos en tu tienda más cercana. ¡Fruta-Fresh, la energía que necesitas para seguir aprendiendo!",
     "preguntas": [
       {
-        "pregunta": "¿Qué ha hecho Eva?",
-        "opciones": ["Un iglú", "Un muñeco de nieve"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿Qué usó de nariz?",
-        "opciones": ["Una patata", "Una zanahoria"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "¿De qué color es la bufanda?",
-        "opciones": ["Azul", "Verde", "Roja", "Negra"],
+        "pregunta": "¿Qué tipo de texto es este?",
+        "opciones": [
+          "Un cuento",
+          "Una leyenda",
+          "Un anuncio publicitario",
+          "Una noticia"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "¿Dónde hizo el muñeco?",
-        "opciones": ["En el parque", "En el patio", "En la calle", "En el colegio"],
+        "pregunta": "¿De qué está hecha la bebida?",
+        "opciones": [
+          "Solo agua",
+          "Zumo de naranja y fresa",
+          "Leche y cacao",
+          "Limón y menta"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "¿Cuándo nevó?",
-        "opciones": ["Por la mañana", "Por la tarde", "Toda la noche", "A mediodía"],
-        "correcta": 2
+        "pregunta": "¿Qué ventaja tiene el envase?",
+        "opciones": [
+          "Es de cristal",
+          "Es reciclable",
+          "Es de oro",
+          "Es muy pesado"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Lleva azúcar añadido?",
+        "opciones": [
+          "Sí, mucho",
+          "No lleva",
+          "Solo un poco",
+          "Es secreto"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el eslogan del producto?",
+        "opciones": [
+          "Bébeme pronto",
+          "La energía que necesitas",
+          "Sabor a fresa",
+          "Zumo rico"
+        ],
+        "correcta": 1
       }
     ]
   }

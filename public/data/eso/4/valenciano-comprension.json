@@ -1,0 +1,572 @@
+[
+    {
+        "id": "1",
+        "titulo": "La Renaixença i el Rexurdimento",
+        "texto": "Durant el segle XIX, Catalunya, la Comunitat Valenciana i les Illes Balears viuen un moviment cultural i literari anomenat RENAIXENÇA. Després de segles de decadència (els 'segles foscos'), els escriptors tornen a usar la llengua per a la literatura de prestigi. Es recuperen els Jocs Florals, concursos poètics que impulsaven la creativitat. Teodor Llorente és la figura clau a València. Aquest moviment va ser decisiu per a la recuperació de la consciència lingüística i la modernització de la nostra cultura.",
+        "preguntas": [
+            {
+                "pregunta": "Com se denomina el moviment de recuperació cultural del segle XIX?",
+                "opciones": [
+                    "Barroc",
+                    "Renaixença",
+                    "Il·lustració",
+                    "Edat Mitjana"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què eren els Jocs Florals?",
+                "opciones": [
+                    "Jocs de flors al jardí",
+                    "Concursos poètics per a impulsar la llengua",
+                    "Partits de futbol",
+                    "Balles populars"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qui va ser la figura principal de la Renaixença a València?",
+                "opciones": [
+                    "Jaume I",
+                    "Teodor Llorente",
+                    "Enric Valor",
+                    "Ausiàs March"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Per què va ser important aquest moviment?",
+                "opciones": [
+                    "Per a viatjar",
+                    "Per a la recuperació de la consciència lingüística i la cultura",
+                    "Per a fer diners",
+                    "No va ser important"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Abans de la Renaixença, el valencià estava en un període de:",
+                "opciones": [
+                    "Gran èxit",
+                    "Decadència (segles foscos)",
+                    "No existia",
+                    "Era l'única llengua"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Vicente Andrés Estellés: El poeta del poble",
+        "texto": "Estellés és considerat el millor poeta valencià des d'Ausiàs March (segle XV). Nascut a Burjassot, la seua poesia tracta temes quotidians: el poble, la fam, la por durant la postguerra, però també l'AMOR i el desig. El seu estil és directe, ple de paraules del carrer, cosa que el va fer molt popular. La seua obra més famosa és el 'Llibre de Meravelles'. Estellés deia que ell només escrivia el que veia i sentia, convertint-se en la veu d'un poble que volia recuperar la seua llibertat i dignitat.",
+        "preguntas": [
+            {
+                "pregunta": "On va nàixer Vicente Andrés Estellés?",
+                "opciones": [
+                    "Alacant",
+                    "Burjassot",
+                    "Castelló",
+                    "Gandia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "De què tracta principalment la seua poesia?",
+                "opciones": [
+                    "De reis i castells",
+                    "Temes quotidians, el poble, la fam i l'amor",
+                    "De planetes",
+                    "Del futur"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin títol té la seua obra més coneguda?",
+                "opciones": [
+                    "Tirant lo Blanc",
+                    "Llibre de Meravelles",
+                    "Crònica",
+                    "Poema del Cid"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com és el seu estil literari?",
+                "opciones": [
+                    "Molt complicat i difícil",
+                    "Directe, popular i ple de paraules del carrer",
+                    "Només en llatí",
+                    "Silenciós"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Amb quin gran autor clàssic se'l compara?",
+                "opciones": [
+                    "Cervantes",
+                    "Ausiàs March",
+                    "Góngora",
+                    "Joan Fuster"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Joan Fuster i l'assaig modern",
+        "texto": "L'escriptor de Sueca, Joan Fuster, va ser el gran intel·lectual valencià del segle XX. Va destacar especialment en l'ASSAIG, un gènere per a fer pensar i reflexionar al lector. El seu llibre més polèmic i influent és 'Nosaltres, els valencians' (1962). Fuster analitza la història, la identitat i la llengua dels valencians amb un esperit crític i irònic. El seu llegat ha marcat el debat polític i cultural fins als nostres dies, recordant-nos la importància de conéixer el nostre passat per a decidir el futur.",
+        "preguntas": [
+            {
+                "pregunta": "En quin gènere literari va destacar Joan Fuster?",
+                "opciones": [
+                    "Poesia",
+                    "Assaig (text de reflexió)",
+                    "Teatre",
+                    "Ciència-ficció"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin és el seu llibre més influent publicat en 1962?",
+                "opciones": [
+                    "El Quixot",
+                    "Nosaltres, els valencians",
+                    "Diccionari Català-Valencià",
+                    "La plaça del Diamant"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què utilitza Fuster per a analitzar la realitat?",
+                "opciones": [
+                    "La mentida",
+                    "L'esperit crític i la ironia",
+                    "La força",
+                    "La por"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "On va nàixer Joan Fuster?",
+                "opciones": [
+                    "València",
+                    "Sueca",
+                    "Alzira",
+                    "Dénia"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Segons Fuster, per a què serveix conéixer el passat?",
+                "opciones": [
+                    "Per a res",
+                    "Per a poder decidir el futur com a poble",
+                    "Per a aprovar exàmens",
+                    "Per a estar trists"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Sintaxi: Oracions subordinades substantives",
+        "texto": "En 4t d'ESO estudiem les oracions que fan la funció d'un nom. Són les subordinades substantives. S'introdueixen normalment per la conjunció 'que' ('Vull que vinguis'). Poden fer funció de subjecte o d'objecte directe. Cal anar amb compte amb la CAIGUDA DE PREPOSICIÓ: davant de la conjunció 'que', les preposicions 'a', 'de', 'en' i 'amb' desapareixen ('Estic segur que... ' en lloc de 'Estic segur DE que...'). Dominar aquesta regla és senyal d'un bon nivell de llengua.",
+        "preguntas": [
+            {
+                "pregunta": "Quina funció fan les oracions substantives?",
+                "opciones": [
+                    "D'adjectiu",
+                    "De substantiu (nom)",
+                    "D'adverbi",
+                    "De preposició"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quina conjunció les introdueix normalment?",
+                "opciones": [
+                    "Perquè",
+                    "Que",
+                    "Però",
+                    "Si"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què és la 'caiguda de preposició'?",
+                "opciones": [
+                    "Quan perdem el llibre de gramàtica",
+                    "Quan les preposicions 'a, de, en, amb' desapareixen davant del 'que'",
+                    "Quan la frase és curta",
+                    "Quan no hi ha nexe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Cita una frase correcta:",
+                "opciones": [
+                    "Tinc por de que plogui",
+                    "Tinc por que plogui",
+                    "Tinc por amb que plogui",
+                    "Por que tinc"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Les substantives poden ser:",
+                "opciones": [
+                    "Subjecte o Objecte Directe",
+                    "Color o Sabor",
+                    "Només verbs",
+                    "Adjectives"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "La normativa de l'accentuació",
+        "texto": "L'accentuació en valencià és fonamental per a la lectura i escriptura correcta. Tenim dos tipus d'accents: l'AGUT o tancat (´) per a les vocals 'é, í, ó, ú', i el GREU o obert (`) per a les vocals 'à, è, ò'. Recordem les regles bàsiques: les agudes s'accentuen si acaben en vocal, vocal+s, -en, -in. Les planes s'accentuen si NO acaben així. I les esdrúixoles (proparoxítones) s'accentuen SEMPRE. Una tònica mal col·locada pot canviar el significat d'una paraula (com 'fira' i 'fira').",
+        "preguntas": [
+            {
+                "pregunta": "Quins tipus d'accent existeixen en valencià?",
+                "opciones": [
+                    "Punt i coma",
+                    "Agut (´) i Greu (`)",
+                    "Recte i corbat",
+                    "Dalt i baix"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quan s'accentuen les paraules esdrúixoles?",
+                "opciones": [
+                    "Mai",
+                    "Sempre",
+                    "Només si acaben en 'a'",
+                    "De vegades"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "L'accent obert (`) s'usa en:",
+                "opciones": [
+                    "í, ú",
+                    "à, è, ò",
+                    "ó, é",
+                    "Només en la 'i'"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Les paraules agudes s'accentuen si acaben en:",
+                "opciones": [
+                    "Consonant qualsevol",
+                    "Vocal, vocal+s, -en, -in",
+                    "En 'z'",
+                    "En cap"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què indica l'accent?",
+                "opciones": [
+                    "El color de la paraula",
+                    "La síl·laba tònica i l'obertura de la vocal",
+                    "Que la paraula és antiga",
+                    "Que és un nom propi"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Literatura de Postguerra: Enric Valor",
+        "texto": "Després de la Guerra Civil, molts escriptors valencians van haver de publicar des de l'exili o en la clandestinitat. ENRIC VALOR va realitzar una tasca gegantina: recollir la tradició oral de les nostres terres en les seues 'RONDALLES VALENCIANES'. Gràcies a ell, històries de gegants, fades i picardies que només se sabien de memòria van passar al paper amb un llenguatge bell i precís. També va ser un gramàtic fonamental, ajudant a fixar les regles de la llengua en moments molt difícils.",
+        "preguntas": [
+            {
+                "pregunta": "Com se denomina la col·lecció d'històries d'Enric Valor?",
+                "opciones": [
+                    "Contes de fades",
+                    "Rondalles Valencianes",
+                    "Poemes de guerra",
+                    "Novela policíaca"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "D'on provenien originàriament aquestes històries?",
+                "opciones": [
+                    "D'internet",
+                    "De la tradició oral (contades de pares a fills)",
+                    "D'altres països",
+                    "Les va inventar totes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "A més d'escriptor, Enric Valor va ser un gran:",
+                "opciones": [
+                    "Científic",
+                    "Gramàtic (estudiós de les regles de la llengua)",
+                    "Polític",
+                    "Pintor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En quin període històric va treballar Valor?",
+                "opciones": [
+                    "Edat Mitjana",
+                    "Postguerra (segona meitat s. XX)",
+                    "Renaixement",
+                    "Any 2024"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin personatges apareixen en les seues rondalles?",
+                "opciones": [
+                    "Robots",
+                    "Gegants, fades i personatges populars",
+                    "Superherois",
+                    "Ningú"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Ortografia: Els Digrafs",
+        "texto": "Un dígraf és un grup de dues lletres que representen un sol so. En valencià en tenim de molts tipus. Alguns es separen en síl·labes diferents: RR ('car-rer'), SS ('pas-sa'), TZ ('tot-zo'), TX ('pit-xer'). Altres NO es poden separar MAI: LL ('llu-na'), NY ('ca-nya'), QU ('qui-na'), GU ('guer-ra'), IG ('ma-ig'). Saber on tallar la paraula al final d'una línia és essencial per a escriure correctament i evitar errors visuals en els nostres textos i exàmens.",
+        "preguntas": [
+            {
+                "pregunta": "Què és un dígraf?",
+                "opciones": [
+                    "Dues lletres que fan dos sons",
+                    "Dues lletres que representen un sol so",
+                    "Una paraula de dos lletres",
+                    "Un dibuix"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Quin dígraf NO es pot separar mai?",
+                "opciones": [
+                    "RR",
+                    "LL o NY",
+                    "SS",
+                    "TZ"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Separa correctament la paraula 'CARRER':",
+                "opciones": [
+                    "CA-RRER",
+                    "CAR-RER",
+                    "CARR-ER",
+                    "C-ARRER"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En la paraula 'QUI' el nexe QU és un:",
+                "opciones": [
+                    "Dígraf",
+                    "Diftong",
+                    "Triftong",
+                    "Error"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "El dígraf IG es troba en paraules com:",
+                "opciones": [
+                    "Gossa",
+                    "Maig o desig",
+                    "Guerra",
+                    "Iglú"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "La Nova Cançó: Música i Rebindicació",
+        "texto": "En els anys 60 i 70 va sorgir un moviment musical conegut com la NOVA CANÇÓ. Cantautors com Raimon, Lluís Llach o Maria del Mar Bonet usaven la música per a reivindicar l'ús de la llengua i demanar llibertat davant la dictadura. Cançons com 'D'un temps, d'un país' de Raimon es van convertir en himnes. Aquest moviment va demostrar que la llengua valenciana era apta per als gèneres moderns (pop, folk) i va atraure a milers de joves a la cultura pròpia, unint art i política.",
+        "preguntas": [
+            {
+                "pregunta": "Què era la Nova Cançó?",
+                "opciones": [
+                    "Un programa de ràdio",
+                    "Moviment musical de reivindicació lingüística i llibertat",
+                    "Música clàssica antiga",
+                    "Un ball"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Qui és el cantautor de Xàtiva més famós d'aquest moviment?",
+                "opciones": [
+                    "Bisbal",
+                    "Raimon",
+                    "Serrat",
+                    "Fuster"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què demanaven aquests artistes en les seues lletres?",
+                "opciones": [
+                    "Més diners",
+                    "Llibertat i ús de la llengua davant la dictadura",
+                    "Anar de festa",
+                    "No fer exàmens"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "A qui va atraure principalment aquest moviment?",
+                "opciones": [
+                    "Als avis",
+                    "Als joves",
+                    "Només als polítics",
+                    "A ningú"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La Nova Cançó unia l'art amb la:",
+                "opciones": [
+                    "Cuina",
+                    "Política i reivindicació",
+                    "Geometria",
+                    "Religió"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Lèxic: Neologismes i Préstecs",
+        "texto": "Les llengües estan vives i canvien constantment. Un NEOLOGISME és una paraula nova per a designar realitats noves (com 'tuit' o 'clonar'). Un PRÉSTEC és una paraula que agafem d'altra llengua (com 'fútbol' de l'anglés o 'croissant' del francés). Cal evitar l'ús excessiu de barbarismes (paraules incorrectes agafades del castellà com 'acera' en lloc de 'vorera'). Enriquir el nostre lèxic ens permet expressar idees complexes amb més precisió i elegància.",
+        "preguntas": [
+            {
+                "pregunta": "Què és un neologisme?",
+                "opciones": [
+                    "Una paraula antiga",
+                    "Una paraula nova per a una nova realitat",
+                    "Una paraula de dos lletres",
+                    "Un error"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què és un préstec lingüístic?",
+                "opciones": [
+                    "Demanar un diccionari",
+                    "Paraula agafada d'altra llengua",
+                    "Llegir un llibre",
+                    "Parlar molts idiomes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com se denomina l'ús incorrecte de paraules d'altra llengua?",
+                "opciones": [
+                    "Poesia",
+                    "Barbarisme",
+                    "Sinònim",
+                    "Metàfora"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com se diu correctament 'acera' en valencià?",
+                "opciones": [
+                    "Vorera",
+                    "Banquet",
+                    "Pis",
+                    "Carrer"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Enriquir el lèxic serveix per a:",
+                "opciones": [
+                    "Parlar més",
+                    "Expressar idees amb més precisió i elegància",
+                    "Gastar paper",
+                    "Res"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Informàtica i Llengua: L'era digital",
+        "texto": "Hui dia el valencià està plenament integrat en les noves tecnologies. Tenim cercadors com Google, enciclopèdies com la Viquipèdia i sistemes operatius en la nostra llengua. El gran repte del segle XXI és la INTEL·LIGÈNCIA ARTIFICIAL: hem d'aconseguir que els assistents de veu i els traductors automàtics parlen i entenguen bé el valencià. Úsar la llengua en les xarxes socials i en l'àmbit digital és la millor garantia perquè continue viva i forta per a les pròximes generacions.",
+        "preguntas": [
+            {
+                "pregunta": "Quin és el gran repte de la llengua en el s. XXI?",
+                "opciones": [
+                    "L'escriptura a mà",
+                    "La Intel·ligència Artificial i l'àmbit digital",
+                    "Els diccionaris de paper",
+                    "La ràdio"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com se denomina l'enciclopèdia lliure en valencià?",
+                "opciones": [
+                    "Britànica",
+                    "Viquipèdia",
+                    "Google",
+                    "Facebook"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Què hem d'aconseguir amb els assistents de veu?",
+                "opciones": [
+                    "Que no parlen",
+                    "Que entenguen i parlen correctament el valencià",
+                    "Que siguin més cars",
+                    "Que només canten"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Com podem ajudar a la llengua hui?",
+                "opciones": [
+                    "No usant-la",
+                    "Usant-la en xarxes socials i entorns digitals",
+                    "Amagant-la",
+                    "Res"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Existir en el món digital garanteix:",
+                "opciones": [
+                    "Diners",
+                    "El futur i la supervivència de la llengua",
+                    "Poder jugar",
+                    "Anar a dormir"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

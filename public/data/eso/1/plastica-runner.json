@@ -1,17 +1,122 @@
 {
-  "elementos_visuales": [
-    "punto", "línea", "plano", "textura", "color", "forma", "espacio", "luz", "sombra", "volumen"
+  "elementos_lenguaje": [
+    "punto",
+    "línea",
+    "plano",
+    "textura",
+    "color",
+    "forma",
+    "espacio",
+    "luz",
+    "sombra",
+    "volumen"
   ],
-  "colores_teoria": [
-    "cian", "magenta", "amarillo", "rojo", "verde", "azul", "círculo cromático", "primario", "secundario", "complementario"
+  "colores_basicos": [
+    "primario",
+    "secundario",
+    "terciario",
+    "cálido",
+    "frío",
+    "complementario",
+    "amaqrillo",
+    "cian",
+    "magenta",
+    "blanco"
   ],
   "tecnicas_secas": [
-    "lápiz grafito", "carboncillo", "pastel", "cera", "sanguina", "tiza", "creta", "bolígrafo", "rotulador", "difumino"
+    "lápiz",
+    "carboncillo",
+    "pastel",
+    "ceras",
+    "rotuladores",
+    "lápices de colores",
+    "grafito",
+    "sanguina",
+    "tiza",
+    "difumino"
   ],
   "tecnicas_humedas": [
-    "acuarela", "témpera", "acrílico", "óleo", "tinta china", "aguada", "fresco", "spray", "barniz", "disolvente"
+    "acuarela",
+    "témpera",
+    "óleo",
+    "acrílico",
+    "tinta china",
+    "gouache",
+    "pincel",
+    "paleta",
+    "lienzo",
+    "caballete"
   ],
-  "poligonos_regulares": [
-    "triángulo equilátero", "cuadrado", "pentágono regular", "hexágono regular", "heptágono", "octógono", "eneágono", "decágono", "radio", "apotema"
+  "geometria_artistica": [
+    "regla",
+    "compás",
+    "escuadra",
+    "cartabón",
+    "recta",
+    "ángulo",
+    "paralela",
+    "perpendicular",
+    "polígono",
+    "circunferencia"
+  ],
+  "diseno_composicion": [
+    "equilibrio",
+    "simetría",
+    "ritmo",
+    "proporción",
+    "encuadre",
+    "eje",
+    "trama",
+    "collage",
+    "mosaico",
+    "boceto"
+  ],
+  "manualidades": [
+    "tijeras",
+    "pegamento",
+    "cartulinas",
+    "arcilla",
+    "modelado",
+    "origami",
+    "papiroflexia",
+    "recortable",
+    "escultura",
+    "grabado"
+  ],
+  "lenguaje_visual": [
+    "icono",
+    "símbolo",
+    "señal",
+    "logotipo",
+    "pictograma",
+    "anuncio",
+    "cómic",
+    "viñeta",
+    "onomatopeya",
+    "cartel"
+  ],
+  "historia_arte_basico": [
+    "rupestre",
+    "egipcio",
+    "griego",
+    "romano",
+    "medieval",
+    "renacimiento",
+    "estatua",
+    "fresco",
+    "ánfora",
+    "vitral"
+  ],
+  "espacio_perspectiva": [
+    "línea de horizonte",
+    "punto de fuga",
+    "plano de tierra",
+    "profundidad",
+    "superposición",
+    "disminución de tamaño",
+    "perspectiva aérea",
+    "relieve",
+    "3D",
+    "2D"
   ]
 }

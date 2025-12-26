@@ -1,17 +1,122 @@
 {
-  "sistemas_entrenamiento": [
-    "fartlek", "interval training", "crossfit", "circuitos", "series", "aeróbico", "anaeróbico", "cuestas", "pliometría", "hiit"
+  "fisiologia_ejercicio": [
+    "frecuencia cardíaca",
+    "volumen sistólico",
+    "frecuencia respiratoria",
+    "ácido láctico",
+    "fatiga",
+    "recuperación",
+    "umbral anaeróbico",
+    "oxigenación",
+    "pulsaciones",
+    "calentamiento"
   ],
-  "nutricion_deportiva": [
-    "proteína", "carbohidrato", "grasa", "vitamina", "mineral", "hidratación", "calorías", "fibra", "glucosa", "metabolismo"
+  "entrenamiento_resistencia": [
+    "carrera continua",
+    "interval training",
+    "fartlek",
+    "circuito",
+    "aeróbico",
+    "anaeróbico",
+    "progresivo",
+    "tiempo de trabajo",
+    "recuperación activa",
+    "esfuerzo"
   ],
-  "lesiones_deportivas": [
-    "esguince", "fractura", "luxación", "contractura", "tendinitis", "agujetas", "rotura fibrilar", "calambre", "contusión", "hemorragia"
+  "entrenamiento_fuerza": [
+    "fuerza resistencia",
+    "fuerza máxima",
+    "fuerza explosiva",
+    "autocarga",
+    "pesas",
+    "máquina",
+    "sobrecarga",
+    "estático",
+    "dinámico",
+    "músculo"
   ],
-  "deportes_raqueta": [
-    "tenis", "pádel", "bádminton", "ping pong", "squash", "frontón", "pelota valenciana", "pickeball", "raquetbol", "tenis playa"
+  "baloncesto_avanzado": [
+    "entrada a canasta",
+    "tiro en suspensión",
+    "bloqueo directo",
+    "jugada de pizarra",
+    "defensa individual",
+    "defensa en zona",
+    "contraataque",
+    "rebote",
+    "falta personal",
+    "pasos"
   ],
-  "expresion_corporal": [
-    "mimo", "danza", "coreografía", "ritmo", "gesto", "postura", "dramatización", "improvización", "escenario", "baile"
+  "voleibol_avanzado": [
+    "toque de dedos",
+    "toque de antebrazos",
+    "saque de tenis",
+    "remate",
+    "bloqueo",
+    "finta",
+    "recepción",
+    "colocación",
+    "rotación",
+    "tiempo muerto"
+  ],
+  "actividades_naturaleza_3": [
+    "escalada",
+    "rappel",
+    "nudo",
+    "arnés",
+    "orientación nocturna",
+    "brújula",
+    "mapa topográfico",
+    "itinerario",
+    "primeros auxilios",
+    "supervivencia"
+  ],
+  "patrimonio_deportivo_local": [
+    "pelota valenciana",
+    "trinquet",
+    "va de bo",
+    "galotxa",
+    "raspall",
+    "escala i corda",
+    "pilota",
+    "guante",
+    "tradición",
+    "deporte autóctono"
+  ],
+  "expresion_teatro_fisico": [
+    "mimo",
+    "clown",
+    "teatro gestual",
+    "ritmo",
+    "sincronización",
+    "personaje",
+    "escenario",
+    "luz y sombra",
+    "performance",
+    "expresividad"
+  ],
+  "nutricion_hidratacion": [
+    "glucógeno",
+    "proteína",
+    "hidratación",
+    "bebida isotónica",
+    "glucosa",
+    "hidratos de carbono",
+    "desayuno saludable",
+    "digestión",
+    "energía",
+    "suplementación"
+  ],
+  "prevencion_lesiones_rice": [
+    "reposo",
+    "hielo",
+    "compresión",
+    "elevación",
+    "esguince",
+    "contractura",
+    "tirón",
+    "calambre",
+    "vendaje funcional",
+    "estiramiento"
   ]
 }

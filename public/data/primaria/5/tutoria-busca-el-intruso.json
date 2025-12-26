@@ -1,124 +1,180 @@
 [
   {
-    "categoria": "Derechos (Visual)",
+    "categoria": "Derechos y Necesidades Básicas (Visual)",
     "correctos": [
       "🎓",
       "🏠",
       "⚕️",
       "🍲",
       "👪",
-      "☮️"
+      "☮️",
+      "💧",
+      "👕",
+      "🛝",
+      "🛡️",
+      "📜"
     ],
     "intrusos": [
       "🔫",
       "🍺",
       "🚬",
       "⛓️",
-      "⚒️"
+      "⚒️",
+      "🎰",
+      "🏚️ (ruina)",
+      "🛢️",
+      "⛓️",
+      "💣"
     ]
   },
   {
-    "categoria": "Paz y Diálogo (Visual)",
+    "categoria": "Diálogo, Paz y Resolución (Visual)",
     "correctos": [
       "🤝",
       "🗣️",
       "👂",
       "⚖️",
       "☮️",
-      "🫂"
+      "🫂",
+      "🕊️",
+      "💬",
+      "💐",
+      "✍️"
     ],
     "intrusos": [
       "🥊",
       "🖕",
       "😤",
       "📢",
-      "💣"
+      "💣",
+      "🔥",
+      "🔪",
+      "🌋",
+      "🪓",
+      "🔫"
     ]
   },
   {
-    "categoria": "Seguridad (Visual)",
+    "categoria": "Protección y Seguridad Personal (Visual)",
     "correctos": [
       "🔒",
       "🛡️",
       "🔑",
       "🔞",
       "🤐",
-      "🚦"
+      "🚦",
+      "⚠️",
+      "🚧",
+      "🧤",
+      "🦺",
+      "🔦"
     ],
     "intrusos": [
       "📣",
       "🔓",
       "💸",
       "🦠",
-      "🕵️"
+      "🕵️",
+      "🤡",
+      "🧟",
+      "🧛",
+      "👻",
+      "⚡ (sin peligro)"
     ]
   },
   {
-    "categoria": "Habilidades Sociales",
+    "categoria": "Habilidades Sociales para la Vida",
     "correctos": [
       "Escucha activa",
       "Asertividad",
       "Empatía",
-      "Respeto",
-      "Paciencia"
-    ],
-    "intrusos": [
-      "Agresividad",
-      "Gritos",
-      "Insultos",
-      "Ignorar",
-      "Interrumpir"
-    ]
-  },
-  {
-    "categoria": "Técnicas de Estudio",
-    "correctos": [
-      "Resumen",
-      "Esquema",
-      "Subrayado",
-      "Lectura",
-      "Repaso"
-    ],
-    "intrusos": [
-      "Copiar",
-      "Dormir",
-      "Jugar",
-      "Hablar",
-      "Gritar"
-    ]
-  },
-  {
-    "categoria": "Valores Democráticos",
-    "correctos": [
-      "Libertad",
-      "Igualdad",
-      "Justicia",
-      "Solidaridad",
+      "Respeto mutuo",
+      "Paciencia",
+      "Cooperación",
+      "Mediación",
+      "Amabilidad",
+      "Sinceridad",
       "Tolerancia"
     ],
     "intrusos": [
-      "Dictadura",
-      "Esclavitud",
-      "Injusticia",
-      "Discriminación",
-      "Odio"
+      "Agresividad verbal",
+      "Gritos constantes",
+      "Insultos hirientes",
+      "Ignorar al otro",
+      "Interrumpir siempre",
+      "Burlas pesadas",
+      "Egoísmo extremo",
+      "Envidia",
+      "Mentira"
     ]
   },
   {
-    "categoria": "Alimentación Equilibrada",
+    "categoria": "Técnicas de Estudio y Organización",
     "correctos": [
-      "Frutas",
-      "Verduras",
-      "Legumbres",
-      "Pescado",
-      "Agua"
+      "Resumen de texto",
+      "Esquema de llaves",
+      "Subrayado de ideas",
+      "Lectura comprensiva",
+      "Repaso periódico",
+      "Mapa conceptual",
+      "Agenda escolar",
+      "Lugar de estudio limpio"
     ],
     "intrusos": [
-      "Bollería",
-      "Refrescos",
-      "Golosinas",
-      "Comida rápida",
-      "Fritos"
+      "Copiar del compañero",
+      "Dormir en clase",
+      "Jugar con el móvil",
+      "Hablar sin parar",
+      "Gritar al profesor",
+      "Olvidar los libros",
+      "Distraerse con la tele",
+      "Estudiar con ruidos"
+    ]
+  },
+  {
+    "categoria": "Valores Democráticos y Ciudadanos",
+    "correctos": [
+      "Libertad de expresión",
+      "Igualdad ante la ley",
+      "Justicia social",
+      "Solidaridad humana",
+      "Tolerancia cultural",
+      "Pluralismo",
+      "Participación ciudadana",
+      "Honestidad"
+    ],
+    "intrusos": [
+      "Dictadura militar",
+      "Esclavitud infantil",
+      "Injusticia flagrante",
+      "Discriminación racial",
+      "Odio irracional",
+      "Corrupción",
+      "Violencia de género",
+      "Acoso escolar"
+    ]
+  },
+  {
+    "categoria": "Alimentación Saludable y Equilibrada",
+    "correctos": [
+      "Frutas frescas",
+      "Verduras de temporada",
+      "Legumbres variadas",
+      "Pescado azul",
+      "Agua mineral",
+      "Frutos secos",
+      "Aceite de oliva",
+      "Cereales integrales"
+    ],
+    "intrusos": [
+      "Bollería industrial",
+      "Refrescos azucarados",
+      "Golosinas y chuches",
+      "Comida rápida grasa",
+      "Fritos precocinados",
+      "Helado de chocolate",
+      "Patatas chips",
+      "Bebidas energéticas"
     ]
   }
 ]

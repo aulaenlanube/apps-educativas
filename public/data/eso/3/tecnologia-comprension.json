@@ -1,0 +1,568 @@
+[
+    {
+        "id": "1",
+        "titulo": "Energía: Fuentes Renovables",
+        "texto": "La energía es la capacidad de realizar un trabajo. Ante el agotamiento de los combustibles fósiles, el mundo apuesta por las ENERGÍAS RENOVABLES. La energía solar fotovoltaica usa paneles para convertir la luz en electricidad. La eólica usa la fuerza del viento para mover aerogeneradores. También existen la biomasa, la geotérmica y la mareomotriz. El gran reto de estas energías es el ALMACENAMIENTO (baterías) y su dependencia del clima, pero son la única solución viable para frenar el cambio climático.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué tipo de energía usa paneles para captar la luz del sol?",
+                "opciones": [
+                    "Eólica",
+                    "Solar fotovoltaica",
+                    "Térmica",
+                    "Vapor"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se obtiene la energía eólica?",
+                "opciones": [
+                    "De los ríos",
+                    "Usando el viento para mover aerogeneradores",
+                    "De las plantas",
+                    "Quemando carbón"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una energía renovable menos común:",
+                "opciones": [
+                    "Carbón",
+                    "Mareomotriz (del mar) o Geotérmica",
+                    "Gas natural",
+                    "Pilas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el principal problema actual de las renovables?",
+                "opciones": [
+                    "Que son feas",
+                    "El almacenamiento de la energía",
+                    "Que no funcionan",
+                    "Que son muy baratas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Las renovables son inagotables porque...",
+                "opciones": [
+                    "Son muy grandes",
+                    "Provienen de fuentes naturales que se regeneran",
+                    "No se mueven",
+                    "Tienen mucha fuerza"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Materiales: Plásticos y Fibras",
+        "texto": "Los plásticos son materiales sintéticos derivados principalmente del petróleo. En 3º de ESO estudiamos sus familias: termoplásticos (se ablandan con calor, son reciclables), termoestables (no se funden una vez fabricados) y elastómeros (muy elásticos). También analizamos las fibras textiles, que pueden ser naturales (algodón, lana) o sintéticas (poliéster, nailon). Debido a su gran impacto ambiental, la tendencia actual es el uso de BIOPLÁSTICOS fabricados con materias vegetales que son biodegradables.",
+        "preguntas": [
+            {
+                "pregunta": "¿De dónde proceden la mayoría de los plásticos tradicionales?",
+                "opciones": [
+                    "De los árboles",
+                    "Del petróleo",
+                    "Del agua",
+                    "De las minas de hierro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué caracteriza a los termoplásticos?",
+                "opciones": [
+                    "Son muy frágiles",
+                    "Se pueden fundir y reciclar repetidamente",
+                    "Son de madera",
+                    "Se rompen con el agua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es un elastómero?",
+                "opciones": [
+                    "Un plástico muy duro",
+                    "Un material muy elástico (como la goma)",
+                    "Una piedra",
+                    "Un líquido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es una fibra textil natural?",
+                "opciones": [
+                    "Poliéster",
+                    "Algodón o lana",
+                    "Plástico",
+                    "Nailon"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ventaja tienen los bioplásticos?",
+                "opciones": [
+                    "Son más baratos",
+                    "Son biodegradables y menos contaminantes",
+                    "Son más brillantes",
+                    "Son eternos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Circuitos Eléctricos: Serie y Paralelo",
+        "texto": "Un circuito eléctrico es un camino cerrado por el que circulan los electrones. Existen dos formas básicas de conectar componentes: 1) SERIE: los elementos están uno tras otro; si se funde uno, el circuito se corta totalmente. 2) PARALELO: los elementos tienen caminos independientes; si se funde una bombilla, las demás siguen funcionando. En nuestras casas usamos circuitos en paralelo para que podamos encender la luz de una habitación sin tener que encender todas las demás.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué ocurre en un circuito en serie si se quita una bombilla?",
+                "opciones": [
+                    "Las otras brillan más",
+                    "Todo el circuito deja de funcionar",
+                    "No pasa nada",
+                    "Se queman todas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ventaja tiene el circuito en paralelo?",
+                "opciones": [
+                    "Que usa menos cable",
+                    "Permite que los componentes funcionen de forma independiente",
+                    "Es más peligroso",
+                    "No necesita pilas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de circuito se usa en la instalación de una vivienda?",
+                "opciones": [
+                    "Serie",
+                    "Paralelo",
+                    "Circular",
+                    "Ninguno"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué circula por un circuito eléctrico?",
+                "opciones": [
+                    "Agua",
+                    "Electrones (corriente eléctrica)",
+                    "Aire",
+                    "Luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En un circuito, el interruptor sirve para:",
+                "opciones": [
+                    "Crear electricidad",
+                    "Abrir o cerrar el circuito a nuestra voluntad",
+                    "Medir la luz",
+                    "Guardar energía"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Mecanismos: Engranajes y Relación de Transmisión",
+        "texto": "Los engranajes son ruedas dentadas que transmiten movimiento circular. Son más eficientes que las poleas porque no patinan. La RELACIÓN DE TRANSMISIÓN es el número que nos dice cuánto corre la rueda de salida respecto a la de entrada. Si el engranaje de entrada tiene 10 dientes y el de salida 20, la velocidad se reduce a la mitad pero la fuerza aumenta. Es el principio que usan las marchas de una bicicleta o la caja de cambios de un coche para subir cuestas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Por qué los engranajes son mejores que las poleas en máquinas pesadas?",
+                "opciones": [
+                    "Porque son bonitos",
+                    "Porque los dientes evitan que patinen",
+                    "Porque pesan menos",
+                    "Porque son redondos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si pasamos de un piñón pequeño a uno grande?",
+                "opciones": [
+                    "Aumenta la velocidad",
+                    "Aumenta la fuerza (pero baja la velocidad)",
+                    "Se rompe el motor",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la relación de transmisión?",
+                "opciones": [
+                    "El color del engranaje",
+                    "El cociente entre las velocidades de las ruedas",
+                    "Un tipo de grasa",
+                    "El largo del eje"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra una aplicación real de los engranajes:",
+                "opciones": [
+                    "Una mesa",
+                    "La caja de cambios de un coche",
+                    "Un globo",
+                    "Una bota de fútbol"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Si las ruedas tienen el mismo número de dientes, la velocidad es:",
+                "opciones": [
+                    "Doble",
+                    "Igual",
+                    "Mitad",
+                    "Cero"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Electrónica: Resistencias y Condensadores",
+        "texto": "La electrónica utiliza componentes más pequeños y precisos que la electricidad básica. La RESISTENCIA sirve para limitar el paso de corriente y proteger componentes delicados como los LEDs. Su valor se mide en ohmios y se identifica mediante un código de colores. El CONDENSADOR es capaz de almacenar energía eléctrica temporalmente y soltarla cuando se necesita, actuando como una pequeña batería de carga rápida. Estos componentes son la base de tu móvil, tu ordenador y cualquier aparato digital.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la función principal de una resistencia?",
+                "opciones": [
+                    "Iluminar",
+                    "Limitar el paso de corriente para proteger otros componentes",
+                    "Dar más fuerza al circuito",
+                    "Calentar el agua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se mide el valor de una resistencia?",
+                "opciones": [
+                    "En metros",
+                    "En ohmios (usando un código de colores)",
+                    "En litros",
+                    "En grados"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace un condensador?",
+                "opciones": [
+                    "Cortar el cable",
+                    "Almacenar energía eléctrica temporalmente",
+                    "Hacer que el motor gire más",
+                    "Apagar el LED"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un LED necesita siempre estar acompañado de una...",
+                "opciones": [
+                    "Pila",
+                    "Resistencia (para no quemarse)",
+                    "Rueda",
+                    "Bombilla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué se mide la capacidad de un condensador?",
+                "opciones": [
+                    "Ohmios",
+                    "Faradios",
+                    "Voltios",
+                    "Amperios"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Hardware: Procesador y Memoria RAM",
+        "texto": "El ordenador tiene dos componentes clave en su interior. El MICROPROCESADOR (CPU) es el 'cerebro' que ejecuta todas las instrucciones y cálculos. Su velocidad se mide en GHz. Por otro lado, la memoria RAM es la memoria de trabajo: guarda los datos de los programas que estás usando en ese momento. Si apagas el ordenador, la RAM se borra. Por eso, cuanta más RAM tengas, más programas podrás tener abiertos a la vez sin que el ordenador se bloquee o vaya lento.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué componente es el 'cerebro' del ordenador?",
+                "opciones": [
+                    "El teclado",
+                    "El microprocesador (CPU)",
+                    "El ratón",
+                    "La pantalla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre con los datos de la memoria RAM al apagar el PC?",
+                "opciones": [
+                    "Se guardan para siempre",
+                    "Se borran totalmente",
+                    "Se transforman en música",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve tener mucha memoria RAM?",
+                "opciones": [
+                    "Para tener más sitio en el disco duro",
+                    "Para poder ejecutar muchos programas a la vez con fluidez",
+                    "Para que la pantalla se vea mejor",
+                    "Para que internet sea gratis"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué unidad se mide la velocidad del procesador hoy?",
+                "opciones": [
+                    "Kilómetros",
+                    "Gigahertz (GHz)",
+                    "Litros",
+                    "Puntos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La RAM es una memoria de tipo:",
+                "opciones": [
+                    "Permanente",
+                    "Volátil (temporal)",
+                    "Lenta",
+                    "Visual"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Software: Sistemas Operativos",
+        "texto": "El Sistema Operativo es el programa principal que gestiona todo el hardware y permite que el usuario interactúe con el ordenador. Sin él, el PC sería solo una caja de metal inútil. Los más conocidos son WINDOWS (el más usado en PC), macOS (de Apple), y LINUX (código abierto y gratuito). En móviles usamos Android o iOS. El sistema operativo se encarga de gestionar archivos, controlar periféricos (teclado, ratón) y permitir que instalemos otras aplicaciones como juegos o navegadores.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el Sistema Operativo?",
+                "opciones": [
+                    "Un programa de dibujo",
+                    "El programa base que gestiona todo el ordenador",
+                    "Un virus",
+                    "La marca de la pantalla"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un sistema operativo de código abierto y gratuito:",
+                "opciones": [
+                    "Windows",
+                    "Linux",
+                    "macOS",
+                    "Word"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la función del sistema operativo con los periféricos?",
+                "opciones": [
+                    "Venderlos",
+                    "Controlar y gestionar su funcionamiento (teclado, ratón...)",
+                    "Limpiarlos",
+                    "No hace nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En un móvil Android, el programa base es:",
+                "opciones": [
+                    "WhatsApp",
+                    "El sistema operativo Android",
+                    "El cargador",
+                    "La batería"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Podríamos usar aplicaciones sin sistema operativo?",
+                "opciones": [
+                    "Sí",
+                    "No"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Estructuras: Esfuerzos mecánicos",
+        "texto": "Las estructuras deben soportar pesos sin romperse ni deformarse en exceso. Los elementos de una estructura sufren diferentes ESFUERZOS: 1) TRACCIÓN (estirar, como el cable de un puente). 2) COMPRESIÓN (aplastar, como las patas de una silla). 3) FLEXIÓN (doblar, como una balda con libros). 4) TORSIÓN (retorcer). 5) CIZALLADURA (cortar, como el efecto de unas tijeras). Los arquitectos e ingenieros calculan estos esfuerzos para elegir los materiales y formas adecuadas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué esfuerzo sufre una cuerda al colgar un peso de ella?",
+                "opciones": [
+                    "Compresión",
+                    "Tracción",
+                    "Torsión",
+                    "Cizalladura"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Y las patas de una mesa?",
+                "opciones": [
+                    "Tracción",
+                    "Compresión",
+                    "Flexión",
+                    "Giro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "El esfuerzo de 'doblarse' se llama:",
+                "opciones": [
+                    "Flexión",
+                    "Torsión",
+                    "Cizalla",
+                    "Aplastamiento"
+                ],
+                "correcta": 0
+            },
+            {
+                "pregunta": "Un destornillador al girar un tornillo sufre:",
+                "opciones": [
+                    "Tracción",
+                    "Torsión",
+                    "Flexión",
+                    "Corte"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Las tijeras ejercen un esfuerzo de:",
+                "opciones": [
+                    "Tracción",
+                    "Cizalladura (corte)",
+                    "Peso",
+                    "Calor"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Sistemas de Control y Robótica",
+        "texto": "Un sistema de control automático es capaz de realizar tareas sin intervención humana. Se basan en tres partes: SENSORES (reciben información, como un termómetro), CONTROLADOR (toma decisiones, como una placa Arduino) y ACTUADORES (realizan la acción, como un motor o una bombilla). Un ejemplo es un riego automático que mide la humedad del suelo y abre el agua solo cuando la planta lo necesita. Esto ahorra recursos y mejora la eficiencia en la industria y el hogar.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué componente recibe información del exterior?",
+                "opciones": [
+                    "Actuador",
+                    "Sensor",
+                    "Controlador",
+                    "Cable"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Nombra un ejemplo de actuador:",
+                "opciones": [
+                    "Termómetro",
+                    "Motor o bombilla",
+                    "Sensor de luz",
+                    "Ojo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hace el controlador?",
+                "opciones": [
+                    "Recibe golpes",
+                    "Procesa la información de los sensores y toma una decisión",
+                    "Dibuja",
+                    "Nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Un semáforo que cambia solo cada cierto tiempo es un sistema de:",
+                "opciones": [
+                    "Control manual",
+                    "Control automático",
+                    "Guerra",
+                    "Espejos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "La placa Arduino es un tipo de:",
+                "opciones": [
+                    "Sensor",
+                    "Controlador (cerebro del robot)",
+                    "Actuador",
+                    "Pantalla"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "El Proceso Tecnológico",
+        "texto": "Para resolver un problema mediante la tecnología, seguimos siempre unos pasos organizados: 1) IDENTIFICAR el problema. 2) BUSCAR información. 3) DISEÑAR la solución (dibujos y planos). 4) PLANIFICAR (qué materiales y herramientas necesito). 5) CONSTRUIR. 6) EVALUAR (¿funciona?). Este método nos ayuda a no perder tiempo ni materiales, y es el que siguen todas las empresas del mundo para crear desde un clip hasta una nave espacial.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el primer paso del proceso tecnológico?",
+                "opciones": [
+                    "Comprar cosas",
+                    "Identificar el problema o necesidad",
+                    "Construir",
+                    "Dibujar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hacemos en la fase de planificación?",
+                "opciones": [
+                    "Mirar el móvil",
+                    "Decidir qué materiales, herramientas y tiempo necesitamos",
+                    "Vender el objeto",
+                    "Pintarlo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la evaluación final?",
+                "opciones": [
+                    "Para poner una nota",
+                    "Para comprobar si el objeto resuelve el problema inicial",
+                    "Para tirarlo",
+                    "Para nada"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué se hace en la fase de diseño?",
+                "opciones": [
+                    "Bailar",
+                    "Realizar bocetos y planos de la solución",
+                    "Comprar madera",
+                    "Llamar al jefe"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Es importante seguir el orden de estos pasos?",
+                "opciones": [
+                    "Sí, para ser eficientes y no malgastar recursos",
+                    "No, da igual"
+                ],
+                "correcta": 0
+            }
+        ]
+    }
+]

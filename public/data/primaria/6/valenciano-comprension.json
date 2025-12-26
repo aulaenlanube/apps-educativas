@@ -1,320 +1,568 @@
 [
   {
     "id": "1",
-    "titulo": "La paella del diumenge",
-    "texto": "Hui és diumenge i mengem paella. El pare cuina al jardí amb llenya. La paella porta arròs, pollastre i bajoqueta. Tota la família seu a taula per a dinar. L'arròs està molt bo i groc.",
+    "titulo": "Joanot Martorell i el Tirant lo Blanch",
+    "texto": "Joanot Martorell va ser l'autor d'una de les novel·les més importants de la literatura universal: 'Tirant lo Blanch', publicada l'any 1490. A diferència d'altres llibres de cavalleria de l'època, Tirant és un heroi humà, de carn i os, que guanya les batalles amb intel·ligència i esforç, i no per poders màgics. El mateix Miguel de Cervantes va salvar aquest llibre de la foguera en el Quixot, dient que era 'el millor llibre del món'. Martorell va escriure en un valencià elegant i viu, reflectint la societat del Segle d'Or valencià.",
     "preguntas": [
       {
-        "pregunta": "Hui és dilluns?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Qui va escriure la novel·la 'Tirant lo Blanch'?",
+        "opciones": [
+          "Ausiàs March",
+          "Joanot Martorell",
+          "Jaume I",
+          "Enric Valor"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Cuina la mare?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "En quin any es va publicar l'obra?",
+        "opciones": [
+          "1238",
+          "1490",
+          "1605",
+          "1990"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què porta la paella?",
-        "opciones": ["Macarrons", "Arròs", "Creïlles", "Peix"],
+        "pregunta": "Què diferencia a Tirant d'altres cavallers?",
+        "opciones": [
+          "Té poders màgics",
+          "És un heroi humà sense màgia",
+          "És un gegant",
+          "No sap lluitar"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "On cuina el pare?",
-        "opciones": ["A la cuina", "Al bany", "Al jardí", "Al carrer"],
-        "correcta": 2
+        "pregunta": "Què va dir Cervantes sobre aquest llibre?",
+        "opciones": [
+          "Que era avorrit",
+          "Que era el millor llibre del món",
+          "Que no l'havia llegit",
+          "Que era massa llarg"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "De quin color és l'arròs?",
-        "opciones": ["Blau", "Verd", "Roig", "Groc"],
-        "correcta": 3
+        "pregunta": "En quina època es va escriure?",
+        "opciones": [
+          "Època romana",
+          "Segle d'Or valencià",
+          "Segle XXI",
+          "Prehistòria"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "2",
-    "titulo": "Les Falles",
-    "texto": "Al mes de març celebrem les Falles. Al carrer hi ha ninots molt grans i colorits. Els xiquets i les xiquetes tiren petards i s'ho passen molt bé. També mengem bunyols amb xocolate calent.",
+    "titulo": "El Misteri d'Elx",
+    "texto": "El Misteri d’Elx és un drama sacre-líric medieval que es representa cada mes d'agost a la Basílica de Santa Maria d'Elx. És l'única obra de teatre d'aquest tipus que s'ha mantingut viva des de l'Edat Mitjana fins ara. Per la seua bellesa i antiguitat, la UNESCO el va declarar Patrimoni de la Humanitat l'any 2001. Està escrit en valencià antic i llatí, i tota la part musical és cantada per membres de la capella, incloent-hi xiquets que fan els papers de la Verge Maria i els àngels.",
     "preguntas": [
       {
-        "pregunta": "Les Falles són al març?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Els xiquets tiren pedres?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "On es representa el Misteri d'Elx?",
+        "opciones": [
+          "A la platja",
+          "A la Basílica de Santa Maria",
+          "A un castell",
+          "A un teatre modern"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què mengem?",
-        "opciones": ["Poma", "Bunyols", "Sopa", "Entrepà"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Què hi ha al carrer?",
-        "opciones": ["Cotxes", "Ninots grans", "Vaques", "Llits"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Amb què prenem els bunyols?",
-        "opciones": ["Amb aigua", "Amb suc", "Amb xocolate", "Amb llet"],
+        "pregunta": "En quins mesos se celebra normalment?",
+        "opciones": [
+          "Gener",
+          "Març",
+          "Agost",
+          "Desembre"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "Quin títol li va atorgar la UNESCO el 2001?",
+        "opciones": [
+          "Millor poble",
+          "Patrimoni de la Humanitat",
+          "Monument Nacional",
+          "Lloc divertit"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "En quines llengües està escrit?",
+        "opciones": [
+          "Valencià i castellà",
+          "Valencià antic i llatí",
+          "Francès i anglès",
+          "Només valencià"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "Qui interpreta els papers de la Verge i els àngels?",
+        "opciones": [
+          "Dones grans",
+          "Xiquets",
+          "Ninots",
+          "Professionals de l'òpera"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "3",
-    "titulo": "El meu gosset Blai",
-    "texto": "El meu gos es diu Blai. És xicotet i té el pèl de color marró. Li agrada molt jugar amb la pilota al parc. Quan té son, dorm al seu llit redó i calentet.",
+    "titulo": "Ausiàs March i la poesia",
+    "texto": "Ausiàs March és el poeta valencià més universal. Va viure al segle XV i va ser el primer que va deixar d'escriure en l'estil dels trobadors per a expressar els seus sentiments reals. La seua poesia és complexa i parla de l'amor, de la mort i de la por. Utilitza 'senyals' per a dirigir-se a la seua estimada sense dir el seu nom, com per exemple 'Plena de seny'. March va marcar el camí de tota la poesia moderna posterior.",
     "preguntas": [
       {
-        "pregunta": "El gos és gran?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "En quin segle va viure Ausiàs March?",
+        "opciones": [
+          "Segle XII",
+          "Segle XV",
+          "Segle XVIII",
+          "Segle XX"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "És de color blau?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Què va fer March per primera vegada en la poesia?",
+        "opciones": [
+          "Escriure en llatí",
+          "Expressar sentiments reals fora de l'estil trobadoresc",
+          "Escriure amb ordinador",
+          "No fer rimes"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Com es diu el gos?",
-        "opciones": ["Toby", "Rex", "Blai", "Roc"],
-        "correcta": 2
+        "pregunta": "Què és 'Plena de seny'?",
+        "opciones": [
+          "Un títol d'un llibre",
+          "Un 'senyal' per a dirigir-se a l'estimada",
+          "Un tipus de menjar",
+          "El nom del seu cavall"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Amb què juga?",
-        "opciones": ["Amb una pilota", "Amb un llibre", "Amb un llapis", "Amb un os"],
-        "correcta": 0
+        "pregunta": "De quins temes parla la seua poesia?",
+        "opciones": [
+          "D'animals i plantes",
+          "De l'amor, la mort i la por",
+          "De guerres i vaixells",
+          "De política actual"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "On dorm Blai?",
-        "opciones": ["Al sofà", "Al llit", "A la cadira", "A terra"],
+        "pregunta": "Quin títol se li sol donar?",
+        "opciones": [
+          "El trobador bo",
+          "El poeta més universal valencià",
+          "El rei de la prosa",
+          "El savi d'Elx"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "4",
-    "titulo": "L'hora del pati",
-    "texto": "A l'escola, quan sona el timbre, eixim al pati. A mi m'agrada jugar a fet i amagar amb els amics. Hui he portat un entrepà de formatge i un suc de taronja per a esmorzar.",
+    "titulo": "L'accentuació: Paraules agudes, planes i esdrúixoles",
+    "texto": "Per a escriure correctament en valencià, cal conèixer les regles d'accentuació. Les paraules AGUDES s'accentuen si acaben en vocal, vocal+s, -en o -in (com 'català' o 'entén'). Les PLANES s'accentuen si NO acaben en aquestes terminacions (com 'exàmen' o 'cadira' - sense accent). Finalment, les paraules ESDRÚIXOLES s'accentuen sempre (com 'història' o 'pàgina'). Recorda que en valencià tenim l'accent tancat (´) i l'obert (`)!",
     "preguntas": [
       {
-        "pregunta": "Sona el timbre?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Eixim al carrer?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quan s'accentua una paraula aguda?",
+        "opciones": [
+          "Sempre",
+          "Si acaba en vocal, vocal+s, -en, -in",
+          "Mai",
+          "Si és molt llarga"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "A què juga?",
-        "opciones": ["A futbol", "A bàsquet", "A fet i amagar", "A cartes"],
+        "pregunta": "Quina d'aquestes paraules és esdrúixola?",
+        "opciones": [
+          "Demà",
+          "Llibre",
+          "Pàgina",
+          "Cafè"
+        ],
         "correcta": 2
       },
       {
-        "pregunta": "De què és l'entrepà?",
-        "opciones": ["De pernil", "De formatge", "De xocolate", "De tonyina"],
-        "correcta": 1
+        "pregunta": "Quan s'accentuen les paraules esdrúixoles?",
+        "opciones": [
+          "Sempre",
+          "Només si acaben en vocal",
+          "Mai",
+          "Depèn del dia"
+        ],
+        "correcta": 0
       },
       {
-        "pregunta": "De què és el suc?",
-        "opciones": ["De poma", "De pera", "De taronja", "De bresquilla"],
+        "pregunta": "¿Quins tipus d'accents té el valencià?",
+        "opciones": [
+          "Només el tancat (´)",
+          "Només l'obert (`)",
+          "Tancat (´) i obert (`)",
+          "No té accents"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "La paraula 'música' porta accent per què és...",
+        "opciones": [
+          "Aguda",
+          "Plana",
+          "Esdrúixola",
+          "Un instrument"
+        ],
         "correcta": 2
       }
     ]
   },
   {
     "id": "5",
-    "titulo": "La taronja",
-    "texto": "La taronja és una fruita redona. Naix als tarongers, que són arbres amb fulles verdes. La taronja té molt de suc i és bona per a la salut. A València hi ha molts camps de taronges.",
+    "titulo": "El Tribunal de les Aigües",
+    "texto": "El Tribunal de les Aigües de la Vega de València és la institució de justícia més antiga d'Europa. Cada dijous al migdia, els representants de les séquies es reuneixen a la Porta dels Apòstols de la Catedral de València per a resoldre conflictes sobre el reg de l'horta. El judici és oral, en valencià, i la seua sentència és inapel·lable. És un exemple de convivència i gestió d'un recurs escàs com l'aigua.",
     "preguntas": [
       {
-        "pregunta": "La taronja és quadrada?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quin dia de la setmana es reuneix el Tribunal?",
+        "opciones": [
+          "Dilluns",
+          "Dijous",
+          "Dissabte",
+          "Diumenge"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Les fulles són verdes?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "On naixen les taronges?",
-        "opciones": ["Als pins", "Als tarongers", "A les roques", "Al mar"],
+        "pregunta": "Sobre què resol conflictes aquest tribunal?",
+        "opciones": [
+          "Sobre diners",
+          "Sobre el reg de l'horta",
+          "Sobre les cases",
+          "Sobre les escoles"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què té la taronja?",
-        "opciones": ["Llet", "Aigua", "Suc", "Sal"],
-        "correcta": 2
+        "pregunta": "On se situen per a fer el judici?",
+        "opciones": [
+          "Dins d'un palau",
+          "A la Porta dels Apòstols de la Catedral",
+          "A l'Ajuntament",
+          "Al riu Túria"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "És bona per a la salut?",
-        "opciones": ["Sí, molt", "No, gens", "És roïna", "Fa mal"],
-        "correcta": 0
+        "pregunta": "Com és el judici?",
+        "opciones": [
+          "Escrit i secret",
+          "Oral i en valencià",
+          "Per televisió",
+          "Per correu"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "És una institució jove?",
+        "opciones": [
+          "Sí, té 10 anys",
+          "No, és la més antiga d'Europa",
+          "Té 50 anys",
+          "Es va crear l'any passat"
+        ],
+        "correcta": 1
       }
     ]
   },
   {
     "id": "6",
-    "titulo": "Un dia de pluja",
-    "texto": "Hui el cel està gris i plou molt. M'he posat les botes d'aigua i l'impermeable groc. M'agrada saltar als tolls d'aigua, però la mare diu que em banye els peus.",
+    "titulo": "El relleu valencià: Muntanyes i planes",
+    "texto": "El territori valencià té un relleu molt contrastat. Al nord, a la província de Castelló, trobem les zones més muntanyoses com el massís del Penyagolosa. Al centre i sud apareixen sistemes com la Serra d'Aitana, que és la cima més alta de la província d'Alacant. Entre la muntanya i la mar s'estenen les planes litorals, on es cultiva la major part de la citricultura valenciana (taronges i mandarines).",
     "preguntas": [
       {
-        "pregunta": "Fa sol hui?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quina és la cima més alta d'Alacant?",
+        "opciones": [
+          "Penyagolosa",
+          "Aitana",
+          "Montgó",
+          "Penyal d'Ifac"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "El cel està blau?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "En quina província està el Penyagolosa?",
+        "opciones": [
+          "València",
+          "Castelló",
+          "Alacant",
+          "Múrcia"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "De quin color és l'impermeable?",
-        "opciones": ["Roig", "Groc", "Verd", "Negre"],
+        "pregunta": "Què es cultiva principalment a les planes litorals?",
+        "opciones": [
+          "Blat",
+          "Taronges i mandarines (cítrics)",
+          "Patates",
+          "Cafè"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "On salta?",
-        "opciones": ["Als tolls", "Al llit", "A la cadira", "Al sofà"],
-        "correcta": 0
-      },
-      {
-        "pregunta": "Què es banya?",
-        "opciones": ["Les mans", "El cap", "Els peus", "El nas"],
+        "pregunta": "Com és el relleu valencià en general?",
+        "opciones": [
+          "Tot pla",
+          "Tot muntanya",
+          "Contrastat entre muntanya i costa",
+          "Un desert"
+        ],
         "correcta": 2
+      },
+      {
+        "pregunta": "On trobem les zones més muntanyoses segons el text?",
+        "opciones": [
+          "Al nord",
+          "Al sud",
+          "A les illes",
+          "Sota la mar"
+        ],
+        "correcta": 0
       }
     ]
   },
   {
     "id": "7",
-    "titulo": "La meua habitació",
-    "texto": "La meua habitació és de color blau. Tinc un llit gran i una taula per a fer els deures. A la prestatgeria tinc molts contes. El meu joguet preferit és un osset de peluix.",
+    "titulo": "Enric Valor i les rondalles",
+    "texto": "Enric Valor va ser un escriptor i gramàtic fonamental per al valencià del segle XX. La seua gran labor va ser arreplegar les 'rondalles' valencianes, que són contes populars que es contaven vora el foc. Gràcies a ell, títols com 'I que bonic és el món' o 'El jugador de petxina' perviuen hui en dia. Valor va saber posar per escrit la riquesa del parlar dels nostres pobles, mantenint viva la parla dels nostres avantpassats.",
     "preguntas": [
       {
-        "pregunta": "L'habitació és roja?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Qui va arreplegar les rondalles valencianes?",
+        "opciones": [
+          "Jaume I",
+          "Enric Valor",
+          "Ausiàs March",
+          "Ferran Torrent"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Té un llit gran?",
-        "opciones": ["Sí", "No"],
-        "correcta": 0
+        "pregunta": "Què són les rondalles?",
+        "opciones": [
+          "Poemes d'amor",
+          "Contes populars",
+          "Cançons de ballar",
+          "Lleis antigues"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "De quin color és l'habitació?",
-        "opciones": ["Blanca", "Verda", "Blava", "Rosa"],
-        "correcta": 2
+        "pregunta": "¿Com s'escoltaven antigament aquests contes?",
+        "opciones": [
+          "Per ràdio",
+          "Contats vora el foc",
+          "Per Internet",
+          "En el cine"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Què hi ha a la prestatgeria?",
-        "opciones": ["Plats", "Roba", "Contes", "Sabates"],
-        "correcta": 2
+        "pregunta": "Quina labor va fer Enric Valor a part d'escriure?",
+        "opciones": [
+          "Va ser pintor",
+          "Va ser gramàtic",
+          "Va ser rei",
+          "Va ser cuiner"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Quin és el joguet preferit?",
-        "opciones": ["Un cotxe", "Un osset", "Una nina", "Un tren"],
+        "pregunta": "En quin segle va destacar principalment?",
+        "opciones": [
+          "Segle XV",
+          "Segle XX",
+          "Segle XII",
+          "Segle XVIII"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "8",
-    "titulo": "Anem a la platja",
-    "texto": "A l'estiu fa molta calor i anem a la platja. L'aigua de la mar està fresqueta. Jo faig castells amb l'arena i el meu germà neda amb els manguitos. Després mengem gelat.",
+    "titulo": "L'Albufera: Un ecosistema fràgil",
+    "texto": "L'Albufera de València no és només un llac, és un ecosistema complex que inclou la Devesa, l'aiguamoll i els camps d'arròs. És una parada vital per a les aus que viatgen d'Europa a l'Àfrica. Però aquest espai pateix molts perills: la contaminació de l'aigua, la falta d'aigua dolça i el turisme massiu. De xicotets hem d'aprendre a respectar aquest parc natural perquè continue sent el refugi de milers de flamencs.",
     "preguntas": [
       {
-        "pregunta": "Fa fred a l'estiu?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Quines zones inclou l'ecosistema de l'Albufera?",
+        "opciones": [
+          "Només el llac",
+          "La Devesa, l'aiguamoll i els camps d'arròs",
+          "Una muntanya",
+          "Un desert de sal"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "L'aigua està calenta?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Per a qui és una parada vital l'Albufera?",
+        "opciones": [
+          "Per als vaixells",
+          "Per a les aus migratòries",
+          "Per als trens",
+          "Per als gats"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què faig amb l'arena?",
-        "opciones": ["Boles", "Castells", "Pastissos", "Cases"],
+        "pregunta": "Quins perills amenacen aquest espai?",
+        "opciones": [
+          "La neu",
+          "La contaminació i la falta d'aigua dolça",
+          "L'excés de menjar",
+          "Els arbres"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Amb què neda el germà?",
-        "opciones": ["Amb manguitos", "Amb barca", "Amb peus", "Amb res"],
-        "correcta": 0
+        "pregunta": "¿Quin animal emblemàtic s'esmenta al final?",
+        "opciones": [
+          "L'elefant",
+          "El flamenc",
+          "El dofí",
+          "El lleó"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Què mengen després?",
-        "opciones": ["Fruita", "Gelat", "Pa", "Peix"],
+        "pregunta": "Cap a on viatgen les aus que paren allí?",
+        "opciones": [
+          "Cap a Àsia",
+          "Cap a l'Àfrica",
+          "Cap a Amèrica",
+          "Cap al Pol Nord"
+        ],
         "correcta": 1
       }
     ]
   },
   {
     "id": "9",
-    "titulo": "La classe de música",
-    "texto": "Hui tenim classe de música amb la mestra Anna. Aprenem a tocar la flauta i el tambor. La mestra toca la guitarra i nosaltres cantem una cançó molt bonica sobre la primavera.",
+    "titulo": "Ús de la dièresi (¨)",
+    "texto": "La dièresi és un signe ortogràfic que posem damunt de la 'i' o la 'u' per dues raons: per a indicar que la 'u' es pronuncia en les combinacions 'gü' i 'qü' (com 'aigües' o 'pingüí') o per a indicar que dues vocals no formen diftong (com 'raïm' o 'veïna'). És important no confondre-la amb l'accent, ja que tenen funcions diferents en la llengua valenciana.",
     "preguntas": [
       {
-        "pregunta": "La mestra es diu Maria?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Sobre quines lletres es pot posar la dièresi?",
+        "opciones": [
+          "a, e, o",
+          "i, u",
+          "totes les vocals",
+          "només la u"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Toquem el piano?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "Per a què serveix en la paraula 'pingüí'?",
+        "opciones": [
+          "Per a fer-la més llarga",
+          "Per a indicar que la 'u' es pronuncia",
+          "Per a l'accent",
+          "Per a res"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què toca la mestra?",
-        "opciones": ["El violí", "La guitarra", "La trompeta", "El piano"],
+        "pregunta": "Un exemple on la dièresi trenca el diftong és...",
+        "opciones": [
+          "Llengua",
+          "Raïm",
+          "Quadern",
+          "Aigua"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "Què toquen els xiquets?",
-        "opciones": ["Flauta i tambor", "Guitarra", "Piano", "Arpa"],
+        "pregunta": "¿Com es diu el signe de la dièresi?",
+        "opciones": [
+          "Coma",
+          "Punget",
+          "Dos punts verticals (¨)",
+          "Ratlla"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿S'accentua 'raïm'?",
+        "opciones": [
+          "No, porta dièresi per a separar les vocals",
+          "Sí, porta accent i dièresi"
+        ],
         "correcta": 0
-      },
-      {
-        "pregunta": "De què és la cançó?",
-        "opciones": ["De l'hivern", "De la tardor", "De l'estiu", "De la primavera"],
-        "correcta": 3
       }
     ]
   },
   {
     "id": "10",
-    "titulo": "L'àvia Pepa",
-    "texto": "L'àvia Pepa viu al poble. Té una casa blanca amb un hort. A l'hort hi ha tomaques i encisams. L'àvia em conta contes de quan ella era xicoteta abans d'anar a dormir.",
+    "titulo": "La Muixeranga: Tradició i altura",
+    "texto": "La Muixeranga d'Algemesí és una tradició que mescla dansa i torres humanes. A diferència dels castellers catalans, la Muixeranga té un caràcter més religiós i plàstic. Es realitza a les festes de la Mare de Déu de la Salut, declarades Patrimoni Immaterial de la Humanitat. El so de la taba i la dolçaina marca el ritme mentre els muixeranguers alcen figures sorprenents amb molta força i equilibri.",
     "preguntas": [
       {
-        "pregunta": "L'àvia viu a la ciutat?",
-        "opciones": ["Sí", "No"],
+        "pregunta": "De quina localitat és típica la Muixeranga?",
+        "opciones": [
+          "València ciutat",
+          "Algemesí",
+          "Alacant",
+          "Castelló"
+        ],
         "correcta": 1
       },
       {
-        "pregunta": "La casa és negra?",
-        "opciones": ["Sí", "No"],
-        "correcta": 1
-      },
-      {
-        "pregunta": "Què hi ha a l'hort?",
-        "opciones": ["Tomaques", "Pomes", "Taronges", "Melons"],
+        "pregunta": "Què mescla aquesta tradició?",
+        "opciones": [
+          "Dansa i torres humanes",
+          "Futbol i música",
+          "Cuina i teatre",
+          "Sols ball"
+        ],
         "correcta": 0
       },
       {
-        "pregunta": "Quan conta contes?",
-        "opciones": ["Pel matí", "A la vesprada", "Abans de dormir", "A l'hora de dinar"],
-        "correcta": 2
+        "pregunta": "Quins instruments marquen el ritme?",
+        "opciones": [
+          "Guitarra i piano",
+          "Taba i dolçaina",
+          "Violí",
+          "Bateria"
+        ],
+        "correcta": 1
       },
       {
-        "pregunta": "Com era l'àvia als contes?",
-        "opciones": ["Vella", "Xicoteta", "Alta", "Trista"],
+        "pregunta": "Quin reconeixement té per la UNESCO?",
+        "opciones": [
+          "Cap",
+          "Patrimoni Immaterial de la Humanitat",
+          "Millor cançó",
+          "Monument històric"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "En quina festa se sol representar?",
+        "opciones": [
+          "Falles",
+          "Mare de Déu de la Salut",
+          "Sant Joan",
+          "Carnestoltes"
+        ],
         "correcta": 1
       }
     ]

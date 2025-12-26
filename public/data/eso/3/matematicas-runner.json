@@ -1,17 +1,122 @@
 {
-  "algebra": [
-    "polinomio", "monomio", "ecuación", "incógnita", "coeficiente", "identidad notable", "grado", "factorizar", "raíz", "sistema"
+  "numeros_reales": [
+    "racional",
+    "irracional",
+    "número pi",
+    "periodo",
+    "fracción generatriz",
+    "intervalo",
+    "aproximación",
+    "error absoluto",
+    "error relativo",
+    "notación científica"
   ],
-  "sucesiones_y_progresiones": [
-    "término general", "diferencia", "razón", "aritmética", "geométrica", "suma", "infinito", "límite", "serie", "patrón"
+  "potencias_radicales": [
+    "potencia exponente negativo",
+    "raíz enésima",
+    "exponente fraccionario",
+    "racionalización",
+    "radicales semejantes",
+    "extracción de factores",
+    "índice común",
+    "operación",
+    "simplificación",
+    "potencia de potencia"
   ],
-  "geometria_plana": [
-    "teorema de tales", "pitágoras", "semejanza", "escala", "área", "perímetro", "triángulo", "polígono", "circunferencia", "apotema"
+  "progresiones": [
+    "aritmética",
+    "geométrica",
+    "término general",
+    "diferencia",
+    "razón",
+    "suma de términos",
+    "serie",
+    "creciente",
+    "decreciente",
+    "convergente"
   ],
-  "funciones": [
-    "pendiente", "ordenada en el origen", "recta", "parábola", "dominio", "recorrido", "crecimiento", "máximo", "mínimo", "continuidad"
+  "polinomios_identidades": [
+    "regla de ruffini",
+    "teorema del resto",
+    "factorización",
+    "valor numérico",
+    "grado",
+    "identidades notables",
+    "binomio",
+    "trinomio",
+    "cociente",
+    "resto"
   ],
-  "estadistica": [
-    "variable", "frecuencia", "media", "moda", "mediana", "desviación típica", "varianza", "histograma", "población", "muestra"
+  "ecuaciones_sistemas": [
+    "segundo grado",
+    "bicuadrada",
+    "factorizada",
+    "método de sustitución",
+    "método de igualación",
+    "método de reducción",
+    "método gráfico",
+    "incompatible",
+    "indeterminado",
+    "discriminante"
+  ],
+  "funcione_propiedades": [
+    "dominio",
+    "continuidad",
+    "crecimiento",
+    "máximo relativo",
+    "asíntota",
+    "periodicidad",
+    "tasa de variación",
+    "lineal",
+    "cuadrática",
+    "parábola"
+  ],
+  "geometria_plana_espacio": [
+    "teorema de pitágoras",
+    "teorema de tales",
+    "semejanza",
+    "escala",
+    "volumen",
+    "área",
+    "tronco de pirámide",
+    "esfera",
+    "huso esférico",
+    "tronco de cono"
+  ],
+  "trigonometria_basica": [
+    "seno",
+    "coseno",
+    "tangente",
+    "grado",
+    "radián",
+    "triángulo rectángulo",
+    "hipotenusa",
+    "cateto opuesto",
+    "cateto contiguo",
+    "razón trigonométrica"
+  ],
+  "estadistica_unidimensional": [
+    "población",
+    "muestra",
+    "variable cualitativa",
+    "variable cuantitativa",
+    "frecuencia acumulada",
+    "media",
+    "mediana",
+    "moda",
+    "desviación típica",
+    "varianza"
+  ],
+  "probabilidad_laplace": [
+    "espacio muestral",
+    "suceso elemental",
+    "ley de laplace",
+    "combinatoria",
+    "permutación",
+    "factorial",
+    "probabilidad condicionada",
+    "diagrama de árbol",
+    "azar",
+    "frecuencia relativa"
   ]
 }
