@@ -1,0 +1,1656 @@
+{
+    "elements": [
+        {
+            "symbol": "H",
+            "name": "Hidrógeno",
+            "atomicNumber": 1,
+            "category": "non-metal",
+            "pos": [
+                1,
+                1
+            ],
+            "description": {
+                "eso1": "El elemento más ligero y abundante.",
+                "eso4": "Gas diatómico incoloro, el más simple."
+            }
+        },
+        {
+            "symbol": "He",
+            "name": "Helio",
+            "atomicNumber": 2,
+            "category": "noble-gas",
+            "pos": [
+                1,
+                18
+            ],
+            "description": {
+                "eso1": "Para inflar globos.",
+                "eso4": "Gas noble inerte, punto de ebullición bajísimo."
+            }
+        },
+        {
+            "symbol": "Li",
+            "name": "Litio",
+            "atomicNumber": 3,
+            "category": "alkali-metal",
+            "pos": [
+                2,
+                1
+            ],
+            "description": {
+                "eso1": "Usado en baterías.",
+                "eso4": "Metal alcalino ligero y muy reactivo."
+            }
+        },
+        {
+            "symbol": "Be",
+            "name": "Berilio",
+            "atomicNumber": 4,
+            "category": "alkaline-earth",
+            "pos": [
+                2,
+                2
+            ],
+            "description": {
+                "eso1": "Metal duro para aleaciones.",
+                "eso4": "Metal alcalinotérreo tóxico y rígido."
+            }
+        },
+        {
+            "symbol": "B",
+            "name": "Boro",
+            "atomicNumber": 5,
+            "category": "metalloid",
+            "pos": [
+                2,
+                13
+            ],
+            "description": {
+                "eso1": "Vidrios resistentes.",
+                "eso4": "Metaloide semiconductor esencial en borosilicatos."
+            }
+        },
+        {
+            "symbol": "C",
+            "name": "Carbono",
+            "atomicNumber": 6,
+            "category": "non-metal",
+            "pos": [
+                2,
+                14
+            ],
+            "description": {
+                "eso1": "Base de la vida y diamante.",
+                "eso4": "Elemento tetravalente base de la química orgánica."
+            }
+        },
+        {
+            "symbol": "N",
+            "name": "Nitrógeno",
+            "atomicNumber": 7,
+            "category": "non-metal",
+            "pos": [
+                2,
+                15
+            ],
+            "description": {
+                "eso1": "Parte del aire.",
+                "eso4": "Constituye el 78% de la atmósfera terrestre."
+            }
+        },
+        {
+            "symbol": "O",
+            "name": "Oxígeno",
+            "atomicNumber": 8,
+            "category": "non-metal",
+            "pos": [
+                2,
+                16
+            ],
+            "description": {
+                "eso1": "Para respirar.",
+                "eso4": "Agente oxidante altamente reactivo."
+            }
+        },
+        {
+            "symbol": "F",
+            "name": "Flúor",
+            "atomicNumber": 9,
+            "category": "halogen",
+            "pos": [
+                2,
+                17
+            ],
+            "description": {
+                "eso1": "En pasta de dientes.",
+                "eso4": "El más electronegativo y reactivo."
+            }
+        },
+        {
+            "symbol": "Ne",
+            "name": "Neón",
+            "atomicNumber": 10,
+            "category": "noble-gas",
+            "pos": [
+                2,
+                18
+            ],
+            "description": {
+                "eso1": "Luces brillantes.",
+                "eso4": "Gas noble inerte conocido por su luz roja."
+            }
+        },
+        {
+            "symbol": "Na",
+            "name": "Sodio",
+            "atomicNumber": 11,
+            "category": "alkali-metal",
+            "pos": [
+                3,
+                1
+            ],
+            "description": {
+                "eso1": "En sal común.",
+                "eso4": "Metal alcalino que reacciona con agua."
+            }
+        },
+        {
+            "symbol": "Mg",
+            "name": "Magnesio",
+            "atomicNumber": 12,
+            "category": "alkaline-earth",
+            "pos": [
+                3,
+                2
+            ],
+            "description": {
+                "eso1": "Importante para plantas.",
+                "eso4": "Metal ligero, combustión de luz blanca."
+            }
+        },
+        {
+            "symbol": "Al",
+            "name": "Aluminio",
+            "atomicNumber": 13,
+            "category": "post-transition",
+            "pos": [
+                3,
+                13
+            ],
+            "description": {
+                "eso1": "Para latas y papel de plata.",
+                "eso4": "Metal no ferromagnético muy común."
+            }
+        },
+        {
+            "symbol": "Si",
+            "name": "Silicio",
+            "atomicNumber": 14,
+            "category": "metalloid",
+            "pos": [
+                3,
+                14
+            ],
+            "description": {
+                "eso1": "En chips de ordenador.",
+                "eso4": "Semiconductor con estructura de diamante."
+            }
+        },
+        {
+            "symbol": "P",
+            "name": "Fósforo",
+            "atomicNumber": 15,
+            "category": "non-metal",
+            "pos": [
+                3,
+                15
+            ],
+            "description": {
+                "eso1": "En cerillas y abonos.",
+                "eso4": "No metal esencial presente en el ADN."
+            }
+        },
+        {
+            "symbol": "S",
+            "name": "Azufre",
+            "atomicNumber": 16,
+            "category": "non-metal",
+            "pos": [
+                3,
+                16
+            ],
+            "description": {
+                "eso1": "Polvo amarillo.",
+                "eso4": "No metal esencial en aminoácidos."
+            }
+        },
+        {
+            "symbol": "Cl",
+            "name": "Cloro",
+            "atomicNumber": 17,
+            "category": "halogen",
+            "pos": [
+                3,
+                17
+            ],
+            "description": {
+                "eso1": "Para piscinas.",
+                "eso4": "Gas oxidante para potabilizar agua."
+            }
+        },
+        {
+            "symbol": "Ar",
+            "name": "Argón",
+            "atomicNumber": 18,
+            "category": "noble-gas",
+            "pos": [
+                3,
+                18
+            ],
+            "description": {
+                "eso1": "En bombillas.",
+                "eso4": "Gas noble inerte más común."
+            }
+        },
+        {
+            "symbol": "K",
+            "name": "Potasio",
+            "atomicNumber": 19,
+            "category": "alkali-metal",
+            "pos": [
+                4,
+                1
+            ],
+            "description": {
+                "eso1": "En plátanos.",
+                "eso4": "Esencial para función nerviosa."
+            }
+        },
+        {
+            "symbol": "Ca",
+            "name": "Calcio",
+            "atomicNumber": 20,
+            "category": "alkaline-earth",
+            "pos": [
+                4,
+                2
+            ],
+            "description": {
+                "eso1": "Para los huesos.",
+                "eso4": "Fundamental en estructura ósea."
+            }
+        },
+        {
+            "symbol": "Sc",
+            "name": "Escandio",
+            "atomicNumber": 21,
+            "category": "transition-metal",
+            "pos": [
+                4,
+                3
+            ],
+            "description": {
+                "eso1": "Lámparas de alta intensidad.",
+                "eso4": "Metal de transición ligero usado en aeroespacial."
+            }
+        },
+        {
+            "symbol": "Ti",
+            "name": "Titanio",
+            "atomicNumber": 22,
+            "category": "transition-metal",
+            "pos": [
+                4,
+                4
+            ],
+            "description": {
+                "eso1": "Implantes médicos.",
+                "eso4": "Metal de alta resistencia y baja densidad."
+            }
+        },
+        {
+            "symbol": "V",
+            "name": "Vanadio",
+            "atomicNumber": 23,
+            "category": "transition-metal",
+            "pos": [
+                4,
+                5
+            ],
+            "description": {
+                "eso1": "Herramientas de acero.",
+                "eso4": "Usado para aumentar resistencia del acero."
+            }
+        },
+        {
+            "symbol": "Cr",
+            "name": "Cromo",
+            "atomicNumber": 24,
+            "category": "transition-metal",
+            "pos": [
+                4,
+                6
+            ],
+            "description": {
+                "eso1": "Cromados de coches.",
+                "eso4": "Resistente a la corrosión, da brillo."
+            }
+        },
+        {
+            "symbol": "Mn",
+            "name": "Manganeso",
+            "atomicNumber": 25,
+            "category": "transition-metal",
+            "pos": [
+                4,
+                7
+            ],
+            "description": {
+                "eso1": "Aumenta dureza del acero.",
+                "eso4": "Esencial en producción de acero inoxidable."
+            }
+        },
+        {
+            "symbol": "Fe",
+            "name": "Hierro",
+            "atomicNumber": 26,
+            "category": "transition-metal",
+            "pos": [
+                4,
+                8
+            ],
+            "description": {
+                "eso1": "Muy fuerte.",
+                "eso4": "Central en transporte de oxígeno."
+            }
+        },
+        {
+            "symbol": "Co",
+            "name": "Cobalto",
+            "atomicNumber": 27,
+            "category": "transition-metal",
+            "pos": [
+                4,
+                9
+            ],
+            "description": {
+                "eso1": "Pigmento azul cobalto.",
+                "eso4": "Parte de la vitamina B12."
+            }
+        },
+        {
+            "symbol": "Ni",
+            "name": "Níquel",
+            "atomicNumber": 28,
+            "category": "transition-metal",
+            "pos": [
+                4,
+                10
+            ],
+            "description": {
+                "eso1": "En monedas antiguas.",
+                "eso4": "Resistente a oxidación y corrosión."
+            }
+        },
+        {
+            "symbol": "Cu",
+            "name": "Cobre",
+            "atomicNumber": 29,
+            "category": "transition-metal",
+            "pos": [
+                4,
+                11
+            ],
+            "description": {
+                "eso1": "Cables eléctricos.",
+                "eso4": "Excelente conductividad térmica."
+            }
+        },
+        {
+            "symbol": "Zn",
+            "name": "Zinc",
+            "atomicNumber": 30,
+            "category": "transition-metal",
+            "pos": [
+                4,
+                12
+            ],
+            "description": {
+                "eso1": "Contra el óxido.",
+                "eso4": "Esencial para enzimas y galvanización."
+            }
+        },
+        {
+            "symbol": "Ga",
+            "name": "Galio",
+            "atomicNumber": 31,
+            "category": "post-transition",
+            "pos": [
+                4,
+                13
+            ],
+            "description": {
+                "eso1": "Se funde en la mano.",
+                "eso4": "Usado en electrónica y LEDs."
+            }
+        },
+        {
+            "symbol": "Ge",
+            "name": "Germanio",
+            "atomicNumber": 32,
+            "category": "metalloid",
+            "pos": [
+                4,
+                14
+            ],
+            "description": {
+                "eso1": "Lentes de visión nocturna.",
+                "eso4": "Semiconductor importante en fibra óptica."
+            }
+        },
+        {
+            "symbol": "As",
+            "name": "Arsénico",
+            "atomicNumber": 33,
+            "category": "metalloid",
+            "pos": [
+                4,
+                15
+            ],
+            "description": {
+                "eso1": "Venenoso.",
+                "eso4": "Tóxico, usado en semiconductores."
+            }
+        },
+        {
+            "symbol": "Se",
+            "name": "Selenio",
+            "atomicNumber": 34,
+            "category": "non-metal",
+            "pos": [
+                4,
+                16
+            ],
+            "description": {
+                "eso1": "En champús anticaspa.",
+                "eso4": "Semiconductor con propiedades fotovoltaicas."
+            }
+        },
+        {
+            "symbol": "Br",
+            "name": "Bromo",
+            "atomicNumber": 35,
+            "category": "halogen",
+            "pos": [
+                4,
+                17
+            ],
+            "description": {
+                "eso1": "Líquido rojo.",
+                "eso4": "Único no metal líquido, corrosivo."
+            }
+        },
+        {
+            "symbol": "Kr",
+            "name": "Kriptón",
+            "atomicNumber": 36,
+            "category": "noble-gas",
+            "pos": [
+                4,
+                18
+            ],
+            "description": {
+                "eso1": "En flashes de fotos.",
+                "eso4": "Gas noble raro con líneas brillantes."
+            }
+        },
+        {
+            "symbol": "Rb",
+            "name": "Rubidio",
+            "atomicNumber": 37,
+            "category": "alkali-metal",
+            "pos": [
+                5,
+                1
+            ],
+            "description": {
+                "eso1": "Relojes atómicos.",
+                "eso4": "Metal alcalino blando muy reactivo."
+            }
+        },
+        {
+            "symbol": "Sr",
+            "name": "Estroncio",
+            "atomicNumber": 38,
+            "category": "alkaline-earth",
+            "pos": [
+                5,
+                2
+            ],
+            "description": {
+                "eso1": "Fuegos artificiales rojos.",
+                "eso4": "Metal alcalinotérreo similar al calcio."
+            }
+        },
+        {
+            "symbol": "Y",
+            "name": "Itrio",
+            "atomicNumber": 39,
+            "category": "transition-metal",
+            "pos": [
+                5,
+                3
+            ],
+            "description": {
+                "eso1": "Pantallas de TV antiguas.",
+                "eso4": "Tierras raras, usado en superconductores."
+            }
+        },
+        {
+            "symbol": "Zr",
+            "name": "Zirconio",
+            "atomicNumber": 40,
+            "category": "transition-metal",
+            "pos": [
+                5,
+                4
+            ],
+            "description": {
+                "eso1": "Joyas falsas.",
+                "eso4": "Resistente a corrosión en reactores."
+            }
+        },
+        {
+            "symbol": "Nb",
+            "name": "Niobio",
+            "atomicNumber": 41,
+            "category": "transition-metal",
+            "pos": [
+                5,
+                5
+            ],
+            "description": {
+                "eso1": "Superimanes.",
+                "eso4": "Superconductor para aceleradores."
+            }
+        },
+        {
+            "symbol": "Mo",
+            "name": "Molibdeno",
+            "atomicNumber": 42,
+            "category": "transition-metal",
+            "pos": [
+                5,
+                6
+            ],
+            "description": {
+                "eso1": "Acero ultra-resistente.",
+                "eso4": "Alto punto de fusión."
+            }
+        },
+        {
+            "symbol": "Tc",
+            "name": "Tecnecio",
+            "atomicNumber": 43,
+            "category": "transition-metal",
+            "pos": [
+                5,
+                7
+            ],
+            "description": {
+                "eso1": "Medicina nuclear.",
+                "eso4": "Primer elemento artificialmente producido."
+            }
+        },
+        {
+            "symbol": "Ru",
+            "name": "Rutenio",
+            "atomicNumber": 44,
+            "category": "transition-metal",
+            "pos": [
+                5,
+                8
+            ],
+            "description": {
+                "eso1": "Contactos eléctricos.",
+                "eso4": "Metal noble muy duro."
+            }
+        },
+        {
+            "symbol": "Rh",
+            "name": "Rodio",
+            "atomicNumber": 45,
+            "category": "transition-metal",
+            "pos": [
+                5,
+                9
+            ],
+            "description": {
+                "eso1": "Catalizadores de coches.",
+                "eso4": "Extremadamente raro y valioso."
+            }
+        },
+        {
+            "symbol": "Pd",
+            "name": "Paladio",
+            "atomicNumber": 46,
+            "category": "transition-metal",
+            "pos": [
+                5,
+                10
+            ],
+            "description": {
+                "eso1": "Electrónica y joyas.",
+                "eso4": "Excelente absorbente de hidrógeno."
+            }
+        },
+        {
+            "symbol": "Ag",
+            "name": "Plata",
+            "atomicNumber": 47,
+            "category": "transition-metal",
+            "pos": [
+                5,
+                11
+            ],
+            "description": {
+                "eso1": "En joyas.",
+                "eso4": "Máxima conductividad eléctrica."
+            }
+        },
+        {
+            "symbol": "Cd",
+            "name": "Cadmio",
+            "atomicNumber": 48,
+            "category": "transition-metal",
+            "pos": [
+                5,
+                12
+            ],
+            "description": {
+                "eso1": "Baterías antiguas.",
+                "eso4": "Metal tóxico usado en pigmentos."
+            }
+        },
+        {
+            "symbol": "In",
+            "name": "Indio",
+            "atomicNumber": 49,
+            "category": "post-transition",
+            "pos": [
+                5,
+                13
+            ],
+            "description": {
+                "eso1": "Pantallas táctiles.",
+                "eso4": "Blando, plateado, esencial en LCDs."
+            }
+        },
+        {
+            "symbol": "Sn",
+            "name": "Estaño",
+            "atomicNumber": 50,
+            "category": "post-transition",
+            "pos": [
+                5,
+                14
+            ],
+            "description": {
+                "eso1": "Para soldar.",
+                "eso4": "Maleable, forma parte del bronce."
+            }
+        },
+        {
+            "symbol": "Sb",
+            "name": "Antimonio",
+            "atomicNumber": 51,
+            "category": "metalloid",
+            "pos": [
+                5,
+                15
+            ],
+            "description": {
+                "eso1": "Retardantes de llama.",
+                "eso4": "Metaloide denso y quebradizo."
+            }
+        },
+        {
+            "symbol": "Te",
+            "name": "Telurio",
+            "atomicNumber": 52,
+            "category": "metalloid",
+            "pos": [
+                5,
+                16
+            ],
+            "description": {
+                "eso1": "Paneles solares.",
+                "eso4": "Metaloide raro con olor a ajo."
+            }
+        },
+        {
+            "symbol": "I",
+            "name": "Yodo",
+            "atomicNumber": 53,
+            "category": "halogen",
+            "pos": [
+                5,
+                17
+            ],
+            "description": {
+                "eso1": "Para la tiroides.",
+                "eso4": "Sólido que sublima a gas púrpura."
+            }
+        },
+        {
+            "symbol": "Xe",
+            "name": "Xenón",
+            "atomicNumber": 54,
+            "category": "noble-gas",
+            "pos": [
+                5,
+                18
+            ],
+            "description": {
+                "eso1": "Faros de coches.",
+                "eso4": "Gas noble pesado y reactivo."
+            }
+        },
+        {
+            "symbol": "Cs",
+            "name": "Cesio",
+            "atomicNumber": 55,
+            "category": "alkali-metal",
+            "pos": [
+                6,
+                1
+            ],
+            "description": {
+                "eso1": "Relojes de precisión.",
+                "eso4": "El más reactivo de los metales estables."
+            }
+        },
+        {
+            "symbol": "Ba",
+            "name": "Bario",
+            "atomicNumber": 56,
+            "category": "alkaline-earth",
+            "pos": [
+                6,
+                2
+            ],
+            "description": {
+                "eso1": "Contrastes médicos.",
+                "eso4": "Metal alcalinotérreo blando."
+            }
+        },
+        {
+            "symbol": "La",
+            "name": "Lantano",
+            "atomicNumber": 57,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                4
+            ],
+            "description": {
+                "eso1": "Lentes de microscopio.",
+                "eso4": "Inicio de los lantánidos."
+            }
+        },
+        {
+            "symbol": "Ce",
+            "name": "Cerio",
+            "atomicNumber": 58,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                5
+            ],
+            "description": {
+                "eso1": "Piedras de mechero.",
+                "eso4": "El lantánido más abundante."
+            }
+        },
+        {
+            "symbol": "Pr",
+            "name": "Praseodimio",
+            "atomicNumber": 59,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                6
+            ],
+            "description": {
+                "eso1": "Gafas de soplete.",
+                "eso4": "Usado en vidrios de soldador."
+            }
+        },
+        {
+            "symbol": "Nd",
+            "name": "Neodimio",
+            "atomicNumber": 60,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                7
+            ],
+            "description": {
+                "eso1": "Imanes fuertísimos.",
+                "eso4": "Esencial en motores eléctricos."
+            }
+        },
+        {
+            "symbol": "Pm",
+            "name": "Prometio",
+            "atomicNumber": 61,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                8
+            ],
+            "description": {
+                "eso1": "Pintura luminosa.",
+                "eso4": "Metal radioactivo raro."
+            }
+        },
+        {
+            "symbol": "Sm",
+            "name": "Samario",
+            "atomicNumber": 62,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                9
+            ],
+            "description": {
+                "eso1": "Imanes potentes.",
+                "eso4": "Usado en imanes que aguantan calor."
+            }
+        },
+        {
+            "symbol": "Eu",
+            "name": "Europio",
+            "atomicNumber": 63,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                10
+            ],
+            "description": {
+                "eso1": "Billetes de Euro.",
+                "eso4": "Se usa para evitar falsificaciones."
+            }
+        },
+        {
+            "symbol": "Gd",
+            "name": "Gadolinio",
+            "atomicNumber": 64,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                11
+            ],
+            "description": {
+                "eso1": "Contrastes RM.",
+                "eso4": "Excelentes propiedades magnéticas."
+            }
+        },
+        {
+            "symbol": "Tb",
+            "name": "Terbio",
+            "atomicNumber": 65,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                12
+            ],
+            "description": {
+                "eso1": "Lámparas fluorescentes.",
+                "eso4": "Fósforo de color verde."
+            }
+        },
+        {
+            "symbol": "Dy",
+            "name": "Disprosio",
+            "atomicNumber": 66,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                13
+            ],
+            "description": {
+                "eso1": "Discos duros.",
+                "eso4": "Imanes de alta temperatura."
+            }
+        },
+        {
+            "symbol": "Ho",
+            "name": "Holmio",
+            "atomicNumber": 67,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                14
+            ],
+            "description": {
+                "eso1": "Láseres médicos.",
+                "eso4": "Mayor fuerza magnética."
+            }
+        },
+        {
+            "symbol": "Er",
+            "name": "Erbio",
+            "atomicNumber": 68,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                15
+            ],
+            "description": {
+                "eso1": "Fibra óptica.",
+                "eso4": "Amplificadores de señal óptica."
+            }
+        },
+        {
+            "symbol": "Tm",
+            "name": "Tulio",
+            "atomicNumber": 69,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                16
+            ],
+            "description": {
+                "eso1": "Rayos X portátiles.",
+                "eso4": "El lantánido más raro."
+            }
+        },
+        {
+            "symbol": "Yb",
+            "name": "Iterbio",
+            "atomicNumber": 70,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                17
+            ],
+            "description": {
+                "eso1": "Aceros especiales.",
+                "eso4": "Usado en relojes atómicos."
+            }
+        },
+        {
+            "symbol": "Lu",
+            "name": "Lutecio",
+            "atomicNumber": 71,
+            "category": "lanthanide",
+            "pos": [
+                8,
+                18
+            ],
+            "description": {
+                "eso1": "PET scans.",
+                "eso4": "El lantánido más denso."
+            }
+        },
+        {
+            "symbol": "Hf",
+            "name": "Hafnio",
+            "atomicNumber": 72,
+            "category": "transition-metal",
+            "pos": [
+                6,
+                4
+            ],
+            "description": {
+                "eso1": "Control nuclear.",
+                "eso4": "Absorbente de neutrones."
+            }
+        },
+        {
+            "symbol": "Ta",
+            "name": "Tántalo",
+            "atomicNumber": 73,
+            "category": "transition-metal",
+            "pos": [
+                6,
+                5
+            ],
+            "description": {
+                "eso1": "Condensadores móviles.",
+                "eso4": "Metal inerte y resistente."
+            }
+        },
+        {
+            "symbol": "W",
+            "name": "Wolframio",
+            "atomicNumber": 74,
+            "category": "transition-metal",
+            "pos": [
+                6,
+                6
+            ],
+            "description": {
+                "eso1": "Filamentos bombillas.",
+                "eso4": "Máximo punto de fusión."
+            }
+        },
+        {
+            "symbol": "Re",
+            "name": "Renio",
+            "atomicNumber": 75,
+            "category": "transition-metal",
+            "pos": [
+                6,
+                7
+            ],
+            "description": {
+                "eso1": "Motores jet.",
+                "eso4": "Resistente a temperaturas extremas."
+            }
+        },
+        {
+            "symbol": "Os",
+            "name": "Osmio",
+            "atomicNumber": 76,
+            "category": "transition-metal",
+            "pos": [
+                6,
+                8
+            ],
+            "description": {
+                "eso1": "Puntas de plumas.",
+                "eso4": "El elemento más denso."
+            }
+        },
+        {
+            "symbol": "Ir",
+            "name": "Iridio",
+            "atomicNumber": 77,
+            "category": "transition-metal",
+            "pos": [
+                6,
+                9
+            ],
+            "description": {
+                "eso1": "Bujías de lujo.",
+                "eso4": "Muy resistente a la corrosión."
+            }
+        },
+        {
+            "symbol": "Pt",
+            "name": "Platino",
+            "atomicNumber": 78,
+            "category": "transition-metal",
+            "pos": [
+                6,
+                10
+            ],
+            "description": {
+                "eso1": "Joyas y catalizadores.",
+                "eso4": "Metal noble muy estable."
+            }
+        },
+        {
+            "symbol": "Au",
+            "name": "Oro",
+            "atomicNumber": 79,
+            "category": "transition-metal",
+            "pos": [
+                6,
+                11
+            ],
+            "description": {
+                "eso1": "Famoso metal precioso.",
+                "eso4": "Extremadamente maleable e inerte."
+            }
+        },
+        {
+            "symbol": "Hg",
+            "name": "Mercurio",
+            "atomicNumber": 80,
+            "category": "transition-metal",
+            "pos": [
+                6,
+                12
+            ],
+            "description": {
+                "eso1": "Único metal líquido.",
+                "eso4": "Tóxico, usado en termómetros."
+            }
+        },
+        {
+            "symbol": "Tl",
+            "name": "Talio",
+            "atomicNumber": 81,
+            "category": "post-transition",
+            "pos": [
+                6,
+                13
+            ],
+            "description": {
+                "eso1": "Veneno antiguo.",
+                "eso4": "Metal muy tóxico y blando."
+            }
+        },
+        {
+            "symbol": "Pb",
+            "name": "Plomo",
+            "atomicNumber": 82,
+            "category": "post-transition",
+            "pos": [
+                6,
+                14
+            ],
+            "description": {
+                "eso1": "Pesado y denso.",
+                "eso4": "Aislante de radiaciones X."
+            }
+        },
+        {
+            "symbol": "Bi",
+            "name": "Bismuto",
+            "atomicNumber": 83,
+            "category": "post-transition",
+            "pos": [
+                6,
+                15
+            ],
+            "description": {
+                "eso1": "Medicina estomacal.",
+                "eso4": "Diamagnético y poco tóxico."
+            }
+        },
+        {
+            "symbol": "Po",
+            "name": "Polonio",
+            "atomicNumber": 84,
+            "category": "metalloid",
+            "pos": [
+                6,
+                16
+            ],
+            "description": {
+                "eso1": "Descubierto por M. Curie.",
+                "eso4": "Radioactivo y muy tóxico."
+            }
+        },
+        {
+            "symbol": "At",
+            "name": "Astato",
+            "atomicNumber": 85,
+            "category": "halogen",
+            "pos": [
+                6,
+                17
+            ],
+            "description": {
+                "eso1": "Elemento más raro.",
+                "eso4": "Radioactivo, vida media corta."
+            }
+        },
+        {
+            "symbol": "Rn",
+            "name": "Radón",
+            "atomicNumber": 86,
+            "category": "noble-gas",
+            "pos": [
+                6,
+                18
+            ],
+            "description": {
+                "eso1": "Gas del suelo.",
+                "eso4": "Gas noble radioactivo."
+            }
+        },
+        {
+            "symbol": "Fr",
+            "name": "Francio",
+            "atomicNumber": 87,
+            "category": "alkali-metal",
+            "pos": [
+                7,
+                1
+            ],
+            "description": {
+                "eso1": "Muy radioactivo.",
+                "eso4": "Metal alcalino inestable."
+            }
+        },
+        {
+            "symbol": "Ra",
+            "name": "Radio",
+            "atomicNumber": 88,
+            "category": "alkaline-earth",
+            "pos": [
+                7,
+                2
+            ],
+            "description": {
+                "eso1": "Brilla en la oscuridad.",
+                "eso4": "Descubierto por Marie Curie."
+            }
+        },
+        {
+            "symbol": "Ac",
+            "name": "Actinio",
+            "atomicNumber": 89,
+            "category": "actinide",
+            "pos": [
+                9,
+                4
+            ],
+            "description": {
+                "eso1": "Brilla azul pálido.",
+                "eso4": "Inicio de los actínidos."
+            }
+        },
+        {
+            "symbol": "Th",
+            "name": "Torio",
+            "atomicNumber": 90,
+            "category": "actinide",
+            "pos": [
+                9,
+                5
+            ],
+            "description": {
+                "eso1": "Alternativa al uranio.",
+                "eso4": "Combustible nuclear futuro."
+            }
+        },
+        {
+            "symbol": "Pa",
+            "name": "Protactinio",
+            "atomicNumber": 91,
+            "category": "actinide",
+            "pos": [
+                9,
+                6
+            ],
+            "description": {
+                "eso1": "Raro y tóxico.",
+                "eso4": "Elemento radioactivo denso."
+            }
+        },
+        {
+            "symbol": "U",
+            "name": "Uranio",
+            "atomicNumber": 92,
+            "category": "actinide",
+            "pos": [
+                9,
+                7
+            ],
+            "description": {
+                "eso1": "Combustible nuclear.",
+                "eso4": "Radioactivo, clave en fisión."
+            }
+        },
+        {
+            "symbol": "Np",
+            "name": "Neptunio",
+            "atomicNumber": 93,
+            "category": "actinide",
+            "pos": [
+                9,
+                8
+            ],
+            "description": {
+                "eso1": "Reactores nucleares.",
+                "eso4": "Primer transuránico."
+            }
+        },
+        {
+            "symbol": "Pu",
+            "name": "Plutonio",
+            "atomicNumber": 94,
+            "category": "actinide",
+            "pos": [
+                9,
+                9
+            ],
+            "description": {
+                "eso1": "Artificial y potente.",
+                "eso4": "Radioactivo, usado en sondas."
+            }
+        },
+        {
+            "symbol": "Am",
+            "name": "Americio",
+            "atomicNumber": 95,
+            "category": "actinide",
+            "pos": [
+                9,
+                10
+            ],
+            "description": {
+                "eso1": "Detectores de humo.",
+                "eso4": "Metal radioactivo sintético."
+            }
+        },
+        {
+            "symbol": "Cm",
+            "name": "Curio",
+            "atomicNumber": 96,
+            "category": "actinide",
+            "pos": [
+                9,
+                11
+            ],
+            "description": {
+                "eso1": "Honor a los Curie.",
+                "eso4": "Radioactivo, brilla en rojo."
+            }
+        },
+        {
+            "symbol": "Bk",
+            "name": "Berkelio",
+            "atomicNumber": 97,
+            "category": "actinide",
+            "pos": [
+                9,
+                12
+            ],
+            "description": {
+                "eso1": "Sintético raro.",
+                "eso4": "Radioactivo, vida media larga."
+            }
+        },
+        {
+            "symbol": "Cf",
+            "name": "Californio",
+            "atomicNumber": 98,
+            "category": "actinide",
+            "pos": [
+                9,
+                13
+            ],
+            "description": {
+                "eso1": "Sensor de humedad.",
+                "eso4": "Emisor de neutrones potente."
+            }
+        },
+        {
+            "symbol": "Es",
+            "name": "Einsteinio",
+            "atomicNumber": 99,
+            "category": "actinide",
+            "pos": [
+                9,
+                14
+            ],
+            "description": {
+                "eso1": "Honor a Einstein.",
+                "eso4": "Sintético, descubierto en bomba."
+            }
+        },
+        {
+            "symbol": "Fm",
+            "name": "Fermio",
+            "atomicNumber": 100,
+            "category": "actinide",
+            "pos": [
+                9,
+                15
+            ],
+            "description": {
+                "eso1": "Honor a Enrico Fermi.",
+                "eso4": "Elemento más pesado por bombardeo."
+            }
+        },
+        {
+            "symbol": "Md",
+            "name": "Mendelevio",
+            "atomicNumber": 101,
+            "category": "actinide",
+            "pos": [
+                9,
+                16
+            ],
+            "description": {
+                "eso1": "Honor a Mendeleiev.",
+                "eso4": "Sintético, muy radioactivo."
+            }
+        },
+        {
+            "symbol": "No",
+            "name": "Nobelio",
+            "atomicNumber": 102,
+            "category": "actinide",
+            "pos": [
+                9,
+                17
+            ],
+            "description": {
+                "eso1": "Honor a Alfred Nobel.",
+                "eso4": "Radioactivo, vida corta."
+            }
+        },
+        {
+            "symbol": "Lr",
+            "name": "Laurencio",
+            "atomicNumber": 103,
+            "category": "actinide",
+            "pos": [
+                9,
+                18
+            ],
+            "description": {
+                "eso1": "Honor a Lawrence.",
+                "eso4": "Último de los actínidos."
+            }
+        },
+        {
+            "symbol": "Rf",
+            "name": "Rutherfordio",
+            "atomicNumber": 104,
+            "category": "transition-metal",
+            "pos": [
+                7,
+                4
+            ],
+            "description": {
+                "eso1": "Sintético pesado.",
+                "eso4": "Elemento superpesado inestable."
+            }
+        },
+        {
+            "symbol": "Db",
+            "name": "Dubnio",
+            "atomicNumber": 105,
+            "category": "transition-metal",
+            "pos": [
+                7,
+                5
+            ],
+            "description": {
+                "eso1": "Sintético pesado.",
+                "eso4": "Sintetizado en Rusia."
+            }
+        },
+        {
+            "symbol": "Sg",
+            "name": "Seaborgio",
+            "atomicNumber": 106,
+            "category": "transition-metal",
+            "pos": [
+                7,
+                6
+            ],
+            "description": {
+                "eso1": "Sintético pesado.",
+                "eso4": "Vida media muy corta."
+            }
+        },
+        {
+            "symbol": "Bh",
+            "name": "Bohrio",
+            "atomicNumber": 107,
+            "category": "transition-metal",
+            "pos": [
+                7,
+                7
+            ],
+            "description": {
+                "eso1": "Honor a Niels Bohr.",
+                "eso4": "Sintético, radioactivo."
+            }
+        },
+        {
+            "symbol": "Hs",
+            "name": "Hassio",
+            "atomicNumber": 108,
+            "category": "transition-metal",
+            "pos": [
+                7,
+                8
+            ],
+            "description": {
+                "eso1": "Sintético pesado.",
+                "eso4": "Extremadamente inestable."
+            }
+        },
+        {
+            "symbol": "Mt",
+            "name": "Meitnerio",
+            "atomicNumber": 109,
+            "category": "transition-metal",
+            "pos": [
+                7,
+                9
+            ],
+            "description": {
+                "eso1": "Honor a Lise Meitner.",
+                "eso4": "Superpesado sintético."
+            }
+        },
+        {
+            "symbol": "Ds",
+            "name": "Darmstadtio",
+            "atomicNumber": 110,
+            "category": "transition-metal",
+            "pos": [
+                7,
+                10
+            ],
+            "description": {
+                "eso1": "Sintético pesado.",
+                "eso4": "Vida media de milisegundos."
+            }
+        },
+        {
+            "symbol": "Rg",
+            "name": "Roentgenio",
+            "atomicNumber": 111,
+            "category": "transition-metal",
+            "pos": [
+                7,
+                11
+            ],
+            "description": {
+                "eso1": "Honor a Roentgen.",
+                "eso4": "Sintético, radiactivo."
+            }
+        },
+        {
+            "symbol": "Cn",
+            "name": "Copernicio",
+            "atomicNumber": 112,
+            "category": "transition-metal",
+            "pos": [
+                7,
+                12
+            ],
+            "description": {
+                "eso1": "Honor a Copérnico.",
+                "eso4": "Superpesado, vida corta."
+            }
+        },
+        {
+            "symbol": "Nh",
+            "name": "Nihonio",
+            "atomicNumber": 113,
+            "category": "post-transition",
+            "pos": [
+                7,
+                13
+            ],
+            "description": {
+                "eso1": "Sintético pesado.",
+                "eso4": "Descubierto en Japón."
+            }
+        },
+        {
+            "symbol": "Fl",
+            "name": "Flerovio",
+            "atomicNumber": 114,
+            "category": "post-transition",
+            "pos": [
+                7,
+                14
+            ],
+            "description": {
+                "eso1": "Sintético pesado.",
+                "eso4": "Superpesado radiactivo."
+            }
+        },
+        {
+            "symbol": "Mc",
+            "name": "Moscovio",
+            "atomicNumber": 115,
+            "category": "post-transition",
+            "pos": [
+                7,
+                15
+            ],
+            "description": {
+                "eso1": "Sintético pesado.",
+                "eso4": "Sintetizado en Dubna."
+            }
+        },
+        {
+            "symbol": "Lv",
+            "name": "Livermorio",
+            "atomicNumber": 116,
+            "category": "post-transition",
+            "pos": [
+                7,
+                16
+            ],
+            "description": {
+                "eso1": "Sintético pesado.",
+                "eso4": "Vida media de milisegundos."
+            }
+        },
+        {
+            "symbol": "Ts",
+            "name": "Teneso",
+            "atomicNumber": 117,
+            "category": "halogen",
+            "pos": [
+                7,
+                17
+            ],
+            "description": {
+                "eso1": "Sintético pesado.",
+                "eso4": "Halógeno superpesado."
+            }
+        },
+        {
+            "symbol": "Og",
+            "name": "Oganesón",
+            "atomicNumber": 118,
+            "category": "noble-gas",
+            "pos": [
+                7,
+                18
+            ],
+            "description": {
+                "eso1": "Último elemento.",
+                "eso4": "Gas noble superpesado."
+            }
+        }
+    ]
+}

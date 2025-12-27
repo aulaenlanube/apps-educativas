@@ -44,21 +44,29 @@ import { MayorMenor1, MayorMenor2, MayorMenor3, MayorMenor4, MayorMenor5, MayorM
 import { Medidas1, Medidas2, Medidas3, Medidas4, Medidas5, Medidas6 } from '../_shared/MedidasGame';
 import GeneradorPersonajes from '../generador-personajes/GeneradorPersonajes';
 import BuscaElIntruso from '../busca-el-intruso/BuscaElIntruso.jsx';
-import RoscoJuego from '../rosco/RoscoJuego'; 
+import RoscoJuego from '../rosco/RoscoJuego';
 import OrdenaBolas from '@/apps/ordena-bolas/OrdenaBolas';
 import Runner from '../_shared/Runner';
 import VisualizadorFiguras3D from '../visualizador-figuras-3d/VisualizadorFiguras3D';
 import ParejasDeCartas from '../parejas-de-cartas/ParejasDeCartas';
 import LluviaDePalabras from '../lluvia-de-palabras/LluviaDePalabras';
-import Clasificador from '../_shared/Clasificador'; 
+import Clasificador from '../_shared/Clasificador';
 import Snake from '../snake/SnakePalabras.jsx';
 // ... imports existentes
 import LenguaComprensionEscrita from '../comprension/ComprensionEscrita.jsx';
 import LenguaComprensionOral from '../comprension/ComprensionOral.jsx';
 
 import ExcavacionSelectiva from '../excavacion-selectiva/ExcavacionSelectiva.jsx';
+import MesaCrafteo from '../mesa-crafteo/MesaCrafteo.jsx';
 
 // Apps Comunes
+export const appMesaCrafteo = {
+  id: 'mesa-crafteo',
+  name: '🧪 Mesa de Crafteo',
+  description: 'Simula el crafteo de moléculas a partir de elementos químicos.',
+  component: MesaCrafteo
+};
+
 export const appIslaDeLaCalma = {
   id: 'isla-de-la-calma',
   name: '🏝️ Isla de la Calma',
@@ -95,45 +103,45 @@ export const appGeneradorPersonajes = {
 };
 
 export const appBuscaElIntruso = {
-    id: 'busca-el-intruso',
-    name: '🔎 Busca el Intruso',
-    description: 'Encuentra el concepto que no encaja con los demás.',
-    component: BuscaElIntruso
+  id: 'busca-el-intruso',
+  name: '🔎 Busca el Intruso',
+  description: 'Encuentra el concepto que no encaja con los demás.',
+  component: BuscaElIntruso
 };
 
-export const appRosco = { 
-    id: 'rosco-del-saber', 
-    name: '🅿️ Pasapalabra', 
-    description: 'Adivina la palabra que se esconde detrás de cada letra.', 
-    component: RoscoJuego 
+export const appRosco = {
+  id: 'rosco-del-saber',
+  name: '🅿️ Pasapalabra',
+  description: 'Adivina la palabra que se esconde detrás de cada letra.',
+  component: RoscoJuego
 };
 
 export const appOrdenaBolas = {
-    id: 'ordena-bolas',
-    name: '🔴 Ordena las Bolas',
-    description: 'Juego de física. Pulsa las bolas de menor a mayor peso.',
-    component: OrdenaBolas
+  id: 'ordena-bolas',
+  name: '🔴 Ordena las Bolas',
+  description: 'Juego de física. Pulsa las bolas de menor a mayor peso.',
+  component: OrdenaBolas
 };
 
 export const appRunner = {
-    id: 'runner', 
-    name: '🟨 Education Dash',
-    description: 'Corre, salta y atrapa los elementos correctos.',
-    component: Runner
+  id: 'runner',
+  name: '🟨 Education Dash',
+  description: 'Corre, salta y atrapa los elementos correctos.',
+  component: Runner
 };
 
-export const appVisualizador3D = { 
-    id: 'visualizador-3d', 
-    name: '🧊 Laboratorio de Figuras 3D', 
-    description: 'Explora, rota y analiza las principales figuras geométricas en 3D.', 
-    component: VisualizadorFiguras3D 
+export const appVisualizador3D = {
+  id: 'visualizador-3d',
+  name: '🧊 Laboratorio de Figuras 3D',
+  description: 'Explora, rota y analiza las principales figuras geométricas en 3D.',
+  component: VisualizadorFiguras3D
 };
 
 export const appLluviaDePalabras = {
-    id: 'lluvia-de-palabras',
-    name: '🌧️ Lluvia de Palabras',
-    description: 'Atrapa las palabras correctas que caen del cielo.',
-    component: LluviaDePalabras
+  id: 'lluvia-de-palabras',
+  name: '🌧️ Lluvia de Palabras',
+  description: 'Atrapa las palabras correctas que caen del cielo.',
+  component: LluviaDePalabras
 };
 
 export const appParejas = {
@@ -143,18 +151,18 @@ export const appParejas = {
   component: ParejasDeCartas
 };
 
-export const appClasificador = { 
-  id: 'clasificador', 
-  name: '🗂️ Clasificador', 
-  description: 'Clasifica los conceptos en su categoría correcta.', 
-  component: Clasificador 
+export const appClasificador = {
+  id: 'clasificador',
+  name: '🗂️ Clasificador',
+  description: 'Clasifica los conceptos en su categoría correcta.',
+  component: Clasificador
 };
 
 export const appSnake = {
-  id: 'snake', 
-  name: '🐍 Snake', 
-  description: 'Guía a la serpiente para comer las palabras del tema correcto.', 
-  component: Snake 
+  id: 'snake',
+  name: '🐍 Snake',
+  description: 'Guía a la serpiente para comer las palabras del tema correcto.',
+  component: Snake
 
 };
 
