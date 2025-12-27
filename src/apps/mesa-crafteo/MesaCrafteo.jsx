@@ -470,27 +470,56 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
                                 <button className="btn-close" onClick={() => setHoverElementInfo(null)}>X</button>
                             </div>
 
-                            <div className="big-symbol-box" style={{ backgroundColor: families[hoverElementInfo.category]?.color || '#8b8b8b', margin: '1rem auto' }}>
-                                {hoverElementInfo.symbol}
+                            <div className="element-scientific-box" style={{ '--element-color': families[hoverElementInfo.category]?.color || '#8b8b8b' }}>
+                                <div className="element-main-content">
+                                    {/* Top Left: Mass & Secondary Stats */}
+                                    <div className="scientific-top-left">
+                                        <div className="ev-stat-item" data-label="Masa Atómica">
+                                            {hoverElementInfo.atomicMass}
+                                        </div>
+                                        <div className="scientific-sub-stats">
+                                            <div className="ev-stat-item" data-label="Energía Ionización (eV)">{hoverElementInfo.ionizationEnergy}</div>
+                                            <div className="ev-stat-item" data-label="Electronegatividad">{hoverElementInfo.electronegativity}</div>
+                                        </div>
+                                    </div>
+
+                                    {/* Top Right: Atomic Number */}
+                                    <div className="scientific-top-right">
+                                        <div className="ev-stat-number" data-label="Número Atómico">
+                                            {hoverElementInfo.atomicNumber}
+                                        </div>
+                                    </div>
+
+                                    {/* Center: Symbol & Name */}
+                                    <div className="scientific-center">
+                                        <div className="ev-symbol" data-label="Símbolo Químico">{hoverElementInfo.symbol}</div>
+                                        <div className="ev-name" data-label="Nombre">{hoverElementInfo.name}</div>
+                                    </div>
+
+                                    {/* Bottom: Configuration */}
+                                    <div className="scientific-bottom">
+                                        <div className="ev-config" data-label="Configuración Electrónica">{hoverElementInfo.config}</div>
+                                    </div>
+                                </div>
+
+                                {/* Right Side: Oxidation States */}
+                                <div className="scientific-side-bar" data-label="Estados de Oxidación">
+                                    {(hoverElementInfo.oxidationStates || "").split(',').map(s => (
+                                        <div key={s} className="ev-oxidation">{s.trim()}</div>
+                                    ))}
+                                </div>
                             </div>
 
-                            <h2 className="molecule-title" style={{ color: families[hoverElementInfo.category]?.color || 'var(--primary-color)' }}>
-                                {hoverElementInfo.name}
-                            </h2>
-                            <p className="molecule-subtitle">Número atómico: {hoverElementInfo.atomicNumber}</p>
-
-                            <div className="fun-fact-box" style={{ borderLeftColor: families[hoverElementInfo.category]?.color || 'var(--primary-color)' }}>
-                                <strong>INFORMACIÓN CIENTÍFICA:</strong><br />
-                                {hoverElementInfo.description}
+                            <div className="scientific-description-card">
+                                <div className="desc-header" style={{ color: families[hoverElementInfo.category]?.color || 'var(--primary-color)' }}>
+                                    🔬 INFORMACIÓN CIENTÍFICA
+                                </div>
+                                <div className="desc-content">
+                                    {hoverElementInfo.description}
+                                </div>
                             </div>
 
-                            <button
-                                className="btn-alchemy"
-                                style={{ backgroundColor: families[hoverElementInfo.category]?.color || 'var(--primary-color)' }}
-                                onClick={() => setHoverElementInfo(null)}
-                            >
-                                CERRAR
-                            </button>
+
                         </motion.div>
                     </div>
                 )}

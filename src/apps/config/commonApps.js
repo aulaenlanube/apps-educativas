@@ -58,6 +58,7 @@ import LenguaComprensionOral from '../comprension/ComprensionOral.jsx';
 
 import ExcavacionSelectiva from '../excavacion-selectiva/ExcavacionSelectiva.jsx';
 import MesaCrafteo from '../mesa-crafteo/MesaCrafteo.jsx';
+import EntrenadorTabla from '../entrenador-tabla/EntrenadorTabla.jsx';
 
 // Apps Comunes
 export const appMesaCrafteo = {
@@ -65,6 +66,13 @@ export const appMesaCrafteo = {
   name: '🧪 Mesa de Crafteo',
   description: 'Simula el crafteo de moléculas a partir de elementos químicos.',
   component: MesaCrafteo
+};
+
+export const appEntrenadorTabla = {
+  id: 'entrenador-tabla',
+  name: '🔬 Entrenador de Tabla Periódica',
+  description: 'Aprende nombres, símbolos y números atómicos de forma divertida.',
+  component: EntrenadorTabla
 };
 
 export const appIslaDeLaCalma = {

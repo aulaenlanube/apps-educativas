@@ -653,13 +653,160 @@
     margin-bottom: 1.5rem;
 }
 
-.fun-fact-box {
-    background: #f1f5f9;
-    padding: 1rem;
-    border-radius: 12px;
+.element-scientific-box {
+    width: 280px;
+    height: 300px;
+    margin: 1.5rem auto;
+    background-color: var(--element-color);
+    border: 3px solid #000;
+    display: flex;
+    padding: 15px;
+    color: #000;
+    font-family: 'Lexend', sans-serif;
+    position: relative;
+    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.1);
+}
+
+.element-main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+/* CUSTOM TOOLTIP SYSTEM */
+[data-label] {
+    position: relative;
+    cursor: help;
+}
+
+[data-label]:hover::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1e293b;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+    z-index: 100;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    margin-bottom: 5px;
+    pointer-events: none;
+}
+
+/* BOX POSITIONS */
+.scientific-top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: left;
+}
+
+.ev-stat-item {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.scientific-sub-stats {
+    display: flex;
+    gap: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.scientific-top-right {
+    position: absolute;
+    top: -5px;
+    right: 0;
+}
+
+.ev-stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.scientific-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.ev-symbol {
+    font-size: 6.5rem;
+    font-weight: 900;
+    line-height: 0.8;
+}
+
+.ev-name {
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.scientific-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: left;
+}
+
+.ev-config {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+}
+
+.scientific-side-bar {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1px;
+    padding-top: 45px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+}
+
+.ev-oxidation {
     font-size: 0.9rem;
-    margin-bottom: 2rem;
-    border-left: 4px solid var(--accent-color);
+    font-weight: 800;
+    line-height: 1;
+}
+
+/* DESCRIPTION CARD */
+.scientific-description-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 2px solid #e2e8f0;
+    text-align: left;
+}
+
+.desc-header {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+}
+
+.desc-content {
+    font-size: 1rem;
+    color: #334155;
+    line-height: 1.6;
+    font-weight: 500;
 }
 
 /* INFO MODAL (ELEMENT DETAIL) */
