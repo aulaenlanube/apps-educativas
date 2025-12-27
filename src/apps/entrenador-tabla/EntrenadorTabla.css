@@ -48,9 +48,20 @@
 
 .setup-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.setup-card-wide {
+    grid-column: span 2;
+}
+
+.scope-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .setup-card {
@@ -393,297 +404,96 @@
 }
 
 @media (max-width: 768px) {
+    .trainer-container {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .setup-screen {
+        padding: 1.5rem;
+    }
+
+    .setup-title {
+        font-size: 1.8rem;
+    }
+
     .setup-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .setup-card-wide {
+        grid-column: span 1;
+    }
+
+    .scope-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .game-screen {
+        gap: 1.5rem;
+    }
+
+    .game-header {
+        padding: 0.8rem 1rem;
+        gap: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 1.2rem;
+    }
+
+    .question-card {
+        padding: 1.5rem !important;
+    }
+
+    .question-main {
+        font-size: 3rem !important;
+        margin-bottom: 1rem;
+    }
+
+    .question-desc {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+        margin-bottom: 1.5rem;
     }
 
     .answers-grid {
         grid-template-columns: 1fr;
+        gap: 0.8rem;
     }
 
-    .question-main {
-        font-size: 2.5rem;
+    .answer-btn {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .mini-table-container {
+        overflow-x: auto;
+        padding: 0.8rem;
+    }
+
+    .mini-grid {
+        min-width: 600px;
+        /* Force scrollable area for the mini-table */
+    }
+
+    .result-card {
+        padding: 2rem;
+        border-radius: 24px;
+    }
+
+    .result-icon {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .result-score {
+        font-size: 2rem;
     }
 }
 
-/* STUDY SCREEN STYLES */
-.study-screen {
-    width: 100%;
-    max-width: 1400px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.periodic-table-study-container {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 2rem;
-    border-radius: 24px;
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(10px);
-}
-
-.periodic-grid-full {
-    display: grid;
-    grid-template-columns: repeat(18, 1fr);
-    grid-template-rows: repeat(7, 1fr);
-    gap: 4px;
-    width: 100%;
-}
-
-.table-cell-study {
-    aspect-ratio: 1/1;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.table-cell-study.active:hover {
-    transform: scale(1.3);
-    z-index: 50;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    border: 1px solid white;
-}
-
-.table-cell-study .cell-num {
-    font-size: 0.6rem;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    font-weight: 800;
-    color: rgba(0, 0, 0, 0.5);
-}
-
-.table-cell-study .cell-sym {
-    font-size: 1.2rem;
-    font-weight: 900;
-    color: #000;
-}
-
-.extra-rows-study {
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-    border-top: 2px dashed var(--glass-border);
-}
-
-.extra-label {
-    font-size: 0.9rem;
-    font-weight: 800;
-    color: var(--accent-purple);
-    margin-bottom: 1rem;
-    letter-spacing: 2px;
-    text-align: center;
-}
-
-.extra-grid {
-    grid-template-rows: repeat(2, 1fr);
-}
-
-/* SCIENTIFIC BOX COPIED FOR STUDY CONTEXT (or reuse the ones from mesa-crafteo-css) */
-/* Assuming they are already in a global or accessible CSS or we need them here too */
-.element-detail-card-study {
-    background: #1e293b;
-    padding: 2rem;
-    border-radius: 24px;
-    max-width: 600px;
-    width: 90%;
-    border: 2px solid var(--accent-blue);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-}
-
-.detail-header-study {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-}
-
-.cat-label-study {
-    background: var(--accent-blue);
-    color: #000;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-weight: 800;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-}
-
-.btn-close-study {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-/* Copied Scientific Box Classes with -study suffix for EntrenadorTabla context */
-.element-scientific-box {
-    width: 280px;
-    height: 300px;
-    margin: 1.5rem auto;
-    background-color: var(--element-color);
-    border: 3px solid #000;
-    display: flex;
-    padding: 15px;
-    color: #000;
-    font-family: 'Lexend', sans-serif;
-    position: relative;
-    box-shadow: 12px 12px 0px rgba(0, 0, 0, 0.1);
-}
-
-.element-main-content-study {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    position: relative;
-}
-
-/* TOOLTIP SIMULATION */
-[data-label] {
-    position: relative;
-    cursor: help;
-}
-
-[data-label]:hover::after {
-    content: attr(data-label);
-    position: absolute;
-    bottom: 105%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #0f172a;
-    color: #fff;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    white-space: nowrap;
-    z-index: 100;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
-    pointer-events: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.scientific-top-left-study {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.ev-stat-item-study {
-    font-size: 1.1rem;
-    font-weight: 700;
-}
-
-.scientific-sub-stats-study {
-    display: flex;
-    gap: 8px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-top: 2px;
-}
-
-.scientific-top-right-study {
-    position: absolute;
-    top: -5px;
-    right: 0;
-}
-
-.ev-stat-number-study {
-    font-size: 3rem;
-    font-weight: 800;
-    line-height: 1;
-}
-
-.scientific-center-study {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.ev-symbol-study {
-    font-size: 6.5rem;
-    font-weight: 900;
-    line-height: 0.8;
-}
-
-.ev-name-study {
-    font-size: 1.6rem;
-    font-weight: 800;
-}
-
-.scientific-bottom-study {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: left;
-}
-
-.ev-config-study {
-    font-size: 0.85rem;
-    font-weight: 700;
-}
-
-.scientific-side-bar-study {
-    width: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 1px;
-    padding-top: 45px;
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
-    margin-left: 10px;
-}
-
-.ev-oxidation-study {
-    font-size: 0.9rem;
-    font-weight: 800;
-    line-height: 1;
-}
-
-.scientific-description-card-study {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 1.5rem;
-    margin-top: 1rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border: 2px solid #e2e8f0;
-    text-align: left;
-}
-
-.desc-header-study {
-    font-size: 0.8rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-}
-
-.desc-content-study {
-    font-size: 1rem;
-    color: #334155;
-    line-height: 1.6;
-    font-weight: 500;
-}
-
-/* REUSABLE OVERLAY FOR STUDY MODAL */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-}
+/* STUDY SCREEN STYLES (Removed - now handled by PeriodicTableModal) */
 
 /* PRO MODE INPUT STYLES */
 .text-answer-container {

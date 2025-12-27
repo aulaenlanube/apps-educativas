@@ -2,7 +2,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
-import { families } from './periodicTable';
+import { FAMILIES } from '../_shared/QuimicaHelpers';
+import PeriodicTableModal from '../_shared/PeriodicTableModal';
 import { molecules } from './craftingRecipes';
 import './MesaCrafteo.css';
 
@@ -14,7 +15,6 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
     const cursoActual = corsoProp || grade;
     const [grid, setGrid] = useState(Array(9).fill(null));
     const [selectedElement, setSelectedElement] = useState(null);
-    const [hoverElementInfo, setHoverElementInfo] = useState(null);
     const [discoveries, setDiscoveries] = useState(new Set());
     const [result, setResult] = useState(null);
     const [isFusing, setIsFusing] = useState(false);
@@ -60,7 +60,7 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
 
     // Bloquear scroll del body al abrir modales
     useEffect(() => {
-        const isAnyModalOpen = showRecipes || showPeriodicTable || !!result || !!errorModal || !!hoverElementInfo;
+        const isAnyModalOpen = showRecipes || showPeriodicTable || !!result || !!errorModal;
         if (isAnyModalOpen) {
             document.body.style.overflow = 'hidden';
         } else {
@@ -69,7 +69,7 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
         return () => {
             document.body.style.overflow = 'unset';
         };
-    }, [showRecipes, showPeriodicTable, result, errorModal, hoverElementInfo]);
+    }, [showRecipes, showPeriodicTable, result, errorModal]);
 
     const selectNextTarget = () => {
         setIsShuffling(true);
@@ -171,62 +171,6 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
         }, 800);
     };
 
-    // Estructura para renderizar la tabla periódica completa (7 filas x 18 columnas)
-    const renderTable = () => {
-        const rows = [];
-        for (let r = 1; r <= 7; r++) {
-            for (let c = 1; c <= 18; c++) {
-                const el = elementsData.find(e => e.pos[0] === r && e.pos[1] === c);
-                const familyColor = el ? families[el.category]?.color || '#8b8b8b' : 'transparent';
-
-                rows.push(
-                    <div
-                        key={`${r}-${c}`}
-                        className={`table-cell-full ${el ? 'active' : 'empty'}`}
-                        style={{ backgroundColor: familyColor }}
-                        onClick={() => el && setHoverElementInfo(el)}
-                    >
-                        {el && (
-                            <>
-                                <span className="atomic-num-full">{el.atomicNumber}</span>
-                                <span className="cell-symbol-full">{el.symbol}</span>
-                            </>
-                        )}
-                    </div>
-                );
-            }
-        }
-        return rows;
-    };
-
-    // Lanthanides and Actinides (simplificado abajo)
-    const renderExtraRows = () => {
-        const rows = [];
-        // Lantanidos r=8, Actinidos r=9 (en el JSON están así)
-        [8, 9].forEach(r => {
-            for (let c = 1; c <= 18; c++) {
-                const el = elementsData.find(e => e.pos[0] === r && e.pos[1] === c);
-                const familyColor = el ? families[el.category]?.color || '#8b8b8b' : 'transparent';
-                rows.push(
-                    <div
-                        key={`${r}-${c}`}
-                        className={`table-cell-full ${el ? 'active' : 'empty'}`}
-                        style={{ backgroundColor: familyColor }}
-                        onClick={() => el && setHoverElementInfo(el)}
-                    >
-                        {el && (
-                            <>
-                                <span className="atomic-num-full">{el.atomicNumber}</span>
-                                <span className="cell-symbol-full">{el.symbol}</span>
-                            </>
-                        )}
-                    </div>
-                );
-            }
-        });
-        return rows;
-    };
-
     const gradeLabel = `${cursoActual}º ESO`;
 
     return (
@@ -294,7 +238,7 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
                                         <motion.div
                                             initial={{ scale: 0 }} animate={{ scale: 1 }}
                                             className="element-orb"
-                                            style={{ backgroundColor: families[cell.category]?.color || '#fff' }}
+                                            style={{ backgroundColor: FAMILIES[cell.category]?.color || '#fff' }}
                                         >
                                             <span className="element-atomic">{cell.atomicNumber}</span>
                                             <span className="element-symbol" style={{ color: '#000' }}>
@@ -357,12 +301,12 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -10 }}
                                     className="dynamic-inventory-info"
-                                    style={{ borderLeftColor: families[hoveredInventoryItem.category]?.color }}
+                                    style={{ borderLeftColor: FAMILIES[hoveredInventoryItem.category]?.color }}
                                 >
-                                    <span className="dynamic-sym" style={{ color: families[hoveredInventoryItem.category]?.color }}>{hoveredInventoryItem.symbol}</span>
+                                    <span className="dynamic-sym" style={{ color: FAMILIES[hoveredInventoryItem.category]?.color }}>{hoveredInventoryItem.symbol}</span>
                                     <div className="dynamic-text">
                                         <h4>{hoveredInventoryItem.name} <span className="dynamic-num">({hoveredInventoryItem.atomicNumber})</span></h4>
-                                        <p><strong>Familia:</strong> {families[hoveredInventoryItem.category].label}</p>
+                                        <p><strong>Familia:</strong> {FAMILIES[hoveredInventoryItem.category].label}</p>
                                     </div>
                                 </motion.div>
                             ) : (
@@ -381,7 +325,7 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
                                 onClick={() => setSelectedElement(el)}
                                 onMouseEnter={() => setHoveredInventoryItem(el)}
                                 onMouseLeave={() => setHoveredInventoryItem(null)}
-                                style={{ backgroundColor: families[el.category]?.color }}
+                                style={{ backgroundColor: FAMILIES[el.category]?.color }}
                             >
                                 <span style={{ color: '#000', fontWeight: 'bold' }}>{el.symbol}</span>
                             </div>
@@ -413,7 +357,7 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
                                         </div>
                                         <div className="recipe-mini-grid">
                                             {m.pattern.flat().map((symbol, sIdx) => (
-                                                <div key={sIdx} className={`mini-cell ${symbol ? 'active' : ''}`} style={{ backgroundColor: symbol ? families[elementsData.find(e => e.symbol === symbol)?.category]?.color : 'transparent' }}>
+                                                <div key={sIdx} className={`mini-cell ${symbol ? 'active' : ''}`} style={{ backgroundColor: symbol ? FAMILIES[elementsData.find(e => e.symbol === symbol)?.category]?.color : 'transparent' }}>
                                                     {symbol}
                                                 </div>
                                             ))}
@@ -427,101 +371,13 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
                 )}
             </AnimatePresence>
 
-            {/* TABLA PERIÓDICA MODAL */}
+            {/* TABLA PERIÓDICA MODAL UNIFICADA */}
             <AnimatePresence>
                 {showPeriodicTable && (
-                    <div className="modal-overlay" onClick={() => setShowPeriodicTable(false)}>
-                        <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-                            className="periodic-table-modal full-table custom-scrollbar"
-                            onClick={e => e.stopPropagation()}
-                        >
-                            <div className="modal-header">
-                                <h2>TABLA PERIÓDICA COMPLETA</h2>
-                                <button className="btn-close" onClick={() => setShowPeriodicTable(false)}>X</button>
-                            </div>
-
-                            <div className="periodic-grid-full">
-                                {renderTable()}
-                            </div>
-
-                            <div className="extra-rows-label">LANTÁNIDOS / ACTÍNIDOS</div>
-                            <div className="periodic-grid-full extra-rows">
-                                {renderExtraRows()}
-                            </div>
-                        </motion.div>
-                    </div>
-                )}
-            </AnimatePresence>
-
-            {/* MODAL DE INFO DE ELEMENTO (DETALLE) */}
-            <AnimatePresence>
-                {hoverElementInfo && (
-                    <div className="modal-overlay" style={{ zIndex: 3000 }} onClick={() => setHoverElementInfo(null)}>
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            className="molecule-reveal-card element-detail-card"
-                            onClick={e => e.stopPropagation()}
-                        >
-                            <div className="detail-header">
-                                <span className="cat-label">{families[hoverElementInfo.category]?.label || 'Elemento'}</span>
-                                <button className="btn-close" onClick={() => setHoverElementInfo(null)}>X</button>
-                            </div>
-
-                            <div className="element-scientific-box" style={{ '--element-color': families[hoverElementInfo.category]?.color || '#8b8b8b' }}>
-                                <div className="element-main-content">
-                                    {/* Top Left: Mass & Secondary Stats */}
-                                    <div className="scientific-top-left">
-                                        <div className="ev-stat-item" data-label="Masa Atómica">
-                                            {hoverElementInfo.atomicMass}
-                                        </div>
-                                        <div className="scientific-sub-stats">
-                                            <div className="ev-stat-item" data-label="Energía Ionización (eV)">{hoverElementInfo.ionizationEnergy}</div>
-                                            <div className="ev-stat-item" data-label="Electronegatividad">{hoverElementInfo.electronegativity}</div>
-                                        </div>
-                                    </div>
-
-                                    {/* Top Right: Atomic Number */}
-                                    <div className="scientific-top-right">
-                                        <div className="ev-stat-number" data-label="Número Atómico">
-                                            {hoverElementInfo.atomicNumber}
-                                        </div>
-                                    </div>
-
-                                    {/* Center: Symbol & Name */}
-                                    <div className="scientific-center">
-                                        <div className="ev-symbol" data-label="Símbolo Químico">{hoverElementInfo.symbol}</div>
-                                        <div className="ev-name" data-label="Nombre">{hoverElementInfo.name}</div>
-                                    </div>
-
-                                    {/* Bottom: Configuration */}
-                                    <div className="scientific-bottom">
-                                        <div className="ev-config" data-label="Configuración Electrónica">{hoverElementInfo.config}</div>
-                                    </div>
-                                </div>
-
-                                {/* Right Side: Oxidation States */}
-                                <div className="scientific-side-bar" data-label="Estados de Oxidación">
-                                    {(hoverElementInfo.oxidationStates || "").split(',').map(s => (
-                                        <div key={s} className="ev-oxidation">{s.trim()}</div>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="scientific-description-card">
-                                <div className="desc-header" style={{ color: families[hoverElementInfo.category]?.color || 'var(--primary-color)' }}>
-                                    🔬 INFORMACIÓN CIENTÍFICA
-                                </div>
-                                <div className="desc-content">
-                                    {hoverElementInfo.description}
-                                </div>
-                            </div>
-
-
-                        </motion.div>
-                    </div>
+                    <PeriodicTableModal
+                        elementsData={elementsData}
+                        onClose={() => setShowPeriodicTable(false)}
+                    />
                 )}
             </AnimatePresence>
 

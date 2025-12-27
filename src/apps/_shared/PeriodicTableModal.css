@@ -1,0 +1,355 @@
+/* src/apps/_shared/PeriodicTableModal.css */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(8px);
+    z-index: 2500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    overflow-y: auto;
+    /* Allow overlay to scroll if content is too tall */
+}
+
+.periodic-table-modal {
+    background: #f8fafc;
+    border-radius: 32px;
+    width: 100%;
+    max-width: 1250px;
+    max-height: 95vh;
+    overflow-y: auto;
+    padding: 3rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.modal-header h2 {
+    font-family: 'Fredoka', cursive;
+    margin: 0;
+    color: #1e293b;
+    font-size: 2rem;
+    letter-spacing: -0.5px;
+}
+
+.btn-close {
+    background: #e2e8f0;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #475569;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-close:hover {
+    background: #ef4444;
+    color: white;
+    transform: scale(1.1);
+}
+
+/* PERIODIC GRID */
+.periodic-grid-full {
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    gap: 6px;
+}
+
+.table-cell-full {
+    aspect-ratio: 1/1.1;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.table-cell-full.active:hover {
+    transform: scale(1.35);
+    z-index: 50;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    border: 2px solid white;
+}
+
+.table-cell-full.empty {
+    background: transparent !important;
+    pointer-events: none;
+    border: none;
+}
+
+.atomic-num-full {
+    font-size: 0.65rem;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.cell-symbol-full {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #000;
+}
+
+.extra-rows-label {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1rem;
+    color: #64748b;
+    margin: 3rem 0 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    font-weight: 800;
+    border-top: 2px dashed #e2e8f0;
+    padding-top: 2rem;
+}
+
+/* SCIENTIFIC BOX */
+.element-detail-card {
+    background: #ffffff;
+    border-radius: 36px;
+    padding: 3rem;
+    max-width: 550px;
+    width: 95%;
+    max-height: 90vh;
+    /* Limit height */
+    overflow-y: auto;
+    /* Internal scroll */
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.35);
+    border: 1px solid #e2e8f0;
+    position: relative;
+    margin: auto;
+    /* Help centering in scrollable flex container */
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.cat-label {
+    background: #f1f5f9;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.element-scientific-box {
+    width: 300px;
+    height: 320px;
+    margin: 2rem auto;
+    background-color: var(--element-color);
+    border: 4px solid #000;
+    display: flex;
+    padding: 20px;
+    color: #000;
+    font-family: 'Lexend', sans-serif;
+    position: relative;
+    box-shadow: 16px 16px 0px rgba(0, 0, 0, 0.1);
+}
+
+.element-main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+}
+
+/* TOOLTIP SYSTEM */
+[data-label] {
+    position: relative;
+    cursor: help;
+}
+
+[data-label]:hover::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0f172a;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    z-index: 150;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* POSITIONS */
+.scientific-top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.ev-stat-item {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.scientific-sub-stats {
+    display: flex;
+    gap: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.scientific-top-right {
+    position: absolute;
+    top: -5px;
+    right: 0;
+}
+
+.ev-stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.scientific-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.ev-symbol {
+    font-size: 7.5rem;
+    font-weight: 900;
+    line-height: 0.75;
+}
+
+.ev-name {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-top: 5px;
+}
+
+.scientific-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: left;
+}
+
+.ev-config {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.scientific-side-bar {
+    width: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    padding-top: 55px;
+    border-left: 2px solid rgba(0, 0, 0, 0.15);
+    margin-left: 15px;
+}
+
+.ev-oxidation {
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+/* DESCRIPTION CARD */
+.scientific-description-card {
+    background: #f8fafc;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-top: 1.5rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 2px solid #e2e8f0;
+    text-align: left;
+}
+
+.desc-header {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.desc-content {
+    font-size: 1.1rem;
+    color: #334155;
+    line-height: 1.7;
+    font-weight: 500;
+}
+
+/* CUSTOM SCROLLBAR */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+    border: 3px solid #f8fafc;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+@media (max-width: 768px) {
+    .periodic-table-modal {
+        padding: 1.5rem;
+    }
+
+    .periodic-grid-full {
+        gap: 3px;
+    }
+
+    .cell-symbol-full {
+        font-size: 0.9rem;
+    }
+
+    .atomic-num-full {
+        font-size: 0.5rem;
+    }
+}

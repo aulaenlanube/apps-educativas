@@ -42,25 +42,25 @@ const HomePage = () => {
   };
 
   return (
-    <div> 
+    <div>
       <Header>
-        <Button 
-          variant="ghost" 
-          className="text-gray-700 hover:text-purple-600 hover:bg-purple-50" 
+        <Button
+          variant="ghost"
+          className="text-gray-700 hover:text-purple-600 hover:bg-purple-50"
           onClick={() => setIsModalOpen(true)}
         >
           Quién soy
         </Button>
       </Header>
 
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="relative py-20 px-6 text-center overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-3xl transform -rotate-12 scale-150 pointer-events-none"></div>
-        
+
         <div className="relative z-10 container mx-auto">
           <motion.div
             initial={{ y: 30, opacity: 0 }}
@@ -72,7 +72,7 @@ const HomePage = () => {
               ¡Aprende Jugando!
             </GradientTitle>
             <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Descubre las mejores apps educativas organizadas por cursos. <br className="hidden md:block"/>
+              Descubre las mejores apps educativas organizadas por cursos. <br className="hidden md:block" />
               Desde 1º de Primaria hasta 4º de ESO, ¡el aprendizaje nunca fue tan divertido!
             </p>
           </motion.div>
@@ -102,17 +102,17 @@ const HomePage = () => {
             transition={{ delay: 0.8, duration: 0.8 }}
           >
             <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-[2rem] blur opacity-30"></div>
-            <img 
-              className="relative w-full max-w-4xl mx-auto rounded-3xl shadow-2xl object-cover h-[200px] md:h-[300px]" 
-              alt="Niños aprendiendo con tablets y apps educativas" 
-              src="/images/portada.webp" 
+            <img
+              className="relative w-full max-w-4xl mx-auto rounded-3xl shadow-2xl object-cover h-[200px] md:h-[300px]"
+              alt="Niños aprendiendo con tablets y apps educativas"
+              src="/images/portada.webp"
             />
           </motion.div>
         </div>
       </motion.section>
 
       {/* Sección Primaria */}
-      <motion.section 
+      <motion.section
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -131,7 +131,7 @@ const HomePage = () => {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
@@ -143,13 +143,13 @@ const HomePage = () => {
                 whileTap={{ scale: 0.98 }}
                 className="group"
               >
-                <div 
+                <div
                   className={`bg-gradient-to-br ${grade.color} p-8 rounded-3xl shadow-lg cursor-pointer relative overflow-hidden transition-all duration-300 hover:shadow-2xl`}
                   onClick={() => handleGradeClick('primaria', grade.grade)}
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16 transition-transform group-hover:scale-110"></div>
                   <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12 transition-transform group-hover:scale-110"></div>
-                  
+
                   <div className="relative z-10 text-center text-white">
                     <div className="text-6xl mb-6 transform group-hover:scale-110 transition-transform duration-300 drop-shadow-md">{grade.icon}</div>
                     <h3 className="text-4xl font-bold mb-2">{grade.grade}º</h3>
@@ -166,7 +166,7 @@ const HomePage = () => {
       </motion.section>
 
       {/* Sección Secundaria */}
-      <motion.section 
+      <motion.section
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -185,7 +185,7 @@ const HomePage = () => {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           >
@@ -197,13 +197,13 @@ const HomePage = () => {
                 whileTap={{ scale: 0.98 }}
                 className="group"
               >
-                <div 
+                <div
                   className={`bg-gradient-to-br ${grade.color} p-8 rounded-3xl shadow-lg cursor-pointer relative overflow-hidden transition-all duration-300 hover:shadow-2xl`}
                   onClick={() => handleGradeClick('eso', grade.grade)}
                 >
                   <div className="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full -translate-y-14 translate-x-14 group-hover:scale-110 transition-transform"></div>
                   <div className="absolute bottom-0 left-0 w-20 h-20 bg-white/10 rounded-full translate-y-10 -translate-x-10 group-hover:scale-110 transition-transform"></div>
-                  
+
                   <div className="relative z-10 text-center text-white">
                     <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300 drop-shadow-md">{grade.icon}</div>
                     <h3 className="text-3xl font-bold mb-2">{grade.grade}º</h3>
@@ -220,7 +220,7 @@ const HomePage = () => {
       </motion.section>
 
       {/* Footer Promocional */}
-      <motion.section 
+      <motion.section
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -235,18 +235,18 @@ const HomePage = () => {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={containerVariants}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
             {[
               { icon: BookOpen, title: "Contenido de calidad", desc: "Apps verificadas y organizadas por niveles educativos.", color: "from-blue-500 to-purple-600" },
-              { icon: Star, title: "Aprendizaje Divertido", desc: "Gamificación para mantener la motivación alta.", color: "from-purple-500 to-pink-600" },
+              { icon: Star, title: "Aprendizaje Divertido", desc: "No es gamificación, es una plataforma de educación basada en el juego para mantener la motivación alta.", color: "from-purple-500 to-pink-600" },
               { icon: Trophy, title: "Progreso Medible", desc: "Modo de práctica y modo examen.", color: "from-green-500 to-blue-600" }
             ].map((feature, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
-                variants={itemVariants} 
+                variants={itemVariants}
                 className="text-center p-8 bg-white/60 backdrop-blur-sm rounded-3xl shadow-lg border border-white/50 hover:shadow-xl transition-shadow"
               >
                 <div className={`w-16 h-16 bg-gradient-to-r ${feature.color} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-md transform -rotate-3 hover:rotate-0 transition-transform duration-300`}>

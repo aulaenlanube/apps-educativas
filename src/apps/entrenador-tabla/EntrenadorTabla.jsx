@@ -4,20 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import './EntrenadorTabla.css';
 
-const FAMILIES = {
-    'alkali-metal': { label: 'Alcalinos', color: '#f87171' },
-    'alkaline-earth': { label: 'Alcalinotérreos', color: '#fb923c' },
-    'transition': { label: 'Metales de Transición', color: '#f472b6' },
-    'transition-metal': { label: 'Metales de Transición', color: '#f472b6' },
-    'post-transition': { label: 'Metales del bloque p', color: '#94a3b8' },
-    'metalloid': { label: 'Metaloides', color: '#2dd4bf' },
-    'non-metal': { label: 'No Metales', color: '#4ade80' },
-    'halogen': { label: 'Halógenos', color: '#facc15' },
-    'noble-gas': { label: 'Gases Nobles', color: '#60a5fa' },
-    'lanthanide': { label: 'Lantánidos', color: '#a78bfa' },
-    'actinide': { label: 'Actínidos', color: '#c084fc' },
-    'unknown': { label: 'Desconocido', color: '#cbd5e1' }
-};
+import { FAMILIES, normalizeString } from '../_shared/QuimicaHelpers';
+import PeriodicTableModal from '../_shared/PeriodicTableModal';
 
 const EntrenadorTabla = () => {
     // Game State
@@ -94,12 +82,6 @@ const EntrenadorTabla = () => {
         generateNewQuestion(targets[0], targets);
     };
 
-    const normalizeString = (str) => {
-        return str.toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .trim();
-    };
 
     const handleTextSubmit = (e) => {
         if (e) e.preventDefault();
@@ -258,9 +240,9 @@ const EntrenadorTabla = () => {
                                 </div>
                             </div>
 
-                            <div className="setup-card" style={{ gridColumn: 'span 2' }}>
+                            <div className="setup-card setup-card-wide">
                                 <h3>🔬 RANGO DE ESTUDIO</h3>
-                                <div className="scope-options" style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
+                                <div className="scope-grid">
                                     <button
                                         className={`option-btn ${config.scope === 'all' ? 'active' : ''}`}
                                         onClick={() => setConfig({ ...config, scope: 'all' })}
@@ -306,133 +288,10 @@ const EntrenadorTabla = () => {
                 )}
 
                 {gameState === 'study' && (
-                    <motion.div
-                        key="study"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="study-screen"
-                    >
-                        <header className="game-header">
-                            <h2 style={{ margin: 0 }}>TABLA PERIÓDICA DE ESTUDIO</h2>
-                            <button className="option-btn" onClick={() => setGameState('setup')}>VOLVER AL MENÚ</button>
-                        </header>
-
-                        <div className="periodic-table-study-container">
-                            <div className="periodic-grid-full">
-                                {Array.from({ length: 7 }, (_, r) => r + 1).map(r =>
-                                    Array.from({ length: 18 }, (_, c) => c + 1).map(c => {
-                                        const el = elements.find(e => e.pos[0] === r && e.pos[1] === c);
-                                        return (
-                                            <div
-                                                key={`grid-${r}-${c}`}
-                                                className={`table-cell-study ${el ? 'active' : 'empty'}`}
-                                                style={{
-                                                    backgroundColor: el ? FAMILIES[el.category]?.color || '#8b8b8b' : 'transparent',
-                                                    gridRow: r,
-                                                    gridColumn: c
-                                                }}
-                                                onClick={() => el && setSelectedAnswer(el)} // Reutilizamos setSelectedAnswer para ver detalles
-                                            >
-                                                {el && (
-                                                    <>
-                                                        <span className="cell-num">{el.atomicNumber}</span>
-                                                        <span className="cell-sym">{el.symbol}</span>
-                                                    </>
-                                                )}
-                                            </div>
-                                        );
-                                    })
-                                )}
-                            </div>
-
-                            <div className="extra-rows-study">
-                                <div className="extra-label">LANTÁNIDOS Y ACTÍNIDOS</div>
-                                <div className="periodic-grid-full extra-grid">
-                                    {[8, 9].map(r =>
-                                        Array.from({ length: 18 }, (_, c) => c + 1).map(c => {
-                                            const el = elements.find(e => e.pos[0] === r && e.pos[1] === c);
-                                            return (
-                                                <div
-                                                    key={`grid-extra-${r}-${c}`}
-                                                    className={`table-cell-study ${el ? 'active' : 'empty'}`}
-                                                    style={{
-                                                        backgroundColor: el ? FAMILIES[el.category]?.color || '#8b8b8b' : 'transparent',
-                                                        gridRow: r === 8 ? 1 : 2,
-                                                        gridColumn: c
-                                                    }}
-                                                    onClick={() => el && setSelectedAnswer(el)}
-                                                >
-                                                    {el && (
-                                                        <>
-                                                            <span className="cell-num">{el.atomicNumber}</span>
-                                                            <span className="cell-sym">{el.symbol}</span>
-                                                        </>
-                                                    )}
-                                                </div>
-                                            );
-                                        })
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* DETALLE DEL ELEMENTO (IGUAL QUE EN MESA DE CRAFTEO) */}
-                        <AnimatePresence>
-                            {selectedAnswer && (
-                                <div className="modal-overlay" style={{ zIndex: 3000 }} onClick={() => setSelectedAnswer(null)}>
-                                    <motion.div
-                                        initial={{ scale: 0.8, opacity: 0 }}
-                                        animate={{ scale: 1, opacity: 1 }}
-                                        exit={{ scale: 0.8, opacity: 0 }}
-                                        className="molecule-reveal-card element-detail-card-study"
-                                        onClick={e => e.stopPropagation()}
-                                    >
-                                        <div className="detail-header-study">
-                                            <span className="cat-label-study">{FAMILIES[selectedAnswer.category]?.label || 'Elemento'}</span>
-                                            <button className="btn-close-study" onClick={() => setSelectedAnswer(null)}>X</button>
-                                        </div>
-
-                                        <div className="element-scientific-box" style={{ '--element-color': FAMILIES[selectedAnswer.category]?.color || '#8b8b8b' }}>
-                                            <div className="element-main-content-study">
-                                                <div className="scientific-top-left-study">
-                                                    <div className="ev-stat-item-study" data-label="Masa Atómica">{selectedAnswer.atomicMass}</div>
-                                                    <div className="scientific-sub-stats-study">
-                                                        <div className="ev-stat-item-study" data-label="Energía Ionización (eV)">{selectedAnswer.ionizationEnergy}</div>
-                                                        <div className="ev-stat-item-study" data-label="Electronegatividad">{selectedAnswer.electronegativity}</div>
-                                                    </div>
-                                                </div>
-                                                <div className="scientific-top-right-study">
-                                                    <div className="ev-stat-number-study" data-label="Número Atómico">{selectedAnswer.atomicNumber}</div>
-                                                </div>
-                                                <div className="scientific-center-study">
-                                                    <div className="ev-symbol-study" data-label="Símbolo Químico">{selectedAnswer.symbol}</div>
-                                                    <div className="ev-name-study" data-label="Nombre">{selectedAnswer.name}</div>
-                                                </div>
-                                                <div className="scientific-bottom-study">
-                                                    <div className="ev-config-study" data-label="Configuración Electrónica">{selectedAnswer.config}</div>
-                                                </div>
-                                            </div>
-                                            <div className="scientific-side-bar-study" data-label="Estados de Oxidación">
-                                                {(selectedAnswer.oxidationStates || "").split(',').map(s => (
-                                                    <div key={s} className="ev-oxidation-study">{s.trim()}</div>
-                                                ))}
-                                            </div>
-                                        </div>
-
-                                        <div className="scientific-description-card-study">
-                                            <div className="desc-header-study" style={{ color: FAMILIES[selectedAnswer.category]?.color || 'var(--primary-color)' }}>
-                                                🔬 INFORMACIÓN CIENTÍFICA
-                                            </div>
-                                            <div className="desc-content-study">
-                                                {selectedAnswer.description}
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                </div>
-                            )}
-                        </AnimatePresence>
-                    </motion.div>
+                    <PeriodicTableModal
+                        elementsData={elements}
+                        onClose={() => setGameState('setup')}
+                    />
                 )}
 
                 {gameState === 'playing' && (
@@ -529,7 +388,7 @@ const EntrenadorTabla = () => {
                     </div>
                 )}
             </AnimatePresence>
-        </div>
+        </div >
     );
 };
 
