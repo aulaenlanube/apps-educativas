@@ -9,10 +9,7 @@
                 1,
                 1
             ],
-            "description": {
-                "eso1": "El elemento más ligero y abundante.",
-                "eso4": "Gas diatómico incoloro, el más simple."
-            }
+            "description": "Es el elemento químico más ligero y abundante del universo, constituyendo aproximadamente el 75% de su masa elemental. En condiciones normales es un gas incoloro, inodoro e inflamable. Es fundamental en la formación de estrellas y en la composición del agua y la mayoría de los compuestos orgánicos que forman la vida."
         },
         {
             "symbol": "He",
@@ -23,10 +20,7 @@
                 1,
                 18
             ],
-            "description": {
-                "eso1": "Para inflar globos.",
-                "eso4": "Gas noble inerte, punto de ebullición bajísimo."
-            }
+            "description": "Un gas noble incoloro e inerte que es el segundo elemento más ligero y abundante observado en el universo. Debido a que es menos denso que el aire, se utiliza para inflar globos y dirigibles. En estado líquido es el refrigerante más frío que existe, esencial para el funcionamiento de escáneres médicos de resonancia magnética."
         },
         {
             "symbol": "Li",
@@ -37,10 +31,7 @@
                 2,
                 1
             ],
-            "description": {
-                "eso1": "Usado en baterías.",
-                "eso4": "Metal alcalino ligero y muy reactivo."
-            }
+            "description": "Metal alcalino de color blanco plateado de muy baja densidad, tanto que puede flotar en el agua. Es altamente reactivo y se oxida rápidamente en el aire. Es el componente clave de las baterías recargables modernas debido a su gran capacidad para almacenar energía eléctrica en un espacio muy reducido."
         },
         {
             "symbol": "Be",
@@ -51,10 +42,7 @@
                 2,
                 2
             ],
-            "description": {
-                "eso1": "Metal duro para aleaciones.",
-                "eso4": "Metal alcalinotérreo tóxico y rígido."
-            }
+            "description": "Metal alcalinotérreo de color gris acero, ligero pero extremadamente rígido y resistente. Debido a su ligereza técnica y estabilidad térmica, se utiliza en la fabricación de componentes para naves espaciales, misiles y telescopios espaciales de alta precisión."
         },
         {
             "symbol": "B",
@@ -65,10 +53,7 @@
                 2,
                 13
             ],
-            "description": {
-                "eso1": "Vidrios resistentes.",
-                "eso4": "Metaloide semiconductor esencial en borosilicatos."
-            }
+            "description": "Metaloide semiconductor que se encuentra casi exclusivamente en combinación con otros elementos. Se utiliza para fabricar vidrios borosilicatos (como el Pyrex) que resisten cambios bruscos de temperatura sin romperse, y sus compuestos son esenciales en fertilizantes y detergentes."
         },
         {
             "symbol": "C",
@@ -79,10 +64,7 @@
                 2,
                 14
             ],
-            "description": {
-                "eso1": "Base de la vida y diamante.",
-                "eso4": "Elemento tetravalente base de la química orgánica."
-            }
+            "description": "Elemento no metálico tetravalente que constituye la base de toda la química orgánica y de la vida en la Tierra. Puede presentarse en formas tan diversas como el diamante (el material natural más duro) o el grafito (el material blando de los lápices). Su capacidad para formar cadenas largas permite la existencia de proteínas, ADN y combustibles fósiles."
         },
         {
             "symbol": "N",
@@ -93,10 +75,7 @@
                 2,
                 15
             ],
-            "description": {
-                "eso1": "Parte del aire.",
-                "eso4": "Constituye el 78% de la atmósfera terrestre."
-            }
+            "description": "Gas incoloro e inodoro que constituye el 78% de la atmósfera terrestre. Es un componente fundamental de la clorofila en las plantas y de los aminoácidos en todos los seres vivos. Industrialmente es crucial para la producción de fertilizantes amoniacales que sustentan la agricultura global."
         },
         {
             "symbol": "O",
@@ -107,24 +86,18 @@
                 2,
                 16
             ],
-            "description": {
-                "eso1": "Para respirar.",
-                "eso4": "Agente oxidante altamente reactivo."
-            }
+            "description": "Gas altamente reactivo e indispensable para la vida de la mayoría de los seres vivos terrestres a través de la respiración celular. Constituye el 21% de la atmósfera y es el elemento más abundante por masa en la corteza terrestre. Participa en casi todos los procesos de combustión y oxidación."
         },
         {
             "symbol": "F",
             "name": "Flúor",
             "atomicNumber": 9,
-            "category": "halogen",
+            "category": "non-metal",
             "pos": [
                 2,
                 17
             ],
-            "description": {
-                "eso1": "En pasta de dientes.",
-                "eso4": "El más electronegativo y reactivo."
-            }
+            "description": "Es el elemento más reactivo y electronegativo de toda la tabla periódica. En estado puro es un gas de color amarillo pálido extremadamente corrosivo. Sus compuestos, los fluoruros, se utilizan para fortalecer el esmalte dental y en la industria de los polímeros antiadherentes como el teflón."
         },
         {
             "symbol": "Ne",
@@ -135,10 +108,7 @@
                 2,
                 18
             ],
-            "description": {
-                "eso1": "Luces brillantes.",
-                "eso4": "Gas noble inerte conocido por su luz roja."
-            }
+            "description": "Gas noble incoloro y prácticamente inerte que emite un característico brillo naranja rojizo brillante cuando es excitado por una descarga eléctrica. Debido a esta propiedad, se utiliza ampliamente en tubos de descarga para carteles publicitarios y en lámparas de señalización."
         },
         {
             "symbol": "Na",
@@ -149,10 +119,7 @@
                 3,
                 1
             ],
-            "description": {
-                "eso1": "En sal común.",
-                "eso4": "Metal alcalino que reacciona con agua."
-            }
+            "description": "Metal alcalino blando y plateado, extremadamente reactivo; reacciona de forma violenta y explosiva en contacto con el agua. El ion sodio es vital para la transmisión del impulso nervioso y el equilibrio de agua en el cuerpo. Su compuesto más conocido es el cloruro de sodio o sal común de mesa."
         },
         {
             "symbol": "Mg",
@@ -163,10 +130,7 @@
                 3,
                 2
             ],
-            "description": {
-                "eso1": "Importante para plantas.",
-                "eso4": "Metal ligero, combustión de luz blanca."
-            }
+            "description": "Metal alcalinotérreo ligero y resistente que arde con una luz blanca deslumbrante bajo el agua o en el aire. Es el átomo central de la molécula de clorofila, por lo que es esencial para que las plantas realicen la fotosíntesis, y en los humanos es clave para el funcionamiento de cientos de enzimas."
         },
         {
             "symbol": "Al",
@@ -177,10 +141,7 @@
                 3,
                 13
             ],
-            "description": {
-                "eso1": "Para latas y papel de plata.",
-                "eso4": "Metal no ferromagnético muy común."
-            }
+            "description": "Metal ligero, maleable y plateado que forma una capa protectora de óxido muy resistente a la corrosión. Es el metal más abundante en la corteza terrestre y, debido a su baja densidad y gran resistencia mecánica, es esencial en la industria aeronáutica y en envases alimentarios."
         },
         {
             "symbol": "Si",
@@ -191,10 +152,7 @@
                 3,
                 14
             ],
-            "description": {
-                "eso1": "En chips de ordenador.",
-                "eso4": "Semiconductor con estructura de diamante."
-            }
+            "description": "Metaloide con propiedades semiconductoras que constituye el componente principal de la arena de las playas como dióxido de silicio. Es el material base sobre el que se fabrican los chips de ordenador y las placas solares, siendo el motor tecnológico de la era digital moderna."
         },
         {
             "symbol": "P",
@@ -205,10 +163,7 @@
                 3,
                 15
             ],
-            "description": {
-                "eso1": "En cerillas y abonos.",
-                "eso4": "No metal esencial presente en el ADN."
-            }
+            "description": "No metal altamente reactivo que nunca se encuentra libre en la naturaleza. Es un componente esencial del ADN, el ARN y los fosfolípidos que forman las membranas celulares. También desempeña un papel crucial en el metabolismo de la energía como parte de la molécula de ATP."
         },
         {
             "symbol": "S",
@@ -219,24 +174,18 @@
                 3,
                 16
             ],
-            "description": {
-                "eso1": "Polvo amarillo.",
-                "eso4": "No metal esencial en aminoácidos."
-            }
+            "description": "No metal de color amarillo pálido con un olor característico cuando se combina con hidrógeno. Se encuentra de forma nativa en zonas volcánicas y es un componente esencial de varios aminoácidos. Su mayor uso industrial es la fabricación de ácido sulfúrico, el reactivo más utilizado en el mundo."
         },
         {
             "symbol": "Cl",
             "name": "Cloro",
             "atomicNumber": 17,
-            "category": "halogen",
+            "category": "non-metal",
             "pos": [
                 3,
                 17
             ],
-            "description": {
-                "eso1": "Para piscinas.",
-                "eso4": "Gas oxidante para potabilizar agua."
-            }
+            "description": "Es un gas de color amarillo verdoso con un olor penetrante e irritante. Es un potente oxidante y desinfectante que se utiliza masivamente para purificar el agua potable y desinfectar piscinas, además de ser una pieza clave en la fabricación de plásticos como el PVC."
         },
         {
             "symbol": "Ar",
@@ -247,10 +196,7 @@
                 3,
                 18
             ],
-            "description": {
-                "eso1": "En bombillas.",
-                "eso4": "Gas noble inerte más común."
-            }
+            "description": "Es el tercer gas más abundante en la atmósfera terrestre. Es un gas noble inerte que se utiliza para crear atmósferas protectoras en soldaduras especiales y para rellenar bombillas incandescentes, evitando que el filamento de tungsteno se queme por la oxidación al calentarse."
         },
         {
             "symbol": "K",
@@ -261,10 +207,7 @@
                 4,
                 1
             ],
-            "description": {
-                "eso1": "En plátanos.",
-                "eso4": "Esencial para función nerviosa."
-            }
+            "description": "Metal alcalino blando de color plateado que se oxida instantáneamente en el aire y reacciona de forma violenta con el agua. Sus iones son absolutamente necesarios para el funcionamiento de las bombas iónicas en las células nerviosas y musculares, manteniendo el control de la presión sanguínea."
         },
         {
             "symbol": "Ca",
@@ -275,150 +218,117 @@
                 4,
                 2
             ],
-            "description": {
-                "eso1": "Para los huesos.",
-                "eso4": "Fundamental en estructura ósea."
-            }
+            "description": "Metal alcalinotérreo plateado y el quinto elemento más abundante en la corteza terrestre. Es el mineral principal de los huesos y dientes en los animales, y sus compuestos se utilizan masivamente en la construcción para fabricar cemento, yeso y morteros."
         },
         {
             "symbol": "Sc",
             "name": "Escandio",
             "atomicNumber": 21,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 4,
                 3
             ],
-            "description": {
-                "eso1": "Lámparas de alta intensidad.",
-                "eso4": "Metal de transición ligero usado en aeroespacial."
-            }
+            "description": "Metal de transición ligero y blando que se utiliza principalmente en aleaciones de aluminio para aumentar la resistencia de los cuadros de bicicletas y componentes aeroespaciales potentes."
         },
         {
             "symbol": "Ti",
             "name": "Titanio",
             "atomicNumber": 22,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 4,
                 4
             ],
-            "description": {
-                "eso1": "Implantes médicos.",
-                "eso4": "Metal de alta resistencia y baja densidad."
-            }
+            "description": "Metal de transición famoso por su bajísima densidad y su extraordinaria resistencia mecánica y a la corrosión. Al ser biocompatible, es el material estándar para fabricar prótesis médicas, implantes dentales y herramientas quirúrgicas de alta gama."
         },
         {
             "symbol": "V",
             "name": "Vanadio",
             "atomicNumber": 23,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 4,
                 5
             ],
-            "description": {
-                "eso1": "Herramientas de acero.",
-                "eso4": "Usado para aumentar resistencia del acero."
-            }
+            "description": "Metal de transición duro y dúctil que se añade al acero para crear herramientas extremadamente resistentes al impacto y al desgaste, como llaves fijas y engranajes de motores industriales."
         },
         {
             "symbol": "Cr",
             "name": "Cromo",
             "atomicNumber": 24,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 4,
                 6
             ],
-            "description": {
-                "eso1": "Cromados de coches.",
-                "eso4": "Resistente a la corrosión, da brillo."
-            }
+            "description": "Metal de transición brillante que se utiliza para recubrir otras piezas metálicas (cromado) y protegerlas del óxido con un acabado decorativo. Es un componente fundamental del acero inoxidable, que contiene al menos un 10.5% de cromo."
         },
         {
             "symbol": "Mn",
             "name": "Manganeso",
             "atomicNumber": 25,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 4,
                 7
             ],
-            "description": {
-                "eso1": "Aumenta dureza del acero.",
-                "eso4": "Esencial en producción de acero inoxidable."
-            }
+            "description": "Metal de transición que se encuentra comúnmente en combinación con el hierro. Es un elemento esencial para la fabricación de aceros de alta dureza y se utiliza en baterías secas; biológicamente es clave para el proceso de fotosíntesis en las plantas."
         },
         {
             "symbol": "Fe",
             "name": "Hierro",
             "atomicNumber": 26,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 4,
                 8
             ],
-            "description": {
-                "eso1": "Muy fuerte.",
-                "eso4": "Central en transporte de oxígeno."
-            }
+            "description": "Metal de transición más utilizado en la historia de la humanidad. Es el núcleo de la producción de acero y el elemento que transporta el oxígeno en nuestra sangre a través de la hemoglobina. Es responsable del magnetismo natural en minerales como la magnetita."
         },
         {
             "symbol": "Co",
             "name": "Cobalto",
             "atomicNumber": 27,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 4,
                 9
             ],
-            "description": {
-                "eso1": "Pigmento azul cobalto.",
-                "eso4": "Parte de la vitamina B12."
-            }
+            "description": "Metal ferromagnético de color azulado oscuro en sus sales. Se utiliza para crear superaleaciones resistentes al calor en turbinas de aviones y es un componente vital de la vitamina B12, necesaria para la salud humana."
         },
         {
             "symbol": "Ni",
             "name": "Níquel",
             "atomicNumber": 28,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 4,
                 10
             ],
-            "description": {
-                "eso1": "En monedas antiguas.",
-                "eso4": "Resistente a oxidación y corrosión."
-            }
+            "description": "Metal de transición plateado y resistente a la oxidación. Se emplea principalmente para la fabricación de monedas, baterías recargables y como base de muchas aleaciones resistentes a altas temperaturas en la industria química."
         },
         {
             "symbol": "Cu",
             "name": "Cobre",
             "atomicNumber": 29,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 4,
                 11
             ],
-            "description": {
-                "eso1": "Cables eléctricos.",
-                "eso4": "Excelente conductividad térmica."
-            }
+            "description": "Metal rojizo dúctil que destaca por ser uno de los mejores conductores de electricidad y calor que existen. Es el material estándar para el cableado eléctrico de todo el mundo y para la fabricación de tuberías de agua y piezas decorativas."
         },
         {
             "symbol": "Zn",
             "name": "Zinc",
             "atomicNumber": 30,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 4,
                 12
             ],
-            "description": {
-                "eso1": "Contra el óxido.",
-                "eso4": "Esencial para enzimas y galvanización."
-            }
+            "description": "Metal de transición de color blanco azulado que se utiliza principalmente para galvanizar el acero y protegerlo del óxido. Es también un micronutriente esencial para el crecimiento humano y el funcionamiento del sistema inmunitario."
         },
         {
             "symbol": "Ga",
@@ -429,10 +339,7 @@
                 4,
                 13
             ],
-            "description": {
-                "eso1": "Se funde en la mano.",
-                "eso4": "Usado en electrónica y LEDs."
-            }
+            "description": "Fascinante metal que tiene un punto de fusión tan bajo (29.7 °C) que se derrite al sostenerlo en la palma de la mano. Se utiliza en estado sólido como un material semiconductor clave para fabricar láseres de color azul y pantallas LED avanzadas."
         },
         {
             "symbol": "Ge",
@@ -443,10 +350,7 @@
                 4,
                 14
             ],
-            "description": {
-                "eso1": "Lentes de visión nocturna.",
-                "eso4": "Semiconductor importante en fibra óptica."
-            }
+            "description": "Metaloide semiconductor lustroso y cristalino. Fue el primer material utilizado para fabricar transistores y hoy en día es esencial en la fabricación de fibra óptica y sistemas de visión nocturna por infrarrojos."
         },
         {
             "symbol": "As",
@@ -457,10 +361,7 @@
                 4,
                 15
             ],
-            "description": {
-                "eso1": "Venenoso.",
-                "eso4": "Tóxico, usado en semiconductores."
-            }
+            "description": "Metaloide famoso históricamente por su toxicidad. Aunque sus compuestos son venenosos, se utiliza en muy pequeñas cantidades para dopar semiconductores y en procesos de preservación de maderas industriales."
         },
         {
             "symbol": "Se",
@@ -471,24 +372,18 @@
                 4,
                 16
             ],
-            "description": {
-                "eso1": "En champús anticaspa.",
-                "eso4": "Semiconductor con propiedades fotovoltaicas."
-            }
+            "description": "No metal con notables propiedades fotovoltaicas (genera electricidad al recibir luz). Se utiliza en células solares, fotocopiadoras y como micronutriente esencial que protege nuestras células del daño oxidativo."
         },
         {
             "symbol": "Br",
             "name": "Bromo",
             "atomicNumber": 35,
-            "category": "halogen",
+            "category": "non-metal",
             "pos": [
                 4,
                 17
             ],
-            "description": {
-                "eso1": "Líquido rojo.",
-                "eso4": "Único no metal líquido, corrosivo."
-            }
+            "description": "Es el único no metal que es líquido a temperatura ambiente. Es de un color rojo oscuro, tóxico y emite un vapor de olor desagradable. Sus compuestos se utilizan en fotografía analógica y como potentes agentes retardantes de llama en plásticos."
         },
         {
             "symbol": "Kr",
@@ -499,10 +394,7 @@
                 4,
                 18
             ],
-            "description": {
-                "eso1": "En flashes de fotos.",
-                "eso4": "Gas noble raro con líneas brillantes."
-            }
+            "description": "Gas noble incoloro presente en trazas en la atmósfera terrestre. Se utiliza en bombillas de flash fotográfico y en láseres de alta tecnología para cirugía ocular, emitiendo una luz blanca verdosa muy brillante cuando se excita."
         },
         {
             "symbol": "Rb",
@@ -513,10 +405,7 @@
                 5,
                 1
             ],
-            "description": {
-                "eso1": "Relojes atómicos.",
-                "eso4": "Metal alcalino blando muy reactivo."
-            }
+            "description": "Metal alcalino blando y plateado, extremadamente reactivo; puede arder espontáneamente en el aire. Se utiliza principalmente en investigación científica y en relojes atómicos de precisión media para sistemas de telecomunicaciones."
         },
         {
             "symbol": "Sr",
@@ -527,150 +416,117 @@
                 5,
                 2
             ],
-            "description": {
-                "eso1": "Fuegos artificiales rojos.",
-                "eso4": "Metal alcalinotérreo similar al calcio."
-            }
+            "description": "Metal alcalinotérreo blando que se oxida rápidamente en el aire adquiriendo un tono amarillento. Sus sales se utilizan para producir el brillante color rojo de los fuegos artificiales y en la fabricación de vidrios para antiguos tubos de rayos catódicos."
         },
         {
             "symbol": "Y",
             "name": "Itrio",
             "atomicNumber": 39,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 5,
                 3
             ],
-            "description": {
-                "eso1": "Pantallas de TV antiguas.",
-                "eso4": "Tierras raras, usado en superconductores."
-            }
+            "description": "Metal de transición plateado que se asocia a menudo con los lantánidos. Es un componente clave para fabricar los fósforos rojos de las pantallas antiguas y en láseres de alta potencia para aplicaciones industriales y médicas."
         },
         {
             "symbol": "Zr",
             "name": "Zirconio",
             "atomicNumber": 40,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 5,
                 4
             ],
-            "description": {
-                "eso1": "Joyas falsas.",
-                "eso4": "Resistente a corrosión en reactores."
-            }
+            "description": "Metal de transición muy resistente a la corrosión por ácidos y álcalis. Su principal uso es en la industria nuclear debido a su baja absorción de neutrones, y sus cristales artificiales (circonitas) se usan como imitaciones económicas del diamante."
         },
         {
             "symbol": "Nb",
             "name": "Niobio",
             "atomicNumber": 41,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 5,
                 5
             ],
-            "description": {
-                "eso1": "Superimanes.",
-                "eso4": "Superconductor para aceleradores."
-            }
+            "description": "Metal de transición dúctil que se utiliza fundamentalmente para producir superaleaciones que soportan temperaturas altísimas en motores de turbina y en imanes superconductores para potentes aceleradores de partículas."
         },
         {
             "symbol": "Mo",
             "name": "Molibdeno",
             "atomicNumber": 42,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 5,
                 6
             ],
-            "description": {
-                "eso1": "Acero ultra-resistente.",
-                "eso4": "Alto punto de fusión."
-            }
+            "description": "Metal de transición con uno de los puntos de fusión más altos de todos los elementos. Se añade al acero para que este mantenga su dureza y resistencia incluso bajo un calor extremo, siendo vital en la industria petrolera y aeronáutica."
         },
         {
             "symbol": "Tc",
             "name": "Tecnecio",
             "atomicNumber": 43,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 5,
                 7
             ],
-            "description": {
-                "eso1": "Medicina nuclear.",
-                "eso4": "Primer elemento artificialmente producido."
-            }
+            "description": "Es el elemento más ligero que no posee isótopos estables y fue el primero en ser producido artificialmente. Sus isótopos radioactivos son herramientas fundamentales en medicina nuclear para obtener imágenes diagnósticas detalladas de órganos internos."
         },
         {
             "symbol": "Ru",
             "name": "Rutenio",
             "atomicNumber": 44,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 5,
                 8
             ],
-            "description": {
-                "eso1": "Contactos eléctricos.",
-                "eso4": "Metal noble muy duro."
-            }
+            "description": "Metal de transición raro y muy duro perteneciente al grupo del platino. Se utiliza para recubrir contactos eléctricos de alta fiabilidad y como un catalizador extraordinariamente eficiente en diversos procesos químicos industriales."
         },
         {
             "symbol": "Rh",
             "name": "Rodio",
             "atomicNumber": 45,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 5,
                 9
             ],
-            "description": {
-                "eso1": "Catalizadores de coches.",
-                "eso4": "Extremadamente raro y valioso."
-            }
+            "description": "Es uno de los metales más raros y valiosos que existen en la Tierra. Destaca por su brillo extremo y resistencia a la corrosión, utilizándose como acabado final en joyería de lujo (baño de rodio) y en los catalizadores de los coches para reducir gases nocivos."
         },
         {
             "symbol": "Pd",
             "name": "Paladio",
             "atomicNumber": 46,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 5,
                 10
             ],
-            "description": {
-                "eso1": "Electrónica y joyas.",
-                "eso4": "Excelente absorbente de hidrógeno."
-            }
+            "description": "Metal plateado y brillante del grupo del platino. Tiene la excepcional capacidad de absorber hasta 900 veces su propio volumen en gas hidrógeno, lo que lo hace indispensable en procesos de purificación de gases y como catalizador."
         },
         {
             "symbol": "Ag",
             "name": "Plata",
             "atomicNumber": 47,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
-                5,
+                4,
                 11
             ],
-            "description": {
-                "eso1": "En joyas.",
-                "eso4": "Máxima conductividad eléctrica."
-            }
+            "description": "Metal precioso famoso por tener la mayor conductividad eléctrica y térmica de todos los elementos. Se ha usado históricamente en monedas y joyería, y sus sales son sensibles a la luz, lo que permitió el nacimiento de la fotografía analógica moderna."
         },
         {
             "symbol": "Cd",
             "name": "Cadmio",
             "atomicNumber": 48,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
-                5,
+                4,
                 12
             ],
-            "description": {
-                "eso1": "Baterías antiguas.",
-                "eso4": "Metal tóxico usado en pigmentos."
-            }
+            "description": "Metal blando y tóxico de color blanco azulado que se encuentra en minerales de zinc. Se utiliza en algunas baterías recargables especiales y para proteger superficies de acero mediante galvanoplastia, aunque su uso está disminuyendo debido a su toxicidad ambiental."
         },
         {
             "symbol": "In",
@@ -678,13 +534,10 @@
             "atomicNumber": 49,
             "category": "post-transition",
             "pos": [
-                5,
+                4,
                 13
             ],
-            "description": {
-                "eso1": "Pantallas táctiles.",
-                "eso4": "Blando, plateado, esencial en LCDs."
-            }
+            "description": "Metal muy blando y maleable; tanto que produce un sonido crujiente metálico cuando se dobla. Su uso más importante es la formación de óxido de indio y estaño (ITO), una capa transparente y conductora esencial para fabricar pantallas táctiles."
         },
         {
             "symbol": "Sn",
@@ -692,13 +545,10 @@
             "atomicNumber": 50,
             "category": "post-transition",
             "pos": [
-                5,
+                4,
                 14
             ],
-            "description": {
-                "eso1": "Para soldar.",
-                "eso4": "Maleable, forma parte del bronce."
-            }
+            "description": "Metal plateado muy resistente a la corrosión atmosférica. Se utiliza desde hace milenios para fabricar bronce junto al cobre, y hoy es fundamental para producir 'hojalata' (acero recubierto de estaño) para latas de conserva y soldaduras para circuitos electrónicos."
         },
         {
             "symbol": "Sb",
@@ -706,13 +556,10 @@
             "atomicNumber": 51,
             "category": "metalloid",
             "pos": [
-                5,
+                4,
                 15
             ],
-            "description": {
-                "eso1": "Retardantes de llama.",
-                "eso4": "Metaloide denso y quebradizo."
-            }
+            "description": "Metaloide plateado y quebradizo que se utiliza principalmente en aleaciones de plomo para endurecerlas, como en las placas de las baterías de plomo-ácido, y como un potente agente retardante de llama en productos textiles y plásticos."
         },
         {
             "symbol": "Te",
@@ -720,27 +567,21 @@
             "atomicNumber": 52,
             "category": "metalloid",
             "pos": [
-                5,
+                4,
                 16
             ],
-            "description": {
-                "eso1": "Paneles solares.",
-                "eso4": "Metaloide raro con olor a ajo."
-            }
+            "description": "Metaloide raro y quebradizo con apariencia de metal plateado. Se utiliza principalmente en aleaciones para mejorar el mecanizado del acero y el cobre, y es un material clave en la fabricación de células solares de alto rendimiento (telururo de cadmio)."
         },
         {
             "symbol": "I",
             "name": "Yodo",
             "atomicNumber": 53,
-            "category": "halogen",
+            "category": "non-metal",
             "pos": [
-                5,
+                4,
                 17
             ],
-            "description": {
-                "eso1": "Para la tiroides.",
-                "eso4": "Sólido que sublima a gas púrpura."
-            }
+            "description": "No metal que se presenta como un sólido negro brillante capaz de sublimarse (pasar a gas violeta) a temperatura ambiente. Es un nutriente esencial para que la glándula tiroides funcione correctamente y se usa masivamente como desinfectante médico."
         },
         {
             "symbol": "Xe",
@@ -748,13 +589,10 @@
             "atomicNumber": 54,
             "category": "noble-gas",
             "pos": [
-                5,
+                4,
                 18
             ],
-            "description": {
-                "eso1": "Faros de coches.",
-                "eso4": "Gas noble pesado y reactivo."
-            }
+            "description": "Gas noble incoloro y denso que se encuentra en la atmósfera terrestre en cantidades muy pequeñas. Produce una luz azul pálida brillante en tubos de descarga y se utiliza en faros de automóviles de alta intensidad y en anestesistas especiales."
         },
         {
             "symbol": "Cs",
@@ -765,10 +603,7 @@
                 6,
                 1
             ],
-            "description": {
-                "eso1": "Relojes de precisión.",
-                "eso4": "El más reactivo de los metales estables."
-            }
+            "description": "Metal alcalino plateado y extremadamente blando que es líquido justo por encima de la temperatura ambiente. Es el elemento químico más reactivo frente al agua. Sus vibraciones atómicas se utilizan para definir oficialmente la duración exacta de un segundo en los relojes atómicos."
         },
         {
             "symbol": "Ba",
@@ -779,10 +614,7 @@
                 6,
                 2
             ],
-            "description": {
-                "eso1": "Contrastes médicos.",
-                "eso4": "Metal alcalinotérreo blando."
-            }
+            "description": "Metal alcalinotérreo blando y plateado que nunca se encuentra libre en la naturaleza debido a su alta reactividad. Sus compuestos se utilizan en la exploración petrolera para espesar el lodo de perforación y como medio de contraste para radiografías del aparato digestivo."
         },
         {
             "symbol": "La",
@@ -793,10 +625,7 @@
                 8,
                 4
             ],
-            "description": {
-                "eso1": "Lentes de microscopio.",
-                "eso4": "Inicio de los lantánidos."
-            }
+            "description": "Es el primer elemento de la serie de los lantánidos o tierras raras. Es un metal blanco plateado que se utiliza para fabricar vidrios ópticos de alta calidad para lentes de cámaras y en baterías recargables para vehículos híbridos modernos."
         },
         {
             "symbol": "Ce",
@@ -807,10 +636,7 @@
                 8,
                 5
             ],
-            "description": {
-                "eso1": "Piedras de mechero.",
-                "eso4": "El lantánido más abundante."
-            }
+            "description": "Es el más abundante de los elementos del grupo de las tierras raras. Es un metal maleable que se usa en las piedras de los encendedores (ferrocerio) porque emite chispas calientes al ser raspado, y como agente pulidor para cristales y espejos."
         },
         {
             "symbol": "Pr",
@@ -821,10 +647,7 @@
                 8,
                 6
             ],
-            "description": {
-                "eso1": "Gafas de soplete.",
-                "eso4": "Usado en vidrios de soldador."
-            }
+            "description": "Metal de tierras raras de color blanco plateado. Se utiliza para fabricar imanes permanentes de gran potencia y sus óxidos sirven para colorear cerámicas y vidrios con un tono amarillo verdoso característico de gran belleza."
         },
         {
             "symbol": "Nd",
@@ -835,10 +658,7 @@
                 8,
                 7
             ],
-            "description": {
-                "eso1": "Imanes fuertísimos.",
-                "eso4": "Esencial en motores eléctricos."
-            }
+            "description": "Elemento de tierras raras famoso por ser el componente principal de los imanes permanentes más fuertes conocidos. Estos imanes son fundamentales en los motores de coches eléctricos, aerogeneradores modernos y en los altavoces de los teléfonos móviles actuales."
         },
         {
             "symbol": "Pm",
@@ -849,10 +669,7 @@
                 8,
                 8
             ],
-            "description": {
-                "eso1": "Pintura luminosa.",
-                "eso4": "Metal radioactivo raro."
-            }
+            "description": "Es un elemento radioactivo de corta vida que no se encuentra de forma natural en la Tierra; se produce artificialmente. Se ha utilizado como fuente de calor en sondas espaciales y para fabricar pinturas de señalización que brillan en la oscuridad."
         },
         {
             "symbol": "Sm",
@@ -863,10 +680,7 @@
                 8,
                 9
             ],
-            "description": {
-                "eso1": "Imanes potentes.",
-                "eso4": "Usado en imanes que aguantan calor."
-            }
+            "description": "Metal de tierras raras que resiste la desmagnetización a altas temperaturas. Por ello, se usa en imanes permanentes para motores que deben operar en condiciones de calor extremo y como un potente absorbente de neutrones en reactores nucleares."
         },
         {
             "symbol": "Eu",
@@ -877,10 +691,7 @@
                 8,
                 10
             ],
-            "description": {
-                "eso1": "Billetes de Euro.",
-                "eso4": "Se usa para evitar falsificaciones."
-            }
+            "description": "Es el elemento de tierras raras más reactivo químicamente. Es fundamental en la industria de las pantallas planas, ya que sus compuestos emiten una luz roja brillante perfecta, siendo clave para obtener los colores reales en televisores y ordenadores modernos."
         },
         {
             "symbol": "Gd",
@@ -891,10 +702,7 @@
                 8,
                 11
             ],
-            "description": {
-                "eso1": "Contrastes RM.",
-                "eso4": "Excelentes propiedades magnéticas."
-            }
+            "description": "Metal de tierras raras con propiedades magnéticas únicas. Se utiliza principalmente como agente de contraste intravenoso en resonancias magnéticas médicas para resaltar tumores u otras anomalías en las imágenes diagnósticas de alta precisión."
         },
         {
             "symbol": "Tb",
@@ -905,10 +713,7 @@
                 8,
                 12
             ],
-            "description": {
-                "eso1": "Lámparas fluorescentes.",
-                "eso4": "Fósforo de color verde."
-            }
+            "description": "Metal raro que se utiliza para fabricar fósforos verdes eficientes en pantallas y bombillas de bajo consumo. También es un componente de aleaciones especiales que cambian de forma cuando se les aplica un campo magnético potente."
         },
         {
             "symbol": "Dy",
@@ -919,10 +724,7 @@
                 8,
                 13
             ],
-            "description": {
-                "eso1": "Discos duros.",
-                "eso4": "Imanes de alta temperatura."
-            }
+            "description": "Es un metal de tierras raras que destaca por su gran capacidad de magnetización. Se utiliza para fabricar imanes permanentes de neodimio que deben soportar calores muy altos sin perder su fuerza magnética, esenciales en motores eléctricos potentes."
         },
         {
             "symbol": "Ho",
@@ -933,10 +735,7 @@
                 8,
                 14
             ],
-            "description": {
-                "eso1": "Láseres médicos.",
-                "eso4": "Mayor fuerza magnética."
-            }
+            "description": "Metal de tierras raras con la mayor fuerza magnética de cualquier elemento conocido. Se utiliza para crear los polos de los imanes superconductores más potentes y en láseres de cirugía ocular de gran especialización técnica."
         },
         {
             "symbol": "Er",
@@ -947,10 +746,7 @@
                 8,
                 15
             ],
-            "description": {
-                "eso1": "Fibra óptica.",
-                "eso4": "Amplificadores de señal óptica."
-            }
+            "description": "Tierras raras cuyos iones tienen un color rosado vibrante. Se utiliza en fibra óptica como amplificador de señales para permitir que los datos viajen por internet a través de miles de kilómetros sin perder intensidad por el camino."
         },
         {
             "symbol": "Tm",
@@ -961,10 +757,7 @@
                 8,
                 16
             ],
-            "description": {
-                "eso1": "Rayos X portátiles.",
-                "eso4": "El lantánido más raro."
-            }
+            "description": "Es el más raro de todos los lantánidos naturales. Tras ser bombardeado en un reactor nuclear, emite rayos X portátiles; por ello, se usa en pequeñas máquinas de rayos X para diagnosticar fracturas en lugares remotos sin electricidad."
         },
         {
             "symbol": "Yb",
@@ -975,10 +768,7 @@
                 8,
                 17
             ],
-            "description": {
-                "eso1": "Aceros especiales.",
-                "eso4": "Usado en relojes atómicos."
-            }
+            "description": "Metal de tierras raras que se añade al acero inoxidable para mejorar su resistencia mecánica y tenacidad. Se utiliza también en láseres industriales de alta potencia para cortar metales y en relojes atómicos de una precisión extrema."
         },
         {
             "symbol": "Lu",
@@ -989,136 +779,106 @@
                 8,
                 18
             ],
-            "description": {
-                "eso1": "PET scans.",
-                "eso4": "El lantánido más denso."
-            }
+            "description": "Es el elemento final de la serie de los lantánidos y uno de los más caros debido a su rareza extrema. Se utiliza en detectores de alta sensibilidad para medicina nuclear y como catalizador en el proceso de refinado del petróleo."
         },
         {
             "symbol": "Hf",
             "name": "Hafnio",
             "atomicNumber": 72,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 6,
                 4
             ],
-            "description": {
-                "eso1": "Control nuclear.",
-                "eso4": "Absorbente de neutrones."
-            }
+            "description": "Metal de transición muy resistente a la corrosión y con la capacidad de absorber neutrones. Se utiliza para fabricar las barras de control de los reactores nucleares y en microprocesadores modernos debido a sus excelentes propiedades como aislante de alta gama."
         },
         {
             "symbol": "Ta",
-            "name": "Tántalo",
+            "name": "Tantalio",
             "atomicNumber": 73,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 6,
                 5
             ],
-            "description": {
-                "eso1": "Condensadores móviles.",
-                "eso4": "Metal inerte y resistente."
-            }
+            "description": "Metal de transición azul grisáceo extremadamente resistente a la corrosión por ácidos. Su uso principal es la fabricación de condensadores eléctricos minúsculos para teléfonos móviles y portátiles, esenciales para la electrónica moderna compacta."
         },
         {
             "symbol": "W",
             "name": "Wolframio",
             "atomicNumber": 74,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 6,
                 6
             ],
-            "description": {
-                "eso1": "Filamentos bombillas.",
-                "eso4": "Máximo punto de fusión."
-            }
+            "description": "También conocido como tungsteno, es el metal con el punto de fusión más alto (3422 °C), permitiéndole mantenerse sólido en calores extremos. Se usa para fabricar filamentos de bombillas clásicas y herramientas de corte industriales de extrema dureza."
         },
         {
             "symbol": "Re",
             "name": "Renio",
             "atomicNumber": 75,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 6,
                 7
             ],
-            "description": {
-                "eso1": "Motores jet.",
-                "eso4": "Resistente a temperaturas extremas."
-            }
+            "description": "Metal de transición muy denso y escaso. Posee el tercer punto de fusión más alto de todos los elementos y se utiliza para fabricar superaleaciones capaces de resistir el brutal calor y presión dentro de los motores a reacción de los aviones modernos."
         },
         {
             "symbol": "Os",
             "name": "Osmio",
             "atomicNumber": 76,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 6,
                 8
             ],
-            "description": {
-                "eso1": "Puntas de plumas.",
-                "eso4": "El elemento más denso."
-            }
+            "description": "Es el metal más denso y pesado que existe de forma natural; un trozo de osmio pesaría el doble que un trozo idéntico de plomo. Es muy duro y se utiliza en aleaciones especiales para puntas de plumas estilográficas y contactos eléctricos de larga duración."
         },
         {
             "symbol": "Ir",
             "name": "Iridio",
             "atomicNumber": 77,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 6,
                 9
             ],
-            "description": {
-                "eso1": "Bujías de lujo.",
-                "eso4": "Muy resistente a la corrosión."
-            }
+            "description": "Metal de transición extremadamente raro y el material más resistente a la corrosión que se conoce; casi nada puede disolverlo. Su gran resistencia al calor lo hace ideal para fabricar crisoles de laboratorio y componentes de alta precisión en motores."
         },
         {
             "symbol": "Pt",
             "name": "Platino",
             "atomicNumber": 78,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 6,
                 10
             ],
-            "description": {
-                "eso1": "Joyas y catalizadores.",
-                "eso4": "Metal noble muy estable."
-            }
+            "description": "Metal precioso plateado que es altamente inerte y no se oxida nunca. Es fundamental en la industria automotriz como catalizador para limpiar gases y muy codiciado en joyería de alta gama por su pureza y brillo inalterable con el tiempo."
         },
         {
             "symbol": "Au",
             "name": "Oro",
             "atomicNumber": 79,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 6,
                 11
             ],
-            "description": {
-                "eso1": "Famoso metal precioso.",
-                "eso4": "Extremadamente maleable e inerte."
-            }
+            "description": "Es el metal más maleable y dúctil que existe, además de ser un excelente conductor eléctrico que no se corroe jamás. Ha sido valorado por todas las civilizaciones como moneda y joya, y hoy es clave en la fabricación de contactos electrónicos de alta fiabilidad."
         },
         {
             "symbol": "Hg",
             "name": "Mercurio",
             "atomicNumber": 80,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 6,
                 12
             ],
-            "description": {
-                "eso1": "Único metal líquido.",
-                "eso4": "Tóxico, usado en termómetros."
-            }
+            "description": "Es el único metal que se encuentra en estado líquido a temperatura ambiente. Debido a su elevada densidad y expansión térmica uniforme, fue el estándar en termómetros y barómetros durante siglos, aunque su uso está restringiéndose hoy por su alta toxicidad."
         },
         {
             "symbol": "Tl",
@@ -1129,10 +889,7 @@
                 6,
                 13
             ],
-            "description": {
-                "eso1": "Veneno antiguo.",
-                "eso4": "Metal muy tóxico y blando."
-            }
+            "description": "Metal blando y tóxico de color grisáceo que se oxida rápidamente en el aire. Sus sales son extremadamente venenosas, pero se utiliza en la fabricación de vidrios ópticos de baja temperatura y en algunos detectores de infrarrojos de alta sensibilidad."
         },
         {
             "symbol": "Pb",
@@ -1143,10 +900,7 @@
                 6,
                 14
             ],
-            "description": {
-                "eso1": "Pesado y denso.",
-                "eso4": "Aislante de radiaciones X."
-            }
+            "description": "Metal pesado, blando y denso conocido desde la antigüedad. Se utiliza masivamente para fabricar baterías de arranque en coches y como escudo protector contra la radiación en medicina e industria debido a su alta capacidad para detener rayos X."
         },
         {
             "symbol": "Bi",
@@ -1157,38 +911,29 @@
                 6,
                 15
             ],
-            "description": {
-                "eso1": "Medicina estomacal.",
-                "eso4": "Diamagnético y poco tóxico."
-            }
+            "description": "Metal quebradizo con un característico tono rosado brillante. Es el único elemento de su grupo que no es tóxico, por lo que sus compuestos se utilizan en medicamentos para aliviar trastornos estomacales y en la fabricación de cosméticos de alta calidad."
         },
         {
             "symbol": "Po",
             "name": "Polonio",
             "atomicNumber": 84,
-            "category": "metalloid",
+            "category": "post-transition",
             "pos": [
                 6,
                 16
             ],
-            "description": {
-                "eso1": "Descubierto por M. Curie.",
-                "eso4": "Radioactivo y muy tóxico."
-            }
+            "description": "Elemento radioactivo extremadamente raro descubierto por Marie Curie. Emana una gran cantidad de calor y partículas alfa, por lo que se ha usado en generadores térmicos para suministrar energía a instrumentos en misiones espaciales lejanas."
         },
         {
             "symbol": "At",
             "name": "Astato",
             "atomicNumber": 85,
-            "category": "halogen",
+            "category": "metalloid",
             "pos": [
                 6,
                 17
             ],
-            "description": {
-                "eso1": "Elemento más raro.",
-                "eso4": "Radioactivo, vida media corta."
-            }
+            "description": "Es el elemento natural más raro de la Tierra; se estima que hay menos de 30 gramos en toda la corteza terrestre en cualquier momento. Es altamente radioactivo y su vida es tan corta que apenas se conocen sus propiedades físicas de forma directa."
         },
         {
             "symbol": "Rn",
@@ -1199,10 +944,7 @@
                 6,
                 18
             ],
-            "description": {
-                "eso1": "Gas del suelo.",
-                "eso4": "Gas noble radioactivo."
-            }
+            "description": "Gas noble radioactivo, incoloro e inodoro que emana de forma natural del suelo por la desintegración del uranio. Puede acumularse en sótanos de edificios y es un riesgo para la salud pulmonar, aunque se usa en tratamientos controlados de radioterapia."
         },
         {
             "symbol": "Fr",
@@ -1213,10 +955,7 @@
                 7,
                 1
             ],
-            "description": {
-                "eso1": "Muy radioactivo.",
-                "eso4": "Metal alcalino inestable."
-            }
+            "description": "Metal alcalino radioactivo de vida extremadamente corta y el segundo elemento más raro tras el astato. Es tan inestable que cualquier cantidad visible se evaporaría instantáneamente por el calor generado por su propia radioactividad brutal."
         },
         {
             "symbol": "Ra",
@@ -1227,10 +966,7 @@
                 7,
                 2
             ],
-            "description": {
-                "eso1": "Brilla en la oscuridad.",
-                "eso4": "Descubierto por Marie Curie."
-            }
+            "description": "Metal alcalinotérreo altamente radioactivo que emite una luz azul brillante en la oscuridad. Fue utilizado antiguamente para fabricar pinturas luminiscentes en relojes, pero su uso cesó al descubrirse los graves daños que causaba en la salud."
         },
         {
             "symbol": "Ac",
@@ -1241,10 +977,7 @@
                 9,
                 4
             ],
-            "description": {
-                "eso1": "Brilla azul pálido.",
-                "eso4": "Inicio de los actínidos."
-            }
+            "description": "Es el primer elemento de la serie de los actínidos. Es un metal radioactivo pesado que brilla intensamente en la oscuridad con una luz azul pálida debido a que su radioactividad excita los átomos de aire circundantes."
         },
         {
             "symbol": "Th",
@@ -1255,10 +988,7 @@
                 9,
                 5
             ],
-            "description": {
-                "eso1": "Alternativa al uranio.",
-                "eso4": "Combustible nuclear futuro."
-            }
+            "description": "Metal radioactivo sólido que es tan abundante como el plomo en la Tierra. Se considera una alternativa muy prometedora y segura al uranio como combustible para los reactores nucleares del futuro, ya que es más difícil de usar para armas nucleares."
         },
         {
             "symbol": "Pa",
@@ -1269,10 +999,7 @@
                 9,
                 6
             ],
-            "description": {
-                "eso1": "Raro y tóxico.",
-                "eso4": "Elemento radioactivo denso."
-            }
+            "description": "Metal radioactivo pesado de altísima toxicidad. No tiene funciones comerciales importantes fuera de la investigación científica avanzada sobre la desintegración atómica y la datación geológica de sedimentos marinos profundos."
         },
         {
             "symbol": "U",
@@ -1283,10 +1010,7 @@
                 9,
                 7
             ],
-            "description": {
-                "eso1": "Combustible nuclear.",
-                "eso4": "Radioactivo, clave en fisión."
-            }
+            "description": "Es el elemento más pesado que se encuentra de forma natural en cantidades apreciables. Su isótopo U-235 es el combustible principal de las centrales nucleares modernas, liberando una energía colosal mediante el proceso de fisión atómica controlada."
         },
         {
             "symbol": "Np",
@@ -1297,10 +1021,7 @@
                 9,
                 8
             ],
-            "description": {
-                "eso1": "Reactores nucleares.",
-                "eso4": "Primer transuránico."
-            }
+            "description": "Es el primer elemento transuránico producido artificialmente por el hombre. Es un metal radioactivo reactivo que se encuentra en pequeñas cantidades en los reactores nucleares como subproducto del uranio."
         },
         {
             "symbol": "Pu",
@@ -1311,10 +1032,7 @@
                 9,
                 9
             ],
-            "description": {
-                "eso1": "Artificial y potente.",
-                "eso4": "Radioactivo, usado en sondas."
-            }
+            "description": "Metal radioactivo extremadamente potente y peligroso. Tras el uranio, es el combustible secundario en muchas centrales nucleares. Se ha utilizado como fuente de energía en naves espaciales, como el robot Curiosity en Marte."
         },
         {
             "symbol": "Am",
@@ -1325,10 +1043,7 @@
                 9,
                 10
             ],
-            "description": {
-                "eso1": "Detectores de humo.",
-                "eso4": "Metal radioactivo sintético."
-            }
+            "description": "Es el único elemento radioactivo fabricado por el hombre que se encuentra en los hogares comunes; en cantidades minúsculas, sus partículas alfa son esenciales en los detectores de humo ionizantes para salvar vidas de incendios."
         },
         {
             "symbol": "Cm",
@@ -1339,10 +1054,7 @@
                 9,
                 11
             ],
-            "description": {
-                "eso1": "Honor a los Curie.",
-                "eso4": "Radioactivo, brilla en rojo."
-            }
+            "description": "Elemento radioactivo nombrado en honor a los esposos Curie. Genera tanto calor y radiación que se ha utilizado en espectrómetros de rayos X que el hombre ha enviado en misiones a la Luna y a Marte para analizar la roca alienígena."
         },
         {
             "symbol": "Bk",
@@ -1353,10 +1065,7 @@
                 9,
                 12
             ],
-            "description": {
-                "eso1": "Sintético raro.",
-                "eso4": "Radioactivo, vida media larga."
-            }
+            "description": "Metal radioactivo sintético que fue producido por primera vez en la Universidad de California, Berkeley. No tiene aplicaciones prácticas fuera de la investigación científica básica sobre la estructura de los átomos pesados."
         },
         {
             "symbol": "Cf",
@@ -1367,10 +1076,7 @@
                 9,
                 13
             ],
-            "description": {
-                "eso1": "Sensor de humedad.",
-                "eso4": "Emisor de neutrones potente."
-            }
+            "description": "Es un elemento radioactivo muy especial que emite neutrones de forma masiva. Se utiliza en máquinas especiales para detectar oro y plata en el suelo y para encender reactores nucleares cuando se ponen en marcha por primera vez."
         },
         {
             "symbol": "Es",
@@ -1381,10 +1087,7 @@
                 9,
                 14
             ],
-            "description": {
-                "eso1": "Honor a Einstein.",
-                "eso4": "Sintético, descubierto en bomba."
-            }
+            "description": "Elemento sintético radioactivo descubierto en los restos de la primera explosión de una bomba de hidrógeno. Nombrado en honor a Albert Einstein, solo se produce en cantidades microscópicas para experimentos científicos avanzados."
         },
         {
             "symbol": "Fm",
@@ -1395,10 +1098,7 @@
                 9,
                 15
             ],
-            "description": {
-                "eso1": "Honor a Enrico Fermi.",
-                "eso4": "Elemento más pesado por bombardeo."
-            }
+            "description": "Es el elemento más pesado que puede formarse mediante el bombardeo de neutrones de elementos más ligeros; los elementos siguientes se producen solo mediante colisiones de iones pesados en aceleradores de partículas gigantes."
         },
         {
             "symbol": "Md",
@@ -1409,10 +1109,7 @@
                 9,
                 16
             ],
-            "description": {
-                "eso1": "Honor a Mendeleiev.",
-                "eso4": "Sintético, muy radioactivo."
-            }
+            "description": "Elemento radioactivo sintético nombrado en honor a Dmitri Mendeléyev, el padre de la tabla periódica. Fue producido bombardeando einsteinio y solo se pueden crear unos pocos miles de átomos de cada vez."
         },
         {
             "symbol": "No",
@@ -1423,234 +1120,183 @@
                 9,
                 17
             ],
-            "description": {
-                "eso1": "Honor a Alfred Nobel.",
-                "eso4": "Radioactivo, vida corta."
-            }
+            "description": "Elemento radioactivo sintético nombrado en honor a Alfred Nobel. Fue objeto de una intensa competencia científica durante la Guerra Fría para determinar quién lo había sintetizado primero entre equipos de EE.UU. y la URSS."
         },
         {
             "symbol": "Lr",
-            "name": "Laurencio",
+            "name": "Lawrencio",
             "atomicNumber": 103,
             "category": "actinide",
             "pos": [
                 9,
                 18
             ],
-            "description": {
-                "eso1": "Honor a Lawrence.",
-                "eso4": "Último de los actínidos."
-            }
+            "description": "Es el último elemento de la serie de los actínidos. Es un metal radioactivo sintético que solo se produce en aceleradores de partículas y su descubrimiento ayudó a completar nuestro entendimiento de las tierras raras pesadas."
         },
         {
             "symbol": "Rf",
             "name": "Rutherfordio",
             "atomicNumber": 104,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 7,
                 4
             ],
-            "description": {
-                "eso1": "Sintético pesado.",
-                "eso4": "Elemento superpesado inestable."
-            }
+            "description": "Es el primer elemento de los elementos 'transactínidos'. Es un elemento sintético altamente radioactivo cuya vida es tan corta (menos de un minuto) que resulta imposible darle un uso práctico fuera del laboratorio."
         },
         {
             "symbol": "Db",
             "name": "Dubnio",
             "atomicNumber": 105,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 7,
                 5
             ],
-            "description": {
-                "eso1": "Sintético pesado.",
-                "eso4": "Sintetizado en Rusia."
-            }
+            "description": "Elemento sintético radioactivo producido mediante la colisión de átomos de americio con iones de neón. Su nombre proviene de Dubna, Rusia, donde se realizaron gran parte de los descubrimientos de nuevos elementos pesados."
         },
         {
             "symbol": "Sg",
             "name": "Seaborgio",
             "atomicNumber": 106,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 7,
                 6
             ],
-            "description": {
-                "eso1": "Sintético pesado.",
-                "eso4": "Vida media muy corta."
-            }
+            "description": "Elemento radioactivo sintético nombrado en honor a Glenn Seaborg. Fue el primer elemento en llevar el nombre de una persona viva en el momento de su designación oficial, reconociendo su labor descubriendo nuevos elementos."
         },
         {
             "symbol": "Bh",
             "name": "Bohrio",
             "atomicNumber": 107,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 7,
                 7
             ],
-            "description": {
-                "eso1": "Honor a Niels Bohr.",
-                "eso4": "Sintético, radioactivo."
-            }
+            "description": "Elemento sintético radioactivo cuya existencia fue confirmada por científicos alemanes en 1981. Lleva el nombre del físico Niels Bohr, quien fue el primero en proponer un modelo moderno para la estructura de los átomos."
         },
         {
             "symbol": "Hs",
             "name": "Hassio",
             "atomicNumber": 108,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 7,
                 8
             ],
-            "description": {
-                "eso1": "Sintético pesado.",
-                "eso4": "Extremadamente inestable."
-            }
+            "description": "Elemento superpesado radioactivo que solo puede producirse en laboratorios avanzados bombardeando plomo con iones de hierro. Su nombre proviene de Hesse, el estado alemán donde se encuentra el centro de investigación GSI."
         },
         {
             "symbol": "Mt",
             "name": "Meitnerio",
             "atomicNumber": 109,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 7,
                 9
             ],
-            "description": {
-                "eso1": "Honor a Lise Meitner.",
-                "eso4": "Superpesado sintético."
-            }
+            "description": "Elemento sintético altamente inestable nombrado en honor a Lise Meitner, la física que codescubrió la fisión nuclear pero que fue injustamente ignorada durante décadas por los premios Nobel oficiales."
         },
         {
             "symbol": "Ds",
             "name": "Darmstadtio",
             "atomicNumber": 110,
-            "category": "transition-metal",
+            "category": "unknown",
             "pos": [
                 7,
                 10
             ],
-            "description": {
-                "eso1": "Sintético pesado.",
-                "eso4": "Vida media de milisegundos."
-            }
+            "description": "Elemento sintético superpesado del cual solo se han producido unos pocos átomos. Es tan inestable que su isótopo más duradero tiene una vida media de apenas unos segundos antes de desintegrarse."
         },
         {
             "symbol": "Rg",
             "name": "Roentgenio",
             "atomicNumber": 111,
-            "category": "transition-metal",
+            "category": "unknown",
             "pos": [
                 7,
                 11
             ],
-            "description": {
-                "eso1": "Honor a Roentgen.",
-                "eso4": "Sintético, radiactivo."
-            }
+            "description": "Elemento superpesado nombrado en honor a Wilhelm Röntgen, el descubridor de los rayos X. Es un metal radioactivo artificial que se desintegra emitiendo partículas alfa a una velocidad de vértigo."
         },
         {
             "symbol": "Cn",
             "name": "Copernicio",
             "atomicNumber": 112,
-            "category": "transition-metal",
+            "category": "transition",
             "pos": [
                 7,
                 12
             ],
-            "description": {
-                "eso1": "Honor a Copérnico.",
-                "eso4": "Superpesado, vida corta."
-            }
+            "description": "Elemento sintético nombrado en honor a Nicolás Copérnico. Se cree que a temperatura ambiente podría ser un líquido o un gas similar al mercurio, pero es tan radioactivo que no se ha podido confirmar experimentalmente aún."
         },
         {
             "symbol": "Nh",
             "name": "Nihonio",
             "atomicNumber": 113,
-            "category": "post-transition",
+            "category": "unknown",
             "pos": [
                 7,
                 13
             ],
-            "description": {
-                "eso1": "Sintético pesado.",
-                "eso4": "Descubierto en Japón."
-            }
+            "description": "Es el primer elemento de la tabla periódica descubierto en Asia (Japón). Su nombre significa literalmente 'tierra del sol naciente' y solo existe durante fracciones de segundo antes de desaparecer."
         },
         {
             "symbol": "Fl",
             "name": "Flerovio",
             "atomicNumber": 114,
-            "category": "post-transition",
+            "category": "unknown",
             "pos": [
                 7,
                 14
             ],
-            "description": {
-                "eso1": "Sintético pesado.",
-                "eso4": "Superpesado radiactivo."
-            }
+            "description": "Elemento sintético radioactivo producido por primera vez en Rusia. Los científicos creen que podría encontrarse cerca de la 'isla de estabilidad', una zona teórica donde algunos elementos superpesados podrían durar mucho más tiempo."
         },
         {
             "symbol": "Mc",
             "name": "Moscovio",
             "atomicNumber": 115,
-            "category": "post-transition",
+            "category": "unknown",
             "pos": [
                 7,
                 15
             ],
-            "description": {
-                "eso1": "Sintético pesado.",
-                "eso4": "Sintetizado en Dubna."
-            }
+            "description": "Elemento superpesado artificial que ocupa el puesto 115. Es extremadamente inestable y solo se ha podido observar durante unos milisegundos tras colisiones atómicas de una energía inmensamente alta."
         },
         {
             "symbol": "Lv",
             "name": "Livermorio",
             "atomicNumber": 116,
-            "category": "post-transition",
+            "category": "unknown",
             "pos": [
                 7,
                 16
             ],
-            "description": {
-                "eso1": "Sintético pesado.",
-                "eso4": "Vida media de milisegundos."
-            }
+            "description": "Se trata de un elemento sintético extremadamente radioactivo nombrado en honor al Laboratorio Nacional Lawrence Livermore de EE.UU. Es tan inestable que no se conoce casi nada sobre su apariencia o propiedades físicas reales."
         },
         {
             "symbol": "Ts",
             "name": "Teneso",
             "atomicNumber": 117,
-            "category": "halogen",
+            "category": "unknown",
             "pos": [
                 7,
                 17
             ],
-            "description": {
-                "eso1": "Sintético pesado.",
-                "eso4": "Halógeno superpesado."
-            }
+            "description": "Es el penúltimo elemento descubierto y se sitúa en el grupo de los halógenos. Solo se han producido un puñado de átomos de teneso en todo el mundo debido a la dificultad extrema de su síntesis artificial."
         },
         {
             "symbol": "Og",
             "name": "Oganesón",
             "atomicNumber": 118,
-            "category": "noble-gas",
+            "category": "unknown",
             "pos": [
                 7,
                 18
             ],
-            "description": {
-                "eso1": "Último elemento.",
-                "eso4": "Gas noble superpesado."
-            }
+            "description": "Es el elemento final de la tabla periódica conocida. Es el único elemento gaseoso sintético que completa la séptima fila. Fue nombrado en honor a Yuri Oganesián, el científico que lideró su descubrimiento."
         }
     ]
 }

@@ -45,6 +45,7 @@ export const families = {
     'alkali-metal': { label: 'Metales Alcalinos', color: '#f87171' },
     'alkaline-earth': { label: 'Alcalinotérreos', color: '#fb923c' },
     'transition-metal': { label: 'Metales de Transición', color: '#f472b6' },
+    'transition': { label: 'Metales de Transición', color: '#f472b6' },
     'post-transition': { label: 'Metales del bloque p', color: '#94a3b8' },
     'metalloid': { label: 'Metaloides', color: '#2dd4bf' },
     'non-metal': { label: 'No Metales', color: '#4ade80' },

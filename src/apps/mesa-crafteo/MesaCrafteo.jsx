@@ -466,27 +466,27 @@ const MesaCrafteo = ({ grade = 1, corso: corsoProp }) => {
                             onClick={e => e.stopPropagation()}
                         >
                             <div className="detail-header">
-                                <span className="cat-label">{families[hoverElementInfo.category].label}</span>
+                                <span className="cat-label">{families[hoverElementInfo.category]?.label || 'Elemento'}</span>
                                 <button className="btn-close" onClick={() => setHoverElementInfo(null)}>X</button>
                             </div>
 
-                            <div className="big-symbol-box" style={{ backgroundColor: families[hoverElementInfo.category]?.color, margin: '1rem auto' }}>
+                            <div className="big-symbol-box" style={{ backgroundColor: families[hoverElementInfo.category]?.color || '#8b8b8b', margin: '1rem auto' }}>
                                 {hoverElementInfo.symbol}
                             </div>
 
-                            <h2 className="molecule-title" style={{ color: families[hoverElementInfo.category]?.color }}>
+                            <h2 className="molecule-title" style={{ color: families[hoverElementInfo.category]?.color || 'var(--primary-color)' }}>
                                 {hoverElementInfo.name}
                             </h2>
                             <p className="molecule-subtitle">Número atómico: {hoverElementInfo.atomicNumber}</p>
 
-                            <div className="fun-fact-box" style={{ borderLeftColor: families[hoverElementInfo.category]?.color }}>
-                                <strong>RELEVANCIA {gradeLabel}:</strong><br />
-                                {hoverElementInfo.description[cursoActual <= 2 ? 'eso1' : 'eso4']}
+                            <div className="fun-fact-box" style={{ borderLeftColor: families[hoverElementInfo.category]?.color || 'var(--primary-color)' }}>
+                                <strong>INFORMACIÓN CIENTÍFICA:</strong><br />
+                                {hoverElementInfo.description}
                             </div>
 
                             <button
                                 className="btn-alchemy"
-                                style={{ backgroundColor: families[hoverElementInfo.category]?.color }}
+                                style={{ backgroundColor: families[hoverElementInfo.category]?.color || 'var(--primary-color)' }}
                                 onClick={() => setHoverElementInfo(null)}
                             >
                                 CERRAR
