@@ -192,7 +192,7 @@ const EntrenadorTabla = () => {
                         exit={{ opacity: 0, scale: 0.95 }}
                         className="setup-screen"
                     >
-                        <h1 className="setup-title">ENTRENADOR QUÍMICO</h1>
+                        <h1 className="setup-title">ENTRENADOR TABLA PERIÓDICA</h1>
 
                         <div className="setup-grid">
                             <div className="setup-card">

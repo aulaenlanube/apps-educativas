@@ -60,6 +60,21 @@ const PeriodicTableModal = ({ elementsData, onClose }) => {
         return rows;
     };
 
+    // Limpiar campos que dicen "No data" o "unknown" (insensible a mayúsculas/minúsculas)
+    const cleanData = (val) => {
+        if (!val) return "";
+        const s = String(val).toLowerCase().trim();
+        // Regex para detectar "no data", "unknown" y otros placeholders
+        if (/^no\s*data(\/null)?$/.test(s) || s === "unknown" || s === "null" || s === "undefined") return "";
+        return val;
+    };
+
+    const renderStat = (val, label, className = "ev-stat-item") => {
+        const cleaned = cleanData(val);
+        if (!cleaned) return null;
+        return <div className={className} data-label={label}>{cleaned}</div>;
+    };
+
     return (
         <div className="modal-overlay" onClick={onClose}>
             <motion.div
@@ -102,26 +117,26 @@ const PeriodicTableModal = ({ elementsData, onClose }) => {
                                 <div className="element-scientific-box" style={{ '--element-color': FAMILIES[hoverElementInfo.category]?.color || '#8b8b8b' }}>
                                     <div className="element-main-content">
                                         <div className="scientific-top-left">
-                                            <div className="ev-stat-item" data-label="Masa Atómica">{hoverElementInfo.atomicMass}</div>
+                                            {renderStat(hoverElementInfo.atomicMass, "Masa Atómica")}
                                             <div className="scientific-sub-stats">
-                                                <div className="ev-stat-item" data-label="Energía Ionización (eV)">{hoverElementInfo.ionizationEnergy}</div>
-                                                <div className="ev-stat-item" data-label="Electronegatividad">{hoverElementInfo.electronegativity}</div>
+                                                {renderStat(hoverElementInfo.ionizationEnergy, "Energía Ionización (eV)")}
+                                                {renderStat(hoverElementInfo.electronegativity, "Electronegatividad")}
                                             </div>
                                         </div>
                                         <div className="scientific-top-right">
-                                            <div className="ev-stat-number" data-label="Número Atómico">{hoverElementInfo.atomicNumber}</div>
+                                            {renderStat(hoverElementInfo.atomicNumber, "Número Atómico", "ev-stat-number")}
                                         </div>
                                         <div className="scientific-center">
-                                            <div className="ev-symbol" data-label="Símbolo Químico">{hoverElementInfo.symbol}</div>
-                                            <div className="ev-name" data-label="Nombre">{hoverElementInfo.name}</div>
+                                            {renderStat(hoverElementInfo.symbol, "Símbolo Químico", "ev-symbol")}
+                                            {renderStat(hoverElementInfo.name, "Nombre", "ev-name")}
                                         </div>
                                         <div className="scientific-bottom">
-                                            <div className="ev-config" data-label="Configuración Electrónica">{hoverElementInfo.config}</div>
+                                            {renderStat(hoverElementInfo.config, "Configuración Electrónica", "ev-config")}
                                         </div>
                                     </div>
                                     <div className="scientific-side-bar" data-label="Estados de Oxidación">
-                                        {(hoverElementInfo.oxidationStates || "").split(',').map(s => (
-                                            <div key={s} className="ev-oxidation">{s.trim()}</div>
+                                        {cleanData(hoverElementInfo.oxidationStates).split(',').map(s => (
+                                            s.trim() && <div key={s} className="ev-oxidation">{s.trim()}</div>
                                         ))}
                                     </div>
                                 </div>
@@ -131,7 +146,7 @@ const PeriodicTableModal = ({ elementsData, onClose }) => {
                                         🔬 INFORMACIÓN CIENTÍFICA
                                     </div>
                                     <div className="desc-content">
-                                        {hoverElementInfo.description}
+                                        {cleanData(hoverElementInfo.description)}
                                     </div>
                                 </div>
                             </motion.div>
