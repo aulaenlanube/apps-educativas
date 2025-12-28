@@ -10,23 +10,23 @@ const ParejasDeCartas = ({ tema }) => {
   const asignatura = tema || (typeof subjectId === 'string' && subjectId.trim() ? subjectId.trim() : 'general');
 
   // Estados del juego
-  const [fase, setFase] = useState('menu'); 
+  const [fase, setFase] = useState('menu');
   // Añadimos isExam a la config inicial
   const [config, setConfig] = useState({ filas: 4, columnas: 3, parejas: 6, ayudas: false, isExam: false });
-  const [restarting, setRestarting] = useState(false); 
-  const [revealing, setRevealing] = useState(false);   
-  
+  const [restarting, setRestarting] = useState(false);
+  const [revealing, setRevealing] = useState(false);
+
   // Nuevo estado para vidas
   const [vidas, setVidas] = useState(3);
 
   // Datos
   const [datosCrudos, setDatosCrudos] = useState([]);
   const [cartas, setCartas] = useState([]);
-  
+
   // Lógica de selección
-  const [eleccionUno, setEleccionUno] = useState(null); 
-  const [eleccionDos, setEleccionDos] = useState(null); 
-  
+  const [eleccionUno, setEleccionUno] = useState(null);
+  const [eleccionDos, setEleccionDos] = useState(null);
+
   const [bloqueado, setBloqueado] = useState(false);
   const [turnos, setTurnos] = useState(0);
   const [cargando, setCargando] = useState(false);
@@ -34,7 +34,7 @@ const ParejasDeCartas = ({ tema }) => {
   // Referencias
   const peekTimeoutRef = useRef(null);
   const peekIntervalRef = useRef(null);
-  const colaAyudasRef = useRef([]); 
+  const colaAyudasRef = useRef([]);
   const randomDelaysRef = useRef({});
 
   // Helper: Detecta letras
@@ -79,32 +79,32 @@ const ParejasDeCartas = ({ tema }) => {
   const iniciarJuego = (opcion) => {
     const parejasDisponibles = datosCrudos.length;
     const parejasReales = Math.min(opcion.parejas, parejasDisponibles);
-    
+
     // Si es examen, forzamos ayudas a true, si no, mantenemos lo que hubiera o false
     const ayudasActivas = opcion.isExam ? true : (opcion.ayudas || false);
 
     setConfig({ ...opcion, parejas: parejasReales, ayudas: ayudasActivas });
-    
+
     // Reiniciar vidas si es examen
     if (opcion.isExam) {
-        setVidas(3);
+      setVidas(3);
     }
 
     mezclarCartas(parejasReales);
     setFase('juego');
-    colaAyudasRef.current = []; 
-    randomDelaysRef.current = {}; 
+    colaAyudasRef.current = [];
+    randomDelaysRef.current = {};
   };
 
   const mezclarCartas = (cantidadParejas) => {
     const datosSeleccionados = [...datosCrudos].sort(() => Math.random() - 0.5).slice(0, cantidadParejas);
-    
+
     const cartasBarajadas = [
       ...datosSeleccionados.map(item => ({ ...item, contenido: item.a, pairId: item.id, uniqueId: Math.random() })),
       ...datosSeleccionados.map(item => ({ ...item, contenido: item.b, pairId: item.id, uniqueId: Math.random() }))
     ]
-    .sort(() => Math.random() - 0.5)
-    .map(carta => ({ ...carta, matched: false, peeking: false }));
+      .sort(() => Math.random() - 0.5)
+      .map(carta => ({ ...carta, matched: false, peeking: false }));
 
     setEleccionUno(null);
     setEleccionDos(null);
@@ -166,7 +166,7 @@ const ParejasDeCartas = ({ tema }) => {
       if (peekIntervalRef.current) clearInterval(peekIntervalRef.current);
       if (peekTimeoutRef.current) clearTimeout(peekTimeoutRef.current);
     };
-  }, [fase, config.ayudas, config.isExam, eleccionUno, bloqueado]); 
+  }, [fase, config.ayudas, config.isExam, eleccionUno, bloqueado]);
 
   // --- LÓGICA DEL JUEGO ---
   const handleEleccion = (carta) => {
@@ -181,7 +181,7 @@ const ParejasDeCartas = ({ tema }) => {
   useEffect(() => {
     if (eleccionUno && eleccionDos) {
       setBloqueado(true);
-      
+
       const carta1 = cartas.find(c => c.uniqueId === eleccionUno);
       const carta2 = cartas.find(c => c.uniqueId === eleccionDos);
 
@@ -200,19 +200,19 @@ const ParejasDeCartas = ({ tema }) => {
           if (config.isExam) {
             // Restar vida y comprobar muerte
             if (vidas > 1) {
-                setVidas(v => v - 1);
-                setTimeout(() => resetearTurno(), 1000);
+              setVidas(v => v - 1);
+              setTimeout(() => resetearTurno(), 1000);
             } else {
-                setVidas(0);
-                // Game Over por vidas
-                setTimeout(() => {
-                    setFase('resumen');
-                    // No tiramos confeti si suspende
-                }, 1000);
+              setVidas(0);
+              // Game Over por vidas
+              setTimeout(() => {
+                setFase('resumen');
+                // No tiramos confeti si suspende
+              }, 1000);
             }
           } else {
-             // Modo normal
-             setTimeout(() => resetearTurno(), 1000);
+            // Modo normal
+            setTimeout(() => resetearTurno(), 1000);
           }
         }
       } else {
@@ -244,23 +244,23 @@ const ParejasDeCartas = ({ tema }) => {
   };
 
   const reiniciarNivel = () => {
-    if (restarting || revealing) return; 
+    if (restarting || revealing) return;
     setRevealing(true);
     setTimeout(() => {
       setRestarting(true);
       setTimeout(() => {
-        iniciarJuego(config); 
+        iniciarJuego(config);
         setRestarting(false);
         setRevealing(false);
-      }, 700); 
-    }, 400); 
+      }, 700);
+    }, 400);
   };
 
   // Toggle ayudas bloqueado en modo examen
   const toggleAyudas = () => {
-      if (!config.isExam) {
-          setConfig(prev => ({ ...prev, ayudas: !prev.ayudas }));
-      }
+    if (!config.isExam) {
+      setConfig(prev => ({ ...prev, ayudas: !prev.ayudas }));
+    }
   };
 
   const getRandomDelay = (id) => {
@@ -272,10 +272,10 @@ const ParejasDeCartas = ({ tema }) => {
 
   // CALCULO DE NOTA PARA EXAMEN
   const calcularNota = () => {
-      const totalParejas = config.parejas;
-      const parejasEncontradas = cartas.filter(c => c.matched).length / 2;
-      const nota = (parejasEncontradas / totalParejas) * 10;
-      return nota.toFixed(1); // Un decimal
+    const totalParejas = config.parejas;
+    const parejasEncontradas = cartas.filter(c => c.matched).length / 2;
+    const nota = (parejasEncontradas / totalParejas) * 10;
+    return nota.toFixed(1); // Un decimal
   };
 
   if (cargando) return <div className="contenedor-parejas text-2xl font-bold text-slate-500">Cargando... 🃏</div>;
@@ -285,20 +285,20 @@ const ParejasDeCartas = ({ tema }) => {
       {fase === 'menu' && (
         <div className="menu-dificultad text-center z-10 animate-fade-in flex flex-col items-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-indigo-900 drop-shadow-sm">Elige la dificultad</h1>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl w-full px-4">
             {opcionesDificultad.map((op, idx) => (
-              <button 
-                key={idx} 
-                className={`btn-dificultad ${op.isExam ? 'btn-examen' : ''}`} 
+              <button
+                key={idx}
+                className={`btn-dificultad ${op.isExam ? 'btn-examen' : ''}`}
                 onClick={() => iniciarJuego(op)}
               >
                 <div className="text-3xl font-bold mb-2">
-                    {op.isExam ? '📝 ' + op.nombre : op.nombre}
+                  {op.isExam ? '📝 ' + op.nombre : op.nombre}
                 </div>
                 <div className="text-lg opacity-90">
-                    {op.filas} x {op.columnas} 
-                    {op.isExam ? ' (3 Vidas)' : ` (${op.parejas} parejas)`}
+                  {op.filas} x {op.columnas}
+                  {op.isExam ? ' (3 Vidas)' : ` (${op.parejas} parejas)`}
                 </div>
               </button>
             ))}
@@ -308,36 +308,36 @@ const ParejasDeCartas = ({ tema }) => {
 
       {(fase === 'juego' || fase === 'resumen') && (
         <div className="juego-area relative w-full flex flex-col justify-center items-center animate-fade-in gap-4">
-          
+
           {/* --- BARRA DE CONTROLES SUPERIOR --- */}
           <div className="w-full max-w-[1000px] flex flex-wrap justify-center items-center px-2 z-20 gap-4 md:gap-6 mb-2">
-            <button 
+            <button
               onClick={volverAlMenu}
               disabled={restarting || revealing}
               className="px-4 py-2 md:px-6 md:py-3 bg-white/90 backdrop-blur-sm text-indigo-700 text-base md:text-lg font-bold rounded-2xl shadow-md border-2 border-indigo-200 hover:bg-white hover:scale-105 transition-all flex items-center gap-2 disabled:opacity-50"
             >
               ⬅️ <span className="hidden sm:inline">Dificultad</span>
             </button>
-            
+
             {/* Si es examen mostramos VIDAS, si no, botón de ayudas */}
             {config.isExam ? (
-                 <div className="px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-base md:text-lg shadow-md border-2 bg-red-100 border-red-300 text-red-600 flex items-center gap-2">
-                    Vidas: {Array(3).fill(0).map((_, i) => (
-                        <span key={i} className={i < vidas ? 'opacity-100' : 'opacity-30 grayscale'}>❤️</span>
-                    ))}
-                 </div>
+              <div className="px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-base md:text-lg shadow-md border-2 bg-red-100 border-red-300 text-red-600 flex items-center gap-2">
+                Vidas: {Array(3).fill(0).map((_, i) => (
+                  <span key={i} className={i < vidas ? 'opacity-100' : 'opacity-30 grayscale'}>❤️</span>
+                ))}
+              </div>
             ) : (
-                <button 
+              <button
                 onClick={toggleAyudas}
                 disabled={restarting || revealing}
                 className={`px-4 py-2 md:px-6 md:py-3 rounded-2xl font-bold text-base md:text-lg transition-all shadow-md border-2 flex items-center gap-2 hover:scale-105 disabled:opacity-50
                     ${config.ayudas ? 'bg-emerald-500 border-emerald-400 text-white' : 'bg-white/90 backdrop-blur-sm border-slate-300 text-slate-600 hover:bg-white'}`}
-                >
+              >
                 {config.ayudas ? '✨ Ayudas: ON' : '👁️ Ayudas: OFF'}
-                </button>
+              </button>
             )}
 
-            <button 
+            <button
               onClick={reiniciarNivel}
               disabled={restarting || revealing}
               className="px-4 py-2 md:px-6 md:py-3 bg-indigo-600 text-white text-base md:text-lg font-bold rounded-2xl shadow-md border-2 border-indigo-400 hover:bg-indigo-700 hover:scale-105 transition-all flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
@@ -345,50 +345,65 @@ const ParejasDeCartas = ({ tema }) => {
               {restarting || revealing ? '🔄 ...' : <>🔄 <span className="hidden sm:inline">Reiniciar</span></>}
             </button>
           </div>
-          
+
           <div className="tablero-parejas" style={{ gridTemplateColumns: `repeat(${config.columnas}, 1fr)` }}>
             {cartas.map(carta => {
               const esImagen = typeof carta.contenido === 'string' && (carta.contenido.includes('.png') || carta.contenido.includes('.webp') || carta.contenido.includes('.jpg'));
               const esTexto = typeof carta.contenido === 'string' && contieneLetras(carta.contenido);
-              
+
               const baseSizeRem = config.columnas >= 6 ? 4.5 : config.columnas >= 5 ? 5.5 : 7;
-              const vwFactor = 25 / config.columnas; 
-              
+              const vwFactor = 25 / config.columnas;
+
               let estiloContenido = {};
+              let extraClasses = "";
+
               if (!esImagen) {
+                const text = String(carta.contenido);
                 if (esTexto) {
-                   if (String(carta.contenido).length > 5) {
-                      estiloContenido = { fontSize: 'clamp(1.2rem, 2.5vw, 2rem)', lineHeight: '1.1' };
-                   }
+                  // Lógica de escalado dinámico basada en longitud
+                  if (text.length > 12) {
+                    extraClasses = "text-sm md:text-base leading-tight px-1";
+                  } else if (text.length > 8) {
+                    extraClasses = "text-base md:text-xl leading-tight px-2";
+                  } else if (text.length > 5) {
+                    extraClasses = "text-xl md:text-2xl px-2";
+                  } else {
+                    extraClasses = "text-2xl md:text-4xl";
+                  }
                 } else {
-                   estiloContenido = { fontSize: `clamp(3.5rem, ${vwFactor}vw, ${baseSizeRem}rem)`, lineHeight: '1' };
+                  // Símbolos cortos o números
+                  const vwFactor = 25 / config.columnas;
+                  const baseSizeRem = config.columnas >= 6 ? 4 : config.columnas >= 5 ? 5 : 6;
+                  estiloContenido = { fontSize: `clamp(2.5rem, ${vwFactor}vw, ${baseSizeRem}rem)`, lineHeight: '1' };
                 }
               }
 
               const estaSeleccionada = carta.uniqueId === eleccionUno || carta.uniqueId === eleccionDos;
               const estaGirada = estaSeleccionada || carta.matched || revealing;
-              
+
               const clasePeek = carta.peeking && !estaGirada ? 'peeking' : '';
               const claseFlip = estaGirada ? 'flipped' : '';
               const claseMatch = carta.matched ? 'matched' : '';
               const claseShake = restarting ? 'shaking' : '';
-              
-              const estiloAnimacion = restarting 
-                ? { animationDelay: `${getRandomDelay(carta.uniqueId)}s` } 
+
+              const estiloAnimacion = restarting
+                ? { animationDelay: `${getRandomDelay(carta.uniqueId)}s` }
                 : {};
 
               return (
-                <div 
-                  key={carta.uniqueId} 
+                <div
+                  key={carta.uniqueId}
                   className={`carta ${claseFlip} ${claseMatch} ${clasePeek} ${claseShake}`}
                   style={estiloAnimacion}
                   onClick={() => !bloqueado && !restarting && !revealing && !carta.matched && carta.uniqueId !== eleccionUno && handleEleccion(carta)}
                 >
                   <div className="carta-cara carta-frente">
                     {esImagen ? (
-                      <img src={carta.contenido} alt="carta" className="w-3/4 h-3/4 object-contain"/>
+                      <img src={carta.contenido} alt="carta" className="w-3/4 h-3/4 object-contain" />
                     ) : (
-                      <span style={estiloContenido}>{carta.contenido}</span>
+                      <span className={`carta-texto ${extraClasses}`} style={estiloContenido}>
+                        {carta.contenido}
+                      </span>
                     )}
                   </div>
                   <div className="carta-cara carta-dorso">
@@ -403,27 +418,27 @@ const ParejasDeCartas = ({ tema }) => {
             <div className="overlay-resumen">
               <div className="resumen-parejas">
                 {config.isExam ? (
-                    // RESUMEN MODO EXAMEN
-                    <>
-                        <h2 className="text-4xl font-bold mb-2 text-indigo-900">
-                            {vidas > 0 ? '¡Examen Aprobado! 🎓' : 'Examen Finalizado 🔔'}
-                        </h2>
-                        <div className="my-6 py-4 bg-slate-50 rounded-xl border-2 border-indigo-100">
-                            <p className="text-lg text-gray-600 mb-1">Tu nota es</p>
-                            <span className={`text-6xl font-black ${vidas > 0 ? 'text-emerald-500' : 'text-red-500'}`}>
-                                {calcularNota()}
-                            </span>
-                            {vidas === 0 && <p className="text-sm text-red-400 mt-2 font-bold">(Te quedaste sin vidas)</p>}
-                        </div>
-                    </>
+                  // RESUMEN MODO EXAMEN
+                  <>
+                    <h2 className="text-4xl font-bold mb-2 text-indigo-900">
+                      {vidas > 0 ? '¡Examen Aprobado! 🎓' : 'Examen Finalizado 🔔'}
+                    </h2>
+                    <div className="my-6 py-4 bg-slate-50 rounded-xl border-2 border-indigo-100">
+                      <p className="text-lg text-gray-600 mb-1">Tu nota es</p>
+                      <span className={`text-6xl font-black ${vidas > 0 ? 'text-emerald-500' : 'text-red-500'}`}>
+                        {calcularNota()}
+                      </span>
+                      {vidas === 0 && <p className="text-sm text-red-400 mt-2 font-bold">(Te quedaste sin vidas)</p>}
+                    </div>
+                  </>
                 ) : (
-                    // RESUMEN MODO NORMAL
-                    <>
-                        <h2 className="text-4xl font-bold mb-4 text-indigo-900">¡Fantástico! 🎉</h2>
-                        <p className="text-lg text-gray-700 mb-6">Completado en <span className="font-bold text-indigo-600 text-2xl">{turnos}</span> turnos.</p>
-                    </>
+                  // RESUMEN MODO NORMAL
+                  <>
+                    <h2 className="text-4xl font-bold mb-4 text-indigo-900">¡Fantástico! 🎉</h2>
+                    <p className="text-lg text-gray-700 mb-6">Completado en <span className="font-bold text-indigo-600 text-2xl">{turnos}</span> turnos.</p>
+                  </>
                 )}
-                
+
                 <div className="flex flex-col gap-3">
                   <button onClick={reiniciarNivel} className="px-8 py-3 bg-indigo-600 text-white rounded-full font-bold hover:bg-indigo-700 shadow-lg">Intentar de nuevo</button>
                   <button onClick={volverAlMenu} className="px-8 py-3 bg-transparent border-2 border-indigo-600 text-indigo-600 rounded-full font-bold hover:bg-indigo-50">Cambiar dificultad</button>
