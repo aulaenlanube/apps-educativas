@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import './BuscaElIntruso.css';
@@ -45,6 +45,18 @@ const BuscaElIntruso = ({ tema }) => {
     if (!str) return false;
     return /[a-zA-ZáéíóúÁÉÍÓÚñÑçÇàèìòùÀÈÌÒÙäëïöüÄËÏÖÜ]/.test(String(str));
   };
+
+  // Generar partículas de fondo una sola vez (Hooks must be at top level)
+  const particles = useMemo(() => {
+    return Array.from({ length: 30 }).map((_, i) => ({
+      id: i,
+      size: Math.random() * 40 + 10,
+      duration: Math.random() * 20 + 15,
+      delay: Math.random() * 20,
+      left: Math.random() * 100,
+      opacity: Math.random() * 0.3 + 0.1
+    }));
+  }, []);
 
   // --- Carga de Datos ---
   useEffect(() => {
@@ -277,10 +289,18 @@ const BuscaElIntruso = ({ tema }) => {
 
   return (
     <div className="intruso-wrapper">
-      {/* Fondo Animado con partículas CSS puras */}
+      {/* Fondo Animado con partículas generadas dinámicamente */}
       <div className="intruso-particles">
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
+        {particles.map((p) => (
+          <span key={p.id} style={{
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            left: `${p.left}%`,
+            animationDuration: `${p.duration}s`,
+            animationDelay: `-${p.delay}s`,
+            opacity: p.opacity
+          }}></span>
+        ))}
       </div>
 
       <div className="intruso-container">
