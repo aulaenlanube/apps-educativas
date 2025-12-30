@@ -11,9 +11,9 @@ const BuscaElIntruso = ({ tema }) => {
   const { level, grade: gradeParam, subjectId } = useParams();
   const nivel = level || 'primaria';
   const curso = gradeParam || '1';
-  
+
   const [datosJuego, setDatosJuego] = useState(null);
-  const [modoLogico, setModoLogico] = useState('visual'); 
+  const [modoLogico, setModoLogico] = useState('visual');
 
   const [estado, setEstado] = useState({
     modo: 'libre',
@@ -28,7 +28,7 @@ const BuscaElIntruso = ({ tema }) => {
     rows: 4,
     cols: 8,
     mensaje: 'Cargando...',
-    categoria: '', 
+    categoria: '',
     feedbackCellIndex: -1,
     feedbackCellStatus: '', // 'ok' | 'ko'
     combo: 0 // Para racha de aciertos
@@ -51,15 +51,15 @@ const BuscaElIntruso = ({ tema }) => {
     let vivo = true;
     setDatosJuego(null);
     const base = import.meta.env.BASE_URL || '/';
-    
+
     const urls = [];
     if (asignatura && asignatura !== 'general') {
       urls.push(`${base}data/${nivel}/${curso}/${asignatura}-busca-el-intruso.json`);
     }
     urls.push(`${base}data/${nivel}/${curso}/busca-el-intruso.json`);
-    
+
     if (nivel === 'primaria' && curso === '1') {
-       urls.push(`${base}data/primaria/1/busca-el-intruso.json`); 
+      urls.push(`${base}data/primaria/1/busca-el-intruso.json`);
     }
 
     const cargar = async (url) => {
@@ -74,7 +74,7 @@ const BuscaElIntruso = ({ tema }) => {
           const datos = await cargar(url);
           if (vivo) {
             if (Array.isArray(datos) && typeof datos[0] === 'string') {
-              setModoLogico('visual'); 
+              setModoLogico('visual');
             } else {
               setModoLogico('conceptual');
             }
@@ -102,7 +102,7 @@ const BuscaElIntruso = ({ tema }) => {
     };
     temporizadorRef.current = requestAnimationFrame(tick);
   };
-  
+
   const detenerCronometro = () => {
     if (temporizadorRef.current) {
       cancelAnimationFrame(temporizadorRef.current);
@@ -132,11 +132,11 @@ const BuscaElIntruso = ({ tema }) => {
       const total = rows * cols;
       const desafio = datosJuego[Math.floor(Math.random() * datosJuego.length)];
       const intruso = desafio.intrusos[Math.floor(Math.random() * desafio.intrusos.length)];
-      
+
       const correctosNecesarios = total - 1;
       let correctosElegidos = [];
       const poolCorrectos = [...desafio.correctos].sort(() => Math.random() - 0.5);
-      
+
       let i = 0;
       while (correctosElegidos.length < correctosNecesarios) {
         correctosElegidos.push(poolCorrectos[i % poolCorrectos.length]);
@@ -233,7 +233,7 @@ const BuscaElIntruso = ({ tema }) => {
     if (estado.bloqueoClicks) return;
     setEstado(prev => ({ ...prev, bloqueoClicks: true }));
     const esCorrecto = indice === estado.indiceIntruso;
-    
+
     if (esCorrecto) {
       // Lógica de acierto
       setEstado(prev => ({
@@ -276,99 +276,99 @@ const BuscaElIntruso = ({ tema }) => {
   if (datosJuego.length === 0) return <div className="loading-screen">No hay datos del examen.</div>;
 
   return (
-    <div className="game-wrapper">
+    <div className="intruso-wrapper">
       {/* Fondo Animado con partículas CSS puras */}
-      <div className="background-particles">
+      <div className="intruso-particles">
         <span></span><span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span><span></span>
       </div>
 
-      <div className="game-container glass-panel">
-        
-        {/* CABECERA / HUD */}
-        <div className="game-hud">
-            <div className="hud-left">
-                {/* LÓGICA DE BOTONES: Cambia según si es modo TEST o LIBRE */}
-                {estado.modo === 'test' ? (
-                    <>
-                        <button className="hud-btn" onClick={iniciarTest} style={{border: '1px solid rgba(255,255,255,0.3)'}}>
-                            ↻ Reiniciar Examen
-                        </button>
-                        <button className="hud-btn" onClick={activarModoLibre} style={{border: '1px solid rgba(255,255,255,0.3)'}}>
-                            ↩ Volver a Práctica
-                        </button>
-                    </>
-                ) : (
-                    <>
-                        <button className={`hud-btn ${estado.modo === 'libre' ? 'active' : ''}`} onClick={activarModoLibre}>PRÁCTICA</button>
-                        <button className={`hud-btn ${estado.modo === 'test' ? 'active' : ''}`} onClick={iniciarTest}>EXAMEN</button>
-                    </>
-                )}
-            </div>
-            
-            <div className="hud-center">
-                <h1 className="game-title">BUSCA EL INTRUSO</h1>
-                
-                {/* INDICADOR DE PROGRESO DEL EXAMEN */}
-                {estado.modo === 'test' && (
-                    <div style={{
-                        background: 'rgba(255, 255, 255, 0.2)',
-                        padding: '4px 12px',
-                        borderRadius: '20px',
-                        fontSize: '0.9rem',
-                        fontWeight: 'bold',
-                        color: '#fff',
-                        marginBottom: '4px',
-                        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-                    }}>
-                        Pregunta {estado.ronda} de {estado.rondasTotales}
-                    </div>
-                )}
+      <div className="intruso-container">
 
-                {estado.categoria && <div className="category-badge">{estado.categoria}</div>}
+        {/* CABECERA / HUD */}
+        <div className="intruso-hud">
+          <div className="intruso-hud-left">
+            {/* LÓGICA DE BOTONES: Cambia según si es modo TEST o LIBRE */}
+            {estado.modo === 'test' ? (
+              <>
+                <button className="intruso-btn" onClick={iniciarTest} style={{ border: '1px solid rgba(255,255,255,0.3)' }}>
+                  ↻ Reiniciar Examen
+                </button>
+                <button className="intruso-btn" onClick={activarModoLibre} style={{ border: '1px solid rgba(255,255,255,0.3)' }}>
+                  ↩ Volver a Práctica
+                </button>
+              </>
+            ) : (
+              <>
+                <button className={`intruso-btn ${estado.modo === 'libre' ? 'active' : ''}`} onClick={activarModoLibre}>PRÁCTICA</button>
+                <button className={`intruso-btn ${estado.modo === 'test' ? 'active' : ''}`} onClick={iniciarTest}>EXAMEN</button>
+              </>
+            )}
+          </div>
+
+          <div className="intruso-hud-center">
+            <h1 className="intruso-title">BUSCA EL INTRUSO</h1>
+
+            {/* INDICADOR DE PROGRESO DEL EXAMEN */}
+            {estado.modo === 'test' && (
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.2)',
+                padding: '4px 12px',
+                borderRadius: '20px',
+                fontSize: '0.9rem',
+                fontWeight: 'bold',
+                color: '#fff',
+                marginBottom: '4px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+              }}>
+                Pregunta {estado.ronda} de {estado.rondasTotales}
+              </div>
+            )}
+
+            {estado.categoria && <div className="category-badge">{estado.categoria}</div>}
+          </div>
+
+          <div className="intruso-hud-right">
+            <div className="stat-pill">
+              <span className="icon">🏆</span>
+              <span className="value">{estado.aciertos}</span>
             </div>
-            
-            <div className="hud-right">
-                <div className="stat-pill">
-                    <span className="icon">🏆</span>
-                    <span className="value">{estado.aciertos}</span>
-                </div>
-                {estado.modo === 'test' && (
-                    <div className="stat-pill">
-                        <span className="icon">⏱️</span>
-                        <span className="value">{tiempoTranscurrido.toFixed(0)}s</span>
-                    </div>
-                )}
-            </div>
+            {estado.modo === 'test' && (
+              <div className="stat-pill">
+                <span className="icon">⏱️</span>
+                <span className="value">{tiempoTranscurrido.toFixed(0)}s</span>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* ÁREA DE JUEGO */}
-        <div className="game-board-area">
+        <div className="intruso-board-area">
           {!mostrarResumen ? (
             <>
               <div className={`message-banner ${estado.feedbackCellStatus}`}>
-                 {estado.mensaje}
-                 {estado.combo > 1 && <span className="combo-counter">x{estado.combo} COMBO!</span>}
+                {estado.mensaje}
+                {estado.combo > 1 && <span className="combo-counter">x{estado.combo} COMBO!</span>}
               </div>
-              
+
               <div
-                className={`grid-board ${modoLogico}`}
-                style={{ 
-                    gridTemplateColumns: `repeat(${estado.cols}, minmax(0, 1fr))` 
+                className={`intruso-grid ${modoLogico}`}
+                style={{
+                  gridTemplateColumns: `repeat(${estado.cols}, minmax(0, 1fr))`
                 }}
               >
                 {estado.tablero.map((item, idx) => {
                   const esTexto = contieneLetras(item);
                   const isFeedbackTarget = idx === estado.feedbackCellIndex;
                   const status = isFeedbackTarget ? estado.feedbackCellStatus : '';
-                  
+
                   // Retraso escalonado para la animación de entrada
                   const delayStyle = { animationDelay: `${idx * 0.03}s` };
 
                   return (
                     <div
                       key={`${estado.ronda}-${idx}`} // Key cambiante para forzar re-render y animación
-                      className={`grid-cell ${esTexto ? 'text-mode' : 'icon-mode'} ${status}`}
+                      className={`intruso-cell ${esTexto ? 'text-mode' : 'icon-mode'} ${status}`}
                       style={delayStyle}
                       onClick={() => gestionarClick(idx)}
                     >
@@ -394,21 +394,21 @@ const BuscaElIntruso = ({ tema }) => {
                 </svg>
                 <div className="score-text">{precision}%</div>
               </div>
-              
+
               <div className="stats-row">
-                 <div className="stat-box">
-                    <span className="label">Aciertos</span>
-                    <span className="val">{estado.aciertos}/{estado.rondasTotales}</span>
-                 </div>
-                 <div className="stat-box">
-                    <span className="label">Tiempo</span>
-                    <span className="val">{tiempoTranscurrido.toFixed(1)}s</span>
-                 </div>
+                <div className="stat-box">
+                  <span className="label">Aciertos</span>
+                  <span className="val">{estado.aciertos}/{estado.rondasTotales}</span>
+                </div>
+                <div className="stat-box">
+                  <span className="label">Tiempo</span>
+                  <span className="val">{tiempoTranscurrido.toFixed(1)}s</span>
+                </div>
               </div>
 
               <div className="action-buttons">
-                 <button className="primary-action" onClick={iniciarTest}>REPETIR EXAMEN</button>
-                 <button className="secondary-action" onClick={activarModoLibre}>ENTRENAMIENTO LIBRE</button>
+                <button className="primary-action" onClick={iniciarTest}>REPETIR EXAMEN</button>
+                <button className="secondary-action" onClick={activarModoLibre}>ENTRENAMIENTO LIBRE</button>
               </div>
             </div>
           )}
