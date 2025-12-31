@@ -86,7 +86,7 @@ const HomePage = () => {
             {[
               { icon: Users, text: "Apps por niveles", color: "text-blue-500" },
               { icon: Star, text: "100% gratis", color: "text-yellow-500" },
-              { icon: Trophy, text: "Progreso medible", color: "text-purple-500" }
+              { icon: Trophy, text: "Aprendizaje basado en el juego", color: "text-purple-500" }
             ].map((item, idx) => (
               <div key={idx} className="flex items-center space-x-2 bg-white/60 backdrop-blur-md px-5 py-3 rounded-full shadow-sm border border-white/50">
                 <item.icon className={`w-5 h-5 ${item.color}`} />
