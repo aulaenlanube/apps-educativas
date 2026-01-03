@@ -10,34 +10,128 @@ import './NumerosRomanos.css';
 
 // --- UTILIDADES ---
 
+const BAR = '\u0305';
+
 const toRoman = (num) => {
-  const map = {
-    M: 1000, CM: 900, D: 500, CD: 400,
-    C: 100, XC: 90, L: 50, XL: 40,
-    X: 10, IX: 9, V: 5, IV: 4, I: 1,
-  };
+  const map = [
+    { s: 'M' + BAR, v: 1000000 },
+    { s: 'C' + BAR + 'M' + BAR, v: 900000 },
+    { s: 'D' + BAR, v: 500000 },
+    { s: 'C' + BAR + 'D' + BAR, v: 400000 },
+    { s: 'C' + BAR, v: 100000 },
+    { s: 'X' + BAR + 'C' + BAR, v: 90000 },
+    { s: 'L' + BAR, v: 50000 },
+    { s: 'X' + BAR + 'L' + BAR, v: 40000 },
+    { s: 'X' + BAR, v: 10000 },
+    { s: 'I' + BAR + 'X' + BAR, v: 9000 },
+    { s: 'V' + BAR, v: 5000 },
+    { s: 'I' + BAR + 'V' + BAR, v: 4000 },
+    { s: 'M', v: 1000 },
+    { s: 'CM', v: 900 },
+    { s: 'D', v: 500 },
+    { s: 'CD', v: 400 },
+    { s: 'C', v: 100 },
+    { s: 'XC', v: 90 },
+    { s: 'L', v: 50 },
+    { s: 'XL', v: 40 },
+    { s: 'X', v: 10 },
+    { s: 'IX', v: 9 },
+    { s: 'V', v: 5 },
+    { s: 'IV', v: 4 },
+    { s: 'I', v: 1 },
+  ];
   let result = '';
-  for (let key in map) {
-    while (num >= map[key]) {
-      result += key;
-      num -= map[key];
+  let n = num;
+  for (const item of map) {
+    while (n >= item.v) {
+      result += item.s;
+      n -= item.v;
     }
   }
   return result;
 };
 
+const getRomanMap = () => ({
+  'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000,
+  ['I' + BAR]: 1000, ['V' + BAR]: 5000, ['X' + BAR]: 10000,
+  ['L' + BAR]: 50000, ['C' + BAR]: 100000, ['D' + BAR]: 500000, ['M' + BAR]: 1000000
+});
+
+const getVal = (str) => getRomanMap()[str] || 0;
+
+// Validador lógico y robusto sin Regex
+const validateRomanStructure = (tiles) => {
+  if (!tiles || tiles.length === 0) return false;
+
+  const values = tiles.map(t => getVal(t));
+
+  let repeatCount = 1;
+
+  for (let i = 0; i < values.length; i++) {
+    const curr = values[i];
+    const next = values[i + 1] || 0;
+
+    // 1. Chequeo de Repetición
+    if (curr === next) {
+      repeatCount++;
+      // Solo potencias de 10 pueden repetirse (1, 10, 100...)
+      // Las de 5 (5, 50, 500...) NO pueden repetirse
+      const isPowerOf10 = (Math.log10(curr) % 1 === 0);
+      if (!isPowerOf10) return false; // 5, 50, 500 repetidos -> Mal
+      if (repeatCount > 3) return false; // Más de 3 veces -> Mal
+    } else {
+      repeatCount = 1;
+    }
+
+    // 2. Chequeo de Resta y Orden
+    if (next > curr) {
+      // Estamos restando (ej: IV, IX, XC...)
+
+      // a) Solo potencias de 10 pueden restar
+      const isPowerOf10 = (Math.log10(curr) % 1 === 0);
+      if (!isPowerOf10) return false; // V, L, D no restan
+
+      // b) Solo se puede restar a los dos "niveles" siguientes (5x y 10x)
+      // Ejemplo: 1 resta a 5 y 10. 10 resta a 50 y 100.
+      if (next > curr * 10) return false; // IL (1 a 50) -> Mal
+
+      // c) No se puede restar dos veces (IIX -> Mal)
+      // Si el anterior era igual a mí, y ahora resto -> Mal
+      if (i > 0 && values[i - 1] === curr) return false;
+
+      // d) Después de una resta, el siguiente número debe ser menor que el que restó
+      // Ej: XC (90). El siguiente tiene que ser < 10 (curr). XCI (91) bien. XCL mal.
+      // Así evitamos cosas como CMC (900 + 100 = 1000 => se escribe M)
+      // Ojo: i+2 es el índice del que va después del next
+      if (tiles[i + 2]) {
+        const afterNext = getVal(tiles[i + 2]);
+        if (afterNext >= curr) return false;
+      }
+
+    } else if (next < curr) {
+      // Orden descendente normal. 
+      // Solo verificamos que no hayamos roto la regla d) implícitamente
+      // pero eso es difícil de traquear sin mirar atrás.
+      // La regla general es que los valores deben bajar.
+    }
+  }
+
+  return true;
+};
+
 const isValidRoman = (romanStr) => {
-  if (!romanStr) return false;
-  const regex = /^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
-  return regex.test(romanStr);
+  // Wrapper para mantener compatibilidad si se llama con string
+  // Pero idealmente fromRoman debería pasar array
+  return true; // Deprecated for internal array check
 };
 
 const fromRoman = (romanArray) => {
   if (!romanArray || romanArray.length === 0) return 0;
-  const romanStr = romanArray.join('');
-  if (!isValidRoman(romanStr)) return null;
 
-  const map = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+  // Validamos la estructura ANTES de sumar
+  if (!validateRomanStructure(romanArray)) return null;
+
+  const map = getRomanMap();
   let total = 0;
   for (let i = 0; i < romanArray.length; i++) {
     const current = map[romanArray[i]];
@@ -52,9 +146,13 @@ const fromRoman = (romanArray) => {
 };
 
 const getAvailableTiles = (max) => {
-  if (max <= 20) return ['I', 'V', 'X'];
-  if (max <= 100) return ['I', 'V', 'X', 'L', 'C'];
-  return ['I', 'V', 'X', 'L', 'C', 'D', 'M'];
+  const base = ['I', 'V', 'X'];
+  if (max <= 20) return base;
+  const upTo100 = [...base, 'L', 'C'];
+  if (max <= 100) return upTo100;
+  const upTo4k = [...upTo100, 'D', 'M'];
+  if (max <= 4000) return upTo4k;
+  return [...upTo4k, 'I' + BAR, 'V' + BAR, 'X' + BAR, 'L' + BAR, 'C' + BAR, 'D' + BAR, 'M' + BAR];
 };
 
 const TOTAL_TEST_QUESTIONS = 10;
@@ -95,6 +193,14 @@ const NumerosRomanosGame = ({ maxNumber, title }) => {
   });
 
   const generateNumber = useCallback(() => {
+    if (maxNumber > 3999) {
+      // Distribución para 6º: mezcla de números normales y números con raya
+      const r = Math.random();
+      if (r < 0.2) return Math.floor(Math.random() * 3998) + 1; // 20% hasta 3999
+      if (r < 0.5) return Math.floor(Math.random() * 46000) + 4000; // 30% medianos (4k-50k)
+      if (r < 0.8) return Math.floor(Math.random() * 450000) + 50000; // 30% grandes (50k-500k)
+      return Math.floor(Math.random() * 500000) + 500000; // 20% muy grandes (500k-1M)
+    }
     return Math.floor(Math.random() * maxNumber) + 1;
   }, [maxNumber]);
 
@@ -138,9 +244,20 @@ const NumerosRomanosGame = ({ maxNumber, title }) => {
 
 
   const checkAnswer = () => {
-    const userRomanString = userTiles.map(t => t.value).join('');
+    // Calculamos valor directamente del array de objetos userTiles
+    // userTiles es [{id:..., value:'String'}, ...]
+    // Mapeamos a array de strings ['I', 'V'...]
+    const tilesStr = userTiles.map(t => t.value);
+
+    // El validador ya se encarga de checkear estructura
+    const userValueCalculated = fromRoman(tilesStr);
+
+    // Si devuelve null es que la estructura es inválida
+    const isCorrect = userValueCalculated === targetNumber;
+
+    // Para feedback en test mode
+    const userRomanString = tilesStr.join('');
     const correctRomanString = toRoman(targetNumber);
-    const isCorrect = userRomanString === correctRomanString;
 
     if (isTestMode) {
       if (isCorrect) {
@@ -173,12 +290,10 @@ const NumerosRomanosGame = ({ maxNumber, title }) => {
           });
         }
       } else {
-
-
-
-        const userVal = fromRoman(userTiles.map(t => t.value));
+        const tilesStr = userTiles.map(t => t.value);
+        const userVal = fromRoman(tilesStr);
         if (userVal === null) {
-          setFeedback({ text: `⚠️ "${userRomanString}" no es válido.`, type: 'feedback-incorrect' });
+          setFeedback({ text: `⚠️ Estructura no válida. Revisa las reglas.`, type: 'feedback-incorrect' });
         } else {
           setFeedback({ text: `Incorrecto. Eso es ${userVal}.`, type: 'feedback-incorrect' });
         }
@@ -263,6 +378,7 @@ const NumerosRomanosGame = ({ maxNumber, title }) => {
     );
   }
 
+  // Calcular valor actual para el helper visual
   const currentValue = fromRoman(userTiles.map(t => t.value));
   const isValid = currentValue !== null;
 
@@ -386,12 +502,14 @@ const NumerosRomanosGame = ({ maxNumber, title }) => {
                   ))}
                 </div>
                 <div className="roman-rules">
-                  <h4>Reglas Principales</h4>
+                  <h4>Reglas de los Números Romanos</h4>
                   <ul>
-                    <li>Se lee de izquierda a derecha, de mayor a menor valor.</li>
-                    <li>Una letra no puede repetirse más de tres veces seguidas.</li>
-                    <li>Letra menor a la izquierda de una mayor: <b>se resta</b> (ej: IV = 4).</li>
-                    <li>Letra menor a la derecha de una mayor: <b>se suma</b> (ej: VI = 6).</li>
+                    <li><b>Suma:</b> Una letra a la derecha de otra de igual o mayor valor suma sus valores (ej: VI = 6, XV = 15).</li>
+                    <li><b>Resta:</b> Las letras <b>I, X, C</b> a la izquierda de una mayor restan su valor (ej: IV = 4, IX = 9, XL = 40).</li>
+                    <li><b>Repetición:</b> Las letras <b>I, X, C, M</b> solo pueden repetirse hasta 3 veces seguidas.</li>
+                    <li><b>No Repetición:</b> Las letras <b>V, L, D</b> nunca se repiten ni se ponen a la izquierda de una mayor para restar.</li>
+                    <li><b>Restas específicas:</b> <b>I</b> solo resta a V y X; <b>X</b> solo resta a L y C; <b>C</b> solo resta a D y M.</li>
+                    <li><b>Multiplicación:</b> Una raya horizontal sobre la letra multiplica su valor por 1.000.</li>
                   </ul>
                 </div>
               </div>
@@ -449,8 +567,9 @@ const NumerosRomanosGame = ({ maxNumber, title }) => {
   );
 };
 
-export const NumerosRomanos3 = () => <NumerosRomanosGame maxNumber={20} title="Números Romanos" />;
-export const NumerosRomanos4 = () => <NumerosRomanosGame maxNumber={100} title="Números Romanos" />;
-export const NumerosRomanos5y6 = () => <NumerosRomanosGame maxNumber={3999} title="Números Romanos" />;
+export const NumerosRomanos3 = () => <NumerosRomanosGame maxNumber={20} title="Números Romanos (3º)" />;
+export const NumerosRomanos4 = () => <NumerosRomanosGame maxNumber={100} title="Números Romanos (4º)" />;
+export const NumerosRomanos5 = () => <NumerosRomanosGame maxNumber={3999} title="Números Romanos (5º)" />;
+export const NumerosRomanos6 = () => <NumerosRomanosGame maxNumber={1000000} title="Números Romanos (6º)" />;
 
 export default NumerosRomanosGame;

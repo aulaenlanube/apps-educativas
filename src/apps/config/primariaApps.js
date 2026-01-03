@@ -9,7 +9,7 @@ import {
   appLluviaDePalabras, appParejas, appClasificador, appSnake, appComprensionEscrita, appComprensionOral,
 
   // Matemáticas Generales
-  appNumerosRomanos3, appNumerosRomanos4, appNumerosRomanosAdvanced,
+  appNumerosRomanos3, appNumerosRomanos4, appNumerosRomanos5, appNumerosRomanos6,
   appMayorMenor1, appMayorMenor2, appMayorMenor3, appMayorMenor4, appMayorMenor5, appMayorMenor6,
   appMedidas1, appMedidas2, appMedidas3, appMedidas4, appMedidas5, appMedidas6,
 
@@ -165,7 +165,7 @@ export const primariaApps = {
       appMultiplicacionesPrimaria5,
       appSupermercadoMatematico5,
       appDivisionesPrimaria5,
-      appRunner, appExcavacionSelectiva, appOrdenaBolas, appRosco, appMedidas5, appMayorMenor5, appNumerosRomanosAdvanced, appOrdenaLaFrase, appOrdenaLaHistoria,
+      appRunner, appExcavacionSelectiva, appOrdenaBolas, appRosco, appMedidas5, appMayorMenor5, appNumerosRomanos5, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
       appLluviaDePalabras,
@@ -195,7 +195,7 @@ export const primariaApps = {
       appMultiplicacionesPrimaria6,
       appDivisionesPrimaria6,
       appSupermercadoMatematico6,
-      appRunner, appExcavacionSelectiva, appOrdenaBolas, appRosco, appMedidas6, appMayorMenor6, appNumerosRomanosAdvanced, appOrdenaLaFrase, appOrdenaLaHistoria,
+      appRunner, appExcavacionSelectiva, appOrdenaBolas, appRosco, appMedidas6, appMayorMenor6, appNumerosRomanos6, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
       appLluviaDePalabras,
