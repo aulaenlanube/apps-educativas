@@ -6,7 +6,8 @@
 .roman-container {
     font-family: 'Lexend', sans-serif;
     width: 100%;
-    max-width: 800px; /* Ancho idéntico a Ordena la Frase */
+    max-width: 800px;
+    /* Ancho idéntico a Ordena la Frase */
     background: #fff;
     padding: 30px;
     border-radius: 15px;
@@ -31,33 +32,35 @@
 
 /* --- ZONA DE NÚMERO OBJETIVO --- */
 .target-number {
-    font-size: 4.5rem;
+    font-size: 5rem;
     font-weight: 800;
     color: #4f46e5;
     margin: 1.5rem 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Fredoka One', cursive;
     line-height: 1;
+    text-shadow: 2px 2px 4px rgba(79, 70, 229, 0.1);
 }
 
 /* --- DROP ZONE --- */
 .drop-zone {
-    min-height: 90px;
+    min-height: 100px;
     background-color: #f8fafc;
     border: 3px dashed #cbd5e1;
-    border-radius: 12px;
+    border-radius: 16px;
     margin: 20px 0;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 8px;
-    padding: 15px;
-    transition: all 0.2s;
+    gap: 12px;
+    padding: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .drop-zone.active {
     border-color: #4f46e5;
     background-color: #eef2ff;
+    transform: scale(1.02);
 }
 
 .drop-zone:empty::before {
@@ -65,17 +68,18 @@
     color: #94a3b8;
     font-style: italic;
     font-size: 1.1rem;
+    pointer-events: none;
 }
 
 /* --- FICHAS ROMANAS --- */
 .roman-tile {
-    width: 50px;
-    height: 50px;
-    background: white;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
     border: 2px solid #4f46e5;
     color: #4f46e5;
-    border-radius: 10px;
-    font-size: 1.6rem;
+    border-radius: 12px;
+    font-size: 1.8rem;
     font-weight: bold;
     font-family: 'Times New Roman', serif;
     display: flex;
@@ -83,30 +87,68 @@
     justify-content: center;
     cursor: grab;
     user-select: none;
-    box-shadow: 0 3px 0 #3730a3;
-    transition: transform 0.1s;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), inset 0 -4px 0 rgba(79, 70, 229, 0.2);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.roman-tile:active {
-    cursor: grabbing;
-    transform: translateY(3px);
-    box-shadow: none;
+.roman-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), inset 0 -4px 0 rgba(79, 70, 229, 0.2);
+    border-color: #6366f1;
 }
 
 .drop-zone .roman-tile {
     cursor: pointer;
+    position: relative;
+    /* Para posicionar el botón de borrar */
+}
+
+/* --- BOTÓN DE BORRAR --- */
+.delete-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    background-color: #ef4444;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    z-index: 10;
+}
+
+.roman-tile:hover .delete-btn {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.delete-btn svg {
+    width: 12px;
+    height: 12px;
+    stroke-width: 3px;
 }
 
 /* --- PALETA DE FICHAS --- */
 .palette {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
     flex-wrap: wrap;
     margin-top: 25px;
-    padding: 15px;
+    padding: 20px;
     background: #f1f5f9;
-    border-radius: 12px;
+    border-radius: 16px;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
 }
 
 /* --- BOTONES DE MODO (Igual que Ordena la Frase) --- */
@@ -130,7 +172,8 @@
     transition: all 0.2s;
 }
 
-.btn-mode:hover, .btn-mode.active {
+.btn-mode:hover,
+.btn-mode.active {
     background-color: #673de6;
     color: white;
     border-color: #673de6;
@@ -187,8 +230,15 @@
     animation: slideIn 0.3s ease-out;
 }
 
-.feedback-correct { background-color: #dcfce7; color: #166534; }
-.feedback-incorrect { background-color: #fee2e2; color: #991b1b; }
+.feedback-correct {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.feedback-incorrect {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
 
 /* Switch de Ayuda */
 .switch-container {
@@ -199,11 +249,171 @@
     margin-bottom: 15px;
 }
 
-.switch { position: relative; display: inline-block; width: 44px; height: 24px; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
-.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-input:checked + .slider { background-color: #4f46e5; }
-input:checked + .slider:before { transform: translateX(20px); }
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
 
-@keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #4f46e5;
+}
+
+input:checked+.slider:before {
+    transform: translateX(20px);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- TABLA DE REFERENCIA --- */
+.roman-reference-table {
+    margin: 20px auto;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 15px;
+    max-width: 500px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.roman-reference-table h3 {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0;
+}
+
+.reference-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 10px;
+    justify-items: center;
+}
+
+.reference-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.ref-tile {
+    width: 35px;
+    height: 35px;
+    background: white;
+    border: 1.5px solid #4f46e5;
+    color: #4f46e5;
+    border-radius: 6px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Times New Roman', serif;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 0 rgba(79, 70, 229, 0.2);
+}
+
+.ref-value {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+/* --- AJUSTES HORIZONTALES PARA TABLA --- */
+.reference-grid {
+    display: flex !important;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    gap: 20px;
+    justify-content: center;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+}
+
+.reference-grid::-webkit-scrollbar {
+    height: 6px;
+}
+
+.reference-grid::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+}
+
+.reference-grid::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+.reference-item {
+    flex: 0 0 auto;
+}
+
+.roman-rules {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px dashed #e2e8f0;
+    text-align: left;
+}
+
+.roman-rules h4 {
+    font-size: 0.85rem;
+    color: #475569;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.roman-rules ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.roman-rules li {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 4px;
+    line-height: 1.4;
+}

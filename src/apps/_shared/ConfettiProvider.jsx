@@ -8,7 +8,7 @@ import React, {
 import ReactDOM from "react-dom";
 import ReactConfetti from "react-confetti";
 
-const ConfettiCtx = createContext({ confeti: () => {} });
+const ConfettiCtx = createContext({ confeti: () => { } });
 
 export function ConfettiProvider({ children }) {
   const [portalEl, setPortalEl] = useState(null);
@@ -23,6 +23,8 @@ export function ConfettiProvider({ children }) {
     const handleResize = () => {
       setDimensions({ width: window.innerWidth, height: window.innerHeight });
     };
+
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -47,6 +49,8 @@ export function ConfettiProvider({ children }) {
     setShowConfetti(true);
     setIsRecycling(true); // Aseguramos que siempre empiece reciclando
   }, []);
+
+
 
   // Este efecto maneja el ciclo de vida de la animación
   useEffect(() => {
@@ -75,6 +79,8 @@ export function ConfettiProvider({ children }) {
       gravity={0.3}
       onConfettiComplete={onConfettiComplete}
     />
+
+
   ) : null;
 
   const value = { confeti };
