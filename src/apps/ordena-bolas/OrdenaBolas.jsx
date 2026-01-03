@@ -7,14 +7,14 @@ import { RefreshCw, Trophy, Timer, Play, Settings, CheckSquare, Square } from 'l
 
 const OrdenaBolas = () => {
     const { level, grade } = useParams();
-    
+
     const sceneRef = useRef(null);
     const engineRef = useRef(null);
-    
+
     // Estados del juego
     const [gameState, setGameState] = useState('config'); // config, playing, won, lost
     const [timeElapsed, setTimeElapsed] = useState(0);
-    const [key, setKey] = useState(0); 
+    const [key, setKey] = useState(0);
 
     // Configuración
     const [config, setConfig] = useState({
@@ -41,17 +41,17 @@ const OrdenaBolas = () => {
 
         if (level === 'primaria') {
             const gradeNum = parseInt(grade);
-            
+
             // 1º, 2º y 3º de Primaria
             if (gradeNum >= 1 && gradeNum <= 3) {
                 return ['numbers', 'add', 'sub'];
             }
-            
+
             // 4º, 5º y 6º de Primaria
             return ['numbers', 'add', 'sub', 'mul', 'div'];
         }
 
-        return ['numbers']; 
+        return ['numbers'];
     };
 
     const allowedOps = getAllowedOperations();
@@ -63,7 +63,7 @@ const OrdenaBolas = () => {
             const startTime = Date.now() - timeElapsed;
             interval = setInterval(() => {
                 setTimeElapsed(Date.now() - startTime);
-            }, 10); 
+            }, 10);
         }
         return () => clearInterval(interval);
     }, [gameState, key]); // <--- 'key' asegura que el timer se reinicie al pulsar reiniciar
@@ -79,8 +79,8 @@ const OrdenaBolas = () => {
     const toggleOp = (op) => {
         const newOps = { ...config.ops, [op]: !config.ops[op] };
         const hasActiveAllowedOp = allowedOps.some(allowed => newOps[allowed]);
-        
-        if (!hasActiveAllowedOp) return; 
+
+        if (!hasActiveAllowedOp) return;
         setConfig({ ...config, ops: newOps });
     };
 
@@ -105,7 +105,7 @@ const OrdenaBolas = () => {
     // --- GENERADOR ---
     const generateBallData = (count, options) => {
         const activeTypes = Object.keys(options).filter(k => options[k] && allowedOps.includes(k));
-        
+
         if (activeTypes.length === 0) activeTypes.push('numbers');
 
         const ballsData = [];
@@ -129,7 +129,7 @@ const OrdenaBolas = () => {
                     label = `${a1} + ${b1}`;
                     break;
                 case 'sub':
-                    val = Math.floor(Math.random() * 40) + 1; 
+                    val = Math.floor(Math.random() * 40) + 1;
                     const b2 = Math.floor(Math.random() * 20) + 1;
                     const a2 = val + b2;
                     label = `${a2} - ${b2}`;
@@ -147,33 +147,33 @@ const OrdenaBolas = () => {
                     label = `${a4} ÷ ${b4}`;
                     break;
                 case 'pow':
-                    const base = Math.floor(Math.random() * 5) + 2; 
+                    const base = Math.floor(Math.random() * 5) + 2;
                     const exp = Math.floor(Math.random() * 2) + 2;
                     val = Math.pow(base, exp);
                     label = exp === 2 ? `${base}²` : (exp === 3 ? `${base}³` : `${base}^${exp}`);
                     break;
                 case 'sqrt':
-                    val = Math.floor(Math.random() * 10) + 2; 
+                    val = Math.floor(Math.random() * 10) + 2;
                     const sq = val * val;
                     label = `√${sq}`;
                     break;
                 case 'eq':
                     const eqType = Math.floor(Math.random() * 3);
                     if (eqType === 0) {
-                         const x = Math.floor(Math.random() * 15) + 1;
-                         const a = Math.floor(Math.random() * 10) + 1;
-                         val = x;
-                         label = `x + ${a} = ${x + a}`;
+                        const x = Math.floor(Math.random() * 15) + 1;
+                        const a = Math.floor(Math.random() * 10) + 1;
+                        val = x;
+                        label = `x + ${a} = ${x + a}`;
                     } else if (eqType === 1) {
-                         const x = Math.floor(Math.random() * 15) + 5;
-                         const a = Math.floor(Math.random() * 5) + 1;
-                         val = x;
-                         label = `x - ${a} = ${x - a}`;
+                        const x = Math.floor(Math.random() * 15) + 5;
+                        const a = Math.floor(Math.random() * 5) + 1;
+                        val = x;
+                        label = `x - ${a} = ${x - a}`;
                     } else {
-                         const x = Math.floor(Math.random() * 10) + 2;
-                         const a = Math.floor(Math.random() * 4) + 2;
-                         val = x;
-                         label = `${a}x = ${x * a}`;
+                        const x = Math.floor(Math.random() * 10) + 2;
+                        const a = Math.floor(Math.random() * 4) + 2;
+                        val = x;
+                        label = `${a}x = ${x * a}`;
                     }
                     break;
                 default:
@@ -222,7 +222,7 @@ const OrdenaBolas = () => {
         });
 
         // Caja
-        const boxSize = 450; 
+        const boxSize = 450;
         const wallThickness = 40;
         const centerX = width / 2;
         const centerY = height / 2;
@@ -243,7 +243,7 @@ const OrdenaBolas = () => {
         // Bolas
         const ballsData = generateBallData(config.ballCount, config.ops);
         const sortedValues = [...ballsData].map(b => b.value).sort((a, b) => a - b);
-        
+
         const gameLogic = {
             targetIndex: 0,
             isGameOver: false,
@@ -253,13 +253,13 @@ const OrdenaBolas = () => {
         const balls = ballsData.map(data => {
             let size;
             if (config.randomSize) {
-                size = 25 + Math.random() * 30; 
+                size = 25 + Math.random() * 30;
             } else {
                 const minVal = sortedValues[0];
                 const maxVal = sortedValues[sortedValues.length - 1];
                 const range = maxVal - minVal || 1;
                 const factor = (data.value - minVal) / range;
-                size = 25 + (factor * 35); 
+                size = 25 + (factor * 35);
             }
 
             return Bodies.circle(
@@ -275,10 +275,10 @@ const OrdenaBolas = () => {
                     plugin: {
                         value: data.value,
                         text: data.label,
-                        isCorrect: false 
+                        isCorrect: false
                     },
                     render: {
-                        fillStyle: '#3b82f6', 
+                        fillStyle: '#3b82f6',
                         strokeStyle: '#1d4ed8',
                         lineWidth: 3
                     }
@@ -294,7 +294,7 @@ const OrdenaBolas = () => {
             for (let i = 0; i < 150; i++) {
                 const color = colors[Math.floor(Math.random() * colors.length)];
                 const particle = Bodies.rectangle(
-                    x + (Math.random() * 100 - 50), y + (Math.random() * 100 - 50), 10, 10, 
+                    x + (Math.random() * 100 - 50), y + (Math.random() * 100 - 50), 10, 10,
                     { render: { fillStyle: color }, restitution: 0.5, friction: 0.1, collisionFilter: { group: -1 } }
                 );
                 Matter.Body.setVelocity(particle, { x: Math.random() * 10 - 5, y: Math.random() * -10 - 5 });
@@ -321,9 +321,9 @@ const OrdenaBolas = () => {
 
                 if (clickedValue === correctValue) {
                     clickedBall.plugin.isCorrect = true;
-                    clickedBall.render.fillStyle = '#ef4444'; 
+                    clickedBall.render.fillStyle = '#ef4444';
                     clickedBall.render.strokeStyle = '#b91c1c';
-                    
+
                     gameLogic.targetIndex++;
 
                     if (gameLogic.targetIndex >= sortedValues.length) {
@@ -341,14 +341,14 @@ const OrdenaBolas = () => {
         render.canvas.addEventListener('pointerdown', handleCanvasClick);
 
         Events.on(engine, 'beforeUpdate', () => {
-            const rotation = config.rotationSpeed * 0.001; 
+            const rotation = config.rotationSpeed * 0.001;
             if (rotation > 0) Composite.rotate(boxContainer, rotation, { x: centerX, y: centerY });
         });
 
         Events.on(render, 'afterRender', () => {
             const context = render.context;
             if (!context) return;
-            
+
             context.font = 'bold 18px Arial';
             context.textAlign = 'center';
             context.textBaseline = 'middle';
@@ -372,8 +372,8 @@ const OrdenaBolas = () => {
             Render.stop(render);
             Runner.stop(runner);
             if (engineRef.current) {
-                 Composite.clear(engineRef.current.world);
-                 Engine.clear(engineRef.current);
+                Composite.clear(engineRef.current.world);
+                Engine.clear(engineRef.current);
             }
         };
     }, [key]);
@@ -391,13 +391,13 @@ const OrdenaBolas = () => {
         ];
 
         const visibleOperations = allOperations.filter(op => allowedOps.includes(op.id));
-        
+
         const getLevelTitle = () => {
             if (level === 'eso') return 'Nivel Secundaria (ESO)';
             if (level === 'primaria') {
-                 const g = parseInt(grade);
-                 if (g >= 1 && g <= 3) return `Primaria (${grade}º) - Básico`;
-                 return `Primaria (${grade}º) - Avanzado`;
+                const g = parseInt(grade);
+                if (g >= 1 && g <= 3) return `Primaria (${grade}º) - Básico`;
+                return `Primaria (${grade}º) - Avanzado`;
             }
             return 'Configuración';
         };
@@ -415,11 +415,11 @@ const OrdenaBolas = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="font-medium text-gray-700 text-sm">Cantidad de bolas: {config.ballCount}</label>
-                                <input type="range" min="3" max="20" value={config.ballCount} onChange={(e) => setConfig({...config, ballCount: parseInt(e.target.value)})} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"/>
+                                <input type="range" min="3" max="20" value={config.ballCount} onChange={(e) => setConfig({ ...config, ballCount: parseInt(e.target.value) })} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600" />
                             </div>
                             <div className="space-y-2">
                                 <label className="font-medium text-gray-700 text-sm">Velocidad giro: {config.rotationSpeed}</label>
-                                <input type="range" min="0" max="10" value={config.rotationSpeed} onChange={(e) => setConfig({...config, rotationSpeed: parseInt(e.target.value)})} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600"/>
+                                <input type="range" min="0" max="10" value={config.rotationSpeed} onChange={(e) => setConfig({ ...config, rotationSpeed: parseInt(e.target.value) })} className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600" />
                             </div>
                         </div>
 
@@ -428,7 +428,7 @@ const OrdenaBolas = () => {
                             {visibleOperations.length > 0 ? (
                                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                                     {visibleOperations.map(op => (
-                                        <div 
+                                        <div
                                             key={op.id}
                                             onClick={() => toggleOp(op.id)}
                                             className={`flex items-center space-x-2 p-2 rounded-lg cursor-pointer transition-colors ${config.ops[op.id] ? 'bg-white shadow-sm border border-blue-200' : 'hover:bg-slate-100'}`}
@@ -443,7 +443,7 @@ const OrdenaBolas = () => {
                             )}
                         </div>
 
-                        <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer" onClick={() => setConfig({...config, randomSize: !config.randomSize})}>
+                        <div className="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-200 cursor-pointer" onClick={() => setConfig({ ...config, randomSize: !config.randomSize })}>
                             <div className="flex-1">
                                 <span className="font-medium text-gray-700 text-sm block">Tamaño engañoso</span>
                                 <span className="text-xs text-gray-500">El tamaño no indica el valor</span>
@@ -463,21 +463,42 @@ const OrdenaBolas = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center space-y-4 p-4">
-            <div className="w-full max-w-4xl flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                <Button onClick={backToConfig} variant="ghost" size="sm" className="text-gray-500">
-                    <Settings className="h-4 w-4 mr-2" /> Configurar
+        <div className="flex flex-col items-center justify-center space-y-6 p-4 min-h-screen bg-slate-50/50">
+            {/* Control Bar PRO */}
+            <div className="w-full max-w-4xl flex items-center justify-between bg-white/80 backdrop-blur-md p-3 px-6 rounded-2xl shadow-xl shadow-slate-200/50 border border-white/20">
+
+                {/* Botón Configuración */}
+                <Button
+                    onClick={backToConfig}
+                    variant="ghost"
+                    size="sm"
+                    className="group flex items-center gap-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100/50 rounded-xl transition-all"
+                >
+                    <div className="p-1.5 bg-slate-100 rounded-lg group-hover:rotate-45 transition-transform duration-500">
+                        <Settings className="h-4 w-4" />
+                    </div>
+                    <span className="font-semibold text-xs uppercase tracking-wider">Configurar</span>
                 </Button>
-                
-                <div className="flex items-center space-x-2 bg-slate-100 px-4 py-2 rounded-lg border border-slate-200">
-                    <Timer className="w-5 h-5 text-slate-600" />
-                    <span className="font-mono text-xl font-bold text-slate-700 w-32 text-center tracking-wider">
-                        {formatTime(timeElapsed)}
-                    </span>
+
+                {/* Timer Display PRO */}
+                <div className="relative flex items-center overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-slate-900 to-slate-800 rounded-xl" />
+                    <div className="relative flex items-center gap-3 px-6 py-2">
+                        <Timer className="w-5 h-5 text-indigo-400 animate-pulse" />
+                        <span className="font-mono text-2xl font-black text-white w-36 text-center tracking-[0.1em] drop-shadow-md">
+                            {formatTime(timeElapsed)}
+                        </span>
+                    </div>
                 </div>
 
-                <Button onClick={restartGame} variant="outline" size="icon">
-                    <RefreshCw className="h-4 w-4" />
+                {/* Botón Reiniciar PRO */}
+                <Button
+                    onClick={restartGame}
+                    variant="ghost"
+                    size="icon"
+                    className="group relative h-10 w-10 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all overflow-hidden"
+                >
+                    <RefreshCw className="h-5 w-5 group-active:rotate-180 transition-transform duration-500 z-10" />
                 </Button>
             </div>
 
@@ -497,7 +518,7 @@ const OrdenaBolas = () => {
                         </div>
                     </div>
                 )}
-                
+
                 {gameState === 'won' && (
                     <div className="absolute inset-0 bg-green-500/10 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl pointer-events-none">
                         <div className="bg-white/95 p-8 rounded-xl shadow-2xl border-2 border-green-500 text-center space-y-4 animate-in zoom-in max-w-sm mx-4 pointer-events-auto">

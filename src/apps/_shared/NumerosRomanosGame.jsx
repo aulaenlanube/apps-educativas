@@ -283,7 +283,7 @@ const NumerosRomanosGame = ({ maxNumber, title }) => {
 
       {/* Switch de Ayuda */}
       <div className="switch-container">
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-6">
           <div className="flex items-center gap-2">
             <span className="text-sm font-bold text-gray-600">Ayuda Visual</span>
             <label className="switch">
@@ -291,12 +291,13 @@ const NumerosRomanosGame = ({ maxNumber, title }) => {
               <span className="slider round"></span>
             </label>
           </div>
-          <button
-            className={`btn-mode text-xs py-1 px-3 ${showTable ? 'active' : ''}`}
-            onClick={() => setShowTable(!showTable)}
-          >
-            {showTable ? 'Ocultar Tabla' : 'Ver Tabla'}
-          </button>
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-bold text-gray-600">Ayuda Valores</span>
+            <label className="switch">
+              <input type="checkbox" checked={showTable} onChange={(e) => setShowTable(e.target.checked)} />
+              <span className="slider round"></span>
+            </label>
+          </div>
         </div>
       </div>
 
