@@ -571,5 +571,6 @@ export const NumerosRomanos3 = () => <NumerosRomanosGame maxNumber={20} title="N
 export const NumerosRomanos4 = () => <NumerosRomanosGame maxNumber={100} title="Números Romanos (4º)" />;
 export const NumerosRomanos5 = () => <NumerosRomanosGame maxNumber={3999} title="Números Romanos (5º)" />;
 export const NumerosRomanos6 = () => <NumerosRomanosGame maxNumber={1000000} title="Números Romanos (6º)" />;
+export const NumerosRomanosESO = () => <NumerosRomanosGame maxNumber={1000000} title="Números Romanos (ESO)" />;
 
 export default NumerosRomanosGame;

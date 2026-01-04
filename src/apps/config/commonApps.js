@@ -39,7 +39,7 @@ import IslaDeLaCalma from '../isla-de-la-calma/IslaDeLaCalma';
 import OrdenaLaFraseJuego from '../_shared/OrdenaLaFraseJuego';
 import OrdenaLaHistoriaJuego from '../_shared/OrdenaLaHistoriaJuego';
 import DetectiveDePalabras from '@/apps/_shared/DetectiveDePalabrasJuego';
-import { NumerosRomanos3, NumerosRomanos4, NumerosRomanos5, NumerosRomanos6 } from '../_shared/NumerosRomanosGame';
+import { NumerosRomanos3, NumerosRomanos4, NumerosRomanos5, NumerosRomanos6, NumerosRomanosESO } from '../_shared/NumerosRomanosGame';
 import { MayorMenor1, MayorMenor2, MayorMenor3, MayorMenor4, MayorMenor5, MayorMenor6 } from '../_shared/MayorMenorGame';
 import { Medidas1, Medidas2, Medidas3, Medidas4, Medidas5, Medidas6 } from '../_shared/MedidasGame';
 import GeneradorPersonajes from '../generador-personajes/GeneradorPersonajes';
@@ -200,6 +200,7 @@ export const appNumerosRomanos3 = { id: 'numeros-romanos-3', name: '🏛️ Núm
 export const appNumerosRomanos4 = { id: 'numeros-romanos-4', name: '🏛️ Números Romanos (Intermedio)', description: 'Practica números romanos hasta el 100.', component: NumerosRomanos4 };
 export const appNumerosRomanos5 = { id: 'numeros-romanos-5', name: '🏛️ Números Romanos (Avanzado)', description: 'Domina los números romanos hasta el 3999.', component: NumerosRomanos5 };
 export const appNumerosRomanos6 = { id: 'numeros-romanos-6', name: '🏛️ Números Romanos (Experto)', description: 'Aprende los números romanos hasta 1.000.000 con la raya horizontal.', component: NumerosRomanos6 };
+export const appNumerosRomanosESO = { id: 'numeros-romanos-eso', name: '🏛️ Números Romanos (ESO)', description: 'Domina los números romanos hasta 1.000.000 con la raya horizontal.', component: NumerosRomanosESO };
 
 export const appMayorMenor1 = { id: 'mayor-menor-1', name: '⚖️ Mayor, Menor o Igual', description: 'Aprende a comparar números del 1 al 20.', component: MayorMenor1 };
 export const appMayorMenor2 = { id: 'mayor-menor-2', name: '⚖️ Comparar Números', description: 'Compara números hasta el 100 y sumas sencillas.', component: MayorMenor2 };
