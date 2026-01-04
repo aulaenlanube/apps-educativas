@@ -23,7 +23,7 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
             if (firstSpaceIndex !== -1) {
                 return {
                     emoji: title.substring(0, firstSpaceIndex),
-                    text: title.substring(firstSpaceIndex) 
+                    text: title.substring(firstSpaceIndex)
                 };
             }
         }
@@ -59,7 +59,7 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
                 clearInterval(spinIntervalRef.current);
                 const winnerIndex = Math.floor(Math.random() * apps.length);
                 setCurrentAppIndex(winnerIndex);
-                
+
                 setTimeout(() => {
                     setIsSpinning(false);
                     onAppSelected(apps[winnerIndex]);
@@ -72,7 +72,7 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
     const { emoji, text } = splitEmojiAndTitle(apps[currentAppIndex]?.name);
 
     return (
-        <motion.div 
+        <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className="w-full max-w-xl mx-auto mb-12"
@@ -107,15 +107,14 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
                         </AnimatePresence>
                     </div>
 
-                    <Button 
-                        onClick={handleSpin} 
+                    <Button
+                        onClick={handleSpin}
                         disabled={isSpinning}
                         size="lg"
-                        className={`w-full md:w-auto min-w-[200px] text-lg rounded-xl transition-all duration-300 ${
-                            isSpinning 
-                            ? 'bg-gray-100 text-gray-400 border border-gray-200 shadow-none' 
-                            : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-1'
-                        }`}
+                        className={`w-full md:w-auto min-w-[200px] text-lg rounded-xl transition-all duration-300 ${isSpinning
+                                ? 'bg-gray-100 text-gray-400 border border-gray-200 shadow-none'
+                                : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-1'
+                            }`}
                     >
                         {isSpinning ? (
                             <span className="flex items-center gap-2">
@@ -160,7 +159,7 @@ const AppListPage = () => {
     const params = useParams();
     const { grade, subjectId } = params;
     // Si la URL no tiene level (rutas antiguas), asumimos 'eso', pero tu router debería pasarlo.
-    const level = params.level || 'eso'; 
+    const level = params.level || 'eso';
     const navigate = useNavigate();
 
     let appsForSubject = [];
@@ -171,14 +170,14 @@ const AppListPage = () => {
         const subjectInfo = esoSubjects[grade]?.find(s => s.id === subjectId);
         // Si encontramos la asignatura en la lista, usamos su nombre "bonito"
         if (subjectInfo) subjectName = subjectInfo.nombre;
-        
+
         appsForSubject = esoApps[grade]?.[subjectId] || [];
 
     } else { // Primaria
         // Buscamos el nombre en primariaSubjects
         const subjectInfo = primariaSubjects[grade]?.find(s => s.id === subjectId);
         if (subjectInfo) subjectName = subjectInfo.nombre;
-        
+
         // Obtenemos las apps
         const primaryCourseData = primariaApps[grade];
         if (primaryCourseData && !Array.isArray(primaryCourseData)) {
@@ -238,16 +237,16 @@ const AppListPage = () => {
 
                     {appsForSubject.length > 0 ? (
                         <>
-                            <RandomAppSelector 
-                                apps={appsForSubject} 
-                                onAppSelected={handleRandomSelection} 
+                            <RandomAppSelector
+                                apps={appsForSubject}
+                                onAppSelected={handleRandomSelection}
                             />
-                            
-                            <AppList 
-                                apps={appsForSubject} 
-                                level={level} 
-                                grade={grade} 
-                                subjectId={subjectId} 
+
+                            <AppList
+                                apps={appsForSubject}
+                                level={level}
+                                grade={grade}
+                                subjectId={subjectId}
                             />
                         </>
                     ) : (
