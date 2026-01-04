@@ -13,7 +13,12 @@
       "🚕",
       "🚜",
       "🛵",
-      "🚁"
+      "🚁",
+      "🚀",
+      "🛶",
+      "🚠",
+      "🚜",
+      "🚛"
     ],
     "intrusos": [
       "🏠",
@@ -23,11 +28,7 @@
       "🍔",
       "🍕",
       "🧸",
-      "🛋️",
-      "🛁",
-      "🛌",
-      "🧥",
-      "👟"
+      "🛋️"
     ]
   },
   {
@@ -44,7 +45,11 @@
       "👩‍🚀",
       "👨‍🔧",
       "👩‍🔬",
-      "👨‍⚖️"
+      "👨‍制造",
+      "👩‍⚖️",
+      "👨‍💻",
+      "👩‍✈️",
+      "👨‍🎤"
     ],
     "intrusos": [
       "👻",
@@ -54,10 +59,7 @@
       "🗽",
       "🧸",
       "🪁",
-      "🏰",
-      "🦄",
-      "🐉",
-      "🧛"
+      "🏰"
     ]
   },
   {
@@ -66,15 +68,19 @@
       "🚦",
       "🏢",
       "🚌",
-      " fountain",
+      "⛲",
       "🏬",
       "🏥",
       "🏫",
       "⛪",
       "🏤",
-      "🏬",
       "🏪",
-      "🏙️"
+      "🏙️",
+      "🏛️",
+      "🏟️",
+      "🏦",
+      "🏗️",
+      "🏘️"
     ],
     "intrusos": [
       "🚜",
@@ -84,10 +90,7 @@
       "🏔️",
       "⛺",
       "🌾",
-      "🐐",
-      "🐖",
-      "🐎",
-      "🌵"
+      "🐐"
     ]
   },
   {
@@ -104,19 +107,21 @@
       "🎓",
       "🔔",
       "📖",
-      "🖊️"
+      "🖊️",
+      "📓",
+      "🖇️",
+      "📒",
+      "💻"
     ],
     "intrusos": [
       "🛌",
       "🛁",
       "🍳",
-      " televisión",
+      "📺",
       "🎮",
       "🧸",
       "🍦",
-      "🥪",
-      "🛋️",
-      "🚿"
+      "🥪"
     ]
   },
   {
@@ -135,7 +140,11 @@
       "Yayo",
       "Yaya",
       "Sobrino",
-      "Sobrina"
+      "Sobrina",
+      "Hijo",
+      "Hija",
+      "Suegro",
+      "Nieto"
     ],
     "intrusos": [
       "Profesor",
@@ -144,10 +153,7 @@
       "Amigo",
       "Policía",
       "Bombero",
-      "Cartero",
-      "Panadero",
-      "Cantante",
-      "Futbolista"
+      "Cartero"
     ]
   },
   {
@@ -164,7 +170,11 @@
       "Recibidor",
       "Despensa",
       "Jardín",
-      "Sótano"
+      "Sótano",
+      "Buhardilla",
+      "Aseo",
+      "Entrada",
+      "Lavadero"
     ],
     "intrusos": [
       "Colegio",
@@ -173,14 +183,11 @@
       "Cine",
       "Calle",
       "Plaza",
-      "Museo",
-      "Hospital",
-      "Estación",
-      "Puente"
+      "Museo"
     ]
   },
   {
-    "categoria": "Servicios y Mobiliario de la Calle",
+    "categoria": "Mobiliario Urbano",
     "correctos": [
       "Semáforo",
       "Papelera",
@@ -191,7 +198,11 @@
       "Fuente",
       "Contenedor",
       "Quiosco",
-      "Señal de tráfico"
+      "Señal",
+      "Parada Bus",
+      "Estatua",
+      "Bolardo",
+      "Macetero"
     ],
     "intrusos": [
       "Sofá",
@@ -200,10 +211,7 @@
       "Televisión",
       "Nevera",
       "Alfombra",
-      "Microondas",
-      "Espejo",
-      "Lavadora",
-      "Armario"
+      "Lavadora"
     ]
   },
   {
@@ -218,7 +226,11 @@
       "Enfermero",
       "Camarero",
       "Vigilante",
-      "Limpiador"
+      "Limpiador",
+      "Cocinero",
+      "Conductor",
+      "Dentista",
+      "Veterinario"
     ],
     "intrusos": [
       "Niño",
@@ -227,10 +239,7 @@
       "Perro",
       "Gato",
       "Pájaro",
-      "Libro",
-      "Mochila",
-      "Estuche",
-      "Pizarra"
+      "Libro"
     ]
   },
   {
@@ -245,7 +254,12 @@
       "Periódico",
       "Revista",
       "Tableta",
-      "Email"
+      "Email",
+      "Móvil",
+      "Fax",
+      "Sms",
+      "WhatsApp",
+      "Libro"
     ],
     "intrusos": [
       "Coche",
@@ -254,10 +268,7 @@
       "Avión",
       "Barco",
       "Camión",
-      "Autobús",
-      "Moto",
-      "Metro",
-      "Patinete"
+      "Autobús"
     ]
   }
 ]

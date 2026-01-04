@@ -1,122 +1,204 @@
 [
   {
-    "categoria": "Herramientas (Visual)",
+    "categoria": "Instrumentos para la Expresión (Visual)",
     "correctos": [
       "🎨",
       "🖌️",
       "✏️",
       "📏",
       "📐",
-      "✂️"
+      "✂️",
+      "✒️",
+      "🖋️",
+      "📷",
+      "📽️",
+      "🎬",
+      "🎞️",
+      "📐",
+      "🖇️",
+      "📏",
+      "🎨"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🥄",
       "🍴",
-      "🕶️"
+      "🕶️",
+      "🔋",
+      "🔌",
+      "💡",
+      "🪒"
     ]
   },
   {
-    "categoria": "Colores (Visual)",
+    "categoria": "Teoría del Color y Pintura (Visual)",
     "correctos": [
       "🔴",
       "🔵",
       "🟡",
       "🟢",
       "🟠",
-      "🟣"
+      "🟣",
+      "🟤",
+      "⚪",
+      "⚫",
+      "🟥",
+      "🟦",
+      "🟨",
+      "🟩",
+      "🟧",
+      "🟪",
+      "🟫"
     ],
     "intrusos": [
       "🏁",
       "🏳️",
       "🏴",
       "🔳",
-      "🔲"
+      "🔲",
+      "💠",
+      "🌀",
+      "💠",
+      "🔘"
     ]
   },
   {
-    "categoria": "Sistemas de Representación",
+    "categoria": "Sistemas de Representación y Geometría",
     "correctos": [
-      "Diédrico",
-      "Axonométrico",
-      "Caballera",
-      "Isométrica",
-      "Cónica"
+      "Sistema Diédrico",
+      "Sistema Axonométrico",
+      "Perspectiva Caballera",
+      "Perspectiva Isométrica",
+      "Perspectiva Cónica Central",
+      "Perspectiva Cónica Oblicua",
+      "Vistas (Alzado, Planta, Perfil)",
+      "Escala técnica",
+      "Cotas y medidas",
+      "Normalización",
+      "Línea de Horizonte",
+      "Punto de Fuga",
+      "Abatimiento",
+      "Geometría Descriptiva"
     ],
     "intrusos": [
-      "Boceto",
-      "Croquis",
-      "Plano",
-      "Mapa",
-      "Dibujo"
+      "Boceto artístico",
+      "Croquis a mano alzada",
+      "Dibujo del natural",
+      "Mapa topográfico",
+      "Plano de ciudad",
+      "Fotografía panorámica"
     ]
   },
   {
-    "categoria": "Técnicas Artísticas",
+    "categoria": "Técnicas y Procedimientos Plásticos",
     "correctos": [
-      "Óleo",
+      "Óleo sobre lienzo",
       "Acuarela",
-      "Pastel",
-      "Grabado",
-      "Escultura"
+      "Pintura al pastel",
+      "Grabado y estampación",
+      "Escultura exenta / Relieve",
+      "Técnica mixta",
+      "Collage",
+      "Fotomontaje",
+      "Acrílico",
+      "Gouache (Témpera)",
+      "墨 / Tinta china",
+      "Punta de plata",
+      "Xilografía",
+      "Serigrafía"
     ],
     "intrusos": [
-      "Fotografía",
-      "Cine",
-      "Cómic",
-      "Diseño",
-      "Publicidad"
+      "Fotografía digital",
+      "Cine de ficción",
+      "Cómic y Novela gráfica",
+      "Diseño gráfico",
+      "Publicidad comercial",
+      "Arquitectura modular"
     ]
   },
   {
-    "categoria": "Elementos del Lenguaje Visual",
+    "categoria": "Estructura del Lenguaje Visual",
     "correctos": [
-      "Punto",
-      "Línea",
-      "Plano",
-      "Textura",
-      "Color"
+      "Punto como elemento",
+      "Línea y grafismo",
+      "Plano y volumen",
+      "Textura visual / táctil",
+      "Color y matiz",
+      "Saturación cromática",
+      "Luminosidad / Valor",
+      "Composición y encuadre",
+      "Equilibrio simétrico",
+      "Ritmo visual",
+      "Proporción áurea",
+      "Peso visual",
+      "Contraste térmico",
+      "Sombra propia/arrojada"
     ],
     "intrusos": [
-      "Sonido",
-      "Movimiento",
-      "Tiempo",
-      "Espacio",
-      "Ritmo"
+      "Sonido ambiental",
+      "Movimiento físico",
+      "Tiempo cronológico",
+      "Espacio exterior",
+      "Sabor",
+      "Olor",
+      "Ritmo musical"
     ]
   },
   {
-    "categoria": "Colores Fríos",
+    "categoria": "Gamas Cromáticas: Fríos y Complementarios",
     "correctos": [
-      "Azul",
-      "Verde",
-      "Violeta",
+      "Gama Fría (Azules)",
+      "Gama Fría (Verdes)",
+      "Gama Fría (Violetas)",
+      "Color Primario (sustractivo)",
+      "Color Secundario",
+      "Color Complementario",
+      "Armonía de análogos",
+      "Monocromía",
+      "Saturación máxima",
+      "Matiz de color",
+      "Luz blanca",
+      "Sombra negra",
+      "Gama de grises",
       "Turquesa"
     ],
     "intrusos": [
-      "Rojo",
-      "Naranja",
-      "Amarillo",
-      "Marrón",
-      "Ocre"
+      "Gama Cálida (Rojo)",
+      "Naranja intenso",
+      "Amarillo limón",
+      "Marrón tierra",
+      "Ocre tostado",
+      "Siena natural",
+      "Beige"
     ]
   },
   {
-    "categoria": "Movimientos Artísticos",
+    "categoria": "Grandes Vanguardias y Estilos Artísticos",
     "correctos": [
       "Impresionismo",
-      "Cubismo",
-      "Surrealismo",
-      "Pop Art",
-      "Abstracción"
+      "Cubismo analítico/sintético",
+      "Surrealismo figurativo",
+      "Pop Art americano",
+      "Abstracción geométrica",
+      "Expresionismo alemán",
+      "Fauvismo (Color puro)",
+      "Futurismo italiano",
+      "Dadaísmo",
+      "Minimalismo",
+      "Hiperrealismo",
+      "Op Art (Arte óptico)",
+      "Postimpresionismo",
+      "Arte Conceptual"
     ],
     "intrusos": [
-      "Renacimiento",
-      "Barroco",
-      "Gótico",
-      "Románico",
-      "Neoclásico"
+      "Renacimiento clásico",
+      "Barroco recargado",
+      "Estilo Gótico",
+      "Arte Románico",
+      "Neoclasicismo",
+      "Rococó",
+      "Manierismo"
     ]
   }
 ]

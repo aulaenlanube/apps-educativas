@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Modern Digital World (Icons)",
+    "categoria": "Digital World (Icons)",
     "correctos": [
       "💻",
       "📱",
@@ -11,8 +11,13 @@
       "📧",
       "🌐",
       "📶",
-      "🛒 (online shop)",
-      "🕹️"
+      "🛒",
+      "🕹️",
+      "🖥️",
+      "🔋",
+      "🔌",
+      "📸",
+      "🎧"
     ],
     "intrusos": [
       "📚",
@@ -21,15 +26,11 @@
       "🌳",
       "⚽",
       "🛖",
-      "🏹",
-      "🛡️",
-      "⚔️",
-      "🐎",
-      "🏛️"
+      "🏹"
     ]
   },
   {
-    "categoria": "Environmental Awareness and Eco-Friendly (Icons)",
+    "categoria": "Environmental Awareness (Icons)",
     "correctos": [
       "♻️",
       "🌍",
@@ -41,7 +42,12 @@
       "🌊",
       "🚲",
       "🥦",
-      "🧺"
+      "🧺",
+      "🌲",
+      "🐼",
+      "🦜",
+      "🌡️",
+      "🛰️"
     ],
     "intrusos": [
       "🏭",
@@ -49,14 +55,12 @@
       "🚬",
       "🔥",
       "☢️",
-      "🚗 (petrol)",
-      "💨 (smoke)",
-      "⛽",
-      "🎰"
+      "🚗",
+      "⛽"
     ]
   },
   {
-    "categoria": "Health Conditions and Sickness (Icons)",
+    "categoria": "Health (Icons)",
     "correctos": [
       "🤒",
       "🤕",
@@ -67,7 +71,13 @@
       "💉",
       "💊",
       "🚑",
-      "🏥"
+      "🏥",
+      "🦷",
+      "🧠",
+      "🧬",
+      "⚕️",
+      "🧼",
+      "🧻"
     ],
     "intrusos": [
       "😀",
@@ -76,15 +86,11 @@
       "🤠",
       "💪",
       "🏃",
-      "🤸",
-      "🍎",
-      "🏀",
-      "🏊",
-      "🏐"
+      "🤸"
     ]
   },
   {
-    "categoria": "Future Technology and Space (Icons)",
+    "categoria": "Future and Space (Icons)",
     "correctos": [
       "🤖",
       "🚀",
@@ -93,9 +99,15 @@
       "🧬",
       "🔭",
       "🛰️",
-      "🛸",
       "🌑",
-      "🌌"
+      "🌌",
+      "☄️",
+      "🪐",
+      "🌍",
+      "👽",
+      "🔬",
+      "📡",
+      "🛰️"
     ],
     "intrusos": [
       "🦕",
@@ -104,14 +116,11 @@
       "🏰",
       "🛡️",
       "⚔️",
-      "🏺",
-      "🛶",
-      "🛖",
-      "🏛️"
+      "🛖"
     ]
   },
   {
-    "categoria": "Verb Tenses (Past, Present, Future)",
+    "categoria": "Verb Tenses",
     "correctos": [
       "I go",
       "I went",
@@ -120,7 +129,11 @@
       "I will go",
       "She goes",
       "They went",
-      "We will visit"
+      "We will visit",
+      "He has seen",
+      "They are playing",
+      "It was raining",
+      "You will like"
     ],
     "intrusos": [
       "I to go",
@@ -129,13 +142,11 @@
       "I gone",
       "Go I",
       "She going",
-      "He been",
-      "They was",
-      "We is"
+      "He been"
     ]
   },
   {
-    "categoria": "Natural and Synthetic Materials",
+    "categoria": "Materials",
     "correctos": [
       "Wood",
       "Metal",
@@ -147,7 +158,10 @@
       "Stone",
       "Rubber",
       "Cotton",
-      "Wool"
+      "Wool",
+      "Silicone",
+      "Ceramic",
+      "Concrete"
     ],
     "intrusos": [
       "Table",
@@ -156,15 +170,11 @@
       "Bottle",
       "Shirt",
       "Shoe",
-      "Wall",
-      "House",
-      "Pen",
-      "Book",
-      "Car"
+      "Wall"
     ]
   },
   {
-    "categoria": "Specific Prepositions of Place and Movement",
+    "categoria": "Prepositions",
     "correctos": [
       "In",
       "On",
@@ -176,7 +186,10 @@
       "Opposite",
       "Through",
       "Across",
-      "Towards"
+      "Towards",
+      "Against",
+      "From",
+      "To"
     ],
     "intrusos": [
       "Yesterday",
@@ -185,15 +198,11 @@
       "Jump",
       "Happy",
       "Always",
-      "Often",
-      "Never",
-      "Because",
-      "But",
-      "And"
+      "Often"
     ]
   },
   {
-    "categoria": "Common Health Problems and Illnesses",
+    "categoria": "Health Problems",
     "correctos": [
       "Headache",
       "Stomachache",
@@ -204,7 +213,9 @@
       "Flu",
       "Backache",
       "Earache",
-      "Sore throat"
+      "Sore throat",
+      "Broken leg",
+      "Sunburn"
     ],
     "intrusos": [
       "Happy",
@@ -213,15 +224,11 @@
       "Tired",
       "Excited",
       "Scared",
-      "Angry",
-      "Bored",
-      "Doctor",
-      "Medicine",
-      "Hospital"
+      "Angry"
     ]
   },
   {
-    "categoria": "Major Cities in English-Speaking Countries",
+    "categoria": "Major Cities",
     "correctos": [
       "London",
       "New York",
@@ -232,7 +239,11 @@
       "Sydney",
       "Toronto",
       "Dublin",
-      "Edinburgh"
+      "Edinburgh",
+      "Glasgow",
+      "Washington",
+      "Canberra",
+      "Melbourne"
     ],
     "intrusos": [
       "Paris",
@@ -241,26 +252,31 @@
       "Berlin",
       "Tokyo",
       "Peking",
-      "Cairo",
-      "Moscow",
-      "Mexico City",
-      "Bangkok"
+      "Cairo"
     ]
   },
   {
-    "categoria": "Conditionals (Zero and First)",
+    "categoria": "Conditional Sentences",
     "correctos": [
-      "If it rains, I will stay home",
-      "If you touch fire, you get burned",
-      "If you study, you will pass",
-      "If I am late, I will call"
+      "If it rains",
+      "If you touch fire",
+      "If you study",
+      "If I am late",
+      "If we run",
+      "If they ask",
+      "If she eats",
+      "If he comes",
+      "If I were richer",
+      "If they had arrived",
+      "If you win",
+      "If it happens"
     ],
     "intrusos": [
       "If I goes",
       "When I will go",
       "If I to go",
       "I stay home if rain",
-      "You get burned if you touch"
+      "You get burned"
     ]
   }
 ]

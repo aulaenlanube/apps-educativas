@@ -1,20 +1,33 @@
 [
   {
-    "categoria": "Instrumentos (Visual)",
+    "categoria": "Instrumentos Musicales (Visual)",
     "correctos": [
       "🎸",
       "🎹",
       "🎺",
       "🎻",
       "🥁",
-      "🎷"
+      "🎷",
+      "🪗",
+      "🪕",
+      "🎻",
+      "🎼",
+      "🎹",
+      "🎺",
+      "🥁",
+      "🪕",
+      "🎙️",
+      "🎤"
     ],
     "intrusos": [
-      "🎤",
-      "🎧",
-      "🔈",
       "🔨",
-      "🔧"
+      "🔧",
+      "🪚",
+      "🪓",
+      "⛏️",
+      "🗜️",
+      "🪛",
+      "🩹"
     ]
   },
   {
@@ -25,32 +38,58 @@
       "🎼",
       "🎹",
       "𝄞",
-      "𝄢"
+      "𝄢",
+      "🎙️",
+      "🎤",
+      "📻",
+      "🎛️",
+      "🎚️",
+      "🎧",
+      "🔊",
+      "🔉",
+      "🔈",
+      "🔇"
     ],
     "intrusos": [
       "🅰️",
       "🅱️",
       "💲",
       "💯",
-      "➕"
+      "➕",
+      "➖",
+      "✖️",
+      "➗"
     ]
   },
   {
-    "categoria": "Aparatos de Audio (Visual)",
+    "categoria": "Aparatos y Audio (Visual)",
     "correctos": [
       "🎧",
       "🎤",
       "📻",
       "🔈",
       "🔉",
-      "🔊"
+      "🔊",
+      "🎛️",
+      "🎚️",
+      "🎙️",
+      "🎹",
+      "🎸",
+      "🎻",
+      "🎷",
+      "🎺",
+      "🥁",
+      "🪗"
     ],
     "intrusos": [
       "📺",
       "💻",
       "📱",
       "📷",
-      "📹"
+      "📹",
+      "🔌",
+      "🔋",
+      "💡"
     ]
   },
   {
@@ -59,51 +98,85 @@
       "Altura",
       "Duración",
       "Intensidad",
-      "Timbre"
+      "Timbre",
+      "Frecuencia",
+      "Amplitud",
+      "Onda",
+      "Reverberación",
+      "Eco",
+      "Vibración",
+      "Curva de onda",
+      "Tono",
+      "Armónico",
+      "Envolvente"
     ],
     "intrusos": [
       "Ruido",
       "Silencio",
-      "Eco",
       "Música",
-      "Ritmo"
+      "Ritmo",
+      "Nota",
+      "Melodía",
+      "Armonía"
     ]
   },
   {
-    "categoria": "Familias de Instrumentos",
+    "categoria": "Clasificación de Instrumentos",
     "correctos": [
-      "Cuerda",
-      "Viento",
-      "Percusión",
-      "Electrófonos"
+      "Cuerda (Cordófonos)",
+      "Viento (Aerófonos)",
+      "Percusión (Membranófonos)",
+      "Idiófonos",
+      "Electrófonos",
+      "Viento-madera",
+      "Viento-metal",
+      "Cuerda frotada",
+      "Cuerda pulsada",
+      "Cuerda percutida",
+      "Percusión afinada",
+      "Efectos"
     ],
     "intrusos": [
       "Madera",
       "Metal",
       "Plástico",
       "Aire",
-      "Agua"
+      "Agua",
+      "Fuego",
+      "Tierra"
     ]
   },
   {
-    "categoria": "Figuras Musicales",
+    "categoria": "Figuras y Silencios Musicales",
     "correctos": [
       "Redonda",
       "Blanca",
       "Negra",
       "Corchea",
-      "Semicorchea"
+      "Semicorchea",
+      "Fusa",
+      "Semifusa",
+      "Silencio de redonda",
+      "Silencio de blanca",
+      "Silencio de negra",
+      "Silencio de corchea",
+      "Silencio de semicorchea",
+      "Puntillo",
+      "Ligadura"
     ],
     "intrusos": [
       "Do",
       "Re",
       "Mi",
       "Fa",
-      "Sol"
+      "Sol",
+      "La",
+      "Si",
+      "Clave"
     ]
   },
   {
-    "categoria": "Notas Musicales",
+    "categoria": "Notas y Lectura Musical",
     "correctos": [
       "Do",
       "Re",
@@ -111,31 +184,53 @@
       "Fa",
       "Sol",
       "La",
-      "Si"
+      "Si",
+      "Sostenido",
+      "Bemol",
+      "Becuadro",
+      "Clave de Sol",
+      "Clave de Fa",
+      "Líneas adicionales",
+      "Pentagrama",
+      "Escala mayor",
+      "Escala menor"
     ],
     "intrusos": [
       "Clave",
-      "Pentagrama",
       "Compás",
       "Tempo",
-      "Ritmo"
+      "Ritmo",
+      "Pentagrama",
+      "Matiz",
+      "Dinámica"
     ]
   },
   {
-    "categoria": "Voces Humanas",
+    "categoria": "Voces y Agrupaciones",
     "correctos": [
       "Soprano",
       "Contralto",
       "Tenor",
       "Barítono",
-      "Bajo"
+      "Bajo",
+      "Mezzosoprano",
+      "Coro mixto",
+      "Coro de voces blancas",
+      "Orquesta sinfónica",
+      "Cuarteto de cuerda",
+      "Banda de música",
+      "Solista",
+      "Maestro",
+      "Director"
     ],
     "intrusos": [
       "Piano",
       "Forte",
       "Allegro",
       "Adagio",
-      "Andante"
+      "Andante",
+      "Presto",
+      "Lento"
     ]
   }
 ]

@@ -15,7 +15,11 @@
       "😆",
       "😇",
       "😚",
-      "😋"
+      "😋",
+      "😻",
+      "🤗",
+      "😎",
+      "🤡"
     ],
     "intrusos": [
       "😢",
@@ -25,11 +29,7 @@
       "😱",
       "😤",
       "🤢",
-      "😴",
-      "🙄",
-      "🤫",
-      "👽",
-      "👹"
+      "😴"
     ]
   },
   {
@@ -42,11 +42,14 @@
       "🧴",
       "🧻",
       "🦷",
-      "🧴",
       "🧖‍♀️",
       "🍎",
       "🥦",
-      "💧"
+      "💧",
+      "🧺",
+      " sponges",
+      "🚰",
+      "🧺"
     ],
     "intrusos": [
       "🎮",
@@ -56,11 +59,7 @@
       "🗑️",
       "🍭",
       "🍫",
-      "🍩",
-      "🥤",
-      "🛋️",
-      "📱",
-      "🚗"
+      "🍩"
     ]
   },
   {
@@ -78,7 +77,11 @@
       "🎭",
       "🎪",
       "🛴",
-      "🚲"
+      "🚲",
+      "🎮",
+      "🏸",
+      "🛹",
+      "🪀"
     ],
     "intrusos": [
       "📚",
@@ -88,11 +91,7 @@
       "🔨",
       "💻",
       "🗑️",
-      "🔧",
-      "🏥",
-      "🦷",
-      "💼",
-      "📎"
+      "🔧"
     ]
   },
   {
@@ -109,7 +108,9 @@
       "Amistad",
       "Paz",
       "Gozo",
-      "Esperanza"
+      "Esperanza",
+      "Simpatía",
+      "Respeto"
     ],
     "intrusos": [
       "Miedo",
@@ -118,12 +119,7 @@
       "Ira",
       "Dolor",
       "Susto",
-      "Asco",
-      "Celos",
-      "Vergüenza",
-      "Cansancio",
-      "Hambre",
-      "Sed"
+      "Asco"
     ]
   },
   {
@@ -138,7 +134,11 @@
       "Buen provecho",
       "Enhorabuena",
       "Bienvenido",
-      "Lo siento"
+      "Lo siento",
+      "Disculpa",
+      "Permiso",
+      "Buen día",
+      "Encantado"
     ],
     "intrusos": [
       "Tonto",
@@ -148,11 +148,7 @@
       "No",
       "Calla",
       "Mío",
-      "Vete",
-      "Lento",
-      "Pesado",
-      "Pequeño",
-      "Viejo"
+      "Vete"
     ]
   },
   {
@@ -168,7 +164,10 @@
       "Respetar",
       "Saludar",
       "Acompañar",
-      "Agradecer"
+      "Agradecer",
+      "Dialogar",
+      "Sonreír",
+      "Colaborar"
     ],
     "intrusos": [
       "Pegar",
@@ -177,11 +176,7 @@
       "Romper",
       "Insultar",
       "Mentir",
-      "Escupir",
-      "Robar",
-      "Pisar",
-      "Morder",
-      "Arañar"
+      "Escupir"
     ]
   },
   {
@@ -195,8 +190,12 @@
       "Beber agua",
       "Ducharse",
       "Hacer deporte",
-      "Recoger los juguetes",
-      "Desayunar sano"
+      "Recoger juguetes",
+      "Desayunar sano",
+      "Peinarse",
+      "Llevar ropa limpia",
+      "Abrazar",
+      "Sonreír"
     ],
     "intrusos": [
       "Comer chuches",
@@ -204,11 +203,7 @@
       "No bañarse",
       "Pegar a los otros",
       "Llorar por todo",
-      "Gritar fuerte",
-      "Comer rápido",
-      "Estar sucio",
-      "Dormir poco",
-      "No ayudar"
+      "Gritar fuerte"
     ]
   }
 ]

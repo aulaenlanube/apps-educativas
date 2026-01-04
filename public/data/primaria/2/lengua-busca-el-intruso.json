@@ -13,19 +13,24 @@
       "🐇",
       "🦆",
       "🦃",
-      "🐎"
+      "🐎",
+      "🐂",
+      "🐓",
+      "🐖",
+      "🦢",
+      "🐐",
+      "🐑"
     ],
     "intrusos": [
       "🦁",
       "🐯",
       "🐘",
-      "🦈",
+      "鲨鱼 (Tiburón Shark)",
       "🦕",
       "🦒",
       "🦓",
       "🐊",
-      "🦍",
-      "🐳"
+      "🦍"
     ]
   },
   {
@@ -42,7 +47,11 @@
       "🍋",
       "🍒",
       "🍑",
-      "🥝"
+      "🥝",
+      "🍉",
+      "🍈",
+      "🫐",
+      "🥥"
     ],
     "intrusos": [
       "🥦",
@@ -53,25 +62,29 @@
       "🍕",
       "🍟",
       "🍔",
-      "🥚",
-      "🥓"
+      "🥚"
     ]
   },
   {
-    "categoria": "Ropa (Visual)",
+    "categoria": "Prendas de Ropa (Visual)",
     "correctos": [
       "👕",
       "👖",
       "👗",
       "🧥",
       "👟",
-      "🧢",
+      "替 (Gorra Cap)",
       "👚",
       "🧤",
       "🧣",
       "🧦",
       "👔",
-      "👢"
+      "👢",
+      "👙",
+      "👘",
+      "👗",
+      "👞",
+      "🧢"
     ],
     "intrusos": [
       "🚗",
@@ -81,9 +94,7 @@
       "⌚",
       "💻",
       "🧸",
-      "🚲",
-      "🎸",
-      "🥣"
+      "🚲"
     ]
   },
   {
@@ -100,7 +111,12 @@
       "🚄",
       "✈️",
       "🚢",
-      "🚁"
+      "🚁",
+      "🚀",
+      "🛶",
+      "🚠",
+      "🚜",
+      "🚛"
     ],
     "intrusos": [
       "🏠",
@@ -110,9 +126,7 @@
       "🍔",
       "🍕",
       "🧸",
-      "🛋️",
-      "🛁",
-      "🛌"
+      "🛋️"
     ]
   },
   {
@@ -132,7 +146,10 @@
       "Papel",
       "Vaso",
       "Plato",
-      "Cuchara"
+      "Cuchara",
+      "Tenedor",
+      "Cama",
+      "Sofá"
     ],
     "intrusos": [
       "Correr",
@@ -141,10 +158,7 @@
       "Azul",
       "Grande",
       "Cantar",
-      "Bailar",
-      "Alto",
-      "Rojo",
-      "Pequeño"
+      "Bailar"
     ]
   },
   {
@@ -164,7 +178,10 @@
       "Reír",
       "Caminar",
       "Subir",
-      "Bajar"
+      "Bajar",
+      "Beber",
+      "Estudiar",
+      "Volar"
     ],
     "intrusos": [
       "Gato",
@@ -173,10 +190,7 @@
       "Bonito",
       "Alto",
       "Mesa",
-      "Lápiz",
-      "Verde",
-      "Rápido",
-      "Libro"
+      "Lápiz"
     ]
   },
   {
@@ -196,7 +210,10 @@
       "Frío",
       "Caliente",
       "Limpio",
-      "Sucio"
+      "Sucio",
+      "Gordo",
+      "Flaco",
+      "Alegre"
     ],
     "intrusos": [
       "Juan",
@@ -205,10 +222,7 @@
       "Silla",
       "Coche",
       "Correr",
-      "Comer",
-      "Perro",
-      "Libro",
-      "Saltar"
+      "Comer"
     ]
   },
   {
@@ -224,7 +238,10 @@
       "El vaso",
       "El papel",
       "El lápiz",
-      "El río"
+      "El río",
+      "El mapa",
+      "El pan",
+      "El camión"
     ],
     "intrusos": [
       "La casa",
@@ -233,10 +250,7 @@
       "La niña",
       "La flor",
       "La luna",
-      "La pelota",
-      "La puerta",
-      "La ventana",
-      "La mochila"
+      "La pelota"
     ]
   },
   {
@@ -253,7 +267,11 @@
       "Flores",
       "Árboles",
       "Casas",
-      "Pelotas"
+      "Pelotas",
+      "Ventanas",
+      "Botes",
+      "Niñas",
+      "Camiones"
     ],
     "intrusos": [
       "Gato",
@@ -263,9 +281,7 @@
       "Niño",
       "Libro",
       "Coche",
-      "Lápiz",
-      "Flor",
-      "Árbol"
+      "Lápiz"
     ]
   }
 ]

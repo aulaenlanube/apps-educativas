@@ -1,160 +1,266 @@
 [
   {
-    "categoria": "Herramientas (Visual)",
+    "categoria": "Herramientas de Taller (Visual)",
     "correctos": [
       "🔨",
       "🔧",
       "🪛",
       "🔩",
       "🗜️",
-      "📏"
+      "📏",
+      "🪚",
+      "🪓",
+      "🛠️",
+      "⚒️",
+      "📐",
+      "🖇️",
+      "📏",
+      "🔩",
+      "🧱",
+      "🏮"
     ],
     "intrusos": [
       "✏️",
       "🖊️",
       "🧸",
       "🍎",
-      "🥄"
+      "🥄",
+      "🧁",
+      "🍦",
+      "🥪"
     ]
   },
   {
-    "categoria": "Dispositivos Digitales (Visual)",
+    "categoria": "Dispositivos y Periféricos (Visual)",
     "correctos": [
       "💻",
       "📱",
       "🖥️",
-      "🖱️",
+      "鼠标 (Ratón Mouse)",
       "⌨️",
-      "🖨️"
+      "🖨️",
+      "🔋",
+      "🔌",
+      "🎧",
+      "📷",
+      "🕹️",
+      "💾",
+      "📡",
+      "🛰️",
+      "📺",
+      "📽️"
     ],
     "intrusos": [
       "🏺",
       "📜",
       "🕯️",
       "🕰️",
-      "🧹"
+      "🧹",
+      "🧺",
+      "🧸",
+      "🐚"
     ]
   },
   {
-    "categoria": "Materiales (Visual)",
+    "categoria": "Materia y Materiales (Visual)",
     "correctos": [
       "🪵",
       "🧱",
       "🪨",
       "🧻",
       "🔩",
-      "🛢️"
+      "🛢️",
+      "📄",
+      "📦",
+      "🧊",
+      "⛓️",
+      "🛠️",
+      "🧶",
+      "🧵",
+      "🧲",
+      "💎",
+      "🔋"
     ],
     "intrusos": [
       "🍞",
       "🧀",
       "🍖",
       "🥗",
-      "🍰"
+      "🍰",
+      "🍇",
+      "🍎",
+      "🥩"
     ]
   },
   {
-    "categoria": "Energía (Visual)",
+    "categoria": "Energía y Electricidad (Visual)",
     "correctos": [
       "🔋",
       "🔌",
       "💡",
       "⚡",
       "☀️",
-      "🌬️"
+      "🌬️",
+      "🌊",
+      "🌡️",
+      "🔦",
+      "🕯️",
+      "⛽",
+      "☢️",
+      "🏭",
+      "🛰️",
+      "🔌",
+      "🔋"
     ],
     "intrusos": [
       "💧",
       "🌱",
       "🦋",
       "🐶",
-      "🐱"
+      "🐱",
+      "🌹",
+      "🍄",
+      "🐚"
     ]
   },
   {
-    "categoria": "Fases del Proyecto",
+    "categoria": "Fases del Proceso Tecnológico",
     "correctos": [
-      "Necesidad",
-      "Idea",
-      "Diseño",
+      "Necesidad / Problema",
+      "Idea / Búsqueda",
+      "Diseño / Dibujo",
       "Planificación",
       "Construcción",
-      "Evaluación"
+      "Evaluación / Prueba",
+      "Memoria técnica",
+      "Presupuesto",
+      "Hoja de procesos",
+      "Prototipo",
+      "Marketing",
+      "Reciclaje",
+      "Distribución",
+      "Uso"
     ],
     "intrusos": [
       "Jugar",
       "Dormir",
       "Comer",
       "Viajar",
-      "Comprar"
+      "Comprar",
+      "Cantar",
+      "Bailar"
     ]
   },
   {
-    "categoria": "Materiales Tecnológicos",
+    "categoria": "Materiales de Uso Técnico",
     "correctos": [
       "Madera",
       "Metal",
       "Plástico",
       "Cerámica",
-      "Textil"
+      "Textil",
+      "Pétreo",
+      "Compuesto",
+      "Papel y cartón",
+      "Vidrio",
+      "Aislante",
+      "Conductor",
+      "Semiconductor",
+      "Superconductor",
+      "Nanomaterial"
     ],
     "intrusos": [
       "Agua",
       "Aire",
       "Fuego",
       "Tierra",
-      "Carne"
+      "Carne",
+      "Nube",
+      "Rayo"
     ]
   },
   {
-    "categoria": "Herramientas de Medida",
+    "categoria": "Instrumentos de Medida y Trazado",
     "correctos": [
-      "Regla",
-      "Metro",
+      "Regla graduada",
+      "Flexómetro / Metro",
       "Escuadra",
       "Cartabón",
-      "Calibre"
+      "Calibre / Pie de rey",
+      "Transportador",
+      "Compás",
+      "Micrómetro",
+      "Nivel",
+      "Plomada",
+      "Falsa escuadra",
+      "Punta de trazar",
+      "Granete",
+      "Gubia"
     ],
     "intrusos": [
       "Martillo",
       "Alicates",
       "Destornillador",
       "Sierra",
-      "Lima"
+      "Lima",
+      "Maza",
+      "Tenazas"
     ]
   },
   {
-    "categoria": "Operadores Mecánicos",
+    "categoria": "Operadores Mecánicos y Máquinas",
     "correctos": [
       "Palanca",
       "Polea",
       "Rueda",
       "Engranaje",
-      "Tornillo"
+      "Tornillo-tuerca",
+      "Biela-manivela",
+      "Leva",
+      "Cigüeñal",
+      "Piñón-cremallera",
+      "Eje",
+      "Cadena",
+      "Correa",
+      "Torno",
+      "Plano inclinado"
     ],
     "intrusos": [
       "Motor",
       "Batería",
       "Cable",
       "Interruptor",
-      "Bombilla"
+      "Bombilla",
+      "Resistencia",
+      "Pila"
     ]
   },
   {
-    "categoria": "Propiedades Materiales",
+    "categoria": "Propiedades de los Materiales",
     "correctos": [
       "Dureza",
       "Tenacidad",
       "Elasticidad",
       "Conductividad",
-      "Maleabilidad"
+      "Maleabilidad",
+      "Ductilidad",
+      "Plasticidad",
+      "Fragilidad",
+      "Densidad",
+      "Transparencia",
+      "Fusibilidad",
+      "Resiliencia",
+      "Corrosión",
+      "Oxidación"
     ],
     "intrusos": [
       "Belleza",
       "Precio",
       "Marca",
       "Color",
-      "Olor"
+      "Olor",
+      "Sabor",
+      "Fama"
     ]
   }
 ]

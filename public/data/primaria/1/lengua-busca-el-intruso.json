@@ -1,12 +1,22 @@
 [
   {
-    "categoria": "Letras Vocales (Visual)",
+    "categoria": "Letras Vocales",
     "correctos": [
       "A",
       "E",
       "I",
       "O",
-      "U"
+      "U",
+      "a",
+      "e",
+      "i",
+      "o",
+      "u",
+      "á",
+      "é",
+      "í",
+      "ó",
+      "ú"
     ],
     "intrusos": [
       "B",
@@ -22,7 +32,7 @@
     ]
   },
   {
-    "categoria": "Letras Consonantes (Visual)",
+    "categoria": "Letras Consonantes",
     "correctos": [
       "B",
       "C",
@@ -30,7 +40,14 @@
       "F",
       "G",
       "H",
-      "J"
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "P",
+      "Q",
+      "R"
     ],
     "intrusos": [
       "A",
@@ -48,7 +65,15 @@
       "✏️",
       "📏",
       "✂️",
-      "🖍️"
+      "🖍️",
+      "📓",
+      "🖇️",
+      "🖊️",
+      "📒",
+      "💻",
+      "🏫",
+      "📐",
+      "🎨"
     ],
     "intrusos": [
       "🍎",
@@ -66,7 +91,15 @@
       "🐔",
       "🦆",
       "🐑",
-      "🐴"
+      "🐴",
+      "🐰",
+      "🐣",
+      "🐐",
+      "🦃",
+      "🐂",
+      "🐓",
+      "🐄",
+      "🐖"
     ],
     "intrusos": [
       "🦁",
@@ -77,14 +110,22 @@
     ]
   },
   {
-    "categoria": "Palabras con la letra M",
+    "categoria": "Palabras con M",
     "correctos": [
       "Mamá",
       "Mesa",
       "Mano",
       "Mora",
       "Mico",
-      "Mina"
+      "Mina",
+      "Mapa",
+      "Miel",
+      "Muela",
+      "Mago",
+      "Masa",
+      "Moto",
+      "Mudo",
+      "Mes"
     ],
     "intrusos": [
       "Papá",
@@ -96,14 +137,22 @@
     ]
   },
   {
-    "categoria": "Palabras con la letra P",
+    "categoria": "Palabras con P",
     "correctos": [
       "Papá",
       "Pelo",
       "Pino",
       "Pala",
       "Pera",
-      "Pomo"
+      "Pomo",
+      "Paso",
+      "Pita",
+      "Pato",
+      "Pera",
+      "Pipa",
+      "Pura",
+      "Peso",
+      "Pollo"
     ],
     "intrusos": [
       "Mamá",
@@ -123,7 +172,14 @@
       "Lo",
       "Me",
       "Te",
-      "Mi"
+      "Mi",
+      "Su",
+      "Ya",
+      "En",
+      "Es",
+      "Al",
+      "He",
+      "De"
     ],
     "intrusos": [
       "Sol",
@@ -143,7 +199,15 @@
       "Rosa",
       "Gris",
       "Amarillo",
-      "Verde"
+      "Verde",
+      "Blanco",
+      "Negro",
+      "Lila",
+      "Marrón",
+      "Naranja",
+      "Violeta",
+      "Dorado",
+      "Plata"
     ],
     "intrusos": [
       "Perro",

@@ -7,14 +7,23 @@
       "🟢",
       "🟡",
       "🟠",
-      "🟣"
+      "🟣",
+      "⚪",
+      "⚫",
+      "🟤",
+      "🩷",
+      "🩶",
+      "❤️",
+      "🩵",
+      "💙"
     ],
     "intrusos": [
       "🐶",
       "🐱",
       "🍎",
       "🏠",
-      "🚗"
+      "🚗",
+      "🚲"
     ]
   },
   {
@@ -25,14 +34,23 @@
       "🐔",
       "🐑",
       "🐴",
-      "🦆"
+      "🦆",
+      "🐣",
+      "🐐",
+      "🦃",
+      "🐇",
+      "🐓",
+      "🐄",
+      "🐖",
+      "🦢"
     ],
     "intrusos": [
       "🦁",
       "🐘",
       "🦒",
       "🦓",
-      "🐊"
+      "🐊",
+      "🦖"
     ]
   },
   {
@@ -43,14 +61,23 @@
       "🍇",
       "🍊",
       "🍓",
-      "🍐"
+      "🍐",
+      "🍒",
+      "🍍",
+      "🥭",
+      "🥝",
+      "🍉",
+      "🍈",
+      "🫐",
+      "🍋"
     ],
     "intrusos": [
       "🍕",
       "🍔",
       "🍟",
       "🍩",
-      "🍦"
+      "🍦",
+      "🍫"
     ]
   },
   {
@@ -61,18 +88,27 @@
       "✏️",
       "📏",
       "✂️",
-      "🖍️"
+      "🖍️",
+      "📓",
+      "🖇️",
+      "🖊️",
+      "📒",
+      "💻",
+      "🏫",
+      "📐",
+      "🎨"
     ],
     "intrusos": [
       "🍎",
       "🐶",
       "🚗",
       "🏠",
-      "🍕"
+      "🍕",
+      "🚲"
     ]
   },
   {
-    "categoria": "Les Nombres 1-10",
+    "categoria": "Les Nombres 1-15",
     "correctos": [
       "Un",
       "Deux",
@@ -83,7 +119,12 @@
       "Sept",
       "Huit",
       "Neuf",
-      "Dix"
+      "Dix",
+      "Onze",
+      "Douze",
+      "Treize",
+      "Quatorze",
+      "Quinze"
     ],
     "intrusos": [
       "Rouge",
@@ -103,7 +144,14 @@
       "Vert",
       "Rose",
       "Blanc",
-      "Noir"
+      "Noir",
+      "Marron",
+      "Orange",
+      "Violet",
+      "Gris",
+      "Beige",
+      "Or",
+      "Argent"
     ],
     "intrusos": [
       "Un",
@@ -123,14 +171,21 @@
       "Sœur",
       "Bébé",
       "Grand-père",
-      "Grand-mère"
+      "Grand-mère",
+      "Oncle",
+      "Tante",
+      "Cousin",
+      "Cousine",
+      "Fils",
+      "Fille"
     ],
     "intrusos": [
       "Chat",
       "Chien",
       "Maison",
       "Voiture",
-      "Velo"
+      "Velo",
+      "Moto"
     ]
   },
   {
@@ -140,14 +195,22 @@
       "Salut",
       "Merci",
       "S'il vous plaît",
-      "Au revoir"
+      "Au revoir",
+      "Bonsoir",
+      "Bonne nuit",
+      "À demain",
+      "Enchanté",
+      "Pardon",
+      "De rien",
+      "Excusez-moi"
     ],
     "intrusos": [
       "Table",
       "Chaise",
       "Lit",
       "Porte",
-      "Fenêtre"
+      "Fenêtre",
+      "Toit"
     ]
   }
 ]

@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Services et Bâtiments de la Ville (Visual)",
+    "categoria": "Services et Ville (Visual)",
     "correctos": [
       "🏥",
       "🏫",
@@ -13,8 +13,11 @@
       "🏟️",
       "🏗️",
       "🚒",
-      "🏤",
-      "🏣"
+      "🏣",
+      "🚓",
+      "🚑",
+      "🚕",
+      "🏢"
     ],
     "intrusos": [
       "🏜️",
@@ -23,14 +26,11 @@
       "🌲",
       "🐄",
       "🐑",
-      "🛖",
-      "🐪",
-      "🦉",
-      "🍄"
+      "🛖"
     ]
   },
   {
-    "categoria": "Professions et Uniformes (Visual)",
+    "categoria": "Professions (Visual)",
     "correctos": [
       "👨‍🍳",
       "👨‍⚕️",
@@ -42,7 +42,12 @@
       "👷",
       "👨‍🎨",
       "👨‍✈️",
-      "👩‍🚀"
+      "👩‍🚀",
+      "👨‍💻",
+      "👩‍💼",
+      "👨‍⚖️",
+      "👨‍🌾",
+      "🕵️‍♂️"
     ],
     "intrusos": [
       "🐶",
@@ -51,15 +56,11 @@
       "👽",
       "🤖",
       "🧸",
-      "🪁",
-      "🎒",
-      "🕹️",
-      "🍦",
-      "🥪"
+      "🪁"
     ]
   },
   {
-    "categoria": "Phénomènes de la Météo (Visual)",
+    "categoria": "Météo (Visual)",
     "correctos": [
       "☀️",
       "🌧️",
@@ -70,7 +71,13 @@
       "🌈",
       "🌫️",
       "🌡️",
-      "🌪️"
+      "🌪️",
+      "🌦️",
+      "🌊",
+      "🌖",
+      "⚡",
+      "☔",
+      "🌑"
     ],
     "intrusos": [
       "🏠",
@@ -79,14 +86,11 @@
       "🍎",
       "⌚",
       "💻",
-      "🛋️",
-      "🛁",
-      "👕",
-      "👞"
+      "🛋️"
     ]
   },
   {
-    "categoria": "Les Douze Mois de l'Année",
+    "categoria": "Les Mois et Saisons",
     "correctos": [
       "Janvier",
       "Février",
@@ -99,17 +103,17 @@
       "Septembre",
       "Octobre",
       "Novembre",
-      "Décembre"
+      "Décembre",
+      "Printemps",
+      "Été",
+      "Automne",
+      "Hiver"
     ],
     "intrusos": [
       "Lundi",
       "Mardi",
-      "Hiver",
-      "Été",
       "Noël",
       "Pâques",
-      "Printemps",
-      "Automne",
       "Matin",
       "Soir",
       "Semaine"
@@ -127,23 +131,24 @@
       "Entrée",
       "Grenier",
       "Cave",
-      "Toilettes"
+      "Toilettes",
+      "Bureau",
+      "Couloir",
+      "Escalier",
+      "Balcon"
     ],
     "intrusos": [
       "École",
       "Parc",
       "Cinéma",
       "Hôpital",
-      "Rue",
       "Avenue",
-      "Place",
       "Pont",
-      "Stade",
-      "Mairie"
+      "Stade"
     ]
   },
   {
-    "categoria": "Moyens de Transports Urbains et Voyage",
+    "categoria": "Moyens de Transports",
     "correctos": [
       "Voiture",
       "Bus",
@@ -155,6 +160,9 @@
       "Métro",
       "Hélicoptère",
       "Moto",
+      "Trottinette",
+      "Camion",
+      "Fusée",
       "Trottinette"
     ],
     "intrusos": [
@@ -162,16 +170,13 @@
       "Table",
       "Maison",
       "Chien",
-      "Chat",
       "Stylo",
       "Livre",
-      "Assiette",
-      "Verre",
-      "Cuillère"
+      "Verre"
     ]
   },
   {
-    "categoria": "Verbes à l'Infinitif (1er, 2e et 3e groupe)",
+    "categoria": "Verbes à l'Infinitif",
     "correctos": [
       "Parler",
       "Manger",
@@ -184,24 +189,24 @@
       "Venir",
       "Vouloir",
       "Pouvoir",
-      "Dire"
+      "Dire",
+      "Lire",
+      "Écrire",
+      "Dormir",
+      "Jouer"
     ],
     "intrusos": [
       "Grand",
       "Petit",
       "Rouge",
-      "Bleu",
-      "Rapide",
       "Hier",
       "Demain",
       "Beaucoup",
-      "Très",
-      "Ici",
-      "Bien"
+      "Ici"
     ]
   },
   {
-    "categoria": "Adjectifs de Qualité et État",
+    "categoria": "Adjectifs",
     "correctos": [
       "Grand",
       "Petit",
@@ -214,7 +219,11 @@
       "Lent",
       "Fort",
       "Gros",
-      "Mince"
+      "Mince",
+      "Beau",
+      "Nouveau",
+      "Vieux",
+      "Bon"
     ],
     "intrusos": [
       "Table",
@@ -222,11 +231,8 @@
       "Garçon",
       "Fille",
       "France",
-      "École",
-      "Maison",
-      "Chat",
-      "Automne",
-      "Janvier"
+      "Janvier",
+      "Maison"
     ]
   }
 ]

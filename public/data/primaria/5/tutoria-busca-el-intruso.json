@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Derechos y Necesidades Básicas (Visual)",
+    "categoria": "Derechos y Necesidades (Visual)",
     "correctos": [
       "🎓",
       "🏠",
@@ -12,7 +12,12 @@
       "👕",
       "🛝",
       "🛡️",
-      "📜"
+      "📜",
+      "⚖️",
+      "🍎",
+      "🥦",
+      "🚿",
+      "🩺"
     ],
     "intrusos": [
       "🔫",
@@ -21,14 +26,11 @@
       "⛓️",
       "⚒️",
       "🎰",
-      "🏚️ (ruina)",
-      "🛢️",
-      "⛓️",
       "💣"
     ]
   },
   {
-    "categoria": "Diálogo, Paz y Resolución (Visual)",
+    "categoria": "Diálogo y Paz (Visual)",
     "correctos": [
       "🤝",
       "🗣️",
@@ -39,7 +41,13 @@
       "🕊️",
       "💬",
       "💐",
-      "✍️"
+      "✍️",
+      "📖",
+      "🕊️",
+      "🤝",
+      "🌟",
+      "✨",
+      "❤️"
     ],
     "intrusos": [
       "🥊",
@@ -48,14 +56,11 @@
       "📢",
       "💣",
       "🔥",
-      "🔪",
-      "🌋",
-      "🪓",
-      "🔫"
+      "🔪"
     ]
   },
   {
-    "categoria": "Protección y Seguridad Personal (Visual)",
+    "categoria": "Protección y Seguridad (Visual)",
     "correctos": [
       "🔒",
       "🛡️",
@@ -67,7 +72,12 @@
       "🚧",
       "🧤",
       "🦺",
-      "🔦"
+      "🔦",
+      "🚨",
+      "🔋",
+      "💡",
+      "🔌",
+      "🏥"
     ],
     "intrusos": [
       "📣",
@@ -76,14 +86,11 @@
       "🦠",
       "🕵️",
       "🤡",
-      "🧟",
-      "🧛",
-      "👻",
-      "⚡ (sin peligro)"
+      "👻"
     ]
   },
   {
-    "categoria": "Habilidades Sociales para la Vida",
+    "categoria": "Habilidades Sociales",
     "correctos": [
       "Escucha activa",
       "Asertividad",
@@ -94,87 +101,100 @@
       "Mediación",
       "Amabilidad",
       "Sinceridad",
-      "Tolerancia"
+      "Tolerancia",
+      "Integración",
+      "Diálogo",
+      "Perdón",
+      "Humildad"
     ],
     "intrusos": [
-      "Agresividad verbal",
-      "Gritos constantes",
-      "Insultos hirientes",
-      "Ignorar al otro",
-      "Interrumpir siempre",
-      "Burlas pesadas",
-      "Egoísmo extremo",
-      "Envidia",
-      "Mentira"
+      "Agresividad",
+      "Gritos",
+      "Insultos",
+      "Ignorar",
+      "Interrumpir",
+      "Burlas"
     ]
   },
   {
-    "categoria": "Técnicas de Estudio y Organización",
+    "categoria": "Técnicas de Estudio",
     "correctos": [
-      "Resumen de texto",
-      "Esquema de llaves",
-      "Subrayado de ideas",
-      "Lectura comprensiva",
-      "Repaso periódico",
+      "Resumen",
+      "Esquema",
+      "Subrayado",
+      "Lectura",
+      "Repaso",
       "Mapa conceptual",
-      "Agenda escolar",
-      "Lugar de estudio limpio"
+      "Agenda",
+      "Lugar limpio",
+      "Concentración",
+      "Horario",
+      "Autoevaluación",
+      "Técnica Pomodoro",
+      "Mnemotecnia"
     ],
     "intrusos": [
-      "Copiar del compañero",
-      "Dormir en clase",
-      "Jugar con el móvil",
-      "Hablar sin parar",
-      "Gritar al profesor",
-      "Olvidar los libros",
-      "Distraerse con la tele",
-      "Estudiar con ruidos"
+      "Copiar",
+      "Dormir",
+      "Móvil",
+      "Hablar",
+      "Gritar",
+      "Tele",
+      "Ruidos"
     ]
   },
   {
-    "categoria": "Valores Democráticos y Ciudadanos",
+    "categoria": "Valores Democráticos",
     "correctos": [
-      "Libertad de expresión",
-      "Igualdad ante la ley",
-      "Justicia social",
-      "Solidaridad humana",
-      "Tolerancia cultural",
+      "Libertad",
+      "Igualdad",
+      "Justicia",
+      "Solidaridad",
+      "Tolerancia",
       "Pluralismo",
-      "Participación ciudadana",
-      "Honestidad"
+      "Participación",
+      "Honestidad",
+      "Respeto",
+      "Responsabilidad",
+      "Diálogo",
+      "Paz",
+      "Dignidad",
+      "Voto"
     ],
     "intrusos": [
-      "Dictadura militar",
-      "Esclavitud infantil",
-      "Injusticia flagrante",
-      "Discriminación racial",
-      "Odio irracional",
-      "Corrupción",
-      "Violencia de género",
-      "Acoso escolar"
+      "Dictadura",
+      "Esclavitud",
+      "Injusticia",
+      "Discriminación",
+      "Odio",
+      "Corrupción"
     ]
   },
   {
-    "categoria": "Alimentación Saludable y Equilibrada",
+    "categoria": "Alimentación Saludable",
     "correctos": [
-      "Frutas frescas",
-      "Verduras de temporada",
-      "Legumbres variadas",
-      "Pescado azul",
-      "Agua mineral",
+      "Frutas",
+      "Verduras",
+      "Legumbres",
+      "Pescado",
+      "Agua",
       "Frutos secos",
-      "Aceite de oliva",
-      "Cereales integrales"
+      "Aceite oliva",
+      "Cereales",
+      "Lácteos",
+      "Huevos",
+      "Carne magra",
+      "Hortalizas",
+      "Pan integral",
+      "Fibra"
     ],
     "intrusos": [
-      "Bollería industrial",
-      "Refrescos azucarados",
-      "Golosinas y chuches",
-      "Comida rápida grasa",
-      "Fritos precocinados",
-      "Helado de chocolate",
-      "Patatas chips",
-      "Bebidas energéticas"
+      "Bollería",
+      "Refrescos",
+      "Golosinas",
+      "Comida rápida",
+      "Fritos",
+      "Helado"
     ]
   }
 ]

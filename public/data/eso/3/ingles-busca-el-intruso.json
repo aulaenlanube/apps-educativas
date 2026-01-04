@@ -1,158 +1,271 @@
 [
   {
-    "categoria": "Environment (Icons)",
+    "categoria": "The Environment and Sustainability (Visual)",
     "correctos": [
       "♻️",
       "🌍",
       "🌱",
       "☀️",
       "🚮",
-      "🔋"
+      "🔋",
+      "🌬️",
+      "🌊",
+      "🌲",
+      "🍃",
+      "🪵",
+      "🍄",
+      "🧺",
+      "🚲",
+      "🐾",
+      "💧"
     ],
     "intrusos": [
       "🚗",
       "🏭",
       "🛢️",
       "🚬",
-      "☢️"
+      "☢️",
+      "💣",
+      "🏙️",
+      "🚆"
     ]
   },
   {
-    "categoria": "Technology (Icons)",
+    "categoria": "Modern Technology (Visual)",
     "correctos": [
       "💻",
       "📱",
       "🖱️",
       "⌨️",
       "🎧",
-      "⌚"
+      "⌚",
+      "📷",
+      "📹",
+      "🎬",
+      "🕹️",
+      "💾",
+      "💿",
+      "📡",
+      "🛰️",
+      "📺",
+      "📽️"
     ],
     "intrusos": [
       "📚",
       "🖊️",
       "🔨",
       "🔧",
-      "🕯️"
+      "🕯️",
+      "🏺",
+      "📜",
+      "🧺"
     ]
   },
   {
-    "categoria": "Health (Icons)",
+    "categoria": "Health and Illness (Visual)",
     "correctos": [
       "🤕",
       "🤒",
       "🤢",
       "💊",
       "💉",
-      "🚑"
+      "🚑",
+      "🏥",
+      "🩺",
+      "🩹",
+      "🧬",
+      "🧪",
+      "🔬",
+      "🥼",
+      "🧤",
+      "🌡️",
+      "😷"
     ],
     "intrusos": [
       "😀",
       "💪",
       "🏆",
       "⚽",
-      "🎮"
+      "🎮",
+      "🎸",
+      "🎨",
+      "🎬"
     ]
   },
   {
-    "categoria": "Travel (Icons)",
+    "categoria": "Travel and Exploring (Visual)",
     "correctos": [
       "✈️",
       "🧳",
       "🗺️",
       "🗽",
       "🗼",
-      "🛂"
+      "🛂",
+      "🚢",
+      "🚠",
+      "🚞",
+      "⛵",
+      "🏕️",
+      "📸",
+      "🎟️",
+      "🏰",
+      "⛩️",
+      "🏯"
     ],
     "intrusos": [
       "🏠",
       "🛌",
       "🧹",
       "🚽",
-      "🛋️"
+      "🛋️",
+      "🧺",
+      "🍳",
+      "🚿"
     ]
   },
   {
-    "categoria": "Modal Verbs",
+    "categoria": "English Modal Verbs",
     "correctos": [
       "Can",
       "Must",
       "Should",
       "Might",
-      "Could"
+      "Could",
+      "May",
+      "Ought to",
+      "Have to",
+      "Shouldn't",
+      "Mustn't",
+      "Can't",
+      "Would",
+      "Shall",
+      "Will"
     ],
     "intrusos": [
       "Do",
       "Have",
       "Be",
       "Go",
-      "Play"
+      "Play",
+      "Watch",
+      "Listen",
+      "Studied"
     ]
   },
   {
-    "categoria": "Passive Voice",
+    "categoria": "Passive Voice Constructions",
     "correctos": [
       "Is done",
       "Was made",
       "Were built",
-      "Has been seen"
+      "Has been seen",
+      "Are written",
+      "Was created",
+      "Will be finished",
+      "Had been taken",
+      "Is being fixed",
+      "Were discovered",
+      "Are found",
+      "Was sold",
+      "Have been told",
+      "Is used"
     ],
     "intrusos": [
       "Doing",
       "Making",
       "Building",
       "Seeing",
-      "Goes"
+      "Goes",
+      "Plays",
+      "Will watch",
+      "Written"
     ]
   },
   {
-    "categoria": "Conditionals",
+    "categoria": "Conditionals and Connectors",
     "correctos": [
       "If",
       "Unless",
       "Would",
       "Will",
-      "Provided that"
+      "Provided that",
+      "As long as",
+      "Had",
+      "Were",
+      "Would have",
+      "If only",
+      "Wish",
+      "In case",
+      "Supposing",
+      "Whether"
     ],
     "intrusos": [
       "But",
       "And",
       "Because",
       "So",
-      "Or"
+      "Or",
+      "Yet",
+      "Although",
+      "Still"
     ]
   },
   {
-    "categoria": "Environment Vocabulary",
+    "categoria": "Environmental Vocabulary",
     "correctos": [
       "Pollution",
       "Recycling",
       "Global warming",
-      "Waste",
-      "Energy"
+      "Waste management",
+      "Renewable energy",
+      "Deforestation",
+      "Greenhouse effect",
+      "Endangered species",
+      "Climate change",
+      "Ozone layer",
+      "Ecosystem",
+      "Carbon footprint",
+      "Solar power",
+      "Conservation"
     ],
     "intrusos": [
       "School",
       "Homework",
       "Football",
       "Music",
-      "Cinema"
+      "Cinema",
+      "Bedroom",
+      "Kitchen",
+      "Table"
     ]
   },
   {
-    "categoria": "Personality Adjectives",
+    "categoria": "Personality Traits and Adjectives",
     "correctos": [
       "Shy",
       "Outgoing",
       "Generous",
       "Selfish",
-      "Honest"
+      "Honest",
+      "Stubborn",
+      "Kind",
+      "Rude",
+      "Lazy",
+      "Hard-working",
+      "Reliable",
+      "Brave",
+      "Clumsy",
+      "Cheerful"
     ],
     "intrusos": [
       "Tall",
       "Short",
       "Fat",
       "Thin",
-      "Blonde"
+      "Blonde",
+      "Brunette",
+      "Handsome",
+      "Beautiful"
     ]
   }
 ]

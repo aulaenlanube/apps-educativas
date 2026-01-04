@@ -1,123 +1,199 @@
 [
   {
-    "categoria": "Electrónica (Visual)",
+    "categoria": "Componentes Electrónicos y Telecom (Visual)",
     "correctos": [
       "🔌",
       "🔋",
       "💡",
       "📟",
       "💾",
-      "📡"
+      "📡",
+      "🛰️",
+      "📡",
+      "🔋",
+      "🔌",
+      "📟",
+      "💾",
+      "📡",
+      "🛰️",
+      "📶",
+      "📶"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🪚",
       "🧱",
-      "🪵"
+      "🪵",
+      "🛠️",
+      "🛠️",
+      "⛏️"
     ]
   },
   {
-    "categoria": "Programación (Visual)",
+    "categoria": "Entornos Digitales y Desarrollo (Visual)",
     "correctos": [
       "💻",
       "⌨️",
       "🖥️",
       "🖱️",
       "👾",
-      "🤖"
+      "🤖",
+      "🎮",
+      "🕹️",
+      "💾",
+      "💿",
+      "🔋",
+      "🔌",
+      "📱",
+      "💻",
+      "📟",
+      "📶"
     ],
     "intrusos": [
       "📚",
       "🖊️",
       "📝",
       "🎨",
-      "🎭"
+      "🎭",
+      "🏺",
+      "📜",
+      "🧺"
     ]
   },
   {
-    "categoria": "Electrónica Analógica",
+    "categoria": "Componentes de Electrónica Analógica",
     "correctos": [
-      "Resistencia",
-      "Condensador",
-      "Diodo",
-      "Transistor",
-      "LED"
+      "Resistencia fija / Variable",
+      "Condensador electrolítico",
+      "Diodo rectificador",
+      "Transistor NPN / PNP",
+      "LED (Diodo emisor)",
+      "Potenciómetro",
+      "LDR (Resistencia luz)",
+      "NTC (Termistor)",
+      "Varistor",
+      "Condensador cerámico",
+      "Transformador",
+      "Inductor / Bobina",
+      "Circuito Integrado",
+      "Relé electromecánico"
     ],
     "intrusos": [
-      "Palanca",
-      "Polea",
-      "Engranaje",
-      "Tornillo",
-      "Rueda"
+      "Palanca de primer grado",
+      "Polea fija",
+      "Engranaje recto",
+      "Tornillo sin fin",
+      "Rueda de fricción",
+      "Biela-manivela"
     ]
   },
   {
-    "categoria": "Electrónica Digital",
+    "categoria": "Sistemas y Electrónica Digital",
     "correctos": [
-      "Binario",
-      "Puerta lógica",
-      "Bit",
-      "Byte",
-      "Microchip"
+      "Código Binario (0,1)",
+      "Puerta lógica AND",
+      "Puerta lógica OR",
+      "Puerta lógica NOT",
+      "Puerta lógica NAND / NOR",
+      "Bit de información",
+      "Byte de datos",
+      "Microprocesador central",
+      "Álgebra de Boole",
+      "Tabla de verdad",
+      "Señal discreta",
+      "Flip-flop / Biestable",
+      "Registro de memoria",
+      "Bus de direcciones"
     ],
     "intrusos": [
-      "Voltaje",
-      "Amperaje",
-      "Potencia",
-      "Resistencia",
-      "Energía"
+      "Voltaje eficaz",
+      "Amperaje de corriente",
+      "Potencia disipada",
+      "Resistencia de carbón",
+      "Energía térmica",
+      "Vatio (W)"
     ]
   },
   {
-    "categoria": "Neumática e Hidráulica",
+    "categoria": "Sistemas Neumáticos e Hidráulicos",
     "correctos": [
-      "Compresor",
-      "Válvula",
-      "Cilindro",
-      "Tubería",
-      "Presión"
+      "Compresor de aire",
+      "Válvula 3/2 vías",
+      "Cilindro de simple efecto",
+      "Cilindro de doble efecto",
+      "Unidad de mantenimiento (FRL)",
+      "Válvula antirretorno",
+      "Presostato",
+      "Manómetro de presión",
+      "Bomba hidráulica",
+      "Fluido incompresible",
+      "Racores y tubería",
+      "Acumulador",
+      "Válvula de seguridad",
+      "Caudalímetro"
     ],
     "intrusos": [
-      "Cable",
-      "Interruptor",
-      "Bombilla",
-      "Batería",
-      "Motor"
+      "Cable de cobre",
+      "Interruptor de luz",
+      "Bombilla incandescente",
+      "Batería de litio",
+      "Motor de pasos",
+      "Enchufe de pared"
     ]
   },
   {
-    "categoria": "Historia de la Tecnología",
+    "categoria": "Hitos de la Historia de la Tecnología",
     "correctos": [
-      "Máquina de vapor",
-      "Electricidad",
-      "Transistor",
-      "Internet",
-      "IA"
+      "Máquina de vapor (Watt)",
+      "Bombilla eléctrica (Edison)",
+      "Invención del Transistor",
+      "Red de Internet (ARPANET)",
+      "Inteligencia Artificial",
+      "Nanotecnología",
+      "Energía Nuclear de Fisión",
+      "Fibra Óptica",
+      "Impresión 3D",
+      "GPS y Satélites",
+      "Primer Microchip",
+      "Computación Cuántica",
+      "Motor de combustión",
+      "Telégrafo"
     ],
     "intrusos": [
-      "Fuego",
-      "Rueda",
-      "Agricultura",
-      "Escritura",
-      "Moneda"
+      "Control del Fuego",
+      "Invención de la Rueda",
+      "Agricultura Neolítica",
+      "Escritura Cuneiforme",
+      "Moneda de metal",
+      "Fundición primaria"
     ]
   },
   {
-    "categoria": "Control y Robótica",
+    "categoria": "Sistemas de Control y Robótica",
     "correctos": [
-      "Sensor",
-      "Actuador",
-      "Controlador",
-      "Lazo abierto",
-      "Lazo cerrado"
+      "Semiconductores",
+      "Sensor de ultrasonidos",
+      "Actuador servomotor",
+      "Microcontrolador (Arduino)",
+      "Sistema de lazo abierto",
+      "Sistema de lazo cerrado",
+      "Realimentación (Feedback)",
+      "Comparador de sistemas",
+      "Programación por bloques",
+      "Entradas analógicas",
+      "Salidas digitales",
+      "Robot antropomórfico",
+      "Sensor de infrarrojos",
+      "Lenguaje C++"
     ],
     "intrusos": [
-      "Ratón",
-      "Teclado",
-      "Monitor",
-      "Altavoz",
-      "Impresora"
+      "Ratón de bola",
+      "Teclado membrana",
+      "Monitor de tubo",
+      "Altavoz estéreo",
+      "Impresora de chorro",
+      "Escáner plano"
     ]
   }
 ]

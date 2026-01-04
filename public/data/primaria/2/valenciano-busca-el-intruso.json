@@ -6,7 +6,7 @@
       "🐱",
       "🐭",
       "🐰",
-      "🦊",
+      " foxes (Rabosa Fox)",
       "🐻",
       "🦁",
       "🐯",
@@ -16,7 +16,10 @@
       "🦜",
       "🐄",
       "🐷",
-      "🐸"
+      "🐸",
+      "🐹",
+      "🐑",
+      "🐧"
     ],
     "intrusos": [
       "🍎",
@@ -26,11 +29,7 @@
       "✏️",
       "🍕",
       "🍔",
-      "🚲",
-      "🎸",
-      "⌚",
-      "💻",
-      "🧸"
+      "🚲"
     ]
   },
   {
@@ -48,7 +47,12 @@
       "🍒",
       "🍑",
       "🥝",
-      "🥭"
+      "🥭",
+      "🍈",
+      "🫐",
+      "🥥",
+      "🥝",
+      "🍅"
     ],
     "intrusos": [
       "🥦",
@@ -58,11 +62,7 @@
       "🥚",
       "🍟",
       "🍕",
-      "🍔",
-      "🥓",
-      "🥐",
-      "🧀",
-      "🍗"
+      "🍔"
     ]
   },
   {
@@ -79,7 +79,13 @@
       "🖊️",
       "🎓",
       "📖",
-      "📎"
+      "📎",
+      "📒",
+      "💻",
+      "🏫",
+      "📐",
+      "🎨",
+      "🖊️"
     ],
     "intrusos": [
       "🛌",
@@ -89,11 +95,7 @@
       "🎮",
       "🧸",
       "🍦",
-      "🥪",
-      "🛋️",
-      "📻",
-      "🚲",
-      "🚗"
+      "🥪"
     ]
   },
   {
@@ -112,7 +114,9 @@
       "Gris",
       "Violeta",
       "Daurat",
-      "Argentat"
+      "Argentat",
+      "Cidre",
+      "Verdós"
     ],
     "intrusos": [
       "Taula",
@@ -121,12 +125,7 @@
       "Gos",
       "Llibre",
       "Corre",
-      "Salta",
-      "Menja",
-      "Bona",
-      "Malament",
-      "Gran",
-      "Petit"
+      "Salta"
     ]
   },
   {
@@ -147,21 +146,20 @@
       "Tretze",
       "Catorze",
       "Quinze",
+      "Setze",
+      "Dèsset",
+      "Dihuit",
+      "Dinou",
       "Vint"
     ],
     "intrusos": [
       "Roig",
       "Blau",
-      "Dilluns",
       "Gener",
       "Estiu",
-      "Hivern",
       "Gran",
-      "Petit",
       "Gos",
-      "Gat",
-      "Taula",
-      "Cadira"
+      "Taula"
     ]
   },
   {
@@ -169,6 +167,8 @@
     "correctos": [
       "Pare",
       "Mare",
+      "Avi",
+      "Àvia",
       "Germà",
       "Germana",
       "Iaio",
@@ -180,7 +180,9 @@
       "Nét",
       "Néta",
       "Sogre",
-      "Sogra"
+      "Sogra",
+      "Nebot",
+      "Neboda"
     ],
     "intrusos": [
       "Mestre",
@@ -189,14 +191,11 @@
       "Veí",
       "Policia",
       "Bomber",
-      "Carter",
-      "Infermer",
-      "Advocat",
-      "Dentista"
+      "Carter"
     ]
   },
   {
-    "categoria": "Dies de la Setmana",
+    "categoria": "Calendari i Temps",
     "correctos": [
       "Dilluns",
       "Dimarts",
@@ -204,22 +203,28 @@
       "Dijous",
       "Divendres",
       "Dissabte",
-      "Diumenge"
-    ],
-    "intrusos": [
+      "Diumenge",
       "Gener",
       "Febrer",
+      "Març",
+      "Abril",
+      "Maig",
+      "Juny",
+      "Juliol",
+      "Agost",
+      "Setembre",
+      "Octubre",
+      "Novembre",
+      "Desembre"
+    ],
+    "intrusos": [
       "Estiu",
       "Hivern",
       "Matí",
       "Vesprada",
       "Nit",
-      "Mes",
       "Any",
-      "Setmana",
-      "Ahir",
-      "Hui",
-      "Demà"
+      "Ahir"
     ]
   },
   {
@@ -239,7 +244,10 @@
       "Genoll",
       "Colze",
       "Hombro",
-      "Dits"
+      "Dits",
+      "Esquena",
+      "Front",
+      "Pell"
     ],
     "intrusos": [
       "Samarreta",
@@ -248,11 +256,7 @@
       "Barret",
       "Ulleres",
       "Rellotge",
-      "Mochilla",
-      "Llibre",
-      "Pilot",
-      "Cadira",
-      "Taula"
+      "Mochilla"
     ]
   }
 ]

@@ -1,123 +1,205 @@
 [
   {
-    "categoria": "Paris (Visual)",
+    "categoria": "Paris et Culture (Visual)",
     "correctos": [
       "🗼",
       "🖼️",
       "⛪",
       "🥐",
       "🥖",
-      "🍷"
+      "🍷",
+      "🧀",
+      "👒",
+      "🏛️",
+      "🎨",
+      "🎭",
+      "🏰",
+      "🚵",
+      "👟",
+      "🗼",
+      "🇫🇷"
     ],
     "intrusos": [
       "🗽",
       "🏯",
       "⛩️",
       "🕌",
-      "🕋"
+      "🕋",
+      "⛩️",
+      "🌮",
+      "🍱"
     ]
   },
   {
-    "categoria": "Météo (Visual)",
+    "categoria": "Météo et Saisons (Visual)",
     "correctos": [
       "☀️",
       "🌧️",
       "❄️",
       "🌬️",
       "🌩️",
-      "🌤️"
+      "🌤️",
+      "☁️",
+      "⛈️",
+      "🌫️",
+      "🍂",
+      "🍃",
+      "🌸",
+      "🌻",
+      "🌈",
+      "🌡️",
+      "⛱️"
     ],
     "intrusos": [
       "🏠",
       "🚗",
       "🐶",
       "📚",
-      "✏️"
+      "✏️",
+      "🔌",
+      "🔋",
+      "💡"
     ]
   },
   {
-    "categoria": "Verbes (Futur)",
+    "categoria": "Verbes au Futur Simple",
     "correctos": [
       "Parlerai",
       "Finiras",
       "Prendra",
       "Irons",
-      "Aurez"
+      "Aurez",
+      "Viendront",
+      "Pourrai",
+      "Sauras",
+      "Devra",
+      "Voudrons",
+      "Ferez",
+      "Verront",
+      "Serai",
+      "Aurons"
     ],
     "intrusos": [
       "Parle",
       "Finis",
       "Prends",
       "Vais",
-      "Ai"
+      "Ai",
+      "Es",
+      "Suis",
+      "Fais"
     ]
   },
   {
-    "categoria": "Prépositions de Lieu",
+    "categoria": "Prépositions et Localisation",
     "correctos": [
       "Sur",
       "Sous",
       "Devant",
       "Derrière",
-      "Dans"
+      "Dans",
+      "À côté de",
+      "Entre",
+      "En face de",
+      "Près de",
+      "Loin de",
+      "Chez",
+      "À gauche de",
+      "À droite de",
+      "Au-dessus de"
     ],
     "intrusos": [
       "Hier",
       "Demain",
       "Maintenant",
       "Toujours",
-      "Jamais"
+      "Jamais",
+      "Souvent",
+      "Tard"
     ]
   },
   {
-    "categoria": "Aliments (Petit Déjeuner)",
+    "categoria": "Le Petit Déjeuner et Boissons",
     "correctos": [
       "Croissant",
-      "Pain",
+      "Pain au chocolat",
       "Beurre",
       "Confiture",
-      "Café"
+      "Café au lait",
+      "Chocolat chaud",
+      "Thé",
+      "Jus d'orange",
+      "Céréales",
+      "Baguette",
+      "Miel",
+      "Tartine",
+      "Lait",
+      "Yaourt"
     ],
     "intrusos": [
-      "Poulet",
+      "Poulet rôti",
       "Poisson",
-      "Viande",
+      "Viande rouge",
       "Pâtes",
-      "Riz"
+      "Riz",
+      "Soupe",
+      "Salade"
     ]
   },
   {
-    "categoria": "Vêtements",
+    "categoria": "Vêtements et Accessoires",
     "correctos": [
       "Pantalon",
       "Chemise",
       "Robe",
       "Jupe",
-      "Manteau"
+      "Manteau",
+      "Veste",
+      "Pull",
+      "T-shirt",
+      "Chaussettes",
+      "Chaussures",
+      "Écharpe",
+      "Gants",
+      "Bonnet",
+      "Chapeau"
     ],
     "intrusos": [
       "Stylo",
       "Livre",
       "Cahier",
       "Gomme",
-      "Règle"
+      "Règle",
+      "Ciseaux",
+      "Trousse"
     ]
   },
   {
-    "categoria": "Pays Francophones",
+    "categoria": "Pays de la Francophonie",
     "correctos": [
-      "France",
-      "Belgique",
-      "Suisse",
-      "Canada",
-      "Sénégal"
+      "La France",
+      "La Belgique",
+      "La Suisse",
+      "Le Canada",
+      "Le Sénégal",
+      "Le Maroc",
+      "La Tunisie",
+      "L'Algérie",
+      "La Côte d'Ivoire",
+      "Le Mali",
+      "Le Luxembourg",
+      "Monaco",
+      "Le Québec",
+      "Haïti"
     ],
     "intrusos": [
       "Espagne",
       "Italie",
       "Allemagne",
       "Angleterre",
-      "Chine"
+      "Chine",
+      "Japon",
+      "Brésil"
     ]
   }
 ]

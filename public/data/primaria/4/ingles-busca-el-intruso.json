@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Common Jobs and Occupations (Icons)",
+    "categoria": "Jobs and Occupations (Icons)",
     "correctos": [
       "👮",
       "👩‍⚕️",
@@ -12,7 +12,12 @@
       "👨‍🎨",
       "👩‍🔬",
       "👷‍♂️",
-      "👩‍🌾"
+      "👩‍🌾",
+      "👨‍🎤",
+      "👩‍✈️",
+      "👨‍💻",
+      "👩‍💼",
+      "👨‍⚖️"
     ],
     "intrusos": [
       "🐶",
@@ -21,10 +26,7 @@
       "🚗",
       "🌳",
       "🧸",
-      "🪁",
-      "🎒",
-      "🍔",
-      "🍦"
+      "🪁"
     ]
   },
   {
@@ -41,8 +43,12 @@
       "🧣",
       "🧦",
       "👔",
-      "👢",
-      "👙"
+      "ブーツ (Bota Boot)",
+      "👙",
+      "👘",
+      "👟",
+      "👞",
+      "🧢"
     ],
     "intrusos": [
       "🍎",
@@ -51,14 +57,11 @@
       "⌚",
       "👓",
       "📱",
-      "💻",
-      "🎸",
-      "🥣",
-      "🚲"
+      "💻"
     ]
   },
   {
-    "categoria": "Weather and Atmospheric Conditions (Icons)",
+    "categoria": "Weather (Icons)",
     "correctos": [
       "☀️",
       "☁️",
@@ -69,7 +72,13 @@
       "🌈",
       "🌫️",
       "🌪️",
-      "🌊"
+      "🌊",
+      "🌤️",
+      "🌥️",
+      "🌦️",
+      "🌗",
+      "⚡",
+      "☔"
     ],
     "intrusos": [
       "🏠",
@@ -78,10 +87,7 @@
       "📚",
       "✏️",
       "🍔",
-      "🛋️",
-      "🛁",
-      "🧸",
-      "🚲"
+      "🛋️"
     ]
   },
   {
@@ -98,7 +104,12 @@
       "🍳",
       "🥣",
       "🍿",
-      "🍩"
+      "🍩",
+      "🍪",
+      "🥞",
+      "🧇",
+      "🍱",
+      "🧁"
     ],
     "intrusos": [
       "⚽",
@@ -107,11 +118,7 @@
       "✏️",
       "👕",
       "👟",
-      "🚲",
-      "🏠",
-      "📱",
-      "💻",
-      "🎸"
+      "🚲"
     ]
   },
   {
@@ -127,7 +134,12 @@
       "Artist",
       "Astronaut",
       "Scientist",
-      "Pilot"
+      "Pilot",
+      "Dentist",
+      "Farmer",
+      "Driver",
+      "Singer",
+      "Actor"
     ],
     "intrusos": [
       "School",
@@ -135,15 +147,11 @@
       "Police Station",
       "Fire Station",
       "Zoo",
-      "Kitchen",
-      "Airport",
-      "Park",
-      "House",
-      "Garden"
+      "Kitchen"
     ]
   },
   {
-    "categoria": "Active Action Verbs",
+    "categoria": "Active Verbs",
     "correctos": [
       "Run",
       "Jump",
@@ -155,25 +163,25 @@
       "Ride a bike",
       "Play football",
       "Climb",
-      "Fly"
+      "Fly",
+      "Walk",
+      "Think",
+      "Draw",
+      "Cook",
+      "Drink"
     ],
     "intrusos": [
       "Happy",
       "Sad",
       "Big",
       "Small",
-      "Red",
-      "Blue",
       "Hot",
       "Cold",
-      "Beautiful",
-      "Ugly",
-      "Fast",
-      "Slow"
+      "Beautiful"
     ]
   },
   {
-    "categoria": "Public Places in Town",
+    "categoria": "Public Places",
     "correctos": [
       "School",
       "Park",
@@ -185,7 +193,11 @@
       "Bus Station",
       "Toy Shop",
       "Zoo",
-      "Post Office"
+      "Post Office",
+      "Bank",
+      "Police Station",
+      "Airport",
+      "Cemetery"
     ],
     "intrusos": [
       "Teacher",
@@ -194,14 +206,11 @@
       "Apple",
       "Car",
       "Pencil",
-      "Shoes",
-      "Pizza",
-      "Chair",
-      "Table"
+      "Shoes"
     ]
   },
   {
-    "categoria": "Clothing Items (Words)",
+    "categoria": "Clothing Items",
     "correctos": [
       "T-shirt",
       "Jeans",
@@ -214,7 +223,11 @@
       "Scarf",
       "Socks",
       "Sweater",
-      "Shirt"
+      "Shirt",
+      "Shorts",
+      "Cap",
+      "Boots",
+      "Jacket"
     ],
     "intrusos": [
       "Leg",
@@ -224,13 +237,11 @@
       "Foot",
       "Ear",
       "Nose",
-      "Eye",
-      "Mouth",
-      "Shoulder"
+      "Eye"
     ]
   },
   {
-    "categoria": "Weather Descriptions (Adjectives)",
+    "categoria": "Weather Adjectives",
     "correctos": [
       "Sunny",
       "Rainy",
@@ -241,7 +252,13 @@
       "Cold",
       "Stormy",
       "Foggy",
-      "Chilly"
+      "Chilly",
+      "Breezy",
+      "Dry",
+      "Wet",
+      "Icy",
+      "Humid",
+      "Clear"
     ],
     "intrusos": [
       "Monday",
@@ -250,10 +267,7 @@
       "Happy",
       "Sad",
       "Dog",
-      "Cat",
-      "School",
-      "Pizza",
-      "Morning"
+      "Cat"
     ]
   }
 ]

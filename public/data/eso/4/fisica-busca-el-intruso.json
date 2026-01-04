@@ -1,123 +1,199 @@
 [
   {
-    "categoria": "Fuerzas (Visual)",
+    "categoria": "Interacciones y Fuerzas (Visual)",
     "correctos": [
       "🏋️",
       "🏹",
       "🧲",
       "🍏",
       "🚀",
-      "⚖️"
+      "⚖️",
+      "⚙️",
+      "🔗",
+      "🎢",
+      "🏗️",
+      "🔩",
+      "📏",
+      "📉",
+      "📈",
+      "💹",
+      "🔋"
     ],
     "intrusos": [
       "💡",
       "🔋",
       "🌡️",
       "🦠",
-      "🧬"
+      "🧬",
+      "🧪",
+      "🔬",
+      "🧫"
     ]
   },
   {
-    "categoria": "Cinemática (Visual)",
+    "categoria": "Movimientos y Velocidad (Visual)",
     "correctos": [
       "🏎️",
       "🎢",
       "⏱️",
       "🚲",
       "🏃",
-      "✈️"
+      "✈️",
+      "🚄",
+      "🚁",
+      "⛵",
+      "🛰️",
+      "🚀",
+      "🏇",
+      "🛹",
+      "⛸️",
+      "⛷️",
+      "🚣"
     ],
     "intrusos": [
       "🛑",
       "🛌",
       "🧘",
       "🖼️",
-      "📚"
+      "📚",
+      "🕯️",
+      "🧸",
+      "🍿"
     ]
   },
   {
-    "categoria": "Cinemática",
+    "categoria": "Cinemática: Descripción del Movimiento",
     "correctos": [
-      "Velocidad",
-      "Aceleración",
-      "Trayectoria",
-      "Desplazamiento",
-      "Posición"
+      "Velocidad instantánea",
+      "Velocidad media",
+      "Aceleración tangencial",
+      "Aceleración normal",
+      "MRU (Uniforme)",
+      "MRUA (Acelerado)",
+      "Movimiento Circular (MCU)",
+      "Trayectoria rectilínea",
+      "Trayectoria parabólica",
+      "Desplazamiento vectorial",
+      "Sistema de referencia",
+      "Ecuación de posición",
+      "Tiempo de vuelo",
+      "Espacio recorrido"
     ],
     "intrusos": [
-      "Fuerza",
-      "Masa",
-      "Energía",
-      "Potencia",
-      "Trabajo"
+      "Fuerza de empuje",
+      "Masa atómica",
+      "Energía interna",
+      "Potencia eléctrica",
+      "Trabajo mecánico",
+      "Presión atmosférica"
     ]
   },
   {
-    "categoria": "Dinámica (Fuerzas)",
+    "categoria": "Dinámica: Leyes de Newton y Fuerzas",
     "correctos": [
-      "Newton",
-      "Gravedad",
-      "Rozamiento",
-      "Normal",
-      "Tensión"
+      "Primera Ley (Inercia)",
+      "Segunda Ley (F=ma)",
+      "Tercera Ley (Acción/Reacción)",
+      "Constante G de Gravitación",
+      "Fuerza de rozamiento",
+      "Fuerza Normal",
+      "Tensión de la cuerda",
+      "Fuerza centrípeta",
+      "Peso del cuerpo",
+      "Fuerza elástica (Hooke)",
+      "Resultante de fuerzas",
+      "Momento lineal",
+      "Impulso mecánico",
+      "Fricción del aire"
     ],
     "intrusos": [
-      "Voltio",
-      "Amperio",
-      "Ohmio",
-      "Vatio",
-      "Julio"
+      "Voltio de tensión",
+      "Amperio de intensidad",
+      "Ohmio de resistencia",
+      "Vatio de potencia",
+      "Julio de energía térmica",
+      "Faradio"
     ]
   },
   {
-    "categoria": "Energía",
+    "categoria": "Trabajo, Energía y Potencia",
     "correctos": [
-      "Cinética",
-      "Potencial",
-      "Mecánica",
-      "Trabajo",
-      "Potencia"
+      "Energía Cinética",
+      "Energía Potencial Gravitatoria",
+      "Energía Potencial Elástica",
+      "Energía Mecánica Total",
+      "Trabajo motor",
+      "Trabajo resistente",
+      "Potencia mecánica",
+      "Vatio (W)",
+      "Julio (J)",
+      "Rendimiento energético",
+      "Principio de conservación",
+      "Fuerza conservativa",
+      "Fuerza disipativa",
+      "Caloría"
     ],
     "intrusos": [
-      "Velocidad",
-      "Aceleración",
-      "Tiempo",
-      "Espacio",
-      "Distancia"
+      "Velocidad angular",
+      "Aceleración angular",
+      "Tiempo cronometrado",
+      "Distancia recorrida",
+      "Desplazamiento escalar",
+      "Posición relativa"
     ]
   },
   {
-    "categoria": "Presión y Fluidos",
+    "categoria": "Estática y Dinámica de Fluidos",
     "correctos": [
-      "Pascal",
-      "Arquímedes",
-      "Densidad",
-      "Presión",
-      "Empuje"
+      "Presión hidrostática",
+      "Principio de Pascal",
+      "Principio de Arquímedes",
+      "Fuerza de Empuje",
+      "Densidad relativa",
+      "Prensa hidráulica",
+      "Presión atmosférica",
+      "Barómetro de Torricelli",
+      "Manómetro",
+      "Flotabilidad",
+      "Tensión superficial",
+      "Caudal / Flujo",
+      "Viscosidad",
+      "Ecuación de continuidad"
     ],
     "intrusos": [
-      "Ohm",
-      "Volt",
-      "Ampere",
-      "Hertz",
-      "Newton"
+      "Resistencia eléctrica",
+      "Diferencia de potencial",
+      "Corriente alterna",
+      "Frecuencia de onda",
+      "Ley de Newton",
+      "Inercia"
     ]
   },
   {
-    "categoria": "Ondas",
+    "categoria": "Oscilaciones y Fenómenos Ondulatorios",
     "correctos": [
-      "Frecuencia",
-      "Longitud",
-      "Amplitud",
-      "Periodo",
-      "Sonido"
+      "Frecuencia (Hz)",
+      "Longitud de onda",
+      "Amplitud máxima",
+      "Periodo (T)",
+      "Velocidad de propagación",
+      "Onda transversal",
+      "Onda longitudinal",
+      "Sonido (Onda mecánica)",
+      "Luz (Onda electromagnética)",
+      "Reflexión",
+      "Refracción",
+      "Interferencia",
+      "Difracción",
+      "Efecto Doppler"
     ],
     "intrusos": [
-      "Masa",
-      "Peso",
-      "Volumen",
-      "Densidad",
-      "Temperatura"
+      "Masa molar",
+      "Peso específico",
+      "Volumen molar",
+      "Fracción molar",
+      "Temperatura Kelvin",
+      "Calor latente"
     ]
   }
 ]

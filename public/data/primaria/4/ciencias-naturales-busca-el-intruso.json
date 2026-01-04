@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Reino Vegetal y Organismos Productores (Visual)",
+    "categoria": "Reino Vegetal (Visual)",
     "correctos": [
       "🌲",
       "🌵",
@@ -13,7 +13,13 @@
       "🌱",
       "☘️",
       "🍏",
-      "🍇"
+      "🍇",
+      "🍄",
+      "🌺",
+      "🌼",
+      "🌿",
+      "🍀",
+      "🌽"
     ],
     "intrusos": [
       "🦓",
@@ -21,16 +27,13 @@
       "🪨",
       "🧱",
       "🚗",
-      "🍄 (Reino Fungi)",
-      "🍕",
-      "🍔",
       "📱",
       "💻",
       "🧸"
     ]
   },
   {
-    "categoria": "Cuerpos Celestes y el Espacio (Visual)",
+    "categoria": "El Espacio y Astros (Visual)",
     "correctos": [
       "🪐",
       "🌍",
@@ -41,7 +44,13 @@
       "🌌",
       "🔭",
       "🛰️",
-      "🛸"
+      "🛸",
+      "🌑",
+      "🌓",
+      "🌠",
+      "☀️",
+      "🔭",
+      "👽"
     ],
     "intrusos": [
       "✈️",
@@ -51,16 +60,14 @@
       "🐦",
       "🎈",
       "🦟",
-      "🐝",
-      "🦉",
-      "🪁"
+      "🐝"
     ]
   },
   {
     "categoria": "Animales Invertebrados (Visual)",
     "correctos": [
       "🦋",
-      "Ant",
+      "🐜",
       "🕷️",
       "🐝",
       "🐞",
@@ -69,8 +76,12 @@
       "🦀",
       "🦐",
       "🦑",
-      "🦐",
-      "🐛"
+      "🐛",
+      "🦟",
+      "🦗",
+      "🪰",
+      "🪲",
+      "🦂"
     ],
     "intrusos": [
       "🐶",
@@ -80,14 +91,11 @@
       "🐸",
       "🐟",
       "🐢",
-      "🐧",
-      "🦈",
-      "🦒",
-      "🦓"
+      "🐧"
     ]
   },
   {
-    "categoria": "Energías Limpias y Renovables (Visual)",
+    "categoria": "Energías Renovables (Visual)",
     "correctos": [
       "☀️",
       "🌬️",
@@ -96,7 +104,15 @@
       "💡",
       "♻️",
       "🔋",
-      "🔌"
+      "🔌",
+      "🌡️",
+      "🛰️",
+      "🚲",
+      "🏠",
+      "🚜",
+      "⚙️",
+      "💧",
+      "⚡"
     ],
     "intrusos": [
       "🛢️",
@@ -104,12 +120,12 @@
       "🏭",
       "🚬",
       "☢️",
-      "🚗 de gasolina",
-      "🔥 de leña"
+      "💣",
+      "🏚️"
     ]
   },
   {
-    "categoria": "Propiedades Específicas de la Materia",
+    "categoria": "Propiedades de la Materia",
     "correctos": [
       "Masa",
       "Volumen",
@@ -120,7 +136,12 @@
       "Conductividad",
       "Solubilidad",
       "Viscosidad",
-      "Maleabilidad"
+      "Maleabilidad",
+      "Punto de fusión",
+      "Punto de ebullición",
+      "Olor",
+      "Sabor",
+      "Textura"
     ],
     "intrusos": [
       "Alegría",
@@ -128,15 +149,12 @@
       "Amor",
       "Pensamiento",
       "Recuerdo",
-      "Color favorito",
-      "Nombre",
       "Precio",
-      "Lugar",
       "Amistad"
     ]
   },
   {
-    "categoria": "Órganos del Aparato Digestivo y Excretor",
+    "categoria": "Aparato Digestivo y Excretor",
     "correctos": [
       "Boca",
       "Esófago",
@@ -147,44 +165,52 @@
       "Páncreas",
       "Riñones",
       "Vejiga",
-      "Glándulas salivales"
+      "Glándulas salivales",
+      "Uréteres",
+      "Uretra",
+      "Ano",
+      "Faringe"
     ],
     "intrusos": [
       "Pulmones",
       "Corazón",
       "Cerebro",
-      "Medula espinal",
       "Fémur",
       "Cráneo",
       "Músculos",
-      "Ojos",
-      "Oídos",
-      "Pelo"
+      "Ojos"
     ]
   },
   {
-    "categoria": "Grupos de Animales Vertebrados",
+    "categoria": "Tipos de Animales",
     "correctos": [
       "Mamíferos",
       "Aves",
       "Reptiles",
       "Anfibios",
-      "Peces"
+      "Peces",
+      "Vertebrados",
+      "Invertebrados",
+      "Ovíparos",
+      "Vivíparos",
+      "Herbívoros",
+      "Carnívoros",
+      "Omnívoros",
+      "Cazadores",
+      "Carroñeros"
     ],
     "intrusos": [
-      "Insectos",
-      "Arácnidos",
-      "Moluscos",
-      "Gusanos",
-      "Medusas",
-      "Crustáceos",
-      "Equinodermos",
-      "Poríferos",
-      "Anélidos"
+      "Piedras",
+      "Plantas",
+      "Hongos",
+      "Bacterias",
+      "Virus",
+      "Rocas",
+      "Nubes"
     ]
   },
   {
-    "categoria": "Ecosistemas de Agua Dulce y Salada",
+    "categoria": "Ecosistemas",
     "correctos": [
       "Río",
       "Lago",
@@ -193,33 +219,42 @@
       "Laguna",
       "Pantano",
       "Estuario",
-      "Arrecife de coral",
-      "Charca"
-    ],
-    "intrusos": [
+      "Arrecife",
       "Bosque",
-      "Desierto",
       "Selva",
+      "Desierto",
       "Pradera",
       "Sabana",
       "Tundra",
       "Taiga",
-      "Cueva",
-      "Montaña nevada"
+      "Montaña"
+    ],
+    "intrusos": [
+      "Silla",
+      "Mesa",
+      "Coche",
+      "Lápiz",
+      "Libro",
+      "Teléfono"
     ]
   },
   {
-    "categoria": "Fuentes de Energía Primaria",
+    "categoria": "Fuentes de Energía",
     "correctos": [
       "Sol",
       "Viento",
-      "Agua corriente",
+      "Agua",
       "Carbón",
       "Petróleo",
       "Gas natural",
       "Uranio",
       "Leña",
-      "Biomasa"
+      "Biomasa",
+      "Geotermia",
+      "Hidrógeno",
+      "Mareas",
+      "Nuclear",
+      "Electricidad"
     ],
     "intrusos": [
       "Plástico",
@@ -228,9 +263,7 @@
       "Cartón",
       "Tela",
       "Metal",
-      "Cerámica",
-      "Goma",
-      "Ladrillo"
+      "Cerámica"
     ]
   }
 ]

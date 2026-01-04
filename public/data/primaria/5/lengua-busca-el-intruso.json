@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Canales de Comunicación y Tecnología (Visual)",
+    "categoria": "Canales de Comunicación (Visual)",
     "correctos": [
       "📧",
       "📱",
@@ -11,19 +11,22 @@
       "🌐",
       "📶",
       "🗣️",
-      "🎬"
+      "🎬",
+      "📺",
+      "📻",
+      "☎️",
+      "📟",
+      "📩",
+      "📥"
     ],
     "intrusos": [
       "📜",
       "🏺",
       "🗿",
-      "🕊️",
-      "🚬",
       "🏹",
       "🛡️",
       "⚔️",
-      "🪵",
-      "🧱"
+      "🪵"
     ]
   },
   {
@@ -38,7 +41,13 @@
       "🏰",
       "🕌",
       "⛩️",
-      "🗿"
+      "🗿",
+      "🎤",
+      "🎹",
+      "🎺",
+      "🎷",
+      "🩰",
+      "🎻"
     ],
     "intrusos": [
       "🍔",
@@ -47,14 +56,11 @@
       "🎮",
       "📺",
       "📱",
-      "💻",
-      "⌚",
-      "🎒",
-      "👟"
+      "💻"
     ]
   },
   {
-    "categoria": "Fenómenos Atmosféricos Complejos (Visual)",
+    "categoria": "Fenómenos Atmosféricos (Visual)",
     "correctos": [
       "🌤️",
       "⛈️",
@@ -65,7 +71,13 @@
       "🌫️",
       "🌬️",
       "🌡️",
-      "❄️"
+      "❄️",
+      "☀️",
+      "☁️",
+      "🌦️",
+      "🌊",
+      "🌖",
+      "⚡"
     ],
     "intrusos": [
       "🏠",
@@ -74,14 +86,11 @@
       "👠",
       "⚽",
       "🧸",
-      "🪁",
-      "🏙️",
-      "🏭",
-      "🚜"
+      "🪁"
     ]
   },
   {
-    "categoria": "Deportes de Pelota y Equipo (Visual)",
+    "categoria": "Deportes de Pelota (Visual)",
     "correctos": [
       "⚽",
       "🏀",
@@ -92,7 +101,13 @@
       "🥎",
       "🏓",
       "🏸",
-      "🏒"
+      "🏒",
+      "🏏",
+      "🏒",
+      "🎳",
+      "⚾",
+      "🥅",
+      "⛳"
     ],
     "intrusos": [
       "🍔",
@@ -101,14 +116,11 @@
       "🎮",
       "📺",
       "👟",
-      "🧗",
-      "🏂",
-      "🛹",
-      "🚴"
+      "🧗"
     ]
   },
   {
-    "categoria": "Sustantivos Colectivos (Conjuntos)",
+    "categoria": "Sustantivos Colectivos",
     "correctos": [
       "Rebaño",
       "Jauría",
@@ -121,7 +133,11 @@
       "Piara",
       "Bandada",
       "Constelación",
-      "Alameda"
+      "Alameda",
+      "Rosaleda",
+      "Gente",
+      "Público",
+      "Equipo"
     ],
     "intrusos": [
       "Oveja",
@@ -130,16 +146,11 @@
       "Barco",
       "Soldado",
       "Músico",
-      "Pez",
-      "Abeja",
-      "Cerdo",
-      "Pájaro",
-      "Estrella",
-      "Álamo"
+      "Pez"
     ]
   },
   {
-    "categoria": "Adverbios de Tiempo y Frecuencia",
+    "categoria": "Adverbios de Tiempo",
     "correctos": [
       "Ayer",
       "Hoy",
@@ -152,7 +163,11 @@
       "Nunca",
       "Jamás",
       "Todavía",
-      "Frecuentemente"
+      "Frecuentemente",
+      "Temprano",
+      "Anoche",
+      "Luego",
+      "Ya"
     ],
     "intrusos": [
       "Aquí",
@@ -161,16 +176,11 @@
       "Lejos",
       "Mucho",
       "Poco",
-      "Bien",
-      "Mal",
-      "Deprisa",
-      "Despacio",
-      "Arriba",
-      "Abajo"
+      "Bien"
     ]
   },
   {
-    "categoria": "Determinantes Demostrativos (Distancia)",
+    "categoria": "Determinantes",
     "correctos": [
       "Este",
       "Esta",
@@ -183,27 +193,25 @@
       "Esos",
       "Esas",
       "Aquellos",
-      "Aquellas"
-    ],
-    "intrusos": [
+      "Aquellas",
+      "Aquel",
+      "Aquella",
       "Mi",
       "Tu",
-      "Su",
-      "Nuestro",
-      "Vuestro",
-      "Mis",
-      "El",
-      "La",
-      "Los",
-      "Las",
-      "Un",
-      "Una",
-      "Algún",
-      "Ningún"
+      "Su"
+    ],
+    "intrusos": [
+      "Correr",
+      "Saltar",
+      "Bien",
+      "Mal",
+      "Hoy",
+      "Ayer",
+      "El"
     ]
   },
   {
-    "categoria": "Formas Verbales en Pasado (SImple o Imperfecto)",
+    "categoria": "Verbos en Pasado",
     "correctos": [
       "Comí",
       "Jugaba",
@@ -214,7 +222,13 @@
       "Leían",
       "Saliste",
       "Hablábamos",
-      "Pintó"
+      "Pintó",
+      "Bailé",
+      "Saltaron",
+      "Corrió",
+      "Dijimos",
+      "Pusiste",
+      "Hizo"
     ],
     "intrusos": [
       "Jugaré",
@@ -222,15 +236,12 @@
       "Viviré",
       "Saltaré",
       "Escribo",
-      "Cantaré",
       "Leo",
-      "Saldré",
-      "Hablo",
-      "Pinto"
+      "Hablo"
     ]
   },
   {
-    "categoria": "Palabras con Hiato (Vocal Abierta + Abierta)",
+    "categoria": "Palabras con Hiato",
     "correctos": [
       "Aéreo",
       "Teatro",
@@ -242,7 +253,12 @@
       "Línea",
       "Marea",
       "Océano",
-      "Peón"
+      "Peón",
+      "Recreo",
+      "Aldea",
+      "Pelea",
+      "Toalla",
+      "Boa"
     ],
     "intrusos": [
       "Reina",
@@ -251,15 +267,11 @@
       "Fuego",
       "Agua",
       "Hielo",
-      "Baile",
-      "Ciudad",
-      "Causa",
-      "Pausa",
-      "Viaje"
+      "Baile"
     ]
   },
   {
-    "categoria": "Preposiciones de la Lengua Española",
+    "categoria": "Preposiciones",
     "correctos": [
       "A",
       "Ante",
@@ -293,12 +305,7 @@
       "Ni",
       "Pero",
       "Porque",
-      "Aunque",
-      "Si",
-      "Sino",
-      "Que",
-      "Cuando",
-      "Donde"
+      "Aunque"
     ]
   }
 ]

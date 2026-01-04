@@ -1,158 +1,266 @@
 [
   {
-    "categoria": "Electricidad (Visual)",
+    "categoria": "Electricidad y Circuitos (Visual)",
     "correctos": [
       "⚡",
       "🔋",
       "💡",
       "🔌",
       "🔦",
-      "🛑"
+      "🛑",
+      "📟",
+      "📡",
+      "🛰️",
+      "🔌",
+      "🔋",
+      "💡",
+      "⚡",
+      "🔋",
+      "🔌",
+      "📶"
     ],
     "intrusos": [
       "💧",
       "🔥",
       "🌱",
       "🐶",
-      "📚"
+      "📚",
+      "🐚",
+      "🌹",
+      "🦋"
     ]
   },
   {
-    "categoria": "Herramientas (Visual)",
+    "categoria": "Herramientas de Taller y Medida (Visual)",
     "correctos": [
       "🔨",
       "🔧",
       "🪛",
       "🔩",
       "📏",
-      "✂️"
+      "✂️",
+      "🪚",
+      "🪓",
+      "🛠️",
+      "⚒️",
+      "📐",
+      "🖇️",
+      "📏",
+      "🔩",
+      "🗜️",
+      "🏮"
     ],
     "intrusos": [
       "✏️",
       "🖊️",
       "🥄",
       "🍴",
-      "🧸"
+      "🧸",
+      "🍦",
+      "🥪",
+      "🧁"
     ]
   },
   {
-    "categoria": "Informática (Visual)",
+    "categoria": "Arquitectura y Periféricos Informáticos (Visual)",
     "correctos": [
       "💻",
       "🖱️",
       "⌨️",
       "🖥️",
       "🖨️",
-      "💾"
+      "💾",
+      "💿",
+      "🖲️",
+      "📼",
+      "📠",
+      "📟",
+      "💾",
+      "🔌",
+      "🔋",
+      "💿",
+      "📟"
     ],
     "intrusos": [
       "📺",
       "📻",
       "📷",
       "📹",
-      "🕰️"
+      "🕰️",
+      "🧺",
+      "🕯️",
+      "🏺"
     ]
   },
   {
-    "categoria": "Mecanismos (Visual)",
+    "categoria": "Mecanismos y Máquinas (Visual)",
     "correctos": [
       "⚙️",
       "🚲",
       "🏎️",
       "🏗️",
       "🕰️",
-      "🎢"
+      "🎢",
+      "🚜",
+      "🚂",
+      "🚄",
+      "🚁",
+      "🚠",
+      "🛥️",
+      "🔩",
+      "⛓️",
+      "🛠️",
+      "🔧"
     ],
     "intrusos": [
       "🧱",
       "🪵",
       "📄",
       "🥪",
-      "🍎"
+      "🍎",
+      "🍐",
+      "🍞",
+      "🧀"
     ]
   },
   {
-    "categoria": "Generación de Energía",
+    "categoria": "Centrales y Generación de Energía",
     "correctos": [
-      "Térmica",
-      "Nuclear",
-      "Eólica",
-      "Hidráulica",
-      "Solar"
+      "Central Térmica",
+      "Central Nuclear",
+      "Parque Eólico",
+      "Central Hidráulica",
+      "Planta Solar Fotovoltaica",
+      "Central Geotérmica",
+      "Central Mareomotriz",
+      "Combustión de Biomasa",
+      "Generador eléctrico",
+      "Turbina",
+      "Alternador",
+      "Transformador",
+      "Líneas de alta tensión",
+      "Red de distribución"
     ],
     "intrusos": [
-      "Eléctrica",
-      "Cinética",
-      "Potencial",
-      "Mecánica",
-      "Química"
+      "Energía Eléctrica",
+      "Energía Cinética",
+      "Energía Potencial",
+      "Energía Mecánica",
+      "Energía Química",
+      "Energía Interna",
+      "Radiación"
     ]
   },
   {
-    "categoria": "Materiales Plásticos",
+    "categoria": "Plásticos y Materiales Sintéticos",
     "correctos": [
-      "PET",
-      "PVC",
-      "Poliestireno",
+      "PET (Polietileno)",
+      "PVC (Policloruro)",
+      "Poliestireno (PS)",
       "Metacrilato",
-      "Caucho"
+      "Caucho sintético",
+      "Polietileno de alta densidad",
+      "Polipropileno (PP)",
+      "Nailon (Poliamida)",
+      "Teflón",
+      "Poliuretano",
+      "Resina epoxi",
+      "Baquelita",
+      "Melamina",
+      "Termoplásticos"
     ],
     "intrusos": [
-      "Acero",
-      "Cobre",
-      "Aluminio",
-      "Madera",
-      "Vidrio"
+      "Acero inoxidable",
+      "Cobre refinado",
+      "Aluminio fundido",
+      "Madera de pino",
+      "Vidrio soplado",
+      "Mármol pulido",
+      "Cuero natural"
     ]
   },
   {
-    "categoria": "Componentes de un Ordenador",
+    "categoria": "Hardware Interno del Computador",
     "correctos": [
-      "Microprocesador",
+      "Microprocesador (CPU)",
       "Memoria RAM",
-      "Disco Duro",
-      "Placa Base",
-      "Tarjeta Gráfica"
+      "Unidad de Disco Duro (HDD)",
+      "Unidad de Estado Sólido (SSD)",
+      "Placa Base (Motherboard)",
+      "Tarjeta Gráfica (GPU)",
+      "Fuente de Alimentación",
+      "Memoria Caché",
+      "Ranura de expansión",
+      "Puerto SATA",
+      "Ventilador de CPU",
+      "Módulo de memoria",
+      "Chipset",
+      "BIOS / UEFI"
     ],
     "intrusos": [
-      "Ratón",
-      "Teclado",
-      "Monitor",
-      "Impresora",
-      "Altavoz"
+      "Ratón óptico",
+      "Teclado mecánico",
+      "Monitor LED",
+      "Impresora láser",
+      "Altavoz bluetooth",
+      "Cámara web",
+      "Escáner"
     ]
   },
   {
-    "categoria": "Transmisión de Movimiento",
+    "categoria": "Sistemas de Transmisión de Movimiento",
     "correctos": [
-      "Engranajes",
-      "Poleas",
-      "Cadenas",
-      "Ruedas de fricción"
+      "Engranajes rectos",
+      "Poleas con correa",
+      "Cadena y piñón",
+      "Ruedas de fricción",
+      "Tornillo sin fin",
+      "Engranaje cónico",
+      "Tren de engranajes",
+      "Tren de poleas",
+      "Eje de transmisión",
+      "Árbol de transmisión",
+      "Correa dentada",
+      "Mecanismo multiplicador",
+      "Mecanismo reductor",
+      "Relación de transmisión"
     ],
     "intrusos": [
       "Biela-manivela",
-      "Leva",
+      "Leva y seguidor",
       "Tornillo-tuerca",
       "Piñón-cremallera",
-      "Cigüeñal"
+      "Cigüeñal",
+      "Cruz de Malta",
+      "Excéntrica"
     ]
   },
   {
-    "categoria": "Internet",
+    "categoria": "Conceptos de Red e Internet",
     "correctos": [
-      "Servidor",
-      "Navegador",
-      "Buscador",
-      "Protocolo",
-      "Dominio"
+      "Servidor (Server)",
+      "Navegador (Browser)",
+      "Buscador (Search Engine)",
+      "Protocolo TCP/IP",
+      "Nombre de Dominio (DNS)",
+      "Dirección IP",
+      "Enrutador (Router)",
+      "Proveedor de Internet (ISP)",
+      "Ancho de banda",
+      "Fibra óptica",
+      "Wi-Fi",
+      "Hipervínculo / Link",
+      "URL",
+      "Página Web (HTML)"
     ],
     "intrusos": [
-      "Word",
-      "Excel",
-      "PowerPoint",
-      "Paint",
-      "Calculadora"
+      "Microsoft Word",
+      "Microsoft Excel",
+      "Microsoft PowerPoint",
+      "Adobe Photoshop",
+      "Bloc de notas",
+      "Calculadora",
+      "Solitario"
     ]
   }
 ]

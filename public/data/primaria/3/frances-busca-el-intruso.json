@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Animaux Sauvages et Domestiques (Visual)",
+    "categoria": "Animaux (Visual)",
     "correctos": [
       "🐶",
       "🐱",
@@ -15,7 +15,11 @@
       "🦅",
       "🐘",
       "🦒",
-      "🦓"
+      "🦓",
+      "🐺",
+      "🐷",
+      "🐸",
+      "🐹"
     ],
     "intrusos": [
       "🍎",
@@ -25,15 +29,11 @@
       "✏️",
       "🍕",
       "🍔",
-      "🚲",
-      "🎸",
-      "⌚",
-      "💻",
-      "🧸"
+      "🚲"
     ]
   },
   {
-    "categoria": "Fournitures de l'École (Visual)",
+    "categoria": "Fournitures Scolaires (Visual)",
     "correctos": [
       "📚",
       "✏️",
@@ -46,7 +46,11 @@
       "🖊️",
       "🎓",
       "📖",
-      "📎"
+      "📎",
+      "📒",
+      "💻",
+      "🎨",
+      "📐"
     ],
     "intrusos": [
       "🛌",
@@ -55,15 +59,11 @@
       "🐶",
       "🚗",
       "🍦",
-      "🥪",
-      "🛋️",
-      "📻",
-      "🚲",
-      "🛴"
+      "🥪"
     ]
   },
   {
-    "categoria": "Les Couleurs et Nuances",
+    "categoria": "Les Couleurs",
     "correctos": [
       "Rouge",
       "Bleu",
@@ -78,7 +78,9 @@
       "Marron",
       "Beige",
       "Argent",
-      "Or"
+      "Or",
+      "Turquoise",
+      "Vermeil"
     ],
     "intrusos": [
       "Chien",
@@ -87,12 +89,7 @@
       "Un",
       "Deux",
       "Table",
-      "Chaise",
-      "Livre",
-      "Stylo",
-      "Pomme",
-      "Manger",
-      "Dormir"
+      "Chaise"
     ]
   },
   {
@@ -111,25 +108,26 @@
       "Onze",
       "Douze",
       "Treize",
+      "Quatorze",
+      "Quinze",
+      "Seize",
+      "Dix-sept",
+      "Dix-huit",
+      "Dix-neuf",
       "Vingt"
     ],
     "intrusos": [
       "Bonjour",
       "Merci",
       "Oui",
-      "Non",
+      "No",
       "Rouge",
       "Bleu",
-      "Chien",
-      "Chat",
-      "Maison",
-      "Petit",
-      "Grand",
-      "Aujourd'hui"
+      "Chat"
     ]
   },
   {
-    "categoria": "Salutations et Formules de Politesse",
+    "categoria": "Salutations et Politesse",
     "correctos": [
       "Bonjour",
       "Salut",
@@ -140,25 +138,24 @@
       "S'il vous plaît",
       "Pardon",
       "Enchanté",
-      "De rien"
+      "De rien",
+      "À bientôt",
+      "À demain",
+      "Comment ça va?",
+      "Bonne journée"
     ],
     "intrusos": [
       "Rouge",
       "Bleu",
       "Chat",
-      "Chien",
       "Pomme",
       "Banane",
       "Un",
-      "Deux",
-      "Trois",
-      "Maison",
-      "Table",
-      "Chaise"
+      "Table"
     ]
   },
   {
-    "categoria": "Les Membres de la Famille",
+    "categoria": "La Famille",
     "correctos": [
       "Père",
       "Mère",
@@ -170,7 +167,10 @@
       "Oncle",
       "Tante",
       "Cousin",
-      "Cousine"
+      "Cousine",
+      "Grand-parents",
+      "Fils",
+      "Fille"
     ],
     "intrusos": [
       "Stylo",
@@ -178,15 +178,11 @@
       "Cahier",
       "Professeur",
       "École",
-      "Classe",
-      "Livre",
-      "Règle",
-      "Ciseaux",
-      "Sac à dos"
+      "Classe"
     ]
   },
   {
-    "categoria": "Les Jours de la Semaine",
+    "categoria": "Jours et Mois",
     "correctos": [
       "Lundi",
       "Mardi",
@@ -194,20 +190,27 @@
       "Jeudi",
       "Vendredi",
       "Samedi",
-      "Dimanche"
-    ],
-    "intrusos": [
+      "Dimanche",
       "Janvier",
       "Février",
       "Mars",
-      "Noël",
-      "Pâques",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre"
+    ],
+    "intrusos": [
+      "Saison",
       "Été",
       "Hiver",
       "Automne",
       "Printemps",
-      "Matin",
-      "Soir"
+      "Maintenant"
     ]
   }
 ]

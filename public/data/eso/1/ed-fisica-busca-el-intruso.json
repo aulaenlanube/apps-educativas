@@ -1,139 +1,222 @@
 [
   {
-    "categoria": "Deportes con Balón (Visual)",
+    "categoria": "Deportes de Balón (Visual)",
     "correctos": [
       "⚽",
       "🏀",
       "🏐",
       "🏉",
       "⚾",
-      "🎾"
+      "🎾",
+      "🥎",
+      "🎱",
+      "🏓",
+      "🏸",
+      "🏏",
+      "🏒",
+      "🥅",
+      "⛳",
+      "🥅",
+      "🏟️"
     ],
     "intrusos": [
       "🏊",
       "🏃",
       "🤸",
       "🚴",
-      "🥊"
+      "🥊",
+      "🧘",
+      "🧗"
     ]
   },
   {
-    "categoria": "Deportes Acuáticos (Visual)",
+    "categoria": "Deportes de Agua y Nieve (Visual)",
     "correctos": [
       "🏊",
       "🤽",
       "🚣",
       "🏄",
-      "🛶"
+      "🛶",
+      "🎿",
+      "🏂",
+      "⛸️",
+      "🤿",
+      "⛵",
+      "🛷",
+      "🛥️",
+      "🚠",
+      "🎣"
     ],
     "intrusos": [
       "🏃",
       "🚴",
       "🧗",
       "🏇",
-      "🏌️"
+      "🏌️",
+      "🛹",
+      "🥋"
     ]
   },
   {
-    "categoria": "Material Deportivo (Visual)",
+    "categoria": "Material y Equipación (Visual)",
     "correctos": [
       "👟",
       "🎽",
       "🥅",
       "🏓",
       "🏸",
-      "🛹"
+      " skateboard (Monopatín skateboard)",
+      "🥊",
+      "🥋",
+      "🏹",
+      "🏑",
+      "🏏",
+      "🎿",
+      "🛹",
+      "🚲",
+      "🧗",
+      "🧘"
     ],
     "intrusos": [
       "📚",
       "✏️",
       "🎒",
       "💻",
-      "📱"
+      "📱",
+      "🎹",
+      "🎺"
     ]
   },
   {
-    "categoria": "Capacidades Físicas",
+    "categoria": "Capacidades Físicas Básicas",
     "correctos": [
       "Resistencia",
       "Fuerza",
       "Velocidad",
-      "Flexibilidad"
+      "Flexibilidad",
+      "Coordinación",
+      "Equilibrio",
+      "Agilidad",
+      "Potencia",
+      "Resistencia aeróbica",
+      "Resistencia anaeróbica",
+      "Fuerza explosiva",
+      "Fuerza máxima"
     ],
     "intrusos": [
       "Inteligencia",
       "Memoria",
       "Altura",
       "Peso",
-      "Edad"
+      "Edad",
+      "Color de ojos",
+      "Voz"
     ]
   },
   {
-    "categoria": "Partes del Calentamiento",
+    "categoria": "Fases y Tipos de Calentamiento",
     "correctos": [
       "Movilidad articular",
       "Carrera continua",
-      "Estiramientos",
-      "Juegos"
+      "Estiramientos dinámicos",
+      "Juegos de activación",
+      "Ejercicios genéricos",
+      "Ejercicios específicos",
+      "Activación cardiovascular",
+      "Estiramientos estáticos",
+      "Entrada en calor",
+      "Vuelta a la calma",
+      "Relajación",
+      "Hidratación previa"
     ],
     "intrusos": [
       "Ducha",
       "Comida",
       "Siesta",
       "Partido",
-      "Examen"
+      "Examen",
+      "Dormir",
+      "Televisión"
     ]
   },
   {
-    "categoria": "Deportes de Equipo",
+    "categoria": "Deportes de Equipo / Colectivos",
     "correctos": [
       "Fútbol",
       "Baloncesto",
       "Voleibol",
       "Balonmano",
-      "Rugby"
+      "Rugby",
+      "Waterpolo",
+      "Béisbol",
+      "Hockey",
+      "Fútbol Sala",
+      "Ultimate Frisbee",
+      "Sóftbol",
+      "Cricket"
     ],
     "intrusos": [
       "Tenis",
       "Bádminton",
       "Atletismo",
       "Natación",
-      "Ciclismo"
+      "Ciclismo",
+      "Boxeo",
+      "Judo"
     ]
   },
   {
-    "categoria": "Hábitos Saludables",
+    "categoria": "Hábitos de Vida Saludable",
     "correctos": [
-      "Ejercicio",
+      "Ejercicio regular",
       "Dieta equilibrada",
-      "Descanso",
-      "Higiene",
-      "Hidratación"
+      "Descanso (8 horas)",
+      "Higiene personal",
+      "Hidratación constante",
+      "Postura correcta",
+      "Evitar sedentarismo",
+      "Fruta y verdura",
+      "Deporte escolar",
+      "Bienestar emocional",
+      "Revisiones médicas",
+      "Calentamiento"
     ],
     "intrusos": [
       "Sedentarismo",
       "Tabaco",
       "Alcohol",
       "Estrés",
-      "Comida basura"
+      "Comida basura",
+      "Drogas",
+      "Insomnio"
     ]
   },
   {
-    "categoria": "Huesos del Cuerpo",
+    "categoria": "Huesos y Esqueleto Humano",
     "correctos": [
       "Fémur",
       "Húmero",
       "Tibia",
       "Peroné",
       "Radio",
-      "Cúbito"
+      "Cúbito",
+      "Columna vertebral",
+      "Cráneo",
+      "Costillas",
+      "Pelvis",
+      "Clavícula",
+      "Escápula",
+      "Rótula",
+      "Esternón"
     ],
     "intrusos": [
       "Bíceps",
       "Tríceps",
       "Cuádriceps",
       "Abdominales",
-      "Gemelos"
+      "Gemelos",
+      "Glúteos",
+      "Deltoides"
     ]
   }
 ]

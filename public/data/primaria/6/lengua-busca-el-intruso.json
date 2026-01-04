@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Artes Escénicas y Audiovisuales (Visual)",
+    "categoria": "Artes Escénicas (Visual)",
     "correctos": [
       "🎭",
       "🎟️",
@@ -11,7 +11,13 @@
       "📽️",
       "📻",
       "🎙️",
-      "📺"
+      "📺",
+      "🎹",
+      "🎻",
+      "🎷",
+      "🎺",
+      "🩰",
+      "🎨"
     ],
     "intrusos": [
       "⚽",
@@ -20,15 +26,11 @@
       "🏔️",
       "🏥",
       "🏢",
-      "🏛️",
-      "🛤️",
-      "🏙️",
-      "🌉",
-      "🏗️"
+      "🏛️"
     ]
   },
   {
-    "categoria": "Comunicaciones Digitales Modernas (Visual)",
+    "categoria": "Comunicación Digital (Visual)",
     "correctos": [
       "📧",
       "💬",
@@ -39,32 +41,43 @@
       "📱",
       "🖱️",
       "⌨️",
-      "🖥️"
+      "🖥️",
+      "🔋",
+      "🔌",
+      "📡",
+      "🛰️",
+      "🔔",
+      "🔊"
     ],
     "intrusos": [
       "📠",
-      " cassette",
       "💾",
       "🎞️",
       "🕰️",
-      "📺 antiguo",
-      "📟",
       "📜",
-      "🏺"
+      "🏺",
+      "🕰️"
     ]
   },
   {
-    "categoria": "Elementos de la Narrativa y el Relato (Visual)",
+    "categoria": "Narrativa y Relato (Visual)",
     "correctos": [
       "📖",
       "📜",
-      "🧛 (Personaje)",
-      "👽 (Ficción)",
-      "🧚 (Fantasía)",
-      "🏰 (Escenario)",
+      "🧛",
+      "👽",
+      "🧚",
+      "城堡 (Castillo Castle)",
       "🖋️",
       "✍️",
-      "🪶"
+      "🪶",
+      "🗺️",
+      "🕯️",
+      "💍",
+      "🗿",
+      "🏹",
+      "🛡️",
+      "⚔️"
     ],
     "intrusos": [
       "🧪",
@@ -73,44 +86,45 @@
       "🍳",
       "🏋️",
       "🧯",
-      "🧤",
-      "🥾",
-      "🌂",
       "🔋"
     ]
   },
   {
-    "categoria": "Expresiones Emocionales Complejas (Visual)",
+    "categoria": "Expresiones Emocionales (Visual)",
     "correctos": [
-      "😍 (Amor)",
-      "😭 (Angustia)",
-      "🤯 (Asombro)",
-      "😡 (Ira)",
-      "😱 (Pánico)",
-      "🥰 (Afecto)",
-      "🤢 (Asco)",
-      "🧐 (Duda)",
-      "🥳 (Euforia)"
+      "😍",
+      "😭",
+      "🤯",
+      "😡",
+      "😱",
+      "🥰",
+      "🤢",
+      "🧐",
+      "🥳",
+      "🥺",
+      "🤫",
+      "🤥",
+      "🥵",
+      "🥶",
+      "🤯",
+      "😎"
     ],
     "intrusos": [
       "😐",
       "😶",
       "🥱",
       "😴",
-      "🤥",
       "🤖",
       "👹",
-      "👽",
-      "👻",
-      "💀"
+      "👽"
     ]
   },
   {
-    "categoria": "Géneros y Subgéneros Literarios",
+    "categoria": "Géneros Literarios",
     "correctos": [
       "Narrativa",
       "Lírica",
-      "Teatral / Dramático",
+      "Dramático",
       "Cuento",
       "Novela",
       "Poesía",
@@ -119,7 +133,11 @@
       "Mito",
       "Epopeya",
       "Tragedia",
-      "Comedia"
+      "Comedia",
+      "Ensayo",
+      "Crónica",
+      "Diario",
+      "Sátira"
     ],
     "intrusos": [
       "Matemáticas",
@@ -127,23 +145,26 @@
       "Receta",
       "Instrucciones",
       "Diccionario",
-      "Calendario",
-      "Mapa",
-      "Biografía real",
-      "Manual técnico"
+      "Calendario"
     ]
   },
   {
-    "categoria": "Funciones Sintácticas de la Oración",
+    "categoria": "Funciones Sintácticas",
     "correctos": [
       "Sujeto",
-      "Predicado Verbal",
-      "Núcleo del Sintagma",
+      "Predicado",
+      "Núcleo",
       "Atributo",
-      "Complemento Directo",
-      "Complemento Indirecto",
-      "Complemento Circunstancial",
-      "Predicado Nominal"
+      "C. Directo",
+      "C. Indirecto",
+      "C. Circunstancial",
+      "Predicado Nominal",
+      "C. Agente",
+      "C. Régimen",
+      "C. Predicativo",
+      "Modificador",
+      "Aposición",
+      "Vocativo"
     ],
     "intrusos": [
       "Aguda",
@@ -151,15 +172,12 @@
       "Esdrújula",
       "Prefijo",
       "Sufijo",
-      "Sílaba tónica",
       "Tilde",
-      "Coma",
-      "Punto",
-      "Paréntesis"
+      "Coma"
     ]
   },
   {
-    "categoria": "Estructuras Métricas y Estrofismo",
+    "categoria": "Métrica y Estrofismo",
     "correctos": [
       "Pareado",
       "Terceto",
@@ -169,7 +187,12 @@
       "Lira",
       "Décima",
       "Serventesio",
-      "Cuaderna vía"
+      "Cuaderna vía",
+      "Octava real",
+      "Copla",
+      "Romance",
+      "Silva",
+      "Verso libre"
     ],
     "intrusos": [
       "Capítulo",
@@ -178,13 +201,11 @@
       "Índice",
       "Portada",
       "Epílogo",
-      "Prólogo",
-      "Glosario",
-      "Anuncio"
+      "Prólogo"
     ]
   },
   {
-    "categoria": "Categorías Gramaticales (Clases de Palabras)",
+    "categoria": "Categorías Gramaticales",
     "correctos": [
       "Sustantivo",
       "Adjetivo",
@@ -194,25 +215,28 @@
       "Conjunción",
       "Interjección",
       "Pronombre",
-      "Determinante"
+      "Determinante",
+      "Artículo",
+      "Numeral",
+      "Indefinido",
+      "Demostrativo",
+      "Posesivo"
     ],
     "intrusos": [
       "Sujeto",
       "Predicado",
-      "Oración compuesta",
+      "Oración",
       "Sílaba",
       "Acento",
       "Diéresis",
-      "Punto y seguido",
-      "Guion",
-      "Interrogación"
+      "Guion"
     ]
   },
   {
-    "categoria": "Recursos Estilísticos y Figuras Literarias",
+    "categoria": "Figuras Literarias",
     "correctos": [
       "Metáfora",
-      "Comparación o Símil",
+      "Símil",
       "Hipérbole",
       "Aliteración",
       "Personificación",
@@ -220,21 +244,24 @@
       "Metonimia",
       "Antítesis",
       "Onomatopeya",
-      "Hipérbaton"
+      "Hipérbaton",
+      "Oxímoron",
+      "Paralelismo",
+      "Polisíndeton",
+      "Asíndeton"
     ],
     "intrusos": [
-      "Rima asonante",
-      "Verso alejandrino",
+      "Rima",
+      "Verso",
       "Estrofa",
-      "Punto final",
+      "Punto",
       "Coma",
-      "Dos puntos",
       "Comillas",
-      "Guion largo"
+      "Guion"
     ]
   },
   {
-    "categoria": "Ortografía: Palabras con H Intercalada",
+    "categoria": "Ortografía: H Intercalada",
     "correctos": [
       "Búho",
       "Zanahoria",
@@ -245,9 +272,13 @@
       "Exhibir",
       "Bahía",
       "Ahogar",
-      "Rehen",
+      "Rehén",
       "Alcohol",
-      "Moho"
+      "Moho",
+      "Ahuyentar",
+      "Vehemencia",
+      "Truhán",
+      "Desahuciar"
     ],
     "intrusos": [
       "Huevo",
@@ -256,11 +287,7 @@
       "Hueso",
       "Huerto",
       "Hablar",
-      "Hacer",
-      "Hormiga",
-      "Hijo",
-      "Hora",
-      "Hambre"
+      "Hacer"
     ]
   }
 ]

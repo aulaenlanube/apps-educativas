@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Les Vêtements et Accessoires (Visual)",
+    "categoria": "Les Vêtements (Visual)",
     "correctos": [
       "👕",
       "👖",
@@ -15,7 +15,10 @@
       "👔",
       "👢",
       "👜",
-      "🕶️"
+      "🕶️",
+      "👙",
+      "👘",
+      "🎒"
     ],
     "intrusos": [
       "🍎",
@@ -24,15 +27,11 @@
       "🐶",
       "⚽",
       "🍔",
-      "🍕",
-      "🚲",
-      "🎸",
-      "💻",
-      "🧸"
+      "🍕"
     ]
   },
   {
-    "categoria": "Les Parties de la Maison (Visual)",
+    "categoria": "La Maison (Visual)",
     "correctos": [
       "🏠",
       "🚪",
@@ -45,7 +44,11 @@
       "🪜",
       "🪑",
       "🛖",
-      "🏡"
+      "🏡",
+      "🧺",
+      "🚰",
+      "🧴",
+      "🧻"
     ],
     "intrusos": [
       "🚗",
@@ -54,15 +57,11 @@
       "🐶",
       "🌊",
       "🚜",
-      "🚲",
-      "🚁",
-      "🚂",
-      "🎡",
-      "🎢"
+      "🚲"
     ]
   },
   {
-    "categoria": "Le Corps et les Sens (Visual)",
+    "categoria": "Le Corps et Sens (Visual)",
     "correctos": [
       "👀",
       "👂",
@@ -75,24 +74,24 @@
       "🦿",
       "🦷",
       "🧠",
-      "🦴"
+      "🦴",
+      "👁️",
+      "👋",
+      "💪",
+      "🦵"
     ],
     "intrusos": [
       "👕",
       "👖",
       "👟",
       "🧢",
-      "眼镜",
       "🧤",
       "👔",
-      "🧣",
-      "👜",
-      "💍",
-      "⌚"
+      "🧣"
     ]
   },
   {
-    "categoria": "Les Parties du Corps Humain",
+    "categoria": "Parties du Corps",
     "correctos": [
       "Tête",
       "Bras",
@@ -107,7 +106,9 @@
       "Ventre",
       "Genou",
       "Coude",
-      "Épaule"
+      "Épaule",
+      "Front",
+      "Doigt"
     ],
     "intrusos": [
       "Stylo",
@@ -116,16 +117,11 @@
       "Chat",
       "Maison",
       "Table",
-      "Chaise",
-      "Cahier",
-      "Gomme",
-      "Règle",
-      "Sac",
-      "Classe"
+      "Chaise"
     ]
   },
   {
-    "categoria": "Les Vêtements (Mots)",
+    "categoria": "Vêtements et Textiles",
     "correctos": [
       "Pantalon",
       "Robe",
@@ -138,25 +134,23 @@
       "Chapeau",
       "Gants",
       "Écharpe",
-      "Pyjama"
+      "Pyjama",
+      "Veste",
+      "Cravate",
+      "Maillot"
     ],
     "intrusos": [
       "Pomme",
       "Poire",
-      "Banane",
       "Rouge",
       "Bleu",
       "Jaune",
-      "Vert",
       "Manger",
-      "Dormir",
-      "Sourire",
-      "Petit",
-      "Grand"
+      "Dormir"
     ]
   },
   {
-    "categoria": "La Nourriture et les Repas",
+    "categoria": "Nourriture et Repas",
     "correctos": [
       "Pain",
       "Fromage",
@@ -170,7 +164,10 @@
       "Pâtes",
       "Riz",
       "Légumes",
-      "Fruit"
+      "Fruit",
+      "Beurre",
+      "Sucre",
+      "Sel"
     ],
     "intrusos": [
       "Chien",
@@ -179,15 +176,11 @@
       "Voiture",
       "École",
       "Professeur",
-      "Livre",
-      "Cahier",
-      "Stylo",
-      "Rue",
-      "Jardin"
+      "Livre"
     ]
   },
   {
-    "categoria": "Les Jours de la Semaine et Mois",
+    "categoria": "Calendrier et Mois",
     "correctos": [
       "Lundi",
       "Mardi",
@@ -199,7 +192,15 @@
       "Janvier",
       "Février",
       "Mars",
-      "Avril"
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre"
     ],
     "intrusos": [
       "Noël",
@@ -207,16 +208,12 @@
       "Été",
       "Hiver",
       "Automne",
-      "Printemps",
       "Matin",
-      "Soir",
-      "Aujourd'hui",
-      "Hier",
-      "Demain"
+      "Hier"
     ]
   },
   {
-    "categoria": "Les Nombres 10-20 et Dizaines",
+    "categoria": "Nombres et Dizaines",
     "correctos": [
       "Dix",
       "Onze",
@@ -230,7 +227,9 @@
       "Dix-neuf",
       "Vingt",
       "Trente",
-      "Quarante"
+      "Quarante",
+      "Cinquante",
+      "Soixante"
     ],
     "intrusos": [
       "Un",
@@ -238,13 +237,8 @@
       "Trois",
       "Rouge",
       "Vert",
-      "Bleu",
       "Bonjour",
-      "Merci",
-      "Petit",
-      "Grand",
-      "Beau",
-      "Fort"
+      "Beau"
     ]
   }
 ]

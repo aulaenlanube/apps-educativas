@@ -7,151 +7,249 @@
       "📻",
       "💻",
       "📱",
-      "📡"
+      "📡",
+      "🎙️",
+      "🎞️",
+      "🎬",
+      "📽️",
+      "🎥",
+      "☎️",
+      "📫",
+      "✉️",
+      "📧",
+      "🌐"
     ],
     "intrusos": [
       "🚗",
       "🚲",
       "🛹",
       "🍔",
-      "⚽"
+      "⚽",
+      "🧸",
+      "🍦",
+      "🥪"
     ]
   },
   {
-    "categoria": "Símbolos de Puntuación (Visual)",
+    "categoria": "Signos de Puntuación (Visual)",
     "correctos": [
       "❗",
       "❓",
       "❞",
       "...",
-      "—"
+      "—",
+      "¡",
+      "¿",
+      "«",
+      "»",
+      "“",
+      "”",
+      "‘",
+      "’",
+      "〔",
+      "〕",
+      "…",
+      "‐"
     ],
     "intrusos": [
       "➕",
       "➖",
+      "✖️",
+      "➗",
       "💲",
       "©️",
-      "®️"
+      "®️",
+      "™️"
     ]
   },
   {
-    "categoria": "Tipos de Texto (Visual)",
+    "categoria": "Soportes y Tipos de Escritura (Visual)",
     "correctos": [
       "📖",
       "📜",
       "📨",
       "📑",
       "📓",
-      "📝"
+      "📝",
+      "📓",
+      "📔",
+      "📒",
+      "📘",
+      "📗",
+      "📜",
+      "📂",
+      "🗂️",
+      "✍️",
+      "🪶"
     ],
     "intrusos": [
       "🎥",
       "💿",
       "💾",
       "🖱️",
-      "🔌"
+      "🔌",
+      "🔋",
+      "💡",
+      "🎮"
     ]
   },
   {
-    "categoria": "Categorías Gramaticales",
+    "categoria": "Categorías Gramaticales / Clases de Palabras",
     "correctos": [
       "Sustantivo",
       "Adjetivo",
       "Verbo",
       "Determinante",
       "Pronombre",
-      "Adverbio"
+      "Adverbio",
+      "Preposición",
+      "Conjunción",
+      "Interjección",
+      "Artículo",
+      "Numeral",
+      "Indefinido",
+      "Posesivo",
+      "Demostrativo"
     ],
     "intrusos": [
       "Sujeto",
       "Predicado",
       "Sílaba",
       "Acento",
-      "Diptongo"
+      "Diptongo",
+      "Tilde",
+      "Hiato"
     ]
   },
   {
-    "categoria": "Géneros Literarios",
+    "categoria": "Géneros y Subgéneros Literarios",
     "correctos": [
       "Narrativa",
       "Lírica",
-      "Teatro",
-      "Didáctica"
+      "Teatro (Dramática)",
+      "Didáctica",
+      "Cuento",
+      "Novela",
+      "Poesía",
+      "Fábula",
+      "Leyenda",
+      "Mito",
+      "Tragedia",
+      "Comedia",
+      "Ensayo",
+      "Crónica"
     ],
     "intrusos": [
       "Matemáticas",
       "Ciencias",
       "Historia",
       "Diccionario",
-      "Atlas"
+      "Atlas",
+      "Mapa",
+      "Enciclopedia"
     ]
   },
   {
     "categoria": "Funciones del Lenguaje",
     "correctos": [
-      "Representativa",
-      "Expresiva",
-      "Apelativa",
-      "Poética",
-      "Fática",
-      "Metalingüística"
+      "Representativa o Referencial",
+      "Expresiva o Emotiva",
+      "Apelativa o Conativa",
+      "Poética o Estética",
+      "Fática o de Contacto",
+      "Metalingüística",
+      "Informativa",
+      "Directiva",
+      "Relacional",
+      "Cognitiva",
+      "Persuasiva",
+      "Estética"
     ],
     "intrusos": [
       "Narrativa",
       "Descriptiva",
       "Dialogada",
       "Expositiva",
-      "Argumentativa"
+      "Argumentativa",
+      "Instructiva"
     ]
   },
   {
-    "categoria": "Tipos de Determinantes",
+    "categoria": "Determinantes y Cuantificadores",
     "correctos": [
       "Artículos",
       "Demostrativos",
       "Posesivos",
       "Numerales",
-      "Indefinidos"
+      "Indefinidos",
+      "Interrogativos",
+      "Exclamativos",
+      "Cardinales",
+      "Ordinales",
+      "Partitivos",
+      "Multiplicativos",
+      "Distributivos"
     ],
     "intrusos": [
-      "Propios",
+      "Sustantivos propios",
       "Comunes",
       "Concretos",
       "Abstractos",
-      "Agudos"
+      "Agudos",
+      "Llanos"
     ]
   },
   {
-    "categoria": "Sinónimos de 'Rápido'",
+    "categoria": "Sinónimos y Relaciones Semánticas",
     "correctos": [
-      "Veloz",
-      "Ágil",
-      "Ligero",
-      "Presto",
-      "Célebre"
+      "Sinonimia",
+      "Antonimia",
+      "Polisemia",
+      "Homonimia",
+      "Hiperonimia",
+      "Hiponimia",
+      "Campo semántico",
+      "Campo asociativo",
+      "Familia léxica",
+      "Monosemia",
+      "Paronimia",
+      "Eufemismo"
     ],
     "intrusos": [
-      "Lento",
-      "Pausado",
-      "Tranquilo",
-      "Calmado",
-      "Despacio"
+      "Sujeto",
+      "Predicado",
+      "Predicado nominal",
+      "Complemento directo",
+      "Atributo",
+      "Núcleo"
     ]
   },
   {
-    "categoria": "Palabras Invariables",
+    "categoria": "Palabras Invariables (Sin género ni número)",
     "correctos": [
       "Adverbio",
       "Preposición",
       "Conjunción",
-      "Interjección"
+      "Interjección",
+      "Aquí",
+      "Allí",
+      "Cerca",
+      "Lejos",
+      "Bien",
+      "Mal",
+      "Hoy",
+      "Ayer",
+      "Pronto",
+      "Tarde"
     ],
     "intrusos": [
       "Sustantivo",
       "Adjetivo",
       "Verbo",
       "Pronombre",
-      "Determinante"
+      "Determinante",
+      "Participio",
+      "Gerundio"
     ]
   }
 ]

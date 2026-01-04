@@ -1,15 +1,23 @@
 [
   {
-    "categoria": "Festes i Tradicions Valencianes (Visual)",
+    "categoria": "Festes i Tradicions (Visual)",
     "correctos": [
-      "🔥 (Falles)",
-      "🎆 (Castell)",
-      "🥘 (Paella)",
-      "💃 (Dansà)",
-      "🎺 (Banda)",
-      "🥁 (Tabalet)",
-      "🏰 (Moros i Cristians)",
-      "🔔 (Micalet)"
+      "🔥",
+      "🎆",
+      "🥘",
+      "💃",
+      "🎺",
+      "🥁",
+      "🏰",
+      "🔔",
+      "🕯️",
+      "💐",
+      "👘",
+      "🍊",
+      "🍷",
+      "🎼",
+      "🎊",
+      "🧨"
     ],
     "intrusos": [
       "🎄",
@@ -18,14 +26,11 @@
       "👻",
       "🦃",
       "🧧",
-      "🏮",
-      "🎿",
-      "🏄",
-      "🎰"
+      "🏮"
     ]
   },
   {
-    "categoria": "Paisatges i Geografia Natural (Visual)",
+    "categoria": "Paisatges i Geografia (Visual)",
     "correctos": [
       "⛰️",
       "🏖️",
@@ -36,35 +41,43 @@
       "🌋",
       "🏜️",
       "🏝️",
-      "🌬️"
+      "🌬️",
+      "🏔️",
+      "🏕️",
+      "🛶",
+      "🚣",
+      "☀️",
+      "🌤️"
     ],
     "intrusos": [
-      "🏙️",
-      "🏭",
-      "🛣️",
-      "🚇",
-      "🏯",
-      "🗼",
-      "🏟️",
-      "🏗️",
-      "⛽",
-      "🏪"
+      "City (Ciutat City)",
+      "Factory (Fàbrica Factory)",
+      "Highway (Carretera Highway)",
+      "Subway (Metro Subway)",
+      "Castle (Castell Castle)",
+      "Tower (Torre Tower)",
+      "Stadium (Estadi Stadium)"
     ]
   },
   {
-    "categoria": "Elements Urbans i Serveis (Visual)",
+    "categoria": "Elements Urbans (Visual)",
     "correctos": [
       "🚦",
       "🏢",
       "🚌",
-      " fountain",
+      "⛲",
       "🏬",
       "🏥",
       "🏫",
       "🏤",
       "🏛️",
       "🏪",
-      "🏙️"
+      "🏙️",
+      "🛤️",
+      "🚓",
+      "🚒",
+      "🚑",
+      "🚕"
     ],
     "intrusos": [
       "🚜",
@@ -73,15 +86,11 @@
       "🐑",
       "🏔️",
       "⛺",
-      "🌾",
-      "🐐",
-      "🐖",
-      "🐎",
-      "🌵"
+      "🌾"
     ]
   },
   {
-    "categoria": "Paraules Planes (Acentuades o no)",
+    "categoria": "Paraules Planes",
     "correctos": [
       "Casa",
       "Finestra",
@@ -94,7 +103,11 @@
       "Núvol",
       "Mànega",
       "Cadira",
-      "Botella"
+      "Botella",
+      "Escola",
+      "Poma",
+      "Mànec",
+      "Porta"
     ],
     "intrusos": [
       "Camió",
@@ -103,15 +116,11 @@
       "Màquina",
       "Música",
       "Paper",
-      "Ratolí",
-      "Pàgina",
-      "Càlcul",
-      "Berlín",
-      "Demà"
+      "Ratolí"
     ]
   },
   {
-    "categoria": "Formes del Passat Perifràstic",
+    "categoria": "Passat Perifràstic",
     "correctos": [
       "Vaig anar",
       "Vas menjar",
@@ -120,7 +129,13 @@
       "Vareu llegir",
       "Va eixir",
       "Van vindre",
-      "Vam sentir"
+      "Vam sentir",
+      "Va dir",
+      "Vas fer",
+      "Vam veure",
+      "Va poder",
+      "Van saber",
+      "Vas voler"
     ],
     "intrusos": [
       "Aniré",
@@ -129,14 +144,11 @@
       "Juga",
       "Llegint",
       "Estudiaré",
-      "Menjat",
-      "Jugant",
-      "Dormir",
-      "Llegir"
+      "Menjat"
     ]
   },
   {
-    "categoria": "Elements de la Natura de Proximitat",
+    "categoria": "Natura i Proximitat",
     "correctos": [
       "Muntanya",
       "Riu",
@@ -149,7 +161,11 @@
       "Albufera",
       "Palmar",
       "Horta",
-      "Serra"
+      "Serra",
+      "Font",
+      "Camí",
+      "Cresta",
+      "Llac"
     ],
     "intrusos": [
       "Ciutat",
@@ -158,14 +174,11 @@
       "Carretera",
       "Fàbrica",
       "Port",
-      "Aeroport",
-      "Estació",
-      "Semàfor",
-      "Pont"
+      "Aeroport"
     ]
   },
   {
-    "categoria": "Pronoms Personals Forts (Subjecte)",
+    "categoria": "Pronoms Personals",
     "correctos": [
       "Jo",
       "Tu",
@@ -176,7 +189,13 @@
       "Ells",
       "Elles",
       "Vosté",
-      "Vostés"
+      "Vostés",
+      "Si mateix",
+      "Si mateixa",
+      "Nós",
+      "Vós",
+      "Mi",
+      "Ti"
     ],
     "intrusos": [
       "El",
@@ -186,12 +205,7 @@
       "Un",
       "Una",
       "En",
-      "Hi",
-      "Ho",
-      "Li",
-      "Em",
-      "Et",
-      "Es"
+      "Hi"
     ]
   },
   {
@@ -208,7 +222,11 @@
       "Orada",
       "Llobarro",
       "Sípia",
-      "Clòtxina"
+      "Clòtxina",
+      "Estrella",
+      "Tonyina",
+      "Sardina",
+      "Roger"
     ],
     "intrusos": [
       "Gos",
@@ -217,11 +235,7 @@
       "Àguila",
       "Gallina",
       "Vaca",
-      "Orella",
-      "Porc",
-      "Cavall",
-      "Elefant",
-      "Girafa"
+      "Orella"
     ]
   }
 ]

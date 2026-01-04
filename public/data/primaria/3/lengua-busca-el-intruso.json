@@ -13,7 +13,13 @@
       "🐺",
       "🐻",
       "🦏",
-      "🌍"
+      "🌍",
+      "🦛",
+      "🐪",
+      "🐃",
+      "🐍",
+      "🦦",
+      "🦘"
     ],
     "intrusos": [
       "🐮",
@@ -22,37 +28,37 @@
       "🐑",
       "🐴",
       "🐶",
-      "🐱",
-      "🍎",
-      "🚗",
-      "🚲"
+      "🐱"
     ]
   },
   {
-    "categoria": "Ropa de Invierno (Visual)",
+    "categoria": "Ropa y Complementos (Visual)",
     "correctos": [
       "🧥",
       "🧣",
       "🧤",
       "🧦",
-      "👢",
+      "ブーツ (Bota Boot)",
       "🧢",
       "🧶",
       "⛷️",
       "🎿",
-      "🏂"
+      "🏂",
+      "👕",
+      "👖",
+      "👗",
+      "👟",
+      "👒",
+      "👙"
     ],
     "intrusos": [
-      "🩳",
-      "🕶️",
-      "⛱️",
-      "🏖️",
-      "🍦",
       "🍎",
       "🎒",
       "🚲",
       "🍉",
-      "👕"
+      "🚗",
+      "🏠",
+      "🧸"
     ]
   },
   {
@@ -69,7 +75,13 @@
       "🌽",
       "🍅",
       "🥬",
-      "🍆"
+      "🍆",
+      "🍍",
+      "🥑",
+      "🍑",
+      "🍒",
+      "🥝",
+      "🍉"
     ],
     "intrusos": [
       "🍗",
@@ -78,10 +90,7 @@
       "🍔",
       "🍟",
       "🥤",
-      "🍪",
-      "🍩",
-      "🧁",
-      "🥓"
+      "🍪"
     ]
   },
   {
@@ -94,7 +103,14 @@
       "🛩️",
       "🛰️",
       "🎈",
-      "🪂"
+      "🪂",
+      "🛫",
+      "🛬",
+      "🛰️",
+      "🚠",
+      "🏗️",
+      "🌌",
+      "🪐"
     ],
     "intrusos": [
       "🚗",
@@ -102,15 +118,12 @@
       "🚂",
       "🚢",
       "🚲",
-      "🛵",
-      "🚜",
       "🏘️",
-      "🏫",
       "🌳"
     ]
   },
   {
-    "categoria": "Verbos en Infinitivo (-ar, -er, -ir)",
+    "categoria": "Verbos en Infinitivo",
     "correctos": [
       "Correr",
       "Saltar",
@@ -125,7 +138,11 @@
       "Abrir",
       "Soñar",
       "Nadar",
-      "Vivir"
+      "Vivir",
+      "Reír",
+      "Cantar",
+      "Mirar",
+      "Hacer"
     ],
     "intrusos": [
       "Mesa",
@@ -134,16 +151,11 @@
       "Gato",
       "Casa",
       "Lápiz",
-      "Cantando",
-      "Jugado",
-      "Rápido",
-      "Azul",
-      "Ayer",
-      "Hoy"
+      "Azul"
     ]
   },
   {
-    "categoria": "Sustantivos Propios (Nombres)",
+    "categoria": "Sustantivos Propios",
     "correctos": [
       "Pedro",
       "España",
@@ -155,21 +167,21 @@
       "Pirineos",
       "Europa",
       "Jaime",
-      "Valencia"
+      "Valencia",
+      "Andorra",
+      "Tíber",
+      "Ganges",
+      "Himalaya",
+      "África"
     ],
     "intrusos": [
       "Rápido",
       "Feliz",
       "Verde",
       "Mesa",
-      "Árbol",
       "Casa",
-      "Coche",
       "Libro",
-      "Perro",
-      "Flor",
-      "Ciudad",
-      "Río"
+      "Flor"
     ]
   },
   {
@@ -188,23 +200,24 @@
       "Triste",
       "Alegre",
       "Limpio",
-      "Sucio"
+      "Sucio",
+      "Gordo",
+      "Flaco",
+      "Simpático",
+      "Inteligente"
     ],
     "intrusos": [
-      "Pedro",
       "España",
       "Madrid",
       "Saltar",
       "Comer",
       "Mesa",
       "Lápiz",
-      "Dormir",
-      "Juan",
       "Coche"
     ]
   },
   {
-    "categoria": "Palabras Agudas con Tilde",
+    "categoria": "Palabras con Tilde",
     "correctos": [
       "Camión",
       "Papá",
@@ -213,29 +226,28 @@
       "Ratón",
       "Avión",
       "Jardín",
-      "Sofá",
-      "Parchís",
-      "Canapé",
       "Botón",
       "Compás",
-      "Bebé"
+      "Bebé",
+      "Parchís",
+      "Canapé",
+      "Limón",
+      "Acción",
+      "Mamá",
+      "Cristóbal"
     ],
     "intrusos": [
       "Mesa",
       "Silla",
       "Libro",
-      "Árbol",
-      "Lápiz",
-      "Azúcar",
       "Césped",
       "Fútbol",
       "Cómic",
-      "Lámpara",
       "Pájaro"
     ]
   },
   {
-    "categoria": "Sinónimos de 'Contento'",
+    "categoria": "Sinónimos de Bien/Feliz",
     "correctos": [
       "Alegre",
       "Dichoso",
@@ -245,7 +257,11 @@
       "Jubiloso",
       "Encantado",
       "Entusiasmado",
-      "Plácido"
+      "Plácido",
+      "Contento",
+      "Gozoso",
+      "Euforia",
+      "Optimista"
     ],
     "intrusos": [
       "Triste",
@@ -253,14 +269,11 @@
       "Lloroso",
       "Preocupado",
       "Enfadado",
-      "Aburrido",
-      "Cansado",
-      "Hambriento",
-      "Solo"
+      "Aburrido"
     ]
   },
   {
-    "categoria": "Palabras con B (Ortografía)",
+    "categoria": "Palabras con B",
     "correctos": [
       "Barco",
       "Bueno",
@@ -272,7 +285,12 @@
       "Bajo",
       "Boda",
       "Botella",
-      "Burbuja"
+      "Burbuja",
+      "Biblia",
+      "Baldosa",
+      "Bicho",
+      "Bote",
+      "Bota"
     ],
     "intrusos": [
       "Vaca",
@@ -281,10 +299,7 @@
       "Volar",
       "Uva",
       "Vaso",
-      "Verde",
-      "Vivir",
-      "Vidrio",
-      "Viaje"
+      "Verde"
     ]
   }
 ]

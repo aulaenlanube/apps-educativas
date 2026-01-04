@@ -1,158 +1,266 @@
 [
   {
-    "categoria": "Edad Media (Visual)",
+    "categoria": "Edad Media y Feudalismo (Visual)",
     "correctos": [
       "🏰",
       "👑",
       "🛡️",
       "⚔️",
       "🐎",
-      "⚜️"
+      "⚜️",
+      "⛪",
+      "🍷",
+      "🥖",
+      "📜",
+      "🕯️",
+      "💍",
+      "⚖️",
+      "🏘️",
+      "🧔",
+      "🛶"
     ],
     "intrusos": [
       "🏭",
       "🚂",
       "💻",
       "📱",
-      "🚀"
+      "🚀",
+      "💡",
+      "🎮",
+      "🕹️"
     ]
   },
   {
-    "categoria": "Arte Islámico (Visual)",
+    "categoria": "Cultura y Arte Islámico (Visual)",
     "correctos": [
       "🕌",
       "🕋",
       "☪️",
       "⛲",
       "🌴",
-      "🐎"
+      "🐎",
+      "👳",
+      "📜",
+      "💍",
+      "🍇",
+      "🍯",
+      "🕌",
+      "🌄",
+      "🏺",
+      "🐪",
+      "🕌"
     ],
     "intrusos": [
       "⛪",
       "✝️",
       "🔔",
       "🏛️",
-      "🏟️"
+      "🏟️",
+      "⛩️",
+      "🏯",
+      "🍷"
     ]
   },
   {
-    "categoria": "Mapas (Visual)",
+    "categoria": "Cartografía y Exploración (Visual)",
     "correctos": [
       "🗺️",
       "🌍",
       "🧭",
       "🌐",
       "📍",
-      "🗾"
+      "🗾",
+      "🏔️",
+      "🏖️",
+      "🏞️",
+      "🌅",
+      "🌋",
+      "🏜️",
+      "🏝️",
+      "🏕️",
+      "🛶",
+      "🚢"
     ],
     "intrusos": [
       "🕰️",
       "🌡️",
       "⚖️",
       "🔭",
-      "🔬"
+      "🔬",
+      "🔋",
+      "💡",
+      "🎮"
     ]
   },
   {
-    "categoria": "Símbolos Reales (Visual)",
+    "categoria": "Símbolos de la Monarquía medieval (Visual)",
     "correctos": [
       "👑",
       "🤴",
       "👸",
       "🏰",
       "⚔️",
-      "📜"
+      "📜",
+      "🛡️",
+      "⚜️",
+      "🐎",
+      "🦁",
+      "🦅",
+      "🚩",
+      "🏰",
+      "👑",
+      "🏰",
+      "🕍"
     ],
     "intrusos": [
       "👔",
       "💼",
       "👨‍💼",
       "🏭",
-      "🚆"
+      "🚆",
+      "🏢",
+      "🚗",
+      "🚲"
     ]
   },
   {
-    "categoria": "La Edad Media",
+    "categoria": "Conceptos del Feudalismo",
     "correctos": [
       "Feudalismo",
       "Vasallaje",
       "Gremio",
       "Monasterio",
-      "Cruzadas"
+      "Cruzadas",
+      "Estamento",
+      "Señorío",
+      "Reserva señorial",
+      "Manso",
+      "Siervo",
+      "Caballero",
+      "Torneo",
+      "Feudo",
+      "Diezmo"
     ],
     "intrusos": [
       "Democracia",
       "República",
       "Parlamento",
       "Sufragio",
-      "Constitución"
+      "Constitución",
+      "Sindicato",
+      "Huelga"
     ]
   },
   {
-    "categoria": "Al-Ándalus",
+    "categoria": "Al-Ándalus y legado canario",
     "correctos": [
-      "Califato",
-      "Emirato",
-      "Taifas",
+      "Califato de Córdoba",
+      "Emirato Independiente",
+      "Reinos de Taifas",
       "Mezquita",
-      "Alcazaba"
+      "Alcazaba",
+      "Alhambra",
+      "Zoco",
+      "Acequia",
+      "Alquería",
+      "Noria",
+      "Medina",
+      "Alcantarilla",
+      "Álgebra",
+      "Ajedrez"
     ],
     "intrusos": [
-      "Catedral",
-      "Castillo",
-      "Monasterio",
-      "Iglesia",
-      "Abadía"
+      "Catedral gótica",
+      "Castillo feudal",
+      "Monasterio románico",
+      "Iglesia barroca",
+      "Abadía",
+      "Palacio Versalles",
+      "Rascacielos"
     ]
   },
   {
-    "categoria": "Arte Románico",
+    "categoria": "Arquitectura Románica vs Gótica",
     "correctos": [
       "Arco de medio punto",
       "Bóveda de cañón",
       "Muros gruesos",
-      "Oscuridad"
+      "Planta de cruz latina",
+      "Contrafuertes",
+      "Pantocrátor",
+      "Poca luz",
+      "Portada abocinada",
+      "Ábside",
+      "Pintura al fresco",
+      "Capiteles historiados",
+      "Claustro",
+      "Cisterciense",
+      "Románico"
     ],
     "intrusos": [
       "Arco apuntado",
       "Vidrieras",
       "Luminosidad",
       "Rosetón",
-      "Altura"
+      "Arbotantes",
+      "Gárgolas",
+      "Pináculos"
     ]
   },
   {
-    "categoria": "Demografía",
+    "categoria": "Demografía y Población",
     "correctos": [
       "Natalidad",
-      "Mortalidad",
+      "Mortalidad infantil",
       "Esperanza de vida",
       "Migración",
-      "Censo"
+      "Censo",
+      "Densidad de población",
+      "Crecimiento natural",
+      "Saldo migratorio",
+      "Pirámide de población",
+      "Envejecimiento",
+      "Baby boom",
+      "Éxodo rural",
+      "Tasa de fecundidad",
+      "Crecimiento real"
     ],
     "intrusos": [
       "Relieve",
       "Clima",
       "Ríos",
       "Montañas",
-      "Vegetación"
+      "Vegetación",
+      "Fauna",
+      "Geología"
     ]
   },
   {
-    "categoria": "Sociedad Estamental",
+    "categoria": "Sociedad de la Edad Media",
     "correctos": [
       "Nobleza",
       "Clero",
       "Campesinos",
       "Rey",
-      "Privilegiados"
+      "Privilegiados",
+      "No privilegiados",
+      "Burguesía incipiente",
+      "Menestrales",
+      "Mercaderes",
+      "Juglares",
+      "Monjes",
+      "Abades",
+      "Escuderos",
+      "Damas"
     ],
     "intrusos": [
       "Ciudadanos",
       "Votantes",
       "Obreros",
       "Clase media",
-      "Sindicatos"
+      "Sindicatos",
+      "Accionistas",
+      "Políticos modernos"
     ]
   }
 ]

@@ -11,30 +11,30 @@
       "🐘",
       "🦓",
       "🦒",
-      "🦓",
       "🐺",
       "🐮",
       "🐷",
       "🐨",
-      "🐼"
+      "🐼",
+      "🐹",
+      "🐿️",
+      "🐎",
+      "🐏"
     ],
     "intrusos": [
       "🦅",
       "🦜",
       "🐊",
-      "蛇",
       "🐸",
       "🐟",
       "🐢",
-      "🐧",
-      "🦐",
-      "🐙"
+      "🐧"
     ]
   },
   {
-    "categoria": "Insectos (Visual)",
+    "categoria": "Insectos y Bichos (Visual)",
     "correctos": [
-      "🐜",
+      "Ant (Hormiga Ant)",
       "🐝",
       "🐞",
       "🦋",
@@ -44,19 +44,20 @@
       "🪰",
       "🪲",
       "🪳",
-      "🪻"
+      "🪻",
+      "🐜",
+      "🐌",
+      "🦗"
     ],
     "intrusos": [
       "🐶",
       "🐱",
       "🐦",
       "🐢",
-      "🦈",
+      "Shark (Tiburón Shark)",
       "🕷️",
       "🦂",
-      "🦞",
-      "🦀",
-      "🐡"
+      "🦀"
     ]
   },
   {
@@ -72,7 +73,12 @@
       "🎋",
       "🍃",
       "🪵",
-      "🍄"
+      "🍄",
+      "🌺",
+      "🌾",
+      "🌼",
+      "🌿",
+      "🍀"
     ],
     "intrusos": [
       "🐶",
@@ -81,14 +87,11 @@
       "📱",
       "🧱",
       "👗",
-      "👟",
-      "🍔",
-      "⚽",
-      "🧸"
+      "👟"
     ]
   },
   {
-    "categoria": "El Clima (Visual)",
+    "categoria": "Fenómenos del Clima (Visual)",
     "correctos": [
       "☀️",
       "☁️",
@@ -99,7 +102,12 @@
       "🌪️",
       "🌫️",
       "🌬️",
-      "🌡️"
+      "🌡️",
+      "🌤️",
+      "🌥️",
+      "🌦️",
+      "🌗",
+      "⚡"
     ],
     "intrusos": [
       "🏠",
@@ -108,20 +116,26 @@
       "📚",
       "✏️",
       "🍔",
-      "🛋️",
-      "🛁",
-      "🧸",
-      "🚲"
+      "🛁"
     ]
   },
   {
-    "categoria": "Los 5 Sentidos",
+    "categoria": "Órganos y Sentidos",
     "correctos": [
       "Vista",
       "Oído",
       "Olfato",
       "Gusto",
-      "Tacto"
+      "Tacto",
+      "Ojos",
+      "Nariz",
+      "Lengua",
+      "Manos",
+      "Orejas",
+      "Piel",
+      "Visión",
+      "Audición",
+      "Guste"
     ],
     "intrusos": [
       "Hambre",
@@ -129,11 +143,7 @@
       "Miedo",
       "Alegría",
       "Sed",
-      "Cansancio",
-      "Dolor",
-      "Pena",
-      "Sorpresa",
-      "Prisa"
+      "Dolor"
     ]
   },
   {
@@ -150,7 +160,11 @@
       "Rodillas",
       "Hombros",
       "Espalda",
-      "Barriga"
+      "Barriga",
+      "Pecho",
+      "Muñeca",
+      "Tobillo",
+      "Dedos"
     ],
     "intrusos": [
       "Camisa",
@@ -159,10 +173,7 @@
       "Gorro",
       "Reloj",
       "Gafas",
-      "Mochila",
-      "Libro",
-      "Silla",
-      "Bicicleta"
+      "Libro"
     ]
   },
   {
@@ -180,7 +191,10 @@
       "Pez",
       "Bebé",
       "Musgo",
-      "Bacterias"
+      "Bacteria",
+      "Alga",
+      "Hongo",
+      "Mariposa"
     ],
     "intrusos": [
       "Piedra",
@@ -190,31 +204,37 @@
       "Juguete",
       "Arena",
       "Nube",
-      "Aire",
-      "Fuego",
-      "Libro",
-      "Lápiz"
+      "Fuego"
     ]
   },
   {
-    "categoria": "Estaciones del Año",
+    "categoria": "Conceptos del Tiempo",
     "correctos": [
       "Primavera",
       "Verano",
       "Otoño",
-      "Invierno"
+      "Invierno",
+      "Enero",
+      "Febrero",
+      "Marzo",
+      "Abril",
+      "Mayo",
+      "Junio",
+      "Julio",
+      "Agosto",
+      "Septiembre",
+      "Octubre",
+      "Noviembre",
+      "Diciembre"
     ],
     "intrusos": [
       "Lunes",
-      "Enero",
-      "Mañana",
-      "Tarde",
-      "Noche",
-      "Mes",
-      "Año",
-      "Semana",
-      "Ayer",
-      "Hoy"
+      "Martes",
+      "Miércoles",
+      "Jueves",
+      "Viernes",
+      "Sábado",
+      "Domingo"
     ]
   },
   {
@@ -229,7 +249,11 @@
       "Yogur",
       "Jamón",
       "Pollo",
-      "Miel"
+      "Miel",
+      "Chorizo",
+      "Salchicha",
+      "Nata",
+      "Requesón"
     ],
     "intrusos": [
       "Manzana",
@@ -238,10 +262,7 @@
       "Arroz",
       "Tomate",
       "Patata",
-      "Aceite",
-      "Pasta",
-      "Garbanzos",
-      "Plátano"
+      "Aceite"
     ]
   }
 ]

@@ -13,7 +13,13 @@
       "🎧",
       "📷",
       "🕹️",
-      "💾"
+      "💾",
+      "📡",
+      "🖱️",
+      "🖲️",
+      "📼",
+      "💿",
+      "📽️"
     ],
     "intrusos": [
       "🍎",
@@ -23,11 +29,7 @@
       "🚗",
       "🍕",
       "🍦",
-      "🥪",
-      "🛋️",
-      "🛁",
-      "👕",
-      "👟"
+      "🥪"
     ]
   },
   {
@@ -44,7 +46,13 @@
       "📡",
       "🛰️",
       "🦾",
-      "🦿"
+      "🦿",
+      "🔭",
+      "🔬",
+      "🗜️",
+      "🧲",
+      "🧪",
+      "🧫"
     ],
     "intrusos": [
       "🌸",
@@ -54,10 +62,7 @@
       "🎨",
       "🧸",
       "🍭",
-      "🦋",
-      "🌈",
-      "🍉",
-      "🧣"
+      "🦋"
     ]
   },
   {
@@ -75,7 +80,12 @@
       "🔒",
       "📶",
       "🔋",
-      "💾"
+      "💾",
+      "🌐",
+      "📅",
+      "🔑",
+      "🔔",
+      "☁️"
     ],
     "intrusos": [
       "🚲",
@@ -85,10 +95,7 @@
       "👞",
       "👕",
       "👒",
-      "🛹",
-      "⚽",
-      "🍎",
-      "🏠"
+      "🛹"
     ]
   },
   {
@@ -106,7 +113,12 @@
       "↩️",
       "🔢",
       "🔣",
-      "🔡"
+      "🔡",
+      "🔠",
+      "ℹ️",
+      "🆗",
+      "🆙",
+      "🆒"
     ],
     "intrusos": [
       "🏠",
@@ -116,11 +128,7 @@
       "🍎",
       "🍔",
       "🍕",
-      "🧸",
-      "🛋️",
-      "🛁",
-      "👕",
-      "👟"
+      "🧸"
     ]
   },
   {
@@ -137,7 +145,9 @@
       "Encender luces",
       "Emitir sonido",
       "Detectar obstáculo",
-      "Bajar pinza"
+      "Bajar pinza",
+      "Coger objeto",
+      "Repetir"
     ],
     "intrusos": [
       "Comer",
@@ -145,11 +155,7 @@
       "Llorar",
       "Cantar",
       "Soñar",
-      "Bañarse",
-      "Peinarse",
-      "Abrocharse",
-      "Cenar",
-      "Desayunar"
+      "Bañarse"
     ]
   },
   {
@@ -167,7 +173,8 @@
       "Auriculares",
       "Monitor",
       "Torre",
-      "Botón de encendido"
+      "Placa",
+      "Disco duro"
     ],
     "intrusos": [
       "Zapato",
@@ -175,12 +182,7 @@
       "Libreta",
       "Lápiz",
       "Gorra",
-      "Mesa",
-      "Silla",
-      "Vaso",
-      "Plato",
-      "Ventana",
-      "Puerta"
+      "Mesa"
     ]
   },
   {
@@ -197,7 +199,9 @@
       "Aplicación",
       "Blog",
       "Wiki",
-      "Perfil"
+      "Perfil",
+      "Nube",
+      "Streaming"
     ],
     "intrusos": [
       "Piedra",
@@ -205,12 +209,7 @@
       "Bocadillo",
       "Pelota",
       "Libro físico",
-      "Arena",
-      "Agua",
-      "Fuego",
-      "Cuchillo",
-      "Tenedor",
-      "Cama"
+      "Arena"
     ]
   },
   {
@@ -225,21 +224,22 @@
       "Deslizar",
       "Mover el cursor",
       "Seleccionar",
-      "Hacer zoom"
+      "Hacer zoom",
+      "Minimizar",
+      "Cerrar",
+      "Maximizar",
+      "Copiar"
     ],
     "intrusos": [
       "Pintar con pincel",
       "Recortar con tijeras",
       "Pegar con pegamento",
       "Doblar papel",
-      "Escribir con lápiz",
-      "Borrar con goma",
-      "Cerrar los ojos",
-      "Saltar a la comba"
+      "Escribir con lápiz"
     ]
   },
   {
-    "categoria": "Conceptos de Programación inicial",
+    "categoria": "Conceptos de Programación",
     "correctos": [
       "Código",
       "Bucle",
@@ -251,7 +251,10 @@
       "Depuración",
       "Evento",
       "Función",
-      "Bloque de comando"
+      "Bloque de comando",
+      "Detección",
+      "Repetición",
+      "Orden"
     ],
     "intrusos": [
       "Cuento",
@@ -259,11 +262,7 @@
       "Receta de cocina",
       "Dibujo",
       "Poesía",
-      "Parque",
-      "Columpio",
-      "Siesta",
-      "Merienda",
-      "Excursión"
+      "Parque"
     ]
   }
 ]

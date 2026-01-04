@@ -7,7 +7,17 @@
       "🐸",
       "🐍",
       "🐟",
-      "🐒"
+      "🐒",
+      "🐘",
+      "🦒",
+      "🦓",
+      "🐺",
+      "🐧",
+      "🦈",
+      "🦇",
+      "🐪",
+      "🐃",
+      "🦌"
     ],
     "intrusos": [
       "🦋",
@@ -15,7 +25,9 @@
       "🐙",
       "🦀",
       "🕷️",
-      "🦠"
+      "🦠",
+      "🦐",
+      "🦑"
     ]
   },
   {
@@ -26,135 +38,224 @@
       "🌕",
       "🪐",
       "⭐",
-      "☄️"
+      "☄️",
+      "🌑",
+      "🌓",
+      "🌗",
+      "🛸",
+      "🚀",
+      "🛰️",
+      "🌠",
+      "🔭",
+      "🌌",
+      "🪐"
     ],
     "intrusos": [
       "✈️",
-      "🚀",
-      "🛰️",
-      "🛸",
-      "☁️"
+      "☁️",
+      "🦅",
+      "🪁",
+      "🚁",
+      "🎈",
+      "🦅"
     ]
   },
   {
-    "categoria": "Reino Vegetal (Visual)",
+    "categoria": "Reino Vegetal y Fungi (Visual)",
     "correctos": [
       "🌲",
       "🌵",
       "🌴",
       "🍄",
       "🌹",
-      "🌻"
+      "🌻",
+      "🌿",
+      "🎋",
+      "🍃",
+      "🍂",
+      "🍁",
+      "🌾",
+      "🍀",
+      "🌱",
+      "🌼",
+      "🍎"
     ],
     "intrusos": [
       "🦓",
       "🚗",
       "🏠",
       "🧸",
-      "💎"
+      "💎",
+      "⚽",
+      "🍦",
+      "🥪"
     ]
   },
   {
-    "categoria": "Laboratorio (Visual)",
+    "categoria": "Laboratorio de Ciencias (Visual)",
     "correctos": [
       "🔬",
       "🧪",
       "🧫",
       "🧬",
       "🌡️",
-      "🩸"
+      "🩸",
+      "🥼",
+      "🧤",
+      "💉",
+      "💊",
+      "🧯",
+      "📊",
+      "🔍",
+      "📐",
+      "🔬",
+      "🧪"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🎤",
       "🎧",
-      "🎮"
+      "🎮",
+      "🎸",
+      "🛹"
     ]
   },
   {
-    "categoria": "Los 5 Reinos",
+    "categoria": "Los 5 Reinos de la Vida",
     "correctos": [
       "Moneras",
       "Protoctistas",
-      "Hongos",
-      "Plantas",
-      "Animales"
+      "Hongos (Fungi)",
+      "Plantas (Metafitas)",
+      "Animales (Metazoos)",
+      "Bacterias",
+      "Algas",
+      "Protozoos",
+      "Levaduras",
+      "Mohos",
+      "Musgos",
+      "Helechos",
+      "Invertebrados",
+      "Vertebrados"
     ],
     "intrusos": [
       "Virus",
       "Minerales",
       "Rocas",
       "Gases",
-      "Líquidos"
+      "Líquidos",
+      "Sólidos",
+      "Metales"
     ]
   },
   {
-    "categoria": "Capas de la Tierra",
+    "categoria": "Capas de la Tierra y Atmósfera",
     "correctos": [
       "Atmósfera",
       "Hidrosfera",
       "Geosfera",
-      "Biosfera"
+      "Biosfera",
+      "Troposfera",
+      "Estratosfera",
+      "Mesosfera",
+      "Termosfera",
+      "Exosfera",
+      "Corteza",
+      "Manto",
+      "Núcleo",
+      "Litosfera"
     ],
     "intrusos": [
-      "Estratosfera",
-      "Troposfera",
-      "Litosfera",
-      "Núcleo",
-      "Manto"
+      "Estratos",
+      "Fósiles",
+      "Magma",
+      "Lava",
+      "Sismo",
+      "Tsunami",
+      "Viento"
     ]
   },
   {
-    "categoria": "Partes de la Célula",
+    "categoria": "Estructura de la Célula",
     "correctos": [
       "Membrana",
       "Citoplasma",
       "Núcleo",
       "Mitocondria",
-      "Vacuola"
+      "Vacuola",
+      "Cloroplasto",
+      "Pared celular",
+      "Ribosoma",
+      "Retículo",
+      "Aparato de Golgi",
+      "Lisosoma",
+      "Centriolo",
+      "ADN",
+      "Nucleolo"
     ],
     "intrusos": [
       "Corazón",
       "Pulmón",
       "Estómago",
       "Hueso",
-      "Músculo"
+      "Músculo",
+      "Cerebro",
+      "Hígado"
     ]
   },
   {
-    "categoria": "Clasificación de Invertebrados",
+    "categoria": "Grupos de Invertebrados",
     "correctos": [
       "Poríferos",
       "Cnidarios",
       "Anélidos",
       "Moluscos",
       "Artrópodos",
-      "Equinodermos"
+      "Equinodermos",
+      "Esponjas",
+      "Medusas",
+      "Gusanos",
+      "Insectos",
+      "Crustáceos",
+      "Arácnidos",
+      "Cefalópodos",
+      "Gasterópodos"
     ],
     "intrusos": [
       "Mamíferos",
       "Aves",
       "Reptiles",
       "Anfibios",
-      "Peces"
+      "Peces",
+      "Ballenas",
+      "Delfines"
     ]
   },
   {
-    "categoria": "Minerales (Propiedades)",
+    "categoria": "Minerales y Propiedades",
     "correctos": [
       "Dureza",
       "Brillo",
       "Color",
       "Raya",
-      "Exfoliación"
+      "Exfoliación",
+      "Densidad",
+      "Magnetismo",
+      "Transparencia",
+      "Fractura",
+      "Tenacidad",
+      "Elasticidad",
+      "Cristalización"
     ],
     "intrusos": [
       "Tamaño",
       "Precio",
       "Peso",
       "Edad",
-      "Nombre"
+      "Nombre",
+      "Lugar",
+      "Dueño"
     ]
   }
 ]

@@ -37,6 +37,7 @@ const BuscaElIntruso = ({ tema }) => {
   const [tiempoTranscurrido, setTiempoTranscurrido] = useState(0);
   const temporizadorRef = useRef(null);
   const [mostrarResumen, setMostrarResumen] = useState(false);
+  const [restarting, setRestarting] = useState(false);
 
   const asignatura = tema || (typeof subjectId === 'string' && subjectId.trim() ? subjectId.trim() : 'general');
 
@@ -202,6 +203,7 @@ const BuscaElIntruso = ({ tema }) => {
   };
 
   const activarModoLibre = () => {
+    if (restarting) return;
     detenerCronometro();
     setTiempoTranscurrido(0);
     setMostrarResumen(false);
@@ -213,10 +215,16 @@ const BuscaElIntruso = ({ tema }) => {
       errores: 0,
       combo: 0
     }));
-    setTimeout(() => generarYRenderizarColeccion(), 0);
+
+    setRestarting(true);
+    setTimeout(() => {
+      generarYRenderizarColeccion();
+      setRestarting(false);
+    }, 600);
   };
 
   const iniciarTest = () => {
+    if (restarting) return;
     detenerCronometro();
     setTiempoTranscurrido(0);
     setMostrarResumen(false);
@@ -229,7 +237,12 @@ const BuscaElIntruso = ({ tema }) => {
       combo: 0
     }));
     iniciarCronometro();
-    setTimeout(() => generarYRenderizarColeccion(), 0);
+
+    setRestarting(true);
+    setTimeout(() => {
+      generarYRenderizarColeccion();
+      setRestarting(false);
+    }, 600);
   };
 
   useEffect(() => {
@@ -315,12 +328,12 @@ const BuscaElIntruso = ({ tema }) => {
                   ↻ Reiniciar Examen
                 </button>
                 <button className="intruso-btn" onClick={activarModoLibre} style={{ border: '1px solid rgba(255,255,255,0.3)' }}>
-                  ↩ Volver a Práctica
+                  ↩ Volver al Juego
                 </button>
               </>
             ) : (
               <>
-                <button className={`intruso-btn ${estado.modo === 'libre' ? 'active' : ''}`} onClick={activarModoLibre}>PRÁCTICA</button>
+                <button className={`intruso-btn ${estado.modo === 'libre' ? 'active' : ''}`} onClick={activarModoLibre}>OTRO INTRUSO</button>
                 <button className={`intruso-btn ${estado.modo === 'test' ? 'active' : ''}`} onClick={iniciarTest}>EXAMEN</button>
               </>
             )}
@@ -388,7 +401,7 @@ const BuscaElIntruso = ({ tema }) => {
                   return (
                     <div
                       key={`${estado.ronda}-${idx}`} // Key cambiante para forzar re-render y animación
-                      className={`intruso-cell ${esTexto ? 'text-mode' : 'icon-mode'} ${status}`}
+                      className={`intruso-cell ${esTexto ? 'text-mode' : 'icon-mode'} ${status} ${restarting ? 'shaking' : ''}`}
                       style={delayStyle}
                       onClick={() => gestionarClick(idx)}
                     >
@@ -428,7 +441,7 @@ const BuscaElIntruso = ({ tema }) => {
 
               <div className="action-buttons">
                 <button className="primary-action" onClick={iniciarTest}>REPETIR EXAMEN</button>
-                <button className="secondary-action" onClick={activarModoLibre}>ENTRENAMIENTO LIBRE</button>
+                <button className="secondary-action" onClick={activarModoLibre}>JUGAR: OTRO INTRUSO</button>
               </div>
             </div>
           )}

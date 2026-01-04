@@ -1,141 +1,230 @@
 [
   {
-    "categoria": "Funciones (Visual)",
+    "categoria": "Análisis de Funciones y Gráficas (Visual)",
     "correctos": [
       "📈",
       "📉",
       "📊",
       "💹",
       "🎢",
-      "🔄"
+      "🔄",
+      "📐",
+      "💻",
+      "📉",
+      "📊",
+      "📈",
+      "📉",
+      "📈",
+      "💹",
+      "📊",
+      "📈"
     ],
     "intrusos": [
       "🎲",
       "🧱",
       "🎨",
       "📝",
-      "🧩"
+      "🧩",
+      "🎭",
+      "🎬",
+      "🎪"
     ]
   },
   {
-    "categoria": "Vectores y Geometría (Visual)",
+    "categoria": "Vectores y Orientación Espacial (Visual)",
     "correctos": [
       "↗️",
       "↘️",
       "⬅️",
       "⬆️",
       "📐",
-      "📍"
+      "📍",
+      "↔️",
+      "↕️",
+      "↖️",
+      "↘️",
+      "↗️",
+      "↙️",
+      "🗺️",
+      "🛑",
+      "📡",
+      "🛰️"
     ],
     "intrusos": [
       "⏰",
       "⚖️",
       "💡",
       "💰",
-      "🩺"
+      "🩺",
+      "🎸",
+      "🎨",
+      "🎬"
     ]
   },
   {
-    "categoria": "Probabilidad (Visual)",
+    "categoria": "Probabilidad y Combinatoria (Visual)",
     "correctos": [
       "🎲",
       "🃏",
       "🎰",
       "🪙",
       "🎱",
-      "🎳"
+      " bowling (Bitlles Bolos)",
+      "🎟️",
+      "🎩",
+      "🗝️",
+      "🔮",
+      "🪄",
+      "🎴",
+      "🎲",
+      "🎳",
+      "🎱",
+      "🎯"
     ],
     "intrusos": [
       "📏",
       "🔭",
       "🔬",
       "🖊️",
-      "🔨"
+      "🔨",
+      "🪚",
+      "🪓",
+      "⚒️"
     ]
   },
   {
-    "categoria": "Trigonometría",
+    "categoria": "Trigonometría y Triángulos",
     "correctos": [
-      "Seno",
-      "Coseno",
-      "Tangente",
-      "Secante",
-      "Cosecante"
+      "Seno (sin)",
+      "Coseno (cos)",
+      "Tangente (tan)",
+      "Secante (sec)",
+      "Cosecante (csc)",
+      "Cotangente (cot)",
+      "Hipotenusa",
+      "Cateto contiguo",
+      "Cateto opuesto",
+      "Grados sexagesimales",
+      "Radián",
+      "Ángulo agudo",
+      "Teorema de Pitágoras",
+      "Razones trigonométricas"
     ],
     "intrusos": [
-      "Radio",
-      "Diámetro",
-      "Área",
-      "Volumen",
-      "Perímetro"
+      "Radio de la esfera",
+      "Diámetro del círculo",
+      "Área del trapecio",
+      "Volumen del cono",
+      "Perímetro del rombo",
+      "Cuerda del arco"
     ]
   },
   {
-    "categoria": "Tipos de Funciones",
+    "categoria": "Tipología de Funciones",
     "correctos": [
-      "Lineal",
-      "Cuadrática",
-      "Exponencial",
-      "Logarítmica",
-      "Racional"
+      "Función Lineal",
+      "Función Cuadrática (Parábola)",
+      "Función Exponencial",
+      "Función Logarítmica",
+      "Función Racional / Hiperbólica",
+      "Función definida a trozos",
+      "Función Inversa",
+      "Función Periódica",
+      "Dominio de una función",
+      "Recorrido / Imagen",
+      "Máximo relativo",
+      "Mínimo absoluto",
+      "Crecimiento y Decrecimiento",
+      "Continuidad"
     ],
     "intrusos": [
-      "Aleatoria",
-      "Caótica",
-      "Imaginaria",
-      "Estadística",
-      "Probable"
+      "Distribución Aleatoria",
+      "Sistema Caótico",
+      "Número Imaginario",
+      "Media estadística",
+      "Suceso Probable",
+      "Variable cualitativa"
     ]
   },
   {
-    "categoria": "Inecuaciones",
+    "categoria": "Inecuaciones y Sistemas",
     "correctos": [
-      "Mayor que",
-      "Menor que",
-      "Intervalo",
+      "Símbolo Mayor que (>)",
+      "Símbolo Menor que (<)",
+      "Símbolo Mayor o igual (>=)",
+      "Símbolo Menor o igual (<=)",
+      "Intervalo abierto",
+      "Intervalo cerrado",
       "Semirrecta",
-      "Desigualdad"
+      "Desigualdad numérica",
+      "Inecuación de primer grado",
+      "Inecuación de segundo grado",
+      "Región factible",
+      "Sistema de inecuaciones",
+      "Solución compartida",
+      "Intersección de intervalos"
     ],
     "intrusos": [
-      "Igualdad",
-      "Ecuación",
-      "Identidad",
+      "Igualdad matemática",
+      "Ecuación bicuadrada",
+      "Identidad notable",
       "Solución única",
-      "Exacto"
+      "Valor Exacto",
+      "Raíz entera"
     ]
   },
   {
-    "categoria": "Logaritmos",
+    "categoria": "Potencias y Logaritmos",
     "correctos": [
-      "Base",
+      "Base del logaritmo",
       "Argumento",
-      "Exponente",
-      "Neperiano",
-      "Decimal"
+      "Exponente de la potencia",
+      "Logaritmo Neperiano (ln)",
+      "Logaritmo Decimal (log)",
+      "Cambio de base",
+      "Propiedad del producto",
+      "Propiedad del cociente",
+      "Logaritmo de la potencia",
+      "Antilogaritmo",
+      "Notación científica",
+      "Mantisa",
+      "Base e (Número de Euler)",
+      "Base 10"
     ],
     "intrusos": [
-      "Suma",
-      "Resta",
-      "Matriz",
-      "Vector",
-      "Polinomio"
+      "Suma de polinomios",
+      "Resta de matrices",
+      "Matriz unidad",
+      "Vector unitario",
+      "Polinomio de grado 3",
+      "División sintética"
     ]
   },
   {
-    "categoria": "Estadística Bidimensional",
+    "categoria": "Estadística Bidimensional y Regresión",
     "correctos": [
-      "Correlación",
-      "Nube de puntos",
-      "Regresión",
-      "Covarianza",
-      "Dependencia"
+      "Coeficiente de Correlación (r)",
+      "Nube de puntos / Diagrama dispersión",
+      "Recta de Regresión",
+      "Covarianza (Sxy)",
+      "Dependencia funcional",
+      "Dependencia estadística",
+      "Frecuencia conjunta",
+      "Distribución marginal",
+      "Centro de gravedad (x,y)",
+      "Correlación positiva",
+      "Correlación negativa",
+      "Predicción estadística",
+      "Error de estimación",
+      "Variable independiente (x)"
     ],
     "intrusos": [
-      "Media",
-      "Moda",
-      "Mediana",
-      "Cuartil",
-      "Rango"
+      "Media aritmética simple",
+      "Moda absoluta",
+      "Mediana central",
+      "Cuartil inferior",
+      "Rango intercuartílico",
+      "Desviación típica"
     ]
   }
 ]

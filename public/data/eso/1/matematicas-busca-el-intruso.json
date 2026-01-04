@@ -1,94 +1,161 @@
 [
   {
-    "categoria": "Polígonos Regulares (Visual)",
+    "categoria": "Polígonos y Figuras (Visual)",
     "correctos": [
       "🔺",
       "🟦",
       "🛑",
       "🔶",
-      "⬡",
-      "⬛"
+      "⬛",
+      "🔲",
+      "📐",
+      "💎",
+      "🧩",
+      "🏘️",
+      "🪁",
+      "📦",
+      "🧊",
+      "🧱",
+      "🧧",
+      "🪟"
     ],
     "intrusos": [
       "⚪",
       "🔵",
       "🍕",
       "🌙",
-      "☁️"
+      "☁️",
+      "🌀",
+      "🌊",
+      "🫧"
     ]
   },
   {
-    "categoria": "Fracciones y Porcentajes (Visual)",
+    "categoria": "Fracciones y Partes (Visual)",
     "correctos": [
       "🍰",
       "🍕",
       "🌗",
       "🧀",
       "🍫",
-      "📊"
+      "📊",
+      "🍩",
+      "🥧",
+      "🥯",
+      "🧇",
+      "🧇",
+      "🥞",
+      "🥘",
+      "🥪",
+      "🍳",
+      "🍫"
     ],
     "intrusos": [
       "1️⃣",
       "💯",
       "🔟",
       "🔢",
-      "#️⃣"
+      "#️⃣",
+      "🆗",
+      "🆒",
+      "🆕"
     ]
   },
   {
-    "categoria": "Herramientas de Geometría (Visual)",
+    "categoria": "Herramientas de Matemáticas (Visual)",
     "correctos": [
       "📐",
       "📏",
       "✏️",
       "✂️",
-      "🖇️"
+      "🖇️",
+      "📊",
+      "📉",
+      "📈",
+      "🧮",
+      "💻",
+      "📟",
+      "🖊️",
+      "✒️",
+      "📓",
+      "📝",
+      "📋"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🔩",
       "🧱",
-      "🔦"
+      "🔦",
+      "🪒",
+      "🩹",
+      "🪓"
     ]
   },
   {
-    "categoria": "Ángulos (Visual)",
+    "categoria": "Geometría Lineal y Angular (Visual)",
     "correctos": [
       "∟",
       "⊿",
       "📐",
       "🔷",
-      "⚠️"
+      "⚠️",
+      "🛤️",
+      "➰",
+      "➰",
+      "↔️",
+      "↕️",
+      "↖️",
+      "↘️",
+      "↗️",
+      "↙️",
+      "➕",
+      "✖️"
     ],
     "intrusos": [
       "🔴",
       "〰️",
       "⭕",
       "🔗",
-      "➰"
+      "➰",
+      "🍩",
+      "🥯",
+      "🌕"
     ]
   },
   {
-    "categoria": "Números Enteros",
+    "categoria": "Números Enteros (Z)",
     "correctos": [
       "-5",
       "+3",
       "0",
       "-10",
       "15",
-      "-1"
+      "-1",
+      "-100",
+      "+45",
+      "-22",
+      "+7",
+      "-99",
+      "+1000",
+      "0",
+      "1",
+      "-8",
+      "+12"
     ],
     "intrusos": [
       "0.5",
       "1/2",
       "3.14",
       "2/3",
-      "4,5"
+      "4,5",
+      "0.75",
+      "pi",
+      "sqrt(2)"
     ]
   },
   {
-    "categoria": "Divisibilidad (Números Primos)",
+    "categoria": "Divisibilidad (Números Primos < 50)",
     "correctos": [
       "2",
       "3",
@@ -96,7 +163,15 @@
       "7",
       "11",
       "13",
-      "17"
+      "17",
+      "19",
+      "23",
+      "29",
+      "31",
+      "37",
+      "41",
+      "43",
+      "47"
     ],
     "intrusos": [
       "4",
@@ -104,75 +179,127 @@
       "8",
       "9",
       "10",
-      "15"
+      "15",
+      "21",
+      "25",
+      "27",
+      "33",
+      "49"
     ]
   },
   {
-    "categoria": "Elementos de la Geometría",
+    "categoria": "Elementos Geométricos",
     "correctos": [
       "Punto",
       "Recta",
       "Semirrecta",
       "Segmento",
       "Plano",
-      "Ángulo"
+      "Ángulo",
+      "Vértice",
+      "Lado",
+      "Diagonal",
+      "Arista",
+      "Cara",
+      "Radio",
+      "Diámetro",
+      "Cuerda",
+      "Arco",
+      "Tangente"
     ],
     "intrusos": [
       "Litro",
       "Kilo",
       "Segundo",
       "Hora",
-      "Gramo"
+      "Gramo",
+      "Metro",
+      "Grado",
+      "Vatio"
     ]
   },
   {
-    "categoria": "Tipos de Triángulos (Lados)",
+    "categoria": "Clasificación de Triángulos",
     "correctos": [
       "Equilátero",
       "Isósceles",
-      "Escaleno"
-    ],
-    "intrusos": [
+      "Escaleno",
       "Acutángulo",
       "Rectángulo",
       "Obtusángulo",
+      "Triángulo",
+      "Hipotenusa",
+      "Cateto",
+      "Vértice",
+      "Ángulo recto",
+      "Ángulo agudo",
+      "Ángulo obtuso",
+      "Base"
+    ],
+    "intrusos": [
       "Cuadrado",
-      "Rombo"
+      "Rectángulo",
+      "Rombo",
+      "Trapecio",
+      "Pentágono",
+      "Hexágono",
+      "Octógono"
     ]
   },
   {
-    "categoria": "Unidades de Medida (SI)",
+    "categoria": "Unidades de Medida y SI",
     "correctos": [
       "Metro",
       "Kilogramo",
       "Segundo",
       "Litro",
-      "Metro cuadrado"
+      "Metro cuadrado",
+      "Centímetro",
+      "Milímetro",
+      "Gramo",
+      "Hectolitro",
+      "Kilómetro",
+      "Decilitro",
+      "Centímetro cúbico",
+      "Hectárea",
+      "Grado Celsius"
     ],
     "intrusos": [
       "Docena",
       "Par",
       "Decena",
       "Palmo",
-      "Pie"
+      "Pie",
+      "Paso",
+      "Cucharada",
+      "Puñado"
     ]
   },
   {
-    "categoria": "Operaciones Básicas",
+    "categoria": "Operaciones y Operadores",
     "correctos": [
       "Suma",
       "Resta",
       "Multiplicación",
       "División",
       "Potencia",
-      "Raíz"
+      "Raíz cuadrada",
+      "Factorización",
+      "MCD",
+      "mcm",
+      "Suma de fracciones",
+      "Jerarquía",
+      "Paréntesis",
+      "Cambio de signo",
+      "Igualdad"
     ],
     "intrusos": [
-      "Igual",
       "Mayor que",
       "Menor que",
-      "Paréntesis",
-      "Corchete"
+      "Paralelo",
+      "Perpendicular",
+      "Semejante",
+      "Congruente"
     ]
   }
 ]

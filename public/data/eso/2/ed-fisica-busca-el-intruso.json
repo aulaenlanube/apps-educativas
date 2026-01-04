@@ -1,122 +1,206 @@
 [
   {
-    "categoria": "Deportes (Visual)",
+    "categoria": "Deportes y Actividades (Visual)",
     "correctos": [
       "⚽",
       "🏀",
       "🏐",
       "🏉",
       "⚾",
-      "🎾"
+      "🎾",
+      "🏸",
+      "🏓",
+      "🥎",
+      "🏒",
+      "🎳",
+      "🥅",
+      "🥋",
+      "⛸️",
+      "🎿",
+      "🏄"
     ],
     "intrusos": [
       "🎮",
       "📺",
       "🛌",
       "🍔",
-      "🍟"
+      "🍟",
+      "🍕",
+      "🥤",
+      "🍿"
     ]
   },
   {
-    "categoria": "Material (Visual)",
+    "categoria": "Equipamiento Deportivo (Visual)",
     "correctos": [
       "👟",
       "🎽",
       "🥅",
       "🏓",
       "🏸",
-      "🛹"
+      " skateboard (Monopatín skateboard)",
+      "🥊",
+      "🥋",
+      "🏹",
+      "🤺",
+      "🚣",
+      "🚵",
+      "🧘",
+      "🧗",
+      "🎿",
+      "🚲"
     ],
     "intrusos": [
       "📚",
       "✏️",
       "🎒",
       "💻",
-      "📱"
+      "📱",
+      "🎹",
+      "🎺",
+      "🔬"
     ]
   },
   {
-    "categoria": "Cualidades Físicas Básicas",
+    "categoria": "Cualidades y Capacidades Físicas",
     "correctos": [
-      "Resistencia",
-      "Fuerza",
-      "Velocidad",
-      "Flexibilidad"
+      "Resistencia aeróbica",
+      "Resistencia anaeróbica",
+      "Fuerza máxima",
+      "Fuerza explosiva",
+      "Velocidad de reacción",
+      "Velocidad de desplazamiento",
+      "Flexibilidad estática",
+      "Flexibilidad dinámica",
+      "Fuerza resistencia",
+      "Fuerza velocidad",
+      "Amplitud de movimiento",
+      "Potencia muscular"
     ],
     "intrusos": [
       "Equilibrio",
       "Coordinación",
       "Agilidad",
-      "Potencia",
-      "Ritmo"
+      "Ritmo",
+      "Precisión",
+      "Oído",
+      "Visión"
     ]
   },
   {
-    "categoria": "Deportes Colectivos",
+    "categoria": "Deportes de Equipo y Competición",
     "correctos": [
       "Fútbol",
       "Baloncesto",
       "Voleibol",
       "Balonmano",
-      "Rugby"
+      "Rugby",
+      "Waterpolo",
+      "Fútbol Sala",
+      "Béisbol",
+      "Softbol",
+      "Cricket",
+      "Ultimate Frisbee",
+      "Hockey sobre patines",
+      "Floorball",
+      "Lacrosse"
     ],
     "intrusos": [
       "Tenis",
       "Bádminton",
       "Atletismo",
       "Natación",
-      "Ciclismo"
+      "Ciclismo",
+      "Boxeo",
+      "Golf",
+      "Billar"
     ]
   },
   {
-    "categoria": "Huesos",
+    "categoria": "Anatomía: Huesos del Cuerpo",
     "correctos": [
       "Fémur",
       "Húmero",
       "Tibia",
       "Peroné",
-      "Radio"
+      "Radio",
+      "Cúbito",
+      "Cráneo",
+      "Costillas",
+      "Columna vertebral",
+      "Pelvis",
+      "Clavícula",
+      "Escápula / Omóplato",
+      "Rótula",
+      "Esternón",
+      "Falanges",
+      "Maxilar"
     ],
     "intrusos": [
       "Bíceps",
       "Tríceps",
       "Cuádriceps",
       "Pectoral",
-      "Dorsal"
+      "Dorsal",
+      "Glúteo",
+      "Abdominal"
     ]
   },
   {
-    "categoria": "Músculos",
+    "categoria": "Anatomía: Sistema Muscular",
     "correctos": [
-      "Bíceps",
-      "Abdominales",
-      "Cuádriceps",
-      "Gemelos",
-      "Deltoides"
+      "Bíceps braquial",
+      "Tríceps braquial",
+      "Recto abdominal",
+      "Cuádriceps femoral",
+      "Gemelos / Gastrocnemio",
+      "Deltoides",
+      "Pectoral mayor",
+      "Dorsal ancho",
+      "Glúteo mayor",
+      "Isquiotibiales",
+      "Trapecio",
+      "Serrato",
+      "Oblicuos",
+      "Masetero"
     ],
     "intrusos": [
       "Cráneo",
       "Costillas",
-      "Columna",
+      "Columna vertebral",
       "Pelvis",
-      "Esternón"
+      "Esternón",
+      "Rótula",
+      "Vértebra"
     ]
   },
   {
-    "categoria": "Hábitos Saludables",
+    "categoria": "Hábitos Saludables y Bienestar",
     "correctos": [
-      "Ejercicio",
-      "Dieta",
-      "Descanso",
-      "Higiene",
-      "Postura"
+      "Ejercicio regular",
+      "Dieta equilibrada",
+      "Descanso reparador",
+      "Higiene personal",
+      "Postura correcta",
+      "Hidratación",
+      "Estiramientos",
+      "Calentamiento",
+      "Prevención de lesiones",
+      "Salud mental",
+      "Bienestar emocional",
+      "Revisiones médicas",
+      "Actividad al aire libre",
+      "Protección solar"
     ],
     "intrusos": [
       "Tabaco",
       "Alcohol",
       "Sedentarismo",
       "Estrés",
-      "Drogas"
+      "Drogas",
+      "Dopaje",
+      "Comida procesada",
+      "Desvelo"
     ]
   }
 ]

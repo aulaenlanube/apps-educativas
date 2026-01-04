@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Hardware y Dispositivos de Salida (Visual)",
+    "categoria": "Hardware de Salida (Visual)",
     "correctos": [
       "💻",
       "⌨️",
@@ -13,7 +13,11 @@
       "📽️",
       "🎧",
       "📺",
-      "📻"
+      "📻",
+      "⌚",
+      "💡",
+      "📡",
+      "🛰️"
     ],
     "intrusos": [
       "🍎",
@@ -22,16 +26,12 @@
       "🧸",
       "🚗",
       "🍕",
-      "🍔",
-      "🛋️",
-      "🛁",
-      "👕",
-      "👞",
-      "帽子"
+      "🍦",
+      "🥪"
     ]
   },
   {
-    "categoria": "Electrónica y Control Robótico (Visual)",
+    "categoria": "Robótica y Electrónica (Visual)",
     "correctos": [
       "🤖",
       "⚙️",
@@ -45,7 +45,10 @@
       "⏲️",
       "🛰️",
       "🦾",
-      "🦿"
+      "🦿",
+      "🧲",
+      "🔭",
+      "🔬"
     ],
     "intrusos": [
       "🌸",
@@ -54,16 +57,11 @@
       "🌈",
       "🦋",
       "🎨",
-      "🧸",
-      "👒",
-      "🧥",
-      "🧣",
-      "🧤",
-      "👟"
+      "🧸"
     ]
   },
   {
-    "categoria": "Iconos de Aplicaciones y Web (Visual)",
+    "categoria": "Web y Aplicaciones (Visual)",
     "correctos": [
       "📁",
       "🗑️",
@@ -77,10 +75,12 @@
       "🌐",
       "🔗",
       "📶",
-      "📶",
       "🔔",
       "📍",
-      "📥"
+      "📥",
+      "📤",
+      "📅",
+      "🔑"
     ],
     "intrusos": [
       "🚲",
@@ -89,18 +89,11 @@
       "🎸",
       "👞",
       "👕",
-      "👒",
-      "🛹",
-      "⚽",
-      "🍎",
-      "🏠",
-      "🌲",
-      "🌳",
-      "🌻"
+      "👒"
     ]
   },
   {
-    "categoria": "Lógica Matemática y Programación (Visual)",
+    "categoria": "Lógica y Programación (Visual)",
     "correctos": [
       "➡️",
       "⬅️",
@@ -118,7 +111,10 @@
       "♾️",
       "✅",
       "❌",
-      "🔗"
+      "🔗",
+      "🆒",
+      "🆗",
+      "🆙"
     ],
     "intrusos": [
       "🏠",
@@ -127,89 +123,93 @@
       "🌲",
       "🍎",
       "🍔",
-      "🍕",
-      "🧸",
-      "🛋️",
-      "🛁",
-      "👕",
-      "👟",
-      "👞",
-      "🧢",
-      "👒"
+      "🍕"
     ]
   },
   {
-    "categoria": "Bloques de Control y Eventos (Scratch)",
+    "categoria": "Eventos y Control: Scratch",
     "correctos": [
-      "Al hacer clic en este objeto",
-      "Repetir hasta que",
-      "Si... entonces... si no",
+      "Al hacer clic",
+      "Repetir",
+      "Si...entonces",
       "Enviar mensaje",
-      "Al recibir mensaje",
+      "Recibir mensaje",
       "Detener todos",
-      "Crear clon de",
-      "Esperar hasta que"
+      "Crear clon",
+      "Esperar",
+      "Al presionar tecla",
+      "Repetir 10",
+      "Por siempre",
+      "Si...entonces...si no",
+      "Detener este script"
     ],
     "intrusos": [
-      "Hacer los deberes",
-      "Comer la merienda",
-      "Dormir la siesta",
+      "Hacer deberes",
+      "Comer",
+      "Dormir",
       "Ir al parque",
-      "Jugar con el perro",
-      "Cantar villancicos",
-      "Preparar la mochila",
-      "Lavar el coche"
+      "Cantar",
+      "Lavar coche"
     ]
   },
   {
-    "categoria": "Arquitectura Física del Computador",
+    "categoria": "Arquitectura Física",
     "correctos": [
       "Placa base",
       "Microprocesador",
-      "Módulo de RAM",
-      "Unidad de SSD",
-      "BIOS / UEFI",
-      "Microfono externo",
-      "Tarjeta de sonido",
-      "Puerto de red (Lan)",
-      "Ventilador de CPU"
+      "Memoria RAM",
+      "Unidad SSD",
+      "BIOS",
+      "Cámara web",
+      "Tarjeta sonido",
+      "Puerto LAN",
+      "Ventilador",
+      "Chipset",
+      "Fuente poder",
+      "Bus de datos",
+      "Carcasa",
+      "Zócalo"
     ],
     "intrusos": [
-      "Zapato de deporte",
-      "Cuchara de sopa",
-      "Libreta de cuadros",
-      "Lápiz de mina",
-      "Gorra de visera",
-      "Silla de ruedas",
-      "Puerta de madera",
-      "Ventana de aluminio"
+      "Zapato",
+      "Cuchara",
+      "Libreta",
+      "Lápiz",
+      "Gorra",
+      "Mesa",
+      "Puerta"
     ]
   },
   {
-    "categoria": "Ciberseguridad y Hábitos Digitales",
+    "categoria": "Ciberseguridad",
     "correctos": [
-      "Autenticación en dos pasos",
-      "Antivirus actualizado",
-      "Muro de fuego (Firewall)",
-      "Navegación incógnita",
-      "Copia de seguridad",
-      "Correo de suplantación (Phishing)",
+      "Autenticación 2FA",
+      "Antivirus",
+      "Firewall",
+      "Incógnito",
+      "Backup",
+      "Phishing",
       "Identidad digital",
-      "Netiqueta"
+      "Netiqueta",
+      "Criptografía",
+      "Contraseña",
+      "Hacker ético",
+      "Navegador seguro",
+      "Privacidad",
+      "Bloqueo"
     ],
     "intrusos": [
-      "Piedra pómez",
-      "Árbol frutal",
-      "Bocadillo de atún",
-      "Pelota de baloncesto",
-      "Libro de texto",
-      "Agua destilada",
-      "Fuego de madera",
-      "Cuchillo de pan"
+      "Piedra",
+      "Árbol",
+      "Bocadillo",
+      "Pelota",
+      "Libro",
+      "Agua",
+      "Fuego"
     ]
   },
   {
-    "categoria": "Acciones de Entrada y Procesamiento",
+    "categoria": "Procesamiento de Datos",
     "correctos": [
       "Introducir datos",
       "Escanear QR",
@@ -217,41 +217,50 @@
       "Reconocer cara",
       "Traducir texto",
       "Calcular suma",
-      "Filtrar búsqueda",
-      "Descargar documento",
-      "Subir a la nube"
+      "Filtrar",
+      "Descargar",
+      "Subir nube",
+      "Indexar",
+      "Comprimir",
+      "Encriptar",
+      "Sincronizar",
+      "Exportar"
     ],
     "intrusos": [
-      "Dibujar con lápiz",
-      "Recortar con manos",
-      "Pegar con pegamento",
-      "Doblar una hoja",
-      "Correr por el campo",
-      "Saltar en la cama",
-      "Comer un pastel"
+      "Dibujar",
+      "Recortar",
+      "Pegar",
+      "Doblar hoja",
+      "Correr",
+      "Saltar",
+      "Comer"
     ]
   },
   {
-    "categoria": "Conceptos Avanzados de Algoritmia",
+    "categoria": "Conceptos de Algoritmia",
     "correctos": [
       "Variable global",
       "Bucle anidado",
-      "Algoritmo de búsqueda",
-      "Condición booleana (V/F)",
-      "Lista o Array",
-      "Parámetro de función",
+      "Algoritmo",
+      "Booleano",
+      "Lista",
+      "Parámetro",
       "Código fuente",
-      "Error de sintaxis"
+      "Sintaxis",
+      "Depurar",
+      "Compilar",
+      "Framework",
+      "Librería",
+      "Objeto",
+      "Clase"
     ],
     "intrusos": [
-      "Cuento de terror",
-      "Receta de cocina",
+      "Cuento",
+      "Receta",
       "Dibujo técnico",
-      "Poesía romántica",
-      "Novela de intriga",
-      "Guion de teatro",
-      "Mapa del tesoro",
-      "Diario personal"
+      "Poesía",
+      "Novela",
+      "Guion"
     ]
   }
 ]

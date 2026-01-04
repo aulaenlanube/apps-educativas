@@ -1,155 +1,266 @@
 [
   {
-    "categoria": "Laboratorio (Visual)",
+    "categoria": "Laboratorio y Medida (Visual)",
     "correctos": [
       "🧪",
       "🔬",
       "🌡️",
       "⚖️",
       "🔥",
-      "🥽"
+      "🥽",
+      "⚗️",
+      "🧫",
+      "📊",
+      "🧪",
+      "🔍",
+      "⏱️",
+      "📐",
+      "🔬",
+      "🥼",
+      "🧤"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🎸",
       "⚽",
-      "🎮"
+      "🎮",
+      "🧸",
+      "🍿",
+      "🍕"
     ]
   },
   {
-    "categoria": "Estados de la Materia (Visual)",
+    "categoria": "Estados y Fenómenos (Visual)",
     "correctos": [
       "🧊",
       "💧",
       "🌫️",
       "🌬️",
-      "🔥"
+      "🔥",
+      "☄️",
+      "⚡",
+      "🔋",
+      "💡",
+      "⚛️",
+      "🌀",
+      "🫧",
+      "🌊",
+      "❄️",
+      "🌡️",
+      "🧪"
     ],
     "intrusos": [
       "🧱",
       "🪵",
       "📄",
       "🥪",
-      "🍎"
+      "🍎",
+      "🚗",
+      "🚲",
+      "🏠"
     ]
   },
   {
-    "categoria": "Energía (Visual)",
+    "categoria": "Energía y Electricidad (Visual)",
     "correctos": [
       "⚡",
       "🔋",
       "💡",
       "☀️",
       "🔥",
-      "🔌"
+      "🔌",
+      "🌡️",
+      "☢️",
+      "🏭",
+      "🏎️",
+      "🚠",
+      "🔌",
+      "🔋",
+      "💡",
+      "⚡",
+      "🛰️"
     ],
     "intrusos": [
       "💧",
       "🌱",
       "🦋",
       "🐶",
-      "🐱"
+      "🐱",
+      "🌹",
+      "🍄",
+      "🐚"
     ]
   },
   {
-    "categoria": "Átomos (Visual)",
+    "categoria": "Modelos Atómicos y Materia (Visual)",
     "correctos": [
       "⚛️",
       "🧬",
       "🔬",
       "⚗️",
-      "🧪"
+      "🧪",
+      "🧫",
+      "🦠",
+      "🔬",
+      "🧬",
+      "🧪",
+      "⚛️",
+      "🔍",
+      "🌡️",
+      "🧪",
+      "🔬",
+      "🧬"
     ],
     "intrusos": [
       "🪐",
       "🚀",
       "🔭",
       "🌍",
-      "🌙"
+      "🌙",
+      "🛸",
+      "🪁",
+      "🦅"
     ]
   },
   {
-    "categoria": "Propiedades de la Materia",
+    "categoria": "Propiedades de la Materia y Mezclas",
     "correctos": [
       "Masa",
       "Volumen",
       "Densidad",
-      "Temperatura"
+      "Temperatura",
+      "Solubilidad",
+      "Viscosidad",
+      "Dureza",
+      "Elasticidad",
+      "Conductividad",
+      "Punto de fusión",
+      "Punto de ebullición",
+      "Concentración",
+      "Compresibilidad",
+      "Magnetismo"
     ],
     "intrusos": [
       "Amor",
       "Tiempo",
-      "Velocidad",
-      "Fuerza",
-      "Alegría"
+      "Alegría",
+      "Belleza",
+      "Precio",
+      "Marca",
+      "Lugar"
     ]
   },
   {
-    "categoria": "Estados de Agregación",
+    "categoria": "Estados de Agregación y Plasma",
     "correctos": [
       "Sólido",
       "Líquido",
       "Gaseoso",
-      "Plasma"
+      "Plasma",
+      "Superfluido",
+      "Condensado Bose-Einstein",
+      "Gas ionizado",
+      "Materia bariónica",
+      "Fluido",
+      "Sólido amorfo",
+      "Cristal",
+      "Estado cristalino",
+      "Materia degenerada",
+      "Partícula"
     ],
     "intrusos": [
       "Duro",
       "Blando",
       "Áspero",
       "Suave",
-      "Caliente"
+      "Caliente",
+      "Frío",
+      "Grande"
     ]
   },
   {
-    "categoria": "Tipos de Energía",
+    "categoria": "Formas de Energía y Transformación",
     "correctos": [
       "Cinética",
-      "Potencial",
+      "Potencial gravitatoria",
+      "Potencial elástica",
       "Térmica",
       "Química",
-      "Eléctrica"
+      "Eléctrica",
+      "Nuclear",
+      "Radiante",
+      "Mecánica",
+      "Magnética",
+      "Sonora",
+      "Electromagnética",
+      "Interna",
+      "Luminosa"
     ],
     "intrusos": [
       "Rápida",
       "Alta",
       "Fuerte",
       "Lenta",
-      "Baja"
+      "Baja",
+      "Intensa",
+      "Corta"
     ]
   },
   {
-    "categoria": "Cambios de Estado",
+    "categoria": "Cambios de Estado y Reacciones",
     "correctos": [
       "Fusión",
       "Solidificación",
       "Vaporización",
       "Condensación",
-      "Sublimación"
+      "Sublimación",
+      "Sublimación inversa",
+      "Ebullición",
+      "Evaporación",
+      "Licuación",
+      "Deposición",
+      "Ionización",
+      "Desionización",
+      "Oxidación",
+      "Combustión"
     ],
     "intrusos": [
       "Mezcla",
       "Disolución",
-      "Oxidación",
-      "Combustión",
-      "Reacción"
+      "Trituración",
+      "Corte",
+      "Doblar",
+      "Pintar",
+      "Limpiar"
     ]
   },
   {
-    "categoria": "Fuerzas",
+    "categoria": "Fuerzas y Cinemática",
     "correctos": [
       "Gravedad",
       "Rozamiento",
-      "Eléctrica",
-      "Magnética",
-      "Normal"
+      "Fuerza Eléctrica",
+      "Fuerza Magnética",
+      "Fuerza Normal",
+      "Tensión",
+      "Empuje Hidrostático",
+      "Fuerza Centrípeta",
+      "Fuerza Nuclear",
+      "Trayectoria",
+      "Velocidad",
+      "Aceleración",
+      "Desplazamiento",
+      "Inercia"
     ],
     "intrusos": [
       "Masa",
       "Densidad",
       "Volumen",
       "Color",
-      "Olor"
+      "Olor",
+      "Sabor",
+      "Brillo"
     ]
   }
 ]

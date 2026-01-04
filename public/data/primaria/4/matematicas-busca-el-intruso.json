@@ -1,15 +1,23 @@
 [
   {
-    "categoria": "Ángulos y Líneas Poligonales (Visual)",
+    "categoria": "Geometría y Ángulos (Visual)",
     "correctos": [
       "📐",
       "⊿",
       "🔲",
-      "📐",
       "⟀",
       "∠",
       "∟",
-      "⦣"
+      "⦣",
+      "📏",
+      "🕰️",
+      "🧭",
+      "⚖️",
+      "⏱️",
+      "📈",
+      "📉",
+      "📊",
+      "📉"
     ],
     "intrusos": [
       "🔴",
@@ -18,12 +26,11 @@
       "🎈",
       "🐶",
       "🍦",
-      "🥪",
-      "🍳"
+      "🥪"
     ]
   },
   {
-    "categoria": "Instrumentos de Medida de Precisión (Visual)",
+    "categoria": "Medida de Precisión (Visual)",
     "correctos": [
       "📏",
       "📐",
@@ -35,7 +42,12 @@
       "📅",
       "⏳",
       "⌚",
-      "📏"
+      "🔭",
+      "🔬",
+      "🧭",
+      "🕰️",
+      "📊",
+      "📊"
     ],
     "intrusos": [
       "🔨",
@@ -44,14 +56,11 @@
       "✂️",
       "🖍️",
       "🎨",
-      "🎬",
-      "🎸",
-      "🎺",
-      "🎒"
+      "🎬"
     ]
   },
   {
-    "categoria": "Cuerpos de Revolución / Redondos (Visual)",
+    "categoria": "Cuerpos de Revolución (Visual)",
     "correctos": [
       "⚽",
       "🍊",
@@ -64,7 +73,11 @@
       "🎾",
       "⚾",
       "🎱",
-      "🧪"
+      "🧪",
+      "🛢️",
+      "🧪",
+      "🥚",
+      "🏉"
     ],
     "intrusos": [
       "📦",
@@ -73,14 +86,11 @@
       "📺",
       "🧃",
       "📱",
-      "💻",
-      "💼",
-      "📎",
-      "📓"
+      "💻"
     ]
   },
   {
-    "categoria": "Representación de Mitades y Fracciones (Visual)",
+    "categoria": "Fracciones (Visual)",
     "correctos": [
       "🌗",
       "🌓",
@@ -91,7 +101,13 @@
       "🥪",
       "🍫",
       "🧇",
-      "🥞"
+      "🥞",
+      "🥘",
+      "🥧",
+      "🥯",
+      "🍱",
+      "🍳",
+      "🍫"
     ],
     "intrusos": [
       "🌕",
@@ -100,15 +116,11 @@
       "🟩",
       "🔟",
       "0",
-      "1",
-      "2",
-      "3",
-      "4",
-      "5"
+      "1"
     ]
   },
   {
-    "categoria": "Números Decimales con Décimas y Centésimas",
+    "categoria": "Números Decimales",
     "correctos": [
       "0,5",
       "1,2",
@@ -119,7 +131,11 @@
       "25,12",
       "0,75",
       "1,99",
-      "100,01"
+      "100,01",
+      "5,55",
+      "9,99",
+      "0,1",
+      "2,4"
     ],
     "intrusos": [
       "100",
@@ -127,16 +143,12 @@
       "25",
       "1",
       "500",
-      "Mil",
       "Diez",
-      "Cien",
-      "DOCE",
-      "5+5",
-      "10-2"
+      "Cien"
     ]
   },
   {
-    "categoria": "Tipos de Ángulos según su Apertura",
+    "categoria": "Ángulos y Formas",
     "correctos": [
       "Agudo",
       "Recto",
@@ -144,7 +156,13 @@
       "Llano",
       "Completo",
       "Cóncavo",
-      "Convexo"
+      "Convexo",
+      "Nulo",
+      "Consecutivo",
+      "Adyacente",
+      "Opuesto",
+      "Complementario",
+      "Suplementario"
     ],
     "intrusos": [
       "Triángulo",
@@ -152,78 +170,88 @@
       "Círculo",
       "Vértice",
       "Lado",
-      "Arista",
-      "Cara",
-      "Cuerpo",
-      "Plano"
+      "Arista"
     ]
   },
   {
-    "categoria": "Elementos de la Operación de la División",
+    "categoria": "Elementos Matemáticos",
     "correctos": [
       "Dividendo",
       "Divisor",
       "Cociente",
       "Resto",
-      "Dividir",
-      "Repartir"
-    ],
-    "intrusos": [
       "Sumando",
+      "Minuendo",
+      "Sustraendo",
       "Factor",
       "Producto",
-      "Minuendo",
-      "Resta",
       "Diferencia",
-      "Multiplicando",
-      "Suma"
+      "Multiplicador",
+      "Operación"
+    ],
+    "intrusos": [
+      "Lápiz",
+      "Silla",
+      "Mesa",
+      "Goma",
+      "Libro",
+      "Coche"
     ]
   },
   {
-    "categoria": "Unidades de Medida de Masa del Sistema Métrico",
+    "categoria": "Unidades de Medida",
     "correctos": [
       "Kilogramo",
       "Gramo",
       "Miligramo",
-      "Hectogramo",
-      "Decagramo",
-      "Centigramo",
-      "Decigramo",
-      "Tonelada"
-    ],
-    "intrusos": [
-      "Litro",
+      "Kilómetro",
       "Metro",
+      "Centímetro",
+      "Milímetro",
+      "Litro",
+      "Decilitro",
+      "Centilitro",
       "Segundo",
-      "Grado",
-      "Euro",
       "Minuto",
       "Hora",
-      "Kilómetro",
-      "Centímetro"
+      "Hectárea"
+    ],
+    "intrusos": [
+      "Euro",
+      "Grado",
+      "Paso",
+      "Vaso",
+      "Cucharada",
+      "Palmo"
     ]
   },
   {
-    "categoria": "Clasificación de Triángulos según sus Lados",
+    "categoria": "Clasificación Geométrica",
     "correctos": [
       "Equilátero",
       "Isósceles",
-      "Escaleno"
-    ],
-    "intrusos": [
+      "Escaleno",
       "Rectángulo",
       "Acutángulo",
       "Obtusángulo",
-      "Cuadrado",
-      "Rombo",
+      "Paralelogramo",
       "Trapecio",
-      "Pentágono",
-      "Hexágono",
-      "Paralelogramo"
+      "Trapezoide",
+      "Rombo",
+      "Romboide",
+      "Cuadrilátero"
+    ],
+    "intrusos": [
+      "Círculo",
+      "Esfera",
+      "Cubo",
+      "Piramidal",
+      "Cilindro",
+      "Cono"
     ]
   },
   {
-    "categoria": "Números Romanos (Decenas y Centenas)",
+    "categoria": "Números Romanos",
     "correctos": [
       "X",
       "XX",
@@ -237,7 +265,10 @@
       "C",
       "CC",
       "D",
-      "M"
+      "M",
+      "CM",
+      "CD",
+      "CL"
     ],
     "intrusos": [
       "I",
@@ -246,13 +277,7 @@
       "III",
       "IV",
       "VI",
-      "VII",
-      "VIII",
-      "IX",
-      "10",
-      "20",
-      "50",
-      "100"
+      "VII"
     ]
   }
 ]

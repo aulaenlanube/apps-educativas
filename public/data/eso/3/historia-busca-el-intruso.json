@@ -1,159 +1,265 @@
 [
   {
-    "categoria": "Descubrimientos (Visual)",
+    "categoria": "Era de los Descubrimientos (Visual)",
     "correctos": [
       "⛵",
       "🗺️",
       "🧭",
       "🌍",
       "⚓",
-      "📜"
+      "📜",
+      "🪙",
+      "🏺",
+      "🔭",
+      "🏰",
+      "🌊",
+      "🌞",
+      "🌙",
+      "🦜",
+      "🪵",
+      "🗺️"
     ],
     "intrusos": [
       "🏭",
       "🚂",
       "💻",
       "🚀",
-      "🏙️"
+      "🏙️",
+      "💡",
+      "🔌",
+      "🔋"
     ]
   },
   {
-    "categoria": "Reyes y Reinas (Visual)",
+    "categoria": "Monarquía y Poder Real (Visual)",
     "correctos": [
       "👑",
       "🤴",
       "👸",
       "🏰",
       "⚜️",
-      "🗡️"
+      "🗡️",
+      "⚔️",
+      "🛡️",
+      "📜",
+      "💍",
+      "🍷",
+      "🏰",
+      "⛲",
+      "🏛️",
+      "🚩",
+      "🐎"
     ],
     "intrusos": [
       "🎩",
       "👔",
       "🗳️",
       "⚖️",
-      "📢"
+      "📢",
+      "📸",
+      "📹",
+      "📱"
     ]
   },
   {
-    "categoria": "Arte Renacimiento (Visual)",
+    "categoria": "Arte y Humanismo (Visual)",
     "correctos": [
       "🎨",
       "🏛️",
       "🖌️",
       "🖼️",
       "⛪",
-      "🗿"
+      "🗿",
+      "✍️",
+      "📖",
+      "📜",
+      "🎻",
+      "🎭",
+      "🏺",
+      "📐",
+      "✒️",
+      "📔",
+      "🔭"
     ],
     "intrusos": [
       "🕌",
       "🕋",
       "⛺",
       "🛖",
-      "🏭"
+      "🏭",
+      "🏭",
+      "🚜",
+      "🔩"
     ]
   },
   {
-    "categoria": "Comercio (Visual)",
+    "categoria": "Comercio e Intercambio (Visual)",
     "correctos": [
       "💰",
       "⚖️",
       "🛳️",
       "🪙",
       "🤝",
-      "📦"
+      "📦",
+      "📫",
+      "🐎",
+      "🚢",
+      "🛒",
+      "📜",
+      "🔑",
+      "💎",
+      "🧂",
+      "🍷",
+      "🌾"
     ],
     "intrusos": [
       "🏹",
       "⚔️",
       "🛡️",
       "🏰",
-      "🚜"
+      "🚜",
+      "💣",
+      "🔫",
+      "🧨"
     ]
   },
   {
-    "categoria": "Reyes Católicos",
+    "categoria": "Reyes Católicos y la Unión",
     "correctos": [
-      "Isabel",
-      "Fernando",
+      "Isabel I de Castilla",
+      "Fernando II de Aragón",
       "Unión Dinástica",
       "Inquisición",
-      "Granada"
+      "Reino de Granada",
+      "Descubrimiento de América",
+      "Expulsión de los judíos",
+      "Santa Hermandad",
+      "Tratado de Tordesillas",
+      "Monarquía Autoritaria",
+      "Toma de Melilla",
+      "Conquista de Canarias",
+      "Reino de Nápoles",
+      "Consejo de Aragón"
     ],
     "intrusos": [
       "Carlos I",
       "Felipe II",
-      "Borbones",
-      "República",
-      "Constitución"
+      "Dinastía de los Borbones",
+      "Segunda República",
+      "Constitución de 1812",
+      "Monarquía Absoluta Francesa"
     ]
   },
   {
-    "categoria": "Edad Moderna",
+    "categoria": "Era Moderna y Corrientes",
     "correctos": [
       "Renacimiento",
       "Barroco",
       "Humanismo",
       "Ilustración",
-      "Absolutismo"
+      "Absolutismo",
+      "Antiguo Régimen",
+      "Reforma Protestante",
+      "Contrarreforma",
+      "Despotismo Ilustrado",
+      "Siglo de Oro",
+      "Antropocentrismo",
+      "Heliocentrismo",
+      "Mercantilismo",
+      "Enciclopedia"
     ],
     "intrusos": [
       "Románico",
       "Gótico",
       "Feudalismo",
       "Cruzadas",
-      "Califato"
+      "Califato de Córdoba",
+      "Edad de Piedra",
+      "Prehistoria"
     ]
   },
   {
-    "categoria": "Imperio Español",
+    "categoria": "Territorios del Imperio Español (Siglo XVI-XVII)",
     "correctos": [
-      "América",
-      "Flandes",
-      "Italia",
+      "Virreinato de Nueva España",
+      "Virreinato del Perú",
+      "Flandes (Países Bajos)",
+      "Ducado de Milán",
+      "Reino de Nápoles",
       "Filipinas",
-      "Portugal"
+      "Portugal (1580-1640)",
+      "Franco Condado",
+      "Archiducado de Austria",
+      "Cerdeña",
+      "Sicilia",
+      "Túnez",
+      "Guinea",
+      "Florida"
     ],
     "intrusos": [
       "Australia",
-      "India",
-      "Canadá",
-      "Rusia",
-      "Japón"
+      "India Británica",
+      "Canadá Francés",
+      "Rusia Imperial",
+      "Japón Shogunal",
+      "Sudáfrica",
+      "Egipto"
     ]
   },
   {
-    "categoria": "Sectores Económicos",
+    "categoria": "Sectores Económicos y Actividades",
     "correctos": [
-      "Primario",
-      "Secundario",
-      "Terciario",
+      "Sector Primario",
+      "Sector Secundario",
+      "Sector Terciario",
       "Agricultura",
-      "Industria"
+      "Ganadería",
+      "Pesca",
+      "Minería",
+      "Industria",
+      "Artesanía",
+      "Construcción",
+      "Comercio",
+      "Turismo",
+      "Transportes",
+      "Finanzas"
     ],
     "intrusos": [
-      "Feudal",
-      "Gremial",
-      "Esclavista",
-      "Trueque",
-      "Subsistencia"
+      "Servidumbre feudal",
+      "Sistema de Gremios medieval",
+      "Economía esclavista",
+      "Trueque primitivo",
+      "Economía de subsistencia",
+      "Caza y recolección"
     ]
   },
   {
-    "categoria": "Países de la UE",
+    "categoria": "Estados Miembros de la Unión Europea",
     "correctos": [
       "Francia",
       "Alemania",
       "Italia",
       "Portugal",
-      "Grecia"
+      "Grecia",
+      "España",
+      "Bélgica",
+      "Andalucía (Región)",
+      "Países Bajos",
+      "Austria",
+      "Suecia",
+      "Finlandia",
+      "Polonia",
+      "Irlanda"
     ],
     "intrusos": [
       "Suiza",
       "Noruega",
-      "Reino Unido",
+      "Reino Unido (Salida)",
       "Rusia",
-      "Turquía"
+      "Turquía",
+      "Marruecos",
+      "Islandia",
+      "Ucrania"
     ]
   }
 ]

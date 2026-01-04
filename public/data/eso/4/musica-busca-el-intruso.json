@@ -1,121 +1,207 @@
 [
   {
-    "categoria": "Instrumentos (Visual)",
+    "categoria": "Instrumentos y Equipamiento (Visual)",
     "correctos": [
       "🎸",
       "🎻",
       "🎷",
       "🎹",
       "🎺",
-      "🥁"
-    ],
-    "intrusos": [
+      "🥁",
+      "🪗",
+      "🪕",
+      "🎙️",
       "🎤",
       "🎧",
-      "🔈",
+      "🔊",
+      "📻",
+      "🎛️",
+      "🎚️",
+      "🎼"
+    ],
+    "intrusos": [
       "🔨",
-      "🔧"
+      "🔧",
+      "🪚",
+      "🪓",
+      "⛏️",
+      "🗜️",
+      "🪛",
+      "🩹",
+      "🧺"
     ]
   },
   {
-    "categoria": "Notas (Visual)",
+    "categoria": "Escritura y Notación (Visual)",
     "correctos": [
       "🎼",
       "🎶",
       "🎵",
       "🎹",
-      "𝄞"
+      "𝄞",
+      "𝄢",
+      "🎙️",
+      "🎤",
+      "🎷",
+      "🎺",
+      "🎸",
+      "🎻",
+      "🥁",
+      "🎹",
+      "🪗",
+      "📻"
     ],
     "intrusos": [
       "💯",
       "💲",
       "➕",
       "➖",
-      "🔣"
+      "🔣",
+      "🅰️",
+      "🅱️",
+      "©️",
+      "®️"
     ]
   },
   {
-    "categoria": "Historia de la Música",
+    "categoria": "Grandes Periodos de la Historia Musical",
     "correctos": [
-      "Edad Media",
-      "Renacimiento",
-      "Barroco",
-      "Clasicismo",
-      "Romanticismo"
+      "Edad Media (Monodía)",
+      "Renacimiento (Polifonía)",
+      "Barroco (Contrapunto)",
+      "Clasicismo (Equilibrio)",
+      "Romanticismo (Sentimiento)",
+      "Postromanticismo",
+      "Impresionismo (Luz sonora)",
+      "Expresionismo (Disonancia)",
+      "Siglo XX (Vanguardias)",
+      "Dodecafonismo",
+      "Música Concreta",
+      "Música Electrónica",
+      "Minimalismo",
+      "Neoclasicismo"
     ],
     "intrusos": [
-      "Jazz",
-      "Rock",
-      "Pop",
-      "Rap",
-      "Reggaeton"
+      "Jazz Swing",
+      "Rock Progresivo",
+      "Pop Sintético",
+      "Rap Urbano",
+      "Reggaetón",
+      "Techno",
+      "Heavy Metal",
+      "Trap"
     ]
   },
   {
-    "categoria": "Compositores Clásicos",
+    "categoria": "Compositores de Referencia Histórica",
     "correctos": [
-      "Bach",
-      "Mozart",
-      "Beethoven",
-      "Vivaldi",
-      "Haydn"
+      "Johann Sebastian Bach",
+      "Wolfgang Amadeus Mozart",
+      "Ludwig van Beethoven",
+      "Antonio Vivaldi",
+      "Franz Joseph Haydn",
+      "Frédéric Chopin",
+      "Richard Wagner",
+      "Giuseppe Verdi",
+      "Pyotr Ilich Tchaikovsky",
+      "Igor Stravinsky",
+      "Claude Debussy",
+      "Arnold Schoenberg",
+      "Béla Bartók",
+      "Manuel de Falla"
     ],
     "intrusos": [
-      "Elvis",
-      "Beatles",
-      "Queen",
-      "Jackson",
-      "Madonna"
+      "Elvis Presley",
+      "The Beatles",
+      "Freddie Mercury",
+      "Michael Jackson",
+      "Madonna",
+      "Bob Dylan",
+      "Frank Sinatra",
+      "David Bowie"
     ]
   },
   {
-    "categoria": "Géneros Musicales",
+    "categoria": "Géneros y Estilos del Siglo XX y XXI",
     "correctos": [
-      "Ópera",
-      "Sinfonía",
-      "Concierto",
-      "Sonata",
-      "Oratorio"
+      "Ópera Contemporánea",
+      "Sinfonía Moderna",
+      "Jazz (Bebop, Cool, Free)",
+      "Rock (Psicodélico, Glam)",
+      "Pop (Synth, Dance)",
+      "Blues",
+      "Soul",
+      "Funk",
+      "Reggae",
+      "Heavy Metal",
+      "Música Punk",
+      "Hip Hop",
+      "Música Electrónica de Baile (EDM)",
+      "Indie"
     ],
     "intrusos": [
-      "Canción",
-      "Videoclip",
-      "Single",
-      "Álbum",
-      "Playlist"
+      "Poema épico",
+      "Novela de caballerías",
+      "Ensayo existencialista",
+      "Guion cinematográfico",
+      "Crónica periodística",
+      "Reportaje"
     ]
   },
   {
-    "categoria": "Agrupaciones",
+    "categoria": "Grandes Agrupaciones Musicales",
     "correctos": [
-      "Orquesta",
-      "Banda",
-      "Coro",
-      "Cuarteto",
-      "Dúo"
+      "Orquesta Sinfónica",
+      "Banda de Música (Viento)",
+      "Coro Mixto (Polifonía)",
+      "Cuarteto de Cuerda",
+      "Quinteto de Metales",
+      "Orquesta de Cámara",
+      "Big Band (Jazz)",
+      "Grupo de Rock",
+      "Coro de Voces Blancas",
+      "Orfeón",
+      "Conjunto Instrumental",
+      "Trío de Jazz",
+      "Capilla de Música",
+      "Filarmónica"
     ],
     "intrusos": [
-      "Solista",
-      "Cantante",
-      "DJ",
-      "Productor",
-      "Técnico"
+      "Solista vocal",
+      "Disc-jockey (DJ)",
+      "Productor musical",
+      "Técnico de monitores",
+      "Ingeniero de mezclas",
+      "Mánager",
+      "Público"
     ]
   },
   {
-    "categoria": "Cualidades del Sonido",
+    "categoria": "Cualidades Físicas del Sonido y Acústica",
     "correctos": [
-      "Altura",
-      "Duración",
-      "Intensidad",
-      "Timbre"
+      "Altura (Frecuencia en Hz)",
+      "Duración (Tiempo en segundos)",
+      "Intensidad (Amplitud/Volumen)",
+      "Timbre (Espectro armónico)",
+      "Resonancia",
+      "Reverberación",
+      "Envolvente (ADSR)",
+      "Decibelio (dB)",
+      "Vibración por segundo",
+      "Onda sonora",
+      "Fase",
+      "Reflexión",
+      "Eco",
+      "Difracción"
     ],
     "intrusos": [
-      "Ritmo",
-      "Melodía",
-      "Armonía",
-      "Textura",
-      "Forma"
+      "Ritmo y compás",
+      "Melodía y escala",
+      "Armonía y acordes",
+      "Textura monódica",
+      "Forma sonata",
+      "Género musical",
+      "Estilo"
     ]
   }
 ]

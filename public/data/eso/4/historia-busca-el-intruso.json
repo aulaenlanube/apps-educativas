@@ -1,141 +1,231 @@
 [
   {
-    "categoria": "Siglo XX (Visual)",
+    "categoria": "Siglo XX y Transformaciones (Visual)",
     "correctos": [
       "🏭",
       "🪖",
       "🚂",
       "📻",
       "✈️",
-      "🗳️"
+      "🗳️",
+      "🗞️",
+      "📺",
+      "💻",
+      "🛰️",
+      "🚀",
+      "🏙️",
+      "🏭",
+      "🏎️",
+      "🚁",
+      "📸"
     ],
     "intrusos": [
       "🏰",
       "👑",
       "🗡️",
       "🛡️",
-      "🕯️"
+      "🕯️",
+      "🛖",
+      "🏹",
+      "🏺"
     ]
   },
   {
-    "categoria": "Guerra Fría (Visual)",
+    "categoria": "Guerra Fría y Espionaje (Visual)",
     "correctos": [
       "🚀",
       "🛰️",
       "🧱",
       "☢️",
       "🕵️",
-      "🇺🇸"
+      "🇺🇸",
+      "🇷🇺",
+      "🇩🇪",
+      "🗼",
+      "📡",
+      "🕵️‍♂️",
+      "🕵️‍♀️",
+      "🔒",
+      "📞",
+      "🚁",
+      "🛰️"
     ],
     "intrusos": [
       "⚔️",
       "🏹",
       "🏇",
       "🏺",
-      "📜"
+      "📜",
+      "🛡️",
+      "🔱",
+      "🏛️"
     ]
   },
   {
-    "categoria": "Arte Contemporáneo (Visual)",
+    "categoria": "Arte y Cultura Contemporánea (Visual)",
     "correctos": [
       "🎨",
       "🏢",
       "🖌️",
       "🖼️",
       "🎥",
-      "📷"
+      "📷",
+      "🎙️",
+      "🎤",
+      "🎷",
+      "🎸",
+      "📽️",
+      "🎬",
+      "🎭",
+      "🎪",
+      "🎞️",
+      "📻"
     ],
     "intrusos": [
       "⛪",
       "🕌",
       "🏛️",
       "🗿",
-      "🕍"
+      "🕍",
+      "🏺",
+      "📜",
+      "🕯️"
     ]
   },
   {
-    "categoria": "Revoluciones",
+    "categoria": "Grandes Revoluciones de la Edad Contemporánea",
     "correctos": [
-      "Industrial",
-      "Francesa",
-      "Rusa",
-      "Americana",
-      "Liberal"
+      "Revolución Industrial",
+      "Revolución Francesa",
+      "Revolución Rusa (1917)",
+      "Revolución Americana",
+      "Revoluciones Liberales (1848)",
+      "Revolución Meiji",
+      "Independencia de las colonias",
+      "Revolución Gloriosa",
+      "Toma de la Bastilla",
+      "Asamblea Nacional",
+      "Soviets",
+      "Jacobinos y Girondinos",
+      "Burguesía",
+      "Declaración Derechos del Hombre"
     ],
     "intrusos": [
-      "Neolítica",
-      "Urbana",
-      "Cognitiva",
-      "Científica",
-      "Agrícola"
+      "Revolución Neolítica",
+      "Revolución Urbana de Mesopotamia",
+      "Revolución Cognitiva primitiva",
+      "Teoría Heliocéntrica",
+      "Revolución Agrícola medieval",
+      "Cisma de Occidente"
     ]
   },
   {
-    "categoria": "Ideologías Siglo XIX",
+    "categoria": "Ideologías y Movimientos Sociales del Siglo XIX",
     "correctos": [
-      "Liberalismo",
-      "Marxismo",
+      "Liberalismo político",
+      "Marxismo / Socialismo científico",
       "Anarquismo",
-      "Nacionalismo",
-      "Socialismo"
+      "Nacionalismo unificador",
+      "Socialismo utópico",
+      "Cartismo",
+      "Ludismo",
+      "Movimiento Obrero",
+      "Sindicatos",
+      "Sufragismo femenino",
+      "Internacional Obrera (AIT)",
+      "Comuna de París",
+      "Capitalismo industrial",
+      "Imperialismo / Colonialismo"
     ],
     "intrusos": [
-      "Feudalismo",
-      "Absolutismo",
-      "Humanismo",
-      "Renacimiento",
-      "Teocentrismo"
+      "Feudalismo señorial",
+      "Absolutismo monárquico",
+      "Antropocentrismo humanista",
+      "Renacimiento artístico",
+      "Teocentrismo medieval",
+      "Esclavismo romano"
     ]
   },
   {
-    "categoria": "Guerras Mundiales",
+    "categoria": "Conflictos y Guerras del Siglo XX",
     "correctos": [
-      "Trincheras",
-      "Aliados",
-      "Eje",
-      "Holocausto",
-      "Bomba atómica"
+      "Guerra de Trincheras",
+      "Triple Entente",
+      "Potencias del Eje",
+      "Holocausto / Shoah",
+      "Bomba atómica (Hiroshima)",
+      "Blitzkrieg (Guerra relámpago)",
+      "Batalla de Stalingrado",
+      "Desembarco de Normandía",
+      "Sociedad de Naciones",
+      "ONU (Organización Naciones Unidas)",
+      "Tratado de Versalles",
+      "Guerra Civil Española",
+      "Fascismo y Nazismo",
+      "Pearl Harbor"
     ],
     "intrusos": [
-      "Cruzadas",
-      "Reconquista",
-      "Imperio Romano",
-      "Vikingos",
-      "Samuráis"
+      "Cruzada de Tierra Santa",
+      "Reconquista Ibérica",
+      "Legiones del Imperio Romano",
+      "Invasiones Vikingas",
+      "Honor de los Samuráis",
+      "Guerras de Religión (Siglo XVI)"
     ]
   },
   {
-    "categoria": "Guerra Fría",
+    "categoria": "El Mundo de la Guerra Fría",
     "correctos": [
       "Muro de Berlín",
       "Telón de Acero",
       "Carrera espacial",
-      "Crisis misiles",
-      "Vietnam"
+      "Crisis de los misiles en Cuba",
+      "Guerra de Vietnam",
+      "Guerra de Corea",
+      "Pacto de Varsovia",
+      "OTAN / NATO",
+      "Plan Marshall",
+      "Maccartismo",
+      "Desestalinización",
+      "Caída del Muro (1989)",
+      "Disuasión nuclear",
+      "Coexistencia pacífica"
     ],
     "intrusos": [
-      "Napoleón",
-      "Colón",
-      "César",
+      "Napoleón Bonaparte",
+      "Cristóbal Colón",
+      "Julio César",
       "Carlomagno",
-      "Reyes Católicos"
+      "Reyes Católicos",
+      "Alejandro Magno",
+      "Pericles"
     ]
   },
   {
-    "categoria": "Arte Siglo XX",
+    "categoria": "Vanguardias y Estilos Artísticos del Siglo XX",
     "correctos": [
-      "Cubismo",
-      "Surrealismo",
+      "Cubismo (Picasso)",
+      "Surrealismo (Dalí)",
       "Expresionismo",
       "Dadaísmo",
-      "Pop Art"
+      "Pop Art (Warhol)",
+      "Futurismo",
+      "Fauvismo",
+      "Bauhaus",
+      "Funcionalismo arquitectónico",
+      "Abstracción geométrica",
+      "Constructivismo",
+      "Arte Conceptual",
+      "Hiperrealismo",
+      "Postimpresionismo"
     ],
     "intrusos": [
-      "Barroco",
-      "Gótico",
-      "Románico",
-      "Renacimiento",
-      "Neoclásico"
+      "Barroco recargado",
+      "Gótico vertical",
+      "Románico rural",
+      "Renacimiento equilibrado",
+      "Neoclásico racional",
+      "Rococó ornamental"
     ]
   }
 ]

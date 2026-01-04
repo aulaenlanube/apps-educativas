@@ -1,12 +1,22 @@
 [
   {
-    "categoria": "Cultura (Visual)",
+    "categoria": "Cultura i Tradicions (Visual)",
     "correctos": [
       "🔥",
       "🥘",
       "🎆",
       "🏰",
       "🦇",
+      "🍊",
+      "🎭",
+      "🎺",
+      "🥁",
+      "📜",
+      "🕯️",
+      "🏛️",
+      "🏟️",
+      "🏖️",
+      "⚽",
       "🍊"
     ],
     "intrusos": [
@@ -14,92 +24,175 @@
       "🗼",
       "🏯",
       "🌵",
-      "🥥"
+      "🥥",
+      "⛩️",
+      "🕌",
+      "🎿"
     ]
   },
   {
-    "categoria": "Sociolingüística",
+    "categoria": "Sociolingüística i Llengua",
     "correctos": [
       "Bilingüisme",
       "Diglòssia",
-      "Normalització",
+      "Normalització lingüística",
       "Llengua minoritzada",
-      "Prejudici"
+      "Prejudici lingüístic",
+      "Llengua pròpia",
+      "Comunitat lingüística",
+      "Àmbit d'ús",
+      "Conflictivitat lingüística",
+      "Auto-odi",
+      "Llei d'ús i ensenyament",
+      "Intercanvi lingüístic",
+      "Referents",
+      "Diglòssia històrica"
     ],
     "intrusos": [
-      "Gramàtica",
-      "Ortografia",
-      "Sintaxi",
-      "Morfologia",
-      "Lèxic"
+      "Gramàtica normativa",
+      "Ortografia correctiva",
+      "Sintaxi oracional",
+      "Morfologia verbal",
+      "Lèxic especialitzat",
+      "Diccionari d'ús"
     ]
   },
   {
-    "categoria": "Literatura Renaixença",
+    "categoria": "Literatura de la Renaixença i Modernisme",
     "correctos": [
       "Teodor Llorente",
       "Jacint Verdaguer",
+      "Constantí Llombart",
       "Jocs Florals",
-      "Pàtria",
-      "Llengua"
+      "Oda a la Pàtria",
+      "Reivindicació lingüística",
+      "Romanticisme tardà",
+      "Joan Salvat-Papasseit",
+      "Santiago Rusiñol",
+      "Caterina Albert (Víctor Català)",
+      "Joan Maragall",
+      "Modernisme literari",
+      "Símbols nacionals",
+      "Poesia de saló"
     ],
     "intrusos": [
-      "Ausiàs March",
+      "Ausiàs March (Segle XV)",
       "Joanot Martorell",
       "Jaume Roig",
       "Isabel de Villena",
-      "Segle d'Or"
+      "Segle d'Or Valencià",
+      "Tirant lo Blanch",
+      "Humanisme romà"
     ]
   },
   {
-    "categoria": "Pronoms Febles",
+    "categoria": "Pronoms Febles i Substitució",
     "correctos": [
-      "En",
-      "Hi",
-      "Ho",
-      "Li",
-      "Els"
+      "Pronom En (de + subst.)",
+      "Pronom Hi (locatiu/prep.)",
+      "Pronom Ho (neutre)",
+      "Pronom Li (CI singular)",
+      "Pronom Els (CI plural)",
+      "Pronom El / La / L' (CD)",
+      "Pronom Es (reflexiu)",
+      "Combinació de pronoms",
+      "L'apòstrof en pronoms",
+      "Elisió vocàlica",
+      "Forma plena",
+      "Forma reduïda",
+      "Forma reforçada",
+      "Forma elidida"
     ],
     "intrusos": [
-      "Jo",
-      "Tu",
-      "Ell",
+      "Jo (personal)",
+      "Tu (personal)",
+      "Ell / Ella",
       "Nosaltres",
-      "Vosaltres"
+      "Vosaltres",
+      "Meu / Teu / Seu",
+      "Aquel / Eixe"
     ]
   },
   {
-    "categoria": "Oracions Compostes",
+    "categoria": "Anàlisi de l'Oració Composta",
     "correctos": [
-      "Coordinada",
-      "Subordinada",
-      "Juxtaposada",
-      "Copulativa",
-      "Adversativa"
+      "Oració Coordinada Copulativa",
+      "Oració Coordinada Adversativa",
+      "Oració Coordinada Disjuntiva",
+      "Oració Subordinada Sustantiva",
+      "Oració Subordinada Relativa",
+      "Oració Subordinada Adverbial",
+      "Oració Juxtaposada",
+      "Nexos de coordinació",
+      "Nexos de subordinació",
+      "Proposició principal",
+      "Funcions sintàctiques",
+      "Relativa explicativa",
+      "Relativa especificativa",
+      "Subordinada final"
     ],
     "intrusos": [
-      "Simple",
-      "Subjecte",
-      "Predicat",
-      "Nominal",
-      "Verbal"
+      "Oració Simple",
+      "Subjecte elidit",
+      "Predicat nominal puro",
+      "Atribut adjectival",
+      "Complement Directe simple",
+      "Sintagma nominal"
     ]
   },
   {
-    "categoria": "Varietats Geogràfiques",
+    "categoria": "Varietats Geogràfiques del Català",
     "correctos": [
-      "Valencià",
-      "Mallorquí",
-      "Menorquí",
-      "Eivissenc",
-      "Central"
+      "Valencià meridional / septentrional",
+      "Mallorquí (Balear)",
+      "Menorquí (Balear)",
+      "Eivissenc (Balear)",
+      "Català Central",
+      "Nord-occidental",
+      "Rossellonès (Catalunya Nord)",
+      "Alguerès (Sardenya)",
+      "Ilerdenc",
+      "Tortosí",
+      "Apichat (València central)",
+      "Salat",
+      "Fragenc (Franja d'Aragó)",
+      "Andorrà"
     ],
     "intrusos": [
-      "Francès",
-      "Italià",
-      "Portuguès",
-      "Romanès",
-      "Grec"
+      "Francès modern",
+      "Italià toscà",
+      "Portugués galaic",
+      "Romanés llatí",
+      "Grec clàssic",
+      "Occità provençal"
+    ]
+  },
+  {
+    "categoria": "Lèxic de la Societat i Tecnologia",
+    "correctos": [
+      "Sostenibilitat",
+      "Desenvolupament",
+      "Igualtat de gènere",
+      "Globalització",
+      "Xarxes socials",
+      "Correu electrònic",
+      "Seguretat digital",
+      "Ciberassetjament",
+      "Reciclatge d'envasos",
+      "Canvi climàtic",
+      "Consum responsable",
+      "Migracions",
+      "Cooperació",
+      "Multiculturalitat"
+    ],
+    "intrusos": [
+      "Arada",
+      "Falç",
+      "Trull",
+      "Sínia",
+      "Carro de bous",
+      "Pergamí",
+      "Espelma de cera"
     ]
   }
 ]

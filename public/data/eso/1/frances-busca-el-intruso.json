@@ -1,20 +1,33 @@
 [
   {
-    "categoria": "Les Pays (Drapeaux)",
+    "categoria": "Les Pays (Visual)",
     "correctos": [
       "🇫🇷",
       "🇪🇸",
       "🇮🇹",
       "🇩🇪",
       "🇬🇧",
-      "🇧🇪"
+      "🇧🇪",
+      "🇨🇭",
+      "🇨🇦",
+      "🇱🇺",
+      "🇲🇨",
+      "🇿🇦",
+      "🇲🇦",
+      "🇸🇳",
+      "🇨🇮",
+      "🇬🇳",
+      "🇹🇩"
     ],
     "intrusos": [
       "🌍",
       "🗺️",
       "✈️",
       "🧳",
-      "🛳️"
+      "🛳️",
+      "🚗",
+      "🚲",
+      "🏠"
     ]
   },
   {
@@ -25,49 +38,86 @@
       "🎒",
       "📏",
       "✂️",
-      "🖍️"
+      "🖍️",
+      "📓",
+      "🖇️",
+      "🖋️",
+      "🔍",
+      "📐",
+      "✒️",
+      "🎨",
+      "💻",
+      "🏫",
+      "🧑‍🏫"
     ],
     "intrusos": [
       "🛌",
       "📺",
       "🍔",
       "🐶",
-      "🚗"
+      "🚗",
+      "🛋️",
+      "🚿",
+      "🍳"
     ]
   },
   {
-    "categoria": "Les Aliments (Visual)",
+    "categoria": "Les Aliments et Boissons (Visual)",
     "correctos": [
       "🥖",
       "🧀",
       "🍷",
       "🥐",
       "🥩",
-      "🥗"
+      "🥗",
+      "🍎",
+      "🥛",
+      "🍳",
+      "🍗",
+      "🥪",
+      "🍕",
+      "🍤",
+      "🍰",
+      "☕",
+      "🍇"
     ],
     "intrusos": [
       "⚽",
       "🎮",
       "🎸",
       "🚗",
-      "📱"
+      "📱",
+      "🛹",
+      "⛸️",
+      "🚲"
     ]
   },
   {
-    "categoria": "Les Jours de la Semaine",
+    "categoria": "Les Jours et Moments de la Semaine",
     "correctos": [
       "Lundi",
       "Mardi",
       "Mercredi",
       "Jeudi",
-      "Vendredi"
+      "Vendredi",
+      "Samedi",
+      "Dimanche",
+      "La semaine",
+      "Le week-end",
+      "Aujourd'hui",
+      "Hier",
+      "Demain",
+      "Ce matin",
+      "Ce soir"
     ],
     "intrusos": [
       "Janvier",
       "Février",
       "Mars",
       "Noël",
-      "Pâques"
+      "Pâques",
+      "Été",
+      "Hiver"
     ]
   },
   {
@@ -78,14 +128,24 @@
       "Vert",
       "Jaune",
       "Noir",
-      "Blanc"
+      "Blanc",
+      "Rose",
+      "Orange",
+      "Gris",
+      "Violet",
+      "Marron",
+      "Beige",
+      "Turquoise",
+      "Doré"
     ],
     "intrusos": [
       "Chien",
       "Chat",
       "Maison",
       "Un",
-      "Deux"
+      "Deux",
+      "Sofa",
+      "Porte"
     ]
   },
   {
@@ -94,16 +154,32 @@
       "Un",
       "Deux",
       "Trois",
+      "Quatre",
+      "Cinq",
+      "Six",
+      "Sept",
+      "Huit",
+      "Neuf",
       "Dix",
-      "Vingt",
-      "Quinze"
+      "Onze",
+      "Douze",
+      "Treize",
+      "Quatorze",
+      "Quinze",
+      "Seize",
+      "Dix-sept",
+      "Dix-huit",
+      "Dix-neuf",
+      "Vingt"
     ],
     "intrusos": [
       "Rouge",
       "Bleu",
       "Lundi",
       "Mardi",
-      "Janvier"
+      "Janvier",
+      "Bonjour",
+      "Chat"
     ]
   },
   {
@@ -113,31 +189,53 @@
       "Mère",
       "Frère",
       "Sœur",
-      "Grand-père"
+      "Grand-père",
+      "Grand-mère",
+      "Oncle",
+      "Tante",
+      "Cousin",
+      "Cousine",
+      "Fils",
+      "Fille",
+      "Bébé",
+      "Parents"
     ],
     "intrusos": [
       "Stylo",
       "Gomme",
       "Cahier",
       "Professeur",
-      "École"
+      "École",
+      "Table",
+      "Chaise"
     ]
   },
   {
-    "categoria": "Salutations",
+    "categoria": "Salutations et Courtoisie",
     "correctos": [
       "Bonjour",
       "Salut",
       "Au revoir",
       "Bonsoir",
-      "Merci"
+      "Merci",
+      "De rien",
+      "S'il vous plaît",
+      "Pardon",
+      "Bonne nuit",
+      "À bientôt",
+      "Comment ça va?",
+      "À demain",
+      "Enchanté",
+      "Bonne journée"
     ],
     "intrusos": [
       "Rouge",
       "Bleu",
       "Chat",
       "Chien",
-      "Pomme"
+      "Pomme",
+      "Maison",
+      "Voiture"
     ]
   }
 ]

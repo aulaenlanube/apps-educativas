@@ -1,122 +1,202 @@
 [
   {
-    "categoria": "Deportes (Visual)",
+    "categoria": "Deportes y Actividades Físicas (Visual)",
     "correctos": [
       "⚽",
       "🏀",
       "🏐",
       "🏉",
       "🎾",
-      "🏓"
+      "🏓",
+      "🏸",
+      "🏹",
+      "🤺",
+      "🚣",
+      "🚵",
+      "🧘",
+      "🧗",
+      "🎿",
+      "🛹",
+      "⛸️"
     ],
     "intrusos": [
       "🎮",
       "📺",
       "🍔",
       "🛌",
-      "📱"
+      "📱",
+      "🍿",
+      "🍕",
+      "🥤"
     ]
   },
   {
-    "categoria": "Salud (Visual)",
+    "categoria": "Salud y Bienestar (Visual)",
     "correctos": [
       "🥗",
       "🍎",
       "💧",
       "🧘",
       "🛌",
-      "🚴"
+      "🚴",
+      "🏃",
+      "🚶",
+      "🏊",
+      "🚿",
+      "🧖",
+      "💆",
+      "🍌",
+      "🍇",
+      "🍓",
+      "🥛"
     ],
     "intrusos": [
       "🚬",
       "🍺",
       "🍬",
       "🛋️",
-      "🎮"
+      "🎮",
+      "🕹️",
+      "🍩",
+      "🧁"
     ]
   },
   {
-    "categoria": "Cualidades Físicas",
+    "categoria": "Cualidades Físicas Básicas (CFB)",
     "correctos": [
-      "Resistencia",
-      "Fuerza",
-      "Velocidad",
-      "Flexibilidad"
+      "Resistencia aeróbica",
+      "Resistencia anaeróbica",
+      "Fuerza máxima",
+      "Fuerza explosiva",
+      "Velocidad de reacción",
+      "Velocidad de desplazamiento",
+      "Flexibilidad estática",
+      "Flexibilidad dinámica",
+      "Fuerza resistencia",
+      "Fuerza velocidad",
+      "Amplitud de movimiento",
+      "Potencia muscular"
     ],
     "intrusos": [
-      "Habilidad",
-      "Destreza",
       "Equilibrio",
       "Coordinación",
-      "Agilidad"
+      "Agilidad",
+      "Ritmo",
+      "Precisión",
+      "Habilidad motriz",
+      "Destreza"
     ]
   },
   {
-    "categoria": "Deportes Individuales",
+    "categoria": "Deportes Individuales y de Raqueta",
     "correctos": [
       "Atletismo",
       "Natación",
       "Ciclismo",
-      "Gimnasia",
-      "Tenis"
+      "Gimnasia artística",
+      "Tenis",
+      "Bádminton",
+      "Tenis de mesa",
+      "Esgrima",
+      "Halterofilia",
+      "Piragüismo",
+      "Surf",
+      "Esquí",
+      "Pádel",
+      "Squash"
     ],
     "intrusos": [
       "Fútbol",
       "Baloncesto",
       "Voleibol",
       "Balonmano",
-      "Rugby"
+      "Rugby",
+      "Waterpolo",
+      "Hockey"
     ]
   },
   {
-    "categoria": "Beneficios del Ejercicio",
+    "categoria": "Valores y Beneficios de la Actividad Física",
     "correctos": [
-      "Salud",
-      "Bienestar",
-      "Diversión",
-      "Amistad",
-      "Superación"
+      "Mejora cardiovascular",
+      "Control de peso",
+      "Reducción de estrés",
+      "Socialización",
+      "Autoestima",
+      "Disciplina",
+      "Superación personal",
+      "Respeto a las normas",
+      "Juego limpio",
+      "Cooperación",
+      "Hábitos higiénicos",
+      "Prevención de enfermedades",
+      "Bienestar mental",
+      "Calidad de vida"
     ],
     "intrusos": [
-      "Lesión",
-      "Cansancio",
-      "Dolor",
-      "Estrés",
-      "Aburrimiento"
+      "Lesión grave",
+      "Sedentarismo",
+      "Dopaje",
+      "Violencia",
+      "Exclusión",
+      "Egoísmo",
+      "Fracaso"
     ]
   },
   {
-    "categoria": "Primeros Auxilios",
+    "categoria": "Primeros Auxilios y Seguridad Deportiva",
     "correctos": [
-      "RCP",
-      "Vendaje",
-      "Desinfección",
-      "Hielo",
-      "Reposo"
+      "RCP (Reanimación)",
+      "Maniobra de Heimlich",
+      "Protocolo PAS",
+      "Vendaje funcional",
+      "Hielo (Crioterapia)",
+      "Elevación de miembro",
+      "Compresión",
+      "Desinfección de heridas",
+      "Limpieza con suero",
+      "Hidratación",
+      "Calentamiento previo",
+      "Uso de protecciones",
+      "Vuelta a la calma",
+      "Estiramientos"
     ],
     "intrusos": [
-      "Operación",
+      "Cirugía",
+      "Prescripción de fármacos",
       "Radiografía",
-      "Análisis",
-      "Pastilla",
-      "Inyección"
+      "Anestesia",
+      "Inyectable",
+      "Diagnóstico médico"
     ]
   },
   {
-    "categoria": "Músculos",
+    "categoria": "Anatomía: Sistema Muscular Mayor",
     "correctos": [
-      "Pectoral",
-      "Dorsal",
-      "Abdominal",
-      "Bíceps",
-      "Tríceps"
+      "Pectoral mayor",
+      "Dorsal ancho",
+      "Recto abdominal",
+      "Bíceps braquial",
+      "Tríceps braquial",
+      "Cuádriceps",
+      "Isquiotibiales",
+      "Glúteo mayor",
+      "Gemelos (Gastrocnemio)",
+      "Deltoides",
+      "Trapecio",
+      "Serrato",
+      "Oblicuos",
+      "Psoas ilíaco"
     ],
     "intrusos": [
       "Fémur",
       "Húmero",
       "Radio",
       "Tibia",
-      "Peroné"
+      "Peroné",
+      "Cúbito",
+      "Esternón",
+      "Vértebra"
     ]
   }
 ]

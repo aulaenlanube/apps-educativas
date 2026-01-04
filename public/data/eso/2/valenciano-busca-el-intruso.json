@@ -1,122 +1,203 @@
 [
   {
-    "categoria": "Festes (Visual)",
+    "categoria": "Festes i Tradicions (Visual)",
     "correctos": [
       "🔥",
       "🎆",
       "🥘",
       "💃",
       "🎺",
-      "🥁"
+      "🥁",
+      "🍊",
+      "🎭",
+      "🏺",
+      "🎶",
+      "🎈",
+      "🎉",
+      "✨",
+      "🌟",
+      "📜",
+      "🍷"
     ],
     "intrusos": [
       "🎄",
       "🎅",
       "🎃",
       "👻",
-      "🦃"
+      "🦃",
+      "🏂",
+      "⛸️",
+      "🎿"
     ]
   },
   {
-    "categoria": "Geografia (Visual)",
+    "categoria": "Geografia i Natura (Visual)",
     "correctos": [
       "⛰️",
       "🏖️",
       "🌲",
       "🏞️",
       "🌅",
-      "🌊"
+      "🌊",
+      "🌳",
+      "🌻",
+      "🌿",
+      "🦋",
+      "🦅",
+      "🍄",
+      "🌄",
+      "🌤️",
+      "⛈️",
+      "🌋"
     ],
     "intrusos": [
       "🏙️",
       "🏭",
       "🛣️",
       "🚇",
-      "🏯"
+      "🏯",
+      "🏢",
+      "🏗️",
+      "🚄"
     ]
   },
   {
-    "categoria": "Comarques",
+    "categoria": "Comarques de la Comunitat Valenciana",
     "correctos": [
-      "Horta",
-      "Ribera",
+      "Horta Nord",
+      "Horta Sud",
+      "Ribera Alta",
+      "Ribera Baixa",
       "Safor",
-      "Marina",
-      "Vall d'Albaida"
+      "Marina Alta",
+      "Marina Baixa",
+      "Vall d'Albaida",
+      "Els Ports",
+      "L'Alcalatén",
+      "Plana Baixa",
+      "Plana Alta",
+      "Baix Maestrat",
+      "Alt Maestrat"
     ],
     "intrusos": [
       "Madrid",
       "Barcelona",
       "Sevilla",
       "Bilbao",
-      "Saragossa"
+      "Saragossa",
+      "Málaga",
+      "Cáceres",
+      "Lugo"
     ]
   },
   {
-    "categoria": "Gramàtica",
+    "categoria": "Gramàtica i Morfologia",
     "correctos": [
       "Substantiu",
       "Adjectiu",
       "Verb",
-      "Pronom",
-      "Adverbi"
+      "Pronom feble",
+      "Pronom personal",
+      "Adverbi de lloc",
+      "Preposició",
+      "Conjunció",
+      "Interjecció",
+      "Article definit",
+      "Article salat",
+      "Demostratiu",
+      "Possessiu",
+      "Numeral"
     ],
     "intrusos": [
       "Subjecte",
       "Predicat",
       "Oració",
       "Frase",
-      "Text"
+      "Text",
+      "Párraf",
+      "Accent",
+      "Diftong"
     ]
   },
   {
-    "categoria": "Lèxic de la Casa",
+    "categoria": "Lèxic de la Casa i Mobiliari",
     "correctos": [
       "Cuina",
       "Menjador",
       "Habitació",
       "Bany",
-      "Rebedor"
+      "Rebedor",
+      "Passadís",
+      "Golfes",
+      "Garatge",
+      "Terrassa",
+      "Safareig",
+      "Escala",
+      "Taulell",
+      "Armari",
+      "Cadira"
     ],
     "intrusos": [
       "Escola",
       "Parc",
       "Botiga",
       "Cinema",
-      "Carrer"
+      "Carrer",
+      "Ajuntament",
+      "Hospital",
+      "Bosc"
     ]
   },
   {
-    "categoria": "Animals",
+    "categoria": "Animals i Fauna Local",
     "correctos": [
       "Gos",
       "Gat",
       "Cavall",
       "Ocell",
-      "Peix"
+      "Peix",
+      "Porc",
+      "Vaca",
+      "Ovella",
+      "Gallina",
+      "Conill",
+      "Rata",
+      "Ratpenat",
+      "Dofí",
+      "Sargantana"
     ],
     "intrusos": [
       "Taula",
       "Cadira",
       "Llibre",
       "Llapis",
-      "Ordinador"
+      "Ordinador",
+      "Goma",
+      "Motxilla",
+      "Mapa"
     ]
   },
   {
-    "categoria": "Temps Verbals",
+    "categoria": "Temps Verbals del Mode Indicatiu",
     "correctos": [
-      "Present",
-      "Passat",
-      "Futur",
-      "Imperfet",
-      "Condicional"
+      "Present d'indicatiu",
+      "Pretèrit Imperfet",
+      "Pretèrit Perifràstic",
+      "Futur Simple",
+      "Condicional Simple",
+      "Pretèrit Perfecte Compost",
+      "Pretèrit Plusquamperfet",
+      "Futur Compost",
+      "Condicional Compost",
+      "Passat simple",
+      "Participi",
+      "Infinitiu"
     ],
     "intrusos": [
-      "Indicatiu",
-      "Subjuntiu",
-      "Imperatiu",
-      "Infinitiu",
+      "Modo Subjuntiu",
+      "Modo Imperatiu",
+      "Indicatiu (com a temps)",
+      "Subjuntiu (com a temps)",
       "Gerundi"
     ]
   }

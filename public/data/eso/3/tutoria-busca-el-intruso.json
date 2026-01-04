@@ -1,123 +1,204 @@
 [
   {
-    "categoria": "Emociones (Visual)",
+    "categoria": "Estados de Ánimo y Expresiones (Visual)",
     "correctos": [
       "😀",
       "😢",
       "😡",
       "😱",
       "😴",
-      "🤢"
+      "🤢",
+      "🤩",
+      "🥺",
+      "🤔",
+      "🤫",
+      "🤥",
+      "🥵",
+      "🥶",
+      "🤯",
+      "🥳",
+      "😎"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "🏠",
       "🐶",
-      "✏️"
+      "✏️",
+      "🔋",
+      "🔌",
+      "💡"
     ]
   },
   {
-    "categoria": "Convivencia (Visual)",
+    "categoria": "Relaciones y Ciudadanía (Visual)",
     "correctos": [
       "🤝",
       "👂",
       "🗣️",
       "🫂",
       "🛑",
-      "⚖️"
+      "⚖️",
+      "👋",
+      "🤲",
+      "🫂",
+      "🫶",
+      "✨",
+      "🕊️",
+      "🌍",
+      "🤝",
+      "⚖️",
+      "🫂"
     ],
     "intrusos": [
       "🥊",
       "🖕",
       "😤",
       "🤬",
-      "💣"
+      "💣",
+      "🔫",
+      "🔥",
+      "🔪"
     ]
   },
   {
-    "categoria": "Orientación Académica",
+    "categoria": "Itinerarios y Orientación Académica",
     "correctos": [
-      "Bachillerato",
-      "Ciclo Formativo",
-      "Universidad",
-      "Grado",
-      "Máster"
+      "Bachillerato Ciencias",
+      "Bachillerato Humanidades",
+      "Bachillerato Artes",
+      "Ciclo Formativo Grado Medio",
+      "Formación Profesional (FP)",
+      "Universidad / Grado",
+      "Máster Universitario",
+      "Doctorado",
+      "Erasmus",
+      "4º ESO Académicas",
+      "4º ESO Aplicadas",
+      "Pruebas de acceso",
+      "FP Básica",
+      "Educación Permanente"
     ],
     "intrusos": [
-      "Primaria",
-      "Infantil",
+      "Educación Primaria",
+      "Educación Infantil",
       "Guardería",
       "Jubilación",
-      "Paro"
+      "Vida laboral pasiva",
+      "Baja por enfermedad"
     ]
   },
   {
-    "categoria": "Habilidades Sociales",
+    "categoria": "Habilidades Sociales y Empatía",
     "correctos": [
       "Empatía",
       "Asertividad",
-      "Escucha",
-      "Respeto",
-      "Tolerancia"
+      "Escucha activa",
+      "Respeto a la diversidad",
+      "Tolerancia",
+      "Cooperación",
+      "Trabajo en equipo",
+      "Resolución pacífica",
+      "Comunicación no verbal",
+      "Autogestión emocional",
+      "Resiliencia",
+      "Pensamiento crítico",
+      "Diálogo constructivo",
+      "Liderazgo positivo"
     ],
     "intrusos": [
       "Egoísmo",
       "Agresividad",
       "Pasividad",
       "Insulto",
-      "Grito"
+      "Grito",
+      "Prejuicio",
+      "Discriminación",
+      "Odio"
     ]
   },
   {
-    "categoria": "Técnicas de Estudio",
+    "categoria": "Estrategias de Aprendizaje y Estudio",
     "correctos": [
-      "Planificación",
-      "Lectura",
-      "Subrayado",
-      "Esquema",
-      "Resumen"
+      "Planificación del tiempo",
+      "Lectura comprensiva",
+      "Subrayado jerárquico",
+      "Esquema lógico",
+      "Resumen de ideas",
+      "Mapa conceptual",
+      "Toma de apuntes",
+      "Autocuestionario",
+      "Repaso espaciado",
+      "Lugar de estudio adecuado",
+      "Agenda escolar",
+      "Búsqueda información",
+      "Memoria visual",
+      "Técnicas de relajación"
     ],
     "intrusos": [
-      "Improvisación",
-      "Copia",
-      "Chuleta",
-      "Distracción",
-      "Sueño"
+      "Improvisación total",
+      "Copia literal",
+      "Chuleta o fraude",
+      "Distracción constante",
+      "Privación de sueño",
+      "Aplazamiento (Procrastinación)"
     ]
   },
   {
-    "categoria": "Valores",
+    "categoria": "Valores Éticos y Solidaridad",
     "correctos": [
-      "Igualdad",
-      "Libertad",
-      "Justicia",
-      "Solidaridad",
-      "Paz"
+      "Igualdad de oportunidades",
+      "Libertad de expresión",
+      "Justicia social",
+      "Solidaridad internacional",
+      "Cultura de Paz",
+      "Derechos Humanos",
+      "Sustentabilidad ambiental",
+      "Honestidad académica",
+      "Gratitud humana",
+      "Voluntariado",
+      "Empatía social",
+      "Diversidad cultural",
+      "Civismo",
+      "Responsabilidad social"
     ],
     "intrusos": [
-      "Violencia",
-      "Odio",
+      "Violencia escolar",
+      "Odio y rencor",
       "Racismo",
       "Machismo",
-      "Guerra"
+      "Guerra",
+      "Intolerancia",
+      "Exclusión",
+      "Bullying"
     ]
   },
   {
-    "categoria": "Toma de Decisiones",
+    "categoria": "Proceso de Toma de Decisiones",
     "correctos": [
-      "Información",
-      "Análisis",
-      "Alternativas",
-      "Elección",
-      "Consecuencias"
+      "Búsqueda de información",
+      "Análisis de riesgos",
+      "Evaluación de alternativas",
+      "Elección responsable",
+      "Previsión de consecuencias",
+      "Autoconocimiento",
+      "Consulta a expertos",
+      "Reflexión personal",
+      "Establecimiento de metas",
+      "Plan de acción",
+      "Autocrítica constructiva",
+      "Paciencia",
+      "Determinación",
+      "Flexibilidad"
     ],
     "intrusos": [
-      "Azar",
-      "Suerte",
-      "Impulso",
-      "Miedo",
-      "Presión"
+      "Decisión por azar",
+      "Pura suerte",
+      "Impulso irracional",
+      "Miedo al cambio",
+      "Presión de grupo negativa",
+      "Indecisión crónica",
+      "Pasividad"
     ]
   }
 ]

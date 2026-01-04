@@ -1,121 +1,206 @@
 [
   {
-    "categoria": "Instrumentos (Visual)",
+    "categoria": "Instrumentos Musicales Diversos (Visual)",
     "correctos": [
       "🎸",
       "🎻",
       "🎷",
       "🎹",
       "🎺",
-      "🥁"
+      "🥁",
+      "🪗",
+      "🪕",
+      "🎻",
+      "🎼",
+      "🎹",
+      "🎺",
+      "🥁",
+      "🪕",
+      "🎙️",
+      "🎤"
     ],
     "intrusos": [
-      "🎤",
-      "🎧",
-      "🔈",
       "🔨",
-      "🔧"
+      "🔧",
+      "🪚",
+      "🪓",
+      "⛏️",
+      "🗜️",
+      "🪛",
+      "🩹",
+      "🧺"
     ]
   },
   {
-    "categoria": "Notas (Visual)",
+    "categoria": "Simbolismo y Lenguaje Musical (Visual)",
     "correctos": [
       "🎼",
       "🎶",
       "🎵",
       "🎹",
-      "𝄞"
+      "𝄞",
+      "𝄢",
+      "🎙️",
+      "🎤",
+      "📻",
+      "🎛️",
+      "🎚️",
+      "🎧",
+      "🔊",
+      "🔉",
+      "🔈",
+      "🔇"
     ],
     "intrusos": [
       "💯",
       "💲",
       "➕",
       "➖",
-      "🔣"
+      "🔣",
+      "🅰️",
+      "🅱️",
+      "©️",
+      "®️"
     ]
   },
   {
-    "categoria": "Historia de la Música",
+    "categoria": "Etapas de la Historia de la Música",
     "correctos": [
-      "Edad Media",
-      "Renacimiento",
-      "Barroco",
-      "Clasicismo",
-      "Romanticismo"
+      "Edad Media (Canto Gregoriano)",
+      "Renacimiento (Polifonía)",
+      "Barroco (Bajo Continuo)",
+      "Clasicismo (Sonata)",
+      "Romanticismo (Expresión)",
+      "Nacionalismo Musical",
+      "Impresionismo (Debussy)",
+      "Expresionismo (Schoenberg)",
+      "Siglo XX (Vanguardias)",
+      "Neoclasicismo",
+      "Música Contemporánea",
+      "Serialismo",
+      "Música Concreta",
+      "Música Electrónica"
     ],
     "intrusos": [
-      "Jazz",
-      "Rock",
-      "Pop",
-      "Rap",
-      "Reggaeton"
+      "Jazz Moderno",
+      "Rock and Roll",
+      "Pop Internacional",
+      "Rap y Hip Hop",
+      "Reggaeton",
+      "Techno",
+      "Heavy Metal"
     ]
   },
   {
-    "categoria": "Compositores Clásicos",
+    "categoria": "Compositores de Música Culta",
     "correctos": [
-      "Bach",
-      "Mozart",
-      "Beethoven",
-      "Vivaldi",
-      "Haydn"
+      "J.S. Bach",
+      "W.A. Mozart",
+      "L. van Beethoven",
+      "A. Vivaldi",
+      "F.J. Haydn",
+      "F. Chopin",
+      "R. Wagner",
+      "G. Verdi",
+      "P.I. Tchaikovsky",
+      "I. Stravinsky",
+      "G. Fauré",
+      "C. Debussy",
+      "M. Ravel",
+      "G. Mahler"
     ],
     "intrusos": [
-      "Elvis",
-      "Beatles",
-      "Queen",
-      "Jackson",
-      "Madonna"
+      "Elvis Presley",
+      "The Beatles",
+      "Freddie Mercury (Queen)",
+      "Michael Jackson",
+      "Madonna",
+      "Bob Dylan",
+      "David Bowie"
     ]
   },
   {
-    "categoria": "Géneros Musicales",
+    "categoria": "Géneros y Formas Musicales",
     "correctos": [
       "Ópera",
       "Sinfonía",
-      "Concierto",
+      "Concierto para solista",
       "Sonata",
-      "Oratorio"
+      "Oratorio",
+      "Misa",
+      "Madrigal",
+      "Cantata",
+      "Poema Sinfónico",
+      "Lied",
+      "Zarzuela",
+      "Suite",
+      "Fuga",
+      "Preludio"
     ],
     "intrusos": [
-      "Canción",
+      "Canción de autor",
       "Videoclip",
       "Single",
-      "Álbum",
-      "Playlist"
+      "Álbum de estudio",
+      "Playlist",
+      "Maqueta",
+      "Remix"
     ]
   },
   {
-    "categoria": "Agrupaciones",
+    "categoria": "Agrupaciones y Conjuntos Instrumentales",
     "correctos": [
-      "Orquesta",
-      "Banda",
-      "Coro",
-      "Cuarteto",
-      "Dúo"
+      "Orquesta Sinfónica",
+      "Banda de Música",
+      "Coro Mixto",
+      "Cuarteto de Cuerda",
+      "Quinteto de Viento",
+      "Orquesta de Cámara",
+      "Trío con piano",
+      "Escolanía",
+      "Coro de voces blancas",
+      "Big Band",
+      "Ensemble contemporáneo",
+      "Dúo sonatístico",
+      "Capilla musical",
+      "Consort"
     ],
     "intrusos": [
-      "Solista",
-      "Cantante",
+      "Cantante solista",
       "DJ",
-      "Productor",
-      "Técnico"
+      "Productor discográfico",
+      "Técnico de sonido",
+      "Roadie",
+      "Fan",
+      "Promotor"
     ]
   },
   {
-    "categoria": "Cualidades del Sonido",
+    "categoria": "Cualidades del Sonido y Acústica",
     "correctos": [
-      "Altura",
-      "Duración",
-      "Intensidad",
-      "Timbre"
+      "Altura (Frecuencia)",
+      "Duración (Tiempo)",
+      "Intensidad (Amplitud)",
+      "Timbre (Armónicos)",
+      "Frecuencia Fundamental",
+      "Dinámica musical",
+      "Envolvente sonora",
+      "Resonancia",
+      "Reverberación",
+      "Eco",
+      "Vibración armónica",
+      "Espectro sonoro",
+      "Umbral de audición",
+      "Decibelios"
     ],
     "intrusos": [
       "Ritmo",
       "Melodía",
       "Armonía",
-      "Textura",
-      "Forma"
+      "Textura musical",
+      "Forma musical",
+      "Género",
+      "Estilo"
     ]
   }
 ]

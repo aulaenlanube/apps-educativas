@@ -1,123 +1,202 @@
 [
   {
-    "categoria": "Deportes (Visual)",
+    "categoria": "Deportes y Actividad Física (Visual)",
     "correctos": [
       "🧗",
       "🚴",
       "🏊",
       "🚣",
       "🤺",
-      "🤸"
+      "🤸",
+      "🏃",
+      "🚶",
+      "🚶‍♂️",
+      "🚴‍♂️",
+      "🧘",
+      "🧗‍♂️",
+      "🏇",
+      "🏄",
+      "🚣‍♂️",
+      "🏊‍♂️"
     ],
     "intrusos": [
       "🎮",
       "📺",
       "📱",
       "🍔",
-      "🛋️"
+      "🛋️",
+      "🍿",
+      "🍕",
+      "🥤"
     ]
   },
   {
-    "categoria": "Material (Visual)",
+    "categoria": "Equipamiento y Material (Visual)",
     "correctos": [
       "👟",
       "⏱️",
       "🥅",
       "🎱",
       "🏓",
-      "🥊"
+      "🥊",
+      "🏸",
+      "🏹",
+      "🛹",
+      "⛸️",
+      "🎿",
+      "🛶",
+      "🎽",
+      "⌚",
+      "🥋",
+      "🏒"
     ],
     "intrusos": [
       "📚",
       "🖊️",
       "🔭",
       "🔬",
-      "🎻"
+      "🎻",
+      "🎸",
+      "🎨",
+      "🎬"
     ]
   },
   {
-    "categoria": "Sistemas de Entrenamiento",
+    "categoria": "Metodologías de Entrenamiento",
     "correctos": [
       "Fartlek",
       "Interval Training",
-      "Circuitos",
-      "Aeróbico",
-      "Anaeróbico"
+      "Circuit Training",
+      "Entrenamiento aeróbico",
+      "Entrenamiento anaeróbico",
+      "Flexibilidad estática",
+      "Flexibilidad dinámica",
+      "Series",
+      "Repeticiones",
+      "Carga de entrenamiento",
+      "Intensidad",
+      "Volumen",
+      "Frecuencia cardíaca máxima",
+      "Umbral anaeróbico"
     ],
     "intrusos": [
-      "Partido",
-      "Torneo",
-      "Liga",
-      "Copa",
-      "Amistoso"
+      "Partido oficial",
+      "Torneo eliminatorio",
+      "Liga regular",
+      "Copa del Rey",
+      "Partido amistoso",
+      "Derbi",
+      "Playoff"
     ]
   },
   {
-    "categoria": "Primeros Auxilios",
+    "categoria": "Socorrismo y Primeros Auxilios",
     "correctos": [
-      "RCP",
-      "PLS",
-      "Heimlich",
-      "Hemorragia",
-      "Esguince"
+      "RCP (Reanimación)",
+      "PLS (Posición Lateral)",
+      "Maniobra de Heimlich",
+      "Control de hemorragia",
+      "Inmovilización esguince",
+      "Protocolo PAS",
+      "Llamada al 112",
+      "Desfibrilador (DESA)",
+      "Vendaje compresivo",
+      "Limpieza de herida",
+      "Hidratación",
+      "Elevación de extremidad",
+      "Botiquín básico",
+      "Signos vitales"
     ],
     "intrusos": [
-      "Operación",
-      "Trasplante",
+      "Operación quirúrgica",
+      "Trasplante de órgano",
       "Biopsia",
-      "TAC",
-      "Resonancia"
+      "TAC / Escáner",
+      "Resonancia magnética",
+      "Anestesia general"
     ]
   },
   {
-    "categoria": "Nutrición Deportiva",
+    "categoria": "Nutrición y Salud Deportiva",
     "correctos": [
-      "Hidratos",
+      "Hidratos de carbono",
       "Proteínas",
-      "Grasas",
+      "Grasas saludables",
       "Vitaminas",
-      "Minerales"
+      "Sales minerales",
+      "Hidratación antes/durante/después",
+      "Glucógeno muscular",
+      "Aminoácidos",
+      "Índice de masa corporal (IMC)",
+      "Metabolismo basal",
+      "Gasto calórico",
+      "Fibra alimentaria",
+      "Dieta equilibrada",
+      "Suplementación supervisada"
     ],
     "intrusos": [
-      "Bollería",
+      "Bollería industrial",
       "Alcohol",
-      "Refrescos",
-      "Chuches",
-      "Fritos"
+      "Refrescos azucarados",
+      "Chucherías",
+      "Frituras",
+      "Comida basura",
+      "Aceites refinados"
     ]
   },
   {
-    "categoria": "Deportes Individuales",
+    "categoria": "Especialidades y Deportes Individuales",
     "correctos": [
-      "Atletismo",
-      "Gimnasia",
-      "Natación",
-      "Judo",
-      "Tenis"
+      "Atletismo (Pista)",
+      "Gimnasia rítmica",
+      "Natación competitiva",
+      "Judo / Artes marciales",
+      "Tenis",
+      "Bádminton",
+      "Esgrima",
+      "Ciclismo de montaña",
+      "Halterofilia",
+      "Triatlón",
+      "Piragüismo",
+      "Golf",
+      "Hípica",
+      "Patinaje artístico"
     ],
     "intrusos": [
-      "Fútbol",
+      "Fútbol 11",
       "Baloncesto",
       "Balonmano",
-      "Voleibol",
-      "Rugby"
+      "Voleibol pista",
+      "Rugby 7",
+      "Waterpolo",
+      "Hockey hierba"
     ]
   },
   {
-    "categoria": "Expresión Corporal",
+    "categoria": "Expresión Corporal y Ritmo",
     "correctos": [
-      "Ritmo",
-      "Danza",
-      "Mimo",
+      "Ritmo musical",
+      "Danza contemporánea",
+      "Mimo y gesto",
       "Dramatización",
-      "Coreografía"
+      "Coreografía grupal",
+      "Pantomima",
+      "Comunicación no verbal",
+      "Expresividad facial",
+      "Postura corporal",
+      "Acrobacia",
+      "Clown",
+      "Baile de salón",
+      "Yoga / Pilates",
+      "Tai-Chi"
     ],
     "intrusos": [
-      "Fuerza",
-      "Velocidad",
-      "Resistencia",
-      "Potencia",
-      "Agilidad"
+      "Fuerza bruta",
+      "Velocidad punta",
+      "Resistencia extrema",
+      "Potencia máxima",
+      "Agilidad reactiva",
+      "Reflejo rápido"
     ]
   }
 ]

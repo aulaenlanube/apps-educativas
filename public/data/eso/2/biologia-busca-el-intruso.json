@@ -1,157 +1,263 @@
 [
   {
-    "categoria": "Célula (Visual)",
+    "categoria": "Célula y Microscopicopia (Visual)",
     "correctos": [
       "🦠",
       "🧫",
       "🧬",
       "🩸",
       "🔬",
-      "🧪"
+      "🧪",
+      "🥼",
+      "🧤",
+      "🌡️",
+      "💉",
+      "💊",
+      "🧯",
+      "📊",
+      "🔍",
+      "📐",
+      "🔬"
     ],
     "intrusos": [
       "🪐",
       "🚀",
       "🌋",
       "🏔️",
-      "🏗️"
+      "🏗️",
+      "🛸",
+      "🚁",
+      "🦅"
     ]
   },
   {
-    "categoria": "Órganos (Visual)",
+    "categoria": "Órganos y Sistemas (Visual)",
     "correctos": [
       "🧠",
       "🫀",
       "🫁",
       "🦴",
       "🦷",
-      "👀"
+      "👀",
+      "👂",
+      "👃",
+      "👅",
+      "✋",
+      "💪",
+      "🦵",
+      "🦶",
+      "👄",
+      "🧖",
+      "💆"
     ],
     "intrusos": [
       "👕",
       "🧢",
       "💍",
-      "👓",
-      "👟"
+      "Glasses (Ulleres Glasses)",
+      "👟",
+      "👜",
+      "🌂",
+      "🧶"
     ]
   },
   {
-    "categoria": "Energía (Visual)",
+    "categoria": "Energía y Recursos (Visual)",
     "correctos": [
       "☀️",
       "🌬️",
       "🌊",
       "🔥",
       "⚡",
-      "🌱"
+      "🌱",
+      "♻️",
+      "🌍",
+      "🔋",
+      "🔌",
+      "💡",
+      "🧺",
+      "🌲",
+      "🍃",
+      "🪵",
+      "🍄"
     ],
     "intrusos": [
       "🚗",
       "🏭",
       "🛢️",
       "🚬",
-      "☢️"
+      "☢️",
+      "🧱",
+      "🛠️",
+      "🏗️"
     ]
   },
   {
-    "categoria": "Geología (Visual)",
+    "categoria": "Geología y Relieve (Visual)",
     "correctos": [
       "🌋",
       "🏔️",
       "🪨",
       "🏜️",
       "💎",
-      "⛰️"
+      "⛰️",
+      "🏗️",
+      "🛤️",
+      "🗺️",
+      "🌄",
+      "🌅",
+      "🌋",
+      "🏜️",
+      "🏝️",
+      "🏕️",
+      "🛶"
     ],
     "intrusos": [
       "🌊",
       "🌳",
       "🌻",
       "☁️",
-      "🌧️"
+      "🌧️",
+      "🦢",
+      "🦋",
+      "🍄"
     ]
   },
   {
-    "categoria": "Funciones Vitales",
+    "categoria": "Funciones Vitales y Procesos",
     "correctos": [
       "Nutrición",
       "Relación",
-      "Reproducción"
+      "Reproducción",
+      "Metabolismo",
+      "Homeostasis",
+      "Excreción",
+      "Respiración celular",
+      "Digestión",
+      "Circulación",
+      "Percepción",
+      "Respuesta",
+      "Crecimiento",
+      "Adaptación",
+      "Evolución"
     ],
     "intrusos": [
-      "Digestión",
-      "Respiración",
-      "Circulación",
-      "Excreción",
-      "Movimiento"
+      "Fotosíntesis",
+      "Mitosis",
+      "Meiosis",
+      "Erosión",
+      "Sedimentación",
+      "Transporte"
     ]
   },
   {
-    "categoria": "Procesos Geológicos",
+    "categoria": "Procesos Geológicos Internos y Externos",
     "correctos": [
       "Volcán",
       "Terremoto",
       "Erosión",
       "Sedimentación",
-      "Transporte"
+      "Transporte",
+      "Meteorización",
+      "Orogénesis",
+      "Tectónica de placas",
+      "Falla",
+      "Pliegue",
+      "Magmatismo",
+      "Metamorfismo",
+      "Ciclo de las rocas",
+      "Fósiles"
     ],
     "intrusos": [
       "Fotosíntesis",
       "Digestión",
       "Respiración",
       "Fecundación",
-      "Mitosis"
+      "Mitosis",
+      "Meiosis"
     ]
   },
   {
-    "categoria": "Ecosistemas",
+    "categoria": "Ecosistemas y Niveles Tróficos",
     "correctos": [
       "Biotopo",
       "Biocenosis",
       "Productor",
-      "Consumidor",
-      "Descomponedor"
+      "Consumidor primario",
+      "Consumidor secundario",
+      "Descomponedor",
+      "Depredador",
+      "Presa",
+      "Simbiosis",
+      "Mutualismo",
+      "Comensalismo",
+      "Parasitismo",
+      "Biosfera",
+      "Comunidad",
+      "Población"
     ],
     "intrusos": [
       "Célula",
       "Tejido",
       "Órgano",
       "Aparato",
-      "Sistema"
+      "Sistema",
+      "Genética",
+      "Átomo"
     ]
   },
   {
-    "categoria": "La Célula",
+    "categoria": "Estructura Celular Avanzada",
     "correctos": [
       "Núcleo",
       "Citoplasma",
-      "Membrana",
+      "Membrana plasmática",
       "Mitocondria",
-      "Cloroplasto"
+      "Cloroplasto",
+      "Pared celular",
+      "Ribosoma",
+      "Retículo endoplasmático",
+      "Aparato de Golgi",
+      "Lisosoma",
+      "Vacuola",
+      "Centriolo",
+      "ADN",
+      "Citoesqueleto"
     ],
     "intrusos": [
       "Corazón",
       "Pulmón",
       "Estómago",
       "Hueso",
-      "Sangre"
+      "Sangre",
+      "Hígado",
+      "Riñón"
     ]
   },
   {
-    "categoria": "Nutrición",
+    "categoria": "Procesos de Nutrición",
     "correctos": [
       "Autótrofa",
       "Heterótrofa",
       "Fotosíntesis",
       "Ingestión",
-      "Absorción"
+      "Absorción",
+      "Digestión mecánica",
+      "Digestión química",
+      "Asimilación",
+      "Excreción",
+      "Respiración aeróbica",
+      "Respiración anaeróbica",
+      "Transporte de nutrientes",
+      "Egestión",
+      "Filtración"
     ],
     "intrusos": [
       "Relación",
       "Reproducción",
-      "División",
-      "Crecimiento",
-      "Evolución"
+      "División celular",
+      "Mutación",
+      "Selección natural"
     ]
   }
 ]

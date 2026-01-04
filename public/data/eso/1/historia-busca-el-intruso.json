@@ -6,15 +6,28 @@
       "🦴",
       "🏹",
       "🪨",
-      "🦕",
-      "🏺"
+      "🏺",
+      "🧔",
+      "🪵",
+      "🛖",
+      "🦌",
+      "🐂",
+      "🐆",
+      "🧤",
+      "🎨",
+      "💎",
+      "⚒️",
+      "🪓"
     ],
     "intrusos": [
       "📱",
       "🚗",
       "🏰",
       "🏭",
-      "🚆"
+      "🚆",
+      "💡",
+      "💻",
+      "🚀"
     ]
   },
   {
@@ -25,14 +38,27 @@
       "🏜️",
       "🐈",
       "👑",
-      "🛶"
+      "🛶",
+      "🏺",
+      "📜",
+      "🦅",
+      "🐍",
+      "🦁",
+      "💎",
+      "👳",
+      "🌞",
+      "🏺",
+      "📐"
     ],
     "intrusos": [
       "🏟️",
       "🏛️",
       "🏰",
       "🏯",
-      "⛩️"
+      "⛩️",
+      "🗿",
+      "🗼",
+      "🌉"
     ]
   },
   {
@@ -43,32 +69,58 @@
       "🧭",
       "🌐",
       "📍",
-      "🗾"
+      "🗾",
+      "🏔️",
+      "🏖️",
+      "🏞️",
+      "🌅",
+      "🌅",
+      "🌋",
+      "🏜️",
+      "🏝️",
+      "🏕️",
+      "🛶"
     ],
     "intrusos": [
       "🕰️",
       "🌡️",
       "⚖️",
       "🔭",
-      "🔬"
+      "🔬",
+      "🔋",
+      "💡",
+      "🎮"
     ]
   },
   {
-    "categoria": "Climas (Visual)",
+    "categoria": "Climas de la Tierra (Visual)",
     "correctos": [
       "🏜️",
       "❄️",
       "🌧️",
       "🌴",
       "🌲",
-      "🍂"
+      "🍂",
+      "☀️",
+      "☁️",
+      "⛈️",
+      "🌪️",
+      "🌈",
+      "🌫️",
+      "🌬️",
+      "🌡️",
+      "🌊",
+      "🌅"
     ],
     "intrusos": [
       "🏭",
       "🚗",
       "🏠",
       "🛣️",
-      "🏢"
+      "🏢",
+      "🚂",
+      "📱",
+      "💻"
     ]
   },
   {
@@ -78,50 +130,82 @@
       "Edad Antigua",
       "Edad Media",
       "Edad Moderna",
-      "Edad Contemporánea"
+      "Edad Contemporánea",
+      "Paleolítico",
+      "Neolítico",
+      "Edad de los Metales",
+      "Renacimiento",
+      "Ilustración",
+      "Siglo de las Luces",
+      "Revolución Industrial",
+      "Siglo de Oro",
+      "Antigüedad Clásica"
     ],
     "intrusos": [
       "Jurásico",
       "Cretácico",
       "Edad de Hielo",
       "Futuro",
-      "Presente"
+      "Presente",
+      "Mañana",
+      "Ayer"
     ]
   },
   {
-    "categoria": "Continentes",
+    "categoria": "Continentes del Mundo",
     "correctos": [
       "África",
       "América",
       "Asia",
       "Europa",
       "Oceanía",
-      "Antártida"
+      "Antártida",
+      "Eurasia",
+      "Iberoamérica",
+      "América del Norte",
+      "América del Sur",
+      "Sudeste Asiático",
+      "Magreb",
+      "África Subsahariana",
+      "Países Nórdicos"
     ],
     "intrusos": [
       "Atlántico",
       "Pacífico",
       "Índico",
       "Ártico",
-      "España"
+      "España",
+      "China",
+      "Madrid",
+      "Nilo"
     ]
   },
   {
-    "categoria": "Civilizaciones Antiguas",
+    "categoria": "Civilizaciones de la Antigüedad",
     "correctos": [
       "Mesopotamia",
       "Egipto",
       "Grecia",
       "Roma",
       "China",
-      "India"
+      "India",
+      "Fenicia",
+      "Cartago",
+      "Persia",
+      "Aztecas",
+      "Mayas",
+      "Incas",
+      "Sumerios",
+      "Acadios"
     ],
     "intrusos": [
       "EEUU",
       "Unión Europea",
       "Brasil",
       "Alemania",
-      "Francia"
+      "Francia",
+      "Rusia",
+      "Japón"
     ]
   },
   {
@@ -129,33 +213,56 @@
     "correctos": [
       "Temperatura",
       "Precipitaciones",
-      "Presión",
+      "Presión Atmosférica",
       "Viento",
-      "Humedad"
+      "Humedad",
+      "Nubosidad",
+      "Insolación",
+      "Evaporación",
+      "Condensación",
+      "Altitud",
+      "Latitud",
+      "Corrientes marinas",
+      "Continentalidad",
+      "Exposición"
     ],
     "intrusos": [
       "Termómetro",
       "Barómetro",
       "Anemómetro",
       "Pluviómetro",
-      "Mapa"
+      "Mapa",
+      "Globo",
+      "Reloj"
     ]
   },
   {
-    "categoria": "Océanos",
+    "categoria": "Océanos y Mares",
     "correctos": [
       "Pacífico",
       "Atlántico",
       "Índico",
       "Glacial Ártico",
-      "Glacial Antártico"
+      "Glacial Antártico",
+      "Mar Mediterráneo",
+      "Mar Cantábrico",
+      "Mar de Alborán",
+      "Mar Negro",
+      "Mar Caspio",
+      "Mar de Japón",
+      "Mar de China",
+      "Mar del Norte",
+      "Mar Caribe"
     ],
     "intrusos": [
-      "Mediterráneo",
-      "Cantábrico",
-      "Caribe",
-      "Rojo",
-      "Muerto"
+      "Nilo",
+      "Amazonas",
+      "Ebro",
+      "Tajo",
+      "Reno",
+      "Sena",
+      "Danubio",
+      "Volga"
     ]
   }
 ]

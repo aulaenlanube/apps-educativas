@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Fracciones y Representaciones (Visual)",
+    "categoria": "Fracciones (Visual)",
     "correctos": [
       "🌗",
       "🌖",
@@ -10,23 +10,27 @@
       "🍩",
       "🍪",
       "🍫",
-      "🧇",
-      "🥞"
+      " waffle (Gofre Waffle)",
+      "🥞",
+      "🥘",
+      "🥧",
+      "🥯",
+      "🍳",
+      "🍫",
+      "🍯"
     ],
     "intrusos": [
-      "🌕 (Completo)",
-      "🌑 (Vacío)",
+      "🌕",
+      "🌑",
       "1️⃣",
       "2️⃣",
       "🔢",
       "🔣",
-      "#️⃣",
-      "🔟",
-      "0"
+      "#️⃣"
     ]
   },
   {
-    "categoria": "Operadores y Símbolos de Comparación (Visual)",
+    "categoria": "Operadores Matemáticos (Visual)",
     "correctos": [
       "➕",
       "➖",
@@ -39,7 +43,12 @@
       ">",
       "<",
       "≤",
-      "≥"
+      "≥",
+      "∓",
+      "∆",
+      "∏",
+      "∑",
+      "√"
     ],
     "intrusos": [
       "🔠",
@@ -48,14 +57,11 @@
       "📝",
       "🖌️",
       "🖍️",
-      "🎨",
-      "🎬",
-      "🎸",
-      "🎺"
+      "🎨"
     ]
   },
   {
-    "categoria": "Cuerpos Geométricos con Volumen (Visual)",
+    "categoria": "Cuerpos con Volumen (Visual)",
     "correctos": [
       "🧊",
       "📦",
@@ -67,7 +73,12 @@
       "🏐",
       "🥎",
       "🧪",
-      "🏘️"
+      "🏘️",
+      "🏚️",
+      "🏛️",
+      "🏰",
+      "🕌",
+      "⛩️"
     ],
     "intrusos": [
       "🟦",
@@ -76,14 +87,11 @@
       "🔶",
       "📏",
       "📐",
-      "⭐",
-      "⭕",
-      "🟩",
-      "🟡"
+      "⭐"
     ]
   },
   {
-    "categoria": "Instrumentos de Medida y Pesaje (Visual)",
+    "categoria": "Medida y Pesaje (Visual)",
     "correctos": [
       "🌡️",
       "⚖️",
@@ -94,7 +102,13 @@
       "🕰️",
       "📅",
       "⏳",
-      "⌚"
+      "⌚",
+      "🔭",
+      "🔬",
+      "📡",
+      "🔋",
+      "💡",
+      "🔦"
     ],
     "intrusos": [
       "🔨",
@@ -103,14 +117,11 @@
       "🗡️",
       "🏹",
       "🪛",
-      "🪓",
-      "🔩",
-      "⛓️",
-      "⛓️"
+      "🪓"
     ]
   },
   {
-    "categoria": "Fracciones Propias (Numerador < Denominador)",
+    "categoria": "Fracciones Propias",
     "correctos": [
       "1/2",
       "2/3",
@@ -121,7 +132,11 @@
       "7/9",
       "12/20",
       "1/100",
-      "9/10"
+      "9/10",
+      "3/8",
+      "1/4",
+      "5/6",
+      "11/12"
     ],
     "intrusos": [
       "3/2",
@@ -130,14 +145,11 @@
       "10/2",
       "7/3",
       "11/7",
-      "20/10",
-      "4/4",
-      "1/1",
-      "5/5"
+      "4/4"
     ]
   },
   {
-    "categoria": "Números Primos menores que 50",
+    "categoria": "Números Primos < 50",
     "correctos": [
       "2",
       "3",
@@ -165,41 +177,40 @@
       "12",
       "14",
       "15",
-      "21",
-      "25",
-      "27",
-      "33",
-      "35",
-      "39",
-      "49"
+      "21"
     ]
   },
   {
-    "categoria": "Unidades de Capacidad del Sistema Métrico",
+    "categoria": "Unidades de Medida",
     "correctos": [
       "Litro",
-      "Decilitro",
-      "Centilitro",
-      "Mililitro",
-      "Hectolitro",
-      "Decalitro",
-      "Kilolitro"
-    ],
-    "intrusos": [
       "Metro",
       "Gramo",
       "Segundo",
-      "Kilo",
       "Grado",
       "Voltio",
       "Amperio",
       "Vatio",
       "Herzio",
-      "Centímetro"
+      "Julio",
+      "Ohmio",
+      "Pascal",
+      "Newton",
+      "Tesla",
+      "Kelvin"
+    ],
+    "intrusos": [
+      "Paso",
+      "Vaso",
+      "Cucharada",
+      "Palmo",
+      "Grito",
+      "Silla",
+      "Mesa"
     ]
   },
   {
-    "categoria": "Polígonos de Cuatro Lados (Cuadriláteros)",
+    "categoria": "Cuadriláteros",
     "correctos": [
       "Cuadrado",
       "Rectángulo",
@@ -207,7 +218,12 @@
       "Romboide",
       "Trapecio",
       "Trapezoide",
-      "Paralelogramo"
+      "Paralelogramo",
+      "Kite",
+      "Deltoide",
+      "Cuadrilátero",
+      "Polígono",
+      "Forma"
     ],
     "intrusos": [
       "Triángulo",
@@ -215,14 +231,11 @@
       "Hexágono",
       "Círculo",
       "Elipse",
-      "Heptágono",
-      "Octógono",
-      "Eneágono",
-      "Decágono"
+      "Heptágono"
     ]
   },
   {
-    "categoria": "Múltiplos de 5 (Criterio de divisibilidad)",
+    "categoria": "Múltiplos de 5",
     "correctos": [
       "5",
       "10",
@@ -233,8 +246,13 @@
       "50",
       "100",
       "500",
+      "1000",
       "1005",
-      "2025"
+      "2025",
+      "45",
+      "65",
+      "80",
+      "95"
     ],
     "intrusos": [
       "1",
@@ -246,17 +264,11 @@
       "8",
       "9",
       "11",
-      "12",
-      "13",
-      "14",
-      "16",
-      "17",
-      "18",
-      "19"
+      "12"
     ]
   },
   {
-    "categoria": "Elementos de la Circunferencia y el Círculo",
+    "categoria": "Elementos del Círculo",
     "correctos": [
       "Centro",
       "Radio",
@@ -265,7 +277,13 @@
       "Arco",
       "Sector circular",
       "Tangente",
-      "Secante"
+      "Secante",
+      "Segmento",
+      "Corona",
+      "Perímetro",
+      "Área",
+      "Radiovector",
+      "Foco"
     ],
     "intrusos": [
       "Vértice",
@@ -274,8 +292,7 @@
       "Base",
       "Altura",
       "Diagonal",
-      "Apotema",
-      "Perímetro"
+      "Apotema"
     ]
   }
 ]

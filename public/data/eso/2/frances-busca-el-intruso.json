@@ -1,123 +1,208 @@
 [
   {
-    "categoria": "La Ville (Visual)",
+    "categoria": "La Ville et les Lieux (Visual)",
     "correctos": [
       "🏥",
       "🏫",
       "🏦",
       "📫",
       "⛲",
-      "🏬"
+      "🏬",
+      "🏤",
+      "🏛️",
+      "🏟️",
+      "🏗️",
+      "⛪",
+      "🚔",
+      "🚒",
+      "🚑",
+      "🚕",
+      "🏣"
     ],
     "intrusos": [
       "🏜️",
       "🏝️",
       "🌋",
       "🌲",
-      "🐄"
+      "🐄",
+      "🐑",
+      "🐪",
+      "🦉"
     ]
   },
   {
-    "categoria": "Les Vêtements (Visual)",
+    "categoria": "Les Vêtements et Accessoires (Visual)",
     "correctos": [
       "👕",
       "👖",
       "👗",
       "🧥",
       "👟",
-      "🧢"
+      "🧢",
+      "🧣",
+      "🧤",
+      "🎒",
+      "👓",
+      "🕶️",
+      "💍",
+      "⌚",
+      "👛",
+      "👔",
+      "👞"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "🏠",
       "🐶",
-      "⚽"
+      "⚽",
+      "🍔",
+      "🍦",
+      "🥪"
     ]
   },
   {
-    "categoria": "Les Métiers",
+    "categoria": "Les Métiers et Professions",
     "correctos": [
       "Professeur",
       "Médecin",
       "Policier",
       "Pompier",
-      "Boulanger"
+      "Boulanger",
+      "Coiffeur",
+      "Vendeur",
+      "Infirmier",
+      "Journaliste",
+      "Avocat",
+      "Cuisinier",
+      "Boucher",
+      "Pharmacien",
+      "Chanteur"
     ],
     "intrusos": [
       "École",
       "Hôpital",
       "Baguette",
       "Croissant",
-      "Maison"
+      "Maison",
+      "Voiture",
+      "Cinéma"
     ]
   },
   {
-    "categoria": "Les Verbes (Actions)",
+    "categoria": "Les Verbes d'Action (Infinitif)",
     "correctos": [
       "Parler",
       "Manger",
       "Finir",
       "Aller",
-      "Faire"
+      "Faire",
+      "Regarder",
+      "Écouter",
+      "Dormir",
+      "Sortir",
+      "Voyager",
+      "Apprendre",
+      "Écrire",
+      "Lire",
+      "Partir"
     ],
     "intrusos": [
       "Grand",
       "Petit",
       "Rouge",
       "Bleu",
-      "Rapide"
+      "Rapide",
+      "Heureux",
+      "Triste",
+      "Froid"
     ]
   },
   {
-    "categoria": "La Maison",
+    "categoria": "La Maison et ses Pièces",
     "correctos": [
       "Salon",
       "Cuisine",
       "Chambre",
       "Salle de bain",
-      "Jardin"
+      "Jardin",
+      "Entrée",
+      "Couloir",
+      "Grenier",
+      "Cave",
+      "Garage",
+      "Bureau",
+      "Toilettes",
+      "Terrasse",
+      "Salle à manger"
     ],
     "intrusos": [
       "Cinéma",
       "Parc",
       "Musée",
       "Gare",
-      "Aéroport"
+      "Aéroport",
+      "Stade",
+      "Hôtel"
     ]
   },
   {
-    "categoria": "Les Nombres 10-20",
+    "categoria": "Les Nombres 10-100",
     "correctos": [
       "Dix",
+      "Vingt",
+      "Trente",
+      "Quarante",
+      "Cinquante",
+      "Soixante",
+      "Soixante-dix",
+      "Quatre-vingts",
+      "Quatre-vingt-dix",
+      "Cent",
       "Onze",
       "Douze",
       "Treize",
-      "Vingt"
+      "Vingt-deux"
     ],
     "intrusos": [
       "Un",
       "Deux",
       "Trois",
       "Quatre",
-      "Cinq"
+      "Cinq",
+      "Six",
+      "Sept",
+      "Huit",
+      "Neuf"
     ]
   },
   {
-    "categoria": "Les Adjectifs",
+    "categoria": "Les Adjectifs de Personnalité et Physique",
     "correctos": [
       "Grand",
       "Petit",
       "Joli",
       "Triste",
-      "Heureux"
+      "Heureux",
+      "Intelligent",
+      "Sportif",
+      "Généreux",
+      "Mince",
+      "Gros",
+      "Brun",
+      "Blond",
+      "Sympathique",
+      "Drôle"
     ],
     "intrusos": [
       "Table",
       "Chaise",
       "Livre",
       "Stylo",
-      "Pomme"
+      "Pomme",
+      "Maison",
+      "Vélo",
+      "Loup"
     ]
   }
 ]

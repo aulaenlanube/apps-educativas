@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "La Casa i el Mobiliari (Visual)",
+    "categoria": "Casa i Mobiliari (Visual)",
     "correctos": [
       "🏠",
       "🚪",
@@ -13,7 +13,12 @@
       "📺",
       "📻",
       "🪜",
-      "🪞"
+      "🪞",
+      "🧺",
+      "🚰",
+      "🧴",
+      "🧻",
+      "💈"
     ],
     "intrusos": [
       "🚗",
@@ -22,14 +27,11 @@
       "🐶",
       "🌊",
       "🚜",
-      "🚲",
-      "✈️",
-      "🚢",
-      "🎡"
+      "🚲"
     ]
   },
   {
-    "categoria": "Alimentació i Cuina (Visual)",
+    "categoria": "Cuina i Aliments (Visual)",
     "correctos": [
       "🥘",
       "🥗",
@@ -42,7 +44,12 @@
       "🍔",
       "🍦",
       "🥪",
-      "🥣"
+      "🥣",
+      "🥤",
+      "🧂",
+      "🍱",
+      "🍱",
+      "🧁"
     ],
     "intrusos": [
       "⚽",
@@ -51,14 +58,11 @@
       "👕",
       "🐶",
       "🎸",
-      "⌚",
-      "📱",
-      "🚲",
-      "🏠"
+      "⌚"
     ]
   },
   {
-    "categoria": "L'Escola i Material (Visual)",
+    "categoria": "Escola i Material (Visual)",
     "correctos": [
       "🏫",
       "🎒",
@@ -71,7 +75,12 @@
       "📖",
       "🖊️",
       "📎",
-      "🎨"
+      "🎨",
+      "📐",
+      "💻",
+      "📒",
+      "🖌️",
+      "🖍️"
     ],
     "intrusos": [
       "🛌",
@@ -80,15 +89,11 @@
       "📺",
       "🎮",
       "🧸",
-      "🚲",
-      "🚗",
-      "🚿",
-      "🛋️",
-      "🧤"
+      "🚲"
     ]
   },
   {
-    "categoria": "Paraules Agudes amb i sense accent",
+    "categoria": "Paraules Agudes",
     "correctos": [
       "Camió",
       "Café",
@@ -101,7 +106,11 @@
       "Sofà",
       "Jardí",
       "Parchís",
-      "Perú"
+      "Perú",
+      "Limó",
+      "Acció",
+      "Mamà",
+      "Papà"
     ],
     "intrusos": [
       "Casa",
@@ -109,19 +118,17 @@
       "Llapis",
       "Música",
       "Pàgina",
-      "Silla",
       "Llibre",
-      "Taula",
-      "Núvol",
-      "Màquina",
-      "Àngel"
+      "Taula"
     ]
   },
   {
-    "categoria": "Membres de la Família",
+    "categoria": "La Família",
     "correctos": [
       "Pare",
       "Mare",
+      "Avi",
+      "Àvia",
       "Germà",
       "Germana",
       "Iaio",
@@ -131,23 +138,22 @@
       "Cosí",
       "Cosina",
       "Nebot",
-      "Neboda"
+      "Neboda",
+      "Nét",
+      "Néta"
     ],
     "intrusos": [
       "Mestre",
       "Metge",
-      "Amic",
       "Veí",
       "Policia",
       "Bomber",
       "Carter",
-      "Infermer",
-      "Advocat",
-      "Arquitecte"
+      "Advocat"
     ]
   },
   {
-    "categoria": "Mesos de l'Any i Estacions",
+    "categoria": "Calendari i Temps",
     "correctos": [
       "Gener",
       "Febrer",
@@ -157,6 +163,10 @@
       "Juny",
       "Juliol",
       "Agost",
+      "Setembre",
+      "Octubre",
+      "Novembre",
+      "Desembre",
       "Primavera",
       "Estiu",
       "Tardor",
@@ -164,20 +174,16 @@
     ],
     "intrusos": [
       "Dilluns",
-      "Dimarts",
-      "Setmana",
       "Demà",
       "Ahir",
       "Hui",
       "Vesprada",
       "Nit",
-      "Matí",
-      "Rellotge",
-      "Calendari"
+      "Matí"
     ]
   },
   {
-    "categoria": "Parts Externes del Cos",
+    "categoria": "Parts del Cos",
     "correctos": [
       "Cap",
       "Braç",
@@ -191,7 +197,11 @@
       "Panxa",
       "Coll",
       "Genoll",
-      "Colze"
+      "Colze",
+      "Esquena",
+      "Front",
+      "Pell",
+      "Dits"
     ],
     "intrusos": [
       "Samarreta",
@@ -200,14 +210,11 @@
       "Barret",
       "Ulleres",
       "Rellotge",
-      "Mochilla",
-      "Llibre",
-      "Guants",
-      "Bufanda"
+      "Mochilla"
     ]
   },
   {
-    "categoria": "Animals Salvatges (No domèstics)",
+    "categoria": "Animals Salvatges",
     "correctos": [
       "Lleó",
       "Tigre",
@@ -220,7 +227,11 @@
       "Hipopòtam",
       "Rinoceront",
       "Dofí",
-      "Tauró"
+      "Tauró",
+      "Goril·la",
+      "Lleopard",
+      "Pantera",
+      "Cabra"
     ],
     "intrusos": [
       "Gos",
@@ -229,10 +240,7 @@
       "Vaca",
       "Ovella",
       "Porc",
-      "Cavall",
-      "Ànec",
-      "Gall",
-      "Conill domèstic"
+      "Cavall"
     ]
   }
 ]

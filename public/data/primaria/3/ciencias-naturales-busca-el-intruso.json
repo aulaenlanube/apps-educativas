@@ -15,7 +15,11 @@
       "🦈",
       "🐳",
       "🐧",
-      "🐢"
+      "🐢",
+      "🐘",
+      "🐯",
+      "🐻",
+      "🐵"
     ],
     "intrusos": [
       "🐜",
@@ -25,14 +29,11 @@
       "🐌",
       "🐙",
       "🦀",
-      "🦐",
-      "🐝",
-      "🐞",
-      "🐛"
+      "🦐"
     ]
   },
   {
-    "categoria": "Insectos de seis patas (Visual)",
+    "categoria": "Insectos y Arácnidos (Visual)",
     "correctos": [
       "🐜",
       "🐝",
@@ -44,7 +45,10 @@
       "🪰",
       "🪲",
       "🪳",
-      "🪻"
+      "🕷️",
+      "🦂",
+      "🐌",
+      "🦗"
     ],
     "intrusos": [
       "🐍",
@@ -52,42 +56,44 @@
       "🐊",
       "🦈",
       "🐈",
-      "🕷️",
-      "🦂",
-      "🦞",
-      "🦀",
-      "🐡",
-      "🐙"
+      "🦁",
+      "🦅",
+      "🐟"
     ]
   },
   {
-    "categoria": "El Tiempo: Precipitaciones y Humedad",
+    "categoria": "Fenómenos Atmosféricos (Visual)",
     "correctos": [
-      "🌧️",
-      "⛈️",
-      "☔",
-      "💧",
+      "☀️",
       "☁️",
+      "🌧️",
       "❄️",
-      "🌨️",
+      "⛈️",
+      "🌈",
+      "🌪️",
       "🌫️",
-      "🌦️"
+      "🌬️",
+      "🌡️",
+      "🌤️",
+      "🌥️",
+      "🌦️",
+      "🌖",
+      "⚡",
+      "☔"
     ],
     "intrusos": [
-      "☀️",
-      "🌵",
-      "🔥",
-      "😎",
-      "🏜️",
-      "🏙️",
-      "🏭",
       "🏠",
       "🚗",
-      "🚲"
+      "🐶",
+      "📚",
+      "✏️",
+      "🍔",
+      "🛁",
+      "🛋️"
     ]
   },
   {
-    "categoria": "Seres del Reino Vegetal",
+    "categoria": "Reino Vegetal (Visual)",
     "correctos": [
       "🌳",
       "🌲",
@@ -101,7 +107,10 @@
       "🎋",
       "🍃",
       "🍄",
-      "🏵️"
+      "🌺",
+      "🌾",
+      "🌼",
+      "☘️"
     ],
     "intrusos": [
       "🦓",
@@ -111,55 +120,51 @@
       "⚽",
       "🍔",
       "🍕",
-      "📱",
-      "💻",
-      "🎸",
-      "🥣"
+      "📱"
     ]
   },
   {
-    "categoria": "Partes Externas del Cuerpo Humano",
+    "categoria": "Aparatos del Cuerpo Humano",
     "correctos": [
-      "Cabeza",
-      "Tronco",
-      "Extremidades",
-      "Brazo",
-      "Pierna",
-      "Mano",
-      "Pie",
-      "Cuello",
-      "Codo",
-      "Rodilla",
-      "Hombro",
-      "Espalda",
-      "Barriga"
+      "Digestivo",
+      "Respiratorio",
+      "Circulatorio",
+      "Excretor",
+      "Reproductor",
+      "Locomotor",
+      "Nervioso",
+      "Óseo",
+      "Muscular",
+      "Inmune",
+      "Endocrino",
+      "Linfático"
     ],
     "intrusos": [
-      "Camisa",
-      "Pantalón",
-      "Zapato",
-      "Gorro",
-      "Reloj",
-      "Mochila",
-      "Libro",
-      "Silla",
-      "Mesa",
-      "Lápiz"
+      "Televisión",
+      "Ordenador",
+      "Coche",
+      "Nevera",
+      "Lavadora",
+      "Microondas"
     ]
   },
   {
-    "categoria": "Los 5 Sentidos y sus Órganos",
+    "categoria": "Sentidos y Relación",
     "correctos": [
       "Vista",
       "Oído",
       "Olfato",
       "Gusto",
       "Tacto",
-      "Ojos",
-      "Orejas",
-      "Nariz",
-      "Lengua",
-      "Piel"
+      "Estímulo",
+      "Respuesta",
+      "Cerebro",
+      "Nervios",
+      "Receptor",
+      "Órgano",
+      "Impulso",
+      "Señal",
+      "Sensación"
     ],
     "intrusos": [
       "Hambre",
@@ -167,81 +172,78 @@
       "Miedo",
       "Alegría",
       "Sed",
-      "Cansancio",
-      "Dolor",
-      "Pena",
-      "Sorpresa",
-      "Prisa",
-      "Dientes",
-      "Pelo"
+      "Dolor"
     ]
   },
   {
-    "categoria": "Nutrientes y Alimentos Saludables",
+    "categoria": "Nutrientes y Alimentos",
     "correctos": [
-      "Manzana",
-      "Lechuga",
-      "Pescado",
-      "Pollo",
-      "Lentejas",
+      "Proteínas",
+      "Hidratos",
+      "Lípidos",
+      "Vitaminas",
+      "Minerales",
+      "Fibra",
       "Agua",
-      "Arroz integral",
-      "Huevo",
-      "Leche",
-      "Nueces",
-      "Plátano"
+      "Calcio",
+      "Hierro",
+      "Glúcidos",
+      "Grasas",
+      "Nutrientes",
+      "Energía",
+      "Salud"
     ],
     "intrusos": [
       "Golosinas",
       "Refrescos",
-      "Bollería industrial",
+      "Bollería",
       "Fritos",
       "Azúcar",
-      "Patatas chips",
-      "Helado chocolate",
-      "Pizza",
-      "Hamburguesa"
+      "Patatas chips"
     ]
   },
   {
-    "categoria": "Órganos y Funciones de la Planta",
+    "categoria": "Funciones Vitales",
     "correctos": [
-      "Raíz",
-      "Tallo",
-      "Hoja",
-      "Flor",
-      "Fruto",
-      "Semilla",
-      "Fotosíntesis",
-      "Clorofila",
-      "Savia",
-      "Estoma"
+      "Nutrición",
+      "Relación",
+      "Reproducción",
+      "Respiración",
+      "Alimentación",
+      "Excreción",
+      "Crecimiento",
+      "Interacción",
+      "Nacer",
+      "Crecer",
+      "Morir",
+      "Adaptación"
     ],
     "intrusos": [
-      "Pata",
-      "Cola",
-      "Hocico",
-      "Ala",
-      "Aleta",
-      "Pulmones",
-      "Corazón",
-      "Estómago",
-      "Cerebro",
-      "Huesos"
+      "Bailar",
+      "Jugar",
+      "Dormir",
+      "Hablar",
+      "Cantar",
+      "Estudiar"
     ]
   },
   {
-    "categoria": "Estados de la Materia y Agua",
+    "categoria": "Estados de la Materia",
     "correctos": [
       "Sólido",
       "Líquido",
       "Gaseoso",
-      "Hielo",
-      "Vapor de agua",
-      "Nieve",
-      "Granizo",
-      "Glaciar",
-      "Nube"
+      "Fusión",
+      "Solidificación",
+      "Evaporación",
+      "Condensación",
+      "Sublimación",
+      "Masa",
+      "Volumen",
+      "Densidad",
+      "Materia",
+      "Plasma",
+      "Inercia"
     ],
     "intrusos": [
       "Tierra",
@@ -249,10 +251,7 @@
       "Madera",
       "Plástico",
       "Metal",
-      "Cristal",
-      "Papel",
-      "Cartón",
-      "Tela"
+      "Cristal"
     ]
   }
 ]

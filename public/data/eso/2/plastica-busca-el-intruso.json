@@ -1,120 +1,207 @@
 [
   {
-    "categoria": "Colores (Visual)",
+    "categoria": "Colores y Matices (Visual)",
     "correctos": [
       "🔴",
       "🔵",
       "🟡",
       "🟢",
       "🟠",
-      "🟣"
+      "🟣",
+      "🟤",
+      "⚪",
+      "⚫",
+      "🟥",
+      "🟦",
+      "🟨",
+      "🟩",
+      "🟧",
+      "🟪",
+      "🟫"
     ],
     "intrusos": [
       "🔳",
       "🔲",
       "🏁",
       "🏳️",
-      "🏴"
+      "🏴",
+      "🏴‍☠️",
+      "💠",
+      "🌀",
+      "💠"
     ]
   },
   {
-    "categoria": "Herramientas (Visual)",
+    "categoria": "Utensilios de Arte y Taller (Visual)",
     "correctos": [
       "🎨",
       "🖌️",
       "🖍️",
       "✏️",
       "📏",
-      "✂️"
+      "✂️",
+      "✒️",
+      "🖋️",
+      "🔍",
+      "📐",
+      "🖇️",
+      "📏",
+      "🎨",
+      "🖼️",
+      "🎭",
+      "🗿"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🥄",
       "🍴",
-      "👓"
+      "👓",
+      "🪒",
+      "🩹",
+      "🪓",
+      "🧺"
     ]
   },
   {
-    "categoria": "Elementos de la Imagen",
+    "categoria": "Elementos Básicos del Lenguaje Visual",
     "correctos": [
       "Punto",
       "Línea",
       "Plano",
-      "Textura",
-      "Color"
+      "Textura visual",
+      "Textura táctil",
+      "Color",
+      "Luz",
+      "Sombra",
+      "Contorno",
+      "Dintorno",
+      "Silueta",
+      "Volumen",
+      "Espacio positivo",
+      "Espacio negativo"
     ],
     "intrusos": [
       "Sonido",
       "Olor",
       "Sabor",
       "Tiempo",
-      "Velocidad"
+      "Velocidad",
+      "Ruido",
+      "Silencio",
+      "Eco"
     ]
   },
   {
-    "categoria": "Colores Primarios (Pigmento)",
+    "categoria": "Teoría del Color y Modelos (Pigmento)",
     "correctos": [
+      "Colores Primarios",
+      "Colores Secundarios",
+      "Colores Terciarios",
       "Cian",
       "Magenta",
-      "Amarillo"
+      "Amarillo",
+      "Negro (CMYK)",
+      "Círculo Cromático",
+      "Colores Cálidos",
+      "Colores Fríos",
+      "Complementarios",
+      "Escala de grises",
+      "Saturación",
+      "Valor o Luminosidad"
     ],
     "intrusos": [
       "Rojo",
       "Verde",
-      "Azul",
+      "Azul (como primarios pigmento)",
       "Blanco",
-      "Negro"
+      "Negro (como primario)",
+      "Transparente"
     ]
   },
   {
-    "categoria": "Técnicas Secas",
+    "categoria": "Técnicas de Expresión Gráfico-Plástica (Secas)",
     "correctos": [
-      "Lápiz",
+      "Lápiz de grafito",
       "Carboncillo",
       "Sanguina",
       "Pastel",
-      "Ceras"
+      "Ceras duras",
+      "Ceras blandas",
+      "Lápices de colores",
+      "Grafito",
+      "Creta",
+      "Rotuladores",
+      "Difumino",
+      "Goma maleable",
+      "Sacapuntas",
+      "Papel de lija"
     ],
     "intrusos": [
       "Acuarela",
       "Óleo",
       "Témpera",
       "Acrílico",
-      "Tinta"
+      "Tinta china",
+      "Fresno",
+      "Pinceleta"
     ]
   },
   {
-    "categoria": "Géneros Pictóricos",
+    "categoria": "Géneros y Temas de la Artes Plásticas",
     "correctos": [
       "Retrato",
+      "Autorretrato",
       "Paisaje",
-      "Bodegón",
+      "Bodegón o Naturaleza muerta",
       "Marina",
-      "Histórico"
+      "Pintura histórica",
+      "Pintura mitológica",
+      "Abstracción",
+      "Figura humana",
+      "Escena de género",
+      "Arte efímero",
+      "Instalación",
+      "Performance",
+      "Grabado"
     ],
     "intrusos": [
       "Escultura",
       "Arquitectura",
       "Cine",
       "Fotografía",
-      "Cómic"
+      "Cómic",
+      "Música",
+      "Teatro",
+      "Danza"
     ]
   },
   {
-    "categoria": "Sistemas de Representación",
+    "categoria": "Dibujo Técnico y Sistemas de Representación",
     "correctos": [
-      "Diédrico",
-      "Axonométrico",
-      "Cónico",
-      "Perspectiva"
+      "Sistema Diédrico",
+      "Axonometría",
+      "Isométrica",
+      "Caballera",
+      "Perspectiva Cónica",
+      "Perspectiva Frontal",
+      "Perspectiva Oblicua",
+      "Vistas (Alzado, Planta, Perfil)",
+      "Línea de tierra",
+      "Punto de fuga",
+      "Horizonte",
+      "Escala técnica",
+      "Cotas",
+      "Normalización"
     ],
     "intrusos": [
       "Suma",
       "Resta",
       "Multiplicación",
       "División",
-      "Raíz"
+      "Raíz cuadrada",
+      "Fracción",
+      "Porcentaje"
     ]
   }
 ]

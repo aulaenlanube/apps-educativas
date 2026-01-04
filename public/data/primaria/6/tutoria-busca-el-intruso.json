@@ -1,36 +1,36 @@
 [
   {
-    "categoria": "Transición a la Adolescencia (Visual)",
+    "categoria": "Adolescencia (Visual)",
     "correctos": [
       "👫",
       "📱",
       "🎧",
-      "Skateboard",
-      "🎒 (Mochila)",
-      "👟 (Zapatillas)",
+      "🎒",
+      "👟",
       "🕶️",
-      "🧢",
+      "Cap (Gorra Cap)",
       "🎸",
       "🎮",
       "🛹",
-      "💬"
+      "💬",
+      "🧥",
+      "⌚",
+      "🤳",
+      "🕺",
+      "💃"
     ],
     "intrusos": [
       "👶",
       "🍼",
       "🧸",
       "🚼",
-      "🦴",
       "🍭",
-      "🍼",
       "🤱",
-      "🎠",
-      "🛝",
-      "🪁"
+      "🎠"
     ]
   },
   {
-    "categoria": "Interacción en Redes Sociales (Visual)",
+    "categoria": "Redes Sociales (Visual)",
     "correctos": [
       "👍",
       "❤️",
@@ -42,7 +42,12 @@
       "🎶",
       "📡",
       "🌐",
-      "⚡ (Trending)"
+      "⚡",
+      "🔥",
+      "✨",
+      "🌟",
+      "📱",
+      "💻"
     ],
     "intrusos": [
       "📚",
@@ -51,15 +56,11 @@
       "🍳",
       "🔨",
       "🪚",
-      "🚜",
-      "🧺",
-      "🪣",
-      "🧼",
-      "👕"
+      "🚜"
     ]
   },
   {
-    "categoria": "Riesgos y Amenas en Entornos Digitales (Visual)",
+    "categoria": "Riesgos Digitales (Visual)",
     "correctos": [
       "😈",
       "🚫",
@@ -71,27 +72,28 @@
       "⚠️",
       "🔞",
       "🏴‍☠️",
-      "🤥"
+      "🤥",
+      "🤮",
+      "🤡",
+      "📉",
+      "🔥",
+      "🥶"
     ],
     "intrusos": [
-      "🔒 (Seguro)",
+      "🔒",
       "🛡️",
       "🤝",
       "❤️",
       "😊",
       "😇",
-      "💡",
-      "✅",
-      "🌟",
-      "🧼",
-      "🥤"
+      "💡"
     ]
   },
   {
-    "categoria": "El Paso y Adaptación a Secundaria (Instituto)",
+    "categoria": "Paso a Secundaria",
     "correctos": [
-      "Instituto / IES",
-      "Profesores de área",
+      "Instituto",
+      "Profesores área",
       "Horario rotativo",
       "Nuevos compañeros",
       "Exámenes trimestrales",
@@ -99,85 +101,102 @@
       "Biblioteca",
       "Tutoría",
       "Delegado",
-      "Orientador"
+      "Orientador",
+      "Cafetería",
+      "Taquilla",
+      "Extraescolares",
+      "Asignaturas optativas"
     ],
     "intrusos": [
-      "Escuela infantil",
       "Guardería",
-      "Juego libre",
-      "Hora de la siesta",
-      "Columpios y tobogán",
-      "Juguetes de trapo",
-      "Bañador",
-      "Cesto de pañales"
+      "Siesta",
+      "Columpios",
+      "Tobogán",
+      "Pañales",
+      "Biberón"
     ]
   },
   {
-    "categoria": "Ciudadanía Digital y Seguridad en Internet",
+    "categoria": "Ciudadanía Digital",
     "correctos": [
-      "Privacidad de perfil",
-      "Contraseña robusta",
-      "Respeto digital (Netiqueta)",
-      "Bloquear usuarios tóxicos",
-      "Reportar acoso",
-      "Verificación en 2 pasos",
-      "Huella digital positiva"
+      "Privacidad",
+      "Contraseña",
+      "Netiqueta",
+      "Bloquear",
+      "Reportar",
+      "Verificación 2 pasos",
+      "Huella digital",
+      "Seguridad",
+      "Respeto",
+      "Educación",
+      "Criterio",
+      "Identidad",
+      "Backup",
+      "Antivirus"
     ],
     "intrusos": [
-      "Insultar anónimamente",
-      "Compartir todo sin pensar",
-      "Quedar con desconocidos",
-      "Ciberbullying o acoso",
-      "Descargar virus",
-      "Publicar fotos de otros",
-      "Contraseñas débiles"
+      "Insultar",
+      "Compartir todo",
+      "Desconocidos",
+      "Ciberbullying",
+      "Virus",
+      "Mentir"
     ]
   },
   {
-    "categoria": "Emociones Complejas del Crecimiento",
+    "categoria": "Emociones de Crecimiento",
     "correctos": [
       "Nostalgia",
-      "Euforia de grupo",
+      "Euforia",
       "Frustración",
-      "Empatía profunda",
-      "Ansiedad por el futuro",
+      "Empatía",
+      "Ansiedad",
       "Inseguridad",
       "Entusiasmo",
       "Compasión",
-      "Resiliencia"
+      "Resiliencia",
+      "Ilusión",
+      "Miedo",
+      "Orgullo",
+      "Curiosidad",
+      "Amor"
     ],
     "intrusos": [
-      "Hambre física",
-      "Sed de agua",
-      "Frío corporal",
-      "Calor ambiental",
-      "Sueño profundo",
-      "Picor de piel",
-      "Dolor de cabeza",
-      "Cansancio muscular"
+      "Hambre",
+      "Sed",
+      "Frío",
+      "Calor",
+      "Picor",
+      "Dolor",
+      "Cansancio"
     ]
   },
   {
-    "categoria": "Habilidades Sociales y para la Convivencia",
+    "categoria": "Habilidades y Convivencia",
     "correctos": [
       "Escucha empática",
-      "Diálogo constructivo",
-      "Negociación y pacto",
-      "Saber pedir perdón",
-      "Agradecimiento sincero",
+      "Diálogo",
+      "Negociación",
+      "Perdón",
+      "Agradecimiento",
       "Asertividad",
-      "Trabajo en equipo",
-      "Liderazgo positivo"
+      "Trabajo equipo",
+      "Liderazgo",
+      "Cooperación",
+      "Sinceridad",
+      "Respeto",
+      "Solidaridad",
+      "Justicia",
+      "Paz"
     ],
     "intrusos": [
-      "Gritar por rabia",
-      "Pegar o agredir",
-      "Ignorar al grupo",
-      "Mentira compulsiva",
-      "Odio o rencor",
-      "Burlas o mofa",
-      "Discriminación",
-      "Manipulación"
+      "Gritar",
+      "Pegar",
+      "Ignorar",
+      "Mentira",
+      "Odio",
+      "Burlas",
+      "Discriminación"
     ]
   }
 ]

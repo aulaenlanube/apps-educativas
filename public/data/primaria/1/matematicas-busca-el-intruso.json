@@ -1,19 +1,35 @@
 [
   {
-    "categoria": "Números del 1 al 5 (Visual)",
+    "categoria": "Números del 1 al 20",
     "correctos": [
-      "1️⃣",
-      "2️⃣",
-      "3️⃣",
-      "4️⃣",
-      "5️⃣"
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19",
+      "20"
     ],
     "intrusos": [
-      "6️⃣",
-      "7️⃣",
-      "8️⃣",
-      "9️⃣",
-      "0️⃣"
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F"
     ]
   },
   {
@@ -23,7 +39,16 @@
       "🟦",
       "🔺",
       "⭕",
-      "🟩"
+      "🟩",
+      "🟡",
+      "🟠",
+      "🟪",
+      "🟫",
+      "⬛",
+      "⬜",
+      "🔷",
+      "🔶",
+      "💠"
     ],
     "intrusos": [
       "🐶",
@@ -34,36 +59,36 @@
     ]
   },
   {
-    "categoria": "Monedas de 1 y 2 (Visual)",
+    "categoria": "Cosas redondas (Visual)",
     "correctos": [
+      "🔴",
+      "⚽",
+      "🍊",
+      "⭕",
+      "🍪",
+      "🍕",
+      "🌍",
+      "🌕",
+      "🍩",
+      "🧶",
+      "🌀",
+      "🎡",
       "🪙",
-      "1️⃣",
-      "2️⃣"
+      "🧿"
     ],
     "intrusos": [
-      "💵",
-      "💶",
-      "💳",
-      "💎",
-      "💰"
+      "🟦",
+      "📐",
+      "🧱",
+      "📦",
+      "📺",
+      "🍱"
     ]
   },
   {
-    "categoria": "Muchos / Pocos (Visual)",
+    "categoria": "Números del 0 al 15 (Texto)",
     "correctos": [
-      "⭐⭐⭐⭐⭐",
-      "🍎🍎🍎🍎🍎",
-      "🎈🎈🎈🎈🎈"
-    ],
-    "intrusos": [
-      "⭐",
-      "🍎",
-      "🎈"
-    ]
-  },
-  {
-    "categoria": "Números del 0 al 9",
-    "correctos": [
+      "Cero",
       "Uno",
       "Dos",
       "Tres",
@@ -72,65 +97,127 @@
       "Seis",
       "Siete",
       "Ocho",
-      "Nueve"
+      "Nueve",
+      "Diez",
+      "Once",
+      "Doce",
+      "Trece",
+      "Catorce",
+      "Quince"
     ],
     "intrusos": [
-      "Papá",
       "Mamá",
-      "Casa",
       "Perro",
-      "Gato",
+      "Casa",
       "Sol",
-      "Luna"
+      "Luna",
+      "Mesa"
     ]
   },
   {
-    "categoria": "Sumas que dan 5",
+    "categoria": "Sumas que dan 10",
     "correctos": [
-      "4+1",
-      "3+2",
-      "2+3",
-      "1+4",
-      "5+0"
+      "5+5",
+      "6+4",
+      "4+6",
+      "7+3",
+      "3+7",
+      "8+2",
+      "2+8",
+      "9+1",
+      "1+9",
+      "10+0",
+      "0+10",
+      "4+4+2",
+      "3+3+4",
+      "2+2+6"
     ],
     "intrusos": [
       "1+1",
       "2+2",
-      "5+5",
+      "5+3",
       "0+0",
       "3+3"
     ]
   },
   {
-    "categoria": "Anterior y Posterior de 5",
+    "categoria": "Cosas de medir",
     "correctos": [
-      "4",
-      "6"
+      "Regla",
+      "Metro",
+      "Reloj",
+      "Báscula",
+      "Calendario",
+      "Cinta",
+      "Termómetro",
+      "Copa",
+      "Pesa",
+      "Cronómetro",
+      "Jarrita",
+      "Balanza",
+      "Podómetro",
+      "Compás"
     ],
     "intrusos": [
-      "1",
-      "2",
-      "3",
-      "7",
-      "8",
-      "9"
+      "Martillo",
+      "Llave",
+      "Tijeras",
+      "Libro",
+      "Pelota"
     ]
   },
   {
-    "categoria": "Cosas redondas (Visual)",
+    "categoria": "Números pares",
     "correctos": [
-      "🔴",
-      "⚽",
-      "🍊",
-      "⭕",
-      "🍪"
+      "2",
+      "4",
+      "6",
+      "8",
+      "10",
+      "12",
+      "14",
+      "16",
+      "18",
+      "20",
+      "22",
+      "24",
+      "26",
+      "28",
+      "30"
     ],
     "intrusos": [
-      "🟦",
-      "📐",
-      "🧱",
-      "📦",
-      "📺"
+      "1",
+      "3",
+      "5",
+      "7",
+      "9",
+      "11"
+    ]
+  },
+  {
+    "categoria": "Monedas y billetes",
+    "correctos": [
+      "1 céntimo",
+      "2 céntimos",
+      "5 céntimos",
+      "10 céntimos",
+      "20 céntimos",
+      "50 céntimos",
+      "1 euro",
+      "2 euros",
+      "5 euros",
+      "10 euros",
+      "20 euros",
+      "50 euros",
+      "100 euros",
+      "200 euros"
+    ],
+    "intrusos": [
+      "Tarjeta",
+      "Papel",
+      "Pegatina",
+      "Fotos",
+      "Dibujo"
     ]
   }
 ]

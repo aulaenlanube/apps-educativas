@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Hardware y Dispositivos Externos (Visual)",
+    "categoria": "Hardware y Dispositivos (Visual)",
     "correctos": [
       "💻",
       "⌨️",
@@ -17,7 +17,11 @@
       "📡",
       "🛰️",
       "📠",
-      "📽️"
+      "📽️",
+      "💿",
+      "🖲️",
+      "📼",
+      "📟"
     ],
     "intrusos": [
       "🍎",
@@ -27,18 +31,11 @@
       "🚗",
       "🍕",
       "🍦",
-      "🥪",
-      "🛋️",
-      "🛁",
-      "👕",
-      "👟",
-      "👞",
-      "🧢",
-      "👒"
+      "🥪"
     ]
   },
   {
-    "categoria": "Robótica y Componentes Electrónicos (Visual)",
+    "categoria": "Robótica y Componentes (Visual)",
     "correctos": [
       "🤖",
       "⚙️",
@@ -54,7 +51,11 @@
       "🦿",
       "🎛️",
       "🌡️",
-      "⏲️"
+      "⏲️",
+      "🧲",
+      "🔭",
+      "🔬",
+      "🛰️"
     ],
     "intrusos": [
       "🌸",
@@ -64,18 +65,11 @@
       "🎨",
       "🧸",
       "🍭",
-      "🦋",
-      "🌈",
-      "🍉",
-      "🧣",
-      "🧤",
-      "👒",
-      "🧥",
-      "👟"
+      "🦋"
     ]
   },
   {
-    "categoria": "Interfaz de Usuario y Gestión (Visual)",
+    "categoria": "Gestión y Archivos (Visual)",
     "correctos": [
       "📁",
       "🗑️",
@@ -93,7 +87,10 @@
       "📥",
       "📤",
       "🔔",
-      "📍"
+      "📍",
+      "🌐",
+      "📅",
+      "🔑"
     ],
     "intrusos": [
       "🚲",
@@ -103,18 +100,11 @@
       "👞",
       "👕",
       "👒",
-      "🛹",
-      "⚽",
-      "🍎",
-      "🏠",
-      "🌲",
-      "🌳",
-      "🌻",
-      "🦆"
+      "🛹"
     ]
   },
   {
-    "categoria": "Lógica de Programación por Bloques (Visual)",
+    "categoria": "Lógica y Flujo (Visual)",
     "correctos": [
       "➡️",
       "⬅️",
@@ -132,7 +122,10 @@
       "🔁",
       "🔀",
       "〰️",
-      "🔗"
+      "🔗",
+      "ℹ️",
+      "🆗",
+      "🆙"
     ],
     "intrusos": [
       "🏠",
@@ -142,141 +135,142 @@
       "🍎",
       "🍔",
       "🍕",
-      "🧸",
-      "🛋️",
-      "🛁",
-      "👕",
-      "👟",
-      "👞",
-      "🧢",
-      "👒",
-      "🚲"
+      "🧸"
     ]
   },
   {
-    "categoria": "Comandos de Programación Visual (Scratch)",
+    "categoria": "Comandos: Scratch",
     "correctos": [
-      "Mover 10 pasos",
-      "Girar a la derecha",
-      "Al presionar bandera verde",
+      "Mover pasos",
+      "Girar derecha",
+      "Girar izquierda",
+      "Presionar bandera",
       "Por siempre",
-      "Si toca el borde",
-      "Decir Hola durante 2 segundos",
+      "Si toca borde",
+      "Decir Hola",
       "Cambiar disfraz",
-      "Esperar 1 segundo",
-      "Repetir 10 veces"
+      "Esperar",
+      "Repetir",
+      "Tocar sonido",
+      "Ir a x: y:",
+      "Apuntar en dirección",
+      "Si...entonces"
     ],
     "intrusos": [
       "Comer manzana",
-      "Dormir en la cama",
-      "Llorar fuerte",
-      "Cantar una canción",
-      "Soñar con robots",
-      "Bañarse con jabón",
-      "Peinarse el pelo",
-      "Hacer la merienda",
-      "Ir de excursión"
+      "Dormir",
+      "Llorar",
+      "Cantar",
+      "Soñar",
+      "Bañarse"
     ]
   },
   {
-    "categoria": "Componentes del Sistema Informático",
+    "categoria": "Sistema Informático",
     "correctos": [
       "Placa base",
-      "Procesador (CPU)",
+      "Procesador",
       "Memoria RAM",
       "Tarjeta gráfica",
-      "Disco duro (SSD)",
-      "Fuente de alimentación",
+      "Disco duro",
+      "Fuente poder",
       "Ventilador",
       "Puerto USB",
       "Sistema Operativo",
-      "Driver / Controlador"
+      "Driver",
+      "BIOS",
+      "Monitor",
+      "Carcasa",
+      "Chipset"
     ],
     "intrusos": [
-      "Zapato de cuero",
-      "Cuchara de sopa",
-      "Libreta de notas",
-      "Lápiz de color",
-      "Gorra de béisbol",
-      "Silla de oficina",
-      "Mesa de estudio",
-      "Puerta de casa",
-      "Ventana de cristal"
+      "Zapato",
+      "Cuchara",
+      "Libreta",
+      "Lápiz",
+      "Gorra",
+      "Mesa"
     ]
   },
   {
-    "categoria": "Seguridad e Internet",
+    "categoria": "Seguridad en Internet",
     "correctos": [
-      "Contraseña segura",
+      "Contraseña",
       "Antivirus",
       "Cortafuegos",
-      "Navegador web",
-      "Correo basura (Spam)",
-      "Enlace seguro (https)",
+      "Navegador",
+      "Spam",
+      "HTTPS",
       "Perfil privado",
       "Red WiFi",
       "Descarga",
-      "Buscador"
+      "Buscador",
+      "Enlace",
+      "Cookie",
+      "Backup",
+      "Cifrado"
     ],
     "intrusos": [
-      "Piedra del camino",
-      "Árbol del parque",
-      "Bocadillo de queso",
-      "Pelota de tenis",
-      "Libro de papel",
-      "Arena de playa",
-      "Agua de grifo",
-      "Fuego de cerilla",
-      "Cuchillo de mesa"
+      "Piedra",
+      "Árbol",
+      "Bocadillo",
+      "Pelota",
+      "Libro",
+      "Arena"
     ]
   },
   {
-    "categoria": "Acciones de Entrada y Salida",
+    "categoria": "Entrada y Salida",
     "correctos": [
-      "Hacer clic",
-      "Escribir texto",
-      "Imprimir documento",
-      "Escanear foto",
-      "Escuchar sonido",
-      "Grabar video",
-      "Enviar mensaje",
-      "Recibir datos",
-      "Mover el ratón",
-      "Tocar pantalla"
+      "Clic",
+      "Escribir",
+      "Imprimir",
+      "Escanear",
+      "Escuchar",
+      "Grabar",
+      "Enviar",
+      "Recibir",
+      "Mover ratón",
+      "Tocar pantalla",
+      "Zoom",
+      "Minimizar",
+      "Maximizar",
+      "Cerrar"
     ],
     "intrusos": [
-      "Pintar un mural",
-      "Recortar cartulina",
-      "Pegar pegatinas",
+      "Pintar mural",
+      "Recortar",
+      "Pegar",
       "Doblar ropa",
-      "Correr por el patio",
-      "Saltar charcos",
-      "Comer un helado",
-      "Dormir la siesta"
+      "Correr",
+      "Saltar"
     ]
   },
   {
-    "categoria": "Conceptos de Algoritmia Básica",
+    "categoria": "Algoritmia",
     "correctos": [
       "Algoritmo",
-      "Bucle infinito",
-      "Variable de puntos",
-      "Condición (Si...)",
-      "Secuencia de pasos",
-      "Instrucción de parada",
-      "Función de salto",
-      "Depuración de errores",
-      "Evento de inicio"
+      "Bucle",
+      "Variable",
+      "Condición",
+      "Secuencia",
+      "Instrucción",
+      "Función",
+      "Depuración",
+      "Evento",
+      "Bloque",
+      "Detección",
+      "Repetición",
+      "Lista",
+      "Fallo / Bug"
     ],
     "intrusos": [
-      "Cuento de Navidad",
-      "Receta de galletas",
-      "Dibujo de un gato",
-      "Poesía de amor",
-      "Excursión al museo",
-      "Partido de fútbol",
-      "Siesta de tarde",
-      "Juego de mesa"
+      "Cuento",
+      "Receta",
+      "Dibujo",
+      "Poesía",
+      "Excursión",
+      "Partido"
     ]
   }
 ]

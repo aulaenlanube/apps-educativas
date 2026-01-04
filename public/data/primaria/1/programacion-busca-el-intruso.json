@@ -9,7 +9,13 @@
       "📱",
       "🖨️",
       "🔋",
-      "🔌"
+      "🔌",
+      "🎧",
+      "📷",
+      "💾",
+      "📡",
+      "📽️",
+      "📠"
     ],
     "intrusos": [
       "🍎",
@@ -17,8 +23,7 @@
       "⚽",
       "🧸",
       "🚗",
-      "🍕",
-      "🍔"
+      "🍕"
     ]
   },
   {
@@ -31,7 +36,13 @@
       "💡",
       "🛠️",
       "🦾",
-      "🦿"
+      "🦿",
+      "🎛️",
+      "🔩",
+      "🛸",
+      "🚀",
+      "🛰️",
+      "🛸"
     ],
     "intrusos": [
       "🌸",
@@ -39,18 +50,26 @@
       "🐱",
       "☁️",
       "🎨",
-      "🧸",
-      "🍭"
+      "🧸"
     ]
   },
   {
     "categoria": "Flechas de Dirección (Visual)",
     "correctos": [
-      "⬆️ (Arriba)",
-      "⬇️ (Abajo)",
-      "⬅️ (izquierda)",
-      "➡️ (Derecha)",
-      "🔄 (Girar)"
+      "⬆️",
+      "⬇️",
+      "⬅️",
+      "➡️",
+      "🔄",
+      "⤴️",
+      "⤵️",
+      "🔙",
+      "🔝",
+      "🔃",
+      "↕️",
+      "↔️",
+      "↖️",
+      "↗️"
     ],
     "intrusos": [
       "🏠",
@@ -70,7 +89,14 @@
       "✉️",
       "🖼️",
       "🎬",
-      "🎵"
+      "🎵",
+      "🌐",
+      "📅",
+      "⚙️",
+      "🔒",
+      "🔑",
+      "📡",
+      "🔋"
     ],
     "intrusos": [
       "🚲",
@@ -89,14 +115,23 @@
       "Pantalla",
       "Altavoz",
       "Cámara",
-      "Botón"
+      "Botón",
+      "Cables",
+      "Batería",
+      "Micro",
+      "Puerto USB",
+      "Carcasa",
+      "Luz",
+      "Enchufe",
+      "Antena"
     ],
     "intrusos": [
       "Zapato",
       "Cuchara",
       "Libreta",
       "Lápiz",
-      "Gorra"
+      "Gorra",
+      "Bufanda"
     ]
   },
   {
@@ -106,32 +141,51 @@
       "Girar",
       "Parar",
       "Derecha",
-      "Izquierda"
+      "Izquierda",
+      "Subir",
+      "Bajar",
+      "Saltar",
+      "Hablar",
+      "Coger",
+      "Soltar",
+      "Encender",
+      "Apagar",
+      "Repetir"
     ],
     "intrusos": [
       "Comer",
       "Dormir",
       "Llorar",
       "Cantar",
-      "Bañarse"
+      "Bañarse",
+      "Soñar"
     ]
   },
   {
-    "categoria": "Cosas que ves en la Pantalla",
+    "categoria": "Cosas de la Pantalla",
     "correctos": [
       "Dibujo",
       "Foto",
       "Video",
       "Juego",
       "Carta",
-      "Carpeta"
+      "Carpeta",
+      "Icono",
+      "Fondo",
+      "Ventana",
+      "Puntero",
+      "Reloj",
+      "Menú",
+      "Barra",
+      "Botón"
     ],
     "intrusos": [
       "Piedra",
       "Árbol",
       "Agua",
       "Arena",
-      "Nube"
+      "Nube",
+      "Tierra"
     ]
   },
   {
@@ -140,13 +194,25 @@
       "Tocar",
       "Deslizar",
       "Pulsar",
-      "Arrastrar"
+      "Arrastrar",
+      "Ampliar",
+      "Girar",
+      "Sacudir",
+      "Pinchar",
+      "Doble toque",
+      "Mantener",
+      "Deslizar arriba",
+      "Deslizar abajo",
+      "Cerrar",
+      "Minimizar"
     ],
     "intrusos": [
       "Recortar",
       "Pegar",
       "Pintar",
-      "Correr"
+      "Correr",
+      "Saltar",
+      "Nadar"
     ]
   }
 ]

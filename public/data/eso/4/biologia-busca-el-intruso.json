@@ -1,141 +1,234 @@
 [
   {
-    "categoria": "Genética (Visual)",
+    "categoria": "Genética y Biotecnología (Visual)",
     "correctos": [
       "🧬",
       "🔬",
       "🧫",
       "🩸",
       "🐁",
-      "🌱"
+      "🌱",
+      "🧬",
+      "🧪",
+      "💉",
+      "💊",
+      "🦠",
+      "🧬",
+      "📊",
+      "💻",
+      "🧬",
+      "🥼"
     ],
     "intrusos": [
-      "🔭",
+      " telescope (Telescopi Telescopio)",
       "🪐",
       "🌋",
       "🏗️",
-      "🚄"
+      "🚄",
+      "🛸",
+      "🛰️",
+      "🚀"
     ]
   },
   {
-    "categoria": "Evolución (Visual)",
+    "categoria": "Evolución y Paleontología (Visual)",
     "correctos": [
       "🦕",
       "🦴",
       "🐒",
       "🚶",
       "🐚",
-      "🐊"
+      "🐊",
+      "🦕",
+      "🐢",
+      "🦍",
+      "🌿",
+      "🦴",
+      "⛰️",
+      "🐚",
+      "🐊",
+      "🦖",
+      "🦣"
     ],
     "intrusos": [
       "🤖",
       "🚀",
       "🏭",
       "📱",
-      "🚗"
+      "🚗",
+      "🛰️",
+      "🕹️",
+      "💻"
     ]
   },
   {
-    "categoria": "Ecología (Visual)",
+    "categoria": "Ecología y Medio Ambiente (Visual)",
     "correctos": [
       "♻️",
       "🌍",
       "🌲",
       "🐝",
       "🌊",
-      "☀️"
+      "☀️",
+      "🍃",
+      "🌳",
+      "🌻",
+      "🌿",
+      "🍄",
+      "🦋",
+      "🦅",
+      "🦌",
+      "🪵",
+      "💧"
     ],
     "intrusos": [
       "☢️",
       "🛢️",
       "🚬",
       "🏢",
-      "⛽"
+      "⛽",
+      "💣",
+      "🏭",
+      "🏗️"
     ]
   },
   {
-    "categoria": "Genética Molecular",
+    "categoria": "Genética Molecular y Herencia",
     "correctos": [
-      "ADN",
-      "ARN",
-      "Gen",
-      "Cromosoma",
-      "Mutación"
+      "Doble hélice de ADN",
+      "ARN mensajero",
+      "ARN transferente",
+      "Código genético",
+      "Gen dominante",
+      "Gen recesivo",
+      "Cromosoma homólogo",
+      "Locus",
+      "Alelo",
+      "Genotipo",
+      "Fenotipo",
+      "Mutación génica",
+      "Replicación",
+      "Transcripción",
+      "Traducción",
+      "Ingeniería genética"
     ],
     "intrusos": [
-      "Célula",
-      "Tejido",
-      "Órgano",
-      "Hueso",
-      "Músculo"
+      "Célula procariota",
+      "Tejido conectivo",
+      "Órgano vital",
+      "Hueso largo",
+      "Músculo estriado",
+      "Aparato circulatorio"
     ]
   },
   {
-    "categoria": "Evolución",
+    "categoria": "Teorías de la Evolución",
     "correctos": [
-      "Darwin",
+      "Charles Darwin",
       "Selección natural",
-      "Adaptación",
-      "Fósil",
-      "Especie"
+      "Lamarckismo",
+      "Neodarwinismo",
+      "Teoría sintética",
+      "Adaptación biológica",
+      "Especiación",
+      "Deriva génica",
+      "Fósil de transición",
+      "Anatomía comparada",
+      "Órganos homólogos",
+      "Órganos vestigiales",
+      "Pruebas biogeográficas",
+      "Aislamiento reproductivo"
     ],
     "intrusos": [
-      "Newton",
-      "Einstein",
-      "Gravedad",
-      "Átomo",
-      "Energía"
+      "Leyes de Newton",
+      "Teoría de la Relatividad",
+      "Gravedad cuántica",
+      "Modelo atómico",
+      "Energía nuclear",
+      "Leyes de la termodinámica"
     ]
   },
   {
-    "categoria": "Dinámica Terrestre",
+    "categoria": "Tectónica Global y Dinámica Interna",
     "correctos": [
       "Placa tectónica",
       "Deriva continental",
-      "Seísmo",
-      "Volcán",
-      "Orogénesis"
+      "Dorsal oceánica",
+      "Zona de subducción",
+      "Fosa marina",
+      "Orogénesis",
+      "Corrientes de convección",
+      "Litosfera",
+      "Mesosfera",
+      "Sismógrafo",
+      "Magnitud de Richter",
+      "Falla de transformación",
+      "Pangea",
+      "Punto caliente"
     ],
     "intrusos": [
-      "Clima",
-      "Tiempo",
-      "Lluvia",
-      "Viento",
-      "Nube"
+      "Cambio climático",
+      "Pronóstico del tiempo",
+      "Precipitación",
+      "Erosión eólica",
+      "Meteorización",
+      "Glaciación",
+      "Viento solano"
     ]
   },
   {
-    "categoria": "Ecología",
+    "categoria": "Ecología y Biosfera",
     "correctos": [
       "Ecosistema",
       "Biodiversidad",
-      "Trófica",
+      "Pirámide trófica",
       "Biomasa",
-      "Hábitat"
+      "Hábitat ecológico",
+      "Nicho ecológico",
+      "Biotopo",
+      "Biocenosis",
+      "Relación interespecífica",
+      "Relación intraespecífica",
+      "Sucesión ecológica",
+      "Descomponedor",
+      "Consumidor primario",
+      "Red trófica"
     ],
     "intrusos": [
       "Genotipo",
       "Fenotipo",
-      "Alelo",
+      "Crossover",
       "Mitosis",
-      "Meiosis"
+      "Meiosis",
+      "Centrómero",
+      "Cromatida"
     ]
   },
   {
-    "categoria": "División Celular",
+    "categoria": "Ciclo Celular y Reproducción",
     "correctos": [
+      "Interfase",
       "Mitosis",
       "Meiosis",
       "Profase",
       "Metafase",
-      "Anafase"
+      "Anafase",
+      "Telofase",
+      "Citocinesis",
+      "Recombinación genética",
+      "Gametogénesis",
+      "Cuerpos polares",
+      "Huso acromático",
+      "Punto de control",
+      "Cromosomas hijos"
     ],
     "intrusos": [
-      "Digestión",
-      "Respiración",
-      "Circulación",
-      "Excreción",
-      "Sinapsis"
+      "Digestión gástrica",
+      "Respiración celular",
+      "Circulación linfática",
+      "Excreción renal",
+      "Sinapsis neuronal",
+      "Reflejo rotuliano"
     ]
   }
 ]

@@ -3,12 +3,21 @@
     "categoria": "Reino Fungi y Aplicaciones (Visual)",
     "correctos": [
       "🍄",
-      "🥖 (Levadura)",
-      "🧀 (Mohos)",
-      "🍺 (Fermentación)",
-      "🥣 (Miso)",
-      "🍷 (Levadura)",
-      "🦠 (Penicilina)"
+      "🥖",
+      "🧀",
+      "🍺",
+      "🥣",
+      "🍷",
+      "🦠",
+      "🧬",
+      "🧪",
+      "🧫",
+      "🔬",
+      "💊",
+      "💉",
+      "🥐",
+      "🥟",
+      "🥨"
     ],
     "intrusos": [
       "🌻",
@@ -18,10 +27,7 @@
       "🐶",
       "🐱",
       "🦁",
-      "🍎",
-      "🥦",
-      "🥛",
-      "🥚"
+      "🍎"
     ]
   },
   {
@@ -36,7 +42,13 @@
       "💡",
       "⛽",
       "♨️",
-      "☢️"
+      "☢️",
+      "🔦",
+      "🔌",
+      "🌡️",
+      "🛰️",
+      "🚲",
+      "🏠"
     ],
     "intrusos": [
       "🛌",
@@ -46,13 +58,11 @@
       "🧊",
       "🛋️",
       "🛁",
-      "👕",
-      "👟",
-      "🎩"
+      "👕"
     ]
   },
   {
-    "categoria": "Microbiología y Genética (Visual)",
+    "categoria": "Genética y Laboratorio (Visual)",
     "correctos": [
       "🦠",
       "🧫",
@@ -62,7 +72,14 @@
       "💉",
       "💊",
       "🥼",
-      "🧤"
+      "🧤",
+      "🌡️",
+      "🧪",
+      "🔭",
+      "📊",
+      "📡",
+      "🖱️",
+      "💾"
     ],
     "intrusos": [
       "🐘",
@@ -72,12 +89,11 @@
       "🚗",
       "🏠",
       "🚲",
-      "🚁",
-      "🚂"
+      "🚁"
     ]
   },
   {
-    "categoria": "Nutrientes y Alimentos Saludables (Visual)",
+    "categoria": "Nutrientes y Saludable (Visual)",
     "correctos": [
       "🍎",
       "🍞",
@@ -86,10 +102,15 @@
       "🥛",
       "🥚",
       "🥗",
-      "🥦",
+      " Broccoli (Brócoli Broccoli)",
       "🥕",
       "🥑",
-      "🥬"
+      "🥬",
+      "🍍",
+      "🥭",
+      "🍐",
+      "🍇",
+      "🍚"
     ],
     "intrusos": [
       "💨",
@@ -97,35 +118,40 @@
       "👀",
       "🧠",
       "🦴",
-      "🦾",
-      "🦿",
       "🫀",
       "🫁",
       "👂"
     ]
   },
   {
-    "categoria": "Los Cinco Reinos de los Seres Vivos",
+    "categoria": "Clasificación de los Seres Vivos",
     "correctos": [
-      "Animales (Metazoos)",
-      "Plantas (Metafitas)",
-      "Hongos (Fungi)",
-      "Moneras (Bacterias)",
-      "Protoctistas (Algas y Protozoos)"
+      "Animales",
+      "Plantas",
+      "Hongos",
+      "Bacterias",
+      "Protozoos",
+      "Algas",
+      "Invertebrados",
+      "Vertebrados",
+      "Artrópodos",
+      "Moluscos",
+      "Helechos",
+      "Musgos",
+      "Gimnospermas",
+      "Angiospermas"
     ],
     "intrusos": [
       "Minerales",
       "Rocas",
-      "Virus",
-      "Plásticos",
       "Gases",
       "Materias inertes",
-      "Fragmentos solares",
+      "Virus",
       "Lava"
     ]
   },
   {
-    "categoria": "Órganos y Vías del Aparato Respiratorio",
+    "categoria": "Aparato Respiratorio",
     "correctos": [
       "Fosas nasales",
       "Faringe",
@@ -135,22 +161,23 @@
       "Bronquiolos",
       "Alvéolos",
       "Pulmones",
-      "Diafragma"
+      "Diafragma",
+      "Inspiración",
+      "Espiración",
+      "Oxígeno",
+      "Dióxido de carbono"
     ],
     "intrusos": [
       "Estómago",
       "Corazón",
       "Hígado",
       "Riñón",
-      "Intestino delgado",
       "Cerebro",
-      "Vejiga",
-      "Esófago",
-      "Páncreas"
+      "Vejiga"
     ]
   },
   {
-    "categoria": "Componentes del Aparato Circulatorio",
+    "categoria": "Aparato Circulatorio",
     "correctos": [
       "Corazón",
       "Arterias",
@@ -159,7 +186,13 @@
       "Glóbulos rojos",
       "Glóbulos blancos",
       "Plaquetas",
-      "Plasma sanguíneo"
+      "Plasma",
+      "Circulación mayor",
+      "Circulación menor",
+      "Latidos",
+      "Pulso",
+      "Aurículas",
+      "Ventrículos"
     ],
     "intrusos": [
       "Pulmón",
@@ -167,77 +200,86 @@
       "Nervios",
       "Huesos",
       "Músculos",
-      "Cartílago",
-      "Piel",
-      "Uñas",
-      "Pelo",
-      "Dientes"
+      "Piel"
     ]
   },
   {
-    "categoria": "Formas de Energía en la Naturaleza",
+    "categoria": "Formas de Energía",
     "correctos": [
       "Energía Mecánica",
       "Energía Lumínica",
-      "Energía Calorífica (Térmica)",
+      "Energía Calorífica",
       "Energía Eléctrica",
       "Energía Química",
       "Energía Nuclear",
-      "Energía Sonora"
+      "Energía Sonora",
+      "Energía Potencial",
+      "Energía Cinética",
+      "Radiación",
+      "Conducción",
+      "Convección"
     ],
     "intrusos": [
       "Energía Feliz",
       "Energía Rápida",
       "Energía Verde",
       "Energía Dura",
-      "Energía Suave",
-      "Energía Inteligente",
-      "Energía Antigua"
+      "Energía Inteligente"
     ]
   },
   {
-    "categoria": "Estructuras de la Célula Eucariota",
+    "categoria": "Estructuras Celulares",
     "correctos": [
-      "Membrana plasmática",
+      "Membrana",
       "Citoplasma",
       "Núcleo",
-      "Orgánulos (Mitocondrias, etc.)",
-      "Pared celular (en plantas)",
+      "Mitocondrias",
+      "Pared celular",
       "Vacuolas",
       "Ribosomas",
-      "Retículo endoplasmático"
+      "Retículo",
+      "Aparato de Golgi",
+      "Cloroplastos",
+      "Lisosomas",
+      "Centriolos",
+      "ADN",
+      "Orgánulos"
     ],
     "intrusos": [
       "Tejido muscular",
-      "Órgano vital",
-      "Sistema corporal",
-      "Hueso largo",
-      "Piel externa",
+      "Órgano",
+      "Hueso",
+      "Piel",
       "Uña",
       "Pelo",
-      "Sangre",
-      "Músculo"
+      "Sangre"
     ]
   },
   {
-    "categoria": "Máquinas Simples Modernas",
+    "categoria": "Máquinas Simples",
     "correctos": [
       "Palanca",
       "Polea",
       "Plano inclinado",
-      "Rueda y eje",
+      "Rueda",
+      "Eje",
       "Tornillo",
       "Cuña",
-      "Torno"
+      "Torno",
+      "Engranaje",
+      "Cremallera",
+      "Biela",
+      "Manivela",
+      "Cigüeñal",
+      "Leva"
     ],
     "intrusos": [
-      "Motor eléctrico",
-      "Ordenador portátil",
-      "Robot androide",
-      "Lavadora automática",
-      "Coche híbrido",
-      "Televisor LED",
-      "Móvil táctil"
+      "Motor",
+      "Ordenador",
+      "Robot",
+      "Lavadora",
+      "Televisor",
+      "Móvil"
     ]
   }
 ]

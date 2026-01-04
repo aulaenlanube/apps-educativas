@@ -1,122 +1,204 @@
 [
   {
-    "categoria": "Herramientas (Visual)",
+    "categoria": "Herramientas de Dibujo y Pintura (Visual)",
     "correctos": [
       "🎨",
       "🖌️",
       "✏️",
       "📏",
       "📐",
-      "✂️"
+      "✂️",
+      "✒️",
+      "🖋️",
+      "🎨",
+      "🖼️",
+      "🗿",
+      "🏟️",
+      "🏗️",
+      "📐",
+      "🖇️",
+      "📏"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🥄",
       "🍴",
-      "🕶️"
+      "🕶️",
+      "🔋",
+      "🔌",
+      "💡"
     ]
   },
   {
-    "categoria": "Colores (Visual)",
+    "categoria": "Círculo Cromático y Matices (Visual)",
     "correctos": [
       "🔴",
       "🔵",
       "🟡",
       "🟢",
       "🟠",
-      "🟣"
+      "🟣",
+      "🟤",
+      "⚪",
+      "⚫",
+      "🟥",
+      "🟦",
+      "🟨",
+      "🟩",
+      "🟧",
+      "🟪",
+      "🟫"
     ],
     "intrusos": [
       "🏁",
       "🏳️",
       "🏴",
       "🔳",
-      "🔲"
+      "🔲",
+      "💠",
+      "🌀",
+      "💠"
     ]
   },
   {
-    "categoria": "Sistemas de Representación",
+    "categoria": "Sistemas de Representación y Geometría",
     "correctos": [
-      "Diédrico",
-      "Axonométrico",
-      "Caballera",
-      "Isométrica",
-      "Cónica"
+      "Sistema Diédrico",
+      "Sistema Axonométrico",
+      "Perspectiva Caballera",
+      "Perspectiva Isométrica",
+      "Perspectiva Cónica",
+      "Vistas (Alzado, Planta, Perfil)",
+      "Perspectiva Frontal",
+      "Perspectiva Oblicua",
+      "Geometría Descriptiva",
+      "Línea de Horizonte",
+      "Punto de Fuga",
+      "Plano de Cuadro",
+      "Escalas técnicas",
+      "Normalización"
     ],
     "intrusos": [
-      "Boceto",
-      "Croquis",
-      "Plano",
-      "Mapa",
-      "Dibujo"
+      "Boceto artístico",
+      "Croquis a mano alzada",
+      "Plano de ciudad",
+      "Mapa topográfico",
+      "Dibujo libre",
+      "Grabado",
+      "Escultura"
     ]
   },
   {
-    "categoria": "Técnicas Artísticas",
+    "categoria": "Técnicas y Procedimientos Artísticos",
     "correctos": [
       "Óleo",
       "Acuarela",
-      "Pastel",
-      "Grabado",
-      "Escultura"
+      "Pintura al pastel",
+      "Grabado (Xilografía, Calcografía)",
+      "Escultura (Talla, Modelado)",
+      "Fresco",
+      "Mosaico",
+      "Collage",
+      "Fotomontaje",
+      "Acrílico",
+      "Gouache o Témpera",
+      "Tintas",
+      "Aerografía",
+      "Instalación artística"
     ],
     "intrusos": [
-      "Fotografía",
-      "Cine",
-      "Cómic",
-      "Diseño",
-      "Publicidad"
+      "Fotografía digital",
+      "Cine de animación",
+      "Cómic / Tebeo",
+      "Diseño de logotipos",
+      "Publicidad exterior",
+      "Teatro",
+      "Danza"
     ]
   },
   {
-    "categoria": "Elementos del Lenguaje Visual",
+    "categoria": "Elementos del Lenguaje Visual y Compositivo",
     "correctos": [
       "Punto",
       "Línea",
       "Plano",
-      "Textura",
-      "Color"
+      "Textura (Visual y Táctil)",
+      "Color",
+      "Equilibrio",
+      "Ritmo",
+      "Proporción",
+      "Encuadre",
+      "Profundidad",
+      "Saturación",
+      "Luminosidad",
+      "Contraste",
+      "Peso visual"
     ],
     "intrusos": [
-      "Sonido",
-      "Movimiento",
-      "Tiempo",
-      "Espacio",
-      "Ritmo"
+      "Sonido ambiental",
+      "Movimiento físico",
+      "Tiempo cronológico",
+      "Espacio exterior",
+      "Ritmo cardíaco",
+      "Olor",
+      "Sabor"
     ]
   },
   {
-    "categoria": "Colores Fríos",
+    "categoria": "Teoría del Color: Gama Fría",
     "correctos": [
       "Azul",
       "Verde",
       "Violeta",
-      "Turquesa"
+      "Turquesa",
+      "Azul ultramar",
+      "Verde esmeralda",
+      "Cian",
+      "Añil",
+      "Malva",
+      "Azul cobalto",
+      "Verde pino",
+      "Lila",
+      "Menta",
+      "Azul celeste"
     ],
     "intrusos": [
       "Rojo",
       "Naranja",
       "Amarillo",
       "Marrón",
-      "Ocre"
+      "Ocre",
+      "Magenta",
+      "Siena"
     ]
   },
   {
-    "categoria": "Movimientos Artísticos",
+    "categoria": "Vanguardias y Movimientos Contemporáneos",
     "correctos": [
       "Impresionismo",
       "Cubismo",
       "Surrealismo",
       "Pop Art",
-      "Abstracción"
+      "Abstracción lírica",
+      "Abstracción geométrica",
+      "Expresionismo",
+      "Fauvismo",
+      "Futurismo",
+      "Dadaísmo",
+      "Minimalismo",
+      "Hiperrealismo",
+      "Op Art",
+      "Land Art"
     ],
     "intrusos": [
       "Renacimiento",
       "Barroco",
-      "Gótico",
-      "Románico",
-      "Neoclásico"
+      "Estilo Gótico",
+      "Arte Románico",
+      "Neoclasicismo",
+      "Rococó",
+      "Manierismo"
     ]
   }
 ]

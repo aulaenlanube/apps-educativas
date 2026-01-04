@@ -1,156 +1,271 @@
 [
   {
-    "categoria": "Cuerpos Geométricos (Visual)",
+    "categoria": "Cuerpos Geométricos y 3D (Visual)",
     "correctos": [
       "🧊",
       "📦",
       "🥫",
       "🍦",
       "⛺",
-      "⚽"
+      "⚽",
+      "🌍",
+      "🌕",
+      "🪐",
+      "🧱",
+      "🏡",
+      "🏠",
+      "🎁",
+      "🗳️",
+      "🛖",
+      "🌑"
     ],
     "intrusos": [
       "🟦",
       "🔴",
       "📐",
       "📏",
-      "🗺️"
+      "🗺️",
+      "〰️",
+      "🌀",
+      "🌊"
     ]
   },
   {
-    "categoria": "Gráficas de Funciones (Visual)",
+    "categoria": "Gráficas y Funciones (Visual)",
     "correctos": [
       "📈",
       "📉",
       "📊",
       "💹",
-      "📉"
+      "📉",
+      "⏲️",
+      "🕰️",
+      "📉",
+      "📊",
+      "📡",
+      "💻",
+      "📈",
+      "💹",
+      "📉",
+      "📈",
+      "🔭"
     ],
     "intrusos": [
       "🥧",
       "🔢",
       "🎲",
       "🎰",
-      "🧱"
+      "🧱",
+      "⚽",
+      "🏀",
+      "🎾"
     ]
   },
   {
-    "categoria": "Álgebra (Símbolos)",
+    "categoria": "Operadores y Álgebra (Visual)",
     "correctos": [
       "✖️",
       "➕",
       "➖",
       "➗",
       "🟰",
-      "♾️"
+      "♾️",
+      "✅",
+      "❌",
+      "🔗",
+      "↔️",
+      "↕️",
+      "↖️",
+      "↘️",
+      "↗️",
+      "↙️",
+      "🔢"
     ],
     "intrusos": [
       "📝",
       "🖊️",
       "📏",
       "✂️",
-      "📌"
+      "📌",
+      "🎨",
+      "🎬",
+      "🎭"
     ]
   },
   {
-    "categoria": "Fracciones (Visual)",
+    "categoria": "Concepto de Fracción (Visual)",
     "correctos": [
       "🍕",
       "🍰",
       "🍫",
       "🧀",
-      "🍪"
+      "🍪",
+      "🍩",
+      "🥧",
+      "🥯",
+      "🧇",
+      "🥞",
+      "🍳",
+      "🥪",
+      "📊",
+      "📉",
+      "📈",
+      "📉"
     ],
     "intrusos": [
       "🥤",
       "🧃",
       "🍎",
       "🍐",
-      "1️⃣"
+      "1️⃣",
+      "🔋",
+      "🔌",
+      "💡"
     ]
   },
   {
-    "categoria": "Expresiones Algebraicas",
+    "categoria": "Álgebra: Monomios y Polinomios",
     "correctos": [
       "Monomio",
       "Polinomio",
       "Coeficiente",
       "Parte literal",
-      "Grado"
+      "Grado de un monomio",
+      "Monomios semejantes",
+      "Polinomio opuesto",
+      "Valor numérico",
+      "Identidad notable",
+      "Binomio",
+      "Trinomio",
+      "Factor común",
+      "Ecuación",
+      "Inecuación"
     ],
     "intrusos": [
       "Suma",
       "Resta",
-      "Número",
+      "Número natural",
       "Cifra",
-      "Dígito"
+      "Dígito",
+      "Letra",
+      "Palabra",
+      "Frase"
     ]
   },
   {
-    "categoria": "Ecuaciones",
+    "categoria": "Resolución de Ecuaciones",
     "correctos": [
       "Incógnita",
       "Igualdad",
-      "Miembro",
+      "Primer miembro",
+      "Segundo miembro",
       "Solución",
-      "Término"
+      "Término independiente",
+      "Transposición",
+      "Despejar",
+      "Ecuación de 1er grado",
+      "Ecuación de 2º grado",
+      "Sistema de ecuaciones",
+      "Discriminante",
+      "Radical",
+      "Paréntesis"
     ],
     "intrusos": [
       "Ángulo",
       "Vértice",
       "Lado",
       "Cara",
-      "Arista"
+      "Arista",
+      "Base",
+      "Altura",
+      "Perímetro"
     ]
   },
   {
-    "categoria": "Proporcionalidad",
+    "categoria": "Ratios y Proporcionalidad",
     "correctos": [
       "Razón",
       "Proporción",
-      "Directa",
-      "Inversa",
-      "Porcentaje"
+      "Proporcionalidad directa",
+      "Proporcionalidad inversa",
+      "Porcentaje (%)",
+      "Regla de tres simple",
+      "Regla de tres compuesta",
+      "Constante de proporcionalidad",
+      "Interés simple",
+      "Reparto proporcional",
+      "Descuento",
+      "Incremento",
+      "Escala",
+      "Magnitud"
     ],
     "intrusos": [
       "Potencia",
-      "Raíz",
+      "Raíz cuadrada",
       "Suma",
       "Resta",
-      "Producto"
+      "Producto",
+      "División",
+      "Múltiplo",
+      "Divisor"
     ]
   },
   {
-    "categoria": "Cuerpos de Revolución",
+    "categoria": "Cuerpos de Revolución y Volúmenes",
     "correctos": [
       "Cilindro",
       "Cono",
       "Esfera",
-      "Tronco de cono"
+      "Tronco de cono",
+      "Generatriz",
+      "Radio",
+      "Altura",
+      "Base circular",
+      "Volumen",
+      "Área lateral",
+      "Área total",
+      "Desarrollo plano",
+      "Semiesfera",
+      "Cúpula"
     ],
     "intrusos": [
-      "Prisma",
+      "Prisma triangular",
       "Pirámide",
       "Cubo",
       "Poliedro",
-      "Octaedro"
+      "Octaedro",
+      "Dodecaedro",
+      "Icosaedro",
+      "Tetraedro"
     ]
   },
   {
-    "categoria": "Estadística",
+    "categoria": "Estadística y Probabilidad",
     "correctos": [
       "Población",
       "Muestra",
-      "Variable",
-      "Frecuencia",
-      "Media"
+      "Variable cuantitativa",
+      "Variable cualitativa",
+      "Frecuencia absoluta",
+      "Frecuencia relativa",
+      "Media aritmética",
+      "Moda",
+      "Mediana",
+      "Rango o amplitud",
+      "Espacio muestral",
+      "Suceso aleatorio",
+      "Probabilidad",
+      "Regla de Laplace"
     ],
     "intrusos": [
       "Metro",
       "Litro",
-      "Kilo",
+      "Kilogramo",
       "Segundo",
-      "Grado"
+      "Grado",
+      "Euro",
+      "Voltio",
+      "Amperio"
     ]
   }
 ]

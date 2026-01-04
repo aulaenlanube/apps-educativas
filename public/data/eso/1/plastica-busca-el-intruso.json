@@ -7,134 +7,229 @@
       "🖍️",
       "✏️",
       "📏",
-      "✂️"
+      "✂️",
+      "🖋️",
+      "✒️",
+      "🎨",
+      "🖼️",
+      "🎭",
+      "🎪",
+      "🗿",
+      "🏗️",
+      "📐",
+      "🖇️"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🥄",
       "🍴",
-      "👓"
+      "👓",
+      "🔋",
+      "🔌",
+      "💡"
     ]
   },
   {
-    "categoria": "Colores (Visual)",
+    "categoria": "Círculos Cromáticos (Visual)",
     "correctos": [
       "🔴",
       "🔵",
       "🟡",
       "🟢",
       "🟠",
-      "🟣"
+      "🟣",
+      "🟤",
+      "⚪",
+      "⚫",
+      "🟥",
+      "🟦",
+      "🟨",
+      "🟩",
+      "🟧",
+      "🟪",
+      "🟫"
     ],
     "intrusos": [
       "🔳",
       "🔲",
       "🏁",
       "🏳️",
-      "🏴"
+      "🏴",
+      "🏴‍☠️",
+      "💠",
+      "🌀"
     ]
   },
   {
-    "categoria": "Formas Geométricas (Visual)",
+    "categoria": "Formas y Figuras (Visual)",
     "correctos": [
       "🟥",
       "🟧",
       "🟨",
       "🟩",
       "🟦",
-      "🟪"
+      "🟪",
+      "⬛",
+      "⬜",
+      "🟫",
+      "🔺",
+      "🔻",
+      "💠",
+      "🔷",
+      "🔶",
+      "🛑",
+      "💠"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "🐶",
       "🌳",
-      "🏠"
+      "🏠",
+      "🍕",
+      "🍔",
+      "🍦"
     ]
   },
   {
-    "categoria": "Elementos Visuales",
+    "categoria": "Elementos del Lenguaje Visual",
     "correctos": [
       "Punto",
       "Línea",
       "Plano",
       "Textura",
       "Color",
-      "Luz"
+      "Luz",
+      "Sombra",
+      "Contorno",
+      "Volumen",
+      "Espacio",
+      "Ritmo",
+      "Proporción",
+      "Equilibrio",
+      "Contraste"
     ],
     "intrusos": [
       "Sonido",
       "Olor",
       "Sabor",
       "Tiempo",
-      "Velocidad"
+      "Velocidad",
+      "Ruido",
+      "Silencio"
     ]
   },
   {
-    "categoria": "Colores Primarios (Luz)",
+    "categoria": "Teoría del Color",
     "correctos": [
-      "Rojo",
-      "Verde",
-      "Azul"
+      "Colores Primarios",
+      "Colores Secundarios",
+      "Colores Terciarios",
+      "Círculo Cromático",
+      "Colores Cálidos",
+      "Colores Fríos",
+      "Colores Complementarios",
+      "Gama de colores",
+      "Tono",
+      "Saturación",
+      "Luminosidad",
+      "Matiz",
+      "Armonía cromática",
+      "Simultaneidad"
     ],
     "intrusos": [
       "Amarillo",
       "Cian",
       "Magenta",
       "Blanco",
-      "Negro"
+      "Negro",
+      "Transparente",
+      "Incoloro"
     ]
   },
   {
-    "categoria": "Técnicas Artísticas",
+    "categoria": "Técnicas de Expresión Artística",
     "correctos": [
       "Dibujo",
       "Pintura",
       "Escultura",
       "Grabado",
-      "Collage"
+      "Collage",
+      "Fotografía",
+      "Cómic / Tebeo",
+      "Diseño gráfico",
+      "Vídeo-art",
+      "Instalación",
+      "Performance",
+      "Arquitectura",
+      "Cerámica",
+      "Mosaico"
     ],
     "intrusos": [
       "Música",
       "Danza",
       "Teatro",
       "Cine",
-      "Literatura"
+      "Literatura",
+      "Ópera",
+      "Ballet"
     ]
   },
   {
-    "categoria": "Materiales de Dibujo",
+    "categoria": "Materiales y Útiles de Dibujo",
     "correctos": [
-      "Lápiz",
+      "Lápiz de grafito",
       "Carboncillo",
-      "Tinta",
+      "Tinta china",
       "Acuarela",
-      "Cera"
+      "Cera",
+      "Pastel",
+      "Rotulador",
+      "Gouache",
+      "Tempera",
+      "Óleo",
+      "Acrílico",
+      "Sanguina",
+      "Plumilla",
+      "Pincel"
     ],
     "intrusos": [
       "Martillo",
       "Clavo",
       "Sierra",
       "Destornillador",
-      "Llave"
+      "Llave",
+      "Cinta métrica",
+      "Taladro"
     ]
   },
   {
-    "categoria": "Geometría Plana",
+    "categoria": "Geometría Métrica Plana",
     "correctos": [
       "Polígonos",
       "Circunferencia",
       "Triángulos",
       "Cuadriláteros",
-      "Tangencias"
+      "Tangencias",
+      "Paralelismo",
+      "Perpendicularidad",
+      "Ángulos",
+      "Bisectriz",
+      "Mediatriz",
+      "Semejanza",
+      "Poligonales",
+      "Mallas geométricas",
+      "Teselaciones"
     ],
     "intrusos": [
       "Cubo",
       "Esfera",
       "Prisma",
       "Cilindro",
-      "Cono"
+      "Cono",
+      "Pirámide",
+      "Poliedro"
     ]
   }
 ]

@@ -1,9 +1,9 @@
 [
   {
-    "categoria": "Edad Contemporánea y Revolución Industrial (Visual)",
+    "categoria": "Edad Contemporánea (Visual)",
     "correctos": [
       "🏭",
-      "🚂",
+      "火车 (Tren Train)",
       "✈️",
       "🚀",
       "💻",
@@ -11,7 +11,13 @@
       "🎥",
       "☎️",
       "📡",
-      "🛰️"
+      "🛰️",
+      "📱",
+      "🖱️",
+      "🚁",
+      "🚇",
+      "🎬",
+      "🕹️"
     ],
     "intrusos": [
       "🏰",
@@ -20,14 +26,11 @@
       "🏺",
       "🐎",
       "🛖",
-      "🛖",
-      "⚔️",
-      "🏹",
-      "🪶"
+      "🏹"
     ]
   },
   {
-    "categoria": "Símbolos de la Unión Europea y el Euro (Visual)",
+    "categoria": "Unión Europea y Euro (Visual)",
     "correctos": [
       "🇪🇺",
       "💶",
@@ -36,26 +39,28 @@
       "🚄",
       "🗳️",
       "🚩",
-      "🗺️ (Europa)",
+      "🗺️",
       "🏛️",
-      "🇪🇺"
+      "🇪🇸",
+      "🇫🇷",
+      "🇩🇪",
+      "🇮🇹",
+      "🇵🇹",
+      "🇦🇹",
+      "🇳🇱"
     ],
     "intrusos": [
       "🏯",
       "⛩️",
       "🕌",
-      "🕋",
       "🗿",
-      "🏮",
-      "🉐",
       "🇺🇸",
       "🗽",
-      "🤠",
       "🌮"
     ]
   },
   {
-    "categoria": "Democracia, Derechos y Justicia (Visual)",
+    "categoria": "Derechos y Justicia (Visual)",
     "correctos": [
       "🗳️",
       "⚖️",
@@ -66,23 +71,26 @@
       "🕊️",
       "🌍",
       "🤲",
-      "🖇️"
+      "🖇️",
+      "📝",
+      "✍️",
+      "📖",
+      "🔑",
+      "🕊️",
+      "🤍"
     ],
     "intrusos": [
       "👑",
       "🤴",
-      "👸",
       "🔫",
       "👮",
       "💣",
       "🔥",
-      "🔪",
-      "⛓️",
       "⛓️"
     ]
   },
   {
-    "categoria": "Impacto Ambiental y Cambio Climático (Visual)",
+    "categoria": "Impacto Ambiental (Visual)",
     "correctos": [
       "🏭",
       "🔥",
@@ -92,7 +100,14 @@
       "🌫️",
       "🚱",
       "🥀",
-      "🌊 (Inundación)"
+      "🌊",
+      "🏚️",
+      "🗑️",
+      "🛢️",
+      "🚬",
+      "💣",
+      "☢️",
+      "☣️"
     ],
     "intrusos": [
       "♻️",
@@ -100,80 +115,94 @@
       "🌱",
       "🔋",
       "🌬️",
-      "☀️ (Limpia)",
-      "🐋",
-      "🌲",
-      "🐼",
-      "🌍 (Verde)"
+      "☀️",
+      "🌲"
     ]
   },
   {
-    "categoria": "Hitos de la Historia Contemporánea (XIX-XXI)",
+    "categoria": "Historia Contemporánea",
     "correctos": [
-      "Revolución Francesa (1789)",
-      "Constitución de Cádiz (1812)",
-      "Democracia parlamentaria",
-      "Derechos Humanos Universales",
-      "Llegada del hombre a la Luna",
-      "Invención de Internet",
-      "Caída del Muro de Berlín",
-      "Unión Europea"
+      "Revolución Francesa",
+      "Constitución 1812",
+      "Democracia",
+      "Derechos Humanos",
+      "Llegada Luna",
+      "Internet",
+      "Muro de Berlín",
+      "Unión Europea",
+      "Guerra Civil",
+      "Transición",
+      "Revolución Industrial",
+      "Sufragio femenino",
+      "Inventos modernos",
+      "Mundialización"
     ],
     "intrusos": [
-      "Descubrimiento de América (1492)",
-      "Invasión de los bárbaros",
-      "Imperio Romano de Occidente",
-      "Construcción de Pirámides",
-      "Reinado de los Reyes Católicos",
-      "Guerra de Troya"
+      "Descubrimiento 1492",
+      "Imperio Romano",
+      "Pirámides",
+      "Edad Media",
+      "Grecia",
+      "Troya"
     ]
   },
   {
-    "categoria": "Instituciones y Conceptos de la Unión Europea",
+    "categoria": "Instituciones de la UE",
     "correctos": [
-      "Moneda Euro",
-      "Bruselas (Sede)",
+      "Euro",
+      "Bruselas",
       "Parlamento Europeo",
-      "Tratado de la Unión",
-      "Espacio Schengen (Sin fronteras)",
+      "Tratado Unión",
+      "Schengen",
       "Comisión Europea",
-      "Banco Central Europeo",
-      "Estrasburgo"
+      "Banco Central",
+      "Estrasburgo",
+      "Luxemburgo",
+      "Consejo Europeo",
+      "Defensor del Pueblo",
+      "Tribunal Cuentas",
+      "Fondos FEDER",
+      "Erasmus"
     ],
     "intrusos": [
-      "Moneda Dólar",
-      "Yen japonés",
+      "Dólar",
       "Rey absoluto",
       "Emperador",
-      "Presidente de EE.UU.",
-      "Naciones Unidas (ONU)",
+      "Presidente EE.UU.",
+      "ONU",
       "OTAN"
     ]
   },
   {
-    "categoria": "Actividades de los Tres Sectores Económicos",
+    "categoria": "Sectores Económicos",
     "correctos": [
-      "Agricultura intensiva",
-      "Ganadería bovina",
-      "Industria siderúrgica",
-      "Sector servicios",
-      "Turismo de masas",
-      "Comercio internacional",
-      "Transporte de mercancías",
-      "Pesca de gran altura"
+      "Agricultura",
+      "Ganadería",
+      "Industria",
+      "Servicios",
+      "Turismo",
+      "Comercio",
+      "Transporte",
+      "Pesca",
+      "Construcción",
+      "Minería",
+      "Hostelería",
+      "Comunicación",
+      "Finanzas",
+      "Sanidad"
     ],
     "intrusos": [
-      "Estudiar en el colegio",
-      "Curarse en el hospital",
-      "Jugar a videojuegos",
-      "Hacer deporte",
-      "Ver una película de cine",
-      "Dormir en casa",
-      "Pasear por el parque"
+      "Estudiar",
+      "Curarse",
+      "Jugar",
+      "Dormir",
+      "Pasear",
+      "Cantar",
+      "Bailar"
     ]
   },
   {
-    "categoria": "Grandes Ríos del Continente Europeo",
+    "categoria": "Grandes Ríos de Europa",
     "correctos": [
       "Danubio",
       "Rin",
@@ -184,7 +213,13 @@
       "Vístula",
       "Elba",
       "Po",
-      "Ródano"
+      "Ródano",
+      "Dniéper",
+      "Don",
+      "Loira",
+      "Garona",
+      "Ebro",
+      "Tajo"
     ],
     "intrusos": [
       "Nilo",
@@ -192,36 +227,36 @@
       "Misisipi",
       "Yangtsé",
       "Ganges",
-      "Colorado",
-      "Murray",
-      "Orinoco",
-      "Congo",
-      "Huang He"
+      "Colorado"
     ]
   },
   {
-    "categoria": "Capitales de Estados Miembros de la UE",
+    "categoria": "Capitales de la UE",
     "correctos": [
-      "Madrid (España)",
-      "París (Francia)",
-      "Roma (Italia)",
-      "Berlín (Alemania)",
-      "Varsovia (Polonia)",
-      "Lisboa (Portugal)",
-      "Atenas (Grecia)",
-      "Viena (Austria)",
-      "Bruselas (Bélgica)"
+      "Madrid",
+      "París",
+      "Roma",
+      "Berlín",
+      "Varsovia",
+      "Lisboa",
+      "Atenas",
+      "Viena",
+      "Bruselas",
+      "Copenhague",
+      "Estocolmo",
+      "Dublín",
+      "Praga",
+      "Budapest",
+      "Helsinki",
+      "Ámsterdam"
     ],
     "intrusos": [
       "Nueva York",
       "Tokio",
       "Pekín",
       "Buenos Aires",
-      "El Cairo",
       "Moscú",
-      "Washington D.C.",
-      "Ciudad de México",
-      "Sídney"
+      "Washington"
     ]
   }
 ]

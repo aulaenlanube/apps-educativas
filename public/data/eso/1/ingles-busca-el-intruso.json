@@ -7,68 +7,120 @@
       "🥣",
       "🏫",
       "📚",
-      "🚌"
+      "🚌",
+      "🍳",
+      "🚶",
+      "🚲",
+      "🏃",
+      "🪥",
+      "🧺",
+      "🧹",
+      "📖",
+      "🎧",
+      "💤"
     ],
     "intrusos": [
       "🚀",
       "🌋",
       "🦁",
       "🏰",
-      "🏴‍☠️"
+      "🏴‍☠️",
+      "🛸",
+      "🐲",
+      "🪐"
     ]
   },
   {
-    "categoria": "Food (Visual)",
+    "categoria": "Food and Drink (Visual)",
     "correctos": [
       "🥗",
       "🍝",
       "🍔",
       "🍟",
       "🍕",
-      "🥩"
+      "🥩",
+      "🍎",
+      "🥛",
+      "🍳",
+      "🧀",
+      "🍇",
+      "🧁",
+      "🍍",
+      "🥑",
+      "🥐",
+      "🍩"
     ],
     "intrusos": [
       "⚽",
       "🎮",
       "🎸",
       "🚗",
-      "📱"
+      "📱",
+      "🛹",
+      "🚲",
+      "🎧"
     ]
   },
   {
-    "categoria": "Jobs (Visual)",
+    "categoria": "Jobs and Occupations (Visual)",
     "correctos": [
       "👨‍⚕️",
       "👮",
       "👩‍🏫",
       "👨‍🍳",
       "👨‍🚒",
-      "👩‍🚀"
+      "👩‍🚀",
+      "👨‍🔧",
+      "👩‍🎨",
+      "👨‍🔬",
+      "👨‍✈️",
+      "👩‍💼",
+      "🤵",
+      "🧜",
+      "🕵️",
+      "👷",
+      "👨‍🌾"
     ],
     "intrusos": [
       "🐶",
       "🐱",
       "🏠",
       "🚗",
-      "🌳"
+      "🌳",
+      "🌻",
+      "🛋️",
+      "🛁"
     ]
   },
   {
-    "categoria": "Places (Visual)",
+    "categoria": "Public Places (Visual)",
     "correctos": [
       "🏥",
       "🏫",
       "🏦",
       "🏬",
       "🏟️",
-      "🏰"
+      "🏰",
+      "🏛️",
+      "🏤",
+      "🏨",
+      "🕌",
+      "⛩️",
+      "🌅",
+      "🌆",
+      "🏙️",
+      "⛲",
+      "🛤️"
     ],
     "intrusos": [
       "🍎",
       "🐶",
       "🚙",
       "👟",
-      "👕"
+      "👕",
+      "🥪",
+      "🍦",
+      "👓"
     ]
   },
   {
@@ -79,14 +131,24 @@
       "To do",
       "To make",
       "To go",
-      "To play"
+      "To play",
+      "To eat",
+      "To drink",
+      "To read",
+      "To write",
+      "To listen",
+      "To watch",
+      "To study",
+      "To sleep"
     ],
     "intrusos": [
       "Am",
       "Is",
       "Are",
       "Was",
-      "Were"
+      "Were",
+      "Been",
+      "Being"
     ]
   },
   {
@@ -96,32 +158,53 @@
       "Usually",
       "Often",
       "Sometimes",
-      "Never"
+      "Never",
+      "Rarely",
+      "Hardly ever",
+      "Seldom",
+      "Frequently",
+      "Occasionally",
+      "Normally",
+      "Regularly",
+      "Daily",
+      "Weekly"
     ],
     "intrusos": [
       "Yesterday",
       "Tomorrow",
       "Now",
-      "Next week",
-      "Last year"
+      "Today",
+      "Soon",
+      "Late",
+      "Early"
     ]
   },
   {
-    "categoria": "Question Words",
+    "categoria": "Wh- Question Words",
     "correctos": [
       "What",
       "Where",
       "When",
       "Who",
       "Why",
-      "How"
+      "How",
+      "Which",
+      "Whose",
+      "How much",
+      "How many",
+      "How long",
+      "How often",
+      "How far",
+      "How old"
     ],
     "intrusos": [
       "Yes",
       "No",
       "Because",
       "And",
-      "But"
+      "But",
+      "So",
+      "Or"
     ]
   },
   {
@@ -132,14 +215,24 @@
       "Sister",
       "Brother",
       "Uncle",
-      "Aunt"
+      "Aunt",
+      "Grandmother",
+      "Grandfather",
+      "Cousin",
+      "Son",
+      "Daughter",
+      "Nephew",
+      "Niece",
+      "Parents"
     ],
     "intrusos": [
       "Teacher",
       "Doctor",
       "Friend",
       "Neighbor",
-      "Driver"
+      "Driver",
+      "Nurse",
+      "Chef"
     ]
   },
   {
@@ -150,14 +243,24 @@
       "History",
       "English",
       "Art",
-      "Music"
+      "Music",
+      "Geography",
+      "Biology",
+      "Physics",
+      "Chemistry",
+      "Physical Education",
+      "Drama",
+      "Technology",
+      "Informatics"
     ],
     "intrusos": [
       "Table",
       "Chair",
       "Pen",
       "Pencil",
-      "Book"
+      "Book",
+      "Ruler",
+      "Bag"
     ]
   }
 ]

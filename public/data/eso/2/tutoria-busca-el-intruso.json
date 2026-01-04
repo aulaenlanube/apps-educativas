@@ -1,123 +1,209 @@
 [
   {
-    "categoria": "Emociones (Visual)",
+    "categoria": "Expresiones y Emociones (Visual)",
     "correctos": [
       "😀",
       "😢",
       "😡",
       "😱",
       "😴",
-      "🤢"
+      "🤢",
+      "🤩",
+      "🥺",
+      "🤔",
+      "🤫",
+      "🤥",
+      "🥵",
+      "🥶",
+      "🤯",
+      "🥳",
+      "😎"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "🏠",
       "🐶",
-      "✏️"
+      "✏️",
+      "🎒",
+      "🔋",
+      "🔌"
     ]
   },
   {
-    "categoria": "Convivencia (Visual)",
+    "categoria": "Relaciones y Convivencia (Visual)",
     "correctos": [
       "🤝",
       "👂",
       "🗣️",
       "🫂",
       "👐",
-      "🙋"
+      "🙋",
+      "👋",
+      "🤲",
+      "🫂",
+      "🫶",
+      "✨",
+      "🕊️",
+      "🌍",
+      "🤝",
+      "🤝",
+      "🫂"
     ],
     "intrusos": [
       "🥊",
       "🖕",
       "😤",
       "🤬",
-      "💣"
+      "💣",
+      "🔫",
+      "🔥",
+      "🔪"
     ]
   },
   {
-    "categoria": "Habilidades Sociales",
+    "categoria": "Habilidades Sociales y Personales",
     "correctos": [
       "Empatía",
       "Asertividad",
       "Escucha activa",
-      "Respeto",
-      "Tolerancia"
+      "Respeto mutuo",
+      "Tolerancia",
+      "Solidaridad",
+      "Cooperación",
+      "Resiliencia",
+      "Autogestión",
+      "Liderazgo positivo",
+      "Sincericidialidad (con tacto)",
+      "Pensamiento crítico",
+      "Diálogo",
+      "Negociación"
     ],
     "intrusos": [
       "Egoísmo",
       "Agresividad",
       "Pasividad",
       "Prejuicio",
-      "Odio"
+      "Odio",
+      "Crueldad",
+      "Envidia",
+      "Soberbia"
     ]
   },
   {
-    "categoria": "Técnicas de Estudio",
+    "categoria": "Técnicas de Trabajo Intelectual",
     "correctos": [
       "Subrayado",
       "Esquema",
       "Resumen",
       "Mapa mental",
-      "Repaso"
+      "Repaso activo",
+      "Planificación temporal",
+      "Autoevaluación",
+      "Lectura comprensiva",
+      "Toma de apuntes",
+      "Búsqueda información",
+      "Memoria lógica",
+      "Concentración",
+      "Lugar de estudio",
+      "Objetivos SMART"
     ],
     "intrusos": [
       "Copiar",
-      "Memorizar",
+      "Memorizar sin entender",
       "Distraerse",
       "Hablar",
-      "Jugar"
+      "Jugar",
+      "Procrastinar",
+      "Posponer",
+      "Atolondramiento"
     ]
   },
   {
-    "categoria": "Valores",
+    "categoria": "Valores Ciudadanos y Éticos",
     "correctos": [
       "Solidaridad",
-      "Justicia",
+      "Justicia social",
       "Libertad",
-      "Igualdad",
-      "Responsabilidad"
+      "Igualdad de género",
+      "Responsabilidad",
+      "Derechos Humanos",
+      "Democracia",
+      "Paz",
+      "Diversidad",
+      "Sustentabilidad",
+      "Honestidad",
+      "Gratitud",
+      "Generosidad",
+      "Compromiso"
     ],
     "intrusos": [
       "Violencia",
       "Discriminación",
       "Mentira",
       "Traición",
-      "Envidia"
+      "Envidia",
+      "Codicia",
+      "Indiferencia",
+      "Racismo"
     ]
   },
   {
-    "categoria": "Resolución de Conflictos",
+    "categoria": "Gestión Positiva de Conflictos",
     "correctos": [
-      "Diálogo",
+      "Diálogo constructivo",
       "Negociación",
-      "Mediación",
-      "Acuerdo",
-      "Compromiso"
+      "Mediación escolar",
+      "Acuerdo de mínimos",
+      "Compromiso de cambio",
+      "Escucha profunda",
+      "Pedir perdón",
+      "Ceder razonablemente",
+      "Neutralidad",
+      "Imparcialidad",
+      "Sinceridad",
+      "Franqueza",
+      "Soluciones creativas",
+      "Calma"
     ],
     "intrusos": [
-      "Pelea",
+      "Pelea física",
       "Grito",
       "Insulto",
       "Amenaza",
-      "Venganza"
+      "Venganza",
+      "Rencor",
+      "Cizaña",
+      "Burlas"
     ]
   },
   {
-    "categoria": "Emociones",
+    "categoria": "Inteligencia Emocional y Estados",
     "correctos": [
       "Alegría",
       "Tristeza",
       "Miedo",
-      "Ira",
-      "Sorpresa"
+      "Ira o Enfado",
+      "Sorpresa",
+      "Asco o Disgusto",
+      "Culpa",
+      "Vergüenza",
+      "Envidia (reconocida)",
+      "Orgullo positivo",
+      "Alivio",
+      "Satisfacción",
+      "Nerviosismo",
+      "Calma"
     ],
     "intrusos": [
-      "Hambre",
-      "Sed",
-      "Sueño",
-      "Frío",
-      "Calor"
+      "Hambre física",
+      "Sed de agua",
+      "Sueño profundo",
+      "Frío corporal",
+      "Calor ambiental",
+      "Dolor físico",
+      "Cansancio",
+      "Mareo"
     ]
   }
 ]

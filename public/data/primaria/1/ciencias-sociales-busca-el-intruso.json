@@ -7,7 +7,15 @@
       "👴",
       "👵",
       "👶",
-      "🧒"
+      "🧒",
+      "👦",
+      "👧",
+      "🧔",
+      "👵",
+      "👴",
+      "👨‍🦰",
+      "👩‍🦱",
+      "👨‍🦳"
     ],
     "intrusos": [
       "🦁",
@@ -26,7 +34,15 @@
       "🚂",
       "✈️",
       "🚢",
-      "🚲"
+      "🚲",
+      "🛵",
+      "🚁",
+      "🚀",
+      "🛶",
+      "🚠",
+      "🚜",
+      "🚑",
+      "🚒"
     ],
     "intrusos": [
       "🍔",
@@ -45,7 +61,15 @@
       "📚",
       "✏️",
       "👩‍🏫",
-      "🎨"
+      "🎨",
+      "📏",
+      "✂️",
+      "📓",
+      "💻",
+      "🔬",
+      "🖊️",
+      "🎓",
+      "🖇️"
     ],
     "intrusos": [
       "🛀",
@@ -64,7 +88,15 @@
       "👮‍♂️",
       "👨‍🚒",
       "👩‍🍳",
-      "👨‍🌾"
+      "👨‍🌾",
+      "👩‍🚀",
+      "👨‍🎨",
+      "👩‍🔬",
+      "👨‍🔧",
+      "👩‍⚖️",
+      "👨‍💻",
+      "👩‍✈️",
+      "👨‍🎤"
     ],
     "intrusos": [
       "🦖",
@@ -83,7 +115,15 @@
       "Abuelo",
       "Abuela",
       "Primo",
-      "Tío"
+      "Tío",
+      "Tía",
+      "Hermano",
+      "Hermana",
+      "Sobrino",
+      "Sobrina",
+      "Hijo",
+      "Hija",
+      "Yaya"
     ],
     "intrusos": [
       "Mesa",
@@ -101,14 +141,24 @@
       "Baño",
       "Salón",
       "Dormitorio",
-      "Jardín"
+      "Jardín",
+      "Pasillo",
+      "Terraza",
+      "Garaje",
+      "Despensa",
+      "Comedor",
+      "Aseo",
+      "Buhardilla",
+      "Sótano",
+      "Entrada"
     ],
     "intrusos": [
       "Colegio",
       "Parque",
       "Playa",
       "Calle",
-      "Cine"
+      "Cine",
+      "Tienda"
     ]
   },
   {
@@ -118,14 +168,24 @@
       "Farola",
       "Banco",
       "Paso de cebra",
-      "Parque"
+      "Parque",
+      "Fuente",
+      "Papelera",
+      "Acera",
+      "Estatua",
+      "Kiosco",
+      "Parada",
+      "Edificio",
+      "Tienda",
+      "Museo"
     ],
     "intrusos": [
       "Vaca",
       "Cerdo",
       "Oveja",
       "Tractor",
-      "Granja"
+      "Granja",
+      "Pajar"
     ]
   },
   {
@@ -135,14 +195,24 @@
       "Carta",
       "Radio",
       "Televisión",
-      "Periódico"
+      "Periódico",
+      "Móvil",
+      "Email",
+      "Revista",
+      "Internet",
+      "Fax",
+      "Tableta",
+      "Ordenador",
+      "Libro",
+      "Cómic"
     ],
     "intrusos": [
       "Zapato",
       "Cuchara",
       "Pelota",
       "Peine",
-      "Silla"
+      "Silla",
+      "Vaso"
     ]
   }
 ]

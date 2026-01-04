@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Medios de Transporte de Pasajeros y Mercancías",
+    "categoria": "Transportes (Visual)",
     "correctos": [
       "🚗",
       "🚌",
@@ -11,9 +11,15 @@
       "🚁",
       "🚜",
       "🛵",
-      "🛹",
+      "🚲",
       "🚠",
-      "🛶"
+      "🛶",
+      "🛳️",
+      "🛰️",
+      "🚀",
+      "🚒",
+      "🚑",
+      "🚓"
     ],
     "intrusos": [
       "🏠",
@@ -23,84 +29,101 @@
       "🍔",
       "📱",
       "💻",
-      "⌚",
-      "🛌",
-      "🛁"
+      "⌚"
     ]
   },
   {
-    "categoria": "Símbolos de las Etapas de la Historia (Visual)",
+    "categoria": "Símbolos Históricos (Visual)",
     "correctos": [
-      "🏺 (Antigua)",
-      "🏰 (Media)",
-      "🏭 (Contemporánea)",
-      "📜 (Moderna)",
-      "🛖 (Prehistoria)",
-      "⚔️ (Media)",
-      "🏛️ (Antigua)",
-      "🚀 (Contemporánea)"
+      "🏺",
+      "🏰",
+      "🏭",
+      "📜",
+      "🛖",
+      "⚔️",
+      "🏛️",
+      "🚀",
+      "👑",
+      "🛡️",
+      "🗺️",
+      "🕯️",
+      "🖋️",
+      "🧭",
+      "🗿",
+      "🏹"
     ],
     "intrusos": [
       "🎮",
       "🍟",
       "🎧",
       "🦄",
-      "🧟",
       "🥤",
       "🛝",
       "🛹"
     ]
   },
   {
-    "categoria": "Actividades del Sector Primario (Visual)",
+    "categoria": "Sector Primario (Visual)",
     "correctos": [
-      "🚜 (Agricultura)",
-      "🎣 (Pesca)",
-      "⛏️ (Minería)",
-      "🌾 (Trigo)",
-      "🐄 (Ganadería)",
-      "🐑 (Lana)",
-      "🍎 (Cosecha)",
-      "⛴️ (Pesca)"
+      "🚜",
+      "🎣",
+      "⛏️",
+      "🌾",
+      "🐄",
+      "🐑",
+      "🍎",
+      "⛴️",
+      "🌽",
+      "🧺",
+      "🔨",
+      "🪓",
+      "🍇",
+      "🥕",
+      "🍗",
+      "🍯"
     ],
     "intrusos": [
-      "🏭 (Fábrica)",
-      "💻 (Software)",
-      "👨‍🏫 (Colegio)",
-      "🏥 (Hospital)",
-      "🏬 (Tienda)",
-      "🎮 (Ocio)",
-      "🏗️ (Construcción)"
+      "🏭",
+      "💻",
+      "👨‍🏫",
+      "🏥",
+      "🏬",
+      "🎮",
+      "🏗️"
     ]
   },
   {
-    "categoria": "Banderas de Países de la Unión Europea",
+    "categoria": "Banderas de la UE (Visual)",
     "correctos": [
       "🇪🇸",
       "🇫🇷",
       "🇵🇹",
       "🇮🇹",
       "🇩🇪",
-      "🇬🇧",
-      "🇦́t",
       "🇧🇪",
       "🇳🇱",
-      "🇸🇪"
+      "🇸🇪",
+      "🇬🇷",
+      "🇦🇹",
+      "🇮🇪",
+      "🇩🇰",
+      "🇫🇮",
+      "🇵🇱",
+      "🇭🇺",
+      "🇷🇴"
     ],
     "intrusos": [
-      "⚽",
-      "🏀",
       "🏁",
       "🚩",
       "🏴‍☠️",
       "🏳️‍🌈",
-      "🏳️‍⚧️",
       "🇺🇳",
-      "🚩"
+      "⚽",
+      "🏀"
     ]
   },
   {
-    "categoria": "Profesiones y Trabajos del Sector Primario",
+    "categoria": "Trabajos del Sector Primario",
     "correctos": [
       "Agricultura",
       "Ganadería",
@@ -109,21 +132,25 @@
       "Silvicultura",
       "Apicultura",
       "Acuicultura",
-      "Explotación forestal"
+      "Explotación forestal",
+      "Pastoreo",
+      "Cultivo",
+      "Tala",
+      "Extracción",
+      "Caza",
+      "Recolección"
     ],
     "intrusos": [
-      "Industria automovilística",
-      "Comercio minorista",
-      "Turismo rural",
-      "Transporte marítimo",
-      "Sanidad pública",
+      "Industria",
+      "Comercio",
+      "Turismo",
+      "Sanidad",
       "Banca",
-      "Periodismo",
       "Moda"
     ]
   },
   {
-    "categoria": "Actividades del Sector Terciario (Servicios)",
+    "categoria": "Trabajos del Sector Terciario",
     "correctos": [
       "Comercio",
       "Turismo",
@@ -134,20 +161,23 @@
       "Finanzas",
       "Justicia",
       "Cultura",
-      "Comunicaciones"
+      "Comunicaciones",
+      "Ocio",
+      "Hostelería",
+      "Limpieza",
+      "Administración"
     ],
     "intrusos": [
       "Agricultura",
-      "Fábrica de coches",
-      "Pesca deportiva",
-      "Construcción de casas",
-      "Artesanía de barro",
-      "Siderurgia",
-      "Minería de carbón"
+      "Ganadería",
+      "Pesca",
+      "Minería",
+      "Fábrica",
+      "Siderurgia"
     ]
   },
   {
-    "categoria": "Principales Ríos de la Península Ibérica",
+    "categoria": "Principales Ríos de España",
     "correctos": [
       "Ebro",
       "Tajo",
@@ -157,7 +187,12 @@
       "Júcar",
       "Segura",
       "Miño",
-      "Turia"
+      "Turia",
+      "Llobregat",
+      "Nervión",
+      "Odiel",
+      "Ter",
+      "Mundo"
     ],
     "intrusos": [
       "Amazonas",
@@ -166,14 +201,11 @@
       "Danubio",
       "Sena",
       "Támesis",
-      "Rhin",
-      "Volga",
-      "Ganges",
-      "Yangtsé"
+      "Volga"
     ]
   },
   {
-    "categoria": "Grandes Unidades del Relieve de España",
+    "categoria": "Relieve de España",
     "correctos": [
       "Pirineos",
       "Sistema Central",
@@ -181,40 +213,48 @@
       "Sistema Ibérico",
       "Sistemas Béticos",
       "Sierra Morena",
-      "Mesa Central",
+      "Meseta Central",
       "Depresión del Ebro",
-      "Depresión del Guadalquivir"
+      "Depresión del Guadalquivir",
+      "Macizo Galaico",
+      "Sierra de Gredos",
+      "Teide",
+      "Sierra Nevada",
+      "Picos de Europa"
     ],
     "intrusos": [
       "Alpes",
       "Himalaya",
       "Andes",
       "Rocosas",
-      "Aconcagua",
       "Everest",
-      "Mont Blanc",
-      "Kilimanjaro",
       "Kilimanjaro"
     ]
   },
   {
-    "categoria": "Etapas de la Historia de la Humanidad",
+    "categoria": "Etapas de la Historia",
     "correctos": [
       "Prehistoria",
       "Edad Antigua",
       "Edad Media",
       "Edad Moderna",
-      "Edad Contemporánea"
+      "Edad Contemporánea",
+      "Paleolítico",
+      "Neolítico",
+      "Edad de los Metales",
+      "Renacimiento",
+      "Ilustración",
+      "Revolución Industrial",
+      "Siglo de Oro"
     ],
     "intrusos": [
       "Edad de Hielo",
       "Era Jurásica",
-      "Futuro lejano",
+      "Futuro",
       "Año pasado",
-      "Ayer por la tarde",
-      "Mañana temprano",
-      "Semana que viene",
-      "Mes de mayo"
+      "Ayer",
+      "Mañana",
+      "Semana"
     ]
   }
 ]

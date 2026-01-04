@@ -1,122 +1,200 @@
 [
   {
-    "categoria": "Dinero (Visual)",
+    "categoria": "Dinero y Transacciones (Visual)",
     "correctos": [
       "💶",
       "💵",
       "💷",
       "💴",
       "💳",
-      "🏧"
+      "🏧",
+      "💰",
+      "🪙",
+      "💹",
+      "🏦",
+      "💸",
+      "🧾",
+      "📓",
+      "💼",
+      "🏢",
+      "🪙"
     ],
     "intrusos": [
       "🎫",
       "🎟️",
       "🏷️",
       "🔖",
-      "📜"
+      "📜",
+      "📂",
+      "🖊️",
+      "📝"
     ]
   },
   {
-    "categoria": "Mercado (Visual)",
+    "categoria": "Mercados y Comercio (Visual)",
     "correctos": [
       "📉",
       "📈",
       "📊",
       "🛒",
       "🛍️",
-      "🏭"
+      "🏭",
+      "🚢",
+      "✈️",
+      "🚛",
+      "📦",
+      "🏢",
+      "🏪",
+      "🏬",
+      "💼",
+      "🤝",
+      "💻"
     ],
     "intrusos": [
       "🏖️",
       "🏞️",
       "🏕️",
       "🏟️",
-      "🎪"
+      "🎪",
+      "🎠",
+      "🎡",
+      "🎢"
     ]
   },
   {
-    "categoria": "Conceptos Básicos",
+    "categoria": "Conceptos Fundamentales de Economía",
     "correctos": [
-      "Escasez",
+      "Escasez de recursos",
       "Coste de oportunidad",
-      "Oferta",
-      "Demanda",
-      "Precio"
-    ],
-    "intrusos": [
-      "Abundancia",
-      "Gratuidad",
-      "Infinito",
-      "Ilimitado",
-      "Eterno"
-    ]
-  },
-  {
-    "categoria": "Sectores Económicos",
-    "correctos": [
-      "Primario",
-      "Secundario",
-      "Terciario",
-      "Cuaternario"
-    ],
-    "intrusos": [
-      "Primero",
-      "Segundo",
-      "Tercero",
-      "Cuarto",
-      "Quinto"
-    ]
-  },
-  {
-    "categoria": "Macroeconomía",
-    "correctos": [
-      "PIB",
-      "IPC",
-      "Inflación",
-      "Desempleo",
-      "Déficit"
-    ],
-    "intrusos": [
-      "Factura",
-      "Ticket",
-      "Recibo",
-      "Nómina",
-      "Presupuesto"
-    ]
-  },
-  {
-    "categoria": "Tipos de Empresa",
-    "correctos": [
-      "S.A.",
-      "S.L.",
-      "Cooperativa",
-      "Autónomo",
-      "Pyme"
-    ],
-    "intrusos": [
-      "ONG",
-      "Fundación",
-      "Club",
-      "Asociación",
-      "Partido"
-    ]
-  },
-  {
-    "categoria": "Sistema Financiero",
-    "correctos": [
-      "Banco",
-      "Bolsa",
-      "Crédito",
+      "Ley de oferta",
+      "Ley de demanda",
+      "Precio de equilibrio",
+      "Agentes económicos",
+      "Factor de producción",
+      "Renta",
+      "Salario",
       "Interés",
-      "Ahorro"
+      "Beneficio",
+      "Eficiencia",
+      "Frontera de posibilidades",
+      "Consumo responsable"
+    ],
+    "intrusos": [
+      "Abundancia ilimitada",
+      "Gratuidad total",
+      "Recursos infinitos",
+      "Tiempo eterno",
+      "Espacio vacío",
+      "Materia oscura"
+    ]
+  },
+  {
+    "categoria": "Sectores y Estructura Económica",
+    "correctos": [
+      "Sector Primario",
+      "Sector Secundario",
+      "Sector Terciario",
+      "Sector Cuaternario",
+      "Agricultura",
+      "Ganadería",
+      "Minería",
+      "Industria manufacturera",
+      "Construcción",
+      "Servicios financieros",
+      "Turismo",
+      "Educación",
+      "Sanidad",
+      "Investigación y desarrollo (I+D)"
+    ],
+    "intrusos": [
+      "Primer grado",
+      "Segundo lugar",
+      "Puesto tercero",
+      "Nivel cuarto",
+      "Fase quinta",
+      "Etapa sexta"
+    ]
+  },
+  {
+    "categoria": "Indicadores Macroeconómicos",
+    "correctos": [
+      "Producto Interior Bruto (PIB)",
+      "IPC (Índice precios)",
+      "Inflación",
+      "Tasa de desempleo",
+      "Déficit público",
+      "Deuda pública",
+      "Crecimiento económico",
+      "Ciclo económico",
+      "Exportación",
+      "Importación",
+      "Balanza de pagos",
+      "Política monetaria",
+      "Política fiscal",
+      "Presupuestos Generales"
+    ],
+    "intrusos": [
+      "Factura detallada",
+      "Ticket de compra",
+      "Recibo de luz",
+      "Nómina mensual",
+      "Presupuesto familiar",
+      "Lista de la compra"
+    ]
+  },
+  {
+    "categoria": "Empresa y Formas Jurídicas",
+    "correctos": [
+      "Sociedad Anónima (S.A.)",
+      "Sociedad Limitada (S.L.)",
+      "Sociedad Cooperativa",
+      "Empresario Individual / Autónomo",
+      "Pyme",
+      "Capital social",
+      "Acción",
+      "Participación",
+      "Organigrama",
+      "Recursos Humanos",
+      "Responsabilidad Social",
+      "Balance de situación",
+      "Cuenta de resultados",
+      "Cifra de negocios"
+    ],
+    "intrusos": [
+      "ONG sin fines",
+      "Fundación cultural",
+      "Club deportivo",
+      "Asociación vecinos",
+      "Partido político",
+      "Sindicato obrero"
+    ]
+  },
+  {
+    "categoria": "Sistema y Productos Financieros",
+    "correctos": [
+      "Banco comercial",
+      "Bolsa de valores",
+      "Crédito bancario",
+      "Tipo de interés",
+      "Ahorro",
+      "Inversión",
+      "Préstamo hipotecario",
+      "Acción bursátil",
+      "Obligación / Bono",
+      "Fondo de inversión",
+      "Tarjeta de débito",
+      "Cuenta corriente",
+      "Euríbor",
+      "Riesgo financiero"
     ],
     "intrusos": [
       "Supermercado",
-      "Tienda",
-      "Fábrica",
-      "Granja",
-      "Mina"
+      "Tienda de ropa",
+      "Fábrica textil",
+      "Granja avícola",
+      "Mina de carbón",
+      "Cantera",
+      "Aserradero"
     ]
   }
 ]

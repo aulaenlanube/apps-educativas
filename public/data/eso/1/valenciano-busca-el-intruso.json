@@ -7,14 +7,27 @@
       "🎒",
       "🏫",
       "📏",
-      "🖍️"
+      "🖍️",
+      "📓",
+      "🖇️",
+      "🖋️",
+      "🔍",
+      "📐",
+      "✒️",
+      "🎨",
+      "💻",
+      "🪑",
+      "🧑‍🏫"
     ],
     "intrusos": [
       "🛌",
       "🛁",
       "🍳",
       "📺",
-      "🎮"
+      "🎮",
+      "🛋️",
+      "🚿",
+      "🍳"
     ]
   },
   {
@@ -25,32 +38,58 @@
       "🥖",
       "🧀",
       "🐟",
-      "🍇"
+      "🍇",
+      "🥘",
+      "🥚",
+      "🍤",
+      "🥗",
+      "🥩",
+      "🍗",
+      "🥛",
+      "🥣",
+      "🥨",
+      "🥞"
     ],
     "intrusos": [
       "🍽️",
       "🔪",
       "🧂",
       "🍷",
-      "🥤"
+      "🥤",
+      "🥣",
+      "🥢",
+      "🍴"
     ]
   },
   {
-    "categoria": "Natura (Visual)",
+    "categoria": "Natura i Paisatge (Visual)",
     "correctos": [
       "⛰️",
       "🏖️",
       "🌲",
       "🌊",
       "🦅",
-      "🍄"
+      "🍄",
+      "🌳",
+      "🌻",
+      "🌿",
+      "🦋",
+      "🌈",
+      "🌅",
+      "🌋",
+      "🏜️",
+      "🏝️",
+      "🌄"
     ],
     "intrusos": [
       "🏙️",
       "🏭",
       "🛣️",
       "🚇",
-      "🏯"
+      "🏯",
+      "🏗️",
+      "🚄",
+      "🏢"
     ]
   },
   {
@@ -60,31 +99,58 @@
       "Adjectiu",
       "Verb",
       "Determinant",
-      "Pronom"
+      "Pronom",
+      "Adverbi",
+      "Preposició",
+      "Conjunció",
+      "Interjecció",
+      "Article",
+      "Numeral",
+      "Indefinit",
+      "Possessiu",
+      "Demostratiu"
     ],
     "intrusos": [
       "Subjecte",
       "Predicat",
       "Síl·laba",
       "Accent",
-      "Diftong"
+      "Diftong",
+      "Hiato",
+      "Tilde"
     ]
   },
   {
-    "categoria": "Els Dies de la Setmana",
+    "categoria": "Els Dies i Mesos de l'Any",
     "correctos": [
       "Dilluns",
       "Dimarts",
       "Dimecres",
       "Dijous",
-      "Divendres"
-    ],
-    "intrusos": [
+      "Divendres",
+      "Dissabte",
+      "Diumenge",
       "Gener",
       "Febrer",
       "Març",
       "Abril",
-      "Estiu"
+      "Maig",
+      "Juny",
+      "Juliol",
+      "Agost",
+      "Septembre",
+      "Octubre",
+      "Novembre",
+      "Desembre"
+    ],
+    "intrusos": [
+      "Estiu",
+      "Hivern",
+      "Primavera",
+      "Tardor",
+      "Pasqua",
+      "Nadal",
+      "Falles"
     ]
   },
   {
@@ -95,50 +161,87 @@
       "Germà",
       "Germana",
       "Avi",
-      "Àvia"
+      "Àvia",
+      "Oncle",
+      "Tanta",
+      "Cosí",
+      "Cosina",
+      "Nebot",
+      "Neboda",
+      "Fill",
+      "Filla",
+      "Besavi",
+      "Besàvia"
     ],
     "intrusos": [
       "Mestre",
       "Metge",
       "Amic",
       "Veí",
-      "Policia"
+      "Policia",
+      "Conductor",
+      "Cuiner"
     ]
   },
   {
-    "categoria": "Animals",
+    "categoria": "Animals i Mascotes",
     "correctos": [
       "Gos",
       "Gat",
       "Cavall",
       "Ocell",
       "Peix",
-      "Lleó"
+      "Lleó",
+      "Elefant",
+      "Girafa",
+      "Tigre",
+      "Gosset",
+      "Gatet",
+      "Conill",
+      "Tortuga",
+      "Lloro",
+      "Dofí",
+      "Tauró"
     ],
     "intrusos": [
       "Taula",
       "Cadira",
       "Llibre",
       "Llapis",
-      "Ordinador"
+      "Ordinador",
+      "Motxilla",
+      "Goma"
     ]
   },
   {
-    "categoria": "Colors",
+    "categoria": "Colors i Tonalitats",
     "correctos": [
       "Roig",
       "Blau",
       "Groc",
       "Verd",
       "Blanc",
-      "Negre"
+      "Negre",
+      "Taronja",
+      "Violeta",
+      "Rosa",
+      "Marró",
+      "Gris",
+      "Beix",
+      "Turquesa",
+      "Daurat",
+      "Argentat",
+      "Lila"
     ],
     "intrusos": [
       "Gran",
       "Petit",
       "Alt",
       "Baix",
-      "Gros"
+      "Gros",
+      "Llarg",
+      "Curt",
+      "Ample"
     ]
   }
 ]

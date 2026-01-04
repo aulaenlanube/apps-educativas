@@ -1,19 +1,23 @@
 [
   {
-    "categoria": "Tecnologia Digital i Comunicació (Visual)",
+    "categoria": "Tecnologia i Digital (Visual)",
     "correctos": [
       "💻",
       "📱",
-      "🖱️",
+      "鼠标 (Ratolí Mouse)",
       "⌨️",
       "🖥️",
       "🔋",
       "🔌",
+      "📸",
       "🎧",
-      "📷",
       "🕹️",
       "📡",
-      "🛰️"
+      "🛰️",
+      "🖱️",
+      "🖨️",
+      "💾",
+      "🌐"
     ],
     "intrusos": [
       "📚",
@@ -22,25 +26,28 @@
       "🕰️",
       "🔨",
       "🛖",
-      "🏹",
-      "🛡️",
-      "⚔️",
-      "🐎",
-      "🧱"
+      "🏹"
     ]
   },
   {
-    "categoria": "Productes i Alimentació Tradicional (Visual)",
+    "categoria": "Alimentació Tradicional (Visual)",
     "correctos": [
-      "🥘 (Paella)",
-      "🍊 (Taronja)",
-      "🥖 (Pa)",
-      "🧀 (Formatge)",
-      "🐟 (Peix)",
-      "🍇 (Raïm)",
-      "🥘 (Fideuà)",
-      "🥚 (Ou)",
-      "🍤 (Gamba)"
+      "🥘",
+      "🍊",
+      "🥖",
+      "🧀",
+      "🐟",
+      "🍇",
+      "🥘",
+      "🥚",
+      "🍤",
+      "🥗",
+      "🥩",
+      "🍗",
+      "🥛",
+      "🥣",
+      "🥨",
+      "🥞"
     ],
     "intrusos": [
       "🍽️",
@@ -49,14 +56,11 @@
       "🍷",
       "🥤",
       "🥣",
-      "🥢",
-      "🍴",
-      "🥄",
-      "🧊"
+      "🥢"
     ]
   },
   {
-    "categoria": "Entorn Natural i Paisatge Escènic (Visual)",
+    "categoria": "Entorn Natural (Visual)",
     "correctos": [
       "🌳",
       "🌊",
@@ -70,24 +74,21 @@
       "🌅",
       "🌋",
       "🏜️",
-      "🏝️"
+      "🏝️",
+      "🌄",
+      "🌤️",
+      "⛈️"
     ],
     "intrusos": [
-      "🏭",
-      "🚗",
-      "🏙️",
-      "🏢",
-      "⛽",
-      "🏪",
-      "🏟️",
-      "🏗️",
-      "🚄",
-      "🚢",
-      "🚜"
+      "Factory (Fàbrica Factory)",
+      "Car (Cotxe Car)",
+      "City (Ciutat City)",
+      "Building (Edifici Building)",
+      "Gas station (Benzi Gas station)"
     ]
   },
   {
-    "categoria": "Paraules Esdrúixoles (Sempre amb accent)",
+    "categoria": "Paraules Esdrúixoles",
     "correctos": [
       "Música",
       "Pàgina",
@@ -100,7 +101,11 @@
       "Història",
       "Càpsula",
       "Dècada",
-      "Bèlgica"
+      "Bèlgica",
+      "Àfrica",
+      "Lògica",
+      "Gràfica",
+      "Públic"
     ],
     "intrusos": [
       "Camisa",
@@ -108,23 +113,25 @@
       "Camió",
       "Paper",
       "Ordinador",
-      "Llanterna",
       "Cadira",
-      "Botella",
-      "Examen",
-      "Difícil",
-      "Àngel"
+      "Botella"
     ]
   },
   {
-    "categoria": "Temps Verbals del Mode Indicatiu",
+    "categoria": "Temps Verbals",
     "correctos": [
       "Present",
       "Pretèrit Imperfet",
       "Pretèrit Perifràstic",
       "Futur",
       "Condicional",
-      "Pretèrit Plusquamperfet"
+      "Pretèrit Plusquamperfet",
+      "Pretèrit Perfecte Composta",
+      "Futur Compost",
+      "Condicional Compost",
+      "Imperfet de Subjuntiu",
+      "Present de Subjuntiu",
+      "Imperatiu"
     ],
     "intrusos": [
       "Subjecte",
@@ -133,13 +140,11 @@
       "Adjectiu",
       "Article",
       "Sustantiu",
-      "Adverbi",
-      "Preposició",
-      "Conjunció"
+      "Adverbi"
     ]
   },
   {
-    "categoria": "Professions i Sectors Laborals",
+    "categoria": "Oficis i Sectors",
     "correctos": [
       "Metge",
       "Mestre",
@@ -151,7 +156,12 @@
       "Arquitecte",
       "Enginyer",
       "Veterinari",
-      "Periodista"
+      "Periodista",
+      "Cuniner",
+      "Llaurador",
+      "Mecànic",
+      "Electricista",
+      "Pintor"
     ],
     "intrusos": [
       "Escola",
@@ -160,15 +170,11 @@
       "Cotxe",
       "Llibre",
       "Mochilla",
-      "Llapis",
-      "Goma",
-      "Aula",
-      "Despatx",
-      "Parc"
+      "Llapis"
     ]
   },
   {
-    "categoria": "Geografia i Relleu del Territori Valencià",
+    "categoria": "Geografia Valenciana",
     "correctos": [
       "Albufera",
       "Riu Túria",
@@ -177,8 +183,13 @@
       "Serra d'Aitana",
       "El Montgó",
       "Riu Segura",
-      "Despoblado de Gallinera",
-      "L'Alcalatén"
+      "L'Alcalatén",
+      "Despoblat de Gallinera",
+      "Serra d'Espadà",
+      "Culla",
+      "Vilafamés",
+      "Peníscola",
+      "Columbretes"
     ],
     "intrusos": [
       "Pirineus",
@@ -187,13 +198,11 @@
       "Riu Amazones",
       "Everest",
       "Himalaia",
-      "Riu Nil",
-      "Alps",
       "Andes"
     ]
   },
   {
-    "categoria": "Pronoms Personals i Determinants",
+    "categoria": "Pronoms i Determinants",
     "correctos": [
       "Jo",
       "Tu",
@@ -201,11 +210,16 @@
       "Ella",
       "Nosaltres",
       "Vosaltres",
+      "Ells",
+      "Elles",
       "Meua",
       "Teua",
       "Seua",
       "Nostra",
-      "Vostra"
+      "Vostra",
+      "Vosté",
+      "Vostés",
+      "Meu"
     ],
     "intrusos": [
       "Molt",
@@ -214,11 +228,7 @@
       "Massa",
       "Sempre",
       "Mai",
-      "Hui",
-      "Ahir",
-      "Demà",
-      "Dins",
-      "Fora"
+      "Hui"
     ]
   }
 ]

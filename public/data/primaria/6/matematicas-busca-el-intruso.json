@@ -1,17 +1,23 @@
 [
   {
-    "categoria": "Gráficas de Datos y Probabilidad (Visual)",
+    "categoria": "Gráficas y Datos (Visual)",
     "correctos": [
       "📊",
       "📉",
       "📈",
-      "🥧 (Sectores)",
+      "🥧",
       "🎲",
       "🎰",
       "📋",
       "📅",
       "🧮",
-      "💻"
+      "💻",
+      "⏲️",
+      "🕰️",
+      "📉",
+      "🔭",
+      "🔬",
+      "📊"
     ],
     "intrusos": [
       "📐",
@@ -20,14 +26,11 @@
       "📝",
       "🧱",
       "🔨",
-      "🔧",
-      "🪛",
-      "🪚",
-      "🗜️"
+      "🔧"
     ]
   },
   {
-    "categoria": "Geometría del Cubo y el Cuadrado (Visual)",
+    "categoria": "Cubo y Cuadrado (Visual)",
     "correctos": [
       "📦",
       "🧊",
@@ -38,7 +41,13 @@
       "⬜",
       "⬛",
       "🧱",
-      "🛖"
+      "🛖",
+      "🏡",
+      "🏛️",
+      "🏢",
+      "🏘️",
+      "🏠",
+      "🚪"
     ],
     "intrusos": [
       "🔴",
@@ -47,16 +56,13 @@
       "🐍",
       "🎈",
       "⭕",
-      "🟡",
-      "🟠",
-      "🟣",
-      "🪀"
+      "🟡"
     ]
   },
   {
-    "categoria": "Escala Térmica y Números Bajo Cero (Visual)",
+    "categoria": "Bajo Cero (Visual)",
     "correctos": [
-      "🌡️ (Frío)",
+      "🌡️",
       "❄️",
       "🧊",
       "🥶",
@@ -64,8 +70,14 @@
       "🐧",
       "🐻‍❄️",
       "🎿",
-      "🏂",
-      "⛸️"
+      " snowboard (Tabla de snowboard Tabla snowboard)",
+      "⛸️",
+      "🧊",
+      "🧤",
+      "🧣",
+      "🧤",
+      "🏔️",
+      "🧥"
     ],
     "intrusos": [
       "🔥",
@@ -74,14 +86,11 @@
       "🌋",
       "🏜️",
       "🌵",
-      "😎",
-      "🦁",
-      "🐘",
-      "🐪"
+      "😎"
     ]
   },
   {
-    "categoria": "Cuerpos Espaciales: Esferas y Pirámides (Visual)",
+    "categoria": "Esferas y Pirámides (Visual)",
     "correctos": [
       "🪐",
       "⚽",
@@ -94,7 +103,11 @@
       "🌕",
       "☀️",
       "🛖",
-      "🔺"
+      "🔺",
+      "🌑",
+      "🌓",
+      "🌗",
+      "🪐"
     ],
     "intrusos": [
       "🗺️",
@@ -103,101 +116,121 @@
       "🖼️",
       "📏",
       "📖",
-      "📜",
-      "💳",
-      "📱",
-      "💻"
+      "📜"
     ]
   },
   {
-    "categoria": "Elementos de las Potencias",
+    "categoria": "Potencias y Raíces",
     "correctos": [
       "Base",
       "Exponente",
       "Cuadrado",
       "Cubo",
-      "Elevado a n",
-      "Potencia de base diez",
-      "Unidad seguida de ceros"
+      "Elevado",
+      "Raíz cuadrada",
+      "Índice",
+      "Radicando",
+      "Unidad ceros",
+      "Radical",
+      "Multiplicación",
+      "Resultado",
+      "Número",
+      "Factor"
     ],
     "intrusos": [
       "Suma",
       "Resto",
       "Divisor",
       "Cociente",
-      "Multiplicando",
       "Minuendo",
-      "Sustraendo",
-      "Factor común"
+      "Sustraendo"
     ]
   },
   {
-    "categoria": "Ámbito de los Números Enteros (Z)",
+    "categoria": "Números Enteros",
     "correctos": [
-      "Número Positivo (+)",
-      "Número Negativo (-)",
-      "Cero originario",
-      "Altitud bajo el mar",
-      "Temperatura bajo cero",
-      "Deuda bancaria",
-      "Sótano de edificio"
+      "Positivo",
+      "Negativo",
+      "Cero",
+      "Bajo el mar",
+      "Bajo cero",
+      "Deuda",
+      "Sótano",
+      "Ascensor",
+      "Termómetro",
+      "Altitud",
+      "Gasto",
+      "Ingreso",
+      "Pérdida",
+      "Ganancia"
     ],
     "intrusos": [
-      "Número Decimal",
+      "Decimal",
       "Centésima",
-      "Diez coma cinco",
-      "Fracción propia",
-      "Un medio",
-      "Mitad justa",
-      "Doble exacto"
+      "Coma",
+      "Fracción",
+      "Medio",
+      "Mitad"
     ]
   },
   {
-    "categoria": "Unidades de Volumen y Capacidad Equivalentes",
+    "categoria": "Volumen y Capacidad",
     "correctos": [
-      "Metro cúbico (m³)",
-      "Litro (L)",
-      "Decímetro cúbico (dm³)",
-      "Centilitro (cl)",
-      "Mililitro (ml)",
-      "Centímetro cúbico (cm³)",
-      "Kilolitro (kl)"
+      "m³",
+      "dm³",
+      "cm³",
+      "mm³",
+      "Litro",
+      "ml",
+      "cl",
+      "dl",
+      "kl",
+      "hl",
+      "dal",
+      "Capacidad",
+      "Volumen",
+      "Espacio"
     ],
     "intrusos": [
-      "Metro cuadrado (m²)",
-      "Hectárea (ha)",
-      "Kilómetro (km)",
-      "Segundo (s)",
-      "Gramo (g)",
-      "Grado Celsius",
-      "Euro (€)",
-      "Voltio"
+      "m²",
+      "Hectárea",
+      "km",
+      "Segundo",
+      "Gramo",
+      "Grado",
+      "Euro"
     ]
   },
   {
-    "categoria": "Parámetros de Centralización Estadística",
+    "categoria": "Estadística",
     "correctos": [
-      "Media aritmética",
-      "Moda (valor frecuente)",
-      "Rango o Amplitud",
-      "Frecuencia absoluta",
+      "Media",
+      "Moda",
+      "Rango",
+      "Frecuencia",
       "Promedio",
       "Mediana",
-      "Muestra de datos"
+      "Muestra",
+      "Población",
+      "Variable",
+      "Encuesta",
+      "Gráfico",
+      "Frecuencia relativa",
+      "Recuento",
+      "Dato"
     ],
     "intrusos": [
       "Vértice",
-      "Arista del cubo",
-      "Radio del círculo",
-      "Diámetro solar",
-      "Área del polígono",
+      "Arista",
+      "Radio",
+      "Diámetro",
+      "Área",
       "Perímetro",
-      "Hipotenusa",
       "Cateto"
     ]
   },
   {
-    "categoria": "Múltiplos de 15 (Regla de divisibilidad 3 y 5)",
+    "categoria": "Múltiplos de 15",
     "correctos": [
       "15",
       "30",
@@ -209,7 +242,10 @@
       "300",
       "450",
       "600",
-      "1500"
+      "1500",
+      "120",
+      "135",
+      "165"
     ],
     "intrusos": [
       "5",
@@ -219,31 +255,31 @@
       "35",
       "40",
       "50",
-      "55",
-      "65",
-      "100",
-      "200"
+      "100"
     ]
   },
   {
-    "categoria": "Equivalencia Porcentajes y Fracciones Reducibles",
+    "categoria": "Porcentajes y Fracciones",
     "correctos": [
       "50% es 1/2",
       "25% es 1/4",
       "75% es 3/4",
       "10% es 1/10",
       "20% es 1/5",
-      "100% es el total",
-      "5% es 1/20"
+      "100% es total",
+      "5% es 1/20",
+      "40% es 2/5",
+      "60% es 3/5",
+      "80% es 4/5",
+      "1% es 1/100",
+      "2% es 1/50"
     ],
     "intrusos": [
       "50% es 1/5",
       "25% es 1/2",
       "10% es 1/2",
       "30% es 1/4",
-      "80% es 1/2",
-      "1% es 1/10",
-      "40% es 1/5"
+      "80% es 1/2"
     ]
   }
 ]

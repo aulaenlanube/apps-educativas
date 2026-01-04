@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Fenómenos Eléctricos y Circuitos (Visual)",
+    "categoria": "Electricidad y Circuitos (Visual)",
     "correctos": [
       "⚡",
       "💡",
@@ -11,7 +11,13 @@
       "💻",
       "📟",
       "🕹️",
-      "📡"
+      "📡",
+      "🖱️",
+      "⌨️",
+      "🔌",
+      "🔦",
+      "🔋",
+      "💡"
     ],
     "intrusos": [
       "🕯️",
@@ -20,14 +26,11 @@
       "💧",
       "🌱",
       "🪵",
-      "🦴",
-      "🐚",
-      "🛖",
-      "🛖"
+      "🐚"
     ]
   },
   {
-    "categoria": "Conceptos de Medicina y Patógenos (Visual)",
+    "categoria": "Medicina y Patógenos (Visual)",
     "correctos": [
       "🦠",
       "💉",
@@ -40,23 +43,24 @@
       "🧫",
       "🩸",
       "🧤",
-      "🔬"
+      "🔬",
+      "🦷",
+      "🧠",
+      "🧬",
+      "⚕️"
     ],
     "intrusos": [
       "⚽",
       "🥊",
       "🎮",
       "🍔",
-      "donut",
+      "🍩",
       "🍫",
-      "🍭",
-      "🍿",
-      "🥤",
-      "🎰"
+      "🍭"
     ]
   },
   {
-    "categoria": "Industria y Tecnología Mecánica (Visual)",
+    "categoria": "Industria y Mecánica (Visual)",
     "correctos": [
       "🦾",
       "🤖",
@@ -67,7 +71,13 @@
       "🏗️",
       "🔨",
       "🗜️",
-      "🛠️"
+      "🛠️",
+      "🪓",
+      "🔩",
+      "⚒️",
+      "📏",
+      "📐",
+      "⛏️"
     ],
     "intrusos": [
       "🌿",
@@ -76,14 +86,11 @@
       "🐚",
       "🪵",
       "🌸",
-      "🦋",
-      "🌈",
-      "🌅",
-      "🦜"
+      "🦋"
     ]
   },
   {
-    "categoria": "Sistema Nervioso y Órganos sensoriales (Visual)",
+    "categoria": "Sistema Nervioso (Visual)",
     "correctos": [
       "🧠",
       "👀",
@@ -94,14 +101,17 @@
       "👃",
       "🧠",
       "🧬",
-      "👁️‍🗨️"
+      "👁️‍🗨️",
+      "👄",
+      "🧖",
+      "💆",
+      "🦷",
+      "👀",
+      "👁️"
     ],
     "intrusos": [
       "🦴",
       "💪",
-      "🦷",
-      "💇",
-      "💅",
       "👞",
       "👕",
       "👒",
@@ -110,107 +120,140 @@
     ]
   },
   {
-    "categoria": "Componentes de la Corriente Eléctrica",
+    "categoria": "Componentes Eléctricos",
     "correctos": [
-      "Material Conductor (Cobre)",
-      "Material Aislante (Goma)",
+      "Conductor",
+      "Aislante",
       "Circuito en serie",
-      "Interruptor de paso",
-      "Generador o Pila",
-      "Corriente eléctrica",
-      "Motor eléctrico"
+      "Interruptor",
+      "Generador",
+      "Corriente",
+      "Motor",
+      "Resistencia",
+      "Voltaje",
+      "Amperaje",
+      "Cable",
+      "Bombilla",
+      "Fusible",
+      "Enchufe"
     ],
     "intrusos": [
-      "Imán natural",
-      "Brújula magnética",
-      "Fuerza de Gravedad",
-      "Eco sonoro",
-      "Sombra proyectada",
-      "Reflejo en espejo",
+      "Imán",
+      "Brújula",
+      "Gravedad",
+      "Eco",
+      "Sombra",
+      "Reflejo",
       "Inercia"
     ]
   },
   {
-    "categoria": "Magnetismo y Electromagnetismo",
+    "categoria": "Magnetismo",
     "correctos": [
-      "Imán de neodimio",
-      "Polo Norte magnético",
-      "Polo Sur magnético",
-      "Atracción entre polos",
-      "Repulsión entre iguales",
+      "Imán",
+      "Polo Norte",
+      "Polo Sur",
+      "Atracción",
+      "Repulsión",
       "Brújula",
       "Campo magnético",
-      "Electroimán"
+      "Electroimán",
+      "Magnetita",
+      "Hierro",
+      "Cobalto",
+      "Níquel",
+      "Inducción",
+      "Bobina"
     ],
     "intrusos": [
-      "Enchufe de pared",
-      "Bombilla LED",
-      "Madera de pino",
-      "Plástico aislante",
-      "Agua destilada",
-      "Papel de seda",
-      "Vaso de cristal"
+      "Enchufe",
+      "Bombilla",
+      "Madera",
+      "Plástico",
+      "Agua",
+      "Papel",
+      "Cristal"
     ]
   },
   {
-    "categoria": "Funciones y Etapas de la Reproducción Humana",
+    "categoria": "Reproducción Humana",
     "correctos": [
-      "Célula Óvulo",
+      "Óvulo",
       "Espermatozoide",
-      "Fecundación cigoto",
-      "Embarazo fetal",
-      "Parto o Alumbramiento",
+      "Cigoto",
+      "Embarazo",
+      "Parto",
       "Pubertad",
       "Caracteres sexuales",
-      "Placenta"
+      "Placenta",
+      "Feto",
+      "Embrión",
+      "Útero",
+      "Ovarios",
+      "Testículos",
+      "Fecundación"
     ],
     "intrusos": [
-      "Digestión de grasas",
-      "Respiración traqueal",
-      "Latido del corazón",
-      "Memoria a largo plazo",
-      "Filtración renal",
+      "Digestión",
+      "Respiración",
+      "Latido",
+      "Memoria",
+      "Filtración",
       "Excreción",
       "Circulación"
     ]
   },
   {
-    "categoria": "Fuentes de Energía Contaminantes / No Renovables",
+    "categoria": "Energías No Renovables",
     "correctos": [
       "Petróleo",
-      "Carbón mineral",
+      "Carbón",
       "Gas natural",
-      "Energía Nuclear (Uranio)",
+      "Uranio",
       "Plutonio",
-      "Fracking"
+      "Fracking",
+      "Combustible fósil",
+      "Gasolina",
+      "Diésel",
+      "Butano",
+      "Propano",
+      "Asfalto",
+      "Plástico",
+      "Betún"
     ],
     "intrusos": [
-      "Radiación Solar",
-      "Energía Eólica (Viento)",
-      "Energía Hidráulica (Agua)",
-      "Biomasa forestal",
-      "Energía Geotérmica",
-      "Energía Mareomotriz"
+      "Solar",
+      "Eólica",
+      "Hidráulica",
+      "Biomasa",
+      "Geotérmica",
+      "Mareomotriz"
     ]
   },
   {
-    "categoria": "Interacciones en los Ecosistemas (Niveles Tróficos)",
+    "categoria": "Ecosistemas y Niveles",
     "correctos": [
-      "Productor (Plantas)",
-      "Consumidor primario",
-      "Consumidor secundario",
+      "Productor",
+      "Consumidor 1º",
+      "Consumidor 2º",
       "Descomponedor",
       "Depredador",
-      "Relación de simbiosis",
+      "Simbiosis",
       "Comensalismo",
-      "Parasitismo"
+      "Parasitismo",
+      "Cadena alimentaria",
+      "Red trófica",
+      "Hábitat",
+      "Comunidad",
+      "Especie",
+      "Población"
     ],
     "intrusos": [
       "Célula animal",
-      "Tejido óseo",
-      "Órgano corazón",
-      "Aparato digestivo",
-      "Sistema muscular",
+      "Tejido",
+      "Órgano",
+      "Aparato",
+      "Sistema",
       "Átomo",
       "Molécula"
     ]

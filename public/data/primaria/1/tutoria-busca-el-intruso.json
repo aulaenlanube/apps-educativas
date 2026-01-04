@@ -8,14 +8,22 @@
       "🥰",
       "😍",
       "🤩",
-      "🥳"
+      "🥳",
+      "🤡",
+      "😸",
+      "🙌",
+      "🎈",
+      "✨",
+      "🌈",
+      "🍭"
     ],
     "intrusos": [
       "😢",
       "😡",
       "😱",
       "🤢",
-      "👿"
+      "👿",
+      "💀"
     ]
   },
   {
@@ -27,7 +35,14 @@
       "🛀",
       "🧴",
       "🍎",
-      "🥦"
+      "🥦",
+      "🧽",
+      "🧺",
+      "🚰",
+      "🩻",
+      "🩹",
+      "🧤",
+      "🧴"
     ],
     "intrusos": [
       "🍔",
@@ -46,14 +61,23 @@
       "📖",
       "🎨",
       "🧩",
-      "🍪"
+      "🍪",
+      "🏸",
+      "🚲",
+      "🪁",
+      "🎒",
+      "👒",
+      "🧥",
+      "🕶️",
+      "🪀"
     ],
     "intrusos": [
       "🔥",
       "🔌",
       "🔪",
       "💊",
-      "🧪"
+      "🧪",
+      "🧨"
     ]
   },
   {
@@ -64,31 +88,50 @@
       "👋",
       "🤲",
       "❤️",
-      "🗣️"
+      "🗣️",
+      "💌",
+      "💝",
+      "👫",
+      "👭",
+      "👬",
+      "👂",
+      "🌟",
+      "🏩"
     ],
     "intrusos": [
-      "🥊",
+      " boxing_glove",
       "🖕",
       "😤",
       "📢",
-      "💣"
+      "💣",
+      "🖤"
     ]
   },
   {
-    "categoria": "Emociones que Siento",
+    "categoria": "Emociones y Sentimientos",
     "correctos": [
       "Alegría",
       "Miedo",
       "Tristeza",
       "Rabia",
-      "Sorpresa"
+      "Sorpresa",
+      "Calma",
+      "Amor",
+      "Asco",
+      "Ilusión",
+      "Vergüenza",
+      "Orgullo",
+      "Paz",
+      "Felicidad",
+      "Cariño"
     ],
     "intrusos": [
       "Hambre",
       "Sed",
       "Sueño",
       "Dolor",
-      "Frío"
+      "Frío",
+      "Calor"
     ]
   },
   {
@@ -98,14 +141,24 @@
       "Dar las gracias",
       "Pedir por favor",
       "Recoger",
-      "Ayudar"
+      "Ayudar",
+      "Escuchar",
+      "Compartir",
+      "Respetar",
+      "Esperar",
+      "Sonreír",
+      "Cuidar",
+      "Perdonar",
+      "Aprender",
+      "Cooperar"
     ],
     "intrusos": [
       "Gritar",
       "Pegar",
       "Empujar",
       "Insultar",
-      "Escupir"
+      "Escupir",
+      "Mentir"
     ]
   },
   {
@@ -115,14 +168,24 @@
       "Profesora",
       "Mesas",
       "Sillas",
-      "Pizarra"
+      "Pizarra",
+      "Libros",
+      "Lápices",
+      "Gomas",
+      "Colores",
+      "Juguetes",
+      "Ventanas",
+      "Puerta",
+      "Percheros",
+      "Estantería"
     ],
     "intrusos": [
       "Cama",
       "Ducha",
       "Coche",
       "Nevera",
-      "Parque"
+      "Parque",
+      "Piscina"
     ]
   },
   {
@@ -131,14 +194,24 @@
       "Comer fruta",
       "Beber agua",
       "Lavar manos",
-      "Dormir",
-      "Jugar"
+      "Dormir mucho",
+      "Jugar fuera",
+      "Cepillar dientes",
+      "Bañarse",
+      "Hacer deporte",
+      "Leer libros",
+      "Comer verdura",
+      "Pasear",
+      "Reciclar",
+      "Peinarse",
+      "Abrazar"
     ],
     "intrusos": [
       "Comer chuches",
       "Ver mucha tele",
       "No bañarse",
-      "Acostarse tarde"
+      "Acostarse tarde",
+      "Descalzo"
     ]
   }
 ]

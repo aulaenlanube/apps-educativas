@@ -1,122 +1,204 @@
 [
   {
-    "categoria": "Francophonie (Visual)",
+    "categoria": "Symboles de la Francophonie (Visual)",
     "correctos": [
       "🇫🇷",
       "🇧🇪",
       "🇨🇭",
       "🇨🇦",
       "🇸🇳",
-      "🥐"
+      "🥐",
+      "🥨",
+      "🥖",
+      "🧀",
+      "🍷",
+      "🗼",
+      "⛪",
+      "🎨",
+      "🏛️",
+      "🏰",
+      "🇫🇷"
     ],
     "intrusos": [
       "🇪🇸",
       "🇮🇹",
       "🇩🇪",
       "🇬🇧",
-      "🇺🇸"
+      "🇺🇸",
+      "🇯🇵",
+      "🇨🇳",
+      "🇧🇷"
     ]
   },
   {
-    "categoria": "Paris (Visual)",
+    "categoria": "Paris et Île-de-France (Visual)",
     "correctos": [
       "🗼",
       "⛪",
       "🖼️",
       "🚇",
       "🚢",
-      "🥖"
+      "🥖",
+      "🛶",
+      "🏰",
+      "⛲",
+      "🏛️",
+      "👗",
+      "👠",
+      "👒",
+      "🍷",
+      "🧀",
+      "🗼"
     ],
     "intrusos": [
       "🗽",
       "🏯",
       "🕌",
       "🕋",
-      "⛩️"
+      "⛩️",
+      "🎡",
+      "🎢",
+      "🏖️"
     ]
   },
   {
-    "categoria": "Temps du Passé",
+    "categoria": "Temps et Modes de la Langue Française",
     "correctos": [
       "Passé Composé",
-      "Imparfait",
-      "Plus-que-parfait",
-      "Passé Simple"
+      "L'imparfait",
+      "Le plus-que-parfait",
+      "Passé Simple",
+      "Futur Simple",
+      "Futur Proche",
+      "Conditionnel Présent",
+      "Conditionnel passé",
+      "Subjonctif Présent",
+      "L'impératif",
+      "Le participe présent",
+      "Le gérondif",
+      "Infinitif passé",
+      "Voix passive"
     ],
     "intrusos": [
-      "Présent",
-      "Futur",
-      "Conditionnel",
-      "Impératif",
-      "Subjonctif"
+      "Présent continu (anglais)",
+      "Préterit",
+      "Futur continu",
+      "Subjonctif imparfait (inusité)",
+      "Impératif futur",
+      "Gerundio (espagnol)"
     ]
   },
   {
-    "categoria": "Pronoms Relatifs",
+    "categoria": "Connecteurs et Pronoms Relatifs",
     "correctos": [
       "Qui",
       "Que",
       "Où",
       "Dont",
-      "Lequel"
+      "Lequel / Laquelle",
+      "Auquel / Auxquels",
+      "Duquel / Desquels",
+      "Ce qui",
+      "Ce que",
+      "Quiconque",
+      "Quoi",
+      "Quiconque",
+      "Ce dont",
+      "Quoi que ce soit"
     ],
     "intrusos": [
-      "Je",
-      "Tu",
-      "Il",
-      "Mon",
-      "Ton"
+      "Je suis",
+      "Tu vas",
+      "Il fait",
+      "Mon ami",
+      "Ton cahier",
+      "Leur maison",
+      "Notre école"
     ]
   },
   {
-    "categoria": "Mode Subjonctif",
+    "categoria": "Expressions de Condition et de But",
     "correctos": [
-      "Il faut que",
+      "Il faut que + Subj.",
+      "Bien que + Subj.",
+      "Pour que + Subj.",
+      "Avant que + Subj.",
+      "Afin que + Subj.",
+      "À condition que + Subj.",
+      "Si + Imparfait + Conditionnel",
+      "Même si",
+      "Pourvu que",
       "Bien que",
-      "Pour que",
-      "Avant que",
-      "Afin que"
+      "Quoique",
+      "De peur que",
+      "De sorte que",
+      "À moins que"
     ],
     "intrusos": [
-      "Quand",
-      "Si",
+      "Quand j'étais",
+      "Si j'ai",
       "Parce que",
       "Car",
-      "Donc"
+      "Donc",
+      "C'est pourquoi",
+      "Alors"
     ]
   },
   {
-    "categoria": "La Francophonie",
+    "categoria": "Géographie de la Francophonie Mondiale",
     "correctos": [
-      "Québec",
-      "Sénégal",
-      "Belgique",
-      "Suisse",
-      "Maroc"
+      "Le Québec",
+      "Le Sénégal",
+      "La Belgique",
+      "La Suisse Romande",
+      "Le Maroc",
+      "La Tunisie",
+      "L'Algérie",
+      "La Côte d'Ivoire",
+      "Le Mali",
+      "Le Luxembourg",
+      "Monaco",
+      "Haïti",
+      "La Polynésie française",
+      "La Réunion"
     ],
     "intrusos": [
-      "Espagne",
-      "Italie",
-      "Allemagne",
-      "Chine",
-      "Japon"
+      "L'Espagne",
+      "L'Italie",
+      "L'Allemagne",
+      "La Chine",
+      "Le Japon",
+      "L'Angleterre",
+      "Le Brésil",
+      "Le Mexique"
     ]
   },
   {
-    "categoria": "Culture Française",
+    "categoria": "Célébrités et Culture Francophone",
     "correctos": [
       "Molière",
       "Victor Hugo",
       "Marie Curie",
-      "Zidane",
-      "Edith Piaf"
+      "Zinedine Zidane",
+      "Edith Piaf",
+      "Paul Cézanne",
+      "Claude Monet",
+      "Jean-Paul Sartre",
+      "Simone de Beauvoir",
+      "Napoleon Bonaparte",
+      "Stromae",
+      "Daft Punk",
+      "Marion Cotillard",
+      "Antoine de Saint-Exupéry"
     ],
     "intrusos": [
-      "Shakespeare",
-      "Cervantes",
-      "Beethoven",
-      "Da Vinci",
-      "Picasso"
+      "William Shakespeare",
+      "Miguel de Cervantes",
+      "Ludwig van Beethoven",
+      "Leonardo Da Vinci",
+      "Pablo Picasso",
+      "Isaac Newton",
+      "Charles Darwin"
     ]
   }
 ]

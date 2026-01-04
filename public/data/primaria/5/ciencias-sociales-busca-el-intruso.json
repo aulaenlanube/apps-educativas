@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "La Edad Media: Caballeros y Castillos (Visual)",
+    "categoria": "Edad Media (Visual)",
     "correctos": [
       "🏰",
       "👑",
@@ -10,9 +10,14 @@
       "⚜️",
       "🏹",
       "🛖",
-      "🛖",
       "🕌",
-      "⛪"
+      "⛪",
+      "📜",
+      "🕯️",
+      "💍",
+      "🏺",
+      "🛡️",
+      "🖋️"
     ],
     "intrusos": [
       "📱",
@@ -21,14 +26,11 @@
       "🏭",
       "🚆",
       "🚀",
-      "💻",
-      "🕶️",
-      "🎒",
-      "🕹️"
+      "💻"
     ]
   },
   {
-    "categoria": "Astronomía y el Cosmos (Visual)",
+    "categoria": "Astronomía (Visual)",
     "correctos": [
       "🪐",
       "🌌",
@@ -39,7 +41,13 @@
       "☀️",
       "🌍",
       "🌕",
-      "📡"
+      "📡",
+      "🛸",
+      "🚀",
+      "🛰️",
+      "🌓",
+      "🌠",
+      "☄️"
     ],
     "intrusos": [
       "✈️",
@@ -48,14 +56,11 @@
       "🪁",
       "🚁",
       "🎈",
-      "🦟",
-      "🐝",
-      "🦉",
-      "🐦"
+      "🦟"
     ]
   },
   {
-    "categoria": "Unión Europea e Instituciones (Visual)",
+    "categoria": "Unión Europea (Visual)",
     "correctos": [
       "🇪🇺",
       "💶",
@@ -63,10 +68,16 @@
       "🏛️",
       "🤝",
       "🛂",
-      "🚩",
       "🇪🇸",
       "🇫🇷",
-      "🇩🇪"
+      "🇩🇪",
+      "🇮🇹",
+      "🇵🇹",
+      "🇧🇪",
+      "🇳🇱",
+      "🇸🇪",
+      "🇬🇷",
+      "🇦🇹"
     ],
     "intrusos": [
       "🇺🇸",
@@ -75,14 +86,11 @@
       "🤠",
       "🗽",
       "🏮",
-      "🉐",
-      "🪆",
-      "🌮",
-      "🇦🇮"
+      "🉐"
     ]
   },
   {
-    "categoria": "Grandes Inventos de la Modernidad (Visual)",
+    "categoria": "Grandes Inventos (Visual)",
     "correctos": [
       "💡",
       "🚂",
@@ -93,7 +101,13 @@
       "✈️",
       "🎥",
       "🖨️",
-      "🔬"
+      "🔬",
+      "💻",
+      "⌚",
+      "📺",
+      "🔭",
+      "🧬",
+      "🕹️"
     ],
     "intrusos": [
       "🔨",
@@ -102,14 +116,11 @@
       "🏹",
       "🕯️",
       "🛖",
-      "🦴",
-      "🪵",
-      "⚔️",
-      "🐎"
+      "🦴"
     ]
   },
   {
-    "categoria": "Sociedad y Vida en la Edad Media",
+    "categoria": "Vida en la Edad Media",
     "correctos": [
       "Castillo",
       "Rey",
@@ -121,62 +132,74 @@
       "Vasallaje",
       "Gremio",
       "Torneo",
-      "Cruzada"
+      "Cruzada",
+      "Catedral",
+      "Juglar",
+      "Gótico",
+      "Románico"
     ],
     "intrusos": [
       "Fábrica",
-      "Coche",
-      "Teléfono",
-      "Imperio Romano",
-      "Pirámides",
       "Internet",
-      "Democracia moderna",
+      "Democracia",
       "Avión",
-      "Electricidad"
+      "Electricidad",
+      "Cine"
     ]
   },
   {
-    "categoria": "Dominios Climáticos de España",
+    "categoria": "Dominios Climáticos",
     "correctos": [
       "Mediterráneo típico",
-      "Mediterráneo continentalizado",
+      "Mediterráneo interior",
       "Oceánico",
-      "De montaña",
-      "Subtropical Canario"
+      "Montaña",
+      "Subtropical Canario",
+      "Mediterráneo seco",
+      "Semidesértico",
+      "Atlántico norte",
+      "Continentalizado",
+      "Alta montaña",
+      "Clima local",
+      "Mesoclima"
     ],
     "intrusos": [
       "Polar Ártico",
-      "Equatorial Húmedo",
-      "Desértico del Sahara",
-      "Monzónico Asiático",
-      "Continental Ruso",
+      "Equatorial",
+      "Desértico Sahara",
+      "Monzónico",
       "Tundra"
     ]
   },
   {
-    "categoria": "Instituciones Democráticas de España",
+    "categoria": "Democracia en España",
     "correctos": [
-      "Jefatura del Estado (Rey)",
-      "Constitución de 1978",
-      "Cortes Generales (Parlamento)",
-      "Gobierno de la Nación",
-      "Tribunales de Justicia",
-      "Defensor del Pueblo"
+      "Constitución",
+      "Parlamento",
+      "Cortes Generales",
+      "Gobierno",
+      "Tribunales",
+      "Rey",
+      "Defensor del Pueblo",
+      "Votación",
+      "Ciudadanía",
+      "Derechos",
+      "Leyes",
+      "Diputados",
+      "Senadores",
+      "Municipio"
     ],
     "intrusos": [
       "Faraón",
       "Emperador",
       "Dictador",
-      "Pirata",
       "Señor Feudal",
       "Zar",
-      "César",
-      "Bajá",
-      "Shogun"
+      "César"
     ]
   },
   {
-    "categoria": "Ríos de la Vertiente Atlántica Peninsular",
+    "categoria": "Ríos Atlánticos Peninsulares",
     "correctos": [
       "Miño",
       "Duero",
@@ -184,7 +207,14 @@
       "Guadiana",
       "Guadalquivir",
       "Ulla",
-      "Tambre"
+      "Tambre",
+      "Navia",
+      "Eo",
+      "Lerez",
+      "Sado",
+      "Mondengo",
+      "Voga",
+      "Zêzere"
     ],
     "intrusos": [
       "Ebro",
@@ -193,32 +223,37 @@
       "Turia",
       "Llobregat",
       "Mijares",
-      "Serpis",
-      "Almanzora"
+      "Serpis"
     ]
   },
   {
-    "categoria": "Capas Gaseosas de la Tierra (Atmósfera)",
+    "categoria": "Capas de la atmósfera y Tierra",
     "correctos": [
       "Troposfera",
       "Estratosfera",
       "Mesosfera",
       "Termosfera",
       "Exosfera",
-      "Ionosfera"
-    ],
-    "intrusos": [
+      "Ionosfera",
+      "Ozonosfera",
+      "Corteza",
+      "Manto",
+      "Núcleo",
       "Litosfera",
       "Hidrosfera",
       "Biosfera",
-      "Corteza terrestre",
-      "Manto superior",
-      "Núcleo externo",
-      "Magma"
+      "Geosfera"
+    ],
+    "intrusos": [
+      "Satélite artificial",
+      "Estrella fuga",
+      "Nube baja",
+      "Rayo",
+      "Viento sol"
     ]
   },
   {
-    "categoria": "Planetas del Sistema Solar (Actualizado)",
+    "categoria": "Cuerpos del Sistema Solar",
     "correctos": [
       "Mercurio",
       "Venus",
@@ -227,17 +262,23 @@
       "Júpiter",
       "Saturno",
       "Urano",
-      "Neptuno"
+      "Neptuno",
+      "Sol",
+      "Luna",
+      "Fobos",
+      "Deimos",
+      "Ganímedes",
+      "Europa",
+      "Titán",
+      "Ío"
     ],
     "intrusos": [
-      "Plutón (Planeta enano)",
-      "Luna",
-      "Sol",
-      "Estrella Polar",
       "Andrómeda",
-      "Ceres",
-      "Eris",
-      "Alfa Centauri"
+      "Alfa Centauri",
+      "Sirio",
+      "Pléyades",
+      "Casiopea",
+      "Orión"
     ]
   }
 ]

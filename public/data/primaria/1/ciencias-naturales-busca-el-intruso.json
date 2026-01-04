@@ -8,7 +8,14 @@
       "🐰",
       "🐸",
       "🐵",
-      "🦊"
+      "🦊",
+      "🐻",
+      "🐼",
+      "🐯",
+      "🐨",
+      "🐘",
+      "�",
+      "🦓"
     ],
     "intrusos": [
       "🍎",
@@ -28,7 +35,14 @@
       "🌹",
       "🌵",
       "🌷",
-      "🌱"
+      "🌱",
+      "☘️",
+      "🍀",
+      "🍃",
+      "🍁",
+      "�",
+      "🌾",
+      "🌼"
     ],
     "intrusos": [
       "🐶",
@@ -47,7 +61,15 @@
       "🍇",
       "🥦",
       "🥕",
-      "🌽"
+      "🌽",
+      "🍓",
+      "🍍",
+      "🍐",
+      "🍑",
+      "�",
+      "🥝",
+      "🍅",
+      "🍆"
     ],
     "intrusos": [
       "🍕",
@@ -66,7 +88,15 @@
       "🌧️",
       "❄️",
       "⛈️",
-      "🌬️"
+      "🌬️",
+      "🌈",
+      "🌦️",
+      "🌤️",
+      "🌥️",
+      "�️",
+      "🌫️",
+      "🌙",
+      "⭐"
     ],
     "intrusos": [
       "🏠",
@@ -86,7 +116,14 @@
       "Boca",
       "Nariz",
       "Pelo",
-      "Oreja"
+      "Oreja",
+      "Brazo",
+      "Pierna",
+      "Dedo",
+      "Rodilla",
+      "Codo",
+      "Hombro",
+      "Cuello"
     ],
     "intrusos": [
       "Zapato",
@@ -98,20 +135,30 @@
     ]
   },
   {
-    "categoria": "Sentidos (Órganos)",
+    "categoria": "Animales domésticos",
     "correctos": [
-      "Ojos",
-      "Oídos",
-      "Nariz",
-      "Lengua",
-      "Manos"
+      "Perro",
+      "Gato",
+      "Hámster",
+      "Canario",
+      "Pez",
+      "Conejo",
+      "Tortuga",
+      "Loro",
+      "Cobaya",
+      "Periquito",
+      "Gallo",
+      "Gallina",
+      "Pato",
+      "Oveja"
     ],
     "intrusos": [
-      "Bota",
-      "Cuchara",
-      "Libro",
-      "Pelota",
-      "Coche"
+      "León",
+      "Tigre",
+      "Tiburón",
+      "Dinosaurio",
+      "Cocodrilo",
+      "Lobo"
     ]
   },
   {
@@ -121,14 +168,24 @@
       "Águila",
       "Loro",
       "Canario",
-      "Búho"
+      "Búho",
+      "Paloma",
+      "Gaviota",
+      "Gorrión",
+      "Cigüeña",
+      "Golondrina",
+      "Cuervo",
+      "Flamenco",
+      "Tucán",
+      "Pelícano"
     ],
     "intrusos": [
       "Pez",
       "Ballena",
       "Tortuga",
       "Pulpo",
-      "Delfín"
+      "Delfín",
+      "Cangrejo"
     ]
   },
   {
@@ -138,14 +195,24 @@
       "Ballena",
       "Delfín",
       "Tiburón",
-      "Pulpo"
+      "Pulpo",
+      "Cangrejo",
+      "Medusa",
+      "Caballito",
+      "Raya",
+      "Tortuga marina",
+      "Foca",
+      "Pingüino",
+      "Orca",
+      "Morsa"
     ],
     "intrusos": [
       "Perro",
       "Gato",
       "León",
       "Vaca",
-      "Oveja"
+      "Oveja",
+      "Caballo"
     ]
   }
 ]

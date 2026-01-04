@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Estados de Ánimo y Expresiones (Visual)",
+    "categoria": "Estados de Ánimo (Visual)",
     "correctos": [
       "😀",
       "😢",
@@ -15,7 +15,12 @@
       "🙄",
       "😤",
       "🥰",
-      "🤒"
+      "🤒",
+      "🥵",
+      "🥶",
+      "🤯",
+      "😎",
+      "🤡"
     ],
     "intrusos": [
       "🍎",
@@ -24,15 +29,11 @@
       "🐶",
       "✏️",
       "⚽",
-      "🍔",
-      "📱",
-      "💻",
-      "🎸",
-      "🚲"
+      "🍔"
     ]
   },
   {
-    "categoria": "Hábito de Vida Activa y Saludable (Visual)",
+    "categoria": "Vida Saludable (Visual)",
     "correctos": [
       "🚴",
       "🏊",
@@ -42,10 +43,15 @@
       "⚽",
       "🏀",
       "🥗",
-      "🧗‍♂️",
       "🧘",
       "🚶",
-      "🎾"
+      "🎾",
+      "🏐",
+      "🏸",
+      "🏌️",
+      "🧗",
+      "🛹",
+      "🧘"
     ],
     "intrusos": [
       "🛋️",
@@ -53,16 +59,13 @@
       "🎮",
       "📱",
       "🛌",
-      "🍔",
       "🍿",
       "🥤",
-      "🍩",
-      "🍫",
       "🎰"
     ]
   },
   {
-    "categoria": "Elementos que Requieren Precaución (Visual)",
+    "categoria": "Elementos de Precaución (Visual)",
     "correctos": [
       "🔥",
       "🔌",
@@ -74,8 +77,14 @@
       "⚠️",
       "🚭",
       "🧨",
-      "🥛 (lejía)",
-      "🧴"
+      "🥛",
+      "🧴",
+      "🪓",
+      "🔨",
+      "🔩",
+      "🧨",
+      "☢️",
+      "☣️"
     ],
     "intrusos": [
       "🧸",
@@ -85,25 +94,26 @@
       "👕",
       "👟",
       "🎨",
-      "🪁",
-      "🍦",
-      "🥪",
-      "🛋️"
+      "🪁"
     ]
   },
   {
-    "categoria": "Cualidades de una Buena Amistad",
+    "categoria": "Valores de Amistad",
     "correctos": [
       "Lealtad",
       "Sinceridad",
-      "Diversión compartida",
       "Amabilidad",
       "Generosidad",
       "Confianza",
       "Respeto",
       "Apoyo",
       "Paciencia",
-      "Empatía"
+      "Empatía",
+      "Comprensión",
+      "Ayuda",
+      "Sinceridad",
+      "Compañerismo",
+      "Cariño"
     ],
     "intrusos": [
       "Mentiroso",
@@ -112,76 +122,93 @@
       "Violento",
       "Cruel",
       "Burlón",
-      "Traidor",
-      "Pesado",
-      "Interesado",
-      "Rencoroso"
+      "Traidor"
     ]
   },
   {
-    "categoria": "Estrategias Pozitivas de Resolución de Conflictos",
+    "categoria": "Resolución de Conflictos",
     "correctos": [
-      "Hablar con calma",
-      "Escuchar al otro",
-      "Pedir perdón sinceramente",
-      "Llegar a un acuerdo / Negociar",
-      "Respirar hondo para calmarse",
-      "Pedir ayuda a un adulto",
-      "Ceder a veces"
+      "Hablar",
+      "Escuchar",
+      "Pedir perdón",
+      "Negociar",
+      "Calmarse",
+      "Pedir ayuda",
+      "Ceder",
+      "Dialogar",
+      "Empatizar",
+      "Comprender",
+      "Cooperar",
+      "Solucionar",
+      "Respetar",
+      "Disculparse"
     ],
     "intrusos": [
-      "Gritar insultos",
-      "Pegar o empujar",
-      "Ignorar el problema",
-      "Amenazar con no ser amigo",
-      "Echar la culpa a los demás",
-      "Romper cosas del otro",
-      "Mentir para ganar"
+      "Gritar",
+      "Pegar",
+      "Ignorar",
+      "Amenazar",
+      "Culpar",
+      "Romper",
+      "Mentir"
     ]
   },
   {
-    "categoria": "Derechos Universales de la Infancia",
+    "categoria": "Derechos de la Infancia",
     "correctos": [
-      "Derecho a la Educación",
-      "Derecho a la Salud",
-      "Derecho al Juego",
-      "Derecho a tener una Familia",
-      "Derecho a la Protección",
-      "Derecho a la Identidad (Nombre)",
-      "Derecho a la Igualdad"
+      "Educación",
+      "Salud",
+      "Juego",
+      "Familia",
+      "Protección",
+      "Identidad",
+      "Igualdad",
+      "Alimentación",
+      "Vivienda",
+      "Opinión",
+      "Paz",
+      "Bienestar",
+      "Libertad",
+      "Nacionalidad"
     ],
     "intrusos": [
-      "Obligación de trabajar",
-      "Derecho a la Guerra",
-      "Pasar hambre",
-      "Sufrir violencia",
-      "Vivir en el abandono",
-      "Ser discriminado",
-      "Recibir castigos físicos"
+      "Trabajar",
+      "Guerra",
+      "Hambre",
+      "Violencia",
+      "Abandono",
+      "Discriminación",
+      "Castigo"
     ]
   },
   {
-    "categoria": "Emociones Básicas del Ser Humano",
+    "categoria": "Emociones Humanas",
     "correctos": [
       "Alegría",
       "Tristeza",
       "Miedo",
-      "Ira o Rabia",
+      "Ira",
       "Sorpresa",
       "Asco",
       "Curiosidad",
       "Culpa",
-      "Vergüenza"
+      "Vergüenza",
+      "Amor",
+      "Calma",
+      "Ilusión",
+      "Seguridad",
+      "Confianza",
+      "Orgullo",
+      "Esperanza"
     ],
     "intrusos": [
       "Hambre",
       "Sed",
-      "Sueño profundo",
-      "Dolor de muela",
-      "Frío polar",
-      "Calor asfixiante",
-      "Cansancio extremo",
-      "Picor"
+      "Sueño",
+      "Dolor",
+      "Frío",
+      "Calor",
+      "Cansancio"
     ]
   }
 ]

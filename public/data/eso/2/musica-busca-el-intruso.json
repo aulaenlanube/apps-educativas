@@ -1,118 +1,212 @@
 [
   {
-    "categoria": "Instrumentos (Visual)",
+    "categoria": "Instrumentos sinfónicos y modernos (Visual)",
     "correctos": [
       "🎻",
       "🎺",
       "🎷",
       "🎸",
       "🎹",
-      "🥁"
+      "🥁",
+      "🪗",
+      "🪕",
+      "🎻",
+      "🎼",
+      "🎹",
+      "🎺",
+      "🥁",
+      "🪕",
+      "🎙️",
+      "🎤"
     ],
     "intrusos": [
-      "🎤",
-      "🎧",
-      "🔈",
       "🔨",
-      "🔧"
+      "🔧",
+      "🪚",
+      "🪓",
+      "⛏️",
+      "🗜️",
+      "🪛",
+      "🩹",
+      "🪒"
     ]
   },
   {
-    "categoria": "Notas (Visual)",
+    "categoria": "Símbolos y Signografía Musical (Visual)",
     "correctos": [
       "🎵",
       "🎶",
       "🎼",
       "🎹",
-      "𝄞"
+      "𝄞",
+      "𝄢",
+      "🎙️",
+      "🎤",
+      "📻",
+      "🎛️",
+      "🎚️",
+      "🎧",
+      "🔊",
+      "🔉",
+      "🔈",
+      "🔇"
     ],
     "intrusos": [
       "🅰️",
       "🅱️",
       "💲",
       "💯",
-      "➕"
+      "➕",
+      "➖",
+      "✖️",
+      "➗",
+      "®️",
+      "™️"
     ]
   },
   {
-    "categoria": "Cualidades del Sonido",
+    "categoria": "Cualidades del Sonido y Acústica",
     "correctos": [
-      "Altura",
+      "Altura o Tono",
       "Duración",
-      "Intensidad",
-      "Timbre"
+      "Intensidad o Volumen",
+      "Timbre",
+      "Frecuencia (Hz)",
+      "Amplitud de onda",
+      "Espectro armónico",
+      "Envolvente",
+      "Reverberación",
+      "Eco",
+      "Vibración",
+      "Resonancia",
+      "Decibelios (dB)",
+      "Reflexión"
     ],
     "intrusos": [
       "Ruido",
       "Silencio",
-      "Eco",
       "Música",
-      "Ritmo"
+      "Ritmo",
+      "Nota",
+      "Melodía",
+      "Armonía",
+      "Textura"
     ]
   },
   {
-    "categoria": "Familias Instrumentales",
+    "categoria": "Familias Instrumentales y Sachs-Hornbostel",
     "correctos": [
-      "Cuerda",
-      "Viento",
-      "Percusión"
+      "Cuerda (Cordófonos)",
+      "Viento (Aerófonos)",
+      "Percusión (Membranófonos)",
+      "Percusión (Idiófonos)",
+      "Electrófonos",
+      "Viento-madera",
+      "Viento-metal",
+      "Cuerda frotada",
+      "Cuerda pulsada",
+      "Cuerda percutida",
+      "Percusión de altura definida",
+      "Sintetizadores",
+      "Muestreadores",
+      "Pedales de efectos"
     ],
     "intrusos": [
       "Metal",
       "Madera",
       "Plástico",
       "Aire",
-      "Agua"
+      "Agua",
+      "Fuego",
+      "Tierra",
+      "Piedra"
     ]
   },
   {
-    "categoria": "Matices de Intensidad",
+    "categoria": "Matices e Indicaciones de Intensidad",
     "correctos": [
-      "Pianissimo",
-      "Piano",
-      "Mezzoforte",
-      "Forte",
-      "Fortissimo"
+      "Pianissimo (pp)",
+      "Piano (p)",
+      "Mezzo-piano (mp)",
+      "Mezzo-forte (mf)",
+      "Forte (f)",
+      "Fortissimo (ff)",
+      "Crescendo",
+      "Diminuendo",
+      "Decrescendo",
+      "Sforzato",
+      "Forte-piano (fp)",
+      "Piano-forte (pf)",
+      "Acento",
+      "Dinámica"
     ],
     "intrusos": [
       "Adagio",
       "Andante",
       "Allegro",
       "Presto",
-      "Lento"
+      "Lento",
+      "Moderato",
+      "Vivace",
+      "Larghetto"
     ]
   },
   {
-    "categoria": "Voces",
+    "categoria": "Voces Humanas y Tesituras",
     "correctos": [
       "Soprano",
+      "Mezzosoprano",
       "Contralto",
       "Tenor",
-      "Bajo"
+      "Barítono",
+      "Bajo",
+      "Contratenor",
+      "Voz blanca",
+      "Voz grave",
+      "Voz aguda",
+      "Coro de cámara",
+      "Orfeón",
+      "Escolania",
+      "Vocalista"
     ],
     "intrusos": [
       "Violín",
       "Viola",
       "Violonchelo",
       "Contrabajo",
-      "Guitarra"
+      "Guitarra",
+      "Piano",
+      "Flauta",
+      "Oboe"
     ]
   },
   {
-    "categoria": "Grandes Compositores",
+    "categoria": "Grandes Compositores de la Historia",
     "correctos": [
-      "Bach",
-      "Mozart",
-      "Beethoven",
-      "Vivaldi",
-      "Chopin"
+      "Bach (Barroco)",
+      "Mozart (Clasicismo)",
+      "Beethoven (Puente)",
+      "Vivaldi (Barroco)",
+      "Chopin (Romanticismo)",
+      "Haydn",
+      "Wagner",
+      "Verdi",
+      "Tchaikovsky",
+      "Debussy",
+      "Stravinsky",
+      "Handel",
+      "Schubert",
+      "Liszt"
     ],
     "intrusos": [
       "Picasso",
       "Dalí",
       "Cervantes",
       "Shakespeare",
-      "Newton"
+      "Newton",
+      "Einstein",
+      "Darwin",
+      "Galileo"
     ]
   }
 ]

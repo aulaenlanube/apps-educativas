@@ -1,7 +1,17 @@
 [
   {
-    "categoria": "Roma Antigua (Visual)",
+    "categoria": "Civitas Romana (Visual)",
     "correctos": [
+      "🏛️",
+      "🏟️",
+      "🏺",
+      "🍇",
+      "🦅",
+      "⚔️",
+      "🛡️",
+      "📜",
+      "🪙",
+      "⛲",
       "🏛️",
       "🏟️",
       "🏺",
@@ -14,128 +24,210 @@
       "🏯",
       "🏗️",
       "💻",
-      "🚀"
+      "🚀",
+      "📱",
+      "🛰️",
+      "🏭"
     ]
   },
   {
-    "categoria": "Mitología (Visual)",
+    "categoria": "Mythologia et Dii (Visual)",
     "correctos": [
-      "⚡",
-      "🔱",
-      "🦉",
-      "🍷",
-      "🏹",
-      "🔥"
+      "⚡ (Jupiter)",
+      "🔱 (Neptunus)",
+      "🦉 (Minerva)",
+      "🍷 (Bacchus)",
+      "🏹 (Diana)",
+      "🔥 (Vesta)",
+      "⚖️",
+      "🕊️",
+      "🛡️",
+      "🗡️",
+      "🍇",
+      "🌾",
+      "🐗",
+      "🐎",
+      "🏛️",
+      "🔱"
     ],
     "intrusos": [
       "✝️",
       "☪️",
       "🕉️",
       "✡️",
-      "☸️"
+      "☸️",
+      "🕯️",
+      "📿",
+      "🕎"
     ]
   },
   {
-    "categoria": "Números Romanos (Visual)",
+    "categoria": "Numeri Romani (Visual)",
     "correctos": [
-      "Ⅰ",
-      "Ⅴ",
-      "Ⅹ",
-      "Ⅼ",
-      "Ⅽ",
-      "Ⅾ"
+      "Ⅰ (Unus)",
+      "Ⅴ (Quinque)",
+      "Ⅹ (Decem)",
+      "Ⅼ (Quinquaginta)",
+      "Ⅽ (Centum)",
+      "Ⅾ (Quingenti)",
+      "Ⅿ (Mille)",
+      "Ⅱ",
+      "Ⅲ",
+      "Ⅳ",
+      "Ⅵ",
+      "Ⅶ",
+      "Ⅷ",
+      "Ⅸ",
+      "ⅩⅠ",
+      "ⅩⅩ"
     ],
     "intrusos": [
       "1",
       "5",
       "10",
       "50",
-      "100"
+      "100",
+      "500",
+      "1000",
+      "Zero"
     ]
   },
   {
-    "categoria": "Casos Latinos",
+    "categoria": "Casus et Grammatica Latina",
     "correctos": [
-      "Nominativo",
-      "Acusativo",
-      "Genitivo",
-      "Dativo",
-      "Ablativo"
+      "Nominativus",
+      "Vocativus",
+      "Acusativus",
+      "Genitivus",
+      "Dativus",
+      "Ablativus",
+      "Locativus",
+      "Singularis",
+      "Pluralis",
+      "Masculinum",
+      "Femininum",
+      "Neutrum",
+      "Concordantia",
+      "Declinatio"
     ],
     "intrusos": [
-      "Sujeto",
-      "Predicado",
-      "Directo",
-      "Indirecto",
-      "Agente"
+      "Sujeto directo",
+      "Predicado nominal",
+      "Complemento directo",
+      "Atributo",
+      "Sujeto paciente",
+      "Agente",
+      "Circunstancial"
     ]
   },
   {
-    "categoria": "Dioses Romanos",
+    "categoria": "Dii et Deae Olympi",
     "correctos": [
-      "Júpiter",
-      "Juno",
-      "Marte",
+      "Iuppiter",
+      "Iuno",
+      "Mars",
       "Venus",
-      "Neptuno"
+      "Neptunus",
+      "Minerva",
+      "Apollo",
+      "Diana",
+      "Bacchus",
+      "Ceres",
+      "Mercurius",
+      "Vulcanus",
+      "Vesta",
+      "Pluto"
     ],
     "intrusos": [
       "Zeus",
       "Hera",
       "Ares",
       "Afrodita",
-      "Poseidón"
+      "Poseidón",
+      "Atenea",
+      "Hefesto",
+      "Hades"
     ]
   },
   {
-    "categoria": "Instituciones Romanas",
+    "categoria": "Res Publica et Magistratus",
     "correctos": [
-      "Senado",
-      "Cónsul",
-      "Tribuno",
-      "Pretor",
-      "Edil"
+      "Senatus Populúsq. Romanus",
+      "Consul",
+      "Tribunus plebis",
+      "Praetor",
+      "Aedilis",
+      "Censor",
+      "Dictator (temp.)",
+      "Questor",
+      "Pontifex Maximus",
+      "Comitia",
+      "Cursus honorum",
+      "Patricius",
+      "Plebeius",
+      "Equites"
     ],
     "intrusos": [
-      "Presidente",
-      "Ministro",
-      "Alcalde",
-      "Diputado",
-      "Concejal"
+      "Presidente de la República",
+      "Ministro de Hacienda",
+      "Alcalde municipal",
+      "Diputado a Cortes",
+      "Concejal de cultura",
+      "Gobernador civil"
     ]
   },
   {
-    "categoria": "Legado Romano",
+    "categoria": "Patrimonium et Legatum Romanum",
     "correctos": [
-      "Derecho",
-      "Calzadas",
-      "Acueductos",
-      "Latín",
-      "Calendario"
+      "Ius Civile (Derecho)",
+      "Viae Romanae (Calzadas)",
+      "Aquaeductus",
+      "Lingua Latina",
+      "Calendarium Iulianum",
+      "Thermae",
+      "Villa rustica",
+      "Insulae",
+      "Pax Romana",
+      "Romanizatio",
+      "Amphitheatrum",
+      "Circus Maximus",
+      "Arcus Triumphalis",
+      "Forum Romanum"
     ],
     "intrusos": [
-      "Brújula",
-      "Pólvora",
-      "Papel",
-      "Imprenta",
-      "Internet"
+      "Compassus (Brújula)",
+      "Nitrum (Pólvora)",
+      "Papyrus (Papel)",
+      "Typographia (Imprenta)",
+      "Interrete (Internet)",
+      "Relogium"
     ]
   },
   {
-    "categoria": "Declinaciones",
+    "categoria": "Declinationes et Paradigmata",
     "correctos": [
-      "Rosa",
-      "Dominus",
-      "Templum",
-      "Rex",
-      "Manus"
+      "1ª Declinatio (Rosa-ae)",
+      "2ª Declinatio (Dominus-i)",
+      "2ª Declinatio (Templum-i)",
+      "2ª Declinatio (Puer-i)",
+      "3ª Declinatio (Mors-mortis)",
+      "3ª Declinatio (Civis-civis)",
+      "3ª Declinatio (Nomen-nominis)",
+      "4ª Declinatio (Gradus-us)",
+      "4ª Declinatio (Cornu-us)",
+      "5ª Declinatio (Dies-diei)",
+      "5ª Declinatio (Res-rei)",
+      "Adiectivum 1ª clase",
+      "Adiectivum 2ª clase",
+      "Participium"
     ],
     "intrusos": [
-      "Amar",
-      "Tener",
-      "Ser",
-      "Oír",
-      "Venir"
+      "Amar (Amo-as-are)",
+      "Tener (Habeo-es-ere)",
+      "Ser (Sum-es-esse)",
+      "Oír (Audio-is-ire)",
+      "Venir (Venio-is-ire)",
+      "Leer (Lego-is-ere)"
     ]
   }
 ]

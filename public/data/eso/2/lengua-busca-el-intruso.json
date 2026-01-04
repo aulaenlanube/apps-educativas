@@ -1,138 +1,235 @@
 [
   {
-    "categoria": "Teatro (Visual)",
+    "categoria": "Artes Escénicas y Teatro (Visual)",
     "correctos": [
       "🎭",
       "🎟️",
       "🎬",
       "👏",
       "🔦",
-      "🎪"
+      "🎪",
+      "🎙️",
+      "🎤",
+      "🎹",
+      "🎺",
+      "🎻",
+      "🩰",
+      "🎨",
+      "🎭",
+      "🎪",
+      "📽️"
     ],
     "intrusos": [
       "⚽",
       "🏊",
       "🚜",
       "🏔️",
-      "🏥"
+      "🏥",
+      "🏢",
+      "🏗️",
+      "🚄"
     ]
   },
   {
-    "categoria": "Libros y Escritura (Visual)",
+    "categoria": "Lectura y Escritura (Visual)",
     "correctos": [
       "📖",
       "📚",
       "🖊️",
       "📝",
       "📜",
-      "📓"
+      "📓",
+      "📓",
+      "📔",
+      "📒",
+      "📘",
+      "📗",
+      "✒️",
+      "✍️",
+      "🪶",
+      "📂",
+      "🗂️"
     ],
     "intrusos": [
       "📺",
       "📻",
       "📱",
       "💿",
-      "🔌"
+      "🔌",
+      "🔋",
+      "💡",
+      "🎮"
     ]
   },
   {
-    "categoria": "Comunicación Digital (Visual)",
+    "categoria": "Mundo Digital y Redes (Visual)",
     "correctos": [
       "📧",
       "💬",
       "📱",
       "💻",
       "🌐",
-      "📶"
+      "📶",
+      "🤳",
+      "📸",
+      "📹",
+      "🎬",
+      "🔔",
+      "📍",
+      "🔗",
+      "🔋",
+      "🔌",
+      "🔌"
     ],
     "intrusos": [
       "📠",
       "📼",
       "📮",
       "🕊️",
-      "🚬"
+      "🚬",
+      "💾",
+      "🎞️",
+      "🕯️"
     ]
   },
   {
-    "categoria": "Funciones Sintácticas",
+    "categoria": "Funciones Sintácticas de la Oración",
     "correctos": [
       "Sujeto",
       "Predicado",
       "Complemento Directo",
+      "Complemento Indirecto",
+      "Complemento Circunstancial",
       "Atributo",
-      "Suplemento"
+      "Complemento de Régimen",
+      "Complemento Agente",
+      "Complemento Predicativo",
+      "Núcleo",
+      "Sintagma Nominal",
+      "Sintagma Verbal",
+      "Aposición",
+      "Vocativo"
     ],
     "intrusos": [
       "Sustantivo",
       "Verbo",
       "Adjetivo",
       "Aguda",
-      "Llana"
+      "Llana",
+      "Esdrújula",
+      "Diptongo"
     ]
   },
   {
-    "categoria": "Géneros Literarios",
+    "categoria": "Géneros y Subgéneros Literarios",
     "correctos": [
       "Novela",
       "Cuento",
       "Poema",
       "Teatro",
-      "Ensayo"
+      "Ensayo",
+      "Fábula",
+      "Leyenda",
+      "Mito",
+      "Tragedia",
+      "Comedia",
+      "Entremés",
+      "Auto sacramental",
+      "Elegía",
+      "Oda"
     ],
     "intrusos": [
       "Noticia",
       "Reportaje",
       "Entrevista",
       "Crónica",
-      "Anuncio"
+      "Anuncio",
+      "Editorial",
+      "Artículo"
     ]
   },
   {
-    "categoria": "Tipos de Palabras",
+    "categoria": "Tipos de Palabras e Invariables",
     "correctos": [
       "Adverbio",
       "Preposición",
       "Conjunción",
-      "Interjección"
+      "Interjección",
+      "Determinante",
+      "Pronombre",
+      "Verbo",
+      "Sustantivo",
+      "Adjetivo",
+      "Artículo",
+      "Numeral",
+      "Indefinido",
+      "Demostrativo",
+      "Posesivo"
     ],
     "intrusos": [
       "Sujeto",
       "Predicado",
       "Sintagma",
       "Oración",
-      "Frase"
+      "Frase",
+      "Párrafo",
+      "Texto"
     ]
   },
   {
-    "categoria": "Figuras Literarias",
+    "categoria": "Figuras Literarias y Retóricas",
     "correctos": [
       "Metáfora",
       "Símil",
       "Personificación",
       "Hipérbole",
-      "Anáfora"
+      "Anáfora",
+      "Metonimia",
+      "Antítesis",
+      "Onomatopeya",
+      "Paralelismo",
+      "Polisíndeton",
+      "Asíndeton",
+      "Aliteración",
+      "Hipérbaton",
+      "Oxímoron"
     ],
     "intrusos": [
       "Rima",
       "Verso",
       "Estrofa",
       "Punto",
-      "Coma"
+      "Coma",
+      "Dos puntos",
+      "Comillas"
     ]
   },
   {
-    "categoria": "Modos Verbales",
+    "categoria": "Modos y Formas Verbales",
     "correctos": [
       "Indicativo",
       "Subjuntivo",
-      "Imperativo"
+      "Imperativo",
+      "Formas no personales",
+      "Infinitivo",
+      "Gerundio",
+      "Participio",
+      "Presente",
+      "Pasado / Pretérito",
+      "Futuro",
+      "Condicional",
+      "Plusquamperfecto",
+      "Perífrasis verbal",
+      "Voz pasiva"
     ],
     "intrusos": [
-      "Presente",
-      "Pasado",
-      "Futuro",
-      "Infinitivo",
-      "Gerundio"
+      "Sujeto",
+      "Predicado",
+      "Atributo",
+      "Núcleo",
+      "Modificador",
+      "Adverbio",
+      "Adjetivo"
     ]
   }
 ]

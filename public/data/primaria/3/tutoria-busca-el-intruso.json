@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Estados de Ánimo Positivos (Visual)",
+    "categoria": "Estados de Ánimo (Visual)",
     "correctos": [
       "😀",
       "😁",
@@ -16,7 +16,10 @@
       "😇",
       "😌",
       "😎",
-      "😻"
+      "😻",
+      "🤗",
+      "😎",
+      "🤡"
     ],
     "intrusos": [
       "😢",
@@ -26,17 +29,11 @@
       "😱",
       "😤",
       "🤢",
-      "😴",
-      "🙄",
-      "🤫",
-      "👽",
-      "👿",
-      "💀",
-      "👻"
+      "😴"
     ]
   },
   {
-    "categoria": "Higiene y Cuidado Personal (Visual)",
+    "categoria": "Higiene y Salud (Visual)",
     "correctos": [
       "🚿",
       "🛁",
@@ -46,10 +43,14 @@
       "🧻",
       "🦷",
       "🧖‍♀️",
-      "🧴",
+      "🍎",
+      " broccoli (Brócoli Broccoli)",
+      "💧",
+      "🧺",
+      "💈",
       "🧼",
-      "✂️",
-      "🧺"
+      "🧴",
+      "🪮"
     ],
     "intrusos": [
       "🎮",
@@ -59,16 +60,11 @@
       "🗑️",
       "🍭",
       "🍫",
-      "🍩",
-      "🥤",
-      "🛋️",
-      "📱",
-      "🚗",
-      "🎰"
+      "🍩"
     ]
   },
   {
-    "categoria": "Dieta Saludable y Nutritiva (Visual)",
+    "categoria": "Dieta Saludable (Visual)",
     "correctos": [
       "🥗",
       "🍎",
@@ -81,7 +77,11 @@
       "🍉",
       "🍒",
       "🥛",
-      "🥣"
+      "🥣",
+      "🌽",
+      "🍅",
+      "🥑",
+      "🥬"
     ],
     "intrusos": [
       "🍔",
@@ -91,14 +91,11 @@
       "🍬",
       "🍭",
       "🥤",
-      "🥤",
-      "🥓",
-      "🍿",
-      "🥞"
+      "🥓"
     ]
   },
   {
-    "categoria": "Emociones que Nos Hacen Sentir Bien",
+    "categoria": "Emociones de Bienestar",
     "correctos": [
       "Alegría",
       "Felicidad",
@@ -107,10 +104,13 @@
       "Ilusión",
       "Paz",
       "Valentía",
-      "Orgullo sano",
+      "Orgullo",
       "Compasión",
       "Gratitud",
-      "Seguridad"
+      "Seguridad",
+      "Confianza",
+      "Sorpresa",
+      "Gozo"
     ],
     "intrusos": [
       "Miedo",
@@ -119,42 +119,39 @@
       "Enfado",
       "Asco",
       "Vergüenza",
-      "Celos",
-      "Envidia",
-      "Culpa",
-      "Rencor",
-      "Soledad",
-      "Desprecio"
+      "Celos"
     ]
   },
   {
-    "categoria": "Normas de Cortesía y Respeto",
+    "categoria": "Cortesía y Respeto",
     "correctos": [
       "Gracias",
       "Por favor",
-      "Perdón / Lo siento",
-      "Hola / Adiós",
+      "Perdón",
+      "Hola",
+      "Adiós",
       "Permiso",
       "Buen provecho",
       "Enhorabuena",
       "Bienvenido",
-      "Disculpa"
+      "Disculpa",
+      "Lo siento",
+      "Encantado",
+      "Buen día",
+      "Permítame"
     ],
     "intrusos": [
       "Tonto",
       "Cállate",
-      "Fuera de aquí",
+      "Fuera",
       "Empujar",
       "Insultar",
       "Mentir",
-      "Mío solo móvil",
-      "Gritar",
-      "Ignorar",
-      "Burlarse"
+      "Gritar"
     ]
   },
   {
-    "categoria": "Valores para la Convivencia",
+    "categoria": "Valores Ciudadanos",
     "correctos": [
       "Respeto",
       "Amistad",
@@ -165,7 +162,11 @@
       "Empatía",
       "Paciencia",
       "Solidaridad",
-      "Justicia"
+      "Justicia",
+      "Responsabilidad",
+      "Humildad",
+      "Bondad",
+      "Cooperación"
     ],
     "intrusos": [
       "Mentira",
@@ -173,35 +174,35 @@
       "Pereza",
       "Violencia",
       "Odio",
-      "Discriminación",
-      "Bulería",
-      "Venganza",
       "Burla",
       "Acoso"
     ]
   },
   {
-    "categoria": "Hábitos Saludables para el Cuerpo y la Mente",
+    "categoria": "Hábitos Saludables",
     "correctos": [
-      "Dormir 10 horas",
-      "Comer fruta y verdura",
-      "Hacer deporte a diario",
-      "Beber mucha agua",
+      "Dormir bien",
+      "Comer fruta",
+      "Hacer deporte",
+      "Beber agua",
       "Leer libros",
-      "Estudiar un poco",
-      "Reciclar basura",
-      "Ayudar en casa",
-      "Hablar de mis sentimientos"
+      "Estudiar",
+      "Reciclar",
+      "Ayudar",
+      "Hablar",
+      "Ducharse",
+      "Pasear",
+      "Abrazar",
+      "Sonreír",
+      "Meditar"
     ],
     "intrusos": [
-      "Comer muchas chuches",
-      "Ver demasiada tele",
-      "Gritar a los padres",
-      "Pegar a los compañeros",
-      "Fumar o beber alcohol",
-      "Estar todo el día con el móvil",
-      "Acostarse muy tarde",
-      "No lavarse los dientes"
+      "Comer chuches",
+      "Ver mucha tele",
+      "Gritar",
+      "Pegar",
+      "Mentir",
+      "Ensuciar"
     ]
   }
 ]

@@ -16,7 +16,10 @@
       "🦜",
       "🐄",
       "🐷",
-      "🐸"
+      "🐸",
+      "🐔",
+      "🐑",
+      "🐧"
     ],
     "intrusos": [
       "🍎",
@@ -26,11 +29,7 @@
       "✏️",
       "🍕",
       "🍔",
-      "🚲",
-      "🎸",
-      "⌚",
-      "💻",
-      "🧸"
+      "🚲"
     ]
   },
   {
@@ -47,7 +46,12 @@
       "🍒",
       "🍑",
       "🥝",
-      "🥭"
+      "🥭",
+      "🍈",
+      "🫐",
+      "🥥",
+      "🥑",
+      "🍅"
     ],
     "intrusos": [
       "🥦",
@@ -57,11 +61,7 @@
       "🌭",
       "🍟",
       "🥓",
-      "🥐",
-      "🧀",
-      "🍗",
-      "🥪",
-      "🍳"
+      "🥐"
     ]
   },
   {
@@ -79,7 +79,12 @@
       "🟥",
       "🟦",
       "🟩",
-      "🟨"
+      "🟨",
+      "🟧",
+      "🟪",
+      "⬛",
+      "⬜",
+      "🟫"
     ],
     "intrusos": [
       "🐶",
@@ -89,10 +94,7 @@
       "✏️",
       "🍔",
       "🧸",
-      "🚲",
-      "👟",
-      "🧢",
-      "📱"
+      "🚲"
     ]
   },
   {
@@ -100,18 +102,20 @@
     "correctos": [
       "Rouge",
       "Bleu",
-      "Vert",
       "Jaune",
-      "Noir",
-      "Blanc",
+      "Vert",
       "Rose",
-      "Orange",
-      "Gris",
-      "Violet",
+      "Blanc",
+      "Noir",
       "Marron",
+      "Orange",
+      "Violet",
+      "Gris",
       "Beige",
+      "Or",
       "Argent",
-      "Or"
+      "Cassis",
+      "Cerise"
     ],
     "intrusos": [
       "Chien",
@@ -120,16 +124,11 @@
       "Un",
       "Deux",
       "Table",
-      "Chaise",
-      "Livre",
-      "Stylo",
-      "Pomme",
-      "Manger",
-      "Dormir"
+      "Chaise"
     ]
   },
   {
-    "categoria": "Nombres 1-10",
+    "categoria": "Les Nombres 1-20",
     "correctos": [
       "Un",
       "Deux",
@@ -140,20 +139,25 @@
       "Sept",
       "Huit",
       "Neuf",
-      "Dix"
+      "Dix",
+      "Onze",
+      "Douze",
+      "Treize",
+      "Quatorze",
+      "Quinze",
+      "Seize",
+      "Dix-sept",
+      "Dix-huit",
+      "Dix-neuf",
+      "Vingt"
     ],
     "intrusos": [
       "Bonjour",
       "Merci",
       "Oui",
-      "Non",
       "Rouge",
-      "Bleu",
       "Chien",
-      "Chat",
-      "Maison",
-      "Petit",
-      "Grand"
+      "Maison"
     ]
   },
   {
@@ -168,20 +172,20 @@
       "S'il vous plaît",
       "Pardon",
       "Enchanté",
-      "De rien"
+      "De rien",
+      "À bientôt",
+      "Bonne journée",
+      "Excusez-moi",
+      "Bienvenue"
     ],
     "intrusos": [
       "Rouge",
       "Bleu",
       "Chat",
-      "Chien",
       "Pomme",
       "Banane",
       "Un",
-      "Deux",
-      "Trois",
-      "Maison",
-      "Table"
+      "Trois"
     ]
   },
   {
@@ -197,7 +201,11 @@
       "Oncle",
       "Tante",
       "Cousin",
-      "Cousine"
+      "Cousine",
+      "Fils",
+      "Fille",
+      "Parrain",
+      "Marraine"
     ],
     "intrusos": [
       "Stylo",
@@ -206,10 +214,7 @@
       "Professeur",
       "École",
       "Classe",
-      "Livre",
-      "Règle",
-      "Ciseaux",
-      "Sac à dos"
+      "Livre"
     ]
   },
   {
@@ -227,7 +232,10 @@
       "Singe",
       "Vache",
       "Cochon",
-      "Lapin"
+      "Lapin",
+      "Ours",
+      "Serpent",
+      "Tortue"
     ],
     "intrusos": [
       "Table",
@@ -236,11 +244,7 @@
       "Stylo",
       "Pomme",
       "Banane",
-      "Voiture",
-      "Bus",
-      "Avion",
-      "Arbre",
-      "Fleur"
+      "Voiture"
     ]
   }
 ]

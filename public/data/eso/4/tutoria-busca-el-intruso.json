@@ -1,30 +1,53 @@
 [
   {
-    "categoria": "Futuro (Visual)",
+    "categoria": "Proyectos de Futuro y Metas (Visual)",
     "correctos": [
       "🎓",
       "💼",
       "🔬",
       "🚀",
       "⚖️",
-      "👨‍🎓"
+      "👨‍🎓",
+      "👩‍🎓",
+      "🏗️",
+      "🏥",
+      "🌍",
+      "💻",
+      "🎨",
+      "✍️",
+      "👷",
+      "📈",
+      "🌟"
     ],
     "intrusos": [
       "🍼",
       "🧸",
       "🚼",
       "🏰",
-      "🎠"
+      "🎠",
+      "🍼",
+      "🍭",
+      "👶"
     ]
   },
   {
-    "categoria": "Valores (Visual)",
+    "categoria": "Valores Ciudadanos y Ética (Visual)",
     "correctos": [
       "🤝",
       "☮️",
       "⚖️",
       "🌱",
       "❤️",
+      "🫂",
+      "🕊️",
+      "🌍",
+      "🤲",
+      "✨",
+      "👐",
+      "🗳️",
+      "⚖️",
+      "🤝",
+      "🕯️",
       "🫂"
     ],
     "intrusos": [
@@ -32,92 +55,147 @@
       "🔫",
       "💸",
       "🦠",
-      "🥊"
+      "🥊",
+      "🚬",
+      "🤬",
+      "⚔️"
     ]
   },
   {
-    "categoria": "Orientación Académica",
+    "categoria": "Itinerarios y Orientación Post-ESO",
     "correctos": [
-      "Bachillerato",
-      "Grado Medio",
-      "Universidad",
-      "Selectividad",
-      "Nota de corte"
+      "Bachillerato de Ciencias",
+      "Bachillerato de Letras",
+      "Bachillerato de Artes",
+      "Formación Profesional (Grado Medio)",
+      "EBAU / Selectividad",
+      "Nota de corte",
+      "Universidad / Facultades",
+      "Matrícula académica",
+      "Erasmus+",
+      "Pruebas de acceso",
+      "FP Básica",
+      "Educación Permanente",
+      "Prácticas en empresa",
+      "Becas de estudio"
     ],
     "intrusos": [
-      "Primaria",
-      "Infantil",
+      "Educación Primaria",
+      "Educación Infantil",
       "Guardería",
       "Recreo",
-      "Juguetes"
+      "Juguetes",
+      "Dibujos animados",
+      "Parque infantil"
     ]
   },
   {
-    "categoria": "Habilidades Blandas",
+    "categoria": "Habilidades para la Vida (Soft Skills)",
     "correctos": [
-      "Liderazgo",
+      "Liderazgo consciente",
       "Trabajo en equipo",
-      "Creatividad",
-      "Adaptabilidad",
-      "Comunicación"
+      "Pensamiento creativo",
+      "Capacidad de adaptación",
+      "Comunicación asertiva",
+      "Gestión del tiempo",
+      "Toma de decisiones",
+      "Resolución de conflictos",
+      "Pensamiento crítico",
+      "Inteligencia emocional",
+      "Empatía",
+      "Autocontrol",
+      "Proactividad",
+      "Orientación a objetivos"
     ],
     "intrusos": [
-      "Fuerza",
-      "Altura",
-      "Peso",
-      "Velocidad",
-      "Edad"
+      "Fuerza física bruta",
+      "Altura corporal",
+      "Peso en báscula",
+      "Velocidad de carrera",
+      "Edad cronológica",
+      "Complexión física"
     ]
   },
   {
-    "categoria": "Mundo Laboral",
+    "categoria": "Iniciación al Mundo Laboral",
     "correctos": [
-      "Currículum",
-      "Entrevista",
-      "Contrato",
-      "Nómina",
-      "Seguridad Social"
+      "Currículum Vitae (CV)",
+      "Entrevista de trabajo",
+      "Contrato laboral",
+      "Nómina y sueldo",
+      "Seguridad Social",
+      "Carta de presentación",
+      "Oferta de empleo",
+      "Derechos del trabajador",
+      "Prevención de riesgos",
+      "Periodo de prueba",
+      "Certificado de estudios",
+      "Emprendimiento / Autónomo",
+      "Perfil de LinkedIn",
+      "Competencias laborales"
     ],
     "intrusos": [
-      "Examen",
-      "Boletín",
-      "Deberes",
-      "Recreo",
-      "Comedor"
+      "Examen sorpresa",
+      "Boletín de notas",
+      "Deberes escolares",
+      "Patio de recreo",
+      "Comedor escolar",
+      "Mochila de libros"
     ]
   },
   {
-    "categoria": "Salud Mental",
+    "categoria": "Bienestar y Salud Mental",
     "correctos": [
-      "Autoestima",
-      "Ansiedad",
-      "Estrés",
-      "Asertividad",
-      "Resiliencia"
+      "Sana autoestima",
+      "Gestión de ansiedad",
+      "Manejo del estrés",
+      "Comunicación asertiva",
+      "Resiliencia personal",
+      "Prevención de adicciones",
+      "Imagen corporal positiva",
+      "Relaciones sanas",
+      "Autocuidado",
+      "Búsqueda de ayuda",
+      "Aceptación",
+      "Salud emocional",
+      "Prevención del acoso (Bullying)",
+      "Mindfulness / Relajación"
     ],
     "intrusos": [
-      "Fiebre",
-      "Tos",
-      "Gripe",
-      "Fractura",
-      "Herida"
+      "Fiebre alta",
+      "Tos persistente",
+      "Gripe estacional",
+      "Fractura ósea",
+      "Herida abierta",
+      "Dolor de muelas",
+      "Hematoma"
     ]
   },
   {
-    "categoria": "Ciudadanía Global",
+    "categoria": "Compromiso y Ciudadanía Global",
     "correctos": [
-      "Sostenibilidad",
-      "Derechos Humanos",
-      "Igualdad",
-      "Ecología",
-      "Solidaridad"
+      "Sostenibilidad ambiental",
+      "Derechos Humanos Universales",
+      "Igualdad de género",
+      "Ecología y cambio climático",
+      "Solidaridad internacional",
+      "Consumo responsable",
+      "Diversidad cultural",
+      "Comercio justo",
+      "Obras benéficas / Voluntariado",
+      "Democracia y participación",
+      "Paz mundial",
+      "Justicia social",
+      "Desarrollo humano",
+      "Multiculturalidad"
     ],
     "intrusos": [
-      "Consumismo",
-      "Egoísmo",
-      "Contaminación",
-      "Despilfarro",
-      "Odio"
+      "Consumismo desenfrenado",
+      "Egoísmo individual",
+      "Contaminación masiva",
+      "Despilfarro de recursos",
+      "Odio y prejuicios",
+      "Racismo estructural"
     ]
   }
 ]

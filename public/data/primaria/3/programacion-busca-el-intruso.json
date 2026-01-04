@@ -4,7 +4,7 @@
     "correctos": [
       "💻",
       "⌨️",
-      "🖱️",
+      "鼠标 (Ratón Mouse)",
       "🖨️",
       "📱",
       "🖥️",
@@ -15,7 +15,13 @@
       "🕹️",
       "💾",
       "📡",
-      "🛰️"
+      "🛰️",
+      "🖱️",
+      "🖲️",
+      "📼",
+      "💿",
+      "📽️",
+      "📠"
     ],
     "intrusos": [
       "🍎",
@@ -25,17 +31,11 @@
       "🚗",
       "🍕",
       "🍦",
-      "🥪",
-      "🛋️",
-      "🛁",
-      "👕",
-      "👟",
-      "👞",
-      "🧢"
+      "🥪"
     ]
   },
   {
-    "categoria": "Componentes de Robótica (Visual)",
+    "categoria": "Robots y Engranajes (Visual)",
     "correctos": [
       "🤖",
       "⚙️",
@@ -49,7 +49,14 @@
       "🛰️",
       "🦾",
       "🦿",
-      "🎛️"
+      "🎛️",
+      "🔩",
+      "🛸",
+      "🚀",
+      "🛰️",
+      "🛸",
+      "🎚️",
+      "🔬"
     ],
     "intrusos": [
       "🌸",
@@ -59,16 +66,11 @@
       "🎨",
       "🧸",
       "🍭",
-      "🦋",
-      "🌈",
-      "🍉",
-      "🧣",
-      "🧤",
-      "👒"
+      "🦋"
     ]
   },
   {
-    "categoria": "Interfaz y Gestión de Archivos (Visual)",
+    "categoria": "Interfaz de Usuario (Visual)",
     "correctos": [
       "📁",
       "🗑️",
@@ -84,7 +86,12 @@
       "🔋",
       "💾",
       "📥",
-      "📤"
+      "📤",
+      "🌐",
+      "📅",
+      "🔑",
+      "🔔",
+      "☁️"
     ],
     "intrusos": [
       "🚲",
@@ -94,16 +101,11 @@
       "👞",
       "👕",
       "👒",
-      "🛹",
-      "⚽",
-      "🍎",
-      "🏠",
-      "🌲",
-      "🌳"
+      "🛹"
     ]
   },
   {
-    "categoria": "Lógica y Flujo: Flechas y Signos (Visual)",
+    "categoria": "Lógica y Signos (Visual)",
     "correctos": [
       "➡️",
       "⬅️",
@@ -119,7 +121,12 @@
       "🔣",
       "🔡",
       "🔁",
-      "🔀"
+      "🔀",
+      "🔠",
+      "ℹ️",
+      "🆗",
+      "🆙",
+      "🆒"
     ],
     "intrusos": [
       "🏠",
@@ -129,20 +136,14 @@
       "🍎",
       "🍔",
       "🍕",
-      "🧸",
-      "🛋️",
-      "🛁",
-      "👕",
-      "👟",
-      "👞",
-      "🧢"
+      "🧸"
     ]
   },
   {
-    "categoria": "Comandos de Acción para Robots",
+    "categoria": "Comandos de Acción",
     "correctos": [
       "Avanzar",
-      "Girar 90 grados",
+      "Girar",
       "Saltar",
       "Parar",
       "Esperar",
@@ -152,7 +153,10 @@
       "Encender LED",
       "Repetir bucle",
       "Si contacto entonces",
-      "Emitir pitido"
+      "Emitir pitido",
+      "Detectar luz",
+      "Girar derecha",
+      "Girar izquierda"
     ],
     "intrusos": [
       "Comer",
@@ -160,16 +164,11 @@
       "Llorar",
       "Cantar",
       "Soñar",
-      "Bañarse",
-      "Peinarse",
-      "Desayunar",
-      "Merienda",
-      "Almorzar",
-      "Cenar"
+      "Bañarse"
     ]
   },
   {
-    "categoria": "Componentes Internos y Externos del PC",
+    "categoria": "Componentes de PC",
     "correctos": [
       "Teclado",
       "Ratón USB",
@@ -182,7 +181,9 @@
       "Disco duro",
       "Procesador",
       "Cable HDMI",
-      "Router WiFi"
+      "Router WiFi",
+      "Tarjeta gráfica",
+      "Fuente de poder"
     ],
     "intrusos": [
       "Zapato",
@@ -190,16 +191,11 @@
       "Libreta",
       "Lápiz",
       "Gorra",
-      "Mesa de madera",
-      "Silla de plástico",
-      "Vaso de cristal",
-      "Plato hondo",
-      "Ventana cristal",
-      "Puerta metal"
+      "Mesa"
     ]
   },
   {
-    "categoria": "Conceptos de Internet y Comunicación",
+    "categoria": "Internet y Redes",
     "correctos": [
       "Página Web",
       "Vídeo online",
@@ -207,72 +203,76 @@
       "Correo electrónico",
       "Base de datos",
       "Buscador",
-      "Enlace / Link",
-      "Aplicación / App",
-      "Nube / Cloud",
-      "Contraseña / Password"
+      "Enlace",
+      "Aplicación",
+      "Nube",
+      "Contraseña",
+      "URL",
+      "Navegador",
+      "Streaming",
+      "Download",
+      "Upload"
     ],
     "intrusos": [
       "Piedra",
       "Árbol",
-      "Bocadillo vegetal",
-      "Pelota goma",
+      "Bocadillo",
+      "Pelota",
       "Libro papel",
-      "Arena playa",
-      "Agua mar",
-      "Fuego campamento",
-      "Cuchillo cocina",
-      "Tenedor metal"
+      "Arena"
     ]
   },
   {
-    "categoria": "Interacción Humano-Computadora",
+    "categoria": "Interacción con Dispositivos",
     "correctos": [
       "Hacer Clic",
       "Doble clic",
-      "Arrastrar icono",
-      "Soltar archivo",
-      "Hacer Scroll",
+      "Arrastrar",
+      "Soltar",
+      "Scroll",
       "Pulsar tecla",
-      "Deslizar pantalla",
+      "Deslizar",
       "Mover el cursor",
-      "Seleccionar texto",
-      "Hacer Zoom"
+      "Seleccionar",
+      "Hacer Zoom",
+      "Minimizar",
+      "Cerrar",
+      "Maximizar",
+      "Actualizar"
     ],
     "intrusos": [
-      "Pintar con acuarela",
+      "Pintar can acuarela",
       "Recortar con tijera",
       "Pegar con cola",
       "Doblar papel",
-      "Escribir con boli",
-      "Borrar con goma",
-      "Cerrar los ojos",
-      "Saltar a la comba"
+      "Escribir con boli"
     ]
   },
   {
     "categoria": "Pensamiento Computacional",
     "correctos": [
       "Código",
-      "Bucle / Loop",
+      "Bucle",
       "Algoritmo",
       "Instrucción",
-      "Condicional (Si...entonces)",
+      "Condicional",
       "Variable",
-      "Secuencia lógica",
-      "Depuración / Debug",
-      "Evento / Disparador",
-      "Función"
+      "Secuencia",
+      "Depuración",
+      "Evento",
+      "Función",
+      "Bloque",
+      "Detección",
+      "Repetición",
+      "Orden"
     ],
     "intrusos": [
-      "Cuento de hadas",
-      "Canción infantil",
-      "Receta de tarta",
-      "Dibujo libre",
-      "Poesía épica",
-      "Parque infantil",
-      "Columpio madera",
-      "Merienda sana"
+      "Cuento",
+      "Canción",
+      "Receta",
+      "Dibujo",
+      "Poesía",
+      "Parque"
     ]
   }
 ]

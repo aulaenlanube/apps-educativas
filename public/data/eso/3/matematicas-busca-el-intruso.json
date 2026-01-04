@@ -1,154 +1,264 @@
 [
   {
-    "categoria": "Gráficas Estadísticas (Visual)",
+    "categoria": "Análisis de Datos y Gráficas (Visual)",
     "correctos": [
       "📊",
       "📉",
       "📈",
       "🥧",
-      "💹"
+      "💹",
+      "⏲️",
+      "🕰️",
+      "📉",
+      "📊",
+      "📉",
+      "📈",
+      "💹",
+      "📅",
+      "🔭",
+      "🔬",
+      "💻"
     ],
     "intrusos": [
       "📐",
       "📝",
       "🎲",
       "🧱",
-      "🎨"
+      "🎨",
+      "🎭",
+      "🎬",
+      "🎪"
     ]
   },
   {
-    "categoria": "Cuerpos Geométricos (Visual)",
+    "categoria": "Cuerpos en 3D y Espacio (Visual)",
     "correctos": [
       "🧊",
       "📦",
       "⚽",
       "🥫",
       "⛺",
-      "🏗️"
+      "🏗️",
+      "🌍",
+      "🌕",
+      "🪐",
+      "🌑",
+      "🧱",
+      "🏘️",
+      "🛖",
+      "🏡",
+      "🏠",
+      "🌑"
     ],
     "intrusos": [
       "🟦",
       "🔴",
       "🔺",
       "📏",
-      "🗺️"
+      "🗺️",
+      "〰️",
+      "🌀",
+      "🌊"
     ]
   },
   {
-    "categoria": "Azar y Probabilidad (Visual)",
+    "categoria": "Cálculo de Probabilidades y Juegos (Visual)",
     "correctos": [
       "🎲",
       "🃏",
       "🎰",
       "🪙",
-      "🎱"
+      "🎱",
+      "🎯",
+      "🕹️",
+      "🎮",
+      "🎳",
+      "🎟️",
+      "🎩",
+      "🗝️",
+      "🔮",
+      "🪄",
+      "🎴",
+      "🎲"
     ],
     "intrusos": [
       "⏱️",
       "🌡️",
       "⚖️",
       "🔢",
-      "➕"
+      "➕",
+      "➖",
+      "✖️",
+      "➗"
     ]
   },
   {
-    "categoria": "Tecnología Matemática (Visual)",
+    "categoria": "Herramientas de Cálculo y Geometría (Visual)",
     "correctos": [
       "🧮",
       "💻",
       "📱",
       "📐",
-      "📏"
+      "📏",
+      "✏️",
+      "📊",
+      "📉",
+      "📉",
+      "📈",
+      "💹",
+      "💻",
+      "📟",
+      "🖊️",
+      "✒️",
+      "📓"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🖌️",
       "🧵",
-      "🍳"
+      "🍳",
+      "🧺",
+      "🧹",
+      "🪒"
     ]
   },
   {
-    "categoria": "Sistemas de Ecuaciones",
+    "categoria": "Métodos y Resolución de Sistemas",
     "correctos": [
-      "Sustitución",
-      "Igualación",
-      "Reducción",
-      "Gráfico"
+      "Método de Sustitución",
+      "Método de Igualación",
+      "Método de Reducción",
+      "Método Gráfico",
+      "Sistema compatible determinado",
+      "Sistema compatible indeterminado",
+      "Sistema incompatible",
+      "Ecuación lineal",
+      "Incógnita",
+      "Coeficiente",
+      "Solución única",
+      "Infinitas soluciones",
+      "Sin solución",
+      "Punto de corte"
     ],
     "intrusos": [
-      "Ruffini",
-      "Pitágoras",
-      "Tales",
-      "Factorización",
-      "Mínimo"
+      "Regla de Ruffini",
+      "Teorema de Pitágoras",
+      "Teorema de Tales",
+      "Factorización polinómica",
+      "Mínimo común múltiplo",
+      "Binomio de Newton"
     ]
   },
   {
-    "categoria": "Tipos de Sucesiones",
+    "categoria": "Sucesiones y Progresiones",
     "correctos": [
-      "Aritmética",
-      "Geométrica",
-      "Recurrente",
-      "Constante"
+      "Sucesión Aritmética",
+      "Sucesión Geométrica",
+      "Diferencia (d)",
+      "Razón (r)",
+      "Término general (an)",
+      "Término equidistante",
+      "Suma de términos",
+      "Sucesión recurrente",
+      "Límite de una sucesión",
+      "Sucesión creciente",
+      "Sucesión decreciente",
+      "Progresión",
+      "Sucesión de Fibonacci",
+      "Término a1"
     ],
     "intrusos": [
-      "Aleatoria",
-      "Alfabética",
-      "Cuadrada",
-      "Triangular",
-      "Recta"
+      "Distribución aleatoria",
+      "Orden alfabético",
+      "Función cuadrática",
+      "Trigonometría",
+      "Ángulo recto",
+      "Raíz cúbica"
     ]
   },
   {
-    "categoria": "Geometría del Espacio",
+    "categoria": "Geometría Sólida y Poliedros",
     "correctos": [
-      "Poliedro",
-      "Prisma",
-      "Pirámide",
+      "Poliedro regular",
+      "Prisma recto",
+      "Pirámide oblicua",
       "Cilindro",
-      "Esfera"
+      "Esfera",
+      "Cono",
+      "Tronco de cono",
+      "Tetraedro",
+      "Octaedro",
+      "Dodecaedro",
+      "Icosaedro",
+      "Área lateral",
+      "Cuerpo de revolución",
+      "Volumen"
     ],
     "intrusos": [
-      "Polígono",
+      "Polígono regular",
       "Cuadrado",
-      "Rombo",
-      "Trapecio",
-      "Círculo"
+      "Romboide",
+      "Trapecio isósceles",
+      "Círculo",
+      "Segmento",
+      "Vectores",
+      "Bisectriz"
     ]
   },
   {
-    "categoria": "Estadística Unidimensional",
+    "categoria": "Estadística y Parámetros de Dispersión",
     "correctos": [
-      "Media",
+      "Media aritmética",
       "Mediana",
       "Moda",
       "Varianza",
-      "Desviación típica"
+      "Desviación típica",
+      "Coeficiente de variación",
+      "Rango o recorrido",
+      "Cuartiles (Q1, Q2, Q3)",
+      "Diagrama de caja",
+      "Histograma",
+      "Frecuencia absoluta",
+      "Frecuencia relativa",
+      "Variable discreta",
+      "Variable continua"
     ],
     "intrusos": [
       "Seno",
       "Coseno",
       "Tangente",
       "Hipotenusa",
-      "Cateto"
+      "Cateto opuesto",
+      "Grados sexagesimales",
+      "Radián"
     ]
   },
   {
-    "categoria": "Conjuntos Numéricos",
+    "categoria": "Números Reales y Operaciones",
     "correctos": [
-      "Naturales",
-      "Enteros",
-      "Racionales",
-      "Reales",
-      "Irracionales"
+      "Números Naturales (N)",
+      "Números Enteros (Z)",
+      "Números Racionales (Q)",
+      "Números Reales (R)",
+      "Números Irracionales",
+      "Notación científica",
+      "Potencias de base 10",
+      "Raíces y radicales",
+      "Intervalos",
+      "Valor absoluto",
+      "Aproximación por redondeo",
+      "Cifras significativas",
+      "Error absoluto",
+      "Error relativo"
     ],
     "intrusos": [
-      "Primos",
-      "Pares",
-      "Impares",
-      "Romanos",
-      "Binarios"
+      "Números Primos",
+      "Números Pares",
+      "Números Impares",
+      "Números Romanos",
+      "Números Binarios",
+      "Números Hexadecimales"
     ]
   }
 ]

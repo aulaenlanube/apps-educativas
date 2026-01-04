@@ -1,156 +1,267 @@
 [
   {
-    "categoria": "Tabla Periódica (Visual)",
+    "categoria": "Laboratorio y Química (Visual)",
     "correctos": [
       "⚛️",
       "🧪",
       "⚗️",
       "🔬",
       "🧬",
-      "🧊"
+      "🧊",
+      "🧫",
+      "🌡️",
+      "⚖️",
+      "🔥",
+      "🥽",
+      "📋",
+      "📊",
+      "🧪",
+      "🔍",
+      "📐"
     ],
     "intrusos": [
       "🪐",
       "🔭",
       "🌍",
       "🚀",
-      "🛰️"
+      "🛰️",
+      "🛸",
+      "🪁",
+      "🦅"
     ]
   },
   {
-    "categoria": "Electricidad (Visual)",
+    "categoria": "Fenómenos Eléctricos y Magnéticos (Visual)",
     "correctos": [
       "⚡",
       "🔋",
       "🔌",
       "💡",
-      "🔦",
-      "🧲"
+      " flashlight (Linterna Linterna)",
+      "🧲",
+      "⚙️",
+      "🔗",
+      "📶",
+      "🔋",
+      "💡",
+      "⚡",
+      "📟",
+      "📡",
+      "🛰️",
+      "🔌"
     ],
     "intrusos": [
       "💧",
       "🌱",
       "🔥",
       "💨",
-      "🌊"
+      "🌊",
+      "🌹",
+      "🍄",
+      "🐚"
     ]
   },
   {
-    "categoria": "Fuerzas y Movimiento (Visual)",
+    "categoria": "Dinámica y Cinemática (Visual)",
     "correctos": [
       "🚀",
       "🏎️",
       "🎢",
       "🏋️",
       "🏹",
-      "⚽"
+      "⚽",
+      "🎿",
+      "🏂",
+      "🚴",
+      "🏃",
+      "🪁",
+      "⌚",
+      "⏱️",
+      "⏲️",
+      "📏",
+      "📉"
     ],
     "intrusos": [
       "🛌",
       "🧘",
       "📚",
       "🎨",
-      "🖼️"
+      "🖼️",
+      "🧸",
+      "🍿",
+      "🍕"
     ]
   },
   {
-    "categoria": "Símbolos de Peligro (Visual)",
+    "categoria": "Seguridad y Riesgos Químicos (Visual)",
     "correctos": [
       "☢️",
       "☣️",
       "☠️",
       "⚠️",
-      "🔥"
+      "🔥",
+      "🧊",
+      "💨",
+      "🧪",
+      "💧",
+      "⚡",
+      "🚫",
+      "🛑",
+      "🚱",
+      "🚭",
+      "☢️",
+      "☣️"
     ],
     "intrusos": [
       "♻️",
       "♿",
       "🚹",
       "🚺",
-      "🅿️"
+      "🅿️",
+      "🚮",
+      "🚻",
+      "🚼"
     ]
   },
   {
-    "categoria": "Elementos Químicos",
+    "categoria": "Elementos Químicos (Símbolos y Nombres)",
     "correctos": [
-      "Hidrógeno",
-      "Oxígeno",
-      "Carbono",
-      "Hierro",
-      "Oro"
+      "Hidrógeno (H)",
+      "Oxígeno (O)",
+      "Carbono (C)",
+      "Hierro (Fe)",
+      "Oro (Au)",
+      "Plata (Ag)",
+      "Cobre (Cu)",
+      "Aluminio (Al)",
+      "Nitrógeno (N)",
+      "Helio (He)",
+      "Calcio (Ca)",
+      "Potasio (K)",
+      "Sodio (Na)",
+      "Cloro (Cl)"
     ],
     "intrusos": [
-      "Agua",
+      "Agua (H2O)",
+      "Dióxido de carbono",
       "Aire",
       "Acero",
       "Bronce",
-      "Plástico"
+      "Plástico",
+      "Vidrio",
+      "Madera"
     ]
   },
   {
-    "categoria": "Modelos Atómicos",
+    "categoria": "Modelos y Estructura Atómica",
     "correctos": [
-      "Dalton",
-      "Thomson",
-      "Rutherford",
-      "Bohr"
+      "Modelo de Dalton",
+      "Modelo de Thomson",
+      "Modelo de Rutherford",
+      "Modelo de Bohr",
+      "Modelo mecanocuántico",
+      "Protón",
+      "Neutrón",
+      "Electrón",
+      "Núcleo atómico",
+      "Corteza electrónica",
+      "Niveles de energía",
+      "Orbital",
+      "Número atómico (Z)",
+      "Número másico (A)"
     ],
     "intrusos": [
-      "Newton",
-      "Einstein",
-      "Galileo",
-      "Darwin",
-      "Mendel"
+      "Leyes de Newton",
+      "Teoría del Big Bang",
+      "Relatividad",
+      "Evolución",
+      "Selección natural",
+      "Leyes de Mendel"
     ]
   },
   {
-    "categoria": "Tipos de Fuerzas",
+    "categoria": "Fuerzas y Gravitación",
     "correctos": [
       "Gravedad",
       "Rozamiento",
-      "Eléctrica",
-      "Magnética",
-      "Nuclear"
+      "Fuerza Eléctrica",
+      "Fuerza Magnética",
+      "Fuerza Nuclear fuerte",
+      "Fuerza Nuclear débil",
+      "Tensión",
+      "Normal",
+      "Empuje",
+      "Fuerza centrípeta",
+      "Fuerza elástica",
+      "Fuerza resultante",
+      "Peso",
+      "Fuerza de contacto"
     ],
     "intrusos": [
       "Velocidad",
       "Aceleración",
       "Tiempo",
-      "Espacio",
-      "Masa"
+      "Distancia",
+      "Masa",
+      "Densidad",
+      "Volumen"
     ]
   },
   {
-    "categoria": "Reacciones Químicas",
+    "categoria": "Cambios Químicos y Reacciones",
     "correctos": [
       "Combustión",
       "Oxidación",
       "Fermentación",
-      "Neutralización"
+      "Neutralización",
+      "Polimerización",
+      "Precipitación",
+      "Descomposición",
+      "Síntesis",
+      "Sustitución",
+      "Efervescencia",
+      "Cambio de color",
+      "Variación de temperatura",
+      "Formación de gas",
+      "Reacción exotérmica"
     ],
     "intrusos": [
       "Evaporación",
       "Fusión",
       "Solidificación",
       "Filtración",
-      "Decantación"
+      "Decantación",
+      "Destilación",
+      "Sublimación"
     ]
   },
   {
-    "categoria": "Magnitudes Físicas",
+    "categoria": "Magnitudes y Unidades (SI)",
     "correctos": [
-      "Masa",
-      "Tiempo",
-      "Longitud",
-      "Temperatura",
-      "Intensidad"
+      "Masa (kg)",
+      "Tiempo (s)",
+      "Longitud (m)",
+      "Temperatura (K)",
+      "Intensidad de corriente (A)",
+      "Cantidad de sustancia (mol)",
+      "Intensidad luminosa (cd)",
+      "Velocidad (m/s)",
+      "Fuerza (N)",
+      "Energía (J)",
+      "Potencia (W)",
+      "Presión (Pa)",
+      "Superficie (m2)",
+      "Volumen (m3)"
     ],
     "intrusos": [
       "Litro",
-      "Metro",
-      "Segundo",
-      "Grado",
-      "Amperio"
+      "Grado Celsius",
+      "Caloría",
+      "Caballo de vapor",
+      "Gramo",
+      "Centímetro",
+      "Minuto",
+      "Hora"
     ]
   }
 ]

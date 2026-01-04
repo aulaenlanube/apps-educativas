@@ -1,12 +1,22 @@
 [
   {
-    "categoria": "Numbers 1-5 (Visual)",
+    "categoria": "Numbers 1-15 (Visual)",
     "correctos": [
       "1️⃣",
       "2️⃣",
       "3️⃣",
       "4️⃣",
-      "5️⃣"
+      "5️⃣",
+      "6️⃣",
+      "7️⃣",
+      "8️⃣",
+      "9️⃣",
+      "🔟",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15"
     ],
     "intrusos": [
       "A",
@@ -17,36 +27,57 @@
     ]
   },
   {
-    "categoria": "Primary Colors (Visual)",
+    "categoria": "Colors (Visual)",
     "correctos": [
-      "🔴 (Red)",
-      "🔵 (Blue)",
-      "🟡 (Yellow)",
-      "🟢 (Green)"
+      "🔴",
+      "🔵",
+      "🟡",
+      "🟢",
+      "⚪",
+      "⚫",
+      "🟣",
+      "🟠",
+      "🟤",
+      "🩷",
+      "🩶",
+      "❤️",
+      "🩵",
+      "💙"
     ],
     "intrusos": [
       "🐶",
       "🍎",
       "🚗",
-      "🏠"
+      "🏠",
+      "🚲",
+      "🎒"
     ]
   },
   {
-    "categoria": "Pets: Animals at Home (Visual)",
+    "categoria": "Pets: Animals (Visual)",
     "correctos": [
       "🐶",
       "🐱",
       "🐰",
       "🐹",
       "🦜",
-      "🐢"
+      "🐢",
+      "🐠",
+      "🦎",
+      "🐭",
+      "🐱‍👤",
+      "🐩",
+      "🐈",
+      "🐕",
+      "🐟"
     ],
     "intrusos": [
       "🦁",
       "🐘",
       "🐯",
       "🦒",
-      "🦓"
+      "🦓",
+      "🦖"
     ]
   },
   {
@@ -57,14 +88,23 @@
       "🍇",
       "🍊",
       "🍓",
-      "🍐"
+      "🍐",
+      "🍒",
+      "🍍",
+      "🥭",
+      "🥝",
+      "🍉",
+      "🍈",
+      "🫐",
+      "🍋"
     ],
     "intrusos": [
       "🍦",
       "🍩",
       "🍕",
       "🍔",
-      "🍟"
+      "🍟",
+      "🍿"
     ]
   },
   {
@@ -79,7 +119,12 @@
       "Seven",
       "Eight",
       "Nine",
-      "Ten"
+      "Ten",
+      "Eleven",
+      "Twelve",
+      "Thirteen",
+      "Fourteen",
+      "Fifteen"
     ],
     "intrusos": [
       "Red",
@@ -99,7 +144,14 @@
       "Green",
       "Pink",
       "White",
-      "Black"
+      "Black",
+      "Brown",
+      "Orange",
+      "Purple",
+      "Grey",
+      "Gold",
+      "Silver",
+      "Violet"
     ],
     "intrusos": [
       "One",
@@ -113,18 +165,28 @@
   {
     "categoria": "Family Members",
     "correctos": [
-      "Mom / Mother",
-      "Dad / Father",
+      "Mom",
+      "Mother",
+      "Dad",
+      "Father",
       "Brother",
       "Sister",
-      "Baby"
+      "Baby",
+      "Grandpa",
+      "Grandma",
+      "Cousin",
+      "Aunt",
+      "Uncle",
+      "Son",
+      "Daughter"
     ],
     "intrusos": [
       "Pen",
       "Pencil",
       "Book",
       "Chair",
-      "Table"
+      "Table",
+      "Car"
     ]
   },
   {
@@ -135,14 +197,23 @@
       "Book",
       "Bag",
       "Eraser",
-      "Ruler"
+      "Ruler",
+      "Glue",
+      "Desk",
+      "Chair",
+      "Paper",
+      "Folder",
+      "Scissors",
+      "Marker",
+      "Case"
     ],
     "intrusos": [
       "Apple",
       "Banana",
       "Pizza",
       "Milk",
-      "Water"
+      "Water",
+      "Cookie"
     ]
   }
 ]

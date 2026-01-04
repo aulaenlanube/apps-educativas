@@ -1,13 +1,23 @@
 [
   {
-    "categoria": "Hardware: Cosas que toco (Visual)",
+    "categoria": "Hardware y Dispositivos Periféricos (Visual)",
     "correctos": [
       "💻",
       "⌨️",
       "🖱️",
       "🖨️",
       "📱",
-      "🖥️"
+      "🖥️",
+      "🔋",
+      "🔌",
+      "📷",
+      "🎧",
+      "💾",
+      "💿",
+      "🖲️",
+      "📼",
+      "📠",
+      "📟"
     ],
     "intrusos": [
       "🍎",
@@ -15,147 +25,240 @@
       "⚽",
       "🧸",
       "🚗",
-      "🍕"
+      "🍕",
+      "🍦",
+      "🥪"
     ]
   },
   {
-    "categoria": "Robótica (Visual)",
+    "categoria": "Robótica y Control (Visual)",
     "correctos": [
       "🤖",
       "⚙️",
       "🔋",
       "🔌",
       "💡",
-      "🛠️"
+      "🛠️",
+      "🌡️",
+      "⏲️",
+      "📡",
+      "🛰️",
+      "🦾",
+      "🦿",
+      "🔩",
+      "🧲",
+      "🚥",
+      "🔌"
     ],
     "intrusos": [
       "🌸",
       "🍦",
       "🐱",
       "☁️",
-      "🎨"
+      "🎨",
+      "🦋",
+      "🌈",
+      "🌅"
     ]
   },
   {
-    "categoria": "Iconos de la pantalla (Visual)",
+    "categoria": "Iconografía Digital y Archivos (Visual)",
     "correctos": [
       "📁",
       "🗑️",
       "🔍",
       "✉️",
       "🖼️",
-      "🎬"
+      "🎬",
+      "🎵",
+      "🕒",
+      "⚙️",
+      "🔒",
+      "📶",
+      "📥",
+      "📤",
+      "🔔",
+      "📍",
+      "🌐"
     ],
     "intrusos": [
       "🚲",
       "🦒",
       "🍔",
       "🎸",
-      "👞"
+      "👞",
+      "👕",
+      " skateboard (Skateboard Skateboard)",
+      "🧢"
     ]
   },
   {
-    "categoria": "Símbolos de Código (Visual)",
+    "categoria": "Lógica y Algorítmica (Visual)",
     "correctos": [
       "➡️",
       "⬅️",
       "⬆️",
       "⬇️",
       "➕",
-      "➖"
+      "➖",
+      "✖️",
+      "➗",
+      "🔄",
+      "↩️",
+      "🔢",
+      "🔁",
+      "🔀",
+      "♾️",
+      "✅",
+      "❌"
     ],
     "intrusos": [
       "🏠",
       "🚗",
       "🐶",
       "🌲",
-      "🍎"
+      "🍎",
+      "🍔",
+      "🍕",
+      "🧸"
     ]
   },
   {
-    "categoria": "Órdenes para un Robot",
+    "categoria": "Estructuras de Programación y Control",
     "correctos": [
-      "Avanzar",
-      "Girar",
-      "Saltar",
-      "Parar",
-      "Esperar"
+      "Bucle For",
+      "Bucle While",
+      "Condicional If-Else",
+      "Interruptor / Switch",
+      "Operador AND (Y)",
+      "Operador OR (O)",
+      "Operador NOT (NO)",
+      "Variable local",
+      "Variable global",
+      "Función / Método",
+      "Parámetro / Argumento",
+      "Retorno (Return)",
+      "Matriz / Array",
+      "Objeto (POO)"
     ],
     "intrusos": [
-      "Comer",
-      "Dormir",
-      "Llorar",
-      "Cantar",
-      "Soñar"
+      "Cuento literario",
+      "Canción popular",
+      "Receta gastronómica",
+      "Dibujo lineal",
+      "Poesía lírica",
+      "Novela de terror",
+      "Crónica social"
     ]
   },
   {
-    "categoria": "Partes de un Ordenador",
+    "categoria": "Arquitectura Física del Ordenador",
     "correctos": [
-      "Teclado",
-      "Ratón",
-      "Pantalla",
-      "Altavoz",
-      "Cámara",
-      "Batería"
+      "Procesador (CPU)",
+      "Memoria RAM",
+      "Unidad de Control",
+      "Unidad Aritmético-Lógica",
+      "Placa Base",
+      "Disco de Estado Sólido (SSD)",
+      "Fuente de Alimentación",
+      "Bus de Datos",
+      "Memoria Caché",
+      "Ranura PCI",
+      "Chipset",
+      "BIOS / UEFI",
+      "Tarjeta Gráfica (GPU)",
+      "Puertos de E/S"
     ],
     "intrusos": [
-      "Zapato",
-      "Cuchara",
-      "Libreta",
-      "Lápiz",
-      "Gorra"
+      "Calzado deportivo",
+      "Cubierto de plata",
+      "Cuaderno de notas",
+      "Instrumento musical",
+      "Prenda de vestir",
+      "Mueble de oficina"
     ]
   },
   {
-    "categoria": "Cosas que hay en Internet",
+    "categoria": "Entorno Web y Redes",
     "correctos": [
-      "Web",
-      "Vídeo",
-      "Juego",
-      "Correo",
-      "Foto",
-      "Mensaje"
+      "Lenguaje HTML",
+      "Estilos CSS",
+      "Servidor Web (Host)",
+      "Protocolo HTTP/HTTPS",
+      "Dirección IP",
+      "Dominio .com / .es",
+      "Navegador Web",
+      "Motor de Búsqueda",
+      "Base de Datos SQL",
+      "Cloud / Nube",
+      "Ciberseguridad",
+      "Cookies de rastreo",
+      "Hipervínculo / Enlace",
+      "Red Social"
     ],
     "intrusos": [
-      "Piedra",
-      "Árbol",
-      "Bocadillo",
-      "Pelota",
-      "Libro"
+      "Mineral ígneo",
+      "Árbol caducifolio",
+      "Alimento procesado",
+      "Deporte de equipo",
+      "Libro impreso",
+      "Papel reciclado",
+      "Madera natural"
     ]
   },
   {
-    "categoria": "Acciones con el Ratón",
+    "categoria": "Acciones de Interfaz y Sistema",
     "correctos": [
-      "Clic",
+      "Clic contextual",
       "Doble clic",
-      "Arrastrar",
-      "Soltar"
+      "Arrastrar y soltar",
+      "Scroll / Desplazamiento",
+      "Compresión .ZIP / .RAR",
+      "Extensión de archivo",
+      "Gestión de directorios",
+      "Permisos de usuario",
+      "Instalación de software",
+      "Actualización de firmware",
+      "Copia de seguridad / Backup",
+      "Formateo lógico",
+      "Administrador de tareas",
+      "Línea de comandos / Shell"
     ],
     "intrusos": [
-      "Pintar",
-      "Recortar",
-      "Pegar",
-      "Doblar",
-      "Escribir"
+      "Ténica de pintura",
+      "Recorte de cartulina",
+      "Adhesivo de contacto",
+      "Doblado de textiles",
+      "Ejercicio de salto",
+      "Actividad de carrera"
     ]
   },
   {
-    "categoria": "Conceptos de Programación",
+    "categoria": "Conceptos de Pensamiento Computacional",
     "correctos": [
-      "Código",
-      "Bucle",
-      "Algoritmo",
-      "Instrucción",
-      "Condicional"
+      "Algoritmo paso a paso",
+      "Descomposición de problemas",
+      "Abstracción de datos",
+      "Depuración / Debugging",
+      "Compilación de código",
+      "Interpretación de scripts",
+      "Entrada/Salida (I/O)",
+      "Estructura de datos",
+      "Recursividad",
+      "Encapsulamiento",
+      "Herencia (clases)",
+      "Polimorfismo",
+      "Eventos asíncronos",
+      "Seguridad por contraseña"
     ],
     "intrusos": [
-      "Cuento",
-      "Canción",
-      "Receta",
-      "Dibujo",
-      "Poesía"
+      "Análisis rítmico",
+      "Métrica del verso",
+      "Figura retórica",
+      "Narrador testigo",
+      "Desenlace dramático",
+      "Rima consonante",
+      "Estrofa poética"
     ]
   }
 ]

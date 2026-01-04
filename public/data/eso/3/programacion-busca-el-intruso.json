@@ -1,13 +1,23 @@
 [
   {
-    "categoria": "Hardware: Cosas que toco (Visual)",
+    "categoria": "Hardware y Dispositivos de E/S (Visual)",
     "correctos": [
       "💻",
       "⌨️",
       "🖱️",
       "🖨️",
       "📱",
-      "🖥️"
+      "🖥️",
+      "🔋",
+      "🔌",
+      "📷",
+      "🎧",
+      "💾",
+      "💿",
+      "🖲️",
+      "📼",
+      "📠",
+      "📟"
     ],
     "intrusos": [
       "🍎",
@@ -15,147 +25,247 @@
       "⚽",
       "🧸",
       "🚗",
-      "🍕"
+      "🍕",
+      "🍦",
+      "🥪"
     ]
   },
   {
-    "categoria": "Robótica (Visual)",
+    "categoria": "Robótica, Sensores y Control (Visual)",
     "correctos": [
       "🤖",
       "⚙️",
       "🔋",
       "🔌",
       "💡",
-      "🛠️"
+      "🛠️",
+      "🌡️",
+      "⏲️",
+      "📡",
+      "🛰️",
+      "🦾",
+      "🦿",
+      "🔩",
+      "🧲",
+      "🚥",
+      "🔦"
     ],
     "intrusos": [
       "🌸",
       "🍦",
       "🐱",
       "☁️",
-      "🎨"
+      "🎨",
+      "🦋",
+      "🌈",
+      "🌅"
     ]
   },
   {
-    "categoria": "Iconos de la pantalla (Visual)",
+    "categoria": "Elementos de Interfaz y Redes (Visual)",
     "correctos": [
       "📁",
       "🗑️",
       "🔍",
       "✉️",
       "🖼️",
-      "🎬"
+      "🎬",
+      "🎵",
+      "🕒",
+      "⚙️",
+      "🔒",
+      "📶",
+      "📥",
+      "📤",
+      "🔔",
+      "📍",
+      "🌐"
     ],
     "intrusos": [
       "🚲",
       "🦒",
       "🍔",
       "🎸",
-      "👞"
+      "👞",
+      "👕",
+      "🛹",
+      "🧢"
     ]
   },
   {
-    "categoria": "Símbolos de Código (Visual)",
+    "categoria": "Lógica y Flujo de Control (Visual)",
     "correctos": [
       "➡️",
       "⬅️",
       "⬆️",
       "⬇️",
       "➕",
-      "➖"
+      "➖",
+      "✖️",
+      "➗",
+      "🔄",
+      "↩️",
+      "🔢",
+      "🔁",
+      "🔀",
+      "♾️",
+      "✅",
+      "❌"
     ],
     "intrusos": [
       "🏠",
       "🚗",
       "🐶",
       "🌲",
-      "🍎"
+      "🍎",
+      "🍔",
+      "🍕",
+      "🧸"
     ]
   },
   {
-    "categoria": "Órdenes para un Robot",
+    "categoria": "Estructuras de Control y Lógica",
     "correctos": [
-      "Avanzar",
-      "Girar",
-      "Saltar",
-      "Parar",
-      "Esperar"
+      "Bucle For",
+      "Bucle While",
+      "Condicional If-Else",
+      "Interruptor / Switch",
+      "Operador AND",
+      "Operador OR",
+      "Operador NOT",
+      "Variable local",
+      "Variable global",
+      "Función / Método",
+      "Parámetro",
+      "Retorno (Return)",
+      "Recursividad",
+      "Evento"
     ],
     "intrusos": [
-      "Comer",
-      "Dormir",
-      "Llorar",
-      "Cantar",
-      "Soñar"
+      "Cuento",
+      "Canción",
+      "Receta de cocina",
+      "Dibujo libre",
+      "Poesía",
+      "Novela",
+      "Crónica",
+      "Ensayo"
     ]
   },
   {
-    "categoria": "Partes de un Ordenador",
+    "categoria": "Arquitectura y Componentes de PC",
     "correctos": [
-      "Teclado",
-      "Ratón",
-      "Pantalla",
-      "Altavoz",
-      "Cámara",
-      "Batería"
+      "Unidad Central de Procesamiento (CPU)",
+      "Memoria RAM",
+      "Unidad de Control",
+      "ALU (Unidad Aritmético-Lógica)",
+      "Placa Base",
+      "Disco de Estado Sólido (SSD)",
+      "Fuente de Alimentación",
+      "Bus de Sistema",
+      "Memoria Caché",
+      "BIOS / UEFI",
+      "Tarjeta Gráfica",
+      "Puertos USB / HDMI",
+      "Disipador",
+      "Chipset"
     ],
     "intrusos": [
       "Zapato",
       "Cuchara",
       "Libreta",
       "Lápiz",
-      "Gorra"
+      "Gorra",
+      "Mesa",
+      "Silla",
+      "Espejo"
     ]
   },
   {
-    "categoria": "Cosas que hay en Internet",
+    "categoria": "Tecnologías Web e Internet",
     "correctos": [
-      "Web",
-      "Vídeo",
-      "Juego",
-      "Correo",
-      "Foto",
-      "Mensaje"
+      "Lenguaje HTML",
+      "Hojas de Estilo CSS",
+      "JavaScript",
+      "Servidor Web",
+      "Protocolo HTTP/HTTPS",
+      "Dirección IP",
+      "Dominio de Internet",
+      "Navegador Web",
+      "Motor de Búsqueda",
+      "Base de Datos",
+      "Almacenamiento en la Nube",
+      "Seguridad Cibernética",
+      "Cookies",
+      "Redes Sociales"
     ],
     "intrusos": [
       "Piedra",
       "Árbol",
       "Bocadillo",
       "Pelota",
-      "Libro"
+      "Libro físico",
+      "Papel",
+      "Lápiz",
+      "Madera"
     ]
   },
   {
-    "categoria": "Acciones con el Ratón",
+    "categoria": "Interacción con Sistemas y Archivos",
     "correctos": [
-      "Clic",
+      "Clic izquierdo",
       "Doble clic",
-      "Arrastrar",
-      "Soltar"
+      "Arrastrar y soltar",
+      "Scroll / Desplazamiento",
+      "Compresión de archivos (.zip)",
+      "Extensión de archivo",
+      "Directorio / Carpeta",
+      "Permisos de archivo",
+      "Instalar programa",
+      "Actualización de sistema",
+      "Copia de seguridad",
+      "Formatear disco",
+      "Administrador de tareas",
+      "Terminal de comandos"
     ],
     "intrusos": [
-      "Pintar",
-      "Recortar",
-      "Pegar",
-      "Doblar",
-      "Escribir"
+      "Pintar al óleo",
+      "Recortar papel",
+      "Pegar con cola",
+      "Doblar ropa",
+      "Saltar",
+      "Correr",
+      "Gritar",
+      "Bailar"
     ]
   },
   {
-    "categoria": "Conceptos de Programación",
+    "categoria": "Pensamiento Computacional y Abstracción",
     "correctos": [
-      "Código",
-      "Bucle",
       "Algoritmo",
-      "Instrucción",
-      "Condicional"
+      "Descomposición",
+      "Reconocimiento de patrones",
+      "Abstracción",
+      "Diagrama de flujo",
+      "Pseudocódigo",
+      "Depuración (Debugging)",
+      "Compilación",
+      "Interpretación de código",
+      "Entrada/Salida (I/O)",
+      "Estructura de datos",
+      "Lista / Array",
+      "Objeto",
+      "Clase"
     ],
     "intrusos": [
-      "Cuento",
-      "Canción",
-      "Receta",
-      "Dibujo",
-      "Poesía"
+      "Narración",
+      "Descripción",
+      "Diálogo dramático",
+      "Rima asonante",
+      "Estrofa",
+      "Verso",
+      "Métrica",
+      "Metáfora"
     ]
   }
 ]

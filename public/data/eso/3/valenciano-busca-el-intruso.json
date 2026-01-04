@@ -1,123 +1,206 @@
 [
   {
-    "categoria": "Festes (Visual)",
+    "categoria": "Festes i Tradicions Valencianes (Visual)",
     "correctos": [
       "🔥",
       "🎆",
       "🥘",
       "💃",
       "🎺",
-      "🥁"
+      "🥁",
+      "🍊",
+      "🎭",
+      "🎶",
+      "🎈",
+      "🎉",
+      "✨",
+      "🌟",
+      "📜",
+      "🍷",
+      "🏺"
     ],
     "intrusos": [
       "🎄",
       "🎅",
       "🎃",
       "👻",
-      "🦃"
+      "🦃",
+      "🏂",
+      "⛸️",
+      "🎿"
     ]
   },
   {
-    "categoria": "Geografia (Visual)",
+    "categoria": "Geografia i Paisatge Valencià (Visual)",
     "correctos": [
       "⛰️",
       "🏖️",
       "🌲",
       "🌊",
       "🦅",
-      "🌅"
+      "🌅",
+      "🌳",
+      "🌻",
+      "🌿",
+      "🦋",
+      "🌈",
+      "🌅",
+      "🌋",
+      "🏜️",
+      "🏝️",
+      "🏕️"
     ],
     "intrusos": [
       "🏙️",
       "🏭",
       "🛣️",
       "🚇",
-      "🏯"
+      "🏯",
+      "🏗️",
+      "🚄",
+      "🏢"
     ]
   },
   {
-    "categoria": "Autors Clàssics",
+    "categoria": "Autors Clàssics i de la Literatura",
     "correctos": [
       "Ausiàs March",
       "Joanot Martorell",
       "Jaume Roig",
-      "Isabel de Villena"
+      "Isabel de Villena",
+      "Jordi de Sant Jordi",
+      "Bernat Metge",
+      "Ramon Llull",
+      "Vicent Andrés Estellés",
+      "Joan Fuster",
+      "Mercè Rodoreda",
+      "Enric Valor",
+      "Carmelina Sánchez-Cutillas",
+      "Maria Ibars",
+      "Josep Pla"
     ],
     "intrusos": [
-      "Cervantes",
-      "Shakespeare",
-      "Dante",
+      "Miguel de Cervantes",
+      "William Shakespeare",
+      "Dante Alighieri",
       "Homer",
-      "Virgili"
+      "Virgili",
+      "Molière",
+      "Goethe"
     ]
   },
   {
-    "categoria": "Comarques del Nord",
+    "categoria": "Comarques de la Comunitat Valenciana",
     "correctos": [
       "Els Ports",
-      "El Maestrat",
-      "La Plana",
-      "L'Alcalatén"
+      "L'Alt Maestrat",
+      "El Baix Maestrat",
+      "La Plana Alta",
+      "La Plana Baixa",
+      "L'Alcalatén",
+      "L'Alt Millars",
+      "L'Alt Palància",
+      "El Camp de Morvedre",
+      "L'Horta de València",
+      "La Ribera Alta",
+      "La Ribera Baixa",
+      "La Safor",
+      "La Marina Alta"
     ],
     "intrusos": [
-      "La Safor",
-      "La Marina",
-      "L'Alcoià",
-      "El Comtat",
-      "La Ribera"
+      "Barcelona",
+      "Madrid",
+      "Sevilla",
+      "Bilbao",
+      "Saragossa",
+      "Mallorca",
+      "Menorca",
+      "Eivissa"
     ]
   },
   {
-    "categoria": "Pronoms Febles",
+    "categoria": "Pronoms Febles i Formes",
     "correctos": [
-      "Em",
-      "Et",
-      "Es",
-      "Ens",
+      "Em / 'm",
+      "Et / 't",
+      "Es / 's",
+      "Ens / 'ns",
       "Us",
-      "Els"
+      "Els / 'ls",
+      "El / l'",
+      "La / l'",
+      "Ho",
+      "Hi",
+      "En / n'",
+      "Li",
+      "Les",
+      "N' (elisió)"
     ],
     "intrusos": [
       "Jo",
       "Tu",
-      "Ell",
+      "Ell / Ella",
       "Nosaltres",
-      "Vosaltres"
+      "Vosaltres",
+      "Ells / Elles",
+      "Meu",
+      "Teu"
     ]
   },
   {
-    "categoria": "Determinants",
+    "categoria": "Determinants i Categories",
     "correctos": [
-      "El",
-      "La",
-      "Els",
-      "Les",
-      "Un",
-      "Una"
+      "Article definit (el, la...)",
+      "Article personal (en, na)",
+      "Demostratiu (aquest, eixe...)",
+      "Possessiu (meu, teu...)",
+      "Numeral cardinal",
+      "Numeral ordinal",
+      "Quantificador",
+      "Indefinit (algun, tot...)",
+      "Interrogatiu",
+      "Exclamatiu",
+      "Article salat (es, sa)",
+      "Article neutre (lo - ús limitat)",
+      "Possessiu de tercera persona",
+      "Relatiu"
     ],
     "intrusos": [
-      "De",
-      "A",
-      "En",
-      "Amb",
-      "Per"
+      "Preposició",
+      "Adverbi de temps",
+      "Conjunció copulativa",
+      "Interjecció",
+      "Verb transitiu",
+      "Sustantiu propi"
     ]
   },
   {
-    "categoria": "Lèxic de la Roba",
+    "categoria": "Lèxic de la Indumentària i Complements",
     "correctos": [
       "Camisa",
       "Pantalons",
       "Sabates",
       "Mitjons",
-      "Jersei"
+      "Jersei",
+      "Faldilla / Saya",
+      "Vestit",
+      "Jaqueta",
+      "Brusa",
+      "Bufanda",
+      "Guants",
+      "Barret / Gorra",
+      "Sabatilles",
+      "Mocador"
     ],
     "intrusos": [
       "Taula",
       "Cadira",
       "Llit",
       "Armari",
-      "Sofà"
+      "Sofà",
+      "Llum",
+      "Cuina",
+      "Forn"
     ]
   }
 ]

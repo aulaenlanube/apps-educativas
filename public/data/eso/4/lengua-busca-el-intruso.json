@@ -1,123 +1,205 @@
 [
   {
-    "categoria": "Medios Audiovisuales (Visual)",
+    "categoria": "Comunicación y Medios Audiovisuales (Visual)",
     "correctos": [
       "🎬",
       "🎥",
       "📺",
       "📹",
       "🎞️",
-      "🎙️"
+      "🎙️",
+      "🎤",
+      "🎬",
+      "🎞️",
+      "📷",
+      "📽️",
+      "🎬",
+      "📻",
+      "📱",
+      "💻",
+      "🎬"
     ],
     "intrusos": [
       "📚",
       "📰",
       "🖌️",
       "🗿",
-      "🏛️"
+      "🏛️",
+      "🎨",
+      "🖋️",
+      "📜"
     ]
   },
   {
-    "categoria": "Redes y Comunicación (Visual)",
+    "categoria": "Era Digital y Conectividad (Visual)",
     "correctos": [
       "📱",
       "📧",
       "💬",
       "🌐",
       "📶",
-      "🤳"
+      "🤳",
+      "💻",
+      "🖱️",
+      "⌨️",
+      "📥",
+      "📤",
+      "🔔",
+      "📍",
+      "🔒",
+      "💾",
+      "🔋"
     ],
     "intrusos": [
       "📠",
       "📜",
       "🕊️",
       "📮",
-      "🚬"
+      "🚬",
+      "🕯️",
+      "🪒",
+      "🩹"
     ]
   },
   {
-    "categoria": "Literatura del Siglo XX",
+    "categoria": "Literatura en el Siglo XX: Movimientos",
     "correctos": [
       "Generación del 98",
       "Generación del 27",
-      "Modernismo",
-      "Novecentismo",
-      "Vanguardias"
+      "Generación de posguerra",
+      "Modernismo literario",
+      "Novecentismo / G.14",
+      "Vanguardismos (Ismos)",
+      "Novela social (50s)",
+      "Novela existencial",
+      "Realismo mágico",
+      "Generación de los 50",
+      "Literatura de exilio",
+      "Teatro del absurdo",
+      "Teatro comprometido",
+      "Novela estructural (60s)"
     ],
     "intrusos": [
-      "Renacimiento",
-      "Barroco",
-      "Ilustración",
-      "Romanticismo",
-      "Realismo"
+      "Renacimiento italiano",
+      "Barroco español",
+      "Ilustración gala",
+      "Romanticismo alemán",
+      "Realismo decimonónico",
+      "Naturalismo",
+      "Humanismo"
     ]
   },
   {
-    "categoria": "Oración Compuesta",
+    "categoria": "Sintaxis: Tipos de Oración Compuesta",
     "correctos": [
-      "Subordinada",
-      "Coordinada",
-      "Yuxtapuesta",
-      "Principal",
-      "Nexo"
+      "Subordinada Sustantiva",
+      "Subordinada Adjetiva (Relato)",
+      "Subordinada Adjetiva Sustantivada",
+      "Subordinada Adverbial Propia",
+      "Subordinada Adverbial Impropia",
+      "Coordinada Copulativa",
+      "Coordinada Adversativa",
+      "Coordinada Disyuntiva",
+      "Coordinada Explicativa",
+      "Coordinada Distributiva",
+      "Oración Principal",
+      "Nexos subordinantes",
+      "Proposición yuxtapuesta",
+      "Oración compleja"
     ],
     "intrusos": [
-      "Sujeto",
-      "Predicado",
-      "Simple",
-      "Sintagma",
-      "Núcleo"
+      "Sujeto expreso",
+      "Predicado nominal",
+      "Oración Simple",
+      "Sintagma preposicional",
+      "Núcleo del sujeto",
+      "Complemento directo",
+      "Atributo"
     ]
   },
   {
-    "categoria": "Tipos de Se",
+    "categoria": "Valores y Tipos del Pronombre 'SE'",
     "correctos": [
-      "Reflexivo",
-      "Recíproco",
-      "Impersonal",
-      "Pasiva refleja",
-      "Dativo ético"
+      "SE Reflexivo",
+      "SE Recíproco",
+      "SE Impersonal",
+      "SE Pasiva refleja",
+      "SE Dativo ético / Interés",
+      "SE Variante de 'LE' (Falso SE)",
+      "SE Voz media",
+      "SE Signo de intransitividad",
+      "SE Pronominal (inherente)",
+      "SE Enfatizador",
+      "SE Pertenencia",
+      "SE Aspectual",
+      "SE Pseudorecursivo",
+      "SE Causativo"
     ],
     "intrusos": [
-      "Posesivo",
-      "Demostrativo",
-      "Numeral",
-      "Indefinido",
-      "Relativo"
+      "Pronombre Posesivo",
+      "Pronombre Demostrativo",
+      "Pronombre Numeral",
+      "Pronombre Indefinido",
+      "Pronombre Relativo",
+      "Determinante artículo",
+      "Adjetivo"
     ]
   },
   {
-    "categoria": "Perífrasis Verbales",
+    "categoria": "Tipos de Perífrasis Verbales",
     "correctos": [
-      "Obligación",
-      "Probabilidad",
-      "Posibilidad",
-      "Ingresiva",
-      "Durativa"
+      "Perífrasis de Obligación",
+      "Perífrasis de Probabilidad",
+      "Perífrasis de Posibilidad",
+      "Perífrasis Ingresiva",
+      "Perífrasis Incoativa",
+      "Perífrasis Durativa",
+      "Perífrasis Terminativa",
+      "Perífrasis Reiterativa",
+      "Perífrasis Frecuentativa",
+      "Perífrasis Resultativa",
+      "Deber + Infinitivo",
+      "Tener que + Infinitivo",
+      "Empezar a + Infinitivo",
+      "Ir a + Infinitivo"
     ],
     "intrusos": [
-      "Copulativa",
-      "Transitiva",
-      "Intransitiva",
-      "Impersonal",
-      "Activa"
+      "Verbo Copulativo",
+      "Verbo Transitivo",
+      "Verbo Intransitivo",
+      "Oración Impersonal",
+      "Voz Activa",
+      "Voz Pasiva",
+      "Verbo defectivo",
+      "Gerundio solo"
     ]
   },
   {
-    "categoria": "Autores del 27",
+    "categoria": "Autores de la Generación del 27",
     "correctos": [
-      "Lorca",
-      "Alberti",
-      "Cernuda",
-      "Aleixandre",
-      "Salinas"
+      "Federico García Lorca",
+      "Rafael Alberti",
+      "Luis Cernuda",
+      "Vicente Aleixandre",
+      "Pedro Salinas",
+      "Jorge Guillén",
+      "Gerardo Diego",
+      "Dámaso Alonso",
+      "Emilio Prados",
+      "Manuel Altolaguirre",
+      "María Zambrano",
+      "Maruja Mallo",
+      "Josefina de la Torre",
+      "Ernestina de Champourcín"
     ],
     "intrusos": [
-      "Unamuno",
-      "Machado",
-      "Baroja",
+      "Miguel de Unamuno",
+      "Antonio Machado",
+      "Pío Baroja",
       "Valle-Inclán",
-      "Azorín"
+      "Azorín / Martínez Ruiz",
+      "Ramiro de Maeztu",
+      "Juan Ramón Jiménez"
     ]
   }
 ]

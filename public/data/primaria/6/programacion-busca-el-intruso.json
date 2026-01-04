@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Hardware de Almacenamiento y Conexión (Visual)",
+    "categoria": "Hardware de Conexión (Visual)",
     "correctos": [
       "💻",
       "⌨️",
@@ -17,7 +17,11 @@
       "📥",
       "📤",
       "🌡️",
-      "⏲️"
+      "⏲️",
+      "💿",
+      "📼",
+      "📟",
+      "🖲️"
     ],
     "intrusos": [
       "🍎",
@@ -27,17 +31,11 @@
       "🚗",
       "🍕",
       "🍦",
-      "🥪",
-      "🛋️",
-      "🛁",
-      "👕",
-      "👞",
-      "帽子",
-      "🌻"
+      "🥪"
     ]
   },
   {
-    "categoria": "Sistemas de Automatización y Robótica (Visual)",
+    "categoria": "Robótica Avanzada (Visual)",
     "correctos": [
       "🤖",
       "⚙️",
@@ -52,7 +50,11 @@
       "🛰️",
       "🦾",
       "🦿",
-      "🏗️"
+      "🏗️",
+      "🧲",
+      "🔭",
+      "🔬",
+      "🛰️"
     ],
     "intrusos": [
       "🌸",
@@ -61,17 +63,11 @@
       "🌈",
       "🦋",
       "🎨",
-      "🧸",
-      "👒",
-      "🧥",
-      "🧣",
-      "🧤",
-      "👟",
-      "👒"
+      "🧸"
     ]
   },
   {
-    "categoria": "Entorno Web y Correo Electrónico (Visual)",
+    "categoria": "Entorno Web (Visual)",
     "correctos": [
       "📁",
       "🗑️",
@@ -81,13 +77,16 @@
       "🌐",
       "🔗",
       "📶",
-      "📶",
       "🔔",
       "📍",
       "📥",
       "📤",
       "💾",
-      "📥"
+      "📡",
+      "📅",
+      "🔑",
+      "🔓",
+      "🔒"
     ],
     "intrusos": [
       "🚲",
@@ -96,19 +95,11 @@
       "🎸",
       "👞",
       "👕",
-      "👒",
-      "🛹",
-      "⚽",
-      "🍎",
-      "🏠",
-      "🌲",
-      "🌳",
-      "🌻",
-      "🦆"
+      "👒"
     ]
   },
   {
-    "categoria": "Pensamiento Computacional: Operadores (Visual)",
+    "categoria": "Pensamiento Computacional (Visual)",
     "correctos": [
       "➡️",
       "⬅️",
@@ -124,7 +115,12 @@
       "❌",
       "🔗",
       "〰️",
-      "🔣"
+      "🔣",
+      "🔡",
+      "🔢",
+      "🆗",
+      "🆙",
+      "🆒"
     ],
     "intrusos": [
       "🏠",
@@ -133,131 +129,146 @@
       "🌲",
       "🍎",
       "🍔",
-      "🍕",
-      "🧸",
-      "🛋️",
-      "🛁",
-      "👕",
-      "👟",
-      "👞",
-      "🧢",
-      "👒",
-      "🚲"
+      "🍕"
     ]
   },
   {
-    "categoria": "Funciones y Bloques Personalizados (Scratch)",
+    "categoria": "Personalización: Scratch",
     "correctos": [
       "Definir bloque",
       "Llamar función",
-      "Variable de lista",
-      "Si... entonces... si no",
-      "Repetir 10 veces",
-      "Al hacer clic en bandera",
+      "Variable lista",
+      "Si...entonces...si no",
+      "Repetir",
+      "Al hacer clic",
       "Tocar sonido",
       "Cambiar efecto",
-      "Borrar todo"
+      "Borrar todo",
+      "Por siempre",
+      "Detener todos",
+      "Crear clon",
+      "Esperar",
+      "Operador"
     ],
     "intrusos": [
-      "Escribir una carta",
-      "Dibujar un paisaje",
-      "Cantar una canción",
-      "Cocinar una cena",
-      "Ir de vacaciones",
-      "Dormir por la noche",
-      "Comer fruta",
-      "Hacer deporte"
+      "Escribir",
+      "Dibujar",
+      "Cantar",
+      "Cocinar",
+      "Ir vacaciones",
+      "Dormir"
     ]
   },
   {
-    "categoria": "Periféricos e Infraestructura de Red",
+    "categoria": "Infraestructura de Red",
     "correctos": [
-      "Router WiFi",
-      "Cable de datos RJ45",
-      "Servidor central",
-      "Switch de red",
+      "Router",
+      "Cable RJ45",
+      "Servidor",
+      "Switch",
       "Módem",
-      "Plataforma en la nube",
+      "Nube / Cloud",
       "Dirección IP",
-      "Ancho de banda"
+      "Ancho de banda",
+      "Protocolo",
+      "Firewall",
+      "Fibra óptica",
+      "Dominio",
+      "Puerto de red",
+      "Seguridad"
     ],
     "intrusos": [
-      "Zapato de marca",
-      "Cuchara de postre",
-      "Libreta de notas",
-      "Lápiz de cera",
-      "Gorra de sol",
-      "Silla de plástico",
-      "Puerta de cristal",
-      "Ventana de madera"
+      "Zapato",
+      "Cuchara",
+      "Libreta",
+      "Lápiz",
+      "Gorra",
+      "Silla",
+      "Puerta"
     ]
   },
   {
-    "categoria": "Seguridad Ética y Privacidad Online",
+    "categoria": "Ética y Privacidad",
     "correctos": [
       "Huella digital",
-      "Cifrado de datos",
-      "Política de privacidad",
-      "Derechos de autor",
-      "Licencia Creative Commons",
+      "Cifrado",
+      "Política privacidad",
+      "Derechos autor",
+      "Creative Commons",
       "Software libre",
       "Código abierto",
-      "Copias de seguridad"
+      "Copias seguridad",
+      "Contraseña",
+      "Hacker ético",
+      "RGPD",
+      "Identidad",
+      "Backup",
+      "Seguridad"
     ],
     "intrusos": [
-      "Piedra pómez",
-      "Árbol de navidad",
-      "Bocadillo de jamón",
-      "Pelota de golf",
-      "Libro de poemas",
-      "Agua de lluvia",
-      "Fuego de campamento",
-      "Cuchillo de sierra"
+      "Piedra",
+      "Árbol",
+      "Bocadillo",
+      "Pelota",
+      "Libro",
+      "Agua",
+      "Fuego"
     ]
   },
   {
-    "categoria": "Metodología de Desarrollo de Software",
+    "categoria": "Desarrollo de Software",
     "correctos": [
-      "Análisis de requisitos",
-      "Diseño de algoritmos",
-      "Escritura de código",
-      "Pruebas de errores",
-      "Depuración (Debug)",
-      "Lanzamiento / Release",
+      "Análisis",
+      "Diseño",
+      "Código",
+      "Pruebas",
+      "Depuración",
+      "Lanzamiento",
       "Mantenimiento",
-      "Actualización"
+      "Actualización",
+      "Framework",
+      "Librería",
+      "Versión",
+      "Documentación",
+      "Interfaz",
+      "Experiencia"
     ],
     "intrusos": [
-      "Pintar con óleo",
-      "Recortar con sierra",
-      "Pegar con cemento",
-      "Doblar una toalla",
-      "Correr una maratón",
-      "Saltar en paracaídas",
-      "Comer en restaurante"
+      "Pintar",
+      "Recortar",
+      "Pegar",
+      "Doblar",
+      "Correr",
+      "Saltar",
+      "Comer"
     ]
   },
   {
-    "categoria": "Estructuras Lógicas Avanzadas",
+    "categoria": "Estructuras Lógicas",
     "correctos": [
-      "Bucle While (Mientras)",
-      "Bucle For (Para)",
-      "Condicional anidado",
-      "Variable booleana",
-      "Lista de elementos (Array)",
-      "Operador lógico AND / OR",
-      "Función con retorno",
-      "Parámetro"
+      "Bucle While",
+      "Bucle For",
+      "Condicional",
+      "Booleano",
+      "Array / Lista",
+      "AND / OR",
+      "Función",
+      "Parámetro",
+      "Objeto",
+      "Clase",
+      "Herencia",
+      "Polimorfismo",
+      "Recursividad",
+      "Algoritmo"
     ],
     "intrusos": [
-      "Cuento de hadas",
-      "Receta de cocina",
-      "Dibujo lineal",
-      "Poesía lírica",
-      "Novela policíaca",
-      "Guion cinematográfico",
-      "Mapa de carreteras",
-      "Diccionario de lengua"
+      "Cuento",
+      "Receta",
+      "Dibujo",
+      "Poesía",
+      "Novela",
+      "Guion",
+      "Mapa"
     ]
   }
 ]

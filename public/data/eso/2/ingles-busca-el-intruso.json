@@ -1,162 +1,272 @@
 [
   {
-    "categoria": "Holidays (Icons)",
+    "categoria": "Holidays and Celebrations (Visual)",
     "correctos": [
       "🎄",
       "🎃",
       "🎁",
       "🎅",
       "🎆",
-      "👻"
+      "👻",
+      "🥚",
+      "🍰",
+      "🕯️",
+      "🤡",
+      "🎉",
+      "🎈",
+      "🧧",
+      "✨",
+      "🌟",
+      "🥂"
     ],
     "intrusos": [
       "🏫",
       "📚",
       "✏️",
       "🛌",
-      "🚿"
+      "🚿",
+      "🧹",
+      "🧽",
+      "👔"
     ]
   },
   {
-    "categoria": "Free Time (Icons)",
+    "categoria": "Free Time and Hobbies (Visual)",
     "correctos": [
       "🎮",
       "⚽",
       "🎧",
       "🎬",
       "📚",
-      "🚴"
+      "🚴",
+      "🎸",
+      "🎨",
+      "🎭",
+      "🏊",
+      "🧶",
+      "🛶",
+      "🧗",
+      "🛹",
+      "🎻",
+      "🎤"
     ],
     "intrusos": [
       "🧹",
       "🧽",
       "🗑️",
       "🚽",
-      "👔"
+      "👔",
+      "💊",
+      "🏥",
+      "💉"
     ]
   },
   {
-    "categoria": "Travel (Icons)",
+    "categoria": "Travel and Tourism (Visual)",
     "correctos": [
       "✈️",
       "🧳",
       "🗺️",
       "🗽",
       "🗼",
-      "📸"
+      "📸",
+      "🚠",
+      "⛵",
+      "🚞",
+      "🏨",
+      "🎟️",
+      "🛂",
+      "🏯",
+      "⛩️",
+      "🌅",
+      "🏜️"
     ],
     "intrusos": [
       "🏠",
       "🛋️",
       "🛌",
       "📺",
-      "🧹"
+      "🧹",
+      "🧺",
+      "🍳",
+      "🚿"
     ]
   },
   {
-    "categoria": "Food (Icons)",
+    "categoria": "Food and international cuisine (Visual)",
     "correctos": [
       "🍕",
       "🍔",
       "🍣",
       "🌮",
       "🍝",
-      "🍩"
+      "🍩",
+      "🥗",
+      "🥩",
+      "🥐",
+      "🥯",
+      "🥨",
+      "🥘",
+      "🍱",
+      "🥟",
+      "🍦",
+      "🍹"
     ],
     "intrusos": [
       "⚽",
       "🏀",
       "🚗",
       "✏️",
-      "👕"
+      "👕",
+      "🔋",
+      "🔌",
+      "💡"
     ]
   },
   {
-    "categoria": "Past Simple Verbs",
+    "categoria": "Past Simple: Irregular Verbs",
     "correctos": [
       "Went",
       "Saw",
       "Did",
       "Had",
-      "Was",
-      "Were"
+      "Was / Were",
+      "Bought",
+      "Caught",
+      "Taught",
+      "Brought",
+      "Found",
+      "Kept",
+      "Left",
+      "Met",
+      "Read",
+      "Said",
+      "Took"
     ],
     "intrusos": [
       "Go",
       "See",
       "Do",
       "Have",
-      "Am"
+      "Am",
+      "Played",
+      "Watched",
+      "Studied"
     ]
   },
   {
-    "categoria": "Comparative Adjectives",
+    "categoria": "Comparatives vs Superlatives (Comparatives)",
     "correctos": [
       "Better",
       "Worse",
       "Bigger",
       "Smaller",
       "Faster",
-      "More interesting"
+      "More interesting",
+      "Happier",
+      "Funner",
+      "More expensive",
+      "Cheaper",
+      "Older",
+      "Newer",
+      "Wider",
+      "Further"
     ],
     "intrusos": [
+      "Best",
+      "Worst",
+      "Biggest",
+      "Smallest",
+      "Fastest",
       "Good",
       "Bad",
-      "Big",
-      "Small",
-      "Fast"
+      "Big"
     ]
   },
   {
-    "categoria": "Irregular Verbs",
+    "categoria": "Verbs in Infinitive (Irregular)",
     "correctos": [
       "Buy",
       "Eat",
       "Drink",
       "Sleep",
       "Run",
-      "Swim"
+      "Swim",
+      "Write",
+      "Speak",
+      "Know",
+      "Understand",
+      "Think",
+      "Build",
+      "Draw",
+      "Forget",
+      "Give",
+      "Hear"
     ],
     "intrusos": [
       "Play",
       "Watch",
       "Listen",
       "Cook",
-      "Walk"
+      "Walk",
+      "Jump",
+      "Brush",
+      "Wash"
     ]
   },
   {
-    "categoria": "Rooms in a House",
+    "categoria": "Household vocabulary",
     "correctos": [
       "Kitchen",
       "Bathroom",
       "Bedroom",
       "Living room",
-      "Garden"
+      "Garden",
+      "Attic",
+      "Basement",
+      "Garage",
+      "Hallway",
+      "Chimney",
+      "Balcony",
+      "Terrace",
+      "Shutters",
+      "Fence"
     ],
     "intrusos": [
       "School",
       "Park",
       "Hospital",
       "Cinema",
-      "Shop"
+      "Shop",
+      "Library",
+      "Factory",
+      "Beach"
     ]
   },
   {
-    "categoria": "Time Expressions",
+    "categoria": "Past Time Expressions",
     "correctos": [
       "Yesterday",
       "Last week",
       "Two days ago",
       "In 1990",
-      "Last summer"
+      "Last summer",
+      "A month ago",
+      "The day before",
+      "Last night",
+      "In the past",
+      "Long ago",
+      "Last Monday",
+      "Once upon a time"
     ],
     "intrusos": [
       "Tomorrow",
       "Next week",
       "In the future",
       "Soon",
-      "Now"
+      "Now",
+      "At the moment",
+      "Today"
     ]
   }
 ]

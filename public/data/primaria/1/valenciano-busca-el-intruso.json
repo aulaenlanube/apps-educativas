@@ -1,12 +1,22 @@
 [
   {
-    "categoria": "Les Vocals (Visual)",
+    "categoria": "Les Vocals",
     "correctos": [
       "A",
       "E",
       "I",
       "O",
-      "U"
+      "U",
+      "a",
+      "e",
+      "i",
+      "o",
+      "u",
+      "à",
+      "é",
+      "í",
+      "ó",
+      "ú"
     ],
     "intrusos": [
       "B",
@@ -15,7 +25,10 @@
       "F",
       "G",
       "H",
-      "J"
+      "J",
+      "K",
+      "L",
+      "M"
     ]
   },
   {
@@ -26,7 +39,15 @@
       "✏️",
       "📏",
       "✂️",
-      "🖍️"
+      "🖍️",
+      "📓",
+      "🖇️",
+      "🖊️",
+      "📒",
+      "💻",
+      "🏫",
+      "📐",
+      "🎨"
     ],
     "intrusos": [
       "🍎",
@@ -45,7 +66,15 @@
       "🐰",
       "🦜",
       "🐹",
-      "🐢"
+      "🐢",
+      "🐠",
+      "🦎",
+      "🐭",
+      "🐩",
+      "🐕",
+      "🐈",
+      "🐟",
+      "🐸"
     ],
     "intrusos": [
       "🦁",
@@ -64,32 +93,50 @@
       "🍇",
       "🍊",
       "🥦",
-      "🥕"
+      "🥕",
+      "🍓",
+      "🍒",
+      "🍍",
+      "🍐",
+      "🍑",
+      "🥝",
+      "🍉",
+      "🍅"
     ],
     "intrusos": [
       "🍦",
       "🍩",
-      "🍪",
       "🍕",
       "🍔",
-      "🍟"
+      "🍟",
+      "🍪"
     ]
   },
   {
-    "categoria": "Paraules amb la lletra L",
+    "categoria": "Paraules amb L",
     "correctos": [
       "Lluna",
       "Llibre",
       "Llet",
       "Lloc",
-      "Llàpis"
+      "Llapis",
+      "Llimona",
+      "Llit",
+      "Llàgrima",
+      "Llac",
+      "Lleó",
+      "Llengua",
+      "Llum",
+      "Llana",
+      "Llentilla"
     ],
     "intrusos": [
       "Mare",
       "Pare",
       "Casa",
       "Gos",
-      "Gat"
+      "Gat",
+      "Sol"
     ]
   },
   {
@@ -100,14 +147,23 @@
       "Groc",
       "Verd",
       "Rosa",
-      "Blanc"
+      "Blanc",
+      "Negre",
+      "Marró",
+      "Gris",
+      "Violeta",
+      "Lila",
+      "Taronja",
+      "Daurat",
+      "Plata"
     ],
     "intrusos": [
       "Sol",
       "Mar",
       "Llibre",
       "Goma",
-      "Aula"
+      "Aula",
+      "Taula"
     ]
   },
   {
@@ -118,14 +174,23 @@
       "Avi",
       "Àvia",
       "Germà",
-      "Germana"
+      "Germana",
+      "Oncle",
+      "Tia",
+      "Cosí",
+      "Cosina",
+      "Nebot",
+      "Neboda",
+      "Fill",
+      "Filla"
     ],
     "intrusos": [
       "Gos",
       "Mesa",
       "Cadira",
       "Cotxe",
-      "Tren"
+      "Tren",
+      "Avioneta"
     ]
   },
   {
@@ -135,14 +200,24 @@
       "Nas",
       "Boca",
       "Orelles",
-      "Cabells"
+      "Cabells",
+      "Front",
+      "Barra",
+      "Llavis",
+      "Pestanyes",
+      "Celles",
+      "Dents",
+      "Llengua",
+      "Galtes",
+      "Pell"
     ],
     "intrusos": [
       "Peu",
       "Mà",
       "Dits",
       "Genoll",
-      "Panxa"
+      "Panxa",
+      "Braç"
     ]
   }
 ]

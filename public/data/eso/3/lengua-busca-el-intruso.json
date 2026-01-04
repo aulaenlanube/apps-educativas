@@ -1,141 +1,235 @@
 [
   {
-    "categoria": "Prensa y Medios (Visual)",
+    "categoria": "Periodismo y Comunicación de Masas (Visual)",
     "correctos": [
       "📰",
       "🗞️",
       "📺",
       "📻",
       "💻",
-      "📡"
+      "📡",
+      "🎙️",
+      "🎤",
+      "🎬",
+      "📱",
+      "🎞️",
+      "🎬",
+      "📽️",
+      "📷",
+      "📣",
+      "📢"
     ],
     "intrusos": [
       "🚗",
       "🍔",
       "⚽",
       "🎸",
-      "💊"
+      "💊",
+      "🧸",
+      "🍦",
+      "🥪"
     ]
   },
   {
-    "categoria": "Teatro Clásico (Visual)",
+    "categoria": "Universo Literario y Teatro (Visual)",
     "correctos": [
       "🎭",
       "👑",
       "🗡️",
       "💀",
+      " castles (Castells Castles)",
+      "📜",
+      "🕯️",
+      "💍",
       "🏰",
-      "📜"
+      "🎭",
+      "🎪",
+      "🤴",
+      "👸",
+      "🕵️",
+      "🏛️",
+      "🖋️"
     ],
     "intrusos": [
       "🚀",
       "📱",
       "🚆",
       "🎧",
-      "👟"
+      "👟",
+      "🔌",
+      "🔋",
+      "💡"
     ]
   },
   {
-    "categoria": "Escritura (Visual)",
+    "categoria": "Utensilios y Soportes de Escritura (Visual)",
     "correctos": [
       "✍️",
       "🖊️",
       "⌨️",
       "📝",
       "📖",
-      "✒️"
+      "✒️",
+      "📓",
+      "📔",
+      "📒",
+      "📘",
+      "📜",
+      "📂",
+      "🗂️",
+      "✍️",
+      "🪶",
+      "📄"
     ],
     "intrusos": [
       "🔨",
-      "🥄",
+      " Spoon (Cullera Spoon)",
       "🧵",
       "🔭",
-      "🔬"
+      "🔬",
+      "🔋",
+      "🔌",
+      "💡"
     ]
   },
   {
-    "categoria": "Sintaxis: Oración Compuesta",
+    "categoria": "Sintaxis: Tipos de Oraciones Compuestas",
     "correctos": [
-      "Coordinada",
-      "Subordinada",
-      "Yuxtapuesta",
-      "Copulativa",
-      "Adversativa"
+      "Oración Coordinada",
+      "Oración Subordinada",
+      "Oración Yuxtapuesta",
+      "Coordinada Copulativa",
+      "Coordinada Adversativa",
+      "Coordinada Disyuntiva",
+      "Coordinada Distributiva",
+      "Coordinada Explicativa",
+      "Subordinada Sustantiva",
+      "Subordinada Adjetiva (Relato)",
+      "Subordinada Adverbial",
+      "Nexos",
+      "Proposición",
+      "Subordinada Adjetiva Sustantivada"
     ],
     "intrusos": [
-      "Sujeto",
-      "Predicado",
+      "Sujeto expreso",
+      "Predicado nominal",
       "Atributo",
-      "Simple",
-      "Impersonal"
+      "Oración Simple",
+      "Sujeto paciente",
+      "Complemento agente",
+      "Complemento directo"
     ]
   },
   {
-    "categoria": "Literatura: Siglo de Oro",
+    "categoria": "Historia de la Literatura: Siglos de Oro",
     "correctos": [
-      "Garcilaso",
-      "Cervantes",
-      "Góngora",
-      "Quevedo",
-      "Lope de Vega"
+      "Garcilaso de la Vega",
+      "Miguel de Cervantes",
+      "Luis de Góngora",
+      "Francisco de Quevedo",
+      "Lope de Vega",
+      "Calderón de la Barca",
+      "Tirso de Molina",
+      "San Juan de la Cruz",
+      "Santa Teresa de Jesús",
+      "Fray Luis de León",
+      "Lazarillo de Tormes",
+      "Culteranismo",
+      "Conceptismo",
+      "Novela Picaresca"
     ],
     "intrusos": [
-      "Bécquer",
-      "Lorca",
-      "Machado",
-      "Unamuno",
-      "Rosalía"
+      "Gustavo Adolfo Bécquer",
+      "Federico García Lorca",
+      "Antonio Machado",
+      "Miguel de Unamuno",
+      "Rosalía de Castro",
+      "Juan Ramón Jiménez",
+      "Camilo José Cela"
     ]
   },
   {
-    "categoria": "Tipos de Textos",
+    "categoria": "Tipología y Estructura Textual",
     "correctos": [
-      "Argumentativo",
-      "Expositivo",
-      "Narrativo",
-      "Descriptivo",
-      "Instructivo"
+      "Texto Argumentativo",
+      "Texto Expositivo",
+      "Texto Narrativo",
+      "Texto Descriptivo",
+      "Texto Instructivo",
+      "Texto Dialogado",
+      "Texto Prescriptivo",
+      "Texto Periodístico",
+      "Texto Humanístico",
+      "Texto Científico-Técnico",
+      "Texto Jurídico-Administrativo",
+      "Cohesión",
+      "Coherencia",
+      "Adecuación"
     ],
     "intrusos": [
-      "Sustantivo",
-      "Adjetivo",
-      "Verbo",
-      "Aguda",
-      "Llana"
+      "Sustantivo propio",
+      "Adjetivo calificativo",
+      "Verbo transitivo",
+      "Palabra Aguda",
+      "Palabra Llana",
+      "Palabra Esdrújula",
+      "Diptongo"
     ]
   },
   {
-    "categoria": "Figuras Retóricas",
+    "categoria": "Recursos Literarios y Figuras Retóricas",
     "correctos": [
       "Metáfora",
       "Metonimia",
       "Hipérbaton",
       "Paradoja",
-      "Ironía"
+      "Ironía",
+      "Oxímoron",
+      "Sinestesia",
+      "Personificación",
+      "Aliteración",
+      "Polisíndeton",
+      "Asíndeton",
+      "Anáfora",
+      "Paralelismo",
+      "Hipérbole"
     ],
     "intrusos": [
-      "Rima",
+      "Rima asonante",
       "Estrofa",
-      "Verso",
+      "Verso endecasílabo",
       "Sinalefa",
-      "Acento"
+      "Acento prosódico",
+      "Tilde diacrítica",
+      "Signo de puntuación"
     ]
   },
   {
-    "categoria": "Funciones del Lenguaje",
+    "categoria": "Comunicación y Funciones del Lenguaje",
     "correctos": [
-      "Referencial",
-      "Emotiva",
-      "Conativa",
-      "Fática",
-      "Poética"
+      "Función Referencial",
+      "Función Emotiva",
+      "Función Conativa / Apelativa",
+      "Función Fática",
+      "Función Poética / Estética",
+      "Función Metalingüística",
+      "Emisor",
+      "Receptor",
+      "Mensaje",
+      "Canal",
+      "Código",
+      "Contexto / Situación",
+      "Retroalimentación",
+      "Ruido"
     ],
     "intrusos": [
-      "Narrador",
-      "Personaje",
-      "Tiempo",
-      "Espacio",
-      "Tema"
+      "Narrador omnisciente",
+      "Personaje antagonista",
+      "Tiempo externo",
+      "Espacio narrativo",
+      "Tema central",
+      "Flashback",
+      "Desenlace"
     ]
   }
 ]

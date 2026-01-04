@@ -1,123 +1,202 @@
 [
   {
-    "categoria": "Landmarks (Visual)",
+    "categoria": "World Landmarks and Cities (Visual)",
     "correctos": [
       "🗽",
       "🗼",
       "🌉",
       "🎡",
       "🏰",
-      "🏙️"
+      "🏙️",
+      "🏛️",
+      "🏟️",
+      "🗼",
+      "🗺️",
+      "🧳",
+      "✈️",
+      "🚢",
+      "🚠",
+      "🚞",
+      "⛩️"
     ],
     "intrusos": [
       "🛖",
       "⛺",
       "🏚️",
       "🪵",
-      "🪨"
+      "🪨",
+      "🧺",
+      "🧹",
+      "🪣"
     ]
   },
   {
-    "categoria": "Technology (Visual)",
+    "categoria": "Modern Technology (Visual)",
     "correctos": [
       "📱",
       "💻",
       "📡",
       "🛰️",
       "🤖",
-      "🎮"
+      "🎮",
+      "🕹️",
+      "📷",
+      "📽️",
+      "🎬",
+      "⌚",
+      "🔋",
+      "🔌",
+      "⌨️",
+      "🖱️",
+      "💾"
     ],
     "intrusos": [
       "📜",
       "🏺",
       "🕯️",
       "🧹",
-      "🪣"
+      "🪣",
+      "🧺",
+      "🪒",
+      "🩹"
     ]
   },
   {
-    "categoria": "Conditionals",
+    "categoria": "English Conditionals",
     "correctos": [
-      "Zero",
-      "First",
-      "Second",
-      "Third",
-      "Mixed"
+      "Zero Conditional",
+      "First Conditional",
+      "Second Conditional",
+      "Third Conditional",
+      "Mixed Conditionals",
+      "If I were you",
+      "Unless",
+      "As long as",
+      "Provided that",
+      "If only",
+      "I wish",
+      "Had I known",
+      "Would have been",
+      "In case"
     ],
     "intrusos": [
-      "Present",
-      "Past",
-      "Future",
-      "Continuous",
-      "Perfect"
+      "Present Simple",
+      "Past Continuous",
+      "Future Perfect",
+      "Present Continuous",
+      "Past Simple",
+      "Going to future"
     ]
   },
   {
-    "categoria": "Passive Voice",
+    "categoria": "Passive Voice Structures",
     "correctos": [
-      "By",
-      "Was done",
-      "Is made",
+      "By (agent)",
+      "Was being done",
+      "Is being made",
       "Will be sent",
-      "Has been"
+      "Has been seen",
+      "Had been taken",
+      "Are grown",
+      "Were discovered",
+      "Is said to be",
+      "Are being fixed",
+      "Will have been finished",
+      "Must be cleaned",
+      "Can be found",
+      "Was built"
     ],
     "intrusos": [
-      "Doing",
-      "Making",
-      "Sending",
-      "Being",
-      "Going"
+      "Doing it now",
+      "Making a cake",
+      "Sending a letter",
+      "Being happy",
+      "Going to school",
+      "I watch TV",
+      "She sings"
     ]
   },
   {
-    "categoria": "Reported Speech",
+    "categoria": "Reporting Speech and Verbs",
     "correctos": [
-      "Said",
-      "Told",
-      "Asked",
-      "That",
-      "Previous day"
+      "He said that",
+      "She told me",
+      "They asked if",
+      "The previous day",
+      "The following year",
+      "Then / At that time",
+      "There",
+      "He suggested going",
+      "She wondered why",
+      "They explained that",
+      "He promised to",
+      "She denied having",
+      "That (conjunction)",
+      "Before"
     ],
     "intrusos": [
-      "Says",
-      "Tells",
-      "Asks",
-      "Now",
-      "Tomorrow"
+      "He says now",
+      "She tells me today",
+      "They ask now",
+      "Now / Currently",
+      "Tomorrow / Next day",
+      "Here",
+      "Right now"
     ]
   },
   {
-    "categoria": "Phrasal Verbs",
+    "categoria": "Advanced Phrasal Verbs",
     "correctos": [
       "Give up",
-      "Look for",
-      "Get on",
-      "Turn off",
-      "Carry on"
+      "Look forward to",
+      "Get on with",
+      "Turn into",
+      "Carry out",
+      "Put up with",
+      "Break down",
+      "Run out of",
+      "Set off",
+      "Take over",
+      "Bring about",
+      "Come across",
+      "Make up",
+      "Fall out with"
     ],
     "intrusos": [
-      "Give",
-      "Look",
-      "Get",
-      "Turn",
-      "Carry"
+      "Give money",
+      "Look at the sun",
+      "Get a present",
+      "Turn around",
+      "Carry the bag",
+      "Put the book",
+      "Break the glass"
     ]
   },
   {
-    "categoria": "Modal Verbs",
+    "categoria": "Modal Verbs and Expressions",
     "correctos": [
-      "Should",
-      "Must",
-      "Might",
-      "Could",
-      "Ought to"
+      "Should have done",
+      "Must have been",
+      "Might be",
+      "Could have gone",
+      "Ought to have",
+      "Needn't have",
+      "May I",
+      "Be able to",
+      "Managed to",
+      "Had better",
+      "Would rather",
+      "Can't have",
+      "May have",
+      "Supposed to"
     ],
     "intrusos": [
-      "Do",
-      "Did",
-      "Does",
-      "Done",
-      "Doing"
+      "Do my homework",
+      "Did you go?",
+      "Does she stay?",
+      "I have done",
+      "Doing well",
+      "Am / Is / Are"
     ]
   }
 ]

@@ -1,158 +1,266 @@
 [
   {
-    "categoria": "Órganos del Cuerpo (Visual)",
+    "categoria": "Órganos y Anatomía Humana (Visual)",
     "correctos": [
       "🧠",
       "🫀",
       "🫁",
       "🦴",
       "👀",
-      "👂"
+      "👂",
+      "👃",
+      "👅",
+      "✋",
+      "🦷",
+      "💪",
+      "🦵",
+      "🦶",
+      "👄",
+      "🧖",
+      "💆"
     ],
     "intrusos": [
       "👕",
       "🧣",
       "👓",
       "🎒",
-      "💍"
+      "💍",
+      "👜",
+      "🌂",
+      "🧶"
     ]
   },
   {
-    "categoria": "Alimentos Saludables (Visual)",
+    "categoria": "Alimentación y Dieta Saludable (Visual)",
     "correctos": [
       "🥦",
       "🥕",
       "🍎",
       "🐟",
       "🍗",
-      "🥜"
+      "🥜",
+      "🍳",
+      "🥛",
+      "🌽",
+      "🥗",
+      "🍇",
+      "🍓",
+      "🍉",
+      "🥑",
+      "🍞",
+      "🧀"
     ],
     "intrusos": [
       "🍭",
       "🍩",
       "🍟",
       "🥤",
-      "🍦"
+      "🍦",
+      "🍕",
+      "🍔",
+      "🧁"
     ]
   },
   {
-    "categoria": "Medicina y Salud (Visual)",
+    "categoria": "Salud y Biotecnología (Visual)",
     "correctos": [
       "💉",
       "💊",
       "🩺",
       "🩹",
       "🧬",
-      "🚑"
+      "🚑",
+      "🔬",
+      "🧫",
+      "🧪",
+      "🦠",
+      "🥼",
+      "🧤",
+      "🌡️",
+      "💉",
+      "🧬",
+      "📊"
     ],
     "intrusos": [
       "🔨",
       "🔧",
       "🎮",
       "⚽",
-      "🔭"
+      "🔭",
+      "🎸",
+      "🎬",
+      "🎨"
     ]
   },
   {
-    "categoria": "Geología (Visual)",
+    "categoria": "Paisaje y Geología (Visual)",
     "correctos": [
       "🌋",
       "🏔️",
       "🏜️",
       "🪨",
       "🌊",
-      "⛏️"
+      "⛏️",
+      "⛰️",
+      "🏗️",
+      "🏞️",
+      "🌅",
+      "🌋",
+      "🏖️",
+      "🏝️",
+      "🏕️",
+      "🛶",
+      "🌩️"
     ],
     "intrusos": [
       "🌲",
       "🌻",
       "🐶",
       "🏠",
-      "🚗"
+      "🚗",
+      "🧸",
+      "🍿",
+      "🍕"
     ]
   },
   {
-    "categoria": "Aparatos y Sistemas",
+    "categoria": "Aparatos y Sistemas del Cuerpo",
     "correctos": [
-      "Digestivo",
-      "Respiratorio",
-      "Circulatorio",
-      "Excretor",
-      "Nervioso"
+      "Aparato Digestivo",
+      "Aparato Respiratorio",
+      "Aparato Circulatorio",
+      "Aparato Excretor",
+      "Sistema Nervioso",
+      "Sistema Endocrino",
+      "Aparato Locomotor",
+      "Sistema Esquelético",
+      "Sistema Muscular",
+      "Aparato Reproductor",
+      "Sistema Inmunitario",
+      "Sistema Tegumentario",
+      "Sistema Linfático",
+      "Aparato Urinario"
     ],
     "intrusos": [
       "Mitocondria",
       "Núcleo",
       "Ribosoma",
-      "Tejido",
-      "Célula"
+      "Lisosoma",
+      "Célula",
+      "Tejido muscular",
+      "Aparato de Golgi"
     ]
   },
   {
-    "categoria": "Enfermedades Infecciosas",
+    "categoria": "Enfermedades y Patógenos",
     "correctos": [
       "Gripe",
       "Varicela",
       "Tuberculosis",
       "SIDA",
-      "Malaria"
+      "Malaria",
+      "Cólera",
+      "Hepatitis",
+      "Sarampión",
+      "Tétanos",
+      "Neumonía",
+      "Salmonelosis",
+      "Pie de atleta",
+      "Candidiasis",
+      "Meningitis"
     ],
     "intrusos": [
       "Diabetes",
       "Cáncer",
       "Asma",
       "Alergia",
-      "Miopía"
+      "Miopía",
+      "Hipertensión",
+      "Obesidad"
     ]
   },
   {
-    "categoria": "Nutrientes",
+    "categoria": "Nutrientes y Biomoléculas",
     "correctos": [
       "Glúcidos",
       "Lípidos",
       "Proteínas",
       "Vitaminas",
-      "Sales minerales"
+      "Sales minerales",
+      "Hidratos de carbono",
+      "Ácidos grasos",
+      "Aminoácidos",
+      "Monosacáridos",
+      "Polisacáridos",
+      "Colesterol",
+      "Hierro",
+      "Calcio",
+      "Fosfatos"
     ],
     "intrusos": [
       "Agua",
       "Oxígeno",
       "Sangre",
       "Hueso",
-      "Músculo"
+      "Músculo",
+      "Bilis",
+      "Saliva"
     ]
   },
   {
-    "categoria": "Procesos Geológicos Externos",
+    "categoria": "Agentes y Procesos Geológicos Externos",
     "correctos": [
       "Erosión",
       "Transporte",
       "Sedimentación",
-      "Meteorización"
+      "Meteorización física",
+      "Meteorización química",
+      "Cárcavas",
+      "Madrigueras",
+      "Glaciares",
+      "Viento (Eólico)",
+      "Aguas salvajes",
+      "Ríos (Fluvial)",
+      "Mar (Litoral)",
+      "Aguas subterráneas",
+      "Gravedad"
     ],
     "intrusos": [
       "Vulcanismo",
       "Sismicidad",
       "Magmatismo",
       "Metamorfismo",
-      "Tectónica"
+      "Tectónica",
+      "Falla",
+      "Pliegue"
     ]
   },
   {
-    "categoria": "Hábitos Saludables",
+    "categoria": "Promoción de la Salud",
     "correctos": [
-      "Ejercicio",
-      "Dieta",
-      "Higiene",
-      "Descanso",
-      "Postura"
+      "Ejercicio físico",
+      "Dieta equilibrada",
+      "Higiene personal",
+      "Descanso suficiente",
+      "Postura correcta",
+      "Vacunación",
+      "Revisiones médicas",
+      "Hidratación",
+      "Salud mental",
+      "Evitar tóxicos",
+      "Socialización",
+      "Ocio saludable",
+      "Protección solar",
+      "Primeros auxilios"
     ],
     "intrusos": [
       "Tabaco",
       "Alcohol",
       "Drogas",
       "Estrés",
-      "Sedentarismo"
+      "Sedentarismo",
+      "Comida basura",
+      "Automedicación"
     ]
   }
 ]

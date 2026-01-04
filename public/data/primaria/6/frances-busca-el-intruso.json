@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Drapeaux des Pays Francophones et Européens (Visual)",
+    "categoria": "Drapeaux (Visual)",
     "correctos": [
       "🇫🇷",
       "🇧🇪",
@@ -11,7 +11,13 @@
       "🇪🇸",
       "🇮🇹",
       "🇩🇪",
-      "🇬🇧"
+      "🇬🇧",
+      "🇵🇹",
+      "🇦🇹",
+      "🇳🇱",
+      "🇬🇷",
+      "🇮🇪",
+      "🇸🇪"
     ],
     "intrusos": [
       "🌍",
@@ -20,14 +26,11 @@
       "🧳",
       "🛳️",
       "🚗",
-      "🚲",
-      "🏠",
-      "🌲",
-      "⚽"
+      "🚲"
     ]
   },
   {
-    "categoria": "La Technologie et le Numérique (Visual)",
+    "categoria": "Technologie (Visual)",
     "correctos": [
       "💻",
       "📱",
@@ -39,7 +42,12 @@
       "🔋",
       "📶",
       "📡",
-      "🖱️"
+      "🖱️",
+      "🖨️",
+      "💾",
+      "🌐",
+      "🔔",
+      "🔊"
     ],
     "intrusos": [
       "📚",
@@ -48,27 +56,28 @@
       "🕰️",
       "🔨",
       "🛖",
-      "🏹",
-      "🛡️",
-      "⚔️",
-      "🐎",
-      "🧱"
+      "🏹"
     ]
   },
   {
-    "categoria": "Lieux Publics de la Ville (Visual)",
+    "categoria": "Lieux de la Ville (Visual)",
     "correctos": [
       "🏥",
       "🏫",
       "🏦",
       "📫",
-      " fountain",
+      "⛲",
       "🏬",
       "🏤",
       "🏛️",
       "🏟️",
       "🏗️",
-      "⛪"
+      "⛪",
+      "🚔",
+      "🚒",
+      "🚑",
+      "🚕",
+      "🏣"
     ],
     "intrusos": [
       "🏜️",
@@ -77,14 +86,11 @@
       "🌲",
       "🐄",
       "🐑",
-      "🐪",
-      "🦉",
-      "🍄",
-      "🛶"
+      "🐪"
     ]
   },
   {
-    "categoria": "Les Professions et Métiers Internationaux",
+    "categoria": "Les Professions",
     "correctos": [
       "Professeur",
       "Médecin",
@@ -96,7 +102,10 @@
       "Architecte",
       "Ingénieur",
       "Vétérinaire",
-      "Journaliste"
+      "Journaliste",
+      "Avocat",
+      "Cuisinier",
+      "Pilote"
     ],
     "intrusos": [
       "École",
@@ -105,15 +114,11 @@
       "Croissant",
       "Maison",
       "Livre",
-      "Stylo",
-      "Cahier",
-      "Bureau",
-      "Usine",
-      "Garage"
+      "Stylo"
     ]
   },
   {
-    "categoria": "Les Pays du Monde et l'Europe",
+    "categoria": "Les Pays du Monde",
     "correctos": [
       "France",
       "Espagne",
@@ -125,7 +130,10 @@
       "Luxembourg",
       "Maroc",
       "Sénégal",
-      "Grèce"
+      "Grèce",
+      "Portugal",
+      "Autriche",
+      "Japon"
     ],
     "intrusos": [
       "Paris",
@@ -134,15 +142,11 @@
       "Londres",
       "Berlin",
       "Lisbonne",
-      "Bruxelles",
-      "Genève",
-      "Québec",
-      "Montréal",
-      "Lyon"
+      "Bruxelles"
     ]
   },
   {
-    "categoria": "Les Adjectifs Possessifs (Singulier et Pluriel)",
+    "categoria": "Adjectifs Possessifs",
     "correctos": [
       "Mon",
       "Ma",
@@ -154,8 +158,11 @@
       "Sa",
       "Ses",
       "Notre",
+      "Nos",
       "Votre",
-      "Leur"
+      "Vos",
+      "Leur",
+      "Leurs"
     ],
     "intrusos": [
       "Je",
@@ -167,37 +174,36 @@
       "Ils",
       "Elles",
       "Le",
-      "La",
-      "Les",
-      "Un",
-      "Une",
-      "Des"
+      "La"
     ]
   },
   {
-    "categoria": "Conjugaison du Verbe Avoir (Indicatif Présent)",
+    "categoria": "Verbes Avoir et Être",
     "correctos": [
       "J'ai",
       "Tu as",
-      "Il a / Elle a",
+      "Il a",
       "Nous avons",
       "Vous avez",
-      "Ils ont / Elles ont"
-    ],
-    "intrusos": [
+      "Ils ont",
       "Je suis",
       "Tu es",
       "Il est",
       "Nous sommes",
       "Vous êtes",
-      "Ils sont",
+      "Ils sont"
+    ],
+    "intrusos": [
       "J'aime",
       "J'habite",
-      "Je regarde"
+      "Je regarde",
+      "Je parle",
+      "Je mange",
+      "Je joue"
     ]
   },
   {
-    "categoria": "Les Repas et la Gastronomie",
+    "categoria": "La Gastronomie",
     "correctos": [
       "Petit-déjeuner",
       "Déjeuner",
@@ -208,7 +214,11 @@
       "Croissant",
       "Salade",
       "Poulet",
-      "Poisson"
+      "Poisson",
+      "Viande",
+      "Fruit",
+      "Légume",
+      "Soupe"
     ],
     "intrusos": [
       "Ciseaux",
@@ -217,13 +227,11 @@
       "Gomme",
       "Sac à dos",
       "Vêtement",
-      "Chaussure",
-      "Chapeau",
-      "Gants"
+      "Chaussure"
     ]
   },
   {
-    "categoria": "Les Adjectifs de Nationalité (Masculin)",
+    "categoria": "Adjectifs de Nationalité",
     "correctos": [
       "Français",
       "Espagnol",
@@ -232,7 +240,11 @@
       "Belge",
       "Suisse",
       "Canadien",
-      "Anglais"
+      "Anglais",
+      "Portugais",
+      "Américain",
+      "Marocain",
+      "Grec"
     ],
     "intrusos": [
       "France",
@@ -241,8 +253,7 @@
       "Allemagne",
       "Belgique",
       "Suisse",
-      "Canada",
-      "Angleterre"
+      "Canada"
     ]
   }
 ]

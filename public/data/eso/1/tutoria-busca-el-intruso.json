@@ -1,141 +1,235 @@
 [
   {
-    "categoria": "Convivencia (Visual)",
+    "categoria": "Cultura de Paz y Convivencia (Visual)",
     "correctos": [
       "🤝",
       "👂",
       "🗣️",
       "🫂",
       "👐",
-      "🙋"
+      "🙋",
+      "🕊️",
+      "🌍",
+      "🤲",
+      "🫂",
+      "🫶",
+      "✨",
+      "🌟",
+      "🎈",
+      "🎭",
+      "☀️"
     ],
     "intrusos": [
       "🥊",
       "🖕",
       "😤",
       "🤬",
-      "💣"
+      "💣",
+      "🔫",
+      "🔥",
+      "🔪"
     ]
   },
   {
-    "categoria": "Emociones (Visual)",
+    "categoria": "Mundo Emocional (Visual)",
     "correctos": [
       "😀",
       "😢",
       "😡",
       "😱",
       "😴",
-      "🤔"
+      "🤔",
+      "😍",
+      "🤩",
+      "🥳",
+      "🥺",
+      "🤫",
+      "🤥",
+      "🥵",
+      "🥶",
+      "🤯",
+      "😎"
     ],
     "intrusos": [
       "🍎",
       "🚗",
       "🏠",
       "🐶",
-      "✏️"
+      "✏️",
+      "🎒",
+      "🔋",
+      "🔌"
     ]
   },
   {
-    "categoria": "Objetivos (Visual)",
+    "categoria": "Metas y Logros (Visual)",
     "correctos": [
       "🎯",
       "🏆",
       "🥇",
       "📈",
       "🎓",
-      "🏅"
+      "🏅",
+      "🥈",
+      "🥉",
+      "📜",
+      "📂",
+      "✍️",
+      "📖",
+      "🏁",
+      "🌠",
+      "🏰",
+      "🚀"
     ],
     "intrusos": [
       "📉",
       "🗑️",
       "💤",
       "📺",
-      "🎮"
+      "🎮",
+      "🏚️",
+      "🚭",
+      "⚠️"
     ]
   },
   {
-    "categoria": "Normas de Convivencia",
+    "categoria": "Buenas Prácticas Escolares",
     "correctos": [
       "Respeto",
       "Puntualidad",
-      "Silencio",
+      "Escucha activa",
       "Orden",
-      "Limpieza"
+      "Limpieza",
+      "Esfuerzo",
+      "Compañerismo",
+      "Ayuda mutua",
+      "Atención",
+      "Traer material",
+      "Participación",
+      "Silencio",
+      "Autonomía",
+      "Responsabilidad"
     ],
     "intrusos": [
       "Gritos",
       "Correr",
       "Insultar",
       "Desorden",
-      "Suciedad"
+      "Suciedad",
+      "Pereza",
+      "Descuido"
     ]
   },
   {
-    "categoria": "Técnicas de Estudio",
+    "categoria": "Herramientas del Estudiante",
     "correctos": [
       "Subrayar",
       "Resumir",
       "Esquema",
       "Mapa mental",
-      "Repaso"
+      "Repaso activo",
+      "Planificación",
+      "Agenda",
+      "Lugar estudio",
+      "Descanso",
+      "Lectura comprensiva",
+      "Autoevaluación",
+      "Apuntes",
+      "Cuaderno limpio",
+      "Horario"
     ],
     "intrusos": [
       "Copiar",
       "Memorizar sin entender",
       "Distraerse",
       "Hablar",
-      "Jugar"
+      "Jugar",
+      "Posponer",
+      "Procrastinar"
     ]
   },
   {
-    "categoria": "Valores",
+    "categoria": "Valores Éticos y Humanos",
     "correctos": [
       "Tolerancia",
       "Solidaridad",
       "Responsabilidad",
       "Sinceridad",
-      "Empatía"
+      "Empatía",
+      "Compromiso",
+      "Justicia",
+      "Honestidad",
+      "Gratitud",
+      "Paciencia",
+      "Humildad",
+      "Perseverancia",
+      "Coraje",
+      "Lealtad"
     ],
     "intrusos": [
       "Egoísmo",
       "Mentira",
       "Pereza",
       "Violencia",
-      "Envidia"
+      "Envidia",
+      "Odio",
+      "Crueldad"
     ]
   },
   {
-    "categoria": "Habilidades Sociales",
+    "categoria": "Habilidades Sociales (Soft Skills)",
     "correctos": [
       "Escucha activa",
       "Asertividad",
       "Diálogo",
       "Negociación",
-      "Cooperación"
+      "Cooperación",
+      "Trabajo en equipo",
+      "Resolución de dudas",
+      "Saber pedir",
+      "Saber decir no",
+      "Iniciativa",
+      "Liderazgo positivo",
+      "Paciencia",
+      "Flexibilidad",
+      "Amabilidad"
     ],
     "intrusos": [
       "Agresividad",
       "Pasividad",
       "Imposición",
       "Aislamiento",
-      "Rechazo"
+      "Rechazo",
+      "Burla",
+      "Mofa"
     ]
   },
   {
-    "categoria": "Resolución de Conflictos",
+    "categoria": "Gestión de Conflictos",
     "correctos": [
-      "Calma",
-      "Hablar",
-      "Escuchar",
+      "Mantener la calma",
+      "Diálogo respetuoso",
+      "Escucha profunda",
       "Pedir perdón",
-      "Acordar"
+      "Acuerdo ganar-ganar",
+      "Mediación",
+      "Buscar soluciones",
+      "Empatizar",
+      "Ceder a veces",
+      "Franqueza",
+      "Objetividad",
+      "Control de impulsos",
+      "Sinceridad",
+      "Respeto"
     ],
     "intrusos": [
       "Gritar",
       "Insultar",
       "Pegar",
       "Amenazar",
-      "Vengarse"
+      "Vengarse",
+      "Rencor",
+      "Cizaña"
     ]
   }
 ]

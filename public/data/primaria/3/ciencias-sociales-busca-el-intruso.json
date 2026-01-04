@@ -10,7 +10,13 @@
       "🛸",
       "🛰️",
       "🛩️",
-      "🎈"
+      "🎈",
+      "🚠",
+      "🏗️",
+      "🌌",
+      "🪐",
+      "🌠",
+      "🛰️"
     ],
     "intrusos": [
       "🚗",
@@ -19,10 +25,7 @@
       "🚢",
       "🚂",
       "🚜",
-      "🚑",
-      "🛵",
-      "🛹",
-      "👟"
+      "🚑"
     ]
   },
   {
@@ -35,7 +38,14 @@
       "⭐",
       "☄️",
       "🌌",
-      "🔭"
+      "🔭",
+      "🌙",
+      "✨",
+      "🌑",
+      "🌘",
+      "🔭",
+      "👽",
+      "🚀"
     ],
     "intrusos": [
       "✈️",
@@ -44,14 +54,11 @@
       "🚁",
       "☁️",
       "🌩️",
-      "🎈",
-      "🦟",
-      "🐝",
-      "🦉"
+      "🎈"
     ]
   },
   {
-    "categoria": "Señales de Tráfico y Seguridad (Visual)",
+    "categoria": "Señales de Tráfico (Visual)",
     "correctos": [
       "🛑",
       "⛔",
@@ -62,7 +69,12 @@
       "⚠️",
       "🚧",
       "🛂",
-      "🚭"
+      " smoking_forbidden",
+      "🚲",
+      "🚯",
+      "🚰",
+      "🚾",
+      "🛄"
     ],
     "intrusos": [
       "🏁",
@@ -71,14 +83,11 @@
       "📸",
       "🎨",
       "🎭",
-      "🎪",
-      "🎫",
-      "🎸",
-      "🎵"
+      "🎪"
     ]
   },
   {
-    "categoria": "Profesiones del Sector Público (Visual)",
+    "categoria": "Profesiones Públicas (Visual)",
     "correctos": [
       "👨‍⚕️",
       "👩‍🏫",
@@ -88,7 +97,13 @@
       "👨‍🌾",
       "🕵️‍♂️",
       "👨‍⚖️",
-      "👩‍🔬"
+      "👩‍🔬",
+      "👷‍♂️",
+      "👩‍🎨",
+      "👨‍💻",
+      "👩‍✈️",
+      "👨‍🎤",
+      "👩‍🚀"
     ],
     "intrusos": [
       "👻",
@@ -97,14 +112,11 @@
       "🐵",
       "🗽",
       "🧸",
-      "🪁",
-      "🏰",
-      "🧛",
-      "🧟"
+      "🪁"
     ]
   },
   {
-    "categoria": "Planetas del Sistema Solar",
+    "categoria": "Sistema Solar",
     "correctos": [
       "Mercurio",
       "Venus",
@@ -113,21 +125,25 @@
       "Júpiter",
       "Saturno",
       "Urano",
-      "Neptuno"
+      "Neptuno",
+      "Plutón",
+      "Sol",
+      "Estrella",
+      "Asteroide",
+      "Cometa",
+      "Galaxia"
     ],
     "intrusos": [
-      "Luna",
-      "Sol",
-      "Cometa",
-      "Estrella Polar",
       "Nube",
-      "Asteroide Eros",
-      "Galaxia",
-      "Agujero negro"
+      "Rayo",
+      "Lluvia",
+      "Viento",
+      "Nieve",
+      "Niebla"
     ]
   },
   {
-    "categoria": "Medios de Transporte de Viajeros",
+    "categoria": "Medios de Transporte",
     "correctos": [
       "Coche",
       "Autobús",
@@ -138,7 +154,11 @@
       "Metro",
       "Tranvía",
       "Helicóptero",
-      "Taxi"
+      "Taxi",
+      "Moto",
+      "Camión",
+      "Ferry",
+      "Yate"
     ],
     "intrusos": [
       "Zapato",
@@ -146,42 +166,36 @@
       "Colegio",
       "Puente",
       "Semáforo",
-      "Carretera",
-      "Vía",
-      "Puerto",
-      "Aeropuerto",
-      "Gasolinera"
+      "Carretera"
     ]
   },
   {
-    "categoria": "Profesiones Especializadas",
+    "categoria": "Tipos de Trabajos",
     "correctos": [
-      "Médico",
-      "Profesor",
-      "Policía",
-      "Bombero",
-      "Agricultor",
-      "Cocinero",
-      "Arquitecto",
-      "Ingeniero",
-      "Veterinario",
-      "Enfermero"
+      "Agricultura",
+      "Ganadería",
+      "Pesca",
+      "Minería",
+      "Industria",
+      "Comercio",
+      "Turismo",
+      "Transporte",
+      "Sanidad",
+      "Educación",
+      "Construcción",
+      "Artesanía"
     ],
     "intrusos": [
-      "Estudiante",
-      "Paciente",
-      "Cliente",
-      "Turista",
-      "Ladrón",
-      "Niño",
-      "Bebé",
-      "Pasajero",
-      "Peatón",
-      "Espectador"
+      "Juego",
+      "Siesta",
+      "Vacaciones",
+      "Merienda",
+      "Deporte",
+      "Cine"
     ]
   },
   {
-    "categoria": "Elementos del Paisaje Natural",
+    "categoria": "Relieve y Paisaje",
     "correctos": [
       "Montaña",
       "Llanura",
@@ -192,7 +206,11 @@
       "Río",
       "Lago",
       "Acantilado",
-      "Isla"
+      "Isla",
+      "Archipiélago",
+      "Golfo",
+      "Cabo",
+      "Península"
     ],
     "intrusos": [
       "Edificio",
@@ -200,34 +218,34 @@
       "Fábrica",
       "Semáforo",
       "Tienda",
-      "Puente",
-      "Túnel",
-      "Glorieta",
-      "Puerto",
-      "Aeropuerto"
+      "Puente"
     ]
   },
   {
-    "categoria": "Servicios Municipales Ciudadanos",
+    "categoria": "Servicios Ciudadanos",
     "correctos": [
-      "Limpieza viaria",
+      "Limpieza",
       "Bomberos",
-      "Policía local",
-      "Jardinería pública",
-      "Transporte público",
+      "Policía",
+      "Jardinería",
+      "Transporte",
       "Correos",
       "Alumbrado",
-      "Abastecimiento de agua"
+      "Agua",
+      "Reciclaje",
+      "Sanidad",
+      "Educación",
+      "Seguridad",
+      "Cultura",
+      "Ocio"
     ],
     "intrusos": [
-      "Cine",
       "Restaurante",
-      "Discoteca",
-      "Gimnasio privado",
-      "Ludoteca comercial",
-      "Academia de baile",
-      "Pueblo",
-      "Montaña"
+      "Tienda",
+      "Banco",
+      "Fábrica",
+      "Taller",
+      "Quiosco"
     ]
   }
 ]

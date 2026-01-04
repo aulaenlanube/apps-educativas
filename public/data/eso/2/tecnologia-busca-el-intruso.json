@@ -1,141 +1,235 @@
 [
   {
-    "categoria": "Herramientas (Visual)",
+    "categoria": "Herramientas Manuales y de Medida (Visual)",
     "correctos": [
       "🔨",
       "🔧",
       "🪛",
       "🔩",
       "🗜️",
-      "📏"
+      "📏",
+      "🪚",
+      "🪓",
+      "🛠️",
+      "⚒️",
+      "📐",
+      "🖇️",
+      "📏",
+      "🔩",
+      "🧱",
+      "🏮"
     ],
     "intrusos": [
       "✏️",
       "🖊️",
       "🧸",
       "🍎",
-      "🥄"
+      "🥄",
+      "🧁",
+      "🍦",
+      "🥪"
     ]
   },
   {
-    "categoria": "Electricidad (Visual)",
+    "categoria": "Componentes y Circuitos Eléctricos (Visual)",
     "correctos": [
       "🔋",
       "💡",
       "🔌",
       "⚡",
       "🔦",
-      "🛑"
+      "🛑",
+      "📡",
+      "🛰️",
+      "🔌",
+      "🔋",
+      "💡",
+      "⚡",
+      "🔋",
+      "💡",
+      "🔌",
+      "⚡"
     ],
     "intrusos": [
       "💧",
       "🌱",
       "🦋",
       "🐶",
-      "🐱"
+      "🐱",
+      "🌹",
+      "🍄",
+      "🐚"
     ]
   },
   {
-    "categoria": "Informática (Visual)",
+    "categoria": "Hardware y Equipamiento Informático (Visual)",
     "correctos": [
       "💻",
       "🖱️",
       "⌨️",
       "🖥️",
       "🖨️",
-      "💾"
+      "💾",
+      "💿",
+      "🖲️",
+      "📼",
+      "📠",
+      "📟",
+      "🔋",
+      "🔌",
+      "📱",
+      "💻",
+      "🖥️"
     ],
     "intrusos": [
       "🧱",
       "🪵",
       "🔨",
       "🔧",
-      "🔩"
+      "🔩",
+      "🪚",
+      "🪓",
+      "⚒️"
     ]
   },
   {
-    "categoria": "Materiales de Uso Técnico",
+    "categoria": "Materiales Técnicos y de Construcción",
     "correctos": [
-      "Madera",
-      "Metal",
-      "Plástico",
-      "Pétreos",
-      "Cerámicos"
+      "Madera natural",
+      "Acero / Metal",
+      "Termoplástico",
+      "Vidrio",
+      "Hormigón",
+      "Cerámica técnica",
+      "Fibras textiles",
+      "Materiales pétreos",
+      "Cartón ondulado",
+      "Metales no férricos",
+      "Aislante térmico",
+      "Conductor eléctrico",
+      "Aglomerado",
+      "Plástico termoestable"
     ],
     "intrusos": [
-      "Agua",
-      "Aire",
-      "Fuego",
-      "Tierra",
-      "Carne"
+      "Agua potable",
+      "Aire atmosférico",
+      "Fuego exterior",
+      "Tierra vegetal",
+      "Carne",
+      "Nube",
+      "Rayo"
     ]
   },
   {
-    "categoria": "Propiedades Mecánicas",
+    "categoria": "Propiedades de los Materiales (Físicas y Mecánicas)",
     "correctos": [
       "Dureza",
       "Tenacidad",
       "Elasticidad",
       "Plasticidad",
-      "Maleabilidad"
+      "Maleabilidad",
+      "Ductilidad",
+      "Fragilidad",
+      "Conductividad eléctrica",
+      "Resiliencia",
+      "Corrosión",
+      "Oxidación",
+      "Dilatación",
+      "Fusibilidad",
+      "Transparencia"
     ],
     "intrusos": [
-      "Color",
-      "Olor",
-      "Sabor",
-      "Brillo",
-      "Textura"
+      "Color primario",
+      "Olor característico",
+      "Sabor dulce",
+      "Brillo estético",
+      "Textura rugosa",
+      "Precio de mercado",
+      "País de origen"
     ]
   },
   {
-    "categoria": "Componentes Eléctricos",
+    "categoria": "Componentes de un Circuito Eléctrico",
     "correctos": [
-      "Generador",
-      "Conductor",
-      "Receptor",
-      "Elemento de control",
-      "Protección"
+      "Generador (Pila)",
+      "Conductor (Hilo)",
+      "Receptor (Lámpara)",
+      "Interruptor",
+      "Pulsador",
+      "Conmutador",
+      "Fusible",
+      "Resistencia",
+      "Motor eléctrico",
+      "Zumbador",
+      "Amperímetro",
+      "Voltímetro",
+      "Polímetro",
+      "Elemento de maniobra"
     ],
     "intrusos": [
       "Martillo",
-      "Sierra",
-      "Alicates",
-      "Destornillador",
-      "Lima"
+      "Sierra de arco",
+      "Alicates universales",
+      "Destornillador plano",
+      "Lima basta",
+      "Torno",
+      "Mordaza"
     ]
   },
   {
-    "categoria": "Estructuras",
+    "categoria": "Estructuras y Elementos Constructivos",
     "correctos": [
-      "Cimentación",
-      "Columna",
-      "Viga",
+      "Cimentación / Zapata",
+      "Pilar / Columna",
+      "Viga / Vigueta",
       "Arco",
-      "Tirante"
+      "Tirante / Tensor",
+      "Cercha",
+      "Bóveda",
+      "Muro de carga",
+      "Arriostramiento",
+      "Perfil técnico",
+      "Dintel",
+      "Clave de arco",
+      "Contrafuerte",
+      "Forjado"
     ],
     "intrusos": [
-      "Motor",
-      "Engranaje",
-      "Polea",
-      "Palanca",
-      "Rueda"
+      "Motor de explosión",
+      "Engranaje recto",
+      "Polea fija",
+      "Palanca 1er grado",
+      "Rueda dentada",
+      "Tornillo sin fin",
+      "Biela"
     ]
   },
   {
-    "categoria": "Máquinas Simples",
+    "categoria": "Máquinas Simples y Mecanismos",
     "correctos": [
       "Palanca",
       "Plano inclinado",
       "Polea",
       "Torno",
-      "Cuña"
+      "Cuña",
+      "Tornillo y tuerca",
+      "Rueda de fricción",
+      "Engranajes",
+      "Sistema polea-correa",
+      "Cremallera y piñón",
+      "Biela-manivela",
+      "Leva y seguidor",
+      "Trinquete",
+      "Cardán"
     ],
     "intrusos": [
-      "Ordenador",
-      "Móvil",
-      "Tablet",
-      "Televisión",
-      "Robot"
+      "Ordenador portátil",
+      "Teléfono inteligente",
+      "Tablet táctil",
+      "Televisor LED",
+      "Robot programable",
+      "Consola de juegos",
+      "Microondas"
     ]
   }
 ]

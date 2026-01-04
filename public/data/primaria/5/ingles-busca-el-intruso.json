@@ -1,6 +1,6 @@
 [
   {
-    "categoria": "Modern Technology and Gadgets (Icons)",
+    "categoria": "Technology (Icons)",
     "correctos": [
       "💻",
       "📱",
@@ -13,7 +13,13 @@
       "📷",
       "🕹️",
       "📡",
-      "🛰️"
+      "🛰️",
+      "📠",
+      "📽️",
+      "💾",
+      "🖲️",
+      "📼",
+      "💿"
     ],
     "intrusos": [
       "📜",
@@ -22,15 +28,11 @@
       "🕰️",
       "🔨",
       "🛖",
-      "🏹",
-      "🛡️",
-      "⚔️",
-      "🐎",
-      "🧱"
+      "🏹"
     ]
   },
   {
-    "categoria": "Wild and Exotic Animals (Icons)",
+    "categoria": "Wild Animals (Icons)",
     "correctos": [
       "🦁",
       "🐯",
@@ -41,10 +43,15 @@
       "🦍",
       "🦏",
       "🦛",
-      "🐆",
-      "🐘",
-      "🦓",
-      "🐒"
+      " leopards (Leopardo Leopard)",
+      "🐒",
+      "🐪",
+      "🐃",
+      "🐍",
+      "🦦",
+      "🐋",
+      "🦈",
+      "🦭"
     ],
     "intrusos": [
       "🐶",
@@ -53,15 +60,11 @@
       "🐷",
       "🐔",
       "🐑",
-      "🐴",
-      "🐰",
-      "🐥",
-      "🐭",
-      "🐹"
+      "🐴"
     ]
   },
   {
-    "categoria": "International Travel and Tourism (Icons)",
+    "categoria": "Travel (Icons)",
     "correctos": [
       "✈️",
       "🧳",
@@ -75,7 +78,12 @@
       "⛩️",
       "🏰",
       "🏜️",
-      "🏝️"
+      "🏝️",
+      "🛶",
+      "🚠",
+      "🗺️",
+      "🚏",
+      "🧭"
     ],
     "intrusos": [
       "🏠",
@@ -84,15 +92,11 @@
       "📺",
       "🧹",
       "🚿",
-      "🍳",
-      "🚽",
-      "🧺",
-      "🧸",
-      "🏡"
+      "🍳"
     ]
   },
   {
-    "categoria": "Human Emotions and Feelings (Icons)",
+    "categoria": "Emotions (Icons)",
     "correctos": [
       "😀",
       "😢",
@@ -106,7 +110,12 @@
       "🤩",
       "😌",
       "🙄",
-      "😤"
+      "😤",
+      "🥵",
+      "🥶",
+      "🤯",
+      "😎",
+      "🤡"
     ],
     "intrusos": [
       "🍎",
@@ -115,16 +124,11 @@
       "🐶",
       "✏️",
       "⚽",
-      "🍔",
-      "📱",
-      "💻",
-      "🎸",
-      "🚲",
-      "🌲"
+      "🍔"
     ]
   },
   {
-    "categoria": "Irregular Verbs (Past Simple Tense)",
+    "categoria": "Irregular Verbs (Past)",
     "correctos": [
       "Went",
       "Ate",
@@ -139,7 +143,11 @@
       "Made",
       "Built",
       "Gave",
-      "Did"
+      "Did",
+      "Slept",
+      "Found",
+      "Brought",
+      "Spent"
     ],
     "intrusos": [
       "Played",
@@ -148,15 +156,11 @@
       "Jumped",
       "Listened",
       "Watched",
-      "Cleaned",
-      "Lived",
-      "Started",
-      "Finished",
-      "Talked"
+      "Cleaned"
     ]
   },
   {
-    "categoria": "Specific Wild Animal Vocabulary",
+    "categoria": "Wild Animal Vocabulary",
     "correctos": [
       "Rhino",
       "Hippo",
@@ -168,7 +172,12 @@
       "Buffalo",
       "Ostrich",
       "Hyena",
-      "Elephant"
+      "Elephant",
+      "Kangaroo",
+      "Wolf",
+      "Bear",
+      "Zebra",
+      "Lion"
     ],
     "intrusos": [
       "Dog",
@@ -177,14 +186,11 @@
       "Chicken",
       "Sheep",
       "Goat",
-      "Pig",
-      "Donkey",
-      "Duck",
-      "Golden Retriever"
+      "Pig"
     ]
   },
   {
-    "categoria": "Adverbs of Frequency (How often)",
+    "categoria": "Adverbs of Frequency",
     "correctos": [
       "Always",
       "Usually",
@@ -194,7 +200,12 @@
       "Rarely",
       "Hardly ever",
       "Frequently",
-      "Occasionally"
+      "Occasionally",
+      "Normally",
+      "Regularly",
+      "Seldom",
+      "Daily",
+      "Weekly"
     ],
     "intrusos": [
       "Yesterday",
@@ -203,14 +214,11 @@
       "Today",
       "Soon",
       "Late",
-      "Early",
-      "Every day",
-      "Long ago",
-      "Next week"
+      "Early"
     ]
   },
   {
-    "categoria": "Wh- Question Words",
+    "categoria": "Question Words",
     "correctos": [
       "What",
       "Where",
@@ -222,7 +230,10 @@
       "Whose",
       "How much",
       "How many",
-      "How long"
+      "How long",
+      "How often",
+      "How far",
+      "How old"
     ],
     "intrusos": [
       "Yes",
@@ -231,15 +242,11 @@
       "And",
       "But",
       "So",
-      "Or",
-      "Then",
-      "After",
-      "Before",
-      "While"
+      "Or"
     ]
   },
   {
-    "categoria": "Sports Equipment and Gear",
+    "categoria": "Sports Equipment",
     "correctos": [
       "Ball",
       "Racket",
@@ -252,7 +259,11 @@
       "Board",
       "Boots",
       "Club",
-      "Tee"
+      "Tee",
+      "Shuttlecock",
+      "Goggles",
+      "Goal",
+      "Basket"
     ],
     "intrusos": [
       "Piano",
@@ -261,15 +272,11 @@
       "Pen",
       "Sofa",
       "Computer",
-      "Phone",
-      "Bed",
-      "Table",
-      "Cup",
-      "Plate"
+      "Phone"
     ]
   },
   {
-    "categoria": "Comparative Adjectives (-er / more)",
+    "categoria": "Comparative Adjectives",
     "correctos": [
       "Bigger",
       "Smaller",
@@ -281,7 +288,10 @@
       "More beautiful",
       "More expensive",
       "Easier",
-      "Harder"
+      "Harder",
+      "Happier",
+      "Sunnier",
+      "Hotter"
     ],
     "intrusos": [
       "Big",
@@ -290,13 +300,7 @@
       "Slow",
       "Tall",
       "Good",
-      "Bad",
-      "Beautiful",
-      "Expensive",
-      "Easy",
-      "Hard",
-      "The biggest",
-      "The best"
+      "Bad"
     ]
   }
 ]
