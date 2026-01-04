@@ -37,10 +37,12 @@ const ParejasDeCartas = ({ tema }) => {
   const colaAyudasRef = useRef([]);
   const randomDelaysRef = useRef({});
 
-  // Helper: Detecta letras
+  // Helper: Detecta letras o números (para saber si es texto largo)
   const contieneLetras = (str) => {
     if (!str) return false;
-    return /[a-zA-ZáéíóúÁÉÍÓÚñÑçÇàèìòùÀÈÌÒÙäëïöüÄËÏÖÜ]/.test(String(str));
+    // Ahora consideramos "texto" cualquier cosa que tenga letras, números o símbolos matemáticos complejos
+    // Esto fuerza a usar el renderizado de texto flexible en lugar del emoji gigante
+    return /[a-zA-Z0-9+\-=()%²³⁰¹⁴⁵⁶⁷⁸⁹√π]/.test(String(str));
   };
 
   // Cargar datos
@@ -68,12 +70,17 @@ const ParejasDeCartas = ({ tema }) => {
     cargarDatos();
   }, [nivel, curso, asignatura]);
 
-  // MODIFICADO: Cambiado PRO por EXAMEN y añadido flag isExam
-  const opcionesDificultad = [
+  // MODIFICADO: Definimos 3 niveles de entrenamiento y 3 de examen
+  const opcionesEntrenamiento = [
     { nombre: 'Fácil', filas: 2, columnas: 4, parejas: 4, isExam: false },
     { nombre: 'Normal', filas: 3, columnas: 4, parejas: 6, isExam: false },
-    { nombre: 'Difícil', filas: 4, columnas: 5, parejas: 10, isExam: false },
-    { nombre: 'EXAMEN', filas: 4, columnas: 6, parejas: 12, isExam: true }
+    { nombre: 'Difícil', filas: 4, columnas: 5, parejas: 10, isExam: false }
+  ];
+
+  const opcionesExamen = [
+    { nombre: 'Básico', filas: 4, columnas: 4, parejas: 8, isExam: true, icono: '📝' },
+    { nombre: 'Medio', filas: 4, columnas: 6, parejas: 12, isExam: true, icono: '🎓' },
+    { nombre: 'Avanzado', filas: 5, columnas: 8, parejas: 20, isExam: true, icono: '🏆' }
   ];
 
   const iniciarJuego = (opcion) => {
@@ -283,25 +290,58 @@ const ParejasDeCartas = ({ tema }) => {
   return (
     <div className="contenedor-parejas">
       {fase === 'menu' && (
-        <div className="menu-dificultad text-center z-10 animate-fade-in flex flex-col items-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-indigo-900 drop-shadow-sm">Elige la dificultad</h1>
+        <div className="menu-dificultad text-center z-10 animate-fade-in flex flex-col items-center w-full max-w-5xl">
+          <h1 className="text-4xl md:text-6xl font-black mb-10 text-indigo-900 drop-shadow-sm tracking-tight">PAREJAS DE CARTAS</h1>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl w-full px-4">
-            {opcionesDificultad.map((op, idx) => (
-              <button
-                key={idx}
-                className={`btn-dificultad ${op.isExam ? 'btn-examen' : ''}`}
-                onClick={() => iniciarJuego(op)}
-              >
-                <div className="text-3xl font-bold mb-2">
-                  {op.isExam ? '📝 ' + op.nombre : op.nombre}
-                </div>
-                <div className="text-lg opacity-90">
-                  {op.filas} x {op.columnas}
-                  {op.isExam ? ' (3 Vidas)' : ` (${op.parejas} parejas)`}
-                </div>
-              </button>
-            ))}
+          <div className="w-full space-y-12">
+            {/* SECCIÓN ENTRENAMIENTO */}
+            <section>
+              <h2 className="text-xl font-bold text-indigo-400 uppercase tracking-widest mb-6 flex items-center justify-center gap-3">
+                <div className="h-px w-12 bg-indigo-200" />
+                Entrenamiento
+                <div className="h-px w-12 bg-indigo-200" />
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 px-4">
+                {opcionesEntrenamiento.map((op, idx) => (
+                  <button
+                    key={idx}
+                    className="btn-dificultad"
+                    onClick={() => iniciarJuego(op)}
+                  >
+                    <div className="text-2xl font-bold mb-1">{op.nombre}</div>
+                    <div className="text-sm opacity-80 font-medium">
+                      {op.filas}x{op.columnas} • {op.parejas} parejas
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </section>
+
+            {/* SECCIÓN EXAMEN */}
+            <section>
+              <h2 className="text-xl font-bold text-amber-500 uppercase tracking-widest mb-6 flex items-center justify-center gap-3">
+                <div className="h-px w-12 bg-amber-200" />
+                Modo Examen (3 Vidas)
+                <div className="h-px w-12 bg-amber-200" />
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 px-4">
+                {opcionesExamen.map((op, idx) => (
+                  <button
+                    key={idx}
+                    className="btn-dificultad btn-examen"
+                    onClick={() => iniciarJuego(op)}
+                  >
+                    <div className="text-2xl font-bold mb-1 flex items-center gap-2">
+                      <span>{op.icono}</span>
+                      {op.nombre}
+                    </div>
+                    <div className="text-sm opacity-90 font-medium">
+                      {op.filas}x{op.columnas} • {op.parejas} parejas
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </section>
           </div>
         </div>
       )}

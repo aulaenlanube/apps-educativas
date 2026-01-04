@@ -12,6 +12,7 @@ import {
     Variable,
     Activity,
     ChevronRight,
+    ChevronDown,
     Calculator,
     Layers
 } from 'lucide-react';
@@ -147,6 +148,8 @@ const LaboratorioFunciones2D = () => {
     const [composerBase, setComposerBase] = useState('x2');
     const [params, setParams] = useState({ a: 1, b: 0, c: 0, d: 0 });
     const [showGrid, setShowGrid] = useState(true);
+    const [functionsOpen, setFunctionsOpen] = useState(true);
+    const [paramsOpen, setParamsOpen] = useState(true);
     const [zoom, setZoom] = useState(40); // Pixels per unit
     const [hoveredPoint, setHoveredPoint] = useState(null);
 
@@ -320,94 +323,137 @@ const LaboratorioFunciones2D = () => {
                 `}>
 
                     {/* Selector de Tipo */}
-                    <div className="bg-white/80 backdrop-blur-md p-4 rounded-3xl shadow-xl shadow-slate-200/50 border border-white shrink-0 max-h-[35%] flex flex-col overflow-hidden">
-                        <div className="flex items-center gap-2 mb-2 text-indigo-600 shrink-0 p-1">
-                            <LineChart className="w-5 h-5" />
-                            <h2 className="font-bold text-lg uppercase tracking-wider">Funciones</h2>
+                    <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl shadow-slate-200/50 border border-white shrink-0 flex flex-col overflow-hidden transition-all">
+                        <div
+                            className="flex items-center justify-between p-4 cursor-pointer hover:bg-white/50 transition-colors"
+                            onClick={() => setFunctionsOpen(!functionsOpen)}
+                        >
+                            <div className="flex items-center gap-2 text-indigo-600">
+                                <LineChart className="w-5 h-5" />
+                                <h2 className="font-bold text-lg uppercase tracking-wider">Funciones</h2>
+                            </div>
+                            {functionsOpen ? <ChevronDown className="w-5 h-5 text-indigo-400" /> : <ChevronRight className="w-5 h-5 text-indigo-400" />}
                         </div>
-                        <div className="flex flex-col gap-2 overflow-y-auto custom-scrollbar p-1">
-                            {Object.keys(FUNCTIONS_TYPES).map(type => (
-                                <button
-                                    key={type}
-                                    onClick={() => setSelectedType(type)}
-                                    className={`flex items-center justify-between p-3 rounded-2xl transition-all shrink-0 ${selectedType === type
-                                        ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200'
-                                        : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
-                                        }`}
+
+                        <AnimatePresence>
+                            {functionsOpen && (
+                                <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: 'auto', opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                    className="overflow-hidden"
                                 >
-                                    <div className="flex items-center gap-3">
-                                        <div className={`p-1.5 rounded-lg ${selectedType === type ? 'bg-white/20' : 'bg-white shadow-sm'}`}>
-                                            {FUNCTIONS_TYPES[type].isComposer ? <Layers className="w-4 h-4" /> : <Zap className="w-4 h-4" />}
-                                        </div>
-                                        <span className="font-semibold text-sm text-left">{FUNCTIONS_TYPES[type].name}</span>
-                                    </div>
-                                    {selectedType === type && <ChevronRight className="w-4 h-4" />}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Parámetros */}
-                    <div className="bg-white/80 backdrop-blur-md p-5 rounded-3xl shadow-xl shadow-slate-200/50 border border-white flex-1 flex flex-col overflow-hidden">
-                        <div className="flex items-center gap-2 mb-4 text-slate-700 shrink-0 p-1">
-                            <Settings className="w-5 h-5" />
-                            <h2 className="font-bold text-sm uppercase tracking-widest">
-                                {currentFunc.isComposer ? 'Constructor' : `Ajustes: ${currentFunc.name}`}
-                            </h2>
-                        </div>
-
-                        <div className="flex-1 overflow-y-auto custom-scrollbar p-1">
-                            {/* Selector de Base para Composer */}
-                            {currentFunc.isComposer && (
-                                <div className="mb-6 p-4 bg-indigo-50/50 rounded-2xl border border-indigo-100">
-                                    <label className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-2 block">Función Base (f)</label>
-                                    <div className="grid grid-cols-2 gap-2">
-                                        {Object.keys(COMPOSER_BASES).map(baseKey => (
+                                    <div className="flex flex-col gap-2 overflow-y-auto custom-scrollbar p-4 pt-0 max-h-[30vh]">
+                                        {Object.keys(FUNCTIONS_TYPES).map(type => (
                                             <button
-                                                key={baseKey}
-                                                onClick={() => setComposerBase(baseKey)}
-                                                className={`text-xs p-2 rounded-lg font-bold transition-all ${composerBase === baseKey
-                                                    ? 'bg-indigo-500 text-white shadow-md'
-                                                    : 'bg-white text-slate-500 hover:bg-white/80'
+                                                key={type}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setSelectedType(type);
+                                                }}
+                                                className={`flex items-center justify-between p-3 rounded-2xl transition-all shrink-0 ${selectedType === type
+                                                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-200'
+                                                    : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
                                                     }`}
                                             >
-                                                {COMPOSER_BASES[baseKey].name}
+                                                <div className="flex items-center gap-3">
+                                                    <div className={`p-1.5 rounded-lg ${selectedType === type ? 'bg-white/20' : 'bg-white shadow-sm'}`}>
+                                                        {FUNCTIONS_TYPES[type].isComposer ? <Layers className="w-4 h-4" /> : <Zap className="w-4 h-4" />}
+                                                    </div>
+                                                    <span className="font-semibold text-sm text-left">{FUNCTIONS_TYPES[type].name}</span>
+                                                </div>
+                                                {selectedType === type && <ChevronRight className="w-4 h-4" />}
                                             </button>
                                         ))}
                                     </div>
-                                </div>
+                                </motion.div>
                             )}
+                        </AnimatePresence>
+                    </div>
 
-                            <div className="space-y-6">
-                                {currentFunc.params.map(p => (
-                                    <div key={p.id} className="space-y-2">
-                                        <div className="flex justify-between items-center px-1">
-                                            <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">{p.label}</label>
-                                            <span className="bg-slate-100 text-slate-700 w-12 text-center py-1 rounded-md text-xs font-mono font-bold border border-slate-200">
-                                                {params[p.id]?.toFixed(2)}
-                                            </span>
-                                        </div>
-                                        <Slider
-                                            value={[params[p.id] || p.default]}
-                                            min={p.min}
-                                            max={p.max}
-                                            step={p.step}
-                                            onValueChange={([val]) => handleParamChange(p.id, val)}
-                                            className="py-2"
-                                        />
-                                    </div>
-                                ))}
+                    {/* Parámetros */}
+                    <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl shadow-slate-200/50 border border-white shrink-0 flex flex-col overflow-hidden transition-all">
+                        <div
+                            className="flex items-center justify-between p-4 cursor-pointer hover:bg-white/50 transition-colors"
+                            onClick={() => setParamsOpen(!paramsOpen)}
+                        >
+                            <div className="flex items-center gap-2 text-slate-700">
+                                <Settings className="w-5 h-5" />
+                                <h2 className="font-bold text-sm uppercase tracking-widest">
+                                    {currentFunc.isComposer ? 'Constructor' : `Ajustes: ${currentFunc.name}`}
+                                </h2>
                             </div>
-
-                            <div className="mt-8 pt-6 border-t border-slate-100">
-                                <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex items-start gap-3">
-                                    <Info className="w-5 h-5 text-slate-400 mt-0.5" />
-                                    <p className="text-xs text-slate-600 leading-relaxed font-medium">
-                                        {currentFunc.desc}
-                                    </p>
-                                </div>
-                            </div>
+                            {paramsOpen ? <ChevronDown className="w-5 h-5 text-slate-400" /> : <ChevronRight className="w-5 h-5 text-slate-400" />}
                         </div>
+
+                        <AnimatePresence>
+                            {paramsOpen && (
+                                <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: 'auto', opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                    className="overflow-hidden"
+                                >
+                                    <div className="overflow-y-auto custom-scrollbar p-5 pt-0 max-h-[50vh]">
+                                        {/* Selector de Base para Composer */}
+                                        {currentFunc.isComposer && (
+                                            <div className="mb-6 p-4 bg-indigo-50/50 rounded-2xl border border-indigo-100">
+                                                <label className="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-2 block">Función Base (f)</label>
+                                                <div className="grid grid-cols-2 gap-2">
+                                                    {Object.keys(COMPOSER_BASES).map(baseKey => (
+                                                        <button
+                                                            key={baseKey}
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                setComposerBase(baseKey);
+                                                            }}
+                                                            className={`text-xs p-2 rounded-lg font-bold transition-all ${composerBase === baseKey
+                                                                ? 'bg-indigo-500 text-white shadow-md'
+                                                                : 'bg-white text-slate-500 hover:bg-white/80'
+                                                                }`}
+                                                        >
+                                                            {COMPOSER_BASES[baseKey].name}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        <div className="space-y-6">
+                                            {currentFunc.params.map(p => (
+                                                <div key={p.id} className="space-y-2">
+                                                    <div className="flex justify-between items-center px-1">
+                                                        <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">{p.label}</label>
+                                                        <span className="bg-slate-100 text-slate-700 w-12 text-center py-1 rounded-md text-xs font-mono font-bold border border-slate-200">
+                                                            {params[p.id]?.toFixed(2)}
+                                                        </span>
+                                                    </div>
+                                                    <Slider
+                                                        value={[params[p.id] || p.default]}
+                                                        min={p.min}
+                                                        max={p.max}
+                                                        step={p.step}
+                                                        onValueChange={([val]) => handleParamChange(p.id, val)}
+                                                        className="py-2"
+                                                    />
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <div className="mt-8 pt-6 border-t border-slate-100">
+                                            <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex items-start gap-3">
+                                                <Info className="w-5 h-5 text-slate-400 mt-0.5" />
+                                                <p className="text-xs text-slate-600 leading-relaxed font-medium">
+                                                    {currentFunc.desc}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </div>
                 </aside>
 
