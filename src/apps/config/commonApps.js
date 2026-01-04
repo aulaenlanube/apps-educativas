@@ -59,8 +59,15 @@ import LenguaComprensionOral from '../comprension/ComprensionOral.jsx';
 import ExcavacionSelectiva from '../excavacion-selectiva/ExcavacionSelectiva.jsx';
 import MesaCrafteo from '../mesa-crafteo/MesaCrafteo.jsx';
 import EntrenadorTabla from '../entrenador-tabla/EntrenadorTabla.jsx';
+import LaboratorioFunciones2D from '../laboratorio-funciones-2d/LaboratorioFunciones2D';
 
 // Apps Comunes
+export const appLaboratorioFunciones2D = {
+  id: 'laboratorio-funciones-2d',
+  name: '📈 Laboratorio de Funciones 2D',
+  description: 'Explora y visualiza funciones matemáticas en un plano cartesiano interactivo.',
+  component: LaboratorioFunciones2D
+};
 export const appMesaCrafteo = {
   id: 'mesa-crafteo',
   name: '🧪 Mesa de Crafteo',

@@ -51,7 +51,7 @@ const AppRunnerPage = () => {
         ? 'bg-[#f0f7f8]'
         : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50';
 
-    const isWideApp = app.id.includes('visualizador-3d') || app.id.includes('romanos') || app.id.includes('mesa-crafteo');
+    const isWideApp = app.id.includes('visualizador-3d') || app.id.includes('romanos') || app.id.includes('mesa-crafteo') || app.id.includes('laboratorio-funciones-2d');
     const containerClass = isWideApp ? "max-w-7xl" : "max-w-4xl";
 
     return (
