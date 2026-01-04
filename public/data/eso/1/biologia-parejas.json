@@ -1,14 +1,152 @@
 [
-  { "id": 1, "a": "🧬", "b": "🧬" },
-  { "id": 2, "a": "🔬", "b": "🔬" },
-  { "id": 3, "a": "🌿", "b": "🌿" },
-  { "id": 4, "a": "🦠", "b": "🦠" },
-  { "id": 5, "a": "🦍", "b": "🦍" },
-  { "id": 6, "a": "🌍", "b": "🌍" },
-  { "id": 7, "a": "🌋", "b": "🌋" },
-  { "id": 8, "a": "🦖", "b": "🦖" },
-  { "id": 9, "a": "💧", "b": "💧" },
-  { "id": 10, "a": "🍄", "b": "🍄" },
-  { "id": 11, "a": "🌺", "b": "🌺" },
-  { "id": 12, "a": "🐟", "b": "🐟" }
+  {
+    "id": 1,
+    "a": "Célula",
+    "b": "Unidad básica de vida"
+  },
+  {
+    "id": 2,
+    "a": "Mitocondria",
+    "b": "Respiración celular"
+  },
+  {
+    "id": 3,
+    "a": "Cloroplasto",
+    "b": "Fotosíntesis"
+  },
+  {
+    "id": 4,
+    "a": "ADN",
+    "b": "Material genético"
+  },
+  {
+    "id": 5,
+    "a": "Procariota",
+    "b": "Sin núcleo definido"
+  },
+  {
+    "id": 6,
+    "a": "Eucariota",
+    "b": "Con núcleo definido"
+  },
+  {
+    "id": 7,
+    "a": "Biosfera",
+    "b": "Conjunto de seres vivos"
+  },
+  {
+    "id": 8,
+    "a": "Ecosistema",
+    "b": "Biocenosis + Biotopo"
+  },
+  {
+    "id": 9,
+    "a": "Autótrofo",
+    "b": "Produce su alimento"
+  },
+  {
+    "id": 10,
+    "a": "Heterótrofo",
+    "b": "Consume otros seres"
+  },
+  {
+    "id": 11,
+    "a": "Reino Monera",
+    "b": "Bacterias"
+  },
+  {
+    "id": 12,
+    "a": "Reino Fungi",
+    "b": "Mohos y setas"
+  },
+  {
+    "id": 13,
+    "a": "Protozoos",
+    "b": "Reino Protoctista"
+  },
+  {
+    "id": 14,
+    "a": "Invertebrados",
+    "b": "Sin columna vertebral"
+  },
+  {
+    "id": 15,
+    "a": "Artrópodos",
+    "b": "Patas articuladas"
+  },
+  {
+    "id": 16,
+    "a": "Moluscos",
+    "b": "Cuerpo blando"
+  },
+  {
+    "id": 17,
+    "a": "Vertebrados",
+    "b": "Esqueleto interno"
+  },
+  {
+    "id": 18,
+    "a": "Anfibios",
+    "b": "Doble vida"
+  },
+  {
+    "id": 19,
+    "a": "Gimnospermas",
+    "b": "Semillas desnudas"
+  },
+  {
+    "id": 20,
+    "a": "Angiospermas",
+    "b": "Plantas con flores"
+  },
+  {
+    "id": 21,
+    "a": "Atmósfera",
+    "b": "Capa de gases"
+  },
+  {
+    "id": 22,
+    "a": "Hidrosfera",
+    "b": "Capa de agua"
+  },
+  {
+    "id": 23,
+    "a": "Geosfera",
+    "b": "Capa de rocas"
+  },
+  {
+    "id": 24,
+    "a": "Sedimentarias",
+    "b": "Rocas por depósito"
+  },
+  {
+    "id": 25,
+    "a": "Ígneas",
+    "b": "Rocas por magma"
+  },
+  {
+    "id": 26,
+    "a": "Metamórficas",
+    "b": "Rocas por presión"
+  },
+  {
+    "id": 27,
+    "a": "Propiedad de la vida",
+    "b": "Reproducción"
+  },
+  {
+    "id": 28,
+    "a": "Nivel celular",
+    "b": "Neurona"
+  },
+  {
+    "id": 29,
+    "a": "Taxonomía",
+    "b": "Clasificación seres"
+  },
+  {
+    "id": 30,
+    "a": "Especie",
+    "b": "Individuos fértiles"
+  }
 ]

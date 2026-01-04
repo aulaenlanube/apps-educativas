@@ -1,14 +1,152 @@
 [
-  { "id": 1, "a": "🏰", "b": "🏰" },
-  { "id": 2, "a": "🏺", "b": "🏺" },
-  { "id": 3, "a": "🗺️", "b": "🗺️" },
-  { "id": 4, "a": "👑", "b": "👑" },
-  { "id": 5, "a": "🏛️", "b": "🏛️" },
-  { "id": 6, "a": "🗿", "b": "🗿" },
-  { "id": 7, "a": "📜", "b": "📜" },
-  { "id": 8, "a": "⚔️", "b": "⚔️" },
-  { "id": 9, "a": "🛡️", "b": "🛡️" },
-  { "id": 10, "a": "🐫", "b": "🐫" },
-  { "id": 11, "a": "🦴", "b": "🦴" },
-  { "id": 12, "a": "🧭", "b": "🧭" }
+  {
+    "id": 1,
+    "a": "Antiguo Régimen",
+    "b": "Monarquía absoluta"
+  },
+  {
+    "id": 2,
+    "a": "Ilustración",
+    "b": "Razón y progreso"
+  },
+  {
+    "id": 3,
+    "a": "Liberalismo",
+    "b": "Derechos y libertades"
+  },
+  {
+    "id": 4,
+    "a": "Nacionalismo",
+    "b": "Identidad nación"
+  },
+  {
+    "id": 5,
+    "a": "Revolución Industrial",
+    "b": "Máquina de vapor"
+  },
+  {
+    "id": 6,
+    "a": "Revolución Francesa",
+    "b": "1789"
+  },
+  {
+    "id": 7,
+    "a": "Napoleón",
+    "b": "Imperio francés"
+  },
+  {
+    "id": 8,
+    "a": "Capitalismo",
+    "b": "Propiedad privada"
+  },
+  {
+    "id": 9,
+    "a": "Socialismo",
+    "b": "Propiedad colectiva"
+  },
+  {
+    "id": 10,
+    "a": "Imperialismo",
+    "b": "Expansión colonial"
+  },
+  {
+    "id": 11,
+    "a": "I Guerra Mundial",
+    "b": "1914 - 1918"
+  },
+  {
+    "id": 12,
+    "a": "Revolución Rusa",
+    "b": "Lenin"
+  },
+  {
+    "id": 13,
+    "a": "Fascismo",
+    "b": "Mussolini"
+  },
+  {
+    "id": 14,
+    "a": "Nazismo",
+    "b": "Hitler"
+  },
+  {
+    "id": 15,
+    "a": "II Guerra Mundial",
+    "b": "1939 - 1945"
+  },
+  {
+    "id": 16,
+    "a": "Holocausto",
+    "b": "Genocidio nazi"
+  },
+  {
+    "id": 17,
+    "a": "Guerra Fría",
+    "b": "EEUU vs URSS"
+  },
+  {
+    "id": 18,
+    "a": "Descolonización",
+    "b": "Independencia colonias"
+  },
+  {
+    "id": 19,
+    "a": "Muro de Berlín",
+    "b": "Caída en 1989"
+  },
+  {
+    "id": 20,
+    "a": "Unión Soviética",
+    "b": "Disolución 1991"
+  },
+  {
+    "id": 21,
+    "a": "Constitución 1812",
+    "b": "La Pepa"
+  },
+  {
+    "id": 22,
+    "a": "II República",
+    "b": "1931 - 1936"
+  },
+  {
+    "id": 23,
+    "a": "Guerra Civil Española",
+    "b": "Franquistas vs Republicanos"
+  },
+  {
+    "id": 24,
+    "a": "Dictadura de Franco",
+    "b": "1939 - 1975"
+  },
+  {
+    "id": 25,
+    "a": "Transición española",
+    "b": "Adolfo Suárez"
+  },
+  {
+    "id": 26,
+    "a": "Constitución 1978",
+    "b": "Democracia actual"
+  },
+  {
+    "id": 27,
+    "a": "Globalización",
+    "b": "Mundo unipolar"
+  },
+  {
+    "id": 28,
+    "a": "Terrorismo",
+    "b": "Atentados 11-S"
+  },
+  {
+    "id": 29,
+    "a": "Unión Europea",
+    "b": "Tratado de Maastricht"
+  },
+  {
+    "id": 30,
+    "a": "Digitalización",
+    "b": "Revolución tecnol."
+  }
 ]

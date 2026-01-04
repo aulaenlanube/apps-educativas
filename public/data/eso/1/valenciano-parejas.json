@@ -1,22 +1,152 @@
 [
-  { "id": 1, "a": "Gat", "b": "🐱" },
-  { "id": 2, "a": "Gos", "b": "🐶" },
-  { "id": 3, "a": "Sol", "b": "☀️" },
-  { "id": 4, "a": "Lluna", "b": "🌙" },
-  { "id": 5, "a": "Cotxe", "b": "🚗" },
-  { "id": 6, "a": "Poma", "b": "🍎" },
-  { "id": 7, "a": "Plàtan", "b": "🍌" },
-  { "id": 8, "a": "Llibre", "b": "📖" },
-  { "id": 9, "a": "Llapis", "b": "✏️" },
-  { "id": 10, "a": "Casa", "b": "🏠" },
-  { "id": 11, "a": "Arbre", "b": "🌳" },
-  { "id": 12, "a": "Flor", "b": "🌸" },
-  { "id": 13, "a": "Peix", "b": "🐟" },
-  { "id": 14, "a": "Ocell", "b": "🐦" },
-  { "id": 15, "a": "Pilota", "b": "⚽" },
-  { "id": 16, "a": "Estel", "b": "⭐" },
-  { "id": 17, "a": "Mà", "b": "🖐️" },
-  { "id": 18, "a": "Ull", "b": "👁️" },
-  { "id": 19, "a": "Boca", "b": "👄" },
-  { "id": 20, "a": "Gelat", "b": "🍦" }
+  {
+    "id": 1,
+    "a": "Determinant",
+    "b": "Articles, demostratius..."
+  },
+  {
+    "id": 2,
+    "a": "Sustantiu",
+    "b": "Nom de coses"
+  },
+  {
+    "id": 3,
+    "a": "Adjectiu",
+    "b": "Descriu el nom"
+  },
+  {
+    "id": 4,
+    "a": "Pronom personal",
+    "b": "Jo, tu, ell..."
+  },
+  {
+    "id": 5,
+    "a": "Verb",
+    "b": "Indica l'acció"
+  },
+  {
+    "id": 6,
+    "a": "Adverbi",
+    "b": "Modifica el verb"
+  },
+  {
+    "id": 7,
+    "a": "Apostrofar",
+    "b": "l'amic / l'illa"
+  },
+  {
+    "id": 8,
+    "a": "Accent tancat",
+    "b": "é, í, ó, ú"
+  },
+  {
+    "id": 9,
+    "a": "Accent obert",
+    "b": "à, è, ò"
+  },
+  {
+    "id": 10,
+    "a": "Diftong",
+    "b": "i/u + vocal"
+  },
+  {
+    "id": 11,
+    "a": "Hiatus",
+    "b": "Vocals separades"
+  },
+  {
+    "id": 12,
+    "a": "Sinònim",
+    "b": "Igual significat"
+  },
+  {
+    "id": 13,
+    "a": "Antònim",
+    "b": "Significat contrari"
+  },
+  {
+    "id": 14,
+    "a": "Frase feta",
+    "b": "Sentit figurat"
+  },
+  {
+    "id": 15,
+    "a": "Refrany",
+    "b": "Sapiència popular"
+  },
+  {
+    "id": 16,
+    "a": "Síl·laba tònica",
+    "b": "La que sona més fort"
+  },
+  {
+    "id": 17,
+    "a": "Paraula aguda",
+    "b": "Tònica a l'última"
+  },
+  {
+    "id": 18,
+    "a": "Paraula plana",
+    "b": "Tònica a la penúltima"
+  },
+  {
+    "id": 19,
+    "a": "Paraula esdrúixola",
+    "b": "Tònica a l'antepenúltima"
+  },
+  {
+    "id": 20,
+    "a": "Dièresi",
+    "b": "ï / ü"
+  },
+  {
+    "id": 21,
+    "a": "Sujete",
+    "b": "Qui fa l'acció"
+  },
+  {
+    "id": 22,
+    "a": "Predicat",
+    "b": "Acció + complements"
+  },
+  {
+    "id": 23,
+    "a": "Gènere",
+    "b": "Masculí / Femení"
+  },
+  {
+    "id": 24,
+    "a": "Nombre",
+    "b": "Singular / Plural"
+  },
+  {
+    "id": 25,
+    "a": "Bon dia",
+    "b": "Hola (matí)"
+  },
+  {
+    "id": 26,
+    "a": "Bona vesprada",
+    "b": "Hola (tarda)"
+  },
+  {
+    "id": 27,
+    "a": "Bona nit",
+    "b": "Adéu (nit)"
+  },
+  {
+    "id": 28,
+    "a": "Espill",
+    "b": "Mirall"
+  },
+  {
+    "id": 29,
+    "a": "Eixir",
+    "b": "Sortir"
+  },
+  {
+    "id": 30,
+    "a": "Roig",
+    "b": "Vermell"
+  }
 ]

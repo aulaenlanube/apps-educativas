@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "Chat", "b": "🐱" },
-  { "id": 2, "a": "Chien", "b": "🐶" },
-  { "id": 3, "a": "Lion", "b": "🦁" },
-  { "id": 4, "a": "Poisson", "b": "🐟" },
-  { "id": 5, "a": "Pomme", "b": "🍎" },
-  { "id": 6, "a": "Banane", "b": "🍌" },
-  { "id": 7, "a": "Fraise", "b": "🍓" },
-  { "id": 8, "a": "Orange", "b": "🍊" },
-  { "id": 9, "a": "Maison", "b": "🏠" },
-  { "id": 10, "a": "École", "b": "🏫" },
-  { "id": 11, "a": "Voiture", "b": "🚗" },
-  { "id": 12, "a": "Vélo", "b": "🚲" },
-  { "id": 13, "a": "Ballon", "b": "⚽" },
-  { "id": 14, "a": "Livre", "b": "📖" },
-  { "id": 15, "a": "Crayon", "b": "✏️" },
-  { "id": 16, "a": "Soleil", "b": "☀️" },
-  { "id": 17, "a": "Lune", "b": "🌙" },
-  { "id": 18, "a": "Fleur", "b": "🌸" },
-  { "id": 19, "a": "Arbre", "b": "🌳" },
-  { "id": 20, "a": "Fromage", "b": "🧀" }
+  {
+    "id": 1,
+    "a": "Bonjour",
+    "b": "Hola / Buenos días"
+  },
+  {
+    "id": 2,
+    "a": "Salut",
+    "b": "Hola / Adiós"
+  },
+  {
+    "id": 3,
+    "a": "Merci",
+    "b": "Gracias"
+  },
+  {
+    "id": 4,
+    "a": "S'il vous plaît",
+    "b": "Por favor"
+  },
+  {
+    "id": 5,
+    "a": "Rouge",
+    "b": "Rojo"
+  },
+  {
+    "id": 6,
+    "a": "Bleu",
+    "b": "Azul"
+  },
+  {
+    "id": 7,
+    "a": "Vert",
+    "b": "Verde"
+  },
+  {
+    "id": 8,
+    "a": "Jaune",
+    "b": "Amarillo"
+  },
+  {
+    "id": 9,
+    "a": "Blanc",
+    "b": "Blanco"
+  },
+  {
+    "id": 10,
+    "a": "Noir",
+    "b": "Negro"
+  },
+  {
+    "id": 11,
+    "a": "Un",
+    "b": "1"
+  },
+  {
+    "id": 12,
+    "a": "Deux",
+    "b": "2"
+  },
+  {
+    "id": 13,
+    "a": "Trois",
+    "b": "3"
+  },
+  {
+    "id": 14,
+    "a": "Quatre",
+    "b": "4"
+  },
+  {
+    "id": 15,
+    "a": "Cinq",
+    "b": "5"
+  },
+  {
+    "id": 16,
+    "a": "Chien",
+    "b": "Perro"
+  },
+  {
+    "id": 17,
+    "a": "Chat",
+    "b": "Gato"
+  },
+  {
+    "id": 18,
+    "a": "Oiseau",
+    "b": "Pájaro"
+  },
+  {
+    "id": 19,
+    "a": "Poisson",
+    "b": "Pez"
+  },
+  {
+    "id": 20,
+    "a": "Garçon",
+    "b": "Niño"
+  },
+  {
+    "id": 21,
+    "a": "Fille",
+    "b": "Niña"
+  },
+  {
+    "id": 22,
+    "a": "Père",
+    "b": "Padre"
+  },
+  {
+    "id": 23,
+    "a": "Mère",
+    "b": "Madre"
+  },
+  {
+    "id": 24,
+    "a": "Maison",
+    "b": "Casa"
+  },
+  {
+    "id": 25,
+    "a": "École",
+    "b": "Escuela"
+  }
 ]

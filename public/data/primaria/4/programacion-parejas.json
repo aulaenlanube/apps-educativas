@@ -1,14 +1,127 @@
 [
-  { "id": 1, "a": "💻", "b": "💻" },
-  { "id": 2, "a": "⌨️", "b": "⌨️" },
-  { "id": 3, "a": "🖱️", "b": "🖱️" },
-  { "id": 4, "a": "🤖", "b": "🤖" },
-  { "id": 5, "a": "💾", "b": "💾" },
-  { "id": 6, "a": "📱", "b": "📱" },
-  { "id": 7, "a": "🔋", "b": "🔋" },
-  { "id": 8, "a": "💡", "b": "💡" },
-  { "id": 9, "a": "⚙️", "b": "⚙️" },
-  { "id": 10, "a": "🎮", "b": "🎮" },
-  { "id": 11, "a": "🖨️", "b": "🖨️" },
-  { "id": 12, "a": "🐛", "b": "🐛" }
+  {
+    "id": 1,
+    "a": "Lógica Booleana",
+    "b": "Verdadero o Falso"
+  },
+  {
+    "id": 2,
+    "a": "Operador AND",
+    "b": "Ambos ciertos"
+  },
+  {
+    "id": 3,
+    "a": "Operador OR",
+    "b": "Uno u otro"
+  },
+  {
+    "id": 4,
+    "a": "Operador NOT",
+    "b": "Lo contrario"
+  },
+  {
+    "id": 5,
+    "a": "Lista / Array",
+    "b": "Colección de datos"
+  },
+  {
+    "id": 6,
+    "a": "Índice",
+    "b": "Posición en lista"
+  },
+  {
+    "id": 7,
+    "a": "Debugging",
+    "b": "Buscar errores"
+  },
+  {
+    "id": 8,
+    "a": "Python",
+    "b": "Lenguaje de texto"
+  },
+  {
+    "id": 9,
+    "a": "Print",
+    "b": "Mostrar en pantalla"
+  },
+  {
+    "id": 10,
+    "a": "Input",
+    "b": "Pedir dato al usuario"
+  },
+  {
+    "id": 11,
+    "a": "IP",
+    "b": "Dirección ordenador"
+  },
+  {
+    "id": 12,
+    "a": "URL",
+    "b": "Enlace web"
+  },
+  {
+    "id": 13,
+    "a": "HTTP",
+    "b": "Protocolo web"
+  },
+  {
+    "id": 14,
+    "a": "Router",
+    "b": "Reparte internet"
+  },
+  {
+    "id": 15,
+    "a": "Servidor",
+    "b": "Guarda webs"
+  },
+  {
+    "id": 16,
+    "a": "Cliente",
+    "b": "Pide la web"
+  },
+  {
+    "id": 17,
+    "a": "Email herning",
+    "b": "Spam"
+  },
+  {
+    "id": 18,
+    "a": "Cookies",
+    "b": "Rastro web"
+  },
+  {
+    "id": 19,
+    "a": "Historial",
+    "b": "Webs visitadas"
+  },
+  {
+    "id": 20,
+    "a": "Markdown",
+    "b": "# Título"
+  },
+  {
+    "id": 21,
+    "a": "Binario",
+    "b": "Base 2"
+  },
+  {
+    "id": 22,
+    "a": "Decimal",
+    "b": "Base 10"
+  },
+  {
+    "id": 23,
+    "a": "Hexadecimal",
+    "b": "Base 16"
+  },
+  {
+    "id": 24,
+    "a": "Código ASCII",
+    "b": "Letras a números"
+  },
+  {
+    "id": 25,
+    "a": "Fuente",
+    "b": "Letra (Arial, Rob)"
+  }
 ]

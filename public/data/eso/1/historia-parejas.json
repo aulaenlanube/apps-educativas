@@ -1,14 +1,152 @@
 [
-  { "id": 1, "a": "🏰", "b": "🏰" },
-  { "id": 2, "a": "🏺", "b": "🏺" },
-  { "id": 3, "a": "🗺️", "b": "🗺️" },
-  { "id": 4, "a": "👑", "b": "👑" },
-  { "id": 5, "a": "🏛️", "b": "🏛️" },
-  { "id": 6, "a": "🗿", "b": "🗿" },
-  { "id": 7, "a": "📜", "b": "📜" },
-  { "id": 8, "a": "⚔️", "b": "⚔️" },
-  { "id": 9, "a": "🛡️", "b": "🛡️" },
-  { "id": 10, "a": "🐫", "b": "🐫" },
-  { "id": 11, "a": "🦴", "b": "🦴" },
-  { "id": 12, "a": "🧭", "b": "🧭" }
+  {
+    "id": 1,
+    "a": "Prehistoria",
+    "b": "Antes de la escritura"
+  },
+  {
+    "id": 2,
+    "a": "Paleolítico",
+    "b": "Piedra tallada"
+  },
+  {
+    "id": 3,
+    "a": "Neolítico",
+    "b": "Piedra pulimentada"
+  },
+  {
+    "id": 4,
+    "a": "Atapuerca",
+    "b": "Homo antecessor"
+  },
+  {
+    "id": 5,
+    "a": "Mesopotamia",
+    "b": "Tigris y Éufrates"
+  },
+  {
+    "id": 6,
+    "a": "Egipto",
+    "b": "Río Nilo"
+  },
+  {
+    "id": 7,
+    "a": "Pirámides",
+    "b": "Tumbas faraones"
+  },
+  {
+    "id": 8,
+    "a": "Grecia",
+    "b": "Polis"
+  },
+  {
+    "id": 9,
+    "a": "Atenas",
+    "b": "Democracia"
+  },
+  {
+    "id": 10,
+    "a": "Esparta",
+    "b": "Sociedad militar"
+  },
+  {
+    "id": 11,
+    "a": "Filosofía",
+    "b": "Sócrates y Platón"
+  },
+  {
+    "id": 12,
+    "a": "Roma",
+    "b": "Imperio"
+  },
+  {
+    "id": 13,
+    "a": "Patricios",
+    "b": "Clase alta romana"
+  },
+  {
+    "id": 14,
+    "a": "Plebeyos",
+    "b": "Pueblo llano"
+  },
+  {
+    "id": 15,
+    "a": "Acueducto",
+    "b": "Obra de ingeniería"
+  },
+  {
+    "id": 16,
+    "a": "Derecho Romano",
+    "b": "Base leyes actuales"
+  },
+  {
+    "id": 17,
+    "a": "Planeta Tierra",
+    "b": "Geoide"
+  },
+  {
+    "id": 18,
+    "a": "Paralelos",
+    "b": "Latitud"
+  },
+  {
+    "id": 19,
+    "a": "Meridianos",
+    "b": "Longitud"
+  },
+  {
+    "id": 20,
+    "a": "Ecuador",
+    "b": "Paralelo 0"
+  },
+  {
+    "id": 21,
+    "a": "Greenwich",
+    "b": "Meridiano 0"
+  },
+  {
+    "id": 22,
+    "a": "Escala",
+    "b": "Proporción mapa"
+  },
+  {
+    "id": 23,
+    "a": "Relieve",
+    "b": "Formas corteza"
+  },
+  {
+    "id": 24,
+    "a": "Placas tectónicas",
+    "b": "Seísmos y volcanes"
+  },
+  {
+    "id": 25,
+    "a": "Clima",
+    "b": "Estado medio atmósfera"
+  },
+  {
+    "id": 26,
+    "a": "Valle",
+    "b": "Entre montañas"
+  },
+  {
+    "id": 27,
+    "a": "Meseta",
+    "b": "Llanura elevada"
+  },
+  {
+    "id": 28,
+    "a": "Sedentario",
+    "b": "Vive en sitio fijo"
+  },
+  {
+    "id": 29,
+    "a": "Escritura cuneiforme",
+    "b": "Sumideros"
+  },
+  {
+    "id": 30,
+    "a": "Jeroglíficos",
+    "b": "Egipto"
+  }
 ]

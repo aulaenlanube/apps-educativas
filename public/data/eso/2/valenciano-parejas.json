@@ -1,22 +1,152 @@
 [
-  { "id": 1, "a": "Gat", "b": "🐱" },
-  { "id": 2, "a": "Gos", "b": "🐶" },
-  { "id": 3, "a": "Sol", "b": "☀️" },
-  { "id": 4, "a": "Lluna", "b": "🌙" },
-  { "id": 5, "a": "Cotxe", "b": "🚗" },
-  { "id": 6, "a": "Poma", "b": "🍎" },
-  { "id": 7, "a": "Plàtan", "b": "🍌" },
-  { "id": 8, "a": "Llibre", "b": "📖" },
-  { "id": 9, "a": "Llapis", "b": "✏️" },
-  { "id": 10, "a": "Casa", "b": "🏠" },
-  { "id": 11, "a": "Arbre", "b": "🌳" },
-  { "id": 12, "a": "Flor", "b": "🌸" },
-  { "id": 13, "a": "Peix", "b": "🐟" },
-  { "id": 14, "a": "Ocell", "b": "🐦" },
-  { "id": 15, "a": "Pilota", "b": "⚽" },
-  { "id": 16, "a": "Estel", "b": "⭐" },
-  { "id": 17, "a": "Mà", "b": "🖐️" },
-  { "id": 18, "a": "Ull", "b": "👁️" },
-  { "id": 19, "a": "Boca", "b": "👄" },
-  { "id": 20, "a": "Gelat", "b": "🍦" }
+  {
+    "id": 1,
+    "a": "Gènere invariable",
+    "b": "Dentista, artista..."
+  },
+  {
+    "id": 2,
+    "a": "Gènere ambigu",
+    "b": "Mar, mar"
+  },
+  {
+    "id": 3,
+    "a": "Plural en -s",
+    "b": "Coses, cases"
+  },
+  {
+    "id": 4,
+    "a": "Plural en -os",
+    "b": "Gasos, braços"
+  },
+  {
+    "id": 5,
+    "a": "Prefixos",
+    "b": "re-, pre-, in-..."
+  },
+  {
+    "id": 6,
+    "a": "Sufixos",
+    "b": "-et, -ota, -ment"
+  },
+  {
+    "id": 7,
+    "a": "Demostratiu prop",
+    "b": "Este, esta"
+  },
+  {
+    "id": 8,
+    "a": "Demostratiu lluny",
+    "b": "Aquell, aquella"
+  },
+  {
+    "id": 9,
+    "a": "Pronom relatiu",
+    "b": "Que, qui, qual"
+  },
+  {
+    "id": 10,
+    "a": "Verb model 1a",
+    "b": "Cantar"
+  },
+  {
+    "id": 11,
+    "a": "Verb model 2a",
+    "b": "Temer / Perdre"
+  },
+  {
+    "id": 12,
+    "a": "Verb model 3a",
+    "b": "Sentir / Dormir"
+  },
+  {
+    "id": 13,
+    "a": "Accent diacrític",
+    "b": "mà / ma"
+  },
+  {
+    "id": 14,
+    "a": "Bé / be",
+    "b": "Salut / animal"
+  },
+  {
+    "id": 15,
+    "a": "Dóna / dona",
+    "b": "Acció / persona"
+  },
+  {
+    "id": 16,
+    "a": "Món / mon",
+    "b": "Planeta / possessiu"
+  },
+  {
+    "id": 17,
+    "a": "Punt i coma",
+    "b": ";"
+  },
+  {
+    "id": 18,
+    "a": "Cometes",
+    "b": "« »"
+  },
+  {
+    "id": 19,
+    "a": "Llegenda",
+    "b": "Narració popular"
+  },
+  {
+    "id": 20,
+    "a": "Faula",
+    "b": "Animals amb moralitat"
+  },
+  {
+    "id": 21,
+    "a": "Poesia lírica",
+    "b": "Expressió de jo"
+  },
+  {
+    "id": 22,
+    "a": "Rima",
+    "b": "Repetició de sons"
+  },
+  {
+    "id": 23,
+    "a": "Epítet",
+    "b": "Adjectiu innecessari"
+  },
+  {
+    "id": 24,
+    "a": "Hipèrbole",
+    "b": "Exageració"
+  },
+  {
+    "id": 25,
+    "a": "Metàfora",
+    "b": "Substitució"
+  },
+  {
+    "id": 26,
+    "a": "Escriptor",
+    "b": "Autor de llibres"
+  },
+  {
+    "id": 27,
+    "a": "Editor",
+    "b": "Publica llibres"
+  },
+  {
+    "id": 28,
+    "a": "Pròleg",
+    "b": "Introducció"
+  },
+  {
+    "id": 29,
+    "a": "Capítol",
+    "b": "Divisió del llibre"
+  },
+  {
+    "id": 30,
+    "a": "Il·lustrador",
+    "b": "Fa els dibuixos"
+  }
 ]

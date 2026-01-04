@@ -1,22 +1,152 @@
 [
-  { "id": 1, "a": "Cat", "b": "🐱" },
-  { "id": 2, "a": "Dog", "b": "🐶" },
-  { "id": 3, "a": "Sun", "b": "☀️" },
-  { "id": 4, "a": "Moon", "b": "🌙" },
-  { "id": 5, "a": "Car", "b": "🚗" },
-  { "id": 6, "a": "Apple", "b": "🍎" },
-  { "id": 7, "a": "Banana", "b": "🍌" },
-  { "id": 8, "a": "Book", "b": "📖" },
-  { "id": 9, "a": "Pencil", "b": "✏️" },
-  { "id": 10, "a": "House", "b": "🏠" },
-  { "id": 11, "a": "Tree", "b": "🌳" },
-  { "id": 12, "a": "Flower", "b": "🌸" },
-  { "id": 13, "a": "Fish", "b": "🐟" },
-  { "id": 14, "a": "Bird", "b": "🐦" },
-  { "id": 15, "a": "Ball", "b": "⚽" },
-  { "id": 16, "a": "Star", "b": "⭐" },
-  { "id": 17, "a": "Hand", "b": "🖐️" },
-  { "id": 18, "a": "Eye", "b": "👁️" },
-  { "id": 19, "a": "Mouth", "b": "👄" },
-  { "id": 20, "a": "Ice Cream", "b": "🍦" }
+  {
+    "id": 1,
+    "a": "Present Perfect",
+    "b": "Have / Has + Past Participle"
+  },
+  {
+    "id": 2,
+    "a": "Already",
+    "b": "Before now (positive)"
+  },
+  {
+    "id": 3,
+    "a": "Yet",
+    "b": "Until now (negative/?) "
+  },
+  {
+    "id": 4,
+    "a": "For",
+    "b": "Period of time"
+  },
+  {
+    "id": 5,
+    "a": "Since",
+    "b": "Point in time"
+  },
+  {
+    "id": 6,
+    "a": "Passive Voice",
+    "b": "Be + Past Participle"
+  },
+  {
+    "id": 7,
+    "a": "First Conditional",
+    "b": "If + Present, Will + Inf."
+  },
+  {
+    "id": 8,
+    "a": "Second Conditional",
+    "b": "If + Past, Would + Inf."
+  },
+  {
+    "id": 9,
+    "a": "Modal Ability",
+    "b": "Can / Could"
+  },
+  {
+    "id": 10,
+    "a": "Modal Permission",
+    "b": "May / Can"
+  },
+  {
+    "id": 11,
+    "a": "Modal Advice",
+    "b": "Should / Ought to"
+  },
+  {
+    "id": 12,
+    "a": "Jobs",
+    "b": "Lawyer / Surgeon"
+  },
+  {
+    "id": 13,
+    "a": "Workplace",
+    "b": "Office / Factory"
+  },
+  {
+    "id": 14,
+    "a": "Cinema genres",
+    "b": "Thriller / Sci-fi"
+  },
+  {
+    "id": 15,
+    "a": "Crime",
+    "b": "Theft / Burglary"
+  },
+  {
+    "id": 16,
+    "a": "Criminal",
+    "b": "Thief / Burglar"
+  },
+  {
+    "id": 17,
+    "a": "Environment",
+    "b": "Global warming / CO2"
+  },
+  {
+    "id": 18,
+    "a": "Energy",
+    "b": "Renewable / Fossil fuels"
+  },
+  {
+    "id": 19,
+    "a": "Relationship",
+    "b": "Friendship / Couple"
+  },
+  {
+    "id": 20,
+    "a": "Feelings",
+    "b": "Embarrassed / Proud"
+  },
+  {
+    "id": 21,
+    "a": "Phrasal Verb",
+    "b": "Get up / Look for"
+  },
+  {
+    "id": 22,
+    "a": "Take off",
+    "b": "Plane leaves"
+  },
+  {
+    "id": 23,
+    "a": "Go on",
+    "b": "Continue"
+  },
+  {
+    "id": 24,
+    "a": "Give up",
+    "b": "Stop doing something"
+  },
+  {
+    "id": 25,
+    "a": "Listen to",
+    "b": "Pay attention to music"
+  },
+  {
+    "id": 26,
+    "a": "Agree with",
+    "b": "Same opinion"
+  },
+  {
+    "id": 27,
+    "a": "Depend on",
+    "b": "Relies on"
+  },
+  {
+    "id": 28,
+    "a": "Believe in",
+    "b": "Have faith"
+  },
+  {
+    "id": 29,
+    "a": "Wait for",
+    "b": "Stay for someone"
+  },
+  {
+    "id": 30,
+    "a": "Talk about",
+    "b": "Discuss a topic"
+  }
 ]

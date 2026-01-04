@@ -1,14 +1,127 @@
 [
-  { "id": 1, "a": "💻", "b": "💻" },
-  { "id": 2, "a": "⌨️", "b": "⌨️" },
-  { "id": 3, "a": "🖱️", "b": "🖱️" },
-  { "id": 4, "a": "🤖", "b": "🤖" },
-  { "id": 5, "a": "💾", "b": "💾" },
-  { "id": 6, "a": "📱", "b": "📱" },
-  { "id": 7, "a": "🔋", "b": "🔋" },
-  { "id": 8, "a": "💡", "b": "💡" },
-  { "id": 9, "a": "⚙️", "b": "⚙️" },
-  { "id": 10, "a": "🎮", "b": "🎮" },
-  { "id": 11, "a": "🖨️", "b": "🖨️" },
-  { "id": 12, "a": "🐛", "b": "🐛" }
+  {
+    "id": 1,
+    "a": "Ordenador",
+    "b": "💻"
+  },
+  {
+    "id": 2,
+    "a": "Ratón",
+    "b": "🖱️"
+  },
+  {
+    "id": 3,
+    "a": "Teclado",
+    "b": "⌨️"
+  },
+  {
+    "id": 4,
+    "a": "Pantalla",
+    "b": "📺"
+  },
+  {
+    "id": 5,
+    "a": "Robot",
+    "b": "🤖"
+  },
+  {
+    "id": 6,
+    "a": "Algoritmo",
+    "b": "Pasos a seguir"
+  },
+  {
+    "id": 7,
+    "a": "Programar",
+    "b": "Dar instrucciones"
+  },
+  {
+    "id": 8,
+    "a": "Código",
+    "b": "Lenguaje secreto"
+  },
+  {
+    "id": 9,
+    "a": "Bug",
+    "b": "Error"
+  },
+  {
+    "id": 10,
+    "a": "Internet",
+    "b": "Red mundial"
+  },
+  {
+    "id": 11,
+    "a": "Página web",
+    "b": "Sitio en internet"
+  },
+  {
+    "id": 12,
+    "a": "Contraseña",
+    "b": "Seguridad"
+  },
+  {
+    "id": 13,
+    "a": "Hardware",
+    "b": "Lo que se toca"
+  },
+  {
+    "id": 14,
+    "a": "Software",
+    "b": "Aplicaciones"
+  },
+  {
+    "id": 15,
+    "a": "Icono",
+    "b": "Dibujo pequeño"
+  },
+  {
+    "id": 16,
+    "a": "Carpeta",
+    "b": "Guarda archivos"
+  },
+  {
+    "id": 17,
+    "a": "Archivo",
+    "b": "Documento"
+  },
+  {
+    "id": 18,
+    "a": "Clic",
+    "b": "Pulsar botón"
+  },
+  {
+    "id": 19,
+    "a": "Doble clic",
+    "b": "Abrir"
+  },
+  {
+    "id": 20,
+    "a": "Arrastrar",
+    "b": "Mover"
+  },
+  {
+    "id": 21,
+    "a": "Batería",
+    "b": "Energía"
+  },
+  {
+    "id": 22,
+    "a": "Cargador",
+    "b": "🔌"
+  },
+  {
+    "id": 23,
+    "a": "Wifi",
+    "b": "Red sin cables"
+  },
+  {
+    "id": 24,
+    "a": "Tablet",
+    "b": "📱"
+  },
+  {
+    "id": 25,
+    "a": "Altavoz",
+    "b": "🔈"
+  }
 ]

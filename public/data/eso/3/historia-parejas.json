@@ -1,14 +1,152 @@
 [
-  { "id": 1, "a": "🏰", "b": "🏰" },
-  { "id": 2, "a": "🏺", "b": "🏺" },
-  { "id": 3, "a": "🗺️", "b": "🗺️" },
-  { "id": 4, "a": "👑", "b": "👑" },
-  { "id": 5, "a": "🏛️", "b": "🏛️" },
-  { "id": 6, "a": "🗿", "b": "🗿" },
-  { "id": 7, "a": "📜", "b": "📜" },
-  { "id": 8, "a": "⚔️", "b": "⚔️" },
-  { "id": 9, "a": "🛡️", "b": "🛡️" },
-  { "id": 10, "a": "🐫", "b": "🐫" },
-  { "id": 11, "a": "🦴", "b": "🦴" },
-  { "id": 12, "a": "🧭", "b": "🧭" }
+  {
+    "id": 1,
+    "a": "Sector primario",
+    "b": "Agricultura y pesca"
+  },
+  {
+    "id": 2,
+    "a": "Sector secundario",
+    "b": "Industria y energía"
+  },
+  {
+    "id": 3,
+    "a": "Sector terciario",
+    "b": "Servicios y turismo"
+  },
+  {
+    "id": 4,
+    "a": "Globalización",
+    "b": "Mundo interconectado"
+  },
+  {
+    "id": 5,
+    "a": "Desarrollo sostenible",
+    "b": "Cuidado futuro"
+  },
+  {
+    "id": 6,
+    "a": "Natalidad",
+    "b": "Nacimientos"
+  },
+  {
+    "id": 7,
+    "a": "Mortalidad",
+    "b": "Defunciones"
+  },
+  {
+    "id": 8,
+    "a": "Crecimiento real",
+    "b": "Natural + Migratorio"
+  },
+  {
+    "id": 9,
+    "a": "Demografía",
+    "b": "Estudio población"
+  },
+  {
+    "id": 10,
+    "a": "Pirámide de población",
+    "b": "Estructura edad/sexo"
+  },
+  {
+    "id": 11,
+    "a": "Población activa",
+    "b": "En edad de trabajar"
+  },
+  {
+    "id": 12,
+    "a": "Tasa de paro",
+    "b": "Desempleo"
+  },
+  {
+    "id": 13,
+    "a": "Estado del bienestar",
+    "b": "Servicios públicos"
+  },
+  {
+    "id": 14,
+    "a": "Unión Europea",
+    "b": "Mercado común"
+  },
+  {
+    "id": 15,
+    "a": "PIB",
+    "b": "Producto Interior Bruto"
+  },
+  {
+    "id": 16,
+    "a": "Inflación",
+    "b": "Subida de precios"
+  },
+  {
+    "id": 17,
+    "a": "Multinacional",
+    "b": "Opera en varios países"
+  },
+  {
+    "id": 18,
+    "a": "Migración",
+    "b": "Desplazamiento humano"
+  },
+  {
+    "id": 19,
+    "a": "Éxodo rural",
+    "b": "Del campo a la ciudad"
+  },
+  {
+    "id": 20,
+    "a": "Urbanismo",
+    "b": "Diseño de ciudades"
+  },
+  {
+    "id": 21,
+    "a": "Metrópolis",
+    "b": "Ciudad principal"
+  },
+  {
+    "id": 22,
+    "a": "Conurbación",
+    "b": "Unión de ciudades"
+  },
+  {
+    "id": 23,
+    "a": "Sector cuaternario",
+    "b": "I+D+i"
+  },
+  {
+    "id": 24,
+    "a": "Recursos naturales",
+    "b": "Materia prima"
+  },
+  {
+    "id": 25,
+    "a": "Energías renovables",
+    "b": "Eólica, solar..."
+  },
+  {
+    "id": 26,
+    "a": "Combustibles fósiles",
+    "b": "Carbón, petróleo"
+  },
+  {
+    "id": 27,
+    "a": "Deslocalización",
+    "b": "Traslado de fábricas"
+  },
+  {
+    "id": 28,
+    "a": "OMC",
+    "b": "Comercio mundial"
+  },
+  {
+    "id": 29,
+    "a": "IDH",
+    "b": "Índice Desarrollo Humano"
+  },
+  {
+    "id": 30,
+    "a": "Geopolítica",
+    "b": "Poder y territorio"
+  }
 ]

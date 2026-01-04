@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "👮", "b": "👮" },
-  { "id": 2, "a": "👩‍⚕️", "b": "👩‍⚕️" },
-  { "id": 3, "a": "👨‍🚒", "b": "👨‍🚒" },
-  { "id": 4, "a": "👩‍🏫", "b": "👩‍🏫" },
-  { "id": 5, "a": "🚑", "b": "🚑" },
-  { "id": 6, "a": "🚓", "b": "🚓" },
-  { "id": 7, "a": "🚒", "b": "🚒" },
-  { "id": 8, "a": "🏠", "b": "🏠" },
-  { "id": 9, "a": "🚦", "b": "🚦" },
-  { "id": 10, "a": "🚌", "b": "🚌" },
-  { "id": 11, "a": "🚲", "b": "🚲" },
-  { "id": 12, "a": "🏰", "b": "🏰" },
-  { "id": 13, "a": "👪", "b": "👪" },
-  { "id": 14, "a": "🏫", "b": "🏫" },
-  { "id": 15, "a": "👩‍🍳", "b": "👩‍🍳" },
-  { "id": 16, "a": "👷", "b": "👷" },
-  { "id": 17, "a": "🏥", "b": "🏥" },
-  { "id": 18, "a": "✈️", "b": "✈️" },
-  { "id": 19, "a": "🚂", "b": "🚂" },
-  { "id": 20, "a": "🚜", "b": "🚜" }
+  {
+    "id": 1,
+    "a": "Edad Contemporánea",
+    "b": "Siglo XIX - Hoy"
+  },
+  {
+    "id": 2,
+    "a": "Revolución Industrial",
+    "b": "Máquinas y fábricas"
+  },
+  {
+    "id": 3,
+    "a": "Revolución Francesa",
+    "b": "1789"
+  },
+  {
+    "id": 4,
+    "a": "Guerra Independencia",
+    "b": "1808"
+  },
+  {
+    "id": 5,
+    "a": "Constitución de Cádiz",
+    "b": "La Pepa"
+  },
+  {
+    "id": 6,
+    "a": "Guerra Civil",
+    "b": "1936-1939"
+  },
+  {
+    "id": 7,
+    "a": "Dictadura",
+    "b": "Franco"
+  },
+  {
+    "id": 8,
+    "a": "Transición",
+    "b": "Vuelta democracia"
+  },
+  {
+    "id": 9,
+    "a": "Unión Europea",
+    "b": "Organización común"
+  },
+  {
+    "id": 10,
+    "a": "Euro",
+    "b": "Moneda común"
+  },
+  {
+    "id": 11,
+    "a": "Parlamento Europeo",
+    "b": "Estrasburgo"
+  },
+  {
+    "id": 12,
+    "a": "Soberanía popular",
+    "b": "Voto"
+  },
+  {
+    "id": 13,
+    "a": "Poder Legislativo",
+    "b": "Cortes"
+  },
+  {
+    "id": 14,
+    "a": "Poder Ejecutivo",
+    "b": "Gobierno"
+  },
+  {
+    "id": 15,
+    "a": "Poder Judicial",
+    "b": "Jueces"
+  },
+  {
+    "id": 16,
+    "a": "Globalización",
+    "b": "Mundo conectado"
+  },
+  {
+    "id": 17,
+    "a": "Desarrollo",
+    "b": "Calidad vida"
+  },
+  {
+    "id": 18,
+    "a": "Sector Terciario",
+    "b": "Turismo"
+  },
+  {
+    "id": 19,
+    "a": "PPA",
+    "b": "Paridad Poder Adquisitivo"
+  },
+  {
+    "id": 20,
+    "a": "OCU",
+    "b": "Consumidores"
+  },
+  {
+    "id": 21,
+    "a": "Huelga",
+    "b": "Derecho laboral"
+  },
+  {
+    "id": 22,
+    "a": "Patrimonio",
+    "b": "Cultura y monumentos"
+  },
+  {
+    "id": 23,
+    "a": "UNESCO",
+    "b": "Protección mundial"
+  },
+  {
+    "id": 24,
+    "a": "ODS",
+    "b": "Objetivos 2030"
+  },
+  {
+    "id": 25,
+    "a": "Natalidad baja",
+    "b": "Problema demográfico"
+  }
 ]

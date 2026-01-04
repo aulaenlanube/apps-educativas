@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "🦁", "b": "🦁" },
-  { "id": 2, "a": "🐘", "b": "🐘" },
-  { "id": 3, "a": "🐸", "b": "🐸" },
-  { "id": 4, "a": "🦋", "b": "🦋" },
-  { "id": 5, "a": "🌻", "b": "🌻" },
-  { "id": 6, "a": "🌳", "b": "🌳" },
-  { "id": 7, "a": "🍄", "b": "🍄" },
-  { "id": 8, "a": "☀️", "b": "☀️" },
-  { "id": 9, "a": "🌙", "b": "🌙" },
-  { "id": 10, "a": "🌧️", "b": "🌧️" },
-  { "id": 11, "a": "🐱", "b": "🐱" },
-  { "id": 12, "a": "🐶", "b": "🐶" },
-  { "id": 13, "a": "🦅", "b": "🦅" },
-  { "id": 14, "a": "🐍", "b": "🐍" },
-  { "id": 15, "a": "🐢", "b": "🐢" },
-  { "id": 16, "a": "🐝", "b": "🐝" },
-  { "id": 17, "a": "🌊", "b": "🌊" },
-  { "id": 18, "a": "🏔️", "b": "🏔️" },
-  { "id": 19, "a": "❄️", "b": "❄️" },
-  { "id": 20, "a": "🌵", "b": "🌵" }
+  {
+    "id": 1,
+    "a": "Nutrición",
+    "b": "Obtener energía"
+  },
+  {
+    "id": 2,
+    "a": "Relación",
+    "b": "Sentir el entorno"
+  },
+  {
+    "id": 3,
+    "a": "Reproducción",
+    "b": "Tener hijos"
+  },
+  {
+    "id": 4,
+    "a": "Esqueleto",
+    "b": "Soporte del cuerpo"
+  },
+  {
+    "id": 5,
+    "a": "Músculos",
+    "b": "Movimiento"
+  },
+  {
+    "id": 6,
+    "a": "Cerebro",
+    "b": "Controla el cuerpo"
+  },
+  {
+    "id": 7,
+    "a": "Corazón",
+    "b": "Bombea sangre"
+  },
+  {
+    "id": 8,
+    "a": "Pulmones",
+    "b": "Respiración"
+  },
+  {
+    "id": 9,
+    "a": "Estómago",
+    "b": "Digestión"
+  },
+  {
+    "id": 10,
+    "a": "Dieta equilibrada",
+    "b": "Salud"
+  },
+  {
+    "id": 11,
+    "a": "Proteínas",
+    "b": "Crecimiento"
+  },
+  {
+    "id": 12,
+    "a": "Glúcidos",
+    "b": "Energía rápida"
+  },
+  {
+    "id": 13,
+    "a": "Grasas",
+    "b": "Reserva energía"
+  },
+  {
+    "id": 14,
+    "a": "Vitaminas",
+    "b": "Frutas y verduras"
+  },
+  {
+    "id": 15,
+    "a": "Máquina simple",
+    "b": "Polea"
+  },
+  {
+    "id": 16,
+    "a": "Palanca",
+    "b": "Punto de apoyo"
+  },
+  {
+    "id": 17,
+    "a": "Inclinado",
+    "b": "Rampa"
+  },
+  {
+    "id": 18,
+    "a": "Tornillo",
+    "b": "Plano enrollado"
+  },
+  {
+    "id": 19,
+    "a": "Materia",
+    "b": "Todo lo que ocupa espacio"
+  },
+  {
+    "id": 20,
+    "a": "Masa",
+    "b": "Cantidad de materia"
+  },
+  {
+    "id": 21,
+    "a": "Volumen",
+    "b": "Espacio ocupado"
+  },
+  {
+    "id": 22,
+    "a": "Magnetismo",
+    "b": "Imanes"
+  },
+  {
+    "id": 23,
+    "a": "Materia prima",
+    "b": "Madera"
+  },
+  {
+    "id": 24,
+    "a": "Producto elaborado",
+    "b": "Papel"
+  },
+  {
+    "id": 25,
+    "a": "Reciclaje",
+    "b": "🔵🟢🟡"
+  }
 ]

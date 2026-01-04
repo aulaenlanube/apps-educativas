@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "😃", "b": "😃" },
-  { "id": 2, "a": "😢", "b": "😢" },
-  { "id": 3, "a": "😠", "b": "😠" },
-  { "id": 4, "a": "😱", "b": "😱" },
-  { "id": 5, "a": "😍", "b": "😍" },
-  { "id": 6, "a": "😴", "b": "😴" },
-  { "id": 7, "a": "🤔", "b": "🤔" },
-  { "id": 8, "a": "😎", "b": "😎" },
-  { "id": 9, "a": "🤒", "b": "🤒" },
-  { "id": 10, "a": "🥳", "b": "🥳" },
-  { "id": 11, "a": "🤫", "b": "🤫" },
-  { "id": 12, "a": "🤝", "b": "🤝" },
-  { "id": 13, "a": "😂", "b": "😂" },
-  { "id": 14, "a": "🤮", "b": "🤮" },
-  { "id": 15, "a": "🤯", "b": "🤯" },
-  { "id": 16, "a": "🥶", "b": "🥶" },
-  { "id": 17, "a": "🥵", "b": "🥵" },
-  { "id": 18, "a": "😇", "b": "😇" },
-  { "id": 19, "a": "😈", "b": "😈" },
-  { "id": 20, "a": "🙄", "b": "🙄" }
+  {
+    "id": 1,
+    "a": "Acoso escolar",
+    "b": "Bullying"
+  },
+  {
+    "id": 2,
+    "a": "Mediación",
+    "b": "Resolver conflictos"
+  },
+  {
+    "id": 3,
+    "a": "Inclusión",
+    "b": "Nadie se queda fuera"
+  },
+  {
+    "id": 4,
+    "a": "Prejuicio",
+    "b": "Juzgar sin conocer"
+  },
+  {
+    "id": 5,
+    "a": "Compromiso",
+    "b": "Mantener la palabra"
+  },
+  {
+    "id": 6,
+    "a": "Esfuerzo personal",
+    "b": "Superación"
+  },
+  {
+    "id": 7,
+    "a": "Crítica constructiva",
+    "b": "Opinion para mejorar"
+  },
+  {
+    "id": 8,
+    "a": "Diversidad funcional",
+    "b": "Diferentes capacidades"
+  },
+  {
+    "id": 9,
+    "a": "Igualdad de género",
+    "b": "Mismos derechos"
+  },
+  {
+    "id": 10,
+    "a": "Cooperación",
+    "b": "Metas comunes"
+  },
+  {
+    "id": 11,
+    "a": "Solidaridad",
+    "b": "Ayuda desinteresada"
+  },
+  {
+    "id": 12,
+    "a": "Cuidado ambiental",
+    "b": "Planeta"
+  },
+  {
+    "id": 13,
+    "a": "Uso responsable",
+    "b": "Tablets y móviles"
+  },
+  {
+    "id": 14,
+    "a": "Privacidad",
+    "b": "Datos personales"
+  },
+  {
+    "id": 15,
+    "a": "Autocontrol",
+    "b": "Dominar impulsos"
+  },
+  {
+    "id": 16,
+    "a": "Resiliencia",
+    "b": "Superar problemas"
+  },
+  {
+    "id": 17,
+    "a": "Integridad",
+    "b": "Hacer lo correcto"
+  },
+  {
+    "id": 18,
+    "a": "Justicia",
+    "b": "Equidad"
+  },
+  {
+    "id": 19,
+    "a": "Libertad",
+    "b": "Elegir con respeto"
+  },
+  {
+    "id": 20,
+    "a": "Fraternidad",
+    "b": "Unión como hermanos"
+  },
+  {
+    "id": 21,
+    "a": "Civismo",
+    "b": "Buen ciudadano"
+  },
+  {
+    "id": 22,
+    "a": "Democracia",
+    "b": "Participación"
+  },
+  {
+    "id": 23,
+    "a": "Paz mundial",
+    "b": "🕊️🌍"
+  },
+  {
+    "id": 24,
+    "a": "Derechos Humanos",
+    "b": "Dignidad"
+  },
+  {
+    "id": 25,
+    "a": "Voluntariado",
+    "b": "Tiempo para otros"
+  }
 ]

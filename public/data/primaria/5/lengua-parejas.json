@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "Sol", "b": "Sol" },
-  { "id": 2, "a": "Pan", "b": "Pan" },
-  { "id": 3, "a": "Flor", "b": "Flor" },
-  { "id": 4, "a": "Pez", "b": "Pez" },
-  { "id": 5, "a": "Tren", "b": "Tren" },
-  { "id": 6, "a": "Luz", "b": "Luz" },
-  { "id": 7, "a": "Mar", "b": "Mar" },
-  { "id": 8, "a": "Sal", "b": "Sal" },
-  { "id": 9, "a": "Gol", "b": "Gol" },
-  { "id": 10, "a": "Rey", "b": "Rey" },
-  { "id": 11, "a": "Ojo", "b": "Ojo" },
-  { "id": 12, "a": "Pie", "b": "Pie" },
-  { "id": 13, "a": "Mano", "b": "Mano" },
-  { "id": 14, "a": "Uña", "b": "Uña" },
-  { "id": 15, "a": "Oso", "b": "Oso" },
-  { "id": 16, "a": "Pato", "b": "Pato" },
-  { "id": 17, "a": "Gato", "b": "Gato" },
-  { "id": 18, "a": "Nube", "b": "Nube" },
-  { "id": 19, "a": "Casa", "b": "Casa" },
-  { "id": 20, "a": "Bebé", "b": "Bebé" }
+  {
+    "id": 1,
+    "a": "Determinante Artículo",
+    "b": "El, la, los, las"
+  },
+  {
+    "id": 2,
+    "a": "Art. Indeterminado",
+    "b": "Un, una, unos, unas"
+  },
+  {
+    "id": 3,
+    "a": "Demostrativo Cercanía",
+    "b": "Este, esta"
+  },
+  {
+    "id": 4,
+    "a": "Demostrativo Lejanía",
+    "b": "Aquel, aquella"
+  },
+  {
+    "id": 5,
+    "a": "Formas no personales",
+    "b": "Infinitivo, gerundio, participio"
+  },
+  {
+    "id": 6,
+    "a": "Gerundio",
+    "b": "-ando, -iendo"
+  },
+  {
+    "id": 7,
+    "a": "Participio",
+    "b": "-ado, -ido"
+  },
+  {
+    "id": 8,
+    "a": "Modo Indicativo",
+    "b": "Realidad"
+  },
+  {
+    "id": 9,
+    "a": "Modo Subjuntivo",
+    "b": "Deseo/Duda"
+  },
+  {
+    "id": 10,
+    "a": "Modo Imperativo",
+    "b": "Orden"
+  },
+  {
+    "id": 11,
+    "a": "Tilde diacrítica",
+    "b": "él / el"
+  },
+  {
+    "id": 12,
+    "a": "Monosílabas",
+    "b": "No llevan tilde (general)"
+  },
+  {
+    "id": 13,
+    "a": "Lexema",
+    "b": "Raíz de palabra"
+  },
+  {
+    "id": 14,
+    "a": "Morfema",
+    "b": "Añadido a raíz"
+  },
+  {
+    "id": 15,
+    "a": "Palabras derivadas",
+    "b": "libro -> librería"
+  },
+  {
+    "id": 16,
+    "a": "Palabras parónimas",
+    "b": "Parecidas (valla/vaya)"
+  },
+  {
+    "id": 17,
+    "a": "Palabras homónimas",
+    "b": "Igual forma (banco)"
+  },
+  {
+    "id": 18,
+    "a": "Puntos suspensivos",
+    "b": "..."
+  },
+  {
+    "id": 19,
+    "a": "Paréntesis",
+    "b": "( )"
+  },
+  {
+    "id": 20,
+    "a": "Comillas",
+    "b": "« »"
+  },
+  {
+    "id": 21,
+    "a": "Complemento Directo",
+    "b": "¿Qué?"
+  },
+  {
+    "id": 22,
+    "a": "Complemento Indirecto",
+    "b": "¿A quién?"
+  },
+  {
+    "id": 23,
+    "a": "Atributo",
+    "b": "Verbo ser, estar, parecer"
+  },
+  {
+    "id": 24,
+    "a": "Personificación",
+    "b": "Objetos que hablan"
+  },
+  {
+    "id": 25,
+    "a": "Hipérbole",
+    "b": "Exageración"
+  }
 ]

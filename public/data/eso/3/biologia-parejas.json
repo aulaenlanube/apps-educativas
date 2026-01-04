@@ -1,14 +1,152 @@
 [
-  { "id": 1, "a": "🧬", "b": "🧬" },
-  { "id": 2, "a": "🔬", "b": "🔬" },
-  { "id": 3, "a": "🌿", "b": "🌿" },
-  { "id": 4, "a": "🦠", "b": "🦠" },
-  { "id": 5, "a": "🦍", "b": "🦍" },
-  { "id": 6, "a": "🌍", "b": "🌍" },
-  { "id": 7, "a": "🌋", "b": "🌋" },
-  { "id": 8, "a": "🦖", "b": "🦖" },
-  { "id": 9, "a": "💧", "b": "💧" },
-  { "id": 10, "a": "🍄", "b": "🍄" },
-  { "id": 11, "a": "🌺", "b": "🌺" },
-  { "id": 12, "a": "🐟", "b": "🐟" }
+  {
+    "id": 1,
+    "a": "Organización celular",
+    "b": "Células, tejidos, órganos"
+  },
+  {
+    "id": 2,
+    "a": "Homeostasis",
+    "b": "Equilibrio interno"
+  },
+  {
+    "id": 3,
+    "a": "Salud",
+    "b": "Bienestar bio-psico-social"
+  },
+  {
+    "id": 4,
+    "a": "Enfermedad infecciosa",
+    "b": "Por microorganismos"
+  },
+  {
+    "id": 5,
+    "a": "Enfermedad no infecciosa",
+    "b": "Cáncer, diabetes..."
+  },
+  {
+    "id": 6,
+    "a": "Sistema inmunitario",
+    "b": "Barreras y defensas"
+  },
+  {
+    "id": 7,
+    "a": "Antígenos",
+    "b": "Sustancias extrañas"
+  },
+  {
+    "id": 8,
+    "a": "Anticuerpos",
+    "b": "Proteínas de defensa"
+  },
+  {
+    "id": 9,
+    "a": "Vacuna",
+    "b": "Prevención activa"
+  },
+  {
+    "id": 10,
+    "a": "Antibiótico",
+    "b": "Contra bacterias"
+  },
+  {
+    "id": 11,
+    "a": "Nutrición",
+    "b": "Energética y plástica"
+  },
+  {
+    "id": 12,
+    "a": "Metabolismo",
+    "b": "Anabolismo y catabolismo"
+  },
+  {
+    "id": 13,
+    "a": "Sistema nervioso periférico",
+    "b": "Nervios y ganglios"
+  },
+  {
+    "id": 14,
+    "a": "Soma neuronal",
+    "b": "Cuerpo de la neurona"
+  },
+  {
+    "id": 15,
+    "a": "Dendritas",
+    "b": "Recepción impulsos"
+  },
+  {
+    "id": 16,
+    "a": "Corteza cerebral",
+    "b": "Funciones superiores"
+  },
+  {
+    "id": 17,
+    "a": "Sinapsis química",
+    "b": "Neurotransmisores"
+  },
+  {
+    "id": 18,
+    "a": "Glándula tiroides",
+    "b": "Produce tiroxina"
+  },
+  {
+    "id": 19,
+    "a": "Glándulas suprarrenales",
+    "b": "Adrenalina"
+  },
+  {
+    "id": 20,
+    "a": "Reproducción asistida",
+    "b": "Fecundación in vitro"
+  },
+  {
+    "id": 21,
+    "a": "Métodos anticonceptivos",
+    "b": "Barrera, hormonales..."
+  },
+  {
+    "id": 22,
+    "a": "ETS",
+    "b": "Transmisión sexual"
+  },
+  {
+    "id": 23,
+    "a": "Órganos de los sentidos",
+    "b": "Receptores sensoriales"
+  },
+  {
+    "id": 24,
+    "a": "Retina",
+    "b": "Fotorreceptores"
+  },
+  {
+    "id": 25,
+    "a": "Cóclea",
+    "b": "Audición"
+  },
+  {
+    "id": 26,
+    "a": "Bulbo raquídeo",
+    "b": "Funciones vitales"
+  },
+  {
+    "id": 27,
+    "a": "Hipotálamo",
+    "b": "Control endocrino"
+  },
+  {
+    "id": 28,
+    "a": "Insulina",
+    "b": "Disminuye glucosa"
+  },
+  {
+    "id": 29,
+    "a": "Glucagón",
+    "b": "Aumenta glucosa"
+  },
+  {
+    "id": 30,
+    "a": "Sustancia gris",
+    "b": "Cuerpos neuronales"
+  }
 ]

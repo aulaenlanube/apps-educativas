@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "👮", "b": "👮" },
-  { "id": 2, "a": "👩‍⚕️", "b": "👩‍⚕️" },
-  { "id": 3, "a": "👨‍🚒", "b": "👨‍🚒" },
-  { "id": 4, "a": "👩‍🏫", "b": "👩‍🏫" },
-  { "id": 5, "a": "🚑", "b": "🚑" },
-  { "id": 6, "a": "🚓", "b": "🚓" },
-  { "id": 7, "a": "🚒", "b": "🚒" },
-  { "id": 8, "a": "🏠", "b": "🏠" },
-  { "id": 9, "a": "🚦", "b": "🚦" },
-  { "id": 10, "a": "🚌", "b": "🚌" },
-  { "id": 11, "a": "🚲", "b": "🚲" },
-  { "id": 12, "a": "🏰", "b": "🏰" },
-  { "id": 13, "a": "👪", "b": "👪" },
-  { "id": 14, "a": "🏫", "b": "🏫" },
-  { "id": 15, "a": "👩‍🍳", "b": "👩‍🍳" },
-  { "id": 16, "a": "👷", "b": "👷" },
-  { "id": 17, "a": "🏥", "b": "🏥" },
-  { "id": 18, "a": "✈️", "b": "✈️" },
-  { "id": 19, "a": "🚂", "b": "🚂" },
-  { "id": 20, "a": "🚜", "b": "🚜" }
+  {
+    "id": 1,
+    "a": "Pueblo",
+    "b": "Poca población"
+  },
+  {
+    "id": 2,
+    "a": "Ciudad",
+    "b": "Mucha población"
+  },
+  {
+    "id": 3,
+    "a": "Ayuntamiento",
+    "b": "Alcalde"
+  },
+  {
+    "id": 4,
+    "a": "Placa",
+    "b": "Nombre de calle"
+  },
+  {
+    "id": 5,
+    "a": "Mapa",
+    "b": "Dibujo de un lugar"
+  },
+  {
+    "id": 6,
+    "a": "Plano",
+    "b": "Mapa de una casa"
+  },
+  {
+    "id": 7,
+    "a": "Globo terráqueo",
+    "b": "Modelo Tierra"
+  },
+  {
+    "id": 8,
+    "a": "Norte",
+    "b": "Arriba en mapa"
+  },
+  {
+    "id": 9,
+    "a": "Sur",
+    "b": "Abajo en mapa"
+  },
+  {
+    "id": 10,
+    "a": "Este",
+    "b": "Sale el Sol"
+  },
+  {
+    "id": 11,
+    "a": "Oeste",
+    "b": "Se pone el Sol"
+  },
+  {
+    "id": 12,
+    "a": "Montaña",
+    "b": "Terreno elevado"
+  },
+  {
+    "id": 13,
+    "a": "Valle",
+    "b": "Terreno entre montañas"
+  },
+  {
+    "id": 14,
+    "a": "Llanura",
+    "b": "Terreno plano"
+  },
+  {
+    "id": 15,
+    "a": "Costa",
+    "b": "Junto al mar"
+  },
+  {
+    "id": 16,
+    "a": "Isla",
+    "b": "Tierra rodeada agua"
+  },
+  {
+    "id": 17,
+    "a": "Península",
+    "b": "Casi rodeada agua"
+  },
+  {
+    "id": 18,
+    "a": "Río",
+    "b": "Agua dulce corriente"
+  },
+  {
+    "id": 19,
+    "a": "Mar",
+    "b": "Agua salada"
+  },
+  {
+    "id": 20,
+    "a": "Trabajo",
+    "b": "Profesión"
+  },
+  {
+    "id": 21,
+    "a": "Servicios",
+    "b": "Transporte/Salud"
+  },
+  {
+    "id": 22,
+    "a": "Industria",
+    "b": "Fábrica"
+  },
+  {
+    "id": 23,
+    "a": "Agricultura",
+    "b": "Campo y cultivos"
+  },
+  {
+    "id": 24,
+    "a": "Ganadería",
+    "b": "Animales granja"
+  },
+  {
+    "id": 25,
+    "a": "Pesca",
+    "b": "Barcos y redes"
+  }
 ]

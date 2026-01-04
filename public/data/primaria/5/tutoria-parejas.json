@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "😃", "b": "😃" },
-  { "id": 2, "a": "😢", "b": "😢" },
-  { "id": 3, "a": "😠", "b": "😠" },
-  { "id": 4, "a": "😱", "b": "😱" },
-  { "id": 5, "a": "😍", "b": "😍" },
-  { "id": 6, "a": "😴", "b": "😴" },
-  { "id": 7, "a": "🤔", "b": "🤔" },
-  { "id": 8, "a": "😎", "b": "😎" },
-  { "id": 9, "a": "🤒", "b": "🤒" },
-  { "id": 10, "a": "🥳", "b": "🥳" },
-  { "id": 11, "a": "🤫", "b": "🤫" },
-  { "id": 12, "a": "🤝", "b": "🤝" },
-  { "id": 13, "a": "😂", "b": "😂" },
-  { "id": 14, "a": "🤮", "b": "🤮" },
-  { "id": 15, "a": "🤯", "b": "🤯" },
-  { "id": 16, "a": "🥶", "b": "🥶" },
-  { "id": 17, "a": "🥵", "b": "🥵" },
-  { "id": 18, "a": "😇", "b": "😇" },
-  { "id": 19, "a": "😈", "b": "😈" },
-  { "id": 20, "a": "🙄", "b": "🙄" }
+  {
+    "id": 1,
+    "a": "Identidad personal",
+    "b": "¿Quién soy?"
+  },
+  {
+    "id": 2,
+    "a": "Pubertad",
+    "b": "Cambios interiores"
+  },
+  {
+    "id": 3,
+    "a": "Aceptación",
+    "b": "Quererse como uno es"
+  },
+  {
+    "id": 4,
+    "a": "Presión de grupo",
+    "b": "Saber decir NO"
+  },
+  {
+    "id": 5,
+    "a": "Independencia",
+    "b": "Autonomía"
+  },
+  {
+    "id": 6,
+    "a": "Pensamiento abstracto",
+    "b": "Ideas complejas"
+  },
+  {
+    "id": 7,
+    "a": "Derechos del niño",
+    "b": "Protección UNICEF"
+  },
+  {
+    "id": 8,
+    "a": "Injusticia social",
+    "b": "Pobreza/Hambre"
+  },
+  {
+    "id": 9,
+    "a": "ONG",
+    "b": "Ayuda humanitaria"
+  },
+  {
+    "id": 10,
+    "a": "Ecologismo",
+    "b": "Cambio climático"
+  },
+  {
+    "id": 11,
+    "a": "Fake News",
+    "b": "Noticias falsas"
+  },
+  {
+    "id": 12,
+    "a": "Ciberbully",
+    "b": "Acoso en red"
+  },
+  {
+    "id": 13,
+    "a": "Netiqueta",
+    "b": "Respeto digital"
+  },
+  {
+    "id": 14,
+    "a": "Gestión del tiempo",
+    "b": "Priorizar"
+  },
+  {
+    "id": 15,
+    "a": "Concentración",
+    "b": "Sin distracciones"
+  },
+  {
+    "id": 16,
+    "a": "Curiosidad científica",
+    "b": "Preguntarse por qué"
+  },
+  {
+    "id": 17,
+    "a": "Espíritu crítico",
+    "b": "Analizar"
+  },
+  {
+    "id": 18,
+    "a": "Empatía global",
+    "b": "Sentir con el mundo"
+  },
+  {
+    "id": 19,
+    "a": "Tolerancia cero",
+    "b": "Contra la violencia"
+  },
+  {
+    "id": 20,
+    "a": "Diálogo abierto",
+    "b": "Sinceridad tutor"
+  },
+  {
+    "id": 21,
+    "a": "Fracasos",
+    "b": "Oportunidades"
+  },
+  {
+    "id": 22,
+    "a": "Éxitos",
+    "b": "Fruto del esfuerzo"
+  },
+  {
+    "id": 23,
+    "a": "Iniciativa",
+    "b": "Ser proactivo"
+  },
+  {
+    "id": 24,
+    "a": "Liderazgo compartido",
+    "b": "Rotar roles"
+  },
+  {
+    "id": 25,
+    "a": "Pertenencia",
+    "b": "Sentirse del grupo"
+  }
 ]

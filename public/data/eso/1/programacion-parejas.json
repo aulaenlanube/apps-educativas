@@ -1,14 +1,152 @@
 [
-  { "id": 1, "a": "💻", "b": "💻" },
-  { "id": 2, "a": "⌨️", "b": "⌨️" },
-  { "id": 3, "a": "🖱️", "b": "🖱️" },
-  { "id": 4, "a": "🤖", "b": "🤖" },
-  { "id": 5, "a": "💾", "b": "💾" },
-  { "id": 6, "a": "📱", "b": "📱" },
-  { "id": 7, "a": "🔋", "b": "🔋" },
-  { "id": 8, "a": "💡", "b": "💡" },
-  { "id": 9, "a": "⚙️", "b": "⚙️" },
-  { "id": 10, "a": "🎮", "b": "🎮" },
-  { "id": 11, "a": "🖨️", "b": "🖨️" },
-  { "id": 12, "a": "🐛", "b": "🐛" }
+  {
+    "id": 1,
+    "a": "Algoritmo",
+    "b": "Pasos ordenados"
+  },
+  {
+    "id": 2,
+    "a": "Diagrama flujo",
+    "b": "Esquema visual"
+  },
+  {
+    "id": 3,
+    "a": "Pseudocódigo",
+    "b": "Lenguaje humano-máquina"
+  },
+  {
+    "id": 4,
+    "a": "Scratch",
+    "b": "Programación por bloques"
+  },
+  {
+    "id": 5,
+    "a": "Variable",
+    "b": "Nombre para guardar dato"
+  },
+  {
+    "id": 6,
+    "a": "Condicional",
+    "b": "If... Then... Else"
+  },
+  {
+    "id": 7,
+    "a": "Bucle",
+    "b": "Repetición controlada"
+  },
+  {
+    "id": 8,
+    "a": "Evento",
+    "b": "Desencadenante (clic)"
+  },
+  {
+    "id": 9,
+    "a": "Bug",
+    "b": "Error en el código"
+  },
+  {
+    "id": 10,
+    "a": "Debugging",
+    "b": "Eliminar errores"
+  },
+  {
+    "id": 11,
+    "a": "Compilador",
+    "b": "Traductor a binario"
+  },
+  {
+    "id": 12,
+    "a": "Código fuente",
+    "b": "Lo que escribe el programador"
+  },
+  {
+    "id": 13,
+    "a": "Lenguaje de alto nivel",
+    "b": "Cercano al humano"
+  },
+  {
+    "id": 14,
+    "a": "Lenguaje de bajo nivel",
+    "b": "Cercano a la máquina"
+  },
+  {
+    "id": 15,
+    "a": "Bit",
+    "b": "0 o 1"
+  },
+  {
+    "id": 16,
+    "a": "Byte",
+    "b": "8 bits"
+  },
+  {
+    "id": 17,
+    "a": "Input",
+    "b": "Entrada de datos"
+  },
+  {
+    "id": 18,
+    "a": "Output",
+    "b": "Salida de datos"
+  },
+  {
+    "id": 19,
+    "a": "Robótica",
+    "b": "Hardware + Software"
+  },
+  {
+    "id": 20,
+    "a": "Arduino",
+    "b": "Placa controladora"
+  },
+  {
+    "id": 21,
+    "a": "Sensor",
+    "b": "Detecta el entorno"
+  },
+  {
+    "id": 22,
+    "a": "Actuador",
+    "b": "Produce un efecto"
+  },
+  {
+    "id": 23,
+    "a": "Sincronización",
+    "b": "Coordinar hilos"
+  },
+  {
+    "id": 24,
+    "a": "Internet",
+    "b": "Red de redes"
+  },
+  {
+    "id": 25,
+    "a": "WWW",
+    "b": "Protocolo de páginas"
+  },
+  {
+    "id": 26,
+    "a": "Navegador",
+    "b": "Chrome / Firefox"
+  },
+  {
+    "id": 27,
+    "a": "HTML",
+    "b": "Lenguaje etiquetas"
+  },
+  {
+    "id": 28,
+    "a": "Servidor",
+    "b": "Donde reside la web"
+  },
+  {
+    "id": 29,
+    "a": "IP",
+    "b": "Identificador en red"
+  },
+  {
+    "id": 30,
+    "a": "Cookie",
+    "b": "Dato guardado en cliente"
+  }
 ]

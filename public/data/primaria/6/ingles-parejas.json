@@ -1,42 +1,127 @@
 [
-  { "id": 1, "a": "One", "b": "1" },
-  { "id": 2, "a": "Two", "b": "2" },
-  { "id": 3, "a": "Three", "b": "3" },
-  { "id": 4, "a": "Four", "b": "4" },
-  { "id": 5, "a": "Five", "b": "5" },
-  { "id": 6, "a": "Six", "b": "6" },
-  { "id": 7, "a": "Seven", "b": "7" },
-  { "id": 8, "a": "Eight", "b": "8" },
-  { "id": 9, "a": "Nine", "b": "9" },
-  { "id": 10, "a": "Ten", "b": "10" },
-  { "id": 11, "a": "Red", "b": "🔴" },
-  { "id": 12, "a": "Blue", "b": "🔵" },
-  { "id": 13, "a": "Green", "b": "🟢" },
-  { "id": 14, "a": "Yellow", "b": "🟡" },
-  { "id": 15, "a": "Orange", "b": "🟠" },
-  { "id": 16, "a": "Purple", "b": "🟣" },
-  { "id": 17, "a": "Black", "b": "⚫" },
-  { "id": 18, "a": "White", "b": "⚪" },
-  { "id": 19, "a": "Dog", "b": "🐶" },
-  { "id": 20, "a": "Cat", "b": "🐱" },
-  { "id": 21, "a": "Mouse", "b": "🐭" },
-  { "id": 22, "a": "Rabbit", "b": "🐰" },
-  { "id": 23, "a": "Fox", "b": "🦊" },
-  { "id": 24, "a": "Bear", "b": "🐻" },
-  { "id": 25, "a": "Panda", "b": "🐼" },
-  { "id": 26, "a": "Lion", "b": "🦁" },
-  { "id": 27, "a": "Tiger", "b": "🐯" },
-  { "id": 28, "a": "Cow", "b": "🐮" },
-  { "id": 29, "a": "Pig", "b": "🐷" },
-  { "id": 30, "a": "Frog", "b": "🐸" },
-  { "id": 31, "a": "Monkey", "b": "🐵" },
-  { "id": 32, "a": "Chicken", "b": "🐔" },
-  { "id": 33, "a": "Penguin", "b": "🐧" },
-  { "id": 34, "a": "Bird", "b": "🐦" },
-  { "id": 35, "a": "Duck", "b": "🦆" },
-  { "id": 36, "a": "Owl", "b": "🦉" },
-  { "id": 37, "a": "Bee", "b": "🐝" },
-  { "id": 38, "a": "Butterfly", "b": "🦋" },
-  { "id": 39, "a": "Fish", "b": "🐟" },
-  { "id": 40, "a": "Turtle", "b": "🐢" }
+  {
+    "id": 1,
+    "a": "I will go",
+    "b": "Iré"
+  },
+  {
+    "id": 2,
+    "a": "Going to",
+    "b": "Intención de"
+  },
+  {
+    "id": 3,
+    "a": "I have been",
+    "b": "He estado"
+  },
+  {
+    "id": 4,
+    "a": "He has seen",
+    "b": "Él ha visto"
+  },
+  {
+    "id": 5,
+    "a": "Already",
+    "b": "Ya"
+  },
+  {
+    "id": 6,
+    "a": "Yet",
+    "b": "Todavía / Aún"
+  },
+  {
+    "id": 7,
+    "a": "Since",
+    "b": "Desde"
+  },
+  {
+    "id": 8,
+    "a": "For",
+    "b": "Durante"
+  },
+  {
+    "id": 9,
+    "a": "Should",
+    "b": "Debería"
+  },
+  {
+    "id": 10,
+    "a": "Must",
+    "b": "Deber (obligación)"
+  },
+  {
+    "id": 11,
+    "a": "Can",
+    "b": "Poder (habilidad)"
+  },
+  {
+    "id": 12,
+    "a": "Might",
+    "b": "Podría (posibilidad)"
+  },
+  {
+    "id": 13,
+    "a": "Environment",
+    "b": "Medio ambiente"
+  },
+  {
+    "id": 14,
+    "a": "Pollution",
+    "b": "Contaminación"
+  },
+  {
+    "id": 15,
+    "a": "Global warming",
+    "b": "Calentamiento global"
+  },
+  {
+    "id": 16,
+    "a": "Recycle",
+    "b": "Reciclar"
+  },
+  {
+    "id": 17,
+    "a": "Sustainable",
+    "b": "Sostenible"
+  },
+  {
+    "id": 18,
+    "a": "Job interview",
+    "b": "Entrevista trabajo"
+  },
+  {
+    "id": 19,
+    "a": "Curriculum Vitae",
+    "b": "CV"
+  },
+  {
+    "id": 20,
+    "a": "Experience",
+    "b": "Experiencia"
+  },
+  {
+    "id": 21,
+    "a": "Skills",
+    "b": "Habilidades"
+  },
+  {
+    "id": 22,
+    "a": "Volunteering",
+    "b": "Voluntariado"
+  },
+  {
+    "id": 23,
+    "a": "Challenge",
+    "b": "Desafío"
+  },
+  {
+    "id": 24,
+    "a": "Achievement",
+    "b": "Logro"
+  },
+  {
+    "id": 25,
+    "a": "Goal",
+    "b": "Meta / Objetivo"
+  }
 ]

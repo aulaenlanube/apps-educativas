@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "Sol", "b": "Sol" },
-  { "id": 2, "a": "Pan", "b": "Pan" },
-  { "id": 3, "a": "Flor", "b": "Flor" },
-  { "id": 4, "a": "Pez", "b": "Pez" },
-  { "id": 5, "a": "Tren", "b": "Tren" },
-  { "id": 6, "a": "Luz", "b": "Luz" },
-  { "id": 7, "a": "Mar", "b": "Mar" },
-  { "id": 8, "a": "Sal", "b": "Sal" },
-  { "id": 9, "a": "Gol", "b": "Gol" },
-  { "id": 10, "a": "Rey", "b": "Rey" },
-  { "id": 11, "a": "Ojo", "b": "Ojo" },
-  { "id": 12, "a": "Pie", "b": "Pie" },
-  { "id": 13, "a": "Mano", "b": "Mano" },
-  { "id": 14, "a": "Uña", "b": "Uña" },
-  { "id": 15, "a": "Oso", "b": "Oso" },
-  { "id": 16, "a": "Pato", "b": "Pato" },
-  { "id": 17, "a": "Gato", "b": "Gato" },
-  { "id": 18, "a": "Nube", "b": "Nube" },
-  { "id": 19, "a": "Casa", "b": "Casa" },
-  { "id": 20, "a": "Bebé", "b": "Bebé" }
+  {
+    "id": 1,
+    "a": "Sinónimo",
+    "b": "Significado igual"
+  },
+  {
+    "id": 2,
+    "a": "Antónimo",
+    "b": "Significado opuesto"
+  },
+  {
+    "id": 3,
+    "a": "Caminar",
+    "b": "Andar"
+  },
+  {
+    "id": 4,
+    "a": "Escuchar",
+    "b": "Oír"
+  },
+  {
+    "id": 5,
+    "a": "Feliz",
+    "b": "Triste"
+  },
+  {
+    "id": 6,
+    "a": "Arriba",
+    "b": "Abajo"
+  },
+  {
+    "id": 7,
+    "a": "Sustantivo",
+    "b": "Nombre persona/cosa"
+  },
+  {
+    "id": 8,
+    "a": "Adjetivo",
+    "b": "Cualidad"
+  },
+  {
+    "id": 9,
+    "a": "Nombre propio",
+    "b": "Empieza con mayúscula"
+  },
+  {
+    "id": 10,
+    "a": "Común",
+    "b": "perro, mesa..."
+  },
+  {
+    "id": 11,
+    "a": "Dos puntos",
+    "b": ":"
+  },
+  {
+    "id": 12,
+    "a": "Coma",
+    "b": ","
+  },
+  {
+    "id": 13,
+    "a": "Rima",
+    "b": "Sonido igual final"
+  },
+  {
+    "id": 14,
+    "a": "Cero / Pelo",
+    "b": "Rima asonante"
+  },
+  {
+    "id": 15,
+    "a": "Abecedario",
+    "b": "27 letras"
+  },
+  {
+    "id": 16,
+    "a": "Diccionario",
+    "b": "Significado palabras"
+  },
+  {
+    "id": 17,
+    "a": "Orden alfabético",
+    "b": "A, B, C..."
+  },
+  {
+    "id": 18,
+    "a": "Artículo",
+    "b": "El, la, los, las"
+  },
+  {
+    "id": 19,
+    "a": "Guion",
+    "b": "Separar sílabas"
+  },
+  {
+    "id": 20,
+    "a": "Palabras agudas",
+    "b": "Golpe final"
+  },
+  {
+    "id": 21,
+    "a": "Mayúscula",
+    "b": "Después de punto"
+  },
+  {
+    "id": 22,
+    "a": "Género",
+    "b": "Masculino/Femenino"
+  },
+  {
+    "id": 23,
+    "a": "Número",
+    "b": "Singular/Plural"
+  },
+  {
+    "id": 24,
+    "a": "Verbo",
+    "b": "Acción"
+  },
+  {
+    "id": 25,
+    "a": "Préstamo",
+    "b": "Palabra de otro idioma"
+  }
 ]

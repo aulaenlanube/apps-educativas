@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "🦁", "b": "🦁" },
-  { "id": 2, "a": "🐘", "b": "🐘" },
-  { "id": 3, "a": "🐸", "b": "🐸" },
-  { "id": 4, "a": "🦋", "b": "🦋" },
-  { "id": 5, "a": "🌻", "b": "🌻" },
-  { "id": 6, "a": "🌳", "b": "🌳" },
-  { "id": 7, "a": "🍄", "b": "🍄" },
-  { "id": 8, "a": "☀️", "b": "☀️" },
-  { "id": 9, "a": "🌙", "b": "🌙" },
-  { "id": 10, "a": "🌧️", "b": "🌧️" },
-  { "id": 11, "a": "🐱", "b": "🐱" },
-  { "id": 12, "a": "🐶", "b": "🐶" },
-  { "id": 13, "a": "🦅", "b": "🦅" },
-  { "id": 14, "a": "🐍", "b": "🐍" },
-  { "id": 15, "a": "🐢", "b": "🐢" },
-  { "id": 16, "a": "🐝", "b": "🐝" },
-  { "id": 17, "a": "🌊", "b": "🌊" },
-  { "id": 18, "a": "🏔️", "b": "🏔️" },
-  { "id": 19, "a": "❄️", "b": "❄️" },
-  { "id": 20, "a": "🌵", "b": "🌵" }
+  {
+    "id": 1,
+    "a": "Ecosistema",
+    "b": "Seres vivos + Entorno"
+  },
+  {
+    "id": 2,
+    "a": "Productor",
+    "b": "Planta"
+  },
+  {
+    "id": 3,
+    "a": "Consumidor",
+    "b": "Animal"
+  },
+  {
+    "id": 4,
+    "a": "Descomponedor",
+    "b": "Hongo/Bacteria"
+  },
+  {
+    "id": 5,
+    "a": "Fotosíntesis",
+    "b": "Luz solar"
+  },
+  {
+    "id": 6,
+    "a": "Cadena alimentaria",
+    "b": "Quién come a quién"
+  },
+  {
+    "id": 7,
+    "a": "Hábitat",
+    "b": "Lugar donde viven"
+  },
+  {
+    "id": 8,
+    "a": "Extinción",
+    "b": "Desaparición"
+  },
+  {
+    "id": 9,
+    "a": "Energía luminosa",
+    "b": "Bombilla"
+  },
+  {
+    "id": 10,
+    "a": "Energía térmica",
+    "b": "Estufa"
+  },
+  {
+    "id": 11,
+    "a": "Energía cinética",
+    "b": "Movimiento"
+  },
+  {
+    "id": 12,
+    "a": "Renovable",
+    "b": "Sol/Viento"
+  },
+  {
+    "id": 13,
+    "a": "No renovable",
+    "b": "Petróleo/Gas"
+  },
+  {
+    "id": 14,
+    "a": "Mezcla homogénea",
+    "b": "Agua con sal"
+  },
+  {
+    "id": 15,
+    "a": "Mezcla heterogénea",
+    "b": "Ensalada"
+  },
+  {
+    "id": 16,
+    "a": "Evaporación",
+    "b": "Líquido a gas"
+  },
+  {
+    "id": 17,
+    "a": "Condensación",
+    "b": "Gas a líquido"
+  },
+  {
+    "id": 18,
+    "a": "Fusión",
+    "b": "Sólido a líquido"
+  },
+  {
+    "id": 19,
+    "a": "Solidificación",
+    "b": "Líquido a sólido"
+  },
+  {
+    "id": 20,
+    "a": "Aparato digestivo",
+    "b": "Nutrientes"
+  },
+  {
+    "id": 21,
+    "a": "Aparato respiratorio",
+    "b": "Oxígeno"
+  },
+  {
+    "id": 22,
+    "a": "Aparato excretor",
+    "b": "Desechos"
+  },
+  {
+    "id": 23,
+    "a": "Aparato circulatorio",
+    "b": "Transporte"
+  },
+  {
+    "id": 24,
+    "a": "Venzo/Arteria",
+    "b": "Vasos sanguíneos"
+  },
+  {
+    "id": 25,
+    "a": "Higiene",
+    "b": "Limpieza"
+  }
 ]

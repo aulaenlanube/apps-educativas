@@ -1,14 +1,152 @@
 [
-  { "id": 1, "a": "💻", "b": "💻" },
-  { "id": 2, "a": "🤖", "b": "🤖" },
-  { "id": 3, "a": "⚙️", "b": "⚙️" },
-  { "id": 4, "a": "🔧", "b": "🔧" },
-  { "id": 5, "a": "🔨", "b": "🔨" },
-  { "id": 6, "a": "🔌", "b": "🔌" },
-  { "id": 7, "a": "📡", "b": "📡" },
-  { "id": 8, "a": "🚀", "b": "🚀" },
-  { "id": 9, "a": "🖱️", "b": "🖱️" },
-  { "id": 10, "a": "⌨️", "b": "⌨️" },
-  { "id": 11, "a": "📱", "b": "📱" },
-  { "id": 12, "a": "🏗️", "b": "🏗️" }
+  {
+    "id": 1,
+    "a": "Proyecto técnico",
+    "b": "Fases creación"
+  },
+  {
+    "id": 2,
+    "a": "Memoria",
+    "b": "Documento explicativo"
+  },
+  {
+    "id": 3,
+    "a": "Boceto",
+    "b": "Dibujo a mano alzada"
+  },
+  {
+    "id": 4,
+    "a": "Croquis",
+    "b": "Dibujo acotado"
+  },
+  {
+    "id": 5,
+    "a": "Madera",
+    "b": "Material orgánico"
+  },
+  {
+    "id": 6,
+    "a": "Metal",
+    "b": "Conductor térmico"
+  },
+  {
+    "id": 7,
+    "a": "Plástico",
+    "b": "Polímeros"
+  },
+  {
+    "id": 8,
+    "a": "Dureza",
+    "b": "Resistencia al rayado"
+  },
+  {
+    "id": 9,
+    "a": "Tenacidad",
+    "b": "Resistencia a rotura"
+  },
+  {
+    "id": 10,
+    "a": "Plasticidad",
+    "b": "Deformación permanente"
+  },
+  {
+    "id": 11,
+    "a": "Electricidad",
+    "b": "Flujo de electrones"
+  },
+  {
+    "id": 12,
+    "a": "Circuito serie",
+    "b": "Un solo camino"
+  },
+  {
+    "id": 13,
+    "a": "Circuito paralelo",
+    "b": "Varios caminos"
+  },
+  {
+    "id": 14,
+    "a": "Generador",
+    "b": "Pila o batería"
+  },
+  {
+    "id": 15,
+    "a": "Receptor",
+    "b": "Bombilla o motor"
+  },
+  {
+    "id": 16,
+    "a": "Interruptor",
+    "b": "Abre o cierra"
+  },
+  {
+    "id": 17,
+    "a": "Conductor",
+    "b": "Cable de cobre"
+  },
+  {
+    "id": 18,
+    "a": "Aislante",
+    "b": "Plástico protector"
+  },
+  {
+    "id": 19,
+    "a": "Palanca",
+    "b": "Máquina simple"
+  },
+  {
+    "id": 20,
+    "a": "Polea",
+    "b": "Rueda con canal"
+  },
+  {
+    "id": 21,
+    "a": "Mecanismo",
+    "b": "Transmite movimiento"
+  },
+  {
+    "id": 22,
+    "a": "Biela-manivela",
+    "b": "Circular a lineal"
+  },
+  {
+    "id": 23,
+    "a": "Hardware",
+    "b": "Parte física"
+  },
+  {
+    "id": 24,
+    "a": "Software",
+    "b": "Programas"
+  },
+  {
+    "id": 25,
+    "a": "CPU",
+    "b": "Procesador central"
+  },
+  {
+    "id": 26,
+    "a": "Memoria RAM",
+    "b": "Almacén temporal"
+  },
+  {
+    "id": 27,
+    "a": "Periférico",
+    "b": "Ratón o teclado"
+  },
+  {
+    "id": 28,
+    "a": "Serrucho",
+    "b": "Corte de madera"
+  },
+  {
+    "id": 29,
+    "a": "Tijeras chapa",
+    "b": "Corte de metal"
+  },
+  {
+    "id": 30,
+    "a": "Soldador",
+    "b": "Unión eléctrica"
+  }
 ]

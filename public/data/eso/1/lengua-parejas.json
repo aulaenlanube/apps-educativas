@@ -1,29 +1,152 @@
 [
-  { "id": 1, "a": "A", "b": "a" },
-  { "id": 2, "a": "B", "b": "b" },
-  { "id": 3, "a": "C", "b": "c" },
-  { "id": 4, "a": "D", "b": "d" },
-  { "id": 5, "a": "E", "b": "e" },
-  { "id": 6, "a": "F", "b": "f" },
-  { "id": 7, "a": "G", "b": "g" },
-  { "id": 8, "a": "H", "b": "h" },
-  { "id": 9, "a": "I", "b": "i" },
-  { "id": 10, "a": "J", "b": "j" },
-  { "id": 11, "a": "K", "b": "k" },
-  { "id": 12, "a": "L", "b": "l" },
-  { "id": 13, "a": "M", "b": "m" },
-  { "id": 14, "a": "N", "b": "n" },
-  { "id": 15, "a": "Ñ", "b": "ñ" },
-  { "id": 16, "a": "O", "b": "o" },
-  { "id": 17, "a": "P", "b": "p" },
-  { "id": 18, "a": "Q", "b": "q" },
-  { "id": 19, "a": "R", "b": "r" },
-  { "id": 20, "a": "S", "b": "s" },
-  { "id": 21, "a": "T", "b": "t" },
-  { "id": 22, "a": "U", "b": "u" },
-  { "id": 23, "a": "V", "b": "v" },
-  { "id": 24, "a": "W", "b": "w" },
-  { "id": 25, "a": "X", "b": "x" },
-  { "id": 26, "a": "Y", "b": "y" },
-  { "id": 27, "a": "Z", "b": "z" }
+  {
+    "id": 1,
+    "a": "Sustantivo",
+    "b": "Designa realidades"
+  },
+  {
+    "id": 2,
+    "a": "Adjetivo",
+    "b": "Indica cualidades"
+  },
+  {
+    "id": 3,
+    "a": "Determinante",
+    "b": "Acompaña al sustantivo"
+  },
+  {
+    "id": 4,
+    "a": "Adverbio",
+    "b": "Invariable"
+  },
+  {
+    "id": 5,
+    "a": "Preposición",
+    "b": "A, ante, bajo..."
+  },
+  {
+    "id": 6,
+    "a": "Diptongo",
+    "b": "Cerrada + Abierta"
+  },
+  {
+    "id": 7,
+    "a": "Hiato",
+    "b": "Abierta + Abierta"
+  },
+  {
+    "id": 8,
+    "a": "Palabra aguda",
+    "b": "Última tónica"
+  },
+  {
+    "id": 9,
+    "a": "Palabra llana",
+    "b": "Penúltima tónica"
+  },
+  {
+    "id": 10,
+    "a": "Palabra esdrújula",
+    "b": "Antepenúltima tónica"
+  },
+  {
+    "id": 11,
+    "a": "Sujeto",
+    "b": "Concuerda con verbo"
+  },
+  {
+    "id": 12,
+    "a": "Predicado",
+    "b": "Lo que se dice"
+  },
+  {
+    "id": 13,
+    "a": "Género lírico",
+    "b": "Sentimientos"
+  },
+  {
+    "id": 14,
+    "a": "Género narrativo",
+    "b": "Cuenta hechos"
+  },
+  {
+    "id": 15,
+    "a": "Género dramático",
+    "b": "Teatro"
+  },
+  {
+    "id": 16,
+    "a": "Sinónimos",
+    "b": "Igual significado"
+  },
+  {
+    "id": 17,
+    "a": "Antónimos",
+    "b": "Significado opuesto"
+  },
+  {
+    "id": 18,
+    "a": "Polisemia",
+    "b": "Varios significados"
+  },
+  {
+    "id": 19,
+    "a": "Homónimos",
+    "b": "Se escriben igual"
+  },
+  {
+    "id": 20,
+    "a": "Campo semántico",
+    "b": "Mismo tema"
+  },
+  {
+    "id": 21,
+    "a": "Prefijos",
+    "b": "Delante de raíz"
+  },
+  {
+    "id": 22,
+    "a": "Sufijos",
+    "b": "Detrás de raíz"
+  },
+  {
+    "id": 23,
+    "a": "Lexema",
+    "b": "Raíz de palabra"
+  },
+  {
+    "id": 24,
+    "a": "Enunciado",
+    "b": "Unidad de comunicación"
+  },
+  {
+    "id": 25,
+    "a": "Oración",
+    "b": "Contiene verbo"
+  },
+  {
+    "id": 26,
+    "a": "Verso",
+    "b": "Línea de poema"
+  },
+  {
+    "id": 27,
+    "a": "Rima asonante",
+    "b": "Solo vocales"
+  },
+  {
+    "id": 28,
+    "a": "Rima consonante",
+    "b": "Vocales y cons."
+  },
+  {
+    "id": 29,
+    "a": "Personificación",
+    "b": "Rasgos humanos"
+  },
+  {
+    "id": 30,
+    "a": "Metáfora",
+    "b": "Identificación"
+  }
 ]

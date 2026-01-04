@@ -1,14 +1,127 @@
 [
-  { "id": 1, "a": "💻", "b": "💻" },
-  { "id": 2, "a": "⌨️", "b": "⌨️" },
-  { "id": 3, "a": "🖱️", "b": "🖱️" },
-  { "id": 4, "a": "🤖", "b": "🤖" },
-  { "id": 5, "a": "💾", "b": "💾" },
-  { "id": 6, "a": "📱", "b": "📱" },
-  { "id": 7, "a": "🔋", "b": "🔋" },
-  { "id": 8, "a": "💡", "b": "💡" },
-  { "id": 9, "a": "⚙️", "b": "⚙️" },
-  { "id": 10, "a": "🎮", "b": "🎮" },
-  { "id": 11, "a": "🖨️", "b": "🖨️" },
-  { "id": 12, "a": "🐛", "b": "🐛" }
+  {
+    "id": 1,
+    "a": "Secuencia",
+    "b": "Orden de pasos"
+  },
+  {
+    "id": 2,
+    "a": "Bucle",
+    "b": "Repetir"
+  },
+  {
+    "id": 3,
+    "a": "Condicional",
+    "b": "Si... entonces"
+  },
+  {
+    "id": 4,
+    "a": "Evento",
+    "b": "Al hacer clic"
+  },
+  {
+    "id": 5,
+    "a": "Scratch",
+    "b": "Programar con bloques"
+  },
+  {
+    "id": 6,
+    "a": "Personaje",
+    "b": "Objeto"
+  },
+  {
+    "id": 7,
+    "a": "Escenario",
+    "b": "Fondo"
+  },
+  {
+    "id": 8,
+    "a": "Bloque azul",
+    "b": "Movimiento"
+  },
+  {
+    "id": 9,
+    "a": "Bloque amarillo",
+    "b": "Eventos"
+  },
+  {
+    "id": 10,
+    "a": "Bloque naranja",
+    "b": "Control"
+  },
+  {
+    "id": 11,
+    "a": "Bloque morado",
+    "b": "Apariencia"
+  },
+  {
+    "id": 12,
+    "a": "CPU",
+    "b": "Cerebro ordenador"
+  },
+  {
+    "id": 13,
+    "a": "Memoria RAM",
+    "b": "Memoria rápida"
+  },
+  {
+    "id": 14,
+    "a": "Disco duro",
+    "b": "Guarda todo"
+  },
+  {
+    "id": 15,
+    "a": "Puerto USB",
+    "b": "Conexión externa"
+  },
+  {
+    "id": 16,
+    "a": "Altavoz",
+    "b": "Salida audio"
+  },
+  {
+    "id": 17,
+    "a": "Micrófono",
+    "b": "Entrada audio"
+  },
+  {
+    "id": 18,
+    "a": "Cámara",
+    "b": "Entrada video"
+  },
+  {
+    "id": 19,
+    "a": "Impresora",
+    "b": "Papel"
+  },
+  {
+    "id": 20,
+    "a": "Escáner",
+    "b": "Digitalizar"
+  },
+  {
+    "id": 21,
+    "a": "Pixel",
+    "b": "Punto de luz"
+  },
+  {
+    "id": 22,
+    "a": "Resolución",
+    "b": "Calidad imagen"
+  },
+  {
+    "id": 23,
+    "a": "Correo electrónico",
+    "b": "Enviar mensajes"
+  },
+  {
+    "id": 24,
+    "a": "Navegador",
+    "b": "Chrome, Firefox..."
+  },
+  {
+    "id": 25,
+    "a": "Buscador",
+    "b": "Google"
+  }
 ]

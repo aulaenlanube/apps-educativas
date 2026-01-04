@@ -1,14 +1,127 @@
 [
-  { "id": 1, "a": "💻", "b": "💻" },
-  { "id": 2, "a": "⌨️", "b": "⌨️" },
-  { "id": 3, "a": "🖱️", "b": "🖱️" },
-  { "id": 4, "a": "🤖", "b": "🤖" },
-  { "id": 5, "a": "💾", "b": "💾" },
-  { "id": 6, "a": "📱", "b": "📱" },
-  { "id": 7, "a": "🔋", "b": "🔋" },
-  { "id": 8, "a": "💡", "b": "💡" },
-  { "id": 9, "a": "⚙️", "b": "⚙️" },
-  { "id": 10, "a": "🎮", "b": "🎮" },
-  { "id": 11, "a": "🖨️", "b": "🖨️" },
-  { "id": 12, "a": "🐛", "b": "🐛" }
+  {
+    "id": 1,
+    "a": "Base de datos",
+    "b": "Guarda mucha info"
+  },
+  {
+    "id": 2,
+    "a": "Consulta (Query)",
+    "b": "Pedir a BD"
+  },
+  {
+    "id": 3,
+    "a": "SQL",
+    "b": "Lenguaje de BD"
+  },
+  {
+    "id": 4,
+    "a": "Frontend",
+    "b": "Lo que se ve"
+  },
+  {
+    "id": 5,
+    "a": "Backend",
+    "b": "Detrás de escena"
+  },
+  {
+    "id": 6,
+    "a": "Fullstack",
+    "b": "Todo terreno"
+  },
+  {
+    "id": 7,
+    "a": "API",
+    "b": "Comunicación entre apps"
+  },
+  {
+    "id": 8,
+    "a": "JSON",
+    "b": "Formato de datos"
+  },
+  {
+    "id": 9,
+    "a": "Framework",
+    "b": "Marco de trabajo"
+  },
+  {
+    "id": 10,
+    "a": "Librería",
+    "b": "Curas de código"
+  },
+  {
+    "id": 11,
+    "a": "Git",
+    "b": "Control versiones"
+  },
+  {
+    "id": 12,
+    "a": "GitHub",
+    "b": "Nube de código"
+  },
+  {
+    "id": 13,
+    "a": "Commit",
+    "b": "Guardar cambios"
+  },
+  {
+    "id": 14,
+    "a": "Branch",
+    "b": "Rama de trabajo"
+  },
+  {
+    "id": 15,
+    "a": "Merge",
+    "b": "Unir cambios"
+  },
+  {
+    "id": 16,
+    "a": "Ciberseguridad",
+    "b": "Protección ataques"
+  },
+  {
+    "id": 17,
+    "a": "Phishing",
+    "b": "Engaño por email"
+  },
+  {
+    "id": 18,
+    "a": "Firewall",
+    "b": "Cortafuegos"
+  },
+  {
+    "id": 19,
+    "a": "Proxy",
+    "b": "Intermediario"
+  },
+  {
+    "id": 20,
+    "a": "VPN",
+    "b": "Red privada virtual"
+  },
+  {
+    "id": 21,
+    "a": "Blockchain",
+    "b": "Cadena bloques"
+  },
+  {
+    "id": 22,
+    "a": "Criptomoneda",
+    "b": "Bitcoin, Eth..."
+  },
+  {
+    "id": 23,
+    "a": "Big Data",
+    "b": "Muchos datos"
+  },
+  {
+    "id": 24,
+    "a": "Cloud Computing",
+    "b": "Amazon AWS, Azure"
+  },
+  {
+    "id": 25,
+    "a": "Realidad Virtual",
+    "b": "VR"
+  }
 ]

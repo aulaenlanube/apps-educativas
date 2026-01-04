@@ -1,14 +1,152 @@
 [
-  { "id": 1, "a": "🧬", "b": "🧬" },
-  { "id": 2, "a": "🔬", "b": "🔬" },
-  { "id": 3, "a": "🌿", "b": "🌿" },
-  { "id": 4, "a": "🦠", "b": "🦠" },
-  { "id": 5, "a": "🦍", "b": "🦍" },
-  { "id": 6, "a": "🌍", "b": "🌍" },
-  { "id": 7, "a": "🌋", "b": "🌋" },
-  { "id": 8, "a": "🦖", "b": "🦖" },
-  { "id": 9, "a": "💧", "b": "💧" },
-  { "id": 10, "a": "🍄", "b": "🍄" },
-  { "id": 11, "a": "🌺", "b": "🌺" },
-  { "id": 12, "a": "🐟", "b": "🐟" }
+  {
+    "id": 1,
+    "a": "Genética",
+    "b": "Estudio de la herencia"
+  },
+  {
+    "id": 2,
+    "a": "Gen",
+    "b": "Fragmento de ADN"
+  },
+  {
+    "id": 3,
+    "a": "Alelo",
+    "b": "Versión de un gen"
+  },
+  {
+    "id": 4,
+    "a": "Homocigoto",
+    "b": "Alelos iguales"
+  },
+  {
+    "id": 5,
+    "a": "Heterocigoto",
+    "b": "Alelos diferentes"
+  },
+  {
+    "id": 6,
+    "a": "Genotipo",
+    "b": "Conjunto de genes"
+  },
+  {
+    "id": 7,
+    "a": "Fenotipo",
+    "b": "Rasgos observables"
+  },
+  {
+    "id": 8,
+    "a": "1ª Ley de Mendel",
+    "b": "Uniformidad híbridos"
+  },
+  {
+    "id": 9,
+    "a": "Cromosoma",
+    "b": "ADN condensado"
+  },
+  {
+    "id": 10,
+    "a": "Mitosis",
+    "b": "Células somáticas"
+  },
+  {
+    "id": 11,
+    "a": "Meiosis",
+    "b": "Células sexuales"
+  },
+  {
+    "id": 12,
+    "a": "Evolución",
+    "b": "Cambio en el tiempo"
+  },
+  {
+    "id": 13,
+    "a": "Selección natural",
+    "b": "Darwin"
+  },
+  {
+    "id": 14,
+    "a": "Mutación",
+    "b": "Cambio en el ADN"
+  },
+  {
+    "id": 15,
+    "a": "Fósil",
+    "b": "Resto orgánico antiguo"
+  },
+  {
+    "id": 16,
+    "a": "Especiación",
+    "b": "Nuevas especies"
+  },
+  {
+    "id": 17,
+    "a": "Deriva genética",
+    "b": "Efecto del azar"
+  },
+  {
+    "id": 18,
+    "a": "Biotecnología",
+    "b": "Uso de seres vivos"
+  },
+  {
+    "id": 19,
+    "a": "Clonación",
+    "b": "Copia idéntica"
+  },
+  {
+    "id": 20,
+    "a": "Transgénico",
+    "b": "ADN de otra especie"
+  },
+  {
+    "id": 21,
+    "a": "Ecosistema",
+    "b": "Flujo de energía"
+  },
+  {
+    "id": 22,
+    "a": "Nivel trófico",
+    "b": "Posición en cadena"
+  },
+  {
+    "id": 23,
+    "a": "Bioelemento",
+    "b": "C, H, O, N"
+  },
+  {
+    "id": 24,
+    "a": "Glúcido",
+    "b": "Energético"
+  },
+  {
+    "id": 25,
+    "a": "Lípido",
+    "b": "Reserva energética"
+  },
+  {
+    "id": 26,
+    "a": "Proteína",
+    "b": "Estructural"
+  },
+  {
+    "id": 27,
+    "a": "Ácido nucleico",
+    "b": "Informativo"
+  },
+  {
+    "id": 28,
+    "a": "Enfermedad genética",
+    "b": "Hereditaria"
+  },
+  {
+    "id": 29,
+    "a": "Árbol genealógico",
+    "b": "Historia familiar"
+  },
+  {
+    "id": 30,
+    "a": "Biodiversidad",
+    "b": "Riqueza biológica"
+  }
 ]

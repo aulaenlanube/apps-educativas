@@ -1,42 +1,127 @@
 [
-  { "id": 1, "a": "U", "b": "1" },
-  { "id": 2, "a": "Dos", "b": "2" },
-  { "id": 3, "a": "Tres", "b": "3" },
-  { "id": 4, "a": "Quatre", "b": "4" },
-  { "id": 5, "a": "Cinc", "b": "5" },
-  { "id": 6, "a": "Sis", "b": "6" },
-  { "id": 7, "a": "Set", "b": "7" },
-  { "id": 8, "a": "Vuit", "b": "8" },
-  { "id": 9, "a": "Nou", "b": "9" },
-  { "id": 10, "a": "Deu", "b": "10" },
-  { "id": 11, "a": "Roig", "b": "🔴" },
-  { "id": 12, "a": "Blau", "b": "🔵" },
-  { "id": 13, "a": "Verd", "b": "🟢" },
-  { "id": 14, "a": "Groc", "b": "🟡" },
-  { "id": 15, "a": "Taronja", "b": "🟠" },
-  { "id": 16, "a": "Lila", "b": "🟣" },
-  { "id": 17, "a": "Negre", "b": "⚫" },
-  { "id": 18, "a": "Blanc", "b": "⚪" },
-  { "id": 19, "a": "Gos", "b": "🐶" },
-  { "id": 20, "a": "Gat", "b": "🐱" },
-  { "id": 21, "a": "Ratolí", "b": "🐭" },
-  { "id": 22, "a": "Conill", "b": "🐰" },
-  { "id": 23, "a": "Guineu", "b": "🦊" },
-  { "id": 24, "a": "Os", "b": "🐻" },
-  { "id": 25, "a": "Panda", "b": "🐼" },
-  { "id": 26, "a": "Lleó", "b": "🦁" },
-  { "id": 27, "a": "Tigre", "b": "🐯" },
-  { "id": 28, "a": "Vaca", "b": "🐮" },
-  { "id": 29, "a": "Porc", "b": "🐷" },
-  { "id": 30, "a": "Granota", "b": "🐸" },
-  { "id": 31, "a": "Mico", "b": "🐵" },
-  { "id": 32, "a": "Gallina", "b": "🐔" },
-  { "id": 33, "a": "Pingüí", "b": "🐧" },
-  { "id": 34, "a": "Ocell", "b": "🐦" },
-  { "id": 35, "a": "Ànec", "b": "🦆" },
-  { "id": 36, "a": "Mussol", "b": "🦉" },
-  { "id": 37, "a": "Abella", "b": "🐝" },
-  { "id": 38, "a": "Papallona", "b": "🦋" },
-  { "id": 39, "a": "Peix", "b": "🐟" },
-  { "id": 40, "a": "Tortuga", "b": "🐢" }
+  {
+    "id": 1,
+    "a": "Gèner",
+    "b": "Masculí / Femení"
+  },
+  {
+    "id": 2,
+    "a": "Nombre",
+    "b": "Singular / Plural"
+  },
+  {
+    "id": 3,
+    "a": "Present d'indicatiu",
+    "b": "Ara faig"
+  },
+  {
+    "id": 4,
+    "a": "Passat",
+    "b": "Ahir vaig fer"
+  },
+  {
+    "id": 5,
+    "a": "Futur",
+    "b": "Demà faré"
+  },
+  {
+    "id": 6,
+    "a": "Pronoms personals",
+    "b": "Jo, tu, ell..."
+  },
+  {
+    "id": 7,
+    "a": "Adverbi de lloc",
+    "b": "Ací, allà"
+  },
+  {
+    "id": 8,
+    "a": "Adverbi de temps",
+    "b": "Avui, demà"
+  },
+  {
+    "id": 9,
+    "a": "Preposicions",
+    "b": "a, de, amb, per..."
+  },
+  {
+    "id": 10,
+    "a": "Conjuncions",
+    "b": "i, o, però..."
+  },
+  {
+    "id": 11,
+    "a": "Derivació",
+    "b": "Prefixos i sufixos"
+  },
+  {
+    "id": 12,
+    "a": "Hiat",
+    "b": "i/u amb dièresi (ï, ü)"
+  },
+  {
+    "id": 13,
+    "a": "Dièresi",
+    "b": "Dos punts sobre vocal"
+  },
+  {
+    "id": 14,
+    "a": "Paraula aguda",
+    "b": "Última síl·laba tònica"
+  },
+  {
+    "id": 15,
+    "a": "Paraula plana",
+    "b": "Penúltima tònica"
+  },
+  {
+    "id": 16,
+    "a": "Paraula esdrúixola",
+    "b": "Antepenúltima tònica"
+  },
+  {
+    "id": 17,
+    "a": "Enric Valor",
+    "b": "Rondalles"
+  },
+  {
+    "id": 18,
+    "a": "Ausiàs March",
+    "b": "Poeta clàssic"
+  },
+  {
+    "id": 19,
+    "a": "Tirant lo Blanch",
+    "b": "Cavalleria"
+  },
+  {
+    "id": 20,
+    "a": "Joanot Martorell",
+    "b": "Autor de Tirant"
+  },
+  {
+    "id": 21,
+    "a": "Aigua",
+    "b": "H2O"
+  },
+  {
+    "id": 22,
+    "a": "Pluja",
+    "b": "Precipitació"
+  },
+  {
+    "id": 23,
+    "a": "Neu",
+    "b": "Aigua sòlida"
+  },
+  {
+    "id": 24,
+    "a": "Vent",
+    "b": "Aire en moviment"
+  },
+  {
+    "id": 25,
+    "a": "Tempesta",
+    "b": "Llamps i trons"
+  }
 ]

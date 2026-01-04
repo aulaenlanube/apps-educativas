@@ -1,42 +1,127 @@
 [
-  { "id": 1, "a": "One", "b": "1" },
-  { "id": 2, "a": "Two", "b": "2" },
-  { "id": 3, "a": "Three", "b": "3" },
-  { "id": 4, "a": "Four", "b": "4" },
-  { "id": 5, "a": "Five", "b": "5" },
-  { "id": 6, "a": "Six", "b": "6" },
-  { "id": 7, "a": "Seven", "b": "7" },
-  { "id": 8, "a": "Eight", "b": "8" },
-  { "id": 9, "a": "Nine", "b": "9" },
-  { "id": 10, "a": "Ten", "b": "10" },
-  { "id": 11, "a": "Red", "b": "🔴" },
-  { "id": 12, "a": "Blue", "b": "🔵" },
-  { "id": 13, "a": "Green", "b": "🟢" },
-  { "id": 14, "a": "Yellow", "b": "🟡" },
-  { "id": 15, "a": "Orange", "b": "🟠" },
-  { "id": 16, "a": "Purple", "b": "🟣" },
-  { "id": 17, "a": "Black", "b": "⚫" },
-  { "id": 18, "a": "White", "b": "⚪" },
-  { "id": 19, "a": "Dog", "b": "🐶" },
-  { "id": 20, "a": "Cat", "b": "🐱" },
-  { "id": 21, "a": "Mouse", "b": "🐭" },
-  { "id": 22, "a": "Rabbit", "b": "🐰" },
-  { "id": 23, "a": "Fox", "b": "🦊" },
-  { "id": 24, "a": "Bear", "b": "🐻" },
-  { "id": 25, "a": "Panda", "b": "🐼" },
-  { "id": 26, "a": "Lion", "b": "🦁" },
-  { "id": 27, "a": "Tiger", "b": "🐯" },
-  { "id": 28, "a": "Cow", "b": "🐮" },
-  { "id": 29, "a": "Pig", "b": "🐷" },
-  { "id": 30, "a": "Frog", "b": "🐸" },
-  { "id": 31, "a": "Monkey", "b": "🐵" },
-  { "id": 32, "a": "Chicken", "b": "🐔" },
-  { "id": 33, "a": "Penguin", "b": "🐧" },
-  { "id": 34, "a": "Bird", "b": "🐦" },
-  { "id": 35, "a": "Duck", "b": "🦆" },
-  { "id": 36, "a": "Owl", "b": "🦉" },
-  { "id": 37, "a": "Bee", "b": "🐝" },
-  { "id": 38, "a": "Butterfly", "b": "🦋" },
-  { "id": 39, "a": "Fish", "b": "🐟" },
-  { "id": 40, "a": "Turtle", "b": "🐢" }
+  {
+    "id": 1,
+    "a": "I am working",
+    "b": "Estoy trabajando"
+  },
+  {
+    "id": 2,
+    "a": "She is reading",
+    "b": "Ella está leyendo"
+  },
+  {
+    "id": 3,
+    "a": "They are playing",
+    "b": "Ellos están jugando"
+  },
+  {
+    "id": 4,
+    "a": "Bigger than",
+    "b": "Más grande que"
+  },
+  {
+    "id": 5,
+    "a": "Smaller than",
+    "b": "Más pequeño que"
+  },
+  {
+    "id": 6,
+    "a": "The biggest",
+    "b": "El más grande"
+  },
+  {
+    "id": 7,
+    "a": "More beautiful",
+    "b": "Más hermoso"
+  },
+  {
+    "id": 8,
+    "a": "The best",
+    "b": "El mejor"
+  },
+  {
+    "id": 9,
+    "a": "The worst",
+    "b": "El peor"
+  },
+  {
+    "id": 10,
+    "a": "Was",
+    "b": "Era/Fue (Sing.)"
+  },
+  {
+    "id": 11,
+    "a": "Were",
+    "b": "Eran/Fueron (Plur.)"
+  },
+  {
+    "id": 12,
+    "a": "Stomach ache",
+    "b": "Dolor de estómago"
+  },
+  {
+    "id": 13,
+    "a": "Headache",
+    "b": "Dolor de cabeza"
+  },
+  {
+    "id": 14,
+    "a": "Toothache",
+    "b": "Dolor de muelas"
+  },
+  {
+    "id": 15,
+    "a": "Sore throat",
+    "b": "Dolor de garganta"
+  },
+  {
+    "id": 16,
+    "a": "Forest",
+    "b": "Bosque"
+  },
+  {
+    "id": 17,
+    "a": "Mountain",
+    "b": "Montaña"
+  },
+  {
+    "id": 18,
+    "a": "Desert",
+    "b": "Desierto"
+  },
+  {
+    "id": 19,
+    "a": "Ocean",
+    "b": "Océano"
+  },
+  {
+    "id": 20,
+    "a": "Always",
+    "b": "Siempre"
+  },
+  {
+    "id": 21,
+    "a": "Never",
+    "b": "Nunca"
+  },
+  {
+    "id": 22,
+    "a": "Sometimes",
+    "b": "A veces"
+  },
+  {
+    "id": 23,
+    "a": "Often",
+    "b": "A menudo"
+  },
+  {
+    "id": 24,
+    "a": "Usually",
+    "b": "Normalmente"
+  },
+  {
+    "id": 25,
+    "a": "Hardly ever",
+    "b": "Casi nunca"
+  }
 ]

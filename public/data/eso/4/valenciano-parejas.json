@@ -1,22 +1,152 @@
 [
-  { "id": 1, "a": "Gat", "b": "🐱" },
-  { "id": 2, "a": "Gos", "b": "🐶" },
-  { "id": 3, "a": "Sol", "b": "☀️" },
-  { "id": 4, "a": "Lluna", "b": "🌙" },
-  { "id": 5, "a": "Cotxe", "b": "🚗" },
-  { "id": 6, "a": "Poma", "b": "🍎" },
-  { "id": 7, "a": "Plàtan", "b": "🍌" },
-  { "id": 8, "a": "Llibre", "b": "📖" },
-  { "id": 9, "a": "Llapis", "b": "✏️" },
-  { "id": 10, "a": "Casa", "b": "🏠" },
-  { "id": 11, "a": "Arbre", "b": "🌳" },
-  { "id": 12, "a": "Flor", "b": "🌸" },
-  { "id": 13, "a": "Peix", "b": "🐟" },
-  { "id": 14, "a": "Ocell", "b": "🐦" },
-  { "id": 15, "a": "Pilota", "b": "⚽" },
-  { "id": 16, "a": "Estel", "b": "⭐" },
-  { "id": 17, "a": "Mà", "b": "🖐️" },
-  { "id": 18, "a": "Ull", "b": "👁️" },
-  { "id": 19, "a": "Boca", "b": "👄" },
-  { "id": 20, "a": "Gelat", "b": "🍦" }
+  {
+    "id": 1,
+    "a": "Oració subordinada",
+    "b": "Depén de la principal"
+  },
+  {
+    "id": 2,
+    "a": "Subord. de relatiu",
+    "b": "Introdüida per que/qui/qual"
+  },
+  {
+    "id": 3,
+    "a": "Subord. substantiva",
+    "b": "Fa de nom"
+  },
+  {
+    "id": 4,
+    "a": "Pronoms relatius",
+    "b": "que, què, qui, el qual"
+  },
+  {
+    "id": 5,
+    "a": "Pronoms febles",
+    "b": "em, et, es, el, la, els, les..."
+  },
+  {
+    "id": 6,
+    "a": "Subjonctiu",
+    "b": "Expressa desig o dubte"
+  },
+  {
+    "id": 7,
+    "a": "Imperatiu",
+    "b": "Expressa ordre"
+  },
+  {
+    "id": 8,
+    "a": "Neologisme",
+    "b": "Paraula nova (selfie)"
+  },
+  {
+    "id": 9,
+    "a": "Arcaisme",
+    "b": "Paraula en desús (ans)"
+  },
+  {
+    "id": 10,
+    "a": "Barbarisme",
+    "b": "Castellanisme incorrecte"
+  },
+  {
+    "id": 11,
+    "a": "Registre formal",
+    "b": "Conferència, examen"
+  },
+  {
+    "id": 12,
+    "a": "Registre informal",
+    "b": "Pati, família"
+  },
+  {
+    "id": 13,
+    "a": "Vint-i-quatre",
+    "b": "24 (amb guionet)"
+  },
+  {
+    "id": 14,
+    "a": "Tres-cents",
+    "b": "300 (D-U-C)"
+  },
+  {
+    "id": 15,
+    "a": "D / T final",
+    "b": "Sord / Sonor"
+  },
+  {
+    "id": 16,
+    "a": "P / B final",
+    "b": "Diferència fonètica"
+  },
+  {
+    "id": 17,
+    "a": "G / C final",
+    "b": "Normes ortogràfiques"
+  },
+  {
+    "id": 18,
+    "a": "Normes de Castelló",
+    "b": "1932 (Unitat llengua)"
+  },
+  {
+    "id": 19,
+    "a": "Vicent Andrés Estellés",
+    "b": "Poeta del poble"
+  },
+  {
+    "id": 20,
+    "a": "Joan Fuster",
+    "b": "Assagista de Sueca"
+  },
+  {
+    "id": 21,
+    "a": "Mercè Rodoreda",
+    "b": "La plaça del Diamant"
+  },
+  {
+    "id": 22,
+    "a": "Salvador Espriu",
+    "b": "La pell de brau"
+  },
+  {
+    "id": 23,
+    "a": "L'assaig",
+    "b": "Gènere de reflexió"
+  },
+  {
+    "id": 24,
+    "a": "Ironia",
+    "b": "Burla fina"
+  },
+  {
+    "id": 25,
+    "a": "Polifonia",
+    "b": "Diverses veus"
+  },
+  {
+    "id": 26,
+    "a": "Dialecte oriental",
+    "b": "Català central, balear..."
+  },
+  {
+    "id": 27,
+    "a": "Dialecte occidental",
+    "b": "Valencià, lleidatà"
+  },
+  {
+    "id": 28,
+    "a": "Llengua estàndard",
+    "b": "Mitjans de comunicació"
+  },
+  {
+    "id": 29,
+    "a": "Diglòssia",
+    "b": "Conflicte lingüístic"
+  },
+  {
+    "id": 30,
+    "a": "Normalització",
+    "b": "Uso social de la llengua"
+  }
 ]

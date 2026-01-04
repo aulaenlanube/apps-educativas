@@ -1,14 +1,127 @@
 [
-  { "id": 1, "a": "💻", "b": "💻" },
-  { "id": 2, "a": "⌨️", "b": "⌨️" },
-  { "id": 3, "a": "🖱️", "b": "🖱️" },
-  { "id": 4, "a": "🤖", "b": "🤖" },
-  { "id": 5, "a": "💾", "b": "💾" },
-  { "id": 6, "a": "📱", "b": "📱" },
-  { "id": 7, "a": "🔋", "b": "🔋" },
-  { "id": 8, "a": "💡", "b": "💡" },
-  { "id": 9, "a": "⚙️", "b": "⚙️" },
-  { "id": 10, "a": "🎮", "b": "🎮" },
-  { "id": 11, "a": "🖨️", "b": "🖨️" },
-  { "id": 12, "a": "🐛", "b": "🐛" }
+  {
+    "id": 1,
+    "a": "Algoritmo de búsqueda",
+    "b": "Encontrar algo"
+  },
+  {
+    "id": 2,
+    "a": "Algoritmo de ordenación",
+    "b": "Poner en orden"
+  },
+  {
+    "id": 3,
+    "a": "Recursividad",
+    "b": "Función se llama a sí misma"
+  },
+  {
+    "id": 4,
+    "a": "Parámetro",
+    "b": "Entrada de función"
+  },
+  {
+    "id": 5,
+    "a": "Valor de retorno",
+    "b": "Salida de función"
+  },
+  {
+    "id": 6,
+    "a": "IA",
+    "b": "Inteligencia Artificial"
+  },
+  {
+    "id": 7,
+    "a": "Machine Learning",
+    "b": "Enseñar a máquina"
+  },
+  {
+    "id": 8,
+    "a": "Redes Neuronales",
+    "b": "IA avanzada"
+  },
+  {
+    "id": 9,
+    "a": "Criptografía",
+    "b": "Cifrar mensajes"
+  },
+  {
+    "id": 10,
+    "a": "SSL / TLS",
+    "b": "Candado verde"
+  },
+  {
+    "id": 11,
+    "a": "HTML",
+    "b": "Estructura web"
+  },
+  {
+    "id": 12,
+    "a": "CSS",
+    "b": "Estilo web"
+  },
+  {
+    "id": 13,
+    "a": "JavaScript",
+    "b": "Lógica web"
+  },
+  {
+    "id": 14,
+    "a": "Etiqueta",
+    "b": "<body>"
+  },
+  {
+    "id": 15,
+    "a": "Selector",
+    "b": ".mi-clase"
+  },
+  {
+    "id": 16,
+    "a": "Responsive",
+    "b": "Apto para móvil"
+  },
+  {
+    "id": 17,
+    "a": "App Store",
+    "b": "Tienda apps"
+  },
+  {
+    "id": 18,
+    "a": "Open Source",
+    "b": "Código libre"
+  },
+  {
+    "id": 19,
+    "a": "Licencia",
+    "b": "Permiso de uso"
+  },
+  {
+    "id": 20,
+    "a": "Ciberacoso",
+    "b": "Bullying online"
+  },
+  {
+    "id": 21,
+    "a": "Netiqueta",
+    "b": "Educación online"
+  },
+  {
+    "id": 22,
+    "a": "Huella digital",
+    "b": "Nuestra marca online"
+  },
+  {
+    "id": 23,
+    "a": "DPI",
+    "b": "Pixels por pulgada"
+  },
+  {
+    "id": 24,
+    "a": "FPS",
+    "b": "Imágenes por segundo"
+  },
+  {
+    "id": 25,
+    "a": "Ping / Lag",
+    "b": "Retraso conexión"
+  }
 ]

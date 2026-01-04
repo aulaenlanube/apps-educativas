@@ -1,14 +1,127 @@
 [
-  { "id": 1, "a": "👮", "b": "👮" },
-  { "id": 2, "a": "👩‍⚕️", "b": "👩‍⚕️" },
-  { "id": 3, "a": "👨‍🚒", "b": "👨‍🚒" },
-  { "id": 4, "a": "👩‍🏫", "b": "👩‍🏫" },
-  { "id": 5, "a": "🚑", "b": "🚑" },
-  { "id": 6, "a": "🚓", "b": "🚓" },
-  { "id": 7, "a": "🚒", "b": "🚒" },
-  { "id": 8, "a": "🏠", "b": "🏠" },
-  { "id": 9, "a": "🚦", "b": "🚦" },
-  { "id": 10, "a": "🚌", "b": "🚌" },
-  { "id": 11, "a": "🚲", "b": "🚲" },
-  { "id": 12, "a": "🏰", "b": "🏰" }
+  {
+    "id": 1,
+    "a": "Familia",
+    "b": "Padres e hijos"
+  },
+  {
+    "id": 2,
+    "a": "Colegio",
+    "b": "Aprender"
+  },
+  {
+    "id": 3,
+    "a": "Barrio",
+    "b": "Nuestra zona"
+  },
+  {
+    "id": 4,
+    "a": "Calle",
+    "b": "Aceras y calzada"
+  },
+  {
+    "id": 5,
+    "a": "Coche",
+    "b": "🚗"
+  },
+  {
+    "id": 6,
+    "a": "Autobús",
+    "b": "🚌"
+  },
+  {
+    "id": 7,
+    "a": "Tren",
+    "b": "🚂"
+  },
+  {
+    "id": 8,
+    "a": "Avión",
+    "b": "✈️"
+  },
+  {
+    "id": 9,
+    "a": "Barco",
+    "b": "🚢"
+  },
+  {
+    "id": 10,
+    "a": "Policía",
+    "b": "Seguridad"
+  },
+  {
+    "id": 11,
+    "a": "Bombero",
+    "b": "Extinguir fuego"
+  },
+  {
+    "id": 12,
+    "a": "Médico",
+    "b": "Salud"
+  },
+  {
+    "id": 13,
+    "a": "Cartero",
+    "b": "Cartas"
+  },
+  {
+    "id": 14,
+    "a": "Señal de Stop",
+    "b": "Detenerse"
+  },
+  {
+    "id": 15,
+    "a": "Semáforo Rojo",
+    "b": "No pasar"
+  },
+  {
+    "id": 16,
+    "a": "Paso cebra",
+    "b": "Cruzar"
+  },
+  {
+    "id": 17,
+    "a": "Campo",
+    "b": "Naturaleza"
+  },
+  {
+    "id": 18,
+    "a": "Ciudad",
+    "b": "Edificios altos"
+  },
+  {
+    "id": 19,
+    "a": "Pueblo",
+    "b": "Casas bajas"
+  },
+  {
+    "id": 20,
+    "a": "Bandera España",
+    "b": "🔴🟡🔴"
+  },
+  {
+    "id": 21,
+    "a": "Pasado",
+    "b": "Ayer"
+  },
+  {
+    "id": 22,
+    "a": "Presente",
+    "b": "Hoy"
+  },
+  {
+    "id": 23,
+    "a": "Futuro",
+    "b": "Mañana"
+  },
+  {
+    "id": 24,
+    "a": "Semana",
+    "b": "7 días"
+  },
+  {
+    "id": 25,
+    "a": "Año",
+    "b": "12 meses"
+  }
 ]

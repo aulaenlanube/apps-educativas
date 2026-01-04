@@ -1,29 +1,152 @@
 [
-  { "id": 1, "a": "A", "b": "a" },
-  { "id": 2, "a": "B", "b": "b" },
-  { "id": 3, "a": "C", "b": "c" },
-  { "id": 4, "a": "D", "b": "d" },
-  { "id": 5, "a": "E", "b": "e" },
-  { "id": 6, "a": "F", "b": "f" },
-  { "id": 7, "a": "G", "b": "g" },
-  { "id": 8, "a": "H", "b": "h" },
-  { "id": 9, "a": "I", "b": "i" },
-  { "id": 10, "a": "J", "b": "j" },
-  { "id": 11, "a": "K", "b": "k" },
-  { "id": 12, "a": "L", "b": "l" },
-  { "id": 13, "a": "M", "b": "m" },
-  { "id": 14, "a": "N", "b": "n" },
-  { "id": 15, "a": "Ñ", "b": "ñ" },
-  { "id": 16, "a": "O", "b": "o" },
-  { "id": 17, "a": "P", "b": "p" },
-  { "id": 18, "a": "Q", "b": "q" },
-  { "id": 19, "a": "R", "b": "r" },
-  { "id": 20, "a": "S", "b": "s" },
-  { "id": 21, "a": "T", "b": "t" },
-  { "id": 22, "a": "U", "b": "u" },
-  { "id": 23, "a": "V", "b": "v" },
-  { "id": 24, "a": "W", "b": "w" },
-  { "id": 25, "a": "X", "b": "x" },
-  { "id": 26, "a": "Y", "b": "y" },
-  { "id": 27, "a": "Z", "b": "z" }
+  {
+    "id": 1,
+    "a": "Subordinada Sustantiva",
+    "b": "Equivale a un nombre"
+  },
+  {
+    "id": 2,
+    "a": "Subordinada Adjetiva",
+    "b": "Equivale a un adjetivo"
+  },
+  {
+    "id": 3,
+    "a": "Nexo relativo",
+    "b": "Que, cual, quien..."
+  },
+  {
+    "id": 4,
+    "a": "Subord. Adverbial",
+    "b": "Tiempo, modo, lugar..."
+  },
+  {
+    "id": 5,
+    "a": "Causal",
+    "b": "Porque, ya que..."
+  },
+  {
+    "id": 6,
+    "a": "Consecutiva",
+    "b": "Luego, así que..."
+  },
+  {
+    "id": 7,
+    "a": "Concesiva",
+    "b": "Aunque, a pesar de..."
+  },
+  {
+    "id": 8,
+    "a": "Condicional",
+    "b": "Si, con tal que..."
+  },
+  {
+    "id": 9,
+    "a": "Final",
+    "b": "Para que, a fin de..."
+  },
+  {
+    "id": 10,
+    "a": "Modernismo",
+    "b": "Rubén Darío"
+  },
+  {
+    "id": 11,
+    "a": "Generación del 98",
+    "b": "Unamuno y Machado"
+  },
+  {
+    "id": 12,
+    "a": "Novecentismo",
+    "b": "Ortega y Gasset"
+  },
+  {
+    "id": 13,
+    "a": "Generación del 27",
+    "b": "Lorca y Alberti"
+  },
+  {
+    "id": 14,
+    "a": "Vanguardismo",
+    "b": "Surgimiento ismos"
+  },
+  {
+    "id": 15,
+    "a": "Surrealismo",
+    "b": "Mundo de los sueños"
+  },
+  {
+    "id": 16,
+    "a": "Luces de bohemia",
+    "b": "Valle-Inclán"
+  },
+  {
+    "id": 17,
+    "a": "Poeta en Nueva York",
+    "b": "García Lorca"
+  },
+  {
+    "id": 18,
+    "a": "La familia de Pascual Duarte",
+    "b": "Camilo José Cela"
+  },
+  {
+    "id": 19,
+    "a": "Nada",
+    "b": "Carmen Laforet"
+  },
+  {
+    "id": 20,
+    "a": "Góngora",
+    "b": "Homenaje del 27"
+  },
+  {
+    "id": 21,
+    "a": "Greguerías",
+    "b": "Ramón Gómez de la Serna"
+  },
+  {
+    "id": 22,
+    "a": "Metonimia",
+    "b": "Parte por el todo"
+  },
+  {
+    "id": 23,
+    "a": "Sinestesia",
+    "b": "Mezcla de sentidos"
+  },
+  {
+    "id": 24,
+    "a": "Alegoría",
+    "b": "Metáfora continuada"
+  },
+  {
+    "id": 25,
+    "a": "Símbolo",
+    "b": "Objeto con idea"
+  },
+  {
+    "id": 26,
+    "a": "Variedad lingüística",
+    "b": "Dialectos"
+  },
+  {
+    "id": 27,
+    "a": "Bilingüismo",
+    "b": "Dos lenguas conviven"
+  },
+  {
+    "id": 28,
+    "a": "Diglosia",
+    "b": "Desequilibrio lenguas"
+  },
+  {
+    "id": 29,
+    "a": "Lenguas de España",
+    "b": "Gallego, Vasco, Catalán"
+  },
+  {
+    "id": 30,
+    "a": "Arcaísmo",
+    "b": "Palabra en desuso"
+  }
 ]

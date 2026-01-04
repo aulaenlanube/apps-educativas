@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "😃", "b": "😃" },
-  { "id": 2, "a": "😢", "b": "😢" },
-  { "id": 3, "a": "😠", "b": "😠" },
-  { "id": 4, "a": "😱", "b": "😱" },
-  { "id": 5, "a": "😍", "b": "😍" },
-  { "id": 6, "a": "😴", "b": "😴" },
-  { "id": 7, "a": "🤔", "b": "🤔" },
-  { "id": 8, "a": "😎", "b": "😎" },
-  { "id": 9, "a": "🤒", "b": "🤒" },
-  { "id": 10, "a": "🥳", "b": "🥳" },
-  { "id": 11, "a": "🤫", "b": "🤫" },
-  { "id": 12, "a": "🤝", "b": "🤝" },
-  { "id": 13, "a": "😂", "b": "😂" },
-  { "id": 14, "a": "🤮", "b": "🤮" },
-  { "id": 15, "a": "🤯", "b": "🤯" },
-  { "id": 16, "a": "🥶", "b": "🥶" },
-  { "id": 17, "a": "🥵", "b": "🥵" },
-  { "id": 18, "a": "😇", "b": "😇" },
-  { "id": 19, "a": "😈", "b": "😈" },
-  { "id": 20, "a": "🙄", "b": "🙄" }
+  {
+    "id": 1,
+    "a": "Tránsito a la ESO",
+    "b": "Nuevo cambio"
+  },
+  {
+    "id": 2,
+    "a": "Miedos al cambio",
+    "b": "Hablarlo"
+  },
+  {
+    "id": 3,
+    "a": "Expectativas",
+    "b": "Lo que espero"
+  },
+  {
+    "id": 4,
+    "a": "Responsabilidad personal",
+    "b": "Ser mayor"
+  },
+  {
+    "id": 5,
+    "a": "Gestión emociones",
+    "b": "Inteligencia emocional"
+  },
+  {
+    "id": 6,
+    "a": "Relaciones tóxicas",
+    "b": "Identificar daño"
+  },
+  {
+    "id": 7,
+    "a": "Amistad verdadera",
+    "b": "Apoyo incondicional"
+  },
+  {
+    "id": 8,
+    "a": "Identidad digital",
+    "b": "Perfil online"
+  },
+  {
+    "id": 9,
+    "a": "Privacidad avanzada",
+    "b": "Cuidado fotos"
+  },
+  {
+    "id": 10,
+    "a": "Ciudadanía digital",
+    "b": "Derechos y deberes"
+  },
+  {
+    "id": 11,
+    "a": "Resolución conflictos",
+    "b": "Ganar-Ganar"
+  },
+  {
+    "id": 12,
+    "a": "Mediador escolar",
+    "b": "Ayuda a resolver"
+  },
+  {
+    "id": 13,
+    "a": "Derechos Humanos",
+    "b": "Universalidad"
+  },
+  {
+    "id": 14,
+    "a": "Constitución",
+    "b": "Leyes democracia"
+  },
+  {
+    "id": 15,
+    "a": "Voto informado",
+    "b": "Futuro"
+  },
+  {
+    "id": 16,
+    "a": "Opinión propia",
+    "b": "Personalidad"
+  },
+  {
+    "id": 17,
+    "a": "Autoestima fuerte",
+    "b": "Escudo críticas"
+  },
+  {
+    "id": 18,
+    "a": "Sexualidad",
+    "b": "Cambios y respeto"
+  },
+  {
+    "id": 19,
+    "a": "Adicciones",
+    "b": "Prevención"
+  },
+  {
+    "id": 20,
+    "a": "Alcohol y Tabaco",
+    "b": "Riesgos salud"
+  },
+  {
+    "id": 21,
+    "a": "Ocio saludable",
+    "b": "Hobby vs Pantalla"
+  },
+  {
+    "id": 22,
+    "a": "Solidaridad activa",
+    "b": "Campañas ayuda"
+  },
+  {
+    "id": 23,
+    "a": "Sostenibilidad",
+    "b": "Eco-delegado"
+  },
+  {
+    "id": 24,
+    "a": "Proyecto de vida",
+    "b": "Mis sueños"
+  },
+  {
+    "id": 25,
+    "a": "Despedida Primaria",
+    "b": "Etapa cumplida"
+  }
 ]

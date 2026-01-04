@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "Sol", "b": "Sol" },
-  { "id": 2, "a": "Pan", "b": "Pan" },
-  { "id": 3, "a": "Flor", "b": "Flor" },
-  { "id": 4, "a": "Pez", "b": "Pez" },
-  { "id": 5, "a": "Tren", "b": "Tren" },
-  { "id": 6, "a": "Luz", "b": "Luz" },
-  { "id": 7, "a": "Mar", "b": "Mar" },
-  { "id": 8, "a": "Sal", "b": "Sal" },
-  { "id": 9, "a": "Gol", "b": "Gol" },
-  { "id": 10, "a": "Rey", "b": "Rey" },
-  { "id": 11, "a": "Ojo", "b": "Ojo" },
-  { "id": 12, "a": "Pie", "b": "Pie" },
-  { "id": 13, "a": "Mano", "b": "Mano" },
-  { "id": 14, "a": "Uña", "b": "Uña" },
-  { "id": 15, "a": "Oso", "b": "Oso" },
-  { "id": 16, "a": "Pato", "b": "Pato" },
-  { "id": 17, "a": "Gato", "b": "Gato" },
-  { "id": 18, "a": "Nube", "b": "Nube" },
-  { "id": 19, "a": "Casa", "b": "Casa" },
-  { "id": 20, "a": "Bebé", "b": "Bebé" }
+  {
+    "id": 1,
+    "a": "Determinante",
+    "b": "Acompaña al nombre"
+  },
+  {
+    "id": 2,
+    "a": "Demostrativo",
+    "b": "Este, ese, aquel"
+  },
+  {
+    "id": 3,
+    "a": "Posesivo",
+    "b": "Mi, tu, su"
+  },
+  {
+    "id": 4,
+    "a": "Numeral",
+    "b": "Uno, primero..."
+  },
+  {
+    "id": 5,
+    "a": "Indefinido",
+    "b": "Algún, ningún..."
+  },
+  {
+    "id": 6,
+    "a": "Verbo",
+    "b": "Saltar, comer..."
+  },
+  {
+    "id": 7,
+    "a": "Infinitivo",
+    "b": "Termina en -ar, -er, -ir"
+  },
+  {
+    "id": 8,
+    "a": "Pasado",
+    "b": "Ayer corrí"
+  },
+  {
+    "id": 9,
+    "a": "Presente",
+    "b": "Ahora como"
+  },
+  {
+    "id": 10,
+    "a": "Futuro",
+    "b": "Mañana iré"
+  },
+  {
+    "id": 11,
+    "a": "Sujeto",
+    "b": "Quién hace la acción"
+  },
+  {
+    "id": 12,
+    "a": "Predicado",
+    "b": "Lo que dice del sujeto"
+  },
+  {
+    "id": 13,
+    "a": "Punto y seguido",
+    "b": "Misma idea"
+  },
+  {
+    "id": 14,
+    "a": "Punto y aparte",
+    "b": "Idea distinta"
+  },
+  {
+    "id": 15,
+    "a": "B antes de L y R",
+    "b": "Blanco, broma"
+  },
+  {
+    "id": 16,
+    "a": "M antes de P y B",
+    "b": "Campo, tambor"
+  },
+  {
+    "id": 17,
+    "a": "Za, zo, zu",
+    "b": "Ce, ci"
+  },
+  {
+    "id": 18,
+    "a": "Ga, go, gu",
+    "b": "Gue, gui"
+  },
+  {
+    "id": 19,
+    "a": "Güe, güi",
+    "b": "Sonido U"
+  },
+  {
+    "id": 20,
+    "a": "Palabras llanas",
+    "b": "Acento penúltima"
+  },
+  {
+    "id": 21,
+    "a": "Tilde",
+    "b": "Acento gráfico"
+  },
+  {
+    "id": 22,
+    "a": "Prefijo",
+    "b": "Al principio de palabra"
+  },
+  {
+    "id": 23,
+    "a": "Sufijo",
+    "b": "Al final de palabra"
+  },
+  {
+    "id": 24,
+    "a": "Palabras compuestas",
+    "b": "sacapuntas"
+  },
+  {
+    "id": 25,
+    "a": "Familias palabras",
+    "b": "flor, florero, florista"
+  }
 ]

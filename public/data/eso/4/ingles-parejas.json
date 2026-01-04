@@ -1,22 +1,152 @@
 [
-  { "id": 1, "a": "Cat", "b": "🐱" },
-  { "id": 2, "a": "Dog", "b": "🐶" },
-  { "id": 3, "a": "Sun", "b": "☀️" },
-  { "id": 4, "a": "Moon", "b": "🌙" },
-  { "id": 5, "a": "Car", "b": "🚗" },
-  { "id": 6, "a": "Apple", "b": "🍎" },
-  { "id": 7, "a": "Banana", "b": "🍌" },
-  { "id": 8, "a": "Book", "b": "📖" },
-  { "id": 9, "a": "Pencil", "b": "✏️" },
-  { "id": 10, "a": "House", "b": "🏠" },
-  { "id": 11, "a": "Tree", "b": "🌳" },
-  { "id": 12, "a": "Flower", "b": "🌸" },
-  { "id": 13, "a": "Fish", "b": "🐟" },
-  { "id": 14, "a": "Bird", "b": "🐦" },
-  { "id": 15, "a": "Ball", "b": "⚽" },
-  { "id": 16, "a": "Star", "b": "⭐" },
-  { "id": 17, "a": "Hand", "b": "🖐️" },
-  { "id": 18, "a": "Eye", "b": "👁️" },
-  { "id": 19, "a": "Mouth", "b": "👄" },
-  { "id": 20, "a": "Ice Cream", "b": "🍦" }
+  {
+    "id": 1,
+    "a": "Reported Speech",
+    "b": "He said that..."
+  },
+  {
+    "id": 2,
+    "a": "Direct Speech",
+    "b": "I am tired"
+  },
+  {
+    "id": 3,
+    "a": "Third Conditional",
+    "b": "If + Past Perfect, Would have + Participle"
+  },
+  {
+    "id": 4,
+    "a": "Passive Voice",
+    "b": "Agent introduced by 'by'"
+  },
+  {
+    "id": 5,
+    "a": "Modal Deduction",
+    "b": "Must be / Can't be"
+  },
+  {
+    "id": 6,
+    "a": "Relative Defining",
+    "b": "Essential information"
+  },
+  {
+    "id": 7,
+    "a": "Relative Non-defining",
+    "b": "Extra information (commas)"
+  },
+  {
+    "id": 8,
+    "a": "Whose",
+    "b": "Relative of possession"
+  },
+  {
+    "id": 9,
+    "a": "I wish",
+    "b": "Regret / Desire"
+  },
+  {
+    "id": 10,
+    "a": "Had better",
+    "b": "Strong advice"
+  },
+  {
+    "id": 11,
+    "a": "Social Media",
+    "b": "Followers / Trending"
+  },
+  {
+    "id": 12,
+    "a": "Fake News",
+    "b": "Misinformation"
+  },
+  {
+    "id": 13,
+    "a": "Identity theft",
+    "b": "Cybercrime"
+  },
+  {
+    "id": 14,
+    "a": "Success",
+    "b": "Achievement / Goal"
+  },
+  {
+    "id": 15,
+    "a": "Ambition",
+    "b": "Drive / Motivation"
+  },
+  {
+    "id": 16,
+    "a": "Global warming",
+    "b": "Rising temperatures"
+  },
+  {
+    "id": 17,
+    "a": "Sustainability",
+    "b": "Eco-friendly"
+  },
+  {
+    "id": 18,
+    "a": "Consumerism",
+    "b": "Buying culture"
+  },
+  {
+    "id": 19,
+    "a": "Equality",
+    "b": "Parity / Fair treatment"
+  },
+  {
+    "id": 20,
+    "a": "Freedom",
+    "b": "Right to choose"
+  },
+  {
+    "id": 21,
+    "a": "Broaden your horizons",
+    "b": "Travel and learn"
+  },
+  {
+    "id": 22,
+    "a": "Under the weather",
+    "b": "Feeling sick"
+  },
+  {
+    "id": 23,
+    "a": "Break a leg",
+    "b": "Good luck"
+  },
+  {
+    "id": 24,
+    "a": "A piece of cake",
+    "b": "Very easy"
+  },
+  {
+    "id": 25,
+    "a": "Once in a blue moon",
+    "b": "Rarely"
+  },
+  {
+    "id": 26,
+    "a": "Turn down",
+    "b": "Reject an offer"
+  },
+  {
+    "id": 27,
+    "a": "Carry on",
+    "b": "Continue"
+  },
+  {
+    "id": 28,
+    "a": "Find out",
+    "b": "Discover information"
+  },
+  {
+    "id": 29,
+    "a": "Run out of",
+    "b": "No more left"
+  },
+  {
+    "id": 30,
+    "a": "Look forward to",
+    "b": "Be excited about"
+  }
 ]

@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "🦁", "b": "🦁" },
-  { "id": 2, "a": "🐘", "b": "🐘" },
-  { "id": 3, "a": "🐸", "b": "🐸" },
-  { "id": 4, "a": "🦋", "b": "🦋" },
-  { "id": 5, "a": "🌻", "b": "🌻" },
-  { "id": 6, "a": "🌳", "b": "🌳" },
-  { "id": 7, "a": "🍄", "b": "🍄" },
-  { "id": 8, "a": "☀️", "b": "☀️" },
-  { "id": 9, "a": "🌙", "b": "🌙" },
-  { "id": 10, "a": "🌧️", "b": "🌧️" },
-  { "id": 11, "a": "🐱", "b": "🐱" },
-  { "id": 12, "a": "🐶", "b": "🐶" },
-  { "id": 13, "a": "🦅", "b": "🦅" },
-  { "id": 14, "a": "🐍", "b": "🐍" },
-  { "id": 15, "a": "🐢", "b": "🐢" },
-  { "id": 16, "a": "🐝", "b": "🐝" },
-  { "id": 17, "a": "🌊", "b": "🌊" },
-  { "id": 18, "a": "🏔️", "b": "🏔️" },
-  { "id": 19, "a": "❄️", "b": "❄️" },
-  { "id": 20, "a": "🌵", "b": "🌵" }
+  {
+    "id": 1,
+    "a": "Vertebrado",
+    "b": "Tiene huesos"
+  },
+  {
+    "id": 2,
+    "a": "Invertebrado",
+    "b": "Sin huesos"
+  },
+  {
+    "id": 3,
+    "a": "Herbívoro",
+    "b": "Come plantas"
+  },
+  {
+    "id": 4,
+    "a": "Carnívoro",
+    "b": "Come carne"
+  },
+  {
+    "id": 5,
+    "a": "Omnívoro",
+    "b": "Come de todo"
+  },
+  {
+    "id": 6,
+    "a": "Vivíparo",
+    "b": "Vientre madre"
+  },
+  {
+    "id": 7,
+    "a": "Ovíparo",
+    "b": "Nace de huevo"
+  },
+  {
+    "id": 8,
+    "a": "Doméstico",
+    "b": "Vive con humanos"
+  },
+  {
+    "id": 9,
+    "a": "Salvaje",
+    "b": "Vive en libertad"
+  },
+  {
+    "id": 10,
+    "a": "Hojas",
+    "b": "Respiran"
+  },
+  {
+    "id": 11,
+    "a": "Raíz",
+    "b": "Absorbe agua"
+  },
+  {
+    "id": 12,
+    "a": "Tallo",
+    "b": "Sostiene planta"
+  },
+  {
+    "id": 13,
+    "a": "Fruto",
+    "b": "Contiene semillas"
+  },
+  {
+    "id": 14,
+    "a": "Sólido",
+    "b": "Hielo"
+  },
+  {
+    "id": 15,
+    "a": "Líquido",
+    "b": "Agua de grifo"
+  },
+  {
+    "id": 16,
+    "a": "Gaseoso",
+    "b": "Vapor"
+  },
+  {
+    "id": 17,
+    "a": "Planeta Tierra",
+    "b": "🌎"
+  },
+  {
+    "id": 18,
+    "a": "Satélite",
+    "b": "Luna"
+  },
+  {
+    "id": 19,
+    "a": "Estrella",
+    "b": "Sol"
+  },
+  {
+    "id": 20,
+    "a": "Atmósfera",
+    "b": "Aire"
+  },
+  {
+    "id": 21,
+    "a": "Hidrosfera",
+    "b": "Agua"
+  },
+  {
+    "id": 22,
+    "a": "Geosfera",
+    "b": "Rocas"
+  },
+  {
+    "id": 23,
+    "a": "Reptil",
+    "b": "Escamas"
+  },
+  {
+    "id": 24,
+    "a": "Anfibio",
+    "b": "Metamorfosis"
+  },
+  {
+    "id": 25,
+    "a": "Artrópodo",
+    "b": "Patas articuladas"
+  }
 ]

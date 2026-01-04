@@ -1,14 +1,152 @@
 [
-  { "id": 1, "a": "🏛️", "b": "🏛️" },
-  { "id": 2, "a": "🏺", "b": "🏺" },
-  { "id": 3, "a": "🦅", "b": "🦅" },
-  { "id": 4, "a": "⚔️", "b": "⚔️" },
-  { "id": 5, "a": "🛡️", "b": "🛡️" },
-  { "id": 6, "a": "📜", "b": "📜" },
-  { "id": 7, "a": "🍇", "b": "🍇" },
-  { "id": 8, "a": "🎭", "b": "🎭" },
-  { "id": 9, "a": "🕯️", "b": "🕯️" },
-  { "id": 10, "a": "👑", "b": "👑" },
-  { "id": 11, "a": "🦁", "b": "🦁" },
-  { "id": 12, "a": "🌉", "b": "🌉" }
+  {
+    "id": 1,
+    "a": "Nominativo",
+    "b": "Sujeto / Atributo"
+  },
+  {
+    "id": 2,
+    "a": "Vocativo",
+    "b": "Llamada"
+  },
+  {
+    "id": 3,
+    "a": "Acusativo",
+    "b": "C. Directo"
+  },
+  {
+    "id": 4,
+    "a": "Genitivo",
+    "b": "C. del Nombre"
+  },
+  {
+    "id": 5,
+    "a": "Dativo",
+    "b": "C. Indirecto"
+  },
+  {
+    "id": 6,
+    "a": "Ablativo",
+    "b": "C. Circunstancial"
+  },
+  {
+    "id": 7,
+    "a": "1ª declinación",
+    "b": "Temas en -a (rosa)"
+  },
+  {
+    "id": 8,
+    "a": "2ª declinación",
+    "b": "Temas en -o (dominus)"
+  },
+  {
+    "id": 9,
+    "a": "3ª declinación",
+    "b": "Temas en consonante"
+  },
+  {
+    "id": 10,
+    "a": "Presente Sum",
+    "b": "sum, es, est..."
+  },
+  {
+    "id": 11,
+    "a": "Imperfecto Sum",
+    "b": "eram, eras, erat..."
+  },
+  {
+    "id": 12,
+    "a": "Infinitivo presente",
+    "b": "-are, -ere, -ire"
+  },
+  {
+    "id": 13,
+    "a": "Roma",
+    "b": "Siete colinas"
+  },
+  {
+    "id": 14,
+    "a": "Lupercalia",
+    "b": "Loba Capitolina"
+  },
+  {
+    "id": 15,
+    "a": "Domus",
+    "b": "Casa unifamiliar"
+  },
+  {
+    "id": 16,
+    "a": "Insula",
+    "b": "Bloque de pisos"
+  },
+  {
+    "id": 17,
+    "a": "Toga",
+    "b": "Vestimenta formal"
+  },
+  {
+    "id": 18,
+    "a": "Stola",
+    "b": "Vestimenta mujer"
+  },
+  {
+    "id": 19,
+    "a": "Forum",
+    "b": "Centro vida pública"
+  },
+  {
+    "id": 20,
+    "a": "Thermae",
+    "b": "Baños públicos"
+  },
+  {
+    "id": 21,
+    "a": "Amphiatheatrum",
+    "b": "Gladiadores (Colosseum)"
+  },
+  {
+    "id": 22,
+    "a": "Circus",
+    "b": "Carreras carros"
+  },
+  {
+    "id": 23,
+    "a": "Veni, vidi, vici",
+    "b": "Julio César"
+  },
+  {
+    "id": 4,
+    "a": "Carpe diem",
+    "b": "Aprovecha el día"
+  },
+  {
+    "id": 25,
+    "a": "Alma mater",
+    "b": "Madre nutricia"
+  },
+  {
+    "id": 26,
+    "a": "Et cetera",
+    "b": "Y lo demás"
+  },
+  {
+    "id": 27,
+    "a": "Mare Nostrum",
+    "b": "Mar Mediterráneo"
+  },
+  {
+    "id": 28,
+    "a": "Pax Romana",
+    "b": "Periodo estabilidad"
+  },
+  {
+    "id": 29,
+    "a": "Jupiter",
+    "b": "Dios del rayo"
+  },
+  {
+    "id": 30,
+    "a": "Venus",
+    "b": "Diosa del amor"
+  }
 ]

@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "🦁", "b": "🦁" },
-  { "id": 2, "a": "🐘", "b": "🐘" },
-  { "id": 3, "a": "🐸", "b": "🐸" },
-  { "id": 4, "a": "🦋", "b": "🦋" },
-  { "id": 5, "a": "🌻", "b": "🌻" },
-  { "id": 6, "a": "🌳", "b": "🌳" },
-  { "id": 7, "a": "🍄", "b": "🍄" },
-  { "id": 8, "a": "☀️", "b": "☀️" },
-  { "id": 9, "a": "🌙", "b": "🌙" },
-  { "id": 10, "a": "🌧️", "b": "🌧️" },
-  { "id": 11, "a": "🐱", "b": "🐱" },
-  { "id": 12, "a": "🐶", "b": "🐶" },
-  { "id": 13, "a": "🦅", "b": "🦅" },
-  { "id": 14, "a": "🐍", "b": "🐍" },
-  { "id": 15, "a": "🐢", "b": "🐢" },
-  { "id": 16, "a": "🐝", "b": "🐝" },
-  { "id": 17, "a": "🌊", "b": "🌊" },
-  { "id": 18, "a": "🏔️", "b": "🏔️" },
-  { "id": 19, "a": "❄️", "b": "❄️" },
-  { "id": 20, "a": "🌵", "b": "🌵" }
+  {
+    "id": 1,
+    "a": "Aparato reproductor",
+    "b": "Gametos"
+  },
+  {
+    "id": 2,
+    "a": "Testículos",
+    "b": "Espermatozoides"
+  },
+  {
+    "id": 3,
+    "a": "Ovarios",
+    "b": "Óvulos"
+  },
+  {
+    "id": 4,
+    "a": "Fecundación",
+    "b": "Unión gametos"
+  },
+  {
+    "id": 5,
+    "a": "Cigoto",
+    "b": "Célula huevo"
+  },
+  {
+    "id": 6,
+    "a": "Gestación",
+    "b": "Embarazo"
+  },
+  {
+    "id": 7,
+    "a": "Neurona",
+    "b": "Célula nerviosa"
+  },
+  {
+    "id": 8,
+    "a": "Sinapsis",
+    "b": "Comunicación neuronas"
+  },
+  {
+    "id": 9,
+    "a": "Sistema Nervioso Central",
+    "b": "Encéfalo y médula"
+  },
+  {
+    "id": 10,
+    "a": "Nervios",
+    "b": "Sistema Periférico"
+  },
+  {
+    "id": 11,
+    "a": "Reflejo",
+    "b": "Involuntario"
+  },
+  {
+    "id": 12,
+    "a": "Hormonas",
+    "b": "Sistema Endocrino"
+  },
+  {
+    "id": 13,
+    "a": "Pubertad",
+    "b": "Cambios físicos"
+  },
+  {
+    "id": 14,
+    "a": "ADN",
+    "b": "Información genética"
+  },
+  {
+    "id": 15,
+    "a": "Genética",
+    "b": "Herencia"
+  },
+  {
+    "id": 16,
+    "a": "Vía Láctea",
+    "b": "Nuestra galaxia"
+  },
+  {
+    "id": 17,
+    "a": "Sistema Solar",
+    "b": "Sol y 8 planetas"
+  },
+  {
+    "id": 18,
+    "a": "Rotación",
+    "b": "Día y noche"
+  },
+  {
+    "id": 19,
+    "a": "Traslación",
+    "b": "Año y estaciones"
+  },
+  {
+    "id": 20,
+    "a": "Eclipse",
+    "b": "Sombra astros"
+  },
+  {
+    "id": 21,
+    "a": "Atmósfera",
+    "b": "Capa gases"
+  },
+  {
+    "id": 22,
+    "a": "Capa de Ozono",
+    "b": "Protección UV"
+  },
+  {
+    "id": 23,
+    "a": "Efecto invernadero",
+    "b": "Calentamiento"
+  },
+  {
+    "id": 24,
+    "a": "Biodiversidad",
+    "b": "Variedad especies"
+  },
+  {
+    "id": 25,
+    "a": "Desarrollo sostenible",
+    "b": "Futuro"
+  }
 ]

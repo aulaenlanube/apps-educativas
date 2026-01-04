@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "👮", "b": "👮" },
-  { "id": 2, "a": "👩‍⚕️", "b": "👩‍⚕️" },
-  { "id": 3, "a": "👨‍🚒", "b": "👨‍🚒" },
-  { "id": 4, "a": "👩‍🏫", "b": "👩‍🏫" },
-  { "id": 5, "a": "🚑", "b": "🚑" },
-  { "id": 6, "a": "🚓", "b": "🚓" },
-  { "id": 7, "a": "🚒", "b": "🚒" },
-  { "id": 8, "a": "🏠", "b": "🏠" },
-  { "id": 9, "a": "🚦", "b": "🚦" },
-  { "id": 10, "a": "🚌", "b": "🚌" },
-  { "id": 11, "a": "🚲", "b": "🚲" },
-  { "id": 12, "a": "🏰", "b": "🏰" },
-  { "id": 13, "a": "👪", "b": "👪" },
-  { "id": 14, "a": "🏫", "b": "🏫" },
-  { "id": 15, "a": "👩‍🍳", "b": "👩‍🍳" },
-  { "id": 16, "a": "👷", "b": "👷" },
-  { "id": 17, "a": "🏥", "b": "🏥" },
-  { "id": 18, "a": "✈️", "b": "✈️" },
-  { "id": 19, "a": "🚂", "b": "🚂" },
-  { "id": 20, "a": "🚜", "b": "🚜" }
+  {
+    "id": 1,
+    "a": "Edad Media",
+    "b": "Siglo V al XV"
+  },
+  {
+    "id": 2,
+    "a": "Islam",
+    "b": "Al-Ándalus"
+  },
+  {
+    "id": 3,
+    "a": "Reinos cristianos",
+    "b": "Reconquista"
+  },
+  {
+    "id": 4,
+    "a": "Feudalismo",
+    "b": "Señores y vasallos"
+  },
+  {
+    "id": 5,
+    "a": "Edad Moderna",
+    "b": "Siglo XV al XVIII"
+  },
+  {
+    "id": 6,
+    "a": "Descubrimiento América",
+    "b": "1492"
+  },
+  {
+    "id": 7,
+    "a": "Reyes Católicos",
+    "b": "Isabel y Fernando"
+  },
+  {
+    "id": 8,
+    "a": "Renacimiento",
+    "b": "Arte y Humanismo"
+  },
+  {
+    "id": 9,
+    "a": "Imperio Español",
+    "b": "Siglo de Oro"
+  },
+  {
+    "id": 10,
+    "a": "Europa",
+    "b": "Continente"
+  },
+  {
+    "id": 11,
+    "a": "Alpes",
+    "b": "Montañas europeas"
+  },
+  {
+    "id": 12,
+    "a": "Danubio",
+    "b": "Río europeo"
+  },
+  {
+    "id": 13,
+    "a": "Rusia",
+    "b": "País más grande"
+  },
+  {
+    "id": 14,
+    "a": "Vaticano",
+    "b": "País más pequeño"
+  },
+  {
+    "id": 15,
+    "a": "Clima Oceánico",
+    "b": "Mucha lluvia"
+  },
+  {
+    "id": 16,
+    "a": "Clima Mediterráneo",
+    "b": "Calor en verano"
+  },
+  {
+    "id": 17,
+    "a": "Clima Continental",
+    "b": "Extremo"
+  },
+  {
+    "id": 18,
+    "a": "Densidad población",
+    "b": "Hab/km²"
+  },
+  {
+    "id": 19,
+    "a": "Natalidad",
+    "b": "Nacimientos"
+  },
+  {
+    "id": 20,
+    "a": "Mortalidad",
+    "b": "Defunciones"
+  },
+  {
+    "id": 21,
+    "a": "Crecimiento natural",
+    "b": "Nacidos - Muertos"
+  },
+  {
+    "id": 22,
+    "a": "Pirámide población",
+    "b": "Gráfico edad"
+  },
+  {
+    "id": 23,
+    "a": "Envejecimiento",
+    "b": "Muchos mayores"
+  },
+  {
+    "id": 24,
+    "a": "Éxodo rural",
+    "b": "Al campo a ciudad"
+  },
+  {
+    "id": 25,
+    "a": "Evolución",
+    "b": "Cambio en el tiempo"
+  }
 ]

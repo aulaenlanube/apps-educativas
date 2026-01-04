@@ -1,22 +1,152 @@
 [
-  { "id": 1, "a": "Chat", "b": "🐱" },
-  { "id": 2, "a": "Chien", "b": "🐶" },
-  { "id": 3, "a": "Lion", "b": "🦁" },
-  { "id": 4, "a": "Poisson", "b": "🐟" },
-  { "id": 5, "a": "Pomme", "b": "🍎" },
-  { "id": 6, "a": "Banane", "b": "🍌" },
-  { "id": 7, "a": "Fraise", "b": "🍓" },
-  { "id": 8, "a": "Orange", "b": "🍊" },
-  { "id": 9, "a": "Maison", "b": "🏠" },
-  { "id": 10, "a": "École", "b": "🏫" },
-  { "id": 11, "a": "Voiture", "b": "🚗" },
-  { "id": 12, "a": "Vélo", "b": "🚲" },
-  { "id": 13, "a": "Ballon", "b": "⚽" },
-  { "id": 14, "a": "Livre", "b": "📖" },
-  { "id": 15, "a": "Crayon", "b": "✏️" },
-  { "id": 16, "a": "Soleil", "b": "☀️" },
-  { "id": 17, "a": "Lune", "b": "🌙" },
-  { "id": 18, "a": "Fleur", "b": "🌸" },
-  { "id": 19, "a": "Arbre", "b": "🌳" },
-  { "id": 20, "a": "Fromage", "b": "🧀" }
+  {
+    "id": 1,
+    "a": "Bonjour",
+    "b": "Buenos días"
+  },
+  {
+    "id": 2,
+    "a": "Bonsoir",
+    "b": "Buenas tardes"
+  },
+  {
+    "id": 3,
+    "a": "Bonne nuit",
+    "b": "Buenas noches"
+  },
+  {
+    "id": 4,
+    "a": "Salut",
+    "b": "Hola / Adiós"
+  },
+  {
+    "id": 5,
+    "a": "Merci beaucoup",
+    "b": "Muchas gracias"
+  },
+  {
+    "id": 6,
+    "a": "S'il vous plaît",
+    "b": "Por favor"
+  },
+  {
+    "id": 7,
+    "a": "Comment ça va?",
+    "b": "¿Cómo va?"
+  },
+  {
+    "id": 8,
+    "a": "Je m'appelle",
+    "b": "Me llamo"
+  },
+  {
+    "id": 9,
+    "a": "J'ai treize ans",
+    "b": "Tengo trece años"
+  },
+  {
+    "id": 10,
+    "a": "Un, deux, trois",
+    "b": "1, 2, 3"
+  },
+  {
+    "id": 11,
+    "a": "Dix, vingt, trente",
+    "b": "10, 20, 30"
+  },
+  {
+    "id": 12,
+    "a": "Lundi, Mardi",
+    "b": "Lunes, Martes"
+  },
+  {
+    "id": 13,
+    "a": "Janvier, Février",
+    "b": "Enero, Febrero"
+  },
+  {
+    "id": 14,
+    "a": "Rouge, Bleu",
+    "b": "Rojo, Azul"
+  },
+  {
+    "id": 15,
+    "a": "Noir, Blanc",
+    "b": "Negro, Blanco"
+  },
+  {
+    "id": 16,
+    "a": "Le père",
+    "b": "El padre"
+  },
+  {
+    "id": 17,
+    "a": "La mère",
+    "b": "La madre"
+  },
+  {
+    "id": 18,
+    "a": "Le frère",
+    "b": "El hermano"
+  },
+  {
+    "id": 19,
+    "a": "La sœur",
+    "b": "La hermana"
+  },
+  {
+    "id": 20,
+    "a": "Le grand-père",
+    "b": "El abuelo"
+  },
+  {
+    "id": 21,
+    "a": "Je suis",
+    "b": "Yo soy / estoy"
+  },
+  {
+    "id": 22,
+    "a": "Tu es",
+    "b": "Tú eres / estás"
+  },
+  {
+    "id": 23,
+    "a": "Il / Elle est",
+    "b": "Él / Ella es"
+  },
+  {
+    "id": 24,
+    "a": "J'ai",
+    "b": "Yo tengo"
+  },
+  {
+    "id": 25,
+    "a": "Tu as",
+    "b": "Tú tienes"
+  },
+  {
+    "id": 26,
+    "a": "Il / Elle a",
+    "b": "Él / Ella tiene"
+  },
+  {
+    "id": 27,
+    "a": "La trousse",
+    "b": "El estuche"
+  },
+  {
+    "id": 28,
+    "a": "Le cartable",
+    "b": "La mochila"
+  },
+  {
+    "id": 29,
+    "a": "La règle",
+    "b": "La regla"
+  },
+  {
+    "id": 30,
+    "a": "La gomme",
+    "b": "La goma"
+  }
 ]

@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "👮", "b": "👮" },
-  { "id": 2, "a": "👩‍⚕️", "b": "👩‍⚕️" },
-  { "id": 3, "a": "👨‍🚒", "b": "👨‍🚒" },
-  { "id": 4, "a": "👩‍🏫", "b": "👩‍🏫" },
-  { "id": 5, "a": "🚑", "b": "🚑" },
-  { "id": 6, "a": "🚓", "b": "🚓" },
-  { "id": 7, "a": "🚒", "b": "🚒" },
-  { "id": 8, "a": "🏠", "b": "🏠" },
-  { "id": 9, "a": "🚦", "b": "🚦" },
-  { "id": 10, "a": "🚌", "b": "🚌" },
-  { "id": 11, "a": "🚲", "b": "🚲" },
-  { "id": 12, "a": "🏰", "b": "🏰" },
-  { "id": 13, "a": "👪", "b": "👪" },
-  { "id": 14, "a": "🏫", "b": "🏫" },
-  { "id": 15, "a": "👩‍🍳", "b": "👩‍🍳" },
-  { "id": 16, "a": "👷", "b": "👷" },
-  { "id": 17, "a": "🏥", "b": "🏥" },
-  { "id": 18, "a": "✈️", "b": "✈️" },
-  { "id": 19, "a": "🚂", "b": "🚂" },
-  { "id": 20, "a": "🚜", "b": "🚜" }
+  {
+    "id": 1,
+    "a": "Puntos cardinales",
+    "b": "N, S, E, O"
+  },
+  {
+    "id": 2,
+    "a": "Brújula",
+    "b": "Aguja magnética"
+  },
+  {
+    "id": 3,
+    "a": "Relieve",
+    "b": "Formas de tierra"
+  },
+  {
+    "id": 4,
+    "a": "Sierra",
+    "b": "Conjunto montañas"
+  },
+  {
+    "id": 5,
+    "a": "Meseta",
+    "b": "Llanura elevada"
+  },
+  {
+    "id": 6,
+    "a": "Depresión",
+    "b": "Terreno hundido"
+  },
+  {
+    "id": 7,
+    "a": "Archipiélago",
+    "b": "Conjunto islas"
+  },
+  {
+    "id": 8,
+    "a": "Cantábrico",
+    "b": "Mar del Norte España"
+  },
+  {
+    "id": 9,
+    "a": "Atlántico",
+    "b": "Océano Oeste España"
+  },
+  {
+    "id": 10,
+    "a": "Mediterráneo",
+    "b": "Mar Este España"
+  },
+  {
+    "id": 11,
+    "a": "Pirineos",
+    "b": "Frontera Francia"
+  },
+  {
+    "id": 12,
+    "a": "Teide",
+    "b": "Volcán Tenerife"
+  },
+  {
+    "id": 13,
+    "a": "Mulhacén",
+    "b": "Pico más alto Península"
+  },
+  {
+    "id": 14,
+    "a": "Ebro",
+    "b": "Río más caudaloso"
+  },
+  {
+    "id": 15,
+    "a": "Tajo",
+    "b": "Río más largo"
+  },
+  {
+    "id": 16,
+    "a": "Guadalquivir",
+    "b": "Río navegable"
+  },
+  {
+    "id": 17,
+    "a": "Democracia",
+    "b": "Elecciones del pueblo"
+  },
+  {
+    "id": 18,
+    "a": "Estado",
+    "b": "Territorio y leyes"
+  },
+  {
+    "id": 19,
+    "a": "Constitución",
+    "b": "Ley fundamental"
+  },
+  {
+    "id": 20,
+    "a": "Rey",
+    "b": "Jefe del Estado"
+  },
+  {
+    "id": 21,
+    "a": "Comunidad Autónoma",
+    "b": "Andalucía/Cataluña..."
+  },
+  {
+    "id": 22,
+    "a": "Provincia",
+    "b": "División de CCAA"
+  },
+  {
+    "id": 23,
+    "a": "Municipio",
+    "b": "Ayuntamiento"
+  },
+  {
+    "id": 24,
+    "a": "Servicio público",
+    "b": "Parque/Biblioteca"
+  },
+  {
+    "id": 25,
+    "a": "Escudo España",
+    "b": "Simbolismo histórico"
+  }
 ]

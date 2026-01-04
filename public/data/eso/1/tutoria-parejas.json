@@ -1,14 +1,152 @@
 [
-  { "id": 1, "a": "😃", "b": "😃" },
-  { "id": 2, "a": "😢", "b": "😢" },
-  { "id": 3, "a": "😠", "b": "😠" },
-  { "id": 4, "a": "😱", "b": "😱" },
-  { "id": 5, "a": "😍", "b": "😍" },
-  { "id": 6, "a": "😴", "b": "😴" },
-  { "id": 7, "a": "🤔", "b": "🤔" },
-  { "id": 8, "a": "😎", "b": "😎" },
-  { "id": 9, "a": "🤒", "b": "🤒" },
-  { "id": 10, "a": "🥳", "b": "🥳" },
-  { "id": 11, "a": "🤫", "b": "🤫" },
-  { "id": 12, "a": "🤝", "b": "🤝" }
+  {
+    "id": 1,
+    "a": "Empatía",
+    "b": "Ponerse en la piel del otro"
+  },
+  {
+    "id": 2,
+    "a": "Asertividad",
+    "b": "Comunicar sin agredir"
+  },
+  {
+    "id": 3,
+    "a": "Autoestima",
+    "b": "Valoración de uno mismo"
+  },
+  {
+    "id": 4,
+    "a": "Resiliencia",
+    "b": "Superar la adversidad"
+  },
+  {
+    "id": 5,
+    "a": "Compañerismo",
+    "b": "Apoyo entre iguales"
+  },
+  {
+    "id": 6,
+    "a": "Mediación",
+    "b": "Resolución de conflictos"
+  },
+  {
+    "id": 7,
+    "a": "Acoso escolar",
+    "b": "Bullying"
+  },
+  {
+    "id": 8,
+    "a": "Ciberacoso",
+    "b": "Acoso en redes"
+  },
+  {
+    "id": 9,
+    "a": "Identidad digital",
+    "b": "Nuestro rastro online"
+  },
+  {
+    "id": 10,
+    "a": "Igualdad",
+    "b": "Mismos derechos/deberes"
+  },
+  {
+    "id": 11,
+    "a": "Diversidad",
+    "b": "Aceptar las diferencias"
+  },
+  {
+    "id": 12,
+    "a": "Tolerancia",
+    "b": "Respeto a opiniones ajenas"
+  },
+  {
+    "id": 13,
+    "a": "Responsabilidad",
+    "b": "Cumplir con los compromisos"
+  },
+  {
+    "id": 14,
+    "a": "Esfuerzo",
+    "b": "Base del éxito escolar"
+  },
+  {
+    "id": 15,
+    "a": "Hábitos de estudio",
+    "b": "Planificación y rutina"
+  },
+  {
+    "id": 16,
+    "a": "Agenda escolar",
+    "b": "Herramienta de organización"
+  },
+  {
+    "id": 17,
+    "a": "Concentración",
+    "b": "Evitar distracciones"
+  },
+  {
+    "id": 18,
+    "a": "Frustración",
+    "b": "Aprender de los errores"
+  },
+  {
+    "id": 19,
+    "a": "Motivación",
+    "b": "Ganas de mejorar"
+  },
+  {
+    "id": 20,
+    "a": "Solidaridad",
+    "b": "Ayuda a colectivos"
+  },
+  {
+    "id": 21,
+    "a": "Respeto al profesor",
+    "b": "Clima de aula positivo"
+  },
+  {
+    "id": 22,
+    "a": "Escucha activa",
+    "b": "Atención plena"
+  },
+  {
+    "id": 23,
+    "a": "Delegado de clase",
+    "b": "Voz de los alumnos"
+  },
+  {
+    "id": 24,
+    "a": "Reglamento interno",
+    "b": "Normas de convivencia"
+  },
+  {
+    "id": 25,
+    "a": "Sanción",
+    "b": "Consecuencia del mal acto"
+  },
+  {
+    "id": 26,
+    "a": "Higiene personal",
+    "b": "Cuidado del cuerpo"
+  },
+  {
+    "id": 27,
+    "a": "Alimentación sana",
+    "b": "Frutas y verduras"
+  },
+  {
+    "id": 28,
+    "a": "Sueño reparador",
+    "b": "Descanso necesario 8h"
+  },
+  {
+    "id": 29,
+    "a": "Privacidad",
+    "b": "Protección de datos"
+  },
+  {
+    "id": 30,
+    "a": "Futuro",
+    "b": "Proyecto de vida"
+  }
 ]

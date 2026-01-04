@@ -1,14 +1,127 @@
 [
-  { "id": 1, "a": "😃", "b": "😃" },
-  { "id": 2, "a": "😢", "b": "😢" },
-  { "id": 3, "a": "😠", "b": "😠" },
-  { "id": 4, "a": "😱", "b": "😱" },
-  { "id": 5, "a": "😍", "b": "😍" },
-  { "id": 6, "a": "😴", "b": "😴" },
-  { "id": 7, "a": "🤔", "b": "🤔" },
-  { "id": 8, "a": "😎", "b": "😎" },
-  { "id": 9, "a": "🤒", "b": "🤒" },
-  { "id": 10, "a": "🥳", "b": "🥳" },
-  { "id": 11, "a": "🤫", "b": "🤫" },
-  { "id": 12, "a": "🤝", "b": "🤝" }
+  {
+    "id": 1,
+    "a": "Respeto",
+    "b": "Valorar a otros"
+  },
+  {
+    "id": 2,
+    "a": "Amistad",
+    "b": "Cariño entre amigos"
+  },
+  {
+    "id": 3,
+    "a": "Compartir",
+    "b": "Dar a los demás"
+  },
+  {
+    "id": 4,
+    "a": "Ayudar",
+    "b": "Echar una mano"
+  },
+  {
+    "id": 5,
+    "a": "Escuchar",
+    "b": "Atender con silencio"
+  },
+  {
+    "id": 6,
+    "a": "Alegría",
+    "b": "😄"
+  },
+  {
+    "id": 7,
+    "a": "Tristeza",
+    "b": "😢"
+  },
+  {
+    "id": 8,
+    "a": "Miedo",
+    "b": "😨"
+  },
+  {
+    "id": 9,
+    "a": "Enfado",
+    "b": "😡"
+  },
+  {
+    "id": 10,
+    "a": "Sorpresa",
+    "b": "😲"
+  },
+  {
+    "id": 11,
+    "a": "Pedir perdón",
+    "b": "Reconocer error"
+  },
+  {
+    "id": 12,
+    "a": "Dar las gracias",
+    "b": "Ser agradecido"
+  },
+  {
+    "id": 13,
+    "a": "Saludar",
+    "b": "Hola"
+  },
+  {
+    "id": 14,
+    "a": "Despedirse",
+    "b": "Adiós"
+  },
+  {
+    "id": 15,
+    "a": "Orden",
+    "b": "Recoger mochila"
+  },
+  {
+    "id": 16,
+    "a": "Limpieza",
+    "b": "Lavarse manos"
+  },
+  {
+    "id": 17,
+    "a": "Esfuerzo",
+    "b": "Intentarlo siempre"
+  },
+  {
+    "id": 18,
+    "a": "Paciencia",
+    "b": "Saber esperar"
+  },
+  {
+    "id": 19,
+    "a": "Honestidad",
+    "b": "Decir la verdad"
+  },
+  {
+    "id": 20,
+    "a": "Generosidad",
+    "b": "Ser bueno"
+  },
+  {
+    "id": 21,
+    "a": "Compañerismo",
+    "b": "Unión en clase"
+  },
+  {
+    "id": 22,
+    "a": "Paz",
+    "b": "🕊️"
+  },
+  {
+    "id": 23,
+    "a": "Diversidad",
+    "b": "Todos somos distintos"
+  },
+  {
+    "id": 24,
+    "a": "Igualdad",
+    "b": "Mismos derechos"
+  },
+  {
+    "id": 25,
+    "a": "Solidaridad",
+    "b": "Apoyo mutuo"
+  }
 ]

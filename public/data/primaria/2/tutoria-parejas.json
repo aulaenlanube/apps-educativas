@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "😃", "b": "😃" },
-  { "id": 2, "a": "😢", "b": "😢" },
-  { "id": 3, "a": "😠", "b": "😠" },
-  { "id": 4, "a": "😱", "b": "😱" },
-  { "id": 5, "a": "😍", "b": "😍" },
-  { "id": 6, "a": "😴", "b": "😴" },
-  { "id": 7, "a": "🤔", "b": "🤔" },
-  { "id": 8, "a": "😎", "b": "😎" },
-  { "id": 9, "a": "🤒", "b": "🤒" },
-  { "id": 10, "a": "🥳", "b": "🥳" },
-  { "id": 11, "a": "🤫", "b": "🤫" },
-  { "id": 12, "a": "🤝", "b": "🤝" },
-  { "id": 13, "a": "😂", "b": "😂" },
-  { "id": 14, "a": "🤮", "b": "🤮" },
-  { "id": 15, "a": "🤯", "b": "🤯" },
-  { "id": 16, "a": "🥶", "b": "🥶" },
-  { "id": 17, "a": "🥵", "b": "🥵" },
-  { "id": 18, "a": "😇", "b": "😇" },
-  { "id": 19, "a": "😈", "b": "😈" },
-  { "id": 20, "a": "🙄", "b": "🙄" }
+  {
+    "id": 1,
+    "a": "Empatía",
+    "b": "Ponerse en lugar de otro"
+  },
+  {
+    "id": 2,
+    "a": "Asertividad",
+    "b": "Decir no sin herir"
+  },
+  {
+    "id": 3,
+    "a": "Autoestima",
+    "b": "Quererse a uno mismo"
+  },
+  {
+    "id": 4,
+    "a": "Colaboración",
+    "b": "Trabajar en equipo"
+  },
+  {
+    "id": 5,
+    "a": "Tolerancia",
+    "b": "Respetar diferencias"
+  },
+  {
+    "id": 6,
+    "a": "Gratitud",
+    "b": "Valorar lo bueno"
+  },
+  {
+    "id": 7,
+    "a": "Optimismo",
+    "b": "Ver el lado positivo"
+  },
+  {
+    "id": 8,
+    "a": "Responsabilidad",
+    "b": "Cumplir deberes"
+  },
+  {
+    "id": 9,
+    "a": "Cuidado",
+    "b": "Tratar bien las cosas"
+  },
+  {
+    "id": 10,
+    "a": "Diálogo",
+    "b": "Hablar para entenderse"
+  },
+  {
+    "id": 11,
+    "a": "Confianza",
+    "b": "Creer en los demás"
+  },
+  {
+    "id": 12,
+    "a": "Sinceridad",
+    "b": "No mentir"
+  },
+  {
+    "id": 13,
+    "a": "Perdón",
+    "b": "Soltar el rencor"
+  },
+  {
+    "id": 14,
+    "a": "Derecho",
+    "b": "Lo que puedo recibir"
+  },
+  {
+    "id": 15,
+    "a": "Deber",
+    "b": "Lo que debo hacer"
+  },
+  {
+    "id": 16,
+    "a": "Normas de clase",
+    "b": "Convivencia"
+  },
+  {
+    "id": 17,
+    "a": "Escuchar activa",
+    "b": "Mirar a los ojos"
+  },
+  {
+    "id": 18,
+    "a": "Frustración",
+    "b": "Aceptar el no"
+  },
+  {
+    "id": 19,
+    "a": "Calma",
+    "b": "Respirar hondo"
+  },
+  {
+    "id": 20,
+    "a": "Ilusión",
+    "b": "Ganas de aprender"
+  },
+  {
+    "id": 21,
+    "a": "Compasión",
+    "b": "Sentir con otro"
+  },
+  {
+    "id": 22,
+    "a": "Humildad",
+    "b": "No presumir"
+  },
+  {
+    "id": 23,
+    "a": "Valentía",
+    "b": "Vencer el miedo"
+  },
+  {
+    "id": 24,
+    "a": "Curiosidad",
+    "b": "Querer saber más"
+  },
+  {
+    "id": 25,
+    "a": "Amabilidad",
+    "b": "Ser cortés"
+  }
 ]

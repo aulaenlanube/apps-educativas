@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "😃", "b": "😃" },
-  { "id": 2, "a": "😢", "b": "😢" },
-  { "id": 3, "a": "😠", "b": "😠" },
-  { "id": 4, "a": "😱", "b": "😱" },
-  { "id": 5, "a": "😍", "b": "😍" },
-  { "id": 6, "a": "😴", "b": "😴" },
-  { "id": 7, "a": "🤔", "b": "🤔" },
-  { "id": 8, "a": "😎", "b": "😎" },
-  { "id": 9, "a": "🤒", "b": "🤒" },
-  { "id": 10, "a": "🥳", "b": "🥳" },
-  { "id": 11, "a": "🤫", "b": "🤫" },
-  { "id": 12, "a": "🤝", "b": "🤝" },
-  { "id": 13, "a": "😂", "b": "😂" },
-  { "id": 14, "a": "🤮", "b": "🤮" },
-  { "id": 15, "a": "🤯", "b": "🤯" },
-  { "id": 16, "a": "🥶", "b": "🥶" },
-  { "id": 17, "a": "🥵", "b": "🥵" },
-  { "id": 18, "a": "😇", "b": "😇" },
-  { "id": 19, "a": "😈", "b": "😈" },
-  { "id": 20, "a": "🙄", "b": "🙄" }
+  {
+    "id": 1,
+    "a": "Autoanálisis",
+    "b": "Conocerse bien"
+  },
+  {
+    "id": 2,
+    "a": "Metas a corto plazo",
+    "b": "Mañana"
+  },
+  {
+    "id": 3,
+    "a": "Metas a largo plazo",
+    "b": "Futuro"
+  },
+  {
+    "id": 4,
+    "a": "Planificación",
+    "b": "Agenda escolar"
+  },
+  {
+    "id": 5,
+    "a": "Hábitos de estudio",
+    "b": "Rutina"
+  },
+  {
+    "id": 6,
+    "a": "Atención",
+    "b": "Concentración"
+  },
+  {
+    "id": 7,
+    "a": "Relajación",
+    "b": "Control estrés"
+  },
+  {
+    "id": 8,
+    "a": "Creatividad",
+    "b": "Nuevas ideas"
+  },
+  {
+    "id": 9,
+    "a": "Pensamiento crítico",
+    "b": "No creer todo"
+  },
+  {
+    "id": 10,
+    "a": "Resolución dilemas",
+    "b": "¿Qué es mejor?"
+  },
+  {
+    "id": 11,
+    "a": "Compañerismo activo",
+    "b": "No ser testigo mudo"
+  },
+  {
+    "id": 12,
+    "a": "Redes sociales",
+    "b": "Seguridad online"
+  },
+  {
+    "id": 13,
+    "a": "Ciberadicción",
+    "b": "Control de tiempo"
+  },
+  {
+    "id": 14,
+    "a": "Ecología",
+    "b": "3 Rs"
+  },
+  {
+    "id": 15,
+    "a": "Consumo responsable",
+    "b": "No malgastar"
+  },
+  {
+    "id": 16,
+    "a": "Alimentación sana",
+    "b": "Cuidado cuerpo"
+  },
+  {
+    "id": 17,
+    "a": "Deporte",
+    "b": "Vida activa"
+  },
+  {
+    "id": 18,
+    "a": "Higiene dental",
+    "b": "👄✨"
+  },
+  {
+    "id": 19,
+    "a": "Descanso",
+    "b": "Dormir 9-10h"
+  },
+  {
+    "id": 20,
+    "a": "Vocación",
+    "b": "Lo que me gusta"
+  },
+  {
+    "id": 21,
+    "a": "Talento",
+    "b": "Se me da bien"
+  },
+  {
+    "id": 22,
+    "a": "Liderazgo positivo",
+    "b": "Guiar bien"
+  },
+  {
+    "id": 23,
+    "a": "Democracia escolar",
+    "b": "Delegado"
+  },
+  {
+    "id": 24,
+    "a": "Debate",
+    "b": "Intercambio opiniones"
+  },
+  {
+    "id": 25,
+    "a": "Consenso",
+    "b": "Acuerdo de todos"
+  }
 ]

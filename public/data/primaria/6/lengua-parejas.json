@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "Sol", "b": "Sol" },
-  { "id": 2, "a": "Pan", "b": "Pan" },
-  { "id": 3, "a": "Flor", "b": "Flor" },
-  { "id": 4, "a": "Pez", "b": "Pez" },
-  { "id": 5, "a": "Tren", "b": "Tren" },
-  { "id": 6, "a": "Luz", "b": "Luz" },
-  { "id": 7, "a": "Mar", "b": "Mar" },
-  { "id": 8, "a": "Sal", "b": "Sal" },
-  { "id": 9, "a": "Gol", "b": "Gol" },
-  { "id": 10, "a": "Rey", "b": "Rey" },
-  { "id": 11, "a": "Ojo", "b": "Ojo" },
-  { "id": 12, "a": "Pie", "b": "Pie" },
-  { "id": 13, "a": "Mano", "b": "Mano" },
-  { "id": 14, "a": "Uña", "b": "Uña" },
-  { "id": 15, "a": "Oso", "b": "Oso" },
-  { "id": 16, "a": "Pato", "b": "Pato" },
-  { "id": 17, "a": "Gato", "b": "Gato" },
-  { "id": 18, "a": "Nube", "b": "Nube" },
-  { "id": 19, "a": "Casa", "b": "Casa" },
-  { "id": 20, "a": "Bebé", "b": "Bebé" }
+  {
+    "id": 1,
+    "a": "Voz activa",
+    "b": "Sujeto agente"
+  },
+  {
+    "id": 2,
+    "a": "Voz pasiva",
+    "b": "Sujeto paciente"
+  },
+  {
+    "id": 3,
+    "a": "Verbos defectivos",
+    "b": "Llover, nevar..."
+  },
+  {
+    "id": 4,
+    "a": "Verbos reflexivos",
+    "b": "Peinarse, lavarse"
+  },
+  {
+    "id": 5,
+    "a": "Análisis sintáctico",
+    "b": "Sujeto y Predicado"
+  },
+  {
+    "id": 6,
+    "a": "C. Circunstancial",
+    "b": "Lugar, tiempo, modo..."
+  },
+  {
+    "id": 7,
+    "a": "CC Lugar",
+    "b": "¿Dónde?"
+  },
+  {
+    "id": 8,
+    "a": "CC Tiempo",
+    "b": "¿Cuándo?"
+  },
+  {
+    "id": 9,
+    "a": "Nivel culto",
+    "b": "Lenguaje preciso"
+  },
+  {
+    "id": 10,
+    "a": "Nivel coloquial",
+    "b": "Amigos y familia"
+  },
+  {
+    "id": 11,
+    "a": "Vulgarismo",
+    "b": "Error lingüístico"
+  },
+  {
+    "id": 12,
+    "a": "Extranjerismo",
+    "b": "Parking, software..."
+  },
+  {
+    "id": 13,
+    "a": "Neologismo",
+    "b": "Palabra nueva"
+  },
+  {
+    "id": 14,
+    "a": "Arcaísmo",
+    "b": "Palabra antigua"
+  },
+  {
+    "id": 15,
+    "a": "Metáfora",
+    "b": "Comparación directa"
+  },
+  {
+    "id": 16,
+    "a": "Símil",
+    "b": "Usa 'como'"
+  },
+  {
+    "id": 17,
+    "a": "Aliteración",
+    "b": "Repetición sonidos"
+  },
+  {
+    "id": 18,
+    "a": "Métrica",
+    "b": "Medida versos"
+  },
+  {
+    "id": 19,
+    "a": "Rima consonante",
+    "b": "Igual vocales y cons."
+  },
+  {
+    "id": 20,
+    "a": "Rima asonante",
+    "b": "Igual solo vocales"
+  },
+  {
+    "id": 21,
+    "a": "Texto expositivo",
+    "b": "Informa"
+  },
+  {
+    "id": 22,
+    "a": "Texto argumentativo",
+    "b": "Convence"
+  },
+  {
+    "id": 23,
+    "a": "Crónica",
+    "b": "Relato hechos"
+  },
+  {
+    "id": 24,
+    "a": "Artes liberales",
+    "b": "Trivium y Quadrivium"
+  },
+  {
+    "id": 25,
+    "a": "Diccionario RAE",
+    "b": "Norma oficial"
+  }
 ]

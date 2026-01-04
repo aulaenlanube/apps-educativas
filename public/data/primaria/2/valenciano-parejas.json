@@ -1,42 +1,127 @@
 [
-  { "id": 1, "a": "U", "b": "1️⃣" },
-  { "id": 2, "a": "Dos", "b": "2️⃣" },
-  { "id": 3, "a": "Tres", "b": "3️⃣" },
-  { "id": 4, "a": "Quatre", "b": "4️⃣" },
-  { "id": 5, "a": "Cinc", "b": "5️⃣" },
-  { "id": 6, "a": "Sis", "b": "6️⃣" },
-  { "id": 7, "a": "Set", "b": "7️⃣" },
-  { "id": 8, "a": "Vuit", "b": "8️⃣" },
-  { "id": 9, "a": "Nou", "b": "9️⃣" },
-  { "id": 10, "a": "Deu", "b": "🔟" },
-  { "id": 11, "a": "Roig", "b": "🔴" },
-  { "id": 12, "a": "Blau", "b": "🔵" },
-  { "id": 13, "a": "Verd", "b": "🟢" },
-  { "id": 14, "a": "Groc", "b": "🟡" },
-  { "id": 15, "a": "Taronja", "b": "🟠" },
-  { "id": 16, "a": "Lila", "b": "🟣" },
-  { "id": 17, "a": "Negre", "b": "⚫" },
-  { "id": 18, "a": "Blanc", "b": "⚪" },
-  { "id": 19, "a": "Gos", "b": "🐶" },
-  { "id": 20, "a": "Gat", "b": "🐱" },
-  { "id": 21, "a": "Ratolí", "b": "🐭" },
-  { "id": 22, "a": "Conill", "b": "🐰" },
-  { "id": 23, "a": "Guineu", "b": "🦊" },
-  { "id": 24, "a": "Os", "b": "🐻" },
-  { "id": 25, "a": "Panda", "b": "🐼" },
-  { "id": 26, "a": "Lleó", "b": "🦁" },
-  { "id": 27, "a": "Tigre", "b": "🐯" },
-  { "id": 28, "a": "Vaca", "b": "🐮" },
-  { "id": 29, "a": "Porc", "b": "🐷" },
-  { "id": 30, "a": "Granota", "b": "🐸" },
-  { "id": 31, "a": "Mico", "b": "🐵" },
-  { "id": 32, "a": "Gallina", "b": "🐔" },
-  { "id": 33, "a": "Pingüí", "b": "🐧" },
-  { "id": 34, "a": "Ocell", "b": "🐦" },
-  { "id": 35, "a": "Ànec", "b": "🦆" },
-  { "id": 36, "a": "Mussol", "b": "🦉" },
-  { "id": 37, "a": "Abella", "b": "🐝" },
-  { "id": 38, "a": "Papallona", "b": "🦋" },
-  { "id": 39, "a": "Peix", "b": "🐟" },
-  { "id": 40, "a": "Tortuga", "b": "🐢" }
+  {
+    "id": 1,
+    "a": "Lunes",
+    "b": "Dilluns"
+  },
+  {
+    "id": 2,
+    "a": "Martes",
+    "b": "Dimarts"
+  },
+  {
+    "id": 3,
+    "a": "Miércoles",
+    "b": "Dimecres"
+  },
+  {
+    "id": 4,
+    "a": "Jueves",
+    "b": "Dijous"
+  },
+  {
+    "id": 5,
+    "a": "Viernes",
+    "b": "Divendres"
+  },
+  {
+    "id": 6,
+    "a": "Sábado",
+    "b": "Dissabte"
+  },
+  {
+    "id": 7,
+    "a": "Domingo",
+    "b": "Diumenge"
+  },
+  {
+    "id": 8,
+    "a": "Enero",
+    "b": "Gener"
+  },
+  {
+    "id": 9,
+    "a": "Febrero",
+    "b": "Febrer"
+  },
+  {
+    "id": 10,
+    "a": "Marzo",
+    "b": "Març"
+  },
+  {
+    "id": 11,
+    "a": "Manzana",
+    "b": "Poma"
+  },
+  {
+    "id": 12,
+    "a": "Pera",
+    "b": "Pera"
+  },
+  {
+    "id": 13,
+    "a": "Naranja",
+    "b": "Taronja"
+  },
+  {
+    "id": 14,
+    "a": "Uva",
+    "b": "Raïm"
+  },
+  {
+    "id": 15,
+    "a": "Plátano",
+    "b": "Plàtan"
+  },
+  {
+    "id": 16,
+    "a": "Cabeza",
+    "b": "Cap"
+  },
+  {
+    "id": 17,
+    "a": "Mano",
+    "b": "Mà"
+  },
+  {
+    "id": 18,
+    "a": "Pie",
+    "b": "Peu"
+  },
+  {
+    "id": 19,
+    "a": "Brazo",
+    "b": "Braç"
+  },
+  {
+    "id": 20,
+    "a": "Pierna",
+    "b": "Cama"
+  },
+  {
+    "id": 21,
+    "a": "Grande",
+    "b": "Gran"
+  },
+  {
+    "id": 22,
+    "a": "Pequeño",
+    "b": "Petit/Xicotet"
+  },
+  {
+    "id": 23,
+    "a": "Alto",
+    "b": "Alt"
+  },
+  {
+    "id": 24,
+    "a": "Bajo",
+    "b": "Baix"
+  },
+  {
+    "id": 25,
+    "a": "Bonito",
+    "b": "Bonic"
+  }
 ]

@@ -1,14 +1,152 @@
 [
-  { "id": 1, "a": "💰", "b": "💰" },
-  { "id": 2, "a": "🏦", "b": "🏦" },
-  { "id": 3, "a": "💳", "b": "💳" },
-  { "id": 4, "a": "💶", "b": "💶" },
-  { "id": 5, "a": "📉", "b": "📉" },
-  { "id": 6, "a": "📈", "b": "📈" },
-  { "id": 7, "a": "🛒", "b": "🛒" },
-  { "id": 8, "a": "🧾", "b": "🧾" },
-  { "id": 9, "a": "🤝", "b": "🤝" },
-  { "id": 10, "a": "🏭", "b": "🏭" },
-  { "id": 11, "a": "🐷", "b": "🐷" },
-  { "id": 12, "a": "⚖️", "b": "⚖️" }
+  {
+    "id": 1,
+    "a": "Escasez",
+    "b": "Problema económico básico"
+  },
+  {
+    "id": 2,
+    "a": "Coste de oportunidad",
+    "b": "Lo que se renuncia"
+  },
+  {
+    "id": 3,
+    "a": "Macroeconomía",
+    "b": "Estudio global (país)"
+  },
+  {
+    "id": 4,
+    "a": "Microeconomía",
+    "b": "Empresas y familias"
+  },
+  {
+    "id": 5,
+    "a": "Factores de producción",
+    "b": "Tierra, trabajo, capital"
+  },
+  {
+    "id": 6,
+    "a": "Oferta",
+    "b": "Deseo de vender"
+  },
+  {
+    "id": 7,
+    "a": "Demanda",
+    "b": "Deseo de comprar"
+  },
+  {
+    "id": 8,
+    "a": "Equilibrio mercado",
+    "b": "Oferta = Demanda"
+  },
+  {
+    "id": 9,
+    "a": "Inflación",
+    "b": "Subida general de precios"
+  },
+  {
+    "id": 10,
+    "a": "Deflación",
+    "b": "Bajada general de precios"
+  },
+  {
+    "id": 11,
+    "a": "IPC",
+    "b": "Índice Precios Consumo"
+  },
+  {
+    "id": 12,
+    "a": "PIB",
+    "b": "Riqueza de un país"
+  },
+  {
+    "id": 13,
+    "a": "Impuestos",
+    "b": "Directos e indirectos"
+  },
+  {
+    "id": 14,
+    "a": "IVA",
+    "b": "Impuesto sobre el valor añadido"
+  },
+  {
+    "id": 15,
+    "a": "IRPF",
+    "b": "Impuesto sobre renta física"
+  },
+  {
+    "id": 16,
+    "a": "Déficit público",
+    "b": "Gasto > Ingreso"
+  },
+  {
+    "id": 17,
+    "a": "Superávit",
+    "b": "Gasto < Ingreso"
+  },
+  {
+    "id": 18,
+    "a": "Deuda pública",
+    "b": "Lo que debe el Estado"
+  },
+  {
+    "id": 19,
+    "a": "Banco Central Europeo",
+    "b": "Controla el Euro"
+  },
+  {
+    "id": 20,
+    "a": "Tipo de interés",
+    "b": "Precio del dinero"
+  },
+  {
+    "id": 21,
+    "a": "Acciones",
+    "b": "Partes de una empresa"
+  },
+  {
+    "id": 22,
+    "a": "Bolsa",
+    "b": "Mercado de valores"
+  },
+  {
+    "id": 23,
+    "a": "S.A.",
+    "b": "Sociedad Anónima"
+  },
+  {
+    "id": 24,
+    "a": "S.L.",
+    "b": "Sociedad Limitada"
+  },
+  {
+    "id": 25,
+    "a": "Emprendedor",
+    "b": "Inicia un negocio"
+  },
+  {
+    "id": 26,
+    "a": "Presupuesto",
+    "b": "Plan de ingresos y gastos"
+  },
+  {
+    "id": 27,
+    "a": "Ahorro",
+    "b": "Renta no consumida"
+  },
+  {
+    "id": 28,
+    "a": "Inversión",
+    "b": "Ahorro para beneficio"
+  },
+  {
+    "id": 29,
+    "a": "Globalización",
+    "b": "Apertura de mercados"
+  },
+  {
+    "id": 30,
+    "a": "Externalidad",
+    "b": "Efectos sobre terceros"
+  }
 ]

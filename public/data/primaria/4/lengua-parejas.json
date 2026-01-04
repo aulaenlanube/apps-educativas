@@ -1,22 +1,127 @@
 [
-  { "id": 1, "a": "Sol", "b": "Sol" },
-  { "id": 2, "a": "Pan", "b": "Pan" },
-  { "id": 3, "a": "Flor", "b": "Flor" },
-  { "id": 4, "a": "Pez", "b": "Pez" },
-  { "id": 5, "a": "Tren", "b": "Tren" },
-  { "id": 6, "a": "Luz", "b": "Luz" },
-  { "id": 7, "a": "Mar", "b": "Mar" },
-  { "id": 8, "a": "Sal", "b": "Sal" },
-  { "id": 9, "a": "Gol", "b": "Gol" },
-  { "id": 10, "a": "Rey", "b": "Rey" },
-  { "id": 11, "a": "Ojo", "b": "Ojo" },
-  { "id": 12, "a": "Pie", "b": "Pie" },
-  { "id": 13, "a": "Mano", "b": "Mano" },
-  { "id": 14, "a": "Uña", "b": "Uña" },
-  { "id": 15, "a": "Oso", "b": "Oso" },
-  { "id": 16, "a": "Pato", "b": "Pato" },
-  { "id": 17, "a": "Gato", "b": "Gato" },
-  { "id": 18, "a": "Nube", "b": "Nube" },
-  { "id": 19, "a": "Casa", "b": "Casa" },
-  { "id": 20, "a": "Bebé", "b": "Bebé" }
+  {
+    "id": 1,
+    "a": "Pronombre personal",
+    "b": "Yo, tú, él..."
+  },
+  {
+    "id": 2,
+    "a": "Adverbio",
+    "b": "Lugar, tiempo, modo..."
+  },
+  {
+    "id": 3,
+    "a": "Preposición",
+    "b": "a, ante, bajo, con..."
+  },
+  {
+    "id": 4,
+    "a": "Conjunción",
+    "b": "y, e, ni, o, u..."
+  },
+  {
+    "id": 5,
+    "a": "Agudas",
+    "b": "Tilde si acaban n, s, vocal"
+  },
+  {
+    "id": 6,
+    "a": "Llanas",
+    "b": "Tilde si NO acaban n, s, vocal"
+  },
+  {
+    "id": 7,
+    "a": "Esdrújulas",
+    "b": "Siempre tilde"
+  },
+  {
+    "id": 8,
+    "a": "Diptongo",
+    "b": "Dos vocales juntas"
+  },
+  {
+    "id": 9,
+    "a": "Hiato",
+    "b": "Separación vocales"
+  },
+  {
+    "id": 10,
+    "a": "Sustantivo individual",
+    "b": "Oveja"
+  },
+  {
+    "id": 11,
+    "a": "Sustantivo colectivo",
+    "b": "Rebaño"
+  },
+  {
+    "id": 12,
+    "a": "Abstracto",
+    "b": "Amistad"
+  },
+  {
+    "id": 13,
+    "a": "Concreto",
+    "b": "Mesa"
+  },
+  {
+    "id": 14,
+    "a": "H intercalada",
+    "b": "hielo, huevo"
+  },
+  {
+    "id": 15,
+    "a": "V después de N",
+    "b": "convento"
+  },
+  {
+    "id": 16,
+    "a": "B después de M",
+    "b": "cambio"
+  },
+  {
+    "id": 17,
+    "a": "G gentilicios",
+    "b": "aragonesa"
+  },
+  {
+    "id": 18,
+    "a": "J palabras -aje",
+    "b": "garaje"
+  },
+  {
+    "id": 19,
+    "a": "Núcleo del sujeto",
+    "b": "Sustantivo/Pronombre"
+  },
+  {
+    "id": 20,
+    "a": "Núcleo del predicado",
+    "b": "Verbo"
+  },
+  {
+    "id": 21,
+    "a": "Frase hecha",
+    "b": "Tomar el pelo"
+  },
+  {
+    "id": 22,
+    "a": "Refrán",
+    "b": "Dicho popular"
+  },
+  {
+    "id": 23,
+    "a": "Campo semántico",
+    "b": "Relación temas"
+  },
+  {
+    "id": 24,
+    "a": "Onomatopeya",
+    "b": "Sonido escrito"
+  },
+  {
+    "id": 25,
+    "a": "Biografía",
+    "b": "Vida de alguien"
+  }
 ]

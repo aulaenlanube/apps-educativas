@@ -1,22 +1,152 @@
 [
-  { "id": 1, "a": "Cat", "b": "🐱" },
-  { "id": 2, "a": "Dog", "b": "🐶" },
-  { "id": 3, "a": "Sun", "b": "☀️" },
-  { "id": 4, "a": "Moon", "b": "🌙" },
-  { "id": 5, "a": "Car", "b": "🚗" },
-  { "id": 6, "a": "Apple", "b": "🍎" },
-  { "id": 7, "a": "Banana", "b": "🍌" },
-  { "id": 8, "a": "Book", "b": "📖" },
-  { "id": 9, "a": "Pencil", "b": "✏️" },
-  { "id": 10, "a": "House", "b": "🏠" },
-  { "id": 11, "a": "Tree", "b": "🌳" },
-  { "id": 12, "a": "Flower", "b": "🌸" },
-  { "id": 13, "a": "Fish", "b": "🐟" },
-  { "id": 14, "a": "Bird", "b": "🐦" },
-  { "id": 15, "a": "Ball", "b": "⚽" },
-  { "id": 16, "a": "Star", "b": "⭐" },
-  { "id": 17, "a": "Hand", "b": "🖐️" },
-  { "id": 18, "a": "Eye", "b": "👁️" },
-  { "id": 19, "a": "Mouth", "b": "👄" },
-  { "id": 20, "a": "Ice Cream", "b": "🍦" }
+  {
+    "id": 1,
+    "a": "I am",
+    "b": "Yo soy / estoy"
+  },
+  {
+    "id": 2,
+    "a": "You are",
+    "b": "Tú eres / estás"
+  },
+  {
+    "id": 3,
+    "a": "He is",
+    "b": "Él es / está"
+  },
+  {
+    "id": 4,
+    "a": "She is",
+    "b": "Ella es / está"
+  },
+  {
+    "id": 5,
+    "a": "It is",
+    "b": "Eso es / está"
+  },
+  {
+    "id": 6,
+    "a": "We are",
+    "b": "Nosotros somos / estamos"
+  },
+  {
+    "id": 7,
+    "a": "They are",
+    "b": "Ellos son / están"
+  },
+  {
+    "id": 8,
+    "a": "Have got",
+    "b": "Tener"
+  },
+  {
+    "id": 9,
+    "a": "Present Simple",
+    "b": "Rutinas"
+  },
+  {
+    "id": 10,
+    "a": "Present Continuous",
+    "b": "Ahora"
+  },
+  {
+    "id": 11,
+    "a": "Adverb frequency",
+    "b": "Always / Never"
+  },
+  {
+    "id": 12,
+    "a": "Monday",
+    "b": "Lunes"
+  },
+  {
+    "id": 13,
+    "a": "Friday",
+    "b": "Viernes"
+  },
+  {
+    "id": 14,
+    "a": "Breakfast",
+    "b": "Desayuno"
+  },
+  {
+    "id": 15,
+    "a": "Dinner",
+    "b": "Cena"
+  },
+  {
+    "id": 16,
+    "a": "Teacher",
+    "b": "Profesor"
+  },
+  {
+    "id": 17,
+    "a": "Classroom",
+    "b": "Aula"
+  },
+  {
+    "id": 18,
+    "a": "Whiteboard",
+    "b": "Pizarra"
+  },
+  {
+    "id": 19,
+    "a": "Backpack",
+    "b": "Mochila"
+  },
+  {
+    "id": 20,
+    "a": "Grandfather",
+    "b": "Abuelo"
+  },
+  {
+    "id": 21,
+    "a": "Cousin",
+    "b": "Primo"
+  },
+  {
+    "id": 22,
+    "a": "Trousers",
+    "b": "Pantalones"
+  },
+  {
+    "id": 23,
+    "a": "Sweater",
+    "b": "Jersey"
+  },
+  {
+    "id": 24,
+    "a": "Kitchen",
+    "b": "Cocina"
+  },
+  {
+    "id": 25,
+    "a": "Bedroom",
+    "b": "Dormitorio"
+  },
+  {
+    "id": 26,
+    "a": "Living room",
+    "b": "Salón"
+  },
+  {
+    "id": 27,
+    "a": "Garden",
+    "b": "Jardín"
+  },
+  {
+    "id": 28,
+    "a": "There is",
+    "b": "Hay (Sing.)"
+  },
+  {
+    "id": 29,
+    "a": "There are",
+    "b": "Hay (Plur.)"
+  },
+  {
+    "id": 30,
+    "a": "Can / Can't",
+    "b": "Habilidad"
+  }
 ]

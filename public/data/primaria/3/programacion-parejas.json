@@ -1,14 +1,127 @@
 [
-  { "id": 1, "a": "💻", "b": "💻" },
-  { "id": 2, "a": "⌨️", "b": "⌨️" },
-  { "id": 3, "a": "🖱️", "b": "🖱️" },
-  { "id": 4, "a": "🤖", "b": "🤖" },
-  { "id": 5, "a": "💾", "b": "💾" },
-  { "id": 6, "a": "📱", "b": "📱" },
-  { "id": 7, "a": "🔋", "b": "🔋" },
-  { "id": 8, "a": "💡", "b": "💡" },
-  { "id": 9, "a": "⚙️", "b": "⚙️" },
-  { "id": 10, "a": "🎮", "b": "🎮" },
-  { "id": 11, "a": "🖨️", "b": "🖨️" },
-  { "id": 12, "a": "🐛", "b": "🐛" }
+  {
+    "id": 1,
+    "a": "Variable",
+    "b": "Guarda un dato"
+  },
+  {
+    "id": 2,
+    "a": "Operador",
+    "b": "+, -, *, /"
+  },
+  {
+    "id": 3,
+    "a": "Comparación",
+    "b": ">, <, ="
+  },
+  {
+    "id": 4,
+    "a": "Función",
+    "b": "Grupo de instrucciones"
+  },
+  {
+    "id": 5,
+    "a": "Coordenada X",
+    "b": "Horizontal"
+  },
+  {
+    "id": 6,
+    "a": "Coordenada Y",
+    "b": "Vertical"
+  },
+  {
+    "id": 7,
+    "a": "Ángulo 90",
+    "b": "Giro recto"
+  },
+  {
+    "id": 8,
+    "a": "Sensor",
+    "b": "¿Tocando color?"
+  },
+  {
+    "id": 9,
+    "a": "Lápiz",
+    "b": "Dibujar en pantalla"
+  },
+  {
+    "id": 10,
+    "a": "Sonido",
+    "b": "Efectos audio"
+  },
+  {
+    "id": 11,
+    "a": "Bit",
+    "b": "0 o 1"
+  },
+  {
+    "id": 12,
+    "a": "Byte",
+    "b": "8 bits"
+  },
+  {
+    "id": 13,
+    "a": "Kilobyte",
+    "b": "1000 bytes"
+  },
+  {
+    "id": 14,
+    "a": "Megabyte",
+    "b": "Millón de bytes"
+  },
+  {
+    "id": 15,
+    "a": "Gigabyte",
+    "b": "Mil millones bytes"
+  },
+  {
+    "id": 16,
+    "a": "Sistema Operativo",
+    "b": "Windows, Linux, macOS"
+  },
+  {
+    "id": 17,
+    "a": "Android / iOS",
+    "b": "Móviles"
+  },
+  {
+    "id": 18,
+    "a": "Escritorio",
+    "b": "Pantalla principal"
+  },
+  {
+    "id": 19,
+    "a": "Barra de tareas",
+    "b": "Abajo"
+  },
+  {
+    "id": 20,
+    "a": "Papelera",
+    "b": "Borrados"
+  },
+  {
+    "id": 21,
+    "a": "Virus",
+    "b": "Programa dañino"
+  },
+  {
+    "id": 22,
+    "a": "Antivirus",
+    "b": "Protección"
+  },
+  {
+    "id": 23,
+    "a": "Firewall",
+    "b": "Muro fuego"
+  },
+  {
+    "id": 24,
+    "a": "Nube",
+    "b": "Storage online"
+  },
+  {
+    "id": 25,
+    "a": "Descargar",
+    "b": "Bajar archivo"
+  }
 ]

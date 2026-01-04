@@ -1,14 +1,152 @@
 [
-  { "id": 1, "a": "🏰", "b": "🏰" },
-  { "id": 2, "a": "🏺", "b": "🏺" },
-  { "id": 3, "a": "🗺️", "b": "🗺️" },
-  { "id": 4, "a": "👑", "b": "👑" },
-  { "id": 5, "a": "🏛️", "b": "🏛️" },
-  { "id": 6, "a": "🗿", "b": "🗿" },
-  { "id": 7, "a": "📜", "b": "📜" },
-  { "id": 8, "a": "⚔️", "b": "⚔️" },
-  { "id": 9, "a": "🛡️", "b": "🛡️" },
-  { "id": 10, "a": "🐫", "b": "🐫" },
-  { "id": 11, "a": "🦴", "b": "🦴" },
-  { "id": 12, "a": "🧭", "b": "🧭" }
+  {
+    "id": 1,
+    "a": "Edad Media",
+    "b": "De 476 a 1492"
+  },
+  {
+    "id": 2,
+    "a": "Feudalismo",
+    "b": "Sistema de vasallaje"
+  },
+  {
+    "id": 3,
+    "a": "Señor feudal",
+    "b": "Dueño de las tierras"
+  },
+  {
+    "id": 4,
+    "a": "Siervo",
+    "b": "Trabaja la tierra"
+  },
+  {
+    "id": 5,
+    "a": "Islam",
+    "b": "Mahoma"
+  },
+  {
+    "id": 6,
+    "a": "Al-Ándalus",
+    "b": "España musulmana"
+  },
+  {
+    "id": 7,
+    "a": "Reconquista",
+    "b": "Avance reinos cristianos"
+  },
+  {
+    "id": 8,
+    "a": "Estilo Románico",
+    "b": "Arco de medio punto"
+  },
+  {
+    "id": 9,
+    "a": "Estilo Gótico",
+    "b": "Arco apuntado"
+  },
+  {
+    "id": 10,
+    "a": "Cruzadas",
+    "b": "Guerras santas"
+  },
+  {
+    "id": 11,
+    "a": "Peste Negra",
+    "b": "Epidemia siglo XIV"
+  },
+  {
+    "id": 12,
+    "a": "Renacimiento",
+    "b": "Antropocentrismo"
+  },
+  {
+    "id": 13,
+    "a": "Humanismo",
+    "b": "Valor del ser humano"
+  },
+  {
+    "id": 14,
+    "a": "Reforma Protestante",
+    "b": "Lutero"
+  },
+  {
+    "id": 15,
+    "a": "Descubrimiento América",
+    "b": "Cristóbal Colón"
+  },
+  {
+    "id": 16,
+    "a": "Reyes Católicos",
+    "b": "Isabel y Fernando"
+  },
+  {
+    "id": 17,
+    "a": "Imperio de Carlos V",
+    "b": "Habsburgo"
+  },
+  {
+    "id": 18,
+    "a": "Felipe II",
+    "b": "Monarquía Hispánica"
+  },
+  {
+    "id": 19,
+    "a": "Barroco",
+    "b": "Exceso ornamental"
+  },
+  {
+    "id": 20,
+    "a": "Válidos",
+    "b": "Gobiernan por el rey"
+  },
+  {
+    "id": 21,
+    "a": "Guerra de los 30 años",
+    "b": "Conflicto europeo"
+  },
+  {
+    "id": 22,
+    "a": "Ilustración",
+    "b": "Siglo de las Luces"
+  },
+  {
+    "id": 23,
+    "a": "Gremios",
+    "b": "Asociación artesanos"
+  },
+  {
+    "id": 24,
+    "a": "Catedral",
+    "b": "Sede del obispo"
+  },
+  {
+    "id": 25,
+    "a": "Monasterio",
+    "b": "Ora et labora"
+  },
+  {
+    "id": 26,
+    "a": "Astrolabio",
+    "b": "Navegación"
+  },
+  {
+    "id": 27,
+    "a": "Imprenta",
+    "b": "Gutenberg"
+  },
+  {
+    "id": 28,
+    "a": "Estado Moderno",
+    "b": "Monarquía autoritaria"
+  },
+  {
+    "id": 29,
+    "a": "Guerra de Sucesión",
+    "b": "Dinastía Borbón"
+  },
+  {
+    "id": 30,
+    "a": "Tratado de Utrecht",
+    "b": "Fin guerra sucesión"
+  }
 ]
