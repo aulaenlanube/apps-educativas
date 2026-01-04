@@ -12,7 +12,7 @@ const AppRunnerPage = () => {
     // 'subjectId' vendrá aquí si configuraste la ruta nueva en main.jsx
     const { level, grade, subjectId: paramSubjectId, appId } = useParams();
     const navigate = useNavigate();
-    const location = useLocation(); 
+    const location = useLocation();
 
     const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
 
@@ -39,43 +39,46 @@ const AppRunnerPage = () => {
     // 2. State (si venimos de hacer clic en la tarjeta).
     // 3. Default (lo que diga la app por defecto, ej. Lengua).
     const activeSubjectId = paramSubjectId || location.state?.fromSubjectId || defaultSubjectId;
-    
+
     const hasSubject = activeSubjectId && activeSubjectId !== 'general';
     const backPath = hasSubject
-        ? `/curso/${level}/${grade}/${activeSubjectId}` 
+        ? `/curso/${level}/${grade}/${activeSubjectId}`
         : `/curso/${level}/${grade}`;
-    
+
     const backButtonText = hasSubject ? 'Volver a la Asignatura' : 'Volver al Curso';
-    
+
     const backgroundClass = app.id.startsWith('isla-de-la-calma')
         ? 'bg-[#f0f7f8]'
         : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50';
+
+    const isWideApp = app.id.includes('visualizador-3d') || app.id.includes('romanos') || app.id.includes('mesa-crafteo');
+    const containerClass = isWideApp ? "max-w-7xl" : "max-w-4xl";
 
     return (
         <>
             <Helmet>
                 <title>{`${app.name} - EduApps`}</title>
             </Helmet>
-            
-            <DonationModal 
-                open={isDonationModalOpen} 
-                onOpenChange={setIsDonationModalOpen} 
+
+            <DonationModal
+                open={isDonationModalOpen}
+                onOpenChange={setIsDonationModalOpen}
             />
 
             <div className={`min-h-screen flex flex-col items-center justify-start pt-2 px-4 pb-4 ${backgroundClass}`}>
-                
-                <div className="w-full max-w-4xl flex justify-start items-center gap-3 mb-4">
-                    
+
+                <div className={`w-full ${containerClass} flex justify-start items-center gap-3 mb-4`}>
+
                     {/* CAMBIO: Botón con DEGRADADO como color principal */}
-                    <Button 
-                        onClick={() => navigate(backPath)} 
+                    <Button
+                        onClick={() => navigate(backPath)}
                         className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:opacity-90 hover:shadow-lg transition-all duration-300 shadow-md border-0"
                     >
                         <ArrowLeft className="mr-2 h-4 w-4" /> {backButtonText}
                     </Button>
 
-                    <Button 
-                        onClick={() => setIsDonationModalOpen(true)} 
+                    <Button
+                        onClick={() => setIsDonationModalOpen(true)}
                         className="bg-white/80 backdrop-blur-sm hover:bg-pink-50 text-pink-600 border border-pink-200 shadow-sm hover:shadow-md transition-all group"
                         size="icon"
                         title="Apoya el proyecto"
@@ -84,12 +87,12 @@ const AppRunnerPage = () => {
                     </Button>
                 </div>
 
-                <div className="w-full max-w-4xl relative">
-                    <AppToRender 
-                        isPaused={isDonationModalOpen} 
-                        level={level} 
-                        grade={grade} 
-                        subjectId={activeSubjectId} 
+                <div className={`w-full ${containerClass} relative`}>
+                    <AppToRender
+                        isPaused={isDonationModalOpen}
+                        level={level}
+                        grade={grade}
+                        subjectId={activeSubjectId}
                     />
                 </div>
             </div>

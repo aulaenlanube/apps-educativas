@@ -69,23 +69,30 @@ const generateOrderProblem = (level, count = 3) => {
             val = formatDec(randomInt(1, 50) + Math.random());
             text = val.toString().replace('.', ',');
         } else {
-            // Nivel 6: Combinación agresiva
-            const type = randomInt(1, 3);
+            // Nivel 6: Combinación agresiva con posibles negativos
+            const type = randomInt(1, 4);
             if (type === 1) { // Operación con decimales
-                const a = formatDec(randomInt(1, 20) + Math.random());
-                const b = formatDec(randomInt(1, 20) + Math.random());
+                const a = formatDec(randomInt(-20, 20) + Math.random());
+                const b = formatDec(randomInt(-10, 20) + Math.random());
                 val = formatDec(a + b);
-                text = `${a.toString().replace('.', ',')} + ${b.toString().replace('.', ',')}`;
+                text = `${a >= 0 ? a.toString().replace('.', ',') : '(' + a.toString().replace('.', ',') + ')'} + ${b >= 0 ? b.toString().replace('.', ',') : '(' + b.toString().replace('.', ',') + ')'}`;
             } else if (type === 2) { // Multiplicación decimal
-                const a = randomInt(2, 5);
+                const a = randomInt(-5, 5);
                 const b = formatDec(randomInt(1, 10) + 0.5);
                 val = formatDec(a * b);
-                text = `${a} x ${b.toString().replace('.', ',')}`;
+                text = `${a >= 0 ? a : '(' + a + ')'} x ${b.toString().replace('.', ',')}`;
+            } else if (type === 3) { // Restas puras
+                const a = randomInt(-10, 50);
+                const b = randomInt(1, 50);
+                val = a - b;
+                text = `${a >= 0 ? a : '(' + a + ')'} - ${b}`;
             } else {
-                val = formatDec(randomInt(1, 100) + Math.random());
+                val = formatDec(randomInt(-50, 100) + Math.random());
                 text = val.toString().replace('.', ',');
             }
         }
+
+        if (level < 6 && val < 0) val = 0;
 
         items.push({
             id: Math.random(),
@@ -152,6 +159,7 @@ const generateLevelProblem = (level) => {
 
         left = { text, value: val };
         rightVal = val + randomInt(-3, 3);
+        if (level < 6 && rightVal < 0) rightVal = 0;
         right = makeExpressionForValue(rightVal, false);
     }
     else if (level === 5) {
@@ -179,16 +187,16 @@ const generateLevelProblem = (level) => {
         const isMult = Math.random() > 0.5;
 
         if (isMult) {
-            const a = randomInt(2, 8);
+            const a = randomInt(-8, 8);
             const b = randomInt(1, 10) + 0.5;
-            const val = a * b;
-            left = { text: `${a} x ${b.toString().replace('.', ',')}`, value: val };
+            const val = formatDec(a * b);
+            left = { text: `${a >= 0 ? a : '(' + a + ')'} x ${b.toString().replace('.', ',')}`, value: val };
             rightVal = val + (Math.random() * 2 - 1);
         } else {
-            const a = formatDec(randomInt(1, 20) + Math.random());
-            const b = formatDec(randomInt(1, 10) + Math.random());
-            const val = a + b;
-            left = { text: `${a.toString().replace('.', ',')} + ${b.toString().replace('.', ',')}`, value: val };
+            const a = formatDec(randomInt(-20, 20) + Math.random());
+            const b = formatDec(randomInt(-10, 20) + Math.random());
+            const val = formatDec(a + b);
+            left = { text: `${a >= 0 ? a.toString().replace('.', ',') : '(' + a.toString().replace('.', ',') + ')'} + ${b >= 0 ? b.toString().replace('.', ',') : '(' + b.toString().replace('.', ',') + ')'}`, value: val };
             rightVal = val + (Math.random() * 0.5 - 0.25);
         }
         right = makeExpressionForValue(formatDec(rightVal), true);
@@ -320,8 +328,10 @@ const MayorMenorGame = ({ level, title }) => {
     };
 
     const getCorrectSign = (lVal, rVal) => {
-        if (Math.abs(lVal - rVal) < 0.001) return '=';
-        return lVal > rVal ? '>' : '<';
+        const l = Number(lVal);
+        const r = Number(rVal);
+        if (Math.abs(l - r) < 0.001) return '=';
+        return l > r ? '>' : '<';
     };
 
     const checkAnswer = () => {

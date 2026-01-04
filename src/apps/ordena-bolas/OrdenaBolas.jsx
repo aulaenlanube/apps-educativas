@@ -465,27 +465,26 @@ const OrdenaBolas = () => {
     return (
         <div className="flex flex-col items-center justify-center space-y-6 p-4 min-h-screen bg-slate-50/50">
             {/* Control Bar PRO */}
-            <div className="w-full max-w-4xl flex items-center justify-between bg-white/80 backdrop-blur-md p-3 px-6 rounded-2xl shadow-xl shadow-slate-200/50 border border-white/20">
+            <div className="w-full max-w-4xl flex items-center justify-between bg-white/90 backdrop-blur-xl p-2.5 sm:p-4 px-4 sm:px-8 rounded-[2rem] shadow-2xl shadow-slate-200/60 border border-white/50 gap-3 sm:gap-6">
 
-                {/* Botón Configuración */}
+                {/* Botón Ajustes */}
                 <Button
                     onClick={backToConfig}
                     variant="ghost"
-                    size="sm"
-                    className="group flex items-center gap-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100/50 rounded-xl transition-all"
+                    className="group flex items-center gap-3 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50/50 rounded-2xl transition-all p-2 sm:px-4"
                 >
-                    <div className="p-1.5 bg-slate-100 rounded-lg group-hover:rotate-45 transition-transform duration-500">
-                        <Settings className="h-4 w-4" />
+                    <div className="p-2 sm:p-2.5 bg-slate-100 group-hover:bg-indigo-100 rounded-xl transition-colors duration-500">
+                        <Settings className="h-6 w-6 sm:h-5 sm:w-5 group-hover:rotate-90 transition-transform duration-700" />
                     </div>
-                    <span className="font-semibold text-xs uppercase tracking-wider">Configurar</span>
+                    <span className="hidden md:inline font-bold text-xs uppercase tracking-[0.2em]">Ajustes</span>
                 </Button>
 
                 {/* Timer Display PRO */}
-                <div className="relative flex items-center overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-r from-slate-900 to-slate-800 rounded-xl" />
-                    <div className="relative flex items-center gap-3 px-6 py-2">
-                        <Timer className="w-5 h-5 text-indigo-400 animate-pulse" />
-                        <span className="font-mono text-2xl font-black text-white w-36 text-center tracking-[0.1em] drop-shadow-md">
+                <div className="flex-1 flex justify-center">
+                    <div className="relative flex items-center bg-slate-900 px-4 sm:px-10 py-2.5 sm:py-3.5 rounded-2xl shadow-2xl border border-slate-700/50 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 via-transparent to-transparent pointer-events-none" />
+                        <Timer className="w-5 h-5 sm:w-6 sm:h-6 text-indigo-400 animate-pulse mr-2 sm:mr-3" />
+                        <span className="font-mono text-xl sm:text-3xl font-black text-white tracking-[0.1em] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                             {formatTime(timeElapsed)}
                         </span>
                     </div>
@@ -495,10 +494,11 @@ const OrdenaBolas = () => {
                 <Button
                     onClick={restartGame}
                     variant="ghost"
-                    size="icon"
-                    className="group relative h-10 w-10 text-slate-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all overflow-hidden"
+                    className="group flex items-center justify-center p-2 sm:p-3 text-slate-500 hover:text-rose-600 hover:bg-rose-50/50 rounded-2xl transition-all"
                 >
-                    <RefreshCw className="h-5 w-5 group-active:rotate-180 transition-transform duration-500 z-10" />
+                    <div className="p-2 sm:p-2.5 bg-slate-100 group-hover:bg-rose-100 rounded-xl transition-colors duration-500">
+                        <RefreshCw className="h-6 w-6 sm:h-5 sm:w-5 group-hover:rotate-180 transition-transform duration-700" />
+                    </div>
                 </Button>
             </div>
 
