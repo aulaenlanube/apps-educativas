@@ -401,14 +401,29 @@ const ParejasDeCartas = ({ tema }) => {
                 const text = String(carta.contenido);
                 if (esTexto) {
                   // Lógica de escalado dinámico basada en longitud
-                  if (text.length > 12) {
-                    extraClasses = "text-sm md:text-base leading-tight px-1";
-                  } else if (text.length > 8) {
-                    extraClasses = "text-base md:text-xl leading-tight px-2";
-                  } else if (text.length > 5) {
-                    extraClasses = "text-xl md:text-2xl px-2";
-                  } else {
-                    extraClasses = "text-2xl md:text-4xl";
+                  const hasSpaces = text.includes(' ');
+
+                  if (text.length > 30) {
+                    extraClasses = "text-[9px] md:text-[11px] leading-none px-0.5";
+                  } else if (text.length > 20) {
+                    extraClasses = "text-[10px] md:text-[12px] leading-tight px-1";
+                  } else if (text.length > 15) {
+                    extraClasses = "text-[12px] md:text-sm leading-tight px-1";
+                  } else if (text.length > 10) {
+                    extraClasses = "text-sm md:text-base leading-snug px-1.5";
+                  } else if (text.length > 7) { // 8-10 letras
+                    extraClasses = "text-base md:text-lg leading-snug px-2";
+                  } else if (text.length > 5) { // 6-7 letras
+                    extraClasses = "text-lg md:text-xl leading-snug px-2";
+                  } else if (text.length > 2) { // 3-5 letras
+                    extraClasses = "text-xl md:text-2xl leading-snug px-2";
+                  } else { // 1-2 letras
+                    extraClasses = "text-3xl md:text-4xl";
+                  }
+
+                  // Si es una sola palabra muy larga, forzamos un tamaño algo menor para prevenir desbordamiento lateral
+                  if (!hasSpaces && text.length > 5) {
+                    extraClasses = extraClasses.replace('text-xl', 'text-lg').replace('text-lg', 'text-base').replace('md:text-2xl', 'md:text-xl').replace('md:text-xl', 'md:text-lg');
                   }
                 } else {
                   // Símbolos cortos o números
