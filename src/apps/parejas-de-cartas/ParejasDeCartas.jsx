@@ -400,30 +400,36 @@ const ParejasDeCartas = ({ tema }) => {
               if (!esImagen) {
                 const text = String(carta.contenido);
                 if (esTexto) {
-                  // Lógica de escalado dinámico basada en longitud
+                  // Sistema de escalado DINÁMICO según DENSIDAD de tablero y LONGITUD de texto
+                  const cols = config.columnas;
+                  const count = text.length;
                   const hasSpaces = text.includes(' ');
 
-                  if (text.length > 30) {
-                    extraClasses = "text-[9px] md:text-[11px] leading-none px-0.5";
-                  } else if (text.length > 20) {
-                    extraClasses = "text-[10px] md:text-[12px] leading-tight px-1";
-                  } else if (text.length > 15) {
-                    extraClasses = "text-[12px] md:text-sm leading-tight px-1";
-                  } else if (text.length > 10) {
-                    extraClasses = "text-sm md:text-base leading-snug px-1.5";
-                  } else if (text.length > 7) { // 8-10 letras
-                    extraClasses = "text-base md:text-lg leading-snug px-2";
-                  } else if (text.length > 5) { // 6-7 letras
-                    extraClasses = "text-lg md:text-xl leading-snug px-2";
-                  } else if (text.length > 2) { // 3-5 letras
-                    extraClasses = "text-xl md:text-2xl leading-snug px-2";
-                  } else { // 1-2 letras
-                    extraClasses = "text-3xl md:text-4xl";
+                  // Lógica matricial de tamaños (Grid ralo vs Grid denso)
+                  if (count > 25) {
+                    extraClasses = cols > 5 ? "text-[9px] md:text-[11px]" : "text-xs md:text-base";
+                  } else if (count > 15) {
+                    extraClasses = cols > 5 ? "text-[11px] md:text-sm" : "text-sm md:text-xl";
+                  } else if (count > 8) {
+                    extraClasses = cols > 5 ? "text-sm md:text-base" : "text-xl md:text-3xl";
+                  } else if (count > 5) { // 6, 7, 8 letras
+                    extraClasses = cols > 5 ? "text-base md:text-lg" : "text-3xl md:text-5xl";
+                  } else if (count > 2) { // 3, 4, 5 letras
+                    extraClasses = cols > 5 ? "text-lg md:text-2xl" : "text-4xl md:text-6xl";
+                  } else { // 1, 2 letras
+                    extraClasses = cols > 5 ? "text-2xl md:text-4xl" : "text-6xl md:text-8xl";
                   }
 
-                  // Si es una sola palabra muy larga, forzamos un tamaño algo menor para prevenir desbordamiento lateral
-                  if (!hasSpaces && text.length > 5) {
-                    extraClasses = extraClasses.replace('text-xl', 'text-lg').replace('text-lg', 'text-base').replace('md:text-2xl', 'md:text-xl').replace('md:text-xl', 'md:text-lg');
+                  extraClasses += " leading-tight px-1 transition-all duration-300";
+
+                  // Protección lateral: Si es una sola palabra y el grid es denso, bajamos el tamaño
+                  if (!hasSpaces && count > 7 && cols > 4) {
+                    extraClasses = extraClasses
+                      .replace("text-lg", "text-base")
+                      .replace("text-2xl", "text-xl")
+                      .replace("md:text-lg", "md:text-base")
+                      .replace("md:text-3xl", "md:text-2xl")
+                      .replace("md:text-5xl", "md:text-4xl");
                   }
                 } else {
                   // Símbolos cortos o números
