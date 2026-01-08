@@ -1,96 +1,5 @@
 [
   {
-    "categoria": "Les Vêtements (Visual)",
-    "correctos": [
-      "👕",
-      "👖",
-      "👗",
-      "🧥",
-      "👟",
-      "🧢",
-      "👚",
-      "🧤",
-      "🧣",
-      "🧦",
-      "👔",
-      "👢",
-      "👜",
-      "🕶️",
-      "👙",
-      "👘",
-      "🎒"
-    ],
-    "intrusos": [
-      "🍎",
-      "🚗",
-      "🏠",
-      "🐶",
-      "⚽",
-      "🍔",
-      "🍕"
-    ]
-  },
-  {
-    "categoria": "La Maison (Visual)",
-    "correctos": [
-      "🏠",
-      "🚪",
-      "🪟",
-      "🛌",
-      "🛋️",
-      "🛁",
-      "🚿",
-      "🍳",
-      "🪜",
-      "🪑",
-      "🛖",
-      "🏡",
-      "🧺",
-      "🚰",
-      "🧴",
-      "🧻"
-    ],
-    "intrusos": [
-      "🚗",
-      "🏫",
-      "🌳",
-      "🐶",
-      "🌊",
-      "🚜",
-      "🚲"
-    ]
-  },
-  {
-    "categoria": "Le Corps et Sens (Visual)",
-    "correctos": [
-      "👀",
-      "👂",
-      "👃",
-      "👄",
-      "🤚",
-      "🦶",
-      "👅",
-      "🦾",
-      "🦿",
-      "🦷",
-      "🧠",
-      "🦴",
-      "👁️",
-      "👋",
-      "💪",
-      "🦵"
-    ],
-    "intrusos": [
-      "👕",
-      "👖",
-      "👟",
-      "🧢",
-      "🧤",
-      "👔",
-      "🧣"
-    ]
-  },
-  {
     "categoria": "Parties du Corps",
     "correctos": [
       "Tête",
@@ -111,13 +20,16 @@
       "Doigt"
     ],
     "intrusos": [
-      "Stylo",
-      "Livre",
-      "Chien",
-      "Chat",
-      "Maison",
-      "Table",
-      "Chaise"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -140,13 +52,16 @@
       "Maillot"
     ],
     "intrusos": [
-      "Pomme",
-      "Poire",
-      "Rouge",
-      "Bleu",
-      "Jaune",
-      "Manger",
-      "Dormir"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -170,13 +85,16 @@
       "Sel"
     ],
     "intrusos": [
-      "Chien",
-      "Chat",
-      "Maison",
-      "Voiture",
-      "École",
-      "Professeur",
-      "Livre"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -203,13 +121,16 @@
       "Décembre"
     ],
     "intrusos": [
-      "Noël",
-      "Pâques",
-      "Été",
-      "Hiver",
-      "Automne",
-      "Matin",
-      "Hier"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -232,13 +153,16 @@
       "Soixante"
     ],
     "intrusos": [
-      "Un",
-      "Deux",
-      "Trois",
-      "Rouge",
-      "Vert",
-      "Bonjour",
-      "Beau"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   }
 ]

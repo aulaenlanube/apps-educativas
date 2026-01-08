@@ -22,13 +22,16 @@
       "🦘"
     ],
     "intrusos": [
-      "🐮",
-      "🐷",
-      "🐔",
-      "🐑",
-      "🐴",
-      "🐶",
-      "🐱"
+      "🍕",
+      "🚲",
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -38,7 +41,6 @@
       "🧣",
       "🧤",
       "🧦",
-      "ブーツ (Bota Boot)",
       "🧢",
       "🧶",
       "⛷️",
@@ -52,13 +54,16 @@
       "👙"
     ],
     "intrusos": [
-      "🍎",
-      "🎒",
+      "🍕",
       "🚲",
-      "🍉",
-      "🚗",
-      "🏠",
-      "🧸"
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -84,13 +89,16 @@
       "🍉"
     ],
     "intrusos": [
-      "🍗",
-      "🧀",
       "🍕",
-      "🍔",
-      "🍟",
-      "🥤",
-      "🍪"
+      "🚲",
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -113,13 +121,16 @@
       "🪐"
     ],
     "intrusos": [
-      "🚗",
-      "🚌",
-      "🚂",
-      "🚢",
+      "🍕",
       "🚲",
-      "🏘️",
-      "🌳"
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -145,13 +156,16 @@
       "Hacer"
     ],
     "intrusos": [
-      "Mesa",
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
       "Silla",
-      "Perro",
-      "Gato",
-      "Casa",
-      "Lápiz",
-      "Azul"
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -175,13 +189,16 @@
       "África"
     ],
     "intrusos": [
-      "Rápido",
-      "Feliz",
-      "Verde",
-      "Mesa",
-      "Casa",
-      "Libro",
-      "Flor"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -207,13 +224,16 @@
       "Inteligente"
     ],
     "intrusos": [
-      "España",
-      "Madrid",
-      "Saltar",
-      "Comer",
-      "Mesa",
-      "Lápiz",
-      "Coche"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -237,13 +257,14 @@
       "Cristóbal"
     ],
     "intrusos": [
-      "Mesa",
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
       "Silla",
-      "Libro",
-      "Césped",
-      "Fútbol",
-      "Cómic",
-      "Pájaro"
+      "Nube",
+      "Cuchara"
     ]
   },
   {
@@ -264,12 +285,16 @@
       "Optimista"
     ],
     "intrusos": [
-      "Triste",
-      "Enojado",
-      "Lloroso",
-      "Preocupado",
-      "Enfadado",
-      "Aburrido"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -293,13 +318,15 @@
       "Bota"
     ],
     "intrusos": [
-      "Vaca",
-      "Vela",
-      "Viento",
-      "Volar",
-      "Uva",
-      "Vaso",
-      "Verde"
+      "Pizza",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

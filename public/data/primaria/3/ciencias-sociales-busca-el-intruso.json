@@ -19,13 +19,16 @@
       "🛰️"
     ],
     "intrusos": [
-      "🚗",
-      "🚌",
+      "🍕",
       "🚲",
-      "🚢",
-      "🚂",
-      "🚜",
-      "🚑"
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -48,42 +51,16 @@
       "🚀"
     ],
     "intrusos": [
-      "✈️",
-      "🦅",
-      "🪁",
-      "🚁",
-      "☁️",
-      "🌩️",
-      "🎈"
-    ]
-  },
-  {
-    "categoria": "Señales de Tráfico (Visual)",
-    "correctos": [
-      "🛑",
-      "⛔",
-      "🚸",
-      "🅿️",
-      "♿",
-      "🚳",
-      "⚠️",
-      "🚧",
-      "🛂",
-      " smoking_forbidden",
+      "🍕",
       "🚲",
-      "🚯",
-      "🚰",
-      "🚾",
-      "🛄"
-    ],
-    "intrusos": [
-      "🏁",
-      "🚩",
-      "🖼️",
-      "📸",
-      "🎨",
-      "🎭",
-      "🎪"
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -106,13 +83,16 @@
       "👩‍🚀"
     ],
     "intrusos": [
-      "👻",
-      "👽",
-      "🤖",
-      "🐵",
-      "🗽",
-      "🧸",
-      "🪁"
+      "🍕",
+      "🚲",
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -134,12 +114,16 @@
       "Galaxia"
     ],
     "intrusos": [
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
       "Nube",
-      "Rayo",
-      "Lluvia",
-      "Viento",
-      "Nieve",
-      "Niebla"
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -161,12 +145,16 @@
       "Yate"
     ],
     "intrusos": [
-      "Zapato",
-      "Casa",
-      "Colegio",
-      "Puente",
-      "Semáforo",
-      "Carretera"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -186,12 +174,16 @@
       "Artesanía"
     ],
     "intrusos": [
-      "Juego",
-      "Siesta",
-      "Vacaciones",
-      "Merienda",
-      "Deporte",
-      "Cine"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -213,12 +205,16 @@
       "Península"
     ],
     "intrusos": [
-      "Edificio",
-      "Carretera",
-      "Fábrica",
-      "Semáforo",
-      "Tienda",
-      "Puente"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -240,12 +236,16 @@
       "Ocio"
     ],
     "intrusos": [
-      "Restaurante",
-      "Tienda",
-      "Banco",
-      "Fábrica",
-      "Taller",
-      "Quiosco"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

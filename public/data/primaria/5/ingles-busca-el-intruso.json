@@ -1,133 +1,5 @@
 [
   {
-    "categoria": "Technology (Icons)",
-    "correctos": [
-      "💻",
-      "📱",
-      "🖱️",
-      "⌨️",
-      "🖥️",
-      "🔋",
-      "🔌",
-      "🎧",
-      "📷",
-      "🕹️",
-      "📡",
-      "🛰️",
-      "📠",
-      "📽️",
-      "💾",
-      "🖲️",
-      "📼",
-      "💿"
-    ],
-    "intrusos": [
-      "📜",
-      "✒️",
-      "🕯️",
-      "🕰️",
-      "🔨",
-      "🛖",
-      "🏹"
-    ]
-  },
-  {
-    "categoria": "Wild Animals (Icons)",
-    "correctos": [
-      "🦁",
-      "🐯",
-      "🦓",
-      "🦒",
-      "🐘",
-      "🐊",
-      "🦍",
-      "🦏",
-      "🦛",
-      " leopards (Leopardo Leopard)",
-      "🐒",
-      "🐪",
-      "🐃",
-      "🐍",
-      "🦦",
-      "🐋",
-      "🦈",
-      "🦭"
-    ],
-    "intrusos": [
-      "🐶",
-      "🐱",
-      "🐮",
-      "🐷",
-      "🐔",
-      "🐑",
-      "🐴"
-    ]
-  },
-  {
-    "categoria": "Travel (Icons)",
-    "correctos": [
-      "✈️",
-      "🧳",
-      "🗺️",
-      "🗽",
-      "🗼",
-      "📸",
-      "🚢",
-      "🛂",
-      "🕌",
-      "⛩️",
-      "🏰",
-      "🏜️",
-      "🏝️",
-      "🛶",
-      "🚠",
-      "🗺️",
-      "🚏",
-      "🧭"
-    ],
-    "intrusos": [
-      "🏠",
-      "🛋️",
-      "🛌",
-      "📺",
-      "🧹",
-      "🚿",
-      "🍳"
-    ]
-  },
-  {
-    "categoria": "Emotions (Icons)",
-    "correctos": [
-      "😀",
-      "😢",
-      "😡",
-      "😴",
-      "🤔",
-      "😍",
-      "🥳",
-      "😱",
-      "🤢",
-      "🤩",
-      "😌",
-      "🙄",
-      "😤",
-      "🥵",
-      "🥶",
-      "🤯",
-      "😎",
-      "🤡"
-    ],
-    "intrusos": [
-      "🍎",
-      "🚗",
-      "🏠",
-      "🐶",
-      "✏️",
-      "⚽",
-      "🍔"
-    ]
-  },
-  {
     "categoria": "Irregular Verbs (Past)",
     "correctos": [
       "Went",
@@ -150,13 +22,16 @@
       "Spent"
     ],
     "intrusos": [
-      "Played",
-      "Cooked",
-      "Walked",
-      "Jumped",
-      "Listened",
-      "Watched",
-      "Cleaned"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -180,13 +55,14 @@
       "Lion"
     ],
     "intrusos": [
-      "Dog",
-      "Cat",
-      "Cow",
-      "Chicken",
-      "Sheep",
-      "Goat",
-      "Pig"
+      "Pizza",
+      "Bicycle",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Spoon"
     ]
   },
   {
@@ -208,13 +84,16 @@
       "Weekly"
     ],
     "intrusos": [
-      "Yesterday",
-      "Tomorrow",
-      "Now",
-      "Today",
-      "Soon",
-      "Late",
-      "Early"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -236,13 +115,16 @@
       "How old"
     ],
     "intrusos": [
-      "Yes",
-      "No",
-      "Because",
-      "And",
-      "But",
-      "So",
-      "Or"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -266,13 +148,16 @@
       "Basket"
     ],
     "intrusos": [
-      "Piano",
-      "Guitar",
-      "Book",
-      "Pen",
-      "Sofa",
-      "Computer",
-      "Phone"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -294,13 +179,16 @@
       "Hotter"
     ],
     "intrusos": [
-      "Big",
-      "Small",
-      "Fast",
-      "Slow",
-      "Tall",
-      "Good",
-      "Bad"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   }
 ]

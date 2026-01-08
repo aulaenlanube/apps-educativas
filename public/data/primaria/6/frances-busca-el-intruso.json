@@ -1,95 +1,5 @@
 [
   {
-    "categoria": "Drapeaux (Visual)",
-    "correctos": [
-      "🇫🇷",
-      "🇧🇪",
-      "🇨🇭",
-      "🇨🇦",
-      "🇱🇺",
-      "🇲🇨",
-      "🇪🇸",
-      "🇮🇹",
-      "🇩🇪",
-      "🇬🇧",
-      "🇵🇹",
-      "🇦🇹",
-      "🇳🇱",
-      "🇬🇷",
-      "🇮🇪",
-      "🇸🇪"
-    ],
-    "intrusos": [
-      "🌍",
-      "🗺️",
-      "✈️",
-      "🧳",
-      "🛳️",
-      "🚗",
-      "🚲"
-    ]
-  },
-  {
-    "categoria": "Technologie (Visual)",
-    "correctos": [
-      "💻",
-      "📱",
-      "🖱️",
-      "⌨️",
-      "🖥️",
-      "🎧",
-      "📷",
-      "🔋",
-      "📶",
-      "📡",
-      "🖱️",
-      "🖨️",
-      "💾",
-      "🌐",
-      "🔔",
-      "🔊"
-    ],
-    "intrusos": [
-      "📚",
-      "🖊️",
-      "🕯️",
-      "🕰️",
-      "🔨",
-      "🛖",
-      "🏹"
-    ]
-  },
-  {
-    "categoria": "Lieux de la Ville (Visual)",
-    "correctos": [
-      "🏥",
-      "🏫",
-      "🏦",
-      "📫",
-      "⛲",
-      "🏬",
-      "🏤",
-      "🏛️",
-      "🏟️",
-      "🏗️",
-      "⛪",
-      "🚔",
-      "🚒",
-      "🚑",
-      "🚕",
-      "🏣"
-    ],
-    "intrusos": [
-      "🏜️",
-      "🏝️",
-      "🌋",
-      "🌲",
-      "🐄",
-      "🐑",
-      "🐪"
-    ]
-  },
-  {
     "categoria": "Les Professions",
     "correctos": [
       "Professeur",
@@ -108,13 +18,16 @@
       "Pilote"
     ],
     "intrusos": [
-      "École",
-      "Hôpital",
-      "Baguette",
-      "Croissant",
-      "Maison",
-      "Livre",
-      "Stylo"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -136,13 +49,16 @@
       "Japon"
     ],
     "intrusos": [
-      "Paris",
-      "Madrid",
-      "Rome",
-      "Londres",
-      "Berlin",
-      "Lisbonne",
-      "Bruxelles"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -165,16 +81,16 @@
       "Leurs"
     ],
     "intrusos": [
-      "Je",
-      "Tu",
-      "Il",
-      "Elle",
-      "Nous",
-      "Vous",
-      "Ils",
-      "Elles",
-      "Le",
-      "La"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -194,12 +110,16 @@
       "Ils sont"
     ],
     "intrusos": [
-      "J'aime",
-      "J'habite",
-      "Je regarde",
-      "Je parle",
-      "Je mange",
-      "Je joue"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -221,13 +141,15 @@
       "Soupe"
     ],
     "intrusos": [
-      "Ciseaux",
-      "Crayon",
-      "Règle",
-      "Gomme",
-      "Sac à dos",
-      "Vêtement",
-      "Chaussure"
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -247,13 +169,16 @@
       "Grec"
     ],
     "intrusos": [
-      "France",
-      "Espagne",
-      "Italie",
-      "Allemagne",
-      "Belgique",
-      "Suisse",
-      "Canada"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   }
 ]

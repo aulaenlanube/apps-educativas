@@ -1,93 +1,5 @@
 [
   {
-    "categoria": "Tecnologia i Digital (Visual)",
-    "correctos": [
-      "💻",
-      "📱",
-      "鼠标 (Ratolí Mouse)",
-      "⌨️",
-      "🖥️",
-      "🔋",
-      "🔌",
-      "📸",
-      "🎧",
-      "🕹️",
-      "📡",
-      "🛰️",
-      "🖱️",
-      "🖨️",
-      "💾",
-      "🌐"
-    ],
-    "intrusos": [
-      "📚",
-      "✏️",
-      "🕯️",
-      "🕰️",
-      "🔨",
-      "🛖",
-      "🏹"
-    ]
-  },
-  {
-    "categoria": "Alimentació Tradicional (Visual)",
-    "correctos": [
-      "🥘",
-      "🍊",
-      "🥖",
-      "🧀",
-      "🐟",
-      "🍇",
-      "🥘",
-      "🥚",
-      "🍤",
-      "🥗",
-      "🥩",
-      "🍗",
-      "🥛",
-      "🥣",
-      "🥨",
-      "🥞"
-    ],
-    "intrusos": [
-      "🍽️",
-      "🔪",
-      "🧂",
-      "🍷",
-      "🥤",
-      "🥣",
-      "🥢"
-    ]
-  },
-  {
-    "categoria": "Entorn Natural (Visual)",
-    "correctos": [
-      "🌳",
-      "🌊",
-      "🏔️",
-      "🦅",
-      "🍄",
-      "🌻",
-      "🌿",
-      "🦋",
-      "🌈",
-      "🌅",
-      "🌋",
-      "🏜️",
-      "🏝️",
-      "🌄",
-      "🌤️",
-      "⛈️"
-    ],
-    "intrusos": [
-      "Factory (Fàbrica Factory)",
-      "Car (Cotxe Car)",
-      "City (Ciutat City)",
-      "Building (Edifici Building)",
-      "Gas station (Benzi Gas station)"
-    ]
-  },
-  {
     "categoria": "Paraules Esdrúixoles",
     "correctos": [
       "Música",
@@ -108,13 +20,16 @@
       "Públic"
     ],
     "intrusos": [
-      "Camisa",
-      "Taula",
-      "Camió",
-      "Paper",
-      "Ordinador",
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
       "Cadira",
-      "Botella"
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -134,13 +49,16 @@
       "Imperatiu"
     ],
     "intrusos": [
-      "Subjecte",
-      "Predicat",
-      "Nom",
-      "Adjectiu",
-      "Article",
-      "Sustantiu",
-      "Adverbi"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -164,13 +82,16 @@
       "Pintor"
     ],
     "intrusos": [
-      "Escola",
-      "Hospital",
-      "Comissaria",
-      "Cotxe",
-      "Llibre",
-      "Mochilla",
-      "Llapis"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -192,13 +113,16 @@
       "Columbretes"
     ],
     "intrusos": [
-      "Pirineus",
-      "Riu Ebre",
-      "Teide",
-      "Riu Amazones",
-      "Everest",
-      "Himalaia",
-      "Andes"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -222,13 +146,16 @@
       "Meu"
     ],
     "intrusos": [
-      "Molt",
-      "Poc",
-      "Gaire",
-      "Massa",
-      "Sempre",
-      "Mai",
-      "Hui"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   }
 ]

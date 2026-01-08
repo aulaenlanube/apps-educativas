@@ -1,268 +1,190 @@
 [
   {
-    "categoria": "Animales Mamíferos (Visual)",
+    "categoria": "Animales Salvajes",
     "correctos": [
-      "🐶",
-      "🐱",
       "🦁",
       "🐯",
-      "🐻",
-      "🐵",
-      "🐘",
       "🦓",
+      "🐘",
       "🦒",
-      "🐺",
-      "🐮",
-      "🐷",
-      "🐨",
-      "🐼",
-      "🐹",
-      "🐿️",
-      "🐎",
-      "🐏"
-    ],
-    "intrusos": [
-      "🦅",
-      "🦜",
+      "🐆",
+      "🐅",
       "🐊",
-      "🐸",
-      "🐟",
-      "🐢",
-      "🐧"
-    ]
-  },
-  {
-    "categoria": "Insectos y Bichos (Visual)",
-    "correctos": [
-      "Ant (Hormiga Ant)",
-      "🐝",
-      "🐞",
-      "🦋",
-      "🦗",
-      "🦟",
-      "🐛",
-      "🪰",
-      "🪲",
-      "🪳",
-      "🪻",
-      "🐜",
-      "🐌",
-      "🦗"
+      "🐍",
+      "🦏",
+      "🦛",
+      "🦍",
+      "🦧",
+      "🐫",
+      "🐪"
     ],
     "intrusos": [
-      "🐶",
-      "🐱",
-      "🐦",
-      "🐢",
-      "Shark (Tiburón Shark)",
-      "🕷️",
-      "🦂",
-      "🦀"
+      "🚗",
+      "🚌",
+      "🚲",
+      "🏠"
     ]
   },
   {
-    "categoria": "Partes de la Planta (Visual)",
+    "categoria": "Plantas",
     "correctos": [
+      "🌳",
+      "🌲",
+      "🌴",
+      "🌵",
+      "🌿",
+      "🌱",
+      "🪴",
+      "🍀",
+      "☘️",
       "🌻",
       "🌹",
       "🌷",
-      "🌲",
-      "🌱",
+      "🍁",
       "🍂",
-      "🌵",
-      "🎋",
-      "🍃",
-      "🪵",
-      "🍄",
-      "🌺",
-      "🌾",
-      "🌼",
-      "🌿",
-      "🍀"
+      "🌾"
     ],
     "intrusos": [
       "🐶",
       "🐱",
-      "🚗",
-      "📱",
-      "🧱",
-      "👗",
-      "👟"
+      "🐰",
+      "🍕"
     ]
   },
   {
-    "categoria": "Fenómenos del Clima (Visual)",
+    "categoria": "Frutas",
+    "correctos": [
+      "🍎",
+      "🍌",
+      "🍇",
+      "🍓",
+      "🍊",
+      "🍑",
+      "🍒",
+      "🍐",
+      "🍑",
+      "🥝",
+      "🫐",
+      "🥭",
+      "🍍",
+      "🥥"
+    ],
+    "intrusos": [
+      "🍟",
+      "🍔",
+      "🍕",
+      "🌭"
+    ]
+  },
+  {
+    "categoria": "Mi Cuerpo",
+    "correctos": [
+      "👂",
+      "👁️",
+      "👃",
+      "👅",
+      "👄",
+      "🦷",
+      "🖐️",
+      "🦶",
+      "🦵",
+      "💪",
+      "🧠",
+      "🦴",
+      "👁️‍🗨️"
+    ],
+    "intrusos": [
+      "👟",
+      "🎒",
+      "🧣",
+      "🕶️"
+    ]
+  },
+  {
+    "categoria": "El Clima",
     "correctos": [
       "☀️",
       "☁️",
       "🌧️",
       "❄️",
-      "⛈️",
-      "🌈",
+      "🌩️",
       "🌪️",
-      "🌫️",
-      "🌬️",
-      "🌡️",
+      "🌈",
       "🌤️",
       "🌥️",
-      "🌦️",
-      "🌗",
-      "⚡"
+      "🌪️",
+      "🌬️",
+      "🌊"
+    ],
+    "intrusos": [
+      "🚗",
+      "🚌",
+      "🚲",
+      "🛒"
+    ]
+  },
+  {
+    "categoria": "Animales Marinos",
+    "correctos": [
+      "🐟",
+      "🐠",
+      "🐡",
+      "🦈",
+      "🐙",
+      "🐋",
+      "🐬",
+      "🦀",
+      "🦞",
+      "🦐",
+      "🦑",
+      "🐚",
+      "🦦"
+    ],
+    "intrusos": [
+      "🦅",
+      "🦉",
+      "🐦",
+      "🦁"
+    ]
+  },
+  {
+    "categoria": "Insectos",
+    "correctos": [
+      "🐌",
+      "🦋",
+      "🐛",
+      "🐜",
+      "🐝",
+      "🐞",
+      "🦗",
+      "🕷️",
+      "🦂"
+    ],
+    "intrusos": [
+      "🐘",
+      "🦒",
+      "🦓"
+    ]
+  },
+  {
+    "categoria": "Espacio",
+    "correctos": [
+      "🚀",
+      "🪐",
+      "🌍",
+      "🌕",
+      "⭐",
+      "🌟",
+      "✨",
+      "🌠",
+      "☄️",
+      "🛸"
     ],
     "intrusos": [
       "🏠",
-      "🚗",
-      "🐶",
-      "📚",
-      "✏️",
-      "🍔",
-      "🛁"
-    ]
-  },
-  {
-    "categoria": "Órganos y Sentidos",
-    "correctos": [
-      "Vista",
-      "Oído",
-      "Olfato",
-      "Gusto",
-      "Tacto",
-      "Ojos",
-      "Nariz",
-      "Lengua",
-      "Manos",
-      "Orejas",
-      "Piel",
-      "Visión",
-      "Audición",
-      "Guste"
-    ],
-    "intrusos": [
-      "Hambre",
-      "Sueño",
-      "Miedo",
-      "Alegría",
-      "Sed",
-      "Dolor"
-    ]
-  },
-  {
-    "categoria": "Partes del Cuerpo",
-    "correctos": [
-      "Cabeza",
-      "Brazos",
-      "Piernas",
-      "Manos",
-      "Pies",
-      "Tronco",
-      "Cuello",
-      "Codos",
-      "Rodillas",
-      "Hombros",
-      "Espalda",
-      "Barriga",
-      "Pecho",
-      "Muñeca",
-      "Tobillo",
-      "Dedos"
-    ],
-    "intrusos": [
-      "Camisa",
-      "Pantalón",
-      "Zapato",
-      "Gorro",
-      "Reloj",
-      "Gafas",
-      "Libro"
-    ]
-  },
-  {
-    "categoria": "Seres Vivos",
-    "correctos": [
-      "Perro",
-      "Gato",
-      "Árbol",
-      "Flor",
-      "Niño",
-      "Pájaro",
-      "Conejo",
-      "Planta",
-      "Hormiga",
-      "Pez",
-      "Bebé",
-      "Musgo",
-      "Bacteria",
-      "Alga",
-      "Hongo",
-      "Mariposa"
-    ],
-    "intrusos": [
-      "Piedra",
-      "Agua",
-      "Mesa",
-      "Coche",
-      "Juguete",
-      "Arena",
-      "Nube",
-      "Fuego"
-    ]
-  },
-  {
-    "categoria": "Conceptos del Tiempo",
-    "correctos": [
-      "Primavera",
-      "Verano",
-      "Otoño",
-      "Invierno",
-      "Enero",
-      "Febrero",
-      "Marzo",
-      "Abril",
-      "Mayo",
-      "Junio",
-      "Julio",
-      "Agosto",
-      "Septiembre",
-      "Octubre",
-      "Noviembre",
-      "Diciembre"
-    ],
-    "intrusos": [
-      "Lunes",
-      "Martes",
-      "Miércoles",
-      "Jueves",
-      "Viernes",
-      "Sábado",
-      "Domingo"
-    ]
-  },
-  {
-    "categoria": "Alimentos de Origen Animal",
-    "correctos": [
-      "Carne",
-      "Pescado",
-      "Huevos",
-      "Leche",
-      "Queso",
-      "Mantequilla",
-      "Yogur",
-      "Jamón",
-      "Pollo",
-      "Miel",
-      "Chorizo",
-      "Salchicha",
-      "Nata",
-      "Requesón"
-    ],
-    "intrusos": [
-      "Manzana",
-      "Lechuga",
-      "Pan",
-      "Arroz",
-      "Tomate",
-      "Patata",
-      "Aceite"
+      "🌳",
+      "🌻",
+      "🍎"
     ]
   }
 ]

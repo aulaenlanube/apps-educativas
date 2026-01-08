@@ -1,125 +1,5 @@
 [
   {
-    "categoria": "Artes Escénicas (Visual)",
-    "correctos": [
-      "🎭",
-      "🎟️",
-      "🎬",
-      "🍿",
-      "📹",
-      "🎪",
-      "📽️",
-      "📻",
-      "🎙️",
-      "📺",
-      "🎹",
-      "🎻",
-      "🎷",
-      "🎺",
-      "🩰",
-      "🎨"
-    ],
-    "intrusos": [
-      "⚽",
-      "🏊",
-      "🚜",
-      "🏔️",
-      "🏥",
-      "🏢",
-      "🏛️"
-    ]
-  },
-  {
-    "categoria": "Comunicación Digital (Visual)",
-    "correctos": [
-      "📧",
-      "💬",
-      "🤳",
-      "🌐",
-      "📶",
-      "💻",
-      "📱",
-      "🖱️",
-      "⌨️",
-      "🖥️",
-      "🔋",
-      "🔌",
-      "📡",
-      "🛰️",
-      "🔔",
-      "🔊"
-    ],
-    "intrusos": [
-      "📠",
-      "💾",
-      "🎞️",
-      "🕰️",
-      "📜",
-      "🏺",
-      "🕰️"
-    ]
-  },
-  {
-    "categoria": "Narrativa y Relato (Visual)",
-    "correctos": [
-      "📖",
-      "📜",
-      "🧛",
-      "👽",
-      "🧚",
-      "城堡 (Castillo Castle)",
-      "🖋️",
-      "✍️",
-      "🪶",
-      "🗺️",
-      "🕯️",
-      "💍",
-      "🗿",
-      "🏹",
-      "🛡️",
-      "⚔️"
-    ],
-    "intrusos": [
-      "🧪",
-      "🔢",
-      "📐",
-      "🍳",
-      "🏋️",
-      "🧯",
-      "🔋"
-    ]
-  },
-  {
-    "categoria": "Expresiones Emocionales (Visual)",
-    "correctos": [
-      "😍",
-      "😭",
-      "🤯",
-      "😡",
-      "😱",
-      "🥰",
-      "🤢",
-      "🧐",
-      "🥳",
-      "🥺",
-      "🤫",
-      "🤥",
-      "🥵",
-      "🥶",
-      "🤯",
-      "😎"
-    ],
-    "intrusos": [
-      "😐",
-      "😶",
-      "🥱",
-      "😴",
-      "🤖",
-      "👹",
-      "👽"
-    ]
-  },
-  {
     "categoria": "Géneros Literarios",
     "correctos": [
       "Narrativa",
@@ -140,12 +20,16 @@
       "Sátira"
     ],
     "intrusos": [
-      "Matemáticas",
-      "Noticia",
-      "Receta",
-      "Instrucciones",
-      "Diccionario",
-      "Calendario"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -167,13 +51,16 @@
       "Vocativo"
     ],
     "intrusos": [
-      "Aguda",
-      "Llana",
-      "Esdrújula",
-      "Prefijo",
-      "Sufijo",
-      "Tilde",
-      "Coma"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -195,13 +82,16 @@
       "Verso libre"
     ],
     "intrusos": [
-      "Capítulo",
-      "Párrafo",
-      "Título",
-      "Índice",
-      "Portada",
-      "Epílogo",
-      "Prólogo"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -223,13 +113,16 @@
       "Posesivo"
     ],
     "intrusos": [
-      "Sujeto",
-      "Predicado",
-      "Oración",
-      "Sílaba",
-      "Acento",
-      "Diéresis",
-      "Guion"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -251,13 +144,16 @@
       "Asíndeton"
     ],
     "intrusos": [
-      "Rima",
-      "Verso",
-      "Estrofa",
-      "Punto",
-      "Coma",
-      "Comillas",
-      "Guion"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -281,13 +177,15 @@
       "Desahuciar"
     ],
     "intrusos": [
-      "Huevo",
-      "Hielo",
-      "Hierba",
-      "Hueso",
-      "Huerto",
-      "Hablar",
-      "Hacer"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León"
     ]
   }
 ]

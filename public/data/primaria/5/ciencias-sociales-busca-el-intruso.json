@@ -1,125 +1,5 @@
 [
   {
-    "categoria": "Edad Media (Visual)",
-    "correctos": [
-      "🏰",
-      "👑",
-      "🛡️",
-      "⚔️",
-      "🐎",
-      "⚜️",
-      "🏹",
-      "🛖",
-      "🕌",
-      "⛪",
-      "📜",
-      "🕯️",
-      "💍",
-      "🏺",
-      "🛡️",
-      "🖋️"
-    ],
-    "intrusos": [
-      "📱",
-      "🚗",
-      "💡",
-      "🏭",
-      "🚆",
-      "🚀",
-      "💻"
-    ]
-  },
-  {
-    "categoria": "Astronomía (Visual)",
-    "correctos": [
-      "🪐",
-      "🌌",
-      "⭐",
-      "☄️",
-      "🌑",
-      "🔭",
-      "☀️",
-      "🌍",
-      "🌕",
-      "📡",
-      "🛸",
-      "🚀",
-      "🛰️",
-      "🌓",
-      "🌠",
-      "☄️"
-    ],
-    "intrusos": [
-      "✈️",
-      "☁️",
-      "🦅",
-      "🪁",
-      "🚁",
-      "🎈",
-      "🦟"
-    ]
-  },
-  {
-    "categoria": "Unión Europea (Visual)",
-    "correctos": [
-      "🇪🇺",
-      "💶",
-      "🗳️",
-      "🏛️",
-      "🤝",
-      "🛂",
-      "🇪🇸",
-      "🇫🇷",
-      "🇩🇪",
-      "🇮🇹",
-      "🇵🇹",
-      "🇧🇪",
-      "🇳🇱",
-      "🇸🇪",
-      "🇬🇷",
-      "🇦🇹"
-    ],
-    "intrusos": [
-      "🇺🇸",
-      "💴",
-      "⛩️",
-      "🤠",
-      "🗽",
-      "🏮",
-      "🉐"
-    ]
-  },
-  {
-    "categoria": "Grandes Inventos (Visual)",
-    "correctos": [
-      "💡",
-      "🚂",
-      "🚗",
-      "☎️",
-      "📷",
-      "📻",
-      "✈️",
-      "🎥",
-      "🖨️",
-      "🔬",
-      "💻",
-      "⌚",
-      "📺",
-      "🔭",
-      "🧬",
-      "🕹️"
-    ],
-    "intrusos": [
-      "🔨",
-      "🔥",
-      "🏺",
-      "🏹",
-      "🕯️",
-      "🛖",
-      "🦴"
-    ]
-  },
-  {
     "categoria": "Vida en la Edad Media",
     "correctos": [
       "Castillo",
@@ -139,12 +19,16 @@
       "Románico"
     ],
     "intrusos": [
-      "Fábrica",
-      "Internet",
-      "Democracia",
-      "Avión",
-      "Electricidad",
-      "Cine"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -164,11 +48,16 @@
       "Mesoclima"
     ],
     "intrusos": [
-      "Polar Ártico",
-      "Equatorial",
-      "Desértico Sahara",
-      "Monzónico",
-      "Tundra"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -190,12 +79,16 @@
       "Municipio"
     ],
     "intrusos": [
-      "Faraón",
-      "Emperador",
-      "Dictador",
-      "Señor Feudal",
-      "Zar",
-      "César"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -217,13 +110,16 @@
       "Zêzere"
     ],
     "intrusos": [
-      "Ebro",
-      "Júcar",
-      "Segura",
-      "Turia",
-      "Llobregat",
-      "Mijares",
-      "Serpis"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -245,11 +141,16 @@
       "Geosfera"
     ],
     "intrusos": [
-      "Satélite artificial",
-      "Estrella fuga",
-      "Nube baja",
-      "Rayo",
-      "Viento sol"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -273,12 +174,16 @@
       "Ío"
     ],
     "intrusos": [
-      "Andrómeda",
-      "Alfa Centauri",
-      "Sirio",
-      "Pléyades",
-      "Casiopea",
-      "Orión"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

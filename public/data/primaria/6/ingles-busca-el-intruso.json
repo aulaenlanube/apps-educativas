@@ -1,125 +1,5 @@
 [
   {
-    "categoria": "Digital World (Icons)",
-    "correctos": [
-      "💻",
-      "📱",
-      "📡",
-      "💾",
-      "🖱️",
-      "⌨️",
-      "📧",
-      "🌐",
-      "📶",
-      "🛒",
-      "🕹️",
-      "🖥️",
-      "🔋",
-      "🔌",
-      "📸",
-      "🎧"
-    ],
-    "intrusos": [
-      "📚",
-      "🖊️",
-      "🚲",
-      "🌳",
-      "⚽",
-      "🛖",
-      "🏹"
-    ]
-  },
-  {
-    "categoria": "Environmental Awareness (Icons)",
-    "correctos": [
-      "♻️",
-      "🌍",
-      "🌱",
-      "🚮",
-      "🔋",
-      "☀️",
-      "🌬️",
-      "🌊",
-      "🚲",
-      "🥦",
-      "🧺",
-      "🌲",
-      "🐼",
-      "🦜",
-      "🌡️",
-      "🛰️"
-    ],
-    "intrusos": [
-      "🏭",
-      "🛢️",
-      "🚬",
-      "🔥",
-      "☢️",
-      "🚗",
-      "⛽"
-    ]
-  },
-  {
-    "categoria": "Health (Icons)",
-    "correctos": [
-      "🤒",
-      "🤕",
-      "🤢",
-      "🤧",
-      "😷",
-      "🌡️",
-      "💉",
-      "💊",
-      "🚑",
-      "🏥",
-      "🦷",
-      "🧠",
-      "🧬",
-      "⚕️",
-      "🧼",
-      "🧻"
-    ],
-    "intrusos": [
-      "😀",
-      "😎",
-      "🥳",
-      "🤠",
-      "💪",
-      "🏃",
-      "🤸"
-    ]
-  },
-  {
-    "categoria": "Future and Space (Icons)",
-    "correctos": [
-      "🤖",
-      "🚀",
-      "🛸",
-      "🦾",
-      "🧬",
-      "🔭",
-      "🛰️",
-      "🌑",
-      "🌌",
-      "☄️",
-      "🪐",
-      "🌍",
-      "👽",
-      "🔬",
-      "📡",
-      "🛰️"
-    ],
-    "intrusos": [
-      "🦕",
-      "🕯️",
-      "📜",
-      "🏰",
-      "🛡️",
-      "⚔️",
-      "🛖"
-    ]
-  },
-  {
     "categoria": "Verb Tenses",
     "correctos": [
       "I go",
@@ -136,13 +16,16 @@
       "You will like"
     ],
     "intrusos": [
-      "I to go",
-      "Me go",
-      "Going I",
-      "I gone",
-      "Go I",
-      "She going",
-      "He been"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -164,13 +47,16 @@
       "Concrete"
     ],
     "intrusos": [
-      "Table",
-      "Chair",
-      "Window",
-      "Bottle",
-      "Shirt",
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
       "Shoe",
-      "Wall"
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -192,13 +78,16 @@
       "To"
     ],
     "intrusos": [
-      "Yesterday",
-      "Tomorrow",
-      "Run",
-      "Jump",
-      "Happy",
-      "Always",
-      "Often"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -218,13 +107,16 @@
       "Sunburn"
     ],
     "intrusos": [
-      "Happy",
-      "Hungry",
-      "Thirsty",
-      "Tired",
-      "Excited",
-      "Scared",
-      "Angry"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -246,13 +138,16 @@
       "Melbourne"
     ],
     "intrusos": [
-      "Paris",
-      "Madrid",
-      "Rome",
-      "Berlin",
-      "Tokyo",
-      "Peking",
-      "Cairo"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -272,11 +167,16 @@
       "If it happens"
     ],
     "intrusos": [
-      "If I goes",
-      "When I will go",
-      "If I to go",
-      "I stay home if rain",
-      "You get burned"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   }
 ]

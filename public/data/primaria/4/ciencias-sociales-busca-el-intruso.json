@@ -22,104 +22,14 @@
       "🚓"
     ],
     "intrusos": [
-      "🏠",
-      "🏫",
-      "🌳",
-      "🐶",
-      "🍔",
-      "📱",
-      "💻",
-      "⌚"
-    ]
-  },
-  {
-    "categoria": "Símbolos Históricos (Visual)",
-    "correctos": [
-      "🏺",
-      "🏰",
-      "🏭",
-      "📜",
-      "🛖",
-      "⚔️",
-      "🏛️",
-      "🚀",
-      "👑",
-      "🛡️",
-      "🗺️",
-      "🕯️",
-      "🖋️",
-      "🧭",
-      "🗿",
-      "🏹"
-    ],
-    "intrusos": [
-      "🎮",
-      "🍟",
-      "🎧",
-      "🦄",
-      "🥤",
-      "🛝",
-      "🛹"
-    ]
-  },
-  {
-    "categoria": "Sector Primario (Visual)",
-    "correctos": [
-      "🚜",
-      "🎣",
-      "⛏️",
-      "🌾",
-      "🐄",
-      "🐑",
-      "🍎",
-      "⛴️",
-      "🌽",
-      "🧺",
+      "🍕",
+      "🐬",
       "🔨",
-      "🪓",
-      "🍇",
-      "🥕",
-      "🍗",
-      "🍯"
-    ],
-    "intrusos": [
-      "🏭",
-      "💻",
-      "👨‍🏫",
-      "🏥",
-      "🏬",
-      "🎮",
-      "🏗️"
-    ]
-  },
-  {
-    "categoria": "Banderas de la UE (Visual)",
-    "correctos": [
-      "🇪🇸",
-      "🇫🇷",
-      "🇵🇹",
-      "🇮🇹",
-      "🇩🇪",
-      "🇧🇪",
-      "🇳🇱",
-      "🇸🇪",
-      "🇬🇷",
-      "🇦🇹",
-      "🇮🇪",
-      "🇩🇰",
-      "🇫🇮",
-      "🇵🇱",
-      "🇭🇺",
-      "🇷🇴"
-    ],
-    "intrusos": [
-      "🏁",
-      "🚩",
-      "🏴‍☠️",
-      "🏳️‍🌈",
-      "🇺🇳",
-      "⚽",
-      "🏀"
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎"
     ]
   },
   {
@@ -141,39 +51,16 @@
       "Recolección"
     ],
     "intrusos": [
-      "Industria",
-      "Comercio",
-      "Turismo",
-      "Sanidad",
-      "Banca",
-      "Moda"
-    ]
-  },
-  {
-    "categoria": "Trabajos del Sector Terciario",
-    "correctos": [
-      "Comercio",
-      "Turismo",
-      "Transporte",
-      "Sanidad",
-      "Educación",
-      "Seguridad",
-      "Finanzas",
-      "Justicia",
-      "Cultura",
-      "Comunicaciones",
-      "Ocio",
-      "Hostelería",
-      "Limpieza",
-      "Administración"
-    ],
-    "intrusos": [
-      "Agricultura",
-      "Ganadería",
-      "Pesca",
-      "Minería",
-      "Fábrica",
-      "Siderurgia"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -195,13 +82,16 @@
       "Mundo"
     ],
     "intrusos": [
-      "Amazonas",
-      "Nilo",
-      "Misisipi",
-      "Danubio",
-      "Sena",
-      "Támesis",
-      "Volga"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -223,12 +113,16 @@
       "Picos de Europa"
     ],
     "intrusos": [
-      "Alpes",
-      "Himalaya",
-      "Andes",
-      "Rocosas",
-      "Everest",
-      "Kilimanjaro"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -248,13 +142,16 @@
       "Siglo de Oro"
     ],
     "intrusos": [
-      "Edad de Hielo",
-      "Era Jurásica",
-      "Futuro",
-      "Año pasado",
-      "Ayer",
-      "Mañana",
-      "Semana"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

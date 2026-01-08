@@ -1,274 +1,105 @@
 [
   {
-    "categoria": "Medios de Transporte (Visual)",
+    "categoria": "Familia",
     "correctos": [
+      "👨‍👩‍👧‍👦",
+      "👨‍👩‍👦",
+      "👨‍👩‍👧",
+      "👴",
+      "👵",
+      "👶",
+      "👨",
+      "👩",
+      "👦",
+      "👧",
+      "🧔",
+      "🤰"
+    ],
+    "intrusos": [
       "🚗",
       "🚌",
-      "🚂",
-      "✈️",
-      "🚢",
-      "🚲",
-      "🚑",
-      "🚒",
-      "🚕",
-      "🚜",
-      "🛵",
-      "🚁",
-      "🚀",
-      "🛶",
-      "🚠",
-      "🚜",
-      "🚛"
-    ],
-    "intrusos": [
-      "🏠",
-      "🏫",
-      "🌳",
-      "🐶",
-      "🍔",
-      "🍕",
-      "🧸",
-      "🛋️"
+      "🚲"
     ]
   },
   {
-    "categoria": "Profesiones (Visual)",
+    "categoria": "Tipos de Casa",
+    "correctos": [
+      "🏠",
+      "🏡",
+      "🏘️",
+      "🏢",
+      "🏚️",
+      "🏰",
+      "🎪",
+      "🏕️",
+      "🛖"
+    ],
+    "intrusos": [
+      "🧔",
+      "🌻",
+      "🍎"
+    ]
+  },
+  {
+    "categoria": "Profesiones",
     "correctos": [
       "👨‍⚕️",
+      "👩‍⚕️",
+      "👨‍🏫",
       "👩‍🏫",
-      "👮‍♂️",
-      "👨‍🚒",
+      "👨‍🍳",
       "👩‍🍳",
-      "👨‍🌾",
-      "🕵️‍♂️",
+      "👨‍🚒",
+      "👨‍✈️",
       "👨‍🎨",
-      "👩‍🚀",
-      "👨‍🔧",
-      "👩‍🔬",
-      "👨‍制造",
-      "👩‍⚖️",
-      "👨‍💻",
-      "👩‍✈️",
-      "👨‍🎤"
+      "👨‍🌾",
+      "🕵️",
+      "👮",
+      "👷"
     ],
     "intrusos": [
-      "👻",
-      "👽",
-      "🤖",
-      "🐵",
-      "🗽",
       "🧸",
-      "🪁",
-      "🏰"
+      "🪀",
+      "⚽"
     ]
   },
   {
-    "categoria": "La Ciudad (Visual)",
+    "categoria": "Transporte Urbano",
     "correctos": [
-      "🚦",
-      "🏢",
+      "🚗",
+      "🚕",
+      "🚙",
       "🚌",
-      "⛲",
-      "🏬",
-      "🏥",
-      "🏫",
-      "⛪",
-      "🏤",
-      "🏪",
-      "🏙️",
+      "🚎",
+      "🚓",
+      "🚑",
+      "🚒",
+      "🚐",
+      "🚲",
+      "🛵"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🐭"
+    ]
+  },
+  {
+    "categoria": "Monumentos",
+    "correctos": [
       "🏛️",
-      "🏟️",
-      "🏦",
-      "🏗️",
-      "🏘️"
+      "🏰",
+      "⛪",
+      "🕌",
+      "🕍",
+      "⛩️",
+      "🕋",
+      "🗿"
     ],
     "intrusos": [
-      "🚜",
-      "🌻",
-      "🐄",
-      "🐑",
-      "🏔️",
-      "⛺",
-      "🌾",
-      "🐐"
-    ]
-  },
-  {
-    "categoria": "El Colegio (Visual)",
-    "correctos": [
-      "🎒",
-      "📚",
-      "✏️",
-      "📏",
-      "✂️",
-      "🖍️",
-      "🗒️",
-      "🏫",
-      "🎓",
-      "🔔",
-      "📖",
-      "🖊️",
-      "📓",
-      "🖇️",
-      "📒",
-      "💻"
-    ],
-    "intrusos": [
-      "🛌",
-      "🛁",
-      "🍳",
-      "📺",
-      "🎮",
-      "🧸",
-      "🍦",
-      "🥪"
-    ]
-  },
-  {
-    "categoria": "Miembros de la Familia",
-    "correctos": [
-      "Padre",
-      "Madre",
-      "Hermano",
-      "Hermana",
-      "Abuelo",
-      "Abuela",
-      "Tío",
-      "Tía",
-      "Primo",
-      "Prima",
-      "Yayo",
-      "Yaya",
-      "Sobrino",
-      "Sobrina",
-      "Hijo",
-      "Hija",
-      "Suegro",
-      "Nieto"
-    ],
-    "intrusos": [
-      "Profesor",
-      "Médico",
-      "Vecino",
-      "Amigo",
-      "Policía",
-      "Bombero",
-      "Cartero"
-    ]
-  },
-  {
-    "categoria": "Partes de la Casa",
-    "correctos": [
-      "Cocina",
-      "Salón",
-      "Baño",
-      "Dormitorio",
-      "Comedor",
-      "Terraza",
-      "Garaje",
-      "Pasillo",
-      "Recibidor",
-      "Despensa",
-      "Jardín",
-      "Sótano",
-      "Buhardilla",
-      "Aseo",
-      "Entrada",
-      "Lavadero"
-    ],
-    "intrusos": [
-      "Colegio",
-      "Parque",
-      "Tienda",
-      "Cine",
-      "Calle",
-      "Plaza",
-      "Museo"
-    ]
-  },
-  {
-    "categoria": "Mobiliario Urbano",
-    "correctos": [
-      "Semáforo",
-      "Papelera",
-      "Farola",
-      "Banco",
-      "Paso de cebra",
-      "Buzón",
-      "Fuente",
-      "Contenedor",
-      "Quiosco",
-      "Señal",
-      "Parada Bus",
-      "Estatua",
-      "Bolardo",
-      "Macetero"
-    ],
-    "intrusos": [
-      "Sofá",
-      "Cama",
-      "Ducha",
-      "Televisión",
-      "Nevera",
-      "Alfombra",
-      "Lavadora"
-    ]
-  },
-  {
-    "categoria": "Profesiones del Sector Servicios",
-    "correctos": [
-      "Médico",
-      "Profesor",
-      "Policía",
-      "Bombero",
-      "Panadero",
-      "Cartero",
-      "Enfermero",
-      "Camarero",
-      "Vigilante",
-      "Limpiador",
-      "Cocinero",
-      "Conductor",
-      "Dentista",
-      "Veterinario"
-    ],
-    "intrusos": [
-      "Niño",
-      "Alumno",
-      "Bebé",
-      "Perro",
-      "Gato",
-      "Pájaro",
-      "Libro"
-    ]
-  },
-  {
-    "categoria": "Medios de Comunicación",
-    "correctos": [
-      "Teléfono",
-      "Televisión",
-      "Radio",
-      "Carta",
-      "Ordenador",
-      "Internet",
-      "Periódico",
-      "Revista",
-      "Tableta",
-      "Email",
-      "Móvil",
-      "Fax",
-      "Sms",
-      "WhatsApp",
-      "Libro"
-    ],
-    "intrusos": [
-      "Coche",
-      "Bicicleta",
-      "Tren",
-      "Avión",
-      "Barco",
-      "Camión",
-      "Autobús"
+      "🍎",
+      "🍌",
+      "🍐"
     ]
   }
 ]

@@ -1,95 +1,5 @@
 [
   {
-    "categoria": "Services et Ville (Visual)",
-    "correctos": [
-      "🏥",
-      "🏫",
-      "🏦",
-      "📫",
-      "⛲",
-      "🏬",
-      "🏤",
-      "🏛️",
-      "🏟️",
-      "🏗️",
-      "🚒",
-      "🏣",
-      "🚓",
-      "🚑",
-      "🚕",
-      "🏢"
-    ],
-    "intrusos": [
-      "🏜️",
-      "🏝️",
-      "🌋",
-      "🌲",
-      "🐄",
-      "🐑",
-      "🛖"
-    ]
-  },
-  {
-    "categoria": "Professions (Visual)",
-    "correctos": [
-      "👨‍🍳",
-      "👨‍⚕️",
-      "👮",
-      "👩‍🏫",
-      "👨‍🚒",
-      "👩‍🎤",
-      "👩‍🔬",
-      "👷",
-      "👨‍🎨",
-      "👨‍✈️",
-      "👩‍🚀",
-      "👨‍💻",
-      "👩‍💼",
-      "👨‍⚖️",
-      "👨‍🌾",
-      "🕵️‍♂️"
-    ],
-    "intrusos": [
-      "🐶",
-      "🐱",
-      "👶",
-      "👽",
-      "🤖",
-      "🧸",
-      "🪁"
-    ]
-  },
-  {
-    "categoria": "Météo (Visual)",
-    "correctos": [
-      "☀️",
-      "🌧️",
-      "❄️",
-      "🌬️",
-      "🌩️",
-      "🌤️",
-      "🌈",
-      "🌫️",
-      "🌡️",
-      "🌪️",
-      "🌦️",
-      "🌊",
-      "🌖",
-      "⚡",
-      "☔",
-      "🌑"
-    ],
-    "intrusos": [
-      "🏠",
-      "🚗",
-      "🐶",
-      "🍎",
-      "⌚",
-      "💻",
-      "🛋️"
-    ]
-  },
-  {
     "categoria": "Les Mois et Saisons",
     "correctos": [
       "Janvier",
@@ -110,13 +20,16 @@
       "Hiver"
     ],
     "intrusos": [
-      "Lundi",
-      "Mardi",
-      "Noël",
-      "Pâques",
-      "Matin",
-      "Soir",
-      "Semaine"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -138,13 +51,16 @@
       "Balcon"
     ],
     "intrusos": [
-      "École",
-      "Parc",
-      "Cinéma",
-      "Hôpital",
-      "Avenue",
-      "Pont",
-      "Stade"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -166,13 +82,16 @@
       "Trottinette"
     ],
     "intrusos": [
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
       "Chaise",
-      "Table",
-      "Maison",
-      "Chien",
-      "Stylo",
-      "Livre",
-      "Verre"
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -196,13 +115,16 @@
       "Jouer"
     ],
     "intrusos": [
-      "Grand",
-      "Petit",
-      "Rouge",
-      "Hier",
-      "Demain",
-      "Beaucoup",
-      "Ici"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -226,13 +148,16 @@
       "Bon"
     ],
     "intrusos": [
-      "Table",
-      "Stylo",
-      "Garçon",
-      "Fille",
-      "France",
-      "Janvier",
-      "Maison"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   }
 ]

@@ -1,221 +1,149 @@
 [
   {
-    "categoria": "Letras Vocales",
+    "categoria": "Animales",
     "correctos": [
-      "A",
-      "E",
-      "I",
-      "O",
-      "U",
-      "a",
-      "e",
-      "i",
-      "o",
-      "u",
-      "á",
-      "é",
-      "í",
-      "ó",
-      "ú"
-    ],
-    "intrusos": [
-      "B",
-      "C",
-      "D",
-      "F",
-      "G",
-      "H",
-      "J",
-      "K",
-      "L",
-      "M"
-    ]
-  },
-  {
-    "categoria": "Letras Consonantes",
-    "correctos": [
-      "B",
-      "C",
-      "D",
-      "F",
-      "G",
-      "H",
-      "J",
-      "K",
-      "L",
-      "M",
-      "N",
-      "P",
-      "Q",
-      "R"
-    ],
-    "intrusos": [
-      "A",
-      "E",
-      "I",
-      "O",
-      "U"
-    ]
-  },
-  {
-    "categoria": "Material de Clase (Visual)",
-    "correctos": [
-      "🎒",
-      "📚",
-      "✏️",
-      "📏",
-      "✂️",
-      "🖍️",
-      "📓",
-      "🖇️",
-      "🖊️",
-      "📒",
-      "💻",
-      "🏫",
-      "📐",
-      "🎨"
+      "🐶",
+      "🐱",
+      "🐭",
+      "🐹",
+      "🐰",
+      "🦊",
+      "🐻",
+      "🐼",
+      "🐨",
+      "🐯",
+      "🦁",
+      "🐮",
+      "🐷",
+      "🐸",
+      "🐵"
     ],
     "intrusos": [
       "🍎",
-      "🐶",
       "🚗",
-      "🧸",
-      "🍕"
+      "🧸"
     ]
   },
   {
-    "categoria": "Animales de la Granja (Visual)",
+    "categoria": "Comida",
     "correctos": [
-      "🐷",
-      "🐮",
-      "🐔",
-      "🦆",
-      "🐑",
-      "🐴",
-      "🐰",
-      "🐣",
-      "🐐",
-      "🦃",
-      "🐂",
-      "🐓",
-      "🐄",
-      "🐖"
+      "🍎",
+      "🍌",
+      "🍇",
+      "🍓",
+      "🍊",
+      "🍕",
+      "🍔",
+      "🍟",
+      "🌭",
+      "🥨",
+      "🍳",
+      "🥐",
+      "🍩"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🐭"
+    ]
+  },
+  {
+    "categoria": "Juguetes",
+    "correctos": [
+      "🧸",
+      "🪀",
+      "🪁",
+      "⚽",
+      "🏀",
+      "🧩",
+      "🎮",
+      "🏎️",
+      "🚂",
+      "🚲",
+      "🛴"
+    ],
+    "intrusos": [
+      "🥦",
+      "🥕",
+      "🌽"
+    ]
+  },
+  {
+    "categoria": "Ropa",
+    "correctos": [
+      "👕",
+      "👖",
+      "🧣",
+      "🧤",
+      "🧥",
+      "🧦",
+      "👗",
+      "👚",
+      "👟",
+      "👞"
+    ],
+    "intrusos": [
+      "🍌",
+      "🍇",
+      "🍉"
+    ]
+  },
+  {
+    "categoria": "Cosas de Casa",
+    "correctos": [
+      "🏠",
+      "🛋️",
+      "🪑",
+      "🛌",
+      "📺",
+      "📻",
+      "🚪",
+      "🪟",
+      "🔑",
+      "💡"
     ],
     "intrusos": [
       "🦁",
-      "🐘",
       "🐯",
-      "🐍",
-      "🦒"
+      "🦓"
     ]
   },
   {
-    "categoria": "Palabras con M",
+    "categoria": "El Colegio",
     "correctos": [
-      "Mamá",
-      "Mesa",
-      "Mano",
-      "Mora",
-      "Mico",
-      "Mina",
-      "Mapa",
-      "Miel",
-      "Muela",
-      "Mago",
-      "Masa",
-      "Moto",
-      "Mudo",
-      "Mes"
+      "🏫",
+      "✏️",
+      "📖",
+      "🎒",
+      "📏",
+      "🖍️",
+      "👩‍🏫",
+      "🎨"
     ],
     "intrusos": [
-      "Papá",
-      "Pelo",
-      "Pino",
-      "Sapo",
-      "Sopa",
-      "Luna"
+      "🚢",
+      "🚀",
+      "✈️"
     ]
   },
   {
-    "categoria": "Palabras con P",
+    "categoria": "Transportes",
     "correctos": [
-      "Papá",
-      "Pelo",
-      "Pino",
-      "Pala",
-      "Pera",
-      "Pomo",
-      "Paso",
-      "Pita",
-      "Pato",
-      "Pera",
-      "Pipa",
-      "Pura",
-      "Peso",
-      "Pollo"
+      "🚗",
+      "🚌",
+      "🚑",
+      "🚓",
+      "🚒",
+      "🚂",
+      "✈️",
+      "🚢",
+      "🚲",
+      "🚁"
     ],
     "intrusos": [
-      "Mamá",
-      "Mesa",
-      "Mano",
-      "Luna",
-      "Sapo",
-      "Sopa"
-    ]
-  },
-  {
-    "categoria": "Palabras cortas (2 letras)",
-    "correctos": [
-      "No",
-      "Sí",
-      "La",
-      "Lo",
-      "Me",
-      "Te",
-      "Mi",
-      "Su",
-      "Ya",
-      "En",
-      "Es",
-      "Al",
-      "He",
-      "De"
-    ],
-    "intrusos": [
-      "Sol",
-      "Pan",
-      "Mar",
-      "Luz",
-      "Día",
-      "Casa",
-      "Mesa"
-    ]
-  },
-  {
-    "categoria": "Nombres de Colores",
-    "correctos": [
-      "Rojo",
-      "Azul",
-      "Rosa",
-      "Gris",
-      "Amarillo",
-      "Verde",
-      "Blanco",
-      "Negro",
-      "Lila",
-      "Marrón",
-      "Naranja",
-      "Violeta",
-      "Dorado",
-      "Plata"
-    ],
-    "intrusos": [
-      "Perro",
-      "Gato",
-      "Casa",
-      "Sol",
-      "Luna",
-      "Mesa"
+      "🍎",
+      "🍌",
+      "🍐"
     ]
   }
 ]

@@ -1,124 +1,5 @@
 [
   {
-    "categoria": "Escritura y Arte (Visual)",
-    "correctos": [
-      "✏️",
-      "🖊️",
-      "🖍️",
-      "🖌️",
-      "✒️",
-      "📝",
-      "🖋️",
-      "🎨",
-      "🖼️",
-      "📔",
-      "📒",
-      "📜",
-      "🖋️",
-      "✒️",
-      "🖊️",
-      "📝"
-    ],
-    "intrusos": [
-      "🔨",
-      "🔧",
-      " Spoon (Cuchara Spoon)",
-      "🍴",
-      "🥢",
-      "🪛",
-      "🪚"
-    ]
-  },
-  {
-    "categoria": "Comunicación (Visual)",
-    "correctos": [
-      "📱",
-      "💻",
-      "☎️",
-      "📺",
-      "📻",
-      "📰",
-      "✉️",
-      "📧",
-      "🛰️",
-      "📠",
-      "⌨️",
-      "🖱️",
-      "🌐",
-      "📡",
-      "🔔",
-      "🔊"
-    ],
-    "intrusos": [
-      "🚗",
-      "🚲",
-      "🛴",
-      " skateboard (Monopatín skateboard)",
-      "🛶",
-      "🚁",
-      "🚜"
-    ]
-  },
-  {
-    "categoria": "Sustantivos Femeninos (Visual)",
-    "correctos": [
-      "🏠",
-      "🥄",
-      "🌕",
-      "⭐️",
-      "🔑",
-      "👕",
-      "🚲",
-      "🧶",
-      "🎒",
-      "🛶",
-      "🚢",
-      "🚠",
-      "🏗️",
-      "🌌",
-      "🪐",
-      "🌠"
-    ],
-    "intrusos": [
-      "🚗",
-      "☀️",
-      "🐶",
-      "🐱",
-      "🐟",
-      "🌳",
-      "🌲"
-    ]
-  },
-  {
-    "categoria": "Acciones y Verbos (Visual)",
-    "correctos": [
-      "🏃",
-      "🏊",
-      "💃",
-      "🤸",
-      "🚴",
-      "🤾",
-      "🏇",
-      "⛷️",
-      "🚣",
-      "🤺",
-      "🏋️",
-      "🏌️",
-      "🧗",
-      "🏂",
-      "🧘"
-    ],
-    "intrusos": [
-      "🏠",
-      "🌳",
-      "🚗",
-      "🏔️",
-      "⌚",
-      "🏢",
-      "🏛️"
-    ]
-  },
-  {
     "categoria": "Palabras Llanas",
     "correctos": [
       "Árbol",
@@ -139,12 +20,16 @@
       "Tarde"
     ],
     "intrusos": [
-      "Camión",
-      "Sofá",
-      "Pájaro",
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
       "Teléfono",
-      "Café",
-      "Ratón"
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -168,12 +53,16 @@
       "Mágico"
     ],
     "intrusos": [
-      "Camión",
-      "Árbol",
-      "Mesa",
-      "Reloj",
-      "Sofá",
-      "Papá"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -199,12 +88,16 @@
       "Un"
     ],
     "intrusos": [
-      "Correr",
-      "Saltar",
-      "Bien",
-      "Mal",
-      "Hoy",
-      "Ayer"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -226,12 +119,16 @@
       "Irán"
     ],
     "intrusos": [
-      "Comí",
-      "Salto",
-      "Vivía",
-      "Jugaron",
-      "Estudian",
-      "Baila"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -255,13 +152,16 @@
       "Camionero"
     ],
     "intrusos": [
-      "Mesa",
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
       "Silla",
-      "Papel",
-      "Casa",
-      "Flor",
-      "Perro",
-      "Gato"
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

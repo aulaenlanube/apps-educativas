@@ -1,125 +1,5 @@
 [
   {
-    "categoria": "Electricidad y Circuitos (Visual)",
-    "correctos": [
-      "⚡",
-      "💡",
-      "🔋",
-      "🔌",
-      "🔦",
-      "📺",
-      "💻",
-      "📟",
-      "🕹️",
-      "📡",
-      "🖱️",
-      "⌨️",
-      "🔌",
-      "🔦",
-      "🔋",
-      "💡"
-    ],
-    "intrusos": [
-      "🕯️",
-      "🔥",
-      "💨",
-      "💧",
-      "🌱",
-      "🪵",
-      "🐚"
-    ]
-  },
-  {
-    "categoria": "Medicina y Patógenos (Visual)",
-    "correctos": [
-      "🦠",
-      "💉",
-      "💊",
-      "😷",
-      "🌡️",
-      "🚑",
-      "🏥",
-      "🧪",
-      "🧫",
-      "🩸",
-      "🧤",
-      "🔬",
-      "🦷",
-      "🧠",
-      "🧬",
-      "⚕️"
-    ],
-    "intrusos": [
-      "⚽",
-      "🥊",
-      "🎮",
-      "🍔",
-      "🍩",
-      "🍫",
-      "🍭"
-    ]
-  },
-  {
-    "categoria": "Industria y Mecánica (Visual)",
-    "correctos": [
-      "🦾",
-      "🤖",
-      "⚙️",
-      "🏭",
-      "🔧",
-      "🔩",
-      "🏗️",
-      "🔨",
-      "🗜️",
-      "🛠️",
-      "🪓",
-      "🔩",
-      "⚒️",
-      "📏",
-      "📐",
-      "⛏️"
-    ],
-    "intrusos": [
-      "🌿",
-      "🐾",
-      "🍄",
-      "🐚",
-      "🪵",
-      "🌸",
-      "🦋"
-    ]
-  },
-  {
-    "categoria": "Sistema Nervioso (Visual)",
-    "correctos": [
-      "🧠",
-      "👀",
-      "👂",
-      "👃",
-      "✋",
-      "👅",
-      "👃",
-      "🧠",
-      "🧬",
-      "👁️‍🗨️",
-      "👄",
-      "🧖",
-      "💆",
-      "🦷",
-      "👀",
-      "👁️"
-    ],
-    "intrusos": [
-      "🦴",
-      "💪",
-      "👞",
-      "👕",
-      "👒",
-      "👓",
-      "🧤"
-    ]
-  },
-  {
     "categoria": "Componentes Eléctricos",
     "correctos": [
       "Conductor",
@@ -138,13 +18,16 @@
       "Enchufe"
     ],
     "intrusos": [
-      "Imán",
-      "Brújula",
-      "Gravedad",
-      "Eco",
-      "Sombra",
-      "Reflejo",
-      "Inercia"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -166,13 +49,16 @@
       "Bobina"
     ],
     "intrusos": [
-      "Enchufe",
-      "Bombilla",
-      "Madera",
-      "Plástico",
-      "Agua",
-      "Papel",
-      "Cristal"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -194,13 +80,16 @@
       "Fecundación"
     ],
     "intrusos": [
-      "Digestión",
-      "Respiración",
-      "Latido",
-      "Memoria",
-      "Filtración",
-      "Excreción",
-      "Circulación"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -222,12 +111,15 @@
       "Betún"
     ],
     "intrusos": [
-      "Solar",
-      "Eólica",
-      "Hidráulica",
-      "Biomasa",
-      "Geotérmica",
-      "Mareomotriz"
+      "Pizza",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -249,13 +141,16 @@
       "Población"
     ],
     "intrusos": [
-      "Célula animal",
-      "Tejido",
-      "Órgano",
-      "Aparato",
-      "Sistema",
-      "Átomo",
-      "Molécula"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

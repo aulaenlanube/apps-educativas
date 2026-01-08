@@ -1,127 +1,5 @@
 [
   {
-    "categoria": "Jobs and Occupations (Icons)",
-    "correctos": [
-      "👮",
-      "👩‍⚕️",
-      "👨‍🏫",
-      "👨‍🚒",
-      "👩‍🚀",
-      "👨‍🍳",
-      "🕵️‍♂️",
-      "👨‍🎨",
-      "👩‍🔬",
-      "👷‍♂️",
-      "👩‍🌾",
-      "👨‍🎤",
-      "👩‍✈️",
-      "👨‍💻",
-      "👩‍💼",
-      "👨‍⚖️"
-    ],
-    "intrusos": [
-      "🐶",
-      "🐱",
-      "🏠",
-      "🚗",
-      "🌳",
-      "🧸",
-      "🪁"
-    ]
-  },
-  {
-    "categoria": "Clothes and Footwear (Icons)",
-    "correctos": [
-      "👕",
-      "👖",
-      "👗",
-      "🧥",
-      "👟",
-      "🧢",
-      "👚",
-      "🧤",
-      "🧣",
-      "🧦",
-      "👔",
-      "ブーツ (Bota Boot)",
-      "👙",
-      "👘",
-      "👟",
-      "👞",
-      "🧢"
-    ],
-    "intrusos": [
-      "🍎",
-      "🍌",
-      "🚙",
-      "⌚",
-      "👓",
-      "📱",
-      "💻"
-    ]
-  },
-  {
-    "categoria": "Weather (Icons)",
-    "correctos": [
-      "☀️",
-      "☁️",
-      "🌧️",
-      "❄️",
-      "⛈️",
-      "🌬️",
-      "🌈",
-      "🌫️",
-      "🌪️",
-      "🌊",
-      "🌤️",
-      "🌥️",
-      "🌦️",
-      "🌗",
-      "⚡",
-      "☔"
-    ],
-    "intrusos": [
-      "🏠",
-      "🚗",
-      "🐶",
-      "📚",
-      "✏️",
-      "🍔",
-      "🛋️"
-    ]
-  },
-  {
-    "categoria": "Food and Dining (Icons)",
-    "correctos": [
-      "🍕",
-      "🍔",
-      "🥗",
-      "🍝",
-      "🍦",
-      "🍎",
-      "🍗",
-      "🥪",
-      "🍳",
-      "🥣",
-      "🍿",
-      "🍩",
-      "🍪",
-      "🥞",
-      "🧇",
-      "🍱",
-      "🧁"
-    ],
-    "intrusos": [
-      "⚽",
-      "🏀",
-      "🚗",
-      "✏️",
-      "👕",
-      "👟",
-      "🚲"
-    ]
-  },
-  {
     "categoria": "Professions (Words)",
     "correctos": [
       "Teacher",
@@ -142,12 +20,16 @@
       "Actor"
     ],
     "intrusos": [
-      "School",
-      "Hospital",
-      "Police Station",
-      "Fire Station",
-      "Zoo",
-      "Kitchen"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -171,13 +53,16 @@
       "Drink"
     ],
     "intrusos": [
-      "Happy",
-      "Sad",
-      "Big",
-      "Small",
-      "Hot",
-      "Cold",
-      "Beautiful"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -200,13 +85,16 @@
       "Cemetery"
     ],
     "intrusos": [
-      "Teacher",
-      "Doctor",
-      "Book",
-      "Apple",
-      "Car",
-      "Pencil",
-      "Shoes"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -230,14 +118,16 @@
       "Jacket"
     ],
     "intrusos": [
-      "Leg",
-      "Arm",
-      "Head",
-      "Hand",
-      "Foot",
-      "Ear",
-      "Nose",
-      "Eye"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -261,13 +151,16 @@
       "Clear"
     ],
     "intrusos": [
-      "Monday",
-      "Summer",
-      "Blue",
-      "Happy",
-      "Sad",
-      "Dog",
-      "Cat"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   }
 ]

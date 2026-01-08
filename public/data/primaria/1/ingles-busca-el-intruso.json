@@ -1,219 +1,153 @@
 [
   {
-    "categoria": "Numbers 1-15 (Visual)",
-    "correctos": [
-      "1️⃣",
-      "2️⃣",
-      "3️⃣",
-      "4️⃣",
-      "5️⃣",
-      "6️⃣",
-      "7️⃣",
-      "8️⃣",
-      "9️⃣",
-      "🔟",
-      "11",
-      "12",
-      "13",
-      "14",
-      "15"
-    ],
-    "intrusos": [
-      "A",
-      "B",
-      "C",
-      "D",
-      "E"
-    ]
-  },
-  {
-    "categoria": "Colors (Visual)",
-    "correctos": [
-      "🔴",
-      "🔵",
-      "🟡",
-      "🟢",
-      "⚪",
-      "⚫",
-      "🟣",
-      "🟠",
-      "🟤",
-      "🩷",
-      "🩶",
-      "❤️",
-      "🩵",
-      "💙"
-    ],
-    "intrusos": [
-      "🐶",
-      "🍎",
-      "🚗",
-      "🏠",
-      "🚲",
-      "🎒"
-    ]
-  },
-  {
-    "categoria": "Pets: Animals (Visual)",
+    "categoria": "Animals",
     "correctos": [
       "🐶",
       "🐱",
-      "🐰",
-      "🐹",
-      "🦜",
-      "🐢",
-      "🐠",
-      "🦎",
       "🐭",
-      "🐱‍👤",
-      "🐩",
-      "🐈",
-      "🐕",
-      "🐟"
+      "🐹",
+      "🐰",
+      "🦊",
+      "🐻",
+      "🐼",
+      "🐨",
+      "🐯",
+      "🦁",
+      "🐮",
+      "🐷",
+      "🐸",
+      "🐵"
     ],
     "intrusos": [
-      "🦁",
-      "🐘",
-      "🐯",
-      "🦒",
-      "🦓",
-      "🦖"
+      "🍎",
+      "🚗",
+      "🍌",
+      "🍇",
+      "🍓",
+      "🍊",
+      "🍕"
     ]
   },
   {
-    "categoria": "Fruit: Healthy Food (Visual)",
+    "categoria": "Food",
     "correctos": [
       "🍎",
       "🍌",
       "🍇",
-      "🍊",
       "🍓",
-      "🍐",
-      "🍒",
-      "🍍",
-      "🥭",
-      "🥝",
-      "🍉",
-      "🍈",
-      "🫐",
-      "🍋"
-    ],
-    "intrusos": [
-      "🍦",
-      "🍩",
+      "🍊",
       "🍕",
       "🍔",
       "🍟",
-      "🍿"
+      "🌭",
+      "🥨",
+      "🍳",
+      "🥐",
+      "🍩"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🐭"
     ]
   },
   {
-    "categoria": "Numbers (Words)",
+    "categoria": "Toys",
     "correctos": [
-      "One",
-      "Two",
-      "Three",
-      "Four",
-      "Five",
-      "Six",
-      "Seven",
-      "Eight",
-      "Nine",
-      "Ten",
-      "Eleven",
-      "Twelve",
-      "Thirteen",
-      "Fourteen",
-      "Fifteen"
+      "🧸",
+      "🪀",
+      "🪁",
+      "⚽",
+      "🏀",
+      "🧩",
+      "🎮",
+      "🏎️",
+      "🚂",
+      "🚲",
+      "🛴"
     ],
     "intrusos": [
-      "Red",
-      "Blue",
-      "Green",
-      "Dog",
-      "Cat",
-      "Apple"
+      "🥦",
+      "🥕",
+      "🌽"
     ]
   },
   {
-    "categoria": "Basic Colors (Words)",
+    "categoria": "Clothes",
     "correctos": [
-      "Red",
-      "Blue",
-      "Yellow",
-      "Green",
-      "Pink",
-      "White",
-      "Black",
-      "Brown",
-      "Orange",
-      "Purple",
-      "Grey",
-      "Gold",
-      "Silver",
-      "Violet"
+      "👕",
+      "👖",
+      "🧣",
+      "🧤",
+      "🧥",
+      "🧦",
+      "👗",
+      "👚",
+      "👟",
+      "👞"
     ],
     "intrusos": [
-      "One",
-      "Two",
-      "Three",
-      "Mom",
-      "Dad",
-      "Home"
+      "🍌",
+      "🍇",
+      "🍉"
     ]
   },
   {
-    "categoria": "Family Members",
+    "categoria": "Home",
     "correctos": [
-      "Mom",
-      "Mother",
-      "Dad",
-      "Father",
-      "Brother",
-      "Sister",
-      "Baby",
-      "Grandpa",
-      "Grandma",
-      "Cousin",
-      "Aunt",
-      "Uncle",
-      "Son",
-      "Daughter"
+      "🏠",
+      "🛋️",
+      "🪑",
+      "🛌",
+      "📺",
+      "📻",
+      "🚪",
+      "🪟",
+      "🔑",
+      "💡"
     ],
     "intrusos": [
-      "Pen",
-      "Pencil",
-      "Book",
-      "Chair",
-      "Table",
-      "Car"
+      "🦁",
+      "🐯",
+      "🦓"
     ]
   },
   {
-    "categoria": "School Objects",
+    "categoria": "School",
     "correctos": [
-      "Pencil",
-      "Pen",
-      "Book",
-      "Bag",
-      "Eraser",
-      "Ruler",
-      "Glue",
-      "Desk",
-      "Chair",
-      "Paper",
-      "Folder",
-      "Scissors",
-      "Marker",
-      "Case"
+      "🏫",
+      "✏️",
+      "📖",
+      "🎒",
+      "📏",
+      "🖍️",
+      "👩‍🏫",
+      "🎨"
     ],
     "intrusos": [
-      "Apple",
-      "Banana",
-      "Pizza",
-      "Milk",
-      "Water",
-      "Cookie"
+      "🚢",
+      "🚀",
+      "✈️"
+    ]
+  },
+  {
+    "categoria": "Transport",
+    "correctos": [
+      "🚗",
+      "🚌",
+      "🚑",
+      "🚓",
+      "🚒",
+      "🚂",
+      "✈️",
+      "🚢",
+      "🚲",
+      "🚁"
+    ],
+    "intrusos": [
+      "🍎",
+      "🍌",
+      "🍐"
     ]
   }
 ]

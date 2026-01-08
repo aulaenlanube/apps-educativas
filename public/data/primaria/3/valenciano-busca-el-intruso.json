@@ -22,47 +22,16 @@
       "🐸"
     ],
     "intrusos": [
-      "🍎",
-      "🚗",
-      "🏠",
-      "✏️",
-      "⚽",
-      "🍔",
       "🍕",
-      "🚲"
-    ]
-  },
-  {
-    "categoria": "Material d'Aula (Visual)",
-    "correctos": [
-      "🎒",
-      "📚",
-      "✏️",
-      "📏",
-      "✂️",
-      "🖍️",
-      "📓",
-      "🏫",
-      "🖊️",
-      "🎓",
-      "📖",
-      "📎",
-      "📒",
-      "💻",
-      "🏫",
-      "📐",
-      "🎨",
-      "🖊️"
-    ],
-    "intrusos": [
-      "🛌",
-      "🛁",
-      "🍳",
-      "📺",
-      "🎮",
-      "🧸",
-      "🍦",
-      "🥪"
+      "🚲",
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -86,13 +55,16 @@
       "Cidre"
     ],
     "intrusos": [
-      "Taula",
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
       "Cadira",
-      "Gat",
-      "Gos",
-      "Llibre",
-      "Corre",
-      "Salta"
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -114,13 +86,16 @@
       "Juliol"
     ],
     "intrusos": [
-      "Estiu",
-      "Hivern",
-      "Matí",
-      "Vesprada",
-      "Nit",
-      "Any",
-      "Ahir"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -144,13 +119,16 @@
       "Neboda"
     ],
     "intrusos": [
-      "Mestre",
-      "Metge",
-      "Amic",
-      "Veí",
-      "Policia",
-      "Bomber",
-      "Carter"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -174,13 +152,16 @@
       "Pruna"
     ],
     "intrusos": [
-      "Pa",
-      "Llet",
-      "Carn",
-      "Peix",
-      "Ou",
-      "Formatge",
-      "Iogurt"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -206,13 +187,16 @@
       "Llavis"
     ],
     "intrusos": [
-      "Samarreta",
-      "Pantalons",
-      "Sabates",
-      "Jaqueta",
-      "Barret",
-      "Calcetins",
-      "Ulleres"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -234,13 +218,16 @@
       "Mecànic"
     ],
     "intrusos": [
-      "Pare",
-      "Mare",
-      "Germà",
-      "Iaio",
-      "Oncle",
-      "Nét",
-      "Cosí"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   }
 ]

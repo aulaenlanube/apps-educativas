@@ -1,218 +1,114 @@
 [
   {
-    "categoria": "La Familia (Visual)",
+    "categoria": "Edificios",
     "correctos": [
-      "👨",
-      "👩",
-      "👴",
-      "👵",
-      "👶",
-      "🧒",
-      "👦",
-      "👧",
-      "🧔",
-      "👵",
-      "👴",
-      "👨‍🦰",
-      "👩‍🦱",
-      "👨‍🦳"
+      "🏥",
+      "🏫",
+      "🏪",
+      "🏦",
+      "🏨",
+      "🏬",
+      "🏢",
+      "🏣",
+      "🏤",
+      "🏛️",
+      "⛪",
+      "🕌",
+      "🕍",
+      "🕋"
     ],
     "intrusos": [
-      "🦁",
-      "🐯",
-      "🐺",
-      "🦖",
-      "🛸",
-      "🤖"
+      "🍏",
+      "🍌",
+      "🍐",
+      "🍊"
     ]
   },
   {
-    "categoria": "Transportes (Visual)",
+    "categoria": "Profesiones",
+    "correctos": [
+      "👨‍⚕️",
+      "👩‍⚕️",
+      "👨‍🏫",
+      "👩‍🏫",
+      "👨‍🍳",
+      "👩‍🍳",
+      "👨‍🌾",
+      "👩‍🌾",
+      "👨‍🎨",
+      "👩‍🎨",
+      "👨‍🚒",
+      "👩‍🚒",
+      "👨‍✈️",
+      "👩‍✈️"
+    ],
+    "intrusos": [
+      "🧸",
+      "🪀",
+      "🪁",
+      "⚽",
+      "🏀"
+    ]
+  },
+  {
+    "categoria": "Transportes",
     "correctos": [
       "🚗",
       "🚌",
+      "🚑",
+      "🚓",
+      "🚒",
       "🚂",
       "✈️",
       "🚢",
       "🚲",
-      "🛵",
       "🚁",
-      "🚀",
-      "🛶",
-      "🚠",
       "🚜",
-      "🚑",
-      "🚒"
+      "🚛"
     ],
     "intrusos": [
-      "🍔",
+      "🐶",
+      "🐱",
+      "🐰",
+      "🦁"
+    ]
+  },
+  {
+    "categoria": "Banderas",
+    "correctos": [
+      "🏁",
+      "🚩",
+      "🎌",
+      "🏴",
+      "🏳️",
+      "🏴‍☠️",
+      "🏳️‍🌈"
+    ],
+    "intrusos": [
       "🍕",
+      "🍔",
+      "🍟"
+    ]
+  },
+  {
+    "categoria": "Señales",
+    "correctos": [
+      "🛑",
+      "⚠️",
+      "⛔",
+      "🚫",
+      "🚳",
+      "🚭",
+      "🆘",
+      "🅿️",
+      "🚯",
+      "🚰",
+      "🚱"
+    ],
+    "intrusos": [
       "🍦",
-      "🍎",
-      "🥦",
-      "🥕"
-    ]
-  },
-  {
-    "categoria": "En el Colegio (Visual)",
-    "correctos": [
-      "🏫",
-      "🎒",
-      "📚",
-      "✏️",
-      "👩‍🏫",
-      "🎨",
-      "📏",
-      "✂️",
-      "📓",
-      "💻",
-      "🔬",
-      "🖊️",
-      "🎓",
-      "🖇️"
-    ],
-    "intrusos": [
-      "🛀",
-      "🛌",
-      "🛋️",
-      "🍳",
-      "🚿",
-      "📺"
-    ]
-  },
-  {
-    "categoria": "Profesiones (Visual)",
-    "correctos": [
-      "👨‍⚕️",
-      "👩‍🏫",
-      "👮‍♂️",
-      "👨‍🚒",
-      "👩‍🍳",
-      "👨‍🌾",
-      "👩‍🚀",
-      "👨‍🎨",
-      "👩‍🔬",
-      "👨‍🔧",
-      "👩‍⚖️",
-      "👨‍💻",
-      "👩‍✈️",
-      "👨‍🎤"
-    ],
-    "intrusos": [
-      "🦖",
-      "👻",
-      "👽",
-      "🤖",
-      "🧚",
-      "🧜"
-    ]
-  },
-  {
-    "categoria": "Miembros de la Familia",
-    "correctos": [
-      "Mamá",
-      "Papá",
-      "Abuelo",
-      "Abuela",
-      "Primo",
-      "Tío",
-      "Tía",
-      "Hermano",
-      "Hermana",
-      "Sobrino",
-      "Sobrina",
-      "Hijo",
-      "Hija",
-      "Yaya"
-    ],
-    "intrusos": [
-      "Mesa",
-      "Silla",
-      "Coche",
-      "Libro",
-      "Lápiz",
-      "Pan"
-    ]
-  },
-  {
-    "categoria": "Lugares de la Casa",
-    "correctos": [
-      "Cocina",
-      "Baño",
-      "Salón",
-      "Dormitorio",
-      "Jardín",
-      "Pasillo",
-      "Terraza",
-      "Garaje",
-      "Despensa",
-      "Comedor",
-      "Aseo",
-      "Buhardilla",
-      "Sótano",
-      "Entrada"
-    ],
-    "intrusos": [
-      "Colegio",
-      "Parque",
-      "Playa",
-      "Calle",
-      "Cine",
-      "Tienda"
-    ]
-  },
-  {
-    "categoria": "Cosas de la Ciudad",
-    "correctos": [
-      "Semáforo",
-      "Farola",
-      "Banco",
-      "Paso de cebra",
-      "Parque",
-      "Fuente",
-      "Papelera",
-      "Acera",
-      "Estatua",
-      "Kiosco",
-      "Parada",
-      "Edificio",
-      "Tienda",
-      "Museo"
-    ],
-    "intrusos": [
-      "Vaca",
-      "Cerdo",
-      "Oveja",
-      "Tractor",
-      "Granja",
-      "Pajar"
-    ]
-  },
-  {
-    "categoria": "Medios de Comunicación",
-    "correctos": [
-      "Teléfono",
-      "Carta",
-      "Radio",
-      "Televisión",
-      "Periódico",
-      "Móvil",
-      "Email",
-      "Revista",
-      "Internet",
-      "Fax",
-      "Tableta",
-      "Ordenador",
-      "Libro",
-      "Cómic"
-    ],
-    "intrusos": [
-      "Zapato",
-      "Cuchara",
-      "Pelota",
-      "Peine",
-      "Silla",
-      "Vaso"
+      "🍭",
+      "🍩"
     ]
   }
 ]

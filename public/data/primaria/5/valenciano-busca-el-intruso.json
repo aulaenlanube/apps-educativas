@@ -1,125 +1,5 @@
 [
   {
-    "categoria": "Festes i Tradicions (Visual)",
-    "correctos": [
-      "🔥",
-      "🎆",
-      "🥘",
-      "💃",
-      "🎺",
-      "🥁",
-      "🏰",
-      "🔔",
-      "🕯️",
-      "💐",
-      "👘",
-      "🍊",
-      "🍷",
-      "🎼",
-      "🎊",
-      "🧨"
-    ],
-    "intrusos": [
-      "🎄",
-      "🎅",
-      "🎃",
-      "👻",
-      "🦃",
-      "🧧",
-      "🏮"
-    ]
-  },
-  {
-    "categoria": "Paisatges i Geografia (Visual)",
-    "correctos": [
-      "⛰️",
-      "🏖️",
-      "🌲",
-      "🏞️",
-      "🌅",
-      "🌊",
-      "🌋",
-      "🏜️",
-      "🏝️",
-      "🌬️",
-      "🏔️",
-      "🏕️",
-      "🛶",
-      "🚣",
-      "☀️",
-      "🌤️"
-    ],
-    "intrusos": [
-      "City (Ciutat City)",
-      "Factory (Fàbrica Factory)",
-      "Highway (Carretera Highway)",
-      "Subway (Metro Subway)",
-      "Castle (Castell Castle)",
-      "Tower (Torre Tower)",
-      "Stadium (Estadi Stadium)"
-    ]
-  },
-  {
-    "categoria": "Elements Urbans (Visual)",
-    "correctos": [
-      "🚦",
-      "🏢",
-      "🚌",
-      "⛲",
-      "🏬",
-      "🏥",
-      "🏫",
-      "🏤",
-      "🏛️",
-      "🏪",
-      "🏙️",
-      "🛤️",
-      "🚓",
-      "🚒",
-      "🚑",
-      "🚕"
-    ],
-    "intrusos": [
-      "🚜",
-      "🌻",
-      "🐄",
-      "🐑",
-      "🏔️",
-      "⛺",
-      "🌾"
-    ]
-  },
-  {
-    "categoria": "Paraules Planes",
-    "correctos": [
-      "Casa",
-      "Finestra",
-      "Llibre",
-      "Taula",
-      "Examen",
-      "Difícil",
-      "Àngel",
-      "Fàcil",
-      "Núvol",
-      "Mànega",
-      "Cadira",
-      "Botella",
-      "Escola",
-      "Poma",
-      "Mànec",
-      "Porta"
-    ],
-    "intrusos": [
-      "Camió",
-      "Café",
-      "Pardal",
-      "Màquina",
-      "Música",
-      "Paper",
-      "Ratolí"
-    ]
-  },
-  {
     "categoria": "Passat Perifràstic",
     "correctos": [
       "Vaig anar",
@@ -138,13 +18,16 @@
       "Vas voler"
     ],
     "intrusos": [
-      "Aniré",
-      "Menjaré",
-      "Dorm",
-      "Juga",
-      "Llegint",
-      "Estudiaré",
-      "Menjat"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -168,13 +51,16 @@
       "Llac"
     ],
     "intrusos": [
-      "Ciutat",
-      "Edifici",
-      "Cotxe",
-      "Carretera",
-      "Fàbrica",
-      "Port",
-      "Aeroport"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -198,14 +84,16 @@
       "Ti"
     ],
     "intrusos": [
-      "El",
-      "La",
-      "Els",
-      "Les",
-      "Un",
-      "Una",
-      "En",
-      "Hi"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -229,13 +117,15 @@
       "Roger"
     ],
     "intrusos": [
-      "Gos",
-      "Gat",
+      "Pizza",
+      "Bicicleta",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
       "Lleó",
-      "Àguila",
-      "Gallina",
-      "Vaca",
-      "Orella"
+      "Cullerot"
     ]
   }
 ]

@@ -18,18 +18,19 @@
       "😎",
       "😻",
       "🤗",
-      "😎",
-      "🤡"
+      "😎"
     ],
     "intrusos": [
-      "😢",
-      "😭",
-      "😡",
-      "🤬",
-      "😱",
-      "😤",
-      "🤢",
-      "😴"
+      "🍕",
+      "🚲",
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -44,7 +45,6 @@
       "🦷",
       "🧖‍♀️",
       "🍎",
-      " broccoli (Brócoli Broccoli)",
       "💧",
       "🧺",
       "💈",
@@ -53,14 +53,16 @@
       "🪮"
     ],
     "intrusos": [
-      "🎮",
-      "📺",
-      "🍔",
-      "⚽",
-      "🗑️",
-      "🍭",
-      "🍫",
-      "🍩"
+      "🍕",
+      "🚲",
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -84,14 +86,15 @@
       "🥬"
     ],
     "intrusos": [
-      "🍔",
-      "🍟",
       "🍕",
-      "🍩",
-      "🍬",
-      "🍭",
-      "🥤",
-      "🥓"
+      "🚲",
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🚗"
     ]
   },
   {
@@ -113,13 +116,16 @@
       "Gozo"
     ],
     "intrusos": [
-      "Miedo",
-      "Tristeza",
-      "Ira",
-      "Enfado",
-      "Asco",
-      "Vergüenza",
-      "Celos"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -141,13 +147,16 @@
       "Permítame"
     ],
     "intrusos": [
-      "Tonto",
-      "Cállate",
-      "Fuera",
-      "Empujar",
-      "Insultar",
-      "Mentir",
-      "Gritar"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -169,13 +178,16 @@
       "Cooperación"
     ],
     "intrusos": [
-      "Mentira",
-      "Egoísmo",
-      "Pereza",
-      "Violencia",
-      "Odio",
-      "Burla",
-      "Acoso"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -197,12 +209,16 @@
       "Meditar"
     ],
     "intrusos": [
-      "Comer chuches",
-      "Ver mucha tele",
-      "Gritar",
-      "Pegar",
-      "Mentir",
-      "Ensuciar"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

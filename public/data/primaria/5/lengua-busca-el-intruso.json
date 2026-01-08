@@ -1,125 +1,5 @@
 [
   {
-    "categoria": "Canales de Comunicación (Visual)",
-    "correctos": [
-      "📧",
-      "📱",
-      "💻",
-      "🛰️",
-      "📡",
-      "📰",
-      "🌐",
-      "📶",
-      "🗣️",
-      "🎬",
-      "📺",
-      "📻",
-      "☎️",
-      "📟",
-      "📩",
-      "📥"
-    ],
-    "intrusos": [
-      "📜",
-      "🏺",
-      "🗿",
-      "🏹",
-      "🛡️",
-      "⚔️",
-      "🪵"
-    ]
-  },
-  {
-    "categoria": "Arte y Cultura (Visual)",
-    "correctos": [
-      "🎨",
-      "🎭",
-      "🎻",
-      "🎬",
-      "🎸",
-      "🏛️",
-      "🏰",
-      "🕌",
-      "⛩️",
-      "🗿",
-      "🎤",
-      "🎹",
-      "🎺",
-      "🎷",
-      "🩰",
-      "🎻"
-    ],
-    "intrusos": [
-      "🍔",
-      "🍟",
-      "🍕",
-      "🎮",
-      "📺",
-      "📱",
-      "💻"
-    ]
-  },
-  {
-    "categoria": "Fenómenos Atmosféricos (Visual)",
-    "correctos": [
-      "🌤️",
-      "⛈️",
-      "🌨️",
-      "🌪️",
-      "🌈",
-      "☔",
-      "🌫️",
-      "🌬️",
-      "🌡️",
-      "❄️",
-      "☀️",
-      "☁️",
-      "🌦️",
-      "🌊",
-      "🌖",
-      "⚡"
-    ],
-    "intrusos": [
-      "🏠",
-      "🚗",
-      "🥪",
-      "👠",
-      "⚽",
-      "🧸",
-      "🪁"
-    ]
-  },
-  {
-    "categoria": "Deportes de Pelota (Visual)",
-    "correctos": [
-      "⚽",
-      "🏀",
-      "🎾",
-      "🏐",
-      "🏉",
-      "🎱",
-      "🥎",
-      "🏓",
-      "🏸",
-      "🏒",
-      "🏏",
-      "🏒",
-      "🎳",
-      "⚾",
-      "🥅",
-      "⛳"
-    ],
-    "intrusos": [
-      "🍔",
-      "🍟",
-      "🍕",
-      "🎮",
-      "📺",
-      "👟",
-      "🧗"
-    ]
-  },
-  {
     "categoria": "Sustantivos Colectivos",
     "correctos": [
       "Rebaño",
@@ -140,13 +20,16 @@
       "Equipo"
     ],
     "intrusos": [
-      "Oveja",
-      "Perro",
-      "Árbol",
-      "Barco",
-      "Soldado",
-      "Músico",
-      "Pez"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -170,13 +53,16 @@
       "Ya"
     ],
     "intrusos": [
-      "Aquí",
-      "Allí",
-      "Cerca",
-      "Lejos",
-      "Mucho",
-      "Poco",
-      "Bien"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -201,13 +87,16 @@
       "Su"
     ],
     "intrusos": [
-      "Correr",
-      "Saltar",
-      "Bien",
-      "Mal",
-      "Hoy",
-      "Ayer",
-      "El"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -231,43 +120,16 @@
       "Hizo"
     ],
     "intrusos": [
-      "Jugaré",
-      "Como",
-      "Viviré",
-      "Saltaré",
-      "Escribo",
-      "Leo",
-      "Hablo"
-    ]
-  },
-  {
-    "categoria": "Palabras con Hiato",
-    "correctos": [
-      "Aéreo",
-      "Teatro",
-      "Cacao",
-      "Poeta",
-      "Caer",
-      "Leer",
-      "Héroe",
-      "Línea",
-      "Marea",
-      "Océano",
-      "Peón",
-      "Recreo",
-      "Aldea",
-      "Pelea",
-      "Toalla",
-      "Boa"
-    ],
-    "intrusos": [
-      "Reina",
-      "Aire",
-      "Cielo",
-      "Fuego",
-      "Agua",
-      "Hielo",
-      "Baile"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -298,14 +160,16 @@
       "Vía"
     ],
     "intrusos": [
-      "Y",
-      "O",
-      "U",
-      "E",
-      "Ni",
-      "Pero",
-      "Porque",
-      "Aunque"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

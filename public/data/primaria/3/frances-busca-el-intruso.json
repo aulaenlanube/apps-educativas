@@ -22,14 +22,16 @@
       "🐹"
     ],
     "intrusos": [
-      "🍎",
-      "🚗",
-      "⚽",
-      "🏠",
-      "✏️",
       "🍕",
-      "🍔",
-      "🚲"
+      "🚲",
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -53,13 +55,16 @@
       "📐"
     ],
     "intrusos": [
-      "🛌",
-      "📺",
-      "🍔",
-      "🐶",
-      "🚗",
-      "🍦",
-      "🥪"
+      "🍕",
+      "🚲",
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -83,13 +88,16 @@
       "Vermeil"
     ],
     "intrusos": [
-      "Chien",
-      "Chat",
-      "Maison",
-      "Un",
-      "Deux",
-      "Table",
-      "Chaise"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -117,13 +125,16 @@
       "Vingt"
     ],
     "intrusos": [
-      "Bonjour",
-      "Merci",
-      "Oui",
-      "No",
-      "Rouge",
-      "Bleu",
-      "Chat"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -145,13 +156,16 @@
       "Bonne journée"
     ],
     "intrusos": [
-      "Rouge",
-      "Bleu",
-      "Chat",
-      "Pomme",
-      "Banane",
-      "Un",
-      "Table"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -173,12 +187,16 @@
       "Fille"
     ],
     "intrusos": [
-      "Stylo",
-      "Gomme",
-      "Cahier",
-      "Professeur",
-      "École",
-      "Classe"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   },
   {
@@ -205,12 +223,16 @@
       "Décembre"
     ],
     "intrusos": [
-      "Saison",
-      "Été",
-      "Hiver",
-      "Automne",
-      "Printemps",
-      "Maintenant"
+      "Pizza",
+      "Vélo",
+      "Dauphin",
+      "Marteau",
+      "Chaussure",
+      "Téléphone",
+      "Chaise",
+      "Nuage",
+      "Lion",
+      "Cuillère"
     ]
   }
 ]

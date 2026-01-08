@@ -22,13 +22,13 @@
       "🦦"
     ],
     "intrusos": [
-      "🐶",
-      "🐱",
-      "🐷",
-      "🐸",
-      "🍎",
-      "🚗",
-      "🏠"
+      "☀️",
+      "☁️",
+      "🌧️",
+      "❄️",
+      "⛈️",
+      "🌬️",
+      "🌈"
     ]
   },
   {
@@ -52,13 +52,17 @@
       "🥑"
     ],
     "intrusos": [
-      "🥦",
-      "🥕",
-      "🍔",
-      "🍕",
-      "🌭",
-      "🍟",
-      "🥐"
+      "🦒",
+      "🦓",
+      "🐊",
+      "🦍",
+      "🐆",
+      "🐺",
+      "🐻",
+      "🦒",
+      "🦓",
+      "🦏",
+      "🦛"
     ]
   },
   {
@@ -82,13 +86,17 @@
       "☔"
     ],
     "intrusos": [
-      "🏠",
-      "🚗",
-      "🐶",
-      "📚",
-      "👓",
-      "🍔",
-      "🛁"
+      "🍍",
+      "🍉",
+      "🍒",
+      "🍑",
+      "🥝",
+      "🥭",
+      "🍋",
+      "🍈",
+      "🫐",
+      "🥥",
+      "🥑"
     ]
   },
   {
@@ -112,13 +120,17 @@
       "🥋"
     ],
     "intrusos": [
-      "🍔",
-      "🍟",
-      "🍕",
-      "🎮",
-      "📺",
-      "📻",
-      "🎨"
+      "🍍",
+      "🍉",
+      "🍒",
+      "🍑",
+      "🥝",
+      "🥭",
+      "🍋",
+      "🍈",
+      "🫐",
+      "🥥",
+      "🥑"
     ]
   },
   {
@@ -146,13 +158,16 @@
       "Twenty"
     ],
     "intrusos": [
-      "Red",
-      "Blue",
-      "Dog",
-      "Cat",
-      "Yes",
-      "No",
-      "Small"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -176,13 +191,16 @@
       "Sky blue"
     ],
     "intrusos": [
-      "Table",
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
       "Chair",
-      "Book",
-      "Pen",
-      "Car",
-      "Bus",
-      "Dog"
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -205,12 +223,16 @@
       "Daughter"
     ],
     "intrusos": [
-      "Teacher",
-      "Doctor",
-      "Driver",
-      "Police",
-      "School",
-      "Dentist"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -232,13 +254,16 @@
       "July"
     ],
     "intrusos": [
-      "Spring",
-      "Winter",
-      "Summer",
-      "Autumn",
-      "Month",
-      "Year",
-      "Morning"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   },
   {
@@ -264,13 +289,16 @@
       "Drink"
     ],
     "intrusos": [
-      "Happy",
-      "Sad",
-      "Big",
-      "Small",
-      "Fat",
-      "Thin",
-      "Red"
+      "Pizza",
+      "Bicycle",
+      "Dolphin",
+      "Hammer",
+      "Shoe",
+      "Phone",
+      "Chair",
+      "Cloud",
+      "Lion",
+      "Spoon"
     ]
   }
 ]

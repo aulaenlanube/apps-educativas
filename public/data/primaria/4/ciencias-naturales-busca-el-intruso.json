@@ -22,14 +22,16 @@
       "🌽"
     ],
     "intrusos": [
-      "🦓",
-      "🦀",
-      "🪨",
-      "🧱",
-      "🚗",
-      "📱",
-      "💻",
-      "🧸"
+      "🍕",
+      "🚲",
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -53,14 +55,16 @@
       "👽"
     ],
     "intrusos": [
-      "✈️",
-      "🚁",
-      "🦅",
+      "🍕",
+      "🚲",
+      "🐬",
+      "🔨",
       "☁️",
-      "🐦",
-      "🎈",
-      "🦟",
-      "🐝"
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -84,44 +88,16 @@
       "🦂"
     ],
     "intrusos": [
-      "🐶",
-      "🐱",
-      "🦅",
-      "🐍",
-      "🐸",
-      "🐟",
-      "🐢",
-      "🐧"
-    ]
-  },
-  {
-    "categoria": "Energías Renovables (Visual)",
-    "correctos": [
-      "☀️",
-      "🌬️",
-      "🌊",
-      "🌱",
-      "💡",
-      "♻️",
-      "🔋",
-      "🔌",
-      "🌡️",
-      "🛰️",
+      "🍕",
       "🚲",
-      "🏠",
-      "🚜",
-      "⚙️",
-      "💧",
-      "⚡"
-    ],
-    "intrusos": [
-      "🛢️",
-      "⛽",
-      "🏭",
-      "🚬",
-      "☢️",
-      "💣",
-      "🏚️"
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎",
+      "🚗"
     ]
   },
   {
@@ -144,13 +120,16 @@
       "Textura"
     ],
     "intrusos": [
-      "Alegría",
-      "Tiempo",
-      "Amor",
-      "Pensamiento",
-      "Recuerdo",
-      "Precio",
-      "Amistad"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -172,13 +151,16 @@
       "Faringe"
     ],
     "intrusos": [
-      "Pulmones",
-      "Corazón",
-      "Cerebro",
-      "Fémur",
-      "Cráneo",
-      "Músculos",
-      "Ojos"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -200,13 +182,16 @@
       "Carroñeros"
     ],
     "intrusos": [
-      "Piedras",
-      "Plantas",
-      "Hongos",
-      "Bacterias",
-      "Virus",
-      "Rocas",
-      "Nubes"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -230,12 +215,16 @@
       "Montaña"
     ],
     "intrusos": [
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
       "Silla",
-      "Mesa",
-      "Coche",
-      "Lápiz",
-      "Libro",
-      "Teléfono"
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -257,13 +246,14 @@
       "Electricidad"
     ],
     "intrusos": [
-      "Plástico",
-      "Vidrio",
-      "Papel",
-      "Cartón",
-      "Tela",
-      "Metal",
-      "Cerámica"
+      "Pizza",
+      "Delfín",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

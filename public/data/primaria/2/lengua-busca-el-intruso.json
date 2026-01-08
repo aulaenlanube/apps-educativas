@@ -1,287 +1,176 @@
 [
   {
-    "categoria": "Animales de Granja (Visual)",
+    "categoria": "Animales",
     "correctos": [
+      "🐶",
+      "🐱",
+      "🐭",
+      "🐹",
+      "🐰",
+      "🦊",
+      "🐻",
+      "🐼",
+      "🐨",
+      "🐯",
+      "🦁",
       "🐮",
       "🐷",
+      "🐸",
+      "🐵",
+      "🐒",
       "🐔",
-      "🐑",
-      "🐴",
-      "🐥",
-      "🐄",
-      "🐐",
-      "🐇",
-      "🦆",
-      "🦃",
-      "🐎",
-      "🐂",
-      "🐓",
-      "🐖",
-      "🦢",
-      "🐐",
-      "🐑"
+      "🐧",
+      "🐦",
+      "🐤"
     ],
     "intrusos": [
-      "🦁",
-      "🐯",
-      "🐘",
-      "鲨鱼 (Tiburón Shark)",
-      "🦕",
-      "🦒",
-      "🦓",
-      "🐊",
-      "🦍"
+      "🍎",
+      "🚗",
+      "🧸"
     ]
   },
   {
-    "categoria": "Frutas (Visual)",
+    "categoria": "Comida",
     "correctos": [
       "🍎",
-      "🍐",
-      "🍊",
       "🍌",
       "🍇",
       "🍓",
-      "🍍",
-      "🥭",
-      "🍋",
-      "🍒",
-      "🍑",
-      "🥝",
-      "🍉",
-      "🍈",
-      "🫐",
-      "🥥"
+      "🍊",
+      "🍕",
+      "🍔",
+      "🍟",
+      "🌭",
+      "🥨",
+      "🍳",
+      "🥐",
+      "🍩",
+      "🧁",
+      "🎂",
+      "🍰"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🐭"
+    ]
+  },
+  {
+    "categoria": "Juguetes",
+    "correctos": [
+      "🧸",
+      "🪀",
+      "🪁",
+      "⚽",
+      "🏀",
+      "🧩",
+      "🎮",
+      "🏎️",
+      "🚂",
+      "🚲",
+      "🛴",
+      "🛹",
+      "🛼"
     ],
     "intrusos": [
       "🥦",
       "🥕",
-      "🌽",
-      "🍗",
-      "🧀",
-      "🍕",
-      "🍟",
-      "🍔",
-      "🥚"
+      "🌽"
     ]
   },
   {
-    "categoria": "Prendas de Ropa (Visual)",
+    "categoria": "Ropa",
     "correctos": [
       "👕",
       "👖",
-      "👗",
-      "🧥",
-      "👟",
-      "替 (Gorra Cap)",
-      "👚",
-      "🧤",
       "🧣",
+      "🧤",
+      "🧥",
       "🧦",
-      "👔",
-      "👢",
-      "👙",
-      "👘",
       "👗",
+      "👚",
+      "👟",
       "👞",
-      "🧢"
+      "👢",
+      "👠",
+      "👒",
+      "🎩"
     ],
     "intrusos": [
-      "🚗",
-      "🏠",
-      "🐶",
-      "✏️",
-      "⌚",
-      "💻",
-      "🧸",
-      "🚲"
+      "🍌",
+      "🍇",
+      "🍉"
     ]
   },
   {
-    "categoria": "Transporte (Visual)",
+    "categoria": "Casa",
+    "correctos": [
+      "🏠",
+      "🛋️",
+      "🪑",
+      "🛌",
+      "📺",
+      "📻",
+      "🚪",
+      "🪟",
+      "🔑",
+      "💡",
+      "🔦",
+      "🕯️",
+      "🚰",
+      "🛁"
+    ],
+    "intrusos": [
+      "🦁",
+      "🐯",
+      "🦓"
+    ]
+  },
+  {
+    "categoria": "Colegio",
+    "correctos": [
+      "🏫",
+      "✏️",
+      "📖",
+      "🎒",
+      "📏",
+      "🖍️",
+      "👩‍🏫",
+      "🎨",
+      "📝",
+      "✂️",
+      "🖇️",
+      "📎",
+      "📁"
+    ],
+    "intrusos": [
+      "🚢",
+      "🚀",
+      "✈️"
+    ]
+  },
+  {
+    "categoria": "Transportes",
     "correctos": [
       "🚗",
       "🚌",
       "🚑",
+      "🚓",
       "🚒",
-      "🚕",
-      "🚜",
-      "🚲",
-      "🛵",
-      "🚄",
+      "🚂",
       "✈️",
       "🚢",
+      "🚲",
       "🚁",
-      "🚀",
-      "🛶",
-      "🚠",
       "🚜",
-      "🚛"
+      "🚛",
+      "🛵",
+      "🚤"
     ],
     "intrusos": [
-      "🏠",
-      "🏫",
-      "🌳",
-      "🐶",
-      "🍔",
-      "🍕",
-      "🧸",
-      "🛋️"
-    ]
-  },
-  {
-    "categoria": "Sustantivos (Cosas)",
-    "correctos": [
-      "Mesa",
-      "Silla",
-      "Coche",
-      "Casa",
-      "Lápiz",
-      "Libro",
-      "Ventana",
-      "Puerta",
-      "Mochila",
-      "Estuche",
-      "Pizarra",
-      "Papel",
-      "Vaso",
-      "Plato",
-      "Cuchara",
-      "Tenedor",
-      "Cama",
-      "Sofá"
-    ],
-    "intrusos": [
-      "Correr",
-      "Saltar",
-      "Rápido",
-      "Azul",
-      "Grande",
-      "Cantar",
-      "Bailar"
-    ]
-  },
-  {
-    "categoria": "Verbos (Acciones)",
-    "correctos": [
-      "Cantar",
-      "Bailar",
-      "Comer",
-      "Dormir",
-      "Jugar",
-      "Saltar",
-      "Correr",
-      "Escribir",
-      "Leer",
-      "Pintar",
-      "Nadar",
-      "Reír",
-      "Caminar",
-      "Subir",
-      "Bajar",
-      "Beber",
-      "Estudiar",
-      "Volar"
-    ],
-    "intrusos": [
-      "Gato",
-      "Perro",
-      "Niño",
-      "Bonito",
-      "Alto",
-      "Mesa",
-      "Lápiz"
-    ]
-  },
-  {
-    "categoria": "Adjetivos (Cualidades)",
-    "correctos": [
-      "Alto",
-      "Bajo",
-      "Guapo",
-      "Feo",
-      "Grande",
-      "Pequeño",
-      "Rápido",
-      "Lento",
-      "Fuerte",
-      "Dulce",
-      "Salado",
-      "Frío",
-      "Caliente",
-      "Limpio",
-      "Sucio",
-      "Gordo",
-      "Flaco",
-      "Alegre"
-    ],
-    "intrusos": [
-      "Juan",
-      "Madrid",
-      "Mesa",
-      "Silla",
-      "Coche",
-      "Correr",
-      "Comer"
-    ]
-  },
-  {
-    "categoria": "Palabras Masculinas",
-    "correctos": [
-      "El gato",
-      "El perro",
-      "El coche",
-      "El niño",
-      "El libro",
-      "El sol",
-      "El árbol",
-      "El vaso",
-      "El papel",
-      "El lápiz",
-      "El río",
-      "El mapa",
-      "El pan",
-      "El camión"
-    ],
-    "intrusos": [
-      "La casa",
-      "La mesa",
-      "La silla",
-      "La niña",
-      "La flor",
-      "La luna",
-      "La pelota"
-    ]
-  },
-  {
-    "categoria": "Palabras en Plural",
-    "correctos": [
-      "Gatos",
-      "Perros",
-      "Mesas",
-      "Sillas",
-      "Niños",
-      "Libros",
-      "Coches",
-      "Lápices",
-      "Flores",
-      "Árboles",
-      "Casas",
-      "Pelotas",
-      "Ventanas",
-      "Botes",
-      "Niñas",
-      "Camiones"
-    ],
-    "intrusos": [
-      "Gato",
-      "Perro",
-      "Mesa",
-      "Silla",
-      "Niño",
-      "Libro",
-      "Coche",
-      "Lápiz"
+      "🍎",
+      "🍌",
+      "🍐"
     ]
   }
 ]

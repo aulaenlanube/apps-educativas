@@ -1,218 +1,69 @@
 [
   {
-    "categoria": "Hardware y Dispositivos (Visual)",
+    "categoria": "Hardware",
     "correctos": [
-      "💻",
       "🖥️",
+      "💻",
       "⌨️",
       "🖱️",
-      "📱",
       "🖨️",
-      "🔋",
       "🔌",
-      "🎧",
-      "📷",
       "💾",
-      "📡",
-      "📽️",
-      "📠"
+      "💽",
+      "🎧",
+      "📱",
+      "⌚",
+      "🎮",
+      "🕹️"
     ],
     "intrusos": [
-      "🍎",
-      "🐶",
-      "⚽",
-      "🧸",
-      "🚗",
-      "🍕"
-    ]
-  },
-  {
-    "categoria": "Robots y Engranajes (Visual)",
-    "correctos": [
-      "🤖",
-      "⚙️",
-      "🔋",
-      "🔌",
-      "💡",
-      "🛠️",
-      "🦾",
-      "🦿",
-      "🎛️",
-      "🔩",
-      "🛸",
-      "🚀",
-      "🛰️",
-      "🛸"
-    ],
-    "intrusos": [
-      "🌸",
-      "🍦",
-      "🐱",
-      "☁️",
-      "🎨",
-      "🧸"
-    ]
-  },
-  {
-    "categoria": "Flechas de Dirección (Visual)",
-    "correctos": [
-      "⬆️",
-      "⬇️",
-      "⬅️",
-      "➡️",
-      "🔄",
-      "⤴️",
-      "⤵️",
-      "🔙",
-      "🔝",
-      "🔃",
-      "↕️",
-      "↔️",
-      "↖️",
-      "↗️"
-    ],
-    "intrusos": [
-      "🏠",
-      "🚗",
-      "🌲",
-      "🍎",
-      "🍔",
-      "⚽"
-    ]
-  },
-  {
-    "categoria": "Iconos de Pantalla (Visual)",
-    "correctos": [
-      "📁",
-      "🗑️",
-      "🔍",
-      "✉️",
-      "🖼️",
-      "🎬",
-      "🎵",
       "🌐",
-      "📅",
-      "⚙️",
-      "🔒",
-      "🔑",
-      "📡",
-      "🔋"
-    ],
-    "intrusos": [
-      "🚲",
-      "🦒",
-      "🍔",
-      "🎸",
-      "👞",
-      "👕"
+      "☁️",
+      "📧",
+      "💀",
+      "💩",
+      "🍎",
+      "🚗",
+      "🧸",
+      "👾",
+      "⛏️",
+      "🌱"
     ]
   },
   {
-    "categoria": "Partes de la Computadora",
+    "categoria": "Operaciones",
     "correctos": [
-      "Teclado",
-      "Ratón",
-      "Pantalla",
-      "Altavoz",
-      "Cámara",
-      "Botón",
-      "Cables",
-      "Batería",
-      "Micro",
-      "Puerto USB",
-      "Carcasa",
-      "Luz",
-      "Enchufe",
-      "Antena"
+      "3+1",
+      "5-2",
+      "6x3",
+      "2+2",
+      "4+5",
+      "10-5",
+      "8-3",
+      "4x2",
+      "9+1",
+      "12-4",
+      "5x5",
+      "7+2",
+      "1+1",
+      "2+2",
+      "3+3",
+      "4+4",
+      "5+5",
+      "6+6",
+      "7+7",
+      "8+8",
+      "9+9",
+      "10+10"
     ],
     "intrusos": [
-      "Zapato",
-      "Cuchara",
-      "Libreta",
-      "Lápiz",
-      "Gorra",
-      "Bufanda"
-    ]
-  },
-  {
-    "categoria": "Órdenes para el Robot",
-    "correctos": [
-      "Avanzar",
-      "Girar",
-      "Parar",
-      "Derecha",
-      "Izquierda",
-      "Subir",
-      "Bajar",
-      "Saltar",
-      "Hablar",
-      "Coger",
-      "Soltar",
-      "Encender",
-      "Apagar",
-      "Repetir"
-    ],
-    "intrusos": [
-      "Comer",
-      "Dormir",
-      "Llorar",
+      "ABC",
+      "Hola",
+      "Mundo",
+      "Casa",
+      "Perro",
       "Cantar",
-      "Bañarse",
-      "Soñar"
-    ]
-  },
-  {
-    "categoria": "Cosas de la Pantalla",
-    "correctos": [
-      "Dibujo",
-      "Foto",
-      "Video",
-      "Juego",
-      "Carta",
-      "Carpeta",
-      "Icono",
-      "Fondo",
-      "Ventana",
-      "Puntero",
-      "Reloj",
-      "Menú",
-      "Barra",
-      "Botón"
-    ],
-    "intrusos": [
-      "Piedra",
-      "Árbol",
-      "Agua",
-      "Arena",
-      "Nube",
-      "Tierra"
-    ]
-  },
-  {
-    "categoria": "Acciones con la Tablet",
-    "correctos": [
-      "Tocar",
-      "Deslizar",
-      "Pulsar",
-      "Arrastrar",
-      "Ampliar",
-      "Girar",
-      "Sacudir",
-      "Pinchar",
-      "Doble toque",
-      "Mantener",
-      "Deslizar arriba",
-      "Deslizar abajo",
-      "Cerrar",
-      "Minimizar"
-    ],
-    "intrusos": [
-      "Recortar",
-      "Pegar",
-      "Pintar",
-      "Correr",
-      "Saltar",
-      "Nadar"
+      "Barco"
     ]
   }
 ]

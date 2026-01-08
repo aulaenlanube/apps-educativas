@@ -1,95 +1,5 @@
 [
   {
-    "categoria": "Adolescencia (Visual)",
-    "correctos": [
-      "👫",
-      "📱",
-      "🎧",
-      "🎒",
-      "👟",
-      "🕶️",
-      "Cap (Gorra Cap)",
-      "🎸",
-      "🎮",
-      "🛹",
-      "💬",
-      "🧥",
-      "⌚",
-      "🤳",
-      "🕺",
-      "💃"
-    ],
-    "intrusos": [
-      "👶",
-      "🍼",
-      "🧸",
-      "🚼",
-      "🍭",
-      "🤱",
-      "🎠"
-    ]
-  },
-  {
-    "categoria": "Redes Sociales (Visual)",
-    "correctos": [
-      "👍",
-      "❤️",
-      "💬",
-      "🔔",
-      "📸",
-      "🤳",
-      "🎞️",
-      "🎶",
-      "📡",
-      "🌐",
-      "⚡",
-      "🔥",
-      "✨",
-      "🌟",
-      "📱",
-      "💻"
-    ],
-    "intrusos": [
-      "📚",
-      "✏️",
-      "🧹",
-      "🍳",
-      "🔨",
-      "🪚",
-      "🚜"
-    ]
-  },
-  {
-    "categoria": "Riesgos Digitales (Visual)",
-    "correctos": [
-      "😈",
-      "🚫",
-      "🕵️",
-      "🦠",
-      "💔",
-      "💣",
-      "🛑",
-      "⚠️",
-      "🔞",
-      "🏴‍☠️",
-      "🤥",
-      "🤮",
-      "🤡",
-      "📉",
-      "🔥",
-      "🥶"
-    ],
-    "intrusos": [
-      "🔒",
-      "🛡️",
-      "🤝",
-      "❤️",
-      "😊",
-      "😇",
-      "💡"
-    ]
-  },
-  {
     "categoria": "Paso a Secundaria",
     "correctos": [
       "Instituto",
@@ -108,12 +18,16 @@
       "Asignaturas optativas"
     ],
     "intrusos": [
-      "Guardería",
-      "Siesta",
-      "Columpios",
-      "Tobogán",
-      "Pañales",
-      "Biberón"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -135,12 +49,15 @@
       "Antivirus"
     ],
     "intrusos": [
-      "Insultar",
-      "Compartir todo",
-      "Desconocidos",
-      "Ciberbullying",
-      "Virus",
-      "Mentir"
+      "Pizza",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -162,13 +79,16 @@
       "Amor"
     ],
     "intrusos": [
-      "Hambre",
-      "Sed",
-      "Frío",
-      "Calor",
-      "Picor",
-      "Dolor",
-      "Cansancio"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -190,13 +110,16 @@
       "Paz"
     ],
     "intrusos": [
-      "Gritar",
-      "Pegar",
-      "Ignorar",
-      "Mentira",
-      "Odio",
-      "Burlas",
-      "Discriminación"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

@@ -1,209 +1,196 @@
 [
   {
-    "categoria": "Caras Felices (Visual)",
+    "categoria": "Caras Felices",
     "correctos": [
       "😀",
-      "😁",
-      "😂",
+      "😉",
+      "😊",
+      "😇",
       "🥰",
       "😍",
-      "🙂",
-      "🥳",
       "🤩",
-      "😊",
-      "😄",
-      "😆",
-      "😇",
-      "😚",
+      "😘",
       "😋",
-      "😻",
-      "🤗",
+      "😛",
+      "😜",
+      "🤪",
+      "🥳",
       "😎",
-      "🤡"
+      "🤓",
+      "🧐",
+      "😏",
+      "🥳",
+      "😻",
+      "😸"
     ],
     "intrusos": [
       "😢",
-      "😭",
       "😡",
-      "🤬",
       "😱",
-      "😤",
       "🤢",
-      "😴"
+      "👿",
+      "💀",
+      "💩"
     ]
   },
   {
-    "categoria": "Higiene y Salud (Visual)",
+    "categoria": "Animales de la Selva",
     "correctos": [
-      "🚿",
-      "🛁",
-      "🧼",
-      "🪥",
-      "🧴",
-      "🧻",
-      "🦷",
-      "🧖‍♀️",
-      "🍎",
-      "🥦",
-      "💧",
-      "🧺",
-      " sponges",
-      "🚰",
-      "🧺"
+      "🦁",
+      "🐯",
+      "🦓",
+      "🐘",
+      "🦒",
+      "🐒",
+      "🦍",
+      "🦧",
+      "🐆",
+      "🐅",
+      "🐊",
+      "🐍",
+      "🦏",
+      "🦛"
     ],
     "intrusos": [
-      "🎮",
-      "📺",
-      "🍔",
-      "⚽",
-      "🗑️",
-      "🍭",
-      "🍫",
-      "🍩"
+      "🚗",
+      "🚌",
+      "🚲",
+      "🏠"
     ]
   },
   {
-    "categoria": "Juegos y Diversión (Visual)",
+    "categoria": "Postres Ricos",
+    "correctos": [
+      "🍦",
+      "🍧",
+      "🍨",
+      "🍩",
+      "🍪",
+      "🎂",
+      "🍰",
+      "🧁",
+      "🥧",
+      "🍫",
+      "🍬",
+      "🍭",
+      "🍮",
+      "🍯"
+    ],
+    "intrusos": [
+      "🥦",
+      "🥕",
+      "🌽",
+      "🧅"
+    ]
+  },
+  {
+    "categoria": "Cosas del Colegio",
+    "correctos": [
+      "✏️",
+      "🖍️",
+      "🖌️",
+      "📏",
+      "📐",
+      "🎒",
+      "📖",
+      "📚",
+      "📓",
+      "🖇️",
+      "📎",
+      "✂️",
+      "🎨",
+      "🏫"
+    ],
+    "intrusos": [
+      "👟",
+      "👗",
+      "👖",
+      "👕"
+    ]
+  },
+  {
+    "categoria": "Ropa de Invierno",
+    "correctos": [
+      "🧣",
+      "🧤",
+      "🧥",
+      "🧦",
+      "👢",
+      "🎿",
+      "🏂"
+    ],
+    "intrusos": [
+      "🩱",
+      "🩲",
+      "🩳",
+      "🕶️"
+    ]
+  },
+  {
+    "categoria": "Deportes",
     "correctos": [
       "⚽",
       "🏀",
-      "🪁",
-      "🧩",
-      "🎲",
-      "🧸",
-      "🎠",
-      "🎡",
-      "🎨",
-      "🎭",
-      "🎪",
-      "🛴",
-      "🚲",
-      "🎮",
+      "🏈",
+      "⚾",
+      "🥎",
+      "🎾",
+      "🏐",
+      "🏉",
+      "🎱",
+      "🏓",
       "🏸",
-      "🛹",
-      "🪀"
+      "🏒",
+      "🏑",
+      "🏏"
     ],
     "intrusos": [
-      "📚",
-      "✏️",
-      "🧹",
-      "🍳",
-      "🔨",
-      "💻",
-      "🗑️",
-      "🔧"
+      "🍎",
+      "🍌",
+      "🍐",
+      "🍑"
     ]
   },
   {
-    "categoria": "Emociones de Bienestar",
+    "categoria": "Instrumentos",
     "correctos": [
-      "Alegría",
-      "Amor",
-      "Calma",
-      "Diversión",
-      "Felicidad",
-      "Ilusión",
-      "Tranquilidad",
-      "Cariño",
-      "Amistad",
-      "Paz",
-      "Gozo",
-      "Esperanza",
-      "Simpatía",
-      "Respeto"
+      "🎸",
+      "🎹",
+      "🎺",
+      "🎻",
+      "🥁",
+      "🎷",
+      "🪗",
+      "🪕",
+      "🎤",
+      "🎧",
+      "📻"
     ],
     "intrusos": [
-      "Miedo",
-      "Tristeza",
-      "Enfado",
-      "Ira",
-      "Dolor",
-      "Susto",
-      "Asco"
+      "🍔",
+      "🌭",
+      "🍟",
+      "🍕"
     ]
   },
   {
-    "categoria": "Palabras Mágicas y de Respeto",
+    "categoria": "El Universo",
     "correctos": [
-      "Gracias",
-      "Por favor",
-      "Perdón",
-      "Hola",
-      "Adiós",
-      "Buenas noches",
-      "Buen provecho",
-      "Enhorabuena",
-      "Bienvenido",
-      "Lo siento",
-      "Disculpa",
-      "Permiso",
-      "Buen día",
-      "Encantado"
+      "☀️",
+      "🌍",
+      "🌕",
+      "⭐",
+      "🌟",
+      "✨",
+      "🚀",
+      "🛸",
+      "🪐",
+      "☄️"
     ],
     "intrusos": [
-      "Tonto",
-      "Feo",
-      "Malo",
-      "Fuera",
-      "No",
-      "Calla",
-      "Mío",
-      "Vete"
-    ]
-  },
-  {
-    "categoria": "Acciones de Convivencia",
-    "correctos": [
-      "Abrazar",
-      "Besar",
-      "Ayudar",
-      "Compartir",
-      "Jugar",
-      "Escuchar",
-      "Cuidar",
-      "Respetar",
-      "Saludar",
-      "Acompañar",
-      "Agradecer",
-      "Dialogar",
-      "Sonreír",
-      "Colaborar"
-    ],
-    "intrusos": [
-      "Pegar",
-      "Gritar",
-      "Empujar",
-      "Romper",
-      "Insultar",
-      "Mentir",
-      "Escupir"
-    ]
-  },
-  {
-    "categoria": "Hábitos Saludables Diarios",
-    "correctos": [
-      "Dormir bien",
-      "Comer fruta",
-      "Lavarse las manos",
-      "Jugar al aire libre",
-      "Leer un libro",
-      "Beber agua",
-      "Ducharse",
-      "Hacer deporte",
-      "Recoger juguetes",
-      "Desayunar sano",
-      "Peinarse",
-      "Llevar ropa limpia",
-      "Abrazar",
-      "Sonreír"
-    ],
-    "intrusos": [
-      "Comer chuches",
-      "Ver mucha tele",
-      "No bañarse",
-      "Pegar a los otros",
-      "Llorar por todo",
-      "Gritar fuerte"
+      "🏠",
+      "🏢",
+      "🏭"
     ]
   }
 ]

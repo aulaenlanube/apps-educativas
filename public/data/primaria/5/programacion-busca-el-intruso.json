@@ -1,132 +1,5 @@
 [
   {
-    "categoria": "Hardware de Salida (Visual)",
-    "correctos": [
-      "💻",
-      "⌨️",
-      "🖱️",
-      "🖨️",
-      "📱",
-      "🖥️",
-      "🔊",
-      "🖨️",
-      "📽️",
-      "🎧",
-      "📺",
-      "📻",
-      "⌚",
-      "💡",
-      "📡",
-      "🛰️"
-    ],
-    "intrusos": [
-      "🍎",
-      "🐶",
-      "⚽",
-      "🧸",
-      "🚗",
-      "🍕",
-      "🍦",
-      "🥪"
-    ]
-  },
-  {
-    "categoria": "Robótica y Electrónica (Visual)",
-    "correctos": [
-      "🤖",
-      "⚙️",
-      "🔋",
-      "🔌",
-      "💡",
-      "🛠️",
-      "🔩",
-      "🎛️",
-      "🌡️",
-      "⏲️",
-      "🛰️",
-      "🦾",
-      "🦿",
-      "🧲",
-      "🔭",
-      "🔬"
-    ],
-    "intrusos": [
-      "🌸",
-      "🐱",
-      "🍦",
-      "🌈",
-      "🦋",
-      "🎨",
-      "🧸"
-    ]
-  },
-  {
-    "categoria": "Web y Aplicaciones (Visual)",
-    "correctos": [
-      "📁",
-      "🗑️",
-      "🔍",
-      "✉️",
-      "🖼️",
-      "🎬",
-      "🎵",
-      "🕒",
-      "⚙️",
-      "🌐",
-      "🔗",
-      "📶",
-      "🔔",
-      "📍",
-      "📥",
-      "📤",
-      "📅",
-      "🔑"
-    ],
-    "intrusos": [
-      "🚲",
-      "🦒",
-      "🍔",
-      "🎸",
-      "👞",
-      "👕",
-      "👒"
-    ]
-  },
-  {
-    "categoria": "Lógica y Programación (Visual)",
-    "correctos": [
-      "➡️",
-      "⬅️",
-      "⬆️",
-      "⬇️",
-      "➕",
-      "➖",
-      "✖️",
-      "➗",
-      "🔄",
-      "↩️",
-      "🔢",
-      "🔁",
-      "🔀",
-      "♾️",
-      "✅",
-      "❌",
-      "🔗",
-      "🆒",
-      "🆗",
-      "🆙"
-    ],
-    "intrusos": [
-      "🏠",
-      "🚗",
-      "🐶",
-      "🌲",
-      "🍎",
-      "🍔",
-      "🍕"
-    ]
-  },
-  {
     "categoria": "Eventos y Control: Scratch",
     "correctos": [
       "Al hacer clic",
@@ -144,12 +17,16 @@
       "Detener este script"
     ],
     "intrusos": [
-      "Hacer deberes",
-      "Comer",
-      "Dormir",
-      "Ir al parque",
-      "Cantar",
-      "Lavar coche"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -171,13 +48,16 @@
       "Zócalo"
     ],
     "intrusos": [
-      "Zapato",
-      "Cuchara",
-      "Libreta",
-      "Lápiz",
-      "Gorra",
-      "Mesa",
-      "Puerta"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -199,13 +79,16 @@
       "Bloqueo"
     ],
     "intrusos": [
-      "Piedra",
-      "Árbol",
-      "Bocadillo",
-      "Pelota",
-      "Libro",
-      "Agua",
-      "Fuego"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -227,13 +110,16 @@
       "Exportar"
     ],
     "intrusos": [
-      "Dibujar",
-      "Recortar",
-      "Pegar",
-      "Doblar hoja",
-      "Correr",
-      "Saltar",
-      "Comer"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -255,12 +141,16 @@
       "Clase"
     ],
     "intrusos": [
-      "Cuento",
-      "Receta",
-      "Dibujo técnico",
-      "Poesía",
-      "Novela",
-      "Guion"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

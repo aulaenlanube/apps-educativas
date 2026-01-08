@@ -1,95 +1,5 @@
 [
   {
-    "categoria": "Derechos y Necesidades (Visual)",
-    "correctos": [
-      "🎓",
-      "🏠",
-      "⚕️",
-      "🍲",
-      "👪",
-      "☮️",
-      "💧",
-      "👕",
-      "🛝",
-      "🛡️",
-      "📜",
-      "⚖️",
-      "🍎",
-      "🥦",
-      "🚿",
-      "🩺"
-    ],
-    "intrusos": [
-      "🔫",
-      "🍺",
-      "🚬",
-      "⛓️",
-      "⚒️",
-      "🎰",
-      "💣"
-    ]
-  },
-  {
-    "categoria": "Diálogo y Paz (Visual)",
-    "correctos": [
-      "🤝",
-      "🗣️",
-      "👂",
-      "⚖️",
-      "☮️",
-      "🫂",
-      "🕊️",
-      "💬",
-      "💐",
-      "✍️",
-      "📖",
-      "🕊️",
-      "🤝",
-      "🌟",
-      "✨",
-      "❤️"
-    ],
-    "intrusos": [
-      "🥊",
-      "🖕",
-      "😤",
-      "📢",
-      "💣",
-      "🔥",
-      "🔪"
-    ]
-  },
-  {
-    "categoria": "Protección y Seguridad (Visual)",
-    "correctos": [
-      "🔒",
-      "🛡️",
-      "🔑",
-      "🔞",
-      "🤐",
-      "🚦",
-      "⚠️",
-      "🚧",
-      "🧤",
-      "🦺",
-      "🔦",
-      "🚨",
-      "🔋",
-      "💡",
-      "🔌",
-      "🏥"
-    ],
-    "intrusos": [
-      "📣",
-      "🔓",
-      "💸",
-      "🦠",
-      "🕵️",
-      "🤡",
-      "👻"
-    ]
-  },
-  {
     "categoria": "Habilidades Sociales",
     "correctos": [
       "Escucha activa",
@@ -108,12 +18,16 @@
       "Humildad"
     ],
     "intrusos": [
-      "Agresividad",
-      "Gritos",
-      "Insultos",
-      "Ignorar",
-      "Interrumpir",
-      "Burlas"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -134,13 +48,16 @@
       "Mnemotecnia"
     ],
     "intrusos": [
-      "Copiar",
-      "Dormir",
-      "Móvil",
-      "Hablar",
-      "Gritar",
-      "Tele",
-      "Ruidos"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -162,12 +79,16 @@
       "Voto"
     ],
     "intrusos": [
-      "Dictadura",
-      "Esclavitud",
-      "Injusticia",
-      "Discriminación",
-      "Odio",
-      "Corrupción"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -189,12 +110,16 @@
       "Fibra"
     ],
     "intrusos": [
-      "Bollería",
-      "Refrescos",
-      "Golosinas",
-      "Comida rápida",
-      "Fritos",
-      "Helado"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

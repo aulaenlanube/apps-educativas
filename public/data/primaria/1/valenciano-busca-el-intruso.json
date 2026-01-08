@@ -1,223 +1,149 @@
 [
   {
-    "categoria": "Les Vocals",
-    "correctos": [
-      "A",
-      "E",
-      "I",
-      "O",
-      "U",
-      "a",
-      "e",
-      "i",
-      "o",
-      "u",
-      "à",
-      "é",
-      "í",
-      "ó",
-      "ú"
-    ],
-    "intrusos": [
-      "B",
-      "C",
-      "D",
-      "F",
-      "G",
-      "H",
-      "J",
-      "K",
-      "L",
-      "M"
-    ]
-  },
-  {
-    "categoria": "Material de l'Aula (Visual)",
-    "correctos": [
-      "🎒",
-      "📚",
-      "✏️",
-      "📏",
-      "✂️",
-      "🖍️",
-      "📓",
-      "🖇️",
-      "🖊️",
-      "📒",
-      "💻",
-      "🏫",
-      "📐",
-      "🎨"
-    ],
-    "intrusos": [
-      "🍎",
-      "🐶",
-      "🚗",
-      "🧸",
-      "🍕",
-      "🍔"
-    ]
-  },
-  {
-    "categoria": "Animals de Casa (Visual)",
+    "categoria": "Animals",
     "correctos": [
       "🐶",
       "🐱",
-      "🐰",
-      "🦜",
-      "🐹",
-      "🐢",
-      "🐠",
-      "🦎",
       "🐭",
-      "🐩",
-      "🐕",
-      "🐈",
-      "🐟",
-      "🐸"
+      "🐹",
+      "🐰",
+      "🦊",
+      "🐻",
+      "🐼",
+      "🐨",
+      "🐯",
+      "🦁",
+      "🐮",
+      "🐷",
+      "🐸",
+      "🐵"
     ],
     "intrusos": [
-      "🦁",
-      "🐘",
-      "🦒",
-      "🦓",
-      "🐊",
-      "🦖"
+      "🍎",
+      "🚗",
+      "🧸"
     ]
   },
   {
-    "categoria": "Fruites i Verdures (Visual)",
+    "categoria": "Menjar",
     "correctos": [
       "🍎",
       "🍌",
       "🍇",
-      "🍊",
-      "🥦",
-      "🥕",
       "🍓",
-      "🍒",
-      "🍍",
-      "🍐",
-      "🍑",
-      "🥝",
-      "🍉",
-      "🍅"
-    ],
-    "intrusos": [
-      "🍦",
-      "🍩",
+      "🍊",
       "🍕",
       "🍔",
       "🍟",
-      "🍪"
+      "🌭",
+      "🥨",
+      "🍳",
+      "🥐",
+      "🍩"
+    ],
+    "intrusos": [
+      "🐶",
+      "🐱",
+      "🐭"
     ]
   },
   {
-    "categoria": "Paraules amb L",
+    "categoria": "Joguines",
     "correctos": [
-      "Lluna",
-      "Llibre",
-      "Llet",
-      "Lloc",
-      "Llapis",
-      "Llimona",
-      "Llit",
-      "Llàgrima",
-      "Llac",
-      "Lleó",
-      "Llengua",
-      "Llum",
-      "Llana",
-      "Llentilla"
+      "🧸",
+      "🪀",
+      "🪁",
+      "⚽",
+      "🏀",
+      "🧩",
+      "🎮",
+      "🏎️",
+      "🚂",
+      "🚲",
+      "🛴"
     ],
     "intrusos": [
-      "Mare",
-      "Pare",
-      "Casa",
-      "Gos",
-      "Gat",
-      "Sol"
+      "🥦",
+      "🥕",
+      "🌽"
     ]
   },
   {
-    "categoria": "Colors Bàsics",
+    "categoria": "Roba",
     "correctos": [
-      "Roig",
-      "Blau",
-      "Groc",
-      "Verd",
-      "Rosa",
-      "Blanc",
-      "Negre",
-      "Marró",
-      "Gris",
-      "Violeta",
-      "Lila",
-      "Taronja",
-      "Daurat",
-      "Plata"
+      "👕",
+      "👖",
+      "🧣",
+      "🧤",
+      "🧥",
+      "🧦",
+      "👗",
+      "👚",
+      "👟",
+      "👞"
     ],
     "intrusos": [
-      "Sol",
-      "Mar",
-      "Llibre",
-      "Goma",
-      "Aula",
-      "Taula"
+      "🍌",
+      "🍇",
+      "🍉"
     ]
   },
   {
-    "categoria": "Membres de la Família",
+    "categoria": "Coses de Casa",
     "correctos": [
-      "Pare",
-      "Mare",
-      "Avi",
-      "Àvia",
-      "Germà",
-      "Germana",
-      "Oncle",
-      "Tia",
-      "Cosí",
-      "Cosina",
-      "Nebot",
-      "Neboda",
-      "Fill",
-      "Filla"
+      "🏠",
+      "🛋️",
+      "🪑",
+      "🛌",
+      "📺",
+      "📻",
+      "🚪",
+      "🪟",
+      "🔑",
+      "💡"
     ],
     "intrusos": [
-      "Gos",
-      "Mesa",
-      "Cadira",
-      "Cotxe",
-      "Tren",
-      "Avioneta"
+      "🦁",
+      "🐯",
+      "🦓"
     ]
   },
   {
-    "categoria": "Parts de la Cara",
+    "categoria": "El Col·legi",
     "correctos": [
-      "Ulls",
-      "Nas",
-      "Boca",
-      "Orelles",
-      "Cabells",
-      "Front",
-      "Barra",
-      "Llavis",
-      "Pestanyes",
-      "Celles",
-      "Dents",
-      "Llengua",
-      "Galtes",
-      "Pell"
+      "🏫",
+      "✏️",
+      "📖",
+      "🎒",
+      "📏",
+      "🖍️",
+      "👩‍🏫",
+      "🎨"
     ],
     "intrusos": [
-      "Peu",
-      "Mà",
-      "Dits",
-      "Genoll",
-      "Panxa",
-      "Braç"
+      "🚢",
+      "🚀",
+      "✈️"
+    ]
+  },
+  {
+    "categoria": "Transports",
+    "correctos": [
+      "🚗",
+      "🚌",
+      "🚑",
+      "🚓",
+      "🚒",
+      "🚂",
+      "✈️",
+      "🚢",
+      "🚲",
+      "🚁"
+    ],
+    "intrusos": [
+      "🍎",
+      "🍌",
+      "🍐"
     ]
   }
 ]

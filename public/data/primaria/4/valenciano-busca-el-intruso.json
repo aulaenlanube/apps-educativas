@@ -1,98 +1,5 @@
 [
   {
-    "categoria": "Casa i Mobiliari (Visual)",
-    "correctos": [
-      "🏠",
-      "🚪",
-      "🪟",
-      "🛌",
-      "🛋️",
-      "🛁",
-      "🪑",
-      "🧸",
-      "📺",
-      "📻",
-      "🪜",
-      "🪞",
-      "🧺",
-      "🚰",
-      "🧴",
-      "🧻",
-      "💈"
-    ],
-    "intrusos": [
-      "🚗",
-      "🏫",
-      "🌳",
-      "🐶",
-      "🌊",
-      "🚜",
-      "🚲"
-    ]
-  },
-  {
-    "categoria": "Cuina i Aliments (Visual)",
-    "correctos": [
-      "🥘",
-      "🥗",
-      "🍝",
-      "🍊",
-      "🥖",
-      "🧀",
-      "🍳",
-      "🍕",
-      "🍔",
-      "🍦",
-      "🥪",
-      "🥣",
-      "🥤",
-      "🧂",
-      "🍱",
-      "🍱",
-      "🧁"
-    ],
-    "intrusos": [
-      "⚽",
-      "🚗",
-      "✏️",
-      "👕",
-      "🐶",
-      "🎸",
-      "⌚"
-    ]
-  },
-  {
-    "categoria": "Escola i Material (Visual)",
-    "correctos": [
-      "🏫",
-      "🎒",
-      "📚",
-      "✏️",
-      "📏",
-      "✂️",
-      "📓",
-      "🎓",
-      "📖",
-      "🖊️",
-      "📎",
-      "🎨",
-      "📐",
-      "💻",
-      "📒",
-      "🖌️",
-      "🖍️"
-    ],
-    "intrusos": [
-      "🛌",
-      "🛁",
-      "🍳",
-      "📺",
-      "🎮",
-      "🧸",
-      "🚲"
-    ]
-  },
-  {
     "categoria": "Paraules Agudes",
     "correctos": [
       "Camió",
@@ -113,13 +20,13 @@
       "Papà"
     ],
     "intrusos": [
-      "Casa",
-      "Arbre",
-      "Llapis",
-      "Música",
-      "Pàgina",
-      "Llibre",
-      "Taula"
+      "Pizza",
+      "Bicicleta",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol"
     ]
   },
   {
@@ -143,13 +50,16 @@
       "Néta"
     ],
     "intrusos": [
-      "Mestre",
-      "Metge",
-      "Veí",
-      "Policia",
-      "Bomber",
-      "Carter",
-      "Advocat"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -173,13 +83,16 @@
       "Hivern"
     ],
     "intrusos": [
-      "Dilluns",
-      "Demà",
-      "Ahir",
-      "Hui",
-      "Vesprada",
-      "Nit",
-      "Matí"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -204,13 +117,16 @@
       "Dits"
     ],
     "intrusos": [
-      "Samarreta",
-      "Pantalons",
-      "Sabates",
-      "Barret",
-      "Ulleres",
-      "Rellotge",
-      "Mochilla"
+      "Pizza",
+      "Bicicleta",
+      "Dofí",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   },
   {
@@ -234,13 +150,15 @@
       "Cabra"
     ],
     "intrusos": [
-      "Gos",
-      "Gat",
-      "Gallina",
-      "Vaca",
-      "Ovella",
-      "Porc",
-      "Cavall"
+      "Pizza",
+      "Bicicleta",
+      "Martell",
+      "Sabata",
+      "Telèfon",
+      "Cadira",
+      "Núvol",
+      "Lleó",
+      "Cullerot"
     ]
   }
 ]

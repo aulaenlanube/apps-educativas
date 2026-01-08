@@ -1,125 +1,5 @@
 [
   {
-    "categoria": "Edad Contemporánea (Visual)",
-    "correctos": [
-      "🏭",
-      "火车 (Tren Train)",
-      "✈️",
-      "🚀",
-      "💻",
-      "🏙️",
-      "🎥",
-      "☎️",
-      "📡",
-      "🛰️",
-      "📱",
-      "🖱️",
-      "🚁",
-      "🚇",
-      "🎬",
-      "🕹️"
-    ],
-    "intrusos": [
-      "🏰",
-      "🗡️",
-      "🛡️",
-      "🏺",
-      "🐎",
-      "🛖",
-      "🏹"
-    ]
-  },
-  {
-    "categoria": "Unión Europea y Euro (Visual)",
-    "correctos": [
-      "🇪🇺",
-      "💶",
-      "🏦",
-      "🛂",
-      "🚄",
-      "🗳️",
-      "🚩",
-      "🗺️",
-      "🏛️",
-      "🇪🇸",
-      "🇫🇷",
-      "🇩🇪",
-      "🇮🇹",
-      "🇵🇹",
-      "🇦🇹",
-      "🇳🇱"
-    ],
-    "intrusos": [
-      "🏯",
-      "⛩️",
-      "🕌",
-      "🗿",
-      "🇺🇸",
-      "🗽",
-      "🌮"
-    ]
-  },
-  {
-    "categoria": "Derechos y Justicia (Visual)",
-    "correctos": [
-      "🗳️",
-      "⚖️",
-      "🗣️",
-      "🤝",
-      "🏛️",
-      "📜",
-      "🕊️",
-      "🌍",
-      "🤲",
-      "🖇️",
-      "📝",
-      "✍️",
-      "📖",
-      "🔑",
-      "🕊️",
-      "🤍"
-    ],
-    "intrusos": [
-      "👑",
-      "🤴",
-      "🔫",
-      "👮",
-      "💣",
-      "🔥",
-      "⛓️"
-    ]
-  },
-  {
-    "categoria": "Impacto Ambiental (Visual)",
-    "correctos": [
-      "🏭",
-      "🔥",
-      "🏜️",
-      "🌡️",
-      "💨",
-      "🌫️",
-      "🚱",
-      "🥀",
-      "🌊",
-      "🏚️",
-      "🗑️",
-      "🛢️",
-      "🚬",
-      "💣",
-      "☢️",
-      "☣️"
-    ],
-    "intrusos": [
-      "♻️",
-      "🚲",
-      "🌱",
-      "🔋",
-      "🌬️",
-      "☀️",
-      "🌲"
-    ]
-  },
-  {
     "categoria": "Historia Contemporánea",
     "correctos": [
       "Revolución Francesa",
@@ -138,12 +18,16 @@
       "Mundialización"
     ],
     "intrusos": [
-      "Descubrimiento 1492",
-      "Imperio Romano",
-      "Pirámides",
-      "Edad Media",
-      "Grecia",
-      "Troya"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -165,12 +49,16 @@
       "Erasmus"
     ],
     "intrusos": [
-      "Dólar",
-      "Rey absoluto",
-      "Emperador",
-      "Presidente EE.UU.",
-      "ONU",
-      "OTAN"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -192,13 +80,16 @@
       "Sanidad"
     ],
     "intrusos": [
-      "Estudiar",
-      "Curarse",
-      "Jugar",
-      "Dormir",
-      "Pasear",
-      "Cantar",
-      "Bailar"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -222,12 +113,16 @@
       "Tajo"
     ],
     "intrusos": [
-      "Nilo",
-      "Amazonas",
-      "Misisipi",
-      "Yangtsé",
-      "Ganges",
-      "Colorado"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -251,12 +146,16 @@
       "Ámsterdam"
     ],
     "intrusos": [
-      "Nueva York",
-      "Tokio",
-      "Pekín",
-      "Buenos Aires",
-      "Moscú",
-      "Washington"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

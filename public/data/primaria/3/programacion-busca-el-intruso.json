@@ -1,145 +1,5 @@
 [
   {
-    "categoria": "Hardware y Periféricos (Visual)",
-    "correctos": [
-      "💻",
-      "⌨️",
-      "鼠标 (Ratón Mouse)",
-      "🖨️",
-      "📱",
-      "🖥️",
-      "🔋",
-      "🔌",
-      "🎧",
-      "📷",
-      "🕹️",
-      "💾",
-      "📡",
-      "🛰️",
-      "🖱️",
-      "🖲️",
-      "📼",
-      "💿",
-      "📽️",
-      "📠"
-    ],
-    "intrusos": [
-      "🍎",
-      "🐶",
-      "⚽",
-      "🧸",
-      "🚗",
-      "🍕",
-      "🍦",
-      "🥪"
-    ]
-  },
-  {
-    "categoria": "Robots y Engranajes (Visual)",
-    "correctos": [
-      "🤖",
-      "⚙️",
-      "🔋",
-      "🔌",
-      "💡",
-      "🛠️",
-      "🔩",
-      "🏗️",
-      "📡",
-      "🛰️",
-      "🦾",
-      "🦿",
-      "🎛️",
-      "🔩",
-      "🛸",
-      "🚀",
-      "🛰️",
-      "🛸",
-      "🎚️",
-      "🔬"
-    ],
-    "intrusos": [
-      "🌸",
-      "🍦",
-      "🐱",
-      "☁️",
-      "🎨",
-      "🧸",
-      "🍭",
-      "🦋"
-    ]
-  },
-  {
-    "categoria": "Interfaz de Usuario (Visual)",
-    "correctos": [
-      "📁",
-      "🗑️",
-      "🔍",
-      "✉️",
-      "🖼️",
-      "🎬",
-      "🎵",
-      "🕒",
-      "⚙️",
-      "🔒",
-      "📶",
-      "🔋",
-      "💾",
-      "📥",
-      "📤",
-      "🌐",
-      "📅",
-      "🔑",
-      "🔔",
-      "☁️"
-    ],
-    "intrusos": [
-      "🚲",
-      "🦒",
-      "🍔",
-      "🎸",
-      "👞",
-      "👕",
-      "👒",
-      "🛹"
-    ]
-  },
-  {
-    "categoria": "Lógica y Signos (Visual)",
-    "correctos": [
-      "➡️",
-      "⬅️",
-      "⬆️",
-      "⬇️",
-      "➕",
-      "➖",
-      "✖️",
-      "➗",
-      "🔄",
-      "↩️",
-      "🔢",
-      "🔣",
-      "🔡",
-      "🔁",
-      "🔀",
-      "🔠",
-      "ℹ️",
-      "🆗",
-      "🆙",
-      "🆒"
-    ],
-    "intrusos": [
-      "🏠",
-      "🚗",
-      "🐶",
-      "🌲",
-      "🍎",
-      "🍔",
-      "🍕",
-      "🧸"
-    ]
-  },
-  {
     "categoria": "Comandos de Acción",
     "correctos": [
       "Avanzar",
@@ -159,12 +19,16 @@
       "Girar izquierda"
     ],
     "intrusos": [
-      "Comer",
-      "Dormir",
-      "Llorar",
-      "Cantar",
-      "Soñar",
-      "Bañarse"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -186,12 +50,16 @@
       "Fuente de poder"
     ],
     "intrusos": [
-      "Zapato",
-      "Cuchara",
-      "Libreta",
-      "Lápiz",
-      "Gorra",
-      "Mesa"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -214,12 +82,16 @@
       "Upload"
     ],
     "intrusos": [
-      "Piedra",
-      "Árbol",
-      "Bocadillo",
-      "Pelota",
-      "Libro papel",
-      "Arena"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -241,11 +113,16 @@
       "Actualizar"
     ],
     "intrusos": [
-      "Pintar can acuarela",
-      "Recortar con tijera",
-      "Pegar con cola",
-      "Doblar papel",
-      "Escribir con boli"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -267,12 +144,16 @@
       "Orden"
     ],
     "intrusos": [
-      "Cuento",
-      "Canción",
-      "Receta",
-      "Dibujo",
-      "Poesía",
-      "Parque"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

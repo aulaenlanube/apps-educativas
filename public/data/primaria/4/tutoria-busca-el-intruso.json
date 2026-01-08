@@ -19,17 +19,19 @@
       "🥵",
       "🥶",
       "🤯",
-      "😎",
-      "🤡"
+      "😎"
     ],
     "intrusos": [
+      "🍕",
+      "🚲",
+      "🐬",
+      "🔨",
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
       "🍎",
-      "🚗",
-      "🏠",
-      "🐶",
-      "✏️",
-      "⚽",
-      "🍔"
+      "🚗"
     ]
   },
   {
@@ -54,47 +56,14 @@
       "🧘"
     ],
     "intrusos": [
-      "🛋️",
-      "📺",
-      "🎮",
-      "📱",
-      "🛌",
-      "🍿",
-      "🥤",
-      "🎰"
-    ]
-  },
-  {
-    "categoria": "Elementos de Precaución (Visual)",
-    "correctos": [
-      "🔥",
-      "🔌",
-      "🔪",
-      "💊",
-      "🧪",
-      "✂️",
-      "🚧",
-      "⚠️",
-      "🚭",
-      "🧨",
-      "🥛",
-      "🧴",
-      "🪓",
+      "🍕",
+      "🐬",
       "🔨",
-      "🔩",
-      "🧨",
-      "☢️",
-      "☣️"
-    ],
-    "intrusos": [
-      "🧸",
-      "📚",
-      "⚽",
-      "🍎",
-      "👕",
-      "👟",
-      "🎨",
-      "🪁"
+      "☁️",
+      "👞",
+      "🌈",
+      "🎸",
+      "🍎"
     ]
   },
   {
@@ -116,13 +85,16 @@
       "Cariño"
     ],
     "intrusos": [
-      "Mentiroso",
-      "Egoísta",
-      "Envidioso",
-      "Violento",
-      "Cruel",
-      "Burlón",
-      "Traidor"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -144,13 +116,16 @@
       "Disculparse"
     ],
     "intrusos": [
-      "Gritar",
-      "Pegar",
-      "Ignorar",
-      "Amenazar",
-      "Culpar",
-      "Romper",
-      "Mentir"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -172,13 +147,16 @@
       "Nacionalidad"
     ],
     "intrusos": [
-      "Trabajar",
-      "Guerra",
-      "Hambre",
-      "Violencia",
-      "Abandono",
-      "Discriminación",
-      "Castigo"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -202,13 +180,16 @@
       "Esperanza"
     ],
     "intrusos": [
-      "Hambre",
-      "Sed",
-      "Sueño",
-      "Dolor",
-      "Frío",
-      "Calor",
-      "Cansancio"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]

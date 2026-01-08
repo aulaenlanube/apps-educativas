@@ -1,129 +1,5 @@
 [
   {
-    "categoria": "Reino Fungi y Aplicaciones (Visual)",
-    "correctos": [
-      "🍄",
-      "🥖",
-      "🧀",
-      "🍺",
-      "🥣",
-      "🍷",
-      "🦠",
-      "🧬",
-      "🧪",
-      "🧫",
-      "🔬",
-      "💊",
-      "💉",
-      "🥐",
-      "🥟",
-      "🥨"
-    ],
-    "intrusos": [
-      "🌻",
-      "🌲",
-      "🌹",
-      "🌵",
-      "🐶",
-      "🐱",
-      "🦁",
-      "🍎"
-    ]
-  },
-  {
-    "categoria": "Fuentes y Formas de Energía (Visual)",
-    "correctos": [
-      "☀️",
-      "🌬️",
-      "🌊",
-      "🔥",
-      "⚡",
-      "🔋",
-      "💡",
-      "⛽",
-      "♨️",
-      "☢️",
-      "🔦",
-      "🔌",
-      "🌡️",
-      "🛰️",
-      "🚲",
-      "🏠"
-    ],
-    "intrusos": [
-      "🛌",
-      "🧸",
-      "📚",
-      "🎨",
-      "🧊",
-      "🛋️",
-      "🛁",
-      "👕"
-    ]
-  },
-  {
-    "categoria": "Genética y Laboratorio (Visual)",
-    "correctos": [
-      "🦠",
-      "🧫",
-      "🧬",
-      "🩸",
-      "🔬",
-      "💉",
-      "💊",
-      "🥼",
-      "🧤",
-      "🌡️",
-      "🧪",
-      "🔭",
-      "📊",
-      "📡",
-      "🖱️",
-      "💾"
-    ],
-    "intrusos": [
-      "🐘",
-      "🐋",
-      "🦒",
-      "🌲",
-      "🚗",
-      "🏠",
-      "🚲",
-      "🚁"
-    ]
-  },
-  {
-    "categoria": "Nutrientes y Saludable (Visual)",
-    "correctos": [
-      "🍎",
-      "🍞",
-      "🧀",
-      "🍗",
-      "🥛",
-      "🥚",
-      "🥗",
-      " Broccoli (Brócoli Broccoli)",
-      "🥕",
-      "🥑",
-      "🥬",
-      "🍍",
-      "🥭",
-      "🍐",
-      "🍇",
-      "🍚"
-    ],
-    "intrusos": [
-      "💨",
-      "👃",
-      "👀",
-      "🧠",
-      "🦴",
-      "🫀",
-      "🫁",
-      "👂"
-    ]
-  },
-  {
     "categoria": "Clasificación de los Seres Vivos",
     "correctos": [
       "Animales",
@@ -142,12 +18,16 @@
       "Angiospermas"
     ],
     "intrusos": [
-      "Minerales",
-      "Rocas",
-      "Gases",
-      "Materias inertes",
-      "Virus",
-      "Lava"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -168,12 +48,16 @@
       "Dióxido de carbono"
     ],
     "intrusos": [
-      "Estómago",
-      "Corazón",
-      "Hígado",
-      "Riñón",
-      "Cerebro",
-      "Vejiga"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -195,12 +79,16 @@
       "Ventrículos"
     ],
     "intrusos": [
-      "Pulmón",
-      "Cerebro",
-      "Nervios",
-      "Huesos",
-      "Músculos",
-      "Piel"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -220,11 +108,15 @@
       "Convección"
     ],
     "intrusos": [
-      "Energía Feliz",
-      "Energía Rápida",
-      "Energía Verde",
-      "Energía Dura",
-      "Energía Inteligente"
+      "Pizza",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -246,13 +138,16 @@
       "Orgánulos"
     ],
     "intrusos": [
-      "Tejido muscular",
-      "Órgano",
-      "Hueso",
-      "Piel",
-      "Uña",
-      "Pelo",
-      "Sangre"
+      "Pizza",
+      "Bicicleta",
+      "Delfín",
+      "Martillo",
+      "Zapatilla",
+      "Teléfono",
+      "Silla",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   },
   {
@@ -274,12 +169,13 @@
       "Leva"
     ],
     "intrusos": [
-      "Motor",
-      "Ordenador",
-      "Robot",
-      "Lavadora",
-      "Televisor",
-      "Móvil"
+      "Pizza",
+      "Delfín",
+      "Zapatilla",
+      "Teléfono",
+      "Nube",
+      "León",
+      "Cuchara"
     ]
   }
 ]
