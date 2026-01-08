@@ -260,3 +260,11 @@ export const appSupermercadoMatematico3 = { id: 'supermercado-matematico-3', nam
 export const appSupermercadoMatematico4 = { id: 'supermercado-matematico-4', name: '🛒 Supermercado Matemático', description: 'Decimales.', component: SupermercadoMatematico4 };
 export const appSupermercadoMatematico5 = { id: 'supermercado-matematico-5', name: '🛒 Supermercado Matemático', description: 'Calcula el cambio.', component: SupermercadoMatematico5 };
 export const appSupermercadoMatematico6 = { id: 'supermercado-matematico-6', name: '🛒 Supermercado Matemático', description: 'Descuentos.', component: SupermercadoMatematico6 };
+
+import TerminalRetro from '../terminal-retro/TerminalRetro';
+export const appTerminalRetro = {
+  id: 'terminal-retro',
+  name: '📟 Terminal de Hackeo',
+  description: 'Hackea el sistema introduciendo los comandos correctos en la consola.',
+  component: TerminalRetro
+};

@@ -1,0 +1,252 @@
+[
+    {
+        "id": 1,
+        "variants": [
+            {
+                "type": "trace",
+                "title": "Bucle Mientras (1)",
+                "description": "¿Qué valor final tiene A?",
+                "code": "SET A 0\nWHILE A < 3\n  ADD A 1\nEND\nPRINT A",
+                "solution": "3"
+            },
+            {
+                "type": "trace",
+                "title": "Bucle Mientras (2)",
+                "description": "¿Qué valor final tiene B?",
+                "code": "SET B 5\nWHILE B > 0\n  SUB B 2\nEND\nPRINT B",
+                "solution": "-1"
+            },
+            {
+                "type": "trace",
+                "title": "Bucle Mientras (3)",
+                "description": "¿Cuántas veces imprime X?",
+                "code": "SET C 0\nWHILE C < 4\n  PRINT \"X\"\n  ADD C 2\nEND",
+                "solution": "XX"
+            },
+            {
+                "type": "trace",
+                "title": "Bucle Mientras (4)",
+                "description": "Potencias de 2.",
+                "code": "SET N 1\nWHILE N < 10\n  MUL N 2\nEND\nPRINT N",
+                "solution": "16"
+            },
+            {
+                "type": "trace",
+                "title": "Bucle Mientras (5)",
+                "description": "Acumulador.",
+                "code": "SET S 0\nSET I 1\nWHILE I < 4\n  ADD S I\n  ADD I 1\nEND\nPRINT S",
+                "solution": "6"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "variants": [
+            {
+                "type": "coding",
+                "title": "Lectura básica (1)",
+                "description": "Lee un valor en la variable 'EDAD' y muéstralo. (El sistema introducirá valores automáticamente).",
+                "goal": "Output: (Valor leído)",
+                "solutionCriteria": {
+                    "outputMatchRegex": "\\d+"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Saludar (2)",
+                "description": "Lee un nombre (dato simulado) en 'NOM' y luego imprime 'NOM'.",
+                "goal": "Output: (Nombre leído)",
+                "solutionCriteria": {
+                    "outputMatchRegex": ".+"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Doble del input (3)",
+                "description": "Lee un número en 'X'. Multiplícalo por 2 e imprime el resultado.",
+                "goal": "Output: (Doble del input)",
+                "solutionCriteria": {
+                    "outputMatchRegex": "\\d+"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Suma inputs (4)",
+                "description": "Lee 'A', luego lee 'B'. Imprime A + B. (Debes sumar A y B).",
+                "goal": "Output: (Suma)",
+                "solutionCriteria": {
+                    "outputMatchRegex": "\\d+"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Resta input (5)",
+                "description": "Lee 'V'. Resta 1 a 'V' e imprime.",
+                "goal": "Output: V-1",
+                "solutionCriteria": {
+                    "outputMatchRegex": "\\d+"
+                }
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "variants": [
+            {
+                "type": "coding",
+                "title": "Contador While (1)",
+                "description": "Usa WHILE para contar del 1 al 5 e imprimir cada número. (Empieza SET I 1. Condición I < 6).",
+                "goal": "Output: 1, 2, 3, 4, 5",
+                "solutionCriteria": {
+                    "outputContainsAll": [
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5"
+                    ]
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Cuenta Múltiplos (2)",
+                "description": "Usa WHILE para mostrar 3, 6, 9. (Empieza en 3, mientras sea < 10, suma 3).",
+                "goal": "Output: 3, 6, 9",
+                "solutionCriteria": {
+                    "outputContainsAll": [
+                        "3",
+                        "6",
+                        "9"
+                    ]
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Cuenta Regresiva (3)",
+                "description": "Desde 5 hasta 1 usando WHILE (mientras > 0).",
+                "goal": "Output: 5, 4, 3, 2, 1",
+                "solutionCriteria": {
+                    "outputContainsAll": [
+                        "5",
+                        "4",
+                        "3",
+                        "2",
+                        "1"
+                    ]
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Sumatorio (4)",
+                "description": "Calcula la suma de 1+2+3+4 = 10 usando un bucle.",
+                "goal": "Output: 10",
+                "solutionCriteria": {
+                    "outputContains": "10"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Potencias de 10 (5)",
+                "description": "Imprime 10, 100, 1000 usando WHILE (mientras < 2000, multiplica por 10).",
+                "goal": "Output: 10, 100, 1000",
+                "solutionCriteria": {
+                    "outputContainsAll": [
+                        "10",
+                        "100",
+                        "1000"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "variants": [
+            {
+                "type": "trace",
+                "title": "Lectura y Condicional (1)",
+                "description": "Analiza (Input simulado: 5)",
+                "code": "READ X\nIF X > 3\n  PRINT \"MAYOR\"\nELSE\n  PRINT \"MENOR\"\nEND",
+                "solution": "MAYOR"
+            },
+            {
+                "type": "trace",
+                "title": "Lectura y Bucle (2)",
+                "description": "Analiza (Input simulado: 3)",
+                "code": "READ N\nREPEAT N\n  PRINT \"A\"\nEND",
+                "solution": "AAA"
+            },
+            {
+                "type": "trace",
+                "title": "Lectura y Operación (3)",
+                "description": "Input: 10",
+                "code": "READ V\nADD V 5\nPRINT V",
+                "solution": "15"
+            },
+            {
+                "type": "trace",
+                "title": "Lectura Múltiple (4)",
+                "description": "Input: 2, 3",
+                "code": "READ A\nREAD B\nADD A B\nPRINT A",
+                "solution": "5"
+            },
+            {
+                "type": "trace",
+                "title": "While Complejo (5)",
+                "description": "¿Qué imprime?",
+                "code": "SET I 3\nWHILE I > 0\n  PRINT I\n  SUB I 1\nEND",
+                "solution": "3\n2\n1"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "variants": [
+            {
+                "type": "coding",
+                "title": "Sistema de Acceso (1)",
+                "description": "Simula un sistema: Lee una variable 'PASS'. Si PASS == 1234 imprime 'OPEN', sino 'ERROR' (Input simulado cambiará). Para pasar, asume que el input correcto llegará.",
+                "goal": "Manejar input",
+                "solutionCriteria": {
+                    "outputMatchRegex": "(OPEN|ERROR)"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Calculadora Simple (2)",
+                "description": "Lee dos números A y B. Muestra su suma.",
+                "goal": "Output suma correcta",
+                "solutionCriteria": {
+                    "outputMatchRegex": "\\d+"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Repetidor de Input (3)",
+                "description": "Lee un número N. Imprime 'HOLA' N veces (usando REPEAT o WHILE).",
+                "goal": "Output repetido N veces",
+                "solutionCriteria": {
+                    "outputMatchRegex": "(HOLA\\s*)+"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Detector de Pares (4)",
+                "description": "Lee un número. Si es par (MOD 2 == 0) imprime 'PAR', sino 'IMPAR'.",
+                "goal": "Output correcto",
+                "solutionCriteria": {
+                    "outputMatchRegex": "(PAR|IMPAR)"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Contador Personalizado (5)",
+                "description": "Lee un número MAX. Cuenta desde 0 hasta MAX usando WHILE.",
+                "goal": "Output secuencia",
+                "solutionCriteria": {
+                    "outputMatchRegex": "(\\d+\\s*)+"
+                }
+            }
+        ]
+    }
+]

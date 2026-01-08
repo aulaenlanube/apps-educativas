@@ -1,0 +1,222 @@
+[
+    {
+        "id": 1,
+        "variants": [
+            {
+                "type": "trace",
+                "title": "Condicional Simple (1)",
+                "description": "¿Qué se imprimirá?",
+                "code": "SET EDAD 18\nIF EDAD > 17\n  PRINT \"Mayor\"\nELSE\n  PRINT \"Menor\"\nEND",
+                "solution": "Mayor"
+            },
+            {
+                "type": "trace",
+                "title": "Condicional Simple (2)",
+                "description": "¿Qué se imprimirá?",
+                "code": "SET NOTA 4\nIF NOTA > 4\n  PRINT \"Aprobado\"\nELSE\n  PRINT \"Suspenso\"\nEND",
+                "solution": "Suspenso"
+            },
+            {
+                "type": "trace",
+                "title": "Condicional Simple (3)",
+                "description": "¿Resultado?",
+                "code": "SET A 10\nIF A < 20\n  PRINT \"SI\"\nELSE\n  PRINT \"NO\"\nEND",
+                "solution": "SI"
+            },
+            {
+                "type": "trace",
+                "title": "Condicional Simple (4)",
+                "description": "Comparación",
+                "code": "SET X 5\nSET Y 5\nIF X == Y\n  PRINT \"IGUAL\"\nELSE\n  PRINT \"DISTINTO\"\nEND",
+                "solution": "IGUAL"
+            },
+            {
+                "type": "trace",
+                "title": "Condicional Simple (5)",
+                "description": "¿Qué imprime?",
+                "code": "SET VAL 0\nIF VAL > 0\n  PRINT \"POSITIVO\"\nELSE\n  PRINT \"NO POSITIVO\"\nEND",
+                "solution": "NO POSITIVO"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "variants": [
+            {
+                "type": "trace",
+                "title": "Condicional con Operación (1)",
+                "description": "Calcula.",
+                "code": "SET A 10\nIF A < 5\n  ADD A 1\nELSE\n  SUB A 1\nEND\nPRINT A",
+                "solution": "9"
+            },
+            {
+                "type": "trace",
+                "title": "Condicional con Operación (2)",
+                "description": "Calcula.",
+                "code": "SET B 5\nIF B > 2\n  MUL B 2\nELSE\n  DIV B 2\nEND\nPRINT B",
+                "solution": "10"
+            },
+            {
+                "type": "trace",
+                "title": "Condicional con Operación (3)",
+                "description": "Calcula.",
+                "code": "SET X 100\nIF X == 100\n  ADD X 50\nELSE\n  SUB X 50\nEND\nPRINT X",
+                "solution": "150"
+            },
+            {
+                "type": "trace",
+                "title": "Condicional con Operación (4)",
+                "description": "Calcula.",
+                "code": "SET Y 3\nADD Y 2\nIF Y == 5\n  PRINT 1\nELSE\n  PRINT 0\nEND",
+                "solution": "1"
+            },
+            {
+                "type": "trace",
+                "title": "Condicional con Operación (5)",
+                "description": "Calcula.",
+                "code": "SET N 8\nIF N < 10\n  SET N 0\nEND\nPRINT N",
+                "solution": "0"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "variants": [
+            {
+                "type": "coding",
+                "title": "Validador de Nota (1)",
+                "description": "Crea una variable NOTA = 7. Si es mayor que 4 imprime 'APROBADO', sino 'SUSPENSO'.",
+                "goal": "Output: APROBADO",
+                "solutionCriteria": {
+                    "outputContains": "APROBADO"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Mayor de edad (2)",
+                "description": "Variable EDAD = 20. Si EDAD > 17 imprime 'ADULTO', sino 'JOVEN'.",
+                "goal": "Output: ADULTO",
+                "solutionCriteria": {
+                    "outputContains": "ADULTO"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Temperatura (3)",
+                "description": "Variable TEMP = 30. Si TEMP > 25 imprime 'CALOR', sino 'FRIO'.",
+                "goal": "Output: CALOR",
+                "solutionCriteria": {
+                    "outputContains": "CALOR"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Positivo o Negativo (4)",
+                "description": "Variable NUM = 5. Si NUM > 0 imprime 'POS', sino 'NEG'.",
+                "goal": "Output: POS",
+                "solutionCriteria": {
+                    "outputContains": "POS"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Descuento (5)",
+                "description": "PRECIO = 100. Si PRECIO > 50, imprime 'OFERTA'.",
+                "goal": "Output: OFERTA",
+                "solutionCriteria": {
+                    "outputContains": "OFERTA"
+                }
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "variants": [
+            {
+                "type": "coding",
+                "title": "Par o Impar (1)",
+                "description": "Variable NUM = 6. Si NUM MOD 2 == 0 imprime 'PAR'.",
+                "goal": "Output: PAR",
+                "solutionCriteria": {
+                    "outputContains": "PAR"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Divisible por 5 (2)",
+                "description": "Variable N = 10. Si N MOD 5 == 0 imprime 'SI', sino 'NO'.",
+                "goal": "Output: SI",
+                "solutionCriteria": {
+                    "outputContains": "SI"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Par o Impar (3)",
+                "description": "Variable X = 3. Si X MOD 2 == 1 imprime 'IMPAR'.",
+                "goal": "Output: IMPAR",
+                "solutionCriteria": {
+                    "outputContains": "IMPAR"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Múltiplos (4)",
+                "description": "Variable P = 12. Si P MOD 3 == 0 y P MOD 4 == 0 (haz dos IF anidados) imprime 'MULTIPLO'.",
+                "goal": "Output: MULTIPLO",
+                "solutionCriteria": {
+                    "outputContains": "MULTIPLO"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Resto cero (5)",
+                "description": "Y = 8. Si Y MOD 2 == 0 imprime 'EXACTO'.",
+                "goal": "Output: EXACTO",
+                "solutionCriteria": {
+                    "outputContains": "EXACTO"
+                }
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "variants": [
+            {
+                "type": "trace",
+                "title": "Lógica Anidada (1)",
+                "description": "¿Qué saldrá?",
+                "code": "SET X 10\nIF X > 5\n  IF X < 20\n    PRINT \"Rango\"\n  END\nEND",
+                "solution": "Rango"
+            },
+            {
+                "type": "trace",
+                "title": "Lógica Anidada (2)",
+                "description": "¿Resultado?",
+                "code": "SET A 5\nIF A > 0\n  IF A < 10\n    PRINT \"DIGITO\"\n  END\nEND",
+                "solution": "DIGITO"
+            },
+            {
+                "type": "trace",
+                "title": "Lógica Anidada (3)",
+                "description": "¿Resultado?",
+                "code": "SET B 50\nIF B > 10\n  IF B > 100\n     PRINT \"ALTO\"\n  ELSE\n     PRINT \"MEDIO\"\n  END\nEND",
+                "solution": "MEDIO"
+            },
+            {
+                "type": "trace",
+                "title": "Lógica Anidada (4)",
+                "description": "¿Resultado?",
+                "code": "SET C 1\nIF C == 1\n  PRINT \"A\"\n  IF C > 0\n     PRINT \"B\"\n  END\nEND",
+                "solution": "A\nB"
+            },
+            {
+                "type": "trace",
+                "title": "Lógica Anidada (5)",
+                "description": "¿Resultado?",
+                "code": "SET N 0\nIF N == 0\n  SET N 1\n  IF N == 1\n    PRINT \"CAMBIO\"\n  END\nEND",
+                "solution": "CAMBIO"
+            }
+        ]
+    }
+]

@@ -1,0 +1,225 @@
+[
+    {
+        "id": 1,
+        "variants": [
+            {
+                "type": "trace",
+                "title": "Iniciación: Variables (1)",
+                "description": "Analiza el siguiente código y escribe el resultado que aparecería en pantalla.",
+                "code": "SET A 10\nADD A 5\nPRINT A",
+                "solution": "15"
+            },
+            {
+                "type": "trace",
+                "title": "Iniciación: Variables (2)",
+                "description": "Calcula el resultado final.",
+                "code": "SET B 20\nSUB B 5\nPRINT B",
+                "solution": "15"
+            },
+            {
+                "type": "trace",
+                "title": "Iniciación: Variables (3)",
+                "description": "¿Qué valor tiene X?",
+                "code": "SET X 7\nADD X 3\nPRINT X",
+                "solution": "10"
+            },
+            {
+                "type": "trace",
+                "title": "Iniciación: Variables (4)",
+                "description": "Suma múltiple.",
+                "code": "SET VAL 2\nADD VAL 2\nADD VAL 2\nPRINT VAL",
+                "solution": "6"
+            },
+            {
+                "type": "trace",
+                "title": "Iniciación: Variables (5)",
+                "description": "Resta simple.",
+                "code": "SET J 100\nSUB J 1\nPRINT J",
+                "solution": "99"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "variants": [
+            {
+                "type": "trace",
+                "title": "Operaciones Básicas (1)",
+                "description": "¿Cuál será el valor final de X?",
+                "code": "SET X 2\nMUL X 3\nADD X 4\nPRINT X",
+                "solution": "10"
+            },
+            {
+                "type": "trace",
+                "title": "Operaciones Básicas (2)",
+                "description": "Calcula:",
+                "code": "SET A 10\nDIV A 2\nPRINT A",
+                "solution": "5"
+            },
+            {
+                "type": "trace",
+                "title": "Operaciones Básicas (3)",
+                "description": "Operaciones combinadas.",
+                "code": "SET Y 5\nMUL Y 5\nSUB Y 5\nPRINT Y",
+                "solution": "20"
+            },
+            {
+                "type": "trace",
+                "title": "Operaciones Básicas (4)",
+                "description": "División entera.",
+                "code": "SET Z 20\nDIV Z 4\nADD Z 1\nPRINT Z",
+                "solution": "6"
+            },
+            {
+                "type": "trace",
+                "title": "Operaciones Básicas (5)",
+                "description": "Módulo (Resto)",
+                "code": "SET N 10\nMOD N 3\nPRINT N",
+                "solution": "1"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "variants": [
+            {
+                "type": "coding",
+                "title": "Tu primer programa (1)",
+                "description": "Crea un programa que defina una variable 'PUNTOS' con valor 100, le reste 20 y muestre el resultado.",
+                "goal": "Output: 80",
+                "solutionCriteria": {
+                    "outputContains": "80"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Tu primer programa (2)",
+                "description": "Define una variable 'VIDAS' con valor 3. Súmale 1 vida extra e imprime el total.",
+                "goal": "Output: 4",
+                "solutionCriteria": {
+                    "outputContains": "4"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Tu primer programa (3)",
+                "description": "Crea una variable 'EDAD' con 12. Súmale 3 e imprime el resultado.",
+                "goal": "Output: 15",
+                "solutionCriteria": {
+                    "outputContains": "15"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Tu primer programa (4)",
+                "description": "Define 'PRECIO' en 50. Réstale 5 (descuento) e imprime el valor final.",
+                "goal": "Output: 45",
+                "solutionCriteria": {
+                    "outputContains": "45"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Tu primer programa (5)",
+                "description": "Crea 'NUM' con valor 1. Súmale 1, luego súmale 1 otra vez. Imprime el resultado.",
+                "goal": "Output: 3",
+                "solutionCriteria": {
+                    "outputContains": "3"
+                }
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "variants": [
+            {
+                "type": "coding",
+                "title": "Cálculo de Área (1)",
+                "description": "Calcula el área de un rectángulo de base 10 y altura 5 (Area = Base * Altura). Usa variables.",
+                "goal": "Output: 50",
+                "solutionCriteria": {
+                    "outputContains": "50"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Cálculo de Área (2)",
+                "description": "Calcula el área de un cuadrado de lado 6 (Area = Lado * Lado).",
+                "goal": "Output: 36",
+                "solutionCriteria": {
+                    "outputContains": "36"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Conversión (3)",
+                "description": "Convierte 2 horas a minutos. (1 hora = 60 min). Usa una variable 'HORAS' con valor 2.",
+                "goal": "Output: 120",
+                "solutionCriteria": {
+                    "outputContains": "120"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Perímetro (4)",
+                "description": "Calcula el perímetro de un triángulo equilátero de lado 10. (Perímetro = Lado + Lado + Lado o Lado * 3).",
+                "goal": "Output: 30",
+                "solutionCriteria": {
+                    "outputContains": "30"
+                }
+            },
+            {
+                "type": "coding",
+                "title": "Doble y Mitad (5)",
+                "description": "Define 'N' en 20. Calcula su doble (x2) y muéstralo. Luego calcula la mitad de 20 y muéstrala.",
+                "goal": "Output: 40 y 10",
+                "solutionCriteria": {
+                    "outputContainsAll": [
+                        "40",
+                        "10"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "variants": [
+            {
+                "type": "trace",
+                "title": "Intercambio (1)",
+                "description": "Analiza este intercambio.",
+                "code": "SET A 5\nSET B 10\nSET TEMP A\nSET A B\nSET B TEMP\nPRINT A",
+                "solution": "10"
+            },
+            {
+                "type": "trace",
+                "title": "Intercambio (2)",
+                "description": "¿Qué valor tiene B al final?",
+                "code": "SET A 5\nSET B 10\nSET TEMP A\nSET A B\nSET B TEMP\nPRINT B",
+                "solution": "5"
+            },
+            {
+                "type": "trace",
+                "title": "Acumulación (3)",
+                "description": "Suma paso a paso.",
+                "code": "SET TOTAL 0\nADD TOTAL 10\nADD TOTAL 5\nSUB TOTAL 2\nPRINT TOTAL",
+                "solution": "13"
+            },
+            {
+                "type": "trace",
+                "title": "Multiplicación (4)",
+                "description": "¿Resultado?",
+                "code": "SET X 2\nMUL X 2\nMUL X 2\nPRINT X",
+                "solution": "8"
+            },
+            {
+                "type": "trace",
+                "title": "Lógica (5)",
+                "description": "¿Qué imprime?",
+                "code": "SET A 1\nSET B 2\nSET C 3\nADD A B\nADD A C\nPRINT A",
+                "solution": "6"
+            }
+        ]
+    }
+]
