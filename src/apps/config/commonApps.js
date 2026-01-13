@@ -60,6 +60,8 @@ import ExcavacionSelectiva from '../excavacion-selectiva/ExcavacionSelectiva.jsx
 import MesaCrafteo from '../mesa-crafteo/MesaCrafteo.jsx';
 import EntrenadorTabla from '../entrenador-tabla/EntrenadorTabla.jsx';
 import LaboratorioFunciones2D from '../laboratorio-funciones-2d/LaboratorioFunciones2D';
+import BancoRecursosTutoria from '../banco-recursos-tutoria/BancoRecursosTutoria';
+
 
 // Apps Comunes
 export const appLaboratorioFunciones2D = {
@@ -276,3 +278,11 @@ export const appProgramacionBloques = {
   description: 'Ordena los bloques de código en un entorno clásico de ventanas.',
   component: ProgramacionBloques
 };
+
+export const appBancoRecursosTutoria = {
+  id: 'banco-recursos-tutoria',
+  name: '🎓 Banco de Recursos Tutoriales',
+  description: 'Dossier completo de dinámicas y recursos para la acción tutorial.',
+  component: BancoRecursosTutoria
+};
+

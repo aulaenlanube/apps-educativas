@@ -1,0 +1,313 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+:root {
+    --primary: #4F46E5;
+    --primary-light: #EEF2FF;
+    --secondary: #7C3AED;
+    --accent: #F59E0B;
+    --success: #10B981;
+    --danger: #EF4444;
+    --background: #F8FAFC;
+    --card-bg: #FFFFFF;
+    --text-main: #1E293B;
+    --text-muted: #64748B;
+    --radius: 1rem;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.tutoria-app {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    background: var(--background);
+    padding: 1rem;
+    border-radius: var(--radius);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.tutoria-app h1, .tutoria-app h2, .tutoria-app h3, .tutoria-app h4 {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Header */
+.tutoria-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.tutoria-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* App Container */
+.tutoria-container {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .tutoria-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Sidebar */
+.tutoria-sidebar {
+    background: white;
+    padding: 1rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 1rem;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    margin-bottom: 0.5rem;
+}
+
+.nav-btn {
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border: none;
+    background: transparent;
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.nav-btn:hover {
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.nav-btn.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.4);
+}
+
+.nav-icon {
+    font-size: 1.1rem;
+}
+
+/* Content */
+.block-content {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.block-header {
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+}
+
+.block-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.75rem;
+}
+
+.block-desc {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+/* Session Card */
+.session-card {
+    padding: 2rem;
+    border-bottom: 1px solid #E2E8F0;
+}
+
+.session-card:last-child {
+    border-bottom: none;
+}
+
+.session-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.session-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--text-main);
+}
+
+.session-badge {
+    padding: 0.25rem 0.75rem;
+    background: #F1F5F9;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Activity Sections */
+.activity-section {
+    margin-bottom: 1.5rem;
+}
+
+.section-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.resource-box {
+    background: #F8FAFC;
+    border-left: 4px solid var(--primary);
+    padding: 1.25rem;
+    border-radius: 0 0.75rem 0.75rem 0;
+}
+
+.resource-box h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.resource-box p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.activity-box {
+    border: 1px solid #E2E8F0;
+    padding: 1.25rem;
+    border-radius: 0.75rem;
+    background: white;
+    transition: box-shadow 0.2s ease;
+}
+
+.activity-box:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.activity-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.activity-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity-box h4 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.activity-box p {
+    margin: 0.5rem 0 1rem 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Rubric */
+.rubric-btn {
+    background: white;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.rubric-btn:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.rubric-content {
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+.rubric-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.rubric-table th, .rubric-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #E2E8F0;
+}
+
+.rubric-table th {
+    background: #F8FAFC;
+    color: var(--text-main);
+}
+
+.rubric-table tr:nth-child(even) {
+    background: #FDFDFD;
+}
