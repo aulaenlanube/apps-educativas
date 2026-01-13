@@ -1,0 +1,364 @@
+[
+    {
+        "id": 1,
+        "variants": [
+            {
+                "title": "CONDICIONALES AVANZADOS A",
+                "goal": "Determina si es par (N % 2).",
+                "blocks": [
+                    "SET N 4",
+                    "MOD N 2",
+                    "IF N == 0 GOTO PAR",
+                    "PRINT 'IMPAR'",
+                    "GOTO FIN",
+                    "LABEL PAR",
+                    "PRINT 'PAR'",
+                    "LABEL FIN"
+                ]
+            },
+            {
+                "title": "CONDICIONALES AVANZADOS B",
+                "goal": "Máximo de dos números.",
+                "blocks": [
+                    "SET A 10",
+                    "SET B 20",
+                    "IF A > B GOTO MAXA",
+                    "PRINT B",
+                    "GOTO END",
+                    "LABEL MAXA",
+                    "PRINT A",
+                    "LABEL END"
+                ]
+            },
+            {
+                "title": "CONDICIONALES AVANZADOS C",
+                "goal": "Clasifica nota.",
+                "blocks": [
+                    "SET NOTA 6",
+                    "IF NOTA > 5 GOTO APROB",
+                    "PRINT 'SUSPENSO'",
+                    "GOTO END",
+                    "LABEL APROB",
+                    "PRINT 'APROBADO'",
+                    "LABEL END"
+                ]
+            },
+            {
+                "title": "CONDICIONALES AVANZADOS D",
+                "goal": "Valor absoluto.",
+                "blocks": [
+                    "SET X -5",
+                    "IF X > 0 GOTO OK",
+                    "MUL X -1",
+                    "LABEL OK",
+                    "PRINT X"
+                ]
+            },
+            {
+                "title": "CONDICIONALES AVANZADOS E",
+                "goal": "Login simple.",
+                "blocks": [
+                    "SET PASS 1234",
+                    "READ IN",
+                    "IF IN == PASS GOTO OK",
+                    "PRINT 'ERROR'",
+                    "GOTO FIN",
+                    "LABEL OK",
+                    "PRINT 'ACCESS'",
+                    "LABEL FIN"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "variants": [
+            {
+                "title": "BUCLES WHILE A",
+                "goal": "Cuenta regresiva (WHILE N > 0).",
+                "blocks": [
+                    "SET N 5",
+                    "LABEL LOOP",
+                    "IF N == 0 GOTO END",
+                    "PRINT N",
+                    "SUB N 1",
+                    "GOTO LOOP",
+                    "LABEL END",
+                    "PRINT 'GO'"
+                ]
+            },
+            {
+                "title": "BUCLES WHILE B",
+                "goal": "Suma hasta límite.",
+                "blocks": [
+                    "SET S 0",
+                    "LABEL ADD",
+                    "ADD S 5",
+                    "IF S < 20 GOTO ADD",
+                    "PRINT S"
+                ]
+            },
+            {
+                "title": "BUCLES WHILE C",
+                "goal": "Encuentra divisor.",
+                "blocks": [
+                    "SET N 15",
+                    "SET D 2",
+                    "LABEL SEARCH",
+                    "MOD N D",
+                    "IF N == 0 GOTO FOUND",
+                    "ADD D 1",
+                    "GOTO SEARCH",
+                    "LABEL FOUND",
+                    "PRINT D"
+                ]
+            },
+            {
+                "title": "BUCLES WHILE D",
+                "goal": "Potencia de 2 menor que 100.",
+                "blocks": [
+                    "SET P 1",
+                    "LABEL POT",
+                    "MUL P 2",
+                    "IF P < 100 GOTO POT",
+                    "DIV P 2",
+                    "PRINT P"
+                ]
+            },
+            {
+                "title": "BUCLES WHILE E",
+                "goal": "Bucle con break.",
+                "blocks": [
+                    "SET I 0",
+                    "LABEL L",
+                    "ADD I 1",
+                    "IF I == 5 GOTO BRK",
+                    "GOTO L",
+                    "LABEL BRK",
+                    "PRINT 'BREAK'"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "variants": [
+            {
+                "title": "BUSQUEDA LINEAL A",
+                "goal": "Busca el valor 5 en 3 variables.",
+                "blocks": [
+                    "SET A 1",
+                    "SET B 5",
+                    "SET C 3",
+                    "IF A == 5 GOTO FOUND",
+                    "IF B == 5 GOTO FOUND",
+                    "IF C == 5 GOTO FOUND",
+                    "LABEL FOUND",
+                    "PRINT 'ENCONTRADO'"
+                ]
+            },
+            {
+                "title": "BUSQUEDA LINEAL B",
+                "goal": "Encuentra el primer negativo.",
+                "blocks": [
+                    "SET A 10",
+                    "SET B -5",
+                    "IF A < 0 GOTO NEG",
+                    "IF B < 0 GOTO NEG",
+                    "GOTO END",
+                    "LABEL NEG",
+                    "PRINT 'NEGATIVO'",
+                    "LABEL END"
+                ]
+            },
+            {
+                "title": "BUSQUEDA LINEAL C",
+                "goal": "Verifica si todos son pares.",
+                "blocks": [
+                    "SET A 2",
+                    "SET B 4",
+                    "MOD A 2",
+                    "IF A > 0 GOTO NO",
+                    "MOD B 2",
+                    "IF B > 0 GOTO NO",
+                    "PRINT 'SI'",
+                    "GOTO FIN",
+                    "LABEL NO"
+                ]
+            },
+            {
+                "title": "BUSQUEDA LINEAL D",
+                "goal": "Comprueba claves.",
+                "blocks": [
+                    "SET K 1",
+                    "SET L 2",
+                    "IF K == 0 GOTO OK",
+                    "IF L == 2 GOTO OK",
+                    "PRINT 'FAIL'",
+                    "GOTO FIN",
+                    "LABEL OK",
+                    "PRINT 'SUCCESS'",
+                    "LABEL FIN"
+                ]
+            },
+            {
+                "title": "BUSQUEDA LINEAL E",
+                "goal": "Validar rango (0-10).",
+                "blocks": [
+                    "SET V 5",
+                    "IF V < 0 GOTO ERR",
+                    "IF V > 10 GOTO ERR",
+                    "PRINT 'VALID'",
+                    "GOTO END",
+                    "LABEL ERR",
+                    "PRINT 'INVALID'",
+                    "LABEL END"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "variants": [
+            {
+                "title": "ARRAY SIMULADO A",
+                "goal": "Simula Array[3] = {10, 20, 30}.",
+                "blocks": [
+                    "SET A0 10",
+                    "SET A1 20",
+                    "SET A2 30",
+                    "PRINT A0",
+                    "PRINT A1",
+                    "PRINT A2"
+                ]
+            },
+            {
+                "title": "ARRAY SIMULADO B",
+                "goal": "Suma elementos.",
+                "blocks": [
+                    "SET V1 5",
+                    "SET V2 5",
+                    "SET SUM 0",
+                    "ADD SUM V1",
+                    "ADD SUM V2",
+                    "PRINT SUM"
+                ]
+            },
+            {
+                "title": "ARRAY SIMULADO C",
+                "goal": "Copia 'Array'.",
+                "blocks": [
+                    "SET A1 1",
+                    "SET A2 2",
+                    "SET B1 A1",
+                    "SET B2 A2",
+                    "PRINT B1",
+                    "PRINT B2"
+                ]
+            },
+            {
+                "title": "ARRAY SIMULADO D",
+                "goal": "Invertir orden.",
+                "blocks": [
+                    "SET X 1",
+                    "SET Y 2",
+                    "PRINT Y",
+                    "PRINT X"
+                ]
+            },
+            {
+                "title": "ARRAY SIMULADO E",
+                "goal": "Shift Left.",
+                "blocks": [
+                    "SET A 1",
+                    "SET B 2",
+                    "SET C 3",
+                    "SET A B",
+                    "SET B C",
+                    "SET C 0",
+                    "PRINT A"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "variants": [
+            {
+                "title": "ORDENAMIENTO SIMPLE A",
+                "goal": "Ordena 2 variables.",
+                "blocks": [
+                    "SET A 10",
+                    "SET B 5",
+                    "IF A < B GOTO FIN",
+                    "SET T A",
+                    "SET A B",
+                    "SET B T",
+                    "LABEL FIN",
+                    "PRINT A",
+                    "PRINT B"
+                ]
+            },
+            {
+                "title": "ORDENAMIENTO SIMPLE B",
+                "goal": "Ordena A y B. (A < B)",
+                "blocks": [
+                    "SET A 8",
+                    "SET B 3",
+                    "IF A > B GOTO SWAP",
+                    "GOTO OK",
+                    "LABEL SWAP",
+                    "SET AUX A",
+                    "SET A B",
+                    "SET B AUX",
+                    "LABEL OK"
+                ]
+            },
+            {
+                "title": "ORDENAMIENTO SIMPLE C",
+                "goal": "Minimo de 3.",
+                "blocks": [
+                    "SET A 5",
+                    "SET B 2",
+                    "SET C 8",
+                    "SET MIN A",
+                    "IF B < MIN GOTO BMIN",
+                    "GOTO CHECKC",
+                    "LABEL BMIN",
+                    "SET MIN B",
+                    "LABEL CHECKC",
+                    "IF C < MIN GOTO CMIN"
+                ]
+            },
+            {
+                "title": "ORDENAMIENTO SIMPLE D",
+                "goal": "Check Ordenado.",
+                "blocks": [
+                    "SET A 1",
+                    "SET B 2",
+                    "IF A > B GOTO NO",
+                    "PRINT 'SI'",
+                    "GOTO FIN",
+                    "LABEL NO",
+                    "PRINT 'NO'",
+                    "LABEL FIN"
+                ]
+            },
+            {
+                "title": "ORDENAMIENTO SIMPLE E",
+                "goal": "Mueve mayor al final.",
+                "blocks": [
+                    "SET A 5",
+                    "SET B 1",
+                    "IF A > B GOTO SWAP",
+                    "GOTO END",
+                    "LABEL SWAP",
+                    "SET T A",
+                    "SET A B",
+                    "SET B T",
+                    "LABEL END"
+                ]
+            }
+        ]
+    }
+]

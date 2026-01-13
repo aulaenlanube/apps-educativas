@@ -1,0 +1,287 @@
+[
+    {
+        "id": 1,
+        "variants": [
+            {
+                "title": "PRIMEROS PASOS A",
+                "goal": "Ordena para sumar 10 y 20.",
+                "blocks": [
+                    "SET A 10",
+                    "SET B 20",
+                    "ADD A B",
+                    "PRINT A"
+                ]
+            },
+            {
+                "title": "PRIMEROS PASOS B",
+                "goal": "Muestra el valor de X tras asignarle 5.",
+                "blocks": [
+                    "SET X 5",
+                    "PRINT X",
+                    "ADD X 2",
+                    "PRINT X"
+                ]
+            },
+            {
+                "title": "PRIMEROS PASOS C",
+                "goal": "Define nombre y edad.",
+                "blocks": [
+                    "SET NOM 'ANA'",
+                    "SET EDAD 12",
+                    "PRINT NOM",
+                    "PRINT EDAD"
+                ]
+            },
+            {
+                "title": "PRIMEROS PASOS D",
+                "goal": "Suma dos números pequeños.",
+                "blocks": [
+                    "SET N1 2",
+                    "SET N2 3",
+                    "ADD N1 N2",
+                    "PRINT N1"
+                ]
+            },
+            {
+                "title": "PRIMEROS PASOS E",
+                "goal": "Inicializa y muestra un contador.",
+                "blocks": [
+                    "SET C 0",
+                    "ADD C 1",
+                    "PRINT C",
+                    "ADD C 1"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "variants": [
+            {
+                "title": "RESTA BÁSICA A",
+                "goal": "Resta 5 a 15.",
+                "blocks": [
+                    "SET X 15",
+                    "SET Y 5",
+                    "SUB X Y",
+                    "PRINT X"
+                ]
+            },
+            {
+                "title": "RESTA BÁSICA B",
+                "goal": "Calcula el cambio de 50 - 20.",
+                "blocks": [
+                    "SET PAGO 50",
+                    "SET PRECIO 20",
+                    "SUB PAGO PRECIO",
+                    "PRINT PAGO"
+                ]
+            },
+            {
+                "title": "RESTA BÁSICA C",
+                "goal": "Cuenta atrás simple.",
+                "blocks": [
+                    "SET N 3",
+                    "PRINT N",
+                    "SUB N 1",
+                    "PRINT N"
+                ]
+            },
+            {
+                "title": "RESTA BÁSICA D",
+                "goal": "Decremento doble.",
+                "blocks": [
+                    "SET VIDA 100",
+                    "SUB VIDA 10",
+                    "SUB VIDA 10",
+                    "PRINT VIDA"
+                ]
+            },
+            {
+                "title": "RESTA BÁSICA E",
+                "goal": "Operación mixta.",
+                "blocks": [
+                    "SET A 10",
+                    "ADD A 5",
+                    "SUB A 2",
+                    "PRINT A"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "variants": [
+            {
+                "title": "INTERCAMBIO A",
+                "goal": "Intercambia A y B usando C.",
+                "blocks": [
+                    "SET A 1",
+                    "SET B 2",
+                    "SET C A",
+                    "SET A B",
+                    "SET B C"
+                ]
+            },
+            {
+                "title": "INTERCAMBIO B",
+                "goal": "Mueve valor de X a Y a Z.",
+                "blocks": [
+                    "SET X 10",
+                    "SET Y X",
+                    "SET Z Y",
+                    "PRINT Z"
+                ]
+            },
+            {
+                "title": "INTERCAMBIO C",
+                "goal": "Rota valores: A->B, B->C.",
+                "blocks": [
+                    "SET A 1",
+                    "SET B 2",
+                    "SET C 3",
+                    "SET B A",
+                    "SET C B"
+                ]
+            },
+            {
+                "title": "INTERCAMBIO D",
+                "goal": "Duplica valor.",
+                "blocks": [
+                    "SET VAL 5",
+                    "SET COPY VAL",
+                    "ADD VAL COPY",
+                    "PRINT VAL"
+                ]
+            },
+            {
+                "title": "INTERCAMBIO E",
+                "goal": "Respaldo y restauración.",
+                "blocks": [
+                    "SET DATOS 99",
+                    "SET BACKUP DATOS",
+                    "SET DATOS 0",
+                    "SET DATOS BACKUP"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "variants": [
+            {
+                "title": "DOBLE SUMA A",
+                "goal": "Suma tres variables.",
+                "blocks": [
+                    "SET A 5",
+                    "SET B 10",
+                    "SET C 2",
+                    "ADD A B",
+                    "ADD A C"
+                ]
+            },
+            {
+                "title": "DOBLE SUMA B",
+                "goal": "Promedio manual (Suma y divide).",
+                "blocks": [
+                    "SET N1 10",
+                    "SET N2 20",
+                    "ADD N1 N2",
+                    "DIV N1 2",
+                    "PRINT N1"
+                ]
+            },
+            {
+                "title": "DOBLE SUMA C",
+                "goal": "Multiplica y Suma.",
+                "blocks": [
+                    "SET X 3",
+                    "MUL X 2",
+                    "ADD X 1",
+                    "PRINT X"
+                ]
+            },
+            {
+                "title": "DOBLE SUMA D",
+                "goal": "Calcula perímetro cuadrado (L+L+L+L).",
+                "blocks": [
+                    "SET L 5",
+                    "SET P 0",
+                    "ADD P L",
+                    "MUL P 4",
+                    "PRINT P"
+                ]
+            },
+            {
+                "title": "DOBLE SUMA E",
+                "goal": "Acumula puntos.",
+                "blocks": [
+                    "SET PTS 0",
+                    "ADD PTS 10",
+                    "ADD PTS 20",
+                    "ADD PTS 5",
+                    "PRINT PTS"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "variants": [
+            {
+                "title": "LÓGICA FINAL A",
+                "goal": "Multiplica solo si es positivo (Simulado lineal).",
+                "blocks": [
+                    "SET N 5",
+                    "MUL N 2",
+                    "PRINT N",
+                    "SET N -1",
+                    "PRINT 'FIN'"
+                ]
+            },
+            {
+                "title": "LÓGICA FINAL B",
+                "goal": "Secuencia de operaciones.",
+                "blocks": [
+                    "SET IN 10",
+                    "DIV IN 2",
+                    "ADD IN 3",
+                    "SUB IN 1",
+                    "PRINT IN"
+                ]
+            },
+            {
+                "title": "LÓGICA FINAL C",
+                "goal": "Preparar mensaje final.",
+                "blocks": [
+                    "SET A 'HOLA'",
+                    "SET B 'MUNDO'",
+                    "PRINT A",
+                    "PRINT B",
+                    "PRINT 'ADIOS'"
+                ]
+            },
+            {
+                "title": "LÓGICA FINAL D",
+                "goal": "Cálculo de área rect.",
+                "blocks": [
+                    "SET BASE 10",
+                    "SET ALT 5",
+                    "SET AREA BASE",
+                    "MUL AREA ALT",
+                    "PRINT AREA"
+                ]
+            },
+            {
+                "title": "LÓGICA FINAL E",
+                "goal": "Conversión (x2 + 1).",
+                "blocks": [
+                    "SET IN 4",
+                    "MUL IN 2",
+                    "ADD IN 1",
+                    "PRINT IN"
+                ]
+            }
+        ]
+    }
+]

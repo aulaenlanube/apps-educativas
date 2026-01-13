@@ -268,3 +268,11 @@ export const appTerminalRetro = {
   description: 'Hackea el sistema introduciendo los comandos correctos en la consola.',
   component: TerminalRetro
 };
+
+import ProgramacionBloques from '../programacion-bloques/ProgramacionBloques';
+export const appProgramacionBloques = {
+  id: 'programacion-bloques-windows',
+  name: '💾 Programación Visual 3.1',
+  description: 'Ordena los bloques de código en un entorno clásico de ventanas.',
+  component: ProgramacionBloques
+};

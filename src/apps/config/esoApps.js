@@ -7,7 +7,7 @@ import {
   appGeneradorPersonajes, appBuscaElIntruso, appRosco, appOrdenaBolas, appRunner,
   appVisualizador3D, appLluviaDePalabras, appParejas, appClasificador, appSnake, appComprensionEscrita, appComprensionOral,
   appExcavacionSelectiva, appMesaCrafteo, appEntrenadorTabla, appNumerosRomanosESO,
-  appMayorMenor6, appMedidas6, appLaboratorioFunciones2D, appTerminalRetro
+  appMayorMenor6, appMedidas6, appLaboratorioFunciones2D, appTerminalRetro, appProgramacionBloques
 } from './commonApps';
 
 export const esoSubjects = materiasData.eso;
@@ -71,7 +71,7 @@ export const esoApps = {
       appDetectiveDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'programacion': [appTerminalRetro, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
+    'programacion': [appTerminalRetro, appProgramacionBloques, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
 
   },
   '2': {
@@ -132,7 +132,7 @@ export const esoApps = {
       appDetectiveDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'programacion': [appTerminalRetro, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake]
+    'programacion': [appTerminalRetro, appProgramacionBloques, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
 
   },
   '3': {
@@ -193,7 +193,7 @@ export const esoApps = {
       appDetectiveDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'programacion': [appTerminalRetro, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
+    'programacion': [appTerminalRetro, appProgramacionBloques, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
 
   },
   '4': {
@@ -262,7 +262,7 @@ export const esoApps = {
       appDetectiveDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'programacion': [appTerminalRetro, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
+    'programacion': [appTerminalRetro, appProgramacionBloques, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
 
   }
 };

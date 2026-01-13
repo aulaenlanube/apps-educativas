@@ -1,0 +1,313 @@
+[
+    {
+        "id": 1,
+        "variants": [
+            {
+                "title": "BUCLES SIMPLES A",
+                "goal": "Repite 'HOLA' 3 veces usando GOTO.",
+                "blocks": [
+                    "SET I 0",
+                    "LABEL START",
+                    "PRINT 'HOLA'",
+                    "ADD I 1",
+                    "IF I < 3 GOTO START"
+                ]
+            },
+            {
+                "title": "BUCLES SIMPLES B",
+                "goal": "Cuenta hasta 3.",
+                "blocks": [
+                    "SET N 0",
+                    "LABEL UP",
+                    "ADD N 1",
+                    "PRINT N",
+                    "IF N < 3 GOTO UP"
+                ]
+            },
+            {
+                "title": "BUCLES SIMPLES C",
+                "goal": "Cuenta regresiva desde 3.",
+                "blocks": [
+                    "SET N 3",
+                    "LABEL DOWN",
+                    "PRINT N",
+                    "SUB N 1",
+                    "IF N > 0 GOTO DOWN"
+                ]
+            },
+            {
+                "title": "BUCLES SIMPLES D",
+                "goal": "Imprime pares (2, 4).",
+                "blocks": [
+                    "SET P 0",
+                    "LABEL PAR",
+                    "ADD P 2",
+                    "PRINT P",
+                    "IF P < 4 GOTO PAR"
+                ]
+            },
+            {
+                "title": "BUCLES SIMPLES E",
+                "goal": "Bucle infinito (limitado a 2 vueltas).",
+                "blocks": [
+                    "SET K 0",
+                    "LABEL LOOP",
+                    "PRINT 'K'",
+                    "ADD K 1",
+                    "IF K < 2 GOTO LOOP"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "variants": [
+            {
+                "title": "ACUMULADOR A",
+                "goal": "Suma 1+2+3.",
+                "blocks": [
+                    "SET T 0",
+                    "ADD T 1",
+                    "ADD T 2",
+                    "ADD T 3",
+                    "PRINT T"
+                ]
+            },
+            {
+                "title": "ACUMULADOR B",
+                "goal": "Suma en bucle hasta 5.",
+                "blocks": [
+                    "SET S 0",
+                    "SET I 1",
+                    "LABEL SUM",
+                    "ADD S I",
+                    "ADD I 1",
+                    "IF I < 4 GOTO SUM"
+                ]
+            },
+            {
+                "title": "ACUMULADOR C",
+                "goal": "Multiplicador acumulado.",
+                "blocks": [
+                    "SET P 1",
+                    "MUL P 2",
+                    "MUL P 3",
+                    "PRINT P"
+                ]
+            },
+            {
+                "title": "ACUMULADOR D",
+                "goal": "Resta acumulada.",
+                "blocks": [
+                    "SET T 100",
+                    "SUB T 10",
+                    "SUB T 20",
+                    "PRINT T"
+                ]
+            },
+            {
+                "title": "ACUMULADOR E",
+                "goal": "Concatenación simulada.",
+                "blocks": [
+                    "SET TXT ''",
+                    "ADD TXT 'A'",
+                    "ADD TXT 'B'",
+                    "PRINT TXT"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "variants": [
+            {
+                "title": "MULTIPLICACIÓN A",
+                "goal": "Tabla del 2 (3 iteraciones).",
+                "blocks": [
+                    "SET N 0",
+                    "LABEL TABLA",
+                    "ADD N 2",
+                    "PRINT N",
+                    "IF N < 6 GOTO TABLA"
+                ]
+            },
+            {
+                "title": "MULTIPLICACIÓN B",
+                "goal": "Potencias de 2 (x2).",
+                "blocks": [
+                    "SET P 1",
+                    "LABEL POT",
+                    "MUL P 2",
+                    "PRINT P",
+                    "IF P < 8 GOTO POT"
+                ]
+            },
+            {
+                "title": "MULTIPLICACIÓN C",
+                "goal": "Calcula el triple.",
+                "blocks": [
+                    "SET X 5",
+                    "MUL X 3",
+                    "PRINT X"
+                ]
+            },
+            {
+                "title": "MULTIPLICACIÓN D",
+                "goal": "Factorial de 3 (1x2x3).",
+                "blocks": [
+                    "SET F 1",
+                    "MUL F 2",
+                    "MUL F 3",
+                    "PRINT F"
+                ]
+            },
+            {
+                "title": "MULTIPLICACIÓN E",
+                "goal": "Doble de una suma.",
+                "blocks": [
+                    "SET A 2",
+                    "ADD A 3",
+                    "MUL A 2",
+                    "PRINT A"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "variants": [
+            {
+                "title": "LOGICA CONDICIONAL A",
+                "goal": "Si A > B imprime MAYOR.",
+                "blocks": [
+                    "SET A 10",
+                    "SET B 5",
+                    "IF A > B GOTO SI",
+                    "PRINT 'MENOR'",
+                    "GOTO FIN",
+                    "LABEL SI",
+                    "PRINT 'MAYOR'",
+                    "LABEL FIN"
+                ]
+            },
+            {
+                "title": "LOGICA CONDICIONAL B",
+                "goal": "Imprime POSITIVO si N > 0.",
+                "blocks": [
+                    "SET N 10",
+                    "IF N > 0 GOTO POS",
+                    "PRINT 'NEG'",
+                    "GOTO FINAL",
+                    "LABEL POS",
+                    "PRINT 'POS'",
+                    "LABEL FINAL"
+                ]
+            },
+            {
+                "title": "LOGICA CONDICIONAL C",
+                "goal": "Salta el error.",
+                "blocks": [
+                    "PRINT 'INICIO'",
+                    "GOTO OK",
+                    "PRINT 'ERROR'",
+                    "LABEL OK",
+                    "PRINT 'FIN'"
+                ]
+            },
+            {
+                "title": "LOGICA CONDICIONAL D",
+                "goal": "Bucle con salida anticipada.",
+                "blocks": [
+                    "SET I 0",
+                    "LABEL L",
+                    "ADD I 1",
+                    "IF I > 3 GOTO OUT",
+                    "GOTO L",
+                    "LABEL OUT"
+                ]
+            },
+            {
+                "title": "LOGICA CONDICIONAL E",
+                "goal": "Selector simple.",
+                "blocks": [
+                    "SET OPT 1",
+                    "IF OPT == 1 GOTO ONE",
+                    "PRINT 'OTHER'",
+                    "GOTO END",
+                    "LABEL ONE",
+                    "PRINT 'ONE'",
+                    "LABEL END"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "variants": [
+            {
+                "title": "ALGORITMO SIMPLE A",
+                "goal": "Contador de pares hasta 6.",
+                "blocks": [
+                    "SET P 0",
+                    "LABEL CHK",
+                    "ADD P 2",
+                    "PRINT P",
+                    "IF P < 6 GOTO CHK"
+                ]
+            },
+            {
+                "title": "ALGORITMO SIMPLE B",
+                "goal": "Suma de N primeros números (1+2+3).",
+                "blocks": [
+                    "SET S 0",
+                    "SET N 0",
+                    "LABEL ADD",
+                    "ADD N 1",
+                    "ADD S N",
+                    "IF N < 3 GOTO ADD",
+                    "PRINT S"
+                ]
+            },
+            {
+                "title": "ALGORITMO SIMPLE C",
+                "goal": "División por restas (10 / 2).",
+                "blocks": [
+                    "SET N 10",
+                    "SET C 0",
+                    "LABEL DIV",
+                    "SUB N 2",
+                    "ADD C 1",
+                    "IF N > 0 GOTO DIV",
+                    "PRINT C"
+                ]
+            },
+            {
+                "title": "ALGORITMO SIMPLE D",
+                "goal": "Multiplicación por sumas (3 x 3).",
+                "blocks": [
+                    "SET RES 0",
+                    "SET I 0",
+                    "LABEL MUL",
+                    "ADD RES 3",
+                    "ADD I 1",
+                    "IF I < 3 GOTO MUL",
+                    "PRINT RES"
+                ]
+            },
+            {
+                "title": "ALGORITMO SIMPLE E",
+                "goal": "Generador de secuencia (1, 2, 4, 8).",
+                "blocks": [
+                    "SET V 1",
+                    "PRINT V",
+                    "MUL V 2",
+                    "PRINT V",
+                    "MUL V 2",
+                    "PRINT V",
+                    "MUL V 2",
+                    "PRINT V"
+                ]
+            }
+        ]
+    }
+]

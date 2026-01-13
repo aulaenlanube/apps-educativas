@@ -1,0 +1,357 @@
+[
+    {
+        "id": 1,
+        "variants": [
+            {
+                "title": "ALGORITMOS A",
+                "goal": "Búsqueda Binaria (Simulada).",
+                "blocks": [
+                    "SET MIN 0",
+                    "SET MAX 100",
+                    "LABEL MID",
+                    "ADD MIN MAX",
+                    "DIV MIN 2",
+                    "PRINT MIN",
+                    "IF MIN == 50 GOTO FOUND",
+                    "GOTO MID",
+                    "LABEL FOUND"
+                ]
+            },
+            {
+                "title": "ALGORITMOS B",
+                "goal": "Fibonacci (Primeros 5).",
+                "blocks": [
+                    "SET A 0",
+                    "SET B 1",
+                    "PRINT A",
+                    "PRINT B",
+                    "LABEL FIB",
+                    "SET C A",
+                    "ADD C B",
+                    "PRINT C",
+                    "SET A B",
+                    "SET B C"
+                ]
+            },
+            {
+                "title": "ALGORITMOS C",
+                "goal": "Es Primo (Check divisor 2 y 3).",
+                "blocks": [
+                    "SET N 7",
+                    "MOD N 2",
+                    "IF N == 0 GOTO NO",
+                    "MOD N 3",
+                    "IF N == 0 GOTO NO",
+                    "PRINT 'SI'",
+                    "GOTO FIN",
+                    "LABEL NO",
+                    "PRINT 'NO'",
+                    "LABEL FIN"
+                ]
+            },
+            {
+                "title": "ALGORITMOS D",
+                "goal": "MCD (Euclides Restas).",
+                "blocks": [
+                    "SET A 12",
+                    "SET B 8",
+                    "LABEL LOOP",
+                    "IF A == B GOTO END",
+                    "IF A > B GOTO SUBA",
+                    "SUB B A",
+                    "GOTO LOOP",
+                    "LABEL SUBA",
+                    "SUB A B",
+                    "GOTO LOOP",
+                    "LABEL END",
+                    "PRINT A"
+                ]
+            },
+            {
+                "title": "ALGORITMOS E",
+                "goal": "Media Aritmética.",
+                "blocks": [
+                    "SET S 0",
+                    "SET C 0",
+                    "LABEL ADD",
+                    "ADD S 5",
+                    "ADD C 1",
+                    "IF C < 4 GOTO ADD",
+                    "DIV S C",
+                    "PRINT S"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "variants": [
+            {
+                "title": "ESTRUCTURAS A",
+                "goal": "Pila (Stack) Push/Pop.",
+                "blocks": [
+                    "SET TOP 0",
+                    "LABEL PUSH",
+                    "ADD TOP 1",
+                    "PRINT 'PUSH'",
+                    "IF TOP < 3 GOTO PUSH",
+                    "LABEL POP",
+                    "SUB TOP 1",
+                    "PRINT 'POP'",
+                    "IF TOP > 0 GOTO POP"
+                ]
+            },
+            {
+                "title": "ESTRUCTURAS B",
+                "goal": "Cola (Queue) simulada.",
+                "blocks": [
+                    "SET IN 0",
+                    "SET OUT 0",
+                    "ADD IN 1",
+                    "PRINT 'ENQUEUE'",
+                    "ADD OUT 1",
+                    "PRINT 'DEQUEUE'",
+                    "IF IN == OUT GOTO EMPTY"
+                ]
+            },
+            {
+                "title": "ESTRUCTURAS C",
+                "goal": "Lista Enlazada (Punteros).",
+                "blocks": [
+                    "SET HEAD 1",
+                    "SET NEXT 2",
+                    "PRINT HEAD",
+                    "SET HEAD NEXT",
+                    "SET NEXT 3",
+                    "PRINT HEAD",
+                    "SET HEAD NEXT",
+                    "PRINT HEAD"
+                ]
+            },
+            {
+                "title": "ESTRUCTURAS D",
+                "goal": "Matriz 2x2 (Linealizada).",
+                "blocks": [
+                    "SET A00 1",
+                    "SET A01 2",
+                    "SET A10 3",
+                    "SET A11 4",
+                    "PRINT A00",
+                    "PRINT A11"
+                ]
+            },
+            {
+                "title": "ESTRUCTURAS E",
+                "goal": "Árbol Binario (Izq/Der).",
+                "blocks": [
+                    "SET ROOT 10",
+                    "SET L 5",
+                    "SET R 15",
+                    "IF L < ROOT GOTO OK",
+                    "PRINT 'ERR'",
+                    "LABEL OK",
+                    "PRINT 'TREE OK'"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "variants": [
+            {
+                "title": "OPTIMIZACIÓN A",
+                "goal": "Bucle eficiente (x4).",
+                "blocks": [
+                    "SET I 0",
+                    "LABEL L",
+                    "ADD I 4",
+                    "PRINT I",
+                    "IF I < 20 GOTO L"
+                ]
+            },
+            {
+                "title": "OPTIMIZACIÓN B",
+                "goal": "Evitar recálculo.",
+                "blocks": [
+                    "SET X 10",
+                    "SET T 5",
+                    "MUL T 2",
+                    "ADD X T",
+                    "SUB X T",
+                    "PRINT X"
+                ]
+            },
+            {
+                "title": "OPTIMIZACIÓN C",
+                "goal": "Short-Circuit Logic.",
+                "blocks": [
+                    "SET A 0",
+                    "IF A == 0 GOTO SKIP",
+                    "DIV A 0",
+                    "LABEL SKIP",
+                    "PRINT 'SAFE'"
+                ]
+            },
+            {
+                "title": "OPTIMIZACIÓN D",
+                "goal": "Reuso Variable.",
+                "blocks": [
+                    "SET A 10",
+                    "PRINT A",
+                    "SET A 20",
+                    "PRINT A",
+                    "SET A 30",
+                    "PRINT A"
+                ]
+            },
+            {
+                "title": "OPTIMIZACIÓN E",
+                "goal": "Simplificación ec.",
+                "blocks": [
+                    "SET X 5",
+                    "ADD X 0",
+                    "MUL X 1",
+                    "PRINT X"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "variants": [
+            {
+                "title": "DEBUGGING A",
+                "goal": "Arregla el bucle infinito.",
+                "blocks": [
+                    "SET I 0",
+                    "LABEL L",
+                    "PRINT I",
+                    "ADD I 1",
+                    "IF I < 5 GOTO L"
+                ]
+            },
+            {
+                "title": "DEBUGGING B",
+                "goal": "Variable no definida.",
+                "blocks": [
+                    "SET A 10",
+                    "SET B 20",
+                    "ADD A B",
+                    "PRINT A"
+                ]
+            },
+            {
+                "title": "DEBUGGING C",
+                "goal": "División por cero.",
+                "blocks": [
+                    "SET N 10",
+                    "SET D 2",
+                    "IF D == 0 GOTO ERR",
+                    "DIV N D",
+                    "PRINT N",
+                    "LABEL ERR"
+                ]
+            },
+            {
+                "title": "DEBUGGING D",
+                "goal": "Lógica invertida.",
+                "blocks": [
+                    "SET T 10",
+                    "IF T > 5 GOTO HIGH",
+                    "PRINT 'LOW'",
+                    "GOTO END",
+                    "LABEL HIGH",
+                    "PRINT 'HIGH'",
+                    "LABEL END"
+                ]
+            },
+            {
+                "title": "DEBUGGING E",
+                "goal": "Off-by-one error.",
+                "blocks": [
+                    "SET I 0",
+                    "LABEL L",
+                    "PRINT I",
+                    "ADD I 1",
+                    "IF I <= 4 GOTO L"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "variants": [
+            {
+                "title": "PROYECTO FINAL A",
+                "goal": "Simulador Banco.",
+                "blocks": [
+                    "SET SALDO 100",
+                    "SET DEP 50",
+                    "ADD SALDO DEP",
+                    "SET RET 20",
+                    "SUB SALDO RET",
+                    "PRINT SALDO"
+                ]
+            },
+            {
+                "title": "PROYECTO FINAL B",
+                "goal": "Calculadora Simple.",
+                "blocks": [
+                    "SET A 10",
+                    "SET B 5",
+                    "SET OP 1",
+                    "IF OP == 1 GOTO SUM",
+                    "SUB A B",
+                    "GOTO END",
+                    "LABEL SUM",
+                    "ADD A B",
+                    "LABEL END",
+                    "PRINT A"
+                ]
+            },
+            {
+                "title": "PROYECTO FINAL C",
+                "goal": "Juego Adivinanza (Sim).",
+                "blocks": [
+                    "SET SECRETO 5",
+                    "SET INTENTO 3",
+                    "IF INTENTO == SECRETO GOTO WIN",
+                    "IF INTENTO < SECRETO GOTO LOW",
+                    "PRINT 'HIGH'",
+                    "GOTO END",
+                    "LABEL LOW",
+                    "PRINT 'LOW'",
+                    "LABEL END",
+                    "LABEL WIN"
+                ]
+            },
+            {
+                "title": "PROYECTO FINAL D",
+                "goal": "Estadística Básica.",
+                "blocks": [
+                    "SET V1 2",
+                    "SET V2 4",
+                    "SET V3 6",
+                    "SET AVG 0",
+                    "ADD AVG V1",
+                    "ADD AVG V2",
+                    "ADD AVG V3",
+                    "DIV AVG 3",
+                    "PRINT AVG"
+                ]
+            },
+            {
+                "title": "PROYECTO FINAL E",
+                "goal": "Encriptación César (+1).",
+                "blocks": [
+                    "SET CHAR 65",
+                    "ADD CHAR 1",
+                    "PRINT CHAR",
+                    "SET CHAR 66",
+                    "ADD CHAR 1",
+                    "PRINT CHAR"
+                ]
+            }
+        ]
+    }
+]
