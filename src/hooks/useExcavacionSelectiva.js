@@ -9,6 +9,7 @@ export const useExcavacionSelectiva = (initialData) => {
   const [combo, setCombo] = useState(0);
   const [isFrozen, setIsFrozen] = useState(false);
   const [lastEvent, setLastEvent] = useState(null); // { type, id }
+  const processedIdsRef = useRef(new Set());
 
   const [isSuddenDeath, setIsSuddenDeath] = useState(false);
   const suddenDeathCapRef = useRef(5.0);
@@ -37,6 +38,14 @@ export const useExcavacionSelectiva = (initialData) => {
     }
     if (randSpecial < 0.08) {
       return { id, x, y: 0.5, z, text: "❄️", isTarget: true, isFreeze: true, visible: true };
+    }
+
+    // Si viene forzado como gold o por azar (mantenemos el azar bajo para otros)
+    if (type === 'gold') {
+      return { id, x, y: 0.5, z, text: "", isTarget: true, isGold: true, visible: true };
+    }
+    if (randSpecial < 0.13) {
+      return { id, x, y: 0.5, z, text: "", isTarget: true, isGold: true, visible: true };
     }
 
     let text = "";
@@ -68,7 +77,7 @@ export const useExcavacionSelectiva = (initialData) => {
       if (type === 'distractor' && isTarget) return createBlock('distractor', data);
     }
 
-    return { id, x, y: 0.5, z, text, isTarget, isStar: false, visible: true };
+    return { id, x, y: 0.5, z, text, isTarget, isStar: false, isGold: false, visible: true };
   };
 
   const regenerateMap = (data) => {
@@ -93,6 +102,7 @@ export const useExcavacionSelectiva = (initialData) => {
     for (let i = 0; i < 15; i++) newBlocks.push(createBlock('target', data));
     for (let i = 0; i < 12; i++) newBlocks.push(createBlock('distractor', data));
     for (let i = 0; i < 3; i++) newBlocks.push(createBlock('special', data));
+    for (let i = 0; i < 2; i++) newBlocks.push(createBlock('gold', data));
 
     setBlocks(newBlocks);
   };
@@ -105,6 +115,7 @@ export const useExcavacionSelectiva = (initialData) => {
     setGameState('playing');
     setIsSuddenDeath(false);
     suddenDeathCapRef.current = 5.0;
+    processedIdsRef.current.clear();
     regenerateMap(initialData);
   }, [initialData]);
 
@@ -128,78 +139,106 @@ export const useExcavacionSelectiva = (initialData) => {
     return () => clearInterval(timer);
   }, [gameState, isSuddenDeath, isFrozen]);
 
-  const mineBlock = useCallback((id) => {
+  // Respawn de oro cada 10 segundos
+  useEffect(() => {
     if (gameState !== 'playing') return;
+    const interval = setInterval(() => {
+      setBlocks(prev => {
+        // Encontramos los índices de los bloques de oro actuales
+        const goldIndices = [];
+        prev.forEach((b, idx) => { if (b.isGold) goldIndices.push(idx); });
 
-    setBlocks((prev) => {
-      const blockIndex = prev.findIndex((b) => b.id === id);
-      if (blockIndex === -1) return prev;
+        if (goldIndices.length === 0) return prev;
 
-      const block = prev[blockIndex];
-
-      if (block.isTNT) {
-        triggerEvent('tnt');
-        setScore(s => Math.max(0, s - 20));
-        setCombo(0);
-        setTimeLeft(t => Math.max(0, t - 10));
         const newBlocks = [...prev];
-        newBlocks[blockIndex] = createBlock('distractor', initialData);
+        goldIndices.forEach(idx => {
+          newBlocks[idx] = createBlock('gold', initialData);
+        });
         return newBlocks;
-      }
+      });
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [gameState, initialData]);
 
-      if (block.isFreeze) {
-        triggerEvent('freeze');
-        setIsFrozen(true);
-        setTimeout(() => setIsFrozen(false), 5000);
-        const newBlocks = [...prev];
-        newBlocks[blockIndex] = createBlock('target', initialData);
-        return newBlocks;
-      }
+  const mineBlock = useCallback((id) => {
+    if (gameState !== 'playing' || processedIdsRef.current.has(id)) return;
 
-      // Caso Estrella: Limpia y regenera
-      if (block.isStar) {
-        triggerEvent('mine');
-        setScore(s => s + 50);
-        if (isSuddenDeath) setTimeLeft(suddenDeathCapRef.current);
-        // Usamos un timeout para no interferir con el render actual
-        setTimeout(() => regenerateMap(initialData), 10);
-        return [];
-      }
+    // Encontrar el bloque en el estado actual para determinar acción
+    const block = blocks.find(b => b.id === id);
+    if (!block) return;
 
-      // Caso Objetivo: Reemplazamos 1 por 1
-      if (block.isTarget) {
-        triggerEvent('mine');
-        const multiplier = Math.floor(combo / 5) + 1;
+    processedIdsRef.current.add(id);
+
+    if (block.isTNT) {
+      triggerEvent('tnt');
+      setScore(s => Math.max(0, s - 20));
+      setCombo(0);
+      setTimeLeft(t => Math.max(0, t - 10));
+      setBlocks(prev => prev.map(b => b.id === id ? createBlock('distractor', initialData) : b));
+      return;
+    }
+
+    if (block.isFreeze) {
+      triggerEvent('freeze');
+      setIsFrozen(true);
+      setTimeout(() => setIsFrozen(false), 5000);
+      setBlocks(prev => prev.map(b => b.id === id ? createBlock('target', initialData) : b));
+      return;
+    }
+
+    if (block.isStar) {
+      triggerEvent('mine');
+      setScore(s => s + 50);
+      if (isSuddenDeath) setTimeLeft(suddenDeathCapRef.current);
+      setTimeout(() => regenerateMap(initialData), 10);
+      return;
+    }
+
+    if (block.isGold) {
+      triggerEvent('mine');
+      setCombo(c => {
+        const nextC = c + 1;
+        const multiplier = Math.floor(c / 5) + 1;
+        setScore(s => s + (25 * multiplier));
+        return nextC;
+      });
+      // Reemplazo inmediato por otro bloque de oro
+      setBlocks(prev => prev.map(b => b.id === id ? createBlock('gold', initialData) : b));
+      return;
+    }
+
+    if (block.isTarget) {
+      triggerEvent('mine');
+      setCombo(c => {
+        const nextC = c + 1;
+        const multiplier = Math.floor(c / 5) + 1;
         setScore(s => s + (10 * multiplier));
-        setCombo(c => c + 1);
-        streakRef.current += 1;
+        return nextC;
+      });
+      streakRef.current += 1;
 
-        const newBlocks = [...prev];
-        // Reemplazamos el bloque destruido por uno nuevo del mismo tipo (target)
-        newBlocks[blockIndex] = createBlock('target', initialData);
-
-        // Si hay racha, añadimos una estrella temporal
+      setBlocks(prev => {
+        const newBlocks = prev.map(b => b.id === id ? createBlock('target', initialData) : b);
         if (streakRef.current >= 3) {
           newBlocks.push(createBlock('star', initialData));
           streakRef.current = 0;
         }
-
-        if (isSuddenDeath) {
-          suddenDeathCapRef.current = Math.max(0.5, suddenDeathCapRef.current - 0.1);
-          setTimeLeft(suddenDeathCapRef.current);
-        }
-
         return newBlocks;
-      } else {
-        // Error: No desaparece, solo penaliza score y tiempo en Sudden Death
-        triggerEvent('error');
-        setScore(s => Math.max(0, s - 5));
-        setCombo(0);
-        if (isSuddenDeath) setTimeLeft(t => Math.max(0, t - 1.0));
-        return prev;
+      });
+
+      if (isSuddenDeath) {
+        suddenDeathCapRef.current = Math.max(0.5, suddenDeathCapRef.current - 0.1);
+        setTimeLeft(suddenDeathCapRef.current);
       }
-    });
-  }, [gameState, isSuddenDeath, initialData, combo]);
+    } else {
+      triggerEvent('error');
+      setScore(s => Math.max(0, s - 5));
+      setCombo(0);
+      if (isSuddenDeath) setTimeLeft(t => Math.max(0, t - 1.0));
+      // No eliminamos el bloque si es error (distractor), solo penalizamos
+      processedIdsRef.current.delete(id); // Permitimos volver a intentarlo (aunque sea error)
+    }
+  }, [gameState, isSuddenDeath, initialData, blocks]);
 
   return { blocks, timeLeft, score, gameState, mission, mineBlock, isSuddenDeath, combo, isFrozen, lastEvent };
 };

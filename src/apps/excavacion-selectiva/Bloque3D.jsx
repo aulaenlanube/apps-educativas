@@ -58,12 +58,13 @@ const BlockParticles = ({ position, texture }) => {
   );
 };
 
-export function Bloque3D({ position, text, onMine, onDestructionComplete, setHoverState, isTarget, isStar, isTNT, isFreeze }) {
+export function Bloque3D({ position, text, onMine, onDestructionComplete, setHoverState, isTarget, isStar, isTNT, isFreeze, isGold }) {
   const meshRef = useRef();
   const isHoveredRef = useRef(false);
   const [isClose, setIsClose] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isDestroying, setIsDestroying] = useState(false);
+  const hasBeenMinedRef = useRef(false);
   const { camera } = useThree();
 
   // === DETECTAR SI ES BLOQUE ESTRELLA ===
@@ -74,9 +75,13 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
   const textureNormal = useMemo(() => generateMinecraftTexture(140, 80, 40), []);
   const textureHover = useMemo(() => generateMinecraftTexture(180, 120, 70), []);
 
-  // ESTRELLA (Dorado)
-  const textureGold = useMemo(() => generateMinecraftTexture(255, 215, 0), []);     // Oro
-  const textureGoldHover = useMemo(() => generateMinecraftTexture(255, 235, 100), []); // Oro brillante
+  // ESTRELLA (Dorado suave)
+  const textureStar = useMemo(() => generateMinecraftTexture(255, 230, 100), []);
+  const textureStarHover = useMemo(() => generateMinecraftTexture(255, 255, 180), []);
+
+  // ORO (Dorado intenso tipo Minecraft)
+  const textureGoldBlock = useMemo(() => generateMinecraftTexture(255, 200, 20), []);
+  const textureGoldBlockHover = useMemo(() => generateMinecraftTexture(255, 220, 60), []);
 
   const textureTNT = useMemo(() => generateMinecraftTexture(200, 30, 30), []);
   const textureFreeze = useMemo(() => generateMinecraftTexture(100, 200, 255), []);
@@ -116,9 +121,10 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
 
   const handleClick = (e) => {
     e.stopPropagation();
-    if (!isClose || isError || isDestroying) return;
+    if (!isClose || isError || isDestroying || hasBeenMinedRef.current) return;
 
-    if (isTarget || isTNT || isFreeze) {
+    if (isTarget || isTNT || isFreeze || isGold) {
+      hasBeenMinedRef.current = true;
       setHoverState('crosshair');
       onMine();
       setIsDestroying(true);
@@ -132,13 +138,15 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
 
   // Determinar textura final
   let finalTexture = textureNormal;
-  if (isStarBlock) finalTexture = textureGold;
+  if (isStarBlock) finalTexture = textureStar;
+  else if (isGold) finalTexture = textureGoldBlock;
   else if (isTNT) finalTexture = textureTNT;
   else if (isFreeze) finalTexture = textureFreeze;
 
   if (!isError && isHoveredRef.current && isClose) {
-    if (isStarBlock) finalTexture = textureGoldHover;
+    if (isStarBlock) finalTexture = textureStarHover;
     else if (isTNT) finalTexture = textureTNT;
+    else if (isGold) finalTexture = textureGoldBlockHover;
     else if (isFreeze) finalTexture = textureFreeze;
     else finalTexture = textureHover;
   }
@@ -185,12 +193,16 @@ export function Bloque3D({ position, text, onMine, onDestructionComplete, setHov
       <meshStandardMaterial map={finalTexture} color={finalColor} roughness={1} />
       <Edges scale={1} threshold={15} color={isError ? "#ff0000" : "#2a1a0a"} linewidth={isError ? 4 : 2} />
 
-      {/* Renderizar texto en las caras */}
-      <Text position={[0, 0.51, 0]} rotation={[-Math.PI / 2, 0, 0]} {...textProps}>{text}</Text>
-      <Text position={[0, 0, 0.51]} {...textProps}>{text}</Text>
-      <Text position={[0, 0, -0.51]} rotation={[0, Math.PI, 0]} {...textProps}>{text}</Text>
-      <Text position={[0.51, 0, 0]} rotation={[0, Math.PI / 2, 0]} {...textProps}>{text}</Text>
-      <Text position={[-0.51, 0, 0]} rotation={[0, -Math.PI / 2, 0]} {...textProps}>{text}</Text>
+      {/* Renderizar texto en las caras (solo si no es bloque de oro) */}
+      {!isGold && (
+        <>
+          <Text position={[0, 0.51, 0]} rotation={[-Math.PI / 2, 0, 0]} {...textProps}>{text}</Text>
+          <Text position={[0, 0, 0.51]} {...textProps}>{text}</Text>
+          <Text position={[0, 0, -0.51]} rotation={[0, Math.PI, 0]} {...textProps}>{text}</Text>
+          <Text position={[0.51, 0, 0]} rotation={[0, Math.PI / 2, 0]} {...textProps}>{text}</Text>
+          <Text position={[-0.51, 0, 0]} rotation={[0, -Math.PI / 2, 0]} {...textProps}>{text}</Text>
+        </>
+      )}
     </mesh>
   );
 }

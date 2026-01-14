@@ -9,7 +9,8 @@ import { Arbol3D } from './Arbol3D';
 import { Player } from './Player';
 import { MobileLookControls } from './MobileLookControls';
 import { Button } from '@/components/ui/button';
-import { Tablet, MousePointer2 } from 'lucide-react';
+import { Tablet, MousePointer2, BookOpen, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './ExcavacionSelectiva.css';
 
 // === ICONO DE CRUZ (SVG Inline) ===
@@ -67,6 +68,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
   const [controlMode, setControlMode] = useState(null); // 'pc' | 'mobile' | null
   const [joystickMove, setJoystickMove] = useState(null);
   const [joystickLook, setJoystickLook] = useState(null);
+  const [showCheatSheet, setShowCheatSheet] = useState(false);
 
   // Recursos memoizados
   const grassTexture = useMemo(() => generateGrassTexture(), []);
@@ -146,6 +148,15 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
               <span>ORDENADOR</span>
             </Button>
           </div>
+
+          <Button
+            variant="ghost"
+            onClick={() => setShowCheatSheet(true)}
+            className="mt-8 flex items-center gap-2 text-cyan-400 hover:text-cyan-300 hover:bg-white/5 border border-cyan-400/30 rounded-lg px-6 py-2 transition-all transition-colors font-bold tracking-wider"
+          >
+            <BookOpen size={20} />
+            GUÍA DE PALABRAS
+          </Button>
         </div>
       )}
 
@@ -318,6 +329,7 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
                   isStar={block.isStar}
                   isTNT={block.isTNT}
                   isFreeze={block.isFreeze}
+                  isGold={block.isGold}
                   setHoverState={setCursorType}
                   onMine={() => triggerSwing()}
                   onDestructionComplete={() => mineBlock(block.id)}
@@ -331,6 +343,70 @@ const ExcavacionSelectiva = ({ level, grade, subjectId }) => {
         </Suspense>
 
       </Canvas>
+
+      {/* === 6. MODAL GUÍA DE PALABRAS === */}
+      <AnimatePresence>
+        {showCheatSheet && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 z-[100] bg-slate-950/95 backdrop-blur-xl flex flex-col p-6 overflow-hidden select-none"
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-black text-white flex items-center gap-2 pixel-text">
+                <BookOpen className="w-6 h-6 text-yellow-400" /> GUÍA DE PALABRAS
+              </h2>
+              <button
+                onClick={() => setShowCheatSheet(false)}
+                className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-slate-700 hover:text-white transition-colors border-2 border-slate-700"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+              <div className="grid gap-4 md:grid-cols-2">
+                {data && Object.entries(data)
+                  .filter(([key]) => key !== 'title' && key !== 'instructions')
+                  .map(([category, words], idx) => (
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.05 }}
+                      key={category}
+                      className="bg-slate-800/40 rounded-2xl p-4 border border-slate-700/50 shadow-inner"
+                    >
+                      <h3 className="text-yellow-400 font-bold uppercase tracking-wider text-xs mb-3 px-2 border-l-4 border-yellow-500">
+                        {category.replace(/_/g, ' ')}
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {Array.isArray(words) && words.map((word, wIdx) => (
+                          <span
+                            key={wIdx}
+                            className="px-2.5 py-1 bg-slate-950/60 text-slate-300 rounded-lg text-[11px] border border-white/5 font-medium"
+                          >
+                            {word}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ))}
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <Button
+                size="lg"
+                onClick={() => setShowCheatSheet(false)}
+                className="w-full h-14 text-lg bg-yellow-600 hover:bg-yellow-500 text-white font-bold rounded-2xl shadow-lg transition-transform active:scale-95 pixel-text"
+              >
+                ¡ENTENDIDO!
+              </Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

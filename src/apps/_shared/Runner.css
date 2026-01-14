@@ -62,12 +62,23 @@
 
 @keyframes skidAnimation {
     0% {
-      transform: translate(0, 0) scale(1) rotate(0deg);
-      opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+        opacity: 1;
     }
+
     100% {
-      /* Se mueven hacia atrás (izquierda) y un poco hacia arriba */
-      transform: translate(-35px, -15px) scale(0) rotate(-90deg);
-      opacity: 0;
+        /* Se mueven hacia atrás (izquierda) y un poco hacia arriba */
+        transform: translate(-35px, -15px) scale(0) rotate(-90deg);
+        opacity: 0;
     }
+}
+
+/* Ocultar barra de scroll pero mantener funcionalidad */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

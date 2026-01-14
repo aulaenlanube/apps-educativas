@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowLeftRight, Play, RotateCcw, Lightbulb, Pause, Home, Menu, CloudRain } from 'lucide-react';
+import { ArrowLeftRight, Play, RotateCcw, Lightbulb, Pause, Home, Menu, CloudRain, BookOpen, X } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -49,6 +49,7 @@ const LluviaDePalabras = () => {
     const [score, setScore] = useState(0);
     const [lives, setLives] = useState(3);
     const [showHelp, setShowHelp] = useState(false);
+    const [showCheatSheet, setShowCheatSheet] = useState(false);
     const [boxAnimation, setBoxAnimation] = useState({ col: null, type: null });
 
     const [categories, setCategories] = useState([]);
@@ -155,6 +156,7 @@ const LluviaDePalabras = () => {
     const returnToMenu = () => {
         setGamePhase('menu');
         setFallingWords([]);
+        setShowCheatSheet(false);
     };
 
     const swapCategories = (indexA, indexB) => {
@@ -441,18 +443,29 @@ const LluviaDePalabras = () => {
                     </button>
                 </div>
 
-                <div className="flex justify-center">
+                <div className="flex justify-center gap-2">
                     {difficulty !== 'hard' && (
                         <button
-                            className="bg-slate-800/80 backdrop-blur px-4 py-2 rounded-full border border-slate-700 shadow-lg flex items-center gap-3 transition-colors hover:bg-slate-700"
+                            title="Ayuda visual"
+                            className="bg-slate-800/80 backdrop-blur px-3 py-2 rounded-full border border-slate-700 shadow-lg flex items-center gap-2 transition-colors hover:bg-slate-700"
                             onClick={() => setShowHelp(!showHelp)}
                         >
-                            <Lightbulb className={`w-5 h-5 ${showHelp ? 'text-yellow-400 fill-yellow-400' : 'text-slate-500'}`} />
-                            <div className={`w-10 h-5 rounded-full p-1 transition-colors relative ${showHelp ? 'bg-green-500' : 'bg-slate-600'}`}>
-                                <div className={`absolute top-1 w-3 h-3 bg-white rounded-full shadow-sm transition-transform duration-300 ${showHelp ? 'translate-x-5' : 'translate-x-0'}`} />
+                            <Lightbulb className={`w-4 h-4 ${showHelp ? 'text-yellow-400 fill-yellow-400' : 'text-slate-500'}`} />
+                            <div className={`w-8 h-4 rounded-full p-1 transition-colors relative ${showHelp ? 'bg-green-500' : 'bg-slate-600'}`}>
+                                <div className={`absolute top-1 w-2 h-2 bg-white rounded-full shadow-sm transition-transform duration-300 ${showHelp ? 'translate-x-4' : 'translate-x-0'}`} />
                             </div>
                         </button>
                     )}
+                    <button
+                        title="Guía de categorías"
+                        className="bg-slate-800/80 backdrop-blur w-10 h-10 rounded-full flex items-center justify-center hover:bg-slate-700 transition active:scale-95 shadow-lg border border-slate-700 text-blue-400"
+                        onClick={() => {
+                            if (gamePhase === 'playing') setGamePhase('paused');
+                            setShowCheatSheet(true);
+                        }}
+                    >
+                        <BookOpen className="w-5 h-5" />
+                    </button>
                 </div>
 
                 <div className="flex flex-col items-end gap-2">
@@ -469,7 +482,7 @@ const LluviaDePalabras = () => {
 
             {/* MODAL PAUSA */}
             <AnimatePresence>
-                {gamePhase === 'paused' && (
+                {gamePhase === 'paused' && !showCheatSheet && (
                     <motion.div
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                         className="absolute inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex flex-col items-center justify-center gap-6 p-4"
@@ -481,6 +494,71 @@ const LluviaDePalabras = () => {
                         <Button variant="outline" onClick={returnToMenu} className="w-full max-w-xs h-14 text-lg bg-transparent border-2 border-slate-600 text-slate-300 hover:bg-slate-800 rounded-2xl">
                             <Home className="w-6 h-6 mr-2" /> Elegir dificultad
                         </Button>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* MODAL GUÍA DE CATEGORÍAS (CHEAT SHEET) */}
+            <AnimatePresence>
+                {showCheatSheet && (
+                    <motion.div
+                        initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                        className="absolute inset-0 bg-slate-950/90 backdrop-blur-xl z-[60] flex flex-col p-6 overflow-hidden"
+                    >
+                        <div className="flex justify-between items-center mb-6">
+                            <h2 className="text-2xl font-black text-white flex items-center gap-2">
+                                <BookOpen className="w-6 h-6 text-blue-400" /> Guía de Palabras
+                            </h2>
+                            <button
+                                onClick={() => setShowCheatSheet(false)}
+                                className="w-10 h-10 rounded-full bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-slate-700 hover:text-white transition-colors"
+                            >
+                                <X className="w-6 h-6" />
+                            </button>
+                        </div>
+
+                        <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                            <div className="grid gap-4">
+                                {Object.entries(configData)
+                                    .filter(([key]) => key !== 'title' && key !== 'instructions')
+                                    .map(([category, words], idx) => (
+                                        <motion.div
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: idx * 0.05 }}
+                                            key={category}
+                                            className="bg-slate-800/50 rounded-2xl p-4 border border-slate-700/50"
+                                        >
+                                            <h3 className="text-blue-400 font-bold uppercase tracking-wider text-sm mb-3 px-1 border-l-4 border-blue-500">
+                                                {category.replace(/_/g, ' ')}
+                                            </h3>
+                                            <div className="flex flex-wrap gap-2">
+                                                {Array.isArray(words) && words.map((word, wIdx) => (
+                                                    <span
+                                                        key={wIdx}
+                                                        className="px-3 py-1 bg-slate-900/80 text-slate-300 rounded-lg text-xs border border-white/5"
+                                                    >
+                                                        {word}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </motion.div>
+                                    ))}
+                            </div>
+                        </div>
+
+                        <div className="mt-6">
+                            <Button
+                                size="lg"
+                                onClick={() => {
+                                    setShowCheatSheet(false);
+                                    if (gamePhase === 'paused') togglePause();
+                                }}
+                                className="w-full h-14 text-lg bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl shadow-lg transition-transform active:scale-95"
+                            >
+                                ¡Lo tengo! Continuar
+                            </Button>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

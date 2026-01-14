@@ -3,14 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Slider } from "@/components/ui/slider";
 import { ConfettiProvider } from "./ConfettiProvider";
-import { RotateCcw, Settings2, Shuffle, User, ListChecks, Eye, EyeOff, Weight, Star } from 'lucide-react';
+import { RotateCcw, Settings2, Shuffle, User, ListChecks, Eye, EyeOff, Weight, Star, BookOpen, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import './Runner.css';
 
 // --- CONFIGURACIÓN BASE ---
-const DEFAULT_GRAVITY = 1; 
-const DEFAULT_JUMP_FORCE = 18; 
+const DEFAULT_GRAVITY = 1;
+const DEFAULT_JUMP_FORCE = 18;
 const CUBE_SIZE = 40;
-const BASE_SPAWN_DISTANCE = 600; 
+const BASE_SPAWN_DISTANCE = 600;
 
 // --- PERSONAJES ---
 const CHARACTERS = [
@@ -27,11 +28,12 @@ const Runner = ({ level, grade, subjectId }) => {
   const [loadingError, setLoadingError] = useState(false);
 
   // Configuración de usuario
-  const [configSpeed, setConfigSpeed] = useState([8]); 
-  const [configGravity, setConfigGravity] = useState([DEFAULT_GRAVITY]); 
-  const [showSettings, setShowSettings] = useState(false); 
+  const [configSpeed, setConfigSpeed] = useState([8]);
+  const [configGravity, setConfigGravity] = useState([DEFAULT_GRAVITY]);
+  const [showSettings, setShowSettings] = useState(false);
   const [selectedChar, setSelectedChar] = useState(0);
   const [showHints, setShowHints] = useState(true);
+  const [showCheatSheet, setShowCheatSheet] = useState(false);
 
   // Estado visual para la invencibilidad
   const [isInvincible, setIsInvincible] = useState(false);
@@ -45,23 +47,23 @@ const Runner = ({ level, grade, subjectId }) => {
   const rotationRef = useRef(0);
   const collectedWordsRef = useRef([]);
   const entitiesRef = useRef([]);
-  const explosionsRef = useRef([]); 
+  const explosionsRef = useRef([]);
   const bgOffsetRef = useRef(0);
   const reqRef = useRef(null);
   const gameContainerRef = useRef(null);
-  
+
   // Ref para el contenedor del jugador (posición, no rotación)
   const playerWrapperRef = useRef(null);
 
   // --- REFS PARA CONTROL DE TIEMPO (DELTA TIME) ---
   const lastTimeRef = useRef(0);
   const distanceTraveledRef = useRef(0);
-  const invincibleUntilRef = useRef(0); 
+  const invincibleUntilRef = useRef(0);
 
   // Refs de acceso rápido
   const targetTypeRef = useRef(null);
-  const gameDataRef = useRef(null); 
-  const speedRef = useRef(8); 
+  const gameDataRef = useRef(null);
+  const speedRef = useRef(8);
   const jumpForceRef = useRef(DEFAULT_JUMP_FORCE);
   const gravityRef = useRef(DEFAULT_GRAVITY);
   const showHintsRef = useRef(true);
@@ -100,7 +102,7 @@ const Runner = ({ level, grade, subjectId }) => {
     if (!gameData) return;
     const types = Object.keys(gameData);
     if (types.length === 0) return;
-    
+
     const currentIndex = types.indexOf(targetType);
     const nextIndex = (currentIndex + 1) % types.length;
     setTargetType(types[nextIndex]);
@@ -127,19 +129,19 @@ const Runner = ({ level, grade, subjectId }) => {
     isPlayingRef.current = true;
 
     speedRef.current = configSpeed[0];
-    gravityRef.current = configGravity[0]; 
-    jumpForceRef.current = DEFAULT_JUMP_FORCE; 
+    gravityRef.current = configGravity[0];
+    jumpForceRef.current = DEFAULT_JUMP_FORCE;
     showHintsRef.current = showHints;
 
     playerRef.current = { x: 100, y: 0, velocityY: 0, isJumping: false, onPlatform: false };
     rotationRef.current = 0;
     entitiesRef.current = [];
     collectedWordsRef.current = [];
-    explosionsRef.current = []; 
-    invincibleUntilRef.current = 0; 
+    explosionsRef.current = [];
+    invincibleUntilRef.current = 0;
     setIsInvincible(false);
     bgOffsetRef.current = 0;
-    
+
     lastTimeRef.current = 0;
     distanceTraveledRef.current = 0;
 
@@ -169,22 +171,22 @@ const Runner = ({ level, grade, subjectId }) => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [jump]);
 
-// 3. GENERADOR DE OBSTÁCULOS
+  // 3. GENERADOR DE OBSTÁCULOS
   const spawnEntities = () => {
-    const data = gameDataRef.current; 
+    const data = gameDataRef.current;
     if (!data) return;
 
     const startX = 1000;
     // Patrones: 0: Pinchos, 1: Plataforma baja, 2: Alta+pincho, 3: Item flotante, 4: Encadenadas, 5: ESTRELLA
     const rand = Math.random();
     let pattern = 0;
-    
+
     if (rand < 0.25) pattern = 0;
     else if (rand < 0.45) pattern = 1;
     else if (rand < 0.65) pattern = 2;
     else if (rand < 0.80) pattern = 3;
-    else if (rand < 0.95) pattern = 4; 
-    else pattern = 5; 
+    else if (rand < 0.95) pattern = 4;
+    else pattern = 5;
 
     const types = Object.keys(data);
     const randomType = types[Math.floor(Math.random() * types.length)];
@@ -199,12 +201,12 @@ const Runner = ({ level, grade, subjectId }) => {
     };
 
     if (pattern === 0) {
-      const spikeRandom = Math.random(); 
+      const spikeRandom = Math.random();
       const getSpikeDims = () => {
         const r = Math.random();
-        if (r < 0.20) return { w: 30, h: 30 }; 
-        if (r > 0.85) return { w: 50, h: 60 }; 
-        return { w: 40, h: 40 }; 
+        if (r < 0.20) return { w: 30, h: 30 };
+        if (r > 0.85) return { w: 50, h: 60 };
+        return { w: 40, h: 40 };
       };
 
       const s1 = getSpikeDims();
@@ -243,12 +245,12 @@ const Runner = ({ level, grade, subjectId }) => {
     } else if (pattern === 5) {
       entitiesRef.current.push({ id: Date.now() + 'pstar1', type: 'platform', x: startX, y: 50, width: 120, height: 40 });
       entitiesRef.current.push({ id: Date.now() + 'pstar2', type: 'platform', x: startX + 160, y: 200, width: 140, height: 40 });
-      
+
       entitiesRef.current.push({
         id: Date.now() + 'star',
         type: 'star',
-        x: startX + 210, 
-        y: 280, 
+        x: startX + 210,
+        y: 280,
         width: 40, height: 40
       });
     }
@@ -283,13 +285,13 @@ const Runner = ({ level, grade, subjectId }) => {
     if (!isPlayingRef.current) return;
 
     if (!lastTimeRef.current) lastTimeRef.current = timestamp;
-    
+
     const deltaTime = timestamp - lastTimeRef.current;
     lastTimeRef.current = timestamp;
 
     if (deltaTime > 100) {
-        reqRef.current = requestAnimationFrame(gameLoop);
-        return;
+      reqRef.current = requestAnimationFrame(gameLoop);
+      return;
     }
 
     const timeScale = deltaTime / 16.67;
@@ -300,7 +302,7 @@ const Runner = ({ level, grade, subjectId }) => {
     if (bgOffsetRef.current <= -100) bgOffsetRef.current = 0;
 
     // Actualizar jugador (gravedad)
-    playerRef.current.velocityY -= gravityRef.current * timeScale; 
+    playerRef.current.velocityY -= gravityRef.current * timeScale;
     playerRef.current.y += playerRef.current.velocityY * timeScale;
 
     // Colisión con suelo
@@ -314,8 +316,8 @@ const Runner = ({ level, grade, subjectId }) => {
     // Spawn de entidades
     distanceTraveledRef.current += currentSpeed;
     if (distanceTraveledRef.current >= BASE_SPAWN_DISTANCE) {
-        spawnEntities();
-        distanceTraveledRef.current = 0;
+      spawnEntities();
+      distanceTraveledRef.current = 0;
     }
 
     // Limpiar explosiones viejas (duran 500ms)
@@ -323,8 +325,8 @@ const Runner = ({ level, grade, subjectId }) => {
 
     // Revisar fin de invencibilidad visual
     if (invincibleUntilRef.current > 0 && Date.now() > invincibleUntilRef.current) {
-        invincibleUntilRef.current = 0;
-        setIsInvincible(false);
+      invincibleUntilRef.current = 0;
+      setIsInvincible(false);
     }
 
     const pRect = {
@@ -341,26 +343,26 @@ const Runner = ({ level, grade, subjectId }) => {
         const eRect = { x: ent.x, y: ent.y, width: ent.width, height: ent.height };
 
         if (ent.type === 'star') {
-            if (checkAABB(pRect, eRect)) {
-                ent.collected = true;
-                invincibleUntilRef.current = Date.now() + 10000; // 10 segundos
-                setIsInvincible(true);
-            }
+          if (checkAABB(pRect, eRect)) {
+            ent.collected = true;
+            invincibleUntilRef.current = Date.now() + 10000; // 10 segundos
+            setIsInvincible(true);
+          }
         }
 
         if (ent.type === 'spike') {
-          const spikeRect = { 
-            x: ent.x + (ent.width * 0.25), 
-            y: ent.y, 
-            width: ent.width * 0.5, 
-            height: ent.height * 0.6 
+          const spikeRect = {
+            x: ent.x + (ent.width * 0.25),
+            y: ent.y,
+            width: ent.width * 0.5,
+            height: ent.height * 0.6
           };
           if (checkAABB(pRect, spikeRect)) {
             if (invincibleUntilRef.current > 0) { // Check ref
-                spawnExplosion(ent.x, ent.y);
-                ent.collected = true; 
+              spawnExplosion(ent.x, ent.y);
+              ent.collected = true;
             } else {
-                gameOver(); return;
+              gameOver(); return;
             }
           }
         }
@@ -392,10 +394,10 @@ const Runner = ({ level, grade, subjectId }) => {
               setScore(prev => prev + 1);
             } else {
               if (invincibleUntilRef.current > 0) { // Check ref
-                  spawnExplosion(ent.x, ent.y);
-                  ent.collected = true; 
+                spawnExplosion(ent.x, ent.y);
+                ent.collected = true;
               } else {
-                  gameOver(); return;
+                gameOver(); return;
               }
             }
           }
@@ -412,11 +414,11 @@ const Runner = ({ level, grade, subjectId }) => {
     // Usamos playerWrapperRef para que el efecto no rote
     const isGrounded = playerRef.current.y <= 0.1 || playerRef.current.onPlatform;
     if (playerWrapperRef.current) {
-        if (isGrounded) {
-            playerWrapperRef.current.classList.add('on-ground');
-        } else {
-            playerWrapperRef.current.classList.remove('on-ground');
-        }
+      if (isGrounded) {
+        playerWrapperRef.current.classList.add('on-ground');
+      } else {
+        playerWrapperRef.current.classList.remove('on-ground');
+      }
     }
 
     entitiesRef.current = entitiesRef.current.filter(ent => ent.x > -200);
@@ -431,7 +433,7 @@ const Runner = ({ level, grade, subjectId }) => {
   const renderCharacter = (charIndex, isPreview = false) => {
     const char = CHARACTERS[charIndex];
     const invincibleGlow = (isInvincible && !isPreview) ? "drop-shadow-[0_0_15px_rgba(255,215,0,1)] border-yellow-200" : "";
-    
+
     return (
       <div
         className={`w-full h-full ${char.mainColor} border-[3px] ${char.borderColor} relative ${char.glow} ${invincibleGlow}`}
@@ -452,7 +454,7 @@ const Runner = ({ level, grade, subjectId }) => {
     <div className="flex flex-col items-center justify-center min-h-[80vh] bg-transparent p-4 select-none touch-none font-mono">
       {gameState === 'gameover' && <ConfettiProvider />}
 
-      <Card 
+      <Card
         className="w-full max-w-4xl h-[450px] relative overflow-hidden bg-indigo-950 border-[8px] border-black shadow-2xl rounded-none cursor-pointer"
         ref={gameContainerRef}
         onMouseDown={(e) => {
@@ -476,125 +478,187 @@ const Runner = ({ level, grade, subjectId }) => {
         {targetType && gameState === 'playing' && (
           <div className="absolute top-4 left-4 z-30 flex flex-col gap-2 items-start">
             <div className="bg-yellow-400 text-black px-4 py-2 font-black border-4 border-black animate-pulse uppercase tracking-wide shadow-[4px_4px_0_black]">
-                Misión: {formatMissionName(targetType)}
+              Misión: {formatMissionName(targetType)}
             </div>
             {isInvincible && (
-                <div className="flex flex-col items-center animate-pulse">
-                    <span className="text-4xl font-black text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]">
-                        {timeLeft}s
-                    </span>
-                    <div className="bg-yellow-500 text-white px-2 py-1 font-bold border-2 border-white text-xs shadow-[0_0_10px_gold]">
-                        ★ INVENCIBLE ★
-                    </div>
+              <div className="flex flex-col items-center animate-pulse">
+                <span className="text-4xl font-black text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)]">
+                  {timeLeft}s
+                </span>
+                <div className="bg-yellow-500 text-white px-2 py-1 font-bold border-2 border-white text-xs shadow-[0_0_10px_gold]">
+                  ★ INVENCIBLE ★
                 </div>
+              </div>
             )}
           </div>
         )}
 
         {/* MENU INICIO */}
         {gameState === 'start' && (
-          <div className="absolute inset-0 z-40 bg-black/95 flex flex-col items-center justify-center text-white p-4 overflow-y-auto cursor-default" 
-               onMouseDown={(e) => e.stopPropagation()}
-               onTouchStart={(e) => e.stopPropagation()}
+          <div className="absolute inset-0 z-40 bg-black/95 flex flex-col items-center justify-center text-white p-4 overflow-y-auto no-scrollbar cursor-default"
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
           >
-            
-            <div className="mb-4 text-center animate-in zoom-in duration-300 flex flex-col items-center">
-              <span className="text-gray-400 font-bold text-sm uppercase tracking-widest mb-1">Tu misión:</span>
-              
-              <div className="flex items-center gap-3">
-                <h2 className="text-4xl font-black text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.5)] uppercase">
+            {/* BOTÓN GUÍA EN LA PARTE SUPERIOR (MÁS COMPACTO Y ELEGANTE) */}
+            <Button
+              onClick={() => setShowCheatSheet(true)}
+              className="mb-6 bg-slate-800 hover:bg-slate-700 text-cyan-400 text-xs py-2 px-4 rounded-none border-b-4 border-r-4 border-slate-600 active:border-0 active:translate-y-1 active:translate-x-1 font-bold tracking-widest uppercase transition-all flex items-center justify-center gap-2 h-auto"
+            >
+              <BookOpen className="w-4 h-4" />
+              GUÍA DE PALABRAS
+            </Button>
+
+            <div className="mb-2 text-center animate-in zoom-in duration-300 flex flex-col items-center">
+              <span className="text-gray-400 font-bold text-[10px] uppercase tracking-widest">Tu misión:</span>
+
+              <div className="flex items-center gap-2">
+                <h2 className="text-2xl font-black text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.5)] uppercase">
                   {loadingError ? "Error de datos" : (formatMissionName(targetType) || "Cargando...")}
                 </h2>
-                
-                <Button 
+
+                <Button
                   onClick={changeMission}
-                  className="bg-yellow-400/10 hover:bg-yellow-400/20 text-yellow-400 border border-yellow-400/50 p-2 h-auto rounded-full transition-all active:scale-95"
+                  className="bg-yellow-400/10 hover:bg-yellow-400/20 text-yellow-400 border border-yellow-400/50 p-1.5 h-auto rounded-full transition-all active:scale-95"
                   title="Cambiar categoría"
                 >
-                  <Shuffle className="w-5 h-5" />
+                  <Shuffle className="w-4 h-4" />
                 </Button>
               </div>
               {loadingError && <p className="text-red-500 text-xs mt-1">No se encontró {subjectId}-runner.json</p>}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl px-2">
               {/* Selección Personaje */}
-              <div className="bg-slate-800 p-4 border-4 border-white shadow-[6px_6px_0_black]">
-                <div className="flex items-center gap-2 mb-3 text-cyan-400 font-bold border-b border-white/20 pb-2">
-                  <User className="w-5 h-5" /> SELECCIONA PERSONAJE
+              <div className="bg-slate-800 p-2 border-2 border-white shadow-[4px_4px_0_black]">
+                <div className="flex items-center gap-2 mb-2 text-cyan-400 font-bold border-b border-white/20 pb-1 text-[10px]">
+                  <User className="w-3 h-3" /> PERSONAJE: {CHARACTERS[selectedChar].name.toUpperCase()}
                 </div>
-                <div className="flex justify-around items-center h-24">
+                <div className="flex justify-around items-center h-16">
                   {CHARACTERS.map((char) => (
                     <div key={char.id} onClick={() => setSelectedChar(char.id)}
-                      className={`w-14 h-14 cursor-pointer transition-all hover:scale-110 ${selectedChar === char.id ? 'scale-125 ring-4 ring-white z-10' : 'opacity-60 grayscale-[0.5]'}`}
+                      className={`w-10 h-10 cursor-pointer transition-all hover:scale-110 ${selectedChar === char.id ? 'scale-110 ring-2 ring-white z-10' : 'opacity-60 grayscale-[0.5]'}`}
                     >
                       {renderCharacter(char.id, true)}
                     </div>
                   ))}
                 </div>
-                <p className="text-center text-xs text-gray-400 mt-2 font-bold uppercase">{CHARACTERS[selectedChar].name}</p>
               </div>
 
               {/* Configuración */}
-              <div className="bg-slate-800 p-4 border-4 border-white shadow-[6px_6px_0_black]">
-                
-                {/* Checkbox para mostrar ajustes avanzados */}
-                <div className="flex items-center gap-2 mb-2 pb-2">
-                    <input 
-                      type="checkbox" 
-                      id="advancedSettings" 
-                      checked={showSettings} 
-                      onChange={(e) => setShowSettings(e.target.checked)}
-                      className="w-5 h-5 cursor-pointer accent-yellow-400 bg-slate-700 border-white/50 rounded-sm"
-                    />
-                    <label htmlFor="advancedSettings" className="text-white font-bold text-sm cursor-pointer select-none">
-                      CONFIGURAR VELOCIDAD Y GRAVEDAD
-                    </label>
+              <div className="bg-slate-800 p-2 border-2 border-white shadow-[4px_4px_0_black]">
+                <div className="flex items-center gap-2 text-white font-bold text-[10px] mb-2">
+                  <input
+                    type="checkbox"
+                    id="advancedSettings"
+                    checked={showSettings}
+                    onChange={(e) => setShowSettings(e.target.checked)}
+                    className="w-3 h-3 cursor-pointer accent-yellow-400"
+                  />
+                  <label htmlFor="advancedSettings" className="cursor-pointer">AJUSTES AVANZADOS</label>
                 </div>
 
-                {/* Sliders Condicionales */}
-                {showSettings && (
-                  <div className="space-y-4 mb-4 animate-in slide-in-from-top-2 duration-300 bg-black/20 p-2 border border-white/10">
-                    {/* Velocidad */}
-                    <div>
-                      <div className="flex justify-between mb-1 font-bold text-sm">
-                        <label className="flex items-center gap-2 text-cyan-400"><Settings2 className="w-4 h-4" /> VELOCIDAD</label>
-                        <span className="bg-black px-2 border border-white text-cyan-400 font-mono">{configSpeed[0]}</span>
-                      </div>
-                      <Slider defaultValue={[8]} max={16} min={2} step={1} value={configSpeed} onValueChange={setConfigSpeed} className="cursor-pointer" />
-                    </div>
-
-                    {/* Gravedad */}
-                    <div>
-                      <div className="flex justify-between mb-1 font-bold text-sm">
-                        <label className="flex items-center gap-2 text-purple-400"><Weight className="w-4 h-4" /> GRAVEDAD</label>
-                        <span className="bg-black px-2 border border-white text-purple-400 font-mono">{configGravity[0]}</span>
-                      </div>
-                      <Slider defaultValue={[DEFAULT_GRAVITY]} max={2.0} min={0.5} step={0.1} value={configGravity} onValueChange={setConfigGravity} className="cursor-pointer" />
-                    </div>
-                  </div>
-                )}
-                
-                <div className="pt-2 border-t border-white/20 mt-2">
-                  <Button onClick={() => setShowHints(!showHints)} className={`w-full flex justify-between items-center border-2 rounded-none h-8 transition-all font-bold text-xs uppercase ${showHints ? "bg-emerald-600/50 border-emerald-400 hover:bg-emerald-600 text-white" : "bg-red-600/50 border-red-400 hover:bg-red-600 text-white"}`}>
-                    <span>{showHints ? "Examen: NO" : "Examen: SÍ"}</span>
-                    {showHints ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
-                  </Button>
-                </div>
+                <Button onClick={() => setShowHints(!showHints)} className={`w-full flex justify-between items-center border rounded-none h-6 transition-all font-bold text-[10px] uppercase ${showHints ? "bg-emerald-600/50 border-emerald-400 text-white" : "bg-red-600/50 border-red-400 text-white"}`}>
+                  <span>{showHints ? "Examen: NO" : "Examen: SÍ"}</span>
+                  {showHints ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
+                </Button>
               </div>
             </div>
 
-            <Button disabled={!gameData} onClick={startGame} className="mt-8 w-full max-w-xs bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-black text-3xl py-8 rounded-none border-b-[8px] border-r-[8px] border-yellow-800 active:border-0 active:translate-y-2 active:translate-x-2 font-black tracking-widest uppercase transition-all shadow-[0_0_20px_rgba(234,179,8,0.4)] disabled:opacity-50">
+            {showSettings && (
+              <div className="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 px-2 animate-in slide-in-from-top-1 duration-200">
+                <div className="bg-black/40 p-2 border border-white/10">
+                  <div className="flex justify-between mb-1 font-bold text-[10px] text-cyan-400 uppercase">
+                    <span>Velocidad</span>
+                    <span>{configSpeed[0]}</span>
+                  </div>
+                  <Slider defaultValue={[8]} max={16} min={2} step={1} value={configSpeed} onValueChange={setConfigSpeed} className="h-2" />
+                </div>
+                <div className="bg-black/40 p-2 border border-white/10">
+                  <div className="flex justify-between mb-1 font-bold text-[10px] text-purple-400 uppercase">
+                    <span>Gravedad</span>
+                    <span>{configGravity[0]}</span>
+                  </div>
+                  <Slider defaultValue={[DEFAULT_GRAVITY]} max={2.0} min={0.5} step={0.1} value={configGravity} onValueChange={setConfigGravity} className="h-2" />
+                </div>
+              </div>
+            )}
+
+            <Button disabled={!gameData} onClick={startGame} className="mt-4 w-full max-w-xs bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-black text-2xl py-6 rounded-none border-b-[6px] border-r-[6px] border-yellow-800 active:border-0 active:translate-y-1 active:translate-x-1 font-black tracking-widest uppercase transition-all shadow-[0_0_15px_rgba(234,179,8,0.4)] disabled:opacity-50">
               JUGAR
             </Button>
           </div>
         )}
 
+        {/* --- MODAL GUÍA DE CATEGORÍAS (CHEAT SHEET) --- */}
+        <AnimatePresence>
+          {showCheatSheet && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onMouseDown={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
+              className="absolute inset-0 z-[100] bg-slate-950/95 backdrop-blur-xl flex flex-col p-6 overflow-hidden cursor-default"
+            >
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-black text-white flex items-center gap-2 uppercase tracking-tighter">
+                  <BookOpen className="w-6 h-6 text-blue-400" /> Guía de Misiones
+                </h2>
+                <button
+                  onClick={() => setShowCheatSheet(false)}
+                  className="w-10 h-10 rounded-none bg-slate-800 text-slate-400 flex items-center justify-center hover:bg-slate-700 hover:text-white transition-colors border-2 border-slate-600"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                <div className="grid gap-6">
+                  {gameData && Object.entries(gameData)
+                    .filter(([key]) => key !== 'title' && key !== 'instructions')
+                    .map(([category, words], idx) => (
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.05 }}
+                        key={category}
+                        className="bg-slate-900 border-2 border-slate-800 p-4 shadow-[4px_4px_0_rgba(0,0,0,0.5)]"
+                      >
+                        <h3 className="text-cyan-400 font-bold uppercase tracking-widest text-sm mb-3 px-2 border-l-4 border-cyan-500">
+                          {category.replace(/_/g, ' ')}
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                          {Array.isArray(words) && words.map((word, wIdx) => (
+                            <span
+                              key={wIdx}
+                              className="px-2 py-1 bg-black text-slate-300 text-xs border border-white/10 font-mono"
+                            >
+                              {word}
+                            </span>
+                          ))}
+                        </div>
+                      </motion.div>
+                    ))}
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <Button
+                  onClick={() => setShowCheatSheet(false)}
+                  className="w-full h-14 text-xl bg-blue-600 hover:bg-blue-500 text-white font-black rounded-none border-b-4 border-blue-900 shadow-lg transition-transform active:scale-95 uppercase tracking-widest"
+                >
+                  ¡ENTENDIDO!
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* GAME OVER */}
         {gameState === 'gameover' && (
           <div className="absolute inset-0 z-40 bg-red-900/95 flex flex-col items-center justify-center text-white animate-in zoom-in duration-300 p-4 cursor-default"
-               onMouseDown={(e) => e.stopPropagation()}
-               onTouchStart={(e) => e.stopPropagation()}
+            onMouseDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
           >
             <h2 className="text-3xl md:text-4xl font-black mb-4 text-white drop-shadow-[4px_4px_0_black] text-center uppercase leading-tight max-w-2xl">
               {score > 0 ? `Has conseguido ${score} puntos` : "No has conseguido ninguna"}
@@ -626,11 +690,11 @@ const Runner = ({ level, grade, subjectId }) => {
           <>
             <div className="absolute inset-0 z-0 opacity-20" style={{ backgroundImage: `linear-gradient(to right, #4f46e5 1px, transparent 1px), linear-gradient(to bottom, #4f46e5 1px, transparent 1px)`, backgroundSize: '50px 50px', transform: `translateX(${bgOffsetRef.current}px)` }}></div>
             <div className="absolute bottom-0 w-full h-[60px] bg-black border-t-[4px] border-cyan-400 z-10 shadow-[0_-5px_20px_rgba(34,211,238,0.4)]"></div>
-            
+
             {/* WRAPPER DEL JUGADOR: Aquí aplicamos el ref para detectar suelo y la partícula */}
-            <div 
+            <div
               ref={playerWrapperRef}
-              className="absolute z-20 flex items-center justify-center" 
+              className="absolute z-20 flex items-center justify-center"
               style={{ left: `${playerRef.current.x}px`, bottom: `${60 + playerRef.current.y}px`, width: `${CUBE_SIZE}px`, height: `${CUBE_SIZE}px`, transition: 'none' }}
             >
               {/* Partículas fuera del renderCharacter para no rotar. 3 DIVS para efecto más intenso */}
@@ -644,41 +708,41 @@ const Runner = ({ level, grade, subjectId }) => {
 
             {/* EXPLOSIONES */}
             {explosionsRef.current.map(exp => (
-                <div key={exp.id} 
-                     className="absolute z-50 flex items-center justify-center pointer-events-none animate-ping" 
-                     style={{ left: exp.x, bottom: 60 + exp.y, width: 60, height: 60 }}>
-                    <div className="w-full h-full bg-orange-500 rounded-full opacity-75"></div>
-                </div>
+              <div key={exp.id}
+                className="absolute z-50 flex items-center justify-center pointer-events-none animate-ping"
+                style={{ left: exp.x, bottom: 60 + exp.y, width: 60, height: 60 }}>
+                <div className="w-full h-full bg-orange-500 rounded-full opacity-75"></div>
+              </div>
             ))}
 
             {entitiesRef.current.map(ent => {
               if (ent.collected) return null; // No renderizar si ya se ha recogido/destruido
 
               if (ent.type === 'star') {
-                  return (
-                    <div key={ent.id} className="absolute z-10 animate-bounce" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px` }}>
-                        <Star className="w-10 h-10 text-yellow-400 fill-yellow-400 drop-shadow-[0_0_10px_gold]" />
-                    </div>
-                  );
+                return (
+                  <div key={ent.id} className="absolute z-10 animate-bounce" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px` }}>
+                    <Star className="w-10 h-10 text-yellow-400 fill-yellow-400 drop-shadow-[0_0_10px_gold]" />
+                  </div>
+                );
               }
 
               if (ent.type === 'spike') {
-                return <div key={ent.id} className="absolute z-10" style={{ 
-                  left: `${ent.x}px`, 
-                  bottom: `${60 + ent.y}px`, 
-                  width: 0, 
-                  height: 0, 
+                return <div key={ent.id} className="absolute z-10" style={{
+                  left: `${ent.x}px`,
+                  bottom: `${60 + ent.y}px`,
+                  width: 0,
+                  height: 0,
                   borderLeft: `${ent.width / 2}px solid transparent`,
                   borderRight: `${ent.width / 2}px solid transparent`,
-                  borderBottom: `${ent.height}px solid #ef4444`, 
-                  filter: 'drop-shadow(0 0 5px red)' 
+                  borderBottom: `${ent.height}px solid #ef4444`,
+                  filter: 'drop-shadow(0 0 5px red)'
                 }} />;
               }
               if (ent.type === 'platform') {
                 return <div key={ent.id} className="absolute z-10 bg-slate-800 border-2 border-cyan-500 shadow-[0_0_10px_cyan]" style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px` }} />;
               }
               if (ent.type === 'item') {
-                const isTarget = gameDataRef.current && targetTypeRef.current && gameDataRef.current[targetTypeRef.current] 
+                const isTarget = gameDataRef.current && targetTypeRef.current && gameDataRef.current[targetTypeRef.current]
                   ? gameDataRef.current[targetTypeRef.current].includes(ent.text)
                   : false;
 
@@ -687,8 +751,16 @@ const Runner = ({ level, grade, subjectId }) => {
                   wordStyle = isTarget ? 'bg-green-600 border-green-400 shadow-[0_0_15px_green]' : 'bg-red-900/50 border-red-800 opacity-80';
                 }
 
+                // Ajuste dinámico de tamaño de fuente para evitar desbordamiento
+                const getFontSize = (text) => {
+                  if (text.length > 25) return '8px';
+                  if (text.length > 18) return '10px';
+                  if (text.length > 12) return '12px';
+                  return '14px';
+                };
+
                 return (
-                  <div key={ent.id} className={`absolute z-10 flex items-center justify-center font-black text-white px-2 py-1 rounded border-2 uppercase tracking-wider ${wordStyle}`} style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px`, fontSize: '14px' }}>
+                  <div key={ent.id} className={`absolute z-10 flex items-center justify-center font-black text-white px-2 py-1 rounded border-2 uppercase tracking-wider text-center leading-tight ${wordStyle}`} style={{ left: `${ent.x}px`, bottom: `${60 + ent.y}px`, width: `${ent.width}px`, height: `${ent.height}px`, fontSize: getFontSize(ent.text) }}>
                     {ent.text}
                   </div>
                 );
