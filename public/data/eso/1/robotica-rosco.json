@@ -1,0 +1,650 @@
+[
+    {
+        "id": "a1",
+        "letra": "A",
+        "tipo": "empieza",
+        "definicion": "Conjunto de instrucciones ordenadas para resolver un problema.",
+        "solucion": "algoritmo",
+        "materia": "robotica"
+    },
+    {
+        "id": "a2",
+        "letra": "A",
+        "tipo": "empieza",
+        "definicion": "Placa de control muy popular en robótica educativa.",
+        "solucion": "arduino",
+        "materia": "robotica"
+    },
+    {
+        "id": "a3",
+        "letra": "A",
+        "tipo": "empieza",
+        "definicion": "Componente que permite al robot realizar acciones físicas.",
+        "solucion": "actuador",
+        "materia": "robotica"
+    },
+    {
+        "id": "b1",
+        "letra": "B",
+        "tipo": "empieza",
+        "definicion": "Instrucción que permite repetir una acción varias veces.",
+        "solucion": "bucle",
+        "materia": "robotica"
+    },
+    {
+        "id": "b2",
+        "letra": "B",
+        "tipo": "empieza",
+        "definicion": "Fuente de energía portátil para el robot.",
+        "solucion": "batería",
+        "materia": "robotica"
+    },
+    {
+        "id": "b3",
+        "letra": "B",
+        "tipo": "empieza",
+        "definicion": "Elemento gráfico usado en programación visual.",
+        "solucion": "bloque",
+        "materia": "robotica"
+    },
+    {
+        "id": "c1",
+        "letra": "C",
+        "tipo": "empieza",
+        "definicion": "El cerebro del robot que procesa la información.",
+        "solucion": "controlador",
+        "materia": "robotica"
+    },
+    {
+        "id": "c2",
+        "letra": "C",
+        "tipo": "empieza",
+        "definicion": "Estructura principal que sujeta todos los componentes del robot.",
+        "solucion": "chasis",
+        "materia": "robotica"
+    },
+    {
+        "id": "c3",
+        "letra": "C",
+        "tipo": "empieza",
+        "definicion": "Instrucción tipo 'si... entonces' para tomar decisiones.",
+        "solucion": "condicional",
+        "materia": "robotica"
+    },
+    {
+        "id": "d1",
+        "letra": "D",
+        "tipo": "empieza",
+        "definicion": "Robot volador controlado de forma remota.",
+        "solucion": "dron",
+        "materia": "robotica"
+    },
+    {
+        "id": "d2",
+        "letra": "D",
+        "tipo": "empieza",
+        "definicion": "Lo que mide un sensor de ultrasonidos respecto a un objeto.",
+        "solucion": "distancia",
+        "materia": "robotica"
+    },
+    {
+        "id": "d3",
+        "letra": "D",
+        "tipo": "empieza",
+        "definicion": "Tipo de motor que gira continuamente cuando recibe corriente.",
+        "solucion": "dc",
+        "materia": "robotica"
+    },
+    {
+        "id": "e1",
+        "letra": "E",
+        "tipo": "empieza",
+        "definicion": "Parte de la robótica que estudia los circuitos y componentes eléctricos.",
+        "solucion": "electrónica",
+        "materia": "robotica"
+    },
+    {
+        "id": "e2",
+        "letra": "E",
+        "tipo": "empieza",
+        "definicion": "Herramienta o pinza situada al final de un brazo robótico.",
+        "solucion": "efector",
+        "materia": "robotica"
+    },
+    {
+        "id": "e3",
+        "letra": "E",
+        "tipo": "empieza",
+        "definicion": "Capacidad de realizar un trabajo, necesaria para mover el robot.",
+        "solucion": "energía",
+        "materia": "robotica"
+    },
+    {
+        "id": "f1",
+        "letra": "F",
+        "tipo": "empieza",
+        "definicion": "Sensor que detecta cuando una parte móvil llega al límite.",
+        "solucion": "final de carrera",
+        "materia": "robotica"
+    },
+    {
+        "id": "f2",
+        "letra": "F",
+        "tipo": "empieza",
+        "definicion": "Información que el robot recibe de sus sensores para corregir su acción.",
+        "solucion": "feedback",
+        "materia": "robotica"
+    },
+    {
+        "id": "f3",
+        "letra": "F",
+        "tipo": "empieza",
+        "definicion": "Pequeño programa que realiza una tarea específica dentro del código.",
+        "solucion": "función",
+        "materia": "robotica"
+    },
+    {
+        "id": "g1",
+        "letra": "G",
+        "tipo": "empieza",
+        "definicion": "Número de movimientos independientes que puede realizar un robot.",
+        "solucion": "grados de libertad",
+        "materia": "robotica"
+    },
+    {
+        "id": "g2",
+        "letra": "G",
+        "tipo": "empieza",
+        "definicion": "Sensor que ayuda al robot a mantener el equilibrio.",
+        "solucion": "giroscopio",
+        "materia": "robotica"
+    },
+    {
+        "id": "g3",
+        "letra": "G",
+        "tipo": "empieza",
+        "definicion": "Acción de rotar sobre un eje.",
+        "solucion": "giro",
+        "materia": "robotica"
+    },
+    {
+        "id": "h1",
+        "letra": "H",
+        "tipo": "empieza",
+        "definicion": "Robot que tiene apariencia y forma similar a la humana.",
+        "solucion": "humanoide",
+        "materia": "robotica"
+    },
+    {
+        "id": "h2",
+        "letra": "H",
+        "tipo": "empieza",
+        "definicion": "Componentes físicos y tangibles de un sistema robótico.",
+        "solucion": "hardware",
+        "materia": "robotica"
+    },
+    {
+        "id": "h3",
+        "letra": "H",
+        "tipo": "empieza",
+        "definicion": "Tipo de robot que combina ruedas y patas.",
+        "solucion": "híbrido",
+        "materia": "robotica"
+    },
+    {
+        "id": "i1",
+        "letra": "I",
+        "tipo": "empieza",
+        "definicion": "Tipo de sensor usado para seguir líneas o detectar obstáculos cercanos.",
+        "solucion": "infrarrojos",
+        "materia": "robotica"
+    },
+    {
+        "id": "i2",
+        "letra": "I",
+        "tipo": "empieza",
+        "definicion": "Capacidad de las máquinas para imitar funciones cognitivas humanas.",
+        "solucion": "inteligencia artificial",
+        "materia": "robotica"
+    },
+    {
+        "id": "i3",
+        "letra": "I",
+        "tipo": "empieza",
+        "definicion": "Dispositivo que permite conectar el robot con el usuario.",
+        "solucion": "interfaz",
+        "materia": "robotica"
+    },
+    {
+        "id": "j1",
+        "letra": "J",
+        "tipo": "empieza",
+        "definicion": "Palanca de mando para controlar un robot manualmente.",
+        "solucion": "joystick",
+        "materia": "robotica"
+    },
+    {
+        "id": "j2",
+        "letra": "J",
+        "tipo": "empieza",
+        "definicion": "Punto de unión entre dos partes del robot que permite movimiento.",
+        "solucion": "junta",
+        "materia": "robotica"
+    },
+    {
+        "id": "j3",
+        "letra": "J",
+        "tipo": "empieza",
+        "definicion": "Unidad de medida de la energía (empieza por J).",
+        "solucion": "joule",
+        "materia": "robotica"
+    },
+    {
+        "id": "k1",
+        "letra": "K",
+        "tipo": "empieza",
+        "definicion": "Conjunto de piezas y componentes para montar un robot.",
+        "solucion": "kit",
+        "materia": "robotica"
+    },
+    {
+        "id": "k2",
+        "letra": "K",
+        "tipo": "empieza",
+        "definicion": "Prefijo que significa mil, usado en unidades como kilohercio.",
+        "solucion": "kilo",
+        "materia": "robotica"
+    },
+    {
+        "id": "k3",
+        "letra": "K",
+        "tipo": "empieza",
+        "definicion": "Energía que posee un cuerpo debido a su movimiento.",
+        "solucion": "kinética",
+        "materia": "robotica"
+    },
+    {
+        "id": "l1",
+        "letra": "L",
+        "tipo": "empieza",
+        "definicion": "Diodo emisor de luz usado para indicadores.",
+        "solucion": "led",
+        "materia": "robotica"
+    },
+    {
+        "id": "l2",
+        "letra": "L",
+        "tipo": "empieza",
+        "definicion": "Sensor de luz cuya resistencia varía con la iluminación.",
+        "solucion": "ldr",
+        "materia": "robotica"
+    },
+    {
+        "id": "l3",
+        "letra": "L",
+        "tipo": "empieza",
+        "definicion": "Reglas que rigen el comportamiento de los robots según Asimov.",
+        "solucion": "leyes",
+        "materia": "robotica"
+    },
+    {
+        "id": "m1",
+        "letra": "M",
+        "tipo": "empieza",
+        "definicion": "Componente que transforma energía eléctrica en movimiento.",
+        "solucion": "motor",
+        "materia": "robotica"
+    },
+    {
+        "id": "m2",
+        "letra": "M",
+        "tipo": "empieza",
+        "definicion": "Pequeña placa educativa con pantalla de leds y sensores.",
+        "solucion": "microbit",
+        "materia": "robotica"
+    },
+    {
+        "id": "m3",
+        "letra": "M",
+        "tipo": "empieza",
+        "definicion": "Cerebro electrónico minúsculo que controla el robot.",
+        "solucion": "microcontrolador",
+        "materia": "robotica"
+    },
+    {
+        "id": "n1",
+        "letra": "N",
+        "tipo": "empieza",
+        "definicion": "Robot de tamaño extremadamente pequeño, a escala atómica.",
+        "solucion": "nanorrobot",
+        "materia": "robotica"
+    },
+    {
+        "id": "n2",
+        "letra": "N",
+        "tipo": "empieza",
+        "definicion": "Punto de conexión en un circuito o red.",
+        "solucion": "nodo",
+        "materia": "robotica"
+    },
+    {
+        "id": "n3",
+        "letra": "N",
+        "tipo": "empieza",
+        "definicion": "Nivel de carga de la batería.",
+        "solucion": "nivel",
+        "materia": "robotica"
+    },
+    {
+        "id": "ñ1",
+        "letra": "Ñ",
+        "tipo": "contiene",
+        "definicion": "Crear el esquema o plano de un robot antes de construirlo.",
+        "solucion": "diseñar",
+        "materia": "robotica"
+    },
+    {
+        "id": "ñ2",
+        "letra": "Ñ",
+        "tipo": "contiene",
+        "definicion": "Pieza pequeña que se añade a la estructura (contiene Ñ).",
+        "solucion": "pestaña",
+        "materia": "robotica"
+    },
+    {
+        "id": "ñ3",
+        "letra": "Ñ",
+        "tipo": "contiene",
+        "definicion": "Tiempo que tiene un robot desde su fabricación (contiene Ñ).",
+        "solucion": "años",
+        "materia": "robotica"
+    },
+    {
+        "id": "o1",
+        "letra": "O",
+        "tipo": "empieza",
+        "definicion": "Cosa que el robot debe detectar y esquivar para no chocar.",
+        "solucion": "obstáculo",
+        "materia": "robotica"
+    },
+    {
+        "id": "o2",
+        "letra": "O",
+        "tipo": "empieza",
+        "definicion": "Mandato que el usuario da al robot para que lo ejecute.",
+        "solucion": "orden",
+        "materia": "robotica"
+    },
+    {
+        "id": "o3",
+        "letra": "O",
+        "tipo": "empieza",
+        "definicion": "Sentido que permite detectar sonidos (en robots, el micrófono).",
+        "solucion": "oído",
+        "materia": "robotica"
+    },
+    {
+        "id": "p1",
+        "letra": "P",
+        "tipo": "empieza",
+        "definicion": "Acción de escribir las instrucciones que debe seguir el robot.",
+        "solucion": "programación",
+        "materia": "robotica"
+    },
+    {
+        "id": "p2",
+        "letra": "P",
+        "tipo": "empieza",
+        "definicion": "Herramienta de agarre que usan muchos robots en su extremo.",
+        "solucion": "pinza",
+        "materia": "robotica"
+    },
+    {
+        "id": "p3",
+        "letra": "P",
+        "tipo": "empieza",
+        "definicion": "Cualquier componente que forma parte del robot.",
+        "solucion": "pieza",
+        "materia": "robotica"
+    },
+    {
+        "id": "q1",
+        "letra": "Q",
+        "tipo": "contiene",
+        "definicion": "Aparato o conjunto de piezas que realiza un trabajo (contiene Q).",
+        "solucion": "máquina",
+        "materia": "robotica"
+    },
+    {
+        "id": "q2",
+        "letra": "Q",
+        "tipo": "contiene",
+        "definicion": "Elemento químico usado en algunas baterías (contiene Q).",
+        "solucion": "químico",
+        "materia": "robotica"
+    },
+    {
+        "id": "q3",
+        "letra": "Q",
+        "tipo": "contiene",
+        "definicion": "Pequeño bloque de código o pieza (contiene Q).",
+        "solucion": "paquete",
+        "materia": "robotica"
+    },
+    {
+        "id": "r1",
+        "letra": "R",
+        "tipo": "empieza",
+        "definicion": "Máquina programable capaz de realizar tareas automáticamente.",
+        "solucion": "robot",
+        "materia": "robotica"
+    },
+    {
+        "id": "r2",
+        "letra": "R",
+        "tipo": "empieza",
+        "definicion": "Elemento circular que permite el desplazamiento del robot.",
+        "solucion": "rueda",
+        "materia": "robotica"
+    },
+    {
+        "id": "r3",
+        "letra": "R",
+        "tipo": "empieza",
+        "definicion": "Componente que se opone al paso de la corriente eléctrica.",
+        "solucion": "resistencia",
+        "materia": "robotica"
+    },
+    {
+        "id": "s1",
+        "letra": "S",
+        "tipo": "empieza",
+        "definicion": "Dispositivo que permite al robot percibir su entorno.",
+        "solucion": "sensor",
+        "materia": "robotica"
+    },
+    {
+        "id": "s2",
+        "letra": "S",
+        "tipo": "empieza",
+        "definicion": "Motor que puede girar a un ángulo preciso y controlado.",
+        "solucion": "servomotor",
+        "materia": "robotica"
+    },
+    {
+        "id": "s3",
+        "letra": "S",
+        "tipo": "empieza",
+        "definicion": "Instrucciones lógicas que hacen funcionar al robot.",
+        "solucion": "software",
+        "materia": "robotica"
+    },
+    {
+        "id": "t1",
+        "letra": "T",
+        "tipo": "empieza",
+        "definicion": "Sentido que permite al robot detectar contactos físicos.",
+        "solucion": "tacto",
+        "materia": "robotica"
+    },
+    {
+        "id": "t2",
+        "letra": "T",
+        "tipo": "empieza",
+        "definicion": "Manejo de un robot a distancia por un operador humano.",
+        "solucion": "teleoperación",
+        "materia": "robotica"
+    },
+    {
+        "id": "t3",
+        "letra": "T",
+        "tipo": "empieza",
+        "definicion": "Acción de realizar un trabajo o actividad.",
+        "solucion": "tarea",
+        "materia": "robotica"
+    },
+    {
+        "id": "u1",
+        "letra": "U",
+        "tipo": "empieza",
+        "definicion": "Tipo de ondas de sonido usadas para medir distancias.",
+        "solucion": "ultrasonidos",
+        "materia": "robotica"
+    },
+    {
+        "id": "u2",
+        "letra": "U",
+        "tipo": "empieza",
+        "definicion": "Elemento básico de medida.",
+        "solucion": "unidad",
+        "materia": "robotica"
+    },
+    {
+        "id": "u3",
+        "letra": "U",
+        "tipo": "empieza",
+        "definicion": "Persona que maneja o programa el robot.",
+        "solucion": "usuario",
+        "materia": "robotica"
+    },
+    {
+        "id": "v1",
+        "letra": "V",
+        "tipo": "empieza",
+        "definicion": "Espacio en la memoria donde se guarda un dato que puede cambiar.",
+        "solucion": "variable",
+        "materia": "robotica"
+    },
+    {
+        "id": "v2",
+        "letra": "V",
+        "tipo": "empieza",
+        "definicion": "Sentido que permite al robot ver (cámara).",
+        "solucion": "visión",
+        "materia": "robotica"
+    },
+    {
+        "id": "v3",
+        "letra": "V",
+        "tipo": "empieza",
+        "definicion": "Rapidez con la que se mueve el robot.",
+        "solucion": "velocidad",
+        "materia": "robotica"
+    },
+    {
+        "id": "w1",
+        "letra": "W",
+        "tipo": "empieza",
+        "definicion": "Tecnología inalámbrica para conectar el robot a internet.",
+        "solucion": "wifi",
+        "materia": "robotica"
+    },
+    {
+        "id": "w2",
+        "letra": "W",
+        "tipo": "empieza",
+        "definicion": "Unidad de potencia eléctrica (en inglés).",
+        "solucion": "watt",
+        "materia": "robotica"
+    },
+    {
+        "id": "w3",
+        "letra": "W",
+        "tipo": "empieza",
+        "definicion": "Página de internet donde buscar información de robótica.",
+        "solucion": "web",
+        "materia": "robotica"
+    },
+    {
+        "id": "x1",
+        "letra": "X",
+        "tipo": "contiene",
+        "definicion": "Robot diseñado para investigar lugares desconocidos (contiene X).",
+        "solucion": "explorador",
+        "materia": "robotica"
+    },
+    {
+        "id": "x2",
+        "letra": "X",
+        "tipo": "contiene",
+        "definicion": "Conexión entre dos sistemas (contiene X).",
+        "solucion": "conexión",
+        "materia": "robotica"
+    },
+    {
+        "id": "x3",
+        "letra": "X",
+        "tipo": "contiene",
+        "definicion": "Pieza o cable que añade longitud (contiene X).",
+        "solucion": "extensión",
+        "materia": "robotica"
+    },
+    {
+        "id": "y1",
+        "letra": "Y",
+        "tipo": "contiene",
+        "definicion": "Dispositivo de control con palanca (contiene Y).",
+        "solucion": "joystick",
+        "materia": "robotica"
+    },
+    {
+        "id": "y2",
+        "letra": "Y",
+        "tipo": "contiene",
+        "definicion": "Tipo de pantalla usada en algunos robots (contiene Y).",
+        "solucion": "display",
+        "materia": "robotica"
+    },
+    {
+        "id": "y3",
+        "letra": "Y",
+        "tipo": "contiene",
+        "definicion": "Lógica que usa el robot para decidir (contiene Y).",
+        "solucion": "ley",
+        "materia": "robotica"
+    },
+    {
+        "id": "z1",
+        "letra": "Z",
+        "tipo": "empieza",
+        "definicion": "Componente que emite pitidos o sonidos de aviso.",
+        "solucion": "zumbador",
+        "materia": "robotica"
+    },
+    {
+        "id": "z2",
+        "letra": "Z",
+        "tipo": "empieza",
+        "definicion": "Área o región donde se mueve el robot.",
+        "solucion": "zona",
+        "materia": "robotica"
+    },
+    {
+        "id": "z3",
+        "letra": "Z",
+        "tipo": "empieza",
+        "definicion": "Movimiento en forma de línea quebrada.",
+        "solucion": "zigzag",
+        "materia": "robotica"
+    }
+]

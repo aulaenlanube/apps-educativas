@@ -1,0 +1,86 @@
+[
+    {
+        "categoria": "Electrónica de Potencia (Visual)",
+        "correctos": [
+            "🎛️",
+            "🔋",
+            "🔌",
+            "⚡",
+            "🏗️",
+            "🦾",
+            "🦿",
+            "⚙️",
+            "🔩",
+            "🛠️"
+        ],
+        "intrusos": [
+            "🧸",
+            "🎈",
+            "🎨",
+            "🎭",
+            "🎻"
+        ]
+    },
+    {
+        "categoria": "Conceptos de Programación Textual",
+        "correctos": [
+            "Sintaxis",
+            "Compilación",
+            "Librería",
+            "Función",
+            "Parámetro",
+            "Variable global",
+            "Comentario",
+            "Identación",
+            "Operador lógico",
+            "Tipo de dato"
+        ],
+        "intrusos": [
+            "Pincel",
+            "Lienzo",
+            "Acuarela",
+            "Caballete",
+            "Escultura"
+        ]
+    },
+    {
+        "categoria": "Componentes de Control de Motores",
+        "correctos": [
+            "Puente en H",
+            "Driver L298N",
+            "PWM (Modulación por ancho de pulso)",
+            "Encoder",
+            "Reductora",
+            "Servo de rotación continua",
+            "Motor paso a paso",
+            "Controlador de velocidad"
+        ],
+        "intrusos": [
+            "Cuchara",
+            "Tenedor",
+            "Cuchillo",
+            "Plato",
+            "Vaso"
+        ]
+    },
+    {
+        "categoria": "Robótica Industrial y Avanzada",
+        "correctos": [
+            "Brazo articulado",
+            "Célula de fabricación",
+            "Visión artificial",
+            "Cinemática inversa",
+            "Grados de libertad",
+            "Efector final",
+            "Cobot",
+            "AGV (Vehículo guiado automático)"
+        ],
+        "intrusos": [
+            "Bosque",
+            "Río",
+            "Montaña",
+            "Playa",
+            "Desierto"
+        ]
+    }
+]

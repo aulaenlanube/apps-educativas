@@ -1,0 +1,102 @@
+[
+    {
+        "id": 1,
+        "a": "ESP32",
+        "b": "Wi-Fi y Bluetooth"
+    },
+    {
+        "id": 2,
+        "a": "MQTT",
+        "b": "Protocolo IoT"
+    },
+    {
+        "id": 3,
+        "a": "Nube",
+        "b": "Cloud Computing"
+    },
+    {
+        "id": 4,
+        "a": "Red Neuronal",
+        "b": "Modelo de IA"
+    },
+    {
+        "id": 5,
+        "a": "Dataset",
+        "b": "Conjunto de datos"
+    },
+    {
+        "id": 6,
+        "a": "Machine Learning",
+        "b": "Aprendizaje automático"
+    },
+    {
+        "id": 7,
+        "a": "PID",
+        "b": "Control de precisión"
+    },
+    {
+        "id": 8,
+        "a": "Lidar",
+        "b": "Escaneo láser 3D"
+    },
+    {
+        "id": 9,
+        "a": "I2C",
+        "b": "Bus de dos cables"
+    },
+    {
+        "id": 10,
+        "a": "UART",
+        "b": "Comunicación serie"
+    },
+    {
+        "id": 11,
+        "a": "IMU",
+        "b": "Inercia y orientación"
+    },
+    {
+        "id": 12,
+        "a": "Autónomo",
+        "b": "Sin intervención"
+    },
+    {
+        "id": 13,
+        "a": "Edge Computing",
+        "b": "Proceso en el borde"
+    },
+    {
+        "id": 14,
+        "a": "ROS",
+        "b": "Robot Operating System"
+    },
+    {
+        "id": 15,
+        "a": "OTA",
+        "b": "Actualización inalámbrica"
+    },
+    {
+        "id": 16,
+        "a": "Gemelo Digital",
+        "b": "Réplica virtual"
+    },
+    {
+        "id": 17,
+        "a": "Latencia",
+        "b": "Retraso de señal"
+    },
+    {
+        "id": 18,
+        "a": "Ciberseguridad",
+        "b": "Protección de datos"
+    },
+    {
+        "id": 19,
+        "a": "Enjambre",
+        "b": "Grupo coordinado"
+    },
+    {
+        "id": 20,
+        "a": "Singularidad",
+        "b": "IA superior"
+    }
+]

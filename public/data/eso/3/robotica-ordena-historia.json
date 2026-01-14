@@ -1,0 +1,32 @@
+[
+    [
+        "Para controlar la velocidad de un motor, el controlador genera una señal PWM.",
+        "Esta señal alterna rápidamente entre encendido y apagado.",
+        "El driver de potencia recibe la señal y la amplifica para el motor.",
+        "El motor gira más lento o más rápido según el ancho del pulso recibido."
+    ],
+    [
+        "El desarrollo de un programa textual comienza con la inclusión de librerías.",
+        "Después, se declaran las variables globales y se configuran los pines.",
+        "En el bucle principal, se leen los sensores y se procesa la lógica.",
+        "Finalmente, se envían las órdenes a los actuadores para realizar la tarea."
+    ],
+    [
+        "Un robot con visión artificial captura una imagen mediante su cámara.",
+        "El procesador analiza los píxeles buscando patrones o colores específicos.",
+        "Una vez identificado el objeto, se calculan sus coordenadas espaciales.",
+        "El brazo robótico se mueve hacia esas coordenadas para recoger el objeto."
+    ],
+    [
+        "En una fábrica, un brazo robótico debe soldar una pieza de coche.",
+        "El programador define los puntos de paso usando coordenadas cartesianas.",
+        "El software de control calcula los ángulos de cada articulación necesaria.",
+        "El robot ejecuta el movimiento con una precisión de décimas de milímetro."
+    ],
+    [
+        "Para mantener el equilibrio, un robot bípedo lee constantemente su giroscopio.",
+        "Si detecta una inclinación excesiva, el controlador calcula una corrección.",
+        "Los motores de los tobillos y rodillas se mueven para desplazar el peso.",
+        "El robot recupera la verticalidad evitando caerse al suelo."
+    ]
+]

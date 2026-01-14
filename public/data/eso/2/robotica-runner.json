@@ -1,0 +1,62 @@
+{
+    "electronica_basica": [
+        "resistencia",
+        "led",
+        "pulsador",
+        "protoboard",
+        "jumper",
+        "batería",
+        "condensador",
+        "transistor",
+        "diodo",
+        "potenciómetro"
+    ],
+    "programacion_logica": [
+        "evento",
+        "bucle",
+        "condicional",
+        "variable",
+        "operador",
+        "función",
+        "algoritmo",
+        "bloque",
+        "esperar",
+        "si entonces"
+    ],
+    "sensores_medida": [
+        "analógico",
+        "digital",
+        "umbral",
+        "rango",
+        "lectura",
+        "calibración",
+        "infrarrojos",
+        "ultrasonidos",
+        "luz",
+        "sonido"
+    ],
+    "entornos_desarrollo": [
+        "mblock",
+        "scratch",
+        "tinkercad",
+        "arduino ide",
+        "makecode",
+        "bitbloq",
+        "fritzing",
+        "python",
+        "c++",
+        "simulador"
+    ],
+    "mecanismos_robot": [
+        "servomotor",
+        "motor dc",
+        "reductora",
+        "engranaje",
+        "eje",
+        "chasis",
+        "rueda",
+        "articulación",
+        "pinza",
+        "acoplamiento"
+    ]
+}

@@ -1,0 +1,91 @@
+[
+    {
+        "categoria": "Sensores Avanzados (Visual)",
+        "correctos": [
+            "🌡️",
+            "⏲️",
+            "📡",
+            "🛰️",
+            "🎛️",
+            "🌡️",
+            "📏",
+            "🧭",
+            "⚖️",
+            "🔋",
+            "🔌",
+            "💡"
+        ],
+        "intrusos": [
+            "🍔",
+            "🍕",
+            "🍦",
+            "🍩",
+            "🍪",
+            "🍰"
+        ]
+    },
+    {
+        "categoria": "Componentes Electrónicos",
+        "correctos": [
+            "Resistencia",
+            "Condensador",
+            "Diodo LED",
+            "Transistor",
+            "Pulsador",
+            "Potenciómetro",
+            "Zumbador",
+            "Placa de pruebas (Protoboard)",
+            "Cables puente (Jumper)",
+            "Circuito integrado"
+        ],
+        "intrusos": [
+            "Pegamento",
+            "Tijeras de papel",
+            "Grapadora",
+            "Sacapuntas",
+            "Goma de borrar"
+        ]
+    },
+    {
+        "categoria": "Tipos de Movimiento",
+        "correctos": [
+            "Lineal",
+            "Circular",
+            "Alternativo",
+            "Oscilante",
+            "Rotativo",
+            "Rectilíneo",
+            "Angular",
+            "Preciso"
+        ],
+        "intrusos": [
+            "Triste",
+            "Alegre",
+            "Enfadado",
+            "Cansado",
+            "Hambriento"
+        ]
+    },
+    {
+        "categoria": "Lenguajes y Entornos",
+        "correctos": [
+            "Scratch",
+            "mBlock",
+            "MakeCode",
+            "Arduino IDE",
+            "Bitbloq",
+            "Tinkercad",
+            "Python",
+            "C++",
+            "Bloques",
+            "Código"
+        ],
+        "intrusos": [
+            "Francés",
+            "Alemán",
+            "Chino",
+            "Italiano",
+            "Portugués"
+        ]
+    }
+]

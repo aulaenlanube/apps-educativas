@@ -59,7 +59,8 @@ export const primariaApps = {
     'tutoria': [appBancoRecursosTutoria, appRunner, appExcavacionSelectiva, appRosco, appIslaDeLaCalma, appGeneradorPersonajes, appBuscaElIntruso, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'valenciano': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'frances': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
-    'programacion': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
+    'programacion': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
+
   },
   '2': {
     'lengua': [
@@ -89,7 +90,8 @@ export const primariaApps = {
     'tutoria': [appBancoRecursosTutoria, appIslaDeLaCalma, appGeneradorPersonajes, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'valenciano': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'frances': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
-    'programacion': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
+    'programacion': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
+
   },
   '3': {
     'lengua': [
@@ -118,7 +120,8 @@ export const primariaApps = {
     'tutoria': [appBancoRecursosTutoria, appIslaDeLaCalma, appGeneradorPersonajes, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'valenciano': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'frances': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
-    'programacion': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
+    'programacion': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
+
   },
   '4': {
     'lengua': [
@@ -148,7 +151,8 @@ export const primariaApps = {
     'tutoria': [appBancoRecursosTutoria, appIslaDeLaCalma, appGeneradorPersonajes, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'valenciano': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'frances': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
-    'programacion': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
+    'programacion': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
+
   },
   '5': {
     'lengua': [
@@ -178,7 +182,8 @@ export const primariaApps = {
     'tutoria': [appBancoRecursosTutoria, appIslaDeLaCalma, appGeneradorPersonajes, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'valenciano': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'frances': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
-    'programacion': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
+    'programacion': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
+
   },
   '6': {
     'lengua': [
@@ -208,6 +213,7 @@ export const primariaApps = {
     'tutoria': [appBancoRecursosTutoria, appIslaDeLaCalma, appGeneradorPersonajes, appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'valenciano': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
     'frances': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
-    'programacion': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral]
+    'programacion': [appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appDetectiveDePalabras, appParejas, appLluviaDePalabras, appClasificador, appSnake, appComprensionEscrita, appComprensionOral],
+
   }
 };

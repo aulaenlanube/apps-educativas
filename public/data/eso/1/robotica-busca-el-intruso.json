@@ -1,0 +1,132 @@
+[
+    {
+        "categoria": "Componentes de un Robot (Visual)",
+        "correctos": [
+            "🤖",
+            "⚙️",
+            "🔋",
+            "🔌",
+            "💡",
+            "🛠️",
+            "🦾",
+            "🦿",
+            "🎛️",
+            "🌡️",
+            "⏲️",
+            "📡",
+            "🛰️",
+            "🏗️",
+            "🔩",
+            "🪛",
+            "🔧"
+        ],
+        "intrusos": [
+            "🌸",
+            "🍦",
+            "🐱",
+            "☁️",
+            "🎨",
+            "🦋",
+            "🌈",
+            "🌅"
+        ]
+    },
+    {
+        "categoria": "Sensores Comunes",
+        "correctos": [
+            "Sensor de Ultrasonidos",
+            "Sensor de Infrarrojos",
+            "Sensor de Luz (LDR)",
+            "Sensor de Tacto",
+            "Sensor de Temperatura",
+            "Sensor de Humedad",
+            "Giroscopio",
+            "Acelerómetro",
+            "Sensor de Color",
+            "Sensor de Gas",
+            "Sensor de Presión",
+            "Final de carrera"
+        ],
+        "intrusos": [
+            "Sensor de Sueños",
+            "Sensor de Hambre",
+            "Sensor de Aburrimiento",
+            "Sensor de Amistad",
+            "Sensor de Felicidad",
+            "Sensor de Mentiras"
+        ]
+    },
+    {
+        "categoria": "Actuadores y Salidas",
+        "correctos": [
+            "Motor DC",
+            "Servomotor",
+            "Motor paso a paso",
+            "LED",
+            "Zumbador (Buzzer)",
+            "Pantalla LCD",
+            "Altavoz",
+            "Relé",
+            "Bomba de agua",
+            "Ventilador",
+            "Pinza robótica",
+            "Matriz de LEDs"
+        ],
+        "intrusos": [
+            "Lápiz",
+            "Goma de borrar",
+            "Sacapuntas",
+            "Regla",
+            "Cuaderno",
+            "Libro",
+            "Mochila"
+        ]
+    },
+    {
+        "categoria": "Placas de Control",
+        "correctos": [
+            "Arduino Uno",
+            "Micro:bit",
+            "Raspberry Pi",
+            "ESP32",
+            "ESP8266",
+            "LEGO Mindstorms",
+            "VEX Robotics",
+            "Makey Makey",
+            "NodeMCU",
+            "STM32"
+        ],
+        "intrusos": [
+            "Placa de inducción",
+            "Placa solar",
+            "Placa de matrícula",
+            "Placa de policía",
+            "Placa base de cocina"
+        ]
+    },
+    {
+        "categoria": "Conceptos de Robótica",
+        "correctos": [
+            "Grados de libertad",
+            "Articulación",
+            "Eslabón",
+            "Efector final",
+            "Programación",
+            "Bucle",
+            "Condicional",
+            "Variable",
+            "Algoritmo",
+            "Electrónica",
+            "Mecánica",
+            "Cinemática"
+        ],
+        "intrusos": [
+            "Poesía",
+            "Escultura",
+            "Pintura",
+            "Danza",
+            "Teatro",
+            "Literatura"
+        ]
+    }
+]

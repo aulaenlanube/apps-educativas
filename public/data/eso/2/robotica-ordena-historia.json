@@ -1,0 +1,32 @@
+[
+    [
+        "Para montar un circuito, primero colocamos los componentes en la protoboard.",
+        "Después, conectamos los cables jumper siguiendo el esquema eléctrico.",
+        "A continuación, unimos la placa de control a la fuente de alimentación.",
+        "Finalmente, comprobamos que no haya cortocircuitos antes de encenderlo."
+    ],
+    [
+        "El proceso de programación empieza con el diseño del algoritmo en papel.",
+        "Luego, traducimos esos pasos a bloques de código en el ordenador.",
+        "Después, conectamos el robot mediante el cable USB para subir el programa.",
+        "Por último, desconectamos el cable y probamos el robot en el suelo."
+    ],
+    [
+        "Un sensor analógico mide la intensidad de la luz ambiental.",
+        "El controlador recibe un número entre cero y mil veintitrés.",
+        "El programa compara ese número con un valor de referencia o umbral.",
+        "Si hay poca luz, el robot decide encender automáticamente sus faros LED."
+    ],
+    [
+        "Para que un robot no choque, emite una señal de ultrasonidos.",
+        "La señal rebota en la pared y vuelve al sensor del robot.",
+        "El controlador calcula la distancia basándose en el tiempo de eco.",
+        "Si la distancia es menor de diez centímetros, el robot gira para evitar el golpe."
+    ],
+    [
+        "Un robot seguidor de líneas usa dos sensores infrarrojos en la base.",
+        "Cuando el sensor izquierdo detecta negro, el robot gira a la izquierda.",
+        "Cuando el sensor derecho detecta negro, el robot gira a la derecha.",
+        "Si ambos ven blanco, el robot avanza recto buscando la línea de nuevo."
+    ]
+]

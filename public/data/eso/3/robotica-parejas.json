@@ -1,0 +1,102 @@
+[
+    {
+        "id": 1,
+        "a": "Puente en H",
+        "b": "Cambio de sentido"
+    },
+    {
+        "id": 2,
+        "a": "PWM",
+        "b": "Control de velocidad"
+    },
+    {
+        "id": 3,
+        "a": "L298N",
+        "b": "Driver de motores"
+    },
+    {
+        "id": 4,
+        "a": "Sintaxis",
+        "b": "Reglas del lenguaje"
+    },
+    {
+        "id": 5,
+        "a": "Función",
+        "b": "Código reutilizable"
+    },
+    {
+        "id": 6,
+        "a": "Librería",
+        "b": "Colección de funciones"
+    },
+    {
+        "id": 7,
+        "a": "Compilación",
+        "b": "Traducción a binario"
+    },
+    {
+        "id": 8,
+        "a": "Grados libertad",
+        "b": "Ejes de movimiento"
+    },
+    {
+        "id": 9,
+        "a": "Efector final",
+        "b": "Pinza o soldador"
+    },
+    {
+        "id": 10,
+        "a": "Cobot",
+        "b": "Robot colaborativo"
+    },
+    {
+        "id": 11,
+        "a": "Encoder",
+        "b": "Sensor de rotación"
+    },
+    {
+        "id": 12,
+        "a": "Visión artificial",
+        "b": "Reconocimiento imágenes"
+    },
+    {
+        "id": 13,
+        "a": "PID",
+        "b": "Algoritmo de control"
+    },
+    {
+        "id": 14,
+        "a": "Arduino Mega",
+        "b": "Más pines E/S"
+    },
+    {
+        "id": 15,
+        "a": "Relé",
+        "b": "Control alta tensión"
+    },
+    {
+        "id": 16,
+        "a": "Cinemática",
+        "b": "Estudio del movimiento"
+    },
+    {
+        "id": 17,
+        "a": "Bucle While",
+        "b": "Repetición condicional"
+    },
+    {
+        "id": 18,
+        "a": "Variable global",
+        "b": "Uso en todo el código"
+    },
+    {
+        "id": 19,
+        "a": "Identación",
+        "b": "Sangrado del texto"
+    },
+    {
+        "id": 20,
+        "a": "Puerto Serie",
+        "b": "Monitor de datos"
+    }
+]

@@ -1,0 +1,152 @@
+[
+    {
+        "id": 1,
+        "a": "Robot",
+        "b": "Máquina autónoma"
+    },
+    {
+        "id": 2,
+        "a": "Sensores",
+        "b": "Sentidos del robot"
+    },
+    {
+        "id": 3,
+        "a": "Actuadores",
+        "b": "Músculos del robot"
+    },
+    {
+        "id": 4,
+        "a": "Controlador",
+        "b": "Cerebro del robot"
+    },
+    {
+        "id": 5,
+        "a": "Ultrasonidos",
+        "b": "Mide distancias"
+    },
+    {
+        "id": 6,
+        "a": "Infrarrojos",
+        "b": "Sigue-líneas"
+    },
+    {
+        "id": 7,
+        "a": "LDR",
+        "b": "Sensor de luz"
+    },
+    {
+        "id": 8,
+        "a": "Motor DC",
+        "b": "Giro continuo"
+    },
+    {
+        "id": 9,
+        "a": "Servomotor",
+        "b": "Giro preciso"
+    },
+    {
+        "id": 10,
+        "a": "LED",
+        "b": "Emisor de luz"
+    },
+    {
+        "id": 11,
+        "a": "Zumbador",
+        "b": "Emisor de sonido"
+    },
+    {
+        "id": 12,
+        "a": "Arduino",
+        "b": "Placa de control"
+    },
+    {
+        "id": 13,
+        "a": "Micro:bit",
+        "b": "Placa educativa"
+    },
+    {
+        "id": 14,
+        "a": "Algoritmo",
+        "b": "Pasos ordenados"
+    },
+    {
+        "id": 15,
+        "a": "Bucle",
+        "b": "Repetición"
+    },
+    {
+        "id": 16,
+        "a": "Condicional",
+        "b": "Si... entonces"
+    },
+    {
+        "id": 17,
+        "a": "Variable",
+        "b": "Dato guardado"
+    },
+    {
+        "id": 18,
+        "a": "Isaac Asimov",
+        "b": "Leyes robótica"
+    },
+    {
+        "id": 19,
+        "a": "Humanoide",
+        "b": "Forma humana"
+    },
+    {
+        "id": 20,
+        "a": "Industrial",
+        "b": "Robot de fábrica"
+    },
+    {
+        "id": 21,
+        "a": "Rover",
+        "b": "Explorador planetario"
+    },
+    {
+        "id": 22,
+        "a": "Dron",
+        "b": "Robot volador"
+    },
+    {
+        "id": 23,
+        "a": "Chasis",
+        "b": "Estructura robot"
+    },
+    {
+        "id": 24,
+        "a": "Batería",
+        "b": "Fuente energía"
+    },
+    {
+        "id": 25,
+        "a": "Programación",
+        "b": "Instrucciones"
+    },
+    {
+        "id": 26,
+        "a": "Grados libertad",
+        "b": "Ejes movimiento"
+    },
+    {
+        "id": 27,
+        "a": "Articulación",
+        "b": "Unión móvil"
+    },
+    {
+        "id": 28,
+        "a": "Efector final",
+        "b": "Pinza o herramienta"
+    },
+    {
+        "id": 29,
+        "a": "Teleoperación",
+        "b": "Control remoto"
+    },
+    {
+        "id": 30,
+        "a": "Biónica",
+        "b": "Imita naturaleza"
+    }
+]

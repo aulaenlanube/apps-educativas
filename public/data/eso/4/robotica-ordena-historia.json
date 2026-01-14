@@ -1,0 +1,32 @@
+[
+    [
+        "Para conectar un robot a la nube, configuramos las credenciales Wi-Fi.",
+        "El robot establece una conexión segura con el servidor mediante MQTT.",
+        "Los datos de los sensores se publican periódicamente en un tema o topic.",
+        "Desde una aplicación móvil, nos suscribimos al tema para ver los datos."
+    ],
+    [
+        "El entrenamiento de una IA comienza con la recolección de un gran dataset.",
+        "Las imágenes se etiquetan para que el modelo sepa qué está viendo.",
+        "El algoritmo de aprendizaje ajusta los pesos de la red neuronal.",
+        "Finalmente, validamos la precisión del modelo con datos nuevos."
+    ],
+    [
+        "Un sistema de control PID lee la posición actual mediante un encoder.",
+        "Se calcula el error restando la posición actual de la deseada.",
+        "El algoritmo aplica una corrección basada en los parámetros P, I y D.",
+        "El motor recibe la señal ajustada para corregir la trayectoria suavemente."
+    ],
+    [
+        "Un coche autónomo detecta un peatón mediante su sensor Lidar y cámaras.",
+        "El sistema de visión clasifica al objeto como un obstáculo prioritario.",
+        "La unidad de control calcula una maniobra de frenado de emergencia.",
+        "Los actuadores de freno se activan en milisegundos evitando el impacto."
+    ],
+    [
+        "Para actualizar el firmware de un robot, usamos la tecnología OTA.",
+        "El robot descarga el nuevo código de forma inalámbrica mientras funciona.",
+        "Se verifica la integridad del archivo para evitar errores de carga.",
+        "El robot se reinicia automáticamente con las nuevas funciones instaladas."
+    ]
+]

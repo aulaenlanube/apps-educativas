@@ -1,0 +1,372 @@
+[
+    {
+        "id": "1",
+        "titulo": "¿Qué es un Robot?",
+        "texto": "Un robot es una máquina programable capaz de realizar tareas de forma automática o semiautomática. A diferencia de una máquina simple, un robot puede percibir su entorno, procesar esa información y actuar en consecuencia. Los robots se componen de tres sistemas principales: sensores (para sentir), sistemas de control (para pensar) y actuadores (para moverse o actuar). La palabra 'robot' proviene del término checo 'robota', que significa trabajo forzado o servidumbre.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué diferencia principalmente a un robot de una máquina simple?",
+                "opciones": [
+                    "Que es más grande",
+                    "Que puede percibir, procesar y actuar automáticamente",
+                    "Que siempre tiene forma humana",
+                    "Que usa mucha electricidad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿De dónde proviene la palabra 'robot'?",
+                "opciones": [
+                    "Del inglés 'row boat'",
+                    "Del checo 'robota'",
+                    "Del latín 'robustus'",
+                    "Del griego 'robotikos'"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuáles son los tres sistemas principales de un robot?",
+                "opciones": [
+                    "Ruedas, cables y pintura",
+                    "Sensores, control y actuadores",
+                    "Pantalla, teclado y ratón",
+                    "Batería, motor y luces"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Las Leyes de la Robótica",
+        "texto": "El escritor Isaac Asimov propuso tres leyes fundamentales para asegurar que los robots sean seguros para los humanos: 1) Un robot no hará daño a un ser humano o, por inacción, permitirá que un ser humano sufra daño. 2) Un robot debe cumplir las órdenes dadas por los seres humanos, a excepción de aquellas que entren en conflicto con la primera ley. 3) Un robot debe proteger su propia existencia en la medida en que esta protección no entre en conflicto con la primera o con la segunda ley.",
+        "preguntas": [
+            {
+                "pregunta": "¿Quién propuso las tres leyes de la robótica?",
+                "opciones": [
+                    "Albert Einstein",
+                    "Isaac Asimov",
+                    "Bill Gates",
+                    "Elon Musk"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "Según la primera ley, ¿qué es lo más importante para un robot?",
+                "opciones": [
+                    "Ahorrar energía",
+                    "No hacer daño a los seres humanos",
+                    "Ser el más rápido",
+                    "Obedecer siempre, sin importar qué"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuándo puede un robot desobedecer una orden humana?",
+                "opciones": [
+                    "Cuando tiene sueño",
+                    "Cuando la orden implica hacer daño a un humano",
+                    "Cuando la orden es aburrida",
+                    "Nunca puede desobedecer"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Sensores: Los sentidos del robot",
+        "texto": "Los sensores permiten que el robot obtenga información del mundo exterior. Son como sus sentidos. Por ejemplo, un sensor de ultrasonidos funciona como el oído de un murciélago para medir distancias. Un sensor de luz (LDR) detecta la claridad u oscuridad. Los sensores de infrarrojos pueden detectar obstáculos o seguir líneas negras en el suelo. Gracias a los sensores, un robot puede evitar chocar contra una pared o detenerse si detecta un precipicio.",
+        "preguntas": [
+            {
+                "pregunta": "¿Para qué sirven los sensores en un robot?",
+                "opciones": [
+                    "Para que el robot sea más bonito",
+                    "Para obtener información del entorno",
+                    "Para gastar la batería",
+                    "Para que el robot pueda hablar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué sensor usarías para medir la distancia a un objeto?",
+                "opciones": [
+                    "Sensor de temperatura",
+                    "Sensor de ultrasonidos",
+                    "Sensor de sonido",
+                    "Sensor de humedad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué puede detectar un sensor infrarrojo?",
+                "opciones": [
+                    "El sabor de la comida",
+                    "Líneas en el suelo u obstáculos cercanos",
+                    "La velocidad del viento",
+                    "El peso del robot"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Actuadores: Los músculos del robot",
+        "texto": "Los actuadores son los componentes que permiten al robot realizar acciones físicas, como moverse o manipular objetos. Los más comunes son los motores eléctricos. Los motores de corriente continua (DC) se usan para las ruedas. Los servomotores son motores especiales que pueden girar a un ángulo preciso (por ejemplo, para mover el brazo de un robot). Otros actuadores pueden ser luces LED, zumbadores para emitir sonidos o pinzas para agarrar cosas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un actuador?",
+                "opciones": [
+                    "Un componente que percibe el entorno",
+                    "Un componente que permite al robot realizar acciones físicas",
+                    "El cerebro del robot",
+                    "Un tipo de batería"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de motor usarías para mover un brazo a una posición exacta?",
+                "opciones": [
+                    "Motor de gasolina",
+                    "Servomotor",
+                    "Motor de vapor",
+                    "Motor de imanes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál de estos es un actuador de sonido?",
+                "opciones": [
+                    "LED",
+                    "Zumbador (Buzzer)",
+                    "Sensor de luz",
+                    "Pila"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "El Controlador: El cerebro del robot",
+        "texto": "El controlador es el cerebro del robot. Suele ser un microcontrolador o una pequeña computadora (como Arduino o Raspberry Pi). Recibe las señales de los sensores, las procesas según el programa que hayamos escrito y envía órdenes a los actuadores. Sin un controlador y un programa, el robot no sabría qué hacer con la información que recibe de sus sensores. Es donde reside la 'inteligencia' de la máquina.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es la función del controlador?",
+                "opciones": [
+                    "Dar energía a los motores",
+                    "Procesar información y enviar órdenes",
+                    "Sujetar las piezas del robot",
+                    "Detectar la luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es Arduino en el contexto de la robótica?",
+                "opciones": [
+                    "Un tipo de sensor",
+                    "Una placa de control (microcontrolador)",
+                    "Un motor muy potente",
+                    "Un lenguaje de señas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué necesita el controlador para saber qué hacer?",
+                "opciones": [
+                    "Comida",
+                    "Un programa o código",
+                    "Gasolina",
+                    "Agua"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Programación por Bloques",
+        "texto": "La programación por bloques es una forma visual de crear código sin necesidad de escribir texto complejo. Se utilizan piezas de colores que encajan entre sí como un rompecabezas. Cada bloque representa una instrucción, como 'avanzar', 'girar' o 'esperar'. Es ideal para aprender robótica porque evita errores de escritura y permite centrarse en la lógica del programa. Herramientas como Scratch o mBlock son muy populares para programar robots de esta manera.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué ventaja principal tiene la programación por bloques?",
+                "opciones": [
+                    "Es más lenta que el texto",
+                    "Es visual y evita errores de escritura",
+                    "Solo sirve para juegos",
+                    "No necesita ordenador"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se conectan las instrucciones en este tipo de programación?",
+                "opciones": [
+                    "Con pegamento",
+                    "Encajando como piezas de un rompecabezas",
+                    "Escribiendo puntos y comas",
+                    "Dibujando líneas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál de estas herramientas usa bloques?",
+                "opciones": [
+                    "Excel",
+                    "Scratch",
+                    "Photoshop",
+                    "Word"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "El Chasis y la Estructura",
+        "texto": "El chasis es el esqueleto del robot. Es la estructura física sobre la que se montan todos los demás componentes: motores, sensores, placas y baterías. Puede estar hecho de plástico, metal o incluso madera. Un buen chasis debe ser resistente para proteger los componentes internos, pero también ligero para que los motores puedan moverlo con facilidad. La forma del chasis determinará si el robot se mueve con ruedas, patas o cadenas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es el chasis de un robot?",
+                "opciones": [
+                    "El cerebro",
+                    "El esqueleto o estructura física",
+                    "Un tipo de sensor",
+                    "El cableado"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué características debe tener un buen chasis?",
+                "opciones": [
+                    "Ser muy pesado y de cristal",
+                    "Ser resistente y ligero",
+                    "Ser de colores brillantes",
+                    "Ser siempre redondo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué se monta sobre el chasis?",
+                "opciones": [
+                    "Solo las ruedas",
+                    "Todos los componentes del robot",
+                    "Nada, va por fuera",
+                    "Solo la antena"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Robots en la Vida Cotidiana",
+        "texto": "Hoy en día, convivimos con muchos tipos de robots sin darnos cuenta. Los robots aspiradores limpian nuestras casas de forma autónoma. En las fábricas, los brazos robóticos montan coches con gran precisión. También existen robots médicos que ayudan en cirugías complicadas y drones que entregan paquetes o graban vídeos desde el aire. Estos robots nos ayudan a realizar tareas que son repetitivas, peligrosas o que requieren una precisión que los humanos no siempre tenemos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué tarea realiza un robot aspirador?",
+                "opciones": [
+                    "Cocinar",
+                    "Limpiar el suelo de forma autónoma",
+                    "Vigilar la puerta",
+                    "Pasear al perro"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué se usan robots en las fábricas de coches?",
+                "opciones": [
+                    "Porque son más baratos que las luces",
+                    "Por su gran precisión en tareas repetitivas",
+                    "Porque saben hablar muchos idiomas",
+                    "Porque no necesitan electricidad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué ayudan los robots médicos?",
+                "opciones": [
+                    "En cirugías complicadas",
+                    "A dar las noticias",
+                    "A conducir ambulancias",
+                    "A limpiar las ventanas"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "La Energía del Robot: Baterías",
+        "texto": "Para que un robot pueda funcionar, necesita energía. La mayoría de los robots móviles utilizan baterías recíprocas, como las de litio, similares a las de los teléfonos móviles. La batería almacena la electricidad que luego consumen el controlador, los sensores y, sobre todo, los motores. Es importante gestionar bien la energía para que el robot no se quede 'muerto' en medio de una tarea. Algunos robots avanzados pueden incluso buscar su base de carga cuando detectan que su batería está baja.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué componente almacena la energía en un robot móvil?",
+                "opciones": [
+                    "El motor",
+                    "La batería",
+                    "El sensor",
+                    "El chasis"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué parte del robot suele consumir más energía?",
+                "opciones": [
+                    "Los sensores",
+                    "Los motores",
+                    "Las luces LED",
+                    "El plástico"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué hacen algunos robots cuando tienen poca batería?",
+                "opciones": [
+                    "Se ponen a llorar",
+                    "Buscan su base de carga automáticamente",
+                    "Corren más rápido",
+                    "Se apagan para siempre"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Algoritmos y Lógica",
+        "texto": "Un algoritmo es una serie de pasos ordenados para resolver un problema o realizar una tarea. En robótica, el algoritmo es el plan que el robot debe seguir. Por ejemplo, un algoritmo para evitar obstáculos sería: 1. Avanzar. 2. ¿Hay algo delante? 3. Si no hay nada, volver al paso 1. 4. Si hay algo, girar a la derecha y volver al paso 1. La lógica es fundamental para que el robot tome las decisiones correctas en cada momento según lo que detecten sus sensores.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un algoritmo?",
+                "opciones": [
+                    "Un tipo de metal",
+                    "Una serie de pasos ordenados para realizar una tarea",
+                    "El nombre de un robot famoso",
+                    "Un sensor de sonido"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En el ejemplo de evitar obstáculos, ¿qué hace el robot si detecta algo?",
+                "opciones": [
+                    "Se detiene y espera",
+                    "Gira a la derecha",
+                    "Salta por encima",
+                    "Sigue recto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué permite al robot tomar decisiones?",
+                "opciones": [
+                    "La suerte",
+                    "La lógica del programa y los sensores",
+                    "El color del chasis",
+                    "La marca de la batería"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

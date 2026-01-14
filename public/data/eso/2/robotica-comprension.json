@@ -1,0 +1,372 @@
+[
+    {
+        "id": "1",
+        "titulo": "Electrónica Básica en Robótica",
+        "texto": "Para que un robot funcione, necesita un circuito electrónico. Los componentes básicos incluyen la RESISTENCIA (que limita el paso de la corriente), el LED (que emite luz) y el PULSADOR (que actúa como un interruptor). Usamos una PROTOBOARD o placa de pruebas para conectar estos componentes sin necesidad de soldar, lo que nos permite experimentar y corregir errores fácilmente. La corriente eléctrica fluye desde el polo positivo al negativo, alimentando el cerebro del robot.",
+        "preguntas": [
+            {
+                "pregunta": "¿Para qué sirve una resistencia en un circuito?",
+                "opciones": [
+                    "Para dar más energía",
+                    "Para limitar el paso de la corriente eléctrica",
+                    "Para que el robot corra más",
+                    "Para almacenar electricidad"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ventaja tiene usar una Protoboard?",
+                "opciones": [
+                    "Que es más bonita",
+                    "Que permite conectar componentes sin soldar",
+                    "Que no necesita cables",
+                    "Que hace que el robot sea inteligente"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué componente emite luz en un robot?",
+                "opciones": [
+                    "Motor",
+                    "LED",
+                    "Sensor de sonido",
+                    "Batería"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Programación por Bloques: Eventos y Bucles",
+        "texto": "En 2º de ESO profundizamos en la lógica de programación. Un EVENTO es algo que sucede y dispara una acción (por ejemplo, 'al presionar bandera verde'). Los BUCLES nos permiten repetir tareas sin escribir el código muchas veces. Un bucle 'por siempre' es útil para que un robot esté constantemente leyendo sus sensores, mientras que un bucle 'repetir 10 veces' es ideal para acciones con un final definido. La programación estructurada hace que nuestros robots sean más eficientes.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un evento en programación?",
+                "opciones": [
+                    "Una fiesta de robots",
+                    "Algo que sucede y dispara una acción",
+                    "Un tipo de motor",
+                    "Un error del programa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve un bucle 'por siempre'?",
+                "opciones": [
+                    "Para que el robot no se apague nunca",
+                    "Para repetir una lectura de sensores constantemente",
+                    "Para que el robot vaya más lento",
+                    "Para borrar el programa"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ayuda a no repetir código innecesariamente?",
+                "opciones": [
+                    "Los cables",
+                    "Los bucles",
+                    "Las baterías",
+                    "Los sensores"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Sensores Digitales vs Analógicos",
+        "texto": "Los sensores pueden ser de dos tipos. Los DIGITALES solo tienen dos estados: encendido o apagado (0 o 1), como un pulsador. Los ANALÓGICOS pueden medir un rango de valores, como un sensor de luz que nos da un valor entre 0 (oscuridad total) y 1023 (mucha luz). Entender esta diferencia es clave para programar el robot: un sensor digital se lee con 'si/no', mientras que uno analógico requiere comparar valores numéricos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuántos estados tiene un sensor digital?",
+                "opciones": [
+                    "Muchos",
+                    "Dos (0 o 1)",
+                    "Diez",
+                    "Depende del día"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un ejemplo de sensor analógico?",
+                "opciones": [
+                    "Un interruptor",
+                    "Un sensor de luz (LDR)",
+                    "Un pulsador",
+                    "Un cable"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué rango de valores suele tener un sensor analógico en placas como Arduino?",
+                "opciones": [
+                    "0 a 1",
+                    "0 a 1023",
+                    "1 a 10",
+                    "Solo 100"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Motores y Servomotores",
+        "texto": "Para mover un robot usamos diferentes tipos de motores. Los motores de corriente continua (DC) giran sin parar mientras reciben energía, ideales para las ruedas. Sin embargo, si queremos mover un brazo robótico a una posición exacta (por ejemplo, 90 grados), usamos un SERVOMOTOR. El servomotor tiene un sensor interno que le permite saber en qué posición está y mantenerse ahí con firmeza. Se controlan mediante señales de pulsos (PWM).",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué motor es mejor para las ruedas de un robot que avanza?",
+                "opciones": [
+                    "Motor de vapor",
+                    "Motor de corriente continua (DC)",
+                    "Un muelle",
+                    "Un imán"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué permite a un servomotor conocer su posición?",
+                "opciones": [
+                    "Un sensor interno",
+                    "La suerte",
+                    "El color de sus cables",
+                    "La temperatura exterior"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A qué ángulo podemos mover típicamente un servomotor estándar?",
+                "opciones": [
+                    "Solo a 0 grados",
+                    "A una posición precisa entre 0 y 180 grados",
+                    "No se puede mover",
+                    "A mil grados"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "La Placa Arduino y sus Pines",
+        "texto": "Arduino es una de las placas más usadas en robótica. Tiene pines de entrada y salida. Los pines DIGITALES se usan para cosas que están encendidas o apagadas (como un LED). Los pines ANALÓGICOS (marcados con una A) se usan para leer sensores que dan valores variables (como la temperatura). Además, algunos pines digitales tienen un símbolo '~' que indica que pueden simular salidas analógicas mediante una técnica llamada PWM, útil para variar la velocidad de un motor.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué indican los pines marcados con una 'A' en Arduino?",
+                "opciones": [
+                    "Que son para Altavoces",
+                    "Que son entradas Analógicas",
+                    "Que son para la Antena",
+                    "Que están Apagados"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve la técnica PWM?",
+                "opciones": [
+                    "Para apagar la placa",
+                    "Para simular una salida analógica en un pin digital",
+                    "Para conectar el Wi-Fi",
+                    "Para limpiar los sensores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Dónde conectarías un LED que solo quieres encender o apagar?",
+                "opciones": [
+                    "En un pin digital",
+                    "En la batería directamente",
+                    "En el sensor de ultrasonidos",
+                    "En el puerto USB"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Sensor de Ultrasonidos: Midiendo Distancias",
+        "texto": "El sensor HC-SR04 es muy común para evitar obstáculos. Funciona enviando un pulso de sonido ultrasónico (que no oímos) a través de un pin llamado TRIGGER. Ese sonido rebota en un objeto y vuelve al sensor, que lo recibe por el pin ECHO. Midiendo el tiempo que tarda el sonido en ir y volver, el controlador puede calcular la distancia exacta al objeto. Es el mismo sistema que usan los murciélagos o los delfines para orientarse.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llaman los dos pines principales de un sensor de ultrasonidos?",
+                "opciones": [
+                    "Entrada y Salida",
+                    "Trigger y Echo",
+                    "Luz y Sonido",
+                    "Positivo y Negativo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué utiliza este sensor para medir la distancia?",
+                "opciones": [
+                    "Un láser",
+                    "Ondas de sonido ultrasónico",
+                    "Una cinta métrica",
+                    "Una cámara"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué pin se encarga de recibir el eco del sonido?",
+                "opciones": [
+                    "Trigger",
+                    "Echo",
+                    "VCC",
+                    "GND"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "El Monitor Serie: Hablando con el Robot",
+        "texto": "Cuando programamos un robot, a veces no sabemos qué está pensando o qué valores están leyendo sus sensores. Para eso usamos el MONITOR SERIE. Es una ventana en el ordenador que nos permite ver los datos que el robot envía a través del cable USB. Podemos imprimir mensajes como 'Obstáculo detectado' o el valor numérico de un sensor de luz. Es la herramienta principal para la DEPURACIÓN, que consiste en encontrar y arreglar fallos en nuestro código.",
+        "preguntas": [
+            {
+                "pregunta": "¿Para qué sirve el Monitor Serie?",
+                "opciones": [
+                    "Para ver películas",
+                    "Para ver los datos que envía el robot al ordenador",
+                    "Para cambiar el color del robot",
+                    "Para aumentar la velocidad de los motores"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué es la depuración (debugging)?",
+                "opciones": [
+                    "Limpiar el polvo del robot",
+                    "Encontrar y corregir errores en el programa",
+                    "Pintar el chasis",
+                    "Cargar la batería"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿A través de qué conexión se ven los datos del Monitor Serie?",
+                "opciones": [
+                    "Bluetooth",
+                    "Cable USB",
+                    "Infrarrojos",
+                    "No necesita conexión"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Variables y Operadores",
+        "texto": "Una VARIABLE es como una caja donde guardamos un dato que puede cambiar, como la 'velocidad' o la 'distancia'. Los OPERADORES nos permiten trabajar con esos datos. Los hay aritméticos (+, -, *, /) para hacer cálculos, y de comparación (>, <, ==) para tomar decisiones. Por ejemplo, podemos decir: 'si distancia < 10, entonces detente'. Sin variables y operadores, el robot no podría procesar la información de forma lógica.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es una variable en programación?",
+                "opciones": [
+                    "Un componente que se rompe",
+                    "Un espacio para guardar un dato que puede cambiar",
+                    "Un tipo de cable",
+                    "La marca del robot"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un operador de comparación?",
+                "opciones": [
+                    "El signo +",
+                    "El signo < (menor que)",
+                    "La letra A",
+                    "Un LED"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirven los operadores aritméticos?",
+                "opciones": [
+                    "Para comparar colores",
+                    "Para realizar cálculos matemáticos",
+                    "Para encender los motores",
+                    "Para guardar el programa"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Estructuras de Control: If-Else",
+        "texto": "La estructura 'SI... ENTONCES... SI NO' (If-Else) permite al robot elegir entre dos caminos. Por ejemplo: 'SI hay luz, avanza; SI NO (si está oscuro), enciende los faros'. Es la base de la toma de decisiones. Podemos encadenar varias condiciones para crear comportamientos complejos. Gracias a esto, el robot deja de ser una máquina que solo repite movimientos y empieza a reaccionar de forma inteligente a su entorno.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué permite la estructura If-Else?",
+                "opciones": [
+                    "Que el robot se apague",
+                    "Que el robot tome decisiones según una condición",
+                    "Que el robot vuele",
+                    "Que el código sea más largo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "En 'SI distancia < 20 ENTONCES parar SI NO avanzar', ¿qué hace el robot si la distancia es 50?",
+                "opciones": [
+                    "Parar",
+                    "Avanzar",
+                    "Girar",
+                    "Explotar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué parte de la estructura se ejecuta si la condición NO se cumple?",
+                "opciones": [
+                    "El If",
+                    "El Else (Si no)",
+                    "El bucle",
+                    "Ninguna"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Robótica Industrial vs Educativa",
+        "texto": "La robótica industrial utiliza robots grandes y potentes para fabricar productos en serie con una precisión milimétrica. La robótica educativa, como la que usamos en clase con Arduino o mBot, se centra en aprender conceptos de electrónica, mecánica y programación. Aunque son diferentes en tamaño y fuerza, ambos comparten los mismos principios: sensores para percibir, controladores para procesar y actuadores para actuar.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuál es el objetivo principal de la robótica educativa?",
+                "opciones": [
+                    "Fabricar miles de coches",
+                    "Aprender conceptos de tecnología y programación",
+                    "Sustituir a los profesores",
+                    "Hacer juguetes caros"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué caracteriza a los robots industriales?",
+                "opciones": [
+                    "Son de colores alegres",
+                    "Gran potencia y precisión para fabricar productos",
+                    "Funcionan con pilas de botón",
+                    "Solo sirven para jugar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué comparten ambos tipos de robótica?",
+                "opciones": [
+                    "El mismo tamaño",
+                    "Los mismos principios básicos (sensores, control, actuadores)",
+                    "El mismo precio",
+                    "Usan las mismas herramientas de plástico"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

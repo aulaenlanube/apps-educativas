@@ -1,0 +1,122 @@
+{
+    "componentes_robot": [
+        "chasis",
+        "ruedas",
+        "motores",
+        "sensores",
+        "batería",
+        "controlador",
+        "cables",
+        "tornillos",
+        "placa base",
+        "carcasa"
+    ],
+    "sensores_comunes": [
+        "ultrasonidos",
+        "infrarrojos",
+        "luz ldr",
+        "tacto",
+        "temperatura",
+        "humedad",
+        "giroscopio",
+        "acelerómetro",
+        "color",
+        "sonido"
+    ],
+    "actuadores_salidas": [
+        "motor dc",
+        "servomotor",
+        "led",
+        "zumbador",
+        "pantalla lcd",
+        "altavoz",
+        "relé",
+        "bomba",
+        "ventilador",
+        "pinza"
+    ],
+    "placas_control": [
+        "arduino",
+        "microbit",
+        "raspberry pi",
+        "esp32",
+        "mindstorms",
+        "vex",
+        "makey makey",
+        "nodemcu",
+        "stm32",
+        "pic"
+    ],
+    "conceptos_programacion": [
+        "algoritmo",
+        "bucle",
+        "condicional",
+        "variable",
+        "función",
+        "evento",
+        "código",
+        "bloque",
+        "depuración",
+        "secuencia"
+    ],
+    "tipos_robots": [
+        "humanoide",
+        "industrial",
+        "explorador",
+        "dron",
+        "rover",
+        "cobot",
+        "móvil",
+        "médico",
+        "doméstico",
+        "militar"
+    ],
+    "mecanica_robotica": [
+        "articulación",
+        "eslabón",
+        "engranaje",
+        "polea",
+        "eje",
+        "rodamiento",
+        "correa",
+        "cadena",
+        "piñón",
+        "cremallera"
+    ],
+    "herramientas_robotica": [
+        "soldador",
+        "estaño",
+        "multímetro",
+        "alicates",
+        "destornillador",
+        "pelacables",
+        "pinzas",
+        "pistola silicona",
+        "cinta aislante",
+        "protoboard"
+    ],
+    "leyes_asimov": [
+        "primera ley",
+        "segunda ley",
+        "tercera ley",
+        "no dañar",
+        "obedecer",
+        "protegerse",
+        "humanidad",
+        "seguridad",
+        "ética",
+        "asimov"
+    ],
+    "futuro_robotica": [
+        "inteligencia artificial",
+        "nanorrobótica",
+        "biónica",
+        "exoesqueleto",
+        "aprendizaje",
+        "autonomía",
+        "colaboración",
+        "visión artificial",
+        "redes neuronales",
+        "ética robótica"
+    ]
+}

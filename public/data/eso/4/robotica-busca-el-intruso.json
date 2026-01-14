@@ -1,0 +1,88 @@
+[
+    {
+        "categoria": "Conectividad e IoT (Visual)",
+        "correctos": [
+            "📡",
+            "📶",
+            "🌐",
+            "☁️",
+            "📱",
+            "💻",
+            "📡",
+            "🛰️",
+            "🔌",
+            "🔋"
+        ],
+        "intrusos": [
+            "🪵",
+            "🕯️",
+            "📜",
+            "🖋️",
+            "🏺"
+        ]
+    },
+    {
+        "categoria": "Conceptos de IA y Machine Learning",
+        "correctos": [
+            "Red neuronal",
+            "Entrenamiento",
+            "Modelo",
+            "Dataset",
+            "Inferencia",
+            "Clasificación",
+            "Regresión",
+            "Visión por computador",
+            "Procesamiento lenguaje natural",
+            "Algoritmo genético"
+        ],
+        "intrusos": [
+            "Martillo",
+            "Sierra",
+            "Taladro",
+            "Lija",
+            "Clavo"
+        ]
+    },
+    {
+        "categoria": "Protocolos de Comunicación",
+        "correctos": [
+            "I2C",
+            "SPI",
+            "UART",
+            "HTTP",
+            "MQTT",
+            "Bluetooth",
+            "Wi-Fi",
+            "LoRa",
+            "Zigbee",
+            "CAN Bus"
+        ],
+        "intrusos": [
+            "Manzana",
+            "Pera",
+            "Plátano",
+            "Uva",
+            "Naranja"
+        ]
+    },
+    {
+        "categoria": "Componentes de Control Avanzado",
+        "correctos": [
+            "ESP32",
+            "Raspberry Pi 4",
+            "Jetson Nano",
+            "Controlador PID",
+            "Filtro de Kalman",
+            "IMU (Unidad de medida inercial)",
+            "Lidar 360",
+            "Cámara OAK-D"
+        ],
+        "intrusos": [
+            "Sofá",
+            "Silla",
+            "Mesa",
+            "Cama",
+            "Armario"
+        ]
+    }
+]

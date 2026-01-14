@@ -1,0 +1,102 @@
+[
+    {
+        "id": 1,
+        "a": "Resistencia",
+        "b": "Limita corriente"
+    },
+    {
+        "id": 2,
+        "a": "Protoboard",
+        "b": "Placa de pruebas"
+    },
+    {
+        "id": 3,
+        "a": "Potenciómetro",
+        "b": "Resistencia variable"
+    },
+    {
+        "id": 4,
+        "a": "Condensador",
+        "b": "Almacena carga"
+    },
+    {
+        "id": 5,
+        "a": "Transistor",
+        "b": "Interruptor electrónico"
+    },
+    {
+        "id": 6,
+        "a": "Digital",
+        "b": "Dos estados (0/1)"
+    },
+    {
+        "id": 7,
+        "a": "Analógico",
+        "b": "Rango de valores"
+    },
+    {
+        "id": 8,
+        "a": "Evento",
+        "b": "Disparador de acción"
+    },
+    {
+        "id": 9,
+        "a": "Bucle",
+        "b": "Repetición de código"
+    },
+    {
+        "id": 10,
+        "a": "Variable",
+        "b": "Contenedor de datos"
+    },
+    {
+        "id": 11,
+        "a": "Umbral",
+        "b": "Valor de referencia"
+    },
+    {
+        "id": 12,
+        "a": "mBlock",
+        "b": "Basado en Scratch"
+    },
+    {
+        "id": 13,
+        "a": "Tinkercad",
+        "b": "Simulador virtual"
+    },
+    {
+        "id": 14,
+        "a": "Jumper",
+        "b": "Cable de conexión"
+    },
+    {
+        "id": 15,
+        "a": "LiPo",
+        "b": "Tipo de batería"
+    },
+    {
+        "id": 16,
+        "a": "Piezoeléctrico",
+        "b": "Tipo de zumbador"
+    },
+    {
+        "id": 17,
+        "a": "Esquiva-obstáculos",
+        "b": "Usa ultrasonidos"
+    },
+    {
+        "id": 18,
+        "a": "Sigue-líneas",
+        "b": "Usa infrarrojos"
+    },
+    {
+        "id": 19,
+        "a": "Calibración",
+        "b": "Ajuste de precisión"
+    },
+    {
+        "id": 20,
+        "a": "Depuración",
+        "b": "Corrección de errores"
+    }
+]

@@ -1,0 +1,62 @@
+[
+    [
+        "Un robot es una máquina que puede sentir, pensar y actuar.",
+        "Primero, los sensores recogen información del entorno.",
+        "Luego, el controlador procesa esos datos y toma una decisión.",
+        "Finalmente, los actuadores ejecutan el movimiento o la acción necesaria."
+    ],
+    [
+        "Isaac Asimov escribió las tres leyes de la robótica para proteger a los humanos.",
+        "La primera ley dice que un robot nunca debe hacer daño a una persona.",
+        "La segunda ley obliga al robot a obedecer las órdenes de los humanos.",
+        "La tercera ley permite al robot protegerse a sí mismo si no rompe las otras leyes."
+    ],
+    [
+        "Para construir un robot, primero debemos diseñar su estructura o chasis.",
+        "Después, instalamos los motores y los sensores en los lugares adecuados.",
+        "A continuación, conectamos todos los componentes a la placa de control.",
+        "Por último, escribimos el programa y lo cargamos para que el robot cobre vida."
+    ],
+    [
+        "Los sensores de ultrasonidos funcionan de forma similar a los murciélagos.",
+        "Emiten una onda de sonido que rebota en los objetos cercanos.",
+        "El sensor mide cuánto tiempo tarda la onda en volver al robot.",
+        "Con ese tiempo, el controlador calcula la distancia exacta al obstáculo."
+    ],
+    [
+        "Un robot sigue-líneas utiliza sensores infrarrojos orientados al suelo.",
+        "El sensor detecta si la superficie es blanca (refleja luz) o negra (absorbe luz).",
+        "Si el sensor ve negro, el controlador sabe que está sobre la línea.",
+        "Si ve blanco, el robot debe girar para volver a encontrar el camino correcto."
+    ],
+    [
+        "Los robots industriales han cambiado la forma de fabricar productos.",
+        "Son brazos mecánicos muy rápidos y precisos que no se cansan nunca.",
+        "Pueden soldar piezas, pintar coches o mover cajas pesadas sin descanso.",
+        "Gracias a ellos, las fábricas son más eficientes y seguras para los trabajadores."
+    ],
+    [
+        "La exploración espacial utiliza robots para llegar donde los humanos no pueden.",
+        "Los 'rovers' son robots con ruedas que exploran la superficie de otros planetas.",
+        "Llevan cámaras y laboratorios miniatura para analizar las rocas y el suelo.",
+        "Envían toda la información recogida a la Tierra mediante antenas de radio."
+    ],
+    [
+        "La programación por bloques facilita el aprendizaje de la robótica.",
+        "En lugar de escribir código difícil, encajamos piezas de colores como un puzle.",
+        "Cada bloque representa una instrucción, como 'avanzar' o 'esperar'.",
+        "Es una forma visual y divertida de entender la lógica de los algoritmos."
+    ],
+    [
+        "Un servomotor es un tipo especial de motor muy usado en robótica.",
+        "A diferencia de un motor normal, podemos decirle que gire un ángulo exacto.",
+        "Se utiliza para mover brazos, abrir pinzas o girar la cabeza de un robot.",
+        "Permite un control total sobre la posición de las partes móviles."
+    ],
+    [
+        "La inteligencia artificial permite a los robots ser más autónomos.",
+        "No solo siguen órdenes fijas, sino que pueden aprender de sus errores.",
+        "Pueden reconocer caras, entender voces o jugar al ajedrez contra humanos.",
+        "Es una de las áreas más avanzadas y prometedoras de la tecnología actual."
+    ]
+]

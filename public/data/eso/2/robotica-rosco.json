@@ -1,0 +1,650 @@
+[
+    {
+        "id": "a1",
+        "letra": "A",
+        "tipo": "empieza",
+        "definicion": "Sensor que devuelve un rango continuo de valores (no solo 0 o 1).",
+        "solucion": "analógico",
+        "materia": "robotica"
+    },
+    {
+        "id": "a2",
+        "letra": "A",
+        "tipo": "empieza",
+        "definicion": "Polo positivo de un componente electrónico como un LED.",
+        "solucion": "ánodo",
+        "materia": "robotica"
+    },
+    {
+        "id": "a3",
+        "letra": "A",
+        "tipo": "empieza",
+        "definicion": "Unidad de medida de la intensidad de corriente eléctrica.",
+        "solucion": "amperio",
+        "materia": "robotica"
+    },
+    {
+        "id": "b1",
+        "letra": "B",
+        "tipo": "empieza",
+        "definicion": "Entorno de programación visual para robots (Bit...).",
+        "solucion": "bitbloq",
+        "materia": "robotica"
+    },
+    {
+        "id": "b2",
+        "letra": "B",
+        "tipo": "empieza",
+        "definicion": "Tecnología inalámbrica de corto alcance para controlar el robot.",
+        "solucion": "bluetooth",
+        "materia": "robotica"
+    },
+    {
+        "id": "b3",
+        "letra": "B",
+        "tipo": "empieza",
+        "definicion": "Instrucción que repite un bloque de código.",
+        "solucion": "bucle",
+        "materia": "robotica"
+    },
+    {
+        "id": "c1",
+        "letra": "C",
+        "tipo": "empieza",
+        "definicion": "Componente que almacena energía eléctrica temporalmente.",
+        "solucion": "condensador",
+        "materia": "robotica"
+    },
+    {
+        "id": "c2",
+        "letra": "C",
+        "tipo": "empieza",
+        "definicion": "Polo negativo de un componente electrónico como un LED.",
+        "solucion": "cátodo",
+        "materia": "robotica"
+    },
+    {
+        "id": "c3",
+        "letra": "C",
+        "tipo": "empieza",
+        "definicion": "Camino cerrado por el que circula la corriente eléctrica.",
+        "solucion": "circuito",
+        "materia": "robotica"
+    },
+    {
+        "id": "d1",
+        "letra": "D",
+        "tipo": "empieza",
+        "definicion": "Proceso de encontrar y corregir fallos en el programa.",
+        "solucion": "depuración",
+        "materia": "robotica"
+    },
+    {
+        "id": "d2",
+        "letra": "D",
+        "tipo": "empieza",
+        "definicion": "Señal que solo puede tener dos valores: alto o bajo.",
+        "solucion": "digital",
+        "materia": "robotica"
+    },
+    {
+        "id": "d3",
+        "letra": "D",
+        "tipo": "empieza",
+        "definicion": "Componente que permite el paso de la corriente en un solo sentido.",
+        "solucion": "diodo",
+        "materia": "robotica"
+    },
+    {
+        "id": "e1",
+        "letra": "E",
+        "tipo": "empieza",
+        "definicion": "Suceso que dispara una acción en el código.",
+        "solucion": "evento",
+        "materia": "robotica"
+    },
+    {
+        "id": "e2",
+        "letra": "E",
+        "tipo": "empieza",
+        "definicion": "Pin del sensor de ultrasonidos que recibe el rebote del sonido.",
+        "solucion": "echo",
+        "materia": "robotica"
+    },
+    {
+        "id": "e3",
+        "letra": "E",
+        "tipo": "empieza",
+        "definicion": "Ciencia que estudia el control de la electricidad mediante componentes.",
+        "solucion": "electrónica",
+        "materia": "robotica"
+    },
+    {
+        "id": "f1",
+        "letra": "F",
+        "tipo": "empieza",
+        "definicion": "Respuesta que el robot recibe de sus sensores para ajustar su comportamiento.",
+        "solucion": "feedback",
+        "materia": "robotica"
+    },
+    {
+        "id": "f2",
+        "letra": "F",
+        "tipo": "empieza",
+        "definicion": "Cable que lleva la corriente en una instalación (no es neutro).",
+        "solucion": "fase",
+        "materia": "robotica"
+    },
+    {
+        "id": "f3",
+        "letra": "F",
+        "tipo": "empieza",
+        "definicion": "Componente que protege el circuito de sobrecargas fundiéndose.",
+        "solucion": "fusible",
+        "materia": "robotica"
+    },
+    {
+        "id": "g1",
+        "letra": "G",
+        "tipo": "empieza",
+        "definicion": "Sensor para medir la inclinación o rotación.",
+        "solucion": "giroscopio",
+        "materia": "robotica"
+    },
+    {
+        "id": "g2",
+        "letra": "G",
+        "tipo": "empieza",
+        "definicion": "Pin de tierra o polo negativo en electrónica (siglas).",
+        "solucion": "gnd",
+        "materia": "robotica"
+    },
+    {
+        "id": "g3",
+        "letra": "G",
+        "tipo": "empieza",
+        "definicion": "Herramienta de agarre del robot.",
+        "solucion": "garra",
+        "materia": "robotica"
+    },
+    {
+        "id": "h1",
+        "letra": "H",
+        "tipo": "empieza",
+        "definicion": "Sensor que mide la cantidad de vapor de agua en el aire.",
+        "solucion": "humedad",
+        "materia": "robotica"
+    },
+    {
+        "id": "h2",
+        "letra": "H",
+        "tipo": "empieza",
+        "definicion": "Unidad de medida de la frecuencia (hercio).",
+        "solucion": "hertz",
+        "materia": "robotica"
+    },
+    {
+        "id": "h3",
+        "letra": "H",
+        "tipo": "empieza",
+        "definicion": "Puente de transistores para controlar el sentido de un motor (Puente ...).",
+        "solucion": "h",
+        "materia": "robotica"
+    },
+    {
+        "id": "i1",
+        "letra": "I",
+        "tipo": "empieza",
+        "definicion": "Plataforma de desarrollo para escribir código (siglas).",
+        "solucion": "ide",
+        "materia": "robotica"
+    },
+    {
+        "id": "i2",
+        "letra": "I",
+        "tipo": "empieza",
+        "definicion": "Componente que corta o permite el paso de la corriente manualmente.",
+        "solucion": "interruptor",
+        "materia": "robotica"
+    },
+    {
+        "id": "i3",
+        "letra": "I",
+        "tipo": "empieza",
+        "definicion": "Flujo de electrones a través de un conductor.",
+        "solucion": "intensidad",
+        "materia": "robotica"
+    },
+    {
+        "id": "j1",
+        "letra": "J",
+        "tipo": "empieza",
+        "definicion": "Cable corto para conectar puntos en una protoboard.",
+        "solucion": "jumper",
+        "materia": "robotica"
+    },
+    {
+        "id": "j2",
+        "letra": "J",
+        "tipo": "empieza",
+        "definicion": "Palanca de mando analógica.",
+        "solucion": "joystick",
+        "materia": "robotica"
+    },
+    {
+        "id": "j3",
+        "letra": "J",
+        "tipo": "empieza",
+        "definicion": "Unidad de energía en el Sistema Internacional.",
+        "solucion": "joule",
+        "materia": "robotica"
+    },
+    {
+        "id": "k1",
+        "letra": "K",
+        "tipo": "empieza",
+        "definicion": "Unidad de frecuencia igual a mil hercios.",
+        "solucion": "kilohercio",
+        "materia": "robotica"
+    },
+    {
+        "id": "k2",
+        "letra": "K",
+        "tipo": "empieza",
+        "definicion": "Prefijo que indica mil unidades.",
+        "solucion": "kilo",
+        "materia": "robotica"
+    },
+    {
+        "id": "k3",
+        "letra": "K",
+        "tipo": "empieza",
+        "definicion": "Unidad de temperatura usada en ciencia.",
+        "solucion": "kelvin",
+        "materia": "robotica"
+    },
+    {
+        "id": "l1",
+        "letra": "L",
+        "tipo": "empieza",
+        "definicion": "Tipo de batería recargable muy usada en drones y robots.",
+        "solucion": "lipo",
+        "materia": "robotica"
+    },
+    {
+        "id": "l2",
+        "letra": "L",
+        "tipo": "empieza",
+        "definicion": "Diodo que emite luz.",
+        "solucion": "led",
+        "materia": "robotica"
+    },
+    {
+        "id": "l3",
+        "letra": "L",
+        "tipo": "empieza",
+        "definicion": "Sensor de luz cuya resistencia varía (siglas).",
+        "solucion": "ldr",
+        "materia": "robotica"
+    },
+    {
+        "id": "m1",
+        "letra": "M",
+        "tipo": "empieza",
+        "definicion": "Entorno basado en Scratch para programar robots mBot.",
+        "solucion": "mblock",
+        "materia": "robotica"
+    },
+    {
+        "id": "m2",
+        "letra": "M",
+        "tipo": "empieza",
+        "definicion": "Componente donde el robot guarda datos temporalmente.",
+        "solucion": "memoria",
+        "materia": "robotica"
+    },
+    {
+        "id": "m3",
+        "letra": "M",
+        "tipo": "empieza",
+        "definicion": "Pequeño bloque o pieza electrónica que se conecta al robot.",
+        "solucion": "módulo",
+        "materia": "robotica"
+    },
+    {
+        "id": "n1",
+        "letra": "N",
+        "tipo": "empieza",
+        "definicion": "Punto de conexión en un circuito eléctrico.",
+        "solucion": "nodo",
+        "materia": "robotica"
+    },
+    {
+        "id": "n2",
+        "letra": "N",
+        "tipo": "empieza",
+        "definicion": "Cable que no tiene tensión en una instalación alterna.",
+        "solucion": "neutro",
+        "materia": "robotica"
+    },
+    {
+        "id": "n3",
+        "letra": "N",
+        "tipo": "empieza",
+        "definicion": "Unidad de medida de la fuerza.",
+        "solucion": "newton",
+        "materia": "robotica"
+    },
+    {
+        "id": "ñ1",
+        "letra": "Ñ",
+        "tipo": "contiene",
+        "definicion": "Rueda dentada pequeña que transmite movimiento.",
+        "solucion": "piñón",
+        "materia": "robotica"
+    },
+    {
+        "id": "ñ2",
+        "letra": "Ñ",
+        "tipo": "contiene",
+        "definicion": "Acción de añadir algo al robot (contiene Ñ).",
+        "solucion": "añadir",
+        "materia": "robotica"
+    },
+    {
+        "id": "ñ3",
+        "letra": "Ñ",
+        "tipo": "contiene",
+        "definicion": "Dato que indica el tiempo de vida (contiene Ñ).",
+        "solucion": "año",
+        "materia": "robotica"
+    },
+    {
+        "id": "o1",
+        "letra": "O",
+        "tipo": "empieza",
+        "definicion": "Unidad de medida de la resistencia eléctrica.",
+        "solucion": "ohmio",
+        "materia": "robotica"
+    },
+    {
+        "id": "o2",
+        "letra": "O",
+        "tipo": "empieza",
+        "definicion": "Componente que genera una señal periódica.",
+        "solucion": "oscilador",
+        "materia": "robotica"
+    },
+    {
+        "id": "o3",
+        "letra": "O",
+        "tipo": "empieza",
+        "definicion": "Ley fundamental de la electricidad (Ley de ...).",
+        "solucion": "ohm",
+        "materia": "robotica"
+    },
+    {
+        "id": "p1",
+        "letra": "P",
+        "tipo": "empieza",
+        "definicion": "Placa de pruebas para montar circuitos sin soldar.",
+        "solucion": "protoboard",
+        "materia": "robotica"
+    },
+    {
+        "id": "p2",
+        "letra": "P",
+        "tipo": "empieza",
+        "definicion": "Botón que solo cierra el circuito mientras se presiona.",
+        "solucion": "pulsador",
+        "materia": "robotica"
+    },
+    {
+        "id": "p3",
+        "letra": "P",
+        "tipo": "empieza",
+        "definicion": "Técnica para simular salidas analógicas (siglas).",
+        "solucion": "pwm",
+        "materia": "robotica"
+    },
+    {
+        "id": "q1",
+        "letra": "Q",
+        "tipo": "contiene",
+        "definicion": "Esquema o dibujo de un circuito (contiene Q).",
+        "solucion": "esquema",
+        "materia": "robotica"
+    },
+    {
+        "id": "q2",
+        "letra": "Q",
+        "tipo": "contiene",
+        "definicion": "Máquina que realiza tareas (contiene Q).",
+        "solucion": "máquina",
+        "materia": "robotica"
+    },
+    {
+        "id": "q3",
+        "letra": "Q",
+        "tipo": "contiene",
+        "definicion": "Bloque de datos enviado por red (contiene Q).",
+        "solucion": "paquete",
+        "materia": "robotica"
+    },
+    {
+        "id": "r1",
+        "letra": "R",
+        "tipo": "empieza",
+        "definicion": "Componente que dificulta el paso de la corriente.",
+        "solucion": "resistencia",
+        "materia": "robotica"
+    },
+    {
+        "id": "r2",
+        "letra": "R",
+        "tipo": "empieza",
+        "definicion": "Interruptor controlado por un electroimán.",
+        "solucion": "relé",
+        "materia": "robotica"
+    },
+    {
+        "id": "r3",
+        "letra": "R",
+        "tipo": "empieza",
+        "definicion": "Placa de computadora minúscula (Raspberry ...).",
+        "solucion": "pi",
+        "materia": "robotica"
+    },
+    {
+        "id": "s1",
+        "letra": "S",
+        "tipo": "empieza",
+        "definicion": "Unión permanente de componentes mediante calor y metal.",
+        "solucion": "soldadura",
+        "materia": "robotica"
+    },
+    {
+        "id": "s2",
+        "letra": "S",
+        "tipo": "empieza",
+        "definicion": "Motor de precisión que se mueve por ángulos.",
+        "solucion": "servomotor",
+        "materia": "robotica"
+    },
+    {
+        "id": "s3",
+        "letra": "S",
+        "tipo": "empieza",
+        "definicion": "Dispositivo que detecta magnitudes físicas.",
+        "solucion": "sensor",
+        "materia": "robotica"
+    },
+    {
+        "id": "t1",
+        "letra": "T",
+        "tipo": "empieza",
+        "definicion": "Componente que puede actuar como amplificador o interruptor.",
+        "solucion": "transistor",
+        "materia": "robotica"
+    },
+    {
+        "id": "t2",
+        "letra": "T",
+        "tipo": "empieza",
+        "definicion": "Pin del sensor de ultrasonidos que lanza el pulso.",
+        "solucion": "trigger",
+        "materia": "robotica"
+    },
+    {
+        "id": "t3",
+        "letra": "T",
+        "tipo": "empieza",
+        "definicion": "Diferencia de potencial eléctrico entre dos puntos.",
+        "solucion": "tensión",
+        "materia": "robotica"
+    },
+    {
+        "id": "u1",
+        "letra": "U",
+        "tipo": "empieza",
+        "definicion": "Valor límite que usamos para tomar decisiones en el código.",
+        "solucion": "umbral",
+        "materia": "robotica"
+    },
+    {
+        "id": "u2",
+        "letra": "U",
+        "tipo": "empieza",
+        "definicion": "Sonido por encima del rango audible humano usado para medir.",
+        "solucion": "ultrasonido",
+        "materia": "robotica"
+    },
+    {
+        "id": "u3",
+        "letra": "U",
+        "tipo": "empieza",
+        "definicion": "Puerto estándar de conexión del robot al PC.",
+        "solucion": "usb",
+        "materia": "robotica"
+    },
+    {
+        "id": "v1",
+        "letra": "V",
+        "tipo": "empieza",
+        "definicion": "Unidad de medida de la tensión eléctrica.",
+        "solucion": "voltio",
+        "materia": "robotica"
+    },
+    {
+        "id": "v2",
+        "letra": "V",
+        "tipo": "empieza",
+        "definicion": "Nombre que damos a un valor que puede cambiar en el código.",
+        "solucion": "variable",
+        "materia": "robotica"
+    },
+    {
+        "id": "v3",
+        "letra": "V",
+        "tipo": "empieza",
+        "definicion": "Pin de alimentación positiva en Arduino (siglas).",
+        "solucion": "vcc",
+        "materia": "robotica"
+    },
+    {
+        "id": "w1",
+        "letra": "W",
+        "tipo": "empieza",
+        "definicion": "Unidad de potencia eléctrica (en inglés).",
+        "solucion": "watt",
+        "materia": "robotica"
+    },
+    {
+        "id": "w2",
+        "letra": "W",
+        "tipo": "empieza",
+        "definicion": "Conexión inalámbrica a internet.",
+        "solucion": "wifi",
+        "materia": "robotica"
+    },
+    {
+        "id": "w3",
+        "letra": "W",
+        "tipo": "empieza",
+        "definicion": "Ancho de pulso en la técnica de control de motores (siglas).",
+        "solucion": "width",
+        "materia": "robotica"
+    },
+    {
+        "id": "x1",
+        "letra": "X",
+        "tipo": "contiene",
+        "definicion": "Conexión entre componentes (contiene X).",
+        "solucion": "conexión",
+        "materia": "robotica"
+    },
+    {
+        "id": "x2",
+        "letra": "X",
+        "tipo": "contiene",
+        "definicion": "Gas noble usado en algunas lámparas (contiene X).",
+        "solucion": "xenón",
+        "materia": "robotica"
+    },
+    {
+        "id": "x3",
+        "letra": "X",
+        "tipo": "contiene",
+        "definicion": "Dato que se envía al robot (contiene X).",
+        "solucion": "texto",
+        "materia": "robotica"
+    },
+    {
+        "id": "y1",
+        "letra": "Y",
+        "tipo": "contiene",
+        "definicion": "Palanca de control analógica (contiene Y).",
+        "solucion": "joystick",
+        "materia": "robotica"
+    },
+    {
+        "id": "y2",
+        "letra": "Y",
+        "tipo": "contiene",
+        "definicion": "Pantalla de cristal líquido (contiene Y).",
+        "solucion": "display",
+        "materia": "robotica"
+    },
+    {
+        "id": "y3",
+        "letra": "Y",
+        "tipo": "contiene",
+        "definicion": "Unidad de información de 8 bits (contiene Y).",
+        "solucion": "byte",
+        "materia": "robotica"
+    },
+    {
+        "id": "z1",
+        "letra": "Z",
+        "tipo": "empieza",
+        "definicion": "Componente que pita al recibir corriente.",
+        "solucion": "zumbador",
+        "materia": "robotica"
+    },
+    {
+        "id": "z2",
+        "letra": "Z",
+        "tipo": "empieza",
+        "definicion": "Diodo diseñado para trabajar en la zona de ruptura.",
+        "solucion": "zener",
+        "materia": "robotica"
+    },
+    {
+        "id": "z3",
+        "letra": "Z",
+        "tipo": "empieza",
+        "definicion": "Región o área de trabajo del robot.",
+        "solucion": "zona",
+        "materia": "robotica"
+    }
+]

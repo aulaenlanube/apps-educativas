@@ -1,0 +1,372 @@
+[
+    {
+        "id": "1",
+        "titulo": "Control de Motores: El Puente en H",
+        "texto": "Para que un robot pueda avanzar y retroceder, no basta con conectar los motores a la batería. Necesitamos un circuito llamado PUENTE EN H (como el driver L298N). Este dispositivo permite invertir la polaridad del voltaje aplicado al motor, cambiando así su sentido de giro. Además, mediante señales PWM (Pulse Width Modulation), podemos controlar la velocidad de los motores, permitiendo que el robot realice movimientos suaves y precisos en lugar de ir siempre a máxima potencia.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué permite hacer un Puente en H?",
+                "opciones": [
+                    "Aumentar el peso del robot",
+                    "Invertir el sentido de giro de los motores",
+                    "Medir la distancia a una pared",
+                    "Emitir sonidos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué se usa la técnica PWM?",
+                "opciones": [
+                    "Para cambiar el color del robot",
+                    "Para controlar la velocidad de los motores",
+                    "Para guardar datos en la memoria",
+                    "Para conectar el robot a internet"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un driver de motores muy común en robótica educativa?",
+                "opciones": [
+                    "L298N",
+                    "MP3",
+                    "JPG",
+                    "HTML"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Del Bloque al Código: Sintaxis y Funciones",
+        "texto": "En 3º de ESO empezamos a ver cómo los bloques se convierten en código escrito (C++ o Python). Una FUNCIÓN es un bloque de código con nombre que realiza una tarea específica y que podemos 'llamar' cuando la necesitemos, evitando repetir código. La SINTAXIS es el conjunto de reglas que debemos seguir para que el ordenador entienda nuestro programa (como poner punto y coma al final de las frases en C++). Un pequeño error de sintaxis puede hacer que todo el programa falle.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es una función en programación?",
+                "opciones": [
+                    "Una parte del hardware",
+                    "Un bloque de código con nombre que realiza una tarea",
+                    "Un tipo de sensor",
+                    "La batería del robot"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa 'sintaxis'?",
+                "opciones": [
+                    "La velocidad del procesador",
+                    "Las reglas de escritura del lenguaje de programación",
+                    "El tamaño del robot",
+                    "El precio de los componentes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre si hay un error de sintaxis?",
+                "opciones": [
+                    "El robot va más rápido",
+                    "El programa no se compila o no funciona",
+                    "Se borra el disco duro",
+                    "No pasa nada"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Robótica Industrial: Grados de Libertad",
+        "texto": "Los robots industriales, como los brazos articulados de las fábricas de coches, se definen por sus GRADOS DE LIBERTAD (DoF). Cada grado de libertad corresponde a una articulación o eje de movimiento. Un brazo con 6 grados de libertad puede alcanzar cualquier position y orientación en el espacio, imitando casi perfectamente el movimiento del brazo humano. El extremo del brazo se llama EFECTOR FINAL y puede ser una pinza, una soldadora o una ventosa, dependiendo de la tarea a realizar.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué representan los grados de libertad en un robot?",
+                "opciones": [
+                    "El precio del robot",
+                    "El número de ejes o articulaciones de movimiento",
+                    "La cantidad de sensores que tiene",
+                    "Los años de garantía"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se llama la herramienta situada al final de un brazo robótico?",
+                "opciones": [
+                    "Motor inicial",
+                    "Efector final",
+                    "Sensor primario",
+                    "Chasis central"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve un robot con 6 grados de libertad?",
+                "opciones": [
+                    "Solo para ir en línea recta",
+                    "Para alcanzar cualquier posición y orientación en el espacio",
+                    "Para gastar menos energía",
+                    "Para ser más pesado"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Sensores de Infrarrojos y Seguidores de Línea",
+        "texto": "Un robot seguidor de línea utiliza sensores de infrarrojos (IR) orientados hacia el suelo. Estos sensores emiten una luz invisible que se refleja de forma distinta según el color de la superficie: el blanco refleja casi toda la luz, mientras que el negro la absorbe. El robot lee estos valores y, mediante un algoritmo, decide qué motor debe girar más rápido para mantenerse sobre la línea. Es una aplicación clásica de control de bucle cerrado.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo detecta un robot una línea negra sobre fondo blanco?",
+                "opciones": [
+                    "Por el olor de la tinta",
+                    "Por la diferencia de reflexión de la luz infrarroja",
+                    "Por el peso del papel",
+                    "Por el sonido que hace al pasar"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ocurre con la luz infrarroja sobre una superficie negra?",
+                "opciones": [
+                    "Se refleja totalmente",
+                    "Es absorbida por la superficie",
+                    "Cambia a color azul",
+                    "Atraviesa el suelo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué tipo de control se usa en un seguidor de línea?",
+                "opciones": [
+                    "Control manual",
+                    "Control de bucle cerrado (basado en sensores)",
+                    "No usa control",
+                    "Control por voz"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Comunicación Serie Bidireccional",
+        "texto": "La comunicación serie no solo sirve para que el robot envíe datos al PC. También permite que el PC envíe órdenes al robot. Mediante funciones como Serial.available() y Serial.read(), el robot puede esperar a recibir un carácter (como 'A' para avanzar o 'P' para parar) y actuar en consecuencia. Esto permite crear interfaces de control desde el ordenador o incluso conectar varios robots entre sí para que colaboren.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué permite la comunicación serie bidireccional?",
+                "opciones": [
+                    "Que el robot solo envíe datos",
+                    "Que el robot envíe y reciba datos del ordenador",
+                    "Que el robot se cargue más rápido",
+                    "Que el robot hable con humanos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué función se usa para saber si hay datos esperando en el puerto serie?",
+                "opciones": [
+                    "Serial.stop()",
+                    "Serial.available()",
+                    "Serial.empty()",
+                    "Serial.go()"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve Serial.read()?",
+                "opciones": [
+                    "Para borrar el programa",
+                    "Para leer el dato recibido por el puerto serie",
+                    "Para escribir en la pantalla",
+                    "Para apagar los motores"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Estructuras de Datos: Arrays",
+        "texto": "Un ARRAY (o arreglo) es una colección de variables del mismo tipo que se guardan bajo un mismo nombre. Imagina una fila de cajas numeradas. En robótica, son muy útiles para guardar, por ejemplo, las últimas 10 lecturas de un sensor y calcular la media, lo que ayuda a suavizar los datos y evitar errores por lecturas falsas. Cada elemento del array se identifica por un índice, que normalmente empieza en 0.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un array en programación?",
+                "opciones": [
+                    "Un tipo de motor potente",
+                    "Una colección de variables del mismo tipo",
+                    "Un sensor de presión",
+                    "Un cable de conexión"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué índice suele empezar un array?",
+                "opciones": [
+                    "Por el 1",
+                    "Por el 0",
+                    "Por el 10",
+                    "Por el -1"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué sirve calcular la media de varias lecturas de un sensor?",
+                "opciones": [
+                    "Para gastar más memoria",
+                    "Para suavizar los datos y evitar errores",
+                    "Para que el robot sea más lento",
+                    "Para cambiar el color del LED"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Robótica Colaborativa: Cobots",
+        "texto": "A diferencia de los robots industriales tradicionales, que deben estar en jaulas por seguridad, los COBOTS (robots colaborativos) están diseñados para trabajar codo con codo con los humanos. Tienen sensores de fuerza muy sensibles que los detienen al mínimo contacto, evitando accidentes. Son fáciles de programar, a veces simplemente moviéndolos con la mano para que 'aprendan' la trayectoria. Se usan mucho en tareas de montaje fino o empaquetado.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un Cobot?",
+                "opciones": [
+                    "Un robot que solo come",
+                    "Un robot diseñado para colaborar con humanos de forma segura",
+                    "Un robot que vive en el espacio",
+                    "Un robot muy antiguo"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué los cobots no necesitan estar en jaulas?",
+                "opciones": [
+                    "Porque son muy pequeños",
+                    "Porque tienen sensores de seguridad que los detienen al contacto",
+                    "Porque son muy caros",
+                    "Porque no tienen fuerza"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo se pueden programar algunos cobots de forma sencilla?",
+                "opciones": [
+                    "Mediante telepatía",
+                    "Guiándolos físicamente con la mano",
+                    "Solo con código binario",
+                    "No se pueden programar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Sensores de Color y Clasificación",
+        "texto": "Los sensores de color (como el TCS3200) permiten al robot distinguir entre diferentes tonalidades. Funcionan iluminando el objeto con LEDs blancos y midiendo cuánta luz roja, verde y azul (RGB) se refleja. Esta información es procesada por el controlador para identificar el color. Una aplicación común es un robot clasificador que separa piezas de diferentes colores en distintos contenedores, automatizando procesos de logística.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significan las siglas RGB?",
+                "opciones": [
+                    "Robot, Gear, Battery",
+                    "Red, Green, Blue (Rojo, Verde, Azul)",
+                    "Real, Good, Best",
+                    "Right, Ground, Back"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo identifica el color un sensor TCS3200?",
+                "opciones": [
+                    "Por el peso de la pieza",
+                    "Midiendo la reflexión de los componentes rojo, verde y azul",
+                    "Preguntando al usuario",
+                    "Por la temperatura"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es una aplicación típica de este sensor?",
+                "opciones": [
+                    "Medir la velocidad del viento",
+                    "Clasificar objetos por su color",
+                    "Cargar la batería",
+                    "Detectar obstáculos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Internet de las Cosas (IoT) y Robótica",
+        "texto": "El Internet de las Cosas (IoT) consiste en conectar objetos cotidianos a internet para que intercambien datos. En robótica, esto permite controlar un robot desde cualquier parte del mundo a través de una página web o una app. Usando placas con Wi-Fi (como el ESP32), el robot puede enviar el estado de sus sensores a la 'nube' o recibir comandos remotos. Esto abre la puerta a ciudades inteligentes y telemedicina.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significan las siglas IoT?",
+                "opciones": [
+                    "Input Output Technology",
+                    "Internet of Things (Internet de las Cosas)",
+                    "Internal Operating Tool",
+                    "International Ocean Team"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué permite el IoT en un robot?",
+                "opciones": [
+                    "Que sea más pesado",
+                    "Controlarlo y monitorizarlo de forma remota a través de internet",
+                    "Que no necesite batería",
+                    "Que hable con los animales"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué placa es famosa por incluir Wi-Fi para proyectos IoT?",
+                "opciones": [
+                    "Una pila de 9V",
+                    "ESP32",
+                    "Un cable USB",
+                    "Un motor DC"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "Ética y Futuro de la Robótica",
+        "texto": "A medida que los robots se vuelven más inteligentes y autónomos, surgen dilemas éticos. ¿Quién es responsable si un robot autónomo causa un accidente? ¿Cómo afectará la automatización al empleo humano? El futuro de la robótica apunta hacia la Inteligencia Artificial avanzada y la nanorrobótica médica. Es fundamental que el desarrollo tecnológico vaya acompañado de leyes y principios éticos que aseguren que los robots beneficien a toda la sociedad.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es la ética en robótica?",
+                "opciones": [
+                    "El estudio de los materiales del robot",
+                    "La reflexión sobre el uso correcto y responsable de los robots",
+                    "El precio de los motores",
+                    "La velocidad de procesamiento"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es una preocupación común sobre el futuro de la robótica?",
+                "opciones": [
+                    "Que los robots sean demasiado bonitos",
+                    "El impacto de la automatización en el mercado laboral",
+                    "Que se acabe el plástico",
+                    "Que los robots no tengan cables"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Hacia dónde apunta el futuro de la robótica médica?",
+                "opciones": [
+                    "Hacia robots más grandes",
+                    "Hacia la nanorrobótica para tratar enfermedades desde el interior",
+                    "Hacia robots que solo limpian",
+                    "Hacia robots de madera"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

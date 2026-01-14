@@ -1,0 +1,62 @@
+{
+    "control_potencia": [
+        "puente en h",
+        "pwm",
+        "driver l298n",
+        "voltaje",
+        "amperaje",
+        "disipador",
+        "relé",
+        "transistor mosfet",
+        "aislamiento",
+        "fuente externa"
+    ],
+    "programacion_textual": [
+        "sintaxis",
+        "compilación",
+        "librería",
+        "función",
+        "parámetro",
+        "variable global",
+        "comentario",
+        "identación",
+        "bucle while",
+        "void setup"
+    ],
+    "sensores_avanzados": [
+        "encoder",
+        "giroscopio",
+        "acelerómetro",
+        "sensor de color",
+        "visión artificial",
+        "brújula digital",
+        "gps",
+        "lidar",
+        "sensor de carga",
+        "telemetría"
+    ],
+    "robotica_industrial": [
+        "brazo articulado",
+        "grados de libertad",
+        "efector final",
+        "cobot",
+        "agv",
+        "cinemática",
+        "trayectoria",
+        "repetibilidad",
+        "carga útil",
+        "seguridad industrial"
+    ],
+    "tecnologias_emergentes": [
+        "inteligencia artificial",
+        "aprendizaje automático",
+        "biónica",
+        "nanorrobótica",
+        "impresión 3d",
+        "internet de las cosas",
+        "realidad aumentada",
+        "nube",
+        "big data",
+        "ética robótica"
+    ]
+}

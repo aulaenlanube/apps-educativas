@@ -1,0 +1,372 @@
+[
+    {
+        "id": "1",
+        "titulo": "Internet de las Cosas (IoT) y Robótica",
+        "texto": "En 4º de ESO conectamos nuestros robots al mundo. El IoT permite que un robot envíe datos a la NUBE o reciba órdenes desde un teléfono móvil. Usamos placas como la ESP32, que incluyen Wi-Fi y Bluetooth integrados. Mediante protocolos como MQTT, diseñado para ser ligero y eficiente, podemos crear una red de sensores y actuadores que interactúan entre sí, permitiendo desde casas inteligentes hasta ciudades conectadas donde los robots colaboran de forma remota.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué permite el IoT en robótica?",
+                "opciones": [
+                    "Que el robot sea más pesado",
+                    "Conectar el robot a internet y a otros dispositivos",
+                    "Que el robot no necesite batería",
+                    "Que el robot hable todos los idiomas"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué placa es muy usada en IoT por tener Wi-Fi integrado?",
+                "opciones": [
+                    "Arduino Uno",
+                    "ESP32",
+                    "Pila de 9V",
+                    "Protoboard"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un protocolo de comunicación ligero usado en IoT?",
+                "opciones": [
+                    "MQTT",
+                    "MP4",
+                    "PDF",
+                    "DOCX"
+                ],
+                "correcta": 0
+            }
+        ]
+    },
+    {
+        "id": "2",
+        "titulo": "Introducción a la Inteligencia Artificial",
+        "texto": "La IA permite que los robots tomen decisiones basadas en datos y no solo en reglas fijas. Mediante el APRENDIZAJE AUTOMÁTICO (Machine Learning), un robot puede aprender a reconocer objetos tras ser entrenado con miles de imágenes. Las REDES NEURONALES imitan la estructura del cerebro humano para procesar información compleja. Esto permite que un robot autónomo pueda navegar por una ciudad desconocida o que un asistente de voz entienda el lenguaje natural de las personas.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué diferencia a la IA de la programación tradicional?",
+                "opciones": [
+                    "Que usa cables más caros",
+                    "Que permite tomar decisiones basadas en el aprendizaje de datos",
+                    "Que no necesita electricidad",
+                    "Que los robots son más grandes"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué estructura imitan las redes neuronales?",
+                "opciones": [
+                    "El esqueleto de un pájaro",
+                    "El cerebro humano",
+                    "Las raíces de un árbol",
+                    "Un circuito de agua"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cómo aprende un robot a reconocer un objeto?",
+                "opciones": [
+                    "Mirándolo una vez",
+                    "Mediante entrenamiento con muchos datos o imágenes",
+                    "Cambiándole las pilas",
+                    "Pintándolo de colores"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "3",
+        "titulo": "Control de Precisión: El Algoritmo PID",
+        "texto": "Para que un robot se mueva con extrema suavidad y precisión, usamos el control PID (Proporcional, Integral y Derivativo). Este algoritmo calcula constantemente el ERROR (la diferencia entre dónde está el robot y dónde debería estar) y aplica una corrección proporcional a ese error, a su historia y a su velocidad de cambio. Es lo que permite que un dron se mantenga estático en el aire a pesar del viento o que un brazo robótico se detenga exactamente en el punto correcto sin oscilar.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significan las siglas PID?",
+                "opciones": [
+                    "Potencia, Intensidad y Distancia",
+                    "Proporcional, Integral y Derivativo",
+                    "Posición, Inicio y Destino",
+                    "Programa de Inteligencia Digital"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué calcula constantemente el algoritmo PID?",
+                "opciones": [
+                    "El precio de la luz",
+                    "El error entre el estado actual y el deseado",
+                    "La temperatura del motor",
+                    "La hora del día"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿En qué dispositivo es vital el control PID para mantener la estabilidad?",
+                "opciones": [
+                    "En una linterna",
+                    "En un dron",
+                    "En un cable USB",
+                    "En una rueda de repuesto"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "4",
+        "titulo": "Protocolos de Comunicación: I2C y SPI",
+        "texto": "En sistemas robóticos avanzados, el microcontrolador debe hablar con muchos sensores y actuadores a la vez. Para no usar cientos de cables, usamos protocolos de comunicación serie como I2C y SPI. I2C usa solo dos hilos (SDA y SCL) para conectar decenas de dispositivos, cada uno con una dirección única. SPI es más rápido y usa cuatro hilos, ideal para pantallas o tarjetas de memoria. Estos protocolos permiten que el robot sea más compacto y eficiente.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cuántos hilos de datos usa el protocolo I2C?",
+                "opciones": [
+                    "Dos (SDA y SCL)",
+                    "Diez",
+                    "Cincuenta",
+                    "Ninguno, es inalámbrico"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es la ventaja principal de usar estos protocolos?",
+                "opciones": [
+                    "Que el robot sea más pesado",
+                    "Reducir el número de cables necesarios para conectar muchos dispositivos",
+                    "Que el robot use pilas de botón",
+                    "Que el código sea más difícil de leer"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Para qué tipo de dispositivos es más adecuado el protocolo SPI?",
+                "opciones": [
+                    "Para un simple pulsador",
+                    "Para dispositivos que requieren alta velocidad, como pantallas",
+                    "Para la batería",
+                    "Para el chasis"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "5",
+        "titulo": "Visión Artificial y Reconocimiento de Patrones",
+        "texto": "La visión artificial permite que los robots 'vean' y comprendan su entorno mediante cámaras. Usando bibliotecas como OpenCV, un robot puede detectar caras, seguir objetos por su color o leer códigos QR. El reconocimiento de patrones consiste en identificar formas geométricas o texturas específicas. Esta tecnología es la base de los coches autónomos, que deben distinguir entre un semáforo, un peatón o una señal de tráfico en tiempo real.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué biblioteca es muy famosa para trabajar con visión artificial?",
+                "opciones": [
+                    "Word",
+                    "OpenCV",
+                    "Excel",
+                    "Spotify"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué puede hacer un robot gracias a la visión artificial?",
+                "opciones": [
+                    "Detectar caras y seguir objetos",
+                    "Solo encender luces",
+                    "Cargar su batería con el sol",
+                    "Hablar por teléfono"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué es vital la visión artificial en un coche autónomo?",
+                "opciones": [
+                    "Para que el coche sea más rápido",
+                    "Para identificar peatones, señales y obstáculos en tiempo real",
+                    "Para que los pasajeros vean películas",
+                    "Para ahorrar gasolina"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "6",
+        "titulo": "Robótica Autónoma y Navegación SLAM",
+        "texto": "Para que un robot se mueva solo por un edificio sin chocar, usa una técnica llamada SLAM (Localización y Mapeo Simultáneos). El robot utiliza sensores como el LIDAR (láser) para crear un mapa del entorno mientras, al mismo tiempo, calcula su propia posición dentro de ese mapa. Es como si entraras en una habitación oscura con una linterna y fueras dibujando el plano a medida que avanzas. Gracias al SLAM, los robots aspiradores o los robots de reparto pueden navegar de forma eficiente.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué significan las siglas SLAM?",
+                "opciones": [
+                    "Super Light Autonomous Machine",
+                    "Simultaneous Localization and Mapping (Localización y Mapeo Simultáneos)",
+                    "Simple Logic and Mathematics",
+                    "System Level Action Mode"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué sensor es muy común para realizar SLAM?",
+                "opciones": [
+                    "Un termómetro",
+                    "Un sensor LIDAR (láser)",
+                    "Un zumbador",
+                    "Un pulsador"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué dos tareas realiza el robot al mismo tiempo con SLAM?",
+                "opciones": [
+                    "Cantar y bailar",
+                    "Crear un mapa y localizarse en él",
+                    "Cargar la batería y dormir",
+                    "Hablar y escuchar"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "7",
+        "titulo": "Gemelos Digitales y Simulación",
+        "texto": "Antes de construir un robot físico costoso, los ingenieros crean un GEMELO DIGITAL. Es una réplica virtual exacta que se comporta igual que el robot real. Usando simuladores como Gazebo o Webots, podemos probar el código del robot en un entorno virtual con gravedad, fricción y colisiones. Esto permite detectar fallos de diseño y optimizar algoritmos sin riesgo de romper componentes reales, ahorrando tiempo y dinero en el desarrollo.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué es un gemelo digital?",
+                "opciones": [
+                    "Un robot que tiene un hermano igual",
+                    "Una réplica virtual exacta de un sistema físico",
+                    "Un tipo de batería doble",
+                    "Un sensor de luz"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué ventaja tiene usar simuladores en robótica?",
+                "opciones": [
+                    "Que son más divertidos que los videojuegos",
+                    "Probar el código sin riesgo de romper el robot real",
+                    "Que no necesitan ordenador",
+                    "Que hacen que el robot sea de metal"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es un simulador de robótica profesional?",
+                "opciones": [
+                    "Paint",
+                    "Gazebo",
+                    "Calculator",
+                    "Notepad"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "8",
+        "titulo": "Ciberseguridad en la Robótica e IoT",
+        "texto": "Al estar conectados a internet, los robots y dispositivos IoT son vulnerables a ataques informáticos. Un hacker podría tomar el control de un robot industrial o acceder a la cámara de un robot doméstico. Por eso, la ciberseguridad es fundamental: se deben usar conexiones cifradas, contraseñas seguras y actualizaciones constantes del firmware (OTA - Over The Air). Proteger la integridad de los datos y la privacidad de los usuarios es un reto clave en la robótica moderna.",
+        "preguntas": [
+            {
+                "pregunta": "¿Por qué es importante la ciberseguridad en robótica?",
+                "opciones": [
+                    "Para que el robot no se ensucie",
+                    "Para evitar que personas no autorizadas tomen el control del robot",
+                    "Para que el robot sea más rápido",
+                    "Para que use menos batería"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué significa actualizar el firmware mediante OTA?",
+                "opciones": [
+                    "Cambiar las piezas a mano",
+                    "Actualizar el software de forma inalámbrica a través de internet",
+                    "Pintar el robot",
+                    "Llevar el robot a la tienda"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué medida ayuda a proteger un robot conectado?",
+                "opciones": [
+                    "Usar conexiones cifradas y contraseñas seguras",
+                    "Dejarlo siempre encendido",
+                    "No ponerle sensores",
+                    "Usar cables muy largos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "9",
+        "titulo": "Robótica Espacial: Explorando otros mundos",
+        "texto": "Los robots son nuestros ojos y manos en el espacio. Los ROVERS, como el Perseverance en Marte, son laboratorios móviles autónomos. Debido a la gran distancia, las señales de radio tardan minutos en llegar, por lo que el robot debe ser capaz de tomar decisiones por sí mismo para evitar peligros. Utilizan paneles solares o generadores nucleares para obtener energía y cámaras de alta resolución para analizar el terreno en busca de señales de vida pasada.",
+        "preguntas": [
+            {
+                "pregunta": "¿Cómo se llaman los robots que exploran la superficie de otros planetas?",
+                "opciones": [
+                    "Barcos",
+                    "Rovers",
+                    "Aviones",
+                    "Submarinos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Por qué los rovers espaciales deben ser muy autónomos?",
+                "opciones": [
+                    "Porque no les gusta recibir órdenes",
+                    "Debido al retraso en las comunicaciones con la Tierra",
+                    "Porque no tienen antena",
+                    "Porque son muy rápidos"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué suelen buscar los robots en Marte?",
+                "opciones": [
+                    "Gasolineras",
+                    "Señales de vida pasada y análisis del terreno",
+                    "Tiendas de ropa",
+                    "Otros robots antiguos"
+                ],
+                "correcta": 1
+            }
+        ]
+    },
+    {
+        "id": "10",
+        "titulo": "El Impacto Social de la Automatización",
+        "texto": "La robótica está transformando el mundo laboral. Tareas repetitivas o peligrosas están siendo realizadas por máquinas, lo que aumenta la productividad pero también genera miedo a la pérdida de empleos. Sin embargo, la robótica también crea nuevos puestos de trabajo especializados en diseño, mantenimiento y programación. El reto de la sociedad es formar a las personas para convivir con estas tecnologías y asegurar que la automatización mejore la calidad de vida de todos.",
+        "preguntas": [
+            {
+                "pregunta": "¿Qué efecto tiene la automatización en las tareas repetitivas?",
+                "opciones": [
+                    "Las hace más difíciles",
+                    "Permite que las realicen máquinas con mayor eficiencia",
+                    "Las elimina para siempre",
+                    "No tiene ningún efecto"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Qué nuevos empleos crea la robótica?",
+                "opciones": [
+                    "Solo empleos de limpieza",
+                    "Diseño, mantenimiento y programación de sistemas robóticos",
+                    "Ninguno, solo destruye empleo",
+                    "Empleos relacionados con la agricultura manual"
+                ],
+                "correcta": 1
+            },
+            {
+                "pregunta": "¿Cuál es el reto principal de la sociedad ante la robótica?",
+                "opciones": [
+                    "Prohibir los robots",
+                    "Formar a las personas para colaborar con la tecnología",
+                    "Hacer robots de juguete",
+                    "Que todos los robots sean iguales"
+                ],
+                "correcta": 1
+            }
+        ]
+    }
+]

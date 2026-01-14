@@ -19,20 +19,53 @@ const RoscoJuego = () => {
         loadData();
     }, [level, grade, asignatura]);
 
+    const generateStudyMaterialFromData = (roscoData) => {
+        if (!roscoData || !Array.isArray(roscoData)) return null;
+
+        const seccionesMap = {};
+        roscoData.forEach(item => {
+            if (!seccionesMap[item.letra]) {
+                seccionesMap[item.letra] = {
+                    letra: item.letra,
+                    conceptos: []
+                };
+            }
+            seccionesMap[item.letra].conceptos.push({
+                termino: item.solucion,
+                definicion: item.definicion,
+                pista: item.tipo === 'empieza' ? `Empieza por ${item.letra}` : `Contiene la ${item.letra}`
+            });
+        });
+
+        const secciones = Object.values(seccionesMap).sort((a, b) => {
+            return a.letra.localeCompare(b.letra, 'es');
+        });
+
+        return {
+            titulo: `Material de Estudio - ${asignatura.charAt(0).toUpperCase() + asignatura.slice(1)}`,
+            introduccion: `Repasa este vocabulario de ${asignatura} para ganar en el Rosco.`,
+            secciones
+        };
+    };
+
     const loadStudyMaterial = async () => {
         if (studyMaterial) return studyMaterial;
+
         try {
-            // Reutilizamos la lógica de rutas, asumiendo que el material sigue el patrón
             const path = `/data/${level}/${grade}/${asignatura}-rosco-material-de-estudio.json`;
             const response = await fetch(path);
-            if (!response.ok) throw new Error('No se encontró el material');
-            const material = await response.json();
-            setStudyMaterial(material);
-            return material;
+            if (response.ok) {
+                const material = await response.json();
+                setStudyMaterial(material);
+                return material;
+            }
         } catch (error) {
-            console.error("Error cargando material de estudio:", error);
-            return null;
+            console.warn("No se encontró archivo de material, generando desde datos del rosco...");
         }
+
+        const generated = generateStudyMaterialFromData(data);
+        setStudyMaterial(generated);
+        return generated;
     };
 
     const game = useRoscoGame(data);

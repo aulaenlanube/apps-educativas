@@ -1,0 +1,62 @@
+{
+    "conectividad_iot": [
+        "esp32",
+        "wifi",
+        "bluetooth",
+        "mqtt",
+        "nube",
+        "http",
+        "api",
+        "json",
+        "ota",
+        "dashboard"
+    ],
+    "inteligencia_artificial": [
+        "red neuronal",
+        "machine learning",
+        "dataset",
+        "entrenamiento",
+        "modelo",
+        "inferencia",
+        "clasificación",
+        "visión artificial",
+        "tensor",
+        "neurona"
+    ],
+    "control_sistemas": [
+        "pid",
+        "error",
+        "setpoint",
+        "retroalimentación",
+        "kalman",
+        "imu",
+        "lidar",
+        "autónomo",
+        "trayectoria",
+        "estabilidad"
+    ],
+    "protocolos_comunicacion": [
+        "i2c",
+        "spi",
+        "uart",
+        "can bus",
+        "lora",
+        "zigbee",
+        "modbus",
+        "tcp ip",
+        "udp",
+        "serie"
+    ],
+    "conceptos_futuro": [
+        "singularidad",
+        "ética",
+        "gemelo digital",
+        "edge computing",
+        "ros",
+        "enjambre",
+        "biónica",
+        "nanorrobótica",
+        "5g",
+        "automatización"
+    ]
+}
