@@ -18,6 +18,7 @@ const ParejasDeCartas = ({ tema }) => {
 
   // Nuevo estado para vidas
   const [vidas, setVidas] = useState(3);
+  const [mostrarAyuda, setMostrarAyuda] = useState(false);
 
   // Datos
   const [datosCrudos, setDatosCrudos] = useState([]);
@@ -248,6 +249,7 @@ const ParejasDeCartas = ({ tema }) => {
     setCartas([]);
     setRestarting(false);
     setRevealing(false);
+    setMostrarAyuda(false);
   };
 
   const reiniciarNivel = () => {
@@ -384,6 +386,14 @@ const ParejasDeCartas = ({ tema }) => {
             >
               {restarting || revealing ? '🔄 ...' : <>🔄 <span className="hidden sm:inline">Reiniciar</span></>}
             </button>
+
+            <button
+              onClick={() => setMostrarAyuda(true)}
+              disabled={restarting || revealing}
+              className="px-4 py-2 md:px-6 md:py-3 bg-amber-500 text-white text-base md:text-lg font-bold rounded-2xl shadow-md border-2 border-amber-400 hover:bg-amber-600 hover:scale-105 transition-all flex items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+            >
+              💡 <span className="hidden sm:inline">Ayuda</span>
+            </button>
           </div>
 
           <div className="tablero-parejas" style={{ gridTemplateColumns: `repeat(${config.columnas}, 1fr)` }}>
@@ -507,6 +517,53 @@ const ParejasDeCartas = ({ tema }) => {
               </div>
             </div>
           )}
+        </div>
+      )}
+
+      {/* --- MODAL DE AYUDA --- */}
+      {mostrarAyuda && (
+        <div className="overlay-ayuda-modal" onClick={() => setMostrarAyuda(false)}>
+          <div className="modal-ayuda animate-pop-in" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2 className="text-2xl font-black text-indigo-900 flex items-center gap-2">
+                💡 Guía de Parejas
+              </h2>
+              <button
+                className="close-modal"
+                onClick={() => setMostrarAyuda(false)}
+              >
+                ✕
+              </button>
+            </div>
+            <div className="modal-body">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {datosCrudos.map((par, i) => {
+                  const esImagenA = typeof par.a === 'string' && (par.a.includes('.png') || par.a.includes('.webp') || par.a.includes('.jpg'));
+                  const esImagenB = typeof par.b === 'string' && (par.b.includes('.png') || par.b.includes('.webp') || par.b.includes('.jpg'));
+
+                  return (
+                    <div key={i} className="par-ayuda-card">
+                      <div className="par-lado">
+                        {esImagenA ? <img src={par.a} alt="par" className="w-12 h-12 object-contain mx-auto" /> : par.a}
+                      </div>
+                      <div className="par-flecha text-xl">↔️</div>
+                      <div className="par-lado">
+                        {esImagenB ? <img src={par.b} alt="par" className="w-12 h-12 object-contain mx-auto" /> : par.b}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button
+                className="btn-entendido"
+                onClick={() => setMostrarAyuda(false)}
+              >
+                ¡Entendido!
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

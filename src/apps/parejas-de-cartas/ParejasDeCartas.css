@@ -307,3 +307,98 @@
 .btn-dificultad.btn-examen .text-3xl {
   text-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
 }
+
+/* --- MODAL DE AYUDA --- */
+.overlay-ayuda-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-ayuda {
+  background: white;
+  width: 100%;
+  max-width: 700px;
+  max-height: 85vh;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  border: 4px solid #fef3c7;
+}
+
+.animate-pop-in {
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-header {
+  padding: 1.5rem 2rem;
+  background: #fffbeb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #fef3c7;
+}
+
+.close-modal {
+  @apply w-10 h-10 flex items-center justify-center rounded-full bg-amber-100 text-amber-600 hover:bg-amber-200 transition-colors text-xl font-bold;
+}
+
+.modal-body {
+  padding: 2rem;
+  overflow-y: auto;
+  background: #ffffff;
+}
+
+.par-ayuda-card {
+  @apply flex items-center justify-between p-4 bg-slate-50 rounded-2xl border-2 border-slate-100 hover:border-indigo-200 transition-colors;
+}
+
+.par-lado {
+  @apply text-sm md:text-base font-bold text-slate-700 flex-1 text-center px-2;
+}
+
+.par-flecha {
+  @apply text-slate-300 px-2;
+}
+
+.modal-footer {
+  padding: 1.5rem;
+  background: #f8fafc;
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid #f1f5f9;
+}
+
+.btn-entendido {
+  @apply px-10 py-3 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-indigo-700 shadow-lg transition-all active:scale-95;
+}
+
+@media (max-width: 640px) {
+  .modal-ayuda {
+    max-height: 90vh;
+  }
+
+  .modal-body {
+    padding: 1rem;
+  }
+
+  .par-ayuda-card {
+    padding: 0.75rem;
+  }
+
+  .par-lado {
+    font-size: 0.75rem;
+  }
+}
