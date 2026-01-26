@@ -5,12 +5,12 @@ import confetti from 'canvas-confetti';
 import './FraccionesESO.css';
 
 const SECTIONS = [
-    { id: 'sumas', name: 'Sumas', icon: <Plus size={32} />, color: 'var(--accent-blue)', helpTitle: '¿Cómo sumar fracciones?' },
-    { id: 'restas', name: 'Restas', icon: <Minus size={32} />, color: 'var(--accent-red)', helpTitle: '¿Cómo restar fracciones?' },
-    { id: 'multiplicaciones', name: 'Multiplicaciones', icon: <X size={32} />, color: 'var(--accent-purple)', helpTitle: '¿Cómo multiplicar fracciones?' },
-    { id: 'simplificar', name: 'Simplificar', icon: <Calculator size={32} />, color: 'var(--accent-green)', helpTitle: '¿Cómo simplificar fracciones?' },
-    { id: 'mcm', name: 'Mínimo Común Múltiplo', icon: <Layers size={32} />, color: 'var(--accent-orange)', helpTitle: '¿Cómo calcular el M.C.M.?' },
-    { id: 'mcd', name: 'Máximo Común Divisor', icon: <Award size={32} />, color: 'var(--accent-pink)', helpTitle: '¿Cómo calcular el M.C.D.?' }
+    { id: 'sumas', name: 'Sumas', icon: <Plus size={48} />, color: 'var(--accent-blue)', description: 'Suma fracciones con distinto denominador usando el m.c.m.', helpTitle: '¿Cómo sumar fracciones?' },
+    { id: 'restas', name: 'Restas', icon: <Minus size={48} />, color: 'var(--accent-red)', description: 'Resta fracciones paso a paso igualando sus denominadores.', helpTitle: '¿Cómo restar fracciones?' },
+    { id: 'multiplicaciones', name: 'Multiplicaciones', icon: <X size={48} />, color: 'var(--accent-purple)', description: 'Multiplica numeradores y denominadores en línea recta.', helpTitle: '¿Cómo multiplicar fracciones?' },
+    { id: 'simplificar', name: 'Simplificar', icon: <Calculator size={48} />, color: 'var(--accent-green)', description: 'Reduce fracciones dividiendo numerador y denominador.', helpTitle: '¿Cómo simplificar fracciones?' },
+    { id: 'mcm', name: 'Mínimo Común Múltiplo', icon: <Layers size={48} />, color: 'var(--accent-orange)', description: 'Halla el múltiplo común más pequeño de dos números.', helpTitle: '¿Cómo calcular el M.C.M.?' },
+    { id: 'mcd', name: 'Máximo Común Divisor', icon: <Award size={48} />, color: 'var(--accent-pink)', description: 'Encuentra el divisor más grande común a ambos números.', helpTitle: '¿Cómo calcular el M.C.D.?' }
 ];
 
 // Helper functions
@@ -31,6 +31,29 @@ const FraccionesESO = () => {
     const [examAnswers, setExamAnswers] = useState([]);
     const [showResults, setShowResults] = useState(false);
     const [score, setScore] = useState(0);
+
+    const renderMultiples = (num1, num2) => {
+        const common = lcm(num1, num2);
+        const multiples1 = [];
+        const multiples2 = [];
+        for (let i = 1; num1 * i <= common; i++) multiples1.push(num1 * i);
+        for (let i = 1; num2 * i <= common; i++) multiples2.push(num2 * i);
+
+        return (
+            <div className="hint-scroll">
+                <div className="hint-row">
+                    <span className="hint-num">{num1}:</span>
+                    {multiples1.map(m => <span key={m} className={`hint-ball ${m === common ? 'divisor' : ''}`}>{m}</span>)}
+                    <span className="hint-dots">...</span>
+                </div>
+                <div className="hint-row">
+                    <span className="hint-num">{num2}:</span>
+                    {multiples2.map(m => <span key={m} className={`hint-ball ${m === common ? 'divisor' : ''}`}>{m}</span>)}
+                    <span className="hint-dots">...</span>
+                </div>
+            </div>
+        );
+    };
 
     const createExerciseData = (type) => {
         let newExercise = { type };
@@ -260,35 +283,37 @@ const FraccionesESO = () => {
             case 'restas':
                 return (
                     <div className="help-visual-content">
-                        <section className="help-step">
-                            <div className="step-number">1</div>
-                            <div className="step-desc">
-                                <strong>Igualar denominadores:</strong> Calcula el <strong>m.c.m.</strong> de los denominadores.
-                                <em className="db-text">Ej: Para 4 y 6, el m.c.m. es 12.</em>
-                            </div>
-                        </section>
-                        <section className="help-step">
-                            <div className="step-number">2</div>
-                            <div className="step-desc">
-                                <strong>Ajustar numeradores:</strong> Divide el nuevo denominador entre el antiguo y multiplícalo por el numerador.
-                                <div className="visual-formula">
-                                    (m.c.m. ÷ Denom. antiguo) × Num. antiguo
+                        <div className="help-steps-grid">
+                            <section className="help-step">
+                                <div className="step-number">1</div>
+                                <div className="step-desc">
+                                    <strong>Igualar denominadores</strong> Calcula el <strong>m.c.m.</strong> de los denominadores.
+                                    <em className="db-text">Ej: Para 4 y 6, el m.c.m. es 12.</em>
                                 </div>
-                            </div>
-                        </section>
-                        <section className="help-step">
-                            <div className="step-number">3</div>
-                            <div className="step-desc">
-                                <strong>Operar:</strong> Suma o resta los numeradores ajustados. El denominador <strong>NO cambia</strong>.
-                            </div>
-                        </section>
+                            </section>
+                            <section className="help-step">
+                                <div className="step-number">2</div>
+                                <div className="step-desc">
+                                    <strong>Ajustar numeradores</strong> Divide el m.c.m. entre el antiguo y multiplica por el numerador.
+                                    <div className="visual-formula">
+                                        (m.c.m. ÷ Denom) × Num
+                                    </div>
+                                </div>
+                            </section>
+                            <section className="help-step">
+                                <div className="step-number">3</div>
+                                <div className="step-desc">
+                                    <strong>Operar</strong> Suma o resta los numeradores. El denominador <strong>NO cambia</strong>.
+                                </div>
+                            </section>
+                        </div>
                         <div className="visual-example">
                             <div className="frac-row">
-                                <Fraction n="1" d="4" /> <span className="op">+</span> <Fraction n="1" d="6" />
+                                <Fraction n="1" d="4" /> <span className="op">{section.id === 'sumas' ? '+' : '-'}</span> <Fraction n="1" d="6" />
                                 <span className="arrow">➡️</span>
-                                <Fraction n="3" d="12" /> <span className="op">+</span> <Fraction n="2" d="12" />
+                                <Fraction n="3" d="12" /> <span className="op">{section.id === 'sumas' ? '+' : '-'}</span> <Fraction n="2" d="12" />
                                 <span className="arrow">➡️</span>
-                                <Fraction n="5" d="12" />
+                                <Fraction n={section.id === 'sumas' ? '5' : '1'} d="12" />
                             </div>
                         </div>
                     </div>
@@ -318,11 +343,11 @@ const FraccionesESO = () => {
                     <div className="help-visual-content">
                         <p>Simplificar es "hacer la fracción más pequeña" sin que cambie su valor.</p>
                         <div className="simplification-visual">
-                            <div className="node">10 / 20</div>
-                            <div className="divide-arrow">÷ 2</div>
-                            <div className="node">5 / 10</div>
-                            <div className="divide-arrow">÷ 5</div>
-                            <div className="node highlight">1 / 2</div>
+                            <div className="node"><Fraction n="10" d="20" /></div>
+                            <div className="divide-arrow"><span>÷ 2</span></div>
+                            <div className="node"><Fraction n="5" d="10" /></div>
+                            <div className="divide-arrow"><span>÷ 5</span></div>
+                            <div className="node highlight"><Fraction n="1" d="2" /></div>
                         </div>
                         <p className="note">Divide arriba y abajo siempre por el <strong>mismo número</strong>.</p>
                     </div>
@@ -411,7 +436,7 @@ const FraccionesESO = () => {
                             >
                                 <div className="card-icon">{s.icon}</div>
                                 <h3>{s.name}</h3>
-                                <p>Haz clic para practicar</p>
+                                <p>{s.description}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -529,55 +554,99 @@ const FraccionesESO = () => {
                     <div className="exercise-card">
                         <div className="exercise-content">
                             {exercise?.type === 'sumas' && (
-                                <div className="fraction-calc complex">
-                                    <div className="op-group">
-                                        <Fraction n={exercise.n1} d={exercise.d1} />
-                                        <Plus size={24} className="op-icon" />
-                                        <Fraction n={exercise.n2} d={exercise.d2} />
-                                    </div>
-                                    <span className="equal-sign">=</span>
-                                    <div className="op-group">
-                                        <FractionInputSmall
-                                            value={{ num: intermediate.n1, den: intermediate.den }}
-                                            onChange={(val) => setIntermediate({ ...intermediate, n1: val.num, den: val.den })}
+                                <div className="simple-calc-container">
+                                    <div className="fraction-calc complex">
+                                        <div className="op-group">
+                                            <Fraction n={exercise.n1} d={exercise.d1} />
+                                            <Plus size={24} className="op-icon" />
+                                            <Fraction n={exercise.n2} d={exercise.d2} />
+                                        </div>
+                                        <span className="equal-sign">=</span>
+                                        <div className="op-group">
+                                            <FractionInputSmall
+                                                value={{ num: intermediate.n1, den: intermediate.den }}
+                                                onChange={(val) => setIntermediate({ ...intermediate, n1: val.num, den: val.den })}
+                                            />
+                                            <Plus size={24} className="op-icon" />
+                                            <FractionInputSmall
+                                                value={{ num: intermediate.n2, den: intermediate.den }}
+                                                onChange={(val) => setIntermediate({ ...intermediate, n2: val.num, den: val.den })}
+                                            />
+                                        </div>
+                                        <span className="equal-sign">=</span>
+                                        <FractionInput
+                                            value={userAnswer}
+                                            onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
                                         />
-                                        <Plus size={24} className="op-icon" />
-                                        <FractionInputSmall
-                                            value={{ num: intermediate.n2, den: intermediate.den }}
-                                            onChange={(val) => setIntermediate({ ...intermediate, n2: val.num, den: val.den })}
-                                        />
                                     </div>
-                                    <span className="equal-sign">=</span>
-                                    <FractionInput
-                                        value={userAnswer}
-                                        onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
-                                    />
+                                    {!isExamMode && (
+                                        <button
+                                            className={`btn-toggle-hint ${showHint ? 'active' : ''}`}
+                                            onClick={() => setShowHint(!showHint)}
+                                        >
+                                            {showHint ? 'Ocultar Múltiplos' : '💡 Ver Múltiplos'}
+                                        </button>
+                                    )}
+                                    <AnimatePresence>
+                                        {showHint && !isExamMode && (
+                                            <motion.div
+                                                className="dynamic-aid-inline"
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: 'auto', opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                            >
+                                                {renderMultiples(exercise.d1, exercise.d2)}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
                             )}
                             {exercise?.type === 'restas' && (
-                                <div className="fraction-calc complex">
-                                    <div className="op-group">
-                                        <Fraction n={exercise.n1} d={exercise.d1} />
-                                        <Minus size={24} className="op-icon" />
-                                        <Fraction n={exercise.n2} d={exercise.d2} />
-                                    </div>
-                                    <span className="equal-sign">=</span>
-                                    <div className="op-group">
-                                        <FractionInputSmall
-                                            value={{ num: intermediate.n1, den: intermediate.den }}
-                                            onChange={(val) => setIntermediate({ ...intermediate, n1: val.num, den: val.den })}
+                                <div className="simple-calc-container">
+                                    <div className="fraction-calc complex">
+                                        <div className="op-group">
+                                            <Fraction n={exercise.n1} d={exercise.d1} />
+                                            <Minus size={24} className="op-icon" />
+                                            <Fraction n={exercise.n2} d={exercise.d2} />
+                                        </div>
+                                        <span className="equal-sign">=</span>
+                                        <div className="op-group">
+                                            <FractionInputSmall
+                                                value={{ num: intermediate.n1, den: intermediate.den }}
+                                                onChange={(val) => setIntermediate({ ...intermediate, n1: val.num, den: val.den })}
+                                            />
+                                            <Minus size={24} className="op-icon" />
+                                            <FractionInputSmall
+                                                value={{ num: intermediate.n2, den: intermediate.den }}
+                                                onChange={(val) => setIntermediate({ ...intermediate, n2: val.num, den: val.den })}
+                                            />
+                                        </div>
+                                        <span className="equal-sign">=</span>
+                                        <FractionInput
+                                            value={userAnswer}
+                                            onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
                                         />
-                                        <Minus size={24} className="op-icon" />
-                                        <FractionInputSmall
-                                            value={{ num: intermediate.n2, den: intermediate.den }}
-                                            onChange={(val) => setIntermediate({ ...intermediate, n2: val.num, den: val.den })}
-                                        />
                                     </div>
-                                    <span className="equal-sign">=</span>
-                                    <FractionInput
-                                        value={userAnswer}
-                                        onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
-                                    />
+                                    {!isExamMode && (
+                                        <button
+                                            className={`btn-toggle-hint ${showHint ? 'active' : ''}`}
+                                            onClick={() => setShowHint(!showHint)}
+                                        >
+                                            {showHint ? 'Ocultar Múltiplos' : '💡 Ver Múltiplos'}
+                                        </button>
+                                    )}
+                                    <AnimatePresence>
+                                        {showHint && !isExamMode && (
+                                            <motion.div
+                                                className="dynamic-aid-inline"
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: 'auto', opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                            >
+                                                {renderMultiples(exercise.d1, exercise.d2)}
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
                             )}
                             {exercise?.type === 'multiplicaciones' && (
@@ -593,13 +662,52 @@ const FraccionesESO = () => {
                                 </div>
                             )}
                             {exercise?.type === 'simplificar' && (
-                                <div className="fraction-calc">
-                                    <Fraction n={exercise.n} d={exercise.d} />
-                                    <span className="equal-sign">➡️</span>
-                                    <FractionInput
-                                        value={userAnswer}
-                                        onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
-                                    />
+                                <div className="simple-calc-container">
+                                    <div className="fraction-calc">
+                                        <Fraction n={exercise.n} d={exercise.d} />
+                                        <span className="equal-sign">➡️</span>
+                                        <FractionInput
+                                            value={userAnswer}
+                                            onChange={(val) => setUserAnswer({ ...userAnswer, ...val })}
+                                        />
+                                    </div>
+                                    {!isExamMode && (
+                                        <button
+                                            className={`btn-toggle-hint ${showHint ? 'active' : ''}`}
+                                            onClick={() => setShowHint(!showHint)}
+                                        >
+                                            {showHint ? 'Ocultar Divisores' : '💡 Ver Divisores'}
+                                        </button>
+                                    )}
+                                    <AnimatePresence>
+                                        {showHint && !isExamMode && (
+                                            <motion.div
+                                                className="dynamic-aid-inline"
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: 'auto', opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                            >
+                                                <div className="hint-scroll">
+                                                    <div className="hint-row">
+                                                        <span className="hint-num">{exercise.n}:</span>
+                                                        {(() => {
+                                                            const divs = [];
+                                                            for (let i = 1; i <= exercise.n; i++) if (exercise.n % i === 0) divs.push(i);
+                                                            return divs.map(d => <span key={d} className="hint-ball divisor">{d}</span>);
+                                                        })()}
+                                                    </div>
+                                                    <div className="hint-row">
+                                                        <span className="hint-num">{exercise.d}:</span>
+                                                        {(() => {
+                                                            const divs = [];
+                                                            for (let i = 1; i <= exercise.d; i++) if (exercise.d % i === 0) divs.push(i);
+                                                            return divs.map(d => <span key={d} className="hint-ball divisor">{d}</span>);
+                                                        })()}
+                                                    </div>
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
                             )}
                             {(exercise?.type === 'mcm' || exercise?.type === 'mcd') && (
@@ -638,16 +746,7 @@ const FraccionesESO = () => {
                                                 <div className="hint-scroll">
                                                     {exercise.type === 'mcm' ? (
                                                         <>
-                                                            <div className="hint-row">
-                                                                <span className="hint-num">{exercise.a}:</span>
-                                                                {[1, 2, 3, 4, 5, 6].map(i => <span key={i} className="hint-ball">{exercise.a * i}</span>)}
-                                                                <span className="hint-dots">...</span>
-                                                            </div>
-                                                            <div className="hint-row">
-                                                                <span className="hint-num">{exercise.b}:</span>
-                                                                {[1, 2, 3, 4, 5, 6].map(i => <span key={i} className="hint-ball">{exercise.b * i}</span>)}
-                                                                <span className="hint-dots">...</span>
-                                                            </div>
+                                                            {renderMultiples(exercise.a, exercise.b)}
                                                         </>
                                                     ) : (
                                                         <>
