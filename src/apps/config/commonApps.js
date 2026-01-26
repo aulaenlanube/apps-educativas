@@ -60,6 +60,7 @@ import ExcavacionSelectiva from '../excavacion-selectiva/ExcavacionSelectiva.jsx
 import MesaCrafteo from '../mesa-crafteo/MesaCrafteo.jsx';
 import EntrenadorTabla from '../entrenador-tabla/EntrenadorTabla.jsx';
 import LaboratorioFunciones2D from '../laboratorio-funciones-2d/LaboratorioFunciones2D';
+import RotacionesGrid from '../rotaciones-grid/RotacionesGrid';
 import BancoRecursosTutoria from '../banco-recursos-tutoria/BancoRecursosTutoria';
 
 
@@ -284,5 +285,12 @@ export const appBancoRecursosTutoria = {
   name: '🎓 Banco de Recursos Tutoriales',
   description: 'Dossier completo de dinámicas y recursos para la acción tutorial.',
   component: BancoRecursosTutoria
+};
+
+export const appRotacionesGrid = {
+  id: 'rotaciones-grid',
+  name: '🔄 Giros y Rotaciones',
+  description: 'Dibuja las figuras resultantes de aplicar rotaciones sobre una cuadrícula.',
+  component: RotacionesGrid
 };
 

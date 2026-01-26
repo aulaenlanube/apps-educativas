@@ -20,7 +20,8 @@ import {
   appDivisionesPrimaria4, appDivisionesPrimaria5, appDivisionesPrimaria6,
   appSupermercadoMatematico1, appSupermercadoMatematico2, appSupermercadoMatematico3, appSupermercadoMatematico4, appSupermercadoMatematico5, appSupermercadoMatematico6,
   appExcavacionSelectiva,
-  appBancoRecursosTutoria
+  appBancoRecursosTutoria,
+  appRotacionesGrid
 
 } from './commonApps';
 
@@ -201,6 +202,7 @@ export const primariaApps = {
       appMultiplicacionesPrimaria6,
       appDivisionesPrimaria6,
       appSupermercadoMatematico6,
+      appRotacionesGrid,
       appRunner, appExcavacionSelectiva, appOrdenaBolas, appRosco, appMedidas6, appMayorMenor6, appNumerosRomanos6, appOrdenaLaFrase, appOrdenaLaHistoria,
       appDetectiveDePalabras,
       appParejas,
