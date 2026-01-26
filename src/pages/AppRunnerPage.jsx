@@ -59,8 +59,8 @@ const AppRunnerPage = () => {
             ? 'bg-black'
             : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50';
 
-    const isWideApp = app.id.includes('visualizador-3d') || app.id.includes('romanos') || app.id.includes('mesa-crafteo') || app.id.includes('laboratorio-funciones-2d');
-    const containerClass = isWideApp ? "max-w-7xl" : "max-w-4xl";
+    const isWideApp = app.id.includes('visualizador-3d') || app.id.includes('romanos') || app.id.includes('mesa-crafteo') || app.id.includes('laboratorio-funciones-2d') || app.id.includes('fracciones-eso');
+    const containerClass = isWideApp ? "max-w-[1600px] w-[85%] px-0" : "max-w-4xl";
 
     // Conditional Styles
     const btnBackClass = isRetroApp

@@ -1,0 +1,901 @@
+﻿:root {
+    --accent-blue: #4f46e5;
+    --accent-red: #ef4444;
+    --accent-purple: #8b5cf6;
+    --accent-green: #10b981;
+    --accent-orange: #f59e0b;
+    --accent-pink: #ec4899;
+    --bg-light: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+}
+
+.fracciones-eso-container {
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: 'Fredoka', 'Quicksand', sans-serif;
+    background: radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(236, 72, 153, 0.05) 0%, transparent 50%);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.app-header {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.app-header.main-view {
+    justify-content: center;
+    text-align: center;
+}
+
+.gradient-text {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.gradient-text.centered {
+    width: 100%;
+}
+
+/* Menu Grid */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 2rem;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.menu-card {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 32px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.menu-card:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(var(--card-color), 0.1);
+    color: var(--card-color);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.menu-card h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.menu-card p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Exercise Area */
+.exercise-area {
+    width: 100%;
+    max-width: 800px;
+}
+
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.btn-back {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    transition: background 0.2s;
+}
+
+.btn-back:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-main);
+}
+
+.section-badge {
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-card {
+    background: white;
+    padding: 4rem 2rem;
+    border-radius: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+/* Fraction Rendering */
+.fraction-calc {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+.fraction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 0 0.5rem;
+}
+
+.fraction .num {
+    border-bottom: 4px solid var(--text-main);
+    padding-bottom: 0.2rem;
+}
+
+.fraction .den {
+    padding-top: 0.2rem;
+}
+
+.op-icon {
+    color: var(--text-muted);
+}
+
+.equal-sign {
+    color: var(--text-main);
+    font-size: 4rem;
+}
+
+.fraction-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.num-input,
+.den-input,
+.single-input {
+    width: 100px;
+    height: 80px;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    border: 3px solid #e2e8f0;
+    border-radius: 20px;
+    background: #f8fafc;
+    color: var(--accent-blue);
+    outline: none;
+    transition: all 0.2s;
+}
+
+.num-input:focus,
+.den-input:focus,
+.single-input:focus {
+    border-color: var(--accent-blue);
+    background: white;
+    box-shadow: 0 0 0 5px rgba(79, 70, 229, 0.1);
+}
+
+.num-input {
+    border-bottom-width: 5px;
+}
+
+.simple-calc {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.numbers-display {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    background: #f1f5f9;
+    padding: 1rem 2rem;
+    border-radius: 24px;
+}
+
+/* Actions */
+.exercise-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-check,
+.btn-refresh,
+.btn-help,
+.btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 2rem;
+    border-radius: 18px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: none;
+}
+
+.btn-check {
+    background: var(--accent-blue);
+    color: white;
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.2);
+}
+
+.btn-check:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(79, 70, 229, 0.3);
+}
+
+.btn-refresh {
+    background: #f1f5f9;
+    color: var(--text-muted);
+}
+
+.btn-refresh:hover {
+    background: #e2e8f0;
+}
+
+.btn-help {
+    background: #fff;
+    color: var(--accent-purple);
+    border: 2px solid rgba(139, 92, 246, 0.2);
+}
+
+/* Feedback */
+.feedback {
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 1.5rem 3rem;
+    border-radius: 100px;
+    text-align: center;
+    width: 100%;
+}
+
+.feedback.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--accent-green);
+    border: 2px solid rgba(16, 185, 129, 0.1);
+}
+
+.feedback.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--accent-red);
+    border: 2px solid rgba(239, 68, 68, 0.1);
+}
+
+/* Fractions Specific Modals */
+.fractions-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.fractions-modal-content {
+    background: white !important;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 40px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    /* Hide scrollbar completely */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.fractions-modal-content::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    display: none !important;
+}
+
+.fractions-modal-header {
+    background: white !important;
+    background-color: white !important;
+    padding: 2.5rem 3.5rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.fractions-modal-header h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--text-main) !important;
+    background: none !important;
+    -webkit-text-fill-color: var(--text-main) !important;
+}
+
+.fractions-modal-icon {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--accent-purple);
+    padding: 1rem;
+    border-radius: 20px;
+    width: 50px;
+    height: 50px;
+}
+
+.fractions-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2.5rem;
+    background: #f1f5f9;
+    border: none;
+    color: var(--text-muted);
+    padding: 0.6rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.fractions-close-btn:hover {
+    background: #e2e8f0;
+    color: var(--text-main);
+}
+
+.fractions-modal-body {
+    padding: 3.5rem;
+    font-size: 1.15rem;
+    color: var(--text-main);
+    line-height: 1.7;
+}
+
+.fractions-modal-footer {
+    padding: 2.5rem 3.5rem;
+    background: #f8fafc;
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #e2e8f0;
+}
+
+.help-text p {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.help-example {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 20px;
+    border-left: 5px solid var(--accent-purple);
+    font-family: monospace;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+}
+
+.btn-primary {
+    background: var(--accent-purple);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .fraction-calc {
+        font-size: 2rem;
+        gap: 0.75rem;
+    }
+
+    .num-input,
+    .den-input,
+    .single-input {
+        width: 70px;
+        height: 60px;
+        font-size: 1.75rem;
+    }
+
+    .gradient-text {
+        font-size: 2rem;
+    }
+}
+
+/* Estilos para Operaciones Complejas (con paso intermedio) */
+.fraction-calc.complex {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.op-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.fraction-input.small .num-input,
+.fraction-input.small .den-input {
+    width: 65px;
+    height: 55px;
+    font-size: 1.4rem;
+    border-radius: 12px;
+    border-width: 2px;
+}
+
+@media (max-width: 900px) {
+    .fraction-calc.complex {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .equal-sign {
+        transform: rotate(90deg);
+        font-size: 2.5rem;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Estilos para Ayudas Visuales */
+.help-visual-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.help-step {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+}
+
+.step-number {
+    background: var(--accent-purple);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: 0 4px 6px rgba(139, 92, 246, 0.3);
+}
+
+.visual-formula {
+    background: #f1f5f9;
+    padding: 1rem;
+    border-radius: 12px;
+    font-family: monospace;
+    font-weight: 700;
+    margin-top: 0.5rem;
+    border: 1px dashed #cbd5e1;
+}
+
+.visual-example {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 20px;
+    border: 2px solid #f1f5f9;
+    margin-top: 1rem;
+}
+
+.frac-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.2rem;
+}
+
+.arrow {
+    color: var(--accent-purple);
+    font-size: 1.5rem;
+}
+
+.visual-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 24px;
+}
+
+.diagram-box {
+    text-align: center;
+}
+
+.diagram-box .label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.flow-line {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent-blue);
+}
+
+.tip-box {
+    background: rgba(245, 158, 11, 0.1);
+    border-left: 4px solid var(--accent-orange);
+    padding: 1rem;
+    border-radius: 8px;
+    font-style: italic;
+}
+
+.simplification-visual {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 2rem 0;
+}
+
+.divide-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent-green);
+}
+
+.divide-arrow::before {
+    content: '';
+    font-size: 1.5rem;
+}
+
+.node {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.node.highlight {
+    color: var(--accent-green);
+    font-size: 1.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+}
+
+.theory-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+}
+
+.rule-box {
+    background: #f1f5f9;
+    padding: 1rem;
+    border-radius: 12px;
+    margin: 1rem 0;
+    border-left: 4px solid var(--accent-blue);
+}
+
+@media (max-width: 1000px) {
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .menu-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+/* Estilos para Pistas Dinámicas (mcm/mcd) */
+.dynamic-aid {
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 24px;
+    border: 2px solid var(--accent-blue);
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.05);
+    margin-top: 1rem;
+}
+
+.dynamic-aid h4 {
+    margin: 0 0 1.5rem 0;
+    color: var(--accent-blue);
+    font-size: 1.1rem;
+}
+
+.hint-scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scrollbar-width: thin;
+}
+
+.hint-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: max-content;
+}
+
+.hint-num {
+    font-weight: 800;
+    color: var(--text-main);
+    width: 40px;
+    font-size: 1.2rem;
+}
+
+.hint-ball {
+    background: white;
+    border: 2px solid #e2e8f0;
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.hint-ball.divisor {
+    border-color: var(--accent-green);
+    color: var(--accent-green);
+}
+
+.hint-dots {
+    color: var(--text-muted);
+    font-weight: 800;
+    padding-left: 0.5rem;
+}
+
+.hint-footer {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    text-align: center;
+    font-style: italic;
+}
+
+/* Estilos para el botón de pista integrado */
+.simple-calc-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+.btn-toggle-hint {
+    background: white;
+    border: 2px solid var(--accent-blue);
+    color: var(--accent-blue);
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-toggle-hint:hover {
+    background: var(--accent-blue);
+    color: white;
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.2);
+}
+
+.btn-toggle-hint.active {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: var(--text-muted);
+}
+
+.dynamic-aid-inline {
+    width: 100%;
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px dashed #cbd5e1;
+}
+
+/* Estilos para Modo Examen y Resultados */
+.exam-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f5f3ff 100%) !important;
+    border: 3px solid var(--accent-purple) !important;
+}
+
+.examen-icon {
+    background: var(--accent-purple) !important;
+    color: white !important;
+}
+
+.exam-progress {
+    text-align: right;
+    font-weight: 700;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 200px;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--accent-purple);
+    transition: width 0.3s ease;
+}
+
+.results-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.results-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.results-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.results-icon {
+    color: var(--accent-orange);
+}
+
+.final-grade {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.grade-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+}
+
+.grade-circle.pass { background: var(--accent-green); }
+.grade-circle.fail { background: var(--accent-red); }
+
+.results-summary {
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+    color: var(--text-muted);
+}
+
+.review-list {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.review-item {
+    padding: 1.5rem;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 100px 1fr 200px;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.review-item.correct { background: #f0fdf4; border: 1px solid #dcfce7; }
+.review-item.incorrect { background: #fef2f2; border: 1px solid #fee2e2; }
+
+.review-q-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.q-number { font-weight: 800; color: var(--text-muted); }
+.q-type { font-size: 0.8rem; font-weight: 700; color: var(--text-main); }
+
+.review-q-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.mini-frac-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transform: scale(0.6);
+}
+
+.review-ans-info {
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.ans-wrong { color: var(--accent-red); font-weight: 700; display: flex; align-items: center; gap: 0.25rem; }
+.ans-correct { color: var(--accent-green); font-weight: 700; display: flex; align-items: center; gap: 0.25rem; }
+
+.btn-primary.large {
+    width: 100%;
+    padding: 1.25rem;
+    font-size: 1.25rem;
+}

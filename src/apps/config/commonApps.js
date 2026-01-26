@@ -61,6 +61,7 @@ import MesaCrafteo from '../mesa-crafteo/MesaCrafteo.jsx';
 import EntrenadorTabla from '../entrenador-tabla/EntrenadorTabla.jsx';
 import LaboratorioFunciones2D from '../laboratorio-funciones-2d/LaboratorioFunciones2D';
 import RotacionesGrid from '../rotaciones-grid/RotacionesGrid';
+import FraccionesESO from '../fracciones-eso/FraccionesESO';
 import BancoRecursosTutoria from '../banco-recursos-tutoria/BancoRecursosTutoria';
 
 
@@ -292,5 +293,12 @@ export const appRotacionesGrid = {
   name: '🔄 Giros y Rotaciones',
   description: 'Dibuja las figuras resultantes de aplicar rotaciones sobre una cuadrícula.',
   component: RotacionesGrid
+};
+
+export const appFraccionesESO = {
+  id: 'fracciones-eso',
+  name: '🧮 Fracciones PRO',
+  description: 'Domina las sumas, restas, multiplicaciones, m.c.m. y M.C.D. de fracciones.',
+  component: FraccionesESO
 };
 
