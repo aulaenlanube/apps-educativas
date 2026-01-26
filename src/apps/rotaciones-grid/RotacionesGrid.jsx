@@ -4,6 +4,11 @@ import './RotacionesGrid.css';
 
 const GRID_SIZE = 9;
 const CENTER = 4; // Mid point of 0-8 is 4
+const COLORS = [
+    '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8',
+    '#F06292', '#AED581', '#FFD54F', '#4DB6AC', '#7986CB',
+    '#9575CD', '#FF8A65', '#A1887F', '#90A4AE'
+];
 
 const FIGURES = {
     simples: [
@@ -18,7 +23,6 @@ const FIGURES = {
         { name: 'S-Horizontal', cells: [[1, 0], [0, 0], [0, 1], [-1, 1]] },
         { name: 'I-Larga', cells: [[0, -1], [0, 0], [0, 1], [0, 2]] },
         { name: 'Podio', cells: [[-1, 1], [0, 1], [1, 1], [0, 0]] },
-        { name: 'C-Abierta', cells: [[1, 0], [0, 0], [0, 1], [1, 1]] },
     ],
     compuestas: [
         { name: 'Cruz', cells: [[0, -1], [-1, 0], [0, 0], [1, 0], [0, 1]] },
@@ -40,6 +44,12 @@ const FIGURES = {
         { name: 'Letra-E', cells: [[0, 0], [1, 0], [2, 0], [0, 1], [0, -1], [1, -1], [2, -1], [0, 2]] },
         { name: 'Invasor', cells: [[-1, 0], [1, 0], [-1, 1], [0, 1], [1, 1], [-2, 2], [2, 2], [0, 2]] },
         { name: 'Mariposa', cells: [[-1, -1], [1, -1], [-1, 0], [0, 0], [1, 0], [-1, 1], [1, 1], [-2, 0], [2, 0]] },
+        { name: 'Dragon', cells: [[0, -1], [1, -1], [1, 0], [0, 0], [-1, 0], [-1, 1], [-1, 2], [0, 2], [1, 2], [2, 2]] },
+        { name: 'Escorpion', cells: [[0, 0], [-1, 1], [0, 1], [1, 1], [-1, 2], [1, 2], [0, -1], [0, -2], [1, -2]] },
+        { name: 'Nave-Espacial', cells: [[0, -2], [-1, -1], [0, -1], [1, -1], [-1, 0], [0, 0], [1, 0], [-2, 1], [2, 1], [0, 1]] },
+        { name: 'Ancla', cells: [[0, -2], [0, -1], [0, 0], [-1, 1], [1, 1], [-2, 0], [2, 0], [-2, -1], [2, -1]] },
+        { name: 'Serpiente-G', cells: [[-2, 0], [-1, 0], [-1, 1], [0, 1], [0, 0], [1, 0], [1, -1], [2, -1]] },
+        { name: 'Cangrejo', cells: [[-2, 1], [-1, 1], [0, 1], [1, 1], [2, 1], [-1, 0], [1, 0], [-2, -1], [2, -1]] },
     ]
 };
 
@@ -60,6 +70,7 @@ const RotacionesGrid = () => {
     const [examStep, setExamStep] = useState(0);
     const [examScore, setExamScore] = useState(0);
     const [examFinished, setExamFinished] = useState(false);
+    const [examHistory, setExamHistory] = useState([]);
     const TOTAL_EXAM_STEPS = 5;
 
     const getDifficultyKey = (val) => {
@@ -133,6 +144,27 @@ const RotacionesGrid = () => {
         }
     };
 
+    const nextExamStep = (wasCorrect) => {
+        const historyItem = {
+            step: examStep,
+            targetRotation,
+            isClockwise,
+            userCells: [...userCells],
+            isCorrect: wasCorrect,
+            targetCells: getRotatedCells(currentFigure, targetRotation, isClockwise).map(c => c.pos)
+        };
+        setExamHistory(prev => [...prev, historyItem]);
+
+        setTimeout(() => {
+            if (examStep < TOTAL_EXAM_STEPS - 1) {
+                setExamStep(prev => prev + 1);
+                generateExercise();
+            } else {
+                setExamFinished(true);
+            }
+        }, 2000);
+    };
+
     const checkAnswer = () => {
         const target = getRotatedCells(currentFigure, targetRotation, isClockwise);
         const userShape = normalizeShape(userCells);
@@ -140,24 +172,24 @@ const RotacionesGrid = () => {
         const isWinner = userShape !== '' && userShape === targetShape;
 
         if (isWinner) {
-            setFeedback({ type: 'success', text: '¡Excelente! La forma es correcta.' });
-            setIsCorrect(true);
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-
             if (mode === 'exam') {
+                setFeedback({ type: 'info', text: 'Respuesta guardada. Siguiente...' });
                 setExamScore(prev => prev + 1);
-                setTimeout(() => {
-                    if (examStep < TOTAL_EXAM_STEPS - 1) {
-                        setExamStep(prev => prev + 1);
-                        generateExercise();
-                    } else {
-                        setExamFinished(true);
-                    }
-                }, 2000);
+                nextExamStep(true);
+            } else {
+                setFeedback({ type: 'success', text: '¡Excelente! La forma es correcta.' });
+                setIsCorrect(true);
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
             }
         } else {
-            setFeedback({ type: 'error', text: 'Vaya, parece que hay algo mal. ¡Sigue intentándolo!' });
-            setIsCorrect(false);
+            if (mode === 'exam') {
+                setFeedback({ type: 'info', text: 'Respuesta guardada. Siguiente...' });
+                setIsCorrect(false);
+                nextExamStep(false);
+            } else {
+                setFeedback({ type: 'error', text: 'Vaya, parece que hay algo mal. ¡Sigue intentándolo!' });
+                setIsCorrect(false);
+            }
         }
     };
 
@@ -166,6 +198,7 @@ const RotacionesGrid = () => {
         setExamStep(0);
         setExamScore(0);
         setExamFinished(false);
+        setExamHistory([]);
         generateExercise();
     };
 
@@ -242,12 +275,41 @@ const RotacionesGrid = () => {
     if (examFinished) {
         return (
             <div className="rotaciones-container">
-                <div className="grid-card">
-                    <h2 className="gradient-text">¡Examen Finalizado!</h2>
-                    <p className="feedback-msg">Tu puntuación: {examScore} / {TOTAL_EXAM_STEPS}</p>
+                <div className="grid-card wide">
+                    <div className="rotaciones-header"><h1>¡Examen Finalizado!</h1></div>
+                    <p className="feedback-msg">Tu puntuación: <span className="score-badge">{examScore} / {TOTAL_EXAM_STEPS}</span></p>
+
+                    <div className="exam-history-summary">
+                        {examHistory.map((item, idx) => (
+                            <div key={idx} className={`summary-card ${item.isCorrect ? 'correct' : 'incorrect'}`}>
+                                <div className="summary-header">
+                                    <span className="question-number">Pregunta {idx + 1}</span>
+                                    <span className="status-badge">{item.isCorrect ? '✅ Logrado' : '❌ Fallido'}</span>
+                                </div>
+                                <div className="summary-details">
+                                    <p>Giro de <strong>{item.targetRotation}º</strong> a la <strong>{item.isClockwise ? 'derecha' : 'izquierda'}</strong></p>
+                                    {!item.isCorrect && (
+                                        <div className="comparison-area">
+                                            <div className="comparison-box">
+                                                <span>Tu dibujo:</span>
+                                                {renderMiniGrid(item.userCells)}
+                                            </div>
+                                            <div className="comparison-box">
+                                                <span>Solución:</span>
+                                                {renderMiniGrid(item.targetCells)}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
                     <div className="controls-panel">
-                        <button className="btn-primary" onClick={() => { setMode('practice'); setExamFinished(false); generateExercise(); }}>Volver a Práctica</button>
-                        <button className="btn-secondary" onClick={startExam}>Repetir Examen</button>
+                        <div className="button-group">
+                            <button className="btn-primary" onClick={() => { setMode('practice'); setExamFinished(false); generateExercise(); }}>Volver a Práctica</button>
+                            <button className="btn-secondary" onClick={startExam}>Repetir Examen</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -258,12 +320,6 @@ const RotacionesGrid = () => {
         <div className="rotaciones-container">
             <div className="rotaciones-header">
                 <h1>Giros y Rotaciones</h1>
-                {mode === 'exam' && (
-                    <div className="exam-stats">
-                        <span>Pregunta: {examStep + 1} / {TOTAL_EXAM_STEPS}</span>
-                        <span>Aciertos: {examScore}</span>
-                    </div>
-                )}
             </div>
 
             <div className="top-actions-panel">
@@ -297,17 +353,26 @@ const RotacionesGrid = () => {
             </div>
 
             <div className="instruction-box" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <p className="instruction-text" style={{ flex: 1, textAlign: 'center' }}>
+                <p className="instruction-text" style={{ flex: 1, textAlign: 'center', fontSize: '1.4rem' }}>
                     Gira la figura <span className="angle-badge">{targetRotation}º</span> hacia la <strong>{isClockwise ? 'derecha ➡️' : 'izquierda ⬅️'}</strong>.
                 </p>
-                <div className="switch-container">
+                <div className="switch-container has-tooltip">
                     <span>Colores</span>
                     <label className="switch">
                         <input type="checkbox" checked={colorMode} onChange={(e) => setColorMode(e.target.checked)} />
                         <span className="slider"></span>
                     </label>
+                    <div className="tooltip-box">
+                        💡 Ayuda visual: Se evalúa la forma, no los colores ni su orden.
+                    </div>
                 </div>
             </div>
+
+            {mode === 'exam' && (
+                <div className="exam-stats">
+                    <span>Pregunta: {examStep + 1} / {TOTAL_EXAM_STEPS}</span>
+                </div>
+            )}
 
             <div className="rotaciones-game-area">
                 <div className="grid-card"><h3 className="grid-title">Original</h3>{renderGrid(currentFigure)}</div>
@@ -334,16 +399,22 @@ const RotacionesGrid = () => {
                 <div className="modal-overlay">
                     <div className="modal-content">
                         <button className="close-modal" onClick={() => setShowHelp(false)}>×</button>
-                        <h2 className="gradient-text">Área de Entrenamiento</h2>
+                        <div className="rotaciones-header"><h1>Área de Entrenamiento</h1></div>
                         <div className="help-grid-container">
                             <div className="help-grid-animated" style={{ transform: `rotate(${helpAngle}deg)` }}>
                                 {renderGrid(currentFigure)}
                             </div>
                         </div>
                         <div className="rotation-controls">
-                            <button className="btn-secondary" onClick={() => setHelpAngle(prev => prev - 90)}>↺ -90º</button>
-                            <div className="angle-display">{helpAngle}º</div>
-                            <button className="btn-secondary" onClick={() => setHelpAngle(prev => prev + 90)}>↻ +90º</button>
+                            <button className="btn-rotation-circle" onClick={() => setHelpAngle(prev => prev - 90)} title="Girar 90º a la izquierda">
+                                <span className="icon">↺</span>
+                                <span className="label">-90º</span>
+                            </button>
+                            <div className="angle-display-glow">{helpAngle}º</div>
+                            <button className="btn-rotation-circle primary" onClick={() => setHelpAngle(prev => prev + 90)} title="Girar 90º a la derecha">
+                                <span className="icon">↻</span>
+                                <span className="label">+90º</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -353,7 +424,7 @@ const RotacionesGrid = () => {
                 <div className="modal-overlay">
                     <div className="modal-content wide">
                         <button className="close-modal" onClick={() => setShowIndex(false)}>×</button>
-                        <h2 className="gradient-text">Catálogo de Figuras</h2>
+                        <div className="rotaciones-header"><h1>Catálogo de Figuras</h1></div>
                         {Object.entries(FIGURES).map(([category, items]) => (
                             <div key={category} className="figures-category-section">
                                 <h3 className="category-title">

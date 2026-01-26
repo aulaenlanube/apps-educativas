@@ -23,7 +23,8 @@
     font-family: 'Fredoka One', 'Fredoka', sans-serif;
     font-size: 3.5rem;
     letter-spacing: -0.02em;
-    line-height: 1;
+    line-height: 1.2;
+    padding: 0.2rem 0;
     margin-bottom: 0.5rem;
     background: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
     -webkit-background-clip: text;
@@ -349,10 +350,16 @@ input:checked+.slider:before {
 
 .exam-stats {
     display: flex;
+    justify-content: center;
     gap: 2rem;
-    margin-bottom: 2rem;
-    font-weight: 600;
-    color: #764ba2;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #4f46e5;
+    background: white;
+    padding: 0.5rem 2rem;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 @media (max-width: 768px) {
@@ -386,12 +393,21 @@ input:checked+.slider:before {
     max-width: 1000px;
     max-height: 90vh;
     overflow-y: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     animation: modalScaleUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-content::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Opera */
 }
 
 @keyframes modalScaleUp {
@@ -482,6 +498,7 @@ input:checked+.slider:before {
 
 .range-slider {
     -webkit-appearance: none;
+    appearance: none;
     width: 100%;
     height: 8px;
     border-radius: 5px;
@@ -597,4 +614,212 @@ input:checked+.slider:before {
     to {
         opacity: 1;
     }
+}
+
+/* Rotación UI */
+.btn-rotation-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #e2e8f0;
+    background: white;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    margin: 0.5rem;
+}
+
+.btn-rotation-circle .icon {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #4f46e5;
+}
+
+.btn-rotation-circle .label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #64748b;
+}
+
+.btn-rotation-circle:hover {
+    transform: translateY(-5px) rotate(-10deg);
+    border-color: #4f46e5;
+    box-shadow: 0 15px 30px rgba(79, 70, 229, 0.15);
+}
+
+.btn-rotation-circle.primary {
+    background: linear-gradient(135deg, #4f46e5 0%, #764ba2 100%);
+    border: none;
+}
+
+.btn-rotation-circle.primary .icon,
+.btn-rotation-circle.primary .label {
+    color: white;
+}
+
+.btn-rotation-circle.primary:hover {
+    transform: translateY(-5px) rotate(10deg);
+    box-shadow: 0 15px 30px rgba(79, 70, 229, 0.3);
+}
+
+.angle-display-glow {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2.5rem;
+    color: #1e293b;
+    padding: 0 2rem;
+    min-width: 140px;
+    text-align: center;
+    text-shadow: 0 0 20px rgba(79, 70, 229, 0.1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.angle-display-glow::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 20%;
+    right: 20%;
+    height: 4px;
+    background: linear-gradient(to right, transparent, #4f46e5, transparent);
+    border-radius: 2px;
+}
+
+/* Tooltip para Modo Color */
+.has-tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.tooltip-box {
+    position: absolute;
+    bottom: 120%;
+    right: 0;
+    width: 220px;
+    background: #1e293b;
+    color: white;
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.4;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(10px) scale(0.9);
+    z-index: 100;
+    pointer-events: none;
+    text-align: left;
+}
+
+.tooltip-box::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: #1e293b transparent transparent transparent;
+}
+
+.has-tooltip:hover .tooltip-box {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Resumen de Examen */
+.grid-card.wide {
+    width: 100%;
+    max-width: 900px;
+}
+
+.score-badge {
+    background: #4f46e5;
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 12px;
+    font-weight: 800;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+.exam-history-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.summary-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    border: 2px solid #e2e8f0;
+    transition: transform 0.3s;
+}
+
+.summary-card.correct {
+    border-color: #28a745;
+    background: rgba(40, 167, 69, 0.02);
+}
+
+.summary-card.incorrect {
+    border-color: #dc3545;
+    background: rgba(220, 53, 69, 0.02);
+}
+
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+}
+
+.question-number {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #475569;
+}
+
+.status-badge {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.comparison-area {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.comparison-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.comparison-box span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #64748b;
+}
+/* Mensaje Info Neutro */
+.feedback-msg.info {
+    background: rgba(79, 70, 229, 0.1);
+    color: #4f46e5;
+    border: 1px solid rgba(79, 70, 229, 0.2);
 }
