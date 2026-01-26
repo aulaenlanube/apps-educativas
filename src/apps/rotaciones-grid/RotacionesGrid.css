@@ -363,9 +363,38 @@ input:checked+.slider:before {
 }
 
 @media (max-width: 768px) {
+    .rotaciones-game-area {
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
     .grid-cell {
-        width: 25px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .rotaciones-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .top-actions-panel {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .instruction-box {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .instruction-text {
+        font-size: 1.1rem !important;
+    }
+
+    .modal-content {
+        padding: 1.5rem;
     }
 }
 
@@ -817,6 +846,7 @@ input:checked+.slider:before {
     font-weight: 600;
     color: #64748b;
 }
+
 /* Mensaje Info Neutro */
 .feedback-msg.info {
     background: rgba(79, 70, 229, 0.1);
