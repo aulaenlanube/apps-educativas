@@ -4,7 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import { motion } from 'framer-motion';
 import { GraduationCap, ArrowLeft, Folder, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { esoSubjects, primariaSubjects } from '@/apps/appList'; // IMPORTAMOS AMBOS
+import { esoSubjects, primariaSubjects } from '@/apps/appList';
+import Mascot from '@/components/Mascot';
 
 const SubjectList = ({ subjects, level, grade }) => {
   const navigate = useNavigate();
@@ -191,6 +192,7 @@ const SubjectPage = () => {
                   </motion.div>
                 )}
               </div>
+              <Mascot />
               <p className="text-xl text-gray-600 mt-4">¡Selecciona una asignatura para ver las apps disponibles!</p>
             </div>
 

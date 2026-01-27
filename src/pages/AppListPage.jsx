@@ -6,6 +6,7 @@ import { GraduationCap, ArrowLeft, Sparkles, Folder, Dices, Zap } from 'lucide-r
 import { Button } from '@/components/ui/button';
 // CORRECCIÓN 1: Importamos también 'primariaSubjects'
 import { esoApps, esoSubjects, primariaApps, primariaSubjects } from '@/apps/appList';
+import Mascot from '@/components/Mascot';
 
 // --- INICIO RANDOMAPPSELECTOR (Se mantiene igual, lo incluyo para que el fichero esté completo) ---
 const RandomAppSelector = ({ apps, onAppSelected }) => {
@@ -112,8 +113,8 @@ const RandomAppSelector = ({ apps, onAppSelected }) => {
                         disabled={isSpinning}
                         size="lg"
                         className={`w-full md:w-auto min-w-[200px] text-lg rounded-xl transition-all duration-300 ${isSpinning
-                                ? 'bg-gray-100 text-gray-400 border border-gray-200 shadow-none'
-                                : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-1'
+                            ? 'bg-gray-100 text-gray-400 border border-gray-200 shadow-none'
+                            : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg hover:shadow-indigo-500/30 hover:-translate-y-1'
                             }`}
                     >
                         {isSpinning ? (
@@ -237,6 +238,7 @@ const AppListPage = () => {
 
                     {appsForSubject.length > 0 ? (
                         <>
+                            <Mascot />
                             <RandomAppSelector
                                 apps={appsForSubject}
                                 onAppSelected={handleRandomSelection}

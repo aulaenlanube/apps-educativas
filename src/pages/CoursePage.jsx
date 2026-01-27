@@ -5,37 +5,38 @@ import { motion } from 'framer-motion';
 import { GraduationCap, ArrowLeft, BookOpen, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { primariaApps, esoApps, primariaSubjects, esoSubjects } from '@/apps/appList'; // IMPORTAR TODO
+import Mascot from '@/components/Mascot';
 
 const AppList = ({ apps, level, grade, subjectId }) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-            {apps.map((app, index) => (
-                <motion.div
-                    key={app.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-purple-100"
-                    // URL UNIFICADA: /curso/nivel/grado/asignatura/app/id
-                    onClick={() => navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`)}
-                >
-                    <h3 className="text-xl font-bold text-gray-800 mb-2">{app.name}</h3>
-                    <p className="text-gray-600">{app.description}</p>
-                </motion.div>
-            ))}
-        </div>
-    );
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
+      {apps.map((app, index) => (
+        <motion.div
+          key={app.id}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 }}
+          className="bg-white/80 p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer border border-purple-100"
+          // URL UNIFICADA: /curso/nivel/grado/asignatura/app/id
+          onClick={() => navigate(`/curso/${level}/${grade}/${subjectId}/app/${app.id}`)}
+        >
+          <h3 className="text-xl font-bold text-gray-800 mb-2">{app.name}</h3>
+          <p className="text-gray-600">{app.description}</p>
+        </motion.div>
+      ))}
+    </div>
+  );
 };
 
 const CoursePage = () => {
   // Ahora necesitamos subjectId de la URL
   const { level, grade, subjectId } = useParams();
   const navigate = useNavigate();
-  
+
   const levelName = level === 'eso' ? 'ESO' : 'Primaria';
-  
+
   // Encontrar el nombre de la asignatura para el título
   const subjectsData = level === 'eso' ? esoSubjects : primariaSubjects;
   const gradeSubjects = subjectsData?.[grade] || [];
@@ -43,7 +44,7 @@ const CoursePage = () => {
   const subjectName = subjectInfo ? subjectInfo.nombre : subjectId;
 
   const fullTitle = `${grade}º ${levelName} - ${subjectName}`;
-  
+
   // Encontrar las apps
   const appsMap = level === 'eso' ? esoApps : primariaApps;
   // Accedemos a [grado][asignatura]
@@ -81,13 +82,14 @@ const CoursePage = () => {
               <h1 className="text-4xl md:text-5xl font-bold gradient-text">{fullTitle}</h1>
               <Sparkles className="w-10 h-10 text-purple-500" />
             </div>
+            <Mascot />
             <p className="text-xl text-gray-600 mt-4">¡Selecciona una aplicación para empezar a jugar y aprender!</p>
           </motion.div>
           {appsForCourse.length > 0 ? (
             <AppList apps={appsForCourse} level={level} grade={grade} subjectId={subjectId} />
           ) : (
             <motion.div className="mt-16 flex flex-col items-center justify-center text-center bg-white/60 backdrop-blur-sm p-12 rounded-3xl shadow-xl">
-               <img className="w-56 h-56 mb-8" alt="Un cohete despegando hacia las estrellas" src="/images/portada.webp" />
+              <img className="w-56 h-56 mb-8" alt="Un cohete despegando hacia las estrellas" src="/images/portada.webp" />
               <h2 className="text-3xl font-bold text-gray-800 mb-4">¡Próximamente!</h2>
               <p className="text-lg text-gray-600 max-w-md">Estamos preparando actividades increíbles para esta asignatura. ¡Vuelve pronto!</p>
             </motion.div>
