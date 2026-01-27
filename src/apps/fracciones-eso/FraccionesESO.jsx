@@ -31,26 +31,81 @@ const FraccionesESO = () => {
     const [examAnswers, setExamAnswers] = useState([]);
     const [showResults, setShowResults] = useState(false);
     const [score, setScore] = useState(0);
+    const [isVibrating, setIsVibrating] = useState(false);
+
+    const renderDivisors = (num1, num2) => {
+        const divs1 = [];
+        for (let i = 1; i <= num1; i++) if (num1 % i === 0) divs1.push(i);
+        const divs2 = [];
+        for (let i = 1; i <= num2; i++) if (num2 % i === 0) divs2.push(i);
+        const maxRows = Math.max(divs1.length, divs2.length);
+
+        return (
+            <div className="hint-table-wrapper">
+                <table className="hint-table">
+                    <thead>
+                        <tr>
+                            <th>Nº</th>
+                            <th>{num1}</th>
+                            <th>{num2}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Array.from({ length: maxRows }).map((_, i) => (
+                            <tr key={i}>
+                                <td className="multiplier-cell">{i + 1}</td>
+                                <td>{divs1[i] ? <span className="hint-ball">{divs1[i]}</span> : '-'}</td>
+                                <td>{divs2[i] ? <span className="hint-ball">{divs2[i]}</span> : '-'}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        );
+    };
 
     const renderMultiples = (num1, num2) => {
         const common = lcm(num1, num2);
-        const multiples1 = [];
-        const multiples2 = [];
-        for (let i = 1; num1 * i <= common; i++) multiples1.push(num1 * i);
-        for (let i = 1; num2 * i <= common; i++) multiples2.push(num2 * i);
+        const limit1 = Math.max(10, Math.ceil(common / num1));
+        const limit2 = Math.max(10, Math.ceil(common / num2));
+        const maxRows = Math.max(limit1, limit2);
 
         return (
-            <div className="hint-scroll">
-                <div className="hint-row">
-                    <span className="hint-num">{num1}:</span>
-                    {multiples1.map(m => <span key={m} className={`hint-ball ${m === common ? 'divisor' : ''}`}>{m}</span>)}
-                    <span className="hint-dots">...</span>
-                </div>
-                <div className="hint-row">
-                    <span className="hint-num">{num2}:</span>
-                    {multiples2.map(m => <span key={m} className={`hint-ball ${m === common ? 'divisor' : ''}`}>{m}</span>)}
-                    <span className="hint-dots">...</span>
-                </div>
+            <div className="hint-table-wrapper">
+                <table className="hint-table">
+                    <thead>
+                        <tr>
+                            <th>×</th>
+                            <th>{num1}</th>
+                            <th>{num2}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Array.from({ length: maxRows }).map((_, i) => {
+                            const m1 = (i + 1) * num1;
+                            const m2 = (i + 1) * num2;
+                            return (
+                                <tr key={i}>
+                                    <td className="multiplier-cell">{i + 1}</td>
+                                    <td>
+                                        {i < limit1 && (
+                                            <span className="hint-ball">
+                                                {m1}
+                                            </span>
+                                        )}
+                                    </td>
+                                    <td>
+                                        {i < limit2 && (
+                                            <span className="hint-ball">
+                                                {m2}
+                                            </span>
+                                        )}
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
             </div>
         );
     };
@@ -95,6 +150,10 @@ const FraccionesESO = () => {
         setIntermediate({ n1: '', n2: '', den: '' });
         setShowHint(false);
         setExercise(createExerciseData(type));
+
+        // Vibración
+        setIsVibrating(true);
+        setTimeout(() => setIsVibrating(false), 400);
     }, []);
 
     const startExam = () => {
@@ -398,9 +457,11 @@ const FraccionesESO = () => {
                 <motion.h1
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    className="gradient-text centered"
+                    className="gradient-text centered main-title-with-icons"
                 >
+                    <BookOpen size={40} className="title-icon" color="var(--accent-blue)" />
                     Fracciones PRO
+                    <Calculator size={40} className="title-icon" color="var(--accent-green)" />
                 </motion.h1>
             </header>
 
@@ -535,7 +596,7 @@ const FraccionesESO = () => {
                 >
                     <div className="exercise-header">
                         <button className="btn-back" onClick={() => { setSection(null); setIsExamMode(false); }}>
-                            <ArrowLeft size={20} /> Salir
+                            <ArrowLeft size={20} /> Volver
                         </button>
                         {isExamMode ? (
                             <div className="exam-progress">
@@ -551,7 +612,7 @@ const FraccionesESO = () => {
                         )}
                     </div>
 
-                    <div className="exercise-card">
+                    <div className={`exercise-card ${isVibrating ? 'vibrate-once' : ''}`}>
                         <div className="exercise-content">
                             {exercise?.type === 'sumas' && (
                                 <div className="simple-calc-container">
@@ -687,24 +748,7 @@ const FraccionesESO = () => {
                                                 animate={{ height: 'auto', opacity: 1 }}
                                                 exit={{ height: 0, opacity: 0 }}
                                             >
-                                                <div className="hint-scroll">
-                                                    <div className="hint-row">
-                                                        <span className="hint-num">{exercise.n}:</span>
-                                                        {(() => {
-                                                            const divs = [];
-                                                            for (let i = 1; i <= exercise.n; i++) if (exercise.n % i === 0) divs.push(i);
-                                                            return divs.map(d => <span key={d} className="hint-ball divisor">{d}</span>);
-                                                        })()}
-                                                    </div>
-                                                    <div className="hint-row">
-                                                        <span className="hint-num">{exercise.d}:</span>
-                                                        {(() => {
-                                                            const divs = [];
-                                                            for (let i = 1; i <= exercise.d; i++) if (exercise.d % i === 0) divs.push(i);
-                                                            return divs.map(d => <span key={d} className="hint-ball divisor">{d}</span>);
-                                                        })()}
-                                                    </div>
-                                                </div>
+                                                {renderDivisors(exercise.n, exercise.d)}
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
@@ -743,32 +787,11 @@ const FraccionesESO = () => {
                                                 animate={{ height: 'auto', opacity: 1 }}
                                                 exit={{ height: 0, opacity: 0 }}
                                             >
-                                                <div className="hint-scroll">
-                                                    {exercise.type === 'mcm' ? (
-                                                        <>
-                                                            {renderMultiples(exercise.a, exercise.b)}
-                                                        </>
-                                                    ) : (
-                                                        <>
-                                                            <div className="hint-row">
-                                                                <span className="hint-num">{exercise.a}:</span>
-                                                                {(() => {
-                                                                    const divs = [];
-                                                                    for (let i = 1; i <= exercise.a; i++) if (exercise.a % i === 0) divs.push(i);
-                                                                    return divs.map(d => <span key={d} className="hint-ball divisor">{d}</span>);
-                                                                })()}
-                                                            </div>
-                                                            <div className="hint-row">
-                                                                <span className="hint-num">{exercise.b}:</span>
-                                                                {(() => {
-                                                                    const divs = [];
-                                                                    for (let i = 1; i <= exercise.b; i++) if (exercise.b % i === 0) divs.push(i);
-                                                                    return divs.map(d => <span key={d} className="hint-ball divisor">{d}</span>);
-                                                                })()}
-                                                            </div>
-                                                        </>
-                                                    )}
-                                                </div>
+                                                {exercise.type === 'mcm' ? (
+                                                    renderMultiples(exercise.a, exercise.b)
+                                                ) : (
+                                                    renderDivisors(exercise.a, exercise.b)
+                                                )}
                                             </motion.div>
                                         )}
                                     </AnimatePresence>
@@ -786,7 +809,10 @@ const FraccionesESO = () => {
                                 <Check size={20} /> {isExamMode ? (examStep === 11 ? 'Finalizar' : 'Siguiente') : 'Comprobar'}
                             </button>
                             {!isExamMode && (
-                                <button className="btn-refresh" onClick={() => generateExercise(section.id)}>
+                                <button
+                                    className={`btn-refresh ${isVibrating ? 'vibrate-once' : ''}`}
+                                    onClick={() => generateExercise(section.id)}
+                                >
                                     <RefreshCw size={20} /> Nueva
                                 </button>
                             )}
