@@ -126,7 +126,7 @@ const FractionMascot = () => {
                             animate={{ scaleY: [1, 1, 0.9, 1, 1, 0.9, 1] }}
                             transition={{ duration: 8, repeat: Infinity, times: [0, 0.43, 0.46, 0.5, 0.93, 0.96, 1] }}
                         />
-                        <rect x="175" y="100" width="60" height="40" rx="15" fill="#ffffff" fillOpacity="0.2" />
+                        <rect x="180" y="105" width="50" height="30" rx="12" fill="#ffffff" fillOpacity="0.2" />
 
                         {/* Antennas */}
                         <motion.g style={{ originX: "205px", originY: "60px" }} animate={{ rotate: [0, 3, -3, 0] }} transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}>

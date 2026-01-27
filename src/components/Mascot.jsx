@@ -225,7 +225,7 @@ const Mascot = () => {
                         </motion.g>
 
                         <motion.rect x="160" y="60" width="90" height="90" rx="35" fill="url(#mascot_body_gradient)" mask="url(#mascot_mouth_mask)" style={{ willChange: 'transform' }} />
-                        <rect x="175" y="100" width="60" height="40" rx="15" fill="#ffffff" fillOpacity="0.2" />
+                        <rect x="180" y="105" width="50" height="30" rx="12" fill="#ffffff" fillOpacity="0.2" />
 
                         <motion.g style={{ originX: "205px", originY: "60px", willChange: 'transform' }} animate={{ rotate: [0, 2, -2, 0] }} transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}>
                             {/* Antennas */}
