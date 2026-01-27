@@ -6,7 +6,15 @@ const Mascot = () => {
     const [joke, setJoke] = useState(null);
     const [isTalking, setIsTalking] = useState(false);
 
+    const [voices, setVoices] = useState([]);
+
     useEffect(() => {
+        const loadVoices = () => {
+            setVoices(window.speechSynthesis.getVoices());
+        };
+        loadVoices();
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+
         fetch('/jokes.json')
             .then(res => res.json())
             .then(data => setJokes(data))
@@ -20,11 +28,36 @@ const Mascot = () => {
         setJoke(randomJoke);
         setIsTalking(true);
 
-        // Hide joke after 3 seconds
-        setTimeout(() => {
-            setJoke(null);
-            setIsTalking(false);
-        }, 3000);
+        // TEXT TO SPEECH
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(randomJoke);
+
+            // Try to find a high-quality Spanish voice
+            const spanishVoice = voices.find(v => v.lang.startsWith('es') && (v.name.includes('Google') || v.name.includes('Premium'))) ||
+                voices.find(v => v.lang.startsWith('es')) ||
+                null;
+
+            if (spanishVoice) utterance.voice = spanishVoice;
+
+            utterance.lang = 'es-ES';
+            utterance.rate = 1.15; // Higher speed for more child-like energy
+            utterance.pitch = 1.6;  // More acute pitch for an infantile feel
+
+            utterance.onend = () => {
+                setJoke(null);
+                setIsTalking(false);
+            };
+
+            window.speechSynthesis.speak(utterance);
+        } else {
+            // Fallback
+            setTimeout(() => {
+                setJoke(null);
+                setIsTalking(false);
+            }, 3000);
+        }
     };
 
     // Orbiting elements with layer info (behind/front)
