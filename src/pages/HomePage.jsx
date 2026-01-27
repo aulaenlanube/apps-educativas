@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import Header from '@/components/layout/Header';
 import GradientTitle from '@/components/ui/GradientTitle';
+import Mascot from '@/components/Mascot';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -57,7 +58,7 @@ const HomePage = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative py-20 px-6 text-center overflow-hidden"
+        className="relative py-10 px-6 text-center overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-3xl transform -rotate-12 scale-150 pointer-events-none"></div>
 
@@ -95,19 +96,9 @@ const HomePage = () => {
             ))}
           </motion.div>
 
-          <motion.div
-            className="floating-animation relative inline-block"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-          >
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-[2rem] blur opacity-30"></div>
-            <img
-              className="relative w-full max-w-4xl mx-auto rounded-3xl shadow-2xl object-cover h-[200px] md:h-[300px]"
-              alt="Niños aprendiendo con tablets y apps educativas"
-              src="/images/portada.webp"
-            />
-          </motion.div>
+          <div className="max-w-xl mx-auto">
+            <Mascot />
+          </div>
         </div>
       </motion.section>
 

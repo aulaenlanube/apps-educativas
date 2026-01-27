@@ -78,7 +78,7 @@ const Mascot = () => {
     };
 
     return (
-        <div className="mascot-wrapper" style={{ position: 'relative', display: 'flex', justifyContent: 'center', margin: '2rem 0' }}>
+        <div className="mascot-wrapper" style={{ position: 'relative', display: 'flex', justifyContent: 'center', margin: '0.5rem 0', zIndex: 30 }}>
             <AnimatePresence>
                 {currentMessage && (
                     <motion.div
@@ -114,9 +114,9 @@ const Mascot = () => {
             <div
                 className="mascot-container"
                 onClick={handleMascotClick}
-                style={{ height: '380px', width: '100%', display: 'flex', justifyContent: 'center', cursor: 'pointer', userSelect: 'none' }}
+                style={{ height: '260px', width: '100%', display: 'flex', justifyContent: 'center', cursor: 'pointer', userSelect: 'none' }}
             >
-                <svg width="600" height="380" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: '100%', height: '100%' }}>
+                <svg width="450" height="260" viewBox="100 0 210 180" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ maxWidth: '100%', height: '100%', overflow: 'visible' }}>
                     <defs>
                         <linearGradient id="mascot_body_gradient" x1="150" y1="50" x2="250" y2="150" gradientUnits="userSpaceOnUse">
                             <motion.stop
@@ -356,17 +356,32 @@ const Mascot = () => {
                             />
                         </g>
 
-                        <motion.g animate={{ y: [-1, 1, -1] }} transition={{ repeat: Infinity, duration: 3, ease: "easeInOut", delay: 0.5 }} style={{ willChange: 'transform' }}>
-                            {/* Hands: Turn red during Rage Mode */}
-                            <motion.circle
-                                cx="150" cy="110" r="12"
-                                animate={{ fill: ["#6366f1", "#ef4444", "#6366f1"] }}
-                                transition={{ duration: 4, repeat: Infinity, repeatDelay: 26, times: [0, 0.5, 1] }}
+                        <motion.g style={{ willChange: 'transform' }}>
+                            {/* Left Arm: Styled like the legs, waves when talking */}
+                            <motion.path
+                                d="M170 105 L135 105 A 5 5 0 0 0 135 115 L170 115"
+                                animate={{
+                                    fill: ["#6366f1", "#ef4444", "#6366f1"],
+                                    rotate: isTalking ? [-25, 25, -25] : [-2, 2, -2]
+                                }}
+                                transition={{
+                                    fill: { duration: 4, repeat: Infinity, repeatDelay: 26, times: [0, 0.5, 1] },
+                                    rotate: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                                }}
+                                style={{ originX: "160px", originY: "110px" }}
                             />
-                            <motion.circle
-                                cx="260" cy="110" r="12"
-                                animate={{ fill: ["#8b5cf6", "#b91c1c", "#8b5cf6"] }}
-                                transition={{ duration: 4, repeat: Infinity, repeatDelay: 26, times: [0, 0.5, 1] }}
+                            {/* Right Arm: Styled like the legs, waves when talking */}
+                            <motion.path
+                                d="M240 105 L275 105 A 5 5 0 0 1 275 115 L240 115"
+                                animate={{
+                                    fill: ["#8b5cf6", "#b91c1c", "#8b5cf6"],
+                                    rotate: isTalking ? [25, -25, 25] : [2, -2, 2]
+                                }}
+                                transition={{
+                                    fill: { duration: 4, repeat: Infinity, repeatDelay: 26, times: [0, 0.5, 1] },
+                                    rotate: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                                }}
+                                style={{ originX: "250px", originY: "110px" }}
                             />
                         </motion.g>
                     </motion.g>

@@ -162,10 +162,31 @@ const FractionMascot = () => {
                             <path d="M186 128 L190 120 L195 128 L200 120 L205 128 L210 120 L215 128 L220 120 L224 128" stroke="white" strokeWidth="2" fill="none" strokeLinejoin="round" />
                         </motion.g>
 
-                        {/* Hands */}
-                        <motion.g animate={{ y: [-2, 2, -2] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut", delay: 0.5 }}>
-                            <circle cx="150" cy="110" r="12" fill="#6366f1" />
-                            <circle cx="260" cy="110" r="12" fill="#8b5cf6" />
+                        <motion.g style={{ willChange: 'transform' }}>
+                            {/* Left Arm: Styled like the legs, waves when talking */}
+                            <motion.path
+                                d="M170 105 L135 105 A 5 5 0 0 0 135 115 L170 115"
+                                animate={{
+                                    rotate: isTalking ? [-25, 25, -25] : [-2, 2, -2]
+                                }}
+                                transition={{
+                                    rotate: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                                }}
+                                fill="#6366f1"
+                                style={{ originX: "160px", originY: "110px" }}
+                            />
+                            {/* Right Arm: Styled like the legs, waves when talking */}
+                            <motion.path
+                                d="M240 105 L275 105 A 5 5 0 0 1 275 115 L240 115"
+                                animate={{
+                                    rotate: isTalking ? [25, -25, 25] : [2, -2, 2]
+                                }}
+                                transition={{
+                                    rotate: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                                }}
+                                fill="#8b5cf6"
+                                style={{ originX: "250px", originY: "110px" }}
+                            />
                         </motion.g>
                     </motion.g>
                 </svg>
