@@ -75,6 +75,11 @@
         "id": "robotica",
         "nombre": "Robótica",
         "icon": "🤖"
+      },
+      {
+        "id": "ia",
+        "nombre": "Inteligencia Artificial",
+        "icon": "🧠"
       }
     ],
     "2": [
@@ -152,6 +157,11 @@
         "id": "robotica",
         "nombre": "Robótica",
         "icon": "🤖"
+      },
+      {
+        "id": "ia",
+        "nombre": "Inteligencia Artificial",
+        "icon": "🧠"
       }
     ],
     "3": [
@@ -229,6 +239,11 @@
         "id": "robotica",
         "nombre": "Robótica",
         "icon": "🤖"
+      },
+      {
+        "id": "ia",
+        "nombre": "Inteligencia Artificial",
+        "icon": "🧠"
       }
     ],
     "4": [
@@ -316,6 +331,11 @@
         "id": "robotica",
         "nombre": "Robótica",
         "icon": "🤖"
+      },
+      {
+        "id": "ia",
+        "nombre": "Inteligencia Artificial",
+        "icon": "🧠"
       }
     ]
   },

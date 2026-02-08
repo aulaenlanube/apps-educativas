@@ -1,0 +1,1042 @@
+[
+  {
+    "id": "a1",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Conjunto ordenado de operaciones sistemáticas que permite hacer un cálculo y hallar la solución de un tipo de problemas.",
+    "solucion": "Algoritmo",
+    "materia": "ia"
+  },
+  {
+    "id": "a2",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Simulación de procesos de inteligencia humana por parte de sistemas informáticos.",
+    "solucion": "Artificial",
+    "materia": "ia"
+  },
+  {
+    "id": "a3",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Proceso por el cual un sistema mejora su rendimiento a partir de la experiencia.",
+    "solucion": "Aprendizaje",
+    "materia": "ia"
+  },
+  {
+    "id": "a4",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Matemática británica considerada la primera programadora de la historia.",
+    "solucion": "Ada Lovelace",
+    "materia": "ia"
+  },
+  {
+    "id": "a5",
+    "letra": "A",
+    "tipo": "empieza",
+    "definicion": "Entidad capaz de percibir su entorno y actuar sobre él (como un robot o un software).",
+    "solucion": "Agente",
+    "materia": "ia"
+  },
+  {
+    "id": "b1",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Grandes volúmenes de datos que requieren herramientas especializadas para su análisis.",
+    "solucion": "Big Data",
+    "materia": "ia"
+  },
+  {
+    "id": "b2",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Prejuicio o sesgo que puede tener un algoritmo si sus datos de entrenamiento no son justos.",
+    "solucion": "Bias",
+    "materia": "ia"
+  },
+  {
+    "id": "b3",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Programa informático que realiza tareas repetitivas automáticamente a través de Internet.",
+    "solucion": "Bot",
+    "materia": "ia"
+  },
+  {
+    "id": "b4",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Sistema numérico base 2, fundamental en computación, compuesto por ceros y unos.",
+    "solucion": "Binario",
+    "materia": "ia"
+  },
+  {
+    "id": "b5",
+    "letra": "B",
+    "tipo": "empieza",
+    "definicion": "Algoritmo de \"propagación hacia atrás\" usado para entrenar redes neuronales (en inglés).",
+    "solucion": "Backpropagation",
+    "materia": "ia"
+  },
+  {
+    "id": "c1",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Asistente conversacional automatizado, como los que se usan en atención al cliente.",
+    "solucion": "Chatbot",
+    "materia": "ia"
+  },
+  {
+    "id": "c2",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Grupo de ordenadores unidos para trabajar como uno solo o agrupación de datos similares.",
+    "solucion": "Cluster",
+    "materia": "ia"
+  },
+  {
+    "id": "c3",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Ciencia que estudia el procesamiento automático de la información.",
+    "solucion": "Computación",
+    "materia": "ia"
+  },
+  {
+    "id": "c4",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Tipo de red neuronal muy usada para reconocer imágenes (... convolucional).",
+    "solucion": "Convolucional",
+    "materia": "ia"
+  },
+  {
+    "id": "c5",
+    "letra": "C",
+    "tipo": "empieza",
+    "definicion": "Capacidad de un sistema para simular procesos de pensamiento humano (... cognitiva).",
+    "solucion": "Cognitiva",
+    "materia": "ia"
+  },
+  {
+    "id": "d1",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Información cruda (números, texto, imágenes) que alimenta a la IA.",
+    "solucion": "Datos",
+    "materia": "ia"
+  },
+  {
+    "id": "d2",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Aprendizaje profundo, basado en redes neuronales de muchas capas (en inglés).",
+    "solucion": "Deep Learning",
+    "materia": "ia"
+  },
+  {
+    "id": "d3",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Conjunto de datos estructurados para entrenar modelos (en inglés).",
+    "solucion": "Dataset",
+    "materia": "ia"
+  },
+  {
+    "id": "d4",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Representación gráfica de un proceso o algoritmo.",
+    "solucion": "Diagrama",
+    "materia": "ia"
+  },
+  {
+    "id": "d5",
+    "letra": "D",
+    "tipo": "empieza",
+    "definicion": "Proceso de razonamiento que va de lo general a lo particular.",
+    "solucion": "Deducción",
+    "materia": "ia"
+  },
+  {
+    "id": "e1",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Fase donde se enseña al modelo mostrándole miles de ejemplos.",
+    "solucion": "Entrenamiento",
+    "materia": "ia"
+  },
+  {
+    "id": "e2",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Rama de la filosofía que estudia lo correcto e incorrecto, vital para una IA responsable.",
+    "solucion": "Ética",
+    "materia": "ia"
+  },
+  {
+    "id": "e3",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Información que dice \"qué es\" un dato (ej: decir que una foto es de un \"Gato\").",
+    "solucion": "Etiqueta",
+    "materia": "ia"
+  },
+  {
+    "id": "e4",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Sistema ... : programa que imita la toma de decisiones de un humano especialista.",
+    "solucion": "Experto",
+    "materia": "ia"
+  },
+  {
+    "id": "e5",
+    "letra": "E",
+    "tipo": "empieza",
+    "definicion": "Capacidad de realizar una tarea con el mínimo gasto de recursos.",
+    "solucion": "Eficiencia",
+    "materia": "ia"
+  },
+  {
+    "id": "f1",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Proceso para eliminar ruido o seleccionar características en una imagen.",
+    "solucion": "Filtro",
+    "materia": "ia"
+  },
+  {
+    "id": "f2",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Bloque de código reutilizable que realiza una tarea específica.",
+    "solucion": "Función",
+    "materia": "ia"
+  },
+  {
+    "id": "f3",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Entorno de trabajo o esquema para desarrollar software (ej: TensorFlow).",
+    "solucion": "Framework",
+    "materia": "ia"
+  },
+  {
+    "id": "f4",
+    "letra": "F",
+    "tipo": "empieza",
+    "definicion": "Lógica ... : lógica que admite valores intermedios entre verdadero y falso.",
+    "solucion": "Fuzzy",
+    "materia": "ia"
+  },
+  {
+    "id": "f5",
+    "letra": "F",
+    "tipo": "contiene",
+    "definicion": "Tecnología para crear videos ultra-realistas falsos (Deep...)",
+    "solucion": "Fake",
+    "materia": "ia"
+  },
+  {
+    "id": "g1",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Unidad de Procesamiento Gráfico, el chip ideal para entrenar IA.",
+    "solucion": "GPU",
+    "materia": "ia"
+  },
+  {
+    "id": "g2",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "IA ... : tipo de IA capaz de crear contenido nuevo como texto o imágenes.",
+    "solucion": "Generativa",
+    "materia": "ia"
+  },
+  {
+    "id": "g3",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Gigante tecnológico creador de AlphaGo, Gemini y TensorFlow.",
+    "solucion": "Google",
+    "materia": "ia"
+  },
+  {
+    "id": "g4",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Modelo de lenguaje famoso de OpenAI.",
+    "solucion": "GPT",
+    "materia": "ia"
+  },
+  {
+    "id": "g5",
+    "letra": "G",
+    "tipo": "empieza",
+    "definicion": "Algoritmo de descenso de ... : método para minimizar errores en el entrenamiento.",
+    "solucion": "Gradiente",
+    "materia": "ia"
+  },
+  {
+    "id": "h1",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Regla sencilla o atajo mental para resolver problemas rápidamente.",
+    "solucion": "Heurística",
+    "materia": "ia"
+  },
+  {
+    "id": "h2",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Componentes físicos del ordenador (chips, placas, cables).",
+    "solucion": "Hardware",
+    "materia": "ia"
+  },
+  {
+    "id": "h3",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Robot con forma y apariencia humana.",
+    "solucion": "Humanoide",
+    "materia": "ia"
+  },
+  {
+    "id": "h4",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Parámetro cuyo valor se fija antes del proceso de aprendizaje.",
+    "solucion": "Hiperparámetro",
+    "materia": "ia"
+  },
+  {
+    "id": "h5",
+    "letra": "H",
+    "tipo": "empieza",
+    "definicion": "Geoffrey ... : uno de los \"padrinos\" del Deep Learning.",
+    "solucion": "Hinton",
+    "materia": "ia"
+  },
+  {
+    "id": "i1",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Facultad de entender y razonar.",
+    "solucion": "Inteligencia",
+    "materia": "ia"
+  },
+  {
+    "id": "i2",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Representación visual que la visión artificial intenta analizar.",
+    "solucion": "Imagen",
+    "materia": "ia"
+  },
+  {
+    "id": "i3",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Proceso de usar un modelo ya entrenado para hacer predicciones.",
+    "solucion": "Inferencia",
+    "materia": "ia"
+  },
+  {
+    "id": "i4",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Red de objetos cotidianos conectados a Internet (siglas).",
+    "solucion": "IoT",
+    "materia": "ia"
+  },
+  {
+    "id": "i5",
+    "letra": "I",
+    "tipo": "empieza",
+    "definicion": "Repetición de un proceso para refinar el resultado.",
+    "solucion": "Iteración",
+    "materia": "ia"
+  },
+  {
+    "id": "j1",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Actividad recreativa donde la IA (como AlphaGo) ha demostrado superar a humanos.",
+    "solucion": "Juego",
+    "materia": "ia"
+  },
+  {
+    "id": "j2",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Lenguaje de programación muy usado, logo de una taza de café.",
+    "solucion": "Java",
+    "materia": "ia"
+  },
+  {
+    "id": "j3",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Formato ligero de intercambio de datos (JavaScript Object Notation).",
+    "solucion": "JSON",
+    "materia": "ia"
+  },
+  {
+    "id": "j4",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Lenguaje de programación de alto rendimiento diseñado para computación científica.",
+    "solucion": "Julia",
+    "materia": "ia"
+  },
+  {
+    "id": "j5",
+    "letra": "J",
+    "tipo": "empieza",
+    "definicion": "Estructura organizativa por niveles.",
+    "solucion": "Jerarquía",
+    "materia": "ia"
+  },
+  {
+    "id": "k1",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Núcleo central de un sistema operativo.",
+    "solucion": "Kernel",
+    "materia": "ia"
+  },
+  {
+    "id": "k2",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Biblioteca de redes neuronales escrita en Python, fácil de usar.",
+    "solucion": "Keras",
+    "materia": "ia"
+  },
+  {
+    "id": "k3",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Palabra en inglés para \"Conocimiento\".",
+    "solucion": "Knowledge",
+    "materia": "ia"
+  },
+  {
+    "id": "k4",
+    "letra": "K",
+    "tipo": "empieza",
+    "definicion": "Algoritmo de clasificación \"K-vecinos más cercanos\" (siglas).",
+    "solucion": "KNN",
+    "materia": "ia"
+  },
+  {
+    "id": "k5",
+    "letra": "K",
+    "tipo": "contiene",
+    "definicion": "Plataforma famosa de competiciones de ciencia de datos.",
+    "solucion": "Kaggle",
+    "materia": "ia"
+  },
+  {
+    "id": "l1",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Método de razonamiento y valididez de argumentos.",
+    "solucion": "Lógica",
+    "materia": "ia"
+  },
+  {
+    "id": "l2",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Sistema de comunicación estructurado (natural o de programación).",
+    "solucion": "Lenguaje",
+    "materia": "ia"
+  },
+  {
+    "id": "l3",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Colección de implementaciones de comportamiento, escritas en un lenguaje.",
+    "solucion": "Librería",
+    "materia": "ia"
+  },
+  {
+    "id": "l4",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Tiempo que tarda un dato en viajar por la red.",
+    "solucion": "Latencia",
+    "materia": "ia"
+  },
+  {
+    "id": "l5",
+    "letra": "L",
+    "tipo": "empieza",
+    "definicion": "Modelo de lenguaje grande desarrollado por Meta.",
+    "solucion": "Llama",
+    "materia": "ia"
+  },
+  {
+    "id": "m1",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Rama de la IA donde las máquinas aprenden solas (en inglés).",
+    "solucion": "Machine Learning",
+    "materia": "ia"
+  },
+  {
+    "id": "m2",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Representación matemática de un sistema real.",
+    "solucion": "Modelo",
+    "materia": "ia"
+  },
+  {
+    "id": "m3",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Arreglo bidimensional de números.",
+    "solucion": "Matriz",
+    "materia": "ia"
+  },
+  {
+    "id": "m4",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "... de datos: proceso de hallar patrones en grandes conjuntos de datos.",
+    "solucion": "Minería",
+    "materia": "ia"
+  },
+  {
+    "id": "m5",
+    "letra": "M",
+    "tipo": "empieza",
+    "definicion": "Espacio virtual tridimensional persistente.",
+    "solucion": "Metaverso",
+    "materia": "ia"
+  },
+  {
+    "id": "n1",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Unidad fundamental del sistema nervioso y de las redes profundas.",
+    "solucion": "Neurona",
+    "materia": "ia"
+  },
+  {
+    "id": "n2",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Punto de conexión en una red.",
+    "solucion": "Nodo",
+    "materia": "ia"
+  },
+  {
+    "id": "n3",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Servidores remotos accesibles por internet para almacenar y procesar datos.",
+    "solucion": "Nube",
+    "materia": "ia"
+  },
+  {
+    "id": "n4",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Campo de la IA enfocado en entender el lenguaje humano (siglas en inglés).",
+    "solucion": "NLP",
+    "materia": "ia"
+  },
+  {
+    "id": "n5",
+    "letra": "N",
+    "tipo": "empieza",
+    "definicion": "Compañía líder en chips para IA y tarjetas gráficas.",
+    "solucion": "NVIDIA",
+    "materia": "ia"
+  },
+  {
+    "id": "o1",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Organización creadora de ChatGPT.",
+    "solucion": "OpenAI",
+    "materia": "ia"
+  },
+  {
+    "id": "o2",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Proceso de mejorar la eficiencia de un sistema.",
+    "solucion": "Optimización",
+    "materia": "ia"
+  },
+  {
+    "id": "o3",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Resultado o salida que produce un sistema.",
+    "solucion": "Output",
+    "materia": "ia"
+  },
+  {
+    "id": "o4",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Capa ... : capa de neuronas intermedia entre la entrada y la salida.",
+    "solucion": "Oculta",
+    "materia": "ia"
+  },
+  {
+    "id": "o5",
+    "letra": "O",
+    "tipo": "empieza",
+    "definicion": "Programación orientada a ... : paradigma basado en \"cosas\" con atributos.",
+    "solucion": "Objetos",
+    "materia": "ia"
+  },
+  {
+    "id": "p1",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Lenguaje de programación favorito de la ciencia de datos.",
+    "solucion": "Python",
+    "materia": "ia"
+  },
+  {
+    "id": "p2",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Texto de entrada para dar instrucciones a una IA generativa.",
+    "solucion": "Prompt",
+    "materia": "ia"
+  },
+  {
+    "id": "p3",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Regularidad discernible en el mundo o en los datos.",
+    "solucion": "Patrón",
+    "materia": "ia"
+  },
+  {
+    "id": "p4",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "Estimación de lo que ocurrirá en el futuro basada en datos.",
+    "solucion": "Predicción",
+    "materia": "ia"
+  },
+  {
+    "id": "p5",
+    "letra": "P",
+    "tipo": "empieza",
+    "definicion": "La neurona artificial más simple.",
+    "solucion": "Perceptrón",
+    "materia": "ia"
+  },
+  {
+    "id": "q1",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Algoritmo de aprendizaje por refuerzo básico (...-Learning).",
+    "solucion": "Q",
+    "materia": "ia"
+  },
+  {
+    "id": "q2",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Unidad de información en computación cuántica.",
+    "solucion": "Qubit",
+    "materia": "ia"
+  },
+  {
+    "id": "q3",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Computación que usa fenómenos mecánicos cuánticos.",
+    "solucion": "Quantum",
+    "materia": "ia"
+  },
+  {
+    "id": "q4",
+    "letra": "Q",
+    "tipo": "empieza",
+    "definicion": "Consulta o petición de información a una base de datos (en inglés).",
+    "solucion": "Query",
+    "materia": "ia"
+  },
+  {
+    "id": "q5",
+    "letra": "Q",
+    "tipo": "contiene",
+    "definicion": "Conjunto de datos de preguntas y respuestas, usado a menudo en NLP (F.A.Q).",
+    "solucion": "FAQ",
+    "materia": "ia"
+  },
+  {
+    "id": "r1",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Máquina automática programable.",
+    "solucion": "Robot",
+    "materia": "ia"
+  },
+  {
+    "id": "r2",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Conjunto de nodos interconectados (ej: internet, neuronal).",
+    "solucion": "Red",
+    "materia": "ia"
+  },
+  {
+    "id": "r3",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Aprendizaje por ... : aprender a base de premios y castigos.",
+    "solucion": "Refuerzo",
+    "materia": "ia"
+  },
+  {
+    "id": "r4",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Identificación de objetos o patrones (ej: ... facial).",
+    "solucion": "Reconocimiento",
+    "materia": "ia"
+  },
+  {
+    "id": "r5",
+    "letra": "R",
+    "tipo": "empieza",
+    "definicion": "Técnica estadística para estimar la relación entre variables.",
+    "solucion": "Regresión",
+    "materia": "ia"
+  },
+  {
+    "id": "s1",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Aprendizaje ... : cuando la IA aprende con ejemplos etiquetados.",
+    "solucion": "Supervisado",
+    "materia": "ia"
+  },
+  {
+    "id": "s2",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Famoso asistente virtual de Apple.",
+    "solucion": "Siri",
+    "materia": "ia"
+  },
+  {
+    "id": "s3",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Prejuicio sistemático en los resultados de la IA.",
+    "solucion": "Sesgo",
+    "materia": "ia"
+  },
+  {
+    "id": "s4",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Conjunto de programas y rutinas informáticas.",
+    "solucion": "Software",
+    "materia": "ia"
+  },
+  {
+    "id": "s5",
+    "letra": "S",
+    "tipo": "empieza",
+    "definicion": "Parte de la lingüística que estudia el significado.",
+    "solucion": "Semántica",
+    "materia": "ia"
+  },
+  {
+    "id": "t1",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Alan ... : padre de la computación moderna e IA.",
+    "solucion": "Turing",
+    "materia": "ia"
+  },
+  {
+    "id": "t2",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Objeto matemático que generaliza vectores y matrices, clave en IA.",
+    "solucion": "Tensor",
+    "materia": "ia"
+  },
+  {
+    "id": "t3",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Modelo de Deep Learning que revolucionó el NLP (ej: GPT).",
+    "solucion": "Transformer",
+    "materia": "ia"
+  },
+  {
+    "id": "t4",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Pedazo de texto (palabra o parte) procesado por una IA.",
+    "solucion": "Token",
+    "materia": "ia"
+  },
+  {
+    "id": "t5",
+    "letra": "T",
+    "tipo": "empieza",
+    "definicion": "Conjunto de herramientas tecnicis y conocimientos.",
+    "solucion": "Tecnología",
+    "materia": "ia"
+  },
+  {
+    "id": "u1",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Persona que interactúa con el sistema.",
+    "solucion": "Usuario",
+    "materia": "ia"
+  },
+  {
+    "id": "u2",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Límite o valor a partir del cual ocurre un cambio (ej: activación).",
+    "solucion": "Umbral",
+    "materia": "ia"
+  },
+  {
+    "id": "u3",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Tipo de aprendizaje no supervisado (en inglés).",
+    "solucion": "Unsupervised",
+    "materia": "ia"
+  },
+  {
+    "id": "u4",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Sensores de sonido de alta frecuencia para medir distancias.",
+    "solucion": "Ultrasonido",
+    "materia": "ia"
+  },
+  {
+    "id": "u5",
+    "letra": "U",
+    "tipo": "empieza",
+    "definicion": "Máquina de Turing ... : modelo teórico capaz de simular cualquier algoritmo.",
+    "solucion": "Universal",
+    "materia": "ia"
+  },
+  {
+    "id": "v1",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "... artificial: campo de la IA que analiza imágenes y vídeos.",
+    "solucion": "Visión",
+    "materia": "ia"
+  },
+  {
+    "id": "v2",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Simulación generada por ordenador de un entorno (Realidad ...).",
+    "solucion": "Virtual",
+    "materia": "ia"
+  },
+  {
+    "id": "v3",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Array unidimensional de números.",
+    "solucion": "Vector",
+    "materia": "ia"
+  },
+  {
+    "id": "v4",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Elemento que puede cambiar de valor en programación.",
+    "solucion": "Variable",
+    "materia": "ia"
+  },
+  {
+    "id": "v5",
+    "letra": "V",
+    "tipo": "empieza",
+    "definicion": "Sonido humano que los asistentes virtuales reconocen.",
+    "solucion": "Voz",
+    "materia": "ia"
+  },
+  {
+    "id": "w1",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Famosa IA de IBM.",
+    "solucion": "Watson",
+    "materia": "ia"
+  },
+  {
+    "id": "w2",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Red informática mundial.",
+    "solucion": "Web",
+    "materia": "ia"
+  },
+  {
+    "id": "w3",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Modelo de reconocimiento de voz de OpenAI.",
+    "solucion": "Whisper",
+    "materia": "ia"
+  },
+  {
+    "id": "w4",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Pesos en inglés (parámetros de una red neuronal).",
+    "solucion": "Weights",
+    "materia": "ia"
+  },
+  {
+    "id": "w5",
+    "letra": "W",
+    "tipo": "empieza",
+    "definicion": "Tecnología de conexión inalámbrica.",
+    "solucion": "Wifi",
+    "materia": "ia"
+  },
+  {
+    "id": "x1",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Asistente de voz de Amazon (contiene X).",
+    "solucion": "Alexa",
+    "materia": "ia"
+  },
+  {
+    "id": "x2",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Unidad mínima de una imagen digital (contiene X).",
+    "solucion": "Pixel",
+    "materia": "ia"
+  },
+  {
+    "id": "x3",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "IA e...plicable: capacidad de entender por qué la IA toma una decisión (contiene X).",
+    "solucion": "Explicable",
+    "materia": "ia"
+  },
+  {
+    "id": "x4",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Estructura matemática de números en filas y columnas (contiene X).",
+    "solucion": "Matrix",
+    "materia": "ia"
+  },
+  {
+    "id": "x5",
+    "letra": "X",
+    "tipo": "contiene",
+    "definicion": "Tipo de función matemática o forma geométrica \"curvada hacia afuera\" (contiene X).",
+    "solucion": "Convexa",
+    "materia": "ia"
+  },
+  {
+    "id": "y1",
+    "letra": "Y",
+    "tipo": "empieza",
+    "definicion": "... LeCun: famoso científico de IA, premio Turing, trabaja en Meta.",
+    "solucion": "Yann",
+    "materia": "ia"
+  },
+  {
+    "id": "y2",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Lenguaje de programación de IA (contiene Y).",
+    "solucion": "Python",
+    "materia": "ia"
+  },
+  {
+    "id": "y3",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Unidad de información digital igual a 8 bits (contiene Y).",
+    "solucion": "Byte",
+    "materia": "ia"
+  },
+  {
+    "id": "y4",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Capa de una red neuronal en inglés (La...er).",
+    "solucion": "Layer",
+    "materia": "ia"
+  },
+  {
+    "id": "y5",
+    "letra": "Y",
+    "tipo": "contiene",
+    "definicion": "Prefijo relacionado con la seguridad informática e internet (C...ber).",
+    "solucion": "Cyber",
+    "materia": "ia"
+  },
+  {
+    "id": "z1",
+    "letra": "Z",
+    "tipo": "empieza",
+    "definicion": "Aprendizaje ...-shot: reconocer algo sin haber visto ejemplos antes.",
+    "solucion": "Zero",
+    "materia": "ia"
+  },
+  {
+    "id": "z2",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Lógica difusa en inglés (Fu...y).",
+    "solucion": "Fuzzy",
+    "materia": "ia"
+  },
+  {
+    "id": "z3",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Darse cuenta o comprender en inglés (Reali...e).",
+    "solucion": "Realize",
+    "materia": "ia"
+  },
+  {
+    "id": "z4",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Visualización de datos (Visuali...ation).",
+    "solucion": "Visualization",
+    "materia": "ia"
+  },
+  {
+    "id": "z5",
+    "letra": "Z",
+    "tipo": "contiene",
+    "definicion": "Proceso de optimización para \"minimizar\" el error (Minimi...e).",
+    "solucion": "Minimize",
+    "materia": "ia"
+  }
+]

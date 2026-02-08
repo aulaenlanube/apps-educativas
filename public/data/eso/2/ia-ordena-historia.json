@@ -1,0 +1,212 @@
+[
+  [
+    "Quiero entrenar a una IA para distinguir frutas.",
+    "Le enseño mil fotos de manzanas y mil de plátanos.",
+    "Le digo cuál es cuál para que aprenda (etiquetas).",
+    "La IA busca diferencias en forma y color.",
+    "Luego le enseño una fruta nueva y acierta cuál es."
+  ],
+  [
+    "Un coche autónomo circula por una calle estrecha.",
+    "Detecta un peatón a punto de cruzar sin mirar.",
+    "Sus sensores calculan la distancia y velocidad.",
+    "El ordenador decide frenar de emergencia.",
+    "El coche se detiene a tiempo y evita el accidente."
+  ],
+  [
+    "El algoritmo de YouTube quiere que sigas viendo.",
+    "Analiza tu historial de videos vistos.",
+    "Mira qué videos han gustado a usuarios similares.",
+    "Selecciona cinco videos que podrían engancharte.",
+    "Te los muestra en la barra lateral como sugerencias."
+  ],
+  [
+    "Un banco usa IA para conceder préstamos.",
+    "El cliente rellena sus datos económicos.",
+    "La IA compara esos datos con miles de casos pasados.",
+    "Calcula la probabilidad de que devuelva el dinero.",
+    "Aprueba o deniega el préstamo en segundos."
+  ],
+  [
+    "AlphaGo jugó contra el campeón Lee Sedol.",
+    "La IA había aprendido jugando contra sí misma.",
+    "Hizo un movimiento muy extraño en la partida 2.",
+    "Nadie entendió la jugada al principio.",
+    "Al final, ese movimiento le dio la victoria."
+  ],
+  [
+    "Un asistente virtual escucha una orden.",
+    "El sonido se convierte en señales digitales.",
+    "El sistema de NLP analiza la frase gramaticalmente.",
+    "Identifica la intención ('encender') y el objeto ('luz').",
+    "Ejecuta la orden enviando una señal a la bombilla."
+  ],
+  [
+    "Un filtro de spam aprende de los errores.",
+    "Me llega un correo basura a la bandeja principal.",
+    "Yo lo marco manualmente como 'Spam'.",
+    "El filtro analiza las palabras de ese correo.",
+    "Aprende para no dejar pasar correos similares en el futuro."
+  ],
+  [
+    "La limpieza de datos es vital antes de entrenar.",
+    "Recopilamos datos de una encuesta online.",
+    "Eliminamos las respuestas vacías o duplicadas.",
+    "Corregimos errores ortográficos obvios.",
+    "Ahora los datos están listos para la IA."
+  ],
+  [
+    "Un sistema de recomendación musical crea una playlist.",
+    "Analiza el tempo y género de lo que escucho.",
+    "Busca canciones nuevas con características similares.",
+    "Añade canciones que mis amigos también escuchan.",
+    "Me presenta la lista 'Descubrimiento Semanal'."
+  ],
+  [
+    "DALL-E crea una imagen desde cero.",
+    "Escribo 'un astronauta montando a caballo en Marte'.",
+    "La IA asocia las palabras con conceptos visuales.",
+    "Empieza a dibujar píxeles generando ruido.",
+    "Refina la imagen hasta que se ve nítida y realista."
+  ],
+  [
+    "Un robot de rescate entra en un edificio derrumbado.",
+    "Usa sensores térmicos para buscar calor corporal.",
+    "Detecta una persona atrapada bajo los escombros.",
+    "Envía la ubicación exacta a los bomberos.",
+    "Los bomberos van directos al lugar del superviviente."
+  ],
+  [
+    "El reconocimiento facial puede fallar con mascarilla.",
+    "La IA busca puntos clave de la cara como boca y nariz.",
+    "La mascarilla tapa la mitad de esos puntos.",
+    "El sistema no tiene suficiente información para comparar.",
+    "Pide el código pin porque no puede desbloquear."
+  ],
+  [
+    "Un chatbot de atención al cliente recibe una queja.",
+    "El cliente escribe 'mi pedido no ha llegado'.",
+    "El bot detecta las palabras 'pedido' y 'no llegado'.",
+    "Consulta el estado del envío en la base de datos.",
+    "Responde: 'Su pedido llegará mañana antes de las 14h'."
+  ],
+  [
+    "La IA ayuda a predecir el tiempo meteorológico.",
+    "Recoge datos de satélites, viento y temperatura.",
+    "Simula cómo se moverán las nubes en el futuro.",
+    "Calcula la probabilidad de lluvia para mañana.",
+    "El hombre del tiempo dice que cojamos paraguas."
+  ],
+  [
+    "Un hacker intenta adivinar una contraseña.",
+    "Usa un programa que prueba miles de combinaciones.",
+    "El sistema de seguridad detecta muchos intentos rápidos.",
+    "Bloquea la cuenta temporalmente por precaución.",
+    "El hacker no puede seguir probando y se rinde."
+  ],
+  [
+    "Spotify me sugiere un concierto cerca de mí.",
+    "Sabe qué grupos escucho más a menudo.",
+    "Detecta mi ubicación por el GPS del móvil.",
+    "Cruza los datos con la agenda de conciertos.",
+    "Me envía una alerta: 'Tu banda favorita toca aquí'."
+  ],
+  [
+    "Un agricultor usa IA para ahorrar agua.",
+    "Sensores en el suelo miden la humedad de la tierra.",
+    "La IA analiza si va a llover pronto o no.",
+    "Decide regar solo lo justo y necesario.",
+    "Las plantas crecen bien y no se desperdicia agua."
+  ],
+  [
+    "El GPS recalcula la ruta por un accidente.",
+    "Conducía por la autopista tranquilamente.",
+    "El GPS recibe datos de tráfico en tiempo real.",
+    "Ve que hay un accidente 5 km más adelante.",
+    "Me desvía por una carretera secundaria más rápida."
+  ],
+  [
+    "Un traductor automático comete un error gracioso.",
+    "Traduce una frase hecha literalmente.",
+    "Dice 'está lloviendo gatos y perros' en español.",
+    "El lector humano se ríe porque no tiene sentido.",
+    "Luego corrige la traducción para que la IA aprenda."
+  ],
+  [
+    "La cámara del móvil mejora mis fotos nocturnas.",
+    "Hago una foto con poca luz en una fiesta.",
+    "La IA hace varias fotos rápidas con distinta luz.",
+    "Las combina todas para sacar lo mejor de cada una.",
+    "El resultado es una foto brillante y nítida."
+  ],
+  [
+    "Un videojuego adapta la dificultad al jugador.",
+    "El juego nota que muero muchas veces en el nivel 1.",
+    "La IA decide hacer los enemigos un poco más lentos.",
+    "Ahora consigo pasar el nivel y me divierto más.",
+    "Si mejoro, la IA volverá a subir la dificultad."
+  ],
+  [
+    "Un robot limpiafondos cuida de la piscina.",
+    "Mapea la forma y tamaño de la piscina.",
+    "Traza una ruta para pasar por todo el fondo.",
+    "Aspira la suciedad mientras avanza bajo el agua.",
+    "Sube por las paredes para limpiar la línea de flotación."
+  ],
+  [
+    "La realidad aumentada me prueba unas gafas.",
+    "Miro a la pantalla del móvil como un espejo.",
+    "La app detecta mis ojos y mis orejas.",
+    "Superpone un modelo 3D de las gafas en mi cara.",
+    "Puedo girar la cabeza para ver cómo me quedan."
+  ],
+  [
+    "Un edificio inteligente ahorra electricidad.",
+    "Sensores detectan que hay sol en la fachada este.",
+    "Las persianas bajan solas para que no entre calor.",
+    "El aire acondicionado trabaja menos y gasta menos.",
+    "La temperatura se mantiene agradable todo el día."
+  ],
+  [
+    "Una pulsera de actividad mide mi sueño.",
+    "Detecta mis movimientos mientras duermo.",
+    "Sabe cuándo estoy en sueño profundo o ligero.",
+    "Por la mañana me muestra un gráfico de mi descanso.",
+    "Me aconseja dormir media hora más hoy."
+  ],
+  [
+    "Amazon recomienda productos complementarios.",
+    "Compro una cámara de fotos nueva.",
+    "El algoritmo sabe que esa cámara necesita memoria.",
+    "Me sugiere comprar también una tarjeta SD.",
+    "Acepto la sugerencia porque me es útil."
+  ],
+  [
+    "Un coche detecta que me salgo del carril.",
+    "Las cámaras leen las líneas blancas de la carretera.",
+    "Notan que el coche pisa la línea sin intermitente.",
+    "El volante vibra y hace un sonido de alerta.",
+    "Corrijo la dirección y vuelvo al centro del carril."
+  ],
+  [
+    "La IA clasifica mis fotos por personas.",
+    "Escanea todas las fotos de mi galería.",
+    "Reconoce la cara de mi mejor amigo en muchas.",
+    "Las agrupa todas en una carpeta llamada 'Amigos'.",
+    "Ahora es fácil encontrar fotos de él."
+  ],
+  [
+    "Un chatbot médico hace un triaje previo.",
+    "Le cuento mis síntomas: fiebre y dolor de cabeza.",
+    "Me hace preguntas para descartar cosas graves.",
+    "Me recomienda pedir cita con el médico de cabecera.",
+    "Ahorra tiempo al doctor recopilando la información."
+  ],
+  [
+    "Un profesor usa IA para corregir test rápidos.",
+    "Escanea las hojas de respuestas de los alumnos.",
+    "El programa compara las marcas con la plantilla.",
+    "Calcula la nota de cada uno al instante.",
+    "El profesor tiene más tiempo para explicar en clase."
+  ]
+]

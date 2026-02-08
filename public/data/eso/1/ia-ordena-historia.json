@@ -1,0 +1,212 @@
+[
+  [
+    "Ada Lovelace nació en el siglo XIX.",
+    "Le gustaban mucho las matemáticas y la poesía.",
+    "Trabajó con Charles Babbage en una máquina analítica.",
+    "Escribió el primer algoritmo para esa máquina.",
+    "Por eso se la considera la primera programadora de la historia."
+  ],
+  [
+    "Alan Turing fue un matemático británico muy inteligente.",
+    "Durante la guerra, trabajó para descifrar códigos secretos.",
+    "Diseñó una máquina llamada 'Bombe' para romper el código Enigma.",
+    "Su trabajo ayudó a acortar la guerra y salvar muchas vidas.",
+    "Es conocido como el padre de la informática moderna."
+  ],
+  [
+    "Un robot aspiradora empieza a limpiar el salón.",
+    "Usa sus sensores para detectar las paredes y muebles.",
+    "Si encuentra un obstáculo, gira para esquivarlo.",
+    "Aspira todo el polvo del suelo mientras se mueve.",
+    "Cuando acaba la batería, vuelve solo a su base de carga."
+  ],
+  [
+    "Quiero buscar información sobre dinosaurios en internet.",
+    "Abro el navegador web en mi ordenador.",
+    "Escribo 'dinosaurios' en la barra de búsqueda de Google.",
+    "El buscador me muestra una lista de páginas web.",
+    "Hago clic en un enlace para leer y ver fotos."
+  ],
+  [
+    "Siri es un asistente virtual que vive en el móvil.",
+    "Yo digo 'Oye Siri, ¿qué tiempo hace hoy?'.",
+    "El micrófono graba mi voz y la envía a internet.",
+    "Una inteligencia artificial analiza lo que he dicho.",
+    "Siri me responde: 'Hoy hace sol y 25 grados'."
+  ],
+  [
+    "Un coche autónomo quiere ir al supermercado.",
+    "El pasajero introduce la dirección en el GPS.",
+    "El coche arranca y usa cámaras para ver la carretera.",
+    "Se detiene suavemente ante un semáforo en rojo.",
+    "Al llegar, busca un sitio libre y aparca solo."
+  ],
+  [
+    "En una fábrica de coches hay muchos robots grandes.",
+    "Un brazo robótico coge una puerta de metal.",
+    "La coloca con precisión en el chasis del coche.",
+    "Otro robot suelda la puerta para que no se caiga.",
+    "El coche avanza por la cinta para ser pintado."
+  ],
+  [
+    "Mi hermano juega a un videojuego de fútbol.",
+    "Él controla a los jugadores de su equipo.",
+    "La consola controla al equipo contrario usando IA.",
+    "La IA decide cuándo pasar el balón o chutar.",
+    "Al final, mi hermano gana el partido por un gol."
+  ],
+  [
+    "TikTok quiere que pases mucho tiempo en la app.",
+    "Tú ves un video de gatitos y le das 'me gusta'.",
+    "El algoritmo toma nota de que te gustan los gatos.",
+    "Busca otros videos parecidos en su base de datos.",
+    "Te muestra más videos de animales graciosos en 'Para Ti'."
+  ],
+  [
+    "Un correo electrónico llega a mi bandeja de entrada.",
+    "El filtro antispam lee el asunto y el contenido.",
+    "Detecta palabras sospechosas como 'dinero gratis'.",
+    "Decide que es un mensaje basura o peligroso.",
+    "Lo envía directamente a la carpeta de Spam para protegerme."
+  ],
+  [
+    "El ordenador Deep Blue jugó contra Kasparov.",
+    "Kasparov era el campeón mundial de ajedrez.",
+    "La primera partida la ganó el humano.",
+    "Pero la máquina calculaba millones de jugadas por segundo.",
+    "Al final, Deep Blue ganó el torneo y sorprendió al mundo."
+  ],
+  [
+    "Un dron mensajero lleva un paquete urgente.",
+    "Despega del almacén con el paquete sujeto.",
+    "Sigue una ruta GPS volando sobre la ciudad.",
+    "Baja con cuidado en el jardín del cliente.",
+    "Suelta el paquete y vuelve volando a la base."
+  ],
+  [
+    "La nevera inteligente nota que falta leche.",
+    "Escanea los productos que hay en su interior.",
+    "Se conecta a internet a través del Wi-Fi de casa.",
+    "Añade 'leche' a la lista de la compra en mi móvil.",
+    "Me envía una notificación para avisarme antes de ir al súper."
+  ],
+  [
+    "Quiero desbloquear mi teléfono con la cara.",
+    "Miro a la cámara frontal del móvil.",
+    "El móvil proyecta puntos invisibles sobre mi rostro.",
+    "Compara mi cara con la que tiene guardada en memoria.",
+    "Si coinciden, se desbloquea la pantalla al instante."
+  ],
+  [
+    "Un traductor online ayuda a dos personas a hablar.",
+    "Juan habla en español al micrófono del móvil.",
+    "La app convierte el audio a texto español.",
+    "Luego traduce ese texto al inglés automáticamente.",
+    "El móvil dice la frase en inglés para que Mike entienda."
+  ],
+  [
+    "Un robot explorador llega a la superficie de Marte.",
+    "Despliega sus paneles solares para cargar energía.",
+    "Mueve sus ruedas para avanzar por el terreno rocoso.",
+    "Usa su cámara para sacar fotos del paisaje marciano.",
+    "Envía las fotos a la Tierra mediante ondas de radio."
+  ],
+  [
+    "La domótica controla las luces de una casa moderna.",
+    "Entro en el salón y el sensor de movimiento me ve.",
+    "Envía una señal a la bombilla inteligente.",
+    "La luz se enciende sola sin tocar el interruptor.",
+    "Cuando salgo, la luz se apaga para ahorrar energía."
+  ],
+  [
+    "Un estudiante usa ChatGPT para hacer un resumen.",
+    "Escribe un texto largo en el chat.",
+    "Pide a la IA: 'Hazme un resumen de esto'.",
+    "La IA lee el texto y extrae las ideas principales.",
+    "Escribe un nuevo texto más corto con lo importante."
+  ],
+  [
+    "Netflix me recomienda una película de acción.",
+    "Sabe que ayer vi una película de superhéroes.",
+    "Compara mis gustos con los de otros usuarios.",
+    "Encuentra una peli que le gustó a gente como yo.",
+    "Pone esa peli en mi pantalla de inicio."
+  ],
+  [
+    "El termostato inteligente aprende mis horarios.",
+    "Nota que suelo llegar a casa a las 6 de la tarde.",
+    "A las 5 y media, enciende la calefacción.",
+    "La casa se va calentando poco a poco.",
+    "Cuando llego a las 6, la temperatura es perfecta."
+  ],
+  [
+    "Un médico usa IA para ver una radiografía.",
+    "Sube la imagen de los pulmones al ordenador.",
+    "El programa analiza la imagen buscando manchas.",
+    "Marca una zona sospechosa con un círculo rojo.",
+    "El médico revisa esa zona con más atención."
+  ],
+  [
+    "Un granjero usa un dron para vigilar su campo.",
+    "El dron vuela sobre los cultivos de maíz.",
+    "Sus cámaras especiales ven si las plantas tienen sed.",
+    "Envía un mapa de humedad al ordenador del granjero.",
+    "El riego automático se activa solo donde hace falta."
+  ],
+  [
+    "Juego al 'Tres en Raya' contra el ordenador.",
+    "Yo pongo una X en el centro del tablero.",
+    "El ordenador piensa dónde poner su O.",
+    "Decide bloquear mi jugada para que no gane.",
+    "Al final empatamos porque jugó muy bien."
+  ],
+  [
+    "Alexa pone música en el altavoz del salón.",
+    "Digo 'Alexa, pon música rock'.",
+    "La IA busca canciones de rock en internet.",
+    "Elige una lista de reproducción popular.",
+    "Empieza a sonar una canción de Queen."
+  ],
+  [
+    "Un robot camarero lleva la comida a la mesa.",
+    "El cocinero pone los platos sobre el robot.",
+    "Le indica el número de mesa en la pantalla.",
+    "El robot rueda suavemente esquivando a la gente.",
+    "Se para en la mesa 5 y dice 'Buen provecho'."
+  ],
+  [
+    "El GPS calcula la mejor ruta para el viaje.",
+    "Detecta que hay un atasco en la autovía.",
+    "Busca carreteras alternativas más despejadas.",
+    "Recalcula el tiempo de llegada estimado.",
+    "Me dice: 'Gire a la derecha para ahorrar 10 minutos'."
+  ],
+  [
+    "Una aplicación cuenta mis pasos diarios.",
+    "Llevo el móvil en el bolsillo todo el día.",
+    "El sensor de movimiento nota cada vez que camino.",
+    "La app va sumando los pasos uno a uno.",
+    "Al final del día me felicita por llegar a 10.000."
+  ],
+  [
+    "Los semáforos inteligentes regulan el tráfico.",
+    "Una cámara ve que hay muchos coches esperando.",
+    "El ordenador decide cambiar el color del semáforo.",
+    "Pone en verde el carril con más cola.",
+    "Los coches avanzan y el atasco se reduce."
+  ],
+  [
+    "Un filtro de Instagram me pone orejas de perro.",
+    "La cámara detecta dónde está mi cara.",
+    "Localiza mis ojos, nariz y boca.",
+    "Dibuja unas orejas virtuales sobre mi cabeza.",
+    "Si muevo la cabeza, las orejas se mueven conmigo."
+  ],
+  [
+    "La lavadora pesa la ropa antes de empezar.",
+    "Meto la ropa sucia en el tambor.",
+    "La lavadora da unas vueltas para calcular el peso.",
+    "Decide cuánta agua y jabón necesita.",
+    "Empieza el lavado ahorrando recursos."
+  ]
+]

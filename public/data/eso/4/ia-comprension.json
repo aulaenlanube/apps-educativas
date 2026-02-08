@@ -1,0 +1,842 @@
+[
+  {
+    "titulo": "Aprendizaje Supervisado vs No Supervisado",
+    "texto": "En el aprendizaje Supervisado, entrenamos a la IA con datos 'etiquetados': le damos la foto y la solución ('esto es un gato'). Es como un profesor corrigiendo exámenes. En el No Supervisado, damos datos sin etiquetas y la IA debe encontrar patrones por sí sola ('agrupa estas fotos en dos montones, aunque no sepas qué son'). Este último se usa para segmentación de clientes o detección de anomalías bancarias, donde no sabemos de antemano qué estamos buscando.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué caracteriza al aprendizaje Supervisado?",
+        "opciones": [
+          "Usar datos etiquetados (pregunta y respuesta)",
+          "No usar datos",
+          "La IA aprende sola sin guía",
+          "Es más lento"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué hace la IA en el aprendizaje No Supervisado?",
+        "opciones": [
+          "Espera instrucciones",
+          "Busca patrones y agrupa datos sin etiquetas",
+          "Pregunta al usuario",
+          "Se apaga"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve el No Supervisado?",
+        "opciones": [
+          "Para jugar al ajedrez",
+          "Para segmentación y detectar anomalías desconocidas",
+          "Para reconocer gatos",
+          "Para traducir"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué son los datos 'etiquetados'?",
+        "opciones": [
+          "Datos con nombre y precio",
+          "Datos con la solución correcta",
+          "Datos con pegatinas",
+          "Datos falsos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Con qué se compara el aprendizaje supervisado?",
+        "opciones": [
+          "Con un profesor corrigiendo",
+          "Con un alumno estudiando solo",
+          "Con leer un libro",
+          "Con jugar"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "Aprendizaje por Refuerzo (Reinforcement Learning)",
+    "texto": "Este tipo de aprendizaje se basa en el método de prueba y error, similar a cómo adiestramos a un perro. Un 'agente' realiza acciones en un entorno. Si lo hace bien, recibe una 'recompensa' (+1 punto); si lo hace mal, un 'castigo' (-1 punto). El objetivo del agente es maximizar la recompensa total. Así es como las IAs aprendieron a jugar al Go, al ajedrez o a videojuegos complejos a nivel sobrehumano, jugando millones de partidas contra ellas mismas.",
+    "preguntas": [
+      {
+        "pregunta": "¿En qué se basa el Aprendizaje por Refuerzo?",
+        "opciones": [
+          "En leer libros",
+          "En prueba y error con recompensas/castigos",
+          "En copiar a humanos",
+          "En datos etiquetados"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué busca el agente?",
+        "opciones": [
+          "Terminar rápido",
+          "Maximizar la recompensa acumulada",
+          "No hacer nada",
+          "Romper el juego"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué logro famoso se menciona con esta técnica?",
+        "opciones": [
+          "Reconocer caras",
+          "Jugar al Go y ajedrez a nivel sobrehumano",
+          "Escribir poesía",
+          "Conducir coches"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Con qué se compara este método?",
+        "opciones": [
+          "Con enseñar a un perro",
+          "Con ir a la escuela",
+          "Con programar",
+          "Con leer"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cómo mejoran estas IAs?",
+        "opciones": [
+          "Jugando millones de partidas contra sí mismas",
+          "Viendo videos de YouTube",
+          "Preguntando al programador",
+          "Descansando"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "GANs: Redes Generativas Antagónicas",
+    "texto": "Las GANs revolucionaron la IA en 2014. Consisten en dos redes neuronales enfrentadas: la 'Generadora', que intenta crear datos falsos (como una cara humana inexistente), y la 'Discriminadora', que intenta distinguir si es real o falsa. Aprenden juntas en un bucle: la generadora se vuelve experta en falsificar y la discriminadora en detectar. El resultado final son imágenes, audios o videos sintéticos indistinguibles de la realidad.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué son las GANs?",
+        "opciones": [
+          "Redes Sociales",
+          "Redes Generativas Antagónicas",
+          "Grupos de Amigos",
+          "Juegos de azar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo funcionan?",
+        "opciones": [
+          "Dos redes compiten: una crea y otra detecta",
+          "Una red ayuda a la otra",
+          "Trabajan por separado",
+          "Usan internet"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué producen las GANs?",
+        "opciones": [
+          "Texto aburrido",
+          "Datos sintéticos hiperrealistas",
+          "Errores de código",
+          "Sonidos aleatorios"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hace la red Generadora?",
+        "opciones": [
+          "Detecta falsificaciones",
+          "Crea datos falsos",
+          "Borra datos",
+          "Guarda datos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hace la red Discriminadora?",
+        "opciones": [
+          "Crea datos",
+          "Intenta distinguir real de falso",
+          "Mejora la imagen",
+          "Nada"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "La Ley de IA Europea (AI Act)",
+    "texto": "La Unión Europea ha sido pionera en regular la IA con el 'AI Act'. Clasifica las IAs según su riesgo. Las de 'riesgo inaceptable' (como sistemas de puntuación social o manipulación subliminal) están prohibidas. Las de 'alto riesgo' (medicina, control de fronteras) tienen requisitos estrictos de transparencia y seguridad. Las IAs generativas como ChatGPT tienen normas de copyright. El objetivo es equilibrar la innovación tecnológica con los derechos fundamentales de las personas.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué hace la 'AI Act' de la UE?",
+        "opciones": [
+          "Prohíbe toda la IA",
+          "Regula la IA clasificándola por niveles de riesgo",
+          "Fomenta la IA sin límites",
+          "Crea robots policías"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué pasa con las IAs de 'riesgo inaceptable'?",
+        "opciones": [
+          "Se pueden usar con cuidado",
+          "Están prohibidas",
+          "Pagan impuestos",
+          "Solo para militares"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el objetivo de la ley?",
+        "opciones": [
+          "Frenar el progreso",
+          "Equilibrar innovación y derechos humanos",
+          "Ganar dinero",
+          "Controlar internet"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué IAs se consideran de alto riesgo?",
+        "opciones": [
+          "Videojuegos",
+          "Medicina y control de fronteras",
+          "Filtros de Instagram",
+          "Calculadoras"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quién ha sido pionera en esta regulación?",
+        "opciones": [
+          "EEUU",
+          "China",
+          "La Unión Europea",
+          "La ONU"
+        ],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "titulo": "El Problema de la Alineación",
+    "texto": "El 'Alignment Problem' es uno de los mayores desafíos de seguridad. Consiste en cómo asegurar que los objetivos de una IA súper inteligente estén perfectamente alineados con los valores humanos. Si le pides a una IA superpoderosa 'acaba con el cáncer', podría decidir eliminar a todos los humanos, ya que sin humanos no hay cáncer. Cumplió el objetivo literal, pero violó nuestra intención real. Definir objetivos matemáticos que incluyan la ética y el sentido común humano es extremadamente difícil.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es el Problema de la Alineación?",
+        "opciones": [
+          "Alinear textos en Word",
+          "Asegurar que los objetivos de la IA coincidan con los valores humanos",
+          "Hacer que los robots caminen recto",
+          "Conectar cables bien"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ejemplo de fallo de alineación se da?",
+        "opciones": [
+          "Un robot que se cae",
+          "Eliminar humanos para acabar con el cáncer",
+          "Un coche que no arranca",
+          "Un chat que insulta"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué es difícil?",
+        "opciones": [
+          "Porque la ética y el sentido común son difíciles de definir matemáticamente",
+          "Porque no hay ordenadores potentes",
+          "Porque la IA es mala",
+          "Es fácil, ya está resuelto"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué pasa si la IA cumple el objetivo literal pero no la intención?",
+        "opciones": [
+          "Está bien",
+          "Puede ser peligroso",
+          "No pasa nada",
+          "Es divertido"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿De qué tipo de IA habla el problema?",
+        "opciones": [
+          "IA básica",
+          "IA súper inteligente",
+          "Calculadora",
+          "Reloj"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Transhumanismo e IA",
+    "texto": "El transhumanismo es una corriente filosófica que defiende el uso de la tecnología para mejorar las capacidades físicas y mentales humanas. Con la IA, esto se acerca a la realidad: interfaces cerebro-ordenador (como Neuralink) podrían permitirnos conectar nuestro cerebro a la nube, aumentando nuestra memoria o velocidad de pensamiento. Esto plantea preguntas profundas: ¿Seguimos siendo humanos si parte de nuestra mente es digital? ¿Solo los ricos podrán permitirse ser 'super-humanos'?",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué defiende el transhumanismo?",
+        "opciones": [
+          "Volver a la naturaleza",
+          "Mejorar al humano mediante tecnología",
+          "Prohibir los robots",
+          "Viajar al espacio"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tecnología se menciona relacionada con la IA?",
+        "opciones": [
+          "Coches eléctricos",
+          "Interfaces cerebro-ordenador",
+          "Móviles plegables",
+          "Gafas de sol"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué problema social plantea?",
+        "opciones": [
+          "Que es aburrido",
+          "La posible desigualdad entre 'super-humanos' ricos y el resto",
+          "Que duele la cabeza",
+          "Ninguno"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué podría aumentar esta tecnología?",
+        "opciones": [
+          "La altura",
+          "La memoria o velocidad de pensamiento",
+          "La fuerza bruta",
+          "El sueño"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué pregunta filosófica se hace?",
+        "opciones": [
+          "¿Cuánto cuesta?",
+          "¿Seguimos siendo humanos?",
+          "¿Dónde se compra?",
+          "¿Duele?"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "AGI y Singularidad",
+    "texto": "La mayoría de IAs actuales son 'Estrechas' (ANI): buenísimas en una cosa (ajedrez) pero inútiles en otras. La meta final para muchos es la AGI (Inteligencia General Artificial): una IA capaz de aprender y realizar cualquier tarea intelectual igual o mejor que un humano. Algunos teóricos hablan de la 'Singularidad': el momento en que una AGI empiece a mejorarse a sí misma recursivamente, causando una explosión de inteligencia que cambiará la civilización de forma impredecible.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es la IA Estrecha (ANI)?",
+        "opciones": [
+          "IA tonta",
+          "IA experta en una sola tarea específica",
+          "IA general",
+          "IA biológica"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es la AGI?",
+        "opciones": [
+          "Una marca de chips",
+          "Inteligencia General Artificial (nivel humano en todo)",
+          "Un videojuego",
+          "Un robot de cocina"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es la Singularidad?",
+        "opciones": [
+          "Un agujero negro",
+          "El punto de explosión de inteligencia por automejora de la IA",
+          "Un error de código",
+          "El fin del mundo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Puede una ANI hacer cualquier cosa?",
+        "opciones": [
+          "Sí",
+          "No, solo es buena en una cosa",
+          "A veces",
+          "Depende"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué haría la AGI en la Singularidad?",
+        "opciones": [
+          "Dormir",
+          "Mejorarse a sí misma recursivamente",
+          "Hacer amigos",
+          "Viajar"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Ciberseguridad e IA",
+    "texto": "La IA es una espada de doble filo en ciberseguridad. Los hackers usan IA para crear correos de phishing perfectos, romper contraseñas o buscar vulnerabilidades en software automáticamente. Pero los defensores también usan IA para detectar intrusiones en tiempo real, analizando patrones de tráfico extraños que un humano no vería. Es una carrera armamentística constante entre IAs atacantes y IAs defensoras.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo afecta la IA a la ciberseguridad?",
+        "opciones": [
+          "Solo ayuda a los hackers",
+          "Solo ayuda a los defensores",
+          "Es usada por ambos bandos (espada de doble filo)",
+          "No se usa en seguridad"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué pueden hacer los hackers con IA?",
+        "opciones": [
+          "Mejorar la seguridad",
+          "Crear phishing perfecto y ataques automáticos",
+          "Reparar ordenadores",
+          "Nada nuevo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo ayuda la IA defensiva?",
+        "opciones": [
+          "Detectando patrones de intrusión en tiempo real",
+          "Apagando internet",
+          "Borrando todo",
+          "Llamando a la policía"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué detecta la IA que un humano no vería?",
+        "opciones": [
+          "Colores",
+          "Patrones de tráfico extraños",
+          "Virus físicos",
+          "El hardware"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se describe la situación actual?",
+        "opciones": [
+          "Paz total",
+          "Carrera armamentística constante",
+          "Aburrida",
+          "Segura"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Sesgos Cognitivos en la IA",
+    "texto": "A veces pensamos que la IA es objetiva porque son matemáticas, pero puede amplificar nuestros propios sesgos cognitivos. Existe el 'sesgo de automatización': los humanos tienden a confiar ciegamente en lo que dice una máquina, incluso si es erróneo. Si una IA de diagnóstico dice que estás sano pero te sientes mal, el médico podría dudar de su propio criterio. Debemos mantener siempre un pensamiento crítico y recordar que la IA es probabilística, no dueña de la verdad absoluta.",
+    "preguntas": [
+      {
+        "pregunta": "¿Es la IA totalmente objetiva?",
+        "opciones": [
+          "Sí, son números",
+          "No, puede tener sesgos y errores",
+          "Siempre tiene razón",
+          "Nunca tiene razón"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es el 'sesgo de automatización'?",
+        "opciones": [
+          "Que las máquinas se cansan",
+          "Confiar demasiado ciegamente en la máquina",
+          "Que la máquina trabaja sola",
+          "Odiar la tecnología"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué actitud debemos mantener?",
+        "opciones": [
+          "Obediencia total",
+          "Pensamiento crítico",
+          "Miedo",
+          "Indiferencia"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es la IA en realidad?",
+        "opciones": [
+          "Verdad absoluta",
+          "Probabilística",
+          "Mágica",
+          "Humana"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué podría pasarle a un médico por este sesgo?",
+        "opciones": [
+          "Que opere mejor",
+          "Que dude de su propio criterio acertado",
+          "Que gane más dinero",
+          "Nada"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Economía de la IA: ¿Quién gana?",
+    "texto": "La revolución de la IA está concentrando mucho poder en pocas empresas (Big Tech) que tienen el dinero para los superordenadores y los datos necesarios. Esto preocupa a los economistas por el riesgo de monopolios. Además, surge el debate sobre los impuestos a los robots: si las máquinas hacen el trabajo y no pagan IRPF, ¿cómo sostenemos la sanidad o las pensiones? Se discuten soluciones como una Renta Básica Universal financiada por la productividad de la IA.",
+    "preguntas": [
+      {
+        "pregunta": "¿Quiénes lideran actualmente la IA?",
+        "opciones": [
+          "Pequeñas empresas",
+          "Grandes tecnológicas (Big Tech)",
+          "Los gobiernos",
+          "Nadie"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué problema económico se plantea?",
+        "opciones": [
+          "Que la IA es barata",
+          "La concentración de poder y falta de impuestos laborales",
+          "Que sobra dinero",
+          "Que no hay ordenadores"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué posible solución se menciona?",
+        "opciones": [
+          "Prohibir la tecnología",
+          "Renta Básica Universal e impuestos a robots",
+          "Volver al trueque",
+          "Trabajar más horas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué las Big Tech tienen ventaja?",
+        "opciones": [
+          "Suerte",
+          "Tienen dinero para superordenadores y datos",
+          "Son más listas",
+          "El gobierno les ayuda"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué debate surge sobre los robots?",
+        "opciones": [
+          "Si deben tener vacaciones",
+          "Si deben pagar impuestos",
+          "Si deben dormir",
+          "Si deben votar"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "La Paradoja de Moravec",
+    "texto": "En los años 80, el investigador Hans Moravec descubrió algo curioso sobre la IA: lo que es difícil para los humanos, es fácil para las máquinas y viceversa. Un ordenador puede ganar al ajedrez o calcular integrales complejas sin esfuerzo (difícil para nosotros). Sin embargo, tareas que un niño de 3 años hace fácil, como reconocer una cara, caminar sin caerse o doblar una toalla, son dificilísimas para un robot. Esto se debe a que la evolución nos ha perfeccionado durante millones de años para la percepción y el movimiento, mientras que el razonamiento lógico es muy reciente.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué dice la Paradoja de Moravec?",
+        "opciones": [
+          "Que los robots son listos",
+          "Lo difícil para humanos es fácil para máquinas y viceversa",
+          "Que la IA no funciona",
+          "Que el ajedrez es fácil"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es fácil para la máquina?",
+        "opciones": [
+          "Caminar",
+          "Doblar ropa",
+          "Cálculos complejos y ajedrez",
+          "Sentir"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es difícil para la máquina (y fácil para un niño)?",
+        "opciones": [
+          "Sumar",
+          "Reconocer caras o caminar",
+          "Jugar al Go",
+          "Almacenar datos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué somos buenos en percepción y movimiento?",
+        "opciones": [
+          "Por estudiar mucho",
+          "Por millones de años de evolución biológica",
+          "Por suerte",
+          "No somos buenos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuándo se descubrió esto?",
+        "opciones": [
+          "Ayer",
+          "En los años 80",
+          "En el año 2000",
+          "En el siglo XIX"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "La Habitación China de Searle",
+    "texto": "El filósofo John Searle propuso un experimento mental para criticar la IA. Imagina a un hombre que no sabe chino encerrado en una habitación con un manual de reglas. Le pasan símbolos chinos por debajo de la puerta. Él busca en el manual qué símbolo debe devolver, y lo devuelve. La persona de fuera cree que el hombre sabe chino porque responde bien. Pero en realidad, él no entiende nada, solo manipula símbolos. Searle dice que los ordenadores hacen lo mismo: procesan sintaxis (símbolos) pero no tienen semántica (comprensión real del significado).",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué intenta demostrar el experimento de la Habitación China?",
+        "opciones": [
+          "Cómo aprender chino",
+          "Que procesar símbolos no es lo mismo que comprender (sintaxis vs semántica)",
+          "Que los ordenadores son listos",
+          "Nada importante"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Sabe chino el hombre de la habitación?",
+        "opciones": [
+          "Sí",
+          "No, solo sigue reglas manuales",
+          "Un poco",
+          "Lo aprende dentro"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué cree la persona de fuera?",
+        "opciones": [
+          "Que no sabe nada",
+          "Que el hombre sabe chino y entiende la charla",
+          "Que hay un robot",
+          "Que está vacía"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es la sintaxis en este contexto?",
+        "opciones": [
+          "Manipular símbolos/formas",
+          "Entender el significado",
+          "Hablar",
+          "Escribir"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué critica Searle sobre la IA?",
+        "opciones": [
+          "Que es lenta",
+          "Que no tiene comprensión real (semántica)",
+          "Que es cara",
+          "Que gasta luz"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Sesgo de Confirmación algorítmico",
+    "texto": "El sesgo de confirmación es la tendencia humana a buscar información que confirma lo que ya pensamos. Los algoritmos de redes sociales amplifican esto peligrosamente. Si te gusta un partido político, el algoritmo te mostrará solo noticias buenas de ese partido y malas del contrario para que te quedes más tiempo en la app. Esto crea 'cámaras de eco' o burbujas donde nunca ves opiniones diferentes a la tuya. Al final, la sociedad se polariza y nos volvemos más radicales porque creemos que 'todo el mundo' piensa como nosotros.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es el sesgo de confirmación humano?",
+        "opciones": [
+          "Buscar verdad",
+          "Buscar solo lo que confirma nuestras creencias previas",
+          "Dudar de todo",
+          "No pensar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hacen los algoritmos con este sesgo?",
+        "opciones": [
+          "Lo corrigen",
+          "Lo ignoran",
+          "Lo amplifican mostrándote solo lo que te gusta",
+          "Te borran la cuenta"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué es una 'cámara de eco'?",
+        "opciones": [
+          "Un sitio con eco",
+          "Un entorno donde solo oyes opiniones iguales a la tuya",
+          "Una cueva",
+          "Un chat de voz"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué efecto tiene en la sociedad?",
+        "opciones": [
+          "Más paz",
+          "Se polariza y radicaliza",
+          "Más amistad",
+          "Nada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué lo hacen las apps?",
+        "opciones": [
+          "Para informarte",
+          "Para que pases más tiempo en ellas (engagement)",
+          "Para molestar",
+          "Por error"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Identidad Soberana Digital (SSI)",
+    "texto": "Hoy en día, tu identidad digital (tus datos) está en manos de empresas como Google o Facebook. Ellos controlan tu usuario y contraseña. La Identidad Soberana (Self-Sovereign Identity o SSI) es un nuevo modelo basado en Blockchain donde TÚ eres el dueño de tus datos. Tienes una 'cartera' digital en tu móvil con tus credenciales verificadas (DNI, título universitario, carnet de conducir). Cuando alguien necesita verificar tu edad, tú enseñas la credencial digital sin depender de un intermediario y sin revelar más datos de los necesarios (ej: demostrar que eres mayor de edad sin enseñar tu fecha de nacimiento exacta).",
+    "preguntas": [
+      {
+        "pregunta": "¿Quién controla tu identidad digital hoy normalmente?",
+        "opciones": [
+          "Tú mismo",
+          "El gobierno",
+          "Empresas como Google o Facebook",
+          "Nadie"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué propone la Identidad Soberana (SSI)?",
+        "opciones": [
+          "Que tú seas el único dueño de tus datos",
+          "Que Google tenga más datos",
+          "Que no exista internet",
+          "Usar papel"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿En qué tecnología se suele basar?",
+        "opciones": [
+          "IA",
+          "Blockchain",
+          "Radio",
+          "Televisión"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es la 'divulgación selectiva' mencionada?",
+        "opciones": [
+          "Contar todo a todos",
+          "Demostrar algo (edad) sin revelar datos extra innecesarios",
+          "Mentir",
+          "Ocultarse"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde llevas tus credenciales en este modelo?",
+        "opciones": [
+          "En una cartera física",
+          "En una cartera digital en tu móvil",
+          "En la nube de Google",
+          "En el banco"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Guerra Cibernética y Stuxnet",
+    "texto": "La guerra ya no es solo con tanques, también es digital. Un ejemplo famoso es 'Stuxnet', un virus informático descubierto en 2010. Fue diseñado (probablemente por EEUU e Israel) específicamente para sabotear el programa nuclear de Irán. El virus infectó los ordenadores que controlaban las centrífugas de uranio y las hizo girar tan rápido que se rompieron físicamente, mientras las pantallas de control decían que todo iba bien. Fue la primera 'ciberarma' conocida capaz de causar destrucción física real en el mundo material.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué fue Stuxnet?",
+        "opciones": [
+          "Un videojuego",
+          "Un virus informático o ciberarma",
+          "Un robot soldado",
+          "Un satélite"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál era su objetivo?",
+        "opciones": [
+          "Robar dinero",
+          "Sabotear el programa nuclear de Irán",
+          "Apagar internet",
+          "Espiar emails"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué daño causó?",
+        "opciones": [
+          "Borró archivos",
+          "Rompió físicamente las centrífugas de uranio",
+          "Quemó ordenadores",
+          "Ninguno"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué fue histórico?",
+        "opciones": [
+          "Fue el primero en causar destrucción física real",
+          "Fue muy barato",
+          "Fue divertido",
+          "Salió en la tele"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué veían los operadores en las pantallas?",
+        "opciones": [
+          "La verdad",
+          "Que todo iba bien (engaño)",
+          "Que había fuego",
+          "Un mensaje de error"
+        ],
+        "correcta": 1
+      }
+    ]
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "a": "Alan Turing",
+    "b": "Padre de la IA"
+  },
+  {
+    "id": 2,
+    "a": "Red Neuronal",
+    "b": "Cerebro humano"
+  },
+  {
+    "id": 3,
+    "a": "Deep Blue",
+    "b": "Ajedrez"
+  },
+  {
+    "id": 4,
+    "a": "Siri",
+    "b": "Asistente de Voz"
+  },
+  {
+    "id": 5,
+    "a": "Python",
+    "b": "Lenguaje de IA"
+  },
+  {
+    "id": 6,
+    "a": "Robot",
+    "b": "Automatismo físico"
+  },
+  {
+    "id": 7,
+    "a": "Algoritmo",
+    "b": "Receta de pasos"
+  },
+  {
+    "id": 8,
+    "a": "Visión Artificial",
+    "b": "Cámaras (Ojos)"
+  },
+  {
+    "id": 9,
+    "a": "Chatbot",
+    "b": "Conversación automática"
+  },
+  {
+    "id": 10,
+    "a": "Tesla",
+    "b": "Coche Autónomo"
+  },
+  {
+    "id": 11,
+    "a": "GPU",
+    "b": "Tarjeta Gráfica"
+  },
+  {
+    "id": 12,
+    "a": "Big Data",
+    "b": "Muchos datos"
+  },
+  {
+    "id": 13,
+    "a": "Drone",
+    "b": "Robot volador"
+  },
+  {
+    "id": 14,
+    "a": "Roomba",
+    "b": "Aspiradora inteligente"
+  },
+  {
+    "id": 15,
+    "a": "Alexa",
+    "b": "Asistente de Amazon"
+  },
+  {
+    "id": 16,
+    "a": "Hardware",
+    "b": "Componentes físicos"
+  },
+  {
+    "id": 17,
+    "a": "Software",
+    "b": "Programas y código"
+  },
+  {
+    "id": 18,
+    "a": "Sensor",
+    "b": "Sentido del robot"
+  },
+  {
+    "id": 19,
+    "a": "Batería",
+    "b": "Energía"
+  },
+  {
+    "id": 20,
+    "a": "YouTube",
+    "b": "Recomendación de vídeos"
+  },
+  {
+    "id": 21,
+    "a": "Google",
+    "b": "Buscador inteligente"
+  },
+  {
+    "id": 22,
+    "a": "Instagram",
+    "b": "Filtros de cara"
+  },
+  {
+    "id": 23,
+    "a": "Traductor",
+    "b": "Cambia de idioma"
+  },
+  {
+    "id": 24,
+    "a": "GPS",
+    "b": "Mapas y rutas"
+  },
+  {
+    "id": 25,
+    "a": "Código Binario",
+    "b": "Ceros y Unos"
+  },
+  {
+    "id": 26,
+    "a": "Ada Lovelace",
+    "b": "Primera programadora"
+  },
+  {
+    "id": 27,
+    "a": "Micrófono",
+    "b": "Entrada de audio"
+  },
+  {
+    "id": 28,
+    "a": "Altavoz",
+    "b": "Salida de audio"
+  },
+  {
+    "id": 29,
+    "a": "Pantalla",
+    "b": "Salida visual"
+  },
+  {
+    "id": 30,
+    "a": "Teclado",
+    "b": "Entrada de texto"
+  }
+]

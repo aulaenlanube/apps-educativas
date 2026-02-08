@@ -1,0 +1,842 @@
+[
+  {
+    "titulo": "Redes Neuronales: Inspiradas en el cerebro",
+    "texto": "Las Redes Neuronales Artificiales son la base del 'Deep Learning'. Están inspiradas en cómo funciona nuestro cerebro. Consisten en capas de 'neuronas' matemáticas conectadas entre sí. La primera capa recibe la información (input), las capas ocultas la procesan buscando características cada vez más complejas, y la última capa da la respuesta (output). A diferencia del cerebro humano, estas redes necesitan millones de cálculos para aprender cosas que un niño aprende en segundos.",
+    "preguntas": [
+      {
+        "pregunta": "¿En qué se inspiran las Redes Neuronales Artificiales?",
+        "opciones": [
+          "En el sistema digestivo",
+          "En el cerebro humano",
+          "En las redes de pesca",
+          "En los circuitos eléctricos simples"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hacen las capas ocultas?",
+        "opciones": [
+          "Esconden información",
+          "Procesan buscando características",
+          "No hacen nada",
+          "Dan la respuesta final"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Son iguales al cerebro humano?",
+        "opciones": [
+          "Sí, idénticas",
+          "No, requieren muchos más cálculos para aprender",
+          "Son biológicas",
+          "Tienen sangre"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es el 'input'?",
+        "opciones": [
+          "La salida",
+          "La información de entrada",
+          "El proceso",
+          "El error"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hace la última capa?",
+        "opciones": [
+          "Recibe datos",
+          "Procesa características",
+          "Da la respuesta (output)",
+          "Se apaga"
+        ],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "titulo": "Deep Learning vs Machine Learning",
+    "texto": "El Deep Learning (Aprendizaje Profundo) es una evolución del Machine Learning. Mientras que en el Machine Learning tradicional a menudo hay que decirle al ordenador qué características buscar (ej: 'busca formas redondas'), en el Deep Learning la máquina aprende por sí misma qué características son importantes usando redes neuronales profundas (de muchas capas). Es más potente, pero requiere ordenadores mucho más rápidos y muchísimos más datos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Es lo mismo Deep Learning que Machine Learning?",
+        "opciones": [
+          "Sí",
+          "No, Deep Learning es una evolución más compleja",
+          "Machine Learning es más potente",
+          "Ninguna es correcta"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué caracteriza al Deep Learning?",
+        "opciones": [
+          "Usa redes neuronales profundas",
+          "Es muy simple",
+          "No necesita datos",
+          "Funciona sin electricidad"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué necesita el Deep Learning?",
+        "opciones": [
+          "Menos datos",
+          "Más potencia y más datos",
+          "Menos ordenadores",
+          "Menos tiempo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué diferencia hay en la búsqueda de características?",
+        "opciones": [
+          "En ML se le dice qué buscar, en DL aprende sola",
+          "En DL se le dice qué buscar",
+          "No hay diferencia",
+          "El ML no busca nada"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Por qué se llama 'Profundo'?",
+        "opciones": [
+          "Porque piensa mucho",
+          "Por las muchas capas de la red neuronal",
+          "Porque es difícil",
+          "Porque es antiguo"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "NLP: Enseñando a las máquinas a leer",
+    "texto": "El Procesamiento del Lenguaje Natural (NLP) es el campo que permite a las máquinas entender y generar lenguaje humano. Es muy difícil porque el lenguaje es ambiguo. Una palabra como 'banco' puede ser un asiento o una entidad financiera. El NLP moderno usa modelos estadísticos para predecir el significado según el contexto de la frase. Gracias a esto tenemos traductores automáticos, correctores ortográficos y asistentes como Siri.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué significa NLP?",
+        "opciones": [
+          "Natural Language Processing",
+          "No Learning Possible",
+          "New Language Program",
+          "Ninguna de las anteriores"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Por qué es difícil el lenguaje para las máquinas?",
+        "opciones": [
+          "Porque es aburrido",
+          "Por la ambigüedad de las palabras",
+          "Porque las máquinas no oyen",
+          "Porque hay muchos idiomas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué usa el NLP moderno para entender el contexto?",
+        "opciones": [
+          "Diccionarios de papel",
+          "Modelos estadísticos",
+          "Pregunta a un humano",
+          "Adivina al azar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ejemplo de ambigüedad se da?",
+        "opciones": [
+          "La palabra 'gato'",
+          "La palabra 'banco'",
+          "La palabra 'hola'",
+          "La palabra 'adiós'"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué aplicación del NLP se menciona?",
+        "opciones": [
+          "Traductores automáticos",
+          "Juegos de coches",
+          "Edición de fotos",
+          "Hojas de cálculo"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "Deepfakes: La mentira perfecta",
+    "texto": "Un 'Deepfake' es un video o audio generado por IA donde se sustituye la cara o la voz de una persona por la de otra con un realismo asombroso. Se usa una tecnología llamada GANs (Redes Generativas Antagónicas): una IA intenta crear la falsificación y otra intenta detectarla; compiten hasta que el resultado es perfecto. Esto tiene usos divertidos en el cine, pero es muy peligroso para la desinformación, ya que podrías ver a un político decir algo que nunca dijo.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es un Deepfake?",
+        "opciones": [
+          "Un video falso muy realista",
+          "Un error informático",
+          "Una película de miedo",
+          "Un virus"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué tecnología usan principalmente?",
+        "opciones": [
+          "Photoshop manual",
+          "GANs (Redes Generativas Antagónicas)",
+          "Cámaras antiguas",
+          "Maquillaje"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el mayor peligro de los Deepfakes?",
+        "opciones": [
+          "Que son caros",
+          "La desinformación y noticias falsas",
+          "Que son aburridos",
+          "Que ocupan mucho espacio"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo funcionan las GANs?",
+        "opciones": [
+          "Una red crea y otra detecta, compitiendo",
+          "Dos redes colaboran amigablemente",
+          "Una sola red hace todo",
+          "Usan actores reales"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué uso 'divertido' tienen?",
+        "opciones": [
+          "En el cine",
+          "En las noticias",
+          "En los bancos",
+          "En la escuela"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "IA en Medicina: Diagnósticos precisos",
+    "texto": "La IA está revolucionando la medicina, especialmente en el diagnóstico por imagen. Un algoritmo puede analizar miles de radiografías en segundos y detectar pequeños tumores que un médico cansado podría pasar por alto. No sustituye al médico, sino que le da una 'segunda opinión' muy potente. También ayuda a descubrir nuevos fármacos simulando cómo interactúan las moléculas sin necesidad de tantos experimentos de laboratorio.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo ayuda la IA en medicina?",
+        "opciones": [
+          "Operando sola siempre",
+          "Analizando imágenes y detectando anomalías",
+          "Sustituyendo totalmente a los médicos",
+          "Haciendo de enfermera"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ventaja tiene analizando radiografías?",
+        "opciones": [
+          "No se cansa y es muy rápida",
+          "Es más barata",
+          "Usa menos luz",
+          "Imprime las fotos"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Ayuda la IA a descubrir medicamentos?",
+        "opciones": [
+          "No, eso es química",
+          "Sí, simulando interacciones moleculares",
+          "Solo fabrica las cajas",
+          "No, es peligroso"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Sustituye la IA al médico según el texto?",
+        "opciones": [
+          "Sí, totalmente",
+          "No, es una 'segunda opinión'",
+          "Pronto lo hará",
+          "No se sabe"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué evita la simulación de moléculas?",
+        "opciones": [
+          "Tantos experimentos de laboratorio",
+          "El uso de ordenadores",
+          "El trabajo de los químicos",
+          "Nada"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "La Caja Negra (Black Box)",
+    "texto": "Uno de los problemas de las redes neuronales profundas se llama 'La Caja Negra'. Sabemos qué datos entran y qué respuesta sale, pero a veces es casi imposible saber por qué la IA tomó esa decisión. Sus cálculos internos son tan complejos que ni sus creadores los entienden del todo. Esto es un problema si una IA deniega un préstamo bancario o diagnostica una enfermedad: necesitamos saber la razón para confiar en ella (Explicabilidad).",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es el problema de la Caja Negra?",
+        "opciones": [
+          "Que la IA es de color negro",
+          "No saber por qué la IA toma ciertas decisiones",
+          "Que el ordenador se apaga",
+          "Que la caja está cerrada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué ocurre esto?",
+        "opciones": [
+          "Por la complejidad de los cálculos internos",
+          "Porque es un secreto",
+          "Porque se borran los datos",
+          "Por magia"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué se necesita para confiar en la IA?",
+        "opciones": [
+          "Más velocidad",
+          "Explicabilidad (saber la razón)",
+          "Más colores",
+          "Menos datos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué pasa con los creadores de la IA?",
+        "opciones": [
+          "Entienden todo perfectamente",
+          "A veces no entienden cómo llega a la conclusión",
+          "No les importa",
+          "Lo saben pero no lo dicen"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué casos es grave este problema?",
+        "opciones": [
+          "En videojuegos",
+          "En préstamos o diagnósticos médicos",
+          "En filtros de fotos",
+          "En música"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "El Dilema del Tranvía en coches autónomos",
+    "texto": "El 'Dilema del Tranvía' es un problema ético clásico. Si un tren va a atropellar a 5 personas, ¿cambiarías la vía para que atropelle solo a 1? En coches autónomos, esto deja de ser teoría. Si un accidente es inevitable, ¿cómo debe programarse el coche? ¿Debe salvar al conductor a toda costa o minimizar el número total de víctimas aunque sacrifique al conductor? No hay una respuesta técnica correcta, es una decisión moral que debemos tomar como sociedad.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es el dilema del tranvía aplicado a la IA?",
+        "opciones": [
+          "Un problema de horarios de trenes",
+          "Una decisión ética en accidentes inevitables",
+          "Un juego de mesa",
+          "Un fallo de motor"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Existe una respuesta técnica correcta?",
+        "opciones": [
+          "Sí, siempre salvar al conductor",
+          "Sí, siempre salvar a los peatones",
+          "No, es una decisión moral",
+          "Sí, frenar en seco"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Quién debe decidir estas normas éticas?",
+        "opciones": [
+          "El coche solo",
+          "La sociedad y las leyes",
+          "El fabricante del coche en secreto",
+          "Nadie"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el conflicto principal?",
+        "opciones": [
+          "Salvar al conductor vs minimizar víctimas totales",
+          "Ir rápido vs ir lento",
+          "Gastar gasolina vs electricidad",
+          "Llegar tarde vs llegar pronto"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué tipo de problema es?",
+        "opciones": [
+          "Matemático",
+          "Físico",
+          "Ético",
+          "Biológico"
+        ],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "titulo": "Automatización del trabajo",
+    "texto": "La IA y la robótica van a automatizar muchos trabajos. Tareas repetitivas o peligrosas serán hechas por máquinas. Esto aumentará la productividad, pero también eliminará empleos tradicionales. El reto para vuestro futuro no es competir contra la IA, sino aprender a trabajar con ella. Surgirán nuevos trabajos relacionados con la programación, el mantenimiento y la supervisión ética de estas IAs que hoy ni imaginamos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué efecto tendrá la IA en el empleo?",
+        "opciones": [
+          "Ninguno",
+          "Automatizará tareas y cambiará el mercado laboral",
+          "Creará paro total",
+          "Todos seremos robots"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el reto para el futuro?",
+        "opciones": [
+          "Destruir las máquinas",
+          "Aprender a trabajar con la IA",
+          "No trabajar nunca más",
+          "Olvidar la tecnología"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Surgirán nuevos trabajos?",
+        "opciones": [
+          "Sí, muchos que hoy no imaginamos",
+          "No, todo lo harán robots",
+          "Solo trabajos manuales",
+          "No se sabe"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué tipo de tareas se automatizarán primero?",
+        "opciones": [
+          "Creativas y emocionales",
+          "Repetitivas o peligrosas",
+          "Directivas",
+          "Deportivas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué aumentará gracias a la automatización?",
+        "opciones": [
+          "La productividad",
+          "El cansancio",
+          "Los errores",
+          "El precio"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "IA y Medio Ambiente",
+    "texto": "La IA tiene dos caras para el medio ambiente. Por un lado, entrenar modelos gigantes consume muchísima electricidad y genera CO2. Por otro, la IA es clave para luchar contra el cambio climático: optimiza redes eléctricas para gastar menos, diseña nuevos materiales para baterías más eficientes y monitoriza la deforestación con satélites en tiempo real. El objetivo es hacer 'Green AI', inteligencia artificial que sea eficiente y sostenible.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué impacto negativo tiene la IA?",
+        "opciones": [
+          "Ninguno",
+          "Consume mucha energía (huella de carbono)",
+          "Enfría el planeta",
+          "Genera basura plástica"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo ayuda la IA al medio ambiente?",
+        "opciones": [
+          "Optimizando recursos y monitorizando el planeta",
+          "Plantando árboles sola",
+          "Apagando el sol",
+          "Creando agua"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué es la 'Green AI'?",
+        "opciones": [
+          "IA de color verde",
+          "IA eficiente y sostenible",
+          "IA que recicla",
+          "IA para jardines"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué genera el entrenamiento de modelos gigantes?",
+        "opciones": [
+          "Oxígeno",
+          "CO2 y gasto eléctrico",
+          "Agua",
+          "Silencio"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué puede diseñar la IA para ayudar?",
+        "opciones": [
+          "Nuevos materiales para baterías",
+          "Coches de gasolina",
+          "Plásticos",
+          "Humo"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "IA Generativa: ChatGPT y LLMs",
+    "texto": "Los Modelos de Lenguaje Grandes (LLMs) como GPT-4 son redes neuronales entrenadas con casi todo el texto de internet. No 'saben' cosas como un humano, sino que son expertos en predecir qué palabra viene después de otra. Es como un autocompletar súper avanzado. Pueden escribir ensayos, código o poesía. Su gran limitación es que a veces 'alucinan': inventan datos con total seguridad porque solo buscan que la frase suene bien, no que sea verdad.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es un LLM?",
+        "opciones": [
+          "Un robot de limpieza",
+          "Un Gran Modelo de Lenguaje",
+          "Un lenguaje de programación",
+          "Una marca de móvil"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo funciona básicamente?",
+        "opciones": [
+          "Piensa y razona",
+          "Predice la siguiente palabra probable",
+          "Busca en Google en tiempo real",
+          "Copia y pega"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué significa que la IA 'alucine'?",
+        "opciones": [
+          "Que ve visiones",
+          "Que inventa datos falsos con seguridad",
+          "Que se estropea",
+          "Que se duerme"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Con qué se compara a ChatGPT?",
+        "opciones": [
+          "Con un humano",
+          "Con un autocompletar súper avanzado",
+          "Con una calculadora",
+          "Con un libro"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Saben cosas como un humano?",
+        "opciones": [
+          "Sí",
+          "No, solo predicen palabras",
+          "A veces",
+          "Casi"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Computación Cuántica: La próxima revolución",
+    "texto": "Los ordenadores actuales funcionan con bits, que pueden ser 0 o 1 (como un interruptor apagado o encendido). La computación cuántica usa 'qubits', que gracias a la física cuántica pueden ser 0 y 1 a la vez (superposición). Esto permite hacer cálculos increíblemente complejos en segundos que a un superordenador normal le llevarían miles de años. Es muy útil para diseñar nuevos medicamentos o materiales, pero también es un peligro: un ordenador cuántico potente podría romper todas las claves de seguridad bancaria actuales instantáneamente.",
+    "preguntas": [
+      {
+        "pregunta": "¿Con qué funcionan los ordenadores actuales?",
+        "opciones": [
+          "Qubits",
+          "Bits (0 o 1)",
+          "Atómos",
+          "Luz"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué unidad usa la computación cuántica?",
+        "opciones": [
+          "Megabyte",
+          "Pixel",
+          "Qubit",
+          "Hertz"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué propiedad especial tiene el qubit?",
+        "opciones": [
+          "Es muy pequeño",
+          "Puede ser 0 y 1 a la vez (superposición)",
+          "Es de color azul",
+          "No gasta energía"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ventaja tiene?",
+        "opciones": [
+          "Es más barato",
+          "Hace cálculos complejos muchísimo más rápido",
+          "Es más fácil de usar",
+          "Ocupa menos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué peligro representa?",
+        "opciones": [
+          "Puede explotar",
+          "Puede romper la seguridad bancaria actual",
+          "Gasta mucha luz",
+          "Calienta la casa"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Realidad Aumentada vs Realidad Virtual",
+    "texto": "A menudo se confunden, pero son distintas. La Realidad Virtual (RV) te aísla del mundo real y te lleva a uno totalmente digital (te pones el casco y estás en Marte). La Realidad Aumentada (RA) te deja ver el mundo real pero superpone elementos digitales encima (como Pokémon GO, que pone al monstruo en la calle que ves por la cámara). La RA es muy útil para mecánicos (ver instrucciones flotando sobre el motor) o cirujanos (ver datos del paciente sobre su cuerpo mientras operan).",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué hace la Realidad Virtual?",
+        "opciones": [
+          "Mezcla mundos",
+          "Te aísla y te lleva a un mundo digital",
+          "Te deja ver la calle",
+          "Es para leer"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hace la Realidad Aumentada?",
+        "opciones": [
+          "Te lleva a Marte",
+          "Superpone elementos digitales sobre el mundo real",
+          "Te tapa los ojos",
+          "Solo sirve para jugar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ejemplo famoso de RA se menciona?",
+        "opciones": [
+          "Minecraft",
+          "Pokémon GO",
+          "Fortnite",
+          "Mario"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué profesión es útil la RA según el texto?",
+        "opciones": [
+          "Mecánicos o cirujanos",
+          "Panaderos",
+          "Abogados",
+          "Futbolistas"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Cuál es la diferencia principal?",
+        "opciones": [
+          "El precio",
+          "Si te aísla (RV) o mezcla con lo real (RA)",
+          "No hay diferencia",
+          "La marca"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "La obsolescencia programada",
+    "texto": "¿Te has fijado que los móviles o lavadoras parecen romperse justo cuando acaba la garantía? A veces no es mala suerte, es 'obsolescencia programada'. Algunos fabricantes diseñan sus productos para que duren un tiempo limitado y tengas que comprar uno nuevo. Usan materiales débiles, baterías que no se pueden cambiar o actualizaciones de software que vuelven lento el dispositivo antiguo. Esto es bueno para las ventas de la empresa, pero terrible para tu bolsillo y para el medio ambiente, porque genera toneladas de basura electrónica.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es la obsolescencia programada?",
+        "opciones": [
+          "Un error de fábrica",
+          "Diseñar productos para que duren poco tiempo a propósito",
+          "Un virus",
+          "Una ley nueva"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuándo suelen romperse estos productos?",
+        "opciones": [
+          "Nunca",
+          "Justo al acabar la garantía",
+          "Al primer día",
+          "A los 100 años"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tácticas usan los fabricantes?",
+        "opciones": [
+          "Materiales débiles o baterías no extraíbles",
+          "Hacerlos muy caros",
+          "Regalarlos",
+          "Hacerlos de oro"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿A quién beneficia esto?",
+        "opciones": [
+          "Al usuario",
+          "Al medio ambiente",
+          "A las ventas de la empresa",
+          "A nadie"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué problema grave genera?",
+        "opciones": [
+          "Felicidad",
+          "Basura electrónica",
+          "Más espacio",
+          "Juguetes nuevos"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Blockchain: Más allá de las criptomonedas",
+    "texto": "Blockchain (cadena de bloques) es la tecnología detrás de Bitcoin, pero sirve para mucho más. Es como un libro de contabilidad digital que está copiado en miles de ordenadores a la vez. Si alguien quiere escribir algo en una página (un bloque), todos los ordenadores deben estar de acuerdo. Una vez escrito, es imposible de borrar o modificar sin que se note. Esto la hace perfecta para cosas que requieren confianza total: votar en elecciones digitales sin fraude, registrar la propiedad de una casa o asegurar que un medicamento no es falso.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es Blockchain?",
+        "opciones": [
+          "Una moneda",
+          "Una tecnología de registro distribuido (cadena de bloques)",
+          "Un banco",
+          "Un juego"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde está la información?",
+        "opciones": [
+          "En un solo PC",
+          "Copiada en miles de ordenadores a la vez",
+          "En papel",
+          "En secreto"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué característica de seguridad tiene?",
+        "opciones": [
+          "Se borra fácil",
+          "Es imposible de borrar o modificar sin que se note",
+          "Tiene contraseña",
+          "Es invisible"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve además de Bitcoin?",
+        "opciones": [
+          "Votaciones, registros de propiedad",
+          "Ver películas",
+          "Jugar online",
+          "Escuchar música"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Por qué es buena para votaciones?",
+        "opciones": [
+          "Es rápida",
+          "Evita el fraude porque nadie puede trucar el registro",
+          "Es barata",
+          "Es divertida"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Ransomware: El secuestro digital",
+    "texto": "El Ransomware es un tipo de virus muy peligroso que 'secuestra' tu ordenador. Cuando te infectas (por abrir un email falso, por ejemplo), el virus cifra todos tus archivos. Tus fotos y documentos siguen ahí, pero están bloqueados con una clave secreta y no puedes abrirlos. Entonces aparece un mensaje en pantalla pidiendo un rescate (ransom) en dinero para darte la clave. Los expertos recomiendan no pagar nunca, porque no garantizan que te la den y animas a los criminales a seguir. La mejor defensa son las copias de seguridad.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué hace el Ransomware?",
+        "opciones": [
+          "Te espía",
+          "Borra todo",
+          "Cifra/bloquea tus archivos y pide rescate",
+          "Rompe la pantalla"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo sueles infectarte?",
+        "opciones": [
+          "Por magia",
+          "Abriendo emails falsos o descargas malas",
+          "Encendiendo el PC",
+          "Limpiando el teclado"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué piden los criminales?",
+        "opciones": [
+          "Dinero (rescate)",
+          "Gracias",
+          "Tu nombre",
+          "Nada"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué recomiendan los expertos?",
+        "opciones": [
+          "Pagar rápido",
+          "No pagar nunca",
+          "Comprar otro PC",
+          "Llorar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es la mejor defensa?",
+        "opciones": [
+          "Tener un antivirus caro",
+          "Tener copias de seguridad externas",
+          "No usar internet",
+          "Apagar la pantalla"
+        ],
+        "correcta": 1
+      }
+    ]
+  }
+]

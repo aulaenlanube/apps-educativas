@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import './BuscaElIntruso.css';
 
+import { FaBook, FaTimes } from 'react-icons/fa';
+
 /**
  * BuscaElIntruso - Edición "Spectacular UI"
  * Juego de discriminación visual y semántica con estética gamificada.
@@ -14,6 +16,7 @@ const BuscaElIntruso = ({ tema }) => {
 
   const [datosJuego, setDatosJuego] = useState(null);
   const [modoLogico, setModoLogico] = useState('visual');
+  const [showHelp, setShowHelp] = useState(false);
 
   const [estado, setEstado] = useState({
     modo: 'libre',
@@ -337,6 +340,31 @@ const BuscaElIntruso = ({ tema }) => {
                 <button className={`intruso-btn ${estado.modo === 'test' ? 'active' : ''}`} onClick={iniciarTest}>EXAMEN</button>
               </>
             )}
+
+            {modoLogico === 'conceptual' && (
+              <button
+                className="intruso-btn"
+                onClick={() => setShowHelp(true)}
+                title="Ver Material de Estudio"
+                style={{
+                  width: '100%',
+                  marginTop: '12px',
+                  background: 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
+                  color: 'white',
+                  border: '1px solid rgba(255,255,255,0.2)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  fontWeight: 'bold',
+                  boxShadow: '0 4px 12px rgba(79, 70, 229, 0.4)',
+                  animation: 'pulse-subtle 2s infinite'
+                }}
+              >
+                <FaBook size={18} />
+                <span style={{ fontSize: '0.9rem' }}>MATERIAL</span>
+              </button>
+            )}
           </div>
 
           <div className="intruso-hud-center">
@@ -447,6 +475,74 @@ const BuscaElIntruso = ({ tema }) => {
           )}
         </div>
       </div>
+
+      {/* MODAL DE AYUDA / MATERIAL DE ESTUDIO */}
+      {showHelp && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in duration-300">
+          <div className="bg-white rounded-3xl w-full max-w-4xl max-h-[85vh] overflow-hidden flex flex-col shadow-2xl scale-100 animate-in zoom-in duration-300">
+            {/* Header */}
+            <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50">
+              <h2 className="text-2xl font-bold text-indigo-600 flex items-center gap-3 font-fredoka">
+                <FaBook className="text-indigo-500" /> Material de Estudio
+              </h2>
+              <button
+                onClick={() => setShowHelp(false)}
+                className="p-2 hover:bg-red-100 rounded-full text-gray-400 hover:text-red-500 transition-colors"
+                title="Cerrar"
+              >
+                <FaTimes size={24} />
+              </button>
+            </div>
+
+            {/* Content Scrollable */}
+            <div className="p-6 overflow-y-auto custom-scrollbar flex-1 bg-gray-50/50">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {datosJuego?.map((cat, idx) => (
+                  <div key={idx} className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all hover:-translate-y-1">
+                    <h3 className="text-lg font-bold text-gray-800 mb-3 border-b-2 border-indigo-50 pb-2 truncate" title={cat.categoria}>
+                      {cat.categoria}
+                    </h3>
+                    <div className="space-y-4">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                          <span className="text-xs font-bold uppercase text-green-700 bg-green-50 px-2 py-0.5 rounded-md border border-green-100">Correctos</span>
+                        </div>
+                        <ul className="text-sm text-gray-600 leading-relaxed list-disc list-inside pl-1 marker:text-green-300">
+                          {cat.correctos.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="w-2 h-2 rounded-full bg-red-500"></span>
+                          <span className="text-xs font-bold uppercase text-red-700 bg-red-50 px-2 py-0.5 rounded-md border border-red-100">Intrusos</span>
+                        </div>
+                        <ul className="text-sm text-gray-600 leading-relaxed list-disc list-inside pl-1 marker:text-red-300">
+                          {cat.intrusos.map((item, i) => (
+                            <li key={i}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Footer */}
+            <div className="p-4 border-t border-gray-100 bg-white flex justify-end gap-3">
+              <button
+                onClick={() => setShowHelp(false)}
+                className="px-6 py-2.5 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 active:scale-95 transition-all shadow-lg shadow-indigo-200"
+              >
+                ¡Entendido!
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

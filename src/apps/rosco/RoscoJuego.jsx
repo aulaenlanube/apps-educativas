@@ -51,21 +51,32 @@ const RoscoJuego = () => {
     const loadStudyMaterial = async () => {
         if (studyMaterial) return studyMaterial;
 
+        // Optimización: Si ya tenemos los datos del juego cargados, los usamos directamente.
+        // Esto evita tener ficheros duplicados *-material-de-estudio.json cuando el contenido es el mismo.
+        if (data && Array.isArray(data) && data.length > 0) {
+            const generated = generateStudyMaterialFromData(data);
+            setStudyMaterial(generated);
+            return generated;
+        }
+
         try {
             const path = `/data/${level}/${grade}/${asignatura}-rosco-material-de-estudio.json`;
             const response = await fetch(path);
             if (response.ok) {
-                const material = await response.json();
+                let material = await response.json();
+
+                // Si el JSON cargado es un array (formato crudo igual que rosco.json), lo transformamos
+                if (Array.isArray(material)) {
+                    material = generateStudyMaterialFromData(material);
+                }
+
                 setStudyMaterial(material);
                 return material;
             }
         } catch (error) {
-            console.warn("No se encontró archivo de material, generando desde datos del rosco...");
+            console.warn("No se encontró archivo de material y no hay datos de juego disponibles.");
         }
-
-        const generated = generateStudyMaterialFromData(data);
-        setStudyMaterial(generated);
-        return generated;
+        return null;
     };
 
     const game = useRoscoGame(data);

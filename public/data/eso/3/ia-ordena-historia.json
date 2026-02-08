@@ -1,0 +1,212 @@
+[
+  [
+    "Entrenando una red neuronal para leer números.",
+    "Diseñamos una red con capa de entrada y salida.",
+    "Le pasamos miles de imágenes de dígitos escritos a mano.",
+    "La red ajusta sus pesos internos con cada error.",
+    "Tras muchas épocas, reconoce el número 7 perfectamente."
+  ],
+  [
+    "El problema del sesgo en la selección de personal.",
+    "Una empresa entrena una IA con currículums antiguos.",
+    "La mayoría de empleados antiguos eran hombres.",
+    "La IA aprende a descartar currículums de mujeres.",
+    "La empresa se da cuenta y tiene que corregir el modelo."
+  ],
+  [
+    "Cómo se crea un Deepfake de vídeo.",
+    "Una IA estudia el rostro de un actor famoso.",
+    "Otra IA graba el rostro de un imitador.",
+    "La red generativa sustituye la cara del imitador.",
+    "El resultado parece que el actor dice cosas que no dijo."
+  ],
+  [
+    "El funcionamiento de las Redes Generativas Antagónicas (GANs).",
+    "La red Generadora crea una imagen falsa.",
+    "La red Discriminadora intenta adivinar si es real.",
+    "Si la Discriminadora acierta, la Generadora mejora.",
+    "Compiten hasta que la imagen falsa es perfecta."
+  ],
+  [
+    "Un coche autónomo ante un dilema ético.",
+    "Falla los frenos y va hacia un paso de peatones.",
+    "La IA calcula dos opciones: atropellar o chocar.",
+    "Si choca contra el muro, el pasajero sufrirá daños.",
+    "Debe decidir en milisegundos basándose en su programación."
+  ],
+  [
+    "El uso de IA para detectar cáncer de piel.",
+    "Entrenamos el modelo con fotos de lunares benignos y malignos.",
+    "La red neuronal aprende patrones de forma y color.",
+    "Un paciente envía una foto de un lunar sospechoso.",
+    "La IA alerta de que podría ser un melanoma peligroso."
+  ],
+  [
+    "La caja negra de la Inteligencia Artificial.",
+    "El banco deniega un crédito automáticamente.",
+    "El cliente pregunta por qué se lo han denegado.",
+    "El empleado no lo sabe, solo ve el resultado de la IA.",
+    "Es necesario trabajar en la explicabilidad del algoritmo."
+  ],
+  [
+    "Un ataque de adversario confunde a la IA.",
+    "Tenemos una IA que reconoce señales de tráfico.",
+    "Alguien pega una pegatina especial en un STOP.",
+    "Para el ojo humano sigue siendo un STOP.",
+    "La IA se confunde y piensa que es una señal de 40."
+  ],
+  [
+    "El impacto ambiental de entrenar grandes modelos.",
+    "Un centro de datos con miles de GPUs trabaja meses.",
+    "Entrenar un modelo como GPT consume mucha electricidad.",
+    "Esa electricidad genera una huella de carbono grande.",
+    "Los ingenieros buscan formas de hacer 'Green AI'."
+  ],
+  [
+    "La privacidad diferencial protege los datos médicos.",
+    "Queremos estudiar datos de pacientes sin revelar nombres.",
+    "Añadimos 'ruido' estadístico a los datos reales.",
+    "La IA puede aprender tendencias generales de salud.",
+    "Es imposible identificar a un paciente concreto."
+  ],
+  [
+    "Un sistema de vigilancia predictiva en la ciudad.",
+    "Cámaras y sensores analizan el comportamiento en calles.",
+    "Detectan una pelea antes de que escale a mayores.",
+    "Avisan a la policía más cercana automáticamente.",
+    "Esto plantea debates sobre la privacidad ciudadana."
+  ],
+  [
+    "La IA en el descubrimiento de fármacos.",
+    "Simulamos millones de moléculas en el ordenador.",
+    "La IA predice cuáles podrían curar una enfermedad.",
+    "Selecciona las 10 mejores candidatas para probar.",
+    "Ahorra años de trabajo en el laboratorio."
+  ],
+  [
+    "La traducción neuronal mejora los textos.",
+    "Antiguamente se traducía palabra por palabra.",
+    "Las redes neuronales miran la frase entera.",
+    "Entienden el contexto y el tono del mensaje.",
+    "La traducción final suena mucho más natural."
+  ],
+  [
+    "Un artista usa IA como herramienta creativa.",
+    "Entrena una IA con su propio estilo de dibujo.",
+    "Genera bocetos rápidos basados en sus ideas.",
+    "Elige el mejor boceto y lo termina a mano.",
+    "La IA no le sustituye, sino que le ayuda a empezar."
+  ],
+  [
+    "La desinformación generada automáticamente.",
+    "Una granja de bots crea noticias falsas en redes.",
+    "Usan IA para escribir titulares que enfaden a la gente.",
+    "Las noticias se comparten viralmente muy rápido.",
+    "Es difícil distinguir la verdad de la mentira."
+  ],
+  [
+    "La automatización en una planta de reciclaje.",
+    "La basura llega mezclada por una cinta transportadora.",
+    "Un sistema de visión artificial identifica materiales.",
+    "Brazos robóticos separan plásticos, papel y vidrio.",
+    "El proceso es mucho más rápido que hacerlo a mano."
+  ],
+  [
+    "El reconocimiento de voz en entornos ruidosos.",
+    "Intento hablar a Siri en una fiesta con música.",
+    "La IA debe separar mi voz del ruido de fondo.",
+    "Usa filtros para cancelar las frecuencias de la música.",
+    "Logra entender mi orden a pesar del jaleo."
+  ],
+  [
+    "La optimización de rutas de reparto logístico.",
+    "Una empresa tiene que entregar 1000 paquetes.",
+    "La IA calcula la ruta perfecta para 50 camiones.",
+    "Tiene en cuenta el tráfico y los horarios de entrega.",
+    "Ahorra gasolina y tiempo en el reparto diario."
+  ],
+  [
+    "Los chatbots emocionales acompañan a personas solas.",
+    "Una IA está programada para ser empática y amable.",
+    "Habla con una persona mayor que se siente sola.",
+    "Recuerda sus conversaciones pasadas y sus gustos.",
+    "Ayuda a mejorar el estado de ánimo del usuario."
+  ],
+  [
+    "La detección de fraude en tarjetas de crédito.",
+    "Hago una compra online en un país extranjero.",
+    "La IA del banco nota que esto es inusual en mí.",
+    "Bloquea la operación y me envía un SMS.",
+    "Confirmo que soy yo y desbloquean la tarjeta."
+  ],
+  [
+    "La restauración de fotos antiguas con IA.",
+    "Escaneamos una foto vieja en blanco y negro.",
+    "La IA elimina las grietas y manchas del papel.",
+    "Colorea la imagen basándose en objetos conocidos.",
+    "La foto parece nueva y llena de vida."
+  ],
+  [
+    "El aprendizaje por transferencia ahorra tiempo.",
+    "Tenemos una IA experta en reconocer perros.",
+    "Queremos que aprenda a reconocer lobos.",
+    "Aprovechamos lo que ya sabe sobre animales peludos.",
+    "Aprende mucho más rápido que empezando de cero."
+  ],
+  [
+    "La IA en los videojuegos competitivos (eSports).",
+    "Un equipo profesional entrena contra una IA avanzada.",
+    "La IA prueba estrategias nuevas y arriesgadas.",
+    "Los jugadores humanos aprenden de esas tácticas.",
+    "Mejoran su nivel gracias al entrenamiento virtual."
+  ],
+  [
+    "La predicción de incendios forestales.",
+    "Satélites vigilan la sequedad de los bosques.",
+    "La IA cruza datos de viento y temperatura.",
+    "Genera un mapa de riesgo de incendio extremo.",
+    "Los bomberos se preparan antes de que empiece el fuego."
+  ],
+  [
+    "La personalización de la educación online.",
+    "Un alumno tiene problemas con las fracciones.",
+    "La plataforma detecta su dificultad en los ejercicios.",
+    "Le ofrece videos explicativos extra y más práctica.",
+    "Cuando mejora, avanza al siguiente tema automáticamente."
+  ],
+  [
+    "Los asistentes de programación (Copilot).",
+    "Un programador escribe el inicio de una función.",
+    "La IA sugiere el código para completarla.",
+    "Revisa si hay errores de sintaxis comunes.",
+    "Acelera el desarrollo del software significativamente."
+  ],
+  [
+    "La robótica de enjambre en misiones de búsqueda.",
+    "Soltamos 50 pequeños robots en una zona de desastre.",
+    "Se comunican entre ellos como hormigas.",
+    "Si uno encuentra algo, avisa a los demás.",
+    "Cubren mucho terreno en muy poco tiempo."
+  ],
+  [
+    "La clasificación de correos en carpetas 'Smart'.",
+    "La IA lee mis emails entrantes.",
+    "Diferencia entre facturas, promociones y personal.",
+    "Los organiza en pestañas para que no me agobie.",
+    "Me avisa solo de los correos realmente importantes."
+  ],
+  [
+    "El control de calidad en una línea de montaje.",
+    "Cámaras de alta velocidad fotografían cada producto.",
+    "La IA detecta defectos minúsculos invisibles al ojo.",
+    "Un chorro de aire expulsa el producto defectuoso.",
+    "Solo llegan al cliente los productos perfectos."
+  ],
+  [
+    "La síntesis de voz para personas mudas.",
+    "Una persona escribe lo que quiere decir en una tablet.",
+    "La IA convierte el texto en voz sintética.",
+    "Puede usar una voz personalizada que suene como él.",
+    "Permite comunicarse de forma más fluida y natural."
+  ]
+]

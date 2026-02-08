@@ -1,0 +1,842 @@
+[
+  {
+    "titulo": "¿Qué es realmente la Inteligencia Artificial?",
+    "texto": "La Inteligencia Artificial (IA) no es magia, es informática. En términos simples, es la capacidad de una máquina para realizar tareas que normalmente requieren inteligencia humana, como reconocer caras, entender el habla o jugar al ajedrez. No significa que la máquina tenga conciencia o sentimientos; simplemente procesa datos muy rápido siguiendo reglas complejas o aprendiendo de ejemplos. Imagina que enseñas a un niño a diferenciar perros de gatos mostrándole muchas fotos. La IA hace algo parecido: analiza miles de imágenes hasta que encuentra patrones que le dicen 'esto es un perro'.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es la Inteligencia Artificial según el texto?",
+        "opciones": [
+          "Magia tecnológica",
+          "Capacidad de una máquina para hacer tareas inteligentes",
+          "Conciencia artificial",
+          "Un robot que siente"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Tiene sentimientos una IA actual?",
+        "opciones": [
+          "Sí, si se enfada",
+          "No, solo procesa datos",
+          "A veces",
+          "Depende de la programación"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo aprende una IA a diferenciar cosas?",
+        "opciones": [
+          "Adivinando",
+          "Analizando patrones en muchos ejemplos",
+          "Preguntando a humanos",
+          "Durmiendo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ejemplo se usa para explicar el aprendizaje?",
+        "opciones": [
+          "Enseñar a un niño a leer",
+          "Diferenciar perros de gatos con fotos",
+          "Cocinar una tarta",
+          "Conducir un coche"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tareas se mencionan que requieren inteligencia?",
+        "opciones": [
+          "Reconocer caras y jugar al ajedrez",
+          "Correr y saltar",
+          "Comer y dormir",
+          "Soñar e imaginar"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "La IA en tu bolsillo: Redes Sociales",
+    "texto": "¿Alguna vez te has preguntado por qué TikTok o Instagram saben exactamente qué videos te gustan? Eso es Inteligencia Artificial. Estas aplicaciones usan algoritmos de recomendación. Cada vez que das 'like', comentas o pasas tiempo viendo un video, la IA toma nota. Crea un perfil de tus gustos y busca contenido similar que haya gustado a personas con gustos parecidos a los tuyos. Su objetivo es mantenerte en la aplicación el mayor tiempo posible mostrándote cosas que te interesen.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué usan las redes sociales para saber qué te gusta?",
+        "opciones": [
+          "Magia",
+          "Algoritmos de recomendación",
+          "Espías humanos",
+          "Cámaras secretas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ocurre cuando das 'like' a un video?",
+        "opciones": [
+          "No pasa nada",
+          "Se borra el video",
+          "La IA toma nota de tus gustos",
+          "El móvil se apaga"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es el objetivo de la IA en estas apps?",
+        "opciones": [
+          "Que cierres la app pronto",
+          "Mantenerte en la aplicación",
+          "Gastar tu batería",
+          "Enseñarte matemáticas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué perfil crea la IA sobre ti?",
+        "opciones": [
+          "Un perfil de tus amigos",
+          "Un perfil de tus gustos",
+          "Un perfil de tu cara",
+          "Un perfil de tu voz"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Con quién compara la IA tus gustos?",
+        "opciones": [
+          "Con tus padres",
+          "Con personas con gustos parecidos",
+          "Con robots",
+          "Con nadie"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Asistentes de Voz: Siri y Alexa",
+    "texto": "Cuando le preguntas algo a Siri, Alexa o Google Assistant, estás usando IA. El proceso tiene varios pasos. Primero, el 'Reconocimiento de Voz' convierte tus sonidos en texto. Luego, el 'Procesamiento del Lenguaje Natural' intenta entender qué significa ese texto (¿es una pregunta?, ¿una orden?). Finalmente, busca la respuesta o ejecuta la acción y te responde con una voz sintética. Aunque parecen muy listos, en realidad solo buscan palabras clave en tu frase para saber qué hacer.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué hace primero el asistente cuando le hablas?",
+        "opciones": [
+          "Piensa la respuesta",
+          "Te ignora",
+          "Convierte tus sonidos en texto",
+          "Llama a tu madre"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llama la tecnología que entiende el significado de tu frase?",
+        "opciones": [
+          "Escucha Activa",
+          "Procesamiento del Lenguaje Natural",
+          "Traducción Simultánea",
+          "Wikipedia"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Los asistentes entienden todo como un humano?",
+        "opciones": [
+          "Sí, perfectamente",
+          "No, buscan palabras clave",
+          "Son más listos que los humanos",
+          "Tienen sentimientos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hacen después de entender tu orden?",
+        "opciones": [
+          "Se apagan",
+          "Buscan la respuesta o ejecutan la acción",
+          "Te piden dinero",
+          "Cuentan un chiste"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué consiste la respuesta que te dan?",
+        "opciones": [
+          "En un texto escrito",
+          "En una voz sintética",
+          "En un dibujo",
+          "En un sonido de beep"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Videojuegos: La IA de los enemigos",
+    "texto": "En los videojuegos, la IA se usa para controlar a los personajes que no eres tú (NPCs). Antiguamente, los enemigos en juegos como Mario Bros siempre hacían lo mismo: caminar de un lado a otro. Hoy en día, la IA hace que los enemigos se escondan, te flanqueen o pidan ayuda si te ven. Sin embargo, los desarrolladores de juegos a veces tienen que hacer la IA 'más tonta' a propósito, porque si fuera perfecta, ¡nunca podrías ganar la partida!",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué significa NPC?",
+        "opciones": [
+          "Non-Playable Character (Personaje no jugable)",
+          "No Person Can (Nadie puede)",
+          "New Player Coming (Viene nuevo jugador)",
+          "Ninguna es correcta"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué hacían los enemigos en juegos antiguos?",
+        "opciones": [
+          "Aprendían tus movimientos",
+          "Siempre hacían lo mismo",
+          "Eran invisibles",
+          "Te hablaban"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué a veces hacen la IA 'más tonta'?",
+        "opciones": [
+          "Para ahorrar energía",
+          "Porque es difícil de programar",
+          "Para que el jugador pueda ganar",
+          "Por error"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué pueden hacer los enemigos modernos gracias a la IA?",
+        "opciones": [
+          "Esconderse o pedir ayuda",
+          "Volar sin alas",
+          "Salir de la pantalla",
+          "Jugar por ti"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué pasaría si la IA de un juego fuera perfecta?",
+        "opciones": [
+          "Sería muy aburrido",
+          "Nunca podrías ganar",
+          "El juego se rompería",
+          "Ganarías siempre"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Alan Turing: El padre de la informática",
+    "texto": "Mucho antes de que existieran los ordenadores tal y como los conocemos, un matemático británico llamado Alan Turing imaginó máquinas que podían pensar. Durante la Segunda Guerra Mundial, Turing ayudó a descifrar los códigos secretos de los nazis con una máquina llamada 'Bombe', lo que salvó millones de vidas. Se le considera el padre de la IA porque propuso una prueba (el Test de Turing) para ver si una máquina podía hacerse pasar por un humano en una conversación.",
+    "preguntas": [
+      {
+        "pregunta": "¿Quién es considerado el padre de la Inteligencia Artificial?",
+        "opciones": [
+          "Steve Jobs",
+          "Bill Gates",
+          "Alan Turing",
+          "Elon Musk"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué hizo Turing en la Segunda Guerra Mundial?",
+        "opciones": [
+          "Luchó como soldado",
+          "Descifró códigos secretos",
+          "Inventó internet",
+          "Diseñó aviones"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué consiste el Test de Turing?",
+        "opciones": [
+          "En correr muy rápido",
+          "En jugar al ajedrez",
+          "En ver si una máquina puede pasar por humana conversando",
+          "En resolver ecuaciones"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo se llamaba la máquina que usó para descifrar códigos?",
+        "opciones": [
+          "Enigma",
+          "Bombe",
+          "Colossus",
+          "Turing Machine"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál era la nacionalidad de Alan Turing?",
+        "opciones": [
+          "Americano",
+          "Alemán",
+          "Británico",
+          "Francés"
+        ],
+        "correcta": 2
+      }
+    ]
+  },
+  {
+    "titulo": "¿Robots o IA? ¿Cuál es la diferencia?",
+    "texto": "A menudo confundimos robots con Inteligencia Artificial, pero no son lo mismo. Un robot es el cuerpo: la máquina física con cables, motores y sensores. La IA es el cerebro: el programa que piensa y decide. Puedes tener un robot sin IA (como un brazo mecánico en una fábrica que siempre hace el mismo movimiento) y puedes tener IA sin robot (como ChatGPT, que vive en un servidor y no tiene cuerpo físico).",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es un robot según el texto?",
+        "opciones": [
+          "El cerebro",
+          "El cuerpo o máquina física",
+          "Un programa informático",
+          "Una red social"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es la IA en esta comparación?",
+        "opciones": [
+          "Los cables",
+          "El motor",
+          "El cerebro o programa",
+          "La batería"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Puede existir un robot sin Inteligencia Artificial?",
+        "opciones": [
+          "No, imposible",
+          "Sí, como un brazo mecánico simple",
+          "Solo en las películas",
+          "Sí, pero no funcionan"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿ChatGPT es un robot?",
+        "opciones": [
+          "Sí, tiene cuerpo",
+          "No, es una IA sin cuerpo físico",
+          "Es un humano",
+          "Es un animal"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ejemplo se da de robot sin IA?",
+        "opciones": [
+          "Un perro robot",
+          "Un brazo mecánico de fábrica",
+          "Un coche autónomo",
+          "Un asistente de voz"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Algoritmos: Recetas para pensar",
+    "texto": "La palabra 'algoritmo' suena complicada, pero es muy sencilla. Un algoritmo es solo una lista de instrucciones paso a paso para resolver un problema. Una receta de cocina es un algoritmo: 1. Rompe los huevos, 2. Bátelos, 3. Échalos a la sartén. Los ordenadores necesitan algoritmos para todo. En IA, los algoritmos son las reglas que le dicen a la máquina cómo aprender de los datos para llegar al resultado correcto.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es un algoritmo?",
+        "opciones": [
+          "Un tipo de ordenador",
+          "Una lista de instrucciones paso a paso",
+          "Un virus informático",
+          "Una pieza de hardware"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Con qué compara el texto a un algoritmo?",
+        "opciones": [
+          "Con un coche",
+          "Con una receta de cocina",
+          "Con un libro",
+          "Con un animal"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué sirve un algoritmo en IA?",
+        "opciones": [
+          "Para calentar el ordenador",
+          "Para decirle cómo aprender de los datos",
+          "Para imprimir papel",
+          "Para apagar la pantalla"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ejemplos de pasos de una receta se dan?",
+        "opciones": [
+          "Comprar, cocinar, comer",
+          "Romper huevos, batir, echar a la sartén",
+          "Abrir nevera, sacar leche",
+          "Poner la mesa"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué necesitan algoritmos los ordenadores?",
+        "opciones": [
+          "Para casi todo",
+          "Solo para juegos",
+          "Para nada",
+          "Para tener virus"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "Casas Inteligentes (Domótica)",
+    "texto": "La domótica convierte una casa normal en una 'Smart Home'. Gracias a la IA, puedes tener luces que se apagan solas cuando no hay nadie, termostatos que aprenden a qué hora llegas para calentar la casa antes, o neveras que te avisan si falta leche. Estos dispositivos usan sensores para 'ver' qué pasa en la casa y toman decisiones sencillas para ahorrar energía y hacerte la vida más cómoda.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es una 'Smart Home'?",
+        "opciones": [
+          "Una casa pequeña",
+          "Una casa muy cara",
+          "Una casa inteligente con tecnología",
+          "Una casa de madera"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué puede hacer un termostato inteligente?",
+        "opciones": [
+          "Pedir pizza",
+          "Aprender tus horarios para climatizar",
+          "Limpiar el suelo",
+          "Poner música"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es un beneficio de la domótica?",
+        "opciones": [
+          "Ahorrar energía",
+          "Gastar más luz",
+          "Hacer ruido",
+          "Ninguno"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué usan los dispositivos para 'ver' qué pasa?",
+        "opciones": [
+          "Cámaras de vigilancia",
+          "Sensores",
+          "Micrófonos ocultos",
+          "Rayos X"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué puede hacer una nevera inteligente según el texto?",
+        "opciones": [
+          "Cocinar sola",
+          "Avisarte si falta leche",
+          "Ir a la compra",
+          "Enfriar la cocina"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Coches que conducen solos",
+    "texto": "Los coches autónomos son vehículos que pueden circular sin conductor gracias a la IA. Usan cámaras, radares y láseres para ver la carretera, otros coches y peatones. La IA analiza toda esa información en tiempo real para decidir si acelerar, frenar o girar. Todavía se están perfeccionando para que sean 100% seguros y puedan reaccionar ante imprevistos mejor que un humano.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué permite a un coche autónomo conducir solo?",
+        "opciones": [
+          "La magia",
+          "La Inteligencia Artificial y sensores",
+          "Un conductor invisible",
+          "El GPS solamente"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué usan para 'ver' la carretera?",
+        "opciones": [
+          "Solo espejos",
+          "Cámaras, radares y láseres",
+          "Faros muy potentes",
+          "Un mapa de papel"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Están ya perfeccionados al 100%?",
+        "opciones": [
+          "Sí, son perfectos",
+          "No, todavía se están mejorando",
+          "Nunca funcionarán",
+          "Solo en Marte"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué decide la IA en tiempo real?",
+        "opciones": [
+          "Qué música poner",
+          "Si acelerar, frenar o girar",
+          "El color del coche",
+          "La ruta más bonita"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el objetivo de seguridad?",
+        "opciones": [
+          "Ser igual de seguros que un humano",
+          "Reaccionar mejor que un humano",
+          "No chocar nunca",
+          "Ser muy rápidos"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Miedos y Realidad: ¿Terminator?",
+    "texto": "En las películas de ciencia ficción como 'Terminator', la IA a menudo se vuelve malvada y quiere dominar el mundo. En la realidad, la IA no tiene deseos ni ganas de conquistar nada. Solo hace aquello para lo que ha sido programada. El mayor peligro de la IA hoy no es que se rebele, sino que los humanos la usen para cosas malas (como crear noticias falsas) o que cometa errores porque sus datos estaban mal.",
+    "preguntas": [
+      {
+        "pregunta": "¿Es la IA real como en las películas de Terminator?",
+        "opciones": [
+          "Sí, igual de peligrosa",
+          "No, no tiene deseos ni conciencia",
+          "Sí, ya nos domina",
+          "Depende del día"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es un peligro real de la IA hoy?",
+        "opciones": [
+          "Que los robots nos ataquen",
+          "El mal uso por parte de humanos",
+          "Que se acabe la electricidad",
+          "Que se enamore de nosotros"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué comete errores la IA?",
+        "opciones": [
+          "Porque quiere engañarnos",
+          "Porque está cansada",
+          "A veces por datos incorrectos",
+          "Por aburrimiento"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿La IA tiene deseos de conquistar el mundo?",
+        "opciones": [
+          "Sí, siempre",
+          "No, no tiene deseos",
+          "Solo si se enfada",
+          "Tal vez en el futuro"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ejemplo de mal uso humano se da?",
+        "opciones": [
+          "Robar bancos",
+          "Crear noticias falsas",
+          "Romper cosas",
+          "Hacer ruido"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Los Drones: Robots voladores",
+    "texto": "Un dron es un vehículo aéreo sin piloto, controlado a distancia o por una Inteligencia Artificial. Al principio se usaban solo para misiones militares, pero hoy tienen muchos usos pacíficos. Ayudan a los agricultores a vigilar sus campos, llevan medicinas a lugares difíciles de alcanzar o graban escenas espectaculares para películas. Su capacidad para volar y 'ver' desde el aire gracias a cámaras y sensores los hace herramientas muy útiles, pero también hay que tener cuidado de no usarlos cerca de aeropuertos para no molestar a los aviones.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es un dron?",
+        "opciones": [
+          "Un avión grande",
+          "Un vehículo aéreo sin piloto",
+          "Un juguete de tierra",
+          "Un pájaro robot"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se controlan?",
+        "opciones": [
+          "Solo con el pensamiento",
+          "A distancia o por IA",
+          "No se controlan",
+          "Con cuerdas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué servían al principio?",
+        "opciones": [
+          "Para repartir pizza",
+          "Para misiones militares",
+          "Para hacer fotos de bodas",
+          "Para carreras"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué uso pacífico se menciona?",
+        "opciones": [
+          "Llevar medicinas",
+          "Espiar vecinos",
+          "Romper cristales",
+          "Asustar pájaros"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Dónde hay que tener cuidado de no usarlos?",
+        "opciones": [
+          "En el parque",
+          "Cerca de aeropuertos",
+          "En casa",
+          "En el bosque"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "La Realidad Virtual y el Metaverso",
+    "texto": "La Realidad Virtual (RV) te permite entrar en un mundo digital usando unas gafas especiales. Cuando te las pones, dejas de ver tu habitación y apareces en un entorno creado por ordenador, como el espacio o un castillo medieval. El 'Metaverso' es una idea de futuro donde pasaremos mucho tiempo en estos mundos virtuales, no solo para jugar, sino para trabajar, aprender o reunirnos con amigos que viven lejos. Aunque suena divertido, es importante recordar que debemos pasar tiempo en el mundo real y no olvidar nuestras relaciones cara a cara.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué necesitas para entrar en la Realidad Virtual?",
+        "opciones": [
+          "Un traje espacial",
+          "Unas gafas especiales de RV",
+          "Un coche",
+          "Un libro"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué pasa cuando te pones las gafas?",
+        "opciones": [
+          "Ves mejor",
+          "Entras en un mundo digital",
+          "Te duermes",
+          "Vuelas de verdad"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es el Metaverso?",
+        "opciones": [
+          "Un videojuego antiguo",
+          "Una idea de futuro en mundos virtuales",
+          "Una película",
+          "Un planeta nuevo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué servirá además de jugar?",
+        "opciones": [
+          "Para comer",
+          "Para trabajar y aprender",
+          "Para dormir",
+          "Para nada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué consejo final da el texto?",
+        "opciones": [
+          "Vivir siempre en el metaverso",
+          "No olvidar el mundo real",
+          "Comprar más gafas",
+          "No jugar nunca"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Impresión 3D: Creando objetos reales",
+    "texto": "La impresión 3D es una tecnología que permite crear objetos físicos a partir de un diseño digital. Imagina una impresora normal, pero en lugar de tinta, usa plástico derretido (u otros materiales). La máquina va poniendo capas muy finas de material una encima de otra hasta formar el objeto completo. Se usa para fabricar de todo: desde juguetes y piezas de repuesto para máquinas, hasta prótesis médicas para personas que han perdido una mano o una pierna. ¡Incluso se está experimentando con imprimir comida o casas!",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué hace una impresora 3D?",
+        "opciones": [
+          "Imprime fotos",
+          "Crea objetos físicos capa a capa",
+          "Imprime documentos",
+          "Escanea objetos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué material usa comúnmente?",
+        "opciones": [
+          "Tinta líquida",
+          "Plástico derretido",
+          "Papel",
+          "Agua"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo forma el objeto?",
+        "opciones": [
+          "De golpe",
+          "Poniendo capas finas una sobre otra",
+          "Tallando madera",
+          "Soplando aire"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué uso médico se menciona?",
+        "opciones": [
+          "Crear medicinas",
+          "Fabricar prótesis",
+          "Hacer radiografías",
+          "Operar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué cosas sorprendentes se están probando imprimir?",
+        "opciones": [
+          "Dinero",
+          "Comida o casas",
+          "Nubes",
+          "Personas"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "La Ciberseguridad: Protegiendo tus secretos",
+    "texto": "Igual que cierras la puerta de tu casa con llave, en internet necesitas proteger tus cosas. La ciberseguridad son las técnicas para mantener a salvo tus datos, como fotos, mensajes o contraseñas. Los 'hackers' malos intentan robar esa información para hacer daño o ganar dinero. Para protegerte, debes usar contraseñas difíciles (mezclando letras y números), no decir tus secretos a desconocidos en internet y no pinchar en enlaces extraños que te lleguen al correo. ¡Es mejor prevenir que curar!",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es la ciberseguridad?",
+        "opciones": [
+          "Un videojuego de policías",
+          "Técnicas para proteger tus datos en internet",
+          "Un candado físico",
+          "Un antivirus gratis"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué intentan robar los hackers malos?",
+        "opciones": [
+          "Tus juguetes",
+          "Tus datos e información",
+          "Tu comida",
+          "Tu ropa"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo debe ser una contraseña segura?",
+        "opciones": [
+          "Muy corta",
+          "Fácil como '1234'",
+          "Difícil, mezclando letras y números",
+          "Tu nombre"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué no debes hacer en internet?",
+        "opciones": [
+          "Jugar",
+          "Ver videos",
+          "Decir secretos a desconocidos",
+          "Estudiar"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué consejo se da sobre los enlaces extraños?",
+        "opciones": [
+          "Pincharlos todos",
+          "No pinchar en ellos",
+          "Enviarlos a amigos",
+          "Guardarlos"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Reconocimiento Facial: Tu cara es la llave",
+    "texto": "Muchos móviles modernos ya no necesitan código PIN, se desbloquean solo con mirarlos. Usan una tecnología llamada reconocimiento facial. Una cámara especial mide la distancia entre tus ojos, la forma de tu nariz y otros rasgos únicos de tu cara. Crea un 'mapa' digital de tu rostro y lo guarda. Cada vez que miras el móvil, compara lo que ve con ese mapa. Si coincide, sabe que eres tú. Es muy cómodo, pero también plantea dudas sobre si queremos que las máquinas tengan nuestra cara guardada en sus bases de datos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Para qué sirve el reconocimiento facial en móviles?",
+        "opciones": [
+          "Para hacer fotos bonitas",
+          "Para desbloquear el teléfono",
+          "Para maquillarse",
+          "Para llamar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué mide la cámara?",
+        "opciones": [
+          "El color de pelo",
+          "Rasgos únicos como distancia entre ojos",
+          "Si estás sonriendo",
+          "Si tienes sueño"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué crea y guarda el sistema?",
+        "opciones": [
+          "Una foto normal",
+          "Un 'mapa' digital de tu rostro",
+          "Un video",
+          "Tu nombre"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hace cuando miras el móvil?",
+        "opciones": [
+          "Te saluda",
+          "Compara tu cara con el mapa guardado",
+          "Se apaga",
+          "Hace una foto"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué duda plantea esta tecnología?",
+        "opciones": [
+          "Si funciona de noche",
+          "Si queremos que guarden nuestra cara",
+          "Si es muy cara",
+          "Si gasta batería"
+        ],
+        "correcta": 1
+      }
+    ]
+  }
+]

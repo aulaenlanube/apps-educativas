@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "a": "Supervisado",
+    "b": "Datos etiquetados"
+  },
+  {
+    "id": 2,
+    "a": "No Supervisado",
+    "b": "Agrupamiento (Clustering)"
+  },
+  {
+    "id": 3,
+    "a": "Aprendizaje por Refuerzo",
+    "b": "Premios y castigos"
+  },
+  {
+    "id": 4,
+    "a": "Singularidad",
+    "b": "Explosión de inteligencia"
+  },
+  {
+    "id": 5,
+    "a": "Transhumanismo",
+    "b": "Mejora humana"
+  },
+  {
+    "id": 6,
+    "a": "Alineación",
+    "b": "Objetivos seguros"
+  },
+  {
+    "id": 7,
+    "a": "AGI",
+    "b": "Inteligencia General"
+  },
+  {
+    "id": 8,
+    "a": "ANI",
+    "b": "Inteligencia Estrecha"
+  },
+  {
+    "id": 9,
+    "a": "Habitación China",
+    "b": "Comprensión vs Proceso"
+  },
+  {
+    "id": 10,
+    "a": "Dilema del Tranvía",
+    "b": "Decisión ética difícil"
+  },
+  {
+    "id": 11,
+    "a": "Renta Básica",
+    "b": "Solución al desempleo"
+  },
+  {
+    "id": 12,
+    "a": "Sesgo de confirmación",
+    "b": "Burbuja de filtro"
+  },
+  {
+    "id": 13,
+    "a": "Computación Cuántica",
+    "b": "Qubits"
+  },
+  {
+    "id": 14,
+    "a": "Criptografía Asimétrica",
+    "b": "Clave pública/privada"
+  },
+  {
+    "id": 15,
+    "a": "Smart Contract",
+    "b": "Acuerdo automático"
+  },
+  {
+    "id": 16,
+    "a": "Gobernanza IA",
+    "b": "Leyes internacionales"
+  },
+  {
+    "id": 17,
+    "a": "Armas Autónomas",
+    "b": "Prohibición ética"
+  },
+  {
+    "id": 18,
+    "a": "Privacidad Diferencial",
+    "b": "Ruido estadístico"
+  },
+  {
+    "id": 19,
+    "a": "Inferencia Causal",
+    "b": "Causa y efecto"
+  },
+  {
+    "id": 20,
+    "a": "Sobreajuste (Overfitting)",
+    "b": "Memorizar datos"
+  },
+  {
+    "id": 21,
+    "a": "Generalización",
+    "b": "Adaptarse a lo nuevo"
+  },
+  {
+    "id": 22,
+    "a": "Valle Inquietante",
+    "b": "Rechazo al realismo"
+  },
+  {
+    "id": 23,
+    "a": "Antropomorfización",
+    "b": "Humanizar máquinas"
+  },
+  {
+    "id": 24,
+    "a": "Neuromórfico",
+    "b": "Hardware tipo cerebro"
+  },
+  {
+    "id": 25,
+    "a": "Paradoja de Moravec",
+    "b": "Lo difícil es fácil"
+  },
+  {
+    "id": 26,
+    "a": "Riesgo Existencial",
+    "b": "Peligro para la humanidad"
+  },
+  {
+    "id": 27,
+    "a": "IA Generativa",
+    "b": "Creación de contenido"
+  },
+  {
+    "id": 28,
+    "a": "Prompt Engineering",
+    "b": "Diseño de peticiones"
+  },
+  {
+    "id": 29,
+    "a": "Tokenización",
+    "b": "Fragmentar texto"
+  },
+  {
+    "id": 30,
+    "a": "Alucinación",
+    "b": "Invención de datos"
+  }
+]

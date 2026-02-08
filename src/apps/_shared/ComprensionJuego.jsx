@@ -7,13 +7,16 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [mode, setMode] = useState('lectura'); 
+    const [mode, setMode] = useState('lectura');
     const [respuestas, setRespuestas] = useState({});
     const [score, setScore] = useState(0);
     const [animacionFase, setAnimacionFase] = useState('fade-in-up');
 
-    // --- NUEVO ESTADO PARA EL DESPLEGABLE ---
+    // --- NUEVO ESTADO PARA EL DESPLEGABLE DE RESULTADOS ---
     const [showReview, setShowReview] = useState(false);
+
+    // --- NUEVO ESTADO PARA MATERIAL DE ESTUDIO ---
+    const [showMaterial, setShowMaterial] = useState(false);
 
     // --- Audio States ---
     const [speechRate, setSpeechRate] = useState(1);
@@ -25,7 +28,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
     const [fontStyleIndex, setFontStyleIndex] = useState(0);
     const [fontSizeIndex, setFontSizeIndex] = useState(1);
     const sizeClasses = ['size-xs', 'size-md', 'size-lg', 'size-xl', 'size-xxl'];
-    
+
     // --- Guía de Lectura ---
     const [showRuler, setShowRuler] = useState(false);
     const [rulerY, setRulerY] = useState(0);
@@ -55,7 +58,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
             if (level && grade && subjectId) {
                 finalPath = `/data/${level}/${grade}/${subjectId}-comprension.json`;
             } else {
-                return; 
+                return;
             }
         }
 
@@ -69,6 +72,8 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
             })
             .then(jsonData => {
                 if (!jsonData || jsonData.length === 0) throw new Error("JSON vacío");
+                // Aleatorizamos para el juego, pero guardamos copia original si quisiéramos orden
+                // De momento aleatorizamos todo
                 const shuffled = jsonData.sort(() => 0.5 - Math.random());
                 setData(shuffled);
                 setLoading(false);
@@ -78,7 +83,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                 setError(true);
                 setLoading(false);
             });
-        
+
         return () => detenerAudio();
     }, [level, grade, subjectId, dataUrl]);
 
@@ -94,8 +99,8 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
         window.speechSynthesis.cancel();
         if ('speechSynthesis' in window) {
             const utterance = new SpeechSynthesisUtterance(data[currentIndex].texto);
-            utterance.lang = 'es-ES'; 
-            utterance.rate = speechRate; 
+            utterance.lang = 'es-ES';
+            utterance.rate = speechRate;
             utterance.onstart = () => { setIsSpeaking(true); setIsPaused(false); };
             utterance.onend = () => { setIsSpeaking(false); setIsPaused(false); };
             utterance.onerror = () => { setIsSpeaking(false); setIsPaused(false); };
@@ -125,7 +130,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
             if (respuestas[idx] === p.correcta) aciertos++;
         });
         setScore(aciertos);
-        
+
         const notaCalculada = Math.round((aciertos / total) * 10);
         if (notaCalculada >= 5) {
             confetti({
@@ -141,17 +146,17 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
     const siguienteEjercicio = () => {
         detenerAudio();
         setAnimacionFase('shake-exit');
-        
+
         setTimeout(() => {
             setRespuestas({});
             setScore(0);
-            setShowReview(false); // <--- RESETEAMOS EL DESPLEGABLE
+            setShowReview(false);
             setCurrentIndex((prev) => (prev + 1) % data.length);
             setMode('lectura');
-            setAnimacionFase('bounce-in'); 
-        }, 600); 
+            setAnimacionFase('bounce-in');
+        }, 600);
     };
-    
+
     const cambiarFase = (nuevaFase) => {
         setAnimacionFase('fade-out');
         setTimeout(() => {
@@ -166,7 +171,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
 
     const ejercicioActual = data[currentIndex];
     const currentFontStyle = fontStyles[fontStyleIndex];
-    const currentSizeClass = sizeClasses[fontSizeIndex]; 
+    const currentSizeClass = sizeClasses[fontSizeIndex];
 
     const totalPreguntas = ejercicioActual.preguntas.length;
     const nota = Math.round((score / totalPreguntas) * 10);
@@ -181,10 +186,16 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
     return (
         <div className={`comprension-container font-${currentFontStyle}`}>
             <div className="header-zone fade-in">
+                <button
+                    className="btn-material-estudio"
+                    onClick={() => setShowMaterial(true)}
+                >
+                    📚 Material de Estudio
+                </button>
                 <h1 className="main-title text-4xl mb-6 text-center">
-                    <span role="img" aria-label="icono" style={{marginRight: '10px'}}>
+                    <span role="img" aria-label="icono" style={{ marginRight: '10px' }}>
                         {tipo === "oral" ? "🎧" : "📖"}
-                    </span> 
+                    </span>
                     <span className="gradient-text">
                         {tipo === "oral" ? "Comprensión Oral" : "Comprensión Escrita"}
                     </span>
@@ -199,7 +210,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                                         <label className="config-label">✍️ Letra</label>
                                         <div className="slider-container">
                                             <div className="slider-labels"><span>Imp.</span><span>Lig.</span><span>May.</span></div>
-                                            <input type="range" min="0" max="2" step="1" value={fontStyleIndex} onChange={handleFontStyleChange} className="custom-slider font-slider"/>
+                                            <input type="range" min="0" max="2" step="1" value={fontStyleIndex} onChange={handleFontStyleChange} className="custom-slider font-slider" />
                                         </div>
                                     </div>
                                     <div className="group-divider"></div>
@@ -218,10 +229,10 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                                     <label className="config-label">🔍 Tamaño</label>
                                     <div className="slider-container">
                                         <div className="slider-labels">
-                                            <span style={{fontSize:'0.8rem'}}>Aa</span>
-                                            <span style={{fontSize:'1.2rem', fontWeight:'bold'}}>Aa</span>
+                                            <span style={{ fontSize: '0.8rem' }}>Aa</span>
+                                            <span style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>Aa</span>
                                         </div>
-                                        <input type="range" min="0" max="4" step="1" value={fontSizeIndex} onChange={handleFontSizeChange} className="custom-slider size-slider"/>
+                                        <input type="range" min="0" max="4" step="1" value={fontSizeIndex} onChange={handleFontSizeChange} className="custom-slider size-slider" />
                                     </div>
                                 </div>
                             </>
@@ -231,14 +242,14 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                                 <label className="config-label">🐢 Velocidad 🐇</label>
                                 <div className="slider-container">
                                     <div className="slider-labels"><span>Lento</span><span>Normal</span><span>Rápido</span></div>
-                                    <input type="range" min="0.5" max="1.5" step="0.5" value={speechRate} onChange={handleSpeedChange} className="custom-slider speed-slider"/>
+                                    <input type="range" min="0.5" max="1.5" step="0.5" value={speechRate} onChange={handleSpeedChange} className="custom-slider speed-slider" />
                                 </div>
                             </div>
                         )}
                     </div>
                 )}
             </div>
-            
+
             <div className={`game-content ${animacionFase}`}>
                 {mode === 'lectura' && (
                     <div className="card-principal">
@@ -271,7 +282,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                 {mode === 'preguntas' && (
                     <div className="zona-preguntas">
                         {ejercicioActual.preguntas.map((item, idx) => (
-                            <div key={idx} className="pregunta-card pop-in" style={{animationDelay: `${idx * 0.1}s`}}>
+                            <div key={idx} className="pregunta-card pop-in" style={{ animationDelay: `${idx * 0.1}s` }}>
                                 <div className="pregunta-badge">Pregunta {idx + 1}</div>
                                 <p className="enunciado">{item.pregunta}</p>
                                 <div className={`opciones-grid cols-${item.opciones.length}`}>
@@ -283,10 +294,10 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                                 </div>
                             </div>
                         ))}
-                        <div className="actions-center" style={{display:'flex', justifyContent:'center', marginTop: '2rem'}}>
-                            {Object.keys(respuestas).length === ejercicioActual.preguntas.length ? 
-                                <button onClick={finalizar} className="btn-finalizar pulse-animation">✅ Corregir</button> : 
-                                <p className="aviso-responder" style={{color:'#e11d48', fontWeight:'bold'}}>Responde todo para terminar 👆</p>
+                        <div className="actions-center" style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+                            {Object.keys(respuestas).length === ejercicioActual.preguntas.length ?
+                                <button onClick={finalizar} className="btn-finalizar pulse-animation">✅ Corregir</button> :
+                                <p className="aviso-responder" style={{ color: '#e11d48', fontWeight: 'bold' }}>Responde todo para terminar 👆</p>
                             }
                         </div>
                     </div>
@@ -298,12 +309,12 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                         <div className="card-header">
                             <h3 className="titulo-historia">¡Completado!</h3>
                         </div>
-                        
+
                         <div className="card-body text-center">
                             {/* Premios visuales inmediatos */}
                             <div className="stars-container-integrated">
                                 {[...Array(3)].map((_, i) => (
-                                    <span key={i} className={`star ${i < estrellas ? 'filled' : 'empty'}`} style={{animationDelay: `${i * 0.2}s`}}>★</span>
+                                    <span key={i} className={`star ${i < estrellas ? 'filled' : 'empty'}`} style={{ animationDelay: `${i * 0.2}s` }}>★</span>
                                 ))}
                             </div>
 
@@ -313,15 +324,15 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                             </div>
 
                             <p className="mensaje-motivacional-simple">
-                                {nota === 10 ? "¡TRABAJO EXCELENTE! 🌟🏆" : 
-                                 nota >= 7 ? "¡FANTÁSTICO! 😎" :
-                                 nota >= 5 ? "¡BIEN JUGADO! 👍" : 
-                                 "¡BUEN INTENTO! 💪"}
+                                {nota === 10 ? "¡TRABAJO EXCELENTE! 🌟🏆" :
+                                    nota >= 7 ? "¡FANTÁSTICO! 😎" :
+                                        nota >= 5 ? "¡BIEN JUGADO! 👍" :
+                                            "¡BUEN INTENTO! 💪"}
                             </p>
 
                             {/* Botón para Desplegar Revisión */}
-                            <button 
-                                className={`btn-toggle-review ${showReview ? 'active' : ''}`} 
+                            <button
+                                className={`btn-toggle-review ${showReview ? 'active' : ''}`}
                                 onClick={() => setShowReview(!showReview)}
                             >
                                 {showReview ? 'Ocultar Corrección 🔼' : 'Ver Corrección 🔽'}
@@ -340,7 +351,7 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                                                         <span className="review-icon">{esCorrecta ? '✅' : '❌'}</span>
                                                         <span className="review-text-q">{pregunta.pregunta}</span>
                                                     </div>
-                                                    
+
                                                     {!esCorrecta && (
                                                         <div className="correction-box">
                                                             <div className="correction-row user-bad">
@@ -369,6 +380,48 @@ const ComprensionJuego = ({ level, grade, subjectId, dataUrl, tipo = "escrita" }
                     </div>
                 )}
             </div>
+
+            {/* --- MODAL MATERIAL DE ESTUDIO --- */}
+            {showMaterial && (
+                <div className="modal-overlay fade-in" onClick={() => setShowMaterial(false)}>
+                    <div className="modal-content pop-in" onClick={e => e.stopPropagation()}>
+                        <div className="modal-header">
+                            <h2>📚 Material de Estudio</h2>
+                            <button className="btn-close-modal" onClick={() => setShowMaterial(false)}>✖️</button>
+                        </div>
+                        <div className="modal-body">
+                            <p className="modal-intro">Aquí puedes repasar todas las historias y sus preguntas clave.</p>
+                            <div className="stories-list">
+                                {data.map((historia, index) => (
+                                    <div key={index} className="story-item">
+                                        <details>
+                                            <summary className="story-summary">
+                                                <strong>{index + 1}. {historia.titulo}</strong>
+                                            </summary>
+                                            <div className="story-detail">
+                                                <div className="story-text-block">
+                                                    <p>{historia.texto}</p>
+                                                </div>
+                                                <div className="story-questions-block">
+                                                    <h5>Preguntas:</h5>
+                                                    <ul>
+                                                        {historia.preguntas.map((q, qImg) => (
+                                                            <li key={qImg}>
+                                                                <strong>P:</strong> {q.pregunta} <br />
+                                                                <span className="answer-preview">✅ {q.opciones[q.correcta]}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </details>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

@@ -1,0 +1,107 @@
+[
+  {
+    "categoria": "Ramas de la Inteligencia Artificial",
+    "correctos": [
+      "Machine Learning",
+      "Deep Learning",
+      "Visión Artificial",
+      "Procesamiento del Lenguaje Natural",
+      "Robótica",
+      "Sistemas Expertos",
+      "Lógica Difusa",
+      "Redes Neuronales"
+    ],
+    "intrusos": [
+      "HTML",
+      "CSS",
+      "Microscopio",
+      "Telescopio",
+      "Brújula",
+      "Fotosíntesis"
+    ]
+  },
+  {
+    "categoria": "Lenguajes de Programación para IA",
+    "correctos": [
+      "Python",
+      "R",
+      "Java",
+      "C++",
+      "Julia",
+      "Lisp",
+      "Prolog",
+      "Scala"
+    ],
+    "intrusos": [
+      "Photoshop",
+      "Word",
+      "Excel",
+      "MP3",
+      "JPG",
+      "PDF"
+    ]
+  },
+  {
+    "categoria": "Aplicaciones de la IA",
+    "correctos": [
+      "Coches autónomos",
+      "Reconocimiento facial",
+      "Asistentes de voz",
+      "Traducción automática",
+      "Diagnóstico médico",
+      "Recomendación de películas",
+      "Chatbots",
+      "Generación de arte"
+    ],
+    "intrusos": [
+      "Carburador",
+      "Máquina de escribir",
+      "Reloj de arena",
+      "Telegrafo",
+      "Imprenta",
+      "Molino de viento"
+    ]
+  },
+  {
+    "categoria": "Conceptos de Machine Learning",
+    "correctos": [
+      "Entrenamiento",
+      "Test",
+      "Validación",
+      "Overfitting",
+      "Dataset",
+      "Etiqueta",
+      "Supervisado",
+      "No supervisado"
+    ],
+    "intrusos": [
+      "Compilador",
+      "Navegador",
+      "Router",
+      "Cable Ethernet",
+      "Tarjeta Gráfica",
+      "Monitor"
+    ]
+  },
+  {
+    "categoria": "Grandes Modelos y Empresas",
+    "correctos": [
+      "GPT-4",
+      "ChatGPT",
+      "Gemini",
+      "Claude",
+      "OpenAI",
+      "Google DeepMind",
+      "Anthropic",
+      "Meta AI"
+    ],
+    "intrusos": [
+      "Napster",
+      "Atari",
+      "Sega",
+      "Blockbuster",
+      "Kodak",
+      "Nokia 3310"
+    ]
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "a": "Machine Learning",
+    "b": "Aprendizaje Automático"
+  },
+  {
+    "id": 2,
+    "a": "Dataset",
+    "b": "Conjunto de datos"
+  },
+  {
+    "id": 3,
+    "a": "Entrenamiento",
+    "b": "Fase de aprender"
+  },
+  {
+    "id": 4,
+    "a": "Preferencia",
+    "b": "Recomendación"
+  },
+  {
+    "id": 5,
+    "a": "Spam",
+    "b": "Correo basura"
+  },
+  {
+    "id": 6,
+    "a": "Reconocimiento Facial",
+    "b": "Desbloqueo con cara"
+  },
+  {
+    "id": 7,
+    "a": "Privacidad",
+    "b": "Protección de datos"
+  },
+  {
+    "id": 8,
+    "a": "Nube (Cloud)",
+    "b": "Ordenador remoto"
+  },
+  {
+    "id": 9,
+    "a": "IoT",
+    "b": "Internet de las Cosas"
+  },
+  {
+    "id": 10,
+    "a": "Domótica",
+    "b": "Casa Inteligente"
+  },
+  {
+    "id": 11,
+    "a": "AlphaGo",
+    "b": "Juego del Go"
+  },
+  {
+    "id": 12,
+    "a": "Pixel",
+    "b": "Punto de imagen"
+  },
+  {
+    "id": 13,
+    "a": "Etiqueta",
+    "b": "Nombre del dato"
+  },
+  {
+    "id": 14,
+    "a": "Patrón",
+    "b": "Repetición lógica"
+  },
+  {
+    "id": 15,
+    "a": "Predicción",
+    "b": "Adivinar el futuro"
+  },
+  {
+    "id": 16,
+    "a": "Spotify",
+    "b": "Lista personalizada"
+  },
+  {
+    "id": 17,
+    "a": "Netflix",
+    "b": "Sugerencia de series"
+  },
+  {
+    "id": 18,
+    "a": "Fake News",
+    "b": "Noticias falsas"
+  },
+  {
+    "id": 19,
+    "a": "Phishing",
+    "b": "Robo de contraseña"
+  },
+  {
+    "id": 20,
+    "a": "Cifrado",
+    "b": "Mensaje secreto"
+  },
+  {
+    "id": 21,
+    "a": "Smart City",
+    "b": "Semáforos inteligentes"
+  },
+  {
+    "id": 22,
+    "a": "Agricultura",
+    "b": "Riego automático"
+  },
+  {
+    "id": 23,
+    "a": "Medicina",
+    "b": "Diagnóstico por imagen"
+  },
+  {
+    "id": 24,
+    "a": "Dron mensajero",
+    "b": "Reparto aéreo"
+  },
+  {
+    "id": 25,
+    "a": "Realidad Virtual",
+    "b": "Mundo digital"
+  },
+  {
+    "id": 26,
+    "a": "Realidad Aumentada",
+    "b": "Pokemon Go"
+  },
+  {
+    "id": 27,
+    "a": "Impresora 3D",
+    "b": "Crear objetos reales"
+  },
+  {
+    "id": 28,
+    "a": "Scratch",
+    "b": "Programación visual"
+  },
+  {
+    "id": 29,
+    "a": "Bug",
+    "b": "Error de software"
+  },
+  {
+    "id": 30,
+    "a": "Autocorrector",
+    "b": "Arregla faltas"
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "id": 1,
+    "a": "Deep Learning",
+    "b": "Redes profundas"
+  },
+  {
+    "id": 2,
+    "a": "Capas ocultas",
+    "b": "Proceso intermedio"
+  },
+  {
+    "id": 3,
+    "a": "NLP",
+    "b": "Procesamiento Lenguaje"
+  },
+  {
+    "id": 4,
+    "a": "Sesgo",
+    "b": "Prejuicio del algoritmo"
+  },
+  {
+    "id": 5,
+    "a": "Caja Negra",
+    "b": "Inexplicable"
+  },
+  {
+    "id": 6,
+    "a": "Ética",
+    "b": "Moral en IA"
+  },
+  {
+    "id": 7,
+    "a": "Deepfake",
+    "b": "Video falso realista"
+  },
+  {
+    "id": 8,
+    "a": "GANs",
+    "b": "Redes enfrentadas"
+  },
+  {
+    "id": 9,
+    "a": "Neurona Artificial",
+    "b": "Suma ponderada"
+  },
+  {
+    "id": 10,
+    "a": "Input",
+    "b": "Entrada de datos"
+  },
+  {
+    "id": 11,
+    "a": "Output",
+    "b": "Salida de datos"
+  },
+  {
+    "id": 12,
+    "a": "Coche Autónomo",
+    "b": "Nivel 5 de autonomía"
+  },
+  {
+    "id": 13,
+    "a": "Test de Turing",
+    "b": "Imitación humana"
+  },
+  {
+    "id": 14,
+    "a": "Automatización",
+    "b": "Reemplazo laboral"
+  },
+  {
+    "id": 15,
+    "a": "Huella de Carbono",
+    "b": "Consumo energético"
+  },
+  {
+    "id": 16,
+    "a": "Green AI",
+    "b": "IA Sostenible"
+  },
+  {
+    "id": 17,
+    "a": "OpenAI",
+    "b": "Creadores de GPT"
+  },
+  {
+    "id": 18,
+    "a": "DALL-E",
+    "b": "Texto a Imagen"
+  },
+  {
+    "id": 19,
+    "a": "Midjourney",
+    "b": "Arte generativo"
+  },
+  {
+    "id": 20,
+    "a": "Copilot",
+    "b": "Ayuda al programador"
+  },
+  {
+    "id": 21,
+    "a": "Ciberseguridad",
+    "b": "Defensa digital"
+  },
+  {
+    "id": 22,
+    "a": "Hacker ético",
+    "b": "Busca vulnerabilidades"
+  },
+  {
+    "id": 23,
+    "a": "Malware",
+    "b": "Software dañino"
+  },
+  {
+    "id": 24,
+    "a": "Ransomware",
+    "b": "Secuestro de datos"
+  },
+  {
+    "id": 25,
+    "a": "Blockchain",
+    "b": "Cadena de bloques"
+  },
+  {
+    "id": 26,
+    "a": "Criptomoneda",
+    "b": "Dinero digital"
+  },
+  {
+    "id": 27,
+    "a": "Explicabilidad",
+    "b": "Entender la decisión"
+  },
+  {
+    "id": 28,
+    "a": "Anomalía",
+    "b": "Dato extraño"
+  },
+  {
+    "id": 29,
+    "a": "Validación",
+    "b": "Prueba de calidad"
+  },
+  {
+    "id": 30,
+    "a": "Robótica de enjambre",
+    "b": "Muchos robots pequeños"
+  }
+]

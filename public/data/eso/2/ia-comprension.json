@@ -1,0 +1,842 @@
+[
+  {
+    "titulo": "El Algoritmo: La receta secreta",
+    "texto": "Un algoritmo es como una receta de cocina muy detallada. Si quieres hacer un pastel, sigues pasos: mezclar, batir, hornear. En informática, un algoritmo es una secuencia de instrucciones para resolver un problema. En IA, los algoritmos son especiales porque pueden cambiar sus propias 'instrucciones' ligeramente para mejorar el resultado. Si un algoritmo normal dice 'si pasa A, haz B', un algoritmo de aprendizaje automático dice 'mira muchos casos de A y descubre qué es lo mejor que puedes hacer'.",
+    "preguntas": [
+      {
+        "pregunta": "¿Con qué se compara un algoritmo en el texto?",
+        "opciones": [
+          "Con un mapa",
+          "Con una receta de cocina",
+          "Con un poema",
+          "Con un dibujo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hace especial a un algoritmo de IA?",
+        "opciones": [
+          "Nunca se equivoca",
+          "Puede mejorar y adaptarse",
+          "Es más corto",
+          "Está escrito en inglés"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hace el algoritmo de aprendizaje automático?",
+        "opciones": [
+          "Sigue reglas fijas",
+          "Aprende de los ejemplos",
+          "No hace nada",
+          "Inventa datos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es un algoritmo en informática?",
+        "opciones": [
+          "Un virus",
+          "Una secuencia de instrucciones",
+          "Un componente físico",
+          "Una pantalla"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hace un algoritmo normal 'Si pasa A'?",
+        "opciones": [
+          "Haz B",
+          "Haz lo que quieras",
+          "Pregunta a mamá",
+          "Apágate"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "Machine Learning: Aprendiendo con ejemplos",
+    "texto": "El 'Machine Learning' o Aprendizaje Automático es la rama de la IA que permite que las máquinas aprendan sin ser programadas explícitamente para cada tarea. En lugar de escribir código para reconocer a cada gato del mundo, le enseñamos al programa miles de fotos de gatos y le decimos 'esto es un gato'. El programa busca patrones (orejas puntiagudas, bigotes) por sí mismo. Cuantos más ejemplos ve, mejor se vuelve reconociéndolos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es el Machine Learning?",
+        "opciones": [
+          "Aprender a usar máquinas",
+          "Programar robots",
+          "Que las máquinas aprendan de datos",
+          "Reparar ordenadores"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cómo aprende el programa a reconocer un gato?",
+        "opciones": [
+          "Viendo miles de ejemplos",
+          "Leyendo una descripción",
+          "Adivinando",
+          "No puede hacerlo"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué busca el programa en las fotos?",
+        "opciones": [
+          "Colores bonitos",
+          "Nombres de archivos",
+          "Patrones visuales",
+          "La marca de la cámara"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué pasa si ve más ejemplos?",
+        "opciones": [
+          "Se aburre",
+          "Se vuelve mejor",
+          "Se estropea",
+          "Olvida los anteriores"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Necesita ser programado explícitamente para cada tarea?",
+        "opciones": [
+          "Sí, siempre",
+          "No, aprende de datos",
+          "Solo a veces",
+          "Depende del ordenador"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Visión Artificial: Los ojos de la máquina",
+    "texto": "Para un ordenador, una imagen es solo una cuadrícula gigante de números (píxeles), donde cada número representa un color. La Visión Artificial es la tecnología que permite a la IA 'entender' esos números. Puede identificar objetos, leer textos (OCR) o detectar enfermedades en radiografías. Funciona analizando bordes, texturas y formas paso a paso hasta 'ver' la imagen completa.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es una imagen para un ordenador?",
+        "opciones": [
+          "Una foto",
+          "Una cuadrícula de números",
+          "Un dibujo",
+          "Un recuerdo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué permite la Visión Artificial?",
+        "opciones": [
+          "Hacer fotos mejores",
+          "Que el ordenador entienda las imágenes",
+          "Ver en la oscuridad",
+          "Imprimir más rápido"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es una aplicación médica mencionada?",
+        "opciones": [
+          "Operar robots",
+          "Detectar enfermedades en radiografías",
+          "Recetar medicinas",
+          "Hacer camas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es el OCR?",
+        "opciones": [
+          "Leer textos",
+          "Ver colores",
+          "Oír sonidos",
+          "Hacer café"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué analiza la IA paso a paso?",
+        "opciones": [
+          "Bordes, texturas y formas",
+          "Nombres y fechas",
+          "Sonidos y olores",
+          "Nada"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "Sesgos Algorítmicos: ¿La IA puede ser injusta?",
+    "texto": "Una IA aprende de los datos que le damos. Si esos datos tienen prejuicios humanos, la IA los copiará. Imagina una IA que selecciona candidatos para un trabajo, pero fue entrenada solo con currículums de hombres. Podría aprender erróneamente que los hombres son mejores para ese puesto y rechazar a mujeres cualificadas. Esto se llama 'sesgo', y es uno de los mayores problemas éticos actuales: asegurarnos de que los datos de entrenamiento sean justos y diversos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Por qué puede tener prejuicios una IA?",
+        "opciones": [
+          "Porque es malvada",
+          "Porque aprende de datos sesgados",
+          "Porque está rota",
+          "Porque no le gustan los humanos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ejemplo de sesgo se menciona?",
+        "opciones": [
+          "Selección de música",
+          "Selección de personal para empleo",
+          "Conducción de coches",
+          "Juegos de azar"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se puede combatir el sesgo?",
+        "opciones": [
+          "Apagando la IA",
+          "Usando datos justos y diversos",
+          "No usando IA nunca",
+          "Solo contratando robots"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Quién introduce el prejuicio originalmente?",
+        "opciones": [
+          "La máquina",
+          "Los humanos a través de los datos",
+          "Internet",
+          "Nadie"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Es un problema ético o técnico?",
+        "opciones": [
+          "Solo técnico",
+          "Es uno de los mayores problemas éticos",
+          "No es un problema",
+          "Es un problema económico"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Creatividad Artificial: ¿Arte hecho por máquinas?",
+    "texto": "Herramientas como DALL-E o Midjourney pueden crear imágenes increíbles a partir de un texto. ¿Es esto arte? La IA no tiene inspiración ni sentimientos, pero ha estudiado millones de cuadros y fotografías. Sabe cómo pintar al estilo de Van Gogh o cómo se ve un astronauta. Mezcla esos conceptos para generar algo nuevo. Algunos dicen que es solo una herramienta más, como un pincel complejo; otros temen que reemplace a los artistas humanos.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué hacen herramientas como DALL-E?",
+        "opciones": [
+          "Escriben libros",
+          "Crean imágenes desde texto",
+          "Componen música",
+          "Hacen vídeos de gatos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Tiene la IA inspiración real?",
+        "opciones": [
+          "Sí, mucha",
+          "A veces",
+          "No, se basa en datos estudiados",
+          "Solo si está contenta"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Cuál es el debate sobre el arte IA?",
+        "opciones": [
+          "Si es bonito o feo",
+          "Si es herramienta o reemplazo de artistas",
+          "Si es caro o barato",
+          "Si se puede imprimir"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo crea la IA una imagen nueva?",
+        "opciones": [
+          "La imagina",
+          "Mezcla conceptos que ha estudiado",
+          "Copia una foto exacta",
+          "Pide ayuda"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué han estudiado estas IAs?",
+        "opciones": [
+          "Matemáticas",
+          "Millones de cuadros y fotos",
+          "Historia",
+          "Cocina"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "El Test de Turing",
+    "texto": "Propuesto por Alan Turing en 1950, este test sirve para evaluar si una máquina exhibe comportamiento inteligente. La prueba consiste en un juez humano que chatea por texto con un humano y una máquina, sin verlos. Si el juez no puede distinguir cuál es cuál, se dice que la máquina ha pasado el test. Hoy en día, muchas IAs pueden pasar versiones de este test, pero eso no significa necesariamente que 'entiendan' lo que dicen, solo imitan muy bien.",
+    "preguntas": [
+      {
+        "pregunta": "¿Quién propuso el Test de Turing?",
+        "opciones": [
+          "Elon Musk",
+          "Alan Turing",
+          "Isaac Newton",
+          "Einstein"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el objetivo del test?",
+        "opciones": [
+          "Ver si el robot corre",
+          "Ver si la máquina puede pasar por humana en conversación",
+          "Ver si la máquina sabe sumar",
+          "Ver si la máquina tiene sentimientos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Pasar el test significa que la máquina tiene conciencia?",
+        "opciones": [
+          "Sí, sin duda",
+          "No necesariamente, puede solo imitar",
+          "Sí, es humana",
+          "No se sabe"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿En qué año se propuso el test?",
+        "opciones": [
+          "1950",
+          "2000",
+          "1990",
+          "1800"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué hacen hoy en día muchas IAs con este test?",
+        "opciones": [
+          "Lo fallan siempre",
+          "Pueden pasar versiones del test",
+          "Lo ignoran",
+          "Se rompen"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Big Data: El combustible de la IA",
+    "texto": "Imagina que la IA es un motor muy potente. El 'Big Data' sería la gasolina. Big Data se refiere a conjuntos de datos tan grandes y complejos que los ordenadores tradicionales no pueden procesarlos fácilmente. Incluye todo: tus búsquedas en Google, las rutas de GPS, las compras online, los posts en redes sociales. La IA necesita estas cantidades masivas de información para encontrar patrones y aprender. Sin Big Data, la IA moderna no sería tan lista.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo se relaciona Big Data con la IA?",
+        "opciones": [
+          "Son lo mismo",
+          "Es como la gasolina para el motor de la IA",
+          "Es el resultado de la IA",
+          "No tienen relación"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es el Big Data?",
+        "opciones": [
+          "Un dato grande",
+          "Conjuntos de datos masivos y complejos",
+          "Un disco duro grande",
+          "La nube"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Para qué usa la IA estos datos?",
+        "opciones": [
+          "Para aburrirse",
+          "Para encontrar patrones y aprender",
+          "Para llenar el disco duro",
+          "Para espiarte"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué incluye el Big Data?",
+        "opciones": [
+          "Solo textos",
+          "Búsquedas, GPS, compras, posts...",
+          "Solo números",
+          "Solo fotos"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Podría ser la IA moderna tan lista sin Big Data?",
+        "opciones": [
+          "Sí, igual",
+          "No",
+          "Mejor aún",
+          "Depende del día"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Privacidad: Tus datos son valiosos",
+    "texto": "Como las IAs necesitan datos para aprender, las empresas tecnológicas recopilan mucha información sobre nosotros. Dónde estamos, qué compramos, con quién hablamos. Esto plantea problemas de privacidad. A veces aceptamos 'Términos y Condiciones' sin leer y regalamos nuestros datos. Es importante saber qué información compartimos y protegerla, porque una vez que alimenta a una IA, es difícil de borrar.",
+    "preguntas": [
+      {
+        "pregunta": "¿Por qué las empresas quieren nuestros datos?",
+        "opciones": [
+          "Para venderlos",
+          "Para entrenar sus IAs",
+          "Por curiosidad",
+          "Para nada"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué problema plantea esto?",
+        "opciones": [
+          "Problemas de batería",
+          "Problemas de privacidad",
+          "Problemas de conexión",
+          "Problemas de pantalla"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué solemos hacer con los 'Términos y Condiciones'?",
+        "opciones": [
+          "Leerlos atentamente",
+          "Imprimirlos",
+          "Aceptarlos sin leer",
+          "Negarlos siempre"
+        ],
+        "correcta": 2
+      },
+      {
+        "pregunta": "¿Qué pasa una vez que tus datos alimentan una IA?",
+        "opciones": [
+          "Se borran automáticos",
+          "Es difícil borrarlos",
+          "Te pagan",
+          "Desaparecen"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tipo de información se recopila?",
+        "opciones": [
+          "Ubicación, compras, conversaciones",
+          "Solo el nombre",
+          "Solo el color favorito",
+          "Nada personal"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "Smart Cities: Ciudades que piensan",
+    "texto": "Una Smart City usa sensores y IA para mejorar la vida de sus habitantes. Imagina semáforos que cambian según el tráfico real para evitar atascos, farolas que se apagan si no hay nadie, o contenedores de basura que avisan cuando están llenos. Todo esto se gestiona mediante algoritmos que analizan los datos de la ciudad en tiempo real para hacerla más eficiente y sostenible.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es una Smart City?",
+        "opciones": [
+          "Una ciudad bonita",
+          "Una ciudad con IA y sensores",
+          "Una ciudad sin coches",
+          "Una ciudad pequeña"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ejemplo de tráfico se menciona?",
+        "opciones": [
+          "Coches voladores",
+          "Semáforos inteligentes",
+          "Carreteras solares",
+          "Multas automáticas"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cuál es el objetivo principal?",
+        "opciones": [
+          "Hacer la ciudad más eficiente y sostenible",
+          "Hacer la ciudad más cara",
+          "Vigilar a la gente",
+          "Tener más luces"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué hacen los contenedores de basura inteligentes?",
+        "opciones": [
+          "Se mueven solos",
+          "Avisan cuando están llenos",
+          "Queman la basura",
+          "Huelen bien"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo funcionan las farolas inteligentes?",
+        "opciones": [
+          "Siempre encendidas",
+          "Se apagan si no hay nadie",
+          "Cambian de color",
+          "Hablan"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Chatbots: Hablando con máquinas",
+    "texto": "Los chatbots son programas diseñados para simular una conversación. Los más simples siguen un guion: si dices 'Hola', responden 'Hola, ¿en qué puedo ayudarte?'. Los más avanzados, como los basados en LLm (Grandes Modelos de Lenguaje), pueden mantener conversaciones fluidas, recordar el contexto y responder preguntas complejas. Se usan mucho en atención al cliente para resolver dudas rápidas sin necesidad de una persona.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es un chatbot?",
+        "opciones": [
+          "Un robot físico",
+          "Un programa para conversar",
+          "Un chat de amigos",
+          "Un virus"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué hacen los chatbots avanzados?",
+        "opciones": [
+          "Siguen un guion fijo",
+          "Mantienen conversaciones fluidas",
+          "Solo dicen hola",
+          "No funcionan bien"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde es común ver chatbots?",
+        "opciones": [
+          "En el cine",
+          "En atención al cliente web",
+          "En la cocina",
+          "En el parque"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué diferencia a los chatbots simples?",
+        "opciones": [
+          "Hablan mucho",
+          "Siguen un guion fijo",
+          "Son humanos",
+          "Son más caros"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué significa LLM?",
+        "opciones": [
+          "Large Language Model",
+          "Little Learning Machine",
+          "Long Lasting Memory",
+          "Low Level Mode"
+        ],
+        "correcta": 0
+      }
+    ]
+  },
+  {
+    "titulo": "La Nube: ¿Dónde están mis fotos?",
+    "texto": "Cuando subes una foto a Instagram o guardas un trabajo en Google Drive, dices que está 'en la nube'. Pero la nube no es algo que flota en el cielo. En realidad, son miles de ordenadores muy potentes (servidores) guardados en edificios gigantes llamados Centros de Datos. Estos edificios están repartidos por todo el mundo, refrigerados para que no se calienten y vigilados las 24 horas. Tus datos viajan por cables submarinos o por el aire hasta esos servidores y se quedan allí guardados para que tú puedas acceder a ellos desde cualquier lugar.",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es 'la nube' en informática?",
+        "opciones": [
+          "Vapor de agua",
+          "Servidores en Centros de Datos",
+          "Un satélite",
+          "La memoria de tu móvil"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Dónde están físicamente tus datos?",
+        "opciones": [
+          "En el cielo",
+          "En edificios gigantes refrigerados",
+          "En tu casa",
+          "En el espacio"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo se llaman los ordenadores de la nube?",
+        "opciones": [
+          "PCs",
+          "Servidores",
+          "Tablets",
+          "Moviles"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Por qué se refrigeran estos edificios?",
+        "opciones": [
+          "Para que los trabajadores tengan frío",
+          "Para que los servidores no se calienten",
+          "Para congelar datos",
+          "Por gusto"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ventaja tiene usar la nube?",
+        "opciones": [
+          "Es gratis siempre",
+          "Acceder a tus datos desde cualquier lugar",
+          "Que no necesitas internet",
+          "Que es mágico"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Biometría: Tu cuerpo es tu contraseña",
+    "texto": "La biometría es la tecnología que usa características físicas únicas de las personas para identificarlas. Ya conocemos el reconocimiento facial o la huella dactilar para desbloquear móviles. Pero hay más: el escáner de iris (ojo), el reconocimiento de voz o incluso la forma de caminar. Estas características son muy difíciles de copiar, por lo que son más seguras que una contraseña escrita '1234'. Sin embargo, si alguien roba tu contraseña, puedes cambiarla; pero si roban tus datos biométricos (tu huella), ¡no puedes cambiarte el dedo!",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué usa la biometría para identificar?",
+        "opciones": [
+          "Tarjetas de plástico",
+          "Características físicas únicas",
+          "Contraseñas escritas",
+          "Llaves"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ejemplos de biometría se mencionan?",
+        "opciones": [
+          "Huella, iris, voz",
+          "DNI y Pasaporte",
+          "Email y contraseña",
+          "Nombre y apellido"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Por qué son seguras?",
+        "opciones": [
+          "Porque son secretas",
+          "Porque son difíciles de copiar",
+          "Porque son digitales",
+          "Porque son gratis"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué problema grave tiene la biometría?",
+        "opciones": [
+          "Es lenta",
+          "Si te roban el dato (huella), no puedes cambiarlo",
+          "Es barata",
+          "No funciona nunca"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Es más seguro que una contraseña simple como '1234'?",
+        "opciones": [
+          "No",
+          "Sí, mucho más",
+          "Es igual",
+          "Depende"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Streaming: Cine en tu casa al instante",
+    "texto": "Hace años, para ver una película tenías que ir al cine o comprar un disco (DVD). Ahora usamos plataformas de 'streaming' como Netflix o YouTube. El streaming permite ver el video mientras se va descargando poco a poco, sin tener que esperar a que baje entero. La información llega a tu dispositivo en pequeños paquetes de datos que se reproducen y luego se borran (memoria búfer). Para que funcione bien, necesitas una conexión a internet rápida y estable, o el video se parará para 'cargar' (buffering).",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué permite el streaming?",
+        "opciones": [
+          "Ver video mientras se descarga",
+          "Grabar películas",
+          "Ir al cine gratis",
+          "Comprar DVDs"
+        ],
+        "correcta": 0
+      },
+      {
+        "pregunta": "¿Qué había que hacer antes?",
+        "opciones": [
+          "Nada",
+          "Comprar discos o ir al cine",
+          "Inventar el cine",
+          "Usar internet"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo llega la información?",
+        "opciones": [
+          "De golpe",
+          "En pequeños paquetes de datos",
+          "Por correo",
+          "Por magia"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué necesitas para que funcione bien?",
+        "opciones": [
+          "Una tele grande",
+          "Internet rápido y estable",
+          "Muchas palomitas",
+          "Un ordenador caro"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué pasa si la conexión es lenta?",
+        "opciones": [
+          "Se ve mejor",
+          "El video se para para cargar (buffering)",
+          "El video se borra",
+          "Explotas"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "Traductores Neurales: Rompiendo barreras",
+    "texto": "Los antiguos traductores online traducían palabra por palabra, y el resultado a veces era un desastre gracioso. Hoy, los traductores neuronales (como DeepL o Google Translate moderno) usan Inteligencia Artificial para entender frases enteras. Analizan el contexto: saben que 'banco' en una frase de dinero no es lo mismo que 'banco' en un parque. Han aprendido leyendo millones de textos bilingües (como documentos de la ONU o subtítulos de películas). Gracias a ellos, podemos comunicarnos con personas de todo el mundo mucho mejor.",
+    "preguntas": [
+      {
+        "pregunta": "¿Cómo traducían los sistemas antiguos?",
+        "opciones": [
+          "Muy bien",
+          "Palabra por palabra",
+          "Frases enteras",
+          "No traducían"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué usan los traductores modernos?",
+        "opciones": [
+          "Diccionarios de papel",
+          "Inteligencia Artificial y redes neuronales",
+          "Personas reales",
+          "Magia"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué es importante que analicen?",
+        "opciones": [
+          "El tipo de letra",
+          "El contexto de la frase",
+          "El color del texto",
+          "El idioma"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Cómo han aprendido?",
+        "opciones": [
+          "Yendo al colegio",
+          "Leyendo millones de textos bilingües",
+          "Viendo la tele",
+          "Durmiendo"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ventaja nos dan?",
+        "opciones": [
+          "Ninguna",
+          "Comunicarnos mejor con el mundo",
+          "Aprender idiomas sin esfuerzo",
+          "Ser ricos"
+        ],
+        "correcta": 1
+      }
+    ]
+  },
+  {
+    "titulo": "El Internet de las Cosas (IoT)",
+    "texto": "El Internet de las Cosas (IoT) significa conectar a internet objetos cotidianos que antes eran 'tontos'. No solo ordenadores y móviles, sino zapatillas que cuentan pasos, cepillos de dientes que te dicen si te cepillas bien, o farolas que avisan si se funden. Estos objetos tienen sensores y un chip wifi. Envían datos a la nube para que una App o una IA los analice. El futuro es que todo esté conectado, pero también hay riesgo: si tu nevera tiene virus, ¡podría enviar spam a tus amigos!",
+    "preguntas": [
+      {
+        "pregunta": "¿Qué es el IoT?",
+        "opciones": [
+          "Un internet solo para cosas",
+          "Conectar objetos cotidianos a internet",
+          "Un robot",
+          "Una marca de móvil"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué ejemplos de objetos se dan?",
+        "opciones": [
+          "Coches y aviones",
+          "Zapatillas, cepillos, farolas",
+          "Piedras y palos",
+          "Libros de papel"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué tienen estos objetos dentro?",
+        "opciones": [
+          "Nada",
+          "Sensores y chip wifi",
+          "Agua",
+          "Aire"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿A dónde envían los datos?",
+        "opciones": [
+          "A la basura",
+          "A la nube",
+          "A tu bolsillo",
+          "Al espacio"
+        ],
+        "correcta": 1
+      },
+      {
+        "pregunta": "¿Qué riesgo curioso se menciona?",
+        "opciones": [
+          "Que la nevera tenga virus",
+          "Que la zapatilla explote",
+          "Que el cepillo muerda",
+          "Ninguno"
+        ],
+        "correcta": 0
+      }
+    ]
+  }
+]
