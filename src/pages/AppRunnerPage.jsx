@@ -60,7 +60,13 @@ const AppRunnerPage = () => {
             : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50';
 
     const isWideApp = app.id.includes('visualizador-3d') || app.id.includes('romanos') || app.id.includes('mesa-crafteo') || app.id.includes('laboratorio-funciones-2d') || app.id.includes('fracciones-eso');
-    const containerClass = isWideApp ? "max-w-[1600px] w-[85%] px-0" : "max-w-4xl";
+    const isFullScreenApp = app.id.includes('sistema-solar');
+
+    const containerClass = isFullScreenApp
+        ? "w-full h-screen"
+        : isWideApp
+            ? "max-w-[1600px] w-[85%] px-0"
+            : "max-w-4xl";
 
     // Conditional Styles
     const btnBackClass = isRetroApp
@@ -86,12 +92,12 @@ const AppRunnerPage = () => {
                 onOpenChange={setIsDonationModalOpen}
             />
 
-            <div className={`min-h-screen flex flex-col items-center justify-start pt-2 px-4 pb-4 ${backgroundClass} relative overflow-hidden`}>
+            <div className={`min-h-screen flex flex-col items-center justify-start ${isFullScreenApp ? 'p-0' : 'pt-2 px-4 pb-4'} ${backgroundClass} relative overflow-hidden`}>
 
                 {isTerminal && <MatrixBackground />}
                 {isRunner && <GeometryDashBackground />}
 
-                <div className={`w-full ${containerClass} flex justify-start items-center gap-3 mb-4 relative z-10`}>
+                <div className={`${isFullScreenApp ? 'absolute top-4 left-4 z-50 w-auto' : `w-full ${containerClass} relative z-10 mb-4`} flex justify-start items-center gap-3`}>
 
                     <Button
                         onClick={() => navigate(backPath)}
@@ -110,7 +116,7 @@ const AppRunnerPage = () => {
                     </Button>
                 </div>
 
-                <div className={`w-full ${containerClass} relative z-10`}>
+                <div className={`${containerClass} relative z-10`}>
                     <AppToRender
                         isPaused={isDonationModalOpen}
                         level={level}

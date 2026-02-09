@@ -7,6 +7,8 @@ import jupiterTexture from '../textures/2k_jupiter.jpg';
 import saturnTexture from '../textures/2k_saturn.jpg';
 import uranusTexture from '../textures/2k_uranus.jpg';
 import neptuneTexture from '../textures/2k_neptune.jpg';
+import saturnRingTexture from '../textures/2k_saturn_ring_alpha.png';
+import moonTexture from '../textures/2k_moon.jpg';
 
 export const solarSystemData = [
     {
@@ -16,7 +18,7 @@ export const solarSystemData = [
         color: '#FDB813',
         emissive: '#FDB813',
         emissiveIntensity: 2,
-        size: 2.5,
+        size: 8, // Mucho más grande
         distance: 0,
         speed: 0,
         textureUrl: sunTexture,
@@ -31,8 +33,8 @@ export const solarSystemData = [
         name: 'Mercurio',
         type: 'planet',
         color: '#A5A5A5',
-        size: 0.4,
-        distance: 4,
+        size: 0.38,
+        distance: 12, // Más alejado del sol para que quepa su tamaño
         speed: 0.04,
         textureUrl: mercuryTexture,
         description: {
@@ -46,8 +48,8 @@ export const solarSystemData = [
         name: 'Venus',
         type: 'planet',
         color: '#E3BB76',
-        size: 0.9,
-        distance: 6,
+        size: 0.95,
+        distance: 16,
         speed: 0.015,
         textureUrl: venusTexture,
         description: {
@@ -62,22 +64,38 @@ export const solarSystemData = [
         type: 'planet',
         color: '#22A6B3',
         size: 1,
-        distance: 8,
+        distance: 21,
         speed: 0.01,
         textureUrl: earthTexture,
         description: {
             primaryBasic: "¡Es nuestro hogar! El único lugar donde sabemos que hay vida.",
             primaryAdvanced: "La Tierra es el 'planeta azul'. Tiene mucha agua líquida y una capa de aire que nos protege y nos permite respirar.",
             secondary: "La Tierra es el único planeta conocido con vida. Su atmósfera rica en nitrógeno y oxígeno, junto con su campo magnético, protege la superficie de la radiación solar. El 71% de su superficie está cubierta de agua.",
-        }
+        },
+        moons: [
+            {
+                id: 'moon',
+                name: 'Luna',
+                size: 0.8, // Mucho más grande relativo
+                distance: 4.5, // Un poco más lejos
+                speed: 0.03, // Velocidad orbital ajustada
+                textureUrl: moonTexture,
+                color: '#DDDDDD',
+                description: {
+                    primaryBasic: "Es nuestro satélite natural y gira alrededor de la Tierra.",
+                    primaryAdvanced: "La Luna es el único satélite natural de la Tierra. No tiene luz propia, refleja la del Sol. Causa las mareas en nuestros océanos.",
+                    secondary: "La Luna es el satélite natural de la Tierra. Su influencia gravitatoria produce las mareas y estabiliza la inclinación del eje terrestre. Es el quinto satélite más grande del sistema solar.",
+                }
+            }
+        ]
     },
     {
         id: 'mars',
         name: 'Marte',
         type: 'planet',
         color: '#EB4D4B',
-        size: 0.5,
-        distance: 10,
+        size: 0.53,
+        distance: 27,
         speed: 0.008,
         textureUrl: marsTexture,
         description: {
@@ -91,8 +109,8 @@ export const solarSystemData = [
         name: 'Júpiter',
         type: 'planet',
         color: '#F9CA24',
-        size: 2.2,
-        distance: 14,
+        size: 3.8, // Significativamente más grande
+        distance: 40, // Gran salto en distancia (cinturón asteroides implícito)
         speed: 0.004,
         textureUrl: jupiterTexture,
         description: {
@@ -106,11 +124,14 @@ export const solarSystemData = [
         name: 'Saturno',
         type: 'planet',
         color: '#F0932B',
-        size: 1.8,
-        distance: 18,
+        size: 3.2,
+        distance: 55,
         speed: 0.003,
         hasRings: true,
         textureUrl: saturnTexture,
+        ringTextureUrl: saturnRingTexture,
+        ringInnerRadius: 4.2,
+        ringOuterRadius: 7.5,
         description: {
             primaryBasic: "Es famoso por sus preciosos anillos.",
             primaryAdvanced: "Saturno es otro gigante de gas, pero tiene unos anillos brillantes hechos de hielo y rocas que giran a su alrededor.",
@@ -122,8 +143,8 @@ export const solarSystemData = [
         name: 'Urano',
         type: 'planet',
         color: '#7ED6DF',
-        size: 1.2,
-        distance: 22,
+        size: 1.8,
+        distance: 70,
         speed: 0.002,
         textureUrl: uranusTexture,
         description: {
@@ -137,8 +158,8 @@ export const solarSystemData = [
         name: 'Neptuno',
         type: 'planet',
         color: '#4834D4',
-        size: 1.1,
-        distance: 26,
+        size: 1.75,
+        distance: 85,
         speed: 0.001,
         textureUrl: neptuneTexture,
         description: {
