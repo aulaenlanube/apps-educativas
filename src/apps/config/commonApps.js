@@ -295,6 +295,15 @@ export const appRotacionesGrid = {
   component: RotacionesGrid
 };
 
+import SistemaSolar from '../sistema-solar/SistemaSolar';
+
+export const appSistemaSolar = {
+  id: 'sistema-solar',
+  name: '🌌 Sistema Solar 3D',
+  description: 'Explora y aprende sobre los planetas de nuestro sistema solar en 3D.',
+  component: SistemaSolar
+};
+
 export const appFraccionesESO = {
   id: 'fracciones-eso',
   name: '🧮 Fracciones PRO',
