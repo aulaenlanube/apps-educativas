@@ -118,6 +118,26 @@ const TexturedRingMaterial = ({ textureUrl }) => {
     );
 };
 
+// --- COMPONENTE HOTSPOT ---
+const Hotspot = ({ position, title, desc, onClick, isVisited }) => {
+    return (
+        <Html position={position} center distanceFactor={10}>
+            <div className={`hotspot-container ${isVisited ? 'visited' : ''}`}>
+                <button
+                    className="hotspot-dot"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onClick({ title, desc });
+                    }}
+                >
+                    {!isVisited && <span className="hotspot-pulse"></span>}
+                    <span className="hotspot-icon">{isVisited ? '✓' : 'i'}</span>
+                </button>
+            </div>
+        </Html>
+    );
+};
+
 // --- COMPONENTE ANILLOS MEJORADO ---
 const PlanetRing = ({ size, textureUrl, innerRadius, outerRadius }) => {
     const finalInner = innerRadius || size * 1.4;
@@ -204,7 +224,7 @@ const PlanetRing = ({ size, textureUrl, innerRadius, outerRadius }) => {
 };
 
 // --- PANEL DE CONFIGURACIÓN ---
-const ConfigPanel = ({ config, setConfig }) => {
+const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount }) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -222,6 +242,9 @@ const ConfigPanel = ({ config, setConfig }) => {
                 <span>⚙️ Configuración</span>
                 <span style={{ fontSize: '0.8em' }}>{isOpen ? '▼' : '▲'}</span>
             </h3>
+            <div className="progress-mini-bar">
+                <span>Exploración: {visitedCount} puntos</span>
+            </div>
             <p className="config-instruction">Haz clic en un planeta para viajar a él.</p>
 
             {isOpen && (
@@ -272,6 +295,10 @@ const ConfigPanel = ({ config, setConfig }) => {
                             Etiquetas
                         </label>
                     </div>
+
+                    <button className="btn-reset-progress" onClick={onResetProgress}>
+                        🔄 Reiniciar Progreso
+                    </button>
                 </div>
             )}
         </div>
@@ -339,7 +366,7 @@ const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused })
 };
 
 // --- PLANETA INDIVIDUAL ---
-const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpeed, showLabels }) => {
+const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpeed, showLabels, isSelected, onHotspotClick, visitedHotspots }) => {
     const groupRef = useRef();
     const meshRef = useRef();
 
@@ -404,10 +431,25 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
             )}
 
             {showLabels && (
-                <Html position={[0, currentSize + 0.5, 0]} center distanceFactor={12} style={{ pointerEvents: 'none' }}>
+                <Html position={[0, currentSize + 1.5, 0]} center distanceFactor={12} style={{ pointerEvents: 'none' }}>
                     <div className="planet-label" style={{ opacity: isPaused ? 0.5 : 1 }}>{planet.name}</div>
                 </Html>
             )}
+
+            {/* Hotspots interactivos: Solo si el planeta está seleccionado */}
+            {isSelected && planet.advanced?.hotspots?.map((hs, index) => {
+                const hotspotId = `${planet.id}-${index}`;
+                return (
+                    <Hotspot
+                        key={index}
+                        position={hs.pos}
+                        title={hs.title}
+                        desc={hs.desc}
+                        isVisited={visitedHotspots[hotspotId]}
+                        onClick={(data) => onHotspotClick(data, hotspotId)}
+                    />
+                );
+            })}
 
             {/* Renderizar Lunas si existen */}
             {planet.moons && planet.moons.map((moon) => (
@@ -419,6 +461,7 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
                     onClick={onClick}
                     registerRef={registerRef}
                     isPaused={isPaused}
+                    isSelected={isSelected}
                 />
             ))}
         </group>
@@ -518,27 +561,69 @@ const CameraController = ({ selectedPlanetId, planetRefs, config }) => {
     return null;
 };
 
-// --- UI OVERLAY ---
-const InfoPanel = ({ planet, level, grade, onClose }) => {
+const InfoPanel = ({ planet, level, grade, onClose, activeHotspot, setActiveHotspot }) => {
+    const [showAdvanced, setShowAdvanced] = useState(false);
     if (!planet) return null;
 
     const description = getDescription(planet, level, grade);
 
     return (
-        <div className="info-panel-overlay">
+        <div className={`info-panel-overlay ${showAdvanced || activeHotspot ? 'expanded' : ''}`}>
             <div className="info-panel-card">
-                <button className="close-btn" onClick={onClose}>×</button>
+                <button className="close-btn" onClick={() => { setShowAdvanced(false); setActiveHotspot(null); onClose(); }}>×</button>
                 <h2 style={{ color: planet.color }}>{planet.name}</h2>
                 <div className="planet-details">
-                    <p className="main-desc">{description}</p>
-                    <div className="extra-stats">
-                        <div className="stat-item">
-                            <strong>Tipo:</strong> {planet.type === 'star' ? 'Estrella' : 'Planeta'}
+
+                    {activeHotspot ? (
+                        <div className="hotspot-detail-view">
+                            <button className="back-to-info" onClick={() => setActiveHotspot(null)}>← Volver a información general</button>
+                            <div className="advanced-block">
+                                <h3 className="hotspot-title-detail">📍 {activeHotspot.title}</h3>
+                                <p className="hotspot-desc-detail">{activeHotspot.desc}</p>
+                            </div>
                         </div>
-                        <div className="stat-item">
-                            <strong>Distancia:</strong> {planet.distance === 0 ? '0' : Math.round(planet.distance * 10)} M.km
-                        </div>
-                    </div>
+                    ) : (
+                        <>
+                            <p className="main-desc">{description}</p>
+                            <div className="extra-stats">
+                                <div className="stat-item">
+                                    <strong>Tipo:</strong> {planet.type === 'star' ? 'Estrella' : 'Planeta'}
+                                </div>
+                                <div className="stat-item">
+                                    <strong>Distancia:</strong> {planet.distance === 0 ? '0' : Math.round(planet.distance * 10)} M.km
+                                </div>
+                            </div>
+
+                            <button
+                                className={`btn-advanced-toggle ${showAdvanced ? 'active' : ''}`}
+                                onClick={() => setShowAdvanced(!showAdvanced)}
+                            >
+                                {showAdvanced ? '🔼 Menos Información' : '🧪 Composición y Datos'}
+                            </button>
+
+                            {showAdvanced && planet.advanced && (
+                                <div className="advanced-info-section">
+                                    <div className="advanced-block">
+                                        <h3>🧪 Composición Química</h3>
+                                        <p><strong>Elementos:</strong> {planet.advanced.composition.elements.join(', ')}</p>
+                                        <p><strong>Compuestos:</strong> {planet.advanced.composition.compounds.join(', ')}</p>
+                                    </div>
+                                    <div className="advanced-block">
+                                        <h3>🌍 Geografía y Estructura</h3>
+                                        <p>{planet.advanced.geography}</p>
+                                    </div>
+                                    <div className="advanced-block">
+                                        <h3>💡 Curiosidades Técnicas</h3>
+                                        <ul>
+                                            {planet.advanced.curiosities.map((c, i) => (
+                                                <li key={i}>{c}</li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            )}
+                        </>
+                    )}
                 </div>
             </div>
         </div>
@@ -548,6 +633,8 @@ const InfoPanel = ({ planet, level, grade, onClose }) => {
 // --- COMPONENTE PRINCIPAL ---
 const SistemaSolar = ({ level, grade }) => {
     const [selectedPlanet, setSelectedPlanet] = useState(null);
+    const [activeHotspot, setActiveHotspot] = useState(null);
+    const [visitedHotspots, setVisitedHotspots] = useState({});
     const planetRefs = useRef({});
 
     // Configuración Global
@@ -562,16 +649,35 @@ const SistemaSolar = ({ level, grade }) => {
     const handlePlanetClick = (planet) => {
         if (selectedPlanet?.id !== planet.id) {
             setSelectedPlanet(planet);
+            setActiveHotspot(null);
+        }
+    };
+
+    const handleHotspotClick = (data, hotspotId) => {
+        setActiveHotspot(data);
+        setVisitedHotspots(prev => ({
+            ...prev,
+            [hotspotId]: true
+        }));
+    };
+
+    const handleResetProgress = () => {
+        if (window.confirm('¿Quieres reiniciar todo tu progreso de exploración?')) {
+            setVisitedHotspots({});
+            setActiveHotspot(null);
         }
     };
 
     const handleClose = () => {
         setSelectedPlanet(null);
+        setActiveHotspot(null);
     };
 
     const registerPlanetRef = (id, ref) => {
         planetRefs.current[id] = ref;
     };
+
+    const visitedCount = Object.keys(visitedHotspots).length;
 
     return (
         <div className="sistema-solar-container">
@@ -579,7 +685,12 @@ const SistemaSolar = ({ level, grade }) => {
                 <h1>🌌 Sistema Solar 3D</h1>
             </div>
 
-            <ConfigPanel config={config} setConfig={setConfig} />
+            <ConfigPanel
+                config={config}
+                setConfig={setConfig}
+                onResetProgress={handleResetProgress}
+                visitedCount={visitedCount}
+            />
 
             <Canvas camera={{ position: [0, 80, 140], fov: 50, far: 2000 }} shadows>
                 <color attach="background" args={['#020205']} />
@@ -612,6 +723,9 @@ const SistemaSolar = ({ level, grade }) => {
                                 simSpeed={config.simSpeed}
                                 rotationSpeed={config.rotationSpeed}
                                 showLabels={config.showLabels}
+                                isSelected={selectedPlanet?.id === planet.id}
+                                onHotspotClick={handleHotspotClick}
+                                visitedHotspots={visitedHotspots}
                             />
                             <OrbitPath
                                 distance={planet.distance}
@@ -627,6 +741,8 @@ const SistemaSolar = ({ level, grade }) => {
                 level={level}
                 grade={grade}
                 onClose={handleClose}
+                activeHotspot={activeHotspot}
+                setActiveHotspot={setActiveHotspot}
             />
         </div>
     );
