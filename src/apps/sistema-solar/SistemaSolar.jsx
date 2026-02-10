@@ -119,10 +119,10 @@ const TexturedRingMaterial = ({ textureUrl }) => {
 };
 
 // --- COMPONENTE HOTSPOT ---
-const Hotspot = ({ position, title, desc, onClick, isVisited }) => {
+const Hotspot = ({ position, title, desc, onClick, isVisited, isActive }) => {
     return (
-        <Html position={position} center distanceFactor={10}>
-            <div className={`hotspot-container ${isVisited ? 'visited' : ''}`}>
+        <Html position={position} center className="hotspot-wrapper">
+            <div className={`hotspot-container ${isVisited ? 'visited' : ''} ${isActive ? 'active' : ''}`}>
                 <button
                     className="hotspot-dot"
                     onClick={(e) => {
@@ -131,8 +131,13 @@ const Hotspot = ({ position, title, desc, onClick, isVisited }) => {
                     }}
                 >
                     {!isVisited && <span className="hotspot-pulse"></span>}
-                    <span className="hotspot-icon">{isVisited ? '✓' : 'i'}</span>
                 </button>
+                {isActive && (
+                    <div className="hotspot-popup">
+                        <h4>{title}</h4>
+                        <p>{desc}</p>
+                    </div>
+                )}
             </div>
         </Html>
     );
@@ -224,8 +229,10 @@ const PlanetRing = ({ size, textureUrl, innerRadius, outerRadius }) => {
 };
 
 // --- PANEL DE CONFIGURACIÓN ---
-const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount }) => {
+const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCount }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const remaining = totalCount - visitedCount;
+    const percentage = Math.round((visitedCount / totalCount) * 100);
 
     return (
         <div className="config-panel">
@@ -243,7 +250,13 @@ const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount }) => {
                 <span style={{ fontSize: '0.8em' }}>{isOpen ? '▼' : '▲'}</span>
             </h3>
             <div className="progress-mini-bar">
-                <span>Exploración: {visitedCount} puntos</span>
+                <div className="progress-text">
+                    <span>Exploración: <strong>{visitedCount}/{totalCount}</strong></span>
+                    {remaining > 0 && <span className="remaining-tag">Quedan {remaining}</span>}
+                </div>
+                <div className="progress-track">
+                    <div className="progress-fill" style={{ width: `${percentage}%` }}></div>
+                </div>
             </div>
             <p className="config-instruction">Haz clic en un planeta para viajar a él.</p>
 
@@ -306,7 +319,7 @@ const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount }) => {
 };
 
 // --- COMPONENTE LUNA ---
-const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused }) => {
+const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused, isSelected, onHotspotClick, visitedHotspots, activeHotspots }) => {
     const moonGroupRef = useRef();
     const moonMeshRef = useRef();
 
@@ -355,6 +368,22 @@ const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused })
                         textureUrl={moon.textureUrl}
                     />
                 </mesh>
+
+                {/* Hotspots de la Luna: Solo si la Luna es el cuerpo seleccionado */}
+                {isSelected === moon.id && moon.advanced?.hotspots?.map((hs, index) => {
+                    const hotspotId = `${moon.id}-${index}`;
+                    return (
+                        <Hotspot
+                            key={index}
+                            position={hs.pos}
+                            title={hs.title}
+                            desc={hs.desc}
+                            isVisited={visitedHotspots[hotspotId]}
+                            onClick={(data) => onHotspotClick(data, hotspotId)}
+                            isActive={!!activeHotspots[hotspotId]}
+                        />
+                    );
+                })}
             </group>
             {/* Órbita visual de la luna */}
             <mesh rotation={[-Math.PI / 2, 0, 0]}>
@@ -366,7 +395,7 @@ const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused })
 };
 
 // --- PLANETA INDIVIDUAL ---
-const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpeed, showLabels, isSelected, onHotspotClick, visitedHotspots }) => {
+const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpeed, showLabels, isSelected, onHotspotClick, visitedHotspots, activeHotspots }) => {
     const groupRef = useRef();
     const meshRef = useRef();
 
@@ -437,7 +466,7 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
             )}
 
             {/* Hotspots interactivos: Solo si el planeta está seleccionado */}
-            {isSelected && planet.advanced?.hotspots?.map((hs, index) => {
+            {isSelected === planet.id && planet.advanced?.hotspots?.map((hs, index) => {
                 const hotspotId = `${planet.id}-${index}`;
                 return (
                     <Hotspot
@@ -447,6 +476,7 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
                         desc={hs.desc}
                         isVisited={visitedHotspots[hotspotId]}
                         onClick={(data) => onHotspotClick(data, hotspotId)}
+                        isActive={!!activeHotspots[hotspotId]}
                     />
                 );
             })}
@@ -461,7 +491,10 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
                     onClick={onClick}
                     registerRef={registerRef}
                     isPaused={isPaused}
-                    isSelected={isSelected}
+                    isSelected={isSelected} // ID del cuerpo seleccionado
+                    onHotspotClick={onHotspotClick}
+                    visitedHotspots={visitedHotspots}
+                    activeHotspots={activeHotspots}
                 />
             ))}
         </group>
@@ -479,81 +512,79 @@ const OrbitPath = ({ distance, visible }) => {
     );
 };
 
-// --- CONTROLADOR DE CÁMARA (ANIMACIÓN) ---
-const CameraController = ({ selectedPlanetId, planetRefs, config }) => {
-    // Referencia para la posición objetivo suavizada del target (centro de atención)
+const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot }) => {
     const currentTarget = useRef(new THREE.Vector3(0, 0, 0));
+    const rotationTimer = useRef(0);
+    const lastInteractionTime = useRef(0);
+    const lastDist = useRef(null);
 
     useFrame(({ camera, controls }, delta) => {
         if (!controls) return;
 
-        if (selectedPlanetId && planetRefs.current[selectedPlanetId]?.current) {
-            // MODO PLANETA: Enfocar y Acercar
-            const planetGroup = planetRefs.current[selectedPlanetId].current;
+        // Detector de interacción de zoom manual
+        const currentDist = camera.position.distanceTo(controls.target);
+        if (lastDist.current !== null && Math.abs(currentDist - lastDist.current) > 0.001) {
+            lastInteractionTime.current = performance.now();
+        }
+        lastDist.current = currentDist;
 
-            // Usamos getWorldPosition para obtener la posición real en el mundo 3D
-            // Esto es necesario para objetos anidados como lunas
+        const timeSinceInteraction = performance.now() - lastInteractionTime.current;
+        const isUserInteracting = timeSinceInteraction < 4000; // 4 segundos de pausa antes de volver
+
+        if (selectedPlanetId && planetRefs.current[selectedPlanetId]?.current) {
+            const planetGroup = planetRefs.current[selectedPlanetId].current;
             const currentWorldPos = new THREE.Vector3();
             planetGroup.getWorldPosition(currentWorldPos);
-
             const targetVec = currentWorldPos;
 
-            // 1. Suavizar movimiento del Target (hacia donde miramos)
+            // Suavizado del Target
             currentTarget.current.lerp(targetVec, delta * 4);
             controls.target.copy(currentTarget.current);
 
-            // 2. Acercar cámara si está lejos (Animación de Zoom In)
-            // Calculamos la distancia ideal basada en el tamaño del planeta
-            // Buscamos en planetas Y lunas
+            // Parámetros de zoom ideal
             let planetData = solarSystemData.find(p => p.id === selectedPlanetId);
             if (!planetData) {
-                // Si no es planeta, buscar en lunas
                 for (const p of solarSystemData) {
                     if (p.moons) {
                         const moon = p.moons.find(m => m.id === selectedPlanetId);
-                        if (moon) {
-                            planetData = moon;
-                            break;
-                        }
+                        if (moon) { planetData = moon; break; }
                     }
                 }
             }
-
             const size = planetData?.size || 1;
-            // Distancia base modificada por el slider de zoom (inverso: mayor zoom = menor distancia)
             const baseDist = size * 5;
-            // zoomLevel 1 = baseDist
-            // zoomLevel 2 = baseDist / 2 (más cerca)
-            // zoomLevel 0.5 = baseDist * 2 (más lejos)
             const zoomFactor = 1 / (config?.zoomLevel || 1);
-            const idealDist = baseDist * zoomFactor;
+            const hotspotActive = !!activeHotspot;
+            const idealDist = hotspotActive ? baseDist * (activeHotspot.zoom || 0.6) : baseDist * zoomFactor;
 
-            // Distancia actual al target
-            const dist = camera.position.distanceTo(currentTarget.current);
-
-            // Si la distancia es significativamente diferente a la ideal, interpolamos
-            if (Math.abs(dist - idealDist) > 0.5) {
-                // Dirección desde el target hacia la cámara actual
+            // Animación automática de zoom/rotación (solo si no hay interacción reciente)
+            if (!isUserInteracting || hotspotActive) {
                 const direction = new THREE.Vector3().subVectors(camera.position, currentTarget.current).normalize();
-                // Nueva posición ideal manteniendo la dirección pero ajustando la distancia
-                const goalPos = new THREE.Vector3().copy(currentTarget.current).add(direction.multiplyScalar(idealDist));
 
-                camera.position.lerp(goalPos, delta * 2);
+                if (hotspotActive) {
+                    rotationTimer.current += delta * 0.3;
+                    direction.x = Math.cos(rotationTimer.current);
+                    direction.z = Math.sin(rotationTimer.current);
+                    direction.y = activeHotspot.tilt || 0.3;
+                    direction.normalize();
+                } else {
+                    rotationTimer.current = Math.atan2(direction.z, direction.x);
+                }
+
+                const goalPos = new THREE.Vector3().copy(currentTarget.current).add(direction.multiplyScalar(idealDist));
+                // Velocidad de retorno muy lenta (delta * 0.5) para que sea suave
+                camera.position.lerp(goalPos, delta * (hotspotActive ? 1.5 : 0.5));
             }
-            // Si ya estamos cerca, NO forzamos posición, permitiendo orbital con el ratón
 
         } else {
-            // MODO SISTEMA: Volver a visión general
-            const defaultTarget = new THREE.Vector3(0, 0, 0); // Sol
-            const defaultCamPos = new THREE.Vector3(0, 80, 140); // Arriba y atrás (Ajustado a nueva escala)
-
-            // Interpolamos target
+            // MODO SISTEMA
+            const defaultTarget = new THREE.Vector3(0, 0, 0);
+            const defaultCamPos = new THREE.Vector3(0, 80, 140);
             currentTarget.current.lerp(defaultTarget, delta * 2);
             controls.target.copy(currentTarget.current);
 
-            // Interpolamos cámara a posición original
-            if (camera.position.distanceTo(defaultCamPos) > 1) {
-                camera.position.lerp(defaultCamPos, delta * 1.5);
+            if (!isUserInteracting) {
+                camera.position.lerp(defaultCamPos, delta * 0.5);
             }
         }
     });
@@ -561,68 +592,60 @@ const CameraController = ({ selectedPlanetId, planetRefs, config }) => {
     return null;
 };
 
-const InfoPanel = ({ planet, level, grade, onClose, activeHotspot, setActiveHotspot }) => {
+const InfoPanel = ({ planet, level, grade, onClose }) => {
     const [showAdvanced, setShowAdvanced] = useState(false);
     if (!planet) return null;
 
     const description = getDescription(planet, level, grade);
 
     return (
-        <div className={`info-panel-overlay ${showAdvanced || activeHotspot ? 'expanded' : ''}`}>
+        <div className={`info-panel-overlay ${showAdvanced ? 'expanded' : ''}`}>
             <div className="info-panel-card">
-                <button className="close-btn" onClick={() => { setShowAdvanced(false); setActiveHotspot(null); onClose(); }}>×</button>
-                <h2 style={{ color: planet.color }}>{planet.name}</h2>
-                <div className="planet-details">
+                <div className="panel-header">
+                    <h2 style={{ color: planet.color }}>{planet.name}</h2>
+                    <button className="btn-exit-planet" onClick={onClose}>
+                        Salir
+                    </button>
+                </div>
 
-                    {activeHotspot ? (
-                        <div className="hotspot-detail-view">
-                            <button className="back-to-info" onClick={() => setActiveHotspot(null)}>← Volver a información general</button>
+                <div className="planet-details">
+                    <p className="main-desc">{description}</p>
+                    <div className="extra-stats">
+                        <div className="stat-item">
+                            <strong>Tipo:</strong> {planet.type === 'star' ? 'Estrella' : 'Planeta'}
+                        </div>
+                        <div className="stat-item">
+                            <strong>Distancia:</strong> {planet.distance === 0 ? '0' : Math.round(planet.distance * 10)} M.km
+                        </div>
+                    </div>
+
+                    <button
+                        className={`btn-advanced-toggle ${showAdvanced ? 'active' : ''}`}
+                        onClick={() => setShowAdvanced(!showAdvanced)}
+                    >
+                        {showAdvanced ? '🔼 Menos Información' : '🧪 Composición y Datos'}
+                    </button>
+
+                    {showAdvanced && planet.advanced && (
+                        <div className="advanced-info-section">
                             <div className="advanced-block">
-                                <h3 className="hotspot-title-detail">📍 {activeHotspot.title}</h3>
-                                <p className="hotspot-desc-detail">{activeHotspot.desc}</p>
+                                <h3>🧪 Composición Química</h3>
+                                <p><strong>Elementos:</strong> {planet.advanced.composition.elements.join(', ')}</p>
+                                <p><strong>Compuestos:</strong> {planet.advanced.composition.compounds.join(', ')}</p>
+                            </div>
+                            <div className="advanced-block">
+                                <h3>🌍 Geografía y Estructura</h3>
+                                <p>{planet.advanced.geography}</p>
+                            </div>
+                            <div className="advanced-block">
+                                <h3>💡 Curiosidades Técnicas</h3>
+                                <ul>
+                                    {planet.advanced.curiosities.map((c, i) => (
+                                        <li key={i}>{c}</li>
+                                    ))}
+                                </ul>
                             </div>
                         </div>
-                    ) : (
-                        <>
-                            <p className="main-desc">{description}</p>
-                            <div className="extra-stats">
-                                <div className="stat-item">
-                                    <strong>Tipo:</strong> {planet.type === 'star' ? 'Estrella' : 'Planeta'}
-                                </div>
-                                <div className="stat-item">
-                                    <strong>Distancia:</strong> {planet.distance === 0 ? '0' : Math.round(planet.distance * 10)} M.km
-                                </div>
-                            </div>
-
-                            <button
-                                className={`btn-advanced-toggle ${showAdvanced ? 'active' : ''}`}
-                                onClick={() => setShowAdvanced(!showAdvanced)}
-                            >
-                                {showAdvanced ? '🔼 Menos Información' : '🧪 Composición y Datos'}
-                            </button>
-
-                            {showAdvanced && planet.advanced && (
-                                <div className="advanced-info-section">
-                                    <div className="advanced-block">
-                                        <h3>🧪 Composición Química</h3>
-                                        <p><strong>Elementos:</strong> {planet.advanced.composition.elements.join(', ')}</p>
-                                        <p><strong>Compuestos:</strong> {planet.advanced.composition.compounds.join(', ')}</p>
-                                    </div>
-                                    <div className="advanced-block">
-                                        <h3>🌍 Geografía y Estructura</h3>
-                                        <p>{planet.advanced.geography}</p>
-                                    </div>
-                                    <div className="advanced-block">
-                                        <h3>💡 Curiosidades Técnicas</h3>
-                                        <ul>
-                                            {planet.advanced.curiosities.map((c, i) => (
-                                                <li key={i}>{c}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            )}
-                        </>
                     )}
                 </div>
             </div>
@@ -630,12 +653,49 @@ const InfoPanel = ({ planet, level, grade, onClose, activeHotspot, setActiveHots
     );
 };
 
+// --- COMPONENTE MODAL DE REINICIO ---
+const ResetModal = ({ isOpen, onConfirm, onCancel }) => {
+    if (!isOpen) return null;
+    return (
+        <div className="modal-overlay" style={{
+            zIndex: 5000
+        }}>
+            <div className="modal-content" style={{ pointerEvents: 'auto' }}>
+                <span className="modal-icon">⚠️</span>
+                <h3>¿Reiniciar Exploración?</h3>
+                <p>Se borrarán todos tus puntos de interés visitados y volverás al estado inicial del sistema.</p>
+                <div className="modal-actions">
+                    <button type="button" className="btn-modal-cancel" onClick={onCancel}>Cancelar</button>
+                    <button type="button" className="btn-modal-confirm" onClick={onConfirm}>Confirmar Reinicio</button>
+                </div>
+            </div>
+        </div >
+    );
+};
+
 // --- COMPONENTE PRINCIPAL ---
 const SistemaSolar = ({ level, grade }) => {
     const [selectedPlanet, setSelectedPlanet] = useState(null);
-    const [activeHotspot, setActiveHotspot] = useState(null);
+    const [activeHotspots, setActiveHotspots] = useState({}); // Múltiples popups activos
+    const [lastClickedHotspot, setLastClickedHotspot] = useState(null); // Para la cámara
     const [visitedHotspots, setVisitedHotspots] = useState({});
+    const [showResetModal, setShowResetModal] = useState(false);
+    const [isResetting, setIsResetting] = useState(false);
     const planetRefs = useRef({});
+
+    // Calcular total de puntos de interés
+    const totalHotspots = useMemo(() => {
+        let count = 0;
+        solarSystemData.forEach(planet => {
+            if (planet.advanced?.hotspots) count += planet.advanced.hotspots.length;
+            if (planet.moons) {
+                planet.moons.forEach(moon => {
+                    if (moon.advanced?.hotspots) count += moon.advanced.hotspots.length;
+                });
+            }
+        });
+        return count;
+    }, []);
 
     // Configuración Global
     const [config, setConfig] = useState({
@@ -649,12 +709,17 @@ const SistemaSolar = ({ level, grade }) => {
     const handlePlanetClick = (planet) => {
         if (selectedPlanet?.id !== planet.id) {
             setSelectedPlanet(planet);
-            setActiveHotspot(null);
+            setActiveHotspots({});
+            setLastClickedHotspot(null);
         }
     };
 
     const handleHotspotClick = (data, hotspotId) => {
-        setActiveHotspot(data);
+        setActiveHotspots(prev => ({
+            ...prev,
+            [hotspotId]: data
+        }));
+        setLastClickedHotspot(data);
         setVisitedHotspots(prev => ({
             ...prev,
             [hotspotId]: true
@@ -662,15 +727,27 @@ const SistemaSolar = ({ level, grade }) => {
     };
 
     const handleResetProgress = () => {
-        if (window.confirm('¿Quieres reiniciar todo tu progreso de exploración?')) {
+        setShowResetModal(true);
+    };
+
+    const confirmReset = () => {
+        setShowResetModal(false);
+        setIsResetting(true);
+
+        // Simular tiempo de animación de "reinicio de sistema"
+        setTimeout(() => {
             setVisitedHotspots({});
-            setActiveHotspot(null);
-        }
+            setActiveHotspots({});
+            setLastClickedHotspot(null);
+            setSelectedPlanet(null);
+            setIsResetting(false);
+        }, 2500);
     };
 
     const handleClose = () => {
         setSelectedPlanet(null);
-        setActiveHotspot(null);
+        setActiveHotspots({});
+        setLastClickedHotspot(null);
     };
 
     const registerPlanetRef = (id, ref) => {
@@ -690,6 +767,7 @@ const SistemaSolar = ({ level, grade }) => {
                 setConfig={setConfig}
                 onResetProgress={handleResetProgress}
                 visitedCount={visitedCount}
+                totalCount={totalHotspots}
             />
 
             <Canvas camera={{ position: [0, 80, 140], fov: 50, far: 2000 }} shadows>
@@ -702,7 +780,7 @@ const SistemaSolar = ({ level, grade }) => {
 
                 <OrbitControls
                     enablePan={!selectedPlanet}
-                    enableZoom={!selectedPlanet}
+                    enableZoom={true}
                     makeDefault
                 />
 
@@ -710,6 +788,7 @@ const SistemaSolar = ({ level, grade }) => {
                     selectedPlanetId={selectedPlanet?.id}
                     planetRefs={planetRefs}
                     config={config}
+                    activeHotspot={lastClickedHotspot}
                 />
 
                 <React.Suspense fallback={null}>
@@ -723,9 +802,10 @@ const SistemaSolar = ({ level, grade }) => {
                                 simSpeed={config.simSpeed}
                                 rotationSpeed={config.rotationSpeed}
                                 showLabels={config.showLabels}
-                                isSelected={selectedPlanet?.id === planet.id}
+                                isSelected={selectedPlanet?.id}
                                 onHotspotClick={handleHotspotClick}
                                 visitedHotspots={visitedHotspots}
+                                activeHotspots={activeHotspots}
                             />
                             <OrbitPath
                                 distance={planet.distance}
@@ -741,9 +821,25 @@ const SistemaSolar = ({ level, grade }) => {
                 level={level}
                 grade={grade}
                 onClose={handleClose}
-                activeHotspot={activeHotspot}
-                setActiveHotspot={setActiveHotspot}
             />
+
+            <ResetModal
+                isOpen={showResetModal}
+                onConfirm={confirmReset}
+                onCancel={() => setShowResetModal(false)}
+            />
+
+            {/* Animación de Reinicio de Sistema mejorada */}
+            <div className={`reboot-overlay ${isResetting ? 'active' : ''}`}>
+                <div className="reboot-wipe"></div>
+                <div className="reboot-scanlines"></div>
+                <div className="reboot-horizontal-bar"></div>
+                <div className="reboot-grid"></div>
+                <div className="reboot-text-container">
+                    <div className="reboot-text">REBOOTING</div>
+                    <span className="reboot-subtext">PURGING DATA & CALIBRATING OPTICS...</span>
+                </div>
+            </div>
         </div>
     );
 };
