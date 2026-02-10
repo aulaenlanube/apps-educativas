@@ -17,7 +17,7 @@ export const solarSystemData = [
         type: 'star',
         color: '#FDB813',
         emissive: '#FDB813',
-        emissiveIntensity: 2,
+        emissiveIntensity: 0.8, // Reduced intensity to show texture better
         size: 8, // Mucho más grande
         distance: 0,
         speed: 0,

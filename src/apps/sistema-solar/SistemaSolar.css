@@ -39,15 +39,16 @@ p {
     top: 2rem;
     right: 2rem;
     width: 280px;
-    background: rgba(10, 10, 20, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(5, 5, 10, 0.95);
+    /* Even darker and more opaque */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-radius: 20px;
     padding: 1.5rem;
     color: white;
     z-index: 30;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
     transition: all 0.3s ease;
 }
 
@@ -61,7 +62,7 @@ p {
     align-items: center;
     cursor: pointer;
     user-select: none;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .config-title:hover {
@@ -70,12 +71,13 @@ p {
 
 .config-instruction {
     font-family: 'Lexend', sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    color: #ffffff;
+    /* Brighter/Whiter */
     background: rgba(255, 255, 255, 0.05);
-    padding: 0.8rem;
+    padding: 10px;
     border-radius: 12px;
-    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
     margin-bottom: 1.2rem;
     line-height: 1.4;
     text-align: center;
@@ -95,46 +97,56 @@ p {
 }
 
 .config-item {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
+    background: rgba(0, 0, 0, 0.3);
+    /* Dark box for the slider item */
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .config-label-row {
     display: flex;
     justify-content: space-between;
     font-family: 'Lexend', sans-serif;
-    font-size: 0.85rem;
-    margin-bottom: 6px;
-    color: #ddd;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: #ffffff;
+    /* Pure white for better clarity */
+    font-weight: 500;
 }
 
-/* Modern Sliders */
+/* Dark Sliders */
 .config-slider {
     width: 100%;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.1);
+    height: 8px;
+    background: #000000;
+    /* Deep black track */
     border-radius: 10px;
     outline: none;
     -webkit-appearance: none;
     appearance: none;
     cursor: pointer;
     margin-top: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .config-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    background: #3b82f6;
+    width: 20px;
+    height: 20px;
+    background: #111827;
     border-radius: 50%;
-    border: 2px solid white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid #4b5563;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1), inset 0 0 5px rgba(255, 255, 255, 0.1);
     cursor: pointer;
-    transition: transform 0.2s, background 0.2s;
+    transition: all 0.2s ease;
 }
 
 .config-slider::-webkit-slider-thumb:hover {
-    transform: scale(1.2);
-    background: #60a5fa;
+    transform: scale(1.15);
+    background: #1f2937;
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 1), 0 0 8px rgba(255, 215, 0, 0.4);
 }
 
 /* Toggles Container */
@@ -143,9 +155,10 @@ p {
     flex-direction: column;
     gap: 0.8rem;
     margin-top: 1rem;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.4);
     padding: 1rem;
     border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Toggle Switch Style */
@@ -157,7 +170,8 @@ p {
     font-size: 0.95rem;
     cursor: pointer;
     user-select: none;
-    color: #e2e8f0;
+    color: #ffffff;
+    /* Brighter */
 }
 
 .toggle-checkbox {
@@ -197,8 +211,9 @@ p {
 /* Info Panel Overlay */
 .info-panel-overlay {
     position: absolute;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 2.5rem;
+    left: 2rem;
+    /* Cambiado de right a left */
     width: 320px;
     background: rgba(10, 10, 20, 0.85);
     backdrop-filter: blur(12px);
@@ -206,13 +221,13 @@ p {
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 1.5rem;
     z-index: 20;
-    animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: slideInLeft 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes slideIn {
+@keyframes slideInLeft {
     from {
-        transform: translateX(50px) translateY(20px);
+        transform: translateX(-50px) translateY(20px);
         opacity: 0;
     }
 

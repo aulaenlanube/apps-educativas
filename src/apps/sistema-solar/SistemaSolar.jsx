@@ -52,7 +52,7 @@ class TextureErrorBoundary extends React.Component {
     }
 }
 
-const TexturedMaterial = ({ textureUrl, emissive, emissiveIntensity }) => {
+const TexturedMaterial = ({ textureUrl, emissive, emissiveIntensity, isSun }) => {
     // useTexture lanzará un error si falla la carga, que será capturado por el ErrorBoundary
     const texture = useTexture(textureUrl);
     return (
@@ -60,8 +60,9 @@ const TexturedMaterial = ({ textureUrl, emissive, emissiveIntensity }) => {
             map={texture}
             emissive={emissive || '#000000'}
             emissiveIntensity={emissiveIntensity || 0}
-            roughness={0.5}
-            metalness={0.1}
+            emissiveMap={isSun ? texture : null}
+            roughness={isSun ? 1 : 0.5}
+            metalness={isSun ? 0 : 0.1}
         />
     );
 };
@@ -79,7 +80,7 @@ const ColoredMaterial = ({ color, emissive, emissiveIntensity }) => {
 };
 
 // --- COMPONENTE MATERIAL SEGURO ---
-const PlanetMaterial = ({ color, emissive, emissiveIntensity, textureUrl }) => {
+const PlanetMaterial = ({ color, emissive, emissiveIntensity, textureUrl, isSun }) => {
     if (textureUrl) {
         return (
             <TextureErrorBoundary fallback={<ColoredMaterial color={color} emissive={emissive} emissiveIntensity={emissiveIntensity} />}>
@@ -88,6 +89,7 @@ const PlanetMaterial = ({ color, emissive, emissiveIntensity, textureUrl }) => {
                         textureUrl={textureUrl}
                         emissive={emissive}
                         emissiveIntensity={emissiveIntensity}
+                        isSun={isSun}
                     />
                 </React.Suspense>
             </TextureErrorBoundary>
@@ -227,11 +229,10 @@ const ConfigPanel = ({ config, setConfig }) => {
                     <div className="config-item">
                         <div className="config-label-row">
                             <span>Velocidad de Órbita</span>
-                            <span>{config.simSpeed.toFixed(1)}x</span>
                         </div>
                         <input
                             type="range"
-                            min="0" max="10" step="0.5"
+                            min="0.5" max="10" step="0.5"
                             value={config.simSpeed}
                             onChange={(e) => setConfig({ ...config, simSpeed: parseFloat(e.target.value) })}
                             className="config-slider"
@@ -241,27 +242,12 @@ const ConfigPanel = ({ config, setConfig }) => {
                     <div className="config-item">
                         <div className="config-label-row">
                             <span>Velocidad Rotación</span>
-                            <span>{config.rotationSpeed.toFixed(1)}x</span>
                         </div>
                         <input
                             type="range"
-                            min="0" max="10" step="0.5"
+                            min="0.5" max="10" step="0.5"
                             value={config.rotationSpeed}
                             onChange={(e) => setConfig({ ...config, rotationSpeed: parseFloat(e.target.value) })}
-                            className="config-slider"
-                        />
-                    </div>
-
-                    <div className="config-item">
-                        <div className="config-label-row">
-                            <span>Zoom</span>
-                            <span>{config.zoomLevel.toFixed(1)}x</span>
-                        </div>
-                        <input
-                            type="range"
-                            min="0.5" max="3" step="0.1"
-                            value={config.zoomLevel}
-                            onChange={(e) => setConfig({ ...config, zoomLevel: parseFloat(e.target.value) })}
                             className="config-slider"
                         />
                     </div>
@@ -404,6 +390,7 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
                     emissive={planet.emissive}
                     emissiveIntensity={planet.emissiveIntensity}
                     textureUrl={planet.textureUrl}
+                    isSun={planet.id === 'sun'}
                 />
             </mesh>
 
@@ -565,8 +552,8 @@ const SistemaSolar = ({ level, grade }) => {
 
     // Configuración Global
     const [config, setConfig] = useState({
-        simSpeed: 1,
-        rotationSpeed: 1,
+        simSpeed: 0.5,
+        rotationSpeed: 0.5,
         showOrbits: true,
         showLabels: true,
         zoomLevel: 1 // Default zoom level
@@ -598,7 +585,7 @@ const SistemaSolar = ({ level, grade }) => {
                 <color attach="background" args={['#020205']} />
 
                 <ambientLight intensity={0.4} />
-                <pointLight position={[0, 0, 0]} intensity={2.5} distance={1000} decay={0} color="#FDB813" />
+                <pointLight position={[0, 0, 0]} intensity={1.5} distance={1000} decay={0} color="#FDB813" />
                 <CameraLight />
                 <Stars radius={350} depth={100} count={8000} factor={6} saturation={0} fade speed={1} />
 
