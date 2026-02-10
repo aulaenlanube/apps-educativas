@@ -2,6 +2,7 @@ import sunTexture from '../textures/2k_sun.jpg';
 import mercuryTexture from '../textures/2k_mercury.jpg';
 import venusTexture from '../textures/2k_venus_atmosphere.jpg';
 import earthTexture from '../textures/2k_earth_daymap.jpg';
+import earthCloudsTexture from '../textures/2k_earth_clouds.jpg';
 import marsTexture from '../textures/2k_mars.jpg';
 import jupiterTexture from '../textures/2k_jupiter.jpg';
 import saturnTexture from '../textures/2k_saturn.jpg';
@@ -123,6 +124,7 @@ export const solarSystemData = [
         distance: 21,
         speed: 0.01,
         textureUrl: earthTexture,
+        cloudTextureUrl: earthCloudsTexture,
         description: {
             primaryBasic: "¡Es nuestro hogar! El único lugar donde sabemos que hay vida.",
             primaryAdvanced: "La Tierra es el 'planeta azul'. Tiene mucha agua líquida y una capa de aire que nos protege y nos permite respirar.",

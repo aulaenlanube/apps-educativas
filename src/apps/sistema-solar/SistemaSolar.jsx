@@ -118,7 +118,26 @@ const TexturedRingMaterial = ({ textureUrl }) => {
     );
 };
 
-// --- COMPONENTE HOTSPOT ---
+// --- COMPONENTE NUBES ---
+const CloudLayer = ({ textureUrl, size }) => {
+    const texture = useTexture(textureUrl);
+
+    return (
+        <mesh>
+            <sphereGeometry args={[size * 1.015, 64, 64]} />
+            <meshStandardMaterial
+                map={texture} // A veces la textura viene con color, probamos map + transparent + blending
+                transparent={true}
+                opacity={0.8}
+                blending={THREE.AdditiveBlending}
+                side={THREE.DoubleSide}
+                depthWrite={false}
+            />
+        </mesh>
+    );
+};
+
+// --- COMPONENTE ANILLOS MEJORADO ---
 const Hotspot = ({ position, title, desc, onClick, isVisited, isActive }) => {
     return (
         <Html position={position} center className="hotspot-wrapper">
@@ -235,85 +254,168 @@ const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCo
     const percentage = Math.round((visitedCount / totalCount) * 100);
 
     return (
-        <div className="config-panel">
-            <h3
-                className="config-title"
-                onClick={() => setIsOpen(!isOpen)}
-                style={{
-                    cursor: 'pointer',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center'
-                }}
-            >
-                <span>⚙️ Configuración</span>
-                <span style={{ fontSize: '0.8em' }}>{isOpen ? '▼' : '▲'}</span>
-            </h3>
-            <div className="progress-mini-bar">
-                <div className="progress-text">
-                    <span>Exploración: <strong>{visitedCount}/{totalCount}</strong></span>
-                    {remaining > 0 && <span className="remaining-tag">Quedan {remaining}</span>}
+        <div className={`config-panel-v2 ${isOpen ? 'is-open' : ''}`}>
+            <div className="config-header" onClick={() => setIsOpen(!isOpen)}>
+                <div className="header-left">
+                    <div className="config-icon-wrapper">
+                        <span className={`config-icon-svg ${isOpen ? 'rotating' : ''}`}>⚙️</span>
+                    </div>
+                    <div className="header-text-group">
+                        <span className="config-main-title">Centro de Control</span>
+                        <span className="config-sub-title">{isOpen ? 'Ajustes del simulador' : 'Puntos de exploración encontrados'}</span>
+                    </div>
                 </div>
-                <div className="progress-track">
-                    <div className="progress-fill" style={{ width: `${percentage}%` }}></div>
+                <div className="header-right">
+                    {!isOpen && (
+                        <div className="mini-stats">
+                            <span className="stats-val">{percentage}%</span>
+                            <div className="stats-dot" style={{ background: percentage === 100 ? '#10b981' : '#f59e0b' }}></div>
+                        </div>
+                    )}
+                    <span className={`chevron-icon ${isOpen ? 'up' : 'down'}`}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6" /></svg>
+                    </span>
                 </div>
             </div>
-            <p className="config-instruction">Haz clic en un planeta para viajar a él.</p>
 
-            {isOpen && (
-                <div className="config-content">
-                    <div className="config-item">
-                        <div className="config-label-row">
-                            <span>Velocidad de Órbita</span>
+            <div className="exploration-hud">
+                <div className="hud-scanner-line"></div>
+                <div className="hud-content">
+                    <div className="hud-left">
+                        <div className="radial-progress-container">
+                            <svg viewBox="0 0 36 36" className="circular-chart">
+                                <path className="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                <path className="circle" style={{ strokeDasharray: `${percentage}, 100` }} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                            <span className="hud-percent">{percentage}%</span>
                         </div>
-                        <input
-                            type="range"
-                            min="0.5" max="10" step="0.5"
-                            value={config.simSpeed}
-                            onChange={(e) => setConfig({ ...config, simSpeed: parseFloat(e.target.value) })}
-                            className="config-slider"
-                        />
                     </div>
-
-                    <div className="config-item">
-                        <div className="config-label-row">
-                            <span>Velocidad Rotación</span>
+                    <div className="hud-right">
+                        <div className="hud-info-row">
+                            <span className="hud-label">SISTEMA EXPLORADO</span>
+                            <span className="hud-value">{visitedCount} / {totalCount}</span>
                         </div>
-                        <input
-                            type="range"
-                            min="0.5" max="10" step="0.5"
-                            value={config.rotationSpeed}
-                            onChange={(e) => setConfig({ ...config, rotationSpeed: parseFloat(e.target.value) })}
-                            className="config-slider"
-                        />
+                        <div className="hud-status-bar">
+                            {[...Array(totalCount)].map((_, i) => (
+                                <div key={i} className={`status-dot ${i < visitedCount ? 'found' : ''}`}></div>
+                            ))}
+                        </div>
+                        <div className="hud-footer-actions">
+                            <span className="hud-message">
+                                {remaining > 0 ? `DETECTADOS: ${remaining} PUNTOS RESTANTES` : 'BASE DE DATOS COMPLETA'}
+                            </span>
+                        </div>
                     </div>
-
-                    <div className="config-toggles">
-                        <label className="toggle-label">
-                            <input
-                                type="checkbox"
-                                checked={config.showOrbits}
-                                onChange={(e) => setConfig({ ...config, showOrbits: e.target.checked })}
-                                className="toggle-checkbox"
-                            />
-                            Órbitas
-                        </label>
-                        <label className="toggle-label">
-                            <input
-                                type="checkbox"
-                                checked={config.showLabels}
-                                onChange={(e) => setConfig({ ...config, showLabels: e.target.checked })}
-                                className="toggle-checkbox"
-                            />
-                            Etiquetas
-                        </label>
-                    </div>
-
-                    <button className="btn-reset-progress" onClick={onResetProgress}>
-                        🔄 Reiniciar Progreso
-                    </button>
                 </div>
-            )}
+            </div>
+
+            <div className={`config-deploy-container ${isOpen ? 'is-open' : ''}`}>
+                <div className="config-scroll-area">
+                    <div className="config-section">
+                        <h4 className="section-title">Navegación</h4>
+                        <p className="config-instruction-v2">Selecciona cualquier cuerpo celeste para iniciar el viaje y desplegar sus datos.</p>
+                    </div>
+
+                    <div className="config-section">
+                        <h4 className="section-title">Simulación Cinética</h4>
+
+                        <div className="ss-config-item">
+                            <div className="ss-config-label-row">
+                                <span className="ss-label-name">Velocidad Orbital</span>
+                                <span className="ss-label-value">x{config.simSpeed.toFixed(1)}</span>
+                            </div>
+                            <input
+                                type="range"
+                                min="0.1" max="5" step="0.1"
+                                value={config.simSpeed}
+                                onChange={(e) => setConfig({ ...config, simSpeed: parseFloat(e.target.value) })}
+                                className="config-slider-v2"
+                            />
+                        </div>
+
+                        <div className="ss-config-item">
+                            <div className="ss-config-label-row">
+                                <span className="ss-label-name">Velocidad Rotación</span>
+                                <span className="ss-label-value">x{config.rotationSpeed.toFixed(1)}</span>
+                            </div>
+                            <input
+                                type="range"
+                                min="0" max="10" step="0.1"
+                                value={config.rotationSpeed}
+                                onChange={(e) => setConfig({ ...config, rotationSpeed: parseFloat(e.target.value) })}
+                                className="config-slider-v2"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="config-section">
+                        <h4 className="section-title">Visualización Avanzada</h4>
+
+                        <div className="ss-config-item">
+                            <div className="ss-config-label-row">
+                                <span className="ss-label-name">Opacidad Órbitas</span>
+                                <span className="ss-label-value">{Math.round(config.orbitOpacity * 100)}%</span>
+                            </div>
+                            <input
+                                type="range"
+                                min="0" max="0.5" step="0.01"
+                                value={config.orbitOpacity}
+                                onChange={(e) => setConfig({ ...config, orbitOpacity: parseFloat(e.target.value) })}
+                                className="config-slider-v2"
+                            />
+                        </div>
+
+                        <div className="ss-config-item">
+                            <div className="ss-config-label-row">
+                                <span className="ss-label-name">Grosor Órbitas</span>
+                                <span className="ss-label-value">{config.orbitThickness.toFixed(2)}</span>
+                            </div>
+                            <input
+                                type="range"
+                                min="0.01" max="0.3" step="0.01"
+                                value={config.orbitThickness}
+                                onChange={(e) => setConfig({ ...config, orbitThickness: parseFloat(e.target.value) })}
+                                className="config-slider-v2"
+                            />
+                        </div>
+
+                        <div className="config-toggles-v2">
+                            <label className="toggle-switch">
+                                <input
+                                    type="checkbox"
+                                    checked={config.showOrbits}
+                                    onChange={(e) => setConfig({ ...config, showOrbits: e.target.checked })}
+                                />
+                                <span className="switch-slider"></span>
+                                <span className="switch-label">Mostrar Órbitas</span>
+                            </label>
+
+                            <label className="toggle-switch">
+                                <input
+                                    type="checkbox"
+                                    checked={config.showLabels}
+                                    onChange={(e) => setConfig({ ...config, showLabels: e.target.checked })}
+                                />
+                                <span className="switch-slider"></span>
+                                <span className="switch-label">Etiquetas de Datos</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="config-footer">
+                        <button className="btn-reset-v2" onClick={onResetProgress}>
+                            <span className="btn-icon">🔄</span>
+                            Reiniciar exploración
+                        </button>
+                        <div className="footer-info">
+                            <p className="footer-note">Simulador del Sistema Solar v2.0</p>
+                            <p className="footer-credits">
+                                Texturas obtenidas de <a href="https://www.solarsystemscope.com/" target="_blank" rel="noopener noreferrer">Solar System Scope</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
@@ -337,17 +439,16 @@ const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused, i
     useFrame((state, delta) => {
         // Rotación de la Luna sobre sí misma
         if (moonMeshRef.current) {
-            moonMeshRef.current.rotation.y += 0.005 * rotationSpeed;
+            moonMeshRef.current.rotation.y += 0.5 * delta * rotationSpeed;
         }
 
         // Movimiento orbital de la Luna
-        // Actualizamos el ángulo basado en la velocidad SOLO SI NO ESTÁ PAUSADO
+        // Actualizamos el ángulo basado en delta para mayor fluidez
         if (!isPaused) {
-            angleRef.current += moon.speed * simSpeed;
+            angleRef.current += (moon.speed * 10) * simSpeed * delta;
         }
 
         if (moonGroupRef.current) {
-            // Posicionamos el grupo de la luna relativo al padre (Planeta)
             moonGroupRef.current.position.x = Math.cos(angleRef.current) * moon.distance;
             moonGroupRef.current.position.z = Math.sin(angleRef.current) * moon.distance;
         }
@@ -400,8 +501,8 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
     const meshRef = useRef();
 
     // Ángulo inicial aleatorio para que no estén todos línea
-    const startAngle = useMemo(() => Math.random() * Math.PI * 2, []);
-    const [angle, setAngle] = useState(startAngle); // Estado para mantener la posición al pausar
+    const initialAngle = useMemo(() => Math.random() * Math.PI * 2, []);
+    const angleRef = useRef(initialAngle);
 
     // Registrar referencia
     useEffect(() => {
@@ -410,22 +511,21 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
         }
     }, [registerRef, planet.id]);
 
-    useFrame(({ clock }, delta) => {
+    useFrame((state, delta) => {
         if (meshRef.current) {
-            meshRef.current.rotation.y += 0.005 * rotationSpeed;
+            // Rotación propia (delta based)
+            meshRef.current.rotation.y += 0.5 * delta * rotationSpeed;
         }
 
         if (planet.distance > 0) {
-            let currentAngle = angle;
-
             if (!isPaused) {
-                currentAngle += planet.speed * simSpeed * 0.5;
-                setAngle(currentAngle);
+                // Movimiento orbital fluido con delta
+                angleRef.current += (planet.speed * 5) * simSpeed * delta;
             }
 
             if (groupRef.current) {
-                groupRef.current.position.x = Math.cos(currentAngle) * planet.distance;
-                groupRef.current.position.z = Math.sin(currentAngle) * planet.distance;
+                groupRef.current.position.x = Math.cos(angleRef.current) * planet.distance;
+                groupRef.current.position.z = Math.sin(angleRef.current) * planet.distance;
             }
         }
     });
@@ -448,6 +548,11 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
                     textureUrl={planet.textureUrl}
                     isSun={planet.id === 'sun'}
                 />
+
+                {/* Capa de Nubes (Hija del mesh para heredar rotación exacta) */}
+                {planet.cloudTextureUrl && (
+                    <CloudLayer textureUrl={planet.cloudTextureUrl} size={currentSize} />
+                )}
             </mesh>
 
             {planet.hasRings && (
@@ -502,64 +607,97 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
 };
 
 // --- ORBITAS VISUALES ---
-const OrbitPath = ({ distance, visible }) => {
+const OrbitPath = ({ distance, visible, opacity = 0.08, thickness = 0.05 }) => {
     if (distance <= 0 || !visible) return null;
+    const halfThickness = thickness / 2;
     return (
         <mesh rotation={[-Math.PI / 2, 0, 0]}>
-            <ringGeometry args={[distance - 0.05, distance + 0.05, 128]} />
-            <meshBasicMaterial color="#ffffff" transparent opacity={0.08} side={THREE.DoubleSide} />
+            <ringGeometry args={[distance - halfThickness, distance + halfThickness, 128]} />
+            <meshBasicMaterial color="#ffffff" transparent opacity={opacity} side={THREE.DoubleSide} />
         </mesh>
     );
 };
 
 const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot }) => {
+    // Refs para vectores reutilizables (Evita Garbage Collection)
     const currentTarget = useRef(new THREE.Vector3(0, 0, 0));
+    const vec3_1 = useRef(new THREE.Vector3());
+    const vec3_2 = useRef(new THREE.Vector3());
+    const vec3_3 = useRef(new THREE.Vector3());
+
     const rotationTimer = useRef(0);
     const lastInteractionTime = useRef(0);
     const lastDist = useRef(null);
 
+    const isUserInteractingRef = useRef(false);
+    const interactionTimeoutRef = useRef(null);
+    const eventsInit = useRef(false);
+
+    // Resetear interacción al cambiar de planeta para forzar el movimiento de cámara
+    useEffect(() => {
+        isUserInteractingRef.current = false;
+        if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
+    }, [selectedPlanetId]);
+
     useFrame(({ camera, controls }, delta) => {
         if (!controls) return;
 
-        // Detector de interacción de zoom manual
-        const currentDist = camera.position.distanceTo(controls.target);
-        if (lastDist.current !== null && Math.abs(currentDist - lastDist.current) > 0.001) {
-            lastInteractionTime.current = performance.now();
+        // Inicializar eventos UNA VEZ (Hack seguro para acceder a la instancia de controles)
+        if (!eventsInit.current) {
+            controls.addEventListener('start', () => {
+                isUserInteractingRef.current = true;
+                if (interactionTimeoutRef.current) clearTimeout(interactionTimeoutRef.current);
+            });
+            controls.addEventListener('end', () => {
+                // Dar un tiempo de gracia generoso después de soltar para evitar saltos inmediatos
+                interactionTimeoutRef.current = setTimeout(() => {
+                    isUserInteractingRef.current = false;
+                    // Al terminar la interacción, resincronizamos el timer de rotación 
+                    // para que el movimiento automático continúe suavemente desde donde se dejó
+                    // en lugar de saltar a una posición calculada
+                }, 4000);
+            });
+            eventsInit.current = true;
         }
-        lastDist.current = currentDist;
 
-        const timeSinceInteraction = performance.now() - lastInteractionTime.current;
-        const isUserInteracting = timeSinceInteraction < 4000; // 4 segundos de pausa antes de volver
+        const isUserInteracting = isUserInteractingRef.current;
 
         if (selectedPlanetId && planetRefs.current[selectedPlanetId]?.current) {
             const planetGroup = planetRefs.current[selectedPlanetId].current;
-            const currentWorldPos = new THREE.Vector3();
-            planetGroup.getWorldPosition(currentWorldPos);
-            const targetVec = currentWorldPos;
 
-            // Suavizado del Target
-            currentTarget.current.lerp(targetVec, delta * 4);
+            // Obtener posición del mundo sin crear nueva instancia
+            planetGroup.getWorldPosition(vec3_1.current);
+            const targetVec = vec3_1.current;
+
+            // Suavizado del Target (seguimiento) - Más rápido para evitar lag
+            currentTarget.current.lerp(targetVec, delta * 8);
             controls.target.copy(currentTarget.current);
 
             // Parámetros de zoom ideal
             let planetData = solarSystemData.find(p => p.id === selectedPlanetId);
+            // Búsqueda en lunas si es necesario... (Optimizable si solarSystemData es plano, pero ok por ahora)
             if (!planetData) {
-                for (const p of solarSystemData) {
+                // Búsqueda rápida optimizada
+                for (let i = 0; i < solarSystemData.length; i++) {
+                    const p = solarSystemData[i];
                     if (p.moons) {
                         const moon = p.moons.find(m => m.id === selectedPlanetId);
                         if (moon) { planetData = moon; break; }
                     }
                 }
             }
+
             const size = planetData?.size || 1;
-            const baseDist = size * 5;
+            const baseDist = size * 3.5;
             const zoomFactor = 1 / (config?.zoomLevel || 1);
             const hotspotActive = !!activeHotspot;
             const idealDist = hotspotActive ? baseDist * (activeHotspot.zoom || 0.6) : baseDist * zoomFactor;
 
-            // Animación automática de zoom/rotación (solo si no hay interacción reciente)
+            // Animación automática de zoom/rotación
             if (!isUserInteracting || hotspotActive) {
-                const direction = new THREE.Vector3().subVectors(camera.position, currentTarget.current).normalize();
+                // Calcular dirección: (camera.position - currentTarget)
+                vec3_2.current.subVectors(camera.position, currentTarget.current).normalize();
+                const direction = vec3_2.current;
 
                 if (hotspotActive) {
                     rotationTimer.current += delta * 0.3;
@@ -568,23 +706,29 @@ const CameraController = ({ selectedPlanetId, planetRefs, config, activeHotspot 
                     direction.y = activeHotspot.tilt || 0.3;
                     direction.normalize();
                 } else {
-                    rotationTimer.current = Math.atan2(direction.z, direction.x);
+                    // Mantener ángulo actual
+                    // No recalculamos rotationTimer constantemente para evitar saltos, 
+                    // simplemente usamos la dirección actual
                 }
 
-                const goalPos = new THREE.Vector3().copy(currentTarget.current).add(direction.multiplyScalar(idealDist));
-                // Velocidad de retorno muy lenta (delta * 0.5) para que sea suave
-                camera.position.lerp(goalPos, delta * (hotspotActive ? 1.5 : 0.5));
+                // Goal Position = Target + Direction * Distance
+                vec3_3.current.copy(currentTarget.current).add(direction.multiplyScalar(idealDist));
+                const goalPos = vec3_3.current;
+
+                // Mover cámara suavemente
+                camera.position.lerp(goalPos, delta * (hotspotActive ? 2.5 : 2.0));
             }
 
         } else {
-            // MODO SISTEMA
-            const defaultTarget = new THREE.Vector3(0, 0, 0);
-            const defaultCamPos = new THREE.Vector3(0, 80, 140);
-            currentTarget.current.lerp(defaultTarget, delta * 2);
+            // MODO SISTEMA (Vista general)
+            vec3_1.current.set(0, 0, 0); // Target al sol
+            currentTarget.current.lerp(vec3_1.current, delta * 4);
             controls.target.copy(currentTarget.current);
 
+            const defaultCamPos = vec3_3.current.set(0, 80, 140);
+
             if (!isUserInteracting) {
-                camera.position.lerp(defaultCamPos, delta * 0.5);
+                camera.position.lerp(defaultCamPos, delta * 1);
             }
         }
     });
@@ -678,10 +822,30 @@ const SistemaSolar = ({ level, grade }) => {
     const [selectedPlanet, setSelectedPlanet] = useState(null);
     const [activeHotspots, setActiveHotspots] = useState({}); // Múltiples popups activos
     const [lastClickedHotspot, setLastClickedHotspot] = useState(null); // Para la cámara
-    const [visitedHotspots, setVisitedHotspots] = useState({});
+
+    // Estado inicial desde localStorage
+    const [visitedHotspots, setVisitedHotspots] = useState(() => {
+        try {
+            const saved = localStorage.getItem('solarSystem_visited');
+            return saved ? JSON.parse(saved) : {};
+        } catch (e) {
+            console.error("Error reading localStorage", e);
+            return {};
+        }
+    });
+
     const [showResetModal, setShowResetModal] = useState(false);
     const [isResetting, setIsResetting] = useState(false);
     const planetRefs = useRef({});
+
+    // Guardar progreso automáticamente
+    useEffect(() => {
+        try {
+            localStorage.setItem('solarSystem_visited', JSON.stringify(visitedHotspots));
+        } catch (e) {
+            console.error("Error saving to localStorage", e);
+        }
+    }, [visitedHotspots]);
 
     // Calcular total de puntos de interés
     const totalHotspots = useMemo(() => {
@@ -703,7 +867,9 @@ const SistemaSolar = ({ level, grade }) => {
         rotationSpeed: 0.5,
         showOrbits: true,
         showLabels: true,
-        zoomLevel: 1 // Default zoom level
+        zoomLevel: 1,
+        orbitOpacity: 0.15,
+        orbitThickness: 0.05
     });
 
     const handlePlanetClick = (planet) => {
@@ -781,6 +947,8 @@ const SistemaSolar = ({ level, grade }) => {
                 <OrbitControls
                     enablePan={!selectedPlanet}
                     enableZoom={true}
+                    enableDamping={true}
+                    dampingFactor={0.1}
                     makeDefault
                 />
 
@@ -810,6 +978,8 @@ const SistemaSolar = ({ level, grade }) => {
                             <OrbitPath
                                 distance={planet.distance}
                                 visible={config.showOrbits}
+                                opacity={config.orbitOpacity}
+                                thickness={config.orbitThickness}
                             />
                         </React.Fragment>
                     ))}
