@@ -311,3 +311,12 @@ export const appFraccionesESO = {
   component: FraccionesESO
 };
 
+import CelulaAnimal from '../celula-animal/CelulaAnimal';
+
+export const appCelulaAnimal = {
+  id: 'celula-animal',
+  name: '🔬 La Célula Animal',
+  description: 'Explora la célula animal en detalle: orgánulos, funciones y curiosidades.',
+  component: CelulaAnimal
+};
+

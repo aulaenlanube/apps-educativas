@@ -8,7 +8,7 @@ import {
   appVisualizador3D, appLluviaDePalabras, appParejas, appClasificador, appSnake, appComprensionEscrita, appComprensionOral,
   appExcavacionSelectiva, appMesaCrafteo, appEntrenadorTabla, appNumerosRomanosESO,
   appMayorMenor6, appMedidas6, appLaboratorioFunciones2D, appTerminalRetro, appProgramacionBloques, appBancoRecursosTutoria,
-  appFraccionesESO, appSistemaSolar
+  appFraccionesESO, appSistemaSolar, appCelulaAnimal
 } from './commonApps';
 
 export const esoSubjects = materiasData.eso;
@@ -34,7 +34,7 @@ export const esoApps = {
       appDetectiveDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'biologia': [appSistemaSolar,
+    'biologia': [appCelulaAnimal, appSistemaSolar,
       appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
