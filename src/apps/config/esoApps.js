@@ -97,7 +97,7 @@ export const esoApps = {
       appDetectiveDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'biologia': [appSistemaSolar,
+    'biologia': [appCelulaAnimal, appSistemaSolar,
       appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
@@ -160,7 +160,7 @@ export const esoApps = {
       appDetectiveDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'biologia': [appSistemaSolar,
+    'biologia': [appCelulaAnimal, appSistemaSolar,
       appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
@@ -227,7 +227,7 @@ export const esoApps = {
       appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],
-    'biologia': [appSistemaSolar,
+    'biologia': [appCelulaAnimal, appSistemaSolar,
       appBuscaElIntruso, appRunner, appExcavacionSelectiva, appRosco, appOrdenaLaFrase, appOrdenaLaHistoria, appParejas, appLluviaDePalabras,
       appClasificador, appSnake, appComprensionEscrita, appComprensionOral
     ],

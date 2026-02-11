@@ -477,7 +477,7 @@ const CelulaAnimal = () => {
             {/* HEADER */}
             <header className="celula-header">
                 <div className="celula-header-left">
-                    {/* El botón de volver lo proporciona AppRunnerPage en el nivel superior */}
+                    {/* El título y botones globales los gestiona AppRunnerPage */}
                 </div>
 
                 {/* Mode Switcher */}
