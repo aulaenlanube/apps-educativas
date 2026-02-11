@@ -247,6 +247,97 @@ const CosmicDust = () => {
     );
 };
 
+// --- ASTEROID BELT (Instanced for performance) ---
+const ASTEROID_COUNT = 600;
+const BELT_INNER = 29;
+const BELT_OUTER = 38;
+const BELT_CENTER = (BELT_INNER + BELT_OUTER) / 2;
+const BELT_WIDTH = (BELT_OUTER - BELT_INNER) / 2;
+
+const AsteroidBelt = ({ simSpeed, isPaused, showLabels }) => {
+    const meshRef = useRef();
+    const dummy = useMemo(() => new THREE.Object3D(), []);
+
+    // Pre-compute asteroid transforms once
+    const asteroidData = useMemo(() => {
+        const data = [];
+        for (let i = 0; i < ASTEROID_COUNT; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            // Gaussian-like distribution around center
+            const r = BELT_CENTER + (Math.random() - 0.5 + (Math.random() - 0.5)) * BELT_WIDTH;
+            const y = (Math.random() - 0.5) * 1.8; // Vertical spread
+            const scale = 0.03 + Math.random() * 0.12;
+            const rotX = Math.random() * Math.PI * 2;
+            const rotY = Math.random() * Math.PI * 2;
+            const rotZ = Math.random() * Math.PI * 2;
+            // Individual orbit speed variation
+            const speedFactor = 0.8 + Math.random() * 0.4;
+            data.push({ angle, r, y, scale, rotX, rotY, rotZ, speedFactor });
+        }
+        return data;
+    }, []);
+
+    useFrame((_, delta) => {
+        if (!meshRef.current) return;
+        const orbitDelta = isPaused ? 0 : delta * simSpeed * 0.3;
+
+        for (let i = 0; i < ASTEROID_COUNT; i++) {
+            const a = asteroidData[i];
+            if (!isPaused) {
+                a.angle += orbitDelta * a.speedFactor * (1 / (a.r * 0.05));
+            }
+            // Self-rotation
+            a.rotX += delta * 0.2;
+            a.rotY += delta * 0.15;
+
+            dummy.position.set(
+                Math.cos(a.angle) * a.r,
+                a.y,
+                Math.sin(a.angle) * a.r
+            );
+            dummy.rotation.set(a.rotX, a.rotY, a.rotZ);
+            dummy.scale.setScalar(a.scale);
+            dummy.updateMatrix();
+            meshRef.current.setMatrixAt(i, dummy.matrix);
+        }
+        meshRef.current.instanceMatrix.needsUpdate = true;
+    });
+
+    return (
+        <group>
+            <instancedMesh ref={meshRef} args={[null, null, ASTEROID_COUNT]}>
+                <dodecahedronGeometry args={[1, 0]} />
+                <meshStandardMaterial
+                    color="#8a7d6b"
+                    roughness={0.85}
+                    metalness={0.15}
+                    emissive="#4a3f30"
+                    emissiveIntensity={0.05}
+                />
+            </instancedMesh>
+
+            {/* Subtle dust glow ring */}
+            <mesh rotation={[-Math.PI / 2, 0, 0]}>
+                <ringGeometry args={[BELT_INNER, BELT_OUTER, 128]} />
+                <meshBasicMaterial
+                    color="#a0906e"
+                    transparent
+                    opacity={0.015}
+                    side={THREE.DoubleSide}
+                    blending={THREE.AdditiveBlending}
+                    depthWrite={false}
+                />
+            </mesh>
+
+            {showLabels && (
+                <Html position={[0, 3, BELT_CENTER]} center distanceFactor={20} style={{ pointerEvents: 'none' }}>
+                    <div className="planet-label asteroid-belt-label">Cinturón de Asteroides</div>
+                </Html>
+            )}
+        </group>
+    );
+};
+
 // --- MANEJO DE ERRORES DE TEXTURA ---
 class TextureErrorBoundary extends React.Component {
     constructor(props) {
@@ -700,15 +791,69 @@ const atmosphereColors = {
 
 // --- YOUTUBE VIDEO DATA (Kurzgesagt ES) ---
 const planetVideos = {
-    sun: { id: 'oHg5SJYRHA0', title: '¿Las tormentas solares pueden destruir la civilización?', label: '☀️ Tormentas Solares' },
-    mercury: { id: 'Ict4WE9Vq_E', title: 'La sustancia más peligrosa del universo: estrellas extrañas', label: '⭐ Estrellas Extrañas' },
+    sun: { id: 'R89xJYeExPc', title: 'El Sol: nuestra estrella', label: '☀️ El Sol' },
+    mercury: { id: 'r0JuWXs7lPA', title: 'Las estrellas más grandes del universo', label: '⭐ Estrellas Gigantes' },
     venus: { id: 'vyyK3om1a10', title: 'Cómo terraformar Venus (rápidamente)', label: '🔥 Terraformar Venus' },
-    earth: { id: 'R9o6B-2u-aA', title: '¿Puede la humanidad detener un asteroide que mata planetas?', label: '☄️ Asteroides' },
-    mars: { id: 'k_B0S0T-H4Q', title: 'Construir una base en Marte es una idea horrible: ¡hagámoslo!', label: '🚀 Base en Marte' },
-    jupiter: { id: 'MXyqfK260Bw', title: 'Bombas de agujeros negros y civilizaciones de agujeros negros', label: '🕳️ Agujeros Negros' },
+    earth: { id: 'rF7llfSvEmY', title: 'La Luna: nuestro satélite natural', label: '🌙 La Luna' },
+    mars: { id: 'u1CZH4OrxBk', title: 'Marte: el planeta rojo', label: '🚀 Marte' },
+    jupiter: { id: 'TFhRXnE2xck', title: 'Agujeros negros: los monstruos del universo', label: '🕳️ Agujeros Negros' },
     saturn: { id: 'fD69KtLjjfQ', title: 'Estrellas de neutrones: los astros más extremos', label: '💫 Estrellas de Neutrones' },
-    uranus: { id: 'EhAemz1v7dQ', title: 'La fusión nuclear: la energía del futuro', label: '⚡ Fusión Nuclear' },
-    neptune: { id: 'k_gWq_o5x_o', title: '¿Qué pasaría si la Luna se precipitara sobre la Tierra?', label: '🌙 La Luna cae' },
+    uranus: { id: 'duIDvO_QGBY', title: 'Agujeros de gusano: ¿se puede viajar por el espacio-tiempo?', label: '🌀 Agujeros de Gusano' },
+    neptune: { id: '5NBQ2PBiobM', title: 'Cómo construir una Esfera de Dyson', label: '🔆 Esfera de Dyson' },
+};
+
+// --- DATOS FÍSICOS REALES ---
+const planetStats = {
+    sun: {
+        diameter: '1.392.700 km', gravity: '274 m/s²', avgTemp: '5.500°C (superficie)',
+        rotationPeriod: '~25 días', orbitalPeriod: '—', moonCount: '—',
+        distanceFromSun: '—', sizeRatio: 109, gravityRatio: 28,
+    },
+    mercury: {
+        diameter: '4.879 km', gravity: '3,7 m/s²', avgTemp: '167°C (media)',
+        rotationPeriod: '59 días', orbitalPeriod: '88 días', moonCount: 0,
+        distanceFromSun: '57,9 M km', sizeRatio: 0.38, gravityRatio: 0.38,
+    },
+    venus: {
+        diameter: '12.104 km', gravity: '8,87 m/s²', avgTemp: '464°C',
+        rotationPeriod: '243 días', orbitalPeriod: '225 días', moonCount: 0,
+        distanceFromSun: '108,2 M km', sizeRatio: 0.95, gravityRatio: 0.91,
+    },
+    earth: {
+        diameter: '12.742 km', gravity: '9,8 m/s²', avgTemp: '15°C',
+        rotationPeriod: '23 h 56 min', orbitalPeriod: '365,25 días', moonCount: 1,
+        distanceFromSun: '149,6 M km', sizeRatio: 1, gravityRatio: 1,
+    },
+    mars: {
+        diameter: '6.779 km', gravity: '3,71 m/s²', avgTemp: '-65°C',
+        rotationPeriod: '24 h 37 min', orbitalPeriod: '687 días', moonCount: 2,
+        distanceFromSun: '227,9 M km', sizeRatio: 0.53, gravityRatio: 0.38,
+    },
+    jupiter: {
+        diameter: '139.820 km', gravity: '24,79 m/s²', avgTemp: '-110°C',
+        rotationPeriod: '9 h 55 min', orbitalPeriod: '11,86 años', moonCount: 95,
+        distanceFromSun: '778,5 M km', sizeRatio: 10.97, gravityRatio: 2.53,
+    },
+    saturn: {
+        diameter: '116.460 km', gravity: '10,44 m/s²', avgTemp: '-140°C',
+        rotationPeriod: '10 h 42 min', orbitalPeriod: '29,46 años', moonCount: 146,
+        distanceFromSun: '1.434 M km', sizeRatio: 9.14, gravityRatio: 1.07,
+    },
+    uranus: {
+        diameter: '50.724 km', gravity: '8,87 m/s²', avgTemp: '-195°C',
+        rotationPeriod: '17 h 14 min', orbitalPeriod: '84 años', moonCount: 28,
+        distanceFromSun: '2.871 M km', sizeRatio: 3.98, gravityRatio: 0.91,
+    },
+    neptune: {
+        diameter: '49.244 km', gravity: '11,15 m/s²', avgTemp: '-200°C',
+        rotationPeriod: '16 h 06 min', orbitalPeriod: '164,8 años', moonCount: 16,
+        distanceFromSun: '4.495 M km', sizeRatio: 3.86, gravityRatio: 1.14,
+    },
+    moon: {
+        diameter: '3.474 km', gravity: '1,62 m/s²', avgTemp: '-23°C (media)',
+        rotationPeriod: '27,3 días', orbitalPeriod: '27,3 días', moonCount: '—',
+        distanceFromSun: '—', sizeRatio: 0.27, gravityRatio: 0.17,
+    },
 };
 
 // --- VIDEO STAR HOTSPOT (3D) ---
@@ -1008,6 +1153,11 @@ const InfoPanel = ({ planet, level, grade, onClose }) => {
     if (!planet) return null;
 
     const description = getDescription(planet, level, grade);
+    const stats = planetStats[planet.id];
+
+    // Compute comparison bar widths (capped at 100% for visual clarity)
+    const sizeBarWidth = stats ? Math.min((stats.sizeRatio / 11) * 100, 100) : 0;
+    const gravityBarWidth = stats ? Math.min((stats.gravityRatio / 3) * 100, 100) : 0;
 
     return (
         <div className={`info-panel-overlay ${showAdvanced ? 'expanded' : ''}`}>
@@ -1026,16 +1176,77 @@ const InfoPanel = ({ planet, level, grade, onClose }) => {
 
                 <div className="planet-details">
                     <p className="main-desc">{description}</p>
-                    <div className="extra-stats">
-                        <div className="stat-item">
-                            <span className="stat-label">Tipo</span>
-                            <span className="stat-value">{planet.type === 'star' ? '⭐ Estrella' : '🪐 Planeta'}</span>
+
+                    {/* --- FICHA TÉCNICA --- */}
+                    {stats && (
+                        <div className="tech-card">
+                            <h4 className="tech-card-title">
+                                <span>📊</span> Ficha Técnica
+                            </h4>
+                            <div className="tech-stats-grid">
+                                <div className="tech-stat-cell">
+                                    <span className="tech-icon">📏</span>
+                                    <span className="tech-label">Diámetro</span>
+                                    <span className="tech-value">{stats.diameter}</span>
+                                </div>
+                                <div className="tech-stat-cell">
+                                    <span className="tech-icon">⚖️</span>
+                                    <span className="tech-label">Gravedad</span>
+                                    <span className="tech-value">{stats.gravity}</span>
+                                </div>
+                                <div className="tech-stat-cell">
+                                    <span className="tech-icon">🌡️</span>
+                                    <span className="tech-label">Temperatura</span>
+                                    <span className="tech-value">{stats.avgTemp}</span>
+                                </div>
+                                <div className="tech-stat-cell">
+                                    <span className="tech-icon">🔄</span>
+                                    <span className="tech-label">Rotación</span>
+                                    <span className="tech-value">{stats.rotationPeriod}</span>
+                                </div>
+                                <div className="tech-stat-cell">
+                                    <span className="tech-icon">🪐</span>
+                                    <span className="tech-label">Órbita</span>
+                                    <span className="tech-value">{stats.orbitalPeriod}</span>
+                                </div>
+                                <div className="tech-stat-cell">
+                                    <span className="tech-icon">🛰️</span>
+                                    <span className="tech-label">Satélites</span>
+                                    <span className="tech-value">{stats.moonCount}</span>
+                                </div>
+                            </div>
+
+                            {stats.distanceFromSun !== '—' && (
+                                <div className="tech-distance-row">
+                                    <span className="tech-icon">☀️</span>
+                                    <span className="tech-label">Distancia al Sol</span>
+                                    <span className="tech-value">{stats.distanceFromSun}</span>
+                                </div>
+                            )}
+
+                            {/* Visual comparisons */}
+                            {planet.id !== 'sun' && planet.id !== 'moon' && (
+                                <div className="tech-comparisons">
+                                    <div className="tech-comparison-row">
+                                        <span className="comparison-label">Tamaño vs 🌍</span>
+                                        <div className="comparison-track">
+                                            <div className="comparison-fill" style={{ width: `${sizeBarWidth}%`, background: planet.color }}></div>
+                                            <div className="comparison-earth-mark" style={{ left: `${Math.min((1 / 11) * 100, 100)}%` }}></div>
+                                        </div>
+                                        <span className="comparison-ratio">×{stats.sizeRatio}</span>
+                                    </div>
+                                    <div className="tech-comparison-row">
+                                        <span className="comparison-label">Gravedad vs 🌍</span>
+                                        <div className="comparison-track">
+                                            <div className="comparison-fill" style={{ width: `${gravityBarWidth}%`, background: planet.color, opacity: 0.7 }}></div>
+                                            <div className="comparison-earth-mark" style={{ left: `${Math.min((1 / 3) * 100, 100)}%` }}></div>
+                                        </div>
+                                        <span className="comparison-ratio">×{stats.gravityRatio}</span>
+                                    </div>
+                                </div>
+                            )}
                         </div>
-                        <div className="stat-item">
-                            <span className="stat-label">Distancia al Sol</span>
-                            <span className="stat-value">{planet.distance === 0 ? '0' : Math.round(planet.distance * 10)} M.km</span>
-                        </div>
-                    </div>
+                    )}
 
                     <button
                         className={`btn-advanced-toggle ${showAdvanced ? 'active' : ''}`}
@@ -1315,6 +1526,13 @@ const SistemaSolar = ({ level, grade }) => {
                             />
                         </React.Fragment>
                     ))}
+
+                    {/* Asteroid Belt between Mars and Jupiter */}
+                    <AsteroidBelt
+                        simSpeed={config.simSpeed}
+                        isPaused={!!selectedPlanet}
+                        showLabels={config.showLabels}
+                    />
                 </React.Suspense>
             </Canvas>
 
