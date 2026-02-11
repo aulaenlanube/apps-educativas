@@ -709,7 +709,7 @@ const ConfigPanel = ({ config, setConfig, onResetProgress, visitedCount, totalCo
 };
 
 // --- COMPONENTE LUNA ---
-const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused, isSelected, onHotspotClick, visitedHotspots, activeHotspots }) => {
+const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused, isSelected, onHotspotClick, visitedHotspots, activeHotspots, onVideoClick }) => {
     const moonGroupRef = useRef();
     const moonMeshRef = useRef();
 
@@ -767,6 +767,9 @@ const Moon = ({ moon, simSpeed, rotationSpeed, onClick, registerRef, isPaused, i
                         />
                     );
                 })}
+
+                {/* Video Star Hotspot for Moon */}
+                <VideoStarHotspot planetId={moon.id} planetSize={moon.size} onVideoClick={onVideoClick} />
             </group>
             <mesh rotation={[-Math.PI / 2, 0, 0]}>
                 <ringGeometry args={[moon.distance - 0.03, moon.distance + 0.03, 128]} />
@@ -794,12 +797,12 @@ const planetVideos = {
     sun: { id: 'R89xJYeExPc', title: 'El Sol: nuestra estrella', label: '☀️ El Sol' },
     mercury: { id: 'r0JuWXs7lPA', title: 'Las estrellas más grandes del universo', label: '⭐ Estrellas Gigantes' },
     venus: { id: 'vyyK3om1a10', title: 'Cómo terraformar Venus (rápidamente)', label: '🔥 Terraformar Venus' },
-    earth: { id: 'rF7llfSvEmY', title: 'La Luna: nuestro satélite natural', label: '🌙 La Luna' },
     mars: { id: 'u1CZH4OrxBk', title: 'Marte: el planeta rojo', label: '🚀 Marte' },
     jupiter: { id: 'TFhRXnE2xck', title: 'Agujeros negros: los monstruos del universo', label: '🕳️ Agujeros Negros' },
     saturn: { id: 'fD69KtLjjfQ', title: 'Estrellas de neutrones: los astros más extremos', label: '💫 Estrellas de Neutrones' },
     uranus: { id: 'duIDvO_QGBY', title: 'Agujeros de gusano: ¿se puede viajar por el espacio-tiempo?', label: '🌀 Agujeros de Gusano' },
     neptune: { id: '5NBQ2PBiobM', title: 'Cómo construir una Esfera de Dyson', label: '🔆 Esfera de Dyson' },
+    moon: { id: 'rF7llfSvEmY', title: 'La Luna: nuestro satélite natural', label: '🌙 La Luna' },
 };
 
 // --- DATOS FÍSICOS REALES ---
@@ -1044,6 +1047,7 @@ const Planet = ({ planet, isPaused, onClick, registerRef, simSpeed, rotationSpee
                     onHotspotClick={onHotspotClick}
                     visitedHotspots={visitedHotspots}
                     activeHotspots={activeHotspots}
+                    onVideoClick={onVideoClick}
                 />
             ))}
         </group>
